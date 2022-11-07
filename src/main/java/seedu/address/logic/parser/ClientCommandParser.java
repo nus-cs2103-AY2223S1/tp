@@ -154,6 +154,11 @@ public class ClientCommandParser implements Parser<ClientCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditClientCommand.MESSAGE_USAGE));
         }
+
+        if (anyPrefixesPresent(argMultimap, PREFIX_CLIENT_ID)) {
+            parseIndexValidity(argMultimap.getValue(PREFIX_CLIENT_ID).get());
+        }
+
         Name newName = null;
         ClientEmail newEmail = null;
         ClientMobile newMobile = null;
@@ -165,20 +170,22 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         }
 
         if (anyPrefixesPresent(argMultimap, PREFIX_NAME)) {
+            parseNameValidity(argMultimap.getValue(PREFIX_NAME).get());
             newName = parseName(argMultimap.getValue(PREFIX_NAME).get());
         }
 
         if (anyPrefixesPresent(argMultimap, PREFIX_MOBILE)) {
+            parseMobileValidity(argMultimap.getValue(PREFIX_MOBILE).get());
             newMobile = parseMobile(argMultimap.getValue(PREFIX_MOBILE).get());
         }
 
         if (anyPrefixesPresent(argMultimap, PREFIX_EMAIL)) {
+            parseEmailValidity(argMultimap.getValue(PREFIX_EMAIL).get());
             newEmail = parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         }
 
         return new EditClientCommand(newClientId, newName, newEmail, newMobile);
     }
-
 
 
     /**
@@ -207,6 +214,15 @@ public class ClientCommandParser implements Parser<ClientCommand> {
     private ClientCommand parseSetClientDefaultViewCommand(String arguments) {
         return new SetClientDefaultViewCommand();
     }
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the FindCommand
+     * and returns FindCommand object for execution.
+     *
+     * @param arguments string of arguments
+     * @return an FindClientCommand object
+     * @throws ParseException if the user input does not conform the expected format
+     */
     private FindClientCommand parseFindClientCommand(String arguments) throws ParseException {
 
         ArgumentMultimap argMultimap =
@@ -245,6 +261,15 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         return new FindClientCommand(predicate);
     }
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the FindCommand
+     * and returns FindCommand object for execution.
+     *
+     * @param flag String representing command flag
+     * @param arguments String representing arguments
+     * @return an FindClientCommand object
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public FindClientCommand parseFindClientCommands(String flag, String arguments) throws ParseException {
         return parseFindClientCommand(arguments);
     }

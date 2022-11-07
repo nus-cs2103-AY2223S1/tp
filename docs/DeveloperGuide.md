@@ -84,7 +84,6 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component.
 
-
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -117,24 +116,16 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `ClientCommandParser`, `IssueCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103-F13-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
-
+<img src="images/ModelClassDiagram.png" width="1000" />
 
 The `Model` component,
 
-* stores the project book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the project book data i.e., all `Project`, `Client`, and `Issue` objects (which are contained in separate `UniqueEntityList` objects).
+* stores the currently 'selected' `Peoject`, `CLient`, or `Issue` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Project>`, `ObservableList<Client>` or `ObservableList<Issue>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
 
 ### Storage component
 
@@ -253,7 +244,7 @@ Compulsory prefixes: n/VALID_NAME, p/VALID_PROJECT_ID
 Optional prefixes: m/VALID_MOBILE_NUMBER, e/VALID_EMAIL  
 Example Use: `client -a n/John Doe m/98765432 e/johnd@example.com p/1`  
 
-#### The following sequence diagram shows how the add command operation works for adding a project entity:
+The following sequence diagram shows how the add command operation works for adding a project entity:
 Example: `project -a n/Team Project`
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
@@ -306,8 +297,8 @@ Example Use: `issue -d 2`
 #### Delete Client Command
 Compulsory argument: VALID_CLIENT_ID
 Example Use: `client -d 3`
-
-#### The following sequence diagram shows how the delete command operation works for deleting a client entity:
+ 
+The following sequence diagram shows how the delete command operation works for deleting a client entity:
 Example: `client -d 1`
 
 ![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
@@ -357,8 +348,9 @@ Compulsory prefix: c/VALID_CLIENT_ID
 Optional prefixes (at least one to be included): n/VALID_NAME, m/VALID_MOBILE_NUMBER, e/VALID_EMAIL, p/VALID_PROJECT_ID  
 Example Use: `client -e c/1 n/BenTen m/12345678 e/Ben10@gmail.com p/1`
 
-#### The following sequence diagram shows how the edit command operation works for editing an issue entity:
+The following sequence diagram shows how the edit command operation works for editing an issue entity:
 Example: `issue -e i/1 t/To edit issue command d/2022-04-09 u/1`
+
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
 #### Design considerations: 
@@ -621,8 +613,15 @@ which retrieves the issue with the parsed issueId from the `IssueList` in the sy
 Compulsory argument: VALID_ISSUE_ID
 Example use: `issue -u 2`
 
-The following sequence diagram shows how the mark command operation works for mark an issue entity:
+The following sequence diagram shows how the mark command operation works for mark an issue entity (unmark works in the same manner):
 Example: `issue -m 1`
+
+![MarkSequenceDiagram](images/MarkSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `MarkIssueCommand`
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 #### Design Considerations
 
@@ -1259,7 +1258,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `project l`<br>
        Expected: Displayed list does not change. Error details shown in the status message. Status bar remains the same.
 
-    4. Other incorrect list commands to try: `project list`, `project -list`, `...` <br>
+    4. Other incorrect list commands to try: `project list`, `project -list`, `...`.Same for entities `issue` and `client`.<br>
        Expected: Similar to previous.
 
 ### Setting default view
@@ -1277,7 +1276,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `client v`<br>
        Expected: List displayed by default does not change. Error details shown in the status message. Status bar remains the same.
 
-    5. Other incorrect default view commands to try: `client view`, `client -dv`, `...` <br>
+    5. Other incorrect default view commands to try: `client view`, `client -dv`, `...`. Same for entities `issue` and `project`. <br>
        Expected: Similar to previous.
 
 ### Adding an entity
@@ -1295,7 +1294,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `client -a n/John Doe p/1`<br>
        Expected: Client with `name` John Doe is added to client list. View of client list is shown.
 
-    5. Other incorrect add commands to try: `project -a`, `project -a r/Project/Home`, `project -a n/Project d/x` where x improperly formatted, `project -a n/Project y/` where y is an invalid prefix, `...` <br>
+    5. Other incorrect add commands to try: `project -a`, `project -a r/Project/Home`, `project -a n/Project d/x`, `project -a n/Project y/`, `...` (where x improperly formatted, and y is an invalid prefix). Same for entities `issue` and `client`. <br>
        Expected: No adding occurs. Error details shown in the status message. Status bar remains the same.
 
 ### Deleting an entity
@@ -1311,7 +1310,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No issue is deleted. Error details shown in the status message.
     
     4. Other incorrect delete commands to try: `project -d`, `project -d x`, `project -d word` (where x is larger than the list
-      size)<br>
+      size). Same for entities `issue` and `client`. <br>
       Expected: Similar to previous.
 
 ### Editing an entity
@@ -1328,7 +1327,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Issue with `issueId` 2 is edited to have new `title` Finish Work and new `urgency` medium. New `title`
        of the edited issue shown in the status message. View of issue list is shown.
    
-    4. Test case: `issue -e p/1 d/2019-12-12`<br>
+    4. Test case: `project -e p/1 d/2019-12-12`<br>
        Expected: Project with `projectId` 1 is edited to have new `deadline` 12 Dec 2019. The `name` of edited project 
        shown in the status message. View of project list is shown.
 
@@ -1336,7 +1335,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No client is edited. Error details shown in the status message.
 
     6. Other incorrect edit commands to try: `client -e`, `client -e c/1`, `client -e c/1 p/&&123456`, `client -e 
-       n/Harry c/x`, `...` (where x is larger than the client list size)<br>
+       n/Harry c/x`, `...` (where x is larger than the client list size). Same for entities `issue` and `project`.<br>
        Expected: Similar to previous.
     
 ### Sorting an entity
@@ -1354,7 +1353,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `client -s n/0`<br>
        Expected: Clients sorted in alphabetical order of `name`. View of client list is shown.
    
-    5. Other incorrect sort commands to try: `project -s`, `project -s d/x` where x is not 0 or 1, `project -s y/0` where y is not a valid key, `project -s i/0 i/1 d/0`. Same for entities `issue` and `client`.<br>
+    5. Other incorrect sort commands to try: `project -s`, `project -s d/x`, `project -s y/0`, `project -s i/0 i/1 d/0`, `...` (where x is not 0 or 1, andy is not a valid key). Same for entities `issue` and `client`.<br>
        Expected: No sorting occurs. Error details shown in the status message. Status bar remains the same.
     
 ### Pinning an entity
@@ -1372,7 +1371,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `project -p 0`<br>
        Expected: No project is pinned. Error details shown in the status message. Status bar remains the same.
 
-    5. Other incorrect pin commands to try: `project -p`, `project -p x`, `...` (where x is a project ID not in the list)<br>
+    5. Other incorrect pin commands to try: `project -p`, `project -p x`, `...` (where x is a project ID not in the list). Same for entities `issue` and `client`<br>
        Expected: Similar to previous.
 
 ### Finding an entity
