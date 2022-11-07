@@ -16,7 +16,7 @@ public class GetNextOfKinCommand extends GetCommand {
 
     public static final String NEXT_OF_KIN_PREFIX = "/nok";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the next-of-kin data with the given  "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the next-of-kin data with the given "
             + "specified keywords (patient name; case insensitive) \n"
             + "Parameters: "
             + NEXT_OF_KIN_PREFIX + " PATIENT NAME\n"
