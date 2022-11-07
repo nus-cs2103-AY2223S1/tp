@@ -40,7 +40,7 @@ It is written in Java, and has about 14 kLoC.
       * Updated developer guide with manual testing for sort feature: [#209](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/209)
 
 * **Community**: 
-  * PRs reviewed (with non-trivial suggestions): [#111](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/111), [#124](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/124), [#204](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/204)
+  * PRs reviewed (with non-trivial suggestions): [#111](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/111), [#124](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/124), [#204](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/204), [#210](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/210)
   * Hosted multiple discussion sessions with team members on PR issues and weekly tasks.
   * Reported bugs for [CS2103T-T17-1](https://github.com/AY2223S1-CS2103T-T17-1/tp) during PE dry run [here](https://github.com/ShummyOwnzYou/ped/issues).
 
