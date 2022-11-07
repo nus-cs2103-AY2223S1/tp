@@ -145,8 +145,12 @@ public class CommandBox extends UiPart<Region> {
         }
     }
 
+    /**
+     * Checks if the command text field is overflowing.
+     * @return true if the command text field is overflowing.
+     */
     public boolean isOverflow() {
-        Text t = new Text(commandTextField.getText() + "12345" ); // `12345` is used to pad the text
+        Text t = new Text(commandTextField.getText() + "12345"); // `12345` is used to pad the text
         t.setFont(commandTextField.getFont());
         double width = t.getLayoutBounds().getWidth();
         return width > commandTextField.getWidth();
