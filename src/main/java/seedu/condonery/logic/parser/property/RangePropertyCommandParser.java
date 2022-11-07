@@ -2,13 +2,14 @@ package seedu.condonery.logic.parser.property;
 
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.condonery.commons.core.Messages.MESSAGE_NEGATIVE_NUMBER;
-import static seedu.condonery.commons.core.Messages.MESSAGE_NUMBER_INVALID;
+import static seedu.condonery.commons.core.Messages.MESSAGE_NUMBER_OUT_OF_RANGE;
 import static seedu.condonery.commons.core.Messages.MESSAGE_RANGE_INVALID;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_LOWER;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_UPPER;
 
 import java.util.stream.Stream;
 
+import seedu.condonery.commons.core.Messages;
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.property.RangePropertyCommand;
 import seedu.condonery.logic.parser.ArgumentMultimap;
@@ -42,18 +43,20 @@ public class RangePropertyCommandParser implements Parser<Command> {
             ParserUtil.parseNumber(argMultimap.getValue(PREFIX_LOWER).get());
             ParserUtil.parseNumber(argMultimap.getValue(PREFIX_UPPER).get());
         } catch (NumberFormatException e) {
-            throw new ParseException(String.format(MESSAGE_NUMBER_INVALID, RangePropertyCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_NUMBER_OUT_OF_RANGE, RangePropertyCommand.MESSAGE_USAGE));
         }
+
         Integer lower = ParserUtil.parseNumber(argMultimap.getValue(PREFIX_LOWER).get());
         Integer upper = ParserUtil.parseNumber(argMultimap.getValue(PREFIX_UPPER).get());
+
+        if (Integer.signum(lower) == -1 || Integer.signum(upper) == -1) {
+            throw new ParseException(String.format(MESSAGE_NEGATIVE_NUMBER, RangePropertyCommand.MESSAGE_USAGE));
+        }
 
         if (lower > upper) {
             throw new ParseException(String.format(MESSAGE_RANGE_INVALID, RangePropertyCommand.MESSAGE_USAGE));
         }
 
-        if (Integer.signum(lower) == -1 || Integer.signum(upper) == -1) {
-            throw new ParseException(String.format(MESSAGE_NEGATIVE_NUMBER, RangePropertyCommand.MESSAGE_USAGE));
-        }
         return new RangePropertyCommand(new PropertyPriceWithinRangePredicate(lower, upper));
 
     }
