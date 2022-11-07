@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.FindMyIntern;
 import seedu.address.model.Model;
@@ -48,7 +49,7 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validInternship);
         ModelStub modelStub = new ModelStubWithInternship(validInternship);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_INTERNSHIP, ()
+        assertThrows(CommandException.class, Messages.MESSAGE_DUPLICATE_INTERNSHIP, ()
                 -> addCommand.execute(modelStub));
     }
 

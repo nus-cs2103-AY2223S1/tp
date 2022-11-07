@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalInternships.getTypicalFindMyIntern;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -39,7 +40,7 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_duplicateInternship_throwsCommandException() {
         Internship internshipInList = model.getFindMyIntern().getInternshipList().get(0);
-        assertCommandFailure(new AddCommand(internshipInList), model, AddCommand.MESSAGE_DUPLICATE_INTERNSHIP);
+        assertCommandFailure(new AddCommand(internshipInList), model, Messages.MESSAGE_DUPLICATE_INTERNSHIP);
     }
 
 }

@@ -107,7 +107,7 @@ public class EditCommandTest {
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder(firstInternship).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_INTERNSHIP, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_INTERNSHIP);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_DUPLICATE_INTERNSHIP);
     }
 
     @Test
@@ -120,7 +120,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_INTERNSHIP,
                 new EditInternshipDescriptorBuilder(internshipInList).build());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_INTERNSHIP);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_DUPLICATE_INTERNSHIP);
     }
 
     @Test

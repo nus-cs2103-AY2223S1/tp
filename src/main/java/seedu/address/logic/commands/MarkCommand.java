@@ -44,6 +44,7 @@ public class MarkCommand extends Command {
     public MarkCommand(Index index, ApplicationStatus applicationStatus) {
         requireNonNull(index);
         requireNonNull(applicationStatus);
+        assert index.getOneBased() > 0 : "index should be positive integer";
 
         this.index = index;
         this.applicationStatus = applicationStatus;

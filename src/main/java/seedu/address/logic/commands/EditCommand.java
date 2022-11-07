@@ -44,14 +44,13 @@ public class EditCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_APPLIED_DATE + "APPLIED_DATE] "
             + "[" + PREFIX_INTERVIEW_DATE_TIME + "INTERVIEW_DATE_TIME] "
-            + "[" + PREFIX_TAG + "TAG]\n"
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_LINK + "https://careers.tiktok.com/position "
             + PREFIX_DESCRIPTION + "Global e-Commerce";
 
     public static final String MESSAGE_EDIT_INTERNSHIP_SUCCESS = "Edited Internship: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in findMyIntern.";
 
     private final Index index;
     private final EditInternshipDescriptor editInternshipDescriptor;
@@ -63,6 +62,7 @@ public class EditCommand extends Command {
     public EditCommand(Index index, EditInternshipDescriptor editInternshipDescriptor) {
         requireNonNull(index);
         requireNonNull(editInternshipDescriptor);
+        assert index.getOneBased() > 0 : "index should be positive integer";
 
         this.index = index;
         this.editInternshipDescriptor = new EditInternshipDescriptor(editInternshipDescriptor);
@@ -81,7 +81,7 @@ public class EditCommand extends Command {
         Internship editedInternship = createEditedInternship(internshipToEdit, editInternshipDescriptor);
 
         if (!internshipToEdit.isSameInternship(editedInternship) && model.hasInternship(editedInternship)) {
-            throw new CommandException(MESSAGE_DUPLICATE_INTERNSHIP);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_INTERNSHIP);
         }
 
         model.setInternship(internshipToEdit, editedInternship);
