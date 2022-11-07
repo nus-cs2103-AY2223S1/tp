@@ -1,6 +1,6 @@
 ---
 layout: page 
-title: SETA
+title: User Guide
 ---
 
 SETA is a **desktop application for CS2103T Teaching Assistants** to track their students’ and tutorials’ details, and
