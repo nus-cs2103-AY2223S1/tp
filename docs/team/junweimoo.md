@@ -11,10 +11,8 @@ optimized for use via a Command Line Interface (CLI), with all the benefits of a
 
 Given below are my contributions to the project.
 
-
 * **Code contributed**:
   * [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=w16-4&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&zFR=false&tabType=authorship&tabAuthor=junweimoo&tabRepo=AY2223S1-CS2103T-W16-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
-
 
 * **Enhancements implemented**:
   * Command enhancements [#127](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/127), [#183](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/183): 
@@ -44,7 +42,6 @@ Given below are my contributions to the project.
     * Fixed bugs for conflicting meeting times
     
     Checks against conflicting meeting times were implemented in the model. The editMeeting command also had to be guarded against bugs to prevent the meeting being edited from conflicting with the existing meeting. 
-    
 
 * **Documentation**:
   * User Guide [#286](https://github.com/AY2223S1-CS2103T-W16-4/tp/pull/286)
@@ -58,11 +55,9 @@ Given below are my contributions to the project.
     * Wrote use cases for MyInsuRec.
     * Added non-function requirements.
 
-
 * **Team-Based Tasks**:
   * Renamed the product to MyInsuRec and suggested ways to morph the feature set.
   * Incorporated use of SonarQube as a code quality checking tool.
-
 
 * **Review/Mentoring Contributions**:
   * Discussed and agreed on target audience and user stories with teammates.
