@@ -482,7 +482,7 @@ E.g. `view t/e` produces a pie chart view of the expenses entries grouped by cat
 `view t/i mo/2022-01` produces a line graph of the income entries in Jan 2022 grouped by days.
 </div>
 
-`view` command is used to filter the entry list as well as generate graphs. 
+`view` command is used to filter the entry list as well as generate graphs.
 
 The `ViewCommandParser` class is responsible for parsing the parameter received from the user, and passing the `EntryType`
 as well as `GraphType` to the `ViewCommand` class.
@@ -491,8 +491,8 @@ The `ViewCommand` class is responsible for filtering the entry list and generati
 The class diagram below shows the structure of `ViewCommand`.
 ![ViewCommandClassDiagram](images/ViewCommandClassDiagram.png)
 
-The `view` command will produce a category view with a pie chart or a daily view with a line graph. This is achieved with an optional 
-input `mo/MONTH`. If it is present, the entry list will be filtered by the specified month and 
+The `view` command will produce a category view with a pie chart or a daily view with a line graph. This is achieved with an optional
+input `mo/MONTH`. If it is present, the entry list will be filtered by the specified month and
 a line graph will be displayed. Otherwise, the full list will be shown and a pie chart will be displayed.
 
 The activity diagram below illustrates the workflow described above when a user executes the `view` command.
@@ -511,9 +511,9 @@ the steps in **command execution** as well as **UI updates**.
 
 3. `LogicManager` then calls the `pennyWiseParser#parseCommand` method which matches the command word `view` in the string and extracts the arguments string `t/e`.
 
-4. `pennyWiseParser` then calls the `ViewCommandParser#parse` method. 
+4. `pennyWiseParser` then calls the `ViewCommandParser#parse` method.
    In this method, it is ensured that the input is of the correct format, and the entryType (and year month, if supplied) is extracted.
-   It creates a `viewEntriesDescriptor` with `entryType` set to expenditure and `yearMonth` set to `null`. 
+   It creates a `viewEntriesDescriptor` with `entryType` set to expenditure and `yearMonth` set to `null`.
 5. `LogicManager`then calls the `ViewCommand#execute` method which creates a `graphConfiguration` based on the `viewEntriesDescriptor`. It also filters the
 expenditure list based on `predicate` generated from the `viewEntriesDescriptor`.
 The `CommandResult`, containing the `graphConfiguration`, is returned to `LogicManager` and passed to `MainWindow`.
@@ -535,7 +535,7 @@ The current design follows a modified version of Alternative 2. Whenever the tab
 will be reset and a pie chart will be displayed. We followed this design for the following reasons:
 * The UI is still responsive to users' tab switching action.
 * Setting a filter for one list with `view t/ENTRY_TYPE mo/MONTH` would not affect the other list, because to show the other list,
-the user needs to either use a `view` command, which sets a filter for the other list, or switch tab manually, which is equivalent 
+the user needs to either use a `view` command, which sets a filter for the other list, or switch tab manually, which is equivalent
 to a `view t/ENTRY_TYPE` command.
 
 ### \[Proposed\] Undo/redo feature

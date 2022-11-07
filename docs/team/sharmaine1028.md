@@ -56,4 +56,3 @@ Given below are my contributions to the project.
       , [3](https://github.com/nus-cs2103-AY2223S1/forum/issues/106))
     * Reported bugs and suggestions for other teams in the class (
       examples: [1](https://github.com/sharmaine1028/ped/issues))
-    

@@ -150,10 +150,10 @@ Curious about the various commands? Refer to the [Features](#features) below to 
 
 ### What is an Entry
 
-Think of PennyWise as a helpful personal budgeting assistant. Whenever you spend or earn money, all you need to do is 
-tell PennyWise and PennyWise will help you log and save it as a new Entry! An Entry is what PennyWise terms as a 
+Think of PennyWise as a helpful personal budgeting assistant. Whenever you spend or earn money, all you need to do is
+tell PennyWise and PennyWise will help you log and save it as a new Entry! An Entry is what PennyWise terms as a
 particular expenditure or income logged into the application. PennyWise defines an expenditure and income as things that
-you spend money on, and things that make you money respectively! Not only that, PennyWise will help you 
+you spend money on, and things that make you money respectively! Not only that, PennyWise will help you
 analyse your data, so you can easily get an overview of your overall expenditure or income.
 
 However, in order to do this, PennyWise will need some data from you! Whenever you log an entry, whether expenditures or
@@ -222,7 +222,7 @@ step-by-step!
 
 - PennyWise will always take the **LAST OCCURRENCE** of a command prefix should there be more than 1 of the same command
   prefix in a given command. <br/>
-  e.g. PennyWise will add the following `Income` with the description: "October Allowance" upon running the following command. 
+  e.g. PennyWise will add the following `Income` with the description: "October Allowance" upon running the following command.
   <pre>
     <code>
         add t/i d/Monthly Allowance a/200.00 da/01-10-2022 c/Allowance d/Oct Allowance d/October Allowance
@@ -235,9 +235,9 @@ step-by-step!
     </code>
   </pre>
 
-- PennyWise will **IGNORE** any extra words or characters present after the following commands: 
- `summary` (except [`summary [mo/MONTH]`](#summary-of-entries)) `help`, `clear` and `exit`. 
-  e.g. `summary abcdefg` will be interpreted as `summary` and `help 123456` will also be interpreted as `help`.  
+- PennyWise will **IGNORE** any extra words or characters present after the following commands:
+ `summary` (except [`summary [mo/MONTH]`](#summary-of-entries)) `help`, `clear` and `exit`.
+  e.g. `summary abcdefg` will be interpreted as `summary` and `help 123456` will also be interpreted as `help`.
 
 - Words in `UPPER_CASE` are the parameters that you must supply<br>
   e.g. In `delete INDEX_OF_ENTRY t/ENTRY_TYPE`, `INDEX_OF_ENTRY` is a parameter which can be used as `delete 10 t/e`.
@@ -247,7 +247,7 @@ step-by-step!
 
 - **ALL** identifiers are <ins>case-sensitive</ins>.
   e.g. `d/Lunch` as a descriptor for "Lunch" is accepted by PennyWise, however `D/Lunch` would not be accepted.
-  
+
 ### Categorising your expenses and income
 
 For **ALL** entries, categories are <ins>COMPULSORY</ins> and every entry can only contain <ins>one</ins> category. The
@@ -487,7 +487,7 @@ Format: `view t/ENTRY_TYPE mo/MONTH`
 
 1. View a Line Graph of all expenditures in a specified month
     - Examples: `view t/e mo/2022-01` where we specify the month to be January 2022.
-    - Expected: `Show graphically all expenditure by month` and a Line Graph on the right of the application. 
+    - Expected: `Show graphically all expenditure by month` and a Line Graph on the right of the application.
    The List Display will also be filtered to show only expenditures in Jan 2022.
 
    ![ViewCommandExpenditureMonth](images/ug/ViewCommandExpenditureMonth.png)
@@ -504,7 +504,7 @@ error.
 </div>
 
 <div markdown="block" class="alert alert-primary">:bulb: **Tip:**
-You can think of the view entries by month command as applying a month filter to the entry list, 
+You can think of the view entries by month command as applying a month filter to the entry list,
 and view entries by category command as clearing any filters on the entry list.
 </div>
 
