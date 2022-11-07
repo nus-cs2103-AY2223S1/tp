@@ -39,7 +39,6 @@ Given below are my contributions to the project.
 - ### Review/mentoring contributions:
     - Reviewed and merged pull requests
     - Helped to resolve merge conflicts in other members’ pull requests
-- ### Contributions beyond the project team:
 - ### Community
     - Maintained issues and closed milestones.
     - Fixed bugs from PE-D.
