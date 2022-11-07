@@ -22,8 +22,11 @@ With `Food Guide`, you can search for the available food options in NUS and make
 ## Table of Contents
 * [Introduction](#introduction)
 * [Table of Contents](#table-of-contents)
+* [Using the User Guide](#using-the-user-guide)
+* [First Glance](#first-glance)
 * [Quick Start](#quick-start)
 * [Features](#features)
+  * [Introduction to Our Features](#introduction-to-our-features)
   * [Help](#help-command--help)
   * [List](#listing-all-eateries--list)
   * [Exit](#exit-command--exit)
@@ -63,7 +66,7 @@ The following image describes how `Food Guide` looks like upon opening the appli
 
 ![Ui](images/user-guide/UgGuiGuide.png)
 
-## Quick start
+## Quick Start
 
 1. First, start by installing `Java 11` from 
 [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
@@ -90,7 +93,9 @@ e.g. typing `help` and pressing Enter will open the help window. <br>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Introduction to Features
+## Features
+
+### Introduction to Our Features
 
 This section summarizes all the commands supported in the `Food Guide`. 
 We highly recommend you read this section before jumping into all the features below!
