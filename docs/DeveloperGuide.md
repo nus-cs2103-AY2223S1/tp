@@ -503,11 +503,15 @@ This feature allows the user to navigate to their previously entered commands us
 `CommandHistory` has an index pointer which tracks where the user is currently at in the command history list
 and also manages the writing and reading of commands to and from the command history list.
 
-The following sequence diagram summarizes how a valid command is saved in TextCommandHistoryStorage:
+
 ![Add to command history storage](images/AddToCommandHistorySequenceDiagram.png)
+
+*Figure 16: Sequence Diagram showing how a valid command is saved in TextCommandHistoryStorage*
 <br><br>
-The following sequence diagram summarizes how an up arrow key navigates to the previous command:
+
 ![Navigate command history](images/NavigateCommandHistorySequenceDiagram.png)
+
+*Figure 17: Sequence Diagram showing how an up arrow key navigates to the previous command*
 
 ### Calendar features
 The calendar feature allows a calendar to display with the corresponding appointments of the month in a calendar format. The feature consists of the following features:
@@ -524,7 +528,7 @@ Upon initialisation of the `CalendarDisplay`, it will display the current month 
 
 ![Calendar Class Diagram](images/CalendarUiClassDiagram.png)
 
-*Figure x. Class diagram showing the classes for the Calendar in the `Ui`.*
+*Figure 18. Class diagram showing the classes for the Calendar in the `Ui`*
 
 **Calendar Display**
 
@@ -538,8 +542,9 @@ The following is a more detailed explanation on how `Calendar Display` is implem
 5. A `CalendarEventListPanel` object is created for each day of the month, and `EventButtons` are added to each `CalendarEventListPanel` if there is an appointment falling on that particular day.
 6. Following which, when appointments are added,`Model#updateCalendarEventList()` is called which then updates the `Calendar Display` as well.
 
-The following activity diagram summarizes what happens when a user selects the Calendar tab:
 ![Calendar Display Activity](images/CalendarDisplayActivityDiagram.png)
+
+*Figure 19. Activity diagram showing what happens when a user selects the Calendar tab`*
 
 **Calendar Navigation**
 
@@ -552,8 +557,10 @@ These are the ways that a user can use the `Calendar Navigation` feature.
 2. Pressing N or B key to view the next/previous month in the calendar
 3. Typing the date in the Jump Box and pressing the ENTER key to view the input month and year of the date.
 
-The following activity diagram summarizes what happens when a user selects a navigation feature:
+
 ![Calendar Navigation Activity](images/CalendarNavigationActivityDiagram.png)
+
+*Figure 20. Activity diagram showing what happens  when a user selects a navigation feature*
 
 #### Calendar Pop-up
 The calendar Pop-up allows user to view the details of the appointment in the calendar
@@ -565,8 +572,9 @@ These are the ways that a user can use the `Calendar Pop-up` feature.
 2. Pressing SHIFT or SHIFT + TAB key to view the next/previous appointment in the calendar
 3. Clicking on a desired appointment to view the appointment in the calendar
 
-The following activity diagram summarizes what happens when a user selects an appointment in the calendar tab:
 ![Calendar Pop-Up Activity](images/CalendarPopUpActivityDiagram.png)
+
+*Figure 21. Activity diagram showing what happens  when a user selects an appointment in the calendar tab*
 
 ### \[Proposed\] Undo/redo feature
 
