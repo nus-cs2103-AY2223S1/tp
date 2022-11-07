@@ -9,11 +9,14 @@ having the benefits of a Graphical User Interface (GUI). Fast typists would be a
 
 ![Ui](images/icon.png){:style="display:block; margin-left:auto; margin-right:auto"}
 
+<div style="page-break-after: always;"></div>
 
+## Table of Contents
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Acknowledgements**
 
@@ -22,7 +25,7 @@ having the benefits of a Graphical User Interface (GUI). Fast typists would be a
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [TestFx](https://github.com/TestFX/TestFX)
 * The PleaseHireUs icon is obtained from [flaticon](https://www.flaticon.com/free-icon/please_599536)
 
---------------------------------------------------------------------------------------------------------------------
+
 ## **About this Developer Guide**
 
 This guides aims to: <br>
@@ -31,7 +34,8 @@ This guides aims to: <br>
 2. Explain some design considerations in the development of the application.
 3. Provide interested developers with documentation to continue development of our product.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **Navigating the Developer Guide**
 **Information Box**
 <div markdown="block" class="alert alert-info">
@@ -55,12 +59,12 @@ This guides aims to: <br>
 
 <button>enter</button>   <button>&uarr;</button>   <button>&darr;</button>
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
 
@@ -68,6 +72,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-W17-4/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Architecture
 
@@ -110,6 +116,9 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W17-4/tp/tree/master/src/main/java/seedu/phu/ui/Ui.java)
@@ -126,6 +135,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Internship` object residing in the `Model`.
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -156,6 +167,8 @@ How the parsing works:
 * When called upon to parse a user command, the `InternshipBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `InternshipBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, …​) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W17-4/tp/tree/master/src/main/java/seedu/phu/model/Model.java)
 
@@ -175,6 +188,7 @@ The `Model` component,
 
 </div>
 
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -191,7 +205,7 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.phu.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -234,6 +248,8 @@ The following sequence diagram shows how the add command works.
     * Pros: Easier to implement
     * Cons: Lengthy command
 
+<div style="page-break-after: always;"></div>
+
 ### Delete feature
 
 #### Proposed Implementation
@@ -252,6 +268,8 @@ The following sequence diagram shows how the delete command works.
 * **Alternative 2** Use `java.util.Set`
   * Pros: Easier to implement
   * Cons: Harder to maintain in the future
+
+<div style="page-break-after: always;"></div>
 
 ### Edit feature
 
@@ -284,7 +302,9 @@ The following sequence diagram shows how the edit command works
 * **Alternative 2**: Edit command will not create a new internship. It will directly edit the selected internship
     * Pros: More efficient, both time and space wise, than the previous alternative
     * Cons: `Internship` class won't be immutable, which reduces the defensiveness of the program
-  
+
+<div style="page-break-after: always;"></div>
+
 ### List feature
 
 #### Proposed Implementation
@@ -308,9 +328,7 @@ The following sequence diagram shows how the find command works.
     * Pros: Easier to implement
     * Cons: Command is longer and more cumbersome to type
     
-    
-
-    
+<div style="page-break-after: always;"></div>
 
 ### Find feature
 
@@ -348,6 +366,8 @@ The following sequence diagram shows how the find command works.
 * **Alternative 2** Users have to input all parameters
     * Pros: Easier to implement
     * Cons: Command is longer and more cumbersome to type
+
+<div style="page-break-after: always;"></div>
 
 ### Undo/redo feature
 
@@ -434,6 +454,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the internship being deleted).
   * Cons: Quite hard to implement as we must ensure that the implementation of each individual command are correct
 
+<div style="page-break-after: always;"></div>
 
 ### View feature
 
@@ -471,6 +492,8 @@ The following sequence diagram shows how the view command works.
     * Pros: User can view multiple details at once
     * Cons: Makes `view` UI panel large, difficult to implement
 
+<div style="page-break-after: always;"></div>
+
 ### Copy feature
 
 #### Proposed Implementation
@@ -499,7 +522,9 @@ The following sequence diagram shows how the copy command works.
 **Parameters for copy command**:
 * `INDEX` parameter only takes in one index
     * Pros: Easier to implement, makes more sense
-
+  
+<div style="page-break-after: always;"></div>
+    
 ### Bar Chart
 
 #### Implementation
@@ -530,8 +555,7 @@ The following sequence diagram shows how the Bar Chart works when a change is tr
 
 _{To be updated in v2.0}_
 
-
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -542,6 +566,8 @@ _{To be updated in v2.0}_
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix A: Requirements**
 
@@ -589,7 +615,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *  `  | Visual user     | View my internship application process tag with color                     | I can easily identify which stage I have reached |
 | `*   `   | Visual user     | View the count of internships application at each stages                  | See the success rate of my applications          |
 
-*{More to be added}*
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -797,7 +823,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 500 internships without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-*{More to be added}*
+<div style="page-break-after: always;"></div>
 
 ### Glossary
 
@@ -815,6 +841,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | MCV                            | Model Controller View. A commonly used software architectural pattern for developing user interfaces                                               | 
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix B: Instructions for manual testing**
 
