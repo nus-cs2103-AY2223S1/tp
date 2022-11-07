@@ -1303,7 +1303,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [//]: # (@@author)
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-*{More to be added}*
 
 ### Glossary
 
@@ -1538,8 +1537,6 @@ module code `cs2100` is added to the module list.
     1. Prerequisite: The tasks with task descriptions as "WORK", "homework 1", "homewoRK 2", "past year paper" are inside the task list, and a `t find paper` command is done. 
     2. Test case: `t list` <br>
        Expected: The task list should now display the all 4 tasks with task descriptions of "WORK", "homework 1", "homewoRK 2", "past year paper",with a message saying "Listed all tasks"
-
-2. _{ more test cases …​ }_
 
 ### Marking a task
 
