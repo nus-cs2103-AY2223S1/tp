@@ -36,7 +36,6 @@ public class Description {
      * Returns true if a given string is a valid description.
      */
     public static boolean isValidDescription(String test) {
-        System.out.println("testing: " + test + "end " + test.matches(VALIDATION_REGEX));
         return test.matches(VALIDATION_REGEX);
     }
 
