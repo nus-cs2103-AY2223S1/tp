@@ -201,31 +201,30 @@ the sorted successfully message as argument to the `LogicManager` object.
 
 ### Filter Tasks Command
 
-#### Command Format:
+#### Command Format
 
 `t filter [m/MODULE/]* [c/COMPLETED]* [l/LINKED]*` where `MODULE` refers to the module code of the module to be filtered out, `COMPLETED` refers to the completion status of the tasks to be filtered out, and `LINKED` refers to the link status of the tasks to be filtered out.
 
-#### What is the feature:
+#### What is the feature about
 The `filter` command allows users to filter the task list by module, completion status, and/or link status.
 * `COMPLETED` will be `y` for filtering out tasks with `status` of `COMPLETE` and `n` for filtering out tasks with `TaskStatus` of `INCOMPLETE`.
 * `COMPLETED` will be `y` for filtering out tasks with `linkedExam` which is not `null` and `n` for filtering out tasks with `linkedExam` of `null`.
 
-#### How the feature works
+#### How does the feature work
 
-The proposed filter mechanism is facilitated by `FilterPredicate`. It implements `Predicate` with module, completion status and link status conditions, stored as `module`, `isCompleted` and `isLinked`. Additionally, it implements the following operations:
+The filter tasks feature is currently implemented through the `FilterTasksCommand` which extends the abstract class `Command`. 
+The `FilterTasksCommand` operates by producing a `FilterPredicate` used to update the `FilteredTaskList`. 
+Executing a filter command will always filter the full `DistinctTaskList` and not the `FilteredTaskList` if two filter commands are executed one after another.
 
-* `FilterPredicate#test(Task)` — Checks if a task fulfils the given module and/or completion status and/or link status requirements.
-* `FilterPredicate#toString()` — Returns a string representing all the conditions used during the filter operation.
+#### UML Diagrams
 
-These operations are exposed in the `Model` interface as `Model#updateFilteredTaskList`.
-
-The following sequence diagram shows how the filter operation works:
+Shown below is a sequence diagram of what occurs when the `execute` method of `LogicManager` is invoked.
 
 | ![FilterSequenceDiagram](images/FilterSequenceDiagram.png) |
 |:----------------------------------------------------------:|
 |           Sequence diagram of FilterTasksCommand           |
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FilterTasksCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FilterTasksCommand` and `FilterTasksCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
@@ -234,20 +233,19 @@ The following sequence diagram shows how the filter operation works:
 3. `AddressBookParser` calls `FilterTasksCommandParser#parse()` with `"m/CS2103T c/y l/n"` as the argument.
 4. `FilterTasksCommandParser` creates a new `FilterTasksCommand` object with a new `FilterPredicate` object as argument, representing the filter conditions specified by the user.
 5. `LogicManager`calls `FilterTasksCommand#execute()` with `model` as the argument.
-6. `FilterTasksCommand` calls `Model#updateFilteredTaskList()`, causing the task list to be updated based on the new conditions for `module`, `isCompleted` and `isLinked` based on the `FilterPredicate`.
-7. `FilterTasksCommand#execute()`  returns a `CommandResult` object with the `MESSAGE_SUCCESS` message as argument.
+6. `FilterTasksCommand` calls `Model#updateFilteredTaskList()` with `FilterPredicate` as an argument, causing the task list to be updated based on the new conditions for `module`, `isCompleted` and `isLinked` based on the `FilterPredicate`.
+7. `FilterTasksCommand#execute()` returns a `CommandResult` object with the `MESSAGE_SUCCESS` message as argument.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `module`, `isCompleted` or `isLinked` input is invalid, there will be an error message shown and the address book will continue to show the current `taskFilteredList`.
 
 </div>
 
-The following activity diagram summarizes what happens when filter command is executed:
+The following activity diagram summarizes what happens when FilterTasksCommand is executed.
 
 | <img src="images/FilterActivityDiagram.png" width="700" /> |
 |:----------------------------------------------------------:|
 |           Activity diagram of FilterTasksCommand           |
 
-<img src="images/FilterActivityDiagram.png" width="700" />
 
 #### Design considerations:
 
@@ -431,10 +429,15 @@ object to display that the exam was successfully added.
 #### Command format
 `e unlink INDEX` where `INDEX` refers to the index number shown on the displayed task list of the task to be unlinked.
 
-#### How the feature works
+#### What is the feature about
 The `e unlink` command allows users to unlink a task from its exam.
 
-#### Sequence of the UnlinkExamCommand
+#### How does the feature work
+The unlink exam feature is currently implemented through the `UnlinkExamCommand` class which extends the abstract class `Command`.
+A copy of the task to be unlinked will be created, with its `linkedExam` field set to `null`.
+The original task will be replaced with the new unlinked task in the `DistinctTaskList`.
+
+#### UML Diagrams
 
 Shown below is a sequence diagram of what occurs when the `execute` method of `LogicManager` is invoked.
 
@@ -442,7 +445,7 @@ Shown below is a sequence diagram of what occurs when the `execute` method of `L
 |:------------------------------------------------------------------:|
 |               Sequence diagram of UnlinkExamCommand                |
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UnlinkExamCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UnlinkExamCommand` and `UnlinkExamCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
@@ -459,7 +462,7 @@ Shown below is a sequence diagram of what occurs when the `execute` method of `L
 9. `UnlinkExamCommand` calls `Model#replaceTask()` to replace the original task at the first index with the new unlinked task.
 10. `UnlinkExamCommand#execute()`  returns a `CommandResult` object with the `EXAM_UNLINKED_SUCCESS` message as argument.
 
-The following activity diagram summarizes what happens when unlink exam command is executed:
+The following activity diagram summarizes what happens when UnlinkExamCommand is executed.
 
 | <img src="images/UnlinkExamActivityDiagram.png" width="1000" /> |
 |:---------------------------------------------------------------:|

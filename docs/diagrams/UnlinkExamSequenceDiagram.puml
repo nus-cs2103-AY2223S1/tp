@@ -5,20 +5,20 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":UnlinkExamCommandParser" as UnlinkExamCommandParser LOGIC_COLOR
-participant ":UnlinkExamCommand" as UnlinkExamCommand LOGIC_COLOR
-participant "taskToUnlink:Task" as TargetTask LOGIC_COLOR
-participant "unlinkedTask:Task" as UnlinkedTask LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "u:UnlinkExamCommand" as UnlinkExamCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
+participant "taskToUnlink:Task" as TaskToUnlink MODEL_COLOR
+participant "unlinkedTask:Task" as UnlinkedTask MODEL_COLOR
 end box
 
-[-> LogicManager : execute("unlink 1")
+[-> LogicManager : execute("e unlink 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("unlink 1")
+LogicManager -> AddressBookParser : parseCommand("e unlink 1")
 activate AddressBookParser
 
 create UnlinkExamCommandParser
@@ -38,36 +38,36 @@ activate UnlinkExamCommand
 UnlinkExamCommand --> UnlinkExamCommandParser
 deactivate UnlinkExamCommand
 
-UnlinkExamCommandParser --> AddressBookParser
+UnlinkExamCommandParser --> AddressBookParser : u
 deactivate UnlinkExamCommandParser
 
 UnlinkExamCommandParser -[hidden]-> AddressBookParser
 destroy UnlinkExamCommandParser
 
-AddressBookParser --> LogicManager
+AddressBookParser --> LogicManager : u
 deactivate AddressBookParser
 
 LogicManager -> UnlinkExamCommand : execute()
 activate UnlinkExamCommand
 
-UnlinkExamCommand -> Model : getFilteredTaskList().get(targetIndex.getZeroBased())
+UnlinkExamCommand -> Model : getFilteredTaskList()
 activate Model
 
-Model --> UnlinkExamCommand : taskToUnlink
+Model --> UnlinkExamCommand
 deactivate Model
 
-UnlinkExamCommand -> TargetTask : unlink()
-activate TargetTask
+UnlinkExamCommand -> TaskToUnlink : unlinkTask()
+activate TaskToUnlink
 
 create UnlinkedTask
-TargetTask -> UnlinkedTask
+TaskToUnlink -> UnlinkedTask
 activate UnlinkedTask
 
-UnlinkedTask --> TargetTask
+UnlinkedTask --> TaskToUnlink
 deactivate UnlinkedTask
 
-TargetTask --> UnlinkExamCommand
-deactivate TargetTask
+TaskToUnlink --> UnlinkExamCommand : unlinkedTask
+deactivate TaskToUnlink
 
 UnlinkExamCommand -> Model : replaceTask(taskToUnlink, unlinkedTask, true)
 activate Model
@@ -76,7 +76,7 @@ Model --> UnlinkExamCommand
 deactivate Model
 
 create CommandResult
-UnlinkExamCommand -> CommandResult
+UnlinkExamCommand -> CommandResult : CommandResult(EXAM_UNLINKED_SUCCESS)
 activate CommandResult
 
 CommandResult --> UnlinkExamCommand
@@ -84,6 +84,9 @@ deactivate CommandResult
 
 UnlinkExamCommand --> LogicManager : result
 deactivate UnlinkExamCommand
+
+UnlinkExamCommand -[hidden]-> LogicManager
+destroy UnlinkExamCommand
 
 [<--LogicManager
 deactivate LogicManager

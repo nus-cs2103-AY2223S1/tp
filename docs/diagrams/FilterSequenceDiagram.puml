@@ -5,18 +5,19 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":FilterTasksCommandParser" as FilterTasksCommandParser LOGIC_COLOR
+participant "predicate:FilterPredicate" as FilterPredicate LOGIC_COLOR
 participant "f:FilterTasksCommand" as FilterTasksCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute(filter)
+[-> LogicManager : execute("t filter m/CS2103T c/y l/n")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("filter c/n")
+LogicManager -> AddressBookParser : parseCommand("t filter m/CS2103T c/y l/n")
 activate AddressBookParser
 
 create FilterTasksCommandParser
@@ -26,8 +27,15 @@ activate FilterTasksCommandParser
 FilterTasksCommandParser --> AddressBookParser
 deactivate FilterTasksCommandParser
 
-AddressBookParser -> FilterTasksCommandParser : parse("filter c/n")
+AddressBookParser -> FilterTasksCommandParser : parse("m/CS2103T c/y l/n")
 activate FilterTasksCommandParser
+
+create FilterPredicate
+FilterTasksCommandParser -> FilterPredicate
+activate FilterPredicate
+
+FilterPredicate --> FilterTasksCommandParser
+deactivate FilterPredicate
 
 create FilterTasksCommand
 FilterTasksCommandParser -> FilterTasksCommand
@@ -48,7 +56,7 @@ deactivate AddressBookParser
 LogicManager -> FilterTasksCommand : execute()
 activate FilterTasksCommand
 
-FilterTasksCommand -> Model : updateFilteredTaskList(Predicate)
+FilterTasksCommand -> Model : updateFilteredTaskList(predicate)
 activate Model
 
 Model --> FilterTasksCommand
@@ -63,6 +71,9 @@ deactivate CommandResult
 
 FilterTasksCommand --> LogicManager : result
 deactivate FilterTasksCommand
+
+FilterTasksCommand -[hidden]-> LogicManager
+destroy FilterTasksCommand
 
 [<--LogicManager
 deactivate LogicManager
