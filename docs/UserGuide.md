@@ -80,7 +80,7 @@ Broadly, **RC4HDB** provides users with the ability to:
 * Easily switch over to RC4HDB by importing old data from CSV files
 
 <div markdown="span" class="alert alert-info">
-RC4HDB is very simple, and beginner-friendly, and can be easily picked-up in a matter of days. Regardless of your typing speed, RC4HDB can be a convenient and intuitive way to facilitate your day-to-day workflow as a RC4 housing management staff member. But if you are fast at typing, you will find it very comfortable using
+RC4HDB is very **simple, and beginner-friendly**, and can be easily picked-up in a matter of days. Regardless of your typing speed, RC4HDB can be a **convenient and intuitive** way to facilitate your day-to-day workflow as a RC4 housing management staff member. But if you are fast at typing, you will find it very comfortable using
 RC4HDB.
 </div>
 
@@ -96,7 +96,7 @@ will serve you well in mastering RC4HDB!
 If you are a **new user**, the necessary knowledge for you to get started can be found [here](#quick-start).
 As you read on, you will find plenty of examples to help you familiarise with the features.
 
-If you are an **experienced user**, a [Command Summary](#command-summary) is also provided, so you don't have to memorise our commands.
+If you are an **experienced user**, a [command summary](#command-summary) is also provided, so you don't have to memorise our commands.
 
 Before exploring the user guide, you should familiarise yourself with the following symbols.
 
@@ -142,7 +142,7 @@ delete the folder called `data` as this would cause all your data to be deleted!
 
 Try typing `help` into the command box where it says "Enter Command here..." and pressing the Enter/Return key on your keyboard to execute it! This command will open a help window which shows you a quick summary of our available commands.
 
-For more details on commands, refer to our [Command Guide](#command-guide) below.
+For more details on commands, refer to our [command guide](#command-guide) below.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -208,11 +208,11 @@ if it is open. </div>
 
 ## **Modifying Resident Data**
 
-In order to maintain the database, we have provided several basic commands such as `add`, `edit`, `delete` and `clear`
-to help you modify resident data within **RC4HDB**.
+In order to maintain the database, we have provided several **basic commands** such as `add`, `edit`, `delete` and `clear`
+to help you modify resident data within RC4HDB.
 
 Note:
-* **RC4HDB** does not allow duplicate residents to exist within the database, as a measure to prevent unintentional adding of duplicate residents.
+* RC4HDB **does not allow duplicate residents** to exist within the database, as a measure to prevent unintentional adding of duplicate residents.
 * Two residents are considered duplicates of each other if any of the following are same:
   * Matriculation number
   * Phone number
@@ -230,7 +230,7 @@ be used in the commands. The resident <a>[fields](#glossary-of-terms)</a> can be
 
 ### Adding a resident : `add`
 
-Adds a resident into **RC4HDB**. Does **not** allow any [duplicate residents](#modifying-resident-data) to be added.
+Adds a resident. Does **not** allow any [duplicate residents](#modifying-resident-data) to be added.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL r/FLOOR-UNIT g/GENDER h/HOUSE m/MATRIC_NUMBER [t/TAG]…​`
 
@@ -250,7 +250,7 @@ Examples:
 
 ### Editing an existing resident : `edit`
 
-Edits the data of an existing resident in **RC4HDB**. Does **not** allow any [duplicate residents](#modifying-resident-data) to be created due to the editing of a resident.
+Edits the data of an existing resident. Does **not** allow any [duplicate residents](#modifying-resident-data) to be created due to the editing of a resident.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/FLOOR-UNIT] [g/GENDER] [h/HOUSE] [m/MATRIC_NUMBER] [t/TAG]…​`
 * Edits the resident at the specified `INDEX`.
@@ -272,7 +272,7 @@ Examples:
 
 ### Deleting a resident : `delete`
 
-Deletes the specified resident from **RC4HDB**.
+Deletes the specified resident.
 
 Format: `delete INDEX`
 * Deletes the resident at the specified `INDEX`.
@@ -285,8 +285,6 @@ The delete command can be used in conjunction with other commands such as list a
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd resident in the database.
-
-
 * `find Betsy` followed by `delete 1` deletes the 1st resident in the results of the `find` command.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
@@ -298,7 +296,7 @@ Examples:
 Deletes residents whose fields match the input keywords.
 
 Format: `remove /SPECIFIER KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
-* A specifier is required in order for the command to work. If not it is an invalid command format.
+* A specifier is required in order for the command to work. If not, it is an invalid command format.
 * Currently, only two specifiers are supported:
   * `/all` returns a resident if it fulfills **all** of the specified keywords.
   * `/any` returns a resident if it fulfills **any** of the specified keywords.
@@ -316,7 +314,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from **RC4HDB**.
+Deletes all residents from **RC4HDB**.
 
 Format: `clear`
 
@@ -342,7 +340,7 @@ Deleted data can not be retrieved. Do use this command cautiously!
 
 `r/FLOOR-UNIT`
 * The floor number and unit number must be separated by a hyphen
-* Both floor and unit number must be a positive integer but less than 30 *i.e. `5-8` is valid, `0-8` is invalid, `31-1` is invalid*
+* Both floor and unit number must be a positive integer less than 30 *i.e. `5-8` is valid, `0-8` is invalid, `31-1` is invalid*
 
 `g/GENDER`
 * `M` or `F`
@@ -362,9 +360,9 @@ Deleted data can not be retrieved. Do use this command cautiously!
 * Can be used to add any other miscellaneous information that the resident can be identified by
 * Can only contain alphanumeric characters, whitespaces are not allowed
 * Optional. A resident can have any number of tags, including 0
-* When editing tags, the existing tags of the resident will be removed i.e adding of tags is not cumulative.
-* You can remove all the resident’s tags by typing `t/` without specifying any tags after it.
-* Multiple tags can be added to the command using multiple keywords e.g `t/president t/exchange`.
+* When editing tags, the existing tags of the resident will be removed i.e adding of tags is not cumulative
+* You can remove all the resident’s tags by typing `t/` without specifying any tags after it
+* Multiple tags can be added to the command using multiple keywords e.g `t/president t/exchange`
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -374,7 +372,7 @@ Deleted data can not be retrieved. Do use this command cautiously!
 
 You might find yourself overloaded with information. These commands can help you hide resident fields from view, 
 find specific residents, or search for residents whose fields match a specific keyword. By de-cluttering your screen, 
-these commands will allow you to focus only on the information you need!
+these commands help you to focus only on the information you need!
 
 ### Listing all residents : `list`
 
@@ -528,7 +526,7 @@ Examples:
 Shows a list of residents whose fields match the input keywords.
 
 Format: `filter /SPECIFIER KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
-* A specifier is required in order for the command to work. If not it is an invalid command format
+* A specifier is required in order for the command to work. If not, it is an invalid command format
 * Only one specifier can be entered in a command.
 * Currently, only two specifiers are supported:
   * `/all` returns a resident if it fulfills **all** of the specified keywords.
