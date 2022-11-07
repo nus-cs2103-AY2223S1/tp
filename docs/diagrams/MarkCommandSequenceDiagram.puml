@@ -78,6 +78,8 @@ deactivate commandResult
 
 markCommand --> commandBox
 deactivate markCommand
+markCommand -[hidden]-> commandBox
+destroy markCommand
 
 commandBox --> user :
 deactivate commandBox
