@@ -54,12 +54,12 @@ Physician .up.|> BasePerson
 NextOfKin .up.|> BasePerson
 
 Patient .up.|> Person
-Patient *--> DateSlot
-Patient *--> Physician
-Patient *--> NextOfKin
+Patient *--> "*" DateSlot
+Patient *--> "0..1" Physician
+Patient *--> "0..1" NextOfKin
 
 Nurse .up.|> Person
-Nurse *--> HomeVisit
+Nurse *--> "*" HomeVisit
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
