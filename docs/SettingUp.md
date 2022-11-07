@@ -1,10 +1,13 @@
 ---
-layout: page title: Setting up and getting started
+layout: page 
+title: Setting up and getting started
 ---
 
-# Setting up, getting started
-
-* Table of Contents {:toc}
+<!-- TOC -->
+* [Setting up, getting started](#setting-up-getting-started)
+  * [Setting up the project in your computer](#setting-up-the-project-in-your-computer)
+  * [Before writing code](#before-writing-code)
+<!-- TOC -->
 
 ---
 

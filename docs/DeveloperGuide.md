@@ -152,7 +152,7 @@ If you are ready, let's [get started](#setting-up-getting-started)!
 ## **Setting up, getting started**
 
 Woohoo! We are excited to help you take your first steps in developing PennyWise. Please refer to [_Setting up and
-getting started_](SettingUp.md) to get up and running!
+getting started_](SettingUp) to get up and running!
 
 Once you are done, you may check out the [design](#design) section to have a comprehensive overview of how PennyWise is
 designed.
