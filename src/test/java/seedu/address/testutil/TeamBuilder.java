@@ -4,7 +4,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
-import seedu.address.model.team.Name;
+import seedu.address.model.team.TeamName;
 import seedu.address.model.team.Team;
 
 /**
@@ -14,7 +14,7 @@ public class TeamBuilder {
 
     public static final String DEFAULT_TEAM_NAME = "GUI";
 
-    private Name name;
+    private TeamName teamName;
     private UniquePersonList members = new UniquePersonList();
     private UniqueTaskList tasks = new UniqueTaskList();
 
@@ -22,14 +22,14 @@ public class TeamBuilder {
      * Creates a {@code TeamBuilder} with the default details.
      */
     public TeamBuilder() {
-        name = new seedu.address.model.team.Name(DEFAULT_TEAM_NAME);
+        teamName = new TeamName(DEFAULT_TEAM_NAME);
     }
 
     /**
      * Creates a {@code TeamBuilder} with the details of teamToCopy.
      */
     public TeamBuilder(Team teamToCopy) {
-        name = new Name(teamToCopy.getName().toString());
+        teamName = new TeamName(teamToCopy.getName().toString());
 
         UniquePersonList newMembers = new UniquePersonList();
         for (Person p : teamToCopy.getMembers()) {
@@ -48,7 +48,7 @@ public class TeamBuilder {
      * Sets the {@code Name} of the {@code Team} that we are building.
      */
     public TeamBuilder withName(String name) {
-        this.name = new seedu.address.model.team.Name(name);
+        this.teamName = new TeamName(name);
         return this;
     }
 
@@ -75,7 +75,7 @@ public class TeamBuilder {
     }
 
     public Team build() {
-        return new Team(name, tasks, members);
+        return new Team(teamName, tasks, members);
     }
 
 

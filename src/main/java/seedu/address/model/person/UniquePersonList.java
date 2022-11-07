@@ -84,7 +84,7 @@ public class UniquePersonList implements Iterable<Person> {
         internalList.set(index, editedPerson);
     }
 
-    public Person getPerson(Name personName) {
+    public Person getPerson(PersonName personName) {
         requireNonNull(personName);
         for (int i = 0; i < internalList.size(); i++) {
             Person person = internalList.get(i);

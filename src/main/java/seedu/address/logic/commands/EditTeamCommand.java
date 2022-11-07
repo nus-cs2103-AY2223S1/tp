@@ -10,7 +10,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.team.Name;
+import seedu.address.model.team.TeamName;
 import seedu.address.model.team.Team;
 
 
@@ -35,19 +35,19 @@ public class EditTeamCommand extends Command {
 
 
     private final Index targetIndex;
-    private final Name newTeamName;
+    private final TeamName newTeamTeamName;
 
     /**
      * Edit team command constructor
      * @param targetIndex of the team in the filtered person list to edit
-     * @param newTeamName details to edit the team with
+     * @param newTeamTeamName details to edit the team with
      */
-    public EditTeamCommand(Index targetIndex, Name newTeamName) {
+    public EditTeamCommand(Index targetIndex, TeamName newTeamTeamName) {
         requireNonNull(targetIndex);
-        requireNonNull(newTeamName);
+        requireNonNull(newTeamTeamName);
 
         this.targetIndex = targetIndex;
-        this.newTeamName = newTeamName;
+        this.newTeamTeamName = newTeamTeamName;
     }
 
     @Override
@@ -59,12 +59,12 @@ public class EditTeamCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TEAM_DISPLAYED_INDEX);
         }
 
-        if (model.teamNameExists(newTeamName)) {
+        if (model.teamNameExists(newTeamTeamName)) {
             throw new CommandException(MESSAGE_DUPLICATE_TEAM_NAME);
         }
 
-        model.setTeamName(targetIndex, newTeamName);
-        return new CommandResult(String.format(MESSAGE_EDIT_TEAM_SUCCESS, newTeamName));
+        model.setTeamName(targetIndex, newTeamTeamName);
+        return new CommandResult(String.format(MESSAGE_EDIT_TEAM_SUCCESS, newTeamTeamName));
     }
 
     @Override
@@ -72,6 +72,6 @@ public class EditTeamCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof EditTeamCommand // instanceof handles nulls
                 && targetIndex.equals(((EditTeamCommand) other).targetIndex)
-                && newTeamName.equals(((EditTeamCommand) other).newTeamName)); // state check
+                && newTeamTeamName.equals(((EditTeamCommand) other).newTeamTeamName)); // state check
     }
 }

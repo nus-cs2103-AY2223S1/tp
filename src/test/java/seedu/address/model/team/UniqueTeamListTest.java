@@ -74,13 +74,13 @@ public class UniqueTeamListTest {
     @Test
     public void setTeamName_teamIndexNotInList_throwsIndexOutOfBoundException() {
         assertThrows(IndexOutOfBoundsException.class, ()
-                -> uniqueTeamList.setTeamName(0, new Name(VALID_TEAM_NAME_BACKEND)));
+                -> uniqueTeamList.setTeamName(0, new TeamName(VALID_TEAM_NAME_BACKEND)));
     }
 
     @Test
     public void setTeamName_editedTeamRetainFields_success() {
         uniqueTeamList.add(FRONTEND);
-        uniqueTeamList.setTeamName(0, new Name(VALID_TEAM_NAME_BACKEND));
+        uniqueTeamList.setTeamName(0, new TeamName(VALID_TEAM_NAME_BACKEND));
         UniqueTeamList expectedUniqueTeamList = new UniqueTeamList();
         expectedUniqueTeamList.add(FRONTEND);
         assertEquals(expectedUniqueTeamList, uniqueTeamList);

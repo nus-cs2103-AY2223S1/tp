@@ -18,9 +18,9 @@ Given below are my contributions to the project:
     * What it does: Allows user to remove a person as a member from a team by specifying person index (from the userlist) and team index.
     * Justification: This feature allows tech leads to remove member from one or more teams and help team management. If a member leaves the company or changes department then they could be removed from the team whenever needed.
 
-* **New Feature**: Added EditTeam command to edit team name. (pull request: [\#152](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/152))
-    * What it does: Allows user to change the name of a pre-existing team by specifying its index.
-    * Justification: This feature allows tech leads to change the name of a team in case they added the wrong name or for any other reason.
+* **New Feature**: Added EditTeam command to edit team personName. (pull request: [\#152](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/152))
+    * What it does: Allows user to change the personName of a pre-existing team by specifying its index.
+    * Justification: This feature allows tech leads to change the personName of a team in case they added the wrong personName or for any other reason.
 
 * **Enhancements to existing features**:
   * Add functionality to unassign member from a team on deleting that team (pull request: [\#130](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/130))

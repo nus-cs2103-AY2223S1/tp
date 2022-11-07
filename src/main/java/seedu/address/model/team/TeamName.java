@@ -1,5 +1,8 @@
 package seedu.address.model.team;
 
+        import seedu.address.model.common.Name;
+        import seedu.address.model.task.TaskName;
+
         import static java.util.Objects.requireNonNull;
         import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -7,7 +10,7 @@ package seedu.address.model.team;
  * Represents a Team's name in the
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class Name {
+public class TeamName extends Name {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -18,17 +21,20 @@ public class Name {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}()][\\p{Alnum}() ]*";
 
-    public final String fullName;
-
     /**
      * Constructs a {@code Name}.
      *
      * @param name A valid name.
      */
-    public Name(String name) {
+    public TeamName(String name) {
+        super(name);
+        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+    }
+
+    public static TeamName of(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = name;
+        return new TeamName(name);
     }
 
     /**
@@ -47,8 +53,8 @@ public class Name {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.team.Name // instanceof handles nulls
-                && fullName.equals(((seedu.address.model.team.Name) other).fullName)); // state check
+                || (other instanceof TeamName // instanceof handles nulls
+                && fullName.equals(((TeamName) other).fullName)); // state check
     }
 
     @Override

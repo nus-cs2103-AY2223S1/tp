@@ -1,5 +1,8 @@
 package seedu.address.model.task;
 
+import seedu.address.model.common.Name;
+import seedu.address.model.person.PersonName;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -7,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Task's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class Name {
+public class TaskName extends Name {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -18,17 +21,20 @@ public class Name {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}()'][\\p{Alnum}()' ]*";
 
-    public final String fullName;
-
     /**
      * Constructs a {@code Name}.
      *
      * @param name A valid name.
      */
-    public Name(String name) {
+    public TaskName(String name) {
+        super(name);
+        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+    }
+
+    public static TaskName of(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = name;
+        return new TaskName(name);
     }
 
     /**
@@ -47,8 +53,8 @@ public class Name {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.task.Name // instanceof handles nulls
-                && fullName.equals(((seedu.address.model.task.Name) other).fullName)); // state check
+                || (other instanceof TaskName // instanceof handles nulls
+                && fullName.equals(((TaskName) other).fullName)); // state check
     }
 
     @Override

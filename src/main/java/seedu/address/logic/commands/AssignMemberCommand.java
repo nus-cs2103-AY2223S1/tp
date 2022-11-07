@@ -12,7 +12,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
-import seedu.address.model.team.Name;
+import seedu.address.model.person.PersonName;
+import seedu.address.model.team.TeamName;
 import seedu.address.model.team.Team;
 
 
@@ -73,8 +74,8 @@ public class AssignMemberCommand extends Command {
         }
 
         model.addPersonToTeam(person, team);
-        Name teamName = model.getTeamName(teamIndex);
-        seedu.address.model.person.Name personName = model.getPersonName(personIndex);
+        TeamName teamName = model.getTeamName(teamIndex);
+        PersonName personName = model.getPersonName(personIndex);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, personName, teamName));
     }

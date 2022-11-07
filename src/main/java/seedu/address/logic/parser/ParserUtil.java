@@ -17,10 +17,12 @@ import seedu.address.logic.parser.exceptions.DateOutOfRangeException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.PersonName;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskName;
+import seedu.address.model.team.TeamName;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -53,13 +55,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static PersonName parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!PersonName.isValidName(trimmedName)) {
+            throw new ParseException(PersonName.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new PersonName(trimmedName);
     }
 
     /**
@@ -140,13 +142,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given task {@code name} is invalid.
      */
-    public static seedu.address.model.task.Name parseTaskName(String name) throws ParseException {
+    public static TaskName parseTaskName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!seedu.address.model.task.Name.isValidName(trimmedName)) {
-            throw new ParseException(seedu.address.model.task.Name.MESSAGE_CONSTRAINTS);
+        if (!TaskName.isValidName(trimmedName)) {
+            throw new ParseException(TaskName.MESSAGE_CONSTRAINTS);
         }
-        return new seedu.address.model.task.Name(trimmedName);
+        return new TaskName(trimmedName);
     }
 
     /**
@@ -155,13 +157,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given team {@code name} is invalid.
      */
-    public static seedu.address.model.team.Name parseTeamName(String name) throws ParseException {
+    public static TeamName parseTeamName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!seedu.address.model.team.Name.isValidName(trimmedName)) {
-            throw new ParseException(seedu.address.model.team.Name.MESSAGE_CONSTRAINTS);
+        if (!TeamName.isValidName(trimmedName)) {
+            throw new ParseException(TeamName.MESSAGE_CONSTRAINTS);
         }
-        return new seedu.address.model.team.Name(trimmedName);
+        return new TeamName(trimmedName);
     }
 
     /**

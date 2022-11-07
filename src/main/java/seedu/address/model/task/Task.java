@@ -19,19 +19,19 @@ public class Task {
     private static final LocalDate EARLIEST_DATE = LocalDate.of(1899, 12, 31);
     private static final LocalDate LATEST_DATE = LocalDate.of(2101, 1, 1);
 
-    private Name name;
+    private TaskName taskName;
     private Optional<LocalDate> deadline;
     private boolean isDone;
 
     /**
      * Constructs an unfinished {@code Task}.
      *
-     * @param name A valid name.
+     * @param taskName A valid name.
      * @param deadline A valid date or null.
      */
-    public Task(Name name, LocalDate deadline) {
-        requireAllNonNull(name);
-        this.name = name;
+    public Task(TaskName taskName, LocalDate deadline) {
+        requireAllNonNull(taskName);
+        this.taskName = taskName;
         this.deadline = Optional.ofNullable(deadline);
         this.isDone = false;
     }
@@ -39,30 +39,30 @@ public class Task {
     /**
      * Constructs a {@code Task} with specified state.
      *
-     * @param name A valid name.
+     * @param taskName A valid name.
      * @param deadline A valid date or null.
      * @param isDone The state.
      */
-    public Task(Name name, LocalDate deadline, boolean isDone) {
-        requireAllNonNull(name);
-        this.name = name;
+    public Task(TaskName taskName, LocalDate deadline, boolean isDone) {
+        requireAllNonNull(taskName);
+        this.taskName = taskName;
         this.deadline = Optional.ofNullable(deadline);
         this.isDone = isDone;
     }
 
-    public Name getName() {
-        return this.name;
+    public TaskName getName() {
+        return this.taskName;
     }
 
     /**
      * Edits the taskname and deadline of the Task
      *
-     * @param newName The new task name.
+     * @param newTaskName The new task name.
      * @param newDeadline The new deadline provided.
      */
-    public void editTaskDesc(Name newName, LocalDate newDeadline) {
-        if (!isNull(newName)) {
-            this.name = newName;
+    public void editTaskDesc(TaskName newTaskName, LocalDate newDeadline) {
+        if (!isNull(newTaskName)) {
+            this.taskName = newTaskName;
         }
         if (!isNull(newDeadline)) {
             this.deadline = Optional.ofNullable(newDeadline);
@@ -129,7 +129,7 @@ public class Task {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Task // instanceof handles nulls
-                && name.equals(((Task) other).getName())
+                && taskName.equals(((Task) other).getName())
                 && getDeadline().equals(((Task) other).getDeadline()))
                 && getIsDone() == ((Task) other).getIsDone(); // state check
     }
@@ -137,7 +137,7 @@ public class Task {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name);
+        return Objects.hash(taskName);
     }
 
     @Override

@@ -14,8 +14,8 @@ Given below are my contributions to the project.
     * What it does: It models a team that contains members and tasks.
     * Justification: EZLead aims to help Tech Lead manage employees and task within different teams.
       We implemented the Team class to employees and tasks assigned to the team. A team is considered the same
-      if they have the same name, since having multiple groups of the same name will lead to confusion. EZLead
-      prevents more than 1 groups of the same name from existing.
+      if they have the same personName, since having multiple groups of the same personName will lead to confusion. EZLead
+      prevents more than 1 groups of the same personName from existing.
 
 * **New Feature**: Handle Storing and Reading of Team and Tasks. (Pull Request [\#94](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/94)
 & [\#107](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/107) & [\#115](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/115))

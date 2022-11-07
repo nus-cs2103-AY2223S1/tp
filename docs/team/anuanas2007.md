@@ -18,7 +18,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to edit a task.
     * What it does: allows user to edit the task description and deadline of the already existing task.
-    * Justification: This feature allows user to add deadline of a task in future and also to edit the task name.
+    * Justification: This feature allows user to add deadline of a task in future and also to edit the task personName.
     * Highlights: This enhancement provided flexibility in editing the task, by making it optional to provide either task description or deadline.
 
 * **New Feature**: Added the ability to delete a task.

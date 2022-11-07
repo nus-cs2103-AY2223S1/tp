@@ -19,7 +19,7 @@
             </minWidth>
         </Label>
         <HBox maxWidth="150">
-            <Label fx:id="name" text="\$first" textFill="WHITE">
+            <Label fx:id="personName" text="\$first" textFill="WHITE">
                 <font>
                     <Font size="18.0"/>
                 </font>

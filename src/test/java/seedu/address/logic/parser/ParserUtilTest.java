@@ -19,9 +19,11 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.PersonName;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.TaskName;
+import seedu.address.model.team.TeamName;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -80,15 +82,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
+        PersonName expectedPersonName = new PersonName(VALID_NAME);
+        assertEquals(expectedPersonName, ParserUtil.parseName(VALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+        PersonName expectedPersonName = new PersonName(VALID_NAME);
+        assertEquals(expectedPersonName, ParserUtil.parseName(nameWithWhitespace));
     }
 
     @Test
@@ -218,15 +220,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseTaskName_validValueWithoutWhitespace_returnsName() throws Exception {
-        seedu.address.model.task.Name expectedName = new seedu.address.model.task.Name(VALID_TASK_NAME);
-        assertEquals(expectedName, ParserUtil.parseTaskName(VALID_TASK_NAME));
+        TaskName expectedTaskName = new TaskName(VALID_TASK_NAME);
+        assertEquals(expectedTaskName, ParserUtil.parseTaskName(VALID_TASK_NAME));
     }
 
     @Test
     public void parseTaskName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_TASK_NAME + WHITESPACE;
-        seedu.address.model.task.Name expectedName = new seedu.address.model.task.Name(VALID_TASK_NAME);
-        assertEquals(expectedName, ParserUtil.parseTaskName(nameWithWhitespace));
+        TaskName expectedTaskName = new TaskName(VALID_TASK_NAME);
+        assertEquals(expectedTaskName, ParserUtil.parseTaskName(nameWithWhitespace));
     }
 
     @Test
@@ -241,15 +243,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseTeamName_validValueWithoutWhitespace_returnsName() throws Exception {
-        seedu.address.model.team.Name expectedName = new seedu.address.model.team.Name(VALID_TEAM_NAME);
-        assertEquals(expectedName, ParserUtil.parseTeamName(VALID_TEAM_NAME));
+        TeamName expectedTeamName = new TeamName(VALID_TEAM_NAME);
+        assertEquals(expectedTeamName, ParserUtil.parseTeamName(VALID_TEAM_NAME));
     }
 
     @Test
     public void parseTeamName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_TEAM_NAME + WHITESPACE;
-        seedu.address.model.team.Name expectedName = new seedu.address.model.team.Name(VALID_TEAM_NAME);
-        assertEquals(expectedName, ParserUtil.parseTeamName(nameWithWhitespace));
+        TeamName expectedTeamName = new TeamName(VALID_TEAM_NAME);
+        assertEquals(expectedTeamName, ParserUtil.parseTeamName(nameWithWhitespace));
     }
 
     @Test

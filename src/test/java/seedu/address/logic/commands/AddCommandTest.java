@@ -23,10 +23,12 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.PersonName;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskName;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.TeamName;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -160,7 +162,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setTeamName(Index targetIndex, seedu.address.model.team.Name newTeamName) {
+        public void setTeamName(Index targetIndex, TeamName newTeamTeamName) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -180,12 +182,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Person getPerson(Name name) {
+        public Person getPerson(PersonName personName) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public Name getPersonName(Index personIndex) {
+        public PersonName getPersonName(Index personIndex) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -220,17 +222,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public Team getTeam(seedu.address.model.team.Name name) {
+        public Team getTeam(TeamName teamName) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean teamNameExists(seedu.address.model.team.Name name) {
+        public boolean teamNameExists(TeamName teamName) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public seedu.address.model.team.Name getTeamName(Index teamIndex) {
+        public TeamName getTeamName(Index teamIndex) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -276,7 +278,7 @@ public class AddCommandTest {
 
         @Override
         public void editTask(Index teamIndex, Index taskIndex,
-                             seedu.address.model.task.Name newName, LocalDate newDeadline) {
+                             TaskName newTaskName, LocalDate newDeadline) {
             throw new AssertionError("This method should not be called.");
         }
     }
