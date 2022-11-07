@@ -411,6 +411,7 @@ Examples:
 | ![FindCommand](images/FindCommandImage.png) |
 |:-------------------------------------------:|
 |      Demonstration of FindTasksCommand      |
+
 ### Sorting the task list
 Sorts the tasks in the task list based on the criteria specified
 
@@ -553,8 +554,8 @@ Restrictions:
 
 Example:
 
-`e add m/CS2030S ex/midterms ed/20-11-2022` adds the exam with the exam module as 'CS2030S',
-exam description as 'midterms', exam date as '20-11-2022' into the exam list. 
+`e add m/CS2100 ex/midterms ed/20-08-2023` adds the exam with the exam module as 'CS2100',
+exam description as 'midterms', exam date as '20-08-2023' into the exam list. 
 
 | ![AddExamCommand](images/AddExamImage.png) |
 |:------------------------------------------:|
