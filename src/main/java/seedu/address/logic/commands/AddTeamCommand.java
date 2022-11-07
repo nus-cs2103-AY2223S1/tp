@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.LABEL_TEAM_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.LABEL_TEAM_NAME;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -60,14 +61,17 @@ public class AddTeamCommand extends Command {
             return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
-        Team team = new Team(teamName, description);
+        Team targetTeam = new Team(teamName, description);
         List<Team> teamList = model.getTeamList();
-        if (teamList.contains(team)) {
+        List<Team> filteredListWithTargetTeam = teamList.stream()
+                .filter(targetTeam::isSameTeam).collect(Collectors.toList());
+
+        if (filteredListWithTargetTeam.size() == 1) {
             throw new CommandException(MESSAGE_TEAM_EXISTS);
         }
 
-        model.addTeam(team);
-        return new CommandResult(String.format(MESSAGE_ADD_TEAM_SUCCESS, team));
+        model.addTeam(targetTeam);
+        return new CommandResult(String.format(MESSAGE_ADD_TEAM_SUCCESS, targetTeam));
     }
 
 }
