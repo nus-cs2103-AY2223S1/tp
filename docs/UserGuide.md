@@ -456,7 +456,8 @@ Format: `get /n NAME`
 
 #### next-of-kin data: `/nok`
 
-Finds next-of-kin data for patients matching the input `PATIENT_NAME`.
+Finds next-of-kin data for patients matching the input `PATIENT_NAME`, and is hence similar to the `get /n` command.
+
 
 Format: `get /nok PATIENT_NAME`
 
