@@ -1,6 +1,5 @@
 package longtimenosee.model.event;
 
-import longtimenosee.commons.core.index.Index;
 
 import static java.util.Objects.requireNonNull;
 import static longtimenosee.commons.util.AppUtil.checkArgument;
