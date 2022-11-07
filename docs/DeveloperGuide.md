@@ -407,9 +407,9 @@ Creating predicates:
     - Pros: Predicates are more clearly separated and defined
     - Cons: More classes to maintain
 
-###Delete Feature
+### Delete Feature
 
-####Current Implementation
+#### Current Implementation
 
 The delete feature is now separated for the patients, appointments and bills sections. Deleting a patient also deletes
 related appointments and bills. Deleting an appointment deletes its related bills.
@@ -869,7 +869,8 @@ Use case ends.
     * Use case resumes from step 7.
 
 **Use case: UC-07 - Patient requests for the clinic to delete his/her data**
-**Precondition**: All bills for all appointments have been paid.
+
+Precondition: All bills for all appointments have been paid.
 
 **MSS**
 
@@ -1272,15 +1273,7 @@ testers are expected to do more *exploratory* testing.
 
     4. Other incorrect select commands to try: `selectappointment`, `selectappointment x`(where x is larger than the list size)<br>
        Expected: Similar to previous.
-
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+    
 
 -----------------------------------------------------------------------------------------------------------------
 
@@ -1328,7 +1321,7 @@ testers are expected to do more *exploratory* testing.
 
 
 * Delete feature
-  * DeleteCommand in AB3 versus DeletePatientCommand, DeleteAppointmentCommand and DeleteBillCommand in HealthContact
+  * Delete Command in AB3 versus DeletePatientCommand, DeleteAppointmentCommand and DeleteBillCommand in HealthContact
   
 | AB3 (DeleteCommand)            | HealthContact                                                                                                                            |
 |--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|

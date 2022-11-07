@@ -54,7 +54,7 @@ patient bills for the family clinic.
 
 3. Copy the file to the folder you want to use as the home folder for your HealthContact application.
 
-4. Double-click the file to start the app. The Graphical User Interface(GUI) similar to the one below should appear in a few seconds. Note how the app contains some sample data.
+4. Double-click the file to start the app. The Graphical User Interface (GUI) similar to the one below should appear in a few seconds. Note how the app contains some sample data.
 
 <img src="images/Ui.png">
 
