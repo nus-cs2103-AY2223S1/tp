@@ -164,6 +164,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Set Command
 
+#### Implementation
 The Set Command makes use of the following classes:
 
 * `SetCommand` — Updates the `Person` object in the model.
@@ -197,6 +198,23 @@ The sequence diagram below illustrates the process of the Set Command works.
 The below activity diagram highlights what happens when a user uses the `set` command.
 
 ![SetActivityDiagram](images/SetActivityDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How data is used to update the person's information:**
+
+* **Alternative 1 (current choice):** Store inside a `SetPersonDescriptor` object.
+    * Pros: 
+      * Abstracts out the data transfer process, making it easily extensible.
+      * Handles optional arguments, allowing users to only input the attributes that they wish to set.
+      * Improves cohesion of the codebase.
+    * Cons:
+      * Slightly more complicated to implement.
+      * Possibly more space usage.
+
+* **Alternative 2:** Transfer all data directly.
+    * Pros: Easier to implement.
+    * Cons: Difficult to extend.
 
 ### Sort Command
 
