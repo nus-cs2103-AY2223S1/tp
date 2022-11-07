@@ -4,9 +4,31 @@ title: Developer Guide
 ---
 
 #Table of Contents
-{:toc}
+* [Acknowledgements](#acknowledgements) / [Setting up, getting started](#setting-up-getting-started)
+* [Introduction](#introduction)
+* [Design](#design)
+  * [Architecture](#architecture)
+  * [UI component](#ui-component)
+  * [Logic component](#logic-component)
+  * [Model component](#model-component)
+  * [Storage component](#storage-component)
+  * [Common classes](#common-classes)
+* [Implementation Details](#implementation-details)
+  * [Displaying Command Help](#displaying-command-help)
+  * [Favourite/Unfavourite Feature](#favouriteunfavourite-feature)
+  * [Optional Fields](#optional-fields-in-eateries-_currently-not-in-use_)
+* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix: Requirements](#appendix-requirements)
+  * [Product Scope](#product-scope)
+  * [User Stories](#user-stories)
+  * [User Cases](#use-cases)
+  * [Glossary](#glossary)
+* [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+  * [Launch and Shutdown](#launch-and-shutdown)
+  * [Deleting an Eatery](#deleting-an-eatery)
+  * [Saving Data](#saving-data)
 
---------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
 
 ### **Acknowledgements**
 
@@ -49,7 +71,7 @@ and edit diagrams.
 
 <p align="center">
 <img src="images/ArchitectureDiagram.png" width="280" /> <br>
-*The* ***Architecture Diagram*** *explains the high-level design of the App.*
+The Architecture Diagram explains the high-level design of the App.
 </p>
 
 Given below is a quick overview of main components and how they interact with each other.
@@ -79,8 +101,8 @@ The rest of the App consists of four components.
 
 <p align="center">
 <img src="images/ArchitectureSequenceDiagram.png" width="574" /> <br>
-*The* ***Sequence Diagram*** *shows how the components interact with each other for the 
-scenario where the user issues the command `delete 1`.*
+The Sequence Diagram shows how the components interact with each other for the 
+scenario where the user issues the command `delete 1`.
 </p>
 
 Each of the four main components (also shown in the diagram above),
@@ -92,7 +114,7 @@ Each of the four main components (also shown in the diagram above),
 
 <p align="center">
 <img src="images/ComponentManagers.png" width="300" /> <br>
-*The (partial)* ***class diagram*** *shows how the Logic class interacts with the Model and Storage classes.*
+The (partial) class diagram shows how the Logic class interacts with the Model and Storage classes.
 </p>
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality 
@@ -109,7 +131,7 @@ The **API** of this component is specified in
 
 <p align="center">
 <img src="images/UiClassDiagram.png"  /> <br>
-*The (partial)* ***class diagram*** *shows how the Logic class interacts with the Model and Storage classes.*
+The class diagram showing the Ui class.
 </p>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EateryListPanel`, 
@@ -134,7 +156,10 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<p align="center">
+<img src="images/LogicClassDiagram.png" width="550"/> <br>
+The class diagram showing the Logic class.
+</p>
 
 How the `Logic` component works:
 
@@ -144,8 +169,8 @@ How the `Logic` component works:
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 <p align="center">
-<img src="images/DeleteSequenceDiagram.png" /> <br>
-*The* ***Sequence Diagram*** *illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.*
+<img src="images/DeleteSequenceDiagram.png" width = "1000" /> <br>
+The Sequence Diagram illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 </p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -153,7 +178,7 @@ How the `Logic` component works:
 
 <p align="center">
 <img src="images/ParserClasses.png" width="600"/> <br>
-*The diagram shows the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command.*
+The diagram shows the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command.
 </p>
 
 How the parsing works:
@@ -163,7 +188,10 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W11-1/tp/blob/master/src/main/java/eatwhere/foodguide/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<p align="center">
+<img src="images/ModelClassDiagram.png" width="450" /> <br>
+The class diagram shows the Model class.
+</p>
 
 The `Model` component,
 
@@ -174,7 +202,10 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `FoodGuide`, which `Eatery` references. This allows `FoodGuide` to only require one `Tag` object per unique tag, instead of each `Eatery` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<p align="center">
+<img src="images/BetterModelClassDiagram.png" width="450" /><br>
+The diagram shows a more OOP model, the main difference being how Tag is implemented.
+</p>
 
 </div>
 
@@ -182,7 +213,10 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W11-1/tp/blob/master/src/main/java/eatwhere/foodguide/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<p align="center">
+<img src="images/StorageClassDiagram.png" width="550" /><br>
+The class diagram shows the Storage class.
+</p>
 
 The `Storage` component,
 
@@ -196,7 +230,7 @@ Classes used by multiple components are in the `eatwhere.foodguide.commons` pack
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **Implementation Details**
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -229,8 +263,8 @@ The detection of `PREFIX_HELP` is as follows:
 The detection rules limit false-positives from stray `-h`s in names of eateries, locations, etc.
 
 <p align="center">
-<img src="images/CommandDisplayHelpActivityDiagram.png" /> <br>
-*For supported commands, the* ***activity diagram*** *summarizes what happens when a user executes a command.*
+<img src="images/CommandDisplayHelpActivityDiagram.png" width="700" /> <br>
+For supported commands, the activity diagram summarizes what happens when a user executes a command.
 </p>
 
 ### Favourite/Unfavourite feature
@@ -244,8 +278,8 @@ _extends_ `TagCommand`/`UntagCommand` and not `Command`. Since `FavouriteCommand
 in a similar way, this section will be focusing mainly on `FavouriteCommand` for ease of explanation.
 
 <p align="center">
-<img src="images/FavouriteSequenceDiagram.png" /> <br>
-*The* ***Sequence Diagram*** *shows the interactions within the Logic component when `fav` is called.*
+<img src="images/FavouriteSequenceDiagram.png" width="1000"/> <br>
+The Sequence Diagram shows the interactions within the Logic component when `fav` is called.
 </p>
 
 As can be seen by the above diagram, most function calls to `FavouriteCommand` is directed to TagCommand, though there are some points to note:
@@ -269,8 +303,8 @@ Due to the importance of the `price` field, this option is removed and no longer
 #### Implementation
 
 <p align="center">
-<img src="images/OptionalFieldActivityDiagram.png" /> <br>
-*The* ***Activity Diagram*** *shows how different the AddCommandParser and Eatery classes operate with different inputs.*
+<img src="images/OptionalFieldActivityDiagram.png" width="700" /> <br>
+The Activity Diagram shows how different the AddCommandParser and Eatery classes operate with different inputs.
 </p>
 
 _(Note: This diagram omits references to `-h` help as it is presented on its own. For more information about help, you can refer to the
@@ -289,6 +323,7 @@ Hence, heavy abstraction should be used here. Such examples include:
 <br>
 
 There are several ways to deal with storing this optional value, but the one that was used for this particular implementation was storing the optional field as an empty `""` string. This is because the optional field constructor with a value did not allow null values. Hence, any empty strings appearing in the json save file must have been due to the use of the default constructor.
+
 
 ### Searching through Food Guide
 
@@ -346,7 +381,7 @@ Each `XYZContainsKeywordsPredicate` is then used by `ModelManager` to update the
 ### Product scope
 
 **Target user profile**: This product is for ...
-* NUS students/staff who prefer CLI over GUI
+* NUS students/staff who prefer Command Line Interface (CLI) over Graphical User Interface (GUI)
 * want to keep track of the various food options in NUS.
 
 **Value proposition**: This application summarizes the various food options available in NUS, and allows users to make an informed choice as to what to eat.
@@ -365,8 +400,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user   | search for stalls by cuisine     |                                                   |
 | `* * *`  | user   | tag stalls                       | organize stalls by tags                           |
 | `* * *`  | user   | untag a stall                    | remove a stall from a tag group                   |
-| `* *`    | user   | add new food stalls              | customize the list                                |
-| `* *`    | user   | remove food stalls               | customize the list                                |
+| `* *`    | user   | add new eateries                 | customize the list                                |
+| `* *`    | user   | remove eateries                   | customize the list                                |
 
 *{More to be added}*
 
@@ -380,28 +415,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 1. User requests to search for stall by cuisine
-2. NUSEatWhere returns a list of all the food stalls of the given cuisine
+2. NUSEatWhere returns a list of all the eateries of the given cuisine
 
 **Use case: Search stall by Name**
 
 **MSS**
 
 1. User requests to search for stall by name
-2. NUSEatWhere returns a list of all the food stalls with a matching name
+2. NUSEatWhere returns a list of all the eateries with a matching name
 
 **Use case: Search stall by Tag**
 
 **MSS**
 
 1. User requests to search for stall by tag
-2. NUSEatWhere returns a list of all the food stalls with that tag
+2. NUSEatWhere returns a list of all the eateries with that tag
 
 **Use case: Search stall by Location**
 
 **MSS**
 
 1. User requests to search for stall by location
-2. NUSEatWhere returns a list of all the food stalls with that location
+2. NUSEatWhere returns a list of all the eateries with that location
 
 **Use case: Help Command**
 
@@ -415,43 +450,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User enters the list command
-2. NUSEatWhere returns a list of all food stalls
+2. NUSEatWhere returns a list of all eateries
 
 **Use case: Tag Command**
 
 **MSS**
 
-1. User requests to tag a food stall
-2. NUSEatWhere adds a tag to the food stall and shows the updated food stall.
+1. User requests to tag an eatery
+2. NUSEatWhere adds a tag to the eatery and shows the updated eatery.
 
 **Use case: Untag Command**
 
 **MSS**
 
-1. User requests to untag a food stall
-2. NUSEatWhere untags the food stall and shows the updated food stall
+1. User requests to untag an eatery
+2. NUSEatWhere untags the eatery and shows the updated eatery
 
 **Use case: Add Command**
 
 **MSS**
 
-1. User requests to add a food stall
-2. NUSEatWhere adds the food stall to the list.
+1. User requests to add an eatery
+2. NUSEatWhere adds the eatery to the list.
 
 **Use case: Delete Command**
 
 **MSS**
 
-1. User requests to delete a food stall
-2. NUSEatWhere deletes the food stall from the list.
+1. User requests to delete an eatery
+2. NUSEatWhere deletes the eatery from the list.
 
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 
-2. Should be able to hold up to 100 tagged food stalls without a noticeable sluggishness in performance for typical usage.
+2. Should be able to hold up to 100 tagged eateries without a noticeable sluggishness in performance for typical usage.
 
-3. Should be able to store and load data for at least tagged 100 food stalls
+3. Should be able to store and load data for at least tagged 100 eateries
 
 4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
@@ -491,32 +526,33 @@ testers are expected to do more *exploratory* testing.
 
 Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …}_
 
-### Deleting a Food Stall
+### Deleting an Eatery
 
-1. Deleting a food stall while all food stall are being shown
+1. Deleting an eatery while all eatery are being shown
 
-1. Prerequisites: List all food stalls using the `list` command. Multiple eateries in the list.
+1. Prerequisites: List all eateries using the `list` command. Multiple eateries in the list.
 
 1. Test case: `delete 1`<br>
 
-Expected: First food stall is deleted from the list. Details of the deleted food stall shown in the status message. Timestamp in the status bar is updated.
+Expected: First eatery is deleted from the list. Details of the deleted eatery shown in the status message. Timestamp in the status bar is updated.
 
 1. Test case: `delete 0`<br>
 
-Expected: No food stall is deleted. Error details shown in the status message. Status bar remains the same.
+Expected: No eatery is deleted. Error details shown in the status message. Status bar remains the same.
 
 1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
 
 Expected: Similar to previous.
 
-1. _{ more test cases …}_
 
 ### Saving data
+Dealing with missing/corrupted data files
 
-1. Dealing with missing/corrupted data files
+1. Delete the `foodguide.json` file found in `data`
 
-1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+Expected: If the data is missing, a default food guide list starts up.
 
-1. _{ more test cases …}_
+1. Edit the keys (e.g. `name` to `nnnn`) in the `foodguide.json` file found in `data`
+
+Expected: If the data is formatted wrongly, a blank food guide list starts up.
