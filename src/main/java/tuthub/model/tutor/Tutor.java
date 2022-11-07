@@ -97,7 +97,7 @@ public class Tutor {
     }
 
     /**
-     * Returns true if both Tutors have the same name.
+     * Returns true if both Tutors have the same student ID or email.
      * This defines a weaker notion of equality between two Tutors.
      */
     public boolean isSameTutor(Tutor otherTutor) {
@@ -111,6 +111,14 @@ public class Tutor {
         }
 
         return false;
+    }
+
+    /**
+     * Returns true if both tutors have the same student ID and email.
+     */
+    public boolean isSameEditedTutor(Tutor otherTutor) {
+        return otherTutor.getStudentId().equals(getStudentId())
+                && otherTutor.getEmail().equals(getEmail());
     }
 
     /**
