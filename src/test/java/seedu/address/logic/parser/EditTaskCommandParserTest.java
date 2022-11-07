@@ -4,7 +4,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.CATEGORY_DESC_FRONTEND;
 import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_A;
-import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_B;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CATEGORY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -12,17 +11,10 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRIORITY_DESC
 import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_LOW;
 import static seedu.address.logic.commands.CommandTestUtil.TASK_NAME_DESC_A;
 import static seedu.address.logic.commands.CommandTestUtil.TEST_CATEGORY_FRONTEND;
-import static seedu.address.logic.commands.CommandTestUtil.TEST_CATEGORY_OTHERS;
-import static seedu.address.logic.commands.CommandTestUtil.TEST_DEADLINE_TOMORROW;
-import static seedu.address.logic.commands.CommandTestUtil.TEST_DESCRIPTION_ONE;
 import static seedu.address.logic.commands.CommandTestUtil.TEST_PRIORITY_LOW;
-import static seedu.address.logic.commands.CommandTestUtil.TEST_PRIORITY_MEDIUM;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_NAME_A;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_NAME_B;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TASK;
 
 import org.junit.jupiter.api.Test;
@@ -30,8 +22,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
-import seedu.address.model.task.Priority;
-import seedu.address.model.task.TaskCategory;
 import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.TaskName;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
