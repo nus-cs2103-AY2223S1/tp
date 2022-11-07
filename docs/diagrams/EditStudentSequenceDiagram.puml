@@ -77,4 +77,5 @@ EditStudentCommand -[hidden]-> LogicManager
 destroy EditStudentCommand
 
 [<--LogicManager
+deactivate LogicManager
 @enduml

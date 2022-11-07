@@ -65,4 +65,5 @@ AddStudentCommand -[hidden]-> LogicManager: result
 destroy AddStudentCommand
 
 [<--LogicManager
+deactivate LogicManager
 @enduml
