@@ -981,7 +981,7 @@ testers are expected to do more *exploratory* testing.
   Expected: Order list displays 2 orders by customers with `Chan` in their name.
 * Test case: Enter `listo` into the command box.<br/>
   Expected: ALl orders listed in the order list.
-* Alternative negative test case: Enter `listO` into the command box.<br/>
+* Other incorrect `listo` commands to try: Enter `listO` into the command box.<br/>
   Expected: Result display shows `Unknown command`.
 
 ### Finding order(s)
