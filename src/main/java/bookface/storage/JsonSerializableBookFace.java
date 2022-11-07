@@ -3,6 +3,7 @@ package bookface.storage;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -23,9 +24,7 @@ import bookface.model.person.Person;
 class JsonSerializableBookFace {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
-
     public static final String MESSAGE_DUPLICATE_BOOK = "Books list contains duplicate book(s).";
-
     public static final String MESSAGE_INVALID_LOANED_BOOK = "A Book is detected as a loaned Book when it "
             + "should not be loaned.";
 
@@ -62,6 +61,9 @@ class JsonSerializableBookFace {
     public BookFace toModelType() throws IllegalValueException {
         BookFace bookFace = new BookFace();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
+            if (jsonAdaptedPerson == null) {
+                throw new IllegalValueException(JsonAdaptedPerson.INVALID_PERSON_FORMAT);
+            }
             Person person = jsonAdaptedPerson.toModelType();
             if (bookFace.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
@@ -70,9 +72,17 @@ class JsonSerializableBookFace {
             if (person.hasBooksOnLoan()) {
                 Set<Book> loanedBooks = person.getLoanedBooksSet();
                 for (Book book : loanedBooks) {
-                    Date returnDate = book.getReturnDate()
-                            .orElseGet(bookface.commons.util.Date::getFourteenDaysLaterDate);
-                    book.loanTo(person, returnDate);
+                    if (book == null) {
+                        throw new IllegalValueException(JsonAdaptedBook.INVALID_BOOK_FORMAT);
+                    }
+                    Optional<Date> returnDate = book.getReturnDate();
+                    if (returnDate.isEmpty()) {
+                        throw new IllegalValueException(JsonAdaptedBook.INVALID_BOOK_FORMAT);
+                    }
+                    if (bookFace.hasBook(book)) {
+                        throw new IllegalValueException(MESSAGE_DUPLICATE_BOOK);
+                    }
+                    book.loanTo(person, returnDate.get());
                     bookFace.addBook(book);
                 }
             }

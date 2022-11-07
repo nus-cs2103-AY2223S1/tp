@@ -6,6 +6,8 @@
   } ],
   "books": [ {
     "title" : "How to Spell",
-    "author" : "Ronald !@$#%ERROR"
+    "author" : "Ronald !@$#%ERROR",
+    "isLoaned": false,
+    "returnDate": ""
   } ]
 }

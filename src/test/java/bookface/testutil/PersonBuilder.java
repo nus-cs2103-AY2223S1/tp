@@ -1,6 +1,9 @@
 package bookface.testutil;
 
+import static bookface.testutil.TypicalDates.TYPICAL_DATE;
+
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import bookface.model.book.Book;
@@ -19,11 +22,10 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-
+    private final Set<Book> booksToLoan;
     private Name name;
     private Phone phone;
     private Email email;
-    private final Set<Book> loanedBooks;
     private Set<Tag> tags;
 
     /**
@@ -34,7 +36,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         tags = new HashSet<>();
-        loanedBooks = new HashSet<>();
+        booksToLoan = new HashSet<>();
     }
 
     /**
@@ -45,7 +47,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         tags = new HashSet<>(personToCopy.getTags());
-        loanedBooks = new HashSet<>(personToCopy.getLoanedBooksSet());
+        booksToLoan = new HashSet<>(personToCopy.getLoanedBooksSet());
     }
 
     /**
@@ -59,7 +61,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getSetFromStringArray(Tag::new, tags);
         return this;
     }
@@ -80,16 +82,24 @@ public class PersonBuilder {
         return this;
     }
 
-    //todo fix
-    //    /**
-    //     * Sets the {@code Email} of the {@code Person} that we are building.
-    //     */
-    //    public PersonBuilder withLoanedBooks(String ... books) {
-    //        this.loanedBooks = SampleDataUtil.getSetFromStringArray(Book::new, books);
-    //        return this;
-    //    }
+    /**
+     * Sets the loaned books of the {@code Person} that we are building.
+     */
+    public PersonBuilder withBooksToLoan(List<Book> loanedBooks) {
+        this.booksToLoan.addAll(loanedBooks);
+        return this;
+    }
 
+    /**
+     * Creates a {@code Person} object.
+     * @return A {@code Person} that is built from the fields
+     */
     public Person build() {
-        return new Person(name, phone, email, loanedBooks, tags);
+        Person newPerson = new Person(name, phone, email, booksToLoan, tags);
+        for (Book book: booksToLoan) {
+            book.loanTo(newPerson, TYPICAL_DATE);
+            newPerson.addLoanedBook(book);
+        }
+        return newPerson;
     }
 }

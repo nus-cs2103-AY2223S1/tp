@@ -52,9 +52,6 @@ public class Book {
         return Optional.ofNullable(returnDate);
     }
 
-    public void setReturnDate(Date returnDate) {
-        this.returnDate = returnDate;
-    }
     public Optional<String> getReturnDateString() {
         return Optional.ofNullable(returnDate)
                 .map(x -> "Return by: " + (new SimpleDateFormat("yyyy-MM-dd")).format(returnDate));

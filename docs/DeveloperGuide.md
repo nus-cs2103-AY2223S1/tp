@@ -897,11 +897,16 @@ testers are expected to do more *exploratory* testing.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with corrupted data files
 
    1. Prerequisites: have the data file `bookface.json` (if the app has not been launched at least once, this file may be missing)
    2. Test case: change one of the JSON key fields to be incorrect, such as by replacing `name` with `nme`.<br>
-      Upon launching the application, the application will log an error message and will load without any data at all.
+      Expected: Upon launching the application, the application will log an error message and will load without any data at all.
+   3. Test case: an unloaned book should not have a non-empty `returnDate` field.
+      Expected: Upon launching the application, the application will log an error message and will load without any data at all.
+2. Dealing with missing data files
+   1. Prerequisite: the data file `bookface.json` is missing.<br>
+      Expected: Upon launching the application, the applicaton will be loaded with sample data.
 
 ## **Appendix: Effort**
 
