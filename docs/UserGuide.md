@@ -115,7 +115,7 @@ This command adds a client into Real-Time.<br>
 2. `n/` `p/` `e/` `a/` are **Prefixes**. Prefixes help Real-Time distinguish between different inputs.
 3. `NAME` `PHONE_NUMBER` `EMAIL` `ADDRESS` are the **Data Field** that you can input. For example, `NAME` in `n/NAME` can be replaced with `n/John Doe`.
 
-Let's say you want to add a client named `John Doe`, his phone number 
+Let's say you want to add a client named `John Doe`, his phone number
 is `12345678`, his email is `john@gmail.com` and his address is `123 John St`.<br>
 
 You can enter the following command:<br>
@@ -127,13 +127,13 @@ addC n/John Doe p/12345678 e/john@gmail.com a/123 John St
 example above, the `t/TAG` parameter can be left empty if you do not wish to tag the client.
 
 2. You may also notice `…` after the `t/TAG` field. This indicates that you may enter this field as many times as you
-want to (0 or more times). For example, if you want to tag `John Doe` as `Friend` and `Neighbor` you can add 
+want to (0 or more times). For example, if you want to tag `John Doe` as `Friend` and `Neighbor` you can add
 `t/Friend t/Neighbor` to the command above.
 
-3. The order of every field does not matter. If the command specifies 
+3. The order of every field does not matter. If the command specifies
 `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-4. If a field is expected only once in the command, but you specified it multiple times, only the last occurrence 
+4. If a field is expected only once in the command, but you specified it multiple times, only the last occurrence
 will be taken. If you specify `n/John Dough n/John Doe`, only `n/John Doe` will be taken.
 
 
@@ -196,7 +196,7 @@ listC
 
 ## Managing Clients
 
-In this section, we provide you the basic steps needed to [add](#adding-a-client-addc), [delete](#deleting-a-client--delc), 
+In this section, we provide you the basic steps needed to [add](#adding-a-client-addc), [delete](#deleting-a-client--delc),
 [edit](#editing-a-client--editc), [find](#finding-clients-by-name-findc) and [list](#listing-clients-listc) clients.
 
 **If this is not the section you are looking for**, click [here](#table-of-contents) to go back to the **Table of Contents**.
@@ -329,7 +329,7 @@ Edited Client: [newly updated details of client]
 
 **Help:**
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format](#command-format) section here. 
+   [Command Format](#command-format) section here.
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
 Back to [Table of Contents](#table-of-contents)<br>
@@ -468,7 +468,7 @@ ___
 **Example Input:**<br>
 _Success_
 ```text
-delO 2 
+delO 2
 ```
 ![DeleteOfferSuccess](images/DeleteOfferSuccess.png)<br>
 _Failure_
@@ -604,7 +604,7 @@ ___
 **Example Input:**<br>
 _Success_
 ```text
-delL 1 
+delL 1
 ```
 ![deleteL example](images/deleteL.png)
 _Failure_
@@ -705,7 +705,7 @@ ___
 
 ## Managing Meetings
 
-In this section, we provide you the basic steps needed to [add](#adding-a-meeting-addm), [delete](#deleting-a-meeting--delm) 
+In this section, we provide you the basic steps needed to [add](#adding-a-meeting-addm), [delete](#deleting-a-meeting--delm)
 and [edit](#editing-a-meeting--editm)meetings.
 
 **If this is not the section you are looking for**, click [here](#table-of-contents) to go back to the **Table of Contents**.
@@ -727,7 +727,7 @@ _Success_
 addM id/007 n/Joke Peralta d/2022-10-20 12:00
 ```
 [screenshots to be added]<br>
-_Failure_ 
+_Failure_
 ```text
 Wrong date format:
 addM id/007 n/Joke Peralta d/tomorrow 12pm
@@ -754,7 +754,7 @@ ___
 **Example Input:**<br>
 _Success_
 ```text
-delM 1 
+delM 1
 ```
 [screenshots to be added]<br>
 _Failure_
@@ -896,7 +896,7 @@ ___
 Real-Time data are saved as a JSON file `[JAR file location]/data/realtime.json`.
 Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** If your changes to the data file makes its format invalid, Real-Time will 
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** If your changes to the data file makes its format invalid, Real-Time will
 discard all data and start with an empty data file at the next run.
 </div>
 
