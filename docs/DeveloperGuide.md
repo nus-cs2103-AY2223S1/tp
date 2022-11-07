@@ -305,7 +305,7 @@ regarding the description and deadline of a task.
 
 ![img.png](images/TaskStructure.png)
 
-### **Design considerations**
+### Design considerations
 
 * A `UniqueTaskList` ensures that all tasks are different so that the tasks that are needed to be done
 are well-defined.
