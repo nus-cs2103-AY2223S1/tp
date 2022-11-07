@@ -565,8 +565,10 @@ method to execute a `view` command with the corresponding index of the `PersonCa
 prevent `PersonListPanel` and `PersonCard` from having direct access to `Model` or `Logic`, choosing to maintain 
 `MainWindow` and `Ui` as the classes that interact with Logic instead.
 
-Note that this is only done for `PersonCard` and not `ContactCard` as `ContactCard` already has all the information 
-of the next-of-kin encapsulated on it. Hence, there is no need for the detailed view of the patient.
+Things to note:
+* this is only done for `PersonCard` and not `ContactCard` as `ContactCard` already has all the information 
+  of the next-of-kin encapsulated on it. Hence, there is no need for the detailed view of the patient.
+*  You need to double-click the person card.
 
 ### View Command
 
