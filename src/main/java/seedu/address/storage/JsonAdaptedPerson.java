@@ -157,9 +157,8 @@ class JsonAdaptedPerson {
     }
 
     private String getpName(Patient sourcePatient) {
-        String[] physNameArr = new String[] {NOT_APPLICABLE};
-        sourcePatient.getAttendingPhysician().ifPresent(x -> physNameArr[0] =
-                x.getName().fullName.substring(3));
+        String[] physNameArr = new String[] { NOT_APPLICABLE };
+        sourcePatient.getAttendingPhysician().ifPresent(x -> physNameArr[0] = x.getName().fullName.substring(3));
         return physNameArr[0];
     }
 
@@ -227,10 +226,8 @@ class JsonAdaptedPerson {
             return new Patient(modelUid, modelName, modelGender, modelPhone, modelEmail,
                     modelAddress, modelTags, modelDateSlots, modelPhysician, modelNextOfKin);
 
-        } else {
-            throw new IllegalValueException(Category.MESSAGE_CONSTRAINTS);
         }
-
+        throw new IllegalValueException(Category.MESSAGE_CONSTRAINTS);
     }
 
     private Uid getModelUid() throws IllegalValueException {
@@ -360,12 +357,11 @@ class JsonAdaptedPerson {
         Boolean haspEmail = !pEmail.equals(NOT_APPLICABLE);
         if (!haspName && !haspPhone && !haspEmail) {
             return Optional.empty();
-        } else {
-            Name phyName = getModelName(pName, true, false);
-            Phone phyPhone = getModelPhone(pPhone, true, false);
-            Email phyEmail = getModelEmail(pEmail, true, false);
-            return Optional.of(new Physician(phyName, phyPhone, phyEmail));
         }
+        Name phyName = getModelName(pName, true, false);
+        Phone phyPhone = getModelPhone(pPhone, true, false);
+        Email phyEmail = getModelEmail(pEmail, true, false);
+        return Optional.of(new Physician(phyName, phyPhone, phyEmail));
     }
 
     private Optional<NextOfKin> getModelNextOfKin() throws IllegalValueException {
@@ -374,12 +370,11 @@ class JsonAdaptedPerson {
         Boolean hasnEmail = !nEmail.equals(NOT_APPLICABLE);
         if (!hasnName && !hasnPhone && !hasnEmail) {
             return Optional.empty();
-        } else {
-            Name nokName = getModelName(pName, false, true);
-            Phone nokPhone = getModelPhone(pPhone, false, true);
-            Email nokEmail = getModelEmail(pEmail, false, true);
-            return Optional.of(new NextOfKin(nokName, nokPhone, nokEmail));
         }
+        Name nokName = getModelName(pName, false, true);
+        Phone nokPhone = getModelPhone(pPhone, false, true);
+        Email nokEmail = getModelEmail(pEmail, false, true);
+        return Optional.of(new NextOfKin(nokName, nokPhone, nokEmail));
     }
 
 }
