@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_SLOT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 import java.util.Optional;
@@ -67,7 +68,9 @@ public class UnmarkCommand extends Command {
 
         unmarkSuccessVisit(personToUnmark, model);
 
-        return new CommandResult(String.format(MESSAGE_UNMARK_PATIENT_SUCCESS, personToUnmark));
+        Optional<Person> editedPerson = lastShownList.stream().filter(p -> p.getUid().equals(uid)).findFirst();
+        Person editedPatient = editedPerson.get();
+        return new CommandResult(String.format(MESSAGE_UNMARK_PATIENT_SUCCESS, editedPatient));
     }
 
     private void unmarkSuccessVisit(Person personToUnmark, Model model) throws CommandException {

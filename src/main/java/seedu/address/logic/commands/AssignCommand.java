@@ -40,8 +40,6 @@ public class AssignCommand extends Command {
 
     public static final String MESSAGE_BOTH_NURSE = "The given uids are both nurses.";
     public static final String MESSAGE_BOTH_PATIENT = "The given uids are both patients.";
-    public static final String MESSAGE_OUTOFBOUND_DATESLOT_INDEX = "The date slot index given is out of bounds.";
-
 
     private final Uid uid1;
     private final Uid uid2;

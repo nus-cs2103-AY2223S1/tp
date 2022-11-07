@@ -122,6 +122,7 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
+        System.out.println(editedPerson.toString());
     }
 
     // =========== Filtered Person List Accessors

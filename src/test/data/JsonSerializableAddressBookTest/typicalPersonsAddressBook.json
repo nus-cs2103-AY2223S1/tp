@@ -8,14 +8,17 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "dateSlots" : [ " : :2022-11-11,2:-1" ],
+    "dateSlots" : [ " : :2022-11-11,2:-1", " : :2022-12-11,2:-1" ],
     "tagged" : [ "friends" ],
-    "phys name" : "john doe",
-    "phys email" : "johndoe@example.com",
-    "phys phone" : "81234567",
     "homeVisits" : [ ],
     "unavailableDates" : [ ],
-    "fullyAssignedDates" : [ ]
+    "fullyAssignedDates" : [ ],
+    "pName" : "John Doe",
+    "pPhone" : "81234567",
+    "pEmail" : "johndoe@example.com",
+    "nName" : "NA",
+    "nPhone" : "NA",
+    "nEmail" : "NA"
   }, {
     "category" : "P",
     "uid": "2",
@@ -24,14 +27,17 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "dateSlots" : [ " : :2022-10-23,1:-1" ],
+    "dateSlots" : [ " :V:2022-10-23,1:-1" ],
     "tagged" : [ "owesMoney", "friends" ],
-    "phys name" : "john doe",
-    "phys email" : "johndoe@example.com",
-    "phys phone" : "81234567",
     "homeVisits" : [ ],
     "unavailableDates" : [ ],
-    "fullyAssignedDates" : [ ]
+    "fullyAssignedDates" : [ ],
+    "pName" : "John Doe",
+    "pPhone" : "81234567",
+    "pEmail" : "johndoe@example.com",
+    "nName" : "NA",
+    "nPhone" : "NA",
+    "nEmail" : "NA"
   }, {
     "category" : "P",
     "uid": "3",
@@ -40,11 +46,17 @@
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
-    "dateSlots" : [ " : :2022-11-10,1:-1", " : :2022-12-10,2:-1" ],
+    "dateSlots" : [ "A: :2022-12-10,2:8", "A: :2023-01-11,3:5" ],
     "tagged" : [ ],
     "homeVisits" : [ ],
     "unavailableDates" : [ ],
-    "fullyAssignedDates" : [ ]
+    "fullyAssignedDates" : [ ],
+    "pName" : "NA",
+    "pPhone" : "NA",
+    "pEmail" : "NA",
+    "nName" : "NA",
+    "nPhone" : "NA",
+    "nEmail" : "NA"
   }, {
     "category" : "P",
     "uid": "4",
@@ -57,7 +69,13 @@
     "tagged" : [ "friends" ],
     "homeVisits" : [ ],
     "unavailableDates" : [ ],
-    "fullyAssignedDates" : [ ]
+    "fullyAssignedDates" : [ ],
+    "pName" : "John Doe",
+    "pPhone" : "81234567",
+    "pEmail" : "johndoe@example.com",
+    "nName" : "NA",
+    "nPhone" : "NA",
+    "nEmail" : "NA"
   }, {
     "category" : "N",
     "uid": "5",
@@ -68,9 +86,15 @@
     "address" : "michegan ave",
     "dateSlots" : [ ],
     "tagged" : [ ],
-    "homeVisits" : [ "2022-10-15,1:6" ],
-    "unavailableDates" : [ "2022-11-11"] ,
-    "fullyAssignedDates" : [ ]
+    "homeVisits" : [ "2022-10-15,1:6", "2023-01-11,3:3" ],
+    "unavailableDates" : [ "2022-11-11" ] ,
+    "fullyAssignedDates" : [ ],
+    "pName" : "NA",
+    "pPhone" : "NA",
+    "pEmail" : "NA",
+    "nName" : "NA",
+    "nPhone" : "NA",
+    "nEmail" : "NA"
   }, {
     "category" : "P",
     "uid": "6",
@@ -79,13 +103,19 @@
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
-    "dateSlots" : [ " : :2022-10-15,1:5" ],
+    "dateSlots" : [ "A:V:2022-10-15,1:5", "A: :2022-12-22,2:8" ],
     "tagged" : [ ],
     "homeVisits" : [ ],
     "unavailableDates" : [ ],
-    "fullyAssignedDates" : [ ]
+    "fullyAssignedDates" : [ ],
+    "pName" : "NA",
+    "pPhone" : "NA",
+    "pEmail" : "NA",
+    "nName" : "NA",
+    "nPhone" : "NA",
+    "nEmail" : "NA"
   }, {
-    "category" : "P",
+    "category" : "N",
     "uid": "7",
     "name" : "George Best",
     "gender" : "M",
@@ -95,8 +125,33 @@
     "dateSlots" : [ ],
     "tagged" : [ ],
     "homeVisits" : [ ],
-    "unavailableDates" : [ ],
-    "fullyAssignedDates" : [ ]
+    "unavailableDates" : [ "2022-11-10", "2022-12-13" ],
+    "fullyAssignedDates" : [ ],
+    "pName" : "NA",
+    "pPhone" : "NA",
+    "pEmail" : "NA",
+    "nName" : "NA",
+    "nPhone" : "NA",
+    "nEmail" : "NA"
+  }, {
+    "category" : "N",
+    "uid": "8",
+    "name" : "Lily Wang",
+    "gender" : "F",
+    "phone" : "93091031",
+    "email" : "lily@example.com",
+    "address" : "5th street",
+    "dateSlots" : [ ],
+    "tagged" : [ ],
+    "homeVisits" : [ "2022-12-10,2:3", "2022-12-22,2:6" ],
+    "unavailableDates" : [ "2022-12-13" ],
+    "fullyAssignedDates" : [ "2022-11-10", "2022-12-13" ],
+    "pName" : "NA",
+    "pPhone" : "NA",
+    "pEmail" : "NA",
+    "nName" : "NA",
+    "nPhone" : "NA",
+    "nEmail" : "NA"
   } ]
 }
 

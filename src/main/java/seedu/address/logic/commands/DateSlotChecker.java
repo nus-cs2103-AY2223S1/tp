@@ -15,7 +15,7 @@ public class DateSlotChecker {
 
     public static final String MESSAGE_VISITED_DATESLOT = "The date slot %1$s has already passed.";
     public static final String MESSAGE_ASSIGNED_DATESLOT = "The date slot %1$s has been assigned already.";
-    public static final String MESSAGE_TIME_CRASHES = "There is already an exisiting homevisit in this dateslot %1$s."
+    public static final String MESSAGE_TIME_CRASHES = "There is already an existing homevisit in this dateslot %1$s."
             + "Please assign another nurse";
     public static final String MESSAGE_UNAVAILABLE_DATE = "The nurse is unavailable on this day %1$s. "
             + "Please assign another nurse";

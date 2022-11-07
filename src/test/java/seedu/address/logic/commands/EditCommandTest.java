@@ -50,7 +50,7 @@ public class EditCommandTest {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder().withUid(firstPerson.getUid().toString()).build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson)
-                .withDateSlotIndexes("1").build();
+                .withDateSlotIndexes().build();
         EditCommand editCommand = new EditCommand(firstPerson.getUid(), descriptor);
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
                 editedPerson.getCategoryIndicator(), editedPerson);

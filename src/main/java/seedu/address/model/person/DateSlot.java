@@ -227,7 +227,11 @@ public class DateSlot implements Comparable<DateSlot> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DateSlot // instanceof handles nulls
-                        && dateSlotTime.equals(((DateSlot) other).dateSlotTime)); // state check
+                && dateSlotTime.equals(((DateSlot) other).dateSlotTime)
+                && hasVisited.equals(((DateSlot) other).hasVisited)
+                && hasAssigned.equals(((DateSlot) other).hasAssigned)
+                && isSuccessVisit.equals(((DateSlot) other).isSuccessVisit)
+                && nurseUidNo.equals(((DateSlot) other).nurseUidNo)); // state check
     }
 
     /**

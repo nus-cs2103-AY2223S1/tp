@@ -72,7 +72,9 @@ public class UndoUnmarkCommand extends Command {
 
         undoUnmarkFailVisited(personToUndoUnmark, model);
 
-        return new CommandResult(String.format(MESSAGE_UNDO_UNMARK_PATIENT_SUCCESS, personToUndoUnmark));
+        Optional<Person> editedPerson = lastShownList.stream().filter(p -> p.getUid().equals(uid)).findFirst();
+        Person editedPatient = editedPerson.get();
+        return new CommandResult(String.format(MESSAGE_UNDO_UNMARK_PATIENT_SUCCESS, editedPatient));
     }
 
     @Override
