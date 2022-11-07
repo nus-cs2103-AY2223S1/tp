@@ -384,12 +384,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**UC02: List persons**
+**UC02: List all persons**
 
 **MSS**
 
-1.  User requests to list persons
-1.  PayMeLah shows a list of persons
+1.  User requests to list all persons
+1.  PayMeLah shows a list of all persons
 
     Use case ends.
 
