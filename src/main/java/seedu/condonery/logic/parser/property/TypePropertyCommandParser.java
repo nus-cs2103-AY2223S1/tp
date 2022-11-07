@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import seedu.condonery.logic.commands.property.TypePropertyCommand;
 import seedu.condonery.logic.parser.Parser;
+import seedu.condonery.logic.parser.ParserUtil;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.property.PropertyTypeContainsKeywordsPredicate;
 
@@ -25,8 +26,12 @@ public class TypePropertyCommandParser implements Parser<TypePropertyCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, TypePropertyCommand.MESSAGE_USAGE));
         }
-
         String[] nameKeywords = trimmedArgs.split("\\s+");
+
+        for (int i = 0; i < nameKeywords.length; i++) {
+            ParserUtil.parsePropertyType(
+                    nameKeywords[i]);
+        }
 
         return new TypePropertyCommand(new PropertyTypeContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
