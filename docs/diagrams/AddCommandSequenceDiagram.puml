@@ -17,7 +17,6 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":UniquePersonList" as UniquePersonList MODEL_COLOR
-participant ":Model" as Model MODEL_COLOR
 participant ":Person" as Person MODEL_COLOR
 end box
 
