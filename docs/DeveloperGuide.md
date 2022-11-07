@@ -539,6 +539,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 1.
 
+
 **Use case: UC02 - List all teammates**
 
 **MSS**
@@ -553,6 +554,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty.
 
    Use case ends.
+
 
 **Use case: UC03 - Delete a teammate**
 
@@ -576,6 +578,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Arrow shows an error message.
 
       Use case resumes at step 2.
+
 
 **Use case: UC04 - Edit a teammate**
 
@@ -605,25 +608,59 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b1. Arrow shows an error message.
 
       Use case resumes at step 2.
-
-**Use case: UC05 - Add a task**
+      
+      
+**Use case: UC05 - Find a teammate by name**
 
 **MSS**
 
-1.  User requests to add task and provides task name, deadline, assigned contacts and project.
+1. User requests to find a teammate and provides keyword(s) to search for.
+2. Arrow shows a list of all teammates with names containing keyword.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+   Use case ends.
+   
+   
+**Use case: UC06 - Find a teammate by tag**
+
+**MSS**
+
+1. User requests to find a teammate and provides tag(s) to search for.
+2. Arrow shows a list of all teammates containing the tag.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+   Use case ends.
+
+
+**Use case: UC07 - Add a task**
+
+**MSS**
+
+1.  User requests to add task and provides task name.
 2.  Arrow adds the task to the list of tasks.
 
     Use case ends.
 
 **Extensions**
 
-* 1b. There is no task name or deadline provided.
+* 1b. There is no task name provided.
 
     * 1b1. Arrow shows an error message.
 
   Use case resumes at step 1.
 
-**Use case: UC06 - Delete a task**
+
+**Use case: UC08 - Delete a task**
 
 **MSS**
 
@@ -646,7 +683,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC07 - Edit a task**
+
+**Use case: UC09 - Edit a task**
 
 **MSS**
 
@@ -668,50 +706,63 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Arrow shows an error message.
 
       Use case resumes at step 2.
+      
+* 3b. There is no new information provided.
 
-**Use case: UC08 - Mark a task as complete**
+    * 3b1. Arrow shows an error message.
+
+      Use case resumes at step 2.      
+
+
+**Use case: UC10 - Mark a task as complete**
 
 **MSS**
 
-1.  User requests to mark a task to be complete.
-2.  Arrow shows the task to be complete.
+1.  User requests to list tasks.
+2.  Arrow shows a list of tasks.
+3.  User requests to mark a task in the list to be complete.
+4.  Arrow shows the task to be complete.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given task index is invalid.
-
-    * 1a1. Arrow shows an error message.
-
-      Use case resumes at step 2.
-
 * 2a. The tasks list is empty.
 
   Use case ends.
 
-**Use case: UC09 - Mark a task as incomplete**
+* 3a. The given task index is invalid.
+
+    * 3a1. Arrow shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: UC11 - Mark a task as incomplete**
 
 **MSS**
 
-1.  User requests to mark a task to be incomplete.
-2.  Arrow shows the task to be incomplete.
+1.  User requests to list tasks.
+2.  Arrow shows a list of tasks.
+3.  User requests to mark a task in the list to be incomplete.
+4.  Arrow shows the task to be incomplete.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given task index is invalid.
-
-    * 1a1. Arrow shows an error message.
-
-      Use case resumes at step 2.
-
 * 2a. The tasks list is empty.
 
   Use case ends.
 
-**Use case: UC10 - List tasks**
+* 3a. The given task index is invalid.
+
+    * 3a1. Arrow shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Use case: UC12 - List tasks**
 
 **MSS**
 
@@ -725,24 +776,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The task list is empty.
 
   Use case ends.
-
-
-**Use case: UC11 - Find a teammate by name**
+  
+  
+**Use case: UC13 - Filter tasks**
 
 **MSS**
 
-1. User requests to find a teammate and provides keyword(s) to search for.
-2. Arrow shows a list of all teammates with names containing keyword.
+1.  User requests to filter tasks based on name/completion status/assigned contact/deadlines/projects.
+2.  Arrow shows a list of filtered tasks.
 
-   Use case ends.
+    Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The task list is empty.
 
-   Use case ends.
+  Use case ends.
+  
+  
+**Use case: UC14 - Sort tasks**
 
-**Use case: UC12 - Assign teammates to a task**
+**MSS**
+
+1.  User requests to sort tasks based on deadline.
+2.  Arrow shows a list of tasks sorted by deadline.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The task list is empty.
+
+  Use case ends.
+
+
+**Use case: UC15 - Assign teammates to a task**
 
 **MSS**
 
@@ -777,7 +845,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 4.
 
-*Use case: UC13 - List Project**
+
+**Use case: UC16 - List Project**
 
 **MSS**
 
@@ -792,7 +861,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case: UC14 - Clear the task panel**
+
+**Use case: UC17 - Clear the address book**
+
+**MSS**
+
+1.  User requests to clear address book.
+2.  Arrow shows a new empty address book.
+
+    Use case ends.
+
+
+**Use case: UC18 - Clear the task panel**
 
 **MSS**
 
@@ -801,7 +881,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-*{More to be added}*
 
 ### Non-Functional Requirements
 
