@@ -278,7 +278,7 @@ Adding identifiers that are not used in the command will result in an error.
 ### Categorising your expenses and income
 
 For **ALL** entries, categories are <ins>COMPULSORY</ins> and every entry can only contain <ins>one</ins> category. The
-following table lists the `Expenditure` and `Income` entries categories. The category names are <ins>
+following table lists the **Expenditure** and **Income** entries categories. The category names are <ins>
 case-insensitive</ins>. E.g. `Food` is same as `food`.
 
 |    Expenditure    |     Income      |
@@ -417,7 +417,7 @@ Edits an entry, where at least **1** of the optional fields description/amount/d
 
 ### Deleting entries
 
-You were going to watch the latest Kungfu Panda movie, but your friend bailed on you :(. Or you were going to sell your
+You were going to watch the latest Kungfu Panda movie, but your friend bailed on you 😔. Or you were going to sell your
 old textbooks only to find the buyer cancelled his order. You already logged the entry, so now you need to delete it.
 
 Format:  `delete INDEX_OF_ENTRY t/ENTRY_TYPE` <br/>
