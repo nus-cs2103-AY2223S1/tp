@@ -269,6 +269,10 @@ The command `find n/gary d/burger` can be used to accomplish this. The sequence 
 
 <img src="images/FindSequenceDiagram.png" width="600" />
 
+Note that due to the universal nature of find-by-anything, this command is dependent on lots of components:
+
+<img src="images/FindClassDiagram.png" width="600" />
+
 ### List debtors feature: `listdebtors`
 
 #### Implementation
