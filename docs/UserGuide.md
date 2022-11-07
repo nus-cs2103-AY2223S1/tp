@@ -5,30 +5,28 @@ title: User Guide
 
 # Introduction
 
-Welcome to the REal-Time User Guide!
+Welcome to the Real-Time User Guide!
 
 
-REal-Time is a desktop application for _Real-Estate agents_ to manage client information, schedule meetings,
+Real-Time is a desktop application for _Real-Estate agents_ to manage client information, schedule meetings,
 and track client offers and listings.
 
-_[More to be added]_
-
-## About REal-Time
+## About Real-Time
 
 It is optimized for use via a Command Line Interface ([CLI](#Glossary)) while still having the
 benefits of a Graphical User Interface ([GUI](#Glossary)).
-If you can type fast, REal-Time can get your contact management tasks done faster than traditional GUI apps.
+If you can type fast, Real-Time can get your contact management tasks done faster than traditional GUI apps.
 
 ## Fun fact
-The **"REa"** in **REal-Time** stands for _Real-Estate agents_, which is the intended target user of our application!
+The **"Rea"** in **Real-Time** stands for _Real-Estate agents_, which is the intended target user of our application!
 
 ## Using this guide
 
-Now that you have read the introduction and learnt about what our product does, get started in using REal-Time by
+Now that you have read the introduction and learnt about what our product does, get started in using Real-Time by
 following the guide provided in the [Quick Start](#quick-start) section. Otherwise,
-* If you are still unsure of the commands used in REal-Time, the [Command Summary](#command-summary) is a good place to
+* If you are still unsure of the commands used in Real-Time, the [Command Summary](#command-summary) is a good place to
 start.
-* The [Prefix Summary](#prefix-summary) and [Glossary](#glossary) are also great places to understand REal-Time
+* The [Prefix Summary](#prefix-summary) and [Glossary](#glossary) are also great places to understand Real-Time
 better.
 * If you are a developer and would like to help improve our product, take a look at our [Developer Guide](https://ay2223s1-cs2103t-w15-2.github.io/tp/DeveloperGuide.html).
 
@@ -47,33 +45,33 @@ better.
 click [here](https://www.oracle.com/sg/java/technologies/downloads/#java11) and download the appropriate file depending
 on your Operating System ([OS](#Glossary)) (_e.g, Linux, Windows, macOS_).
 
-2. Download the latest `REal-Time.jar` file from [here](https://github.com/AY2223S1-CS2103T-W15-2/tp/releases). The
-`REal-Time.jar` file is located in the "Assets" section as shown below.
+2. Download the latest `Real-Time.jar` file from [here](https://github.com/AY2223S1-CS2103T-W15-2/tp/releases). The
+`Real-Time.jar` file is located in the "Assets" section as shown below.
 ![downloadRelease](./images/downloadRelease.png)
 
-3. Copy the file to the folder you want to use as the _home folder_ for REal-Time.
+3. Copy the file to the folder you want to use as the _home folder_ for Real-Time.
 
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds.
 Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Refer to the [Layout](#layout) if you are still unsure in navigating REal-Time's interface.
+5. Refer to the [Layout](#layout) if you are still unsure in navigating Real-Time's interface.
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and
 pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`addO`**`l/John street, block 123, #01-01 n/John Doe o/700000` : Adds an offer by `John Doe` to the list of offers.
+   * [**`addO`**](#adding-an-offer-addo)`l/John street, block 123, #01-01 n/John Doe o/700000` : Adds an offer by `John Doe` to the list of offers.
 
-   * **`delC`**`3` : Deletes the 3rd contact shown in the current list of clients.
+   * [**`delC`**](#deleting-a-client--delc)`3` : Deletes the 3rd contact shown in the current list of clients.
 
-   * **`clear`** : Deletes all clients, meetings, listings and offers.
+   * [**`clear`**](#clearing-all-entries--clear) : Deletes all clients, meetings, listings and offers.
 
-   * **`exit`** : Exits the app.
+   * [**`exit`**](#exit-Real-Time--exit) : Exits the app.
 
 8. Refer to the [Features](#features) below for details of each command.
 
-[Back to Table of Contents](#table-of-contents)
+Back to [Table of Contents](#table-of-contents)
 
 ___
 
@@ -94,9 +92,7 @@ ___
 `Meeting Box` - All meetings in Real-Time will appear here.
 
 
-[Back to Table of Contents](#table-of-contents)
-
-___
+Back to [Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -110,7 +106,7 @@ of commands. let's learn how to write them!
 This type of command includes `addC` `addO` `addL` `addM` and is used to add a new
 entry into Real-Time.
 
-[Back to Table of Contents](#table-of-contents)
+Back to [Table of Contents](#table-of-contents)
 
 **Format:** `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
@@ -145,7 +141,7 @@ will be taken. If you specify `n/John Dough n/John Doe`, only `n/John Doe` will 
 This type of command includes `delC` `delO` `delL` `delM` and is used to delete a
 current entry from Real-Time.
 
-[Back to Table of Contents](#table-of-contents)
+Back to [Table of Contents](#table-of-contents)
 
 **Format:** `delL INDEX`
 
@@ -164,7 +160,7 @@ delL 2
 This type of command includes `editC` `editO` `editL` `editM` and is used to edit the details
 of a current entry in Real-Time.
 
-[Back to Table of Contents](#table-of-contents)
+Back to [Table of Contents](#table-of-contents)
 
 **Format:** `editO INDEX [n/NAME] [o/OFFER_PRICE] [l/LISTING_ID]`
 
@@ -183,7 +179,7 @@ editO 2 n/Betsy Crower o/123456
 This type of command includes `listC` `listL` and is used to list all the entries
 of the specific type in Real-Time.
 
-[Back to Table of Contents](#table-of-contents)
+Back to [Table of Contents](#table-of-contents)
 
 **Format:** `listC`
 
@@ -200,9 +196,14 @@ listC
 
 ## Managing Clients
 
+In this section, we provide you the basic steps needed to [add](#adding-a-client-addc), [delete](#deleting-a-client--delc), 
+[edit](#editing-a-client--editc), [find](#finding-clients-by-name-findc) and [list](#listing-clients-listc) clients.
+
+**If this is not the section you are looking for**, click [here](#table-of-contents) to go back to the **Table of Contents**.
+
 ### Adding a client: `addC`
 
-> Adds a client to REal-Time.
+> Adds a client to Real-Time.
 
 **Format:** `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -243,12 +244,14 @@ New client added: [details of the newly added client]
    [Command Format]() section here.
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
-[Back to Table of Contents](#table-of-contents)
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Clients](#managing-clients)
+
 ___
 
 ### Deleting a client : `delC`
 
-> Deletes the client at the specified index in REal-Time.
+> Deletes the client at the specified index in Real-Time.
 
 **Format** - `delC INDEX`
 
@@ -278,13 +281,14 @@ Deleted Client: [details of the deleted client]
 1. If you have any confusion of the notation, you can refer to the
    [Command Format]() section here.
 
-[Back to Table of Contents](#table-of-contents)
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Clients](#managing-clients)
 
 ___
 
-#### Editing a client : `editC`
+### Editing a client : `editC`
 
-> Edits an existing client in REal-Time.
+> Edits an existing client in Real-Time.
 
 **Format:** `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -328,7 +332,8 @@ Edited Client: [newly updated details of client]
    [Command Format]() section here. 
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
-[Back to Table of Contents](#table-of-contents)
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Clients](#managing-clients)
 
 ___
 
@@ -372,7 +377,8 @@ The list of clients in the Client Box is updated to a list of all matches from t
 1. If you have any confusion of the notation, you can refer to the
    [Command Format]() section here.
 
-[Back to Table of Contents](#table-of-contents)
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Clients](#managing-clients)
 
 ___
 
@@ -393,7 +399,8 @@ Listed all clients
 
 [Screenshots to be added]<br>
 
-[Back to Table of Contents](#table-of-contents)
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Clients](#managing-clients)
 
 ___
 
@@ -409,7 +416,7 @@ ___
 ### Adding an offer: `addO`
 
 
-> Adds an offer to REal-Time.
+> Adds an offer to Real-Time.
 
 **Format:** `addO l/LISTING_ID n/NAME o/OFFER_PRICE`
 
@@ -447,14 +454,14 @@ New offer added: [offer details]
    [Command Format]() section here.
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
-[Back to Table of Contents](#table-of-contents)
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Offers](#managing-offers)
 
-[Back to Managing Offers](#managing-offers)
 ___
 
 ### Deleting an offer : `delO`
 
-> Deletes the specified offer in REal-Time.
+> Deletes the specified offer in Real-Time.
 
 **Format** - `delO INDEX`
 
@@ -485,15 +492,14 @@ Deleted Offer: [details of the deleted offer]
 1. If you have any confusion of the notation, you can refer to the 
 [Command Format]() section here.
 
-[Back to Table of Contents](#table-of-contents)
-
-[Back to Managing Offers](#managing-offers)
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Offers](#managing-offers)
 
 ___
 
 ### Editing an offer : `editO`
 
-> Edits an existing offer in REal-Time.
+> Edits an existing offer in Real-Time.
 
 **Format:** `editO INDEX [n/NAME] [o/OFFER_PRICE] [l/LISTING_ID]`
 
@@ -532,13 +538,18 @@ Edited Offer: [newly updated details of offer]
    [Command Format]() section here.
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
-[Back to Table of Contents](#table-of-contents)
-
-[Back to Managing Offers](#managing-offers)
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Offers](#managing-offers)
 
 ___
 
 ## Managing Listings
+
+In this section, we provide you the basic steps needed to [add](#adding-a-listing-addl), [delete](#deleting-a-listing--dell),
+[edit](#editing-a-listing--editl) and [list](#listing-listings-listl) listings.
+
+**If this is not the section you are looking for**, click [here](#table-of-contents) to go back to the **Table of Contents**.
+
 
 ### Adding a listing: `addL`
 
@@ -580,7 +591,8 @@ New listing added: [listing details]
    [Command Format]() section here.
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
-[Back to Table of Contents](#table-of-contents)
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Listings](#managing-listings)
 ___
 
 ### Deleting a listing : `delL`
@@ -613,7 +625,8 @@ Deleted Listing: [details of the deleted listing]
 1. If you have any confusion of the notation, you can refer to the
    [Command Format]() section here.
 
-[Back to Table of Contents](#table-of-contents)
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Listings](#managing-listings)
 
 ___
 
@@ -664,7 +677,8 @@ Edited Client: [newly updated details of client]
    [Command Format]() section here.
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
-[Back to Table of Contents](#table-of-contents)
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Listings](#managing-listings)
 
 ___
 
@@ -684,11 +698,18 @@ The full list of listings appears in the Client Box.<br>
 Listed all listings
 ```
 
-[Back to Table of Contents](#table-of-contents)
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Listings](#managing-listings)
 
 ___
 
 ## Managing Meetings
+
+In this section, we provide you the basic steps needed to [add](#adding-a-meeting-addm), [delete](#deleting-a-meeting--delm) 
+and [edit](#editing-a-meeting--editm)meetings.
+
+**If this is not the section you are looking for**, click [here](#table-of-contents) to go back to the **Table of Contents**.
+
 
 ### Adding a meeting: `addM`
 
@@ -720,8 +741,8 @@ addM id/007 n/Joke Peralta d/tomorrow 12pm
    [Command Format]() section here.
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
-[Back to Table of Contents](#table-of-contents)
-[Back to Managing Meetings](#managing-meetings)
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Meetings](#managing-meetings)
 ___
 
 ### Deleting a meeting : `delM`
@@ -754,8 +775,8 @@ Deleted Meeting: [details of the deleted listing]
 1. If you have any confusion of the notation, you can refer to the
    [Command Format]() section here.
 
-[Back to Table of Contents](#table-of-contents)
-[Back to Managing Meetings](#managing-meetings)
+Back to [Table of Contents](#table-of-contents)
+Back to [Managing Meetings](#managing-meetings)
 ___
 
 ### Editing a meeting : `editM`
@@ -800,12 +821,20 @@ Edited Meeting: [newly updated details of meeting]
    [Command Format]() section here.
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
-[Back to Table of Contents](#table-of-contents)
-[Back to Managing Meetings](#managing-meetings)
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [Managing Meetings](#managing-meetings)
+
 ___
 
 ## General
 
+In this section, we provide you the basic steps needed to use the [help](#viewing-help--help), [clear](#clearing-all-entries--clear) and
+[exit](#exit-Real-Time--exit) commands.
+
+**If this is not the section you are looking for**, click [here](#table-of-contents) to go back to the **Table of Contents**.
+
+
+Available commands: `help` `clear` `exit`
 
 ### Viewing help : `help`
 
@@ -818,11 +847,13 @@ ___
 A window displaying help similar to below will appear.
 
 ![help message](images/helpMessage.png)
-[Back to Table of Contents](#table-of-contents)
+
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [General](#general)
 
 ### Clearing all entries : `clear`
 
-> Clears all entries in REal-Time.
+> Clears all entries in Real-Time.
 
 **Example Input:**<br>
 ```text
@@ -831,7 +862,8 @@ clear
 **Expected Success Output:**<br>
 All data in Real-Time is cleared
 
-[Back to Table of Contents](#table-of-contents)
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [General](#general)
 
 ___
 ### Exit Real-Time : `exit`
@@ -844,29 +876,32 @@ exit
 **Expected Success Output:**<br>
 The Real-Time window closes.
 
-[Back to Table of Contents](#table-of-contents)
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [General](#general)
 
 ___
 
 
 ### Saving the data
 
-REal-Time data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Real-Time data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-[Back to Table of Contents](#table-of-contents)
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [General](#general)
 
 ___
 
 ### Editing the data file
 
-REal-Time data are saved as a JSON file `[JAR file location]/data/realtime.json`.
+Real-Time data are saved as a JSON file `[JAR file location]/data/realtime.json`.
 Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:** If your changes to the data file makes its format invalid, Real-Time will 
 discard all data and start with an empty data file at the next run.
 </div>
 
-[Back to Table of Contents](#table-of-contents)
+Back to [Table of Contents](#table-of-contents)<br>
+Back to [General](#general)
 
 # Glossary
 
@@ -876,9 +911,8 @@ discard all data and start with an empty data file at the next run.
 | **CLI** |                                To be added                                 |
 | **GUI** |                                To be added                                 |
 
-[Back to Introduction](#introduction)
-
-[Back to Table of Contents](#table-of-contents)
+Back to [Introduction](#introduction)<br>
+Back to [Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -905,7 +939,7 @@ discard all data and start with an empty data file at the next run.
 |          [**Help**](#viewing-help--help)          |                                       `help`                                       |                                               `help`                                                |
 
 
-[Back to Table of Contents](#table-of-contents)
+Back to [Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -923,4 +957,4 @@ discard all data and start with an empty data file at the next run.
 | `p/`   | **Phone number** of a Client                                            | [Add Client](#adding-a-client-addc)<br/>[Edit Client](#editing-a-client--editc)                                                                                                                                                                            | `p/12345678`                  |
 | `t/`   | **Tag** to specify a unique trait of a Listing or Client                | [Add Client](#adding-a-client-addc)<br/> [Add Listing](#adding-a-listing-addl) <br/> [Edit Client](#editing-a-client--editc)<br/> [Edit Listing](#editing-a-listing--editl)                                                                                | `t/4room`                     |
 
-[Back to Table of Contents](#table-of-contents)
+Back to [Table of Contents](#table-of-contents)
