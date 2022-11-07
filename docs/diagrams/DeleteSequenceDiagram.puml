@@ -4,7 +4,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":RDeleteCommandParser" as RDeleteCommandParser LOGIC_COLOR
-participant "d:RDeleteCommand" as RDeleteCommand LOGIC_COLOR
+participant ":RDeleteCommand" as RDeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -22,32 +22,32 @@ create RDeleteCommandParser
 AddressBookParser -> RDeleteCommandParser
 activate RDeleteCommandParser
 
-RDeleteCommandParser --> AddressBookParser
+RDeleteCommandParser --> AddressBookParser: :RDeleteCommandParser
 deactivate RDeleteCommandParser
 
 AddressBookParser -> RDeleteCommandParser : parse("1")
 activate RDeleteCommandParser
 
 create RDeleteCommand
-RDeleteCommandParser -> RDeleteCommand
+RDeleteCommandParser -> RDeleteCommand : RDeleteCommand(Index)
 activate RDeleteCommand
 
-RDeleteCommand --> RDeleteCommandParser : d
+RDeleteCommand --> RDeleteCommandParser : :RDeleteCommand
 deactivate RDeleteCommand
 
-RDeleteCommandParser --> AddressBookParser : d
+RDeleteCommandParser --> AddressBookParser : :RDeleteCommand
 deactivate RDeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 RDeleteCommandParser -[hidden]-> AddressBookParser
 destroy RDeleteCommandParser
 
-AddressBookParser --> LogicManager : d
+AddressBookParser --> LogicManager : :RDeleteCommand
 deactivate AddressBookParser
 
 LogicManager -> RDeleteCommand : execute()
 activate RDeleteCommand
 
-RDeleteCommand -> Model : deleteReview(1)
+RDeleteCommand -> Model : deleteReview(reviewToDelete)
 activate Model
 
 Model --> RDeleteCommand
@@ -57,10 +57,10 @@ create CommandResult
 RDeleteCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> RDeleteCommand
+CommandResult --> RDeleteCommand : :CommandResult
 deactivate CommandResult
 
-RDeleteCommand --> LogicManager : result
+RDeleteCommand --> LogicManager : :CommandResult
 deactivate RDeleteCommand
 
 [<--LogicManager

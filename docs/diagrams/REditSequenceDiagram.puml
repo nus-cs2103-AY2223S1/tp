@@ -21,6 +21,7 @@ activate AddressBookParser
 
 create REditCommandParser
 AddressBookParser -> REditCommandParser
+
 activate REditCommandParser
 REditCommandParser --> AddressBookParser : :REditCommandParser
 deactivate REditCommandParser
@@ -36,6 +37,9 @@ deactivate REditCommand
 
 REditCommandParser --> AddressBookParser : :REditCommand
 deactivate REditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+REditCommandParser -[hidden]-> AddressBookParser
+destroy REditCommandParser
 
 AddressBookParser --> LogicManager : :REditCommand
 deactivate AddressBookParser
@@ -43,7 +47,7 @@ deactivate AddressBookParser
 LogicManager -> REditCommand : execute()
 activate REditCommand
 
-REditCommand -> Model : setReview()
+REditCommand -> Model : setReview(reviewToEdit, editedReview)
 activate Model
 
 Model --> REditCommand
@@ -57,4 +61,7 @@ CommandResult --> REditCommand : :CommandResult
 deactivate CommandResult
 
 REditCommand --> LogicManager : :CommandResult
+
+[<--LogicManager
+deactivate LogicManager
 @enduml
