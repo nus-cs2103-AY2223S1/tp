@@ -35,8 +35,9 @@ title: Developer Guide
 * [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
   * [Launch and shutdown](#launch-and-shutdown)
   * [Delete a client](#deleting-a-client)
-  * [Delete a transaction]()
-  * [Delete a remark]()
+  * [Delete a transaction](#deleting-a-transaction)
+  * [Delete a remark](#deleting-a-remark)
+  * [Filtering transactions](#filtering-transactions-from-all-clients)
   * [Saving data](#saving-data)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -169,19 +170,18 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **How Transaction and Remark are modelled:** 
-The diagrams below show the Transaction and Remark Model and how they are stored in Client. <br>
+The diagrams below show the Transaction and Remark Model and how they are stored in Client. <br><br>
 
 **`Transaction` Class <br>**
 Each `Client` Class has a `TransactionLog` which stores all transactions of the client in a List. The `Transaction` object contains the `Goods` transacted,
 `Price` of the goods, `Quantity` of goods and `Date` of the transaction. <br>
-<img src="images/TransactionModelClassDiagram2.png" width="350"/>
-
+<img src="images/TransactionModelClassDiagram2.png" width="350"/><br><br>
 
 **`Remark` Class <br>**
 Each `Client` Class has a `UniqueRemarkList` which stores `Remark` object that do not 
 have the same `Text` (case-insensitive). The `Remark` object contains the 
 `Text` which represents the remark's text. <br>
-<img src="images/RemarkModelClassDiagram.png" width="350"/>
+<img src="images/RemarkModelClassDiagram.png" width="350"/><br>
 </div>
 
 

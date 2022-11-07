@@ -56,10 +56,15 @@ Given below are my contributions to the project.
     * Added documentation for the parameters of `sort` and `create remark` commands (Pull request [#273](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/273))
     * Added links to allow readers to easily return to the table of contents (Pull requests [#254](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/254),
     [#256](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/256), [#264](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/264))
+    * Added About JeeqTracker section in user guide (Pull request [#291](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/291))
+    * Added links in Quick Start section to guide user to download Java (Pull request [#291](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/291))
   * Developer Guide:
     * Added documentation for the `filter` command implementation (Pull request [#192](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/192))
     * Created the activity diagram for the `filter` command (Pull request [#192](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/192))
     * Created the sequence diagram for the `filter` command (Pull request [#192](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/192))
+    * Updated model diagrams (Pull request [#297](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/297))
+    * Added filter in `Appendix: Manual testing section` (Pull request [#297](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/297))
+    * Added use cases for find/add remark (Pull request [#297](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/297))
 
 
 * **Community**:
