@@ -37,7 +37,7 @@ Given below are my contributions to the project.
   * Handled organization and formatting of the DG.
 
 * **Contributions to team-based tasks**: 
-  * Reviewed [15](https://github.com/AY2223S1-CS2103T-T11-2/tp/pulls?q=is%3Apr+is%3Aclosed) team pull requests.
+  * Reviewed [19](https://github.com/AY2223S1-CS2103T-T11-2/tp/pulls?q=is%3Apr+is%3Aclosed) team pull requests.
   * Refactored AddressBook into InTrack.
   * Formatted and edited both UG and DG.
   * Documented team's v1.2 postmortem.
