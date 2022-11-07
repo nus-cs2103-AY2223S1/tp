@@ -262,9 +262,9 @@ The following sequence diagram shows how the `HistoryCommand()` command works:
 
 The grouping feature is facilitated by managing groups with the existing `model` component. Additionally, it implements the following features:
 
-* `#AddToGroup()` - Adds a person to a group.
-* `#Ungroup()` - Removes a person from a group.
-* `#Group()` - Opens a group window to view group members.
+* `AddToGroup#createGroupedPerson()` - Creates a person with the specified group.
+* `Ungroup#createUngroupedPerson()` - Creates a person with the specified group removed.
+* `Group#isShowGroup` - Opens a group window to view group members.
 
 Given below is an example usage scenario and how the grouping mechanism behaves at each step.
 
@@ -274,7 +274,7 @@ Step 2. The `AddToGroupCommandParser#parse` then parses the arguments.
 
 Step 3. A `AddToGroupCommand` object is then created.
 
-Step 4. `AddToGroupCommand#execute` will then call `setPerson(target, editedPerson)`, hence updating the person in `AddressBook` to be in the group "friends".
+Step 4. `AddToGroupCommand#execute` will then call `Model#setPerson(target, editedPerson)`, hence updating the person in `AddressBook` to be in the group "friends".
 
 Step 5. `CommandResult` contains the success message and the person is successfully added to the group "friends".
 
@@ -389,7 +389,7 @@ The following sequence diagram shows how the `createGroup()` command works:
 
 ![CreateGroupSequenceDiagram](images/SortSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CreateGroupCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
@@ -432,21 +432,23 @@ _{Explain here how the data archiving feature will be implemented}_
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                                                                | So that I can…​                                                         |
-| -------- | ------------------------------------------ |-----------------------------------------------------------------------------|-------------------------------------------------------------------------|
-| `* * *`  | potential user exploring the app           | see usage instructions                                                      | refer to instructions when I forget how to use the App                  |
-| `* * *`  | user ready to start using the app          | add a new person                                                            | access them later on                                                    |
-| `* * *`  | user who just started using the app        | edit a person’s name                                                        | correct any mistakes i might have made previously                       |
-| `* * *`  | user currently using the app               | delete a person                                                             | remove entries that I no longer need and clear space in my address book |
-| `* * *`  | currently using the app                    | list out all the information in my address book                             | see all the data I currently have                                       |
-| `* * *`  | user currently using the app               | see the preferred modes of communication of the contacts in my address book | know what venue to contact them by                                      |
-| `* * *`  | user currently using the app               | set the preferred modes of communication of the contacts in my address book | know what venue to contact them by next time                            |
-| `* * *`  | user currently using the app               | add the different social media accounts of the contacts in my address book  | contact them through these social media                                 |
-| `* * *`  | user currently using the app               | delete the social media accounts of the contacts in my address book         | remove social media accounts I entered wrongly                          |
-| `* * *`  | user currently using the app               | open the social media accounts of the contacts in my address book           | quickly contact them                                                    |
-| `* * *`  | user currently using the app               | view the history of previously typed commands                               | remember what I have typed previously                                   |
-| `* * *`  | user currently using the app               | delete a specific field of a person                                         | remove fields of people that may no longer be correct                   |
-| `* * *`  | user currently using the app               | find someone from their name or phone number                                | quickly contact them                                                    |
-| `* * *`  | user currently using the app               | easily see the occupation of others in a profile picture                    | know from a glance which contact is a TA, Professor or student          |
+| ------ | ------------------------------------------ |-----------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| `* * ` | potential user exploring the app           | see usage instructions                                                      | refer to instructions when I forget how to use the App                  |
+| `* * *` | user ready to start using the app          | add a new person                                                            | access them later on                                                    |
+| `* * *` | user who just started using the app        | edit a person’s name                                                        | correct any mistakes i might have made previously                       |
+| `* * *` | user currently using the app               | delete a person                                                             | remove entries that I no longer need and clear space in my address book |
+| `* * *` | currently using the app                    | list out all the information in my address book                             | see all the data I currently have                                       |
+| `* * *` | user currently using the app               | see the preferred modes of communication of the contacts in my address book | know what venue to contact them by                                      |
+| `* * *` | user currently using the app               | set the preferred modes of communication of the contacts in my address book | know what venue to contact them by next time                            |
+| `* * *` | user currently using the app               | add the different social media accounts of the contacts in my address book  | contact them through these social media                                 |
+| `* * *` | user currently using the app               | delete the social media accounts of the contacts in my address book         | remove social media accounts I entered wrongly                          |
+| `* * *` | user currently using the app               | open the social media accounts of the contacts in my address book           | quickly contact them                                                    |
+| `* * ` | user currently using the app               | view the history of previously typed commands                               | remember what I have typed previously                                   |
+| `* * *` | user currently using the app               | delete a specific field of a person                                         | remove fields of people that may no longer be correct                   |
+| `* * ` | user currently using the app               | find someone from their name or phone number                                | quickly contact them                                                    |
+| `* * *` | user currently using the app               | easily see the occupation of others in a profile picture                    | know from a glance which contact is a TA, Professor or student          |
+| `* * ` | user currently using the app               | sort the current contacts based on a specific field                         | quickly sort them                                                       |
+| `* **` | user currently using the app               | filter contacts based on their preferred social media                       | quickly know who to contact using that social media                     |
 
 
 ### Use cases
@@ -489,7 +491,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
    <br>
 
-**Use case: UC04 - Delete a person**
+**Use case: Sort people in uNivUSal**
+
+**MSS**
+
+1. User requests for the list of people in uNivUSal
+2. uNivUSal displays the list of people to user
+3. User requests for the sorted list of people in uNivUSal by a specific field
+4. uNivUSal displays the sorted list of people
+
+   Use case ends.
+   <br>
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given field is invalid.
+
+    * 3a1. uNivUSal shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Delete a person**
 
 **MSS**
 
@@ -678,8 +703,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b1. uNivUSal shows an error message.
 
       Use case resumes at step 2.
+    
+**Use case: Filtering contacts based on preferred social media account of an existing person**
 
-**Use case: UC12 - Open a social media account of an existing person in the contacts**
+**MSS**
+
+1. User requests to list contacts.
+2. uNivUSal shows a list of contacts.
+3. User requests to show only contacts with a specific preferred social media.
+4. uNivUSal shows a list of contacts with the specific preferred social media.
+
+   Use case ends.
+   <br>
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given preferred social media name is invalid.
+
+    * 3a1. uNivUSal shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Open a social media account of an existing person in the contacts**
 
 **MSS**
 
@@ -794,9 +842,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
-
-   2.Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Download the jar file and copy into an empty folder
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
 
@@ -837,13 +884,6 @@ testers are expected to do more *exploratory* testing.
      3. Test case: `edit 1 o/TA`<br>
         Expected: The person's profile picture updates to a TA profile picture.
 
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-
 ### Quick edit
 
 1. Ensuring quick edit does nothing
@@ -879,13 +919,23 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect exclude commands to try: `exclude 0 s/TELEGRAM`
 
 ### Setting a social account as preferred
-1. Deleting a social account to an existing contact.
+1. Setting a social account as preferred.
     1. Prerequisites: List all contacts using the list command. First contact has social accounts filled out.
     2. Testcase: `prefer 1 s/WHATSAPP` <br>
        Expected: PREFERRED social media box of the first contact set to WHATSAPP. Details of success command shown in status message.
     3. Testcase:`prefer 1 s/WHATELEMAILGRAM`
        Expected: No Social details change. Error details shown in the status message. Contacts remain the same.
     4. Other incorrect prefer commands to try: `prefer 0 s/TELEGRAM`
+
+### Filtering contacts by their preferred socials
+1. Filtering contacts by their preferred socials.
+   1. Prerequisites: List all contacts using the list command. First contact has social accounts filled out, including
+   preferred socials.
+   2. Testcase: `social telegram` <br>
+      Expected: Displays list of contacts with PREFERRED social media box of TELEGRAM. Details of success command shown
+   in status message.
+   3. Testcase: `social watsap` <br>
+      Expected: Invalid command will be shown as `watsap` is an invalid SOCIAL
 
 ### Opening a social account using CLI
 1. Deleting a social account to an existing contact.
@@ -933,3 +983,10 @@ testers are expected to do more *exploratory* testing.
        Expected: Invalid group is detected as the group does not exist. Error details shown in the status message. AddressBook remains unchanged.
     4. Other incorrect open commands to try: `group g/friends`
 
+[//]: # (### Saving data)
+
+[//]: # ()
+[//]: # (1. Dealing with missing/corrupted data files)
+
+[//]: # ()
+[//]: # (    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_)

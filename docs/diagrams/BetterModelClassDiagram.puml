@@ -20,4 +20,5 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> Social
+Person *--> Group
 @enduml
