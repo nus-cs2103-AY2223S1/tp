@@ -58,16 +58,19 @@ public class DeleteCommand extends Command {
         } else {
             haveUnmark = unmarkRespectiveDateSlot(model, confirmedPersonToDelete, lastShownList);
         }
-        String extraMesssage = "";
+        String extraMessage = "";
         if (haveDeleted) {
-            extraMesssage = "The respective home visit has also been deleted.";
+            extraMessage = "The respective home visit has also been deleted.";
         }
         if (haveUnmark) {
-            extraMesssage = "The respective date slot has also been unmarked.";
+            extraMessage = "The respective date slot has also been unmarked.";
         }
         model.deletePerson(confirmedPersonToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS,
-                confirmedPersonToDelete.getCategoryIndicator(), confirmedPersonToDelete) + " " + extraMesssage);
+        return new CommandResult(
+                String.format("%s %s",
+                        String.format(MESSAGE_DELETE_PERSON_SUCCESS,
+                                confirmedPersonToDelete.getCategoryIndicator(), confirmedPersonToDelete),
+                        extraMessage));
     }
 
     @Override
