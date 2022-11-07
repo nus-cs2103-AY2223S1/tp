@@ -750,8 +750,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Should be able to hold up to 1000 guests without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. The response to any use action should become visible within 5 seconds.
-8. Data should be saved into a JSON file before exiting the program.
-9. The project is expected to adhere to a schedule that delivers a feature set every two weeks.
+8. Data should be saved into a local JSON file before exiting the program.
+9. The product should be a for a single user (i.e. not a multi-user product where different users can run the application at different times on a shared computer)
 
 
 ### Glossary
@@ -858,7 +858,7 @@ Prerequisite: Only 1 guest to be edited. The guest's index should exist.
       Expected: No guest is edited, because the parameters are invalid. Error details shown in the status message.
       Status bar remains the same.
 
-### MarkRoomsUnclean
+### Marking Guests Rooms as Unclean
 
 Prerequisite: All guests room cleaning status will be edited.
 There should be at least one guest in the list.
@@ -870,7 +870,7 @@ There should be at least one guest in the list.
    3. Test case: `markRoomsUnclean`<br>
       Expected: The error will throw: "unknown command", because the user is **Capitalising the `R` or `U`**
 
-### Bill
+### Changing guests bill value
 
 Prerequisite: Only one guest's bill will be edited.
 The guest should exist in GuestBook. The format and content of the command should be valid.
@@ -889,7 +889,7 @@ We assume that there is a guest named John in the list.
    5. Test case: `bill 1 b/-10`
       Expected: the error will throw because the bill cannot be negative.
 
-### Clear
+### Clearing all guests
 Prerequisite: all guests in the guestbook will be deleted.
 This command is irreversible.
 

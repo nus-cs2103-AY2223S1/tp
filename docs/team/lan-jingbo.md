@@ -41,7 +41,7 @@ Given below are my contributions to the project.
     * Optimized quick start guide
     * Handled bold and boxing after bill in UG
     * Updated UG command summary to allow quick start
-  * Developer Guide:
+  * Developer Guide: 
     * Refactored Logic appendix part(Content and PUML graph)
     * Added User Stories section
     * Added Manual Testing Guide section: Test cases and expected results
@@ -49,8 +49,6 @@ Given below are my contributions to the project.
 
 * **Contributions to team-based tasks**:
   * Facilitated and tidied up contents of postmortem v1.2
-  * Facilitated and tidied up contents of postmortem v1.3
-  * Facilitated and tidied up contents of postmortem v1.4
 
 * **Review/mentoring contributions**:
   * Team members' PR reviews (with non-trivial review comments): pull request #201, #200, #197, #194, #190, #118, #114, #111, #104, #95, #80, #78, #74, #73, #67, #48
