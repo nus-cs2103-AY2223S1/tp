@@ -1,0 +1,8 @@
+@startuml
+
+(*) --> "User opens HackAssist"
+"User opens HackAssist" --> "HackAssist reads AddressBook.json"
+"HackAssist reads AddressBook.json" --> "HackAssist converts each Person details in AddressBook.json to Person object and adds it to UniquePersonList"
+"HackAssist converts each Person details in AddressBook.json to Person object and adds it to UniquePersonList" --> (*)
+
+@enduml
