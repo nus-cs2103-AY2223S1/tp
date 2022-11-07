@@ -167,7 +167,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Commissions
 The class diagram below shows our current implementation of the `Commission` class.
 
-<img src="images/Commission.png" width="450" />
+![CommissionClassDiagram](images/Commission.png)
 
 Each commission in `ArtBuddy` contains...
 - a `Title`
@@ -241,7 +241,7 @@ commission list directly, due to our method of storing commissions (inside their
 The sequence diagram below shows the interaction between `Logic` and `Model` when `delcom 1` is executed.
 The parser part is omitted for brevity, but it is very similar to the other commands.
 
-<img src="images/DeleteCommissionCommand.png" width="450" />
+![DeleteCommissionCommand](images/DeleteCommissionCommand.png)
 
 ### Iterations
 Iterations help users keep track of the progress of their commissions. Each commission iteration
@@ -257,7 +257,7 @@ tied to the iteration
 Since an iteration must be tied to a commission, this composition is captured by storing the
 iterations in a `UniqueIterationList` inside the associated commission object.
 
-<img src="images/IterationClassDiagram.png" width="450" />
+![IterationClassDiagram](images/IterationClassDiagram.png)
 
 #### Adding an Iteration (`additer`)
 Adding an `Iteration` creates an iteration based on the user input, and adds the iteration to the
@@ -277,11 +277,11 @@ The sequence diagram below shows the interactions between the Logic, Model, and 
 the user runs the command `additer d/2022-10-10 n/Changed the colour scheme p//Users/john/Downloads/Draft 1.png
 f/Updated colour scheme is much better`.
 
-<img src="images/AddIterationSequenceDiagram.png" width="450" />
-<br>
-<img src="images/AddIterationParseInputSequenceDiagram.png" width="450" />
-<br>
-<img src="images/AddIterationExecuteSequenceDiagram.png" width="450" />
+![AddIterationSequenceDiagram](images/AddIterationSequenceDiagram.png)
+
+![AddIterationParseInputSequenceDiagram](images/AddIterationParseInputSequenceDiagram.png)
+
+![AddIterationExecuteSequenceDiagram](images/AddIterationExecuteSequenceDiagram.png)
 
 ##### Design Considerations
 <table>
