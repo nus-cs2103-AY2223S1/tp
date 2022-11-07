@@ -137,6 +137,25 @@ public class CreateMeetingCommandTest {
         }
     }
 
+    /**
+     * The case where the name of person inputted by user (Bruce) matches multiple contacts (Bruce and Bruce Lee),
+     * but there is one contact with the exact same time (Bruce).
+     * In this case, a match is made.
+     */
+    @Test
+    public void execute_personToMeetHasExactMatch_addSuccessful() throws Exception {
+        String meetingInfo = "Bruce ;;; Do CS2103 Project ;;; 20-11-2000 1530 ;;; University Town";
+        CreateMeetingCommand createMeetingCommand = new CreateMeetingCommandParser().parse(meetingInfo);
+        CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated modelStub =
+            new CreateMeetingCommandTest.ModelStubAcceptingMeetingCreated();
+
+        CommandResult commandResult = createMeetingCommand.execute(modelStub);
+        Meeting validMeeting = new MeetingBuilder().withPersons(bruce).build();
+        assertEquals(String.format(CreateMeetingCommand.MESSAGE_CREATE_MEETING_SUCCESS, validMeeting),
+            commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validMeeting), modelStub.meetingsAdded);
+    }
+
     @Test
     public void execute_personToMeetIsBlank_throwsParseException() throws Exception {
         String meetingInfo = ";;; Do CS2103 Project ;;; 16-10-2022 1530 ;;; University Town";
