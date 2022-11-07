@@ -341,30 +341,30 @@ The selection of tasks is implemented by acting on the current filtered `TaskPan
 
 #### Example Usage of `task assign`
 
-1. User launches Arrow. The `TaskPanel` and `AddressBook` is populated with existing `Task` and `Teammate` entries respectively.
-2. User types in the command `task assign 1 +@2 -@Bernice Yu`. `1` is the specified index of `Task` in `TaskPanel` to be assigned to given in one-based form. `2` is the specified index of `Teammate` in the `AddressBook` to be assigned. "Bernice Yu" is the full name of the `Teammate` in the `AddressBook` to be unassigned.
-3. The `LogicManager` detects that this is a `TaskCommand`, and therefore passes the user input to the `TaskPanelParser`
-4. The `TaskPanelParser` detects the `AssignTaskCommand.COMMAND_WORD`, and therefore parses the command arguments via a `AssignTaskCommandParser`
-5. The relevant parameters are used to create an instance of a `AssignTaskCommand`, which is then returned to the `TaskPanelParser`
-6. The `LogicManager` executes the command
+Step 1. User launches Arrow. The `TaskPanel` and `AddressBook` is populated with existing `Task` and `Teammate` entries respectively.
+Step 2. User types in the command `task assign 1 +@2 -@Bernice Yu`. `1` is the specified index of `Task` in `TaskPanel` to be assigned to given in one-based form. `2` is the specified index of `Teammate` in the `AddressBook` to be assigned. "Bernice Yu" is the full name of the `Teammate` in the `AddressBook` to be unassigned.
+Step 3. The `LogicManager` detects that this is a `TaskCommand`, and therefore passes the user input to the `TaskPanelParser`
+Step 4. The `TaskPanelParser` detects the `AssignTaskCommand.COMMAND_WORD`, and therefore parses the command arguments via a `AssignTaskCommandParser`
+Step 5. The relevant parameters are used to create an instance of a `AssignTaskCommand`, which is then returned to the `TaskPanelParser`
+Step 6. The `LogicManager` executes the command
 
 ![AssignTaskSequenceDiagramReferenceFrame](images/AssignTaskSequenceDiagramReferenceFrame.png)
 
-7. The command obtains the current state of the `TaskPanel` and `AddressBook` from `Model`.
-8. The `Task` to be modified is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
+Step 7. The command obtains the current state of the `TaskPanel` and `AddressBook` from `Model`.
+Step 8. The `Task` to be modified is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
 
 Note: if the `Index` provided is invalid, an exception will be thrown and user will retype their command.
 
-10. The `Teammate`s to be assigned are fetched from the `AddressBook` using the specified `Index`, using its zero-based form, or through matching his full name.
+Step 9. The `Teammate`s to be assigned are fetched from the `AddressBook` using the specified `Index`, using its zero-based form, or through matching his full name.
 
 Note: if the `Index` of teammates is invalid, an exception will be thrown and user will retype their command.
 
 Note: if the full name provided by user does not match any `Teammate`, an exception will be thrown and user will retype their command.
 
-12. For each `Teammate` to be assigned, a `Contact` is created using the `Teammate`s' name.
-13. The modified `Task` is created with the newly assigned `Contact`s
-14. The `Model` is updated with the modified `Task`.
-15. The `GUI` is updated to show the new `TaskPanel` with the `Task`'s assigned contacts updated.
+Step 10. For each `Teammate` to be assigned, a `Contact` is created using the `Teammate`s' name.
+Step 11. The modified `Task` is created with the newly assigned `Contact`s
+Step 12. The `Model` is updated with the modified `Task`.
+Step 13. The `GUI` is updated to show the new `TaskPanel` with the `Task`'s assigned contacts updated.
 
 The AssignTaskCommandParser relies on the ArgumentMultimap abstraction, which helps to tokenize the user input by pre-specified prefixes. The prefix `+@` denotes that the contact is to be assigned, while prefix `-@` denotes that the contact is to be unassigned from the task's assigned contact list.
 
