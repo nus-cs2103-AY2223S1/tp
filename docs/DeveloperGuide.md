@@ -76,7 +76,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-F11-4/tp/blob/2da571e65f2e2ae194a9176540e47967a6402ac8/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -93,7 +93,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F11-4/tp/blob/2da571e65f2e2ae194a9176540e47967a6402ac8/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -109,7 +109,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `deleteC 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteContactCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteContactCommandParser`, `DeleteContactCommand` and `CommandResult` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -121,7 +121,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddContactCommandParser`, `DeleteContactCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-4/tp/blob/2da571e65f2e2ae194a9176540e47967a6402ac8/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagramPerson.png" width="450" />
 <img src="images/ModelClassDiagramTaskTag.png" width="450" />
@@ -138,7 +138,7 @@ The same goes for `Task` and `Tag`.
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-F11-4/tp/blob/2da571e65f2e2ae194a9176540e47967a6402ac8/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="700" />
 
@@ -164,34 +164,35 @@ Each field is implemented by a class with the same name, except for `Id` which i
 Id is unique and automatically generated when person is added.
 
 Persons with the same fields for email, phone or ID are not allowed.
-This is because these field would always be unique for each individual, so there should not be a situation where two individuals have the same data in any of these fields.
+In real life, these fields would always be unique for each individual, so there should not be a situation where two contacts have the same data in any of these fields.
 
-| Field Name | Description                                    | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-|------------|------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Id         | Unique identifier for Person                   | -                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| Name       | -                                              | Non-empty alphanumeric string  (can have spaces)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Phone      | -                                              | String consisting of at least 3 numbers from 0-9 inclusive                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| Address    | -                                              | Non-empty string                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Email      | -                                              | Non-empty string of the format local-part@domain name<br/><ul><li>local-part contains only alphanumeric characters and these special characters, excluding the parentheses, (+_.-)</li><li>local-part cannot start with a special character</li><li>domain name consists of domain labels separated by periods</li><li>domain name must end with domain label at least 2 characters long</li><li>each domain label must start and end with alphanumeric characters</li><li>each domain label must consist only of alphanumberic characters, separated only by hyphens (if any)</li></ul> |
-| Remark     | -                                              | Alphanumeric string (can consist of spaces)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| Tag        | Defaults to empty set when new person is added | Zero or more tag(s), each following the constraint of a Tag                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Field Name | Description                                    | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+|------------|------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Id         | Unique identifier for Person                   | -                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Name       | -                                              | Non-empty alphanumeric string  (can have spaces)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Phone      | -                                              | String consisting of at least 3 numbers from 0-9 inclusive                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Address    | -                                              | Non-empty string                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Email      | -                                              | Non-empty string of the format local-part@domain name <br>- local-part contains only alphanumeric characters and these special characters, excluding the parentheses, (+_.-)<br />- local-part cannot start with a special character<br/>- domain name consists of domain labels separated by periods<br />- domain name must end with domain label at least 2 characters long<br />- each domain label must start and end with alphanumeric characters<br />- each domain label must consist only of alphanumberic characters, separated only by hyphens (if any) |
+| Remark     | -                                              | Alphanumeric string (can consist of spaces)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Tag        | Defaults to empty set when new person is added | Zero or more tag(s), each following the constraint of a Tag                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
 
 #### Task
 
-Each Task is implemented by a class with the same name, except for `Status` which is implemented using a boolean.
+Each field is implemented by a class with the same name.
 
 Id is unique and automatically generated when task is added.
 Tasks with the same fields in all of description, deadline and tag are not allowed.
 This is because two tasks would be considered the same if they were the same task with the same deadline and labels.
 As we are maintaining a unique task list in our app, this is disallowed.
 
-| Field Name  | Description                                                                        | Constraints                                                     |
-|-------------|------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| Id          | Unique identifier for Task                                                         | -                                                               |
-| Description | Details of the task                                                                | Non-empty alphanumeric string (can have spaces)                 |
-| Deadline    | -                                                                                  | Date consisting of day, month, and year. Time-zone insensitive. |
-| Status      | Completion status of task, defaults to false (not complete) when new task is added | Boolean (Completed or Not Complete)                             |
-| Tag         | Defaults to empty set when new task is added                                       | Zero or more tag(s), each following the constraint of a Tag     |
+| Field Name        | Description                                                                        | Constraints                                                     |
+|-------------------|------------------------------------------------------------------------------------|-----------------------------------------------------------------|
+| Id                | Unique identifier for Task                                                         | -                                                               |
+| Description       | Details of the task                                                                | Non-empty alphanumeric string (can have spaces)                 |
+| Deadline          | -                                                                                  | Date consisting of day, month, and year. Time-zone insensitive. |
+| Completion Status | Completion status of task, defaults to false (not complete) when new task is added | Boolean (Completed or Not Complete)                             |
+| Archival Status   | Archival status of task, defaults to false (not archived) when new task is added   | Boolean (Archived or Not Archived)                              |
+| Tag               | Defaults to empty set when new task is added                                       | Zero or more tag(s), each following the constraint of a Tag     |
 
 #### Tag
 
@@ -265,9 +266,9 @@ The following sequence diagram shows how the add tag operation works:
 
 ### Add/delete task feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed add/delete task mechanism is facilitated by `TaskList`. It extends `AddressBook` with a task list, stored internally as a TaskList `tasks`.
+The add/delete task mechanism is facilitated by `TaskList`. It extends `AddressBook` with a task list, stored internally as a TaskList `tasks`.
 
 Every instance of AddTaskCommand is created with a Task instance. If the Task instance is null, an exception is thrown.
 
@@ -340,6 +341,10 @@ Step 3. The `FindCommand` class then calls the `Model#updateFilteredPersonList()
 Step 4. The `Model` class then updates the filtered list of contacts in the `AddressBook` class.
 
 ![FindContactSequenceDiagram](images/FindContactSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
 
 The find task feature uses the same mechanism as the find contact feature, except that it uses classes and methods for `Task` instead of `Person`.
 
@@ -632,43 +637,47 @@ Step 3. The user executes `listT` command to list all tasks.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                                      |
-| -------- | ------------------------------------------ | ------------------------------ | ------------------------------------------------------------------------------------ |
-| `* * *`  | technically competent student who prefers typing to clicking | have a CLI   | perform operations quickly |
-| `* * *`  | student who is part of many group projects | keep track of the contact information of my groupmates | communicate with my team |
-| `* * *`  | student who is part of many group projects | track the progress of each group towards its goals | know if everyone is putting in their share of work |
-| `* * *`  | student who often has to email others | store people’s emails    | remember their emails |
-| `* * *`  | student who prefers calling                | see the person’s phone number  | call them |
-| `* * *`  | student who prefers visiting someone in person |  see the person’s address  | visit them |
-| `* * *`  | student                                    | edit the information on people’s profiles | update the information when necessary |
-| `* * *`  | student who pefers a compact social circle | delete contacts                | stop keeping old contacts |
-| `* * *`  | team leader                                | add and remove people from a project when forming the project group | know who is part of the project group |
-| `* * *`  | team leader                                | remove a project and the people associated with it once the project is done | avoid cluttering my workspace |
-| `* * *`  | team member                                | group contacts                 | know which people are involved in which projects |
-| `* * *`  | forgetful student                          | mark tasks as complete         | know if I have completed the task already |
-| `* * *`  | forgetful student                          | note the deadline of my tasks  | complete my tasks on time |
-| `* * *`  | forgetful person                           | keep notes on the people I’ve met | remember important things about them |
-| `* *`    | team leader                                | see my team’s progress towards completing their assigned tasks | know if my team is on track |
-| `* *`    | team leader                                | assign tasks to my team members | divide the work efficiently |
-| `* *`    | team leader                                | archive a project and the people associated with it once the project is done | avoid cluttering my workspace|
-| `* *`    | team member                                | send reminders to other team members | remind them to do their work |
-| `* *`    | team member                                | give status updates on individual tasks | inform the group on my progress |
-| `* *`    | team member                                | use an idea board | generate inspiration with my teammates |
-| `* * `   | SWE student                                | save the github usernames of my contacts | view their repo |
-| `* *`    | anxious student                            | see the percentage completion of the tasks | feel at ease |
-| `* *`    | anxious student                            | see if I am on track with my deadlines | be assured that my tasks are not behind schedule |
-| `* *`    | forgetful student                          | be reminded of upcoming deadlines | ensure that I won't miss them |
-| `* *`    | forgetful student                          | keep track of my tasks         | know which tasks need to be completed |
-| `* *`    | forgetful person                           | save people’s profiles with photos | remember their names |
-| `* *`    | artistic student                           | change the colour palette of my UI to my preference | enjoy looking at the UI |
-| `* *`    | student with color blindness               | have my software be composed of minimal colors | distinguish all elements |
-| `* *`    | student who does work late at night        | use dark mode                  | choose not to strain my eyes |
-| `*`      | student who struggles with remembering identities | add nicknames to my contacts | better identify them |
-| `*`      | student who prefers pen and paper          | print out my tasks             | annotate on it physically |
-| `*`      | artistic student                           | have the software I use to look aesthetic | enjoy using them |
-| `*`      | student who is bad with names              | see the person’s first name emphasized | know how to address the person|
-| `*`      | student with poor eyesight                 | ensure that my software have big fonts and large buttons | distinguish all elements |
-| `*`      | animal loving person                       | have some cute animals in the background | feel entertained while managing my tasks |
+| Priority | As a …​                                                      | I can …​                                                                              | So that I can…​                                  |
+|----------|--------------------------------------------------------------|---------------------------------------------------------------------------------------|--------------------------------------------------|
+| `* * *`  | technically competent student who prefers typing to clicking | have a CLI                                                                            | perform operations quickly                       |
+| `* * *`  | student who is part of many group projects                   | keep track of the contact information of my groupmates                                | communicate with my team                         |
+| `* * *`  | student who is part of many group projects                   | track the progress of each group towards its goals                                    | know how far along each project's progress is    |
+| `* * *`  | student who often has to email others                        | store people’s emails                                                                 | remember their emails                            |
+| `* * *`  | student who prefers calling                                  | see the person’s phone number                                                         | call them                                        |
+| `* * *`  | student who prefers visiting someone in person               | see the person’s address                                                              | visit them                                       |
+| `* * *`  | student                                                      | edit the information on people’s profiles                                             | update the information when necessary            |
+| `* * *`  | student who prefers a compact social circle                  | delete contacts                                                                       | stop keeping old contacts                        |
+| `* * *`  | user                                                         | remove a project and the people and tasks associated with it once the project is done | avoid cluttering my workspace                    |
+| `* * *`  | team member                                                  | group contacts                                                                        | know which people are involved in which projects |
+| `* * *`  | forgetful student                                            | mark tasks as complete                                                                | know if I have completed the task already        |
+| `* * *`  | forgetful student                                            | note the deadline of my tasks                                                         | complete my tasks on time                        |
+| `* * *`  | forgetful person                                             | keep notes on the people I’ve met                                                     | remember important things about them             |
+| `* *`    | team leader                                                  | see my team’s progress towards completing their assigned tasks                        | know if my team is on track                      |
+| `* *`    | team leader                                                  | assign tasks to my team members                                                       | divide the work efficiently                      |
+| `* *`    | team leader                                                  | archive a project and the people associated with it once the project is done          | avoid cluttering my workspace                    |
+| `* *`    | team member                                                  | send reminders to other team members                                                  | remind them to do their work                     |
+| `* *`    | team member                                                  | give status updates on individual tasks                                               | inform the group on my progress                  |
+| `* *`    | team member                                                  | use an idea board                                                                     | generate inspiration with my teammates           |
+| `* * `   | SWE student                                                  | save the github usernames of my contacts                                              | view their repo                                  |
+| `* *`    | anxious student                                              | see the percentage completion of the tasks                                            | feel at ease                                     |
+| `* *`    | anxious student                                              | see if I am on track with my deadlines                                                | be assured that my tasks are not behind schedule |
+| `* *`    | organised student                                            | sort my tasks by deadline                                                             | see which tasks I have to do first               |
+| `* *`    | organised student                                            | archive tasks                                                                         | declutter the gui                                |
+| `* *`    | clumsy student                                               | undo and redo my actions                                                              | reverse accidental commands                      | 
+| `* *`    | forgetful student                                            | be reminded of upcoming deadlines                                                     | ensure that I won't miss them                    |
+| `* *`    | forgetful student                                            | add my tasks                                                                          | know which tasks need to be completed            |
+| `* *`    | student                                                      | edit task information                                                                 | update the task details if they change           |
+| `* *`    | student                                                      | delete tasks                                                                          | declutter the task list                          |
+| `* *`    | forgetful person                                             | save people’s profiles with photos                                                    | remember their names                             |
+| `* *`    | artistic student                                             | change the colour palette of my UI to my preference                                   | enjoy looking at the UI                          |
+| `* *`    | student with color blindness                                 | have my software be composed of minimal colors                                        | distinguish all elements                         |
+| `* *`    | student who does work late at night                          | use dark mode                                                                         | choose not to strain my eyes                     |
+| `*`      | student who struggles with remembering identities            | add nicknames to my contacts                                                          | better identify them                             |
+| `*`      | student who prefers pen and paper                            | print out my tasks                                                                    | annotate on it physically                        |
+| `*`      | artistic student                                             | have the software I use to look aesthetic                                             | enjoy using them                                 |
+| `*`      | student who is bad with names                                | see the person’s first name emphasized                                                | know how to address the person                   |
+| `*`      | student with poor eyesight                                   | ensure that my software have big fonts and large buttons                              | distinguish all elements                         |
+| `*`      | animal loving person                                         | have some cute animals in the background                                              | feel entertained while managing my tasks         |
 
 ### Use cases
 
@@ -836,7 +845,99 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+* 3b. The label requested is invalid.
 
+    * 3b1. YellowBook shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Add a label to an existing contact**
+
+**MSS**
+
+1. User requests to list contacts
+2. YellowBook shows a list of contacts
+3. User requests to tag a specific contact in the list with a label
+4. YellowBook tags the contact with specified label
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. YellowBook shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The label requested is invalid.
+
+    * 3b1. YellowBook shows an error message.
+
+      Use case resumes at step 2.
+          
+
+**Use case: Delete a label from an existing task**
+
+**MSS**
+
+1.  User requests to list tasks
+2.  YellowBook shows a list of tasks
+3.  User requests to delete a label from a task in the list
+4.  YellowBook deletes the label from the task
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. YellowBook shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The label requested is not found on the task.
+
+    * 3b1. YellowBook shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Delete a label from an existing contact**
+
+**MSS**
+
+1.  User requests to list contacts
+2.  YellowBook shows a list of contacts
+3.  User requests to delete a label from a contact in the list
+4.  YellowBook deletes the label from the contact
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. YellowBook shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The label requested is not found on the contact.
+
+    * 3b1. YellowBook shows an error message.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
@@ -883,38 +984,60 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `listC` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `deleteC 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `deleteC 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `deleteC`, `deleteC x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Deleting a person after executing a find command
+
+   1. Prerequisites: Find multiple persons using the `findC` command. Multiple persons in the results of the find command.
+
+   2. Test case: `deleteC 1`<br>
+      Expected: First contact is deleted from the results of the find command. Details of the deleted contact shown in the status message.
+
+   3. Other incorrect delete commands to try: `deleteC`, `deleteC x`, `...` (where x is larger than the results of the find command)<br>
+      Expected: Similar to previous.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data file
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Delete the data file in the file path of `yellowBooks.jar` (if-any). <br>
 
-1. _{ more test cases …​ }_
+   2. Launch the app by double-clicking the jar file.
+   
+   3. Perform any command (e.g. `listT`).<br>
+      Expected: A data file will be created in the directory `./data/yellowBook.json`. There will be some sample data.
+
+1. Dealing with a corrupted data file
+
+   1. Prerequisites: Have a existing data file in the directory `./data/yellowBook.json` and open it with a text editor.
+
+   2. Edit the data file to contain invalid data (e.g. change a `phone` to contain alphabets ) and save it.<br>
+      Expected: The app will show empty contact list, task list, and tag list when launched. 
+    
+   3. Close the app without performing any commands.
+      Expected: The data file will still contain the corrupt data.
+
+   4. Edit the data file to revert the data to the original state from step 1 and save it.<br>
+      Expected: The app will show the orignal contact list, task list, and tag list when launched. 

@@ -35,6 +35,7 @@ FindContactCommandParser --> AddressBookParser
 deactivate FindContactCommandParser
 
 AddressBookParser --> LogicManager
+destroy FindContactCommandParser
 deactivate AddressBookParser
 
 LogicManager -> FindContactCommand : execute()

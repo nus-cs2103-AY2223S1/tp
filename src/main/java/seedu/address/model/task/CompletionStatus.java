@@ -13,7 +13,7 @@ public class CompletionStatus {
     public static final String INPUT_TASK_NOT_COMPLETED = "incomplete";
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Completion status should be complete or incomplete";
+            "Completion status should be " + INPUT_TASK_COMPLETED + " or " + INPUT_TASK_NOT_COMPLETED;
 
     private final Boolean isCompleted;
 
@@ -44,6 +44,7 @@ public class CompletionStatus {
      * Returns true if a given string is a valid completion status.
      */
     public static Boolean isValidCompletionStatus(String test) {
+        assert test != null : "Completion status test string should not be null";
         return StringUtil.containsWordIgnoreCase(test, INPUT_TASK_COMPLETED)
                 || StringUtil.containsWordIgnoreCase(test, INPUT_TASK_NOT_COMPLETED);
     }
