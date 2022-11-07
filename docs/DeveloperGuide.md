@@ -1059,6 +1059,7 @@ Use case ends.
 * **Bill**: The total amount charged for an appointment
 * **Payment Status**: Whether a bill has been paid by the patient
 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
