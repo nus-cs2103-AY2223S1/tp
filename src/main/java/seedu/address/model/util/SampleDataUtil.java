@@ -21,7 +21,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code AddressBook} and {@code MeetingList} with sample data.
  */
 public class SampleDataUtil {
     private static final Logger logger = LogsCenter.getLogger(SampleDataUtil.class);

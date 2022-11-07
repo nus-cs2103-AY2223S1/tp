@@ -8,7 +8,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyMeetingList;
 
 /**
- * Represents a storage for {@link seedu.address.model.meeting.Meeting}.
+ * Represents a storage for {@link seedu.address.model.MeetingList}.
  */
 public interface MeetingListStorage {
 

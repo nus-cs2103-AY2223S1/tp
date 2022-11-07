@@ -118,18 +118,4 @@ public class DateTimeProcessor {
         return dayAndDate + " " + outputTime;
     }
 
-    // for debugging
-    /*public static void main(String[] args) {
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.US)
-            .withResolverStyle(ResolverStyle.SMART);
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm", Locale.US)
-            .withResolverStyle(ResolverStyle.SMART);
-        DateTimeProcessor validator = new DateTimeProcessor(dateFormatter, timeFormatter);
-        try {
-            validator.processDateTime("asdasd");
-        } catch (ParseException e) {
-            System.out.println(e);
-        }
-    }*/
-
 }
