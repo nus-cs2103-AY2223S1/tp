@@ -863,11 +863,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should run independently of remote servers.
+2. Should not use a relational database management system to store data.
+3. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 4. Should not require internet connection, all operations are performed locally.
-5. Should not consume a lot of battery to keep it running in the background
+5. Should not consume a lot of battery to keep it running in the background.
+6. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+7. Should be able to hold up to 1000 notes without a noticeable sluggishness in performance for typical usage.
+8. Should be able to respond to any commands within 2 seconds as long as there are under 1000 entries stored in the application.
+9. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+10. Should automatically save any changes to the data in the storage directly.
+11. The product is intended only for a single user (i.e. not a multi-user product)
 
 ### Glossary
 
