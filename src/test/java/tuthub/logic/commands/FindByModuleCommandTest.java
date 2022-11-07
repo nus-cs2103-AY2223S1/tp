@@ -64,7 +64,7 @@ public class FindByModuleCommandTest {
         FindByModuleCommand command = new FindByModuleCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getTutorList());
+        assertEquals(Collections.emptyList(), model.getSortedFilteredTutorList());
     }
 
     @Test
@@ -74,7 +74,7 @@ public class FindByModuleCommandTest {
         FindByModuleCommand command = new FindByModuleCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(HOON, JACKSON), model.getTutorList());
+        assertEquals(Arrays.asList(HOON, JACKSON), model.getSortedFilteredTutorList());
     }
 
     @Test
@@ -84,7 +84,7 @@ public class FindByModuleCommandTest {
         FindByModuleCommand command = new FindByModuleCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(HOON, JACKSON), model.getTutorList());
+        assertEquals(Arrays.asList(HOON, JACKSON), model.getSortedFilteredTutorList());
     }
 
     private Tuthub getTestTaTuthub() {

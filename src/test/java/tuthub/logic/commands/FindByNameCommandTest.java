@@ -61,7 +61,7 @@ public class FindByNameCommandTest {
         FindByNameCommand command = new FindByNameCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getTutorList());
+        assertEquals(Collections.emptyList(), model.getSortedFilteredTutorList());
     }
 
     @Test
@@ -71,7 +71,7 @@ public class FindByNameCommandTest {
         FindByNameCommand command = new FindByNameCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getTutorList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getSortedFilteredTutorList());
     }
 
     @Test
@@ -81,7 +81,7 @@ public class FindByNameCommandTest {
         FindByNameCommand command = new FindByNameCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getTutorList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getSortedFilteredTutorList());
     }
 
     /**

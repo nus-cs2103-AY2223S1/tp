@@ -85,7 +85,7 @@ public class MailCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Tutor> lastShownList = model.getTutorList();
+        List<Tutor> lastShownList = model.getSortedFilteredTutorList();
 
         Desktop desktop = Desktop.getDesktop();
         String message = MAILTO_PREFIX;
