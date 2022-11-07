@@ -15,6 +15,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 
 [[github](https://github.com/Vshnv2001)]
+[[portfolio]team/Vshnv2001.md]
 
 * Role: Developer
 * Responsibilities : Application Logic and Testing
