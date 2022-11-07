@@ -26,7 +26,7 @@ title: User Guide
     - [Editing user's modules](#edit-users-modules)
     - [Editing contact's modules](#edit-contacts-modules)
     - [Checking modules left](#checking-modules-left)
-    - [Refreshing to Next Semester](#refreshing-to-next-semester)
+    - [Refreshing to next semester](#refreshing-to-next-semester)
   - [Timetable features](#timetable-features)
     - [Adding lessons](#adding-lessons)
     - [Listing lessons / Viewing timetable](#listing-lessons--viewing-timetable)
@@ -554,7 +554,7 @@ Examples:
 
 <div style="page-break-after: always;"></div>
 
-### Refreshing to Next Semester
+### Refreshing to next semester
 
 Moves all the current modules in the current module lists of both the user and all persons in the user's contact list into
 their previous modules list when a next semester command is given. This enables user's to update their ConnectNUS app

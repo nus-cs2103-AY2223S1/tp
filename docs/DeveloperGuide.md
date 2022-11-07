@@ -328,7 +328,7 @@ How the `Logic` component works:
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
-
+<div style="page-break-after: always;"></div>
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
@@ -486,7 +486,6 @@ Removal of modules does not check the module lists to see if the module is prese
 [Scroll back to top](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
-
 ### Checking Modules Left
 
 This feature compares the user's current and previous modules list with a fixed list of CS Core Requirements or focus area
@@ -732,6 +731,8 @@ Step 2. The user executes `user n/Silas p/98765432 e/silastay@gmail.com a/Kent R
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
+<div style="page-break-after: always;"></div>
+
 Step 3. The user executes `delete user` to delete the newly created user. The `delete user` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`, and again the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
@@ -739,6 +740,7 @@ Step 3. The user executes `delete user` to delete the newly created user. The `d
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
 
 </div>
+<div style="page-break-after: always;"></div>
 
 Step 4. The user now decides that deleting the user was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
@@ -762,16 +764,17 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
+<div style="page-break-after: always;"></div>
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-<div style="page-break-after: always;"></div>
-
 Step 6. The user now decides that the undo was a mistake, and decides to redo that action by executing the `redo` command. The `redo` command will call `Model#redoAddressBook()`, which will shift the `currentStatePointer` once to the right, pointing it to the forward address book state, and restores the address book to that state.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
+
+<div style="page-break-after: always;"></div>
 
 #### State Management
 
