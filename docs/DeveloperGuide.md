@@ -478,7 +478,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list persons as per <ins>UC02: List persons</ins>
 1.  User requests to mark specific debts from a specific person in the list as paid
-1.  PayMeLah displays the debts are marked as paid
+1.  PayMeLah displays that the debts are marked as paid
 
     Use case ends.
 
@@ -500,7 +500,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list persons as per <ins>UC02: List persons</ins>
 1.  User requests to delete a specific person in the list
-1.  PayMeLah displays the person is deleted
+1.  PayMeLah displays that the person is deleted
 
     Use case ends.
 
@@ -522,7 +522,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list persons as per <ins>UC02: List persons</ins>
 1.  User requests to delete specific debts from a specific person in the list
-1.  PayMeLah displays the debts are deleted from the person
+1.  PayMeLah displays that the debts are deleted from the person
 
     Use case ends.
 
@@ -559,7 +559,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1.  User requests to list debtors as per <ins>UC08: List persons with debts</ins>
 1.  User requests to clear the debts of a specific debtor in the list
-1.  PayMeLah displays the debts are cleared from the person
+1.  PayMeLah displays that the debts are cleared from the person
 
 **Extensions**
 
