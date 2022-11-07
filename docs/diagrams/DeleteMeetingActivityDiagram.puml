@@ -8,10 +8,10 @@ if () then (arguments are empty)
     :Throw ParseException;
     :Display error message in UI;
 else (arguments are not empty)
-    if () then ( Index of meeting to delete \n is not a non-negative integer)
+    if () then ( Index of meeting to delete \n is not a positive integer)
         :Throw ParseException;
         :Display error message in UI;
-    else ( Index of meeting to delete \n is a non-negative integer)
+    else ( Index of meeting to delete \n is a positive integer)
         if () then ( index of meeting to delete \n exceeds the index of the \n last meeting)
             :Throw CommandException;
             :Display error message in UI;
