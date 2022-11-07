@@ -50,7 +50,16 @@ public class SampleDataUtil {
                     getDeadlineList("resterization", "15-11-2022 18:00"), getTagSet("classmates")),
             new Student(new StudentName("Roy Balakrishnan"), new StudentId("A1624417P"), new Email("royb@example.com"),
                 new ProjectName("circuit design"), new ProjectStatus("DONE"),
-                    getDeadlineList("CS2100 lab", "15-11-2022 18:00"), getTagSet("colleagues"))
+                    getDeadlineList("CS2100 lab", "15-11-2022 18:00"), getTagSet("colleagues")),
+            new Student(new StudentName("Zlatan Mufiz"), new StudentId("A0524417P"), new Email("zlmuf@example.com"),
+                new ProjectName("Integration with Human"), new ProjectStatus("DONE"),
+                    getDeadlineList("Submit supplementary", "2022/11/01 18:00"), getTagSet("hardworker")),
+            new Student(new StudentName("Apple Setiawan"), new StudentId("A0293017S"), new Email("apps@example.com"),
+                new ProjectName("into the future Techies"), new ProjectStatus("IP"),
+                    getDeadlineList("print thesis", "13-11-2022 23:44"), getTagSet("ap", "bp")),
+            new Student(new StudentName("Vivian Ahmad"), new StudentId("A0101987E"), new Email("viva@example.com"),
+                new ProjectName("Circuit Design Second edition"), new ProjectStatus("IP"),
+                    getDeadlineList("Make UML diagram", "31-10-2022 11:45"), getTagSet("VeryLate"))
         };
     }
 
