@@ -398,7 +398,7 @@ Step 6. `Model` updates the database, and displays all the persons.
 The activity diagram below summarises exception handling of AssignCommand:
 
 ![AssignActivityDiagram](images/AssignActivityDiagram.png)
-<br></br>
+<br>
 
 #### Design considerations:
 
@@ -406,11 +406,11 @@ The activity diagram below summarises exception handling of AssignCommand:
   - **Alternative 1:** Fix the order of the uid, so patient then nurse
     - Pros: There will be less checking needed to deduce the class of the persons involved.
     - Cons: The user experience will suffer as the medical administrator might not be able to accurately remember which uid corresponding to which person, the nurse or the patient.
-      <br></br>
+      <br>
   - **Alternative 2:** Have no fix order, as long as one nurse uid and one patient uid is inputted
     - Pros: The user experience will be better as there will be more leeway.
     - Cons: Harder to implement and more testing is required.
-      <br></br>
+      <br>
 
 ### Deassign Feature
 
@@ -428,7 +428,7 @@ Step 3. `DeassignCommandParser` checks validity of the given arguments and creat
 Step 4. The `DeassignCommand` is executed, the person with the id of 3 will have their home visits deassigned.
 
 Step 5. `Model` updates the database, and displays all the persons.
-<br></br>
+<br>
 
 ### \[Proposed\] Undo/redo feature
 
