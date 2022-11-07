@@ -39,18 +39,13 @@ Given below are my contributions to the project.
         * Justification: Important information that Financial Advisors take note of when engaging a client is their
           income and next potential meeting date. Hence, these attributes have been added to store these details in
           FinBook.
-        * Highlight: Meeting date is made optional because there could be instances where a meeting date has not been
-          settled among the user and client.
       
 * **Documentation**:
     * **User Guide**:
-        * Update `add` command to include meeting date.
-        * Update `edit` command to include meeting date.
-        * Add FinBook's product description. ([#86](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/86))
-        * Add legend for symbol and icons used throughout user guide.
-        * Add a description and purpose of FinBook's User Interface components.
+        * Update `add` and `edit` command to include meeting date.
+        * Add FinBook's product description, legend for symbol and icons, description and purpose of FinBook's User
+          Interface components and explanation of command format of FinBook's CLI. ([#86](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/86))
         * Add a prefix format description with stated parameter restrictions, and examples. ([#187](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/187))
-        * Add explanation of command format of FinBook's CLI.
         * Add User Interface of FinBook and Command format images.
         * Add `copy` command feature. ([#84](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/84))
         * Add `delete` single and multiple clients feature. ([#75](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/75]))
