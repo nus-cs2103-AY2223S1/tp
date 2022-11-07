@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.group.Group;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +35,9 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private GroupWindow groupWindowPlaceHolder;
+
+    private CommandBox commandBox;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -66,6 +70,10 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
+        commandBox = new CommandBox(this::executeCommand);
+
+        groupWindowPlaceHolder = new GroupWindow(new Stage(), new Group("NOGROUP"), logic, getCommandSetter());
     }
 
     public Stage getPrimaryStage() {
@@ -78,6 +86,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -110,7 +119,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), this.primaryStage, getCommandSetter());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -119,7 +128,6 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -146,6 +154,21 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.focus();
         }
     }
+
+    /**
+     * Opens the group window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleShowGroup(Group group) {
+        GroupWindow groupWindow = new GroupWindow(new Stage(), group, logic, getCommandSetter());
+
+        if (!groupWindow.isShowing()) {
+            groupWindow.show();
+        } else {
+            groupWindow.focus();
+        }
+    }
+
 
     void show() {
         primaryStage.show();
@@ -186,11 +209,23 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isShowGroup()) {
+                handleShowGroup(commandResult.getGroup());
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    /**
+     * Gets the {@code CommandSetter} that sets the {@code CommandBox}.
+     * @return The {@code CommandSetter} that sets the {@code CommandBox}.
+     */
+    public CommandBox.CommandSetter getCommandSetter() {
+        return commandBox.getCommandSetter();
     }
 }

@@ -32,6 +32,8 @@ AddressBookParser ..> XYZCommand : creates >
 
 XYZCommand -up-|> Command
 LogicManager .left.> Command : executes >
+AddressBookParser .left.> HistoryList : executes >
+
 
 LogicManager --> Model
 LogicManager --> Storage

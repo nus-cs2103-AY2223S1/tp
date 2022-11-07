@@ -1,0 +1,21 @@
+.button1 {
+    -fx-padding: 5 22 5 22;
+    -fx-border-color: #080808;
+    -fx-border-width: 2;
+    -fx-background-radius: 0;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-background-color: #3c3e3f;
+}
+
+.button2 {
+    -fx-padding: 5 22 5 22;
+    -fx-border-color: #080808;
+    -fx-border-width: 2;
+    -fx-background-radius: 0;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-background-color: #515658
+}

@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box History Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "h:HistoryCommand" as HistoryCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box HistoryList MODEL_COLOR_T1
+participant ":HistoryList" as HistoryList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("history")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("history")
+activate AddressBookParser
+
+create HistoryCommand
+AddressBookParser -> HistoryCommand
+activate HistoryCommand
+
+HistoryCommand -> AddressBookParser : h
+deactivate HistoryCommand
+
+AddressBookParser --> LogicManager : h
+deactivate AddressBookParser
+
+LogicManager -> HistoryCommand : execute()
+activate HistoryCommand
+
+create CommandResult
+HistoryCommand -> CommandResult
+activate CommandResult
+
+CommandResult -> HistoryList : printList()
+activate HistoryList
+
+HistoryList --> CommandResult
+deactivate HistoryList
+
+CommandResult --> HistoryCommand
+deactivate CommandResult
+
+HistoryCommand --> LogicManager : result
+deactivate HistoryCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

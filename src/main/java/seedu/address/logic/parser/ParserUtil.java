@@ -9,10 +9,14 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Tutorial;
+import seedu.address.model.social.Social;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -23,16 +27,62 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
-     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
-     * trimmed.
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
-        String trimmedIndex = oneBasedIndex.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
+        oneBasedIndex = oneBasedIndex.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(oneBasedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
-        return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+        return Index.fromOneBased(Integer.parseInt(oneBasedIndex));
+    }
+
+    /**
+     * Parses {@code trimmedField} and returns it if valid.
+     *
+     * @throws ParseException if the specified field is invalid.
+     */
+    public static String parseField(String trimmedField) throws ParseException {
+        if (StringUtil.isEmptyString(trimmedField)) {
+            return null;
+        } else if (!StringUtil.isValidField(trimmedField)) {
+            throw new ParseException(MESSAGE_INVALID_INDEX);
+        }
+        return trimmedField;
+    }
+
+    /**
+     * Parses {@code social} into a String and returns it
+     *
+     * @param social
+     * @return String
+     * @throws ParseException
+     */
+    public static String parseSocial(String social) throws ParseException {
+        requireNonNull(social);
+        String trimmedsocial = social.trim();
+        if (!Social.isValidSocial(trimmedsocial)) {
+            throw new ParseException(Social.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedsocial;
+    }
+
+    /**
+     * Parses {@code occupation} into an {@code Occupation} and returns it
+     *
+     * @param occupation
+     * @return Occupation
+     * @throws ParseException
+     */
+    public static Occupation parseOccupation(String occupation) throws ParseException {
+        requireNonNull(occupation);
+        String trimmedOccupation = occupation.trim();
+        if (!Occupation.isValidOccupation(trimmedOccupation)) {
+            throw new ParseException(Occupation.MESSAGE_CONSTRAINTS);
+        }
+        return new Occupation(trimmedOccupation);
     }
 
     /**
@@ -96,6 +146,23 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String tutorial} into an {@code Tutorial}
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param tutorial tutorial
+     * @return a valid tutorial
+     * @throws ParseException if the given {@code tutorial} is invalid.
+     */
+    public static Tutorial parseTutorial(String tutorial) throws ParseException {
+        requireNonNull(tutorial);
+        String trimmedTutorial = tutorial.trim();
+        if (!Tutorial.isValidTutorial(trimmedTutorial)) {
+            throw new ParseException(Tutorial.MESSAGE_CONSTRAINTS);
+        }
+        return new Tutorial(trimmedTutorial);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -120,5 +187,32 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String group} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code group} is invalid.
+     */
+    public static Group parseGroup(String group) throws ParseException {
+        requireNonNull(group);
+        String trimmedGroup = group.trim();
+        if (!Group.isValidGroupName(trimmedGroup)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Group(trimmedGroup);
+    }
+
+    /**
+     * Parses {@code Collection<String> groups} into a {@code Set<Group>}.
+     */
+    public static Set<Group> parseGroups(Collection<String> groups) throws ParseException {
+        requireNonNull(groups);
+        final Set<Group> groupSet = new HashSet<>();
+        for (String groupName : groups) {
+            groupSet.add(parseGroup(groupName));
+        }
+        return groupSet;
     }
 }

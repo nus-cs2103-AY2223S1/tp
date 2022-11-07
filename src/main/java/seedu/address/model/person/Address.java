@@ -9,13 +9,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Address {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values no more than 100 characters";
 
     /*
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "[^\\s].{0,99}|^$";
 
     public final String value;
 
@@ -31,10 +31,17 @@ public class Address {
     }
 
     /**
-     * Returns true if a given string is a valid email.
+     * Returns true if a given string is a valid address.
      */
     public static boolean isValidAddress(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if the value is the deleted placeholder.
+     */
+    public boolean isDeleted() {
+        return this.value.equals("NO ADDRESS SET");
     }
 
     @Override

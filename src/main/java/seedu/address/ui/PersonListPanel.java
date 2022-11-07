@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 
@@ -16,17 +17,33 @@ import seedu.address.model.person.Person;
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private CommandBox.CommandSetter commandSetter;
 
     @FXML
     private ListView<Person> personListView;
 
+    private Stage primaryStage;
+
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code PersonListPanel} with the given {@code ObservableList} & {@code primaryStage}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(ObservableList<Person> personList, Stage primaryStage,
+                           CommandBox.CommandSetter commandSetter) {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+        this.primaryStage = primaryStage;
+        this.commandSetter = commandSetter;
+    }
+
+    /**
+     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     */
+    public PersonListPanel(ObservableList<Person> groupedPersonList, CommandBox.CommandSetter commandSetter) {
+        super(FXML);
+        personListView.setItems(groupedPersonList);
+        personListView.setCellFactory(listView -> new PersonListViewCell());
+        this.commandSetter = commandSetter;
     }
 
     /**
@@ -41,7 +58,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                setGraphic(new PersonCard(person, getIndex() + 1, primaryStage, commandSetter).getRoot());
             }
         }
     }

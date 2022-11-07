@@ -5,11 +5,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Tutorial;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -32,11 +35,23 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder(Person person) {
         descriptor = new EditPersonDescriptor();
+        descriptor.setOccupation(person.getOccupation());
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
+        descriptor.setTutorial(person.getTutorial());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
+        descriptor.setSocial(person.getSocial());
+        descriptor.setGroups(person.getGroups());
+    }
+
+    /**
+     * Sets the {@code Occupation} of the {@code EditPersonDescriptor}.
+     */
+    public EditPersonDescriptorBuilder withOccupation(String occupation) {
+        descriptor.setOccupation(new Occupation(occupation));
+        return this;
     }
 
     /**
@@ -64,6 +79,17 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code Tutorial} of the {@code EditPersonDescriptor} that we are building.
+     *
+     * @param tutorial input tutorial
+     * @return person with edited tutorial
+     */
+    public EditPersonDescriptorBuilder withTutorial(String tutorial) {
+        descriptor.setTutorial(new Tutorial(tutorial));
+        return this;
+    }
+
+    /**
      * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withAddress(String address) {
@@ -78,6 +104,16 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Parses the {@code groups} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
+     * that we are building.
+     */
+    public EditPersonDescriptorBuilder withGroups(String... groups) {
+        Set<Group> groupSet = Stream.of(groups).map(Group::new).collect(Collectors.toSet());
+        descriptor.setGroups(groupSet);
         return this;
     }
 

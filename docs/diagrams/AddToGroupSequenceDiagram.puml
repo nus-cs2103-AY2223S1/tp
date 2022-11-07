@@ -1,0 +1,83 @@
+@startuml
+!include style.puml
+
+box "Logic" #C8C8FA
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddToGroupCommandParser" as AddToGroupCommandParser LOGIC_COLOR
+participant "a:AddToGroupCommand" as AddToGroupCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box "Model" #F97181
+participant ":Model" as Model MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addtogroup 1 friends")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("addtogroup 1 friends")
+activate AddressBookParser
+create AddToGroupCommandParser
+
+AddressBookParser -> AddToGroupCommandParser
+activate AddToGroupCommandParser
+
+AddToGroupCommandParser --> AddressBookParser
+deactivate AddToGroupCommandParser
+
+AddressBookParser -> AddToGroupCommandParser : parse("addtogroup 1 friends")
+activate AddToGroupCommandParser
+
+create AddToGroupCommand
+AddToGroupCommandParser -> AddToGroupCommand
+activate AddToGroupCommand
+
+AddToGroupCommand --> AddToGroupCommandParser
+deactivate AddToGroupCommand
+
+AddToGroupCommandParser --> AddressBookParser
+deactivate AddToGroupCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddToGroupCommandParser -[hidden]-> AddressBookParser
+destroy AddToGroupCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+
+
+
+LogicManager -> AddToGroupCommand : execute()
+activate AddToGroupCommand
+
+AddToGroupCommand -> Model : setPerson(target, editedPerson)
+activate Model
+
+Model -> AddressBook : setPerson(target, editedPerson)
+activate AddressBook
+
+AddressBook --> Model
+deactivate AddressBook
+
+Model --> AddToGroupCommand
+deactivate Model
+
+create CommandResult
+AddToGroupCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddToGroupCommand
+deactivate CommandResult
+
+AddToGroupCommand --> LogicManager : result
+deactivate AddToGroupCommand
+
+
+deactivate LogicManager
+
+[<- LogicManager
+
+@enduml

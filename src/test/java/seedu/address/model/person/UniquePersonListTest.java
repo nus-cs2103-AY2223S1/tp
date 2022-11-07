@@ -44,7 +44,7 @@ public class UniquePersonListTest {
         uniquePersonList.add(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(uniquePersonList.contains(editedAlice));
+        assertFalse(uniquePersonList.contains(editedAlice));
     }
 
     @Test
