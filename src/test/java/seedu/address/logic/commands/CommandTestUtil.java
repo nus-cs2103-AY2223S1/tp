@@ -81,6 +81,7 @@ public class CommandTestUtil {
     public static final String TYPE_DESC_GENDER = " " + PREFIX_TYPE + VALID_GENDER_TYPE;
 
     public static final String TYPE_DESC_AGE = " " + PREFIX_TYPE + VALID_AGE_TYPE;
+    public static final String INVALID_DOB_DESC = " " + PREFIX_DOB + "1.1.2012";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -119,10 +120,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withGender(VALID_GENDER_AMY).build();
+                .withGender(VALID_GENDER_AMY).withDob(VALID_DOB_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withGender(VALID_GENDER_BOB).build();
+                .withGender(VALID_GENDER_BOB).withDob(VALID_DOB_BOB).build();
         DESC_CHOCOLATE = new EditEventDescriptorBuilder().withEventTitle(VALID_EVENT_TITLE_CHOCOLATE)
                 .withDate(VALID_DATE_CHOCOLATE).withStartTime(VALID_START_TIME_CHOCOLATE)
                 .withPurpose(VALID_PURPOSE_CHOCOLATE).build();
