@@ -280,7 +280,7 @@ Having multiple duplicate entries will make it difficult for you to track your e
 Having them differentiated will make it easier for you to recall what you spent your money on!
 </div>
 
-If you have multiple similar entries, you can simply use the [edit](#editing-entries)
+If you want to log similar entries, you can simply use the [edit](#editing-entries)
 command to alter the original entry's specifications.
 
 For example, when executing the following [add commands](#adding-entries) one after another, PennyWise will recognise (
@@ -341,7 +341,7 @@ Adds an entry to the specified list.
 #### Add an expense entry to the expenditure list
 
 - Example: `add t/e d/Lunch a/15.60 da/10-10-2022 c/Food`
-    - Here, we record our $15.60 `Lunch` expenses on 10th October 2022, and tag the entry under `Food`.
+    - Here, we record our $15.60 **Lunch** expenses on 10th October 2022, and tag the entry under `Food`.
 - Expected: `New entry added: Lunch; Date: 10-10-2022; Amount: 15.60; Tag: Food`
 
 ![AddCommandExpenditure](images/ug/AddCommandExpenditure.png)
@@ -349,12 +349,12 @@ Adds an entry to the specified list.
 #### Add an income entry to the income list
 
 - Example: `add t/i d/Tuition a/40.00 da/10-10-2022 c/Salary`
-    - Here, we record our $40.00 income from `Tuition` on 10th October 2022 and tag the entry under `Salary`.
+    - Here, we record our $40.00 income from **Tuition** on 10th October 2022 and tag the entry under `Salary`.
 - Expected: `New entry added: Tuition; Date: 10-10-2022; Amount: 40.00; Tag: Salary`
 
 ![AddCommandIncome](images/ug/AddCommandIncome.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Do not see the entry you just added?:**
+<div markdown="span" class="alert alert-danger">:exclamation: **Can't see the entry you just added?:**
 If you did a [view by month](#view-entries-by-month) command before adding new entries, and you cannot find the entry you just added in the
 List Display, don't worry! This is because List Display is still filtered by the month specified.
 If the entry you just added does not fall within the month, it will not be shown. Simply use the [view by category](#view-entries-by-category)
