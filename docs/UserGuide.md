@@ -106,7 +106,6 @@ This document is to assist you in using MODPRO smoothly and effectively to track
 
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## Quick start 
 
@@ -165,8 +164,10 @@ This document is to assist you in using MODPRO smoothly and effectively to track
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </div>
 
-------------
+
+--------------------------
 <div style="page-break-after: always;"></div>
+
 
 ## Modules-related Features
 
