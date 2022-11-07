@@ -89,7 +89,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TutorListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/java/tuthub/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -455,6 +455,7 @@ In this case, the first `Comment` of the first `Tutor` is deleted.
 The following sequence diagram demonstrates the above operations (excluding the parsing details):
 
 ![DeleteCommentSequenceDiagram](./images/DeleteCommentSequenceDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -502,8 +503,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | NUS Professor                          | delete a tutor profile                                          | remove tutors that have graduated/are no longer available to teach.                         |
 | `* * *`  | NUS Professor                          | save data                                                       | there is a local backup on the computer.                                                    |
 | `* * *`  | NUS Professor                          | exit the program                                                |                                                                                             |
-| `*`      | NUS Professor                          | clear all data                                                  | remove all irrelevant sample data on first use.                                             |
-| `*`      | NUS Professor new to Tuthub            | view help                                                       | familiarise myself with Tuthub commands.                                                    |
+| `* *`    | NUS Professor                          | clear all data                                                  | remove all irrelevant sample data on first use.                                             |
+| `* *`    | NUS Professor new to Tuthub            | view help                                                       | familiarise myself with Tuthub commands.                                                    |
 
 
 ### Use cases
@@ -665,14 +666,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 tutors without a noticeable sluggishness in performance for typical usage.
-3. Should work without internet connection.
 4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-5. Performance requirement: The system should respond within a second.
-6. Technical requirement: The system should work on both 32-bit and 64-bit environments.
-7. Constraints: The product should be for a single user i.e. (not a multi-user product).
-8. Constraints: The product needs to be developed in a breadth-first incremental manner over the project duration.
-9. Constraints: The data should be stored locally and should be in a human editable text file.
-10. Constraints: The file size of the deliverables should be reasonable. Product (i.e. JAR/ZIP file) should not exceed 100 MB. Documents (i.e. PDF files) should not exceed 150 MB.
+5. The system should respond within a second.
+9. The data should be stored locally and should be in a human editable text file.
 
 ### Glossary
 

@@ -284,7 +284,7 @@ Format: `find PREFIX/KEYWORDS [KEYWORDS]`
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Note:**
-* The find command works by entering only **one** prefix corresponding to a tutor's profile attribute, followed by the keyword(s) to search
+* The find command works by entering only **one prefix** corresponding to a tutor's profile attribute, followed by the keyword(s) to search
 * The search is case-insensitive. e.g. `find n/hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `find n/Hans Bo` will match `Bo Hans`
 * Only the attribute that corresponds to the prefix entered is searched.
