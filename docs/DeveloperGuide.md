@@ -929,10 +929,10 @@ testers are expected to do more *exploratory* testing.
 ### Launch and shutdown
 
 1. Initial launch 
-* Download the jar file and copy into an empty folder
-* Double-click the jar file <br>
-  Expected: Shows the GUI with a set of sample orders and items. 
-  The window automatically expands to occupy the entire screen.
+   * Download the jar file and copy into an empty folder
+   * Double-click the jar file <br>
+     Expected: Shows the GUI with a set of sample orders and items. 
+     The window automatically expands to occupy the entire screen.
 
 
 ### Adding an inventory item
