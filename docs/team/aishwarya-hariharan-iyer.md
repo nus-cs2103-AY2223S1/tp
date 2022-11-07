@@ -14,6 +14,7 @@ Given below are my contributions to the project.
 * **Code Contributed**: The link to the tP dashboard can be found [here](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=aishwarya-hariharan-iyer&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **New features implemented**: A summary of the enhancements you implemented.
+  
     * **New Feature**: `Client` class with `add`, `delete` and `edit` commands (Pull requests [\#83](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/83), [\#128](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/128))
         * What it does: The `Client`, which can be a person or an organization, supervises one or more projects.
           Client have attributes such as name, phone number, email and the list of projects they supervise. We can
@@ -48,10 +49,12 @@ Given below are my contributions to the project.
     * Wrote parser tests for the different `find` commands and for the `AddClientCommand` (Pull requests [\#248](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/248), [\#94](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/94))
 
 * **Documentation**:
+
     * Contributions to the UG
         + Help set up the initial UG with all content planned in first iteration (Pull request [\#23](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/23))
         + Added documentation and images for client command features: `add`, `delete`, `edit` (Pull request [\#130](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/130))
         + Added documentation and images for find command features under `Client`, `Project` and `Issue`(Pull request [\#145](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/145))
+
     * Contributions to the DG
         * Write-up for Delete Command Feature consisting of Delete Project Command, Delete Issue Command, and Delete
           Client Command (Pull request [\#236](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/236))
