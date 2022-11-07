@@ -359,29 +359,37 @@ and create the corresponding parser
 ### User Uploaded Images [Haoren]
 
 The application allows users to upload their own images for Property and Client models. By default, the images are stored
-in `data/images`, but users can specify their custom directory in `preferences.json`.
+in `data/images`, or users can specify their custom directory in `preferences.json`.
+
+The feature is activated by the command pattern `add -p -i [OTHER_ARGUMENTS]...`
+
+Here is an activity diagram showing the process and error handling when the user tries to add a property with an image.
+![UploadImageActivityDiagram](images/UploadImageActivityDiagram.png)
+
+* The File Chooser ensures that Users can only upload `.png` or `.jpg` files, so we need not handle the case where the image is of the
+wrong format.
+* By default, the image is saved in `data/images` and renamed with default name `[property/client]-[nameInLowerCamelCase]`. This is to prevent users from uploading images with conflicting names.
 
 The Image object is not initialized until the PropertyCard/ClientCard of the UI is rendered. This is to save memory
 consumption and rely on the Lazy Loading of Observable List. We need to inject the UserPrefs into the Property/Client
 models in order to determine the location to source for the uploaded images.
 
-### \[Proposed\] Undo/redo feature
+### Undo feature
 
-#### Proposed Implementation
+The undo mechanism is facilitated by `CommandQueue`. 
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`.
-It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`.
-Additionally, it implements the following operations:
+`CommandQueue` stores a List of Commands which had been executed during the application lifecycle, and is stored as a field in the `Model` class.
+In addition, the initial state of the `PropertyDirectory` and `ImageDirectory` is saved on initialization. 
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+The `CommandQueue` is exposed in the `Model` interface as `Model#getCommandQueue()` respectively.
+Ideally, the `CommandQueue` operations should be exposed using a Facade pattern. However, as the use case for the `CommandQueue` class is small, 
+we use getters for simplicity.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Here is the sequence diagram for when `undo` command is executed.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Given below is an example usage scenario and how the undo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `ModelManager` will be initialized with the initial `PropertyDirectory` and `ClientDirectory` state, and the `CommandQueue` will be empty.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
