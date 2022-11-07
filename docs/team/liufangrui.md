@@ -27,6 +27,14 @@ Given below are my contributions to the project.
   * Updated parser to be able to parse flags in addition to the command word 
   * Updated parser to throw exceptions when certain command words are used without flags
 
+* **Community**:
+  * PRs reviewed (with non-trivial review comments): [#281](https://github.com/AY2223S1-CS2103T-F11-1/tp/pull/281),
+  [#191](https://github.com/AY2223S1-CS2103T-F11-1/tp/pull/191),
+  [#141](https://github.com/AY2223S1-CS2103T-F11-1/tp/pull/141),
+  [#91](https://github.com/AY2223S1-CS2103T-F11-1/tp/pull/91), 
+  [#61](https://github.com/AY2223S1-CS2103T-F11-1/tp/pull/61), 
+  * Reported [bugs and made suggestions](https://github.com/liufangrui/ped/issues)
+
 * **Documentation**:
   * User Guide:
     * Added "Linking a person and an internship"
