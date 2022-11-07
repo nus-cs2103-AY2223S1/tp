@@ -1,7 +1,5 @@
----
-layout: page title: Developer Guide
----
-
+Developer Guide
+==========
 
 This developer guide is targeted at developers who see the value in this application and would like to further 
 improve on its design or implementation. This guide is also targeted at future maintainers of this application and 
