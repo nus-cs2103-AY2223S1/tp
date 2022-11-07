@@ -87,10 +87,8 @@ Adds a person to TAB.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL pos/POSITION a/ADDRESS t/MODULE-GROUP`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="block" class="alert alert-primary">:bulb: **Tip:**
 A teaching assistant or professor can have more than one tag. A student can only have one tag.
-
-
 Format of parameters:
 * `NAME`: Alphanumerical
 * `PHONE_NUMBER`: Numerical
@@ -402,11 +400,11 @@ If there is only one TAB, do not follow the steps below! Use the `clear` command
     - If the `.json` file is also `addressBookFilePath`, swap it for the first TAB under `allAddressBookFilePath`
       and set `addressBookIndex` to 0
 
-<div markdown="span" class="alert alert-success">:information_source: **Example:**<br>
+<div markdown="block" class="alert alert-success">:information_source: **Example:**<br>
 
 Here I would like to delete a TAB named `addressbook`<br>
 
-Step 1:<br>
+* Step 1:<br>
 Go into `data` folder and delete `addressbook.json`<br>
 &emsp; Before:<br>
 &emsp;![delete_step_1a.png](images/delete_step_1a.png)<br><br>
@@ -414,8 +412,8 @@ Go into `data` folder and delete `addressbook.json`<br>
 &emsp;![delete_step_1b.png](images/delete_step_1b.png)<br><br>
 
 Step 2:<br>
-- Open `preferences.json`<br>
-- Remove `, "data\\addressbook.json"` from `"allAddressBookFilePath"`<br>
+* Open `preferences.json`<br>
+* Remove `, "data\\addressbook.json"` from `"allAddressBookFilePath"`<br>
   &emsp;Before:
   &emsp;![delete_step_2a.png](images/delete_step_2a.png)<br><br>
   &emsp;After:
@@ -424,12 +422,12 @@ Step 2:<br>
 
 **Case By Case Basis:**<br>
 Step 3: (if `"addressBookFilePath"` has the same name as the TAB you want to delete):<br>
-- Remove both `addressbook.json`<br>
+* Remove both `addressbook.json`<br>
   &emsp;Before:
   &emsp;![delete_step_3a.png](images/delete_step_3a.png)<br><br>
   &emsp;After:
   &emsp;![delete_step_3b.png](images/delete_step_3b.png)<br><br>
-- Copy the first TAB name from `"allAddressBookFilePath"`, paste into `"addressBookFilePath"` and change `"addressBookIndex"` to 0.<br>
+* Copy the first TAB name from `"allAddressBookFilePath"`, paste into `"addressBookFilePath"` and change `"addressBookIndex"` to 0.<br>
   &emsp;It should look something like this. (Note the changes in green)
   &emsp;![delete_step_3c.png](images/delete_step_3c.png)<br><br>
   **Save the file and you are done!**<br>
