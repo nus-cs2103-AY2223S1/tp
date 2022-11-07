@@ -64,7 +64,7 @@ public class AssignCommandTest {
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPatient);
         expectedModel.setPerson(model.getFilteredPersonList().get(6), editedNurse);
         String expectedMessage = String.format(AssignCommand.MESSAGE_SUCCESS,
-                editedPatient.getUid().getUid(), editedNurse.getUid().getUid());
+                editedPatient.toLiteString(), editedNurse.toLiteString());
 
         assertCommandSuccess(assignCommand, model, expectedMessage, expectedModel);
     }
@@ -101,7 +101,7 @@ public class AssignCommandTest {
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPatient);
         expectedModel.setPerson(model.getFilteredPersonList().get(6), editedNurse);
         String expectedMessage = String.format(AssignCommand.MESSAGE_SUCCESS,
-                editedPatient.getUid().getUid(), editedNurse.getUid().getUid());
+                editedPatient.toLiteString(), editedNurse.toLiteString());
 
         assertCommandSuccess(assignCommand, model, expectedMessage, expectedModel);
     }
