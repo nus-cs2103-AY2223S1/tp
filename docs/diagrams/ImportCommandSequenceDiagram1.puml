@@ -1,0 +1,47 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StudMapParser" as StudMapParser LOGIC_COLOR
+participant "i:ImportCommand" as ImportCommand LOGIC_COLOR
+participant "importResult:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> MainWindow : executeCommand("import")
+activate MainWindow
+
+MainWindow -> LogicManager : execute("import")
+activate LogicManager
+
+LogicManager -> StudMapParser : parseCommand("import")
+activate StudMapParser
+
+StudMapParser -> ImportCommand **
+activate ImportCommand
+
+ImportCommand --> StudMapParser : i
+deactivate ImportCommand
+
+StudMapParser --> LogicManager : i
+deactivate StudMapParser
+
+LogicManager -> ImportCommand : execute()
+activate ImportCommand
+
+ImportCommand -> CommandResult **
+activate CommandResult
+
+CommandResult --> ImportCommand : importResult
+deactivate CommandResult
+
+ImportCommand --> LogicManager : importResult
+deactivate ImportCommand
+LogicManager --> MainWindow : importResult
+deactivate LogicManager
+
+@enduml

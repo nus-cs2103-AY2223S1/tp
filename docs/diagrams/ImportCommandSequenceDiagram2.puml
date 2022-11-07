@@ -1,0 +1,73 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ImportCsv" as ImportCsv LOGIC_COLOR
+participant "sc:Scanner" as Scanner LOGIC_COLOR
+participant "sd:StudentData" as StudentData LOGIC_COLOR
+participant "student:Student" as Student LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+activate MainWindow
+
+MainWindow -> MainWindow : handleChooseFile()
+activate MainWindow
+
+MainWindow -> LogicManager : importFile(csvFile)
+activate LogicManager
+
+LogicManager -> ImportCsv : execute(csvFile)
+activate ImportCsv
+
+ImportCsv -> Scanner ** : Scanner(csvFile)
+activate Scanner
+
+Scanner --> ImportCsv : sc
+deactivate Scanner
+
+loop until sc has no next line
+    ImportCsv -> ImportCsv : processLine(sc.nextLine())
+    activate ImportCsv
+
+    ImportCsv -> StudentData ** : StudentData()
+    activate StudentData
+
+    StudentData --> ImportCsv : sd
+    deactivate StudentData
+
+    ImportCsv -> StudentData : sd.setAttributes()
+    activate StudentData
+
+    StudentData --> ImportCsv : sd
+    deactivate StudentData
+
+    ImportCsv -> Student ** : Student(sd)
+    activate Student
+
+    Student --> ImportCsv : student
+    deactivate Student
+
+    ImportCsv -> Model : addStudent(student)
+    activate Model
+
+    Model --> ImportCsv
+    deactivate Model
+end
+
+ImportCsv --> LogicManager
+deactivate ImportCsv
+
+LogicManager --> MainWindow
+deactivate MainWindow
+
+@enduml
+

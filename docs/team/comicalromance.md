@@ -13,20 +13,20 @@ using JavaFX. <br>
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=comicalromance)
 
-* **New Feature**: 
-* `mark` and `unmark`<br/>
-Added `mark` and `unmark`, core features for our product usecase, allowing users to manage attendance
-records for their students. This included updating the Jackson serialization to allow pseudo key-pair
-relationships to be stored in the JSON file.
-* `module` <br/>
-Added `module` field to students, allowing users to indicate the module that the student is being tutored
-for
-* `import`<br/>
-Added `import` functionality, allowing users to import student data by uploading a CSV file containing
-student details
+* **New Features**: 
+  * `mark` and `unmark`<br/>
+  Added `mark` and `unmark`, core features for our product usecase, allowing users to manage attendance
+  records for their students. This included updating the Jackson serialization to allow pseudo key-pair
+  relationships to be stored in the JSON file.
+  * `module` <br/>
+  Added `module` field to students, allowing users to indicate the module that the student is being tutored
+  for
+  * `import`<br/>
+  Added `import` functionality, allowing users to import student data by uploading a CSV file containing
+  student details
 
 * **Project management**:
-  * Contributed to PE-D Triaging of Bugs
+  * Managed PE-D Triaging of Bugs
   * Helped with managing of About Us page, profile pictures and skeletal PPPs
 
 * **Enhancements to existing features**:
@@ -37,12 +37,11 @@ student details
 * **Documentation**:
   * Added documentation for the `mark` command in the DG, including PlantUML sequence diagrams and class
   diagrams to reflect the `EditStudent` command structure
-  * Added documentation for `mark`, `unmark` and `import` in the UG
+  * Added documentation for the `import` command in the DG, including activity and sequence diagrams
+  * Added documentation for `mark`, `unmark` and `import` in the UG, and polished Section 4: Quick Start
 
 * **Community**:
-  * [To be added]
-
-* **Tools**:
-  * [To be added]
+  * Helped review several of teammates' PRs
+  
 
 
