@@ -58,6 +58,7 @@ Given below are my contributions to the project.
     * Improve UG for v1.3 [[PR#335]]
     * Fix UG after Peer Review [[PR#351]]
     * Fix find command description in Command Summary [[PR#324]]
+    * Add warning for find command ([PR#539](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/539))
    
   * Developer Guide:
     * Add Glossary, UC3, UC4 to Developer Guide [[PR#87]]
@@ -65,6 +66,7 @@ Given below are my contributions to the project.
     * Add Sorting user stories to DG [[PR#210]]
     * Add Sort Command UML [[PR#232]]
     * Update Developer Guide with v1.3  [[PR#295]]
+    * Update Developer Guide ([PR#528](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/528))
 
 * ** Features**:
   * Add Item model [[PR#143]]
@@ -84,3 +86,5 @@ Given below are my contributions to the project.
   * Rename ferusel.jpg to ferusel.png [[PR#85]]
   * Add Ting Kai information to AboutUs [[PR#98]]
   * Website Hot Fix [[PR#369]]
+  * Update PPP for ferusel ([PR#459](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/459))
+  * Update PPP for ferusel ([PR#536](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/536))
