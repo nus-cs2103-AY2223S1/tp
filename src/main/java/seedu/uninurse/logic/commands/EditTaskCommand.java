@@ -96,7 +96,6 @@ public class EditTaskCommand extends EditGenericCommand {
         Task initialTask = initialTaskList.get(taskIndex.getZeroBased());
         Task updatedTask;
 
-        //TODO: don't use instanceof
         if (initialTask instanceof RecurringTask) {
             RecurringTask initialRecurringTask = (RecurringTask) initialTask;
             updatedTask = RecurringTask.parseRecurringTask(
