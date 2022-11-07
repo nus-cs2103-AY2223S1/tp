@@ -668,7 +668,55 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a customer
 
+1. Adding a customer to bobaBot
+
+   1. Prerequisites: Ensure that you have the following details:
+      1. Name (prefix: n/)
+      2. Phone Number (prefix p/)
+      3. Email (prefix e/)
+      4. Rewards (prefix r/)
+      5. Birthday Month (prefix m/)
+      6. Tags (prefix t/)(optional)
+
+   2. Test case: `add n/John Doe p/98765432 e/johnd@example.com m/1 r/0`<br>
+      Expected: A successful message will be shown in the status message indicating that a new customer is added into bobaBot with the corresponding particulars.
+
+   3. Test case: `add n/Charlie Puth p/81234567 e/charlie@puth.com r/3000 t/silver m/12`
+      Expected: A successful message will be shown in the status message indicating that a new customer is added into bobaBot with the corresponding particulars.
+
+   4. Test case: `add n/Charlie Puth p/81234567`
+      Expected: An error message for invalid format will be shown in the status message as it is missing the required particulars.
+
+   5. Other incorrect add commands to try: `add`, `add p/`, `add hello`, `...`<br>
+      Expected: Similar to previous.
+
 ### Editing a customer
+
+1. Editing a customer via `PHONE_NUMBER`
+
+    1. Prerequisites: Ensure that the sample data is loaded with customers `Alex Yeoh`, `Bernice Yu`,... when launching the JAR file
+
+    2. Test case: `edit p/87438807 p/12345678`<br>
+       Expected: The customer with`PHONE_NUMBER` corresponding to `87438807` (in this case `Alex Yeoh`) will have his phone number edited to `12345678`. Details of the edited customer is shown in the status message.
+
+    3. Test case: `edit p/11111111 p/12345678`<br>
+       Expected: No customer is edited since `11111111` does not correspond to any customer's `PHONE_NUMBER`. Error details shown in the status message.
+
+    4. Other incorrect edit commands to try: `edit`, `edit p/`, `edit hello`, `...`<br>
+       Expected: Invalid edit command format error message will be shown in the status message.
+
+2. Editing a customer via `EMAIL`
+
+    1. Prerequisites: Ensure that the sample data is loaded with customers `Alex Yeoh`, `Bernice Yu`,... when launching the JAR file
+
+    2. Test case: `edit e/charlotte@example.com e/snorlax@gmail.com`<br>
+       Expected: The customer with `EMAIL` corresponding to `charlotte@example.com` (in this case `Charlotte Oliveiro`) will have her email edited to `snorlax@gmail.com`. Details of the edited customer is shown in the status message.
+
+    3. Test case: `edit e/bruno@mars.com e/snorlax@gmail.com`<br>
+       Expected: No customer is edited since `bruno@mars.com` does not correspond to any customer's `EMAIL`. Error details shown in the status message.
+
+    4. Other incorrect edit commands to try: `edit`, `edit e/`, `edit hello`, `...`<br>
+       Expected: Invalid edit command format error message will be shown in the status message.
 
 ### Increasing a customer's reward
 
