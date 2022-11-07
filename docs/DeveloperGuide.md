@@ -179,11 +179,11 @@ Tutor information is stored as `Tutor` objects, which captures all the informati
 
 The following methods in `Tuthub` manage the addition of tutors:
 * `Tuthub#AddCommand(Tutor tutor)` - Adds the provided tutor to the list of tutors created
-* `Tuthub#AddCommandParser(String args)` - Parses the command `add` and determines the attributes of the `Tutor` object created based on the given prefixes
+* `Tuthub#AddCommandParser(String args)` - Parses the `add` command and determines the attributes of the `Tutor` object created based on the given prefixes
 
 Given below are the different steps taken when the user adds tutors.
 
-Step 1: The user enters the command word `edit`, followed by the prefixes and information that they want to store. Example: `add n/John Doe p/98765432 e/johnd@example.com m/CS2100 y/3 s/A0123456X tn/1 r/5.0 t/senior`.
+Step 1: The user enters the command word `add`, followed by the prefixes and information that they want to store. Example: `add n/John Doe p/98765432 e/e0782693 m/CS2100 y/3 s/A0123496X tn/1 r/5.0 t/senior`.
 
 Step 2: The program makes use of `TuthubParser` to make sense of the keyword and determine which parser to use to parse the arguments. In this case, the `AddCommandParser` is used.
 
@@ -243,7 +243,7 @@ The following methods in `Tuthub` manage the finding of tutors:
 * `ModelManager#getSortedFilteredTutorList()` - Returns the `sortedFilteredTutors` list
 * `ModelManager#updateFilteredTutorList(Predicate<Tutor> predicate)` - Updates filtered list based on predicate
 
-Given below is an example usage scenario when the user is finding tutors whose names contain alex.
+Given below is an example usage scenario when the user is finding tutors whose names contain "alex".
 
 Step 1: The user enter the command `find n/alex`.
 
@@ -252,7 +252,7 @@ Step 2: TutHub uses `TuthubParser` to determine which parser to use based on the
 Step 3: `FindByPrefixCommandParser` parses the `find` command to determine the attribute to search through and the keywords input by the user.
 `FindByPrefixCommandParser` creates a `FindByNameCommand` that extends `FindByPrefixCommand` with the keywords put into a `NameContainsKeywordsPredicate` object.
 
-Step 4: The `FindByNameCommand` is executed and tutors with names containing the string alex are added to the filtered list of tutors that have names
+Step 4: The `FindByNameCommand` is executed and tutors with names containing the string "alex" are added to the filtered list of tutors that have names
 containing the string alex captured in the `ModelManager` object, which makes use of the `UI` class to display the matching tutors.
 
 Step 5: The execution ends, returning a `CommandResult` object that has the success message to be displayed to the user.
@@ -263,10 +263,10 @@ The following sequence diagram demonstrates the above operations (excluding the 
 <ins>Design Considerations</ins>
 
 **Aspect: Implementation of `find`**
-- **Alternative 1:** `find` command integrates the use of prefixes in user input to determine which tutor attribute to search through. (i.e. `find n/alex`, `find s/A0123456X) **(chosen)**.
+- **Alternative 1:** `find` command integrates the use of prefixes in user input to determine which tutor attribute to search through. (i.e. `find n/alex`, `find s/A0123456X`) **(chosen)**.
     - Pros: Better OOP practice as the resultant find commands are all subclasses of `FindByPrefixCommand`
     - Cons: Took more time to think of and implement.
-- **Alternative 2:** Individual attributes of the tutor have their own find command (E.g. `findbyname`, `findbyemail`)
+- **Alternative 2:** Individual attributes of the tutor have their own find command (E.g. `findByName`, `findByEmail`)
     - Pros: Easier to implement individual commands for each attribute.
     - Cons: Poor OOP practice the individual commands are all `find` commands and should not be a different class on its own. User also have more commands to remember.
 
@@ -287,7 +287,7 @@ Step 2: The `TuthubParser` verifies the `ViewCommand#COMMAND_WORD`, and requests
 
 Step 3: Upon parsing, a new `ViewCommand` is created based on the valid index.
 
-Step 4: When the `ViewCommand` is executed, a new `CommandResult` of type `isView` is created and `ModelManager#tutorToView` is updated with the selected tutor. The following sequence diagram demonstrates the main operations carried out between `Logic` and `Model` (with UI details omitted):
+Step 4: When the `ViewCommand` is executed, a new `CommandResult` of type `isView` is created and `ModelManager#tutorToView` is updated with the selected tutor. The following sequence diagram demonstrates the main operations carried out between `Logic` and `Model` (with `UI` details omitted):
 
 <img src="images/ViewSequenceDiagram.png"/>
 
@@ -328,7 +328,7 @@ Step 1: The user enters the command word `edit`, followed by an index and the pr
 
 Step 2: The `TuthubParser` verifies the `EditCommand#COMMAND_WORD`, and requests `EditCommandParser` to parse.
 
-Step 3: The `EditCommandParser` makes sense of the arguments through the use of the prefixes, with the help of `ParserUtil`, and creates an `EditCommand` object with the target index and the provided information in the form of a `editTutorDescriptor` object.
+Step 3: The `EditCommandParser` makes sense of the arguments through the use of the prefixes, with the help of `ParserUtil`, and creates an `EditCommand` object with the target index and the provided information stored in an `editTutorDescriptor` object.
 
 Step 4: When the `EditCommand` is executed, `EditCommand#createEditedTutor(Tutor tutor, EditTutorDescriptor descriptor)` creates a new `Tutor` object with the updated field.
 
@@ -565,7 +565,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list all tutors.
+1. User requests to <u>list all tutors (UC1)</u>.
 2. User requests to view a specific tutor's details using their displayed index on the list.
 3. Tuthub displays the full details of the Tutor on a side panel and shows a success message.
 
@@ -574,11 +574,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The input index is invalid.
-    * Tuthub displays an error message.
+    * 2a1. Tuthub displays an error message.
 
       Use case resumes from step 2.
 
-**Use case: UC3 - Add a tutor**
+**Use case: UC3 - Adding a tutor**
 
 **MSS**
 
@@ -597,26 +597,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC4 - Delete a tutor**
+**Use case: UC4 - Deleting a tutor**
 
 **MSS**
 
-1.  User requests to list tutors.
-2.  Tuthub shows a list of tutors.
-3.  User requests to delete a specific tutor in the list.
-4.  Tuthub deletes the tutor.
+1. User requests to <u>list tutors (UC1)</u>.
+2. User requests to delete a specific tutor in the list based on an index.
+3. Tuthub deletes the tutor.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. The given index is invalid.
 
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. Tuthub shows an error message.
+    * 2a1. Tuthub shows an error message.
 
       Use case resumes at step 2.
 
@@ -664,12 +659,84 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 1.
 
-**Use case: UC7 - Contacting tutors by email**
+**Use case: UC7 - Editing a tutor**
 
 **MSS**
 
-1. User requests to mail a single tutor or all tutors.
-2. Tuthub opens the user's default mail client with the "to" specified.
+1. User requests to <u>view a tutor (UC2)</u>.
+2. User requests to edit the details of a specific tutor in the list based on index.
+3. Tuthub edits the details of the tutor.
+4. Upon <u>viewing the same tutor (UC2)</u> again, the Tutor Details Panel shows the updated tutor information.
+
+    Use case ends.
+
+**Extensions**
+* 2a. The given index is invalid.
+  * 2a1. Tuthub displays an error message.
+
+    Use case resumes from step 2.
+
+* 2a. The same tutor already exists in Tuthub.
+    * 2a1. Tuthub displays an error message.
+
+      Use case resumes from step 2.
+
+* 2a. The given details are not of the right format.
+    * 2a1. Tuthub displays an error message.
+
+      Use case resumes from step 2.
+
+**Use case: UC8 - Commenting on a tutor**
+
+**MSS**
+
+1. User requests to <u>view a tutor (UC2)</u>.
+2. User requests to comment on a specific tutor in the list based on index.
+3. Tuthub adds the new comment to the tutor.
+4. Upon <U>viewing the same tutor (UC2)</u> again, the Tutor Details Panel shows the new comment added to the tutor under Additional Feedback.
+
+   Use case ends.
+
+**Extensions**
+* 2a. The given index is invalid.
+    * 2a1. Tuthub displays an error message.
+
+      Use case resumes from step 2.
+
+**Use case: UC9 - Deleting a comment from a tutor**
+
+**MSS**
+
+1. User requests to <u>view a tutor (UC2)</u>.
+2. User requests to delete a comment on a specific tutor in the list based on tutor index and comment index.
+3. Tuthub deletes the specified comment from the tutor.
+4. Upon <U>viewing the same tutor (UC2)</u> again, the Tutor Details Panel shows the comment removed from the tutor under Additional Feedback.
+
+   Use case ends.
+
+**Extensions**
+* 2a. The given tutor index is invalid.
+    * 2a1. Tuthub displays an error message.
+
+      Use case resumes from step 2.
+
+* 2a. The given comment index is invalid.
+    * 2a1. Tuthub displays an error message.
+
+      Use case resumes from step 2.
+
+* 2a. Only one index was provided.
+    * 2a1. Tuthub displays an error message.
+
+      Use case resumes from step 2.
+
+**Use case: UC10 - Contacting tutors by email**
+
+**MSS**
+
+1. User requests to <u>find tutor(s) based on a prefix (UC5) </u>.
+2. User requests to mail a single tutor or all tutors.
+3. Tuthub opens the user's default mail client with the "to" specified.
 
    Use case ends.
 
@@ -685,9 +752,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. Tuthub displays an error message.
     * Step 2a1 is repeated until the user's default mail client can be accessed.
       
-      Use case ends.
+      Use case resumes from step 2.
 
-**Use case: UC8 - Exit the program**
+**Use case: UC11 - Viewing help**
+
+**MSS**
+
+1. User requests to view help.
+2. Tuthub displays the Help Window.
+
+    Use case ends.
+
+**Use case: UC12 - Exit the program**
 
 **MSS**
 
@@ -733,7 +809,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file<br>
+   Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
 
@@ -757,7 +834,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `view 0`<br>
        Expected: No tutor panel displayed. Error details shown in the status message.
 
-    5. Other incorrect view commands to try: `view`, `view x` (where x is larger than the list size)<br>
+    5. Other incorrect view commands to try: `view`, `view x` (where `x` is larger than the list size)<br>
        Expected: Similar to previous.
 
 ### Finding a tutor
@@ -787,7 +864,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete 0`<br>
       Expected: No tutor is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where `x` is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### Sorting the tutor list
@@ -811,7 +888,7 @@ testers are expected to do more *exploratory* testing.
     6. Test case: `sort a`<br>
        Expected: No sorting occurs. Error details shown in the status message (Wrong command format).
 
-    7. Other incorrect sort commands to try: `sort`, `sort x p`, `...` (where x is any character other than `a` and `d`, and p is any prefix other than `r/` and `tn/`)<br>
+    7. Other incorrect sort commands to try: `sort`, `sort x p`, `...` (where `x` is any character other than `a` and `d`, and `p/` is any prefix other than `r/` and `tn/`)<br>
        Expected: Similar to 4 and 5.
 
 2. Sorting the tutor list after a filter (`find`)
@@ -840,7 +917,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `comment 1`<br>
        Expected: No comment is added. Error details shown in status message (Empty comment).
 
-    5. Other incorrect comment commands to try: `comment`, `comment x p/Test comment 1`, `...` (where x is any number greater than the size of the tutor list, and p is any prefix other than `c/`)<br>
+    5. Other incorrect comment commands to try: `comment`, `comment x p/Test comment 1`, `...` (where `x` is any number greater than the size of the tutor list, and `p/` is any prefix other than `c/`)<br>
        Expected: Similar to 3.
 
 ### Deleting comments
@@ -857,7 +934,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `deletecomment 1 0`<br>
        Expected: No comment is added. Error details shown in status message (Index out of range).
 
-    5. Other incorrect comment commands to try: `deletecomment`, `deletecomment x y`, `...` (where x is any number greater than the tutor list and y is any number greater than the comment list of the tutor)<br>
+    5. Other incorrect comment commands to try: `deletecomment`, `deletecomment x y`, `...` (where `x` is any number greater than the tutor list and `y` is any number greater than the comment list of the tutor)<br>
        Expected: Similar to 3.
 
 ### Mailing tutor(s)
@@ -878,7 +955,7 @@ testers are expected to do more *exploratory* testing.
     5. Test case: `mail a`<br>
        Expected: User's default mail client not displayed. Error details shown in the status message. 
    
-    6. Other incorrect mail commands to try: `mail`, `mail x`, `mail c` (where x is larger than the current list size, and c is any word excluding `all`)<br>
+    6. Other incorrect mail commands to try: `mail`, `mail x`, `mail c` (where `x` is larger than the current list size, and `c` is any word excluding `all`)<br>
        Expected: Similar to 4 and 5.
 
 ### Saving data
