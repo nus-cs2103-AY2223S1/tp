@@ -5,7 +5,7 @@ title: Developer Guide
 ---
 
 - Table of Contents 
-  {:toc}
+{:toc}
 
 ---
 
@@ -15,9 +15,9 @@ TruthTable is a **desktop app for managing software engineering teams, optimized
 ## **Acknowledgements**
 
 - Our application is based on the [AddressBook-Level3](https://se-education.org/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org/).
-- Our application makes use of the [Picocli](https://picocli.info/) library for parsing and executing commands.
-- Our application makes use of [JavaFX](https://openjfx.io/) of as the UI framework.
-- Our application makes use of [Jackson](https://github.com/FasterXML/jackson) of as the JSON parser.
+- Our application makes use of the [Picocli](https://picocli.info/) library for parsing  commands.
+- Our application makes use of [JavaFX](https://openjfx.io/) as the UI framework.
+- Our application makes use of [Jackson](https://github.com/FasterXML/jackson) as the JSON parser.
 - Our application makes use of [JUnit5](https://junit.org/junit5/) as the testing framework.
 
 ---
@@ -33,7 +33,7 @@ If this is your first time contributing to our application, please take a look a
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
-the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
+the [diagrams](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
 Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
 diagrams.
 
@@ -50,8 +50,8 @@ Given below is a quick overview of main components and how they interact with ea
 **Main components of the architecture**
 
 **`Main`** has two classes
-called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It
+called [`Main`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/Main.java)
+and [`MainApp`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/MainApp.java). It
 is responsible for,
 
 - At app launch: Initializes the components in the correct sequence, and connects them up with each other.
@@ -91,7 +91,7 @@ The sections below give more details of each component.
 ### UI component
 
 The **API** of this component is specified
-in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 The classes are related to each other as such:
 
@@ -107,9 +107,9 @@ the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that
 are in the `src/main/resources/view` folder. For example, the layout of
-the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
 is specified
-in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -120,7 +120,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -158,7 +158,7 @@ How the parsing works:
 
 ### Model component
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -181,7 +181,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -705,9 +705,11 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+    1. Download the latest _truthTable.jar_ file from [latest release](https://github.com/AY2223S1-CS2103T-W13-4/tp/releases)
+   and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
+    2. Double-click the jar file<br>
+       Expected: Shows the GUI with a set of sample contacts. The window size may not be
        optimum.
 
 1. Saving window preferences
@@ -717,30 +719,440 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+## Testing Commands to Manage Persons
+### Adding a person
+1. Adding a person to TruthTable 
+
+    1. Test case: `add person -n John Doe -p 98765432 -e johnd@example.com -t developer designer` <br>
+       Expected: If there is already a person called `John Doe` in TruthTable, then an error message will appear
+       at the output box. Otherwise, a new person will be added to the list in the right output box, with name `John Doe`,
+       phone number `98765432`, email `johnd@example.com`, and tags `developer` and `designer`.
+   
+    2. Test case: `add person -n Jane Doe -p 92345678 -e janed@example.com` <br>
+           Expected: If there is already a person called `Jane Doe` in TruthTable, then an error message will appear
+           at the output box. Otherwise, a new person will be added to the list in the right output box, with name
+           `Jane Doe`, phone number `92345678`, email `janed@example.com`, and no tags.
+
+    3. Test case: `add person -n John Doe -p 98765432`<br>
+       Expected: No person is added. Error details shown in the message displayed at the output box.
+
+    4. Other incorrect `add person` commands to try: `add person -p 98765432 -e johnd@example.com -t developer`,
+       `add person -n John Doe -p 98765432`, `...` (where one or more attributes
+       are missing in the command)
+       Expected: An error message of `Invalid command format` will be displayed at the output box.
+
+### Editing a person
+1. Editing a person while all persons are being shown
+
+    1. Prerequisites: List all persons using the `list persons` command. Person list is not empty.
+
+    2. Test case: `edit person 1 -p 92345678 -e johndoe@example.com`
+       Expected: Edits the phone number and email address of the first person to be 92345678 and johndoe@example.com
+       respectively.
+
+    3. Test case: `edit person 0 -p 92345678 -e johndoe@example.com`
+       Expected: No person is edited. Error details shown in the output box.
+
+    4. Other incorrect delete commands to try: `edit person`, `edit person x -n John`, `...`
+     (where x is larger than the list size)<br>
+     Expected: Similar to previous.
 
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list persons` command. Person list is not empty.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-       Timestamp in the status bar is updated.
+    2. Test case: `delete person 1`<br>
+       Expected: First person is deleted from the list. Details of the deleted contact shown in the output box.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    3. Test case: `delete person 0`<br>
+       Expected: No person is deleted. Error details shown in the output box.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect delete commands to try: `delete person`, `delete person x`, `...`
+       (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Finding a person
 
-### Saving data
+1. Finding all persons whose names contain any of the given keywords
 
-1. Dealing with missing/corrupted data files
+    1. Prerequisites: Person list is not empty.
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    2. Test case: `find person John`<br>
+       Suppose that there is a person named `John Doe`.<br>
+       Expected: Message indicating number of persons found is displayed. Person list on the right updates to only show
+       the persons found.
 
-1. _{ more test cases …​ }_
+    3. Test case: `find person Jane`<br>
+       Suppose that there is no person with a name containing `Jane`.<br>
+       Expected: Message indicating that no persons were found is displayed.
+
+    4. Test case: `find person`<br>
+       Expected: An error message of `Invalid command format` will be displayed at the output box.
+
+### Listing all persons
+
+1. Listing all persons in TruthTable
+
+   1. Test case: `list persons`<br>
+      Expected: All persons stored in TruthTable are displayed.
+
+## Testing Commands to Manage Members
+### Adding a member
+1. Adding a member to the currently selected team
+    1. Prerequisites: List all persons using the `list persons` command. Person list is not empty.
+   
+    2. Test case: `add member 1` <br>
+       Expected: If the first person on the person list is already a member in the team, then an error message will be
+       displayed on the output box. Otherwise, the first person is added to the team from the list.
+       Details of the added member shown in the output box.
+    
+    3. Test case: `add member 0` <br>
+       Expected: No member is added. Error details shown in the output box.
+
+    4. Other incorrect delete commands to try: `add member`, `add member x`, `...`
+       (where x is larger than the person list size)<br>
+       Expected: Similar to previous.
+
+### Deleting a member
+
+1. Deleting a member to the currently selected team
+
+    1. Prerequisites: List all members using the `list members` command. Member list is not empty.
+
+    2. Test case: `delete member 1`<br>
+       Expected: First member is deleted from the list. Details of the deleted member shown in the output box.
+
+    3. Test case: `delete member 0`<br>
+       Expected: No member is deleted. Error details shown in the output box.
+
+    4. Other incorrect delete commands to try: `delete member`, `delete member x`, `...`
+       (where x is larger than the member list size)<br>
+       Expected: Similar to previous.
+
+### Finding a member
+
+1. Finding all members whose names or emails contain any of the given keywords
+
+    1. Prerequisites: Member list is not empty.
+
+    2. Test case: `find member -n John`<br>
+       Suppose that there is a member on the team named `John Doe`.<br>
+       Expected: Message indicating number of persons found is displayed. Member list updates to only show
+       the persons found.
+
+    3. Test case: `find member -n Jane`<br>
+       Suppose that there is no member with a name containing `Jane`.<br>
+       Expected: Message indicating that no persons were found is displayed.
+
+    4. Test case: `find member`<br>
+       Expected: An error message of `Invalid command format` will be displayed at the output box.
+
+### Listing all members
+
+1. Listing all members in the currently selected team
+
+    1. Test case: `list members`<br>
+       Expected: All members in the currently selected team in TruthTable are displayed.
+
+### Sorting members
+
+1. Sorting members in the currently selected team
+    1. Test case: `sort members asc`<br>
+       Expected: Team members are sorted in ascending order in member list.
+
+    2. Test case: `sort members dsc`<br>
+       Expected: Team members are sorted in descending order in member list.
+
+    3. Test case: `sort members res`<br>
+       Expected: Order of team members in member list is reset.
+
+    4. Test case: `sort members`<br>
+       Expected: An error message of `Invalid command format` will be displayed at the output box.
+
+## Testing Commands to Manage Teams
+### Adding a team
+1. Creating a team on TruthTable
+
+    1. Test case: `add team CS2102 -d "Database Systems"` <br>
+       Expected: If there is already a team called `CS2102` in TruthTable, then an error message will appear
+       at the output box. Otherwise, a new team will be added to the team list tabs, with name `CS2102`,
+       and team description `Database Systems`.
+
+    2. Test case: `add team CS2103T` <br>
+       Expected: If there is already a team called `CS2103T` in TruthTable, then an error message will appear
+       at the output box. Otherwise, a new team will be added to the team list tabs, with name
+       `CS2103T` and a default team description.
+
+    3. Test case: `add team -d "Software Engineering"`<br>
+       Expected: No team is created. Error details shown in the message displayed at the output box.
+
+    4. Test case: `add team`<br>
+       Expected: An error message of `Invalid command format` will be displayed at the output box.
+
+### Editing a team
+1. Editing the current team on TruthTable
+
+    1. Prerequisites: The current working team is set to the team to be edited
+
+    2. Test case: `edit team -n CS2102 -d "Database Systems`
+       Expected: Edits the team name and team description of the current team to be `CS2102` and `Database Systems`
+       respectively.
+
+### Deleting a team
+
+1. Deleting an existing team from TruthTable
+
+    1. Prerequisites: The target team is not the only existing team
+
+    2. Test case: `delete team CS2103T`<br>
+       Expected: If there is no team named `CS2103T`, an error message is displayed in the output box and no team will
+       be deleted. Otherwise, the team with name `CS2103T` will be deleted from TruthTable
+
+### Setting a team
+
+1. Sets the current working team to the target team
+
+     1. Test case: `set team CS2103T`<br>
+        Expected: If there is no team named `CS2103T`, an error message is displayed in the output box the current
+        working team will not be changed. Otherwise, the team with name `CS2103T` will be set as the current working
+        team.
+
+## Testing Commands to Manage Tasks
+### Adding a task
+1. Adding a task to TruthTable
+
+    1. Test case: `add task "Create PR"` <br>
+       Expected: If there is already a task called `Create PR` in TruthTable, then an error message will appear
+       at the output box. Otherwise, a new task will be added to the task list, with name `Create PR`.
+
+    2. Test case: `add task "Review PR" -a 1 3 -d 2022-12-02 23:59` <br>
+       Expected: If there is already a task called `Review PR` in TruthTable, then an error message will appear
+       at the output box. Otherwise, a new task will be added to the task list, with name
+       `Review PR`, assigned to the first and third members of your team's members list, and a
+       deadline of 2nd Dec 2022 23:59.
+
+    3. Test case: `add task -a 1 3 -d 2022-12-02 23:59`<br>
+       Expected: No person is added. Error details shown in the message displayed at the output box.
+
+### Editing a task
+1. Editing a task while all tasks are being shown
+
+    1. Prerequisites: List all tasks in the current team using the `list tasks` command. Task list is not empty.
+
+    2. Test case: `edit task 1 -n "Merge PR" -a 1 -d 2022-12-02 23:59 `
+       Expected: The first task in the current team's task list is edited, setting the name as
+       `Merge PR`, assignees as the first member in the team list, and deadline as 2nd Dec 2022 23:59.
+
+    3. Test case: `edit task 1 -a`
+       Expected: The first task in the current team's task list is edited, removing all assignees from the task.
+       The name and deadline are not modified in this example.
+
+    4. Other incorrect delete commands to try: `edit task`, `edit task x -n Meeting`, `...`
+       (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Deleting a task
+
+1. Deleting a task while all tasks are being shown
+
+    1. Prerequisites: List all tasks using the `list tasks` command. Task list is not empty.
+
+    2. Test case: `delete task 1`<br>
+       Expected: First task is deleted from the list. Details of the deleted task shown in the output box.
+
+    3. Test case: `delete task 0`<br>
+       Expected: No task is deleted. Error details shown in the output box.
+
+    4. Other incorrect delete commands to try: `delete task`, `delete task x`, `...`
+       (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Finding a task
+
+1. Finding all tasks whose names contain any of the given keywords
+
+    1. Prerequisites: Task list is not empty.
+
+    2. Test case: `find task -n User Guide`<br>
+       Suppose that there is a task named `User Guide`.<br>
+       Expected: Message indicating number of tasks found is displayed. Task list updates to only show
+       the tasks found.
+
+    3. Test case: `find task -n Review PR`<br>
+       Suppose that there is no task with a name containing `Review` or `PR`.<br>
+       Expected: Message indicating that no tasks were found is displayed.
+
+    4. Test case: `find task`<br>
+       Expected: An error message of `Invalid command format` will be displayed at the output box.
+
+### Listing all tasks
+
+1. Listing all tasks in the current team
+
+    1. Test case: `list tasks`<br>
+       Expected: All tasks in the current team are displayed.
+
+### Mark tasks as done
+
+1. Marking a specified task as done
+    1. Prerequisites: Task list is not empty.
+
+    2. Test case: `mark 1`<br>
+       Expected: If the first task is already marked as done, an error message is shown in the output box. Otherwise,
+       the first task in the team is marked as done.
+
+    3. Test case: `mark 0`<br>
+       Expected: No task is marked as done. Error details shown in the output box.
+
+    4. Other incorrect delete commands to try: `mark`, `mark x`, `...`
+       (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Unmark tasks as done
+
+1. Undoing the mark command to mark specified task as incomplete
+    1. Prerequisites: Task list is not empty.
+
+    2. Test case: `unmark 1`<br>
+       Expected: If the first task has not been marked as done, an error message is shown in the output box. Otherwise,
+       the first task in the team is marked as incomplete.
+
+    3. Test case: `unmark 0`<br>
+       Expected: No task is marked as incomplete. Error details shown in the output box.
+
+    4. Other incorrect delete commands to try: `unmark`, `unmark x`, `...`
+       (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Setting Deadline for task
+
+1. Setting a deadline for an existing task
+    1. Prerequisites: Task list is not empty.
+
+    2. Test case: `set deadline 1 2023-12-25 23:59`<br>
+       Expected: The deadline for the first task on the task list is set as 25 Dec 2023 23:59.
+
+    3. Test case: `set deadline 0 2023-12-25 23:59`<br>
+       Expected: No deadline is set for any task. Error details shown in the output box.
+
+    4. Other incorrect set deadline commands to try: `set deadline`, `set deadline x 2023-12-25 23:59`, `...`
+       (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Assigning a task to team member
+
+1. Assign an existing task to a team member in the current team.
+    1. Prerequisites: Task list is not empty. Multiple tasks in task list. Member list is not empty. Multiple tasks
+       in member list.
+
+    2. Test case: `assign task 2 -a 1 2`<br>
+       Expected: The second task on the task list is assigned to the first and second member in the team.
+
+    3. Test case: `assign task 1 -a`<br>
+       Expected: No assignee is set for any task. Error details shown in the output box.
+
+    4. Test case: `assign task 0 -a 1 2`<br>
+       Expected: No assignee is set for any task. Error details shown in the output box.
+
+    5. Other incorrect set deadline commands to try: `assign task`, `assign task x -a x`, `...`
+       (where x is larger than the task list and member list size)<br>
+       Expected: Similar to previous.
+
+### Assigning a task to random team member
+
+1. Assign an existing task to a random team member in the current team.
+    1. Prerequisites: Task list is not empty. Multiple tasks in task list. Member list is not empty. Task is not
+       already assigned to all members of the team.
+
+    2. Test case: `assign random 1`<br>
+        Expected: The first task on the task list is assigned to a random team member.
+
+    3. Test case: `assign random 0`<br>
+       Expected: No assignee is set for any task. Error details shown in the output box.
+
+    4. Other incorrect set deadline commands to try: `assign random`, `assign random x`, `...`
+       (where x is larger than the task list size)<br>
+       Expected: Similar to previous.
+
+### Filtering tasks by team member
+
+1. Find all tasks that have been assigned to a particular member in the currently selected team.
+    1. Prerequisites: Member list is not empty.
+
+    2. Test case: `tasksof 1`<br>
+       Expected: All tasks assigned to the first member in your current team's member list is displayed.
+
+    3. Test case: `tasksof 0`<br>
+       Expected: Error details shown in the output box.
+
+    4. Other incorrect set deadline commands to try: `tasksof`, `tasksof x`, `...`
+       (where x is larger than the member list size)<br>
+       Expected: Similar to previous.
+
+### Sorting members
+
+1. Sorting tasks in the currently selected team
+    1. Test case: `sort tasks asc`<br>
+       Expected: Tasks are sorted in ascending alphabetical order in task list, based on their names.
+
+    2. Test case: `sort tasks dsc`<br>
+       Expected: Tasks are sorted in descending alphabetical order in task list, based on their names.
+
+    3. Test case: `sort tasks res`<br>
+       Expected: Order of tasks in task list is reset.
+
+    4. Test case: `sort tasks`<br>
+       Expected: An error message of `Invalid command format` will be displayed at the output box.
+
+### View summary of task assignments in team
+
+1. Viewing the number of tasks assigned to each member in the team.
+
+    1. Test case: `summary`<br>
+       Expected: The number of tasks assigned to each member in the team is displayed in the output box.
+
+## Testing Commands to Manage Links
+### Adding a new link
+1. Add a new link to the currently selected team
+
+    1. Test case: `add link -n google -l https://google.com` <br>
+       Expected: If there is already a link called `google` in TruthTable, then an error message will appear
+       at the output box. Otherwise, a new link will be added to the link list, with name `google`,
+       and URL `https://google.com`.
+
+    2. Test case: `add link -n google"`<br>
+       Expected: No link is created. Error details shown in the message displayed at the output box.
+
+    3. Test case: `add link`<br>
+       Expected: An error message of `Invalid command format` will be displayed at the output box.
+
+### Editing a link
+1. Editing an existing link in the team
+
+    1. Prerequisites: Task list is not empty.
+
+    2. Test case: `edit link 1 -n facebook -l https://facebook.com`
+       Expected: The first link in the current team's link list is edited, setting the name as
+       `facebook`, with the URL of "https://facebook.com".
+
+    3. Test case: `edit link 1 -n google`
+       Expected: The first link in the current team's link list is edited, setting the name as
+       `google`.
+
+    4. Test case: `edit link 0 -n google`
+       Expected: No link is edited. Error details shown in the output box.
+
+    5. Other incorrect delete commands to try: `edit link`, `edit link x -n Meeting`, `...`
+       (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Deleting a link
+
+1. Deleting an existing link from the team
+
+    1. Prerequisites: Link list is not empty.
+
+    2. Test case: `delete link 1`<br>
+       Expected: The first link will be deleted from the link list
