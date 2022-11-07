@@ -27,6 +27,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
     * Set up 21 issues and managed 30 issues for the project
+    * Clarified whether certain issues were bugs or enhancements in the forum [#410](https://github.com/nus-cs2103-AY2223S1/forum/issues/410), [#421](https://github.com/nus-cs2103-AY2223S1/forum/issues/421)
 
 * **Documentation**:
     * User Guide:
@@ -34,6 +35,7 @@ Given below are my contributions to the project.
             * `mark`/`unmark` [#195](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/195)
             * `statement` [#48](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/48)
         * Added section on usage of keyboard shortcuts to navigate UI [#285](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/285)
+        * Added screenshots for everything related to the application [#367](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/367)
     * Developer Guide:
         * Added documentation for following features:
             * `mark`/`unmark` [#136](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/136), [#207](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/207)
