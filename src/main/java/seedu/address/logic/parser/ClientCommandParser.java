@@ -180,7 +180,6 @@ public class ClientCommandParser implements Parser<ClientCommand> {
     }
 
 
-
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
      * and returns a DeleteCommand object for execution.
@@ -207,6 +206,15 @@ public class ClientCommandParser implements Parser<ClientCommand> {
     private ClientCommand parseSetClientDefaultViewCommand(String arguments) {
         return new SetClientDefaultViewCommand();
     }
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the FindCommand
+     * and returns FindCommand object for execution.
+     *
+     * @param arguments string of arguments
+     * @return an FindClientCommand object
+     * @throws ParseException if the user input does not conform the expected format
+     */
     private FindClientCommand parseFindClientCommand(String arguments) throws ParseException {
 
         ArgumentMultimap argMultimap =
@@ -245,6 +253,15 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         return new FindClientCommand(predicate);
     }
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the FindCommand
+     * and returns FindCommand object for execution.
+     *
+     * @param flag String representing command flag
+     * @param arguments String representing arguments
+     * @return an FindClientCommand object
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public FindClientCommand parseFindClientCommands(String flag, String arguments) throws ParseException {
         return parseFindClientCommand(arguments);
     }
