@@ -28,9 +28,9 @@ Given below are my contributions to the project.
 
 #### Project management
 * Refactored AddressBook to TA-Assist in the whole repository.
-* Refactored `Tag` to `ModuleClass` in the whole repository. In collaboration with [Lin Zechen](/team/bubbl3t.html).
+* Refactored `Tag` to `ModuleClass` in the whole repository. In collaboration with [Lin Zechen](bubbl3t.md).
 * Authored [35 issues](https://github.com/AY2223S1-CS2103T-T12-1/tp/issues?q=is%3Aissue+author%3ARezwanArefin01) to help keep track of current issues and progress.
-* Reviewed [47 pull requests](https://github.com/AY2223S1-CS2103T-T12-1/tp/pulls?q=is%3Apr+author%3ARezwanArefin01) to ensure quality and consistency across the project.
+* Reviewed [48 pull requests](https://github.com/AY2223S1-CS2103T-T12-1/tp/pulls?q=is%3Apr+author%3ARezwanArefin01) to ensure quality and consistency across the project.
 * Updated styling of the website to make it more visually appealing.
 * Edited the UG and DG for consistency and clarity.
 * Exported the UG and DG to PDF format, fixing spacing issues.
@@ -49,6 +49,6 @@ Given below are my contributions to the project.
 * Added implementation details and sequence diagrams for the `grade` command to the DG.
 * Added implementation details and sequence diagrams for the `view` command in the DG.
 * Updated class diagrams in the DG to reflect the changes made due to `grade` command.
-* Updated implementation details and sequence diagrams for the `assign` command to reflect new changes. In collaboration with [Lin Zechen](/team/bubbl3t.html).
-* Updated sequence diagram of `export` command to reflect new changes. In collaboration with [Lin Zechen](/team/bubbl3t.html).
+* Updated implementation details and sequence diagrams for the `assign` command to reflect new changes. In collaboration with [Lin Zechen](bubbl3t.md).
+* Updated sequence diagram of `export` command to reflect new changes. In collaboration with [Lin Zechen](bubbl3t.md).
 
