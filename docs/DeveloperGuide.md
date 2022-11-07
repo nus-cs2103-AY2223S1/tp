@@ -502,13 +502,41 @@ Step 2. The user inputs `locate CLB`, which calls `LogicManager#execute()`. `Nut
 
 Step 3. The `LocateGymCommand` created is executed by `LocateGymCommand#execute()`.
 
-Step 4. `LocateGymCommand#execute()` calls the following methods from `Model`:
+Step 4. `LocateGymCommand#execute()` calls the following method from `Model`:
 
 * `Model#getNusGymLocations()`
 
 The following activity diagram outlines what happens when a user executes the `locate` command:
 
 ![LocateCommandActivityDiagram](images/LocateCommandActivityDiagram.png)
+
+### Tip feature
+
+#### Implementation
+
+The tip mechanism is facilitated by `TipCommand`, which extends `Command`. It overrides the following operation:
+
+* `TipCommand#execute()`: Returns a randomly-drawn tip to help users adopt a healthier lifestyle.
+
+#### Example Usage
+
+* `TipCommand#execute()`: Returns a healthy lifestyle tip.
+
+Given below is an example usage scenario and how the locate-gym mechanism behaves at each step.
+
+Step 1. The user launches the application.
+
+Step 2. The user inputs `tip`, creating a `TipCommand` object.
+
+Step 3. The `TipCommand` object created is executed by `TipCommand#execute()`.
+
+Step 4. `TipCommand#execute()` calls the following method from `Model`:
+
+* `Model#getTip()`
+
+The following activity diagram outlines what happens when a user executes the `tip` command:
+
+![TipCommandActivityDiagram](images/TipCommand.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -724,7 +752,7 @@ For all use cases below, the **System** is the `NutriGoals` application and the 
 
       Use case ends.
 
-#### UC-9: Get a suggested amount of calorue to consume daily
+#### UC-9: Get a suggested amount of calorie to consume daily
 **Use case:** Get a suggested amount of calorie to consume daily
 
 **MSS**
@@ -741,6 +769,26 @@ For all use cases below, the **System** is the `NutriGoals` application and the 
   * 1a1. NutriGoals requests user to <ins>create a profile first (UC-5).
     
     Use case resumes at step 1.
+
+#### UC-10: Find the nearest gym
+**Use case:** Find the nearest gym 
+
+**MSS**
+
+1. User requests to find the nearest gym to where they are at.
+2. NutriGoals returns a list of gyms, sorted by distance from closest to furthest.
+
+    Use case ends.
+
+#### UC-11: Get a healthy lifestyle tip
+**Use case:** Get a tip to help with healthier living
+
+**MSS**
+
+1. User requests to view a tip to help with his healthy living.
+2. NutriGoals returns a randomly drawn tip.
+
+    Use case ends.
 
 ### Non-Functional Requirements
 

@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes TipCommand;
+:Creates new TipCommand;
+:TipCommand is executed;
+:Random tip is drawn;
+:Display the drawn tip;
+stop
+
+@enduml

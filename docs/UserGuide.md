@@ -460,11 +460,19 @@ Example after entering `help`:
 
 ![help message](images/helpMessage.png)
 
-#### Clearing all food items: `clear`
+#### Clearing all stored data: `clear`
 
-Clears all food items on all days from NutriGoals.
+Clears all stored data _(excluding gym locations)_ on all days from NutriGoals.
 
 Format: `clear`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+* When using the `clear` command, the target calorie intake will be reset to the default 2000 calories.
+
+</div>
 
 #### Exiting the program: `exit`
 
