@@ -1,22 +1,21 @@
 package seedu.address.model.person.github;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.person.Name;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static seedu.address.testutil.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 public class RepoTest {
 
-    private final String REPO_NAME = "test";
-    private final String REPO_URL = "https://github.com/test";
-    private final String REPO_DESC = "test";
-    private final LocalDateTime REPO_LAST_UPDATE = LocalDateTime.now();
-    private final Repo TEST_REPO = new Repo(REPO_NAME, REPO_URL, REPO_DESC, REPO_LAST_UPDATE);
+    private static final String NAME = "test";
+    private static final String URL = "https://github.com/test";
+    private static final String DESC = "test";
+    private static final LocalDateTime LASTUPDATE = LocalDateTime.now();
+    private static final Repo REPO = new Repo(NAME, URL, DESC, LASTUPDATE);
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -28,30 +27,30 @@ public class RepoTest {
 
     @Test
     public void getRepoUrl() {
-        assertEquals(TEST_REPO.getRepoUrl(), REPO_URL);
+        assertEquals(REPO.getRepoUrl(), URL);
     }
 
     @Test
     public void getDescription() {
-        assertEquals(TEST_REPO.getDescription().get(), REPO_DESC);
+        assertEquals(REPO.getDescription().get(), DESC);
 
-        Repo repoWithEmptyDesc = new Repo(REPO_NAME, REPO_URL, null, REPO_LAST_UPDATE);
+        Repo repoWithEmptyDesc = new Repo(NAME, URL, null, LASTUPDATE);
         assertEquals(repoWithEmptyDesc.getDescription(), Optional.empty());
     }
 
     @Test
     public void getLastUpdated() {
-        assertEquals(TEST_REPO.getLastUpdated(), REPO_LAST_UPDATE);
+        assertEquals(REPO.getLastUpdated(), LASTUPDATE);
     }
 
     @Test
     public void getRepoName() {
-        assertEquals(TEST_REPO.getRepoName(), REPO_NAME);
+        assertEquals(REPO.getRepoName(), NAME);
     }
 
     @Test
     public void equals() {
-        Repo other = new Repo("test", "https://github.com/test", "test", REPO_LAST_UPDATE);
-        assertTrue(other.equals(TEST_REPO));
+        Repo other = new Repo("test", "https://github.com/test", "test", LASTUPDATE);
+        assertTrue(other.equals(REPO));
     }
 }
