@@ -1,7 +1,30 @@
 package seedu.waddle.logic.parser;
 
 import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.waddle.logic.commands.CommandTestUtil.*;
+import static seedu.waddle.logic.commands.CommandTestUtil.BUDGET_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.BUDGET_DESC_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.COUNTRY_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.COUNTRY_DESC_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.DURATION_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.DURATION_DESC_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_COUNTRY_DESC;
+import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_DESC_DESC;
+import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_DURATION_DESC;
+import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_PEOPLE_DESC;
+import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_START_DATE_DESC;
+import static seedu.waddle.logic.commands.CommandTestUtil.ITINERARY_DESC_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.ITINERARY_DESC_DESC_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.PEOPLE_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.PEOPLE_DESC_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.waddle.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.waddle.logic.commands.CommandTestUtil.START_DATE_DESC_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_BUDGET_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COUNTRY_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_ITINERARY_DESC_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PEOPLE_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_DATE_WINTER;
 import static seedu.waddle.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.waddle.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.waddle.testutil.TypicalItineraries.WINTER;
@@ -9,7 +32,12 @@ import static seedu.waddle.testutil.TypicalItineraries.WINTER;
 import org.junit.jupiter.api.Test;
 
 import seedu.waddle.logic.commands.AddCommand;
-import seedu.waddle.model.itinerary.*;
+import seedu.waddle.model.itinerary.Country;
+import seedu.waddle.model.itinerary.Date;
+import seedu.waddle.model.itinerary.Description;
+import seedu.waddle.model.itinerary.Itinerary;
+import seedu.waddle.model.itinerary.ItineraryDuration;
+import seedu.waddle.model.itinerary.People;
 import seedu.waddle.testutil.ItineraryBuilder;
 
 public class AddCommandParserTest {
@@ -58,7 +86,7 @@ public class AddCommandParserTest {
                 .withDuration(VALID_DURATION_WINTER).withPeople(VALID_PEOPLE_WINTER)
                 .withBudget(VALID_BUDGET_WINTER).build();
 
-        assertParseSuccess(parser,ITINERARY_DESC_DESC_WINTER + START_DATE_DESC_WINTER
+        assertParseSuccess(parser, ITINERARY_DESC_DESC_WINTER + START_DATE_DESC_WINTER
                         + DURATION_DESC_WINTER + PEOPLE_DESC_WINTER + BUDGET_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
@@ -68,7 +96,7 @@ public class AddCommandParserTest {
                 .withDuration(VALID_DURATION_WINTER).withPeople("1")
                 .withBudget(VALID_BUDGET_WINTER).build();
 
-        assertParseSuccess(parser,ITINERARY_DESC_DESC_WINTER + START_DATE_DESC_WINTER
+        assertParseSuccess(parser, ITINERARY_DESC_DESC_WINTER + START_DATE_DESC_WINTER
                         + DURATION_DESC_WINTER + COUNTRY_DESC_WINTER + BUDGET_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
@@ -78,7 +106,7 @@ public class AddCommandParserTest {
                 .withDuration(VALID_DURATION_WINTER).withPeople(VALID_PEOPLE_WINTER)
                 .withBudget("0").build();
 
-        assertParseSuccess(parser,ITINERARY_DESC_DESC_WINTER + START_DATE_DESC_WINTER
+        assertParseSuccess(parser, ITINERARY_DESC_DESC_WINTER + START_DATE_DESC_WINTER
                         + DURATION_DESC_WINTER + COUNTRY_DESC_WINTER + PEOPLE_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
@@ -88,9 +116,8 @@ public class AddCommandParserTest {
                 .withDuration(VALID_DURATION_WINTER).withPeople("1")
                 .withBudget("0").build();
 
-        assertParseSuccess(parser,ITINERARY_DESC_DESC_WINTER + START_DATE_DESC_WINTER
-                        + DURATION_DESC_WINTER,
-                new AddCommand(expectedItinerary));
+        assertParseSuccess(parser, ITINERARY_DESC_DESC_WINTER + START_DATE_DESC_WINTER
+                        + DURATION_DESC_WINTER, new AddCommand(expectedItinerary));
     }
 
 
