@@ -118,30 +118,61 @@ Upon completing this section, you should be able to explore SoConnect on your ow
 
 ### 6.2. Key Definitions
 
+### 6.2.1 Command
+
+Command is the action you want SoConnect to perform. Most commands require [parameters](#622-parameter) after the command so that SoConnect has the required information to perform the action. 
+
+e.g. `help`
+
+### 6.2.2 Parameter
+
+A parameter has a prefix and information which are written together without a space in between. The information are words in `UPPER_CASE` and are to be provided by you. The prefix, which ends with a `/`, is specified before the information and determines the information type. Do note that some commands only require the prefix as a parameter.  <br>
+
+e.g. `n/NAME`
+
 ### 6.3. Command Format
 
-**:information_source: Notes about the command format:**<br>
+In the command box, you need to type the [command](#621-command) along with the required [parameters](#622-parameter). You can leave the parameter field empty if it is optional, which is indicated by wrapped square brackets in the command format, e.g. `search [e/EMAIL]` <br>
+The parameters required for each command can be found in [Command Summary](#9-command-summary) and [Commands](#7-commands).
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+<div markdown="block" class="alert alert-primary"> 
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+**:memo: Note**<br>
+
+* Words in `UPPER_CASE` are the information to be supplied by the user. <br>
+  e.g. if the format is `add n/NAME`, you can type `add n/John Doe` to use the command.
+
+* Items with `…`​ after them can be used multiple times, including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family`, etc.
 
 * Parameters can be in any order unless explicitly stated otherwise.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specify it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Irrelevant parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+  e.g. if you type `help 123`, it will be interpreted as `help`.
 
-* Tasks will be referred to as Todos
-
-* `INDEX` is used in commands to refer to a specific contact or todo by their index number on the currently displayed contact list and todo list. The `INDEX` **must be a positive non-zero integer** 1, 2, 3, …​ <a id="command-format-index"></a>
+* `INDEX` is used in commands to refer to a specific contact or todo by their index number on the currently displayed list. The `INDEX` **must be a positive non-zero integer** 1, 2, 3, …​ <a id="command-format-index"></a>
 
 ### 6.4. How to Use the CLI
+
+If you already know about [Command Line Interface (CLI)](#CLI), you can skip this part and read the [Commands](#7-commands).
+
+To use the CLI, you can type a command, which is supposed to be typed in a certain [format](#63-command-format), in the command box and press Enter. SoConnect will perform a specific action. You could try using the CLI using some examples provided below. <br>
+
+The command format for `help` is just `help`. You can just type **`help`** into the CLI and press Enter, SoConnect will open the help window.
+
+The command format for `add` is `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`. As mentioned [here](#63-command-format), since `t/TAG` is wrapped with square brackets and has the `…`​ at the back, you can choose whether to provide this parameter and even choose to provide this multiple times. The parameters can be provided in any order as long as they are after the command.<br>
+Valid usage e.g.: `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567` <br>
+Invalid usage e.g: `add n/Joe Tan` (Other parameters such as `p/PHONE_NUMBER e/EMAIL a/ADDRESS` must be provided as they are not wrapped in square brackets)
+
+Do not worry about typing commands wrongly as SoConnect will guide you if and when you do so.
+
+You can refer to the [Command Summary](#9-command-summary) for the full list of commands.
+
+You can also refer to the [Commands](#7-commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -152,7 +183,6 @@ Upon completing this section, you should be able to explore SoConnect on your ow
 
 #### 7.1.1. Viewing help : `help`
 
-Shows a message explaning how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -511,51 +541,51 @@ Example:
 
 #### 7.5.1. Customising order of details: `customise order`
 
-Customise the order of information shown in all contacts shown.
+You can customise the order of information shown for all contacts.
 
 Format: `customise order [t/] [p/] [e/] [a/]`
 
-* Name of contact will always be at the top of each contact and cannot have its order changed.
-* Information that can have its order changed: Tags, Phone Number, Email, Address.
-* Information that are not specified will be ordered last and follow the default order. (Tags > Phone Number > Email > Address)
+* You will always see the contact's name at the top of each card.
+* You can change the order of the following information: Tags, Phone Number, Email, Address.
+* Unspecified information will be ordered last according to the default order (Tags > Phone Number > Email > Address).
 
 Example:
 
-* `customise order a/ e/ p/` The application will show address first, followed by email, phone number, then tags.
-* `customise order a/` The application will show address first. The rest of the information will follow the default order. Therefore, address will be followed by tags, phone number and then email.
+* `customise order a/ e/ p/` SoConnect will show address first, followed by email, phone number and tags.
+* `customise order a/` SoConnect will show address first. The rest of the information will follow the default order. Therefore, address will be followed by tags, phone number and email.
 
 <br>
 
 #### 7.5.2. Hiding contact details: `customise hide`
 
-Hide certain information of all contacts displayed.
+You can hide certain information fields from all contacts.
 
 Format: `customise hide [t/] [p/] [e/] [a/]`
 
-* Information that can be hidden: Tags, Phone Number, Email, Address.
-* After using the command, the information specified is hidden.
-* If the information specified is already hidden, it will stay hidden.
+* You can hide the following information: Tags, Phone Number, Email, Address.
+* After you use this command, the information specified is hidden.
+* If the information that you specify is already hidden, it will stay hidden.
 
 Example:
-* `customise hide e/` The application no longer shows emails in the list of contacts.
-* `customise hide p/ t/` The application no longer shows phone numbers and tags in the list of contacts.
+* `customise hide e/` SoConnect no longer shows emails in the list of contacts.
+* `customise hide p/ t/` SoConnect no longer shows phone numbers and tags in the list of contacts.
 
 <br>
 
 #### 7.5.3. Showing contact details: `customise show`
 
-Show certain information of all contacts displayed.
+You can show certain information fields for all contacts.
 
 Format: `customise show [t/] [p/] [e/] [a/]`
 
-* Information that can be changed from being hidden to being shown: Tags, Phone Number, Email, Address.
-* After using the command, the information specified is shown.
-* If the information specified is already shown, it will stay shown.
+* You can show the following information: Tags, Phone Number, Email, Address.
+* After you use this command, the information specified is shown.
+* If the information that you specify is already shown, it will stay shown.
 * `Coming soon in v1.5`, we will include `customise show all`, a shortcut to show all information.
 
 Example:
-* `customise show a/` The application now shows addresses in the list of contacts.
-* `customise show p/ t/` The application now shows phone numbers and tags in the list of contacts.
+* `customise show a/` SoConnect now shows addresses in the list of contacts.
+* `customise show p/ t/` SoConnect now shows phone numbers and tags in the list of contacts.
 
 <br>
 
@@ -570,27 +600,30 @@ Example:
 
 ## 9. Command summary
 
-| Action          | Format, Examples                                                                                                                                                                                                     |
-|-----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`                                                                                |
-| **Clear**       | `clear`                                                                                                                                                                                                              |
-| **Customise**   | `customise order [t/] [p/] [e/] [a/]` <br> `customise hide [t/] [p/] [e/] [a/]` <br> `customise show [t/] [p/] [e/] [a/]` <br> e.g. `customise order a/ p/` `customise hide a/ e/ p/` `customise show a/`            |
-| **Delete**      | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                                                   |
-| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`<br> e.g. `edit 2 n/James Lee e/jameslee@example.com`                                                                                                    |
-| **Search**      | `search [CONDITION] [n/NAME] [p/PHONE_NUMBER]…​`<br> e.g. `seach or n/John Doe t/cs2103t`                                                                                                                            |
-| **List**        | `list`                                                                                                                                                                                                               |
-| **Sort**        | `sort [n/] [p/] [e/] [a/] [t/TAG]…​` <br> e.g. `sort t/!friend n/`                                                                                                                                                   |
-| **Help**        | `help`                                                                                                                                                                                                               |
-| **Create Tag**  | `tag create t/TAG` <br> e.g. `tag create t/friend`                                                                                                                                                                   |
-| **Edit Tag**    | `tag edit t/TAG1 t/TAG2`  <br> e.g. `tag edit t/friend t/bestFriend`                                                                                                                                                 |
-| **Add Tag**     | `tag add INDEX t/TAG` <br> e.g. `tag add 1 t/friend`                                                                                                                                                                 |
-| **Delete Tag**  | `tag delete t/TAG` <br> e.g. `tag delete t/friend`                                                                                                                                                                   |
-| **Remove Tag**  | `tag remove INDEX t/TAG` <br> e.g. `tag remove 1 t/friend`                                                                                                                                                           |
-| **Add Todo**    | `todo add d/DESCRIPTION date/DATE pr/PRIORITY [t/TAG]…​` <br> e.g. `todo add d/Revise priority/high`                                                                                                                 |
-| **Edit Todo**   | `todo edit INDEX [d/DESCRIPTION] [date/DATE] [pr/PRIORITY] [t/TAG]…​` <br> e.g. `todo edit t/CS2101`                                                                                                                 |
-| **Delete Todo** | `todo delete INDEX` <br> e.g. `todo delete 3`                                                                                                                                                                        |
-| **Clear Todo**  | `todo clear`                                                                                                                                                                                                         |
-| **Show Todo**   | `todo show`<br> `todo show today` <br> `todo show date/DATE` <br> `todo show date/DATE to DATE` <br> `todo show t/TAG` <br> `todo show pr/Priority` <br> e.g. `todo show`, `todo show pr/high`, `todo show t/CS2100` |
+| Action                                                                    | Format and Examples                                                                                                                                                                                                  |
+|---------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Help**](#711-viewing-help--help)                                       | `help`                                                                                                                                                                                                               |
+| [**Exit**](#712-exiting-the-program--exit)                                | `exit`                                                                                                                                                                                                               |
+| [**Add contact**](#721-adding-a-contact-add)                              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`                                                                                |
+| [**Edit contact**](#722-editing-a-contact--edit)                          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`<br> e.g. `edit 2 n/James Lee e/jameslee@example.com`                                                                                                    |
+| [**List all contacts**](#723-listing-all-contacts--list)                  | `list`                                                                                                                                                                                                               |
+| [**Search contact**](#724-searching-for-a-contact-search)                 | `search [CONDITION] [n/NAME] [p/PHONE_NUMBER]…​`<br> e.g. `seach or n/John Doe t/cs2103t`                                                                                                                            |
+| [**Sort contacts**](#725-sorting-contacts--sort)                          | `sort [n/] [p/] [e/] [a/] [t/TAG]…​` <br> e.g. `sort t/!friend n/`                                                                                                                                                   |
+| [**Delete contact**](#726-deleting-a-contact--delete)                     | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                                                   |
+| [**Clear all contacts**](#727-clearing-all-contacts--clear)               | `clear`                                                                                                                                                                                                              |
+| [**Add Todo**](#731-adding-a-todo-todo-add)                               | `todo add d/DESCRIPTION date/DATE pr/PRIORITY [t/TAG]…​` <br> e.g. `todo add d/Revise priority/high`                                                                                                                 |
+| [**Edit Todo**](#732-editing-a-todo--todo-edit)                           | `todo edit INDEX [d/DESCRIPTION] [date/DATE] [pr/PRIORITY] [t/TAG]…​` <br> e.g. `todo edit t/CS2101`                                                                                                                 |
+| [**Delete Todo**](#733-deleting-a-todo--todo-delete)                      | `todo delete INDEX` <br> e.g. `todo delete 3`                                                                                                                                                                        |
+| [**Clear Todo**](#734-clearing-all-todos--todo-clear)                     | `todo clear`                                                                                                                                                                                                         |
+| [**Show Todo**](#735-filtering-todos-shown--todo-show)                    | `todo show`<br> `todo show today` <br> `todo show date/DATE` <br> `todo show date/DATE to DATE` <br> `todo show t/TAG` <br> `todo show pr/Priority` <br> e.g. `todo show`, `todo show pr/high`, `todo show t/CS2100` |
+| [**Create Tag**](#741-creating-a-tag-tag-create)                          | `tag create t/TAG` <br> e.g. `tag create t/friend`                                                                                                                                                                   |
+| [**Add Tag**](#744-adding-a-tag-to-a-contact-tag-add)                     | `tag add INDEX t/TAG` <br> e.g. `tag add 1 t/friend`                                                                                                                                                                 |
+| [**Edit Tag**](#743-editing-a-tag-tag-edit)                               | `tag edit t/TAG1 t/TAG2`  <br> e.g. `tag edit t/friend t/bestFriend`                                                                                                                                                 |
+| [**Remove Tag**](#745-removing-a-tag-from-a-contact-tag-remove)           | `tag remove INDEX t/TAG` <br> e.g. `tag remove 1 t/friend`                                                                                                                                                           |
+| [**Delete Tag**](#742-deleting-a-tag-tag-delete)                          | `tag delete t/TAG` <br> e.g. `tag delete t/friend`                                                                                                                                                                   |
+| [**Customise order**](#751-customising-order-of-details-customise-order)  | `customise order [t/] [p/] [e/] [a/]` <br> e.g. `customise order a/ p/`                                                                                                                                              |
+| [**Hide contact details**](#752-hiding-contact-details-customise-hide)    | `customise hide [t/] [p/] [e/] [a/]`  <br> e.g. `customise hide a/ e/ p/`                                                                                                                                            |
+| [**Show contact details**](#753-showing-contact-details-customise-show)   | `customise show [t/] [p/] [e/] [a/]` <br> e.g. `customise show a/`                                                                                                                                                   |
 
 --------------------------------------------------------------------------------------------------------------------
 
