@@ -1025,13 +1025,13 @@ testers are expected to do more *exploratory* testing.
 
 ### Listing all inventory items
 
-1. Display all inventory items of a populated inventory list
-   * Prerequisites: Have an inventory list containing 1 or more inventory items
+1. Display all inventory items of a populated inventory
+   * Prerequisites: Have an inventory containing 1 or more inventory items
    * Test case: `listi` <br>
    Expected: All inventory items are displayed.
 
-2. Display all inventory items of an empty inventory list
-   * Prerequisites: Have an inventory list containing 0 inventory items
+2. Display all inventory items of an empty inventory
+   * Prerequisites: Have an inventory containing 0 inventory items
    * Test case: `listi` <br>
    Expected: No inventory items are displayed.
 
@@ -1066,8 +1066,8 @@ testers are expected to do more *exploratory* testing.
      Expected: No inventory item is deleted from the inventory list. Error details shown in the status message (involved in uncompleted orders).
    * Test case: `deletei 0` <br>
      Expected: No inventory item is deleted. Error details shown in the status message.
-   * Other incorrect delete commands to try `deletei`, `deletei x`, ... (where x is larger than the size of the displayed inventory list)
-     Expected: Similar to previous,
+   * Other incorrect delete commands to try `deletei`, `deletei x`, ... (where x is larger than the size of the displayed inventory list) <br>
+     Expected: Similar to previous.
 
 2. Deleting an inventory item while only some inventory item(s) are being shown
    * Prerequisites: Find inventory item(s) using the `findi` command.
@@ -1082,8 +1082,8 @@ testers are expected to do more *exploratory* testing.
      Expected: No inventory item is deleted. Error details shown in the status message.
    * Test case: `deletei 0` <br>
      Expected: No inventory item is deleted. Error details shown in the status message.
-   * Other incorrect delete commands to try: `deletei`, `deletei x`, ... (where x is larger than the size of the displayed inventory list)
-     Expected: Similar to previous
+   * Other incorrect delete commands to try: `deletei`, `deletei x`, ... (where x is larger than the size of the displayed inventory list) <br>
+     Expected: Similar to previous.
 
 <div style="page-break-after: always;"></div>
 
@@ -1103,7 +1103,7 @@ testers are expected to do more *exploratory* testing.
    * Test case: `editi 0` <br>
      Expected: No inventory item is edited. Error details shown in the status message.
    * Other incorrect edit commands to try: `editi`, `editi x`, ... (where x is larger than the size of the displayed inventory list) <br>
-     Expected: Similar to previous
+     Expected: Similar to previous.
 
 2. Editing an inventory item while only some inventory item(s) are being shown
    * Prerequisites: Find inventory item(s) using the `findi` command.
@@ -1119,7 +1119,7 @@ testers are expected to do more *exploratory* testing.
    * Test case: `editi 0` <br>
      Expected: No inventory item is edited. Error details shown in the status message.
    * Other incorrect edit commands to try: `editi`, `editi x`, ... (where x is larger than the sie of the displayed inventory list) <br>
-     Expected: Similar to previous
+     Expected: Similar to previous.
 
 <div style="page-break-after: always;"></div>
 
@@ -1128,14 +1128,14 @@ testers are expected to do more *exploratory* testing.
 1. Adding an order, attempt to add existing and non-existent inventory items in order's item list.
    * Prerequisites: Multiple inventory items exist in the inventory list. One of them with the item name `Chair`, and **none** of them with the name `Apple`
    * Test Case: Execute the following commands below in sequence and check the response by the system.
-   * Step 1: `addo n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25` <br>
-       Expected: Add order command initiated. System prompts for further item and quantity input
-   * Step 2: `i/Chair q/10` <br>
-       Expected: System accepts the item and quantity input, prompts for further input.
-   * Step 3: `i/Apple q/20` <br>
-     Expected: System notifies that inventory item with name `Apple` does not exist, prompts for further input.
-   * Step 4: `done` <br>
-     Expected: Order is added to the order list. Order details shown in the status message.
+     * Step 1: `addo n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25` <br>
+         Expected: Add order command initiated. System prompts for further item and quantity input
+     * Step 2: `i/Chair q/10` <br>
+         Expected: System accepts the item and quantity input, prompts for further input.
+     * Step 3: `i/Apple q/20` <br>
+       Expected: System notifies that inventory item with name `Apple` does not exist, prompts for further input.
+     * Step 4: `done` <br>
+       Expected: Order is added to the order list. Order details shown in the status message.
 
 2. Initiating the command, attempt to add an order with an empty item list
    * Prerequisites: None
@@ -1160,7 +1160,7 @@ testers are expected to do more *exploratory* testing.
      Of these orders, there exist 2 orders made by customers with `Chan` in their names. Before testing, enter `findo n/Chan`<br/>
      Expected: Order list displays 2 orders by customers with `Chan` in their name.
    * Test case: Enter `listo` into the command box.<br/>
-     Expected: ALl orders listed in the order list.
+     Expected: All orders listed in the order list.
    * Other incorrect `listo` commands to try: Enter `listO` into the command box.<br/>
      Expected: Result display shows `Unknown command`.
 
@@ -1168,17 +1168,17 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding an order while all orders are being shown
    * Prerequisites: List all orders using the `listo` command. Multiple orders in the list.
-   * Test case: Enter `findo -d` into the command box.</br>
+   * Test case: Enter `findo -d` into the command box. <br>
      Expected: Orders which have been delivered are displayed. The number of orders which
      correspond to the search parameters is displayed in the result display.
-   * Test case: Enter `findo n/Alex a/Geylang` into the command box.<br/>
+   * Test case: Enter `findo n/Alex a/Geylang` into the command box. <br>
      Expected: Orders which have a customer name `Alex` and address containing the word
      `Geylang` will be displayed. The number of orders which correspond to the search
      parameters is displayed in the result display.
-   * Test case: Enter `findo Alex` into the command box.<br/>
+   * Test case: Enter `findo Alex` into the command box. <br>
      Expected: Result display displays an invalid command format message with the
      specifications of the correct `findo` command format.
-   * Other incorrect `findo` commands to try: `findo`, `findo -e`.
+   * Other incorrect `findo` commands to try: `findo`, `findo -e`. <br>
      Expected: Similar to previous.
 
 <div style="page-break-after: always;"></div>
@@ -1256,17 +1256,17 @@ testers are expected to do more *exploratory* testing.
    <br>
      Expected: Similar to previous.
 
-### Getting help: help
+### Getting help
 
 1. Opening the help window
    * Prerequisites: Help window is not opened, or not in focus.
    * Test case: `help` <br>
    Expected: Help window is opened.
-   * Test case: `help 123`, `help x`, `help #$%`, `...` (where there can be any input after the word `help`, as long as it is followed by a whitespace)
+   * Test case: `help 123`, `help x`, `help #$%`, `...` (where there can be any input after the word `help`, as long as it is followed by a whitespace) <br>
    Expected: Help window is opened.
-   * Test case: `help###`, `Help`, `helpxx`, `...` (where there are characters not separated by a whitespace after `help`)
+   * Test case: `help###`, `Help`, `helpxx`, `...` (where there are characters not separated by a whitespace after `help`) <br>
    Expected: The help window is not opened and an error message is shown by the system.
-   * Test case: `Help`, `HELP`, `...` (where `help` is not in all lower cases)
+   * Test case: `Help`, `HELP`, `...` (where `help` is not in all lower cases) <br>
    Expected: The help window is not opened and an error message is shown by the system.
 
 ### Clearing data in TrackO
