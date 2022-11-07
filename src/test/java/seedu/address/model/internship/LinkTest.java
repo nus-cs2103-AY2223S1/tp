@@ -33,9 +33,8 @@ public class LinkTest {
         assertFalse(Link.isValidLink("https://www.example.c")); // domain is below min length (2 chars)
         assertFalse(Link.isValidLink("https://www.example.comcomcom")); // domain exceeds max length (8 chars)
         assertFalse(Link.isValidLink("https://www."
-                + "exampleexampleexampleexampleexampleexampleexampleexampleexampleexampleexampleexampleexampleexample"
-                + "exampleexampleexampleexampleexampleexampleexampleexampleexampleexampleexampleexampleexampleexample"
-                + "exampleexampleexampleexampleexample" + ".com")); // hostname exceeds max length (227 chars)
+                + "exampleexampleexampleexampleexampleexampleexampleexampleexamplee"
+                + ".com")); // hostname exceeds max length (63 chars)
         assertFalse(Link.isValidLink("https://www.example%.com")); // invalid characters in hostname ("%")
         assertFalse(Link.isValidLink("https://www.example.com%")); // invalid characters in domain ("%")
 
