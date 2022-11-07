@@ -2,7 +2,7 @@
 !include style.puml
 
 box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":xxxCommand" as xxxCommand LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":TaskCommandParser" as TaskCommandParser LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
@@ -13,17 +13,15 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("task delete 1")
-activate LogicManager
-
-LogicManager -> AddressBookParser : parseCommand("task delete 1")
+activate xxxCommand
+xxxCommand -> AddressBookParser : parseCommand("task delete")
 activate AddressBookParser
 
 create TaskCommandParser
 AddressBookParser -> TaskCommandParser
 
 
-AddressBookParser -> TaskCommandParser: parse("delete 1")
+AddressBookParser -> TaskCommandParser: parse("delete")
 activate TaskCommandParser
 
 create DeleteCommand
@@ -36,13 +34,21 @@ deactivate DeleteCommand
 TaskCommandParser --> AddressBookParser
 deactivate TaskCommandParser
 
-AddressBookParser --> LogicManager : d
+AddressBookParser --> xxxCommand : d
 deactivate AddressBookParser
 
-LogicManager -> DeleteCommand : execute()
+
+xxxCommand -> DeleteCommand : setInput(TaskToDelete)
 activate DeleteCommand
 
-DeleteCommand -> Model : deleteTask(TaskAtIndexOne)
+DeleteCommand --> xxxCommand
+deactivate DeleteCommand
+
+
+xxxCommand -> DeleteCommand : execute()
+activate DeleteCommand
+
+DeleteCommand -> Model : deleteTask(TaskToDelete)
 activate Model
 
 Model --> DeleteCommand
@@ -55,9 +61,9 @@ activate CommandResult
 CommandResult --> DeleteCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
+DeleteCommand --> xxxCommand : result
 deactivate DeleteCommand
 
-[<--LogicManager
-deactivate LogicManager
+[<--xxxCommand
+deactivate xxxCommand
 @enduml

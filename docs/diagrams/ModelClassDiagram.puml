@@ -11,7 +11,7 @@ Package Model <<Rectangle>>{
     Class "<<interface>>\nAttribute" as Attribute
     Class "<<interface>>\nModel" as Model
     Class "{{abstract}}\nDisplayItemList" as DisplayItemList<? extend DisplayItem>
-    Class "{{abstract}}\nAbstractContainerItem" as AbstractContainerItem
+    Class "{{abstract}}\nAbstractSingleItem" as AbstractSingleItem
     Class "{{abstract}}\nAbstractDisplayItem" as AbstractDisplayItem
     Class "{{abstract}}\nAbstractAttribute" as AbstractAttribute
 
@@ -23,21 +23,21 @@ Package Model <<Rectangle>>{
     Class UniquePersonList
     Class UniqueTaskList
     Class UniqueGroupList
+    Class AttributeList
 
     Class Person
     Class Task
     Class Group
-    Class Address
-    Class Email
     Class Name
-    Class Phone
-    Class Tag
-    Class Title
+    Class "... other attributes" as attr
     Class Description
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
+
+AttributeList --> "0..*" Attribute
+AbstractDisplayItem --> "1" AttributeList
 
 AddressBook .up.|> ReadOnlyAddressBook
 
@@ -45,25 +45,20 @@ DisplayItem ..> Attribute
 
 Task --|> AbstractDisplayItem
 Person --|> AbstractDisplayItem
-Group --|> AbstractContainerItem
+Group --|> AbstractSingleItem
 
 AbstractDisplayItem ..|> DisplayItem
 AbstractDisplayItem --> "0..*" Attribute
 AbstractDisplayItem --> "0..1" DisplayItem
-AbstractContainerItem --|> AbstractDisplayItem
+AbstractSingleItem --|> AbstractDisplayItem
 
 AbstractAttribute .left.|> Attribute
 
 Name --|> AbstractAttribute
-Address --|> AbstractAttribute
-Email --|> AbstractAttribute
-Phone --|> AbstractAttribute
-Tag --|> AbstractAttribute
-Title --|> AbstractAttribute
+attr --|> AbstractAttribute
 Description --|> AbstractAttribute
 
 AbstractDisplayItem *--> "1" Name
-Task *--> "1" Title
 Task *--> "1" Description
 
 DisplayItemList *--> "*" DisplayItem
