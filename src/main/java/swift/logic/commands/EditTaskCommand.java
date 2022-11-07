@@ -126,7 +126,7 @@ public class EditTaskCommand extends Command {
         private Description description;
         private Deadline deadline;
         private Index contactIndex;
-        private boolean isDone;
+        private Boolean isDone;
 
         public EditTaskDescriptor() {}
 
@@ -181,7 +181,7 @@ public class EditTaskCommand extends Command {
             return Optional.ofNullable(contactIndex);
         }
 
-        public void setIsDone(boolean isDone) {
+        public void setIsDone(Boolean isDone) {
             this.isDone = isDone;
         }
 
