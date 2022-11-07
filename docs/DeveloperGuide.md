@@ -342,6 +342,82 @@ The following sequence diagram summarizes the aforementioned steps.
     * Pros: Possibly more accurate searches.
     * Cons: Higher possibly that search is unsuccessful due to error in keywords.
 
+### Mark feature
+FRIDAY allows users to mark the Mastery Checks of certain students as passed.
+
+### Implementation
+The mark command is implemented by a `MarkMasteryCheckCommand`. The `MasteryCheck` of a student contains a boolean `isPassed`, which is set to false by default for sample students and when a student is added to the list.
+
+Below is an activity diagram depicting the implementation of the mark command.
+
+![mark command activity diagram](images/MarkCommandActivityDiagram.png)
+
+The `MarkMasteryCheckCommand` checks for the following conditions to determine if the student's Mastery Check can be marked as passed:
+1. The given student's Mastery Check is not empty.
+2. The given student's Mastery Check has not already been marked as passed.
+3. The given student's Mastery Check date is not beyond the current date.
+   * e.g. A student with their Mastery Check scheduled for 2030-09-01 cannot be marked as passed if the current date is 2022-11-07. 
+
+Only if all 3 of these conditions are met will the `MarkMasteryCheckCommand` set `isPassed` of the given student's Mastery Check to `true`, hence marking it as passed.
+
+Given below is an example usage scenario and how the marking mechanism behaves at each stage.
+
+1. The user launches the application for the first time. FRIDAY will open with a list populated with sample students whose Mastery Checks have `isPassed` set to `false` by default.
+2. The user executes the `mark 1` command to mark the Mastery Check of the first student as passed. `MarkMasteryCheckCommandParser` checks that the command is valid. If so, it creates a new `MarkMasteryCheckCommand` with 1 as the `index`.
+3. The `MarkMasteryCheckCommand` checks student 1's Mastery Check for the 3 conditions listed above. Since student 1's Mastery Check meets all 3 of these conditions, the `MarkMasteryCheckCommand` sets the value of the student's Mastery Check's `isPassed` to `true`.
+
+The following Sequence Diagram summarises the aforementioned steps.
+
+![Mark command sequence diagram](images/MarkCommandSequenceDiagram.png)
+
+### Design considerations
+
+**Aspect: Should we allow users to mark empty Mastery Checks as passed**
+* **Alternative 1 (current choice): Do not allow marking of empty Mastery Checks**
+  * Pros: More intuitive and makes more sense.
+  * Cons: Difficult to implement as in FRIDAY's architecture, where students with empty Mastery Checks share the same static instance. Marking one of these student's Mastery Check students would also mark the other students' empty Mastery Checks as passed.
+* **Alternative 2: Allow marking of empty Mastery Checks**
+  * Pros: Could be useful in certain cases, for example when a student is exempted from having to complete the Mastery Check.
+  * Cons: These cases are rare. Also does not make sense to allow this as there is an empty Mastery Check means that the student has not scheduled or completed any Mastery Check. Hence, there is nothing to be marked as passed.
+
+### Unmark feature
+FRIDAY allows users to unmark the Mastery Checks of certain students as passed. This would be useful in cases where the user accidentally marks the Mastery Check of a student who has not passed their Mastery Check.
+
+### Implementation
+The unmark command is implemented by an `UnmarkMasteryCheckCommand`. As mentioned above the `MasteryCheck` of a student contains a boolean `isPassed`, which is set to false by default but can be changed to `true` by a `MarkMasteryCheckCommand`.
+
+Below is an activity diagram depicting how the unmark command is implemented.
+
+![Unmark command activity diagram](images/UnmarkCommandActivityDiagram.png)
+
+The `UnmarkMasteryCheckCommand` checks for the following conditions to determine if the student's Mastery Check can be unmarked:
+1. The given student's Mastery Check is not empty.
+2. The given student's Mastery Check has already been marked as passed.
+
+Only if both of these conditions are met will the `UnmarkMasteryCheckCommand` set `isPassed` of the given student's Mastery Check to `false`, hence unmarking it as passed.
+
+Given below is an example usage scenario and how the marking mechanism behaves at each stage.
+
+1. The user launches the application for the first time. FRIDAY will open with a list populated with sample students whose Mastery Checks have `isPassed` set to `false` by default.
+2. The user executes the `mark 1` command to mark the Mastery Check of the first student as passed. 
+3. The user realises this was a mistake, as they actually wanted to mark the Mastery Check of another student as passed.
+4. The user executes the `unmark 1` command to unmark the Mastery Check of the first student. `UnmarkMasteryCheckCommandParser` checks that the command is valid. If so, it creates a new `UnmarkMasteryCheckCommand` with 1 as the `index`.
+5. The `UnmarkMasteryCheckCommand` checks student 1's Mastery Check for the 2 conditions listed above. Since student 1's Mastery Check meets both of these conditions, the `UnmarkMasteryCheckCommand` sets the value of the student's Mastery Check's `isPassed` to `false`.
+
+The following Sequence Diagram summarises steps 4 to 5.
+
+![Unmark command sequence diagram](images/UnmarkCommandSequenceDiagram.png)
+
+### Design considerations
+
+**Aspect: Should we allow users to unmark empty Mastery Checks as passed**
+* **Alternative 1 (current choice): Do not allow unmarking of empty Mastery Checks**
+    * Pros: More intuitive and makes more sense.
+    * Cons: Difficult to implement as in FRIDAY's architecture, where students with empty Mastery Checks share the same static instance. Unmarking one of these student's Mastery Check students would also unmark the other students' empty Mastery Checks as passed.
+* **Alternative 2: Allow unmarking of empty Mastery Checks**
+    * Pros: Could be useful in certain cases, for example when the user accidentally marks a student with an empty Mastery Check as passed.
+    * Cons: This would require the marking of empty Mastery Checks to be allowed. Refer to the design considerations in implementing the `mark` command for the cons of doing so.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
