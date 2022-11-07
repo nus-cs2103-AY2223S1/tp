@@ -23,8 +23,15 @@ Given below are my contributions to the project.
 - What it does: Allows the user to use up and down arrow keys to navigate through the command history
 - Justification: Users might want to re-enter a command but with minor modifications. Instead of typing out the whole command again, users can navigate to their previously entered commands to make changes as they see fit before pressing enter
 - ### Contributions to the UG:
-- Added documentation for features `ea`,`da`, `Command History` and `Parameter Hints`
+- Added documentation for features `ea`,`da`, `Command History` and for enhancement `Parameter Hints`
 - ### Contributions to the DG:
+  - Added implementation details and design consideration for `ea` command feature.
+    - Added sequence diagram for `ea` command.
+    - Added object diagrams for appointment commands.
+  - Added implementation details for `Parameter Hints` enhancement
+  - Added implementation details for `Command History` feature  
+    - Added sequence diagrams for `CommandHistory`
+  - Added manual test cases for `EditAppointmentCommand` and `DeleteAppointmentCommand`
 - ### Contributions to team-based tasks
     - Ensured timely submission of team project deliverables.
     - Reported bugs as issues for better tracking.
