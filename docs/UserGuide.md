@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-# Welcome to SoCompiler's User Guide
+# SoCompiler User Guide
 
 > The sole app that university students will need to streamline their everyday routines.
 
@@ -70,6 +70,19 @@ For first-time users, we also recommend you to first read through the various [p
 5. Type a command in the command box and press Enter to execute it.
 
 6. Refer to the [Command Summary](#command-summary) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## The [GUI](#graphical-user-interface) Layout
+
+![Ui_annotated](images/Ui_annotated.png)
+
+* A: Command input area. This is where you would key in your commands.
+* B: Command output area. This is where the feedback of your commands would be displayed
+* C: Contact List. This is where all contacts are displayed with their individual fields.
+* D: Module List. This is where all modules are displayed with their individual fields.
+
+[Back to top](#welcome-to-socompilers-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
 
