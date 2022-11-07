@@ -11,8 +11,7 @@ title: Developer Guide
 We'd like to thank:
 * The [CS2103/T teaching team](https://nus-cs2103-ay2223s1.github.io/website/admin/instructors.html) for guiding us throughout the development of this project.
 * [SE-Edu's AddressBook-Level3](https://github.com/se-edu/addressbook-level3) for laying the foundations on which our (brownfield) project is built upon.
-* The [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), and [JUnit](https://junit.org/junit5/) project teams for their awesome work
-on which our product is built upon!
+* The [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), and [JUnit](https://junit.org/junit5/) project teams for their awesome work on which our product is built upon!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -39,7 +38,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 #### Main components of the architecture
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/taassist/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/taassist/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/taassist/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/taassist/MainApp.java). It is responsible for:
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -151,9 +150,7 @@ In order to store module related data, each `Student` object stores a list of `S
 Each `StudentModuleData` object contains a `ModuleClass` object and a list of `SessionData` objects. 
 The `SessionData` objects contains a `Session` object and a grade associated with the session.
 
-`Student`, `ModuleClass`, `Session`, `StudentModuleData`, and `SessionData` objects implement the `Identity<T>` interface 
-which has a single `isSame(T)` method.  The `isSame(T)` method allows `Identity<T>` objects to define a weaker notion of 
-equality than the `equals` method. More details regarding this can be found in the 
+`Student`, `ModuleClass`, `Session`, `StudentModuleData`, and `SessionData` objects implement the `Identity<T>` interface which has a single `isSame(T)` method.  The `isSame(T)` method allows `Identity<T>` objects to define a weaker notion of equality than the `equals` method. More details regarding this can be found in the 
 [Implementation section](#identity-a-weaker-notion-of-equality).
 
 The relationship between these classes is shown in the following class diagram:
@@ -179,13 +176,11 @@ Classes used by multiple components are in the `seedu.taassist.commons` package.
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented along with explanations
-for why certain functions are implemented in such a manner.
+This section describes some noteworthy details on how certain features are implemented along with explanations for why certain functions are implemented in such a manner.
 
 ### Identity: A weaker notion of equality
 
-Since any modifications to an immutable object in `Model` would require constructing new objects, we'll need a method to identify
-objects with the same identities, i.e. two `ModuleClass`-s have the same identity if their module codes are equal.
+Since any modifications to an immutable object in `Model` would require constructing new objects, we'll need a method to identify objects with the same identities, i.e. two `ModuleClass`-s have the same identity if their module codes are equal.
 
 For instance, consider the following hypothetical scenario:
 
@@ -193,49 +188,38 @@ Assume the current state of `TaAssist` is as follows:
 
 <img class="center" src="images/ImpleIdentityObjectDiagram.png" />
 
-Now, let's say the user wants to add a `Quiz2` session to IS1103. However, since `ModuleClass` is immutable, we'll have
-to construct a new `IS1103` ModuleClass instance instead. Call this new instance `NewIS1103`. Hence, the state of
-`TaAssist` will now look like the one below:
+Now, let's say the user wants to add a `Quiz2` session to IS1103. However, since `ModuleClass` is immutable, we'll have to construct a new `IS1103` ModuleClass instance instead. Call this new instance `NewIS1103`. Hence, the state of `TaAssist` will now look like the one below:
 
 <img class="center" src="images/ImpleIdentityObjectDiagram2.png" />
 
-Now, notice that `AlexIS1103Data` is no longer referencing the same object. In addition, since their contents
-are different, we can't check with the `equals` method, as the `equals` method in our codebase should perform a strict
-equality check, i.e. all contents of the two objects must be equal for `equals` to return `True`. Hence, there's no way
-to identify whether `IS1103` and `NewIS1103` are *inherently* the same module or not.
+Now, notice that `AlexIS1103Data` is no longer referencing the same object. In addition, since their contents are different, we can't check with the `equals` method, as the `equals` method in our codebase should perform a strict equality check, i.e. all contents of the two objects must be equal for `equals` to return `True`. Hence, there's no way to identify whether `IS1103` and `NewIS1103` are *inherently* the same module or not.
 
-To handle this issue, `Session`, `ModuleClass`, and `Student` classes implement the interface `Identity<T>` which contains a method
-`isSame(T obj)` used to compare whether two objects have equivalent identities, i.e. `ModuleClass`-es have equal identity if their
-module code are then same.
+To handle this issue, `Session`, `ModuleClass`, and `Student` classes implement the interface `Identity<T>` which contains a method `isSame(T obj)` used to compare whether two objects have equivalent identities, i.e. `ModuleClass`-es have equal identity if their module code are then same.
 
-This `Identity` construct is similar to a `<Key, Value>` pair  in a HashMap implementation, where we use the `Key` to
-determine the object's identity and `Value` for its satellite values.
+This `Identity` construct is similar to a `<Key, Value>` pair  in a HashMap implementation, where we use the `Key` to determine the object's identity and `Value` for its satellite values.
 
 ### Immutability of Student, ModuleClass, and related classes 
 
-In the implementation of the `Student`, `ModuleClass` and other related classes, it was decided to implement them in an 
-immutable manner. 
+In the implementation of the `Student`, `ModuleClass` and other related classes, it was decided to implement them in an immutable manner. 
 
 This is done mainly for three reasons:
-- Java passes its values by-reference, this can cause quite the confusion if objects returned by `Model` are mutated.
-- Simplifies loading data from `Storage` as we do not need to ensure contents of data in one object has is referencing the same object as another.
-- Reduces the possibility of an unobserved mutation as data in `Model` is commonly observed by `UI` through an `ObservableList`.
+* Java passes its values by-reference, this can cause quite the confusion if objects returned by `Model` are mutated.
+* Simplifies loading data from `Storage` as we do not need to ensure contents of data in one object has is referencing the same object as another.
+* Reduces the possibility of an unobserved mutation as data in `Model` is commonly observed by `UI` through an `ObservableList`.
 
-As such, if the codebase is to be extended to store additional classes within `Model`, it is recommended to implement them
-in an immutable manner unless there's good reason not to do so.
+As such, if the codebase is to be extended to store additional classes within `Model`, it is recommended to implement them in an immutable manner unless there's good reason not to do so.
 
 ### Managing attributes within immutable classes
 
 For each of the immutable classes, each time we modify the attributes of the class, we will construct a new instance of the class.
 
-To streamline the process of constructing new instances, we provide `add*`, `remove*`, `update*` methods in the immutable classes, 
-which will return a new instance of the class with the updated attributes.
+To streamline the process of constructing new instances, we provide `add*`, `remove*`, `update*` methods in the immutable classes, which will return a new instance of the class with the updated attributes.
 
 For instance, 
-- `ModuleClass#addSession(session)` -- constructs a new `ModuleClass` with the provided `Session` added into the session list.
-- `ModuleClass#removeSession(session)` -- constructs a new `ModuleClass` with the provided `Session` removed from the session list.
-- `Student#addModuleClass(moduleClass)` -- constructs a new `Student` with the provided `ModuleClass` added into the module class list.
-- `StudentModuleData#updateGrade(session, grade)` -- constructs a new `StudentModuleData` with the grade of the provided `Session` updated.
+* `ModuleClass#addSession(session)` -- constructs a new `ModuleClass` with the provided `Session` added into the session list.
+* `ModuleClass#removeSession(session)` -- constructs a new `ModuleClass` with the provided `Session` removed from the session list.
+* `Student#addModuleClass(moduleClass)` -- constructs a new `Student` with the provided `ModuleClass` added into the module class list.
+* `StudentModuleData#updateGrade(session, grade)` -- constructs a new `StudentModuleData` with the grade of the provided `Session` updated.
 
 In addition, methods such as `addSessions` and `removeSessions` are also provided in `Model` and
 `TaAssist` to help manage sessions within a class.
@@ -257,20 +241,14 @@ When deleting module classes, all students previously assigned to those module c
 
 The following methods in `TaAssist` manages the adding and deleting of module classes from the collection:
 
-- `TaAssist#addModuleClass(ModuleClass moduleClass)` - Adds the provided module class to the list of module classes created.
-- `TaAssist#removeModuleClass(ModuleClass moduleClass)` - Removes the provided module class from the list of module classes created.
+* `TaAssist#addModuleClass(ModuleClass moduleClass)` - Adds the provided module class to the list of module classes created.
+* `TaAssist#removeModuleClass(ModuleClass moduleClass)` - Removes the provided module class from the list of module classes created.
 
 
 ### Saving and Loading of StudentModuleData and SessionData
-When saving the data, we export all the `Students` and `ModuleClass` objects into two JSON arrays in a JSON file. 
-The `ModuleClass` objects and their corresponding `Session` objects are saved in `moduleClasses` array, while the 
-`Student` objects and their corresponding `StudentModuleData`, and `SessionData` objects are saved in the `students` 
-array.
+When saving the data, we export all the `Students` and `ModuleClass` objects into two JSON arrays in a JSON file. The `ModuleClass` objects and their corresponding `Session` objects are saved in `moduleClasses` array, while the `Student` objects and their corresponding `StudentModuleData`, and `SessionData` objects are saved in the `students` array.
 
-Each `StudentModuleData` and `SessionData` contains a reference to `ModuleClass` and `Session` objects respectively. 
-But the way we saved the data, the actual `ModuleClass` and `Session` objects are in the `moduleClasses` array, while
-the `StudentModuleData` and `SessionData` need to be in the `students` array and have a way to reference the `ModuleClass`
-and `Session` objects. 
+Each `StudentModuleData` and `SessionData` contains a reference to `ModuleClass` and `Session` objects respectively. But the way we saved the data, the actual `ModuleClass` and `Session` objects are in the `moduleClasses` array, while the `StudentModuleData` and `SessionData` need to be in the `students` array and have a way to reference the `ModuleClass` and `Session` objects. 
 
 To solve this problem, we only save the `ModuleClass` name for a `StudentModuleData` ignoring the list of
 `Sessions` in the `ModuleClass` object. Similarly, for `SessionData`, we only save the `Session` name ignoring the `Date`.
@@ -301,62 +279,40 @@ While the `ModuleClass` object for the module "CS1231S" might be saved in `modul
 ```
 
 #### Design considerations
-* **Option 1 (Current Choice).**: The `StudentModuleData` and `SessionData` objects only save the `ModuleClass` name and
-`Session` name respectively. Because in any of their functionality, we do not need to know the list of `Sessions` in the
-`ModuleClass` object or the `Date` of the `Session` object. 
+* **Option 1 (Current Choice).**: The `StudentModuleData` and `SessionData` objects only save the `ModuleClass` name and `Session` name respectively. Because in any of their functionality, we do not need to know the list of `Sessions` in the `ModuleClass` object or the `Date` of the `Session` object. 
   * **Pros**:
-    * The `StudentModuleData` and `SessionData` objects are independent of the `ModuleClass` and `Session` objects stored
-      in `Model`. 
+    * The `StudentModuleData` and `SessionData` objects are independent of the `ModuleClass` and `Session` objects stored in `Model`. 
     * It makes testing easier due to the independence of the `StudentModuleData` and `SessionData` objects.
-    * It makes loading of data easier, since we can add a `ModuleClass` or `Session` object with only the name when loading
-      `StudentModuleData` and `SessionData` objects. 
-    * According to our JSON format, it is more intuitive to let the `StudentModuleData` and `SessionData` classes only know
-      about the names. 
-  * **Cons**: The `ModuleClass` and `Session` objects are duplicated, which may cause confusion when we may need to iterate
-    on the session list in the `ModuleClass` object, for example. So we need to remember that the actual `ModuleClass` and
-    `Session` objects are stored in `Model` and not in the `StudentModuleData` and `SessionData` objects.
+    * It makes loading of data easier, since we can add a `ModuleClass` or `Session` object with only the name when loading `StudentModuleData` and `SessionData` objects. 
+    * According to our JSON format, it is more intuitive to let the `StudentModuleData` and `SessionData` classes only know about the names. 
+  * **Cons**: The `ModuleClass` and `Session` objects are duplicated, which may cause confusion when we may need to iterate on the session list in the `ModuleClass` object, for example. So we need to remember that the actual `ModuleClass` and `Session` objects are stored in `Model` and not in the `StudentModuleData` and `SessionData` objects.
   
 * **Option 2**: Same as option 1, but we save the names of `ModuleClass` and `Session` as a `String`. 
   * **Pros**: Makes the intention more clear that only the names are required in these classes. 
-  * **Cons**: We lose some functionality of the `ModuleClass` and `Session` objects, such as `isSame`, `toString` and other
-    methods. In this approach, we would need to recreate them for `String` instead. 
+  * **Cons**: We lose some functionality of the `ModuleClass` and `Session` objects, such as `isSame`, `toString` and other methods. In this approach, we would need to recreate them for `String` instead. 
   
-* **Option 3**: While loading the data, we first load `ModuleClass` objects and `Student` objects into two separate lists. 
-  Then for each `Student` object and each `StudentModuleData` object, we iterate through the list of `ModuleClass` objects
-  and reference the correct `ModuleClass` object. Then for each of the `SessionData` in the `StudentModuleData` object, we 
-  iterate through the list of `Sessions` in the `ModuleClass` object and reference the correct `Session` object.
-  * **Pros**: The `ModuleClass` and `Session` objects are not duplicated. The same object is referenced by both the `Model`
-    and `StudentModuleData` or `SessionData` objects.
+* **Option 3**: While loading the data, we first load `ModuleClass` objects and `Student` objects into two separate lists. Then for each `Student` object and each `StudentModuleData` object, we iterate through the list of `ModuleClass` objects and reference the correct `ModuleClass` object. Then for each of the `SessionData` in the `StudentModuleData` object, we iterate through the list of `Sessions` in the `ModuleClass` object and reference the correct `Session` object.
+  * **Pros**: The `ModuleClass` and `Session` objects are not duplicated. The same object is referenced by both the `Model` and `StudentModuleData` or `SessionData` objects.
   * **Cons**: 
     * Implementation of this loading mechanism would be quite convoluted and hard to test. 
     * Maintaining this strong coupling can be quite challenging. 
-    * It makes testing more difficult as we need to ensure that the `Model` and `StudentModuleData` or `SessionData` 
-      objects are referencing the same object.
+    * It makes testing more difficult as we need to ensure that the `Model` and `StudentModuleData` or `SessionData` objects are referencing the same object.
 
 ### Assigning students to module classes
-Each student object contains a collection of `StudentModuleData` where module classes and the grades the student 
-obtained for the sessions of the module classes are stored. When the user assigns students to a module class, a new 
-`StudentModuleData` object is created and added to the collection for each student. 
+Each student object contains a collection of `StudentModuleData` where module classes and the grades the student obtained for the sessions of the module classes are stored. When the user assigns students to a module class, a new `StudentModuleData` object is created and added to the collection for each student. 
 <img class="center" src="images/AssignCommandSequenceDiagram.png" />
 
 Given below are the different steps taken when the user assigns students to a module class.
 
-**Step 1**: The user input is [parsed similar to other commands](#parsing) and an `AssignCommand` object is created 
-using the given the student indices and the module class to assign them to.
+**Step 1**: The user input is [parsed similar to other commands](#parsing) and an `AssignCommand` object is created using the given the student indices and the module class to assign them to.
 
-**Step 2**: The `AssignCommand` object is executed. The student indices are used to retrieve the `Student` objects 
-from the list of students captured by the `Model`. For each student, steps 3 and 4 are repeated. 
+**Step 2**: The `AssignCommand` object is executed. The student indices are used to retrieve the `Student` objects from the list of students captured by the `Model`. For each student, steps 3 and 4 are repeated. 
 
-**Step 3**: The `Student#addModuleClass` method is used to create a new `Student` object from the old `Student` object.
-The method returns the old `Student` if the student is already assigned to the module class. Otherwise, a new `Student` object
-is created from the old one by copying over all the data fields. Then a new instance of `StudentModuleData` is created 
-with the given `ModuleClass` without any session information and added to the list of `StudentModuleData` of the new `Student`
-object. The new `Student` object is returned.
+**Step 3**: The `Student#addModuleClass` method is used to create a new `Student` object from the old `Student` object. The method returns the old `Student` if the student is already assigned to the module class. Otherwise, a new `Student` object is created from the old one by copying over all the data fields. Then a new instance of `StudentModuleData` is created with the given `ModuleClass` without any session information and added to the list of `StudentModuleData` of the new `Student` object. The new `Student` object is returned.
 
 **Step 4**: The `Model#setStudent` method is used to replace the old `Student` object with the updated one in the model. 
 
-**Step 5**: The execution ends and returns a `CommandResult` object containing the success message to be displayed by 
-the GUI to the user.
+**Step 5**: The execution ends and returns a `CommandResult` object containing the success message to be displayed by the GUI to the user.
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** The sequence diagram above doesn't show the case where the student is already assigned to the module class.
@@ -380,41 +336,28 @@ Refer to [Assigning students to module classes](#assigning-students-to-module-cl
 
 ### Grading a student for a session
 Giving grades for a session is only possible when a `ModuleClass` is focused. It requires updating the student's list of
-`StudentModuleData`, where the matching `StudentModuleData` with the current focused `ModuleClass` is updated to reflect
-the given grade.
+`StudentModuleData`, where the matching `StudentModuleData` with the current focused `ModuleClass` is updated to reflect the given grade.
 
 <img class="center" src="images/GradeCommandSequenceDiagram.png" />
 
 Given bellow are the steps taken when the user gives grade to a student for a session: 
 
-**Step 1**: The user input is [parsed similar to other commands](#parsing) and a `GradeCommand` object is created using the given 
-student indices, session name, and grade. 
+**Step 1**: The user input is [parsed similar to other commands](#parsing) and a `GradeCommand` object is created using the given student indices, session name, and grade. 
 
-**Step 2**: The `GradeCommand` object is executed. The given indices are used to retrieve the `Student` objects from the 
-current curated list of students in `Model`. For each student, steps 3 to 5 are repeated.
+**Step 2**: The `GradeCommand` object is executed. The given indices are used to retrieve the `Student` objects from the current curated list of students in `Model`. For each student, steps 3 to 5 are repeated.
 
 <img class="center" src="images/StudentGradeUpdate.png" />
 
-**Step 3**: The old `Student` object is used to create an updated `Student` object via the `Student#updateGrade` method. 
-The method creates the new student with an updated list of `StudentModuleData` by going through the list of the 
-old `Student` object's list of `StudentModuleData` and updating the `StudentModuleData` that matches the current 
-focused `ModuleClass`.
+**Step 3**: The old `Student` object is used to create an updated `Student` object via the `Student#updateGrade` method. The method creates the new student with an updated list of `StudentModuleData` by going through the list of the old `Student` object's list of `StudentModuleData` and updating the `StudentModuleData` that matches the current focused `ModuleClass`.
 
-**Step 4**: The `StudentModuleData#updateGrade` method is used to create a new `StudentModuleData` object with the
-updated grade for the session. The method first creates a new `StudentModuleData` object which has the same list of
-`SessionData` except the one matching with the given session (if any). The method then creates a new `SessionData` 
-object with the given grade and adds it to the list of `SessionData` in the new `StudentModuleData` object. 
+**Step 4**: The `StudentModuleData#updateGrade` method is used to create a new `StudentModuleData` object with the updated grade for the session. The method first creates a new `StudentModuleData` object which has the same list of `SessionData` except the one matching with the given session (if any). The method then creates a new `SessionData` object with the given grade and adds it to the list of `SessionData` in the new `StudentModuleData` object. 
 
-**Step 5**: After finishing steps 3-4, the `GradeCommand` will have an updated student. Then the `Model#setStudent` method
-is used to replace the old `Student` object with the updated one in the model. 
+**Step 5**: After finishing steps 3-4, the `GradeCommand` will have an updated student. Then the `Model#setStudent` method is used to replace the old `Student` object with the updated one in the model. 
 
-**Step 6**: The execution ends and returns a `CommandResult` object containing the success message to be displayed by the GUI
-to the user. 
+**Step 6**: The execution ends and returns a `CommandResult` object containing the success message to be displayed by the GUI to the user. 
 
 ### Viewing session-wise grades of a student in a class
-Viewing session-wise grades of a student is only possible when a `ModuleClass` is in focus. It requires going through
-the list of `StudentModuleData` of the `Student` object and finding the data for the matching focused class. After retrieving it, 
-the session-wise grade can be read from the list of `SessionData` stored inside the `StudentModuleData`.  
+Viewing session-wise grades of a student is only possible when a `ModuleClass` is in focus. It requires going through the list of `StudentModuleData` of the `Student` object and finding the data for the matching focused class. After retrieving it, the session-wise grade can be read from the list of `SessionData` stored inside the `StudentModuleData`.  
 
 <img class="center" src="images/ViewCommandSequenceDiagram.png" />
 
@@ -422,13 +365,9 @@ Given bellow are the steps taken when the user wants to view a student's session
 
 **Step 1**: The user input is [parsed similar to other commands](#parsing) and a `ViewCommand` object is created using the given student index. 
 
-**Step 2**: The `ViewCommand` object is executed. The given index is used to retrieve the correct `Student` object from the 
-curated list of students in `Model`.  
+**Step 2**: The `ViewCommand` object is executed. The given index is used to retrieve the correct `Student` object from the curated list of students in `Model`.
 
-**Step 3**: The `StudentModuleData` of the student that matches with the current focus class is retrieved using the 
-`Student#findStudentModuleData` method. This method achieves that by searching the `UniqueList` with a new `StudentModuleData`
-that has the identity of the current focus class. This `StudentModuleData` is guaranteed to exist, since the program is in
-focus mode. 
+**Step 3**: The `StudentModuleData` of the student that matches with the current focus class is retrieved using the `Student#findStudentModuleData` method. This method achieves that by searching the `UniqueList` with a new `StudentModuleData` that has the identity of the current focus class. This `StudentModuleData` is guaranteed to exist, since the program is in focus mode. 
 
 **Step 4**: The list of `SessionData` is retrieved from the `StudentModuleData` using the `StudentModuleData#getSessionDataList` method.
 
@@ -438,8 +377,7 @@ focus mode.
 
 ### Tracking the state of focus mode
 
-The state of focus mode is tracked by `ModelManager`, which stores the current focused `ModuleClass` (`focusedClass`, as seen in the [class diagram for `Model`](#model-component)).
-When `focusedClass` is `null`, it indicates that focus mode is inactive. `ModelManager` returns the state of the focus mode via the following methods:
+The state of focus mode is tracked by `ModelManager`, which stores the current focused `ModuleClass` (`focusedClass`, as seen in the [class diagram for `Model`](#model-component)). When `focusedClass` is `null`, it indicates that focus mode is inactive. `ModelManager` returns the state of the focus mode via the following methods:
 * `ModelManager#isInFocusMode()` - Checks whether focus mode is active.
 * `ModelManager#getFocusedClass()` - Returns the current `ModuleClass` in focus.
 
@@ -489,8 +427,7 @@ If the source list is modified, `MappedStudentViewList` will also map the new `S
 
 If the two parameters are modified through the `MappedStudentViewList::setTarget` method, `MappedStudentViewList` will re-map all `Student` to the appropriate `StudentView`-s and execute a `fireChange` to inform its listeners of a new update.
 
-With these two classes implemented, `SessionData` can now be easily passed to `UI` by simply passing the `MappedStudentViewList` within
-`ModelManager` to `UI`. `UI` will then update accordingly whenever the `MappedStudentViewList` fires a change.
+With these two classes implemented, `SessionData` can now be easily passed to `UI` by simply passing the `MappedStudentViewList` within `ModelManager` to `UI`. `UI` will then update accordingly whenever the `MappedStudentViewList` fires a change.
 
 The following sequence diagram shows how changes are propagated to the `UI` through the chain of `ObservableList`-s when `TaAssist::addStudent(s)` is called:
 
