@@ -256,15 +256,15 @@ This table summarizes the respective flags that users can use to apply filters o
 Words in `UPPER_CASE` are values of parameters to be supplied by the user
 </div>
 
-| Flag        | Filtered applied                                  | Format                        |
-|-------------|---------------------------------------------------|-------------------------------|
-| `-a`        | List all tasks                                    | `ls -a`                       | 
-| `-u`        | List all unmarked tasks                           | `ls -u`                       | 
-| `-m`        | List all marked tasks                             | `ls -m`                       | 
-| `--module`* | List all tasks under the same module              | `ls --module MODULE`          | 
-| `-t`*       | List all tasks containing the same tag            | `ls -t TAG`                   | 
-| `-d`*       | List all tasks with deadline on or after a date   | `ls -d DATE`                  | 
-| `-n`*       | List all task names with the matching keywords    | `ls -n KEYWORD`               | 
+| Flag        | Effect                                          | Format                        |
+|-------------|-------------------------------------------------|-------------------------------|
+| `-a`        | List all tasks                                  | `ls -a`                       | 
+| `-u`        | List all unmarked tasks                         | `ls -u`                       | 
+| `-m`        | List all marked tasks                           | `ls -m`                       | 
+| `--module`* | List all tasks under the same module            | `ls --module MODULE`          | 
+| `-t`*       | List all tasks containing the same tag          | `ls -t TAG`                   | 
+| `-d`*       | List all tasks with deadline on or after a date | `ls -d DATE`                  | 
+| `-n`*       | List all task names with the matching keywords  | `ls -n KEYWORD`               | 
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:**
@@ -280,13 +280,13 @@ This feature uses the following methods from the `Model` interface:
 * `Model#updateFilteredTaskList`: Updates the current task list by applying a filter as indicated by the given predicate `Predicate<Task>`. The GUI will be updated accordingly to display the filtered task list. 
 * `Model#updateFilterStatus`: Updates the list of filters that have been applied to the current task list displayed. This will be reflected on the GUI.  
 
-#### 5.3.2 Usage Scenario 
+#### 5.3.2 Usage scenario 
 
 Given below is an example usage scenario and how the mechanism behaves at each step to execute the `ls -u --module CS2103T` command.
 
 **Step 1.** The user enters `ls -u --module CS2103T` to filter out tasks that are unmarked and under the `Module` "CS2103T".
 
-**Step 2.** `LogicManager` calls the `TaskListParser#parseCommand(String)` method. Within the execution of this method, a `ListCommandParser` instance is created. 
+**Step 2.** `LogicManager` calls the `TaskListParser#parseCommand(String)` method. A new `ListCommandParser` object is created and returned.
 
 **Step 3.** `TaskListParser` calls the `ListCommandParser#parse(String)` method. `ListCommandParser` self-invocates `ListCommandParser#getPredicate(String)` for each flag found (i.e. `-u`, `--module`).
 
@@ -294,12 +294,12 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 
 **Step 5.** Meanwhile, `ListCommandParser#getPredicate("--module CS2103T")` returns an instance of `ListModuleCommandParser` as the `--module` flag expects a parameter, that has to be parsed. 
 
-**Step 6.** `ListCommandParser` calls `ListModuleCommandParser#getPredicate(String)` method. The following occurs during the execution of this method. 
+**Step 6.** `ListCommandParser` calls `ListModuleCommandParser#getPredicate(String)` method.  
 * `ListModuleCommandParser` conducts a validity check by calling `ParserUtil#parseModule(String)`. If the module is invalid, a `ParseException` will be thrown and execution will halt.
   * Details of `ParserUtil#parseModule(String)` are omitted as they are not significant to demonstrate execution of the `ListCommand`.
-* An instance of `ModuleContainsKeywordsPredicate` is created and returned. 
+* A new instance of `ModuleContainsKeywordsPredicate` is created and returned. 
 
-**Step 7.** With the necessary predicate instances, `ListCommand` instance is instantiated. Both predicates, `TaskIsDonePredicate` from **Step 4** and `ListModuleCommandPredicate` from **Step 6** are passed into the `ListCommand` constructor. `ListCommand` instance is returned to `LogicManager`.
+**Step 7.** A new `ListCommand` instance is instantiated. Both predicates, `TaskIsDonePredicate` from **Step 4** and `ListModuleCommandPredicate` from **Step 6** are passed into the `ListCommand` constructor. `ListCommand` instance is returned to `LogicManager`.
 
 Below is the sequence diagram for the partial execution of `ls -u --module CS2103T` up till **Step 7**. 
 
@@ -336,30 +336,40 @@ Additionally, it implements the following operations:
 * `CommandHistory#up()` – Traverses upwards through the history and restores the previously entered command.
 * `CommandHistory#down()` – Traverses downwards through the history and restores the command.
 
+#### 5.4.2 Usage scenario
+
 Given below is an example usage scenario and how the command history traversal mechanism behaves at each step.
 
 **Step 1.** The user launches the application for the first time. The `CommandBox` will be initialised, which in turns
 initialises the `CommandHistory` that is contained within. Since command history is empty, `previousCommands` will be
 empty.
 
-**Step 2.** The user enters a command `add -n Project -m CS2103T -d 2022-10-18 -t lowPriority`. Upon entering a new
+![State diagram 0 of up/down key](images/UpDownState0.png)
+
+**Step 2.** The user enters a command `ls -u`. Upon entering a new
 command, `CommandBox#handleButtonPressed(KeyEvent)` is called, which in turn calls `CommandHistory#add(String)` to
 stores this command into `previousCommands`.
+
+![State diagram 1 of up/down key](images/UpDownState1.png)
 
 **Step 3.** The user presses on the `up` key to return to the previously entered command. This action calls
 the `CommandHistory#up()` which will shift `pointer` once to the left, pointing it to the previous command in history,
 and feeds this String back to the command box.
+
+![State diagram 2 of up/down key](images/UpDownState2.png)
 
 **Step 4.** The user presses on the `down` key to traverse down the history. This action calls the `CommandHistory#up()`
 which will shift `pointer` once to the right. Since the `pointer` is already pointing to the latest command in history,
 there are no more commands to be returned to.
 Hence, the command box will be cleared.
 
+![State diagram 1 of up/down key](images/UpDownState1.png)
+
 The following activity diagram summarizes what happens when a user clicks on the `up`/`down` keys.
 
 ![Activity diagram of up/down key](images/UpDownKeyActivityDiagram.png)
 
-#### 5.4.2 Design considerations:
+#### 5.4.3 Design considerations:
 
 **Aspect: How command history is stored:**
 
@@ -719,7 +729,7 @@ testers are expected to do more *exploratory* testing.
     3. Launch NotionUS by double-clicking the jar file. <br>
        Expected: No tasks will be shown on the GUI.
 
-    4. Add a new task by entering 'add -n Tutorial 1 -m CS2100' <br>
+    4. Add a new task by entering `add -n Tutorial 1 -m CS2100` <br>
        Expected: Task will be added into empty task list. Now, task list contains 1 task.
 
     5. Open `/data/addressbook.json` again. <br>
@@ -732,5 +742,17 @@ testers are expected to do more *exploratory* testing.
     2. Delete `/data/addressbook.json` manually. 
 
     3. Follow Steps 3-5 of the above "Dealing with corrupted data files". Expected behaviour is the same.
-   
-3. 
+
+### 8.4 Loading saved data
+
+1. Restoring task list from previous launch 
+
+   1. Launch NotionUS by double-clicking the jar file. Clear the current task list by entering `clear`. 
+   2. Prerequisites: List all tasks using the `ls -a` command. Task list is empty.
+   3. Add 2 tasks into the task list by entering the following commands: 
+      1. `add -n Tutorial 1 -m CS2103T -d 2022-11-29`
+      2. `add -n PYP -m CS2101`
+      Expected: Task list displayed contains 2 tasks. 
+   4. Exit NotionUS by entering `exit` or closing the window. 
+   5. Relaunch NotionUS by double-clicking the jar file. 
+      Expected: Task list displayed contains 2  tasks, `Tutorial 1` and `PYP`.  
