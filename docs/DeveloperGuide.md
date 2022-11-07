@@ -503,30 +503,207 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Condonery` and the **Actor** is the `use
 
-**Use case: Delete a listing**
+#### Use Case 1: Listing all Properties
 
 **MSS**
+1. User requests to list all properties
+2. Condonery shows a list of all the properties
 
-1.  User requests to list property
-2.  Condonery shows a list of properties
-3.  User requests to delete a specific property in the list
-4.  Condonery deletes the person
-
-    Use case ends.
+Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+2a. The Property List is empty
 
-  Use case ends.
+Use case ends.
 
-* 3a. The given index is invalid.
+#### Use Case 2: Adding a Property
 
-    * 3a1. Condonery shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1. User requests to add a property
+2. Condonery adds the property into the Property Directory
+ 
+Use case ends.
 
-*{More to be added}*
+**Extensions**
+
+1a. The given input is missing a required argument
+1a1. Condonery shows an error message with an example of correct input with all the required arguments
+Use case resumes at step 1.
+
+1b. The given input is missing a required prefix
+1b1. Condonery shows an error message with an example of correct input with all the required arguments
+Use case resumes at step 1.
+
+1c. The given Property Name already exists in the Property Directory
+1c1. Condonery shows an error message stating that the property already exists in the Property Directory.
+Use case resumes at step 1.
+
+1d. The given Property Price parameter exceeds the MAX_INT
+1d1. Condonery shows an error message stating that the price is invalid.
+Use case resumes at step 1.
+
+
+#### Use Case 3: Deleting a property
+
+**MSS**
+
+1. User requests to list all properties
+2. Condonery shows a list of properties
+3. User request to delete a property in the list with a specified index
+4. Condonery deletes the specified property
+
+Use case ends.
+
+**Extensions**
+
+3a. The input did not specify a index
+3a1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+Use case resumes at step 2.
+
+3b. The input's specified index does not exist in the Property Directory
+3b1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+Use case resumes at step 2.
+
+3c. The input's specified index is in the wrong format.
+3c1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+Use case resumes at step 2.
+
+#### Use Case 4: Editing a Property
+
+**MSS**
+
+1. User requests to list properties
+2. Condonery lists all properties
+3. User requests to change a specific property's fields
+4. Condonery updates the property's fields
+
+Use case ends.
+
+**Extensions**
+
+2a. The list of properties is empty.
+Use Case ends.
+
+3a. The given input is missing a required parameter
+3a1. Condonery shows an error message with an example of correct input with all the required arguments
+Use case resumes at step 3.
+
+3b. The given input is missing a required prefix
+3b1. Condonery shows an error message with an example of correct input with all the required arguments
+Use case resumes at step 3.
+
+3c. The input did not specify a index
+3c1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+Use case resumes at step 3.
+
+3d. The input's specified index does not exist in the Property Directory
+3d1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+Use case resumes at step 3.
+
+3e. The input's specified index is in the wrong format.
+3e1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+Use case resumes at step 3.
+
+=====================================================
+
+Use Case 5: Filtering a property by Property Type
+
+**MSS**
+
+1. User requests to filter property by a specific property type
+2. Condonery shows a list of properties with applied user filter
+
+Use case ends
+
+**Extensions**
+
+1a. Specified type is not one of `HDB`, `CONDO`, or `LANDED`
+1a1. Condonery shows an error message stating that only `HDB`, `CONDO`, or `LANDED` values are accepted.
+Use case resumes at step 1.
+
+#### Use Case 5: Filtering a property by Property Status
+
+**MSS**
+
+1. User requests to filter property by a specific property type
+2. Condonery shows a list of properties with applied user filter
+
+Use case ends
+
+**Extensions**
+
+1a. Specified type is not one of `AVAILABLE`, `PENDING`, or `SOLD`
+1a1. Condonery shows an error message stating that only `AVAILABLE`, `PENDING`, or `SOLD` values are accepted.
+Use case resumes at step 1.
+
+#### Use Case 6: Linking an Interested Client to a Property
+
+**MSS**
+
+1. User requests to link an Interested Client to a Property
+2. Interested Client is successfully linked to the specified Property
+
+**Extensions**
+
+1a. Specified client name does not exist in the Client Directory
+1a1. Condonery shows an error message
+
+1b. Specified index does not exist in the Property Directory
+1b1. Condonery shows an error message stating that the property index is invalid
+
+#### Use Case 7: Finding a Property by name
+
+**MSS**
+
+1. User requests to search a property by name
+2. Properties that match the user specified name are displayed
+
+#### Use Case 8: Clearing all Properties
+1. User requests to clear all properties in the Property List
+2. Condonery removes all the properties listen in the Property List and displays a success message
+
+Use case ends.
+
+#### Use Case 9: Help List
+
+**MSS**
+
+1. User requests to list all possible commands of Condonery
+2. Condonery shows the list of possible commands and the correct formats
+
+Use case ends.
+
+#### Use Case 10: Selecting a Property
+
+**MSS**
+
+1. User requests to select a particular property to view interested clients
+2. Condonery shows the interested clients of the selected property
+
+**Extensions**
+
+1a. Specified index does not exist in the Property Directory
+1a1. Condonery shows an error message stating that the property index is invalid
+
+1b. The input did not specify a index
+1b1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+
+#### Use Case 11: Filtering properties within a price range
+**MSS**
+
+1. User requests to view properties between a certain price range
+2. Condonery shows the properties that fulfill the price range criteria
+
+**Extensions**
+
+1a. Specified upper price range is lower than the lower price range
+1a1. Condonery shows an error message stating that an invalid price range was given
+
+1b. Negative numbers were given
+1b1. Condonery shows an error message stating that an invalid price range was given
+
 
 ### Non-Functional Requirements
 
