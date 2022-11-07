@@ -13,13 +13,7 @@ a CLI, and it has a GUI created with JavaFX. It is written in Java, and has abou
 ### Code contributed
 [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=shogun187&breakdown=true)
 
-### New feature: added the ability to...
-
-Added the ability to ...
-* What it does:
-* Justification:
-* Highlights:
-* Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
+### New features
 
 Added an output panel to the UI
 * What it does: Displays important information about patient details, tasks, and schedules for the day
@@ -36,7 +30,7 @@ Added the ability to display patients added/edited/deleted in the output panel
 Added the ability to track patients added and deleted during an undo/redo command
 * What it does: Show the patients who were added and deleted during an undo/redo command 
 * Justification: The existing undo/redo operation only contained the different states of the UninurseBook, but does not track the specific patients involved
-* Highlights: PatientListTracker class is used to track the patients added and deleted
+* Highlights: PersonListTracker class is used to track the patients added and deleted
 
 ### Contributions to User Guide
 * Added documentation for email and task parameters
