@@ -31,6 +31,11 @@ public class TypicalModules {
             .withModuleName("Math")
             .withModuleCredit(4)
             .build();
+    public static final Module MA2001 = new ModuleBuilder().withModuleCode("MA2001")
+            .withModuleName("Linear Algebra")
+            .withModuleCredit(4)
+            .build();
+
 
     public static final Module CS2030S = new ModuleBuilder().withModuleCode("CS2030S")
         .withModuleName("Programming Methodology for CS students").withModuleCredit(4).build();
@@ -39,6 +44,6 @@ public class TypicalModules {
 
 
     public static List<Module> getTypicalModules() {
-        return new ArrayList<>(Arrays.asList(CS2030, CS2040, CS2100, CS2103T, MA1521, CS2030S, CS2040S));
+        return new ArrayList<>(Arrays.asList(CS2030, CS2040, CS2100, CS2103T, MA1521, CS2030S, CS2040S, MA2001));
     }
 }

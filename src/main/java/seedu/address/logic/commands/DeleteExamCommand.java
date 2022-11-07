@@ -25,6 +25,9 @@ public class DeleteExamCommand extends Command {
 
     public static final String MESSAGE_DELETE_EXAM_SUCCESS = "Deleted Exam: %1$s";
 
+    public static final String MESSAGE_NO_EXAM_IN_LIST =
+            "There is no exam in the exam list so delete exam operation cannot be done!";
+
     private final Index targetIndex;
 
     public DeleteExamCommand(Index targetIndex) {
@@ -36,8 +39,13 @@ public class DeleteExamCommand extends Command {
         requireNonNull(model);
         List<Exam> lastShownList = model.getFilteredExamList();
 
+        if (lastShownList.size() == 0) {
+            throw new CommandException(MESSAGE_NO_EXAM_IN_LIST);
+        }
+
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_EXAM_DISPLAYED_INDEX);
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_EXAM_INDEX_TOO_LARGE, lastShownList.size() + 1));
         }
 
         Exam examToDelete = lastShownList.get(targetIndex.getZeroBased());

@@ -12,6 +12,7 @@ import static seedu.address.testutil.TypicalExams.CS2040_FINAL;
 import static seedu.address.testutil.TypicalExams.EXAMONE;
 import static seedu.address.testutil.TypicalExams.EXAMTWO;
 import static seedu.address.testutil.TypicalExams.FINAL_EXAM;
+import static seedu.address.testutil.TypicalExams.MA1521_MIDTERM;
 import static seedu.address.testutil.TypicalExams.MIDTERM_EXAM;
 import static seedu.address.testutil.TypicalExams.getTypicalExams;
 import static seedu.address.testutil.TypicalModules.CS2030;
@@ -361,7 +362,8 @@ public class DistinctExamListTest {
         distinctExamList.setExams(getTypicalExams());
         distinctExamList.deleteExamsWithModule(CS2030);
         DistinctExamList expectedList = new DistinctExamList();
-        expectedList.setExams(new ArrayList<>(Arrays.asList(MIDTERM_EXAM, EXAMONE, EXAMTWO, CS2040_FINAL)));
+        expectedList.setExams(new ArrayList<>(Arrays.asList(MIDTERM_EXAM, EXAMONE, EXAMTWO,
+                CS2040_FINAL, MA1521_MIDTERM)));
         assertEquals(expectedList, distinctExamList);
     }
 

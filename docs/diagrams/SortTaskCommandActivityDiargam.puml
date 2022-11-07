@@ -1,0 +1,21 @@
+@startuml
+start
+:User executes the sort task command;
+if () then ([invalid command format])
+    :Display invalid command format message;
+else ([else])
+    if () then ([invalid criteria chosen])
+    :Display invalid criteria chosen error message;
+    else ([else])
+        if () then ([Task list is empty])
+        :Display there are no tasks to sort error message;
+        else ([else])
+        :Sort the task in the task list;
+        :Display the task sorted successfully message;
+        endif
+    endif
+endif
+
+stop
+
+@enduml
