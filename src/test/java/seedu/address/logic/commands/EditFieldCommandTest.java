@@ -21,7 +21,7 @@ public class EditFieldCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void validField_success() throws CommandException {
+    public void execute_validField_success() throws CommandException {
         AddFieldCommand addFieldCommand = new AddFieldCommand(INDEX_FIRST, "u", "p", "test");
         addFieldCommand.execute(model);
         DisplayItem itemStub = model.getFromFilteredPerson(INDEX_FIRST);
