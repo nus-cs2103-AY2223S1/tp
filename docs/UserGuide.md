@@ -596,60 +596,60 @@ Example:
 
 ## 10. Glossary
 
-**<a id="autocomplete">Autocomplete</a>**
+**<a id="autocomplete"></a>Autocomplete**
 
 A feature that shows a list of completed words or strings without the user needing to type them in full.
 
 <br>
 
-**<a id="cli">CLI</a>**
+**<a id="cli"></a>CLI**
 
 A text-based user interface used to run programs.
 
 <br>
 
-**<a id="gui">GUI</a>**
+**<a id="gui"></a>GUI**
 
 A graphical user interface (GUI) is a form of user interface that allows users to interact with programs through graphical icons and audio indicator.
 
 <br>
 
-**<a id="javafx">JavaFX</a>**
+**<a id="javafx"></a>JavaFX**
 
 A Java library used to develop client applications.
 
 <br>
 
-**<a id="kloc">kLoC</a>**
+**<a id="kloc"></a>kLoC**
 
 Stands for thousands of lines of code.
 
 <br>
 
-**<a id="mainstream-os">Mainstream OS</a>**
+**<a id="mainstream-os"></a>Mainstream OS**
 
 Windows, Linux, Unix, OS-X.
 
 <br>
 
-**<a id="nus">NUS</a>**
+**<a id="nus"></a>NUS**
 
 National University of Singapore.
 
 <br>
 
-**<a id="contact">Private Contact Detail</a>**
+**<a id="contact"></a>Private Contact Detail**
 
 A contact detail that is not meant to be shared with others.
 
 <br>
 
-**<a id="soc">SoC</a>**
+**<a id="soc"></a>SoC**
 
 School of Computing, a computing school in NUS.
 
 <br>
 
-**<a id="todo">Todo</a>**
+**<a id="todo"></a>Todo**
 
 A task that the user needs to complete.
