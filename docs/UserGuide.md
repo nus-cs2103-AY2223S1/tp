@@ -45,11 +45,12 @@ our app.
 
 ## 1. Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your computer.
 
 2. Download the latest `plannit.jar` [here](https://github.com/AY2223S1-CS2103T-T10-1/tp/releases/).
 
-3. Copy the file to the folder you want to use as the _home folder_ for Plannit.
+3. Copy the file to the folder you want to use as the _home folder_ for Plannit. In other words, 
+   the folder which `plannit.jar` is in will be the folder in which Plannit will store its data.
 
 4. Double-click the file to start the app. The window below should appear in a 
    few seconds. <br>
@@ -57,7 +58,7 @@ our app.
 
     | Screenshot of Plannit                                                                     | Description of labels                                                                                            |
     |-------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
-    | {::nomarkdown}<p align="center"><img src="images/home-labelled.png" width="500"/></p>{:/} | {::nomarkdown}<ol><li>Command box</li><li>Result display</li><li>Modules list</li><li>Persons list</li></ol>{:/} |
+    | {::nomarkdown}<p align="center"><img src="images/home-labelled.png" width="500"/></p>{:/} | {::nomarkdown}<ol><li>Command box</li><li>Result display</li><li>Module list</li><li>Person list</li></ol>{:/} |
 
 
 5. Type the command in the command box and press Enter to execute it. e.g.
@@ -69,30 +70,34 @@ our app.
 
 ### 1.1. Command summary
 
-| Action                                                        | Format                                                                  | Short Description                                                               |
-|---------------------------------------------------------------|-------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| [`add-module`](#211-add-module)                               | `add-module      m/MODULE_CODE [t/MODULE_TITLE]`                        | Add module with a module code and optional module title                         |
-| [`delete-module`](#212-delete-module)                         | `delete-module   m/MODULE_CODE`                                         | Delete module by module code                                                    |
-| [`edit-module`](#213-edit-module)                             | `edit-module     INDEX ([m/MODULE_CODE] [t/MODULE_TITLE])`              | Edit module belonging to the specified index currently displayed on the screen  |
-| *[`find-module`](#214-find-module)                            | `find-module     KEYWORD`                                               | Find module that starts with specified keyword in home page                     |
-| *[`list-module`](#215-list-module)                            | `list-module`                                                           | List all modules in home page after finding                                     |
-| [`add-task`](#221-add-task)                                   | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                     | Add task with specified module code and task description                        |
-| [`delete-task`](#222-delete-task)                             | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                          | Delete task corresponding to specified task number of specified module code     |
-| [`swap-task`](#223-reorder-tasks-swap)                        | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER` | Swap the order of tasks in the task list of a specified module                  |
-| [`add-link`](#231-add-link)                                   | `add-link        m/MODULE_CODE l/LINK_URL la/LINK_ALIAS`                | Add link URL with an alias to a module by its specified module code             |
-| [`delete-link`](#232-delete-link)                             | `delete-link     m/MODULE_CODE la/LINK_ALIAS`                           | Delete link URL from a module by its specified module code and alias            |
-| [`open-link`](#233-open-link)                                 | `open-link       m/MODULE_CODE la/LINK_ALIAS`                           | Open link URL from a module by its specified module code and alias              |
-| [`add-person`](#241-add-person)                               | `add-person      n/NAME    e/EMAIL    p/PHONE_NUMBER`                   | Add contact with specified name, email, and phone number                        |
-| [`add-person-to-module`](#242-add-person-to-module)           | `add-person-to-module m/MODULE_CODE n/NAME`                             | Add person with specified name to the module with the specified module code     |
-| [`delete-person`](#243-delete-person)                         | `delete-person   n/NAME`                                                | Delete contact belonging to the specified name                                  |
-| [`delete-person-from-module`](#244-delete-person-from-module) | `delete-person-from-module m/MODULE_CODE n/NAME`                        | Delete person with specified name from a module with specified module code      |
-| [`edit-person`](#245-edit-person)                             | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`          | Edit contact belonging to the specified index currently displayed on the screen |
-| *[`find-person`](#246-find-person)                            | `find-person     KEYWORD`                                               | Find contacts that starts with specified keyword                                |
-| *[`list-person`](#247-list-person)                            | `list-person`                                                           | List all contacts                                                               |
-| [`goto`](#251-navigate-between-modules)                       | `goto MODULE_CODE`                                                      | Navigate to specified module page                                               |
-| [`home`](#252-navigate-to-home)                               | `home`                                                                  | Navigate to the home page                                                       |
-| [`help`](#26-help)                                            | `help`                                                                  | View help                                                                       |
-| [`exit`](#27-exiting-the-program)                             | `exit`                                                                  | Exit the program                                                                |
+| Action                                                      | Format                                                                  | Short Description                                                               |
+|-------------------------------------------------------------|-------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| [Add module](#211-add-module)                               | `add-module      m/MODULE_CODE [t/MODULE_TITLE]`                        | Add module with a module code and optional module title                         |
+| [Delete module](#212-delete-module)                         | `delete-module   m/MODULE_CODE`                                         | Delete module by module code                                                    |
+| [Edit module](#213-edit-module)                             | `edit-module     INDEX ([m/MODULE_CODE] [t/MODULE_TITLE])`              | Edit module belonging to the specified index currently displayed on the screen  |
+| *[Find module](#214-find-module)                            | `find-module     KEYWORD`                                               | Find module that starts with specified keyword in home page                     |
+| *[List module](#215-list-module)                            | `list-module`                                                           | List all modules in home page after finding                                     |
+| [Add task](#221-add-task)                                   | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                     | Add task with specified module code and task description                        |
+| [Delete task](#222-delete-task)                             | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                          | Delete task corresponding to specified task number of specified module code     |
+| [Swap task](#223-reorder-tasks-swap)                        | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER` | Swap the order of tasks in the task list of a specified module                  |
+| [Add link](#231-add-link)                                   | `add-link        m/MODULE_CODE l/LINK_URL la/LINK_ALIAS`                | Add link URL with an alias to a module by its specified module code             |
+| [Delete link](#232-delete-link)                             | `delete-link     m/MODULE_CODE la/LINK_ALIAS`                           | Delete link URL from a module by its specified module code and alias            |
+| [Open link](#233-open-link)                                 | `open-link       m/MODULE_CODE la/LINK_ALIAS`                           | Open link URL from a module by its specified module code and alias              |
+| [Add person](#241-add-person)                               | `add-person      n/NAME    e/EMAIL    p/PHONE_NUMBER`                   | Add contact with specified name, email, and phone number                        |
+| [Add person to module](#242-add-person-to-module)           | `add-person-to-module m/MODULE_CODE n/NAME`                             | Add person with specified name to the module with the specified module code     |
+| [Delete person](#243-delete-person)                         | `delete-person   n/NAME`                                                | Delete contact belonging to the specified name                                  |
+| [Delete person from module](#244-delete-person-from-module) | `delete-person-from-module m/MODULE_CODE n/NAME`                        | Delete person with specified name from a module with specified module code      |
+| [Edit person](#245-edit-person)                             | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`          | Edit contact belonging to the specified index currently displayed on the screen |
+| *[Find person](#246-find-person)                            | `find-person     KEYWORD`                                               | Find contacts that starts with specified keyword                                |
+| *[List person](#247-list-person)                            | `list-person`                                                           | List all contacts                                                               |
+| [Home](#251-navigate-to-home)                               | `home`                                                                  | Navigate to the home page                                                       |
+| [Goto](#252-navigate-between-modules)                       | `goto MODULE_CODE`                                                      | Navigate to specified module page                                               |
+| [Help](#26-help)                                            | `help`                                                                  | View help                                                                       |
+| [Exit](#27-exiting-the-program)                             | `exit`                                                                  | Exit the program                                                                |
+
+<div markdown="span" class="alert alert-info"> :information_source: **Note:**<br/> 
+Features marked with * can only be utilised when users are at the home page.
+</div>
 
 <div markdown="span" class="alert alert-info"> :eye: **See also:**<br/>  
 [Peeking at tasks](#224-peeking-at-tasks).
@@ -108,15 +113,17 @@ Features marked with * can only be utilised when you are at the home page.
 
 **:information_source: Notes about the command format:**<br>
 
-* You are to include the parameters in the command that are labelled in `UPPER_CASE`.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add m/MODULE`, `MODULE` is a parameter which can be used as `add m/MODULE`.
 
-* Items in square brackets are optional. The `*` after a set of square brackets means that it can be used multiple times<br>
+* Items in square brackets are optional.<br>
   e.g. `n/NAME [e/EMAIL]` can be used as `n/John Doe e/john@u.nus.edu` or as `n/John Doe`.
+
+* `*` after a set of square brackets means that it can be used multiple times.<br>
   e.g. `[la/LINK_ALIAS]*` can be used as `la/google la/facebook la/luminus` or just as `la/google`.
 
 * A round bracket surrounding multiple square brackets indicate a need for at least one of the items in square brackets
-to be present.  
+to be present.<br>
   e.g. `([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])` requires at least one of either `n/NAME`, `e/EMAIL`, or `p/PHONE_NUMBER`
 to be present.
 
@@ -127,16 +134,20 @@ to be present.
 the parameter will be taken.<br>
   e.g. if you specify `p/81234123 p/99999999`, only `p/99999999` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as
+* Any parameter in commands that do not take in parameters (such as
   [`home`](#252-navigate-to-home), [`list-module`](#215-list-module), [`list-person`](#247-list-person),
   [`help`](#26-help) and [`exit`](#27-exiting-the-program)) will be ignored.<br>
   e.g. if the command specifies `home 123`, it will be interpreted as [`home`](#252-navigate-to-home).
 </div>
 
 ### 2.1. Modules
+In Plannit, you can organise tasks and links by academic
+module. You can also add study buddies to a module so that you can keep track of who could
+potentially be your study buddy.
 
 #### 2.1.1. Add module
-You can add a module into Plannit.
+You can add a module into Plannit. To prepare for the modules in the upcoming semester, you can add
+your list of modules, one by one, into Plannit.
 
 This command will require one flag, and one flag is optional:
 
@@ -156,25 +167,42 @@ Format: `add-module m/MODULE_CODE [t/MODULE_TITLE]`
 
 Examples:
 ```
-add-module m/CS2103T
+add-module m/CS2104
 ```
 OR
 ```
-add-module m/CS2103T t/
+add-module m/CS2104 t/
 ```
-In either of the above examples, we are adding a module `CS2103T` without a title.
+In either of the above examples, we are adding a module `CS2104` without a title.
 
 ```
-add-module m/CS2103T t/Software Engineering
+add-module m/CS2104 t/Programming Language Concepts
 ```
-In the above example, we are adding a module `CS2103T` which has the title `Software Engineering`.
+In the above example, we are adding a module `CS2104` which has the title `Programming Language Concepts`.
+Here's a screenshot of Plannit before and after executing the command:
+
+{::nomarkdown}
+<!-- Solution adapted from https://stackoverflow.com/questions/5671687/i-want-to-align-the-text-in-a-td-to-the-top and https://stackoverflow.com/questions/2919980/table-with-100-width-with-equal-size-columns -->
+<table>
+    <tr>
+        <td width="50%"><b>Before executing the command</b></td>
+        <td width="50%"><b>After executing the command</b></td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top"><p align="center"><img src="images/add-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p></td>
+        <td style="vertical-align: top"><p align="center"><img src="images/add-module-after.png"/></p><p>A message will appear indicating that <code>CS2104</code> has been added. Observe that <code>CS2104</code> has been added to the module list.</p></td>
+    </tr>
+</table>
+{:/}
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
 Adding a module will bring you back to the home page.
 </div>
 
 #### 2.1.2. Delete module
-You can delete the module with the indicated module code from Plannit.
+You can delete the module with the indicated module code from Plannit. This could be useful at 
+the end of the semester when you would want to do some cleanup and prepare for the modules for 
+next semester.
 
 This command will require one flag:
 
@@ -188,16 +216,33 @@ Format: `delete-module m/MODULE_CODE`
 Example:
 
 ```
-delete-module m/CS2103T
+delete-module m/CS2104
 ```
-In the above example, we are deleting module `CS2103T` from Plannit.
+In the above example, we are deleting module `CS2104` from Plannit.
+Here's a screenshot of Plannit before and after executing the command:
+
+{::nomarkdown}
+<!-- Solution adapted from https://stackoverflow.com/questions/5671687/i-want-to-align-the-text-in-a-td-to-the-top and https://stackoverflow.com/questions/2919980/table-with-100-width-with-equal-size-columns -->
+<table>
+    <tr>
+        <td width="50%"><b>Before executing the command</b></td>
+        <td width="50%"><b>After executing the command</b></td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top"><p align="center"><img src="images/add-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p></td>
+        <td style="vertical-align: top"><p align="center"><img src="images/delete-module-after.png"/></p><p>A message will appear indicating that <code>CS2104</code> has been deleted. Observe that <code>CS2104</code> has been removed from the module list.</p></td>
+    </tr>
+</table>
+{:/}
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
 Deleting a module will bring you back to the home page.
 </div>
 
 #### 2.1.3. Edit module
-You can edit a module on Plannit using the `edit-module` command.
+You can edit a module on Plannit using the `edit-module` command. In this way, you can modify module
+titles and descriptions without having to delete and recreate the entire module, together with its
+associated links, tasks and contacts.
 
 This command will require an index and at least one of the following flags:
 
@@ -215,27 +260,42 @@ Format: `edit-module INDEX ([m/MODULE_CODE] [t/MODULE_TITLE])`
 Examples:
 
 ```
-edit-module 3 m/CS2103T
+edit-module 3 m/CS2104
 ```
-In the above example, we are changing the module code of the third module on Plannit to `CS2103T`.
+In the above example, we are changing the module code of the third module on Plannit to `CS2104`.
 
 ```
-edit-module 3 m/CS2103T t/
+edit-module 3 m/CS2104 t/
 ```
-In the above example, we are changing the module code of the third module on Plannit to `CS2103T`, 
+In the above example, we are changing the module code of the third module on Plannit to `CS2104`, 
 and at the same time, removing the module title.
 
 ```
-edit-module 3 m/CS2103T t/Software Engineering
-```
-In the above example, we are changing the module code of the third module on Plannit to `CS2103T`,
-and at the same time, changing the module title to `Software Engineering`.
-
-```
-edit-module 3 t/Software Engineering
+edit-module 3 t/Programming Language Concepts
 ```
 In the above example, we are changing the module title of the third module on Plannit to 
-`Software Engineering`.
+`Programming Language Concepts`.
+
+```
+edit-module 3 m/CS2104 t/Programming Language Concepts
+```
+In the above example, we are changing the module code of the third module on Plannit to `CS2104`,
+and at the same time, changing the module title to `Programming Language Concepts`.
+Here's a screenshot of Plannit before and after executing the command:
+
+{::nomarkdown}
+<!-- Solution adapted from https://stackoverflow.com/questions/5671687/i-want-to-align-the-text-in-a-td-to-the-top and https://stackoverflow.com/questions/2919980/table-with-100-width-with-equal-size-columns -->
+<table>
+    <tr>
+        <td width="50%"><b>Before executing the command</b></td>
+        <td width="50%"><b>After executing the command</b></td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top"><p align="center"><img src="images/edit-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p></td>
+        <td style="vertical-align: top"><p align="center"><img src="images/edit-module-after.png"/></p><p>A message will appear indicating that a module has been edited. Observe that the third module in the module list has its module code changed to <code>CS2104</code> and its module title changed to <code>Programming Language Concepts</code>. Note that the module index has changed since Plannit automatically sorts modules in ascending order of module code.</p></td>
+    </tr>
+</table>
+{:/}
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
 Editing a module will bring you back to the home page.
@@ -565,7 +625,7 @@ This command will require three flags:
 | Field     | Flag | Constraints                                                                                                                       |
 |-----------|------|-----------------------------------------------------------------------------------------------------------------------------------|
 | **Name**  | `n/` | {::nomarkdown}<ul><li>Is case sensitive</li> <li>Can only be non-empty string of alphanumeric characters and spaces</li></ul>{:/} |
-| **Email** | `e/` | Can only be of the format [`local-part@domain`](#5-glossary)                                                                      |
+| **Email** | `e/` | Can only be of the format [`local-part@domain`](#4-glossary)                                                                      |
 | **Phone** | `p/` | Can only be 8 digits long                                                                                                         |
 
 Format: `add-person n/NAME e/EMAIL p/PHONE_NUMBER`
@@ -592,6 +652,10 @@ Adding a person to Plannit will bring you back to the home page.
 You can add a person to a module using the `add-person-to-module` command. In other
 words, an association between a person and a module will be created.
 
+This would be useful when you want to find study buddies. In this case, you can add a fellow
+student studying the same module using the `add-person-to-module` command, then use `goto` to
+find your list of potential study buddies.
+
 This command will require two flags:
 
 | Field           | Flag | Constraints                                                                                                                       |
@@ -607,9 +671,24 @@ Format: `add-person-to-module m/MODULE_CODE n/NAME`
 Example:
 
 ```
-add-person-to-module m/CS2103T n/Dinosaur Lim
+add-person-to-module m/CS2106 n/Charlotte Oliveiro
 ```
-In the above example, we are adding the person `Dinosaur Lim` to module `CS2103T`.
+In the above example, we are adding the person `Charlotte Oliveiro` to module `CS2106`.
+Here's a screenshot of Plannit before and after executing the command:
+
+{::nomarkdown}
+<!-- Solution adapted from https://stackoverflow.com/questions/5671687/i-want-to-align-the-text-in-a-td-to-the-top and https://stackoverflow.com/questions/2919980/table-with-100-width-with-equal-size-columns -->
+<table>
+    <tr>
+        <td width="50%"><b>Before executing the command</b></td>
+        <td width="50%"><b>After executing the command</b></td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top"><p align="center"><img src="images/add-person-to-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p></td>
+        <td style="vertical-align: top"><p align="center"><img src="images/add-person-to-module-after.png"/></p><p>A message will appear indicating that <code>Charlotte Oliveiro</code> has been added to <code>CS2103T</code>.</p></td>
+    </tr>
+</table>
+{:/}
 
 <div markdown="span" class="alert alert-info"> :information_source: **Note:**<br>
 If you wish to view a person added to a particular module, you may do so by navigating to that
@@ -687,7 +766,7 @@ This command will require an index and minimally any of the three flags:
 | Field     | Flag | Constraints                                                                                                                       |
 |-----------|------|-----------------------------------------------------------------------------------------------------------------------------------|
 | **Name**  | `n/` | {::nomarkdown}<ul><li>Is case sensitive</li> <li>Can only be non-empty string of alphanumeric characters and spaces</li></ul>{:/} |
-| **Email** | `e/` | Can only be of the format [`local-part@domain`](#5-glossary)                                                                      |
+| **Email** | `e/` | Can only be of the format [`local-part@domain`](#4-glossary)                                                                      |
 | **Phone** | `p/` | Can only be 8 digits long                                                                                                         |
 
 Format: `edit-person INDEX ([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])`
@@ -777,8 +856,10 @@ You may return to home page by executing the [`home`](#252-navigate-to-home) com
 You will leave the home page after executing the `goto` command. This is different from the
 behavior of [`find-module`](#214-find-module) command. <br> <br>
 After using the `goto` command, usage of the following commands will be restricted:<br>
+
 [`find-module`](#214-find-module), [`list-module`](#215-list-module),
 [`find-person`](#246-find-person), [`list-person`](#247-list-person). <br> <br>
+
 To re-enable the restricted commands, you may execute any commands that bring you back to the home page
 (i.e. [`home`](#252-navigate-to-home)).<br><br>
 For Macbook user: If tasks are not shown, double-click on the module to open it!
@@ -846,7 +927,7 @@ There is no need to load manually.
 <br>
 
 ### 2.10. Editing The Data File
-Your data is saved as a `JSON` file `[JAR file location]/data/plannit.json`. Advanced users are welcome to update
+Your data is saved as a `JSON` file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update
 data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
@@ -855,11 +936,7 @@ all data and start with an empty data file at the next run.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-## 3. Landing Page Visual Guide
-[coming soon]
-
---------------------------------------------------------------------------------------------------------------------
-## 4. FAQ
+## 3. FAQ
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with
 the file that contains the data of your previous Plannit home folder.
@@ -868,7 +945,7 @@ the file that contains the data of your previous Plannit home folder.
 [More questions coming soon]
 
 --------------------------------------------------------------------------------------------------------------------
-# 5. Glossary
+# 4. Glossary
 
 | Term                  | Meaning                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 |-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
