@@ -470,7 +470,7 @@ The following sequence diagram shows what will happen with the proposed implemen
   * Pros: Resolves the December problem of alternative 1
   * Cons: The edge case of 29 February needs to be considered, and putting deadlines before the current date may be more difficult
 * Alternative 3: Provide a year such that the resultant date is either three months before or nine months after the current date
-  * Pros: 
+  * Pros: More user-friendly and is most likely what the user expects when typing the command
   * Cons: More complicated implementation
 
 
