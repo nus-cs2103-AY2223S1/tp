@@ -398,8 +398,6 @@ The following sequence diagram shows how the FindModule operation works:
 
 </div>
 
-[Back to Top](#socompiler-developer-guide)
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. **Documentation, logging, testing, configuration, dev-ops**
@@ -423,6 +421,8 @@ SoCompiler is built-upon [AddressBook-Level3](https://github.com/se-edu/addressb
 * Font used for the GUI were obtained from [Google Fonts](https://fonts.google.com/), where all fonts are under open source licenses and can be used in commercial and non-commercial products.
 
 [Back to Top](#socompiler-developer-guide)
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
