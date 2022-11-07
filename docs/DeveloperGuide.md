@@ -709,19 +709,25 @@ testers are expected to do more *exploratory* testing.
 
 ### Saving data
 Travelr data are saved locally automatically after any command.
+
 1. Test case: Data folder is missing
+
    a. On app launch, if no data folder is detected, a new Travelr instance with sample data will be used. 
    
    b. Run any command and a new data folder containing a travelr.json file will be generated.
    
    c. If you do not run any command and quit the app, no data folder or file will be generated.
+  
 2. Test case: travelr.json file is missing
+
    a. On app launch, if there is a data folder but it is empty, a new Travelr instance with sample data will be used.
    
    b. Run any command and a new travelr.json file will be generated in the data folder.
    
    c. If you do not run any command and quit the app, no file will be generated.
+   
 3. Test case: Data file is corrupted i.e does not follow the correct format
+
    a. On app launch, if travelr.json file is corrupted, a new Travelr instance with no data will be used.
    
    b. Run any command and the contents of the travelr.json file will be overwritten to contain the new data, which is of a correct format.
