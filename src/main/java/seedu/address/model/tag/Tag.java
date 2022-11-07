@@ -9,8 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Tag {
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags should only contain alphabets and spaces "
-            + "and should not be empty";
+    public static final String MESSAGE_CONSTRAINTS = "Tags should only contain alphabets and spaces.";
     public static final String VALIDATION_REGEX = "[a-zA-Z][a-zA-Z ]*";
 
     public final String tagName;
