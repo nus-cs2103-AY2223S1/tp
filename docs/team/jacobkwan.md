@@ -32,12 +32,13 @@ This displays my code contributions for the project: [RepoSense link](https://nu
 - [Refactoring](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/53): Changed project structure, class names and variable names to fit our product.
 - Documentation: Utilised local Jekyll server to improve iteration speed for everyone
     - Instead of merging and deploying buggy/incorrectly formatted markdown, I can simply checkout teammates' branches to verify the correctness of more complex markdown elements
+    - [Example PR review](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/170)
 
 #### Review/mentoring contributions
 - Integration: Managed team repo, handled releases.
 - Reviewed a bulk of the pull requests (45+) to maintain code quality and initiate discussions where applicable.
-    - [example of a non trivial PR review](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/87)
-    - [another example](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/152)
+    - [Example of a non trivial PR review](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/87)
+    - [Another example](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/152)
 
 #### Contributions beyond the project team
 - Reported an above average number of bugs in the [PE-D](https://github.com/jacobkwan/ped/issues) (12)
