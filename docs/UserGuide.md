@@ -40,7 +40,7 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `BookFace.jar` from here.
+2. Download the latest `BookFace.jar` from [here](https://github.com/AY2223S1-CS2103-F14-4/tp/releases/tag/v1.4).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your BookFace.
 
@@ -94,7 +94,7 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
   e.g. if your user list has 5 users, and you enter `find user Alex` and get 1 user displayed under the user list, `delete user 1` will always
 delete the user that is currently displayed.
 
-* Any whitespace between the start of a parameter prefix such as `n/` and the end of the preceding parameter will be ignored.<br>e.g. the parameter `p/` in `p/999999 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; n/John` will be interpreted as `999999` and not `999999 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;`.
+* Any whitespace between the start of a parameter prefix such as `n/` and the end of the preceding parameter will be ignored.<br>e.g. the parameter `p/` in `p/999999      n/John` will be interpreted as `999999` and not `999999      `.
 </div>
 
 <div style="page-break-after: always;"></div>

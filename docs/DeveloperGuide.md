@@ -556,6 +556,7 @@ Similar to Design considerations for the loan command.
 
 **Value proposition**: Our app replaces a paper-based system or manual tracking of books, providing greater speed/efficiency in identifying where a book is, or when it is due. It also adds a member-tracking system to handle an increasing number of library members.
 
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
