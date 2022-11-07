@@ -24,6 +24,17 @@
     -fx-opacity: 1;
 }
 
+.label-list-panel-background {
+    -fx-background-color: #273549;
+}
+
+.label-list-panel {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
 .text-field {
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Semibold";
@@ -122,7 +133,7 @@
 
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
-    -fx-font-size: 16px;
+    -fx-font-size: 15px;
     -fx-text-fill: #010504;
 }
 
@@ -328,7 +339,7 @@
     -fx-text-fill: white;
 }
 
-#filterField, #personListPanel, #personWebpage {
+#filterField, #stallListPanel, #stallWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 

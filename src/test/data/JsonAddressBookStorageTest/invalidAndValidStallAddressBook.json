@@ -1,0 +1,9 @@
+{
+  "stalls": [ {
+    "name": "Valid Stall",
+    "address": "4th street"
+  }, {
+    "name": "Stall with invalid name field: Ha!ns Mu@ster",
+    "address": "4th street"
+  } ]
+}

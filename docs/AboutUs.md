@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Chan Chung Loong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/hikoya.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/hikoya)]
+[[portfolio](team/hikoya.md)]
 
-* Role: Project Advisor
+* Role: Deliverables and Scheduling
+* Responsibilities: User Interface
 
-### Jane Doe
+### Clarence Chew Xuan Da
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/clarence-chew.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/clarence-chew)]
+[[portfolio](team/clarence-chew.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Documentation
+* Responsibilities: Storage
 
-### Johnny Doe
+### Jamie Tan Wei-Xuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jamietan2002.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/jamietan2002)]
+[[portfolio](team/jamietan2002.md)]
 
-* Role: Developer
+* Role: Code Quality and Integration
+* Responsibilities: Main Logic (Command Parsing)
+
+### Low Lik Hern
+
+<img src="images/likhern.png" width="200px">
+
+[[github](http://github.com/likhern)]
+[[portfolio](team/likhern.md)]
+
+* Role: Testing
 * Responsibilities: Data
 
-### Jean Doe
+### Min Hein Aung
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/minheina.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/minheina)]
+[[portfolio](team/minheina.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Role: Team Lead
+* Responsibilities: Component Logic

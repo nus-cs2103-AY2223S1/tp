@@ -1,0 +1,74 @@
+{
+  "_comment": "AddressBook save file which contains the same Stall values as in TypicalStalls#getTypicalAddressBook()",
+  "stalls" : [ {
+    "name" : "Alice Pauline",
+    "address" : "123, Jurong West Ave 6, #08-111",
+    "tags" : [ "friends" ],
+    "reviews" : [ {
+      "date" : "1/1/2020",
+      "content" : "Great view and decor!",
+      "rating": 3,
+      "tags" : [ "friends" ]
+    } ]
+  }, {
+    "name" : "Benson Meier",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "tags" : [ "owesMoney", "friends" ],
+    "reviews" : [ {
+      "date" : "31/12/2021",
+      "content" : "The food is warm and nourishing.",
+      "rating": 3,
+      "tags" : [ "owesMoney", "friends" ]
+    } ]
+  }, {
+    "name" : "Carl Kurz",
+    "address" : "wall street",
+    "tags" : [ ],
+    "reviews" : [ {
+      "date" : "1/4/2020",
+      "content" : "wall street",
+      "rating": 3,
+      "tags" : [ ]
+    } ]
+  }, {
+    "name" : "Daniel Meier",
+    "address" : "10th street",
+    "tags" : [ "friends" ],
+    "reviews" : [ {
+      "date" : "29/2/2020",
+      "content" : "10th street",
+      "rating": 3,
+      "tags" : [ "friends" ]
+    } ]
+  }, {
+    "name" : "Elle Meyer",
+    "address" : "michegan ave",
+    "tags" : [ ],
+    "reviews" : [ {
+      "date" : "29/9/2003",
+      "content" : "michegan ave",
+      "rating": 3,
+      "tags" : [ ]
+    } ]
+  }, {
+    "name" : "Fiona Kunz",
+    "address" : "little tokyo",
+    "tags" : [ ],
+    "reviews" : [ {
+      "date" : "6/6/2007",
+      "content" : "little tokyo",
+      "rating": 3,
+      "tags" : [ ]
+    } ]
+  }, {
+    "name" : "George Best",
+    "address" : "4th street",
+    "tags" : [ ],
+    "reviews" : [ {
+      "date" : "20/7/2017",
+      "content" : "4th street",
+      "rating": 3,
+      "tags" : [ ]
+    } ]
+  } ]
+}

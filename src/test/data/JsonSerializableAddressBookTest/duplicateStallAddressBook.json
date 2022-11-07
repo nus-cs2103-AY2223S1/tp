@@ -1,0 +1,10 @@
+{
+  "stalls": [ {
+    "name": "Alice Pauline",
+    "address": "123, Jurong West Ave 6, #08-111",
+    "tags": [ "friends" ]
+  }, {
+    "name": "Alice Pauline",
+    "address": "123, Jurong West Ave 6, #08-111"
+  } ]
+}
