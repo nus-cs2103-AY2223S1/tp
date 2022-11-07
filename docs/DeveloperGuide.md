@@ -100,6 +100,8 @@ Here's a (partial) class diagram of the `UI` component:
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 The UI consists of a `MainWindow` that is made up of 4 crucial parts:
 
 |                   |                                                                                 |
