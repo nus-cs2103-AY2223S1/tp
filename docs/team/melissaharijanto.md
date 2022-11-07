@@ -12,7 +12,7 @@ application via a CLI, and the application responds with its GUI, created with J
 ### Summary of Contributions
 
 <div markdown="block" class="alert alert-info">:information_source: **Note:**
-Numbers followed by a `#` denotes the pull request number.
+A `#` followed by a number denotes the relevant pull request.
 </div>
 
   - **Code contributed**: Click here for
