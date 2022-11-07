@@ -18,7 +18,6 @@ import seedu.hrpro.model.Model;
 import seedu.hrpro.model.ModelManager;
 import seedu.hrpro.model.UserPrefs;
 import seedu.hrpro.model.project.Project;
-import seedu.hrpro.model.project.ProjectName;
 import seedu.hrpro.model.staff.Staff;
 import seedu.hrpro.testutil.ProjectBuilder;
 import seedu.hrpro.testutil.StaffBuilder;
