@@ -284,9 +284,10 @@ When given a valid user index, the `MarkCommandParser`/`UnmarkCommandParser` wil
 
 To speed up marking `Debt` objects as paid (for example, when 1 person has paid for multiple debts in 1 shot) in the `DebtList` of 1 `Person`, the `MarkCommand` can take in multiple indices such that a replaced `Debt` object (only if it is unpaid) will be added to the `DebtList` for each mark operation.
 
-An example of the new objects in the internal state when a valid `mark` command provided by the user, `mark 1 debt/2 3`, has been parsed is given by the object diagram below.
+An example of the new objects in the internal state when a valid `mark` command provided by the user, `mark 1 debt/2 3`, has been parsed and then executed is given by the object diagrams below.
 
 <img src="images/MarkObjectDiagram.png" width="450" />
+<img src="images/MarkAfterObjectDiagram.png" width="280" />
 
 The activity diagrams below detail the behaviour of PayMeLah when a user inputs a `mark` command of valid syntax to be executed.
 
