@@ -183,12 +183,10 @@ Edits an existing student in a specified module.
 Format: `edit student INDEX [n/NAME] [i/STUDENT_ID] [ph/PHONE] [e/EMAIL] [tele/TELEGRAM_HANDLE] [m/MODULE] [tut/TUTORIAL] [g/GRADE] [att/ATTENDANCE] [part/PARTICIPATION] [t/TAG]…`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You may want to use this command to:
-<ul>
-  <li>Update your student's grade after an assessment</li>
-  <li>Update your student's attendance and participation score after a lesson</li>
-  <li>Update your student's particulars</li>
-</ul>
+You may want to use this command to:<br>
+- Update your student's grade after an assessment<br>
+- Update your student's attendance and participation score after a lesson<br>
+- Update your student's particulars<br>
 </div>
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …
@@ -275,23 +273,13 @@ You may want to use this command to email a student or a selected group of stude
 
 Format: `extract emails`
 
-<div markdown="span" class="alert alert-primary">:information_source: **How to use:**
-    <ol>
-        <li> Execute the `extract emails` command in the ModQuik command box. The following message will be displayed in the Results Display Box: <br>
-            <img src="images/ExtractEmails1.png">
-            All the emails will be copied onto your clipboard.
-        </li>
-        <li> Go to your web browser and paste the emails onto your address bar. Your mail app will be prompted to open.</li>
-        <li> Open your mail app and all the emails should be pasted as shown: <br>
-            <img src="images/ExtractEmails3.png">
-        </li>
-    </ol>
-</div>
-
-<div markdown="span" class="alert alert-primary">:warning: **Warning:**
-If your mail app does not open, you can paste your clipboard directly into your email recipient box but remember to delete "mailto:" in front of the emails.<br>
-You may also be required to separate the emails.
-    <img src="images/ExtractEmails4.png">
+<div markdown="span" class="alert alert-primary">:information_source: **How to use:**<br>
+    1. Execute the `extract emails` command in the ModQuik command box. The following message will be displayed in the Results Display Box: <br>
+    <img src="images/ExtractEmails1.png">
+    2. A link will be copied onto your clipboard. Go to your web browser and paste the emails onto your address bar. Your mail app will be prompted to open.</li>
+    <img src="images/ExtractEmails2.png">
+    3. All the emails should be pasted as shown:<br>
+    <img src="images/ExtractEmails3.png">
 </div>
 
 Examples:
