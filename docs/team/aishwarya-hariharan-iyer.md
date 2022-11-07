@@ -70,4 +70,3 @@ Given below are my contributions to the project.
       issues
     * Helped manage weekly meetings by setting Zoom links and taking notes
     * Reported bugs and suggestions for other teams in the class [(Link)](https://github.com/Aishwarya-Hariharan-Iyer/ped/issues)
-
