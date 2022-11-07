@@ -162,7 +162,6 @@ public class WaddleParser {
         case UnplanCommand.COMMAND_WORD:
             return new UnplanCommandParser().parse(arguments);
 
-        //TODO: help commands must change here
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
@@ -175,6 +174,8 @@ public class WaddleParser {
         case ClearCommand.COMMAND_WORD:
 
         case ListCommand.COMMAND_WORD:
+
+        case FindCommand.COMMAND_WORD:
 
         case SelectCommand.COMMAND_WORD:
             throw new ParseException(MESSAGE_UNAVAILABLE_COMMAND_ITINERARY);
