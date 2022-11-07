@@ -348,7 +348,7 @@ Therefore, there is a lot of potential for UI to be integrated with the find fea
 #### Implementation
 
 The list type feature is motivated by the existence of the three different entities that are manipulated by myStudent, namely `Student`, `Tutor` and `TuitionClass`. 
-It is implemented as an enum class `ListType` in `Model` which includes three types - `STUDENT_LIST`, `TUTOR_LIST` and `TUITIONCLASS_LIST`. 
+It is implemented as an enum class `ListType` in `Model` which includes three values: `STUDENT_LIST`, `TUTOR_LIST` and `TUITIONCLASS_LIST`. 
 
 The current list type is kept as a `ListType` field `type` in `ModelManager` which implements `Model`. 
 As `Student`, `Tutor` and `TuitionClass` instances are stored in `filteredStudent`, `filterdTutors` and `filterdTuitionClass` in `ModelManager`, the `type` field in `ModelManager` would indicate which of the three would be operated on by the `Logic` component when a command is executed. 
@@ -375,7 +375,7 @@ Step 5. The `handleList()` method checks the `type` in `ModelManager` with `Logi
 Step 6. The `handleList()` method then calls `setLabelStyle()`. Similar to `handleList()`, `setLabelStyle()` calls `Logic#getCurrentListType()` to get the `type` in `ModelManager` and set the style class of the `tutorLabelPanel` to `SELECTED_CLASS_LABEL_STYLE_CLASS`, and the `studentLabelPanel` along with the `tuitionClassLabelPanel` to `UNSELECETED_LABEL_STYLE_CLASS`. 
 This will cause the `List Tabs` on top of the `List Display Panel` in Ui changes to highlight the current displayed list, the `TuitionClass` list.
 
-The following sequence diagram shows how the `find` operation works:
+The following sequence diagram shows how the `list` operation works:
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
 ### \[Implemented\] Sort Command
