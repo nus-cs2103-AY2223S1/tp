@@ -329,7 +329,7 @@ The command will be used as such:
 -`predict n/NAME s/SUBJECT diff/DIFFICULTY`
 - Words in `UPPER_CASE` are the inputs to be supplied by the user.
 
-The command works in the following steps:
+The command works in the following steps: <br>
 1) Users enter the `PredictionCommand` following the above specified format in the `CommandBox`, providing the name of the `Student`, `Subject` and `Difficulty` <br>
 2) `PredictionCommandParser` will parse the `PredictionCommand` to check whether the provided arguments are valid and return a `CommandResult` <br>
 3) The `PredictGrade` method in `PredictionUtil` class will be used to predict the grade given the arguments provided <br>
@@ -353,7 +353,7 @@ The command will be used as such:
 - `markAtt d/DATE c/STUDENTCLASS ind/INDEXES` eg. `markAtt d/12-02-2023 c/1.2 ind/1 2 3`
 - Words in `UPPER_CASE` are the inputs to be supplied by the user.
 
-The command works in the following steps:
+The command works in the following steps: <br>
 1) Users enter the `AttendanceCommand` following the above specified format in the `CommandBox`, providing the `Date`, `StudentClass` and `Indexes` of students present <br>
 2) `AttendanceCommandParser` will parse the `AttendanceCommand` to check whether the provided arguments are valid <br>
 3) For each `Student` in the specified `StudentClass`, the `updateAttendance` method in the `Attendance` class is called to update the model to indicate whether the `Student` is present. <br>
