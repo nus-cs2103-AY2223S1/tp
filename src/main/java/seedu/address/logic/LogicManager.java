@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.github.exceptions.NetworkConnectionException;
+import seedu.address.github.exceptions.UserInvalidException;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -16,6 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
+import seedu.address.ui.MainPanelName;
 
 /**
  * The main LogicManager of the app.
@@ -38,11 +42,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText,
+                                 MainPanelName mainPanelName) throws CommandException, ParseException,
+            UserInvalidException, NetworkConnectionException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = addressBookParser.parseCommand(commandText, mainPanelName);
         commandResult = command.execute(model);
 
         try {
@@ -60,8 +66,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Person> getSortedFilteredPersonList() {
+        return model.getSortedFilteredPersonList();
     }
 
     @Override
@@ -77,5 +83,15 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public SimpleObjectProperty<Person> getSelectedPerson() {
+        return model.getSelectedPerson();
+    }
+
+    @Override
+    public void setSelectedPerson(Person selectedPerson) {
+        model.setSelectedPerson(selectedPerson);
     }
 }

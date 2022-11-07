@@ -47,11 +47,13 @@ public class ArgumentTokenizer {
     private static List<PrefixPosition> findPrefixPositions(String argsString, Prefix prefix) {
         List<PrefixPosition> positions = new ArrayList<>();
 
-        int prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), 0);
-        while (prefixPosition != -1) {
-            PrefixPosition extendedPrefix = new PrefixPosition(prefix, prefixPosition);
-            positions.add(extendedPrefix);
-            prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), prefixPosition);
+        for (String alias: prefix.getAliases()) {
+            int prefixPosition = findPrefixPosition(argsString, alias, 0);
+            while (prefixPosition != -1) {
+                PrefixPosition extendedPrefix = new PrefixPosition(prefix, prefixPosition);
+                positions.add(extendedPrefix);
+                prefixPosition = findPrefixPosition(argsString, alias, prefixPosition);
+            }
         }
 
         return positions;
@@ -118,10 +120,15 @@ public class ArgumentTokenizer {
                                         PrefixPosition nextPrefixPosition) {
         Prefix prefix = currentPrefixPosition.getPrefix();
 
-        int valueStartPos = currentPrefixPosition.getStartPosition() + prefix.getPrefix().length();
-        String value = argsString.substring(valueStartPos, nextPrefixPosition.getStartPosition());
+        for (String alias: prefix.getAliases()) {
+            if (argsString.startsWith(alias, currentPrefixPosition.getStartPosition())) {
+                int valueStartPos = currentPrefixPosition.getStartPosition() + alias.length();
+                String value = argsString.substring(valueStartPos, nextPrefixPosition.getStartPosition());
+                return value.trim();
+            }
+        }
 
-        return value.trim();
+        return "";
     }
 
     /**

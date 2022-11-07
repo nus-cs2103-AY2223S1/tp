@@ -1,13 +1,18 @@
 package seedu.address.testutil;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.github.GithubApi;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.Role;
+import seedu.address.model.person.Timezone;
+import seedu.address.model.person.contact.Contact;
+import seedu.address.model.person.contact.ContactType;
+import seedu.address.model.person.github.User;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -15,16 +20,17 @@ import seedu.address.model.util.SampleDataUtil;
  * A utility class to help with building Person objects.
  */
 public class PersonBuilder {
-
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-
+    public static final String DEFAULT_ROLE = "Software Engineer";
+    public static final String DEFAULT_TIMEZONE = "+8";
+    private final GithubApi githubApi = new GithubApi();
+    private final HashMap<ContactType, Contact> contacts;
     private Name name;
-    private Phone phone;
-    private Email email;
     private Address address;
+    private Role role;
+    private Timezone timezone;
+    private User githubUser;
     private Set<Tag> tags;
 
     /**
@@ -32,10 +38,12 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        role = null;
+        timezone = null;
         tags = new HashSet<>();
+        contacts = new HashMap<>();
+        githubUser = null;
     }
 
     /**
@@ -43,10 +51,11 @@ public class PersonBuilder {
      */
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
+        address = personToCopy.getAddress().orElse(null);
         tags = new HashSet<>(personToCopy.getTags());
+        contacts = new HashMap<>(personToCopy.getContacts());
+        role = personToCopy.getRole().orElse(null);
+        timezone = personToCopy.getTimezone().orElse(null);
     }
 
     /**
@@ -60,7 +69,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public PersonBuilder withTags(String... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -69,28 +78,59 @@ public class PersonBuilder {
      * Sets the {@code Address} of the {@code Person} that we are building.
      */
     public PersonBuilder withAddress(String address) {
-        this.address = new Address(address);
+        this.address = address != null ? new Address(address) : null;
         return this;
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Contacts} of the {@code Person} that we are building
      */
-    public PersonBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public PersonBuilder withContact(ContactType type, String name) {
+        this.contacts.put(type, Contact.of(type, name));
         return this;
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Contacts} of the {@code Person} that we are building
+     * after removing the specified contact of the person.
+     * For testing purposes only.
      */
-    public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public PersonBuilder withoutContact(ContactType contact) {
+        this.contacts.remove(contact);
         return this;
     }
 
+    /**
+     * Sets the {@code Role} of the {@code Person} that we are building
+     */
+    public PersonBuilder withRole(String role) {
+        this.role = role != null ? new Role(role) : null;
+        return this;
+    }
+
+    /**
+     * Sets the {@code Role} of the {@code Person} that we are building
+     */
+    public PersonBuilder withTimezone(String timezone) {
+        this.timezone = timezone != null ? new Timezone(timezone) : null;
+        return this;
+    }
+
+    /**
+     * Sets the {@code User} of the {@code Person} that we are building
+     */
+    public PersonBuilder withGithubUser(String user) {
+        this.githubUser = user != null ? githubApi.getUser(user) : null;
+        return this;
+    }
+
+    /**
+     * Build the Person Model
+     *
+     * @return a Person
+     */
     public Person build() {
-        return new Person(name, phone, email, address, tags);
+        return new Person(name, address, tags, contacts, role, timezone, githubUser);
     }
 
 }

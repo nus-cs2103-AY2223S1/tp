@@ -1,23 +1,27 @@
+//@@author
 package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.CARL;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
+import java.util.Iterator;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonMatchesKeywordsPredicate;
 import seedu.address.testutil.AddressBookBuilder;
-
 public class ModelManagerTest {
 
     private ModelManager modelManager = new ModelManager();
@@ -90,9 +94,33 @@ public class ModelManagerTest {
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getSortedFilteredPersonList().remove(0));
     }
 
+    @Test
+    public void getSortedFilteredPersonList_listIsSorted() {
+        modelManager.sortPersonList(Person::compareTo);
+        modelManager.addPerson(CARL);
+        modelManager.addPerson(BENSON);
+        modelManager.addPerson(ALICE);
+        assertSorted(modelManager.getSortedFilteredPersonList());
+    }
+
+    private void assertSorted(ObservableList<Person> list) {
+        Iterator<Person> iterator = list.iterator();
+        Person prev = null;
+        while (iterator.hasNext()) {
+            if (prev == null) {
+                prev = iterator.next();
+                continue;
+            }
+
+            Person current = iterator.next();
+            if (current.getName().compareTo(prev.getName()) < 0) {
+                fail("List is not sorted.");
+            }
+        }
+    }
     @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
@@ -118,11 +146,15 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        //@@author sh4nH
+        PersonMatchesKeywordsPredicate predicate = new PersonMatchesKeywordsPredicate();
+        predicate.setKeywords(keywords.toString());
+        //@@author
+        modelManager.filterPersonList(predicate);
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.filterPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

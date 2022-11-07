@@ -2,13 +2,17 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.person.PersonComparators.DEFAULT_COMPARATOR;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
@@ -21,7 +25,9 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final SortedList<Person> sortedPersons;
     private final FilteredList<Person> filteredPersons;
+    private final SimpleObjectProperty<Person> selectedPerson;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +40,9 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        sortedPersons = new SortedList<>(filteredPersons, DEFAULT_COMPARATOR);
+
+        selectedPerson = new SimpleObjectProperty<>();
     }
 
     public ModelManager() {
@@ -101,7 +110,7 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        filterPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -109,23 +118,43 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+
+        // When the selected person is changed, we need to change
+        // the reference of selectedPerson as well to notify.
+        if (target.equals(selectedPerson.get())) {
+            setSelectedPerson(editedPerson);
+        }
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void setSelectedPerson(Person person) {
+        selectedPerson.set(person);
+    }
+
+    @Override
+    public SimpleObjectProperty<Person> getSelectedPerson() {
+        return selectedPerson;
+    }
+
+    @Override
+    public void filterPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
+    }
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable sorted and filtered view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Person> getSortedFilteredPersonList() {
+        return sortedPersons;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+    public void sortPersonList(Comparator<Person> comparator) {
+        requireNonNull(comparator);
+        sortedPersons.setComparator(comparator);
     }
 
     @Override
@@ -144,7 +173,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && sortedPersons.equals(other.sortedPersons);
     }
 
 }

@@ -1,6 +1,9 @@
 package seedu.address.ui;
 
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
@@ -29,6 +32,18 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+    }
+
+    public void focus() {
+        commandTextField.requestFocus();
+    }
+
+    public <T extends Event> void addEventHandler(EventType<T> eventType, EventHandler<? super T> eventHandler) {
+        commandTextField.addEventHandler(eventType, eventHandler);
+    }
+
+    public <T extends Event> void addEventFilter(EventType<T> eventType, EventHandler<? super T> eventHandler) {
+        commandTextField.addEventFilter(eventType, eventHandler);
     }
 
     /**

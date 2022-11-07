@@ -19,7 +19,13 @@ Class Email
 Class Name
 Class Phone
 Class Tag
+Class Role
+Class Timezone
 
+Package Github <<Rectangle>>{
+    Class User
+    Class Repo
+}
 }
 
 Class HiddenOutside #FFFFFF
@@ -36,11 +42,15 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+Person *--> "1" Name
+Person *--> "0..1" Phone
+Person *--> "0..1" Email
+Person *--> "0..1" Address
 Person *--> "*" Tag
+Person *--> "0..1" Role
+Person *--> "0..1" Timezone
+Person *--> "0..1" User
+User *--> "*" Repo
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address

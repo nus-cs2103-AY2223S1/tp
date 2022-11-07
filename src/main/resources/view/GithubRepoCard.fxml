@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="repoCard" xmlns="http://javafx.com/javafx/18">
+    <children>
+        <HBox>
+            <children>
+                <Hyperlink fx:id="nameLabel"/>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <Label fx:id="lastUpdatedLabel"/>
+            </children>
+        </HBox>
+        <Label fx:id="descriptionLabel" wrapText="true"/>
+    </children>
+</VBox>

@@ -2,191 +2,446 @@
 layout: page
 title: User Guide
 ---
+![Ui](images/Ui.png)
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+GithubContact is an address book **integrated with Github's Public API**, targeted at software engineering project
+managers to help them communicate and collaborate with their teams smoothly.
 
-* Table of Contents
-{:toc}
+This guide contains all you need to get started on working with GithubContact.
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
+## Table of Contents
+1. [Getting Started](#getting-started)
+2. [Command Summary](#command-summary)
+3. [Features](#features)
+   1. [Add a person](#add-a-person--add)
+   2. [Remove a person](#delete-a-person--delete)
+   3. [Find a person](#find-a-person--find)
+   4. [Sort people](#sort-the-list-of-persons--sort)
+   5. [Reset the persons list](#reset-the-list-of-persons-reset)
+   6. [Show a person's details](#show-a-persons-details--enter-or-double-click)
+   7. [Set a person's details](#set-a-persons-details--set)
+   8. [Delete a person's details](#delete-a-persons-details-delete)
+   9. [Return to previous page](#return-to-previous-page--back-or-esc)
+   10. [Show help page](#show-help-page--help-or-f1)
+4. [FAQ](#faq)
+5. [Prefix Aliases](#prefix-aliases)
+6. [Parameter Input Formats](#parameter-input-formats)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+<div style="page-break-after: always;"></div>
+
+## Getting Started
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest githubContact.jar from [here](https://github.com/AY2223S1-CS2103T-W08-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the home folder for your GithubContact.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+4. Double-click the file to start the app. The Graphical User Interface (GUI) similar to the above should appear in a few seconds. Note how the app contains some sample data.
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+   * **`help`** : Displays the help page.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`add`**`name/John Doe github/johndoe phone/98765432 email/johnd@example.com address/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
 
    * **`clear`** : Deletes all contacts.
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+<div style="page-break-after: always;"></div>
+
+## Command summary
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are the parameters to be supplied by the user. The input formats for each attribute can be found [here](#parameter-input-formats)<br> 
+  e.g. in `add name/NAME`, `NAME` is a parameter which can be used as `add name/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `name/NAME [tag/TAG]` can be used as `name/John Doe tag/friend` or as `name/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/friend`, `tag/friend tag/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `name/NAME phone/PHONE_NUMBER`, `phone/PHONE_NUMBER name/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+  e.g. if you specify `phone/12341234 phone/56785678`, only `phone/56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
+* Each attribute prefix can be replaced with its **alias**.
+  e.g. instead of using `add name/John Doe address/Clementi`, `add n/John Doe a/Clementi` will fulfill the same function.
+  The full list of prefix aliases can be found [here](#prefix-aliases).
+
+* **Advanced users** may manually edit the data file located in `[JAR file location]/data/addressbook.json`. Note that if
+  an invalid input is made here, the data file will be discarded and GithubContact will create a new, empty data file.
+
 </div>
 
-### Viewing help : `help`
+<div style="page-break-after: always;"></div>
 
-Shows a message explaning how to access the help page.
+| Action               | Format, Examples                                             |
+| -------------------- | ------------------------------------------------------------ |
+| **add**              | `add [name/NAME] [github/GITHUB] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG] `<br> `add name/John Doe address/27 Clementi` |
+| **delete person**    | `delete INDEX` <br> `delete 1`, `delete 2`                   |
+| **delete attribute** | `delete ATTRIBUTE` <br> `delete name`, `delete slack`, `delete twitter` |
+| **set**              | `set [name/NAME] [github/GITHUB] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG]`<br> `set name/Tex github/Tex-Tang address/Clementi` |
+| **sort**             | `sort` <br> `sort name`, `sort name/desc`                    |
+| **find**             | `find KEYWORD` <br> `find Tex`, `find Engineer`              |
+| **reset**            | `reset`                                                      |
+| **back**             | `back` or `<ESC>` key                                        |
+| **help**             | `help` or `<F1>` key <br> `help`, `help add`                 |
 
-![help message](images/helpMessage.png)
+--------------------------------------------------------------------------------------------------------------------
 
-Format: `help`
+<div style="page-break-after: always;"></div>
 
+## Features
 
-### Adding a person: `add`
+#### Add a person : `add`
 
-Adds a person to the address book.
+Adds a person to the list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add [name/NAME] [github/GITHUB] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG] `
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+- At least one of `NAME` or `GITHUB` must be provided (can be both).
+- The input formats for each attribute can be found [here](#parameter-input-formats)
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+Example:
+- `add github/johndoe`
+- `add github/johndoe name/John Doe`
+- `add name/John Doe address/27 Clementi`
+- `add name/Alex address/22 Clementi phone/86609830 email/alex@gmail.com`
+- `add name/Mike github/mikelim address/21 Clementi phone/86609831 email/mike@gmail.com slack/mike123 telegram/@mike123 tag/friend timezone/+8 role/Frontend`
 
-### Listing all persons : `list`
+Before the command is executed:
 
-Shows a list of all persons in the address book.
+![before adding](images/ug/add_before.png)
 
-Format: `list`
+After the command is executed:
 
-### Editing a person : `edit`
+![after adding](images/ug/add_after.png)
 
-Edits an existing person in the address book.
+<div style="page-break-after: always;"></div>
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+#### Delete a Person : `delete`
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
-
-### Deleting a person : `delete`
-
-Deletes the specified person from the address book.
+Delete the specified person from the address book.
 
 Format: `delete INDEX`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+- This command can only be run in the main page.
+- The index refers to the index number shown in the person list.
+- The index must be a **positive integer** (e.g. 1, 2, 3...)
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+Example:
+- Delete the person at index 1: `delete 1`
+- Delete the person at index 7: `delete 7`
 
-### Clearing all entries : `clear`
+Before the command is executed:
 
-Clears all entries from the address book.
+![before deleting](images/ug/delete_before.png)
 
-Format: `clear`
+After the command is executed:
 
-### Exiting the program : `exit`
+![after deleting](images/ug/delete_after.png)
 
-Exits the program.
+<div style="page-break-after: always;"></div>
 
-Format: `exit`
+#### Find a Person : `find`
 
-### Saving the data
+Displays the persons that match a given keyword. 
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+Format: `find KEYWORD`
 
-### Editing the data file
+-Keyword could be any of the following attributes of the person :
+- `name`
+- `address`
+- `role`
+- `github user`
+- `tags`
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+-You can only run this command in the home page and not the person's detail page.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
+-The keyword can have minor spelling errors (~ 1 or 2 incorrect characters), provided the 
+entire value of the attribute is entered (for example: for John Doe, Jorn Foe will work but not Jorn) and 
+still return correct results.
 
-### Archiving data files `[coming in v2.0]`
+-For `name`, `address`, `role` and `tags`, the attribute value only needs to contain the keyword, 
+provided the spelling is correct. e.g. `find John` will return contacts `John Doe` and `Smith John`.
 
-_Details coming soon ..._
+-The keyword must only be any one of the attributes of the person, and cannot be multiple attributes.
+
+-Find command performs an `OR` search for keywords within fields of the users. e.g. `find xyz` can return two persons, 
+one with the tag `xyz` and one with the role `xyz`.
+
+-The search is also case-insensitive.  e.g. `john` will match `John`
+
+Example:
+- Find all the people named David: `find david`
+- Find all the people with address Clementi: `find Clementi`
+- Find all the people with role SWE: `find SWE`
+- Find all the people with tag friends: `find friends`
+- Find the person with GitHub username sh4nH: `find sh4nH`
+
+
+Before the command is executed:
+
+![before find](images/ug/find_before.png)
+
+After the command is executed:
+
+![after find](images/ug/find_after.png)
+
+<div style="page-break-after: always;"></div>
+
+#### Sort the list of Persons : `sort`
+
+Sort persons in the list.
+
+Format: `sort [name|address|role][/desc]`
+
+Example:
+
+- Sort by role in ascending order: `sort role`
+- Sort by name in descending order: `sort name/desc`
+
+Before the command is executed:
+
+![before sort](images/ug/sort_before.png)
+
+After the command is executed:
+
+![after sort](images/ug/sort_after.png)
+
+<div style="page-break-after: always;"></div>
+
+#### Reset the list of persons: `reset`
+
+Resets the persons list.
+
+Performs the following two functions:
+- Resets the search condition, causing the original list of persons to be displayed.
+- Resets the sorting condition, causing the list of persons to return to its default ordering (by name in ascending order.)
+
+Format: `reset`
+
+Example:
+
+After executing a [`find`](#find-a-person--find) command:
+
+![after find](images/ug/find_after.png)
+
+After `reset` is executed:
+
+![reset](images/ug/reset.png)
+
+<div style="page-break-after: always;"></div>
+
+#### Show a Person's Details : `<ENTER>` or double click
+
+Shows person details in another page.
+
+There are two ways to show person details
+
+1. Keyboard-friendly way
+
+   1. Use the arrow keys to navigate to the desired person.
+
+   2. Press `<ENTER>` to show the person's details.
+
+2. General usage
+
+   1. Double-click on the person card in the list of persons.
+
+Keyboard usage example:
+
+Step 1: Navigate to the desired person using the arrow keys.
+
+![step 1](images/ug/detail_step1.png)
+
+Step 2: Press `<ENTER>` to enter the detail page.
+
+![step 2](images/ug/detail_step2.png)
+
+<div style="page-break-after: always;"></div>
+
+#### Set a Person's Details : `set`
+
+Sets the attributes of a person.
+
+Format `set [name/NAME] [github/GITHUB] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG] `
+
+- You can only run this command in a person's detail page. Please refer to [Show Person Details](#show-a-persons-details--enter-or-double-click) to enter person details page.
+- At least one optional attribute must be provided.
+- If an inputted attribute does not exist yet, it will be added.
+- If an inputted attribute already exists, its value will be updated to the given value.
+- The input formats for each attribute can be found [here](#parameter-input-formats)
+
+Example:
+- `set name/Mike github/mikelim address/21 Clementi phone/86609831 email/mike@gmail.com slack/mike123 telegram/@mike123 tag/friend timezone/+8 role/Frontend`
+- `set name/David Lee telegram/@davidlee123 slack/davidlee123`
+
+Before the command is executed:
+
+![before set](images/ug/set_before.png)
+
+After the command is executed:
+
+![after set](images/ug/set_after.png)
+
+<div style="page-break-after: always;"></div>
+
+#### Delete a Person's Details: `delete`
+
+Delete attribute of a person.
+
+Format: `delete ATTRIBUTE_NAME`
+
+- You can only run this command in a person's detail page. Please refer to [Show Person Details](#show-a-persons-details--enter-or-double-click) to enter person details page.
+- `name` cannot be deleted as it is a required attribute.
+- You only can delete one attribute at one time. If multiple arguments
+are provided, the last of the provided arguments will be deleted.
+- For example, `delete github role email` will result in only the `email`
+being deleted.
+
+Attributes (`ATTRIBUTE_NAME`) that can be deleted:
+- `role`
+- `timezone`
+- `email`
+- `phone`
+- `slack`
+- `telegram`
+- `github`
+
+Example:
+- `delete telegram`
+- `delete email`
+
+Before the command is executed, inside a person's contact detail page:
+
+![before delete attr](images/ug/delete_attr_before.png)
+
+After the command is executed:
+
+![after delete attr](images/ug/delete_attr_after.png)
+
+<div style="page-break-after: always;"></div>
+
+#### Return to previous page : `back` or `<ESC>`
+
+Returns to the previously selected page.
+
+Format: `back` or `<ESC>`
+
+Example uses:
+- Returning to the main page from the help page.
+- Returning to the main page from the contact detail page.
+- Returning to the contact detail page from the detail help page.
+
+Before the command is executed, in the detail help page:
+
+![before back](images/ug/back_before.png)
+
+After the command is executed:
+
+![after back](images/ug/back_after.png)
+
+<div style="page-break-after: always;"></div>
+
+#### Show help page : `help` or `<F1>`
+
+Shows the help page or usage instruction of specified command.
+
+If executed without arguments, for the given page, show:
+- The commands that can be executed at that page
+- The descriptions of each command
+
+If executed with a given command, e.g. `help delete`, show:
+- The description of the command
+- Its parameters
+- An example usage
+
+Format: `help [add|back|clear|delete|exit|find|help|reset|set|sort]`
+
+Main page help:
+
+![main](images/ug/main_page_help.png)
+
+Detail page help:
+
+![detail](images/ug/detail_page_help.png)
+
+After executing `help delete`:
+
+![help](images/ug/help_delete.png)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous GithubContact home folder.
+
+**Q**: How do I add more than 1 email address/ phone number?<br>
+**A**: Unfortunately, this iteration of GithubContact only supports one email address/ phone number.
+
+
+**Q**: How do I save my data?<br>
+**A**: You may be able to get the contact's email from GitHub if they have chosen to make it public. We do not currently support any other forms of contacts to be pulled form GitHub.
+
+**Q**: How do I save my data?<br>
+**A**: GithubContact automatically saves your data locally and retrieves it the next time you open it.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+<div style="page-break-after: always;"></div>
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+## Prefix Aliases
+
+| Prefix   | Aliases              |
+|----------|----------------------|
+| Name     | `name/`, `n/`        |
+| Address  | `address/`, `a/`     |
+| Tag      | `tag/`, `t/`         |
+| Email    | `email/`, `@/`       |
+| Phone    | `phone/`, `+/`       |
+| Slack    | `slack/`, `sk/`      |
+| Telegram | `telegram/`, `tele/` |
+| Role     | `role/`, `r/`        |
+| Timezone | `timezone/`, `tz/`   |
+
+<div style="page-break-after: always;"></div>
+
+## Parameter Input Formats
+
+| Attribute | Input Format                                                                                                                                                                                                                                                                                                                 |
+|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name      | Should only contain alphanumeric characters, spaces or dashes, and it should not be blank.                                                                                                                                                                                                                                   |
+| Address   | Can contain any character but should not be blank.                                                                                                                                                                                                                                                                           |
+| Role      | Starts with a letter, and contains only alphanumeric characters and space.                                                                                                                                                                                                                                                   |
+| Timezone  | Should be a number with a sign(+18 to -18) and should not be blank                                                                                                                                                                                                                                                           |
+| Phone     | Should only contain numbers and should be 3 digits long                                                                                                                                                                                                                                                                      |
+| Email     | Should be of the format <LOCALPART>@<DOMAIN>. The LOCALPART should have only alphanumeric characters, "+", "_", ".", and "-". The DOMAIN is made up of domain labels separated by periods(.), each one starting and ending with alphanumeric characters. The DOMAIN must end with a domain label at least 2 characters long. |
+| Slack     | Should contain only numbers, underscores(_), and lowercase letters. Must be between 1 and 20 characters in length                                                                                                                                                                                                            |
+| Telegram  | Should be of the format @<USERNAME>. USERNAME should be between 5 and 32 characters long, with only alphanumeric characters and underscores. It cannot start or end with an underscore nor have consecutive underscores.                                                                                                     |
+| Tag       | Should be alphanumeric                                                                                                                                                                                                                                                                                                       |
+| Github    | Should contain only alphanumeric characters or dashes. It cannot start or end with a hyphen nor have consecutive hyphens. Its maximum length is 39 characters.                                                                                                                                                               | 

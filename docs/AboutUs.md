@@ -5,55 +5,55 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Vaishnav Muralidharan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/vshnv2001.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
 
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/Vshnv2001)]
+[[portfolio](team/Vshnv2001.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities : Application Logic and Testing
 
-### Jean Doe
+### Tang Zhi Lin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/tex-tang.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/Tex-Tang)]
+[[portfolio](team/tex-tang.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: UI + Data
 
-### James Doe
+### Andrew Lo Zhi Sheng
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wrewsama.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/wrewsama)]
+[[portfolio](team/wrewsama.md)]
 
 * Role: Developer
 * Responsibilities: UI
+
+### Shan Hashir
+
+<img src="images/sh4nh.png" width="200px">
+
+[[github](http://github.com/sh4nH)]
+[[portfolio](team/sh4nh.md)]
+
+* Role: Developer
+* Responsibilities: UI
+
+### Arnav Aggarwal
+
+<img src="images/arnav-ag.png" width="200px">
+
+[[github](http://github.com/arnav-ag)]
+[[portfolio](team/arnav-ag.md)]
+
+* Role: Developer
+* Responsibilities: UI + API Integration

@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 
-<GridPane styleClass="status-bar" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10" />
-  </columnConstraints>
+<HBox styleClass="status-bar" alignment="CENTER_LEFT" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <Label fx:id="saveLocationStatus" />
-</GridPane>
+  <HBox HBox.hgrow="ALWAYS" />
+  <HBox styleClass="command-hint-container" spacing="8">
+    <HBox alignment="CENTER_LEFT" spacing="4">
+      <Label text="F1" styleClass="kbd" />
+      <Label text="Help" />
+    </HBox>
+    <HBox alignment="CENTER_LEFT" spacing="4">
+      <Label text="Esc" styleClass="kbd" />
+      <Label text="Back" />
+    </HBox>
+    <HBox alignment="CENTER_LEFT" spacing="4">
+      <Label text="↑" styleClass="kbd" />
+      <Label text="↓" styleClass="kbd" />
+      <Label text="Navigate" />
+    </HBox>
+  </HBox>
+</HBox>
