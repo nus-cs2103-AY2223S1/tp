@@ -19,6 +19,9 @@ public class ObservableItem<T> extends ObservableValueBase<T> {
     }
 
     public void setValue(T item) {
+        // Setting to dummy value to trigger value change.
+        this.item = null;
+        fireValueChangedEvent();
         this.item = item;
         fireValueChangedEvent();
     }
