@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("find n/bob")
+[-> LogicManager : execute("find n/bob t/friend")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("find n/bob")
+LogicManager -> AddressBookParser : parseCommand("find n/bob t/friend")
 activate AddressBookParser
 
 create FindCommandParser
@@ -34,10 +34,16 @@ deactivate
 FindCommandParser --> AddressBookParser
 deactivate FindCommandParser
 
-AddressBookParser -> FindCommandParser : parse("n/bob")
+AddressBookParser -> FindCommandParser : parse("n/bob t/friend")
 activate FindCommandParser
 
-FindCommandParser -> PersonMatchesPredicate : setNamesList(List<String> namesList)
+FindCommandParser -> PersonMatchesPredicate : setNamesList(namesList)
+activate PersonMatchesPredicate
+
+PersonMatchesPredicate -> FindCommandParser
+deactivate
+
+FindCommandParser -> PersonMatchesPredicate : setTagsSet(tagsSet)
 activate PersonMatchesPredicate
 
 PersonMatchesPredicate -> FindCommandParser

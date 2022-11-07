@@ -24,6 +24,7 @@ SoConnect is a desktop address book application designed for National University
   * User Guide
     * Added documentation for the feature `find` [#118](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/118)
   * Developer Guide
+    * Explained current implementation and future proposals for enhancing `find` command [#213](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/213)
     * Added sequence diagram for `find` command [#118](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/118) 
     * Wrote user stories for `find` [#118](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/118)
     * Added use cases for `find` command [#118](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/118)
