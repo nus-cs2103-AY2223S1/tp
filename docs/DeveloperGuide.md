@@ -427,6 +427,66 @@ Given below is an example usage scenario and how the sort mechanism behaves at e
     * Cons: Attribute subclasses must be instantiated possibly through a factory method just to get the `Comparator`
       used in sorting.
 
+## Import
+
+### Implementation
+
+The implemented feature is implemented by `ImportCommand` which extends the abstract `Command` class. As our design
+of import opens a GUI file browser for the user to select a file, it uses the `FileChooser` object provided by
+JavaFX for its functionality. As `FileChooser` requires a JavaFX stage to work, `ImportCommand` has to be hooked 
+and executed partially by `MainWindow` as well. To facilitate communication between `ImportCommand` and `MainWindow`,
+an additional flag `chooseFile` has been hooked to `CommandResult`. This dynamic will be illustrated by a sequence diagram,
+which has been split into two parts.
+
+![ImportCommandSequenceDiagram1](images/diagrams/ImportCommandSequenceDiagram1.png){: diagram}
+
+After the command is passed to `LogicManager`, command processing occurs as per typical commands in StudMap. However, 
+`ImportCommand` does not handle any file processing (as no file has been selected yet), and instead returns a `CommandResult`
+with the flag `chooseFile == true`.
+
+![ImportCommandSequenceDiagram2](images/diagrams/ImportCommandSequenceDiagram2.png){: diagram}
+
+After receiving the `CommandResult` with the flag, `MainWindow` will handle chooseFile execution, opening the file browser
+for the user. After a file has been selected, the file will be passed to `LogicManager`, which is then passed to `ImportCsv`
+for processing and insertion into the model.
+
+### General Flow for `ImportCommand`
+
+Given below is an example usage scenario and how the import mechanism behaves at each step.
+
+1. `import` is received from user input, and after a chain of execution from `LogicManager` to `ImportCommand`,
+    indicates to `MainWindow` that `import` has been called.
+
+2. `MainWindow` opens a file browser through the `FileChooser` object for the user to select a CSV file.
+
+3. The file is passed to `ImportCsv`, which then reads each row of CSV data line by line.
+
+4. If the data in the CSV row follows the required input format, it creates a student populated with the data, and
+   populates the model with that student.
+
+5. This process is repeated until the CSV file has no more rows left to read.
+
+6. The updated student list populated with new students is displayed to the user.
+
+The following activity diagram summarizes the execution of import.
+![ImportActivityDiagram](images/diagrams/ImportActivityDiagram.png){: diagram}
+
+### Design Considerations
+
+**Aspect: How the user selects a file:**
+
+* **Alternative 1:** User specifies the path to the file as a parameter for the `import` command.
+    * Pros: Easy to implement. Avoids interfacing with the JavaFX FileChooser object, containing all processes 
+      within the `ImportCommand` 
+    * Cons: May lead to complications involving paths and directories. Will also be time consuming and less intuitive
+      for the user.
+
+* **Alternative 2 (current choice):** `import` command opens a file browser for the user to choose the file.
+  * Pros: Intuitive and efficient for the user to navigate. Avoids many of the complications involving paths 
+    (e.g. relative / absolute paths) and processing input
+  * Cons: May lead to unnecessary communication between `Logic` and `UI`, and also increases code coupling. More difficult
+    to implement.
+  
 ## \[Proposed\] Undo/Redo
 
 ### Proposed Implementation

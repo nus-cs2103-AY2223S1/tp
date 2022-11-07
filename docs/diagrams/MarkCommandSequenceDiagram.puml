@@ -27,8 +27,10 @@ loop until end of indexes
     activate StudentData
 
     StudentData --> StudentEditor
+    deactivate StudentData
 
     StudentEditor -> StudentData : setAttendances(newAttendances)
+    activate StudentData
 
     StudentData --> StudentEditor
     deactivate StudentData
