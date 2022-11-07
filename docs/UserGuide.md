@@ -157,7 +157,7 @@ Notes on symbols in first column:
 
 * `aa n/Bernice Yu s/2022-01-23 09:00 d/Dioni Yong t/CT` adds another appointment for `Bernice Yu`.
 
-<img src="images/ug/addcommand/aa3.png">
+<img src="images/ug/addcommand/aa2.png">
 
 ### 1.1.3 Add a bill of an appointment `addbill`, `ab`
 
@@ -211,7 +211,23 @@ Edits a patient's information, such as name, phone number, address, email, remar
 #### Format:
 `Command word <index of patient> <prefix><input> ...`
 
+
+#### Parameter List
+
+
+|       | Prefix | Meaning          | Input Constraint                                                                            |
+|-------|--------|------------------|---------------------------------------------------------------------------------------------|
+| `**`  | NA     | Index of patient | 1. Positive integer <br/> 2. Appears in the patient list                                    |
+| `*`   | `n/`   | Name             | 1. Non-empty alphanumeric characters and spaces<br/> 2. Must not be existing patient's name |
+| `*`   | `p/`   | Phone            | Numbers with at least 3 digits                                                              |
+| `*`   | `e/`   | Email address    | `local-part@domain`                                                                         |
+| `*`   | `a/`   | Home address     | Non-empty characters                                                                        |
+|       | `r/`   | Remark           | Any characters                                                                              |
+| `+`   | `t/`   | Tag              | One alphanumeric word                                                                       |
+
+
 * Edits the patient at the specified index. The index of patient refers to the index number shown in the displayed patient list.
+
   The index **must be a positive integer** 1, 2, 3, …​
 * <input> refers to the new value of the field to be edited.
 * User input should be different from the previous information that the patient has.
@@ -237,11 +253,11 @@ Edits a patient's information, such as name, phone number, address, email, remar
 * `editpatient 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the first patient on the displayed list to be
    `91234567` and `johndoe@example.com` respectively.
 
-<img src = "images/ug/editcommand/editpatient.png">
+<img src = "images/ug/editcommand/ep1.png">
 
 * `editpatient 2 n/Betsy Crower t/` edits the name of the second patient on the displayed list to be `Betsy Crower` and clears all existing tags.
 
-<img src = "images/ug/editcommand/editpatient2.png">
+<img src = "images/ug/editcommand/ep2.png">
 
 ### 1.2.2 Edit an appointment of a patient `editappointment`, `ea`
 
@@ -252,7 +268,20 @@ Edits an appointment of a patient, such as name, medical test, slot, and doctor.
 #### Format:
 `Command word <index of appointment> <prefix><input> ...`
 
+#### Parameter List
+
+
+|       | Prefix | Meaning              | Input Constraint                                                                        |
+|-------|--------|----------------------|-----------------------------------------------------------------------------------------|
+| `**`  | NA     | Index of appointment | 1. Positive integer <br/> 2. Appears in the appointment list                            |
+| `*`   | `n/`   | Name                 | 1. Non-empty alphanumeric characters and spaces<br/> 2. must be existing patient's name |
+| `*`   | `s/`   | Slot                 | Valid date and time in format `yyyy-MM-dd HH:mm`                                        |
+| `*`   | `d/`   | Doctor name          | Non-empty alphanumeric characters and spaces                                            |
+| `*`   | `t/`   | Medical test         | Non-empty characters                                                                    |
+
+
 * Edits the appointment at the specified index. The index of appointment refers to the index number shown in the displayed appointment list.
+
 * The index **must be a positive integer** 1, 2, 3, …​
 * The <input> refers to the new value of the field to be edited.
 * User input should be different from the previous information that the appointment has.
@@ -270,10 +299,11 @@ Edits an appointment of a patient, such as name, medical test, slot, and doctor.
 | `*` | `t/`   | Medical test | Non-empty characters                                                                    |
 
 #### Examples:
-* `editappointment 1 n/zanw t/CT Scan s/2021-03-01 10:00 d/Tan` edits the name, medical test, slot,
-   and doctor of the first appointment to be `zanw`, `CT Scan`, `2021-03-01 10:00`, and `Tan` respectively.
 
-<img src = "images/ug/editcommand/editappointment.png">
+* `editappointment 1 n/David Li t/CT Scan s/2021-03-01 10:00 d/Tan` Edits the name, medical test, slot,
+   and doctor of the 1st appointment to be `David Li`, `CT Scan`, `2021-03-01 10:00`, and `Tan` respectively.
+
+<img src = "images/ug/editcommand/ea1.png">
 
 ### 1.2.3 Edit a bill of an appointment `editbill`, `eb`
 
@@ -286,20 +316,27 @@ Edits the bill of an appointment.
 
 `Command word <index of bill> <prefix><input> ...`
 
+#### Parameter List
+
+|        | Prefix  | Meaning       | Input Constraint                                           |
+|--------|---------|---------------|------------------------------------------------------------|
+| `**`   | NA      | Index of bill | 1. Positive integer <br/> 2. Appears in the bill list<br/> |
+| `*`    | `a/`    | Amount        | Positive number with at most 2 decimal place               |
+| `*`    | `d/`    | Bill Date     | Valid date in format `yyyy-MM-dd`                          |
+
 * Edits the bill at the specified index. The index of bill refers to the index number shown in the displayed bill list.
+
   The index **must be a positive integer** 1, 2, 3, …​
-* User input should be different from the previous information that the bill has.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 #### Examples:
 * `editbill 1 a/100` edits the amount of the first bill to be `100`.
 
-<img src="images/ug/editcommand/editbill.png">
+<img src="images/ug/editcommand/eb1.png">
 
-
-* `editbill 1 d/2020-10-10` edits the bill date of the first bill to be `2020-10-10`.
-<img src="images/ug/editcommand/editbill2.png">
+* `editbill 1 d/2022-10-10` edits the bill date of the 1st bill to be `2022-10-10`.
+<img src="images/ug/editcommand/eb2.png">
 
 ## 1.3 Find
 
@@ -335,13 +372,14 @@ special characters). The filtered patients are then listed as an indexed list.
 
 
 #### Examples:
-* ```findpatient n/ale``` returns `Alex Yeoh` and `alex tan`.
 
-<img src="images/ug/findcommand/findpatientAlex.png">
+* ```findpatient n/alex``` returns ``Alex Yeoh`` and ``alex tan``.
+
+<img src="images/ug/findcommand/fp_alex.png">
 
 * ```fp t/friends t/colleagues n/bernice``` returns only `Bernice Yu` with the tags `friends` and `colleagues`.
 
-<img src="images/ug/findcommand/findpatientBernice.png">
+<img src="images/ug/findcommand/fp_byu.png">
 
 ### 1.3.2 Find appointment(s) `findappointment`, `fa`
 
@@ -373,13 +411,14 @@ special characters).
 
 
 #### Examples:
-* ```findappointment t/x-ray``` returns `Bernice Yu` with `X-ray` appointment.
 
-<img src="images/ug/findcommand/findappointmentXray.png">
+* ```findappointment t/x-ray``` returns `Bernice Yu`'s appointment with medical test `X-ray`.
+
+<img src="images/ug/findcommand/fa_xray.png">
 
 * ```fa d/Dr Tan n/Alex``` returns only `Alex Yeoh`'s appointment with `Dr Tan`.
 
-<img src="images/ug/findcommand/findappointmentAlex.png">
+<img src="images/ug/findcommand/fa_alextan.png">
 
 
 ### 1.3.3 Find bill(s) `findbill`, `fb`
@@ -411,7 +450,8 @@ special characters).
 | `p/`   | Payment Status | Only "paid" or "unpaid" in any case                                                                    |
 
 #### Examples:
-`findbill n/Ber p/unpaid` returns `Bernice Yu`'s unpaid bill.
+
+`findbill n/Ber p/unpaid` returns `Bernice Yu`'s unpaid bill
 
 <img src="images/ug/findcommand/fb.png">
 
@@ -742,7 +782,7 @@ Reverses the most recent command.
 
 Original data:
 
-<img src="images/ug/undoredocommand/undo1.PNG">
+<img src="images/ug/undoredocommand/undo1.png">
 
 * `deletepatient 1` deletes all information of `Bernice Yu`.
 
@@ -771,7 +811,7 @@ Reverses the most recent undo command.
 
 Original Data
 
-<img src="images/ug/undoredocommand/redo1.PNG">
+<img src="images/ug/undoredocommand/redo1.png">
 
 * `deletepatient 1` deletes all information of `Bernice Yu`.
 

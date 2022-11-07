@@ -858,18 +858,6 @@ Use case ends.
 4. HealthContact displays the unpaid bills in sorted order with the most expensive bill at the top. <br>
 Use case ends.
 
-**Extensions**
-* 1a. HealthContact detects an error in the format of the command entered.
-    * 1a1. HealthContact shows an error message.
-    * 1a2. User enters the command again.
-    * Steps 1a1-1a2 are repeated until the data entered are correct.
-    * Use case resumes from step 2.
-* 3a. HealthContact detects an error in the format of the command entered.
-    * 3a1. HealthContact shows an error message.
-    * 3a2. User enters the command again.
-    * Steps 3a1-3a2 are repeated until the data entered are correct.
-    * Use case resumes from step 4.
-
 **Use case: UC-10 - Redoing a command**
 
 **MSS**
@@ -1246,11 +1234,11 @@ testers are expected to do more *exploratory* testing.
 * Edit feature
   * EditCommand is AB3 versus EditPatientCommand, EditAppointmentCommand and EditBillCommand in HealthContact
 
-| AB3 (FindCommand)                                                          | HealthContact                                                                                                    |
-|----------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| Edits persons only                                                         | Edits patients, appointments and bills separately                                                                |
-| Edits name, phone, email, address, tag                                     | Edits by respective fields of patients, appointments and bills                                                   |
-| Can only edit using full words                                             | Can edit using partial and full words, and special characters depending on respective field constraints          |
+| AB3 (EditCommand)                      | HealthContact                                                                                                    |
+|----------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| Edits persons only                     | Edits patients, appointments and bills separately                                                                |
+| Edits name, phone, email, address, tag | Edits by respective fields of patients, appointments and bills                                                   |
+| Can only edit using full words         | Can edit using partial and full words, and special characters depending on respective field constraints          |
 
 
 
