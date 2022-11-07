@@ -24,6 +24,7 @@ If you are looking to help develop this project, take a look at our [Developer G
 * [**Layout**](#layout)
 * [**Using this guide**](#using-this-guide)
 * [**Command guide**](#command-guide)
+* [**Symbols and Syntax**](#symbols-and-syntax)
 * [**Quick start**](#quick-start)
 * [**Tutorial**](#tutorial)
 * [**Features**](#features)
@@ -109,6 +110,23 @@ p.s. Not too sure about some technical terms in this guide? Check out our [gloss
 
 -------------------------------------------------------------------------------------------------------------------
 
+## Symbols and Syntax
+
+As you read through this document, you might come across some symbols and highlighted words, as described 
+in the table below:
+
+| Symbol/Syntax                                   | Meaning                                                                                                                                         |
+|-------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| :information_source: **Notes**                  | Information that you need to pay attention to.                                                                                                  |
+| :bulb: **Tip**                                  | Information that you may find helpful.                                                                                                          |
+| :exclamation: **Caution:**                      | Information that you need to know before executing a [command](#command)                                                                        |
+| `Highlighted text block`                        | [Commands](#command) or [parameters](#parameter) that you can enter into our application, or text that is directly displayed in our application |
+| [Hyperlinked text in blue](#symbols-and-syntax) | When it is pressed, it should lead you to another section in the document or to an external link.                                               |
+
+[Back to top &#8593;](#welcome-to-trackos-user-guide)
+
+---------
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -121,8 +139,9 @@ p.s. Not too sure about some technical terms in this guide? Check out our [gloss
 
     <div markdown="span" class="alert alert-primary">
         :bulb: **Tip:**
-        Any folder can be a home folder for your TrackO. In this case, the home folder is an 
-        empty folder called `TrackO` located in the `Desktop`.
+        Any folder can be a home folder for your TrackO. However, it is recommended that you use an **empty folder** as
+        your home folder, as the file containing your data will also be stored in this folder. In this case, the home
+        folder is an empty folder called `TrackO` located in the `Desktop`.
     </div>
 
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. The application will already contain some sample
@@ -190,7 +209,7 @@ TrackO's functionalities!
 
          <img src="./images/user-guide/Tutorial2.png" alt="Tutorial2">
     
-         <div markdown="span" class="alert alert-primary">:bulb: **Note:**
+         <div markdown="block" class="alert alert-info">:information_source: **Note:**
          If an item is not in your inventory, TrackO does not allow you to add that item to an order!
          </div>
 
@@ -265,14 +284,6 @@ Format: `addi n/ITEM_NAME q/QUANTITY d/DESCRIPTION sp/SELL_PRICE cp/COST_PRICE [
 - `COST_PRICE` is the amount that it costs to produce per unit of the item
 - `SELL_PRICE` and `COST_PRICE` should be given as a number rounded to the nearest cent
 - TrackO allows items to have a larger `COST_PRICE` than `SELL_PRICE`, where items can be sold at a loss
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An inventory item's name must be more than 1 character long.
-</div>
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An inventory item can have 0 or more tags. A tag should only consist of 1 word. A tag **cannot** have more than 30 characters.
-</div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -716,7 +727,7 @@ Format: `marko INDEX [-p] [-d]`
 * When an order is completed (marked as both `paid` and `delivered`), 
 the colour of the particular order's card will be in a darker shade than an uncompleted order. 
 
-<div markdown="block" class="alert alert-info">:bulb: **Note:**
+<div markdown="block" class="alert alert-info">:information_source: **Note:**
 You can mark an order with insufficient stock as paid (to record payments for pre-orders) but you **cannot** 
 mark an order as **delivered** if there is **insufficient stock** of the item(s) involved in the order.
 </div>
@@ -756,7 +767,7 @@ If you want to clear all sample data present, `clear` is the command for you.
 
 The command `clear` clears all data (in both [Order List](#layout) and [Inventory List](#layout)) from TrackO.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Warning:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 This action is **irreversible**. Please make sure you really want to wipe all of your order and inventory data before proceeding.
 </div>
 

@@ -9,8 +9,6 @@ title: Melissa Anastasia Harijanto's Project Portfolio Page
 efficiently in the form of an integrated solution built using Java with around 15 kLOC. The user interacts with the
 application via a CLI, and the application responds with its GUI, created with JavaFX.
 
-Given below are my contributions to the project.
-
 ### Summary of Contributions
 
   - **Code contributed**: Click here for
@@ -22,12 +20,6 @@ Given below are my contributions to the project.
     - Justification: As the team is taking on a new approach to the project, we wanted to rebrand and give users the
     impression of a fresh and new application.
     - Highlights:
-      - To implement the UI, I had to familiarize myself with JavaFX, something I barely have experience with. Doing
-      this required me to analyze the code and determine the pros and cons of each element that is being used, e.g. the
-      pros and cons of using a `HBox` and `FlowPane`, the former only laying its children horizontally in a single row,
-      while the latter lays its children horizontally in multiple rows, but with risk of overflowing.
-      - I had to also get in touch with the `.css` file and determine which ones I had to change in order to achieve
-      the desired effect.
       - I considered the case of extreme inputs and fix the UI to display such inputs without truncating them.
       Aside from that, I also constantly test the UI in order to keep it bug-free, and immediately fix any that I could
       find.
@@ -43,9 +35,6 @@ Given below are my contributions to the project.
       classes) for the members to build on, utilizing object-oriented programming.
       - Justification: This task had to be done quite early in order to minimize conflicts between the members' code, as
       commands relying on `Item`s had to depend on this class.
-      - Highlights:
-        - This was one of my earliest exposures to the code base (aside from the tutorial tasks), and implementing this
-        made me understand it more.
       - Relevant pull request(s): [#58](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/58)
 
     - **Implement the following commands: `edito`, `listi`, `findi`**
@@ -64,26 +53,10 @@ Given below are my contributions to the project.
       - Relevant pull request(s): [#131](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/131)
 
     - **Write test cases**
-      - What was done: Implemented JUnit test cases for the following:
-        - `EditOrderDescriptorTest`
-        - `EditOrderCommandTest`
-        - `EditOrderDescriptorBuilder`
-        - `DeleteOrderCommandParserTest`
-        - `DeleteOrderCommandTest`
-        - `DeleteItemCommandTest`
-        - `DeleteItemCommandParserTest`
-        - `QuantityTest`
-        - `DescriptionTest`
-        - `ItemNameTest`
+      - What was done: Implemented JUnit test cases for the following: `EditOrderDescriptorTest`, 
+      `EditOrderCommandTest`, `EditOrderDescriptorBuilder`, `DeleteOrderCommandParserTest`, `DeleteOrderCommandTest`,
+      `DeleteItemCommandTest`, `DeleteItemCommandParserTest`, `QuantityTest`, `DescriptionTest`, `ItemNameTest`
       - Justification: Testing will reduce the chances of bugs occurring in the program.
-      - Highlights:
-        - Making test cases required me to understand certain methods, such as `assertTrue`, `assertFalse`,
-        `assertThrows`, etc. However, the code base itself already has testing utilities that I could use, which
-        simplifies the testing process.
-        - Designing the tests relating to the `EditOrderCommand` is the most challenging; it required a lot of
-        debugging as through the tests, I found out that the command was not executed as how it was meant to be.
-        This case especially allowed me to realize that testing is an extremely crucial part of creating a
-        bug-free program.
       - Related pull request(s): [#100](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/100),
       [#122](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/122)
 
@@ -100,12 +73,16 @@ Given below are my contributions to the project.
     - Fixed UG bugs due to Markdown syntax issues
       - Relevant pull request(s): [#135](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/135), 
       [#216](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/216)
+    - Added `Symbols & Syntax` section
+      - Relevant pull request(s): [#225](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/225)
 
   - **Contributions to the DG**:
     - Added use cases for the Developer's Guide
       - Relevant pull request(s): [#48](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/48)
-    - Made sequence diagrams and implementation details for `edito`, `findi`, `listi`
+    - Made UML sequence diagrams and implementation details for `edito`, `findi`, `listi`
       - Relevant pull request(s): [#138](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/138)
+    - Add manual testing guide for `help`, `clear`, `exit`, `Editing the data file` and `Starting with missing/corrupted data files`
+      - Relevant pull request(s): [#225](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/225)
 
   - **Contributions to team-based tasks**:
     - Enabling assertions. [#184](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/104)
