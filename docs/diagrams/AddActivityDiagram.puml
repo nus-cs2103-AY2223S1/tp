@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+
+start
+
+:user enters a add command in
+the command box;
+
+:AddCommandParser parses the argument;
+
+if () then ([valid input arguments])
+    if () then ([adding student or tutor])
+        :update Model using the
+        Model#addPerson operation;
+    else ([adding class])
+        :update Model using the
+        Model#addTuitionClass operation;
+    endif
+else ([else])
+    :throws ParseException
+    with usage message
+    and feedback message;
+endif
+:returns feedback to user;
+
+stop
+
+@enduml

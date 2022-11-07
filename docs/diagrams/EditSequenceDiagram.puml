@@ -1,0 +1,152 @@
+@startuml
+!include style.puml
+
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "<<class>>\nParserUtil" as ParserUtil LOGIC_COLOR
+participant "<<class>>\nArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
+participant "a:ArgumentMultimap" as ArgumentMultimap LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "e:EditCommand" as EditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit 1 n/John")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("edit 1 n/John", ...)
+activate AddressBookParser
+
+create EditCommandParser
+AddressBookParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser -> ArgumentTokenizer : tokenize(args, ...)
+activate ArgumentTokenizer
+create ArgumentMultimap
+ArgumentTokenizer -> ArgumentMultimap
+activate ArgumentMultimap
+
+ArgumentMultimap -> ArgumentTokenizer : a
+deactivate ArgumentMultimap
+
+ArgumentTokenizer -> EditCommandParser : a
+deactivate ArgumentTokenizer
+
+EditCommandParser -> ParserUtil : parseIndex(...)
+activate ParserUtil
+
+ParserUtil -> EditCommandParser
+deactivate ParserUtil
+
+alt student list
+
+EditCommandParser -> EditCommandParser : extractFromMapForStudent(...)
+activate EditCommandParser
+
+EditCommandParser -> EditCommandParser
+deactivate EditCommandParser
+
+else tutor list
+
+EditCommandParser -> EditCommandParser : extractFromMapForTutor(...)
+activate EditCommandParser
+
+EditCommandParser -> EditCommandParser
+deactivate EditCommandParser
+
+else tuition class list
+
+EditCommandParser -> EditCommandParser : extractFromMapForClass(...)
+activate EditCommandParser
+
+EditCommandParser -> EditCommandParser
+deactivate EditCommandParser
+
+end
+
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
+
+EditCommand --> EditCommandParser : e
+deactivate EditCommand
+
+EditCommandParser -> AddressBookParser : e
+deactivate EditCommandParser
+
+destroy EditCommandParser
+destroy ArgumentMultimap
+
+AddressBookParser --> LogicManager : e
+deactivate AddressBookParser
+
+LogicManager -> EditCommand : execute(model)
+activate EditCommand
+
+EditCommand -> Model : getCurrentList()
+activate Model
+
+Model --> EditCommand : l
+deactivate Model
+
+alt student list or tutor list
+
+EditCommand -> EditCommand : createEditedPerson(...)
+activate EditCommand
+
+EditCommand -> EditCommand : p
+deactivate EditCommand
+
+EditCommand -> Model : setPerson(l.get(...), p)
+activate Model
+
+Model -> EditCommand
+deactivate Model
+
+else tuition class list
+
+EditCommand -> EditCommand : createEditedClass(...)
+activate EditCommand
+
+EditCommand -> EditCommand : c
+deactivate EditCommand
+
+EditCommand -> Model : setTuitionClass(l.get(...), c)
+activate Model
+
+Model -> EditCommand
+deactivate Model
+
+EditCommand -> Model : updateFilteredTuitionClassList(...)
+activate Model
+
+Model -> EditCommand
+deactivate Model
+
+end
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditCommand
+deactivate CommandResult
+CommandResult -[hidden]-> EditCommand
+
+
+EditCommand --> LogicManager : commandResult
+deactivate EditCommand
+
+EditCommand -[hidden]-> LogicManager
+destroy EditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
