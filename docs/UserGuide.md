@@ -388,6 +388,8 @@ Examples:
 * `plan 2 d/3 st/12:00` would add the 2nd item in the Wishlist to Day 3, starting at 12pm.
 * `plan 1 d/1 st/14:50:10` would add the 1st item in the Wishlist to Day 1, starting at 14:50pm, 10 seconds in.
 
+<p><div style="page-break-after: always"></div></p>
+
 ### Unscheduling an item : `unplan`
 
 Takes an item from the itinerary and puts it back into the Wishlist.
