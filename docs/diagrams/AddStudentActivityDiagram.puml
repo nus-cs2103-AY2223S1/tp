@@ -20,7 +20,7 @@ if () then ([all prefixes present])
                 already exists in ModQuik;
                 if() then ([no duplicate student id in ModQuik])
                     :Add new Student to ModQuik;
-                 else ([else])
+                else ([else])
                     :Display error message that student id
                     provided already exists in ModQuik;
                 endif
