@@ -665,6 +665,29 @@ The following activity diagram summarizes what happens when the user runs a `Sor
 #### Future Implementations
 * Sorting of deadlines could be considered as well
 
+<div style="page-break-after: always;"></div>
+
+###  `Exit` Feature
+#### Proposed Implementation
+The proposed `Exit` Feature allows the professor to exit the FYP Manager.
+The `Exit` feature mechanism is facilitated by `ExitCommand`. It extends from the abstract class `Command`.
+To summarize, it implements the following operation:
+* `ExitCommand#execute()` — oversees the execution process for `ExitCommand`.
+
+Given below is an example usage scenario of `ExitCommand`:
+1. The user enters the `Exit` command.
+2. `UiManager` calls `MainWindow#fillInnerParts()`.
+3. `MainWindow#fillInnerParts()` executes a `executeCommand()` and creates a `CommandResult`.
+4. `LogicManager` executes the `ExitCommand` using the `LogicManager#execute()` method.
+   4.1. `FypManagerParser` will parse the command using `parseCommand` and generate
+   4.2. `ExitCommand` then creates a `CommandResult` and returns it to `MainWindow` to complete the command.
+   4.3. `StorageManager` will save the record using method `StorageManager#saveFypManager()`.
+5. `handleExit()` is then executed to hide the main window.
+
+The following sequence diagram shows how the list command works:
+
+<img src="images/ExitSequenceDiagram.png" width="550" />
+
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
