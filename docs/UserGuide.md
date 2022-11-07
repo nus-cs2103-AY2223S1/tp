@@ -49,7 +49,7 @@ If this is the first time you are using this user guide, it is highly recommende
     * [Filtering items by attributes](#filtering-items-by-attributes--filter)
         + [Filtering orders](#filtering-orders--filter-o)
         + [Filtering pets](#filtering-pets--filter-p)
-    * [Sorting contacts](#sorting-contacts--sort)
+    * [Sorting contacts](#sorting-contacts-and-items--sort)
     * [Clearing all contacts](#clearing-all-entries--clear)
     * [Exiting the program](#exiting-the-program--exit)
     * [Automation of information flow (future feature)](#automation-of-information-flow-coming-in-v20)
@@ -854,7 +854,7 @@ Examples:
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-### Sorting contacts : `sort`
+### Sorting contacts and items : `sort`
 
 Sorts the specified list based on the default or given attribute(s) as sorting criteria.
 
