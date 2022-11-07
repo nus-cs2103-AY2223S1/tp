@@ -2,7 +2,8 @@
 layout: page
 title: User Guide
 ---
-###Introduction
+##Introduction
+
 Welcome to the User Guide of MODPRO!
 
 MODPRO is a desktop application which helps NUS students track the progress of their modules.
@@ -15,6 +16,7 @@ MODPRO helps you…
 It is highly optimised for students who prefer Command Line Interface (CLI) by allowing those who type fast to key in commands to track their modules. If you struggle to type fast, we also provide a Graphical User interface (GUI) to assist you in using MODPRO.
 
 ###The Graphical User Interface (GUI)
+
 To give you a quick overview of MODPRO, the following image shows you the main components of the GUI.
 ![Ui](images/)
 
@@ -29,18 +31,20 @@ The table below summarises the function of each component.
 | Module List               | To view your modules                                         |
 | Exam List                 | To view your exams                                           |
 
+
 ###Icons and formatting used in the guide
 
 This guide uses icons and formatting to differentiate between the different types of information so that it is comprehensible. The following table summarises the icons and formatting used, along with their meaning.
 
-| **Icon/Formatting**     | **Meaning**                                                       |
-|-------------------------|-------------------------------------------------------------------|
-| :information_source:    | Extra Information to take note of when navigating through MODPRO  |
-| :exclamation:           | Warnings to take note of when navigating through MODPRO           |
-| :bulb:                  | Tips that we provide                                              |
-| `WORD HIGHLIGHTED GREY` | Words that you can type into the Command Input                    |
+| **Icon/Formatting**      | **Meaning**                                                       |
+|--------------------------|-------------------------------------------------------------------|
+| :information_source:     | Extra Information to take note of when navigating through MODPRO  |
+| :exclamation:            | Warnings to take note of when navigating through MODPRO           |
+| :bulb:                   | Tips that we provide                                              |
+| `WORDS HIGHLIGHTED GREY` | Words that you can type into the Command Input                    |
 
 ###Purpose of the guide
+
 This document is to assist you in using MODPRO smoothly and effectively to track your tasks and progress.
 
 * For first-time users, you can proceed to [Quick Start](#quick-start) for a guide on how to set up MODPRO and a short tutorial on the basic commands. Once you are familiar with the interface, you can start exploring our extensive list of features [here](#features)
@@ -101,8 +105,8 @@ This document is to assist you in using MODPRO smoothly and effectively to track
 4. Double-click the file to start the app. The GUI similar to the image below should appear in a few seconds. <br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. </br>
-   e.g. typing help and pressing Enter will open the help window. </br>
+5. Type the command in the command box and press Enter to execute it. <br>
+   e.g. typing help and pressing Enter will open the help window. <br>
    Here are some commands you can try:
    * m add c/CS2100 m/Computer Organisation mc/4 : Adds the module called Computer Organisation with the module code CS2100 into the module list.
    * m delete 1 : Deletes the 1st module shown in the displayed module list.
@@ -117,7 +121,7 @@ This document is to assist you in using MODPRO smoothly and effectively to track
 ## Features
 
 <div markdown="block" class="alert alert-info">
-**:information_source: How to read the command format:**</br>
+**:information_source: How to read the command format:**<br>
   
 * Command words are case-insensitive.<br>
   e.g. `t add` is the same as `T add` for command words
@@ -638,9 +642,9 @@ MODPRO will discard all data stored and start with an empty data file.
 --------------------------------------------------------------------------
 ## FAQ
 
-1. What is the difference between the stored task list and the displayed task list 
+1. What is the difference between the stored task list and the displayed task list? 
    * The stored task list is the list containing all the tasks you created, whereas the displayed task list is the one shown on your screen. 
-   * The stored task list and displayed task list could be different after the filter or find commands
+   * The stored task list and displayed task list could be different after the filter or find command
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
