@@ -20,13 +20,14 @@ import taskbook.model.person.Phone;
 import taskbook.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new ContactAddCommand object
+ * Parses input arguments and creates a new ContactAddCommand object.
  */
 public class ContactAddCommandParser implements Parser<ContactAddCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the ContactAddCommand
      * and returns an ContactAddCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public ContactAddCommand parse(String args) throws ParseException {

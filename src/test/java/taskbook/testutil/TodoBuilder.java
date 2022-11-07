@@ -90,6 +90,14 @@ public class TodoBuilder {
     }
 
     /**
+     * Sets the {@code tags} of the {@code Todo} that we are building.
+     */
+    public TodoBuilder withTags(Set<Tag> tags) {
+        this.tags.addAll(tags);
+        return this;
+    }
+
+    /**
      * Builds a {@code Todo} based on the parameters stored in the {@code TodoBuilder}.
      */
     public Todo build() {

@@ -63,8 +63,15 @@ public class ContactAddCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ContactAddCommand // instanceof handles nulls
-                && toAdd.equals(((ContactAddCommand) other).toAdd));
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof ContactAddCommand)) {
+            return false;
+        }
+
+        ContactAddCommand otherCommand = (ContactAddCommand) other;
+        return toAdd.equals(otherCommand.toAdd);
     }
 }

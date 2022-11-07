@@ -76,7 +76,8 @@ public class TaskListCard extends UiPart<Region> {
 
         // state check
         TaskListCard card = (TaskListCard) other;
-        return id.getText().equals(card.id.getText())
-                && task.equals(card.task);
+        boolean isIdSame = id.getText().equals(card.id.getText());
+        boolean isTaskSame = task.equals(card.task);
+        return isIdSame && isTaskSame;
     }
 }

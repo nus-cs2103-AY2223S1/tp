@@ -7,8 +7,6 @@ public enum SortTypes {
     NAME_ALPHABETICAL("a"),
     NAME_REVERSE_ALPHABETICAL("ra"),
     CHRONOLOGICAL_ADDED("ca"),
-    PHONE_ASCENDING("p"),
-    PHONE_DESCENDING("rp"),
     INVALID("INVALID_SORT_TYPE");
 
     public final String flag;
@@ -33,10 +31,6 @@ public enum SortTypes {
             return NAME_REVERSE_ALPHABETICAL;
         case "ca":
             return CHRONOLOGICAL_ADDED;
-        case "p":
-            return PHONE_ASCENDING;
-        case "rp":
-            return PHONE_DESCENDING;
         default:
             return INVALID;
         }

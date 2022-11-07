@@ -12,12 +12,13 @@ import taskbook.logic.parser.Prefix;
 import taskbook.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new ContactFindCommand
+ * Parses input arguments and creates a new ContactFindCommand object.
  */
 public class ContactFindCommandParser implements Parser<ContactFindCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the ContactFindCommand
      * and returns an ContactSortCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override

@@ -14,12 +14,16 @@ Class JsonUserPrefsStorage
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
+package "TaskBook Storage" #F4F6F6{
+Class "<<interface>>\nTaskBookStorage" as TaskBookStorage
+Class JsonTaskBookStorage
+Class JsonSerializableTaskBook
 Class JsonAdaptedPerson
 Class JsonAdaptedTag
+Class "   {abstract}   \nJsonAdaptedTask" as JsonAdaptedTask
+Class JsonAdaptedTodo
+Class JsonAdaptedDeadline
+Class JsonAdaptedEvent
 }
 
 }
@@ -29,15 +33,20 @@ HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" TaskBookStorage
 
 Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Storage -right-|> TaskBookStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
+JsonTaskBookStorage .up.|> TaskBookStorage
+JsonTaskBookStorage .left.> JsonSerializableTaskBook
+JsonSerializableTaskBook -down-> "*" JsonAdaptedPerson
+JsonSerializableTaskBook -down-> "*" JsonAdaptedTask
 JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonAdaptedTask --> "*" JsonAdaptedTag
+JsonAdaptedTodo -up--|> JsonAdaptedTask
+JsonAdaptedDeadline -up--|> JsonAdaptedTask
+JsonAdaptedEvent -up--|> JsonAdaptedTask
 
 @enduml

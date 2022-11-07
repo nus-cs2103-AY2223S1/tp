@@ -16,6 +16,7 @@ import taskbook.commons.core.index.Index;
 import taskbook.logic.commands.Command;
 import taskbook.logic.commands.CommandResult;
 import taskbook.logic.commands.exceptions.CommandException;
+import taskbook.logic.parser.tasks.TaskCategoryParser;
 import taskbook.model.Model;
 import taskbook.model.person.Person;
 import taskbook.model.task.EditTaskDescriptor;
@@ -32,12 +33,12 @@ public class TaskEditCommand extends Command {
         + "Existing values will be overwritten by the input values.\n"
         + "\n"
         + "Parameters: \n" + PREFIX_INDEX + "INDEX (must be a positive integer) "
-        + "[" + PREFIX_ASSIGN_FROM + "NAME] "
-        + "[" + PREFIX_ASSIGN_TO + "NAME] "
-        + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-        + "[" + PREFIX_DATE + "DATE] "
-        + "[" + PREFIX_TAG + "TAG]...\n"
-        + "Example: " + COMMAND_WORD + " " + PREFIX_INDEX + " 1 "
+        + "<" + PREFIX_ASSIGN_FROM + "NAME "
+        + PREFIX_ASSIGN_TO + "NAME "
+        + PREFIX_DESCRIPTION + "DESCRIPTION "
+        + PREFIX_DATE + "DATE "
+        + PREFIX_TAG + "TAG...>\n"
+        + "Example: " + TaskCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD + " " + PREFIX_INDEX + " 1 "
         + PREFIX_ASSIGN_FROM + "Jackie Chan "
         + PREFIX_DESCRIPTION + "Practice kick 10000 times";
 

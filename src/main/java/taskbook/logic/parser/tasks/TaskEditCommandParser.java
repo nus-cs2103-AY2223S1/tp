@@ -47,15 +47,7 @@ public class TaskEditCommandParser implements Parser<TaskEditCommand> {
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskEditCommand.MESSAGE_USAGE));
         }
 
-        String stringIndex = argMultimap.getValue(PREFIX_INDEX).get();
-        Index index;
-        try {
-            int integerIndex = Integer.parseInt(stringIndex);
-            index = Index.fromOneBased(integerIndex);
-        } catch (NumberFormatException ne) {
-            throw new ParseException(
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskEditCommand.MESSAGE_USAGE), ne);
-        }
+        Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
 
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
 

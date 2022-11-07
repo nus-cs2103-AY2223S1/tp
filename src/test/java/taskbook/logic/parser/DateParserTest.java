@@ -11,6 +11,7 @@ import taskbook.logic.parser.exceptions.ParseException;
 public class DateParserTest {
 
     private final LocalDate expectedOutput = LocalDate.parse("2022-10-31");
+    private final LocalDate expectedLeap = LocalDate.parse("2024-02-29");
 
     @Test
     public void parse_validArgument1_returnsCorrectOutput() throws ParseException {
@@ -37,6 +38,12 @@ public class DateParserTest {
     }
 
     @Test
+    public void parse_validArgument5_returnsCorrectOutput() throws ParseException {
+        LocalDate actual = DateParser.parse("29 Feb 2024");
+        assertEquals(actual, expectedLeap);
+    }
+
+    @Test
     public void parse_emptyArgument_throwsException() {
         assertThrowsException("");
     }
@@ -49,6 +56,16 @@ public class DateParserTest {
     @Test
     public void parse_invalidFormat_throwsException() {
         assertThrowsException("31st October 2022");
+    }
+
+    @Test
+    public void parse_invalidDate_throwsException() {
+        assertThrowsException("2022-02-29");
+        assertThrowsException("2022-02-30");
+        assertThrowsException("2022-02-31");
+        assertThrowsException("2022-12-32");
+        assertThrowsException("2022-00-01");
+        assertThrowsException("2022-12-00");
     }
 
     public void assertThrowsException(String userInput) {

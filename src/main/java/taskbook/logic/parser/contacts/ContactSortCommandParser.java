@@ -8,8 +8,6 @@ import taskbook.logic.commands.contacts.ContactSortAddedChronologicalCommand;
 import taskbook.logic.commands.contacts.ContactSortCommand;
 import taskbook.logic.commands.contacts.ContactSortNameAlphabeticalCommand;
 import taskbook.logic.commands.contacts.ContactSortNameReverseAlphabeticalCommand;
-import taskbook.logic.commands.contacts.ContactSortPhoneAscendingCommand;
-import taskbook.logic.commands.contacts.ContactSortPhoneDescendingCommand;
 import taskbook.logic.commands.tasks.TaskSortCommand;
 import taskbook.logic.parser.ArgumentMultimap;
 import taskbook.logic.parser.ArgumentTokenizer;
@@ -18,8 +16,9 @@ import taskbook.logic.parser.Parser;
 import taskbook.logic.parser.Prefix;
 import taskbook.logic.parser.contacts.enums.SortTypes;
 import taskbook.logic.parser.exceptions.ParseException;
+
 /**
- * Parses input arguments and creates a new ContactSortCommand.
+ * Parses input arguments and creates a new ContactSortCommand object.
  */
 public class ContactSortCommandParser implements Parser<ContactSortCommand> {
     // Note: the space at the start of the arguments is necessary due to ArgumentTokenizer behavior.
@@ -29,6 +28,7 @@ public class ContactSortCommandParser implements Parser<ContactSortCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the TaskSortCommand
      * and returns an TaskSortCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override
@@ -63,10 +63,6 @@ public class ContactSortCommandParser implements Parser<ContactSortCommand> {
             return new ContactSortNameReverseAlphabeticalCommand();
         case CHRONOLOGICAL_ADDED:
             return new ContactSortAddedChronologicalCommand();
-        case PHONE_ASCENDING:
-            return new ContactSortPhoneAscendingCommand();
-        case PHONE_DESCENDING:
-            return new ContactSortPhoneDescendingCommand();
         default:
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     ContactSortCommand.MESSAGE_USAGE));

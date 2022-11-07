@@ -128,7 +128,7 @@ public abstract class Task {
      * Returns true if task is self-assigned.
      */
     public boolean isSelfAssigned() {
-        return name == Name.SELF;
+        return name.fullName.equals(Name.SELF.fullName);
     }
 
     /**
@@ -168,7 +168,6 @@ public abstract class Task {
 
     /**
      * Gets a String to represent all itmes related to the task's description.
-     * @return
      */
     public String toUiString() {
         final StringBuilder builder = new StringBuilder();
@@ -196,7 +195,17 @@ public abstract class Task {
      */
     public boolean isQueryInTask(String query) {
         requireNonNull(query);
-        return getName().isQueryInName(query) || getDescription().isQueryInDescription(query);
+        boolean isQueryInName = isQueryInName(query);
+        boolean isQueryInDescription = isQueryInDescription(query);
+        return isQueryInName || isQueryInDescription;
+    }
+
+    private boolean isQueryInName(String query) {
+        return getName().isQueryInName(query);
+    }
+
+    private boolean isQueryInDescription(String query) {
+        return getDescription().isQueryInDescription(query);
     }
 
     /**

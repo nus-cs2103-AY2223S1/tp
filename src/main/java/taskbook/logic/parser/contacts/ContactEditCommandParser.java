@@ -24,13 +24,14 @@ import taskbook.logic.parser.exceptions.ParseException;
 import taskbook.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new ContactEditCommand object
+ * Parses input arguments and creates a new ContactEditCommand object.
  */
 public class ContactEditCommandParser implements Parser<ContactEditCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
+     *
      * @throws ParseException if the user input does not conform the expected format
      */
     public ContactEditCommand parse(String args) throws ParseException {
@@ -44,15 +45,7 @@ public class ContactEditCommandParser implements Parser<ContactEditCommand> {
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ContactEditCommand.MESSAGE_USAGE));
         }
 
-        String stringIndex = argMultimap.getValue(PREFIX_INDEX).get();
-        Index index;
-        try {
-            int integerIndex = Integer.parseInt(stringIndex);
-            index = Index.fromOneBased(integerIndex);
-        } catch (NumberFormatException ne) {
-            throw new ParseException(
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ContactEditCommand.MESSAGE_USAGE), ne);
-        }
+        Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
 
         ContactEditCommand.EditPersonDescriptor editPersonDescriptor = new ContactEditCommand.EditPersonDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {

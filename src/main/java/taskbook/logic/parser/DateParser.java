@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 import taskbook.logic.parser.exceptions.ParseException;
 
@@ -17,11 +18,11 @@ public class DateParser {
 
     private static final DateTimeFormatter PARSER_OPTIONAL_FORMATS = new DateTimeFormatterBuilder()
         .appendOptional(DateTimeFormatter.ISO_LOCAL_DATE)
-        .appendOptional(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
-        .appendOptional(DateTimeFormatter.ofPattern("MMM dd yyyy"))
-        .appendOptional(DateTimeFormatter.ofPattern("MM dd yyyy"))
-        .appendOptional(DateTimeFormatter.ofPattern("dd MMM yyyy"))
-        .toFormatter();
+        .appendOptional(DateTimeFormatter.ofPattern("uuuu-MM-dd"))
+        .appendOptional(DateTimeFormatter.ofPattern("MMM dd uuuu"))
+        .appendOptional(DateTimeFormatter.ofPattern("MM dd uuuu"))
+        .appendOptional(DateTimeFormatter.ofPattern("dd MMM uuuu"))
+        .toFormatter().withResolverStyle(ResolverStyle.STRICT);
 
     /**
      * Parses {@code userInput} into a Date object and returns it.

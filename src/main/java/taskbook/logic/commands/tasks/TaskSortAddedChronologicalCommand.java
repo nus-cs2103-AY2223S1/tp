@@ -8,7 +8,7 @@ import taskbook.model.Model;
  * Sorts the task list in the order of the tasks were added to Task Book.
  */
 public class TaskSortAddedChronologicalCommand extends TaskSortCommand {
-    public static final String MESSAGE_SORT_TYPE = " by time added into Task Book";
+    public static final String MESSAGE_SORT_TYPE = " by time added into TaskBook";
     public TaskSortAddedChronologicalCommand() {
         super(null, MESSAGE_SORT_TYPE);
     }

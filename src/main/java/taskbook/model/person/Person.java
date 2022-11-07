@@ -158,22 +158,4 @@ public class Person {
         requireNonNull(query);
         return getName().isQueryInName(query);
     }
-
-    /**
-     * Compares this person's phone number and another person's phone number to determine ascending order.
-     * @param other person.
-     * @return positive integer if this person's phone number is numerically greater, 0 if equal, negative otherwise.
-     */
-    public int compareByPhoneNumberAscendingTo(Person other) {
-        return this.getPhone().comparePhoneNumberAscending(other.getPhone());
-    }
-
-    /**
-     * Compares this person's phone number and another person's phone number to determine descending order.
-     * @param other person.
-     * @return positive integer if this person's phone number is numerically smaller, 0 if equal, negative otherwise.
-     */
-    public int compareByPhoneNumberDescendingTo(Person other) {
-        return this.getPhone().comparePhoneNumberDescending(other.getPhone());
-    }
 }

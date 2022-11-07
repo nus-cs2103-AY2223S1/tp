@@ -28,10 +28,7 @@ public class TaskFindCommandParser implements Parser<TaskFindCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_QUERY,
                 CliSyntax.PREFIX_ASSIGNMENT, CliSyntax.PREFIX_DONE);
 
-        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_QUERY)
-                && !arePrefixesPresent(argMultimap, CliSyntax.PREFIX_ASSIGNMENT)
-                && !arePrefixesPresent(argMultimap, CliSyntax.PREFIX_DONE)
-                && !argMultimap.getPreamble().isEmpty()) {
+        if (areAllTaskFindPrefixesAbsent(argMultimap)) {
             throw new ParseException(String.format(
                     Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskFindCommand.MESSAGE_USAGE));
         }
@@ -41,6 +38,13 @@ public class TaskFindCommandParser implements Parser<TaskFindCommand> {
         } else {
             return afterCheckDone(argMultimap, null);
         }
+    }
+
+    private boolean areAllTaskFindPrefixesAbsent(ArgumentMultimap argMultimap) {
+        boolean isQueryAbsent = !arePrefixesPresent(argMultimap, CliSyntax.PREFIX_QUERY);
+        boolean isAssignmentAbsent = !arePrefixesPresent(argMultimap, CliSyntax.PREFIX_ASSIGNMENT);
+        boolean isDoneStatusAbsent = !arePrefixesPresent(argMultimap, CliSyntax.PREFIX_DONE);
+        return isQueryAbsent && isAssignmentAbsent && isDoneStatusAbsent && !argMultimap.getPreamble().isEmpty();
     }
 
     private boolean isDone(String query) throws ParseException {

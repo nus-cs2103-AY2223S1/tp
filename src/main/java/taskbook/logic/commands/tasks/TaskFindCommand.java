@@ -23,7 +23,8 @@ public class TaskFindCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Displaying matching tasks.";
     public static final String MESSAGE_USAGE =
             TaskCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD
-            + ": Searches all task descriptions and names that contain the given query.\n"
+            + " <" + PREFIX_QUERY + "QUERY " + PREFIX_ASSIGNMENT + "ASSIGNMENT " + PREFIX_DONE + "DONE>: "
+            + "Searches all task descriptions and names that contain the given query.\n"
             + "Parameters:\n"
             + PREFIX_QUERY + "QUERY\n"
             + PREFIX_ASSIGNMENT + "ASSIGNMENT\n"
@@ -31,7 +32,7 @@ public class TaskFindCommand extends Command {
             + "Only tasks with exact matches with QUERY will be displayed. Can be multiple words. Case insensitive.\n"
             + "ASSIGNMENT is either FROM or TO for Assigned by or Assigned to respectively.\n"
             + "DONE is either X or O for done or not done respectively.\n"
-            + "Parameters can be in any ordering, and only one must be present.";
+            + "Parameters can be in any ordering, but at least one must be present.";
     private Predicate<Task> predicate;
     private String query;
     private String assignment;
@@ -71,21 +72,33 @@ public class TaskFindCommand extends Command {
                                 + getFilters()));
     }
 
+    private boolean isSameQuery(TaskFindCommand command) {
+        return this.query == null || command.query == null
+                ? this.query == command.query
+                : this.query.toUpperCase().equals(command.query.toUpperCase());
+    }
+
+    private boolean isSameAssignment(TaskFindCommand command) {
+        return this.assignment == null || command.assignment == null
+                ? this.assignment == command.assignment
+                : this.assignment.equals(command.assignment);
+    }
+
+    private boolean isSameDoneStatus(TaskFindCommand command) {
+        return this.done == null || command.done == null
+                ? this.done == command.done
+                : this.done.equals(command.done);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (!(other instanceof TaskFindCommand)) {
             return false;
         }
         TaskFindCommand command = (TaskFindCommand) other;
-        boolean sameQuery = this.query == null || command.query == null
-                            ? this.query == command.query
-                            : this.query.toUpperCase().equals(command.query.toUpperCase());
-        boolean sameAssignment = this.assignment == null || command.assignment == null
-                                    ? this.assignment == command.assignment
-                                    : this.assignment.equals(command.assignment);
-        boolean sameDone = this.done == null || command.done == null
-                            ? this.done == command.done
-                            : this.done.equals(command.done);
+        boolean sameQuery = isSameQuery(command);
+        boolean sameAssignment = isSameAssignment(command);
+        boolean sameDone = isSameDoneStatus(command);
         return sameQuery && sameAssignment && sameDone;
     }
 }

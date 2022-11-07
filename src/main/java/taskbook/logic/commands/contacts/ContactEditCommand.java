@@ -20,6 +20,7 @@ import taskbook.commons.util.CollectionUtil;
 import taskbook.logic.commands.Command;
 import taskbook.logic.commands.CommandResult;
 import taskbook.logic.commands.exceptions.CommandException;
+import taskbook.logic.parser.contacts.ContactCategoryParser;
 import taskbook.model.Model;
 import taskbook.model.person.Address;
 import taskbook.model.person.Email;
@@ -40,12 +41,12 @@ public class ContactEditCommand extends Command {
         + "Existing values will be overwritten by the input values.\n"
         + "\n"
         + "Parameters: " + PREFIX_INDEX + "INDEX (must be a positive integer) "
-        + "[" + PREFIX_NAME + "NAME] "
-        + "[" + PREFIX_PHONE + "PHONE] "
-        + "[" + PREFIX_EMAIL + "EMAIL] "
-        + "[" + PREFIX_ADDRESS + "ADDRESS] "
-        + "[" + PREFIX_TAG + "TAG]...\n"
-        + "Example: " + COMMAND_WORD + " " + PREFIX_INDEX + " 1 "
+        + "<" + PREFIX_NAME + "NAME "
+        + PREFIX_PHONE + "PHONE "
+        + PREFIX_EMAIL + "EMAIL "
+        + PREFIX_ADDRESS + "ADDRESS "
+        + PREFIX_TAG + "TAG...>\n"
+        + "Example: " + ContactCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD + " " + PREFIX_INDEX + " 1 "
         + PREFIX_PHONE + "91234567 "
         + PREFIX_EMAIL + "johndoe@example.com";
 

@@ -10,8 +10,6 @@ import taskbook.logic.commands.contacts.ContactSortAddedChronologicalCommand;
 import taskbook.logic.commands.contacts.ContactSortCommand;
 import taskbook.logic.commands.contacts.ContactSortNameAlphabeticalCommand;
 import taskbook.logic.commands.contacts.ContactSortNameReverseAlphabeticalCommand;
-import taskbook.logic.commands.contacts.ContactSortPhoneAscendingCommand;
-import taskbook.logic.commands.contacts.ContactSortPhoneDescendingCommand;
 import taskbook.logic.parser.contacts.ContactSortCommandParser;
 
 public class ContactSortCommandParserTest {
@@ -33,18 +31,6 @@ public class ContactSortCommandParserTest {
     public void parse_validArgs_returnsContactSortAddedChronologicalCommand() {
         // Note: the space at the start of the userInput is necessary due to ArgumentTokenizer behavior.
         assertParseSuccess(parser, " s/ca", new ContactSortAddedChronologicalCommand());
-    }
-
-    @Test
-    public void parse_validArgs_returnsContactSortPhoneAscendingCommand() {
-        // Note: the space at the start of the userInput is necessary due to ArgumentTokenizer behavior.
-        assertParseSuccess(parser, " s/p", new ContactSortPhoneAscendingCommand());
-    }
-
-    @Test
-    public void parse_validArgs_returnsContactSortPhoneDescendingCommand() {
-        // Note: the space at the start of the userInput is necessary due to ArgumentTokenizer behavior.
-        assertParseSuccess(parser, " s/rp", new ContactSortPhoneDescendingCommand());
     }
 
     @Test

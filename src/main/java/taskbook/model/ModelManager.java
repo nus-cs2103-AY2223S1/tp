@@ -164,6 +164,7 @@ public class ModelManager implements Model {
     @Override
     public void addTask(Task task) {
         versionedTaskBook.addTask(task);
+        updateFilteredTaskListPredicate(PREDICATE_SHOW_ALL_TASKS);
     }
 
     @Override
@@ -270,6 +271,7 @@ public class ModelManager implements Model {
         return versionedTaskBook.equals(other.versionedTaskBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
+                && sortedPersons.equals(other.sortedPersons)
                 && filteredTasks.equals(other.filteredTasks)
                 && sortedTasks.equals(other.sortedTasks);
     }

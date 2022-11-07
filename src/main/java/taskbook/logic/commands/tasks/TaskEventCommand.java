@@ -42,9 +42,9 @@ public class TaskEventCommand extends TaskAddCommand {
     private final LocalDate date;
 
     /**
-     * Creates a TaskEventCommand to add a task with the specified
+     * Creates a TaskEventCommand to add an event with the specified
      * {@code Name name}, {@code Description description},
-     * {@code Task.Assignment assignment} and {@code LocalDate date}.
+     * {@code Assignment assignment} and {@code LocalDate date}.
      *
      * @param name Name of the Person in the task book.
      * @param description The description for the new event.
@@ -58,14 +58,15 @@ public class TaskEventCommand extends TaskAddCommand {
     }
 
     /**
-     * Creates a TaskEventCommand to add a task with the specified
+     * Creates a TaskEventCommand to add an event with the specified
      * {@code Name name}, {@code Description description},
-     * {@code Task.Assignment assignment} and {@code LocalDate date}.
+     * {@code Assignment assignment}, {@code LocalDate date} and {@code Set tags}.
      *
      * @param name Name of the Person in the task book.
      * @param description The description for the new event.
      * @param assignment Represents event assigned to user or others.
      * @param date Represents the date for the new event.
+     * @param tags Represent the set of tags for the new event.
      */
     public TaskEventCommand(Name name, Description description, Assignment assignment, LocalDate date, Set<Tag> tags) {
         super(name, description, assignment, tags);
