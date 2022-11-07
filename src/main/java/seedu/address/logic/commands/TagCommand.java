@@ -30,8 +30,9 @@ public class TagCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds tags to the task identified "
             + "by the index number used in the displayed task list. \n"
-            + "Parameters: " + COMMAND_WORD + " INDEX (must be a positive integer) "
-            + "[" + PREFIX_TAG + "TAG*]\n"
+            + "Parameters: " + COMMAND_WORD + " TASK_NUMBER "
+            + PREFIX_TAG + " TAG_NAME"
+            + "[" + PREFIX_TAG + " TAG_NAME]*\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TAG + "highPriority";
 
