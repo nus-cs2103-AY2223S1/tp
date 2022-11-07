@@ -2,6 +2,12 @@
 layout: page
 title: Developer Guide
 ---
+
+Welcome to our **UniNurse** Developer Guide. UniNurse is a desktop app targeted at private nurses to help them manage their patients
+in a more organized manner.
+
+If you are a developer, this guide provides you with comprehensive documentation about the design and implementation details of UniNurse to help you get started, should you choose to build on its existing features.
+
 * Table of Contents
 {:toc}
 
@@ -9,7 +15,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the [AddressBook Level 3 (AB3)](https://se-education.org/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org/).
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,36 +30,36 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-T12-4/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+The ***Architecture Diagram*** given above explains the high-level design of UniNurse.
 
-Given below is a quick overview of main components and how they interact with each other.
+Given below is a quick overview of the main components and how they interact with each other.
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/uninurse/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/uninurse/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
-The rest of the App consists of four components.
+The rest of UniNurse consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
+* [**`UI`**](#ui-component): The UI of UniNurse.
 * [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
+* [**`Model`**](#model-component): Holds the data of UniNurse in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete -p 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -69,7 +76,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+**API** : [`Ui.java`](https://github.com/AY2223S1-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/uninurse/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -94,11 +101,33 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/uninurse/logic/Logic.java)
+
+**Description**
+
+The `Logic` component handles the execution of the user input. It manages the parsing of the user input to decide the type of command to be executed.
+
+**Components**
 
 Here's a (partial) class diagram of the `Logic` component:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
+
+Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+
+<img src="images/ParserClasses.png" width="600"/>
+
+How the parsing works:
+* When called upon to parse a user command, the `UninurseBookParser` class creates an `XYZCommandParser`, which uses the other classes shown above to parse the user command and create a `XYZCommand` object which the `UninurseBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** `XYZ` is a placeholder for the specific command name (e.g., `AddPatientCommandParser`, `AddPatientCommand`, etc.)
+
+</div>
+
+**Functionality**
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `UninurseBookParser` class to parse the user command.
@@ -110,22 +139,25 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete -p 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifelines for `DeleteGenericCommandParser` and `DeletePatientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifelines reaches the end of diagram.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifelines for `DeleteGenericCommandParser` and `DeletePatientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifelines reaches the end of diagram.
+
 </div>
 
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
-
-<img src="images/ParserClasses.png" width="600"/>
-
-How the parsing works:
-* When called upon to parse a user command, the `UninurseBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPatientCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPatientCommand`) which the `UninurseBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddPatientCommandParser`, `DeletePatientCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
-
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/uninurse/model/Model.java)
 
+**Description**
+
+The `Model` component stores and handles the UniNurse data. The data in this component is represented by objects that simulate real-life entities and the associations between these entities.
+
+**Components**
+
+Here's a (partial) class diagram of the `Model` component:
+
+<img src="images/ModelClassDiagram.png" width="550" />
 
 The `Model` component,
 
@@ -133,25 +165,30 @@ The `Model` component,
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-* _Diagram to be updated with new `Patient`attributes ..._
+* each patient has a `TaskList`, which holds `Task` which can be NonRecurringTasks or RecurringTasks. The below Class diagram illustrates their relationship.
+  
+<img src="images/TaskClassDiagram.png" width="450" />
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in `UniNurse`, which `Person` references. This allows `UniNurse` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
-* each patient has a TaskList, which holds Tasks which can be NonRecurringTasks or RecurringTasks. The below Class diagram illustrates their relationship.
-<img src="images/TaskClassDiagram.png" width="450" />
-
 </div>
-
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/uninurse/storage/Storage.java)
+
+**Description**
+
+The `Storage` component saves and stores UniNurse data in a JSON file format. It also reads the stored data back into UniNurse.
+
+**Components**
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both Uninurse book data and user preference data in json format, and read them back into corresponding objects.
+* can save both Uninurse book data and user preference data in JSON format, and read them back into corresponding objects.
 * inherits from both `UninurseBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -205,15 +242,13 @@ The following sequence diagrams illustrates the interactions between the `UI`, `
 
 #### Implementation
 
-The `tasksOn` command parses the user input and generates a `DateTime` object, however the time fields are default values since we only care about the particular Date, the it filters each patient by whether they have a 
-task on the given Date. Each patient themselves filter their TaskList to arrive at the conclusion on whether they have a task on the given Date. Then the Model is set to show the filtered Patients, each with their own TaskList to also 
-only the Tasks on the given Date.
+The `view` command when no flags are present, parses the user input and generates a `TasksOnCommand` object which has a `DateTime` object containing the date the user wants the tasks for. 
+When the command is executed, it sets the model to show only the tasks on the day of interest.
 
-The Sequence diagram below shows the execution of a tasksOn command
+The Sequence diagram below shows the execution of a view command with no flags.
 
 ![tasksOnSequenceDiagram](images/TasksOnSequenceDiagram.png)
 
-### \[Proposed\] Undo/redo feature
 ### Add/delete medical conditions from patients
 
 Users can add a medical condition to a particular patient by providing the following details:
@@ -346,11 +381,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 ### Display added/edited/deleted patient feature
+
 #### Implementation
 Adding/editing/deleting a patient would have a `UpdatedPersonCard` with the patient’s details appear in the `OutputPanel` of the `UI`. The possible commands to achieve this are:
 1. add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION]… [t/TAG]…
@@ -389,15 +421,14 @@ Below is the sequence diagram which shows the entire interaction between the `UI
 
 **Target user profile**:
 
-This product is for private nurses to help manage the details and needs of their patients.
-
-* has a need to manage a significant number of patient contacts
-* wants to be able to view patient's needs at a glance
-* prefer to have quick access to details of patient's contacts and their needs
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Private nurse
+* Has to manage a significant number of patient contacts
+* Wants to be able to view a patient's needs at a glance
+* Prefers to have quick access to the contact details of patients and their needs
+* Prefer desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
 
 **Value proposition**: Allows private nurses to manage different detail-sensitive tasks for specific patients in a more organized manner.
 
@@ -1124,8 +1155,8 @@ unless specified otherwise)
 5. Each person should be able to hold up to 50 tasks without a noticeable sluggishness in performance for typical usage.
 6. A user should be able to easily access tasks associated with a patient.
 7. The product is not required to handle data between multiple users.
-
-*{More to be added}*
+8. Does not require internet connection.
+9. The code should be open source.
 
 ### Glossary
 
@@ -1203,6 +1234,8 @@ starting point for testers to work on; testers are expected to do more *explorat
       Expected: Similar to previous.
    
 ### Modifying tags
+
+
 
 1. Adding a tag to a patient in the patient list. 
    
@@ -1541,5 +1574,6 @@ starting point for testers to work on; testers are expected to do more *explorat
 1. Dealing with missing/corrupted data files
 
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
 
 1. _{ more test cases … }_
