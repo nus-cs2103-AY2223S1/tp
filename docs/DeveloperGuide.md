@@ -65,6 +65,7 @@ Libraries used: [JavaFX](https://openjfx.io/), [JUnit5](https://github.com/junit
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Setting up, getting started**
 
