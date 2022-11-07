@@ -456,21 +456,28 @@ The following activity diagram summarizes what happens when a user selects an ap
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​           | I want to …​                                                           | So that I can…​                                                                            |
-|----------|-------------------|------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
-| `* * *`  | financial advisor | add new client                                                         | keep track of the client's profile                                                         |
-| `* * *`  | financial advisor | delete a client                                                        | remove entries that are no longer needed                                                   |
-| `* * *`  | financial advisor | edit a client's profile                                                | update relevant and up-to-date information of the client                                   |
-| `* * *`  | financial advisor | search clients by name                                                 | retrieve information of clients without having to go through the entire list               |
-| `* * *`  | financial advisor | sort clients by alphabetical order                                     | have an organised list of contacts                                                         |
-| `* * *`  | financial advisor | store important information of clients                                 | make pivotal decisions on how to better suit the clients' needs based on their information |
-| `* * *`  | financial advisor | store upcoming appointments for each client                            | keep track of all my upcoming appointments                                                 |
-| `* * *`  | financial advisor | edit my current appointments for each client                           | update my appointment details, if any changes has been made                                |
-| `* * *`  | financial advisor | delete an appointment                                                  | remove any completed or cancelled appointments in my list of appointments                  |
-| `* * *`  | busy person       | quickly view the format of any command                                 | can focus on my daily tasks instead of having to remember the command syntax               |
-| `* * `   | financial advisor | view the list of clients that are scheduled for meeting on a given day | be reminded and keep track of the scheduled meetings                                       |
-| `* *`    | financial advisor | have an image of my client                                             | remember and recognise the clients during the meetings                                     |
-| `* *`    | fast-typist       | navigate through the calendar with my keyboard                         | view all my appointments in the calendar quickly                                           |
+| Priority  | As a …​           | I want to …​                                                     | So that I can…​                                                                            |
+|-----------|-------------------|------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| `* * *`   | financial advisor | add new client                                                   | keep track of the client's profile                                                         |
+| `* * *`   | financial advisor | delete a client                                                  | remove entries that are no longer needed                                                   |
+| `* * *`   | new user          | learn how to use the app                                         | can effectively use the app                                                                |
+| `* * *`   | financial advisor | edit a client's profile                                          | update relevant and up-to-date information of the client                                   |
+| `* * *`   | financial advisor | search clients by name                                           | retrieve information of clients without having to go through the entire list               |
+| `* * *`   | financial advisor | search clients by their investment plan                          | can easily find a group of clients                                                         |
+| `* * *`   | financial advisor | search clients based on whether they are potential or current    | can easily find a group of clients                                                         |
+| `* * *`   | financial advisor | search clients based on their risk appetite                      | can easily find a group of clients                                                         |
+| `* * *`   | financial advisor | sort clients by alphabetical order                               | have an organised list of contacts                                                         |
+| `* * *`   | financial advisor | sort clients by their income                                     | have an organised list of contacts                                                         |
+| `* * *`   | financial advisor | store important information of clients                           | make pivotal decisions on how to better suit the clients' needs based on their information |
+| `* * *`   | financial advisor | store upcoming appointments for each client                      | keep track of all my upcoming appointments                                                 |
+| `* * *`   | financial advisor | edit my current appointments for each client                     | update my appointment details, if any changes has been made                                |
+| `* * *`   | financial advisor | delete an appointment                                            | remove any completed or cancelled appointments in my list of appointments                  |
+| `* * *`   | busy person       | quickly view the format of any command                           | can focus on my daily tasks instead of having to remember the command syntax               |
+| `* * `    | financial advisor | view the list of clients that are scheduled for meeting on a given day | be reminded and keep track of the scheduled meetings                                       |
+| `* *`     | financial advisor | have an image of my client                                       | remember and recognise the clients during the meetings                                     |
+| `* *`     | fast-typist       | navigate through the calendar with my keyboard                   | view all my appointments in the calendar quickly                                           |
+| `* *`     | forgetful person  | view which are the upcoming appointments I have                  | know what to prepare for whom                                                              |           
+| `* *`     | potential user    | see how the app operates with some sample data                   | understand what the app will look like when I actually use it                              |
 
 ### Use cases
 
