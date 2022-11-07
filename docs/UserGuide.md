@@ -436,7 +436,7 @@ Syntax: `sortbuyers [-n NAME<ASC/DESC>] [-r PRICE RANGE<ASC/DESC>] [-pr PRIORITY
 The `-n` flag indicates to sort buyers by name in ascending or descending order.<br>
 The `-r` flag indicates to sort buyers by price range in ascending (by lower bound) or descending order (by upper bound).<br>
 The `-pr` flag indicates to sort buyers by priority level in ascending or descending order.<br>
-The `-t` flag indicates to sort buyers by entry time in ascending or descending order.<br>
+The `-t` flag indicates to sort buyers by time of creation in ascending or descending order.<br>
 
 Examples:<br>
 `sortbuyers -pr DESC`: Sorts buyers from `HIGH` priority level to `LOW` priority level.<br>
@@ -447,11 +447,11 @@ Examples:<br>
 
 Sorts properties in the database according to a single given condition, and updates the [Property List](#3-property-list).
 
-Syntax: `sortprops [-n NAME<ASC/DESC>] [-p PRICE<ASC/DESC>] [-t ENTRY TIME<ASC/DESC>]`
+Syntax: `sortprops [-n NAME<ASC/DESC>] [-p PRICE<ASC/DESC>] [-t TIME OF CREATION<ASC/DESC>]`
 
 The `-n` flag indicates to sort properties by name in ascending or descending order.<br>
 The `-p` flag indicates to sort properties by price in ascending or descending order.<br>
-The `-t` flag indicates to sort properties by entry time in ascending or descending order.
+The `-t` flag indicates to sort properties by time of creation in ascending or descending order.
 
 Examples:<br>
 `sortprops -p DESC`: Sorts properties from highest to lowest price.<br>
@@ -481,7 +481,7 @@ Intelligently matches a property in the database to all buyers who might be inte
 The property's price must be within the buyer's price range and the buyer should desire at least one of the property's characteristics.
 
 <div markdown="span" class="alert alert-primary">:exclamation: **Note:**
-Any buyers with price range more than the property's price will be ignored since the match command looks for the most suitable buyers for the property, instead of all buyers that can afford the property.
+Any buyers with price range higher than the property's price will be ignored since the match command looks for the most suitable buyers for the property, instead of all buyers that can afford the property.
 </div>
 
 Syntax: `matchprop INDEX [-strict]`
