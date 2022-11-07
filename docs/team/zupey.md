@@ -23,10 +23,11 @@ Given below are my contributions to the project.
 - **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=zupey&breakdown=true)
 
 * **Project management**:
-    * To be added
+    * Facilitated meetings and going through issues raised by PE dry run.
 
 * **Enhancements to existing features**:
-    * To be added
+    * Implemented storage during initial infrastructure phase. (Pull requests [\#53](https://github.com/AY2223S1-CS2103-F14-1/tp/pull/53))
+    * Add test cases for storage of Module Summary List.
 
 * **Documentation**:
     * User Guide:
