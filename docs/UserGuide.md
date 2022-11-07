@@ -68,6 +68,8 @@ our app.
 6. After a command has been executed, a message will be displayed in the result 
    display to indicate whether the command's execution has been successful.
 
+<div style="page-break-after: always;"></div>
+
 ### 1.1. Command summary
 
 | Action                                                      | Format                                                                  | Short Description                                                               |
@@ -95,15 +97,12 @@ our app.
 | [Help](#26-help)                                            | `help`                                                                  | View help                                                                       |
 | [Exit](#27-exiting-the-program)                             | `exit`                                                                  | Exit the program                                                                |
 
-<div markdown="span" class="alert alert-info"> :information_source: **Note:**<br/> 
-Features marked with * can only be utilised when users are at the home page.
-</div>
 
-<div markdown="span" class="alert alert-info"> :eye: **See also:**<br/>  
+<div markdown="span" class="alert alert-info"> :eye: **See also:**  
 [Peeking at tasks](#224-peeking-at-tasks).
 </div>
 
-<div markdown="span" class="alert alert-info"> :information_source: **Note:**
+<div markdown="span" class="alert alert-info"> :information_source: **Note:**<br/>
 Features marked with * can only be utilised when you are at the home page.
 </div>
 
@@ -143,6 +142,8 @@ the parameter will be taken.<br>
   [`help`](#26-help) and [`exit`](#27-exiting-the-program)) will be ignored.<br>
   e.g. if the command specifies `home 123`, it will be interpreted as [`home`](#252-navigate-to-home).
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### 2.1. Modules
 In Plannit, you can organise tasks and links by academic
