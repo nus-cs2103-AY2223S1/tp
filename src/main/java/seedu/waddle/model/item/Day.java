@@ -217,34 +217,4 @@ public class Day {
 
         return dayText.toString();
     }
-
-    public List<PdfFieldInfo> getPdfFieldInfoList() {
-        List<PdfFieldInfo> fieldList = new ArrayList<>();
-        for (int i = 0; i < this.itemList.getSize(); i++) {
-            Item item = this.itemList.get(i);
-            PdfFieldInfo time = new PdfFieldInfo("time" + i, item.getTimeString(Text.INDENT_NONE));
-            PdfFieldInfo activity = new PdfFieldInfo("item" + i, item.getDescription().toString());
-            fieldList.add(time);
-            fieldList.add(activity);
-        }
-        int remainder = (fieldList.size() / 2) % PdfFiller.MAX_DISPLAY;
-        if (remainder != 0) {
-            for (int i = 0; i < PdfFiller.MAX_DISPLAY - remainder; i++) {
-                int nextPos = remainder + i;
-                PdfFieldInfo time = new PdfFieldInfo("time" + nextPos, "");
-                PdfFieldInfo activity = new PdfFieldInfo("item" + nextPos, "");
-                fieldList.add(time);
-                fieldList.add(activity);
-            }
-        }
-        if (fieldList.size() == 0) {
-            for (int i = 0; i < PdfFiller.MAX_DISPLAY; i++) {
-                PdfFieldInfo time = new PdfFieldInfo("time" + i, "");
-                PdfFieldInfo activity = new PdfFieldInfo("item" + i, "");
-                fieldList.add(time);
-                fieldList.add(activity);
-            }
-        }
-        return fieldList;
-    }
 }
