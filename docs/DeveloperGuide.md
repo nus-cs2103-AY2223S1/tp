@@ -1136,7 +1136,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   interact with the computer.
 * **Graphical User Interface (GUI)**: A graphics-based operating system interface that uses icons, menus and a mouse
   (to click on the icon or pull down the menus) to manage interaction with the system.
-* **Main Success Scenario**: Describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong.
+* **Main Success Scenario (MSS)**: Describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong.
 * **Actor**: A role played by a user. An actor can be a human or another system. Actors are not part of the system; they reside outside the system.
 * **Backward compatible**: Refers to a hardware or software system that can use the interface of an older version of the same product.
 * **Store data locally**: Allow the required data to be stored in a file in the user’s computer.
