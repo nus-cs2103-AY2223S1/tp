@@ -1,0 +1,55 @@
+@startuml
+
+participant ":LogicManager" as LogicManager
+participant ":HealthcareXpressParser" as HealthcareXpressParser
+participant ":UpdateContactCommandParser" as UpdateContactCommandParser
+participant ":UpdateContactCommand" as UpdateContactCommand
+participant ":CommandResult" as CommandResult
+
+participant ":Model" as Model
+
+[-> LogicManager : execute("updatecontact id/3 n/ John Doe p/ 81234567 e/ johndoe@example.com c/ D")
+activate LogicManager
+
+LogicManager -> HealthcareXpressParser : parseCommand("updatecontact...")
+activate HealthcareXpressParser
+
+create UpdateContactCommandParser
+HealthcareXpressParser -> UpdateContactCommandParser
+activate UpdateContactCommandParser
+
+UpdateContactCommandParser --> HealthcareXpressParser
+
+HealthcareXpressParser -> UpdateContactCommandParser : parse("updatecontact...")
+
+create UpdateContactCommand
+UpdateContactCommandParser --> UpdateContactCommand
+activate UpdateContactCommand
+UpdateContactCommand --> UpdateContactCommandParser
+UpdateContactCommandParser --> HealthcareXpressParser : UpdateContactCommand
+deactivate UpdateContactCommandParser
+HealthcareXpressParser --> LogicManager : UpdateContactCommand
+deactivate HealthcareXpressParser
+
+LogicManager --> UpdateContactCommand : execute()
+UpdateContactCommand --> Model: getFilteredPersonsList()
+activate Model
+Model --> UpdateContactCommand
+create BasePerson
+UpdateContactCommand --> BasePerson
+activate BasePerson
+BasePerson --> UpdateContactCommand
+UpdateContactCommand --> Model : updateFilteredPersonsList(BasePerson)
+Model --> UpdateContactCommand
+deactivate BasePerson
+deactivate Model
+
+create CommandResult
+UpdateContactCommand --> CommandResult
+CommandResult --> UpdateContactCommand
+UpdateContactCommand --> LogicManager : CommandResult
+deactivate UpdateContactCommand
+<- LogicManager : CommandResult
+
+@enduml
+
