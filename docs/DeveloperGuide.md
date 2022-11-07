@@ -183,7 +183,9 @@ A person object contains editable properties:
     - Records the email address of the person
 4. Address
     - Records the home address of the person
-5. Tag
+5. Birthday
+    - Records the birthday of the person
+6. Tag
     - Optionally tags the person with a variable number of tags for easy reference within the SectresBook.
 
 And a non-editable properties:
@@ -775,16 +777,31 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​      | I want to …​                                             | So that I can…​                                                        |
-| -------- |--------------|----------------------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | secretary    | add club members’ information into the address book      | keep track of their contact information.                               |
-| `* * *`  | secretary    | edit a club member’s information                         | stay updated with them if their contact information changes.           |
-| `* * *`  | secretary    | delete a club member’s information from the address book | stop keeping track of them when they leave the club.                   |
-| `* * *`  | user         | search for a person by their name or contact number      | locate details of persons without having to go through the entire list |
-| `* *`    | secretary    | search contacts according to a specific tag              | easily  contact people in a whole group                                |
-| `*`      | user         | maintain a set of tasks to be done                       | keep track of things to be done.                                       |
+| Priority | As a …​                          | I want to …​                                                                          | So that I can…​                                                         |
+|----------|----------------------------------|---------------------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| `* * *`  | secretary                        | add club members’ information into the address book                                   | keep track of their contact information.                                |
+| `* * *`  | secretary                        | edit a club member’s information                                                      | stay updated with them if their contact information changes.            |
+| `* * *`  | secretary                        | delete a club member’s information from the address book                              | stop keeping track of them when they leave the club.                    |
+| `* * *`  | user                             | search for a person by their name or contact number                                   | locate details of persons without having to go through the entire list. |
+| `* *`    | secretary                        | search contacts according to a specific tag                                           | easily  contact people in a whole group.                                |
+| `*`      | user                             | maintain a set of tasks to be done                                                    | keep track of things to be done.                                        |
+| `* * *`  | treasurer                        | see the amount each person owes me                                                    | keep track of my finances.                                              |
+| `*`      | person that keeps track of tasks | see who in my contacts lies under which tasks and which tasks lies under each contact | keep track of my deadlines.                                             |
+| `*`      | treasurer                        | keep track of my club's fund and the budget assigned to every project                 | better organise and plan the club's finances.                           |
+| `*`      | secretary                        | archive the contact information of a club member that has left the club               | contact old club members by looking at archived contacts.               |
+| `* *`    | expert user                      | quickly use the CLI commands to speed up operations                                   | enhance the productivity of meetings and task recording.                |
+| `* *`    | secretary                        | pinpoint all the addresses of members and find the nearest amongst all members        | organise club activities and events that minimise travel time.          |
+| `* * *`  | treasurer                        | identify which member owes the club money                                             |                                                                         |
+| `* *`    | secretary                        | password protect the software                                                         | protect member's personal data.                                         |
+| `* *`    | busy treasurer                   | get reminded of upcoming payments                                                     | ask for payments before they are due.                                   |
+| `*`      | user                             | use the GUI elements to autofill the CLI                                              | recognise and learn the commands for future typing.                     |
+| `* *`    | user                             | configure the GUI elements' size and colours                                          | customise the application to my needs.                                  |
+| `* *`    | secretary                        | set priorities on tasks                                                               | focus on tasks that are more important first.                           |
+| `*`      | secretary                        | get statistics on the number of tasks done                                            | ensure that the club is on track with finishing tasks.                  |
+| `*`      | new user                         | learn how to use the commands using in-app guidance                                   | easily pick up the commands and perform my duties                       |
+| `* *`    | new user                         | have sample data that I can test out commands with                                    | familiarize myself with how the application works.                      |
+| `* * *`  | outgoing secretary               | transfer the data to an incoming secretary                                            | hand over my job without hassle.                                        |
 
-*{More to be added}*
 
 ### Use cases
 
@@ -1017,18 +1034,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should run independently of remote servers.
+2. Should not use a relational database management system to store data.
+3. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 4. Should not require internet connection, all operations are performed locally.
-5. Should not consume a lot of battery to keep it running in the background
+5. Should not consume a lot of battery to keep it running in the background.
+6. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+7. Should be able to hold up to 1000 notes without a noticeable sluggishness in performance for typical usage.
+8. Should be able to respond to any commands within 2 seconds as long as there are under 1000 entries stored in the application.
+9. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+10. Should automatically save any changes to the data in the storage directly.
+11. The product is intended only for a single user (i.e. not a multi-user product)
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Java 11**: Eleventh version of the Java Platform, Standard Edition Development Kit (JDK). SectresBook requires this to be installed to run.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Note**: A segment of text that describes a task to be done, coupled with tags that reference people in the SectresBook who are associated with the given task.
 * **Secretary**: A person acting as overseers for the administrative functions of a club.
+* **Treasurer**: A club member that manages and accounts for all the funds of a club.
+* **Tag**: A label that groups related people or notes together, such that they can be referred to as a single encapsulated entity specified by the tag.
+* **Graphical User Interface (GUI)**: An image-based interface that is more visually appealing than a command-line interface and encapsulates information through the use of icons and images.
+* **Command Line Interface (CLI)**: A text-based interface that receives typed commands as input and returns textual feedback as output.
+
 
 --------------------------------------------------------------------------------------------------------------------
 

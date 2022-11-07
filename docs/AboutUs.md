@@ -60,5 +60,9 @@ You can reach us on our GitHub portfolios, links provided below.
 [[github](http://github.com/Pinran-J)]
 [[portfolio](team/pinran-j.md)]
 
-* Role:
+* Role: Developer
 * Responsibilities:
+  * Feature (All notes related)
+  * English Proofreading
+  * Team meeting management
+
