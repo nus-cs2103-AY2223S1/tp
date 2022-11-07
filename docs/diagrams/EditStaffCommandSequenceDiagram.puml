@@ -37,6 +37,8 @@ deactivate EditStaffCommand
 
 EditStaffCommandParser --> HrProParser: command
 deactivate EditStaffCommandParser
+EditStaffCommandParser -[hidden]-> HrProParser: command
+destroy EditStaffCommandParser
 
 HrProParser --> LogicManager : command
 deactivate HrProParser
@@ -67,6 +69,8 @@ deactivate CommandResult
 
 EditStaffCommand --> LogicManager
 deactivate EditStaffCommand
+EditStaffCommand -[hidden]-> LogicManager
+destroy EditStaffCommand
 
 [<--LogicManager : Done
 deactivate LogicManager
