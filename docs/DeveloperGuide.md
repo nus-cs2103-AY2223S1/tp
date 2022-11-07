@@ -515,11 +515,41 @@ testers are expected to do more *exploratory* testing.
     
        Expected: The program should exit.
     
-    1. Reopen the progrom. Click the close button on the top right of the window.
+    1. Reopen the program. Click the close button on the top right of the window.
+    
+       Expected: The program should exit.
+       
+    1. Reopen the program. Select the File → Exit menu entry.
     
        Expected: The program should exit.
 
     *Both should also work when the GUI is showing an invalid command.*
+
+### GUI functionality
+
+1. Using menu items
+
+   1. Select the Help → Help menu entry.
+   
+      Expected: A window showing a clickable link to the [User Guide](UserGuide.html) is shown.
+      
+      *Note: This window is known to open with zero dimensions on Linux X11.*
+      
+   1. Close the help window. Press `F1`.
+   
+      Expected: The help window is shown.
+   
+1. Switching tabs
+
+   1. Prerequisites: The Contacts tab is selected.
+   
+   1. Click on the Tasks tab.
+   
+      Expected: The Tasks tab is highlighted. A list of tasks is shown. The data file path at the bottom changes to the task list file (`/data/tasks.json` by default).
+      
+   1. Click on the Contacts tab.
+   
+      Expected: The Contacts tab is highlighted. A list of contacts is shown. The data file path at the bottom changes to the contact list file (`/data/addressbook.json` by default).
 
 ### Managing tasks
 
@@ -549,7 +579,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Listing tasks
 
-   1. `add Math assignment m/MA4321 by/2022-01-02 4pm` (so that a sort order can be derived)
+   1. `add Math assignment m/MA4321 by/2022-01-02 2pm` (so that a sort order can be derived)
 
    1. Test case: `list`
    
@@ -565,9 +595,7 @@ testers are expected to do more *exploratory* testing.
       
 1. Finding tasks
 
-   1. Prerequisites: A task with "asdfghjk" in its name does not exist (if you're following this guide, there will not be one)
-
-   1. `add Learn Racket programming by/next week` (so that we have some data to test search)
+   1. Prerequisites: A task with "ign" in its name exists (if you're following this guide, there will be one)
    
    1. Test case: `find n/ign`
    
@@ -586,6 +614,8 @@ testers are expected to do more *exploratory* testing.
       Expected: The app switches to the Task tab. No tasks are shown. The result box displays a message about listing matching tasks.
    
 1. Marking and unmarking tasks
+
+   1. Prerequisites: There are at least two tasks. (if you're following this guide, there will be)
 
    1. Run `list time` to change the sort order.
    
@@ -609,7 +639,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Editing tasks
 
-   1. Run `find n/Learn Racket programming`
+   1. Prerequisites: A task with the name "Get groceries" exists. (if you're following this guide, there will be one)
+
+   1. Run `find n/Get groceries`
    
    1. Test case: `edit 1 m/CS1234`
    
@@ -653,17 +685,31 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `listc` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `delete 1`
       
-      > Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `delete 0`
+   
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)
+   
       Expected: Similar to previous.
 
 ### Saving data
+
+1. Autosave
+
+   1. Prerequisites: The task and contact to be added do not already exist.
+   
+   1. Enter `add Learn Racket programming by/next week`. Close and reopen the app.
+   
+      Expected: The added task should still be there.
+      
+   1. Enter `addc Ethan Wong p/81234567`. Close and reopen the app.
+   
+      Expected: The added contact should still be there.
 
 1. Dealing with missing/corrupted data files
 
