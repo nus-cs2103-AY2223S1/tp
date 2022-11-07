@@ -262,7 +262,7 @@ Format: `addm m/MODULE_CODE [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE
 * The `MODULE_CODE` field is mandatory while all other fields are optional (click [here](#module-fields) for more details on each individual field). If you attempt to add a module without a module code, it will result in an error!
 * A module can have any number of `ASSIGNMENT_DETAILS` (including 0)
 
-<div markdown="span" class="alert alert-primary"> **Tip:** 
+<div markdown="span" class="alert alert-primary"> :bulb: **Tip:** 
 You can add the module code first and leave other fields blank. Other fields can be added later using the editm command! 
 </div>
 
@@ -386,7 +386,8 @@ Examples:
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: 1. Install the app in the other computer.
+**A**: 
+1. Install the app in the other computer.
 2. Go to the location where your current app is in, there should be a file called `data` in the same location.
 3. Copy the entire file and either email yourself the file or use a thumb-drive to transfer it to the other computer.
 4. Move the copied file to the same location you placed the [jar file](#jar-file) in the new computer.
@@ -397,13 +398,13 @@ Examples:
 [editp](#editing-a-contact-editp) or [editm](#editing-a-module-editm) commands.
 
 **Q**: What if I have friends with the same name?<br>
-**A**: As our current iteration of SoCompiler does not allow duplicate names for contacts, if there are friends with the same first name, you may add in their full name or a nickname.
+**A**: SoCompiler currently does not support duplicate names. If there are multiple contacts with the same first name, you may add use their full name or a nickname.
 
 **Q**: Why can I not add a phone number with its country code?<br>
-**A**: Currently, SoCompiler is optimised for SoC students, and thus we assume that everyone will have Singapore numbers. If you wish to add a foreign number, you can add it in without the `+` in front.
+**A**: SoCompiler is currently optimised for [SOC](#school-of-computing-soc) students, and thus we assume that everyone will have Singapore numbers. If you wish to add a foreign number, you can add it in without the `+` in front.
 
 **Q**: Why can I add duplicate information(phone numbers, telegram handles, email addresses) to different people?<br>
-**A**: We do not wish to restrict your freedom by restricting too many fields, and we trust that you will accurately check through all the information that you input.
+**A**: We do not wish to restrict your freedom by restricting those fields. Do check that the information you input is accurate.
 
 [Back to top](#socompiler-user-guide)
 
