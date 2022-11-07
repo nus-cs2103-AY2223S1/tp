@@ -1,0 +1,33 @@
+@startuml
+start
+:User enters Import command;
+
+if () then ([Is invalid parameter])
+    :TrackAScholar displays \nerror message indicating \ninvalid user input;
+
+else ([Is valid parameters])
+
+    if () then ([trackAScholarImport file exist])
+
+        if () then ([trackAScholarImport has valid format])
+            :Retrieve all applicants \nas a model;
+
+            if () then ([import r])
+                :Add all imported applicants \ninto new model and applicants \nwith the same name are replaced\nwith the imported applicants;
+
+            else ([import k])
+                :Add all imported applicants \ninto new model and \napplicants with the same \nname are not changed;
+            endif
+
+        else ([else])
+            :TrackAScholar displays \nerror message indicating \nFile format is wrong;
+        endif
+
+    else ([else])
+        :TrackAScholar displays \nerror message indicating \nfile does not exist;
+
+    endif
+
+endif
+stop
+@enduml

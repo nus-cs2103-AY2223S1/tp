@@ -503,6 +503,41 @@ in the Activity Diagram but due to limitation of PlantUML, the arrowhead converg
 
 **Implementation**
 
+The import operation is facilitated by `ImportCommandParser`. `ImportComamndParser` will create an
+`ImportCommand` if the input prefix is `r` or `k`.
+
+`ImportCommand` extends `Command` and implements the `Command#execute` operation.
+
+[//]: # (Do I need to write how how importCommand executes the program?)
+
+Given below is an example usage scenario and how the import operation is handled by TrackAScholar:
+
+1. The user enters `import r`, for example, to import a trackAScholarImport file.
+   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `import` and
+   the arguments `r`.
+
+2. `TrackAScholarParser` identifies the `import` command and `ImportCommandParser` will be instantiated which calls `ImportCommandParser#parse()`
+
+3. `ImportCommandParser#parse()` checks if the argument correspond to `r` or `k` and initializes and returns an `ImportCommand` with the argument `str`.
+
+4. `LogicManager#execute()` now calls `ImportCommand#execute()`, which creates a new `JsonTrackAScholarStorage` object with the file path at ./data/trackAScholarImport.json.
+   `JsonTrackAScholarStorage#readTrackAScholar()` is then called to check if `trackAScholarImport.json` is present and calls `JsonUtil#readJsonFile()`.
+   This returns `Optional<ReadOnlyTrackAScholar>` and `Optional#get()` is called to get the `ReadOnlyTrackAScholar` object.
+   `ReadOnlyTrackAScholar#getApplicantList()` is called to obtain the `ObservableList<Applicant>` object.
+
+5. `ImportCommand#execute()` then checks if `str` in `ImportCommand` is `r`, `Model#importWithReplace()` to add the applicants within the 
+   `ObservableList<Applicant>` object into the current model, replacing applicants with the same name. 
+
+6. `ImportCommand#execute()` finishes with returning a `CommandResult` with a successful import message.
+
+The following sequence diagram shows how the import operation works:
+
+![Interactions Inside the Logic Component for the `import` Command example](images/ImportSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a import command:
+
+![Import command activity diagram](images/ImportCommandActivityDiagram.png)
+
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
