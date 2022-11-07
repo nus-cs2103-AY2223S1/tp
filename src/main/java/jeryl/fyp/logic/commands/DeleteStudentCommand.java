@@ -1,11 +1,11 @@
 package jeryl.fyp.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static jeryl.fyp.commons.core.Messages.MESSAGE_STUDENT_NOT_FOUND;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 
 import java.util.List;
 
-import jeryl.fyp.commons.core.Messages;
 import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.logic.commands.exceptions.CommandException;
 import jeryl.fyp.model.Model;
@@ -43,7 +43,7 @@ public class DeleteStudentCommand extends Command {
         List<Student> lastShownList = model.getFilteredStudentList();
         Index targetIndex = model.getIndexByStudentId(studentId);
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_STUDENT_NOT_FOUND);
+            throw new CommandException(MESSAGE_STUDENT_NOT_FOUND);
         }
 
         Student studentToDelete = lastShownList.get(targetIndex.getZeroBased());

@@ -5,7 +5,6 @@ import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_PROJECT_STATUS;
 import static jeryl.fyp.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static jeryl.fyp.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
-import jeryl.fyp.commons.core.Messages;
 import jeryl.fyp.logic.commands.exceptions.CommandException;
 import jeryl.fyp.model.Model;
 import jeryl.fyp.model.student.ProjectStatus;
@@ -50,10 +49,6 @@ public class MarkCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         Student oldStudent = model.getStudentByStudentId(studentId);
-
-        if (oldStudent == null) {
-            throw new CommandException(Messages.MESSAGE_STUDENT_NOT_FOUND);
-        }
 
         Student editedStudent = new Student(oldStudent.getStudentName(), oldStudent.getStudentId(),
                 oldStudent.getEmail(), oldStudent.getProjectName(), projectStatus,

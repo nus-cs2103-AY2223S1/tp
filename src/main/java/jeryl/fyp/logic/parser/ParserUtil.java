@@ -2,7 +2,9 @@ package jeryl.fyp.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static jeryl.fyp.commons.core.Datetimes.ACCEPTABLE_DATETIME_FORMATS;
+import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_DATETIME;
 import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_DEADLINE_RANK;
+import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_INDEX;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -28,10 +30,6 @@ import jeryl.fyp.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
-    public static final String MESSAGE_INVALID_DATETIME = "Invalid datetime format given!\n"
-            + "Consider using \"dd-MM-yyyy HH:mm\"\n"
-            + "Example: 20-10-2022 13:57";
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -167,11 +165,13 @@ public class ParserUtil {
      * @throws ParseException if the given {@code dateTime} is invalid.
      */
     public static LocalDateTime parseDeadlineDatetime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
         for (String dateTimeFormat : ACCEPTABLE_DATETIME_FORMATS) {
             try {
-                return LocalDateTime.parse(dateTime,
+                return LocalDateTime.parse(trimmedDateTime,
                         DateTimeFormatter.ofPattern(dateTimeFormat)
-                                .withResolverStyle(ResolverStyle.SMART));
+                                .withResolverStyle(ResolverStyle.STRICT));
             } catch (DateTimeParseException dtpe) {
                 // Go to the next dateTime format
             }

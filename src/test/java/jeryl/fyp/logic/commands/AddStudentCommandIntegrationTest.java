@@ -1,5 +1,6 @@
 package jeryl.fyp.logic.commands;
 
+import static jeryl.fyp.commons.core.Messages.MESSAGE_DUPLICATE_STUDENT;
 import static jeryl.fyp.logic.commands.CommandTestUtil.assertCommandFailure;
 import static jeryl.fyp.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static jeryl.fyp.testutil.TypicalStudents.getTypicalFypManager;
@@ -39,7 +40,7 @@ public class AddStudentCommandIntegrationTest {
     @Test
     public void execute_duplicateStudent_throwsCommandException() {
         Student studentInList = model.getFypManager().getStudentList().get(0);
-        assertCommandFailure(new AddStudentCommand(studentInList), model, AddStudentCommand.MESSAGE_DUPLICATE_STUDENT);
+        assertCommandFailure(new AddStudentCommand(studentInList), model, MESSAGE_DUPLICATE_STUDENT);
     }
 
 }

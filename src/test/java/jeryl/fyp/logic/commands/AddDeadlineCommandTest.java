@@ -1,6 +1,9 @@
 package jeryl.fyp.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static jeryl.fyp.commons.core.Messages.MESSAGE_COMPLETED_PROJECT;
+import static jeryl.fyp.commons.core.Messages.MESSAGE_DUPLICATE_DEADLINE;
+import static jeryl.fyp.commons.core.Messages.MESSAGE_STUDENT_NOT_FOUND;
 import static jeryl.fyp.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -21,6 +24,7 @@ import jeryl.fyp.model.student.Deadline;
 import jeryl.fyp.model.student.DeadlineList;
 import jeryl.fyp.model.student.DeadlineListTemplate;
 import jeryl.fyp.model.student.Student;
+import jeryl.fyp.model.student.exceptions.StudentNotFoundException;
 import jeryl.fyp.model.util.SampleDataUtil;
 import jeryl.fyp.testutil.StudentBuilder;
 
@@ -55,9 +59,35 @@ public class AddDeadlineCommandTest {
         Student validStudent = new StudentBuilder().build();
         model.addStudent(validStudent);
         AddDeadlineCommand addDeadlineCommand = new AddDeadlineCommand(validDeadline, validStudent.getStudentId());
-        CommandResult commandResult = addDeadlineCommand.execute(model);
+        addDeadlineCommand.execute(model);
 
-        assertThrows(CommandException.class, AddDeadlineCommand.MESSAGE_DUPLICATE_DEADLINE, () ->
+        assertThrows(CommandException.class, MESSAGE_DUPLICATE_DEADLINE, () ->
+                addDeadlineCommand.execute(model));
+    }
+
+    @Test
+    public void execute_completedStudent_throwsCommandException() throws CommandException {
+        ModelManager model = new ModelManager();
+        Deadline validDeadline = SampleDataUtil.getDeadline("Valid name", "01-01-1970 00:00");
+        Student validStudent = new StudentBuilder().withProjectStatus("DONE").build();
+        model.addStudent(validStudent);
+        AddDeadlineCommand addDeadlineCommand = new AddDeadlineCommand(validDeadline, validStudent.getStudentId());
+
+        assertThrows(CommandException.class, MESSAGE_COMPLETED_PROJECT, () ->
+                addDeadlineCommand.execute(model));
+    }
+
+    @Test
+    public void execute_studentNotFound_throwsCommandException() throws CommandException {
+        ModelManager model = new ModelManager();
+        Deadline validDeadline = SampleDataUtil.getDeadline("Valid name", "01-01-1970 00:00");
+        Student validStudent = new StudentBuilder().withStudentId("A0123456X").build();
+        Student anotherValidStudent = new StudentBuilder().withStudentId("A0123456Y").build();
+        model.addStudent(validStudent);
+        AddDeadlineCommand addDeadlineCommand = new AddDeadlineCommand(validDeadline,
+                anotherValidStudent.getStudentId());
+
+        assertThrows(StudentNotFoundException.class, MESSAGE_STUDENT_NOT_FOUND, () ->
                 addDeadlineCommand.execute(model));
     }
 

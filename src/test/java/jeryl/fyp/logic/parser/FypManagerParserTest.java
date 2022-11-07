@@ -45,8 +45,15 @@ public class FypManagerParserTest {
     @Test
     public void parseCommand_addStudent() throws Exception {
         Student student = new StudentBuilder().build();
+
+        // add -s
         AddStudentCommand command = (AddStudentCommand) parser.parseCommand(StudentUtil.getAddStudentCommand(student));
         assertEquals(new AddStudentCommand(student), command);
+
+        // add
+        AddStudentCommand alternativeCommand = (AddStudentCommand) parser.parseCommand(
+                StudentUtil.getAlternativeAddStudentCommand(student));
+        assertEquals(new AddStudentCommand(student), alternativeCommand);
     }
 
     @Test
@@ -58,9 +65,16 @@ public class FypManagerParserTest {
     @Test
     public void parseCommand_deleteStudent() throws Exception {
         Student student = new StudentBuilder().build();
+
+        // delete -s
         DeleteStudentCommand command = (DeleteStudentCommand) parser.parseCommand(
                 StudentUtil.getDeleteStudentCommand(student));
         assertEquals(new DeleteStudentCommand(student.getStudentId()), command);
+
+        // delete
+        DeleteStudentCommand alternativeCommand = (DeleteStudentCommand) parser.parseCommand(
+                StudentUtil.getAlternativeDeleteStudentCommand(student));
+        assertEquals(new DeleteStudentCommand(student.getStudentId()), alternativeCommand);
     }
 
     @Test
@@ -81,9 +95,13 @@ public class FypManagerParserTest {
     @Test
     public void parseCommand_findProjectName() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
+
+        // find -p
         FindProjectNameCommand command = (FindProjectNameCommand) parser.parseCommand(
                 FindProjectNameCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining("/")));
         assertEquals(new FindProjectNameCommand(new ProjectNameContainsKeywordsPredicate(keywords)), command);
+
+        // find
         command = (FindProjectNameCommand) parser.parseCommand(FindProjectNameCommand.ALTERNATIVE_COMMAND_WORD
                 + " " + keywords.stream().collect(Collectors.joining("/")));
         assertEquals(new FindProjectNameCommand(new ProjectNameContainsKeywordsPredicate(keywords)), command);
@@ -102,6 +120,8 @@ public class FypManagerParserTest {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(
                 HelpCommand.COMMAND_WORD + " " + DeleteStudentCommand.COMMAND_WORD) instanceof HelpCommand);
+        assertTrue(parser.parseCommand(
+                HelpCommand.COMMAND_WORD + " " + AddStudentCommand.ALTERNATIVE_COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
 
@@ -144,11 +164,13 @@ public class FypManagerParserTest {
 
     @Test
     public void parseCommand_sortProjectName() throws Exception {
+        // sort -p
         assertTrue(parser.parseCommand(SortProjectNameCommand.COMMAND_WORD) instanceof SortProjectNameCommand);
         assertTrue(parser.parseCommand(SortProjectNameCommand.COMMAND_WORD + " 3")
                 instanceof SortProjectNameCommand);
         assertTrue(parser.parseCommand(SortProjectNameCommand.ALTERNATIVE_COMMAND_WORD)
                 instanceof SortProjectNameCommand);
+
     }
 
     @Test
