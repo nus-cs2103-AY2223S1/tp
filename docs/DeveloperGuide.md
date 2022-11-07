@@ -632,7 +632,7 @@ and store the relevant search terms into each predicate. Combine those search te
 * Is reasonably comfortable using Command-Line Interface (CLI) apps
 
 **Value proposition:**
-* ENT doctors treat patients who often have chronic conditions and our product will make it easier for the staff to keep track of these patients, such as their appointment dates, the severity of their condition, their diagnosis, etc
+* ENT doctors treat patients who often have chronic conditions and our product will make it easier for the staff to keep track of these patients, such as their appointment dates, the completion status of these appointments, the type of appointment etc
 * ENT department offers a lot of services including head & neck surgery, voice clinic, and otology / skull base, etc; therefore, they need this app to filter different types of patients
 
 
