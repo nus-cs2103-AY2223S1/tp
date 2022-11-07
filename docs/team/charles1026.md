@@ -63,7 +63,7 @@ __Code Contributed:__ All my code contribution can be viewed here:
   [`delappt`](https://checkup.netlify.app/userguide#deleting-past-appointment-for-patient-delappt) 
   and [`consult`](https://checkup.netlify.app/userguide#consulting-a-patient-consult) 
   commands and [Patient Details Panel Clickability](https://checkup.netlify.app/userguide#person-details-panel) and 
-  [keyboard shortcuts](https://checkup.netlify.app/userguide#keyboard-shortcuts) enhancements.
+  [Keyboard Shortcuts](https://checkup.netlify.app/userguide#keyboard-shortcuts) enhancements.
 - Created example and feedback images for all the commands to improve user readability.
 - Reorganised the whole [Features](https://checkup.netlify.app/userguide#features) section to a 3 segment structure to 
   group related commands together and improve user readability
