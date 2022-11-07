@@ -8,7 +8,7 @@ import foodwhere.model.Model;
 import foodwhere.model.stall.Stall;
 
 /**
- * Adds a stall to the address book.
+ * Adds a stall to the address book in FoodWhere.
  */
 public class SAddCommand extends Command {
 

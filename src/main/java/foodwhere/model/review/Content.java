@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Review's content in FoodWhere.
- * Guarantees: immutable; is valid as declared in {@link #isValidContent(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidContent(String)}.
  */
 public class Content {
 

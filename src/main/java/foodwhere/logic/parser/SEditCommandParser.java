@@ -15,7 +15,7 @@ import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.commons.Tag;
 
 /**
- * Parses input arguments and creates a new SEditCommand object
+ * Parses input arguments and creates a new SEditCommand object.
  */
 public class SEditCommandParser implements Parser<SEditCommand> {
 
@@ -23,7 +23,7 @@ public class SEditCommandParser implements Parser<SEditCommand> {
      * Parses the given {@code String} of arguments in the context of the SEditCommand
      * and returns an SEditCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public SEditCommand parse(String args) throws ParseException {
         requireNonNull(args);

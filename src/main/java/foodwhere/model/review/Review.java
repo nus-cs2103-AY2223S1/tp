@@ -14,7 +14,7 @@ import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
 
 /**
- * Represents a Review in the address book.
+ * Represents a Review in FoodWhere.
  * Guarantees: tags are present and not null, field values are validated, immutable.
  */
 public class Review {
@@ -142,7 +142,7 @@ public class Review {
     /**
      * Creates a string that contains the list of tags stored within the Review.
      * Example: If the sets of tags are 'test1' and 'test2', the method will
-     * return "test1, test2"
+     * return "test1, test2".
      *
      * @return List of tags in a string format.
      */

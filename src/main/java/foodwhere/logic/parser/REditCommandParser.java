@@ -15,7 +15,7 @@ import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.commons.Tag;
 
 /**
- * Parses input arguments and creates a new REditCommand object
+ * Parses input arguments and creates a new REditCommand object.
  */
 public class REditCommandParser implements Parser<REditCommand> {
 
@@ -23,7 +23,7 @@ public class REditCommandParser implements Parser<REditCommand> {
      * Parses the given {@code String} of arguments in the context of the REditCommand
      * and returns an REditCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public REditCommand parse(String args) throws ParseException {
         requireNonNull(args);

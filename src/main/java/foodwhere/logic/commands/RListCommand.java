@@ -6,7 +6,7 @@ import static java.util.Objects.requireNonNull;
 import foodwhere.model.Model;
 
 /**
- * Lists all reviews in the address book to the user.
+ * Lists all reviews in the address book in FoodWhere for the user.
  */
 public class RListCommand extends Command {
 

@@ -12,7 +12,7 @@ import foodwhere.model.Model;
 import foodwhere.model.stall.Stall;
 
 /**
- * Deletes a stall identified using it's displayed index from the address book.
+ * Deletes a stall identified using its displayed index from the address book in FoodWhere.
  */
 public class SDeleteCommand extends Command {
 

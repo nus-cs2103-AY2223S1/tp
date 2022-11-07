@@ -17,9 +17,10 @@ public class StallContainsKeywordsPredicate implements Predicate<Stall> {
     private final HashSet<Tag> tagKeywords;
 
     /**
-     * Creates a StallContainsKeywordsPredicate where arguments are in List
-     * @param nameKeywords List of name keywords
-     * @param tagKeywords List of tag keywords
+     * Creates a StallContainsKeywordsPredicate where arguments are in List.
+     *
+     * @param nameKeywords List of name keywords.
+     * @param tagKeywords List of tag keywords.
      */
     public StallContainsKeywordsPredicate(List<Name> nameKeywords, List<Tag> tagKeywords) {
         this.nameKeywords = new HashSet<Name>(nameKeywords);
@@ -27,9 +28,10 @@ public class StallContainsKeywordsPredicate implements Predicate<Stall> {
     }
 
     /**
-     * Creates a StallContainsKeywordsPredicate where arguments are in Set
-     * @param nameKeywords Set of name keywords
-     * @param tagKeywords Set of tag keywords
+     * Creates a StallContainsKeywordsPredicate where arguments are in Set.
+     *
+     * @param nameKeywords Set of name keywords.
+     * @param tagKeywords Set of tag keywords.
      */
     public StallContainsKeywordsPredicate(Set<Name> nameKeywords, Set<Tag> tagKeywords) {
         this.nameKeywords = new HashSet<Name>(nameKeywords);

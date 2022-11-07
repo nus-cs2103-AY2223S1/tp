@@ -13,7 +13,7 @@ import foodwhere.model.commons.Tag;
 import foodwhere.model.stall.StallContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new SFindCommand object
+ * Parses input arguments and creates a new SFindCommand object.
  */
 public class SFindCommandParser implements Parser<SFindCommand> {
 
@@ -21,7 +21,7 @@ public class SFindCommandParser implements Parser<SFindCommand> {
      * Parses the given {@code String} of arguments in the context of the SFindCommand
      * and returns a SFindCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public SFindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =

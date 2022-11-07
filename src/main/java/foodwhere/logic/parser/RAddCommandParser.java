@@ -19,7 +19,7 @@ import foodwhere.model.review.Date;
 import foodwhere.model.review.Rating;
 
 /**
- * Parses input arguments and creates a new RAddCommand object
+ * Parses input arguments and creates a new RAddCommand object.
  */
 public class RAddCommandParser implements Parser<RAddCommand> {
 
@@ -27,7 +27,7 @@ public class RAddCommandParser implements Parser<RAddCommand> {
      * Parses the given {@code String} of arguments in the context of the RAddCommand
      * and returns an RAddCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public RAddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =

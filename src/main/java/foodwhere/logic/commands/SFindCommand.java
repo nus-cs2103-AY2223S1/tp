@@ -9,7 +9,7 @@ import foodwhere.model.stall.StallContainsKeywordsPredicate;
 
 /**
  * Finds and lists all stalls in FoodWhere whose name or tags contain any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class SFindCommand extends Command {
 

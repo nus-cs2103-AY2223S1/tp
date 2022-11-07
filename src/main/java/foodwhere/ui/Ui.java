@@ -3,7 +3,7 @@ package foodwhere.ui;
 import javafx.stage.Stage;
 
 /**
- * API of UI component
+ * API of UI component.
  */
 public interface Ui {
 

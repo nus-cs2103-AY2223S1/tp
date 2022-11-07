@@ -6,7 +6,7 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Tag in FoodWhere.
- * Guarantees: immutable; name is valid as declared in {@link #isValidTag(String)}
+ * Guarantees: immutable; name is valid as declared in {@link #isValidTag(String)}.
  */
 public class Tag {
 

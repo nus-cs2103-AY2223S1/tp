@@ -7,7 +7,7 @@ import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.review.comparator.ReviewsComparatorList;
 
 /**
- * Parses input arguments and creates a new RSortCommand object
+ * Parses input arguments and creates a new RSortCommand object.
  */
 public class RSortCommandParser implements Parser<RSortCommand> {
 
@@ -15,7 +15,7 @@ public class RSortCommandParser implements Parser<RSortCommand> {
      * Parses the given {@code String} of arguments in the context of the RSortCommand
      * and returns a RSortCommand object for execution.
      *
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public RSortCommand parse(String args) throws ParseException {
         try {
