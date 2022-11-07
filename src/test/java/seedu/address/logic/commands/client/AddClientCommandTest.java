@@ -1,6 +1,21 @@
 package seedu.address.logic.commands.client;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MOBILE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.client.AddClientCommand.MESSAGE_CLIENT_ALREADY_PRESENT;
+import static seedu.address.logic.commands.client.AddClientCommand.MESSAGE_DUPLICATE_CLIENT;
+import static seedu.address.logic.commands.client.AddClientCommand.MESSAGE_PROJECT_NOT_FOUND;
+import static seedu.address.logic.commands.client.AddClientCommand.MESSAGE_SUCCESS;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Deadline;
@@ -18,20 +33,6 @@ import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.Repository;
 import seedu.address.ui.StubUiManager;
 import seedu.address.ui.Ui;
-
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MOBILE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.client.AddClientCommand.MESSAGE_CLIENT_ALREADY_PRESENT;
-import static seedu.address.logic.commands.client.AddClientCommand.MESSAGE_DUPLICATE_CLIENT;
-import static seedu.address.logic.commands.client.AddClientCommand.MESSAGE_SUCCESS;
-import static seedu.address.logic.commands.client.AddClientCommand.MESSAGE_PROJECT_NOT_FOUND;
-import static seedu.address.testutil.Assert.assertThrows;
 
 public class AddClientCommandTest {
 
@@ -82,8 +83,8 @@ public class AddClientCommandTest {
         AddClientCommand addClientCommand = new AddClientCommand(clientWithoutModel, new ProjectId(1000));
 
         // non-existent projectId
-        assertThrows(CommandException.class, MESSAGE_PROJECT_NOT_FOUND,
-                () -> addClientCommand.execute(actualModel, stubUi));
+        assertThrows(CommandException.class, MESSAGE_PROJECT_NOT_FOUND, (
+            ) -> addClientCommand.execute(actualModel, stubUi));
 
     }
 
@@ -100,8 +101,8 @@ public class AddClientCommandTest {
 
         AddClientCommand addClientCommand = new AddClientCommand(clientWithoutModel, stubProject.getProjectId());
 
-        assertThrows(CommandException.class, MESSAGE_CLIENT_ALREADY_PRESENT,
-                () -> addClientCommand.execute(actualModel, stubUi));
+        assertThrows(CommandException.class, MESSAGE_CLIENT_ALREADY_PRESENT, (
+            ) -> addClientCommand.execute(actualModel, stubUi));
 
     }
 
@@ -123,8 +124,8 @@ public class AddClientCommandTest {
 
         AddClientCommand addClientCommand = new AddClientCommand(clientWithoutModel, stubProject.getProjectId());
 
-        assertThrows(CommandException.class, MESSAGE_DUPLICATE_CLIENT,
-                () -> addClientCommand.execute(actualModel, stubUi));
+        assertThrows(CommandException.class, MESSAGE_DUPLICATE_CLIENT, (
+            ) -> addClientCommand.execute(actualModel, stubUi));
     }
 
     @Test

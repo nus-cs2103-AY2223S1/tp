@@ -1,6 +1,19 @@
 package seedu.address.logic.commands.project;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_REPOSITORY;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.project.AddProjectCommand.MESSAGE_DUPLICATE_PROJECT;
+import static seedu.address.logic.commands.project.AddProjectCommand.MESSAGE_SUCCESS;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Deadline;
@@ -17,18 +30,6 @@ import seedu.address.model.project.Repository;
 import seedu.address.ui.StubUiManager;
 import seedu.address.ui.Ui;
 
-import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_REPOSITORY;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.project.AddProjectCommand.MESSAGE_SUCCESS;
-import static seedu.address.logic.commands.project.AddProjectCommand.MESSAGE_DUPLICATE_PROJECT;
-import static seedu.address.testutil.Assert.assertThrows;
-
 public class AddProjectCommandTest {
 
     private Ui stubUi = new StubUiManager();
@@ -43,8 +44,8 @@ public class AddProjectCommandTest {
         Model actualModel = new ModelManager();
 
         ProjectWithoutModel projectWithoutModel = new ProjectWithoutModel(new Name("PROJECT"),
-                new Repository(VALID_REPOSITORY), new Deadline(VALID_DEADLINE), ClientId.EmptyClientId.EMPTY_CLIENT_ID, new ArrayList<>(),
-                new Pin(false));
+                new Repository(VALID_REPOSITORY), new Deadline(VALID_DEADLINE),
+                ClientId.EmptyClientId.EMPTY_CLIENT_ID, new ArrayList<>(), new Pin(false));
 
         Model expectedModel = new ModelManager();
         Project addedProject = new Project(new Name("PROJECT"), new Repository(VALID_REPOSITORY),
@@ -75,8 +76,8 @@ public class AddProjectCommandTest {
 
         AddProjectCommand addProjectCommand = new AddProjectCommand(projectWithoutModel);
 
-        assertThrows(CommandException.class, MESSAGE_DUPLICATE_PROJECT,
-                () -> addProjectCommand.execute(actualModel, stubUi));
+        assertThrows(CommandException.class, MESSAGE_DUPLICATE_PROJECT, (
+            ) -> addProjectCommand.execute(actualModel, stubUi));
     }
 
     @Test

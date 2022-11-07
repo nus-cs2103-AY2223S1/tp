@@ -1,6 +1,17 @@
 package seedu.address.logic.commands.issue;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.Command.ID_OVERFLOW;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.issue.AddIssueCommand.MESSAGE_PROJECT_NOT_FOUND;
+import static seedu.address.logic.commands.issue.AddIssueCommand.MESSAGE_SUCCESS;
+import static seedu.address.testutil.Assert.assertThrows;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Deadline;
@@ -18,16 +29,6 @@ import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 import seedu.address.ui.StubUiManager;
 import seedu.address.ui.Ui;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.Command.ID_OVERFLOW;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.issue.AddIssueCommand.MESSAGE_PROJECT_NOT_FOUND;
-import static seedu.address.logic.commands.issue.AddIssueCommand.MESSAGE_SUCCESS;
-import static seedu.address.testutil.Assert.assertThrows;
 
 public class AddIssueCommandTest {
 
@@ -81,7 +82,8 @@ public class AddIssueCommandTest {
         assertThrows(CommandException.class, ID_OVERFLOW, () -> invalidAddIssueCommand.execute(actualModel, stubUi));
 
         // non-existent projectId
-        assertThrows(CommandException.class, MESSAGE_PROJECT_NOT_FOUND, () -> nonExistentAddIssueCommand.execute(actualModel, stubUi));
+        assertThrows(CommandException.class, MESSAGE_PROJECT_NOT_FOUND, (
+            ) -> nonExistentAddIssueCommand.execute(actualModel, stubUi));
 
     }
 
