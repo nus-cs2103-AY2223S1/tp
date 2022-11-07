@@ -118,8 +118,9 @@ The `UI` component
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
+* Updates the currently displayed panel to one of the five different types (clients list, meetings list, products list, detailed client view, detailed meeting view) based on the result of the last command executed.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Client` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Client`, `Meeting`, and `Product` objects residing in the `Model`.
 
 ### 3.3 Logic component
 
