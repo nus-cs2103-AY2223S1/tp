@@ -28,7 +28,7 @@ Given below are my contributions to the project.
       * A class has to be created for each of the following fields: name, quantity, unit, bought date, expiry date, price, and remarks.
       * A validation class was created for each individual field to ensure easy extension.
     * Commands such as the help, exit and reset, commands required minimal changes.
-  * Pull requests : Refactoring Person to Item [[PR\#157]]
+  * Pull requests : Refactoring Person to Item [[PR#157]]
 
 * **New Feature**: Added the ability to add a remark
 
@@ -70,7 +70,12 @@ Given below are my contributions to the project.
     * Add documentation for the `help` feature [[PR#90]]
 
   * Developer Guide:
-    * Added about us section for the Developer Guide.
+    * Refactored AB3's Developer Guide to suit FoodRem. [[PR#233]]
+    * Added "About FoodRem" section. [[PR#433]]
+    * Added "How to use the Developer Guide" section. [[PR#433]]
+    * Added "General Implementation Details" for Item-related features. [[PR#531]]
+    * Added section on "Incrementing and Decrementing the quantity of an item". [[PR#531]]
+    * Added section on "General Features". [[PR#531]]
 
 * **Community**:
 
@@ -136,8 +141,24 @@ Other PRs:
 * Update find to match new find [[PR#371]]
 * Update help command to use ITEM_NAME and TAG_NAME instead of NAME [[PR#374]]
 * Fix sorting by name [[PR#375]]
+* Set height of text area to be 450 [[PR#376]]
 * Add minor changes in the Userguide [[PR#429]]
 * Fix broken glossary term for expiry date and broken link for flags [[PR#432]]
 * Fix getColor for tags [[PR#434]]
 * Use stats parser to restrict command arguments [[PR#435]]
 * Ensure we cannot create an item with bought date after expiry date [[PR#450]]
+* Fix error message that says \"the FoodRem\" [[PR#466]]
+* Update PPP [[PR#504]]
+* Improve code quality [[PR#517]]
+* Fix minor errors [[PR#519]]
+* Add reposense @@author tag [[PR#522]]
+* Fix grammar in DG [[PR#524]]
+* Add DG help command sequence diagram and activity diagram [[PR#527]]
+* Fix bought date to be in future in test cases [[PR#465]]
+* Fix error message that says \"the FoodRem\" [[PR#466]]
+* Update PPP [[PR#504]]
+* Improve code quality [[PR#517]]
+* Fix minor errors [[PR#519]]
+* Add reposense @@author tag [[PR#522]]
+* Fix grammar in DG [[PR#524]]
+* Add DG help command sequence diagram and activity diagram [[PR#527]]
