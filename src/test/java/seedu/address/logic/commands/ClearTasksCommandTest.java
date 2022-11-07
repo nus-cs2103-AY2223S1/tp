@@ -33,7 +33,7 @@ public class ClearTasksCommandTest {
         addressBook.resetAllTaskCount();
         Model expectedModel = new ModelManager(addressBook, new UserPrefs());
 
-        assertCommandSuccess(new ClearTasksCommand(), model, ClearTasksCommand.MESSAGE_SUCCESSS, expectedModel);
+        assertCommandSuccess(new ClearTasksCommand(), model, ClearTasksCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
 }
