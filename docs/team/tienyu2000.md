@@ -93,14 +93,12 @@ to restore any desired state of your WorkBook.
 
 #### Contributions to Developer Guide (Extracts)
 
-1. Feature 
-    #### Undo/Redo feature
+1. Undo/Redo Feature
 
     The undo feature allows for users to revert back to their previous undone state in the Workbook.
 The redo feature complements the undo feature by allowing users to restore to its previous changed state following an undo command.
 
-2. Implementation 
-    #### Implementation
+2. Implementation
 
     The undo/redo mechanism is facilitated by `VersionedWorkBook`. It extends `WorkBook` with an undo/redo history, stored internally as an `workBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -126,7 +124,7 @@ The redo feature complements the undo feature by allowing users to restore to it
 
     Step 7. The user executes `clear`, which calls `Model#commitWorkBook()`. Since the `currentStatePointer` is not pointing at the end of the `workBookStateList`, all work book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add c/COMPANY …​` command. This is the behavior that most modern desktop applications follow.
 
-    #### Design considerations:
+    Design considerations:
 
     **Aspect: How undo & redo executes:**
 
