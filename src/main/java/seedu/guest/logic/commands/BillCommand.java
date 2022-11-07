@@ -30,9 +30,9 @@ public class BillCommand extends Command {
             + COMMAND_WORD + " 1 b/59.99\n"
             + COMMAND_WORD + " 2 b/-10\n";
 
-    public static final String MESSAGE_SUCCESS = "Updated bill of Guest: %1$s";
-    public static final String MESSAGE_NEGATIVE_BILL = "Total bill cannot be negative";
-    public static final String MESSAGE_EXCEED_BILL = "Total bill cannot exceed 999,999,999,999.99";
+    public static final String MESSAGE_SUCCESS = "Updated bill of Guest: %1$s.";
+    public static final String MESSAGE_NEGATIVE_BILL = "Total bill cannot be negative.";
+    public static final String MESSAGE_EXCEED_BILL = "Total bill cannot exceed 999,999,999,999.99.";
 
     private final Index index;
     private final Bill bill;
