@@ -48,15 +48,16 @@ Given below are my contributions to the project.
     * Standardised pictures in User guide, included callouts for important information in each picture. ([PR #202](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/202))
     * Wrote entire section for GUI orientation 
     * Crafting of tips and format of the User Guide
+    * Helped with formatting of commands (placement of tips, phrasing of parameter constraints)
 
   * Developer Guide:
-    * Wrote section on listing of unique stored Exercises in the graphical UI 
+    * Wrote section on listing of unique stored Exercises in the graphical UI ([PR #216](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/216), [PR #102](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/102))
     * Added UML diagrams (class and sequence diagrams) for recognised exercise list implementation
     * Added User stories 
 
 * **Community**:
   * Reviewed Team Member's PRs.
-  * Provided ideas and contributed in discussions during weekly team meeting. 
+
 
 * **Tools**:
   * PlantUML: Creating UML diagrams. 
