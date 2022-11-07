@@ -138,7 +138,6 @@ public class FindCommandParser implements Parser<FindCommand> {
         } else {
             hasEmptyFields = presentArgs.get().anyMatch(prefix ->
                     argMultimap.getValue(prefix).get().trim().length() == 0);
-            System.out.println(hasEmptyFields);
             return true;
         }
     }

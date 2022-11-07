@@ -1,6 +1,5 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -83,87 +82,57 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted Professor.
      */
     public Person toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : getTagged()) {
-            personTags.add(tag.toModelType());
-        }
+        final Name modelName = getModelName();
+        final Phone modelPhone = getModelPhone();
+        final Email modelEmail = getModelEmail();
+        final Gender modelGender = getModelGender();
+        final Set<Tag> modelTags = new HashSet<>(getPersonTags());
+        final Location modelLocation = getModelLocation();
+        final GithubUsername modelUsername = getModelUsername();
+        final Rating modelRating = getModelRating();
+        final ModuleCode modelModuleCode = getModelModuleCode();
+        final Specialisation modelSpecialisation = getModelSpecialisation();
+        final OfficeHour modelOfficeHour = getModelOfficeHour();
 
-        if (getName() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
-        }
-        if (!Name.isValidName(getName())) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
-        }
-        final Name modelName = new Name(getName());
-
-        if (getPhone() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(getPhone())) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(getPhone());
-
-        if (getEmail() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(getEmail())) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(getEmail());
-
-        if (getGender() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
-        }
-        if (!Gender.isValidGender(getGender())) {
-            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
-        }
-        final Gender modelGender = new Gender(getGender());
-
+        return new Professor(modelName, modelModuleCode, modelPhone, modelEmail, modelGender, modelTags,
+                    modelLocation, modelUsername, modelRating, modelSpecialisation, modelOfficeHour);
+    }
+    private ModuleCode getModelModuleCode() throws IllegalValueException {
         if (getModuleCode() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                ModuleCode.class.getSimpleName()));
+                    ModuleCode.class.getSimpleName()));
         }
         if (!ModuleCode.isValidModuleCode(getModuleCode())) {
             throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
         }
-        final ModuleCode modelModuleCode = new ModuleCode(getModuleCode());
+        return new ModuleCode(getModuleCode());
+    }
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+    private OfficeHour getModelOfficeHour() throws IllegalValueException {
+        final OfficeHour modelOfficeHour;
 
-        if (getLocation() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                Location.class.getSimpleName()));
+        if (getOfficeHour() == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT));
         }
 
-        if (!Location.isValidLocation(getLocation())) {
-            throw new IllegalValueException(Location.MESSAGE_CONSTRAINTS);
-        }
-
-        final Location modelLocation = new Location(getLocation());
-
-        if (getUsername() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    GithubUsername.class.getSimpleName()));
-        }
-
-        final GithubUsername modelUsername;
-
-        if (getUsername().equals(GithubUsername.DEFAULT_USERNAME)) {
-            modelUsername = new GithubUsername(getUsername(), false);
+        if (getOfficeHour().equals(OfficeHour.EMPTY_OFFICE_HOUR)) {
+            modelOfficeHour = new OfficeHour(getOfficeHour(), false);
         } else {
-            if (!GithubUsername.isValidUsername(getUsername())) {
-                throw new IllegalValueException(GithubUsername.MESSAGE_CONSTRAINTS);
+            if (!OfficeHour.isValidOfficeHour(getOfficeHour())) {
+                throw new IllegalValueException(OfficeHour.MESSAGE_CONSTRAINTS);
             }
-            modelUsername = new GithubUsername(getUsername(), true);
+            modelOfficeHour = new OfficeHour(getOfficeHour(), true);
         }
+        return modelOfficeHour;
+    }
 
+    private Rating getModelRating() throws IllegalValueException {
         if (getRating() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Rating.class.getSimpleName()));
         }
 
-        final Rating modelRating;
+        Rating modelRating;
 
         if (getRating().equals(Rating.EMPTY_RATING)) {
             modelRating = new Rating(getRating(), false);
@@ -173,7 +142,10 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
             }
             modelRating = new Rating(getRating(), true);
         }
+        return modelRating;
+    }
 
+    private Specialisation getModelSpecialisation() throws IllegalValueException {
         final Specialisation modelSpecialisation;
 
         if (getSpecialisation() == null) {
@@ -189,24 +161,6 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
             }
             modelSpecialisation = new Specialisation(getSpecialisation(), true);
         }
-
-        final OfficeHour modelOfficeHour;
-
-        if (getOfficeHour() == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT));
-        }
-
-        if (getOfficeHour().equals(OfficeHour.EMPTY_OFFICE_HOUR)) {
-            modelOfficeHour = new OfficeHour(getOfficeHour(), false);
-        } else {
-            if (!OfficeHour.isValidOfficeHour(getOfficeHour())) {
-                throw new IllegalValueException(OfficeHour.MESSAGE_CONSTRAINTS);
-            }
-            modelOfficeHour = new OfficeHour(getOfficeHour(), true);
-        }
-
-        return new Professor(modelName, modelModuleCode, modelPhone, modelEmail, modelGender, modelTags,
-            modelLocation, modelUsername, modelRating, modelSpecialisation, modelOfficeHour);
+        return modelSpecialisation;
     }
-
 }

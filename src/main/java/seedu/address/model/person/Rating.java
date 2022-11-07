@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Rating {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Rating can take any integer from 0 to 5, and it should not be blank";
+            "Rating can only take integer values from 0 to 5.";
 
     public static final String EMPTY_RATING = "";
 

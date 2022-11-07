@@ -3,13 +3,11 @@ layout: page
 title: User Guide
 ---
 SOConnect is a **desktop application for NUS SOC students to keep track of their University social circle** which includes peers, Teaching Assistants and Professors.
-Since it is designed for SOC students, it is **optimized for use via a Command Line Interface (CLI)**
-but it also has a Graphical User Interface for simpler and quicker task.
+Since it is designed for people with some computing background, it is **optimized for use via a Command Line Interface (CLI)**
+but it also has a Graphical User Interface (GUI) for simpler and quicker task.
 
 * Table of Contents
 {:toc}
-
---------------------------------------------------------------------------------------------------------------------
 
 # 1. About the User Guide
 
@@ -35,18 +33,15 @@ This section will explain the parameters and the format of commands.
 | []()   | INDEX           | Index of item in the recent displayed item list                                                                |
 |        | FILENAME        | Name that you wish to name the export file or Name of file you wish to import from                             |
 
-<div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 # 2. Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `SoConnect.jar` from [here](https://github.com/AY2223S1-CS2103T-W08-3/tp).
+1. Download the latest `SoConnect.jar` from [here](https://github.com/AY2223S1-CS2103T-W08-3/tp/releases).
 
-  1. **Double-click** the file to start the app or  using **CLI** and type `java -jar SoConnect.jar`. The GUI similar to the below should appear in a few seconds. Below is an UI mockup.
+  1. **Double-click** the file to start the app or  using **CLI** and type `java -jar SoConnect.jar`. The GUI similar to the below should appear in a few seconds.
      ![Ui](images/Ui.png)
 
 1. Refer to the [Features](#3-features) below for details of each command.
@@ -62,7 +57,7 @@ This section will explain the parameters and the format of commands.
 * All prefixes must be preceded by a space.<br>
   e.g <code> t/</code>, <code> g/</code>
 
-* All commands are **lower-sensitive**.<br>
+* All commands are **lowercase-sensitive**.<br>
   e.g. `Find` will **not** be recognised as a valid syntax.
 
 * Words in `UPPER_CASE` are the parameters to be **supplied by you** and must be in **English Characters**.<br>
@@ -118,6 +113,8 @@ A student can have multiple module codes and tags. But a student must have at le
 Examples:
 * `student n/John Doe y/1 m/CS4226 m/CS5242 p/98765432 e/JohnD@example.com g/M t/friends t/owesMoney l/UTown Residences git/johnnyd`
 * `student n/Betsy Crowe t/friend m/CS2100 g/F e/betsycrowe@example.com p/1234567 t/criminal`
+
+<div style="page-break-after: always;"></div>
 
 ### 3.1.2 Add a new Professor Contact: `prof`
 
@@ -186,7 +183,7 @@ Format: `edit INDEX [n/NAME] [m/MODULE_CODE] [s/SPECIALISATION] [p/PHONE] [e/EMA
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * When editing a Student's module codes, the existing module codes of the student will be removed i.e adding of module codes is not cumulative.
 * You can remove all the person’s tags by typing t/ without specifying any tags after it.
-* You can remove Person's GitHub Username, Teaching Assistant's and Professor's Rating, Professor's Office Hour, Professor's Specialisation by typing `git/`, `r/`, `o/` or `s/` respectively.
+* Similar to tags you can remove Person's GitHub Username, Teaching Assistant's and Professor's Rating, Professor's Office Hour, Professor's Specialisation by typing `git/`, `r/`, `o/` or `s/` without any inputs respectively.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 An error will be thrown if you attempt to edit a field that does not exist for the contact. E.g editing year field of a professor contact will throw an error as professor does not have a year field.
@@ -249,28 +246,31 @@ Only the following are accepted for `TYPE`:
 * `stu` for Student
 * `prof` for Professor
 * `ta` for Teaching Assistant
-* All are case-insensitive
-* More than one type can be provided
+* All are case-insensitive and more than one `TYPE` can be provided
 
 Examples:
 * `find typ/stu ta` -> Returns contacts who are students OR teaching assistants.
-* * `find typ/stu prof` -> Returns contacts who are students OR professors.
+* `find typ/stu prof` -> Returns contacts who are students OR professors.
 
+--------------------------------------------------------------------------------------------------------------------
 ### 3.3.2 List contact: `list`
 
 Displays all contacts stored in application.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-After executing find command, only the contacts that matches your input will be displayed. This list command would make the application display all of your stored contacts again.
-</div>
 
 Format: `list`
 
 Example Command: `list`
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### 3.3.3 Sort contact
 
 Sort the contact list in either ascending `A-Z` or descending `Z-A` order by name or module code.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+You can only sort by name or module code. You cannot sort by both field simultaneously.
+</div>
 
 #### 3.3.3.1 Sort by name
 
@@ -279,56 +279,77 @@ Sort the contact list by name in either ascending `A-Z` or descending `Z-A` orde
 Format: `sort A-Z n/`
 
 Example Command: `sort A-Z n/`
-
-Before executing the above command: ![before sorting](images/BeforeSort.png)
-
-After executing the command: ![after sorting](images/AfterNameAscendingSort.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-Contacts are sorted by name in `A-Z` order.
+Sort will only account for the first alphabet of the name. Sort by name will sort by alphabetical order.
 </div>
+
+Before executing the above command:<br>
+
+![before sorting](images/BeforeSortName.png)
+
+After executing the command: <br>
+![after sorting](images/AfterSortName.png)
 
 Format: `sort Z-A n/`
 
 Example Command: `sort Z-A n/`
 
-After executing the command: ![after sorting descending](images/AfterNameDescendingSort.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
-Contacts are sorted by name in `Z-A` order.
-</div>
+After executing the command:<br>
+![after sorting descending](images/AfterSortNameDesc.png)
+
+--------------------------------------------------------------------------------------------------------------------
 
 #### 3.3.3.2 Sort by moduleCode
 
 Sort the contact list by moduleCode in either ascending `A-Z` or descending `Z-A` order.
 
-Format: `sort Z-A m/`
-
-Example Command: `sort Z-A m/`
-
-After executing the above command: ![after sorting](images/SortModuleCodeAscending.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:**
-Module Codes sorted in order of CS1231S>CS2100>CS2103T>CS5000, lower level modules will appear higher.
-</div>
-
-Format: `sort A-Z m/`
+Format: `sort A-Z m/`, sorts in ascending order
 
 Example Command: `sort A-Z m/`
 
-After executing the above command: ![after sorting](images/SortModuleCodeDescending.png)
+Before executing the above command: 
+
+![before sorting](images/BeforeModuleCode.png)
+
+<div style="page-break-after: always;"></div>
+
+After executing the above command: <br>
+![after sorting](images/AfterModuleCodeA.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-Module Codes sorted in order of CS1231S>CS2100>CS2103T>CS5000, higher level modules will appear higher.
+The level of a module is defined by the value of the 4-digits within the module code whereby
+higher in numerical value means a high-level module.
 </div>
+
+Suppose the level of module code is the same (evey module has the same 4-digit), shown below:
+![same level](images/SameLevel.png)
+
+After executing the command `sort A-Z m/`:
+![sort same level](images/SortSameLevel.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Suppose two module codes have the same level (4-digit code), the two module codes will be sorted
+alphabetically.
+</div>
+
+Format: `sort Z-A m/`, sorts in descending order
+
+Example Command: `sort Z-A m/`
+
+After executing the above command: 
+![after sorting](images/SortReverse.png)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ## 3.4 GitHub Command: `github`
 
-Opens the GitHub profile page associated with the specified person in the address book.
+Opens the GitHub profile page associated with the specified person in the contact list, through user's default browser.
 
 Format: `github INDEX`
 * Opens the GitHub profile page associated with the person at the specified `INDEX'
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1, 2, 3, …
+* If the GitHub username is not a registered username on GitHub, this command will open the GitHub 404 page
 
 Examples:
 * `github 1`
@@ -339,7 +360,6 @@ If there is no GitHub username associated with the person at the specified `INDE
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## 3.5 Pie Chart Feature
 
@@ -348,9 +368,6 @@ The contact list will be displayed as a pie chart. The pie chart is located to t
 ![piechart](images/UiPiechart.png)
 
 This pie chart shows how many of each type of contact you have, and updates itself whenever the list changes. You can use this to have a quick overview of your social network.
-
---------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## 3.6 Fast Template Command
 
@@ -369,55 +386,91 @@ Examples:
 
 ## 3.7 Sharing-Related Commands
 
-Allow users to share the current state of their contact list.
+Allow users to share the entire state of their contact list. 
 
 ### 3.7.1 Export Contact as CSV: `export`
 
-User can export the current state of his/ her contact list into a CSV file.
+User can export the entire state of his/ her contact list into a comma-separated values(CSV) file.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Export will always export every single contact saved regardless of what  is currently shown on SoConnect's Graphical User Interface (GUI). 
+</div>
+
 
 Format: `export FILENAME`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
-FILENAME cannot contain any of `$%&` symbols.
+FILENAME must fit the following restrictions:<br>
+
+- Can ONLY contain alphabets (A-Z, a-z), digits (0-9), period(.), hyphen(-) or lowercase(_)<br>
+- Must be between 3 and 30 characters inclusive. (3 <= length <= 30)<br>
 </div>
 
 Examples:
-* `export test`
-* `export myContacts`
+* `export testing.csv`
+* `export myContacts.csv`
 
-Upon successfully exporting, users will see the CSV file:
-![after export](images/CSVfile.png)
+Step-by-Step guide:
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Please ensure you have added contacts into SoConnect (aside from the existing sample data). If you had 
+added contacts, a `data` directory can be found in the same directory as `SoConnect.jar`. 
 
-Also the directory where the exported file is located at will be displayed:
-![file directory](images/ExportSuccessful.png)
+You do not need 
+to create this directory manually. SoConnect will automatically create this directory to store your existing contacts.
+</div>
+
+![app and data](images/AppAndData.png)
+1. Simply type in `export myContacts` into the Command Line Interface in SoConnect
+![enter export](images/EnterExport.png)
+2. Upon successfully exporting, SoConnect will attempt to open the export 
+file:
+![after export](images/CsvExport.png)
+The file path is displayed in SoConnect:
+![file path](images/ExportFilePath.png)
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 3.7.2 Import address book in CSV format into address book: `import`
 
-User can import a CSV file generated by Export Contact to ease sharing of contact information.
+User can import a comma-separated values (CSV) file that is created via the export function in 3.7.1.
 
 Format: `import FILENAME.csv`
 
-<div markdown="span" class="alert alert-info">:information_source: Note:
-FILENAME cannot contain any of $%& symbols.
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+FILENAME must fit the following restrictions:<br>
+
+- Can ONLY contain alphabets (A-Z, a-z), digits (0-9), period(.), hyphen(-) or lowercase(_)<br>
+- Must be between 3 and 30 characters inclusive. (3 <= length <= 30)<br>
 </div>
 
 Examples:
 * `import testing.csv`
 * `import myContacts.csv`
 
-Step by Step Guide:
+Step-by-Step Guide: 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Please ensure that the comma-separated values (CSV) file has the following headers.
+"myContacts" is to be replaced by your desired file name.
+</div>
+
+![import file field](images/ImportFileField.png)
 1. User create an import directory in the same directory as the SoConnect.jar
    ![Import File Location](images/ImportFileLocation.jpg)
 2. User adds the desired import file into the import directory
    ![Nested File Location](images/NestedImportFile.jpg)
-3. Enter into the CLI import sampleimportdata.csv
+3. Enter into the Command Line Interface(CLI) of SoConnect: `import sampleimportdata.csv`
 
 Before import:
-![before import](images/BeforeImport.png)
+![import file](images/ImportCommand.png)
 
 After import:
 ![after import](images/AfterImport.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Import will automatically detect duplicates. Duplicates will not be added.
+Import will inform you when a particular field in your CSV file is incorrect.
+</div>
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -453,4 +506,4 @@ Example Command: `clear-confirm`
 | **Help**                                | `help`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 | **Generation of Person's Template**     | `tt PERSON` where PERSON is `prof / student / ta` <br> e.g. `tt prof`, `tt ta`, `tt student`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | **Export**                              | `export FILENAME` <br> e.g. `export contacts`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| **Import**                              | `import FILENAME` <br> e.g. `import contacts`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| **Import**                              | `import FILENAME.csv` <br> e.g. `import contacts.csv`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |

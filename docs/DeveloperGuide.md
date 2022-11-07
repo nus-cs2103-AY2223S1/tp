@@ -9,7 +9,10 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
+* Regex for GitHub Username taken from [here](https://github.com/shinnn/github-username-regex)
+
 * Code for a method in the pie chart feature was reused with minimal changes from [_this StackOverflow post_](https://stackoverflow.com/questions/35479375)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -385,6 +388,49 @@ The following sequence diagram shows how the export feature works.
     * Pros: Very intuitive to use and fool-proof.
     * Cons: Users have less customisation.
 
+
+### Import List Feature
+
+#### Implementation
+
+The proposed import mechanism is facilitated by `ImportCommand`. It extends `Command` which parses the file specified 
+by the user in the `import` directory. It uses the `CsvUtils` to scan the CSV file and
+parse each row in the file and converts them into `Person` objects. `FileName` class is 
+used to specify the name of the file being added to avoid adding a file with an incompatible name.
+
+Given below is an example usage scenario and how the export command mechanism behaves at each step.
+
+Step 1. The user types `import mycontacts.csv` and presses enter.
+
+Step 2. The `import mycontacts` will be parsed by `AddressBook#parseCommand()` which will return a `ImportCommandParser`.
+
+Step 3. The `ImportCommandParser` will parse `mycontacts` using `parse()` and then create an `FileName`.
+
+Step 4. `ImportCommandParser` then creates a `ExportCommand` by passing the `FileName` to its constructor.
+
+Step 5. The `ImportCommand` will then be executed using `ImportCommand#execute()`.
+
+Step 6. The `ImportCommand` retrieves the file located in `FileName` and passed into the fileToImport
+parameter of `CsvUtils#importCsv(fileToImport, importLocation)` along with the `FileName` as the importLocation parameter.
+
+Step 7. The `CsvUtils#importCsv(fileToImport, importLocation)` will create a `List<Person>` from the CSV file.
+
+Step 8. The `List<Person>` will then be added to the `AddressBook` and be displayed to the user .
+
+Step 9. A `CommandResult` indicating successful completion.
+
+#### Design considerations:
+
+**Aspect: How to simplify the command for User:**
+
+* **Current Implementation:** Allow users to specify the name of the file they want to import.
+    * Pros: Allows more customisation for the users.
+    * Cons: Might confuse users that are not very familiar with naming files.
+
+* **Alternative:** Create a click-and-drop version where user can simply drop the file they want to import into the GUI.
+    * Pros: Very intuitive to use and fool-proof.
+    * Cons: Hard to implement and goes against the CLI aspect of the application.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -513,10 +559,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Student   | find the consultation timing of tutors/professors                       | so I know when I can approach a professor for help                                                        |
 | `* * *`  | Student   | find the location for a specific module                                 | know where my class is                                                                                    |
 | `* * *`  | Student   | find my friends or peers doing the same mod as me                       | know who to ask for help or who to form groups with                                                       |
-| `* * *`  | Student   | filter through the contacts shown in GUI                                | I can search quickly for any contact I want to find                                                       |
+| `* * *`  | Student   | sort the contact list according to name                                 | I can find the contact I need efficiently                                                                 |
+| `* * *`  | Student   | sort the contact list according to module code                          | I can easily find the professor in charge of my module                                                    |
+| `* * *`  | Student   | export my contact list as a CSV file                                    | I can conveniently share contacts with my peers                                                           |
+| `* * *`  | Student   | import a CSV file containing contact information                        | I can quickly add multiple contacts into my contact book                                                  |
 
 
-*{More to be added}*
 
 ### Use cases
 
@@ -633,8 +681,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  User has to have a basic grasp of English as other languages are currently not supported.
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
@@ -659,12 +705,29 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+
+### Adding a Student
+
+1. Adding a Student to contact list
+
+    1. Prerequisites: Delete all sample data using the `clear-confirm` command.
+
+    2. Test case: `student n/John Doe m/CS4226 p/98765432 e/JohnD@example.com g/M`<br>
+       Expected: New Student contact added to list. Details of the added student contact will be shown in the status message. Pie chart on the right will be updated.
+
+    3. Test case: `student n/Alice m/CS4226 p/91145678 e/alice@example.com`<br>
+       Expected: No Student added. Invalid command message shown in the status message.
+
+    4. Other incorrect `student` commands to try: `student n/Alice m/CS4226 p/91145678`, `student n/Alice m/CS4226 e/alice@example.com` (where mandatory fields for student are missing)<br>
+       Expected: Similar to previous.
+
+Manual test cases for adding Professors and Teaching Assistants are omitted as they are similar in nature. Refer to [User Guide](https://ay2223s1-cs2103t-w08-3.github.io/tp/UserGuide.html) for more information about the commands.
 
 ### Deleting a person
 
@@ -672,13 +735,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### Opening a person's GitHub Profile Page
