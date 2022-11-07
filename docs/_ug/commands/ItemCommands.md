@@ -48,9 +48,8 @@ FoodRem does not already contain an item with the name "Potato".
 
 **Format:** `find KEYWORD [KEYWORDS]...`
 
-> Finds all items in FoodRem whose names contain [[ substring:substrings]] of the KEYWORDS
+> Finds all items in FoodRem whose names contain substrings of the KEYWORDS
 
-<!-- TODO: Remove duplicate autoglossary (just pick one) -->
 ```info
 * The notation `[KEYWORDS]...` means that we can take in multiple keywords. In this case, at least one `KEYWORD` is required.
 * The `KEYWORDS` are case-insensitive. (e.g. "apples" will match "Apples").
