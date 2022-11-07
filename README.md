@@ -18,3 +18,6 @@
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
   * For the detailed documentation of the AddressBook-Level3 project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
   * If you would like to contribute code to the AddressBook-Level3 project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5).
+* Font used: OpenSans. The Apache license can be found [here](https://github.com/AY2223S1-CS2103T-T12-4/tp/blob/master/src/main/resources/fonts/open-sans/LICENSE.txt).

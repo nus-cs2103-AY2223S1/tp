@@ -18,7 +18,8 @@ If you are a developer, this guide provides you with comprehensive documentation
 ## **Acknowledgements**
 
 * This project is based on the [AddressBook Level 3 (AB3)](https://se-education.org/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org/).
-* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5).
+* Font used: OpenSans. The Apache license can be found [here](https://github.com/AY2223S1-CS2103T-T12-4/tp/blob/master/src/main/resources/fonts/open-sans/LICENSE.txt).
 
 --------------------------------------------------------------------------------------------------------------------
 
