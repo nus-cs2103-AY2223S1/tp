@@ -521,36 +521,37 @@ We chose to implement the changing of view panels through `CommandResult` due to
 
 #### 4.5.1 Multiple possible prefixes per command
 
-Purpose: In this proposed feature, the user is provided with  multiple possible prefixes for defining fields in a command.
-For example, currently we can define a client's birthday using the `b/` prefix.
-However, since a birthday is essentially a date, a user may prefer to reuse the `d/` prefix instead (see `addMeeting` command).
+Purpose: With this proposed feature, users can have multiple possible prefixes for defining fields in a command.
+For example, currently in MyInsuRec we can define a client's birthday using the `b/` prefix only.
+However, since a birthday is essentially a date, a user may prefer to reuse the `d/` prefix instead for defining a client's birthday(see `addMeeting` command).
 
-##### Implementation
+##### Proposed Implementation
 
-`AddClientCommandParser` depends on multiple `Prefix` objects such as `PREFIX_BIRTHDAY`, and `PREFIX_DATE` to identify each field in an `AddClientCommand`.
-Currently, `Prefix` class stores the required prefix word as a `String`.
-Consider changing the prefix word to a `Pattern` which can be matched against using `Matcher` class.
-For all prefixes we are looking for, we first get the matching pattern using `getPrefix()`.
-Then, `findPrefixPosition()`  validates the presence of a field and also obtain the index of its first occurrence.
+Currently, in MyInsuRec, `AddClientCommandParser` depends on multiple `Prefix` objects such as `PREFIX_BIRTHDAY`, and `PREFIX_DATE` to identify each field in an `AddClientCommand`.
+Also, the `Prefix` class stores the required prefix word as a `String`.
+
+In this proposed implementation, we instead change the prefix word stored in `Prefix` class to a `Pattern` which can be matched against using `Matcher` class.
+Then, for all prefixes we are looking for, we first get the matching pattern using `getPrefix()`.
+Later, `findPrefixPosition()`  validates the presence of a field and also obtains the index of its first occurrence.
 From then on, the `AddClientCommand` can be built as expected.
 
 <img src="images/ProposedPrefixSequenceDiagram.png" width="550" />
 
 
-##### Design Considerations
+##### Design Considerations for Proposed Feature
 
 **Aspect: How prefixes are stored:**
 
-- **Alternative Solution 1 (current Choice):** `Prefix::getPrefix` returns a `Pattern` that `findPrefixPosition()` can match against using `Matcher` class (see diagram below).
+- **Alternative Solution 1 (preferred choice for proposed feature):** `Prefix::getPrefix` returns a `Pattern` that `findPrefixPosition()` can match against using `Matcher` class (see diagram below).
 - Pros: `Matcher` has several useful methods for validating a match.
 - Case-insensitive matches can be made easily by setting a flag in the `Pattern`.
 - Cons: Regex string used to define a pattern may be difficult to read. 
   - e.g. `String regexForBirthday = "[b|d|birthday|birthdate][\\\\]"` is not as clear as Alternative 2
 - **Alternative Solution 2:** Store each possible prefix as a `String` in a `List` maintained by `Prefix`.
-- Pros: `String` matches are easier to understand than regexes 
-  - e.g. `String[] patternsForBirthday = {"b", "d", "birthday", "birthdate"}` and check for matches in this array. 
+- Pros: `String` matches are easier to understand than regexes.
+  - e.g. `String[] patternsForBirthday = {"b", "d", "birthday", "birthdate"}` are all possible prefixes and can be used to check for finding matches. 
 - Cons: `List` of `String` returned is cumbersome for pattern matching, i.e. Iterate through every `String` in `patternsForBirthday` to look for a match.
-- **Solution 1** is chosen because: 
+- **Solution 1** is preferred the proposed feature because: 
   - A single `Pattern` for each `Prefix` is more succinct that a `List`.
   - No need to iterate through a list of `Strings` to find a match.
   - Matches can be made using pre-existing methods in `Matcher` class (no need to rely on `String` methods)
