@@ -271,6 +271,9 @@ public class ParserUtil {
     public static String parseModule(String moduleCode) throws ParseException {
         requireNonNull(moduleCode);
         moduleCode = moduleCode.toLowerCase();
+        if (moduleCode.split(" ").length != 1) {
+            throw new ParseException(Module.MESSAGE_MODULE_CODE_CONSTRAINT);
+        }
         Pattern pattern = Pattern.compile("(?<prefix>[a-z]+)(?<digit>[0-9]+)(?<postfix>[a-z]*)");
         Matcher matcher = pattern.matcher(moduleCode);
         if (matcher.find()) {

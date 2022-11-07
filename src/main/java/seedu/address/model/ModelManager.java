@@ -179,6 +179,12 @@ public class ModelManager implements Model {
     @Override
     public void setSchedule(Schedule target, Schedule editedSchedule) {
         requireAllNonNull(target, editedSchedule);
+        Module targetModule = getModuleByModuleCode(target.getModule());
+        for (Schedule schedule: targetModule.getSchedules()) {
+            if (schedule.equals(target)) {
+                profNus.setSchedule(schedule, editedSchedule);
+            }
+        }
         profNus.setSchedule(target, editedSchedule);
         updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
     }

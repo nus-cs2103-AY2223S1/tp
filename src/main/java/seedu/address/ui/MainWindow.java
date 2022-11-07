@@ -347,7 +347,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleShowTabSchedule() {
-        scheduleListPanel = new ScheduleListPanel(logic.getAllScheduleList());
+        System.out.println(logic.getFilteredScheduleList().size());
+        scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
         scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
         tabPane.getSelectionModel().select(SCHEDULE);
     }
@@ -448,7 +449,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleShowTabModule();
             }
             if (commandResult.isShowScheduleList()) {
-                handleShowTabSchedule();
+                handleShowTabAllSchedules();
             }
             if (commandResult.isShowHorizontalTimeTable()) {
                 timetableModel = 0;

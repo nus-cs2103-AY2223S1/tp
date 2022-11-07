@@ -137,12 +137,12 @@ and other module related information such as your teaching schedule for the modu
 Before you get started with this feature, have a look at the common parameters we have used. Take a look before you
 continue!
 
-| Parameter            | Description & Restriction                                                                                                                                                                         | Example                                                         |
-|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| `MODULE_NAME`        | This parameter represents the name of the module you are adding into ProfNUS.<br/>The name should be alphanumeric.<br/>Modules in ProfNUS are allowed to have the same names.                     | `Software Engineering`                                          |
-| `MODULE_CODE`        | This parameter represents the module code of a module in ProfNUS. Using module code can uniquely determine a module. The format should abide by the Module Code Format of NUS.                    | `CS2030S`                                                       |
-| `MODULE_DESCRIPTION` | This parameter represents the description of the module you are adding into ProfNUS.<br/>The description should be alphanumeric.<br/>Modules in ProfNUS are allowed to have the same description. | `This module teaches you about software engineering principles.` |
-| `TAG`                | This parameter represents the tag you want to attach to the module.<br/>It must be a single word consisting of alphanumeric characters.                                                           | `ModuleCoordinator`                                             |
+| Parameter            | Description & Restriction                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Example                                                         |
+|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
+| `MODULE_NAME`        | This parameter represents the name of the module you are adding into ProfNUS.<br/>The name should be alphanumeric.<br/>Modules in ProfNUS are allowed to have the same names.                                                                                                                                                                                                                                                                                                  | `Software Engineering`                                          |
+| `MODULE_CODE`        | This parameter represents the module code of a module in ProfNUS. Using module code can uniquely determine a module. The format should abide by the Module Code Format of NUS. Each unique module code consists of a two‐letter or three‐letter prefix that denotes the discipline, four digits the first of which indicates the level of the module, and one or zero letter postfix. Module codes are not case sensitive, this means that `CS2030S` is the same as `cs2030s`. | `CS2030S`                                                       |
+| `MODULE_DESCRIPTION` | This parameter represents the description of the module you are adding into ProfNUS.<br/>The description should be alphanumeric.<br/>Modules in ProfNUS are allowed to have the same description.                                                                                                                                                                                                                                                                              | `This module teaches you about software engineering principles.` |
+| `TAG`                | This parameter represents the tag you want to attach to the module.<br/>It must be a single word consisting of alphanumeric characters.                                                                                                                                                                                                                                                                                                                                        | `ModuleCoordinator`                                             |
 
 #### 4.2.2. Viewing list of modules: `mlist`
 
@@ -186,9 +186,11 @@ as well as any tags given to the module upon using this command!
 Now, let's use the `vtarget` command to see how you can view more information about a module.
 
 **Step 1**: Type the command `vtarget 1` in the command box.
+
 ![vtarget_step1](images/userguide/vtarget_step1.png)
 
 **Step 2**: Press enter, and you will be able to see more information about a module now!
+
 ![vtarget_step2](images/userguide/vtarget_step2.png)
 
 #### 4.2.4. Viewing module details: `mview`
@@ -202,6 +204,14 @@ You can use this command to view a list of students and tutors in the module.
 Let's use the `mview` command to view all the students and tutors in a module.
 
 **Step 1**: Type the command `mview c/CS1101S` in the command box.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note**<br>
+
+- Module codes are not case-sensitive, this means that `CS2030S` is the same as `cs2030s`.
+
+</div>
 
 <div markdown="span" class="alert alert-warning">
 
@@ -372,9 +382,9 @@ You can add a student / teaching assistant by using this command.
 
 :exclamation: **Caution:**<br>
 
-- Please make sure you have added the module with `MODULE_CODE` before you add any students with `MODULE_CODE`. Otherwise, ProfNUS will consider the command to be invalid.
+- Please make sure you have added the module with `MODULE_CODE` before you add any students with `MODULE_CODE`. Otherwise, ProfNUS will consider the command to be invalid.<br>
 
-- A student should not be a teaching assistant and a student of the same module!
+- A student should not be a teaching assistant and a student of the same module!<br>
 
 - If a student name is too long, only the first 50 characters of the name will be shown!
 
@@ -592,38 +602,9 @@ In this section, we list all the parameters you will encounter of following comm
 
 Views the list of selected/all schedules.
 
-**Format:** `sview [c/MODULE_CODE]... [w/WEEKDAY]...`
+**Format:** `sview`
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note**<br>
-
-- You can refer to the section [Schedule Manager Command Parameters](#441-schedule-manager-command-parameters) for more information about the parameters.
-- Schedules matching at least one keyword will be returned to you.
-- You can view all your schedules by typing `sview` without any parameter.
-
-</div>
-
-<div markdown="span" class="alert alert-warning">
-
-:exclamation: **Caution:**<br>
-
-- If any one of `MODULE_CODE` you type in doesn't exist, ProfNUS will report an error and **will not** show any schedule.
-
-</div>
-
-**Example:** `sview c/CS2040S w/Monday`
-
-Now, let's view your schedules of CS2030S and schedules on Monday.
-
-**Step 1:** Type the command `sview c/CS2040S w/Monday` in the command box.
-
-![sview_step1](images/userguide/sview_step1.png)
-
-**Step 2:** Press enter, you will see all schedules of CS2040S(highlighted in blue block) and all schedules on Monday(highlighted in yellow box).
-
-![sview_step2](images/userguide/sview_step2.png)
-
+**Example:** `sview`
 
 #### 4.4.3. View your timetable: `tview`
 
@@ -687,7 +668,7 @@ You can add a schedule by using this command.
 
 :exclamation: **Caution:**<br>
 
-- Please make sure you have added the module with `MODULE_CODE` before you add any schedules with `MODULE_CODE`. Otherwise, ProfNUS will consider the command to be invalid and report an error.
+- Please make sure you have added the module with `MODULE_CODE` before you add any schedules with `MODULE_CODE`. Otherwise, ProfNUS will consider the command to be invalid and report an error.<br>
 - If the schedule to be added conflicts with any existing schedule, ProfNUS will report an error and **will not** perform any operation.
 
 </div>
@@ -886,14 +867,14 @@ If your changes to the data file makes its format invalid, ProfNUS will discard 
 
 ### 6.4. Schedule Manager Command Summary
 
-| Action                                                    | Format                                                       | Example                                                      |
-|-----------------------------------------------------------| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [View your schedule list](#442-view-your-schedule-sview)  | `sview [c/MODULE_CODE]... [w/WEEKDAY]...`                    | `sview c/CS2040S w/Monday`                                   |
-| [View your timetable](#443-view-your-timetable-tview)     | `tview [MODE]`                                               | `tview v`                                                    |
-| [Add your schedule](#444-add-your-schedule-sadd)          | `sadd c/MODULE_CODE w/WEEKDAY ct/PERIOD cc/CLASS_TYPE cg/CLASS_GROUP cv/VENUE` | `sadd c/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD` |
-| [Edit your schedule](#445-edit-your-schedule-sedit)       | `sedit INDEX [c/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cg/CLASS_GROUP] [cv/VENUE]` | `sedit 1 w/Monday ct/09:00-10:00 cc/tut cv/COM1-B103`        |
-| [Delete your schedule](#446-delete-your-schedule-sdelete) | `sdelete INDEX`                                              | `sdelete 1`                                                  |
-| [Clear your schedule](#447-clear-your-schedule-sclear)    | `sclear [c/MODULE_CODE]...`                                  | `sclear c/CS2103T m/CS1101S`                                 |
+| Action                                                    | Format                                                                                            | Example                                                          |
+|-----------------------------------------------------------|---------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
+| [View your schedule list](#442-view-your-schedule-sview)  | `sview`                                                                                           | `sview`                                                          |
+| [View your timetable](#443-view-your-timetable-tview)     | `tview [MODE]`                                                                                    | `tview v`                                                        |
+| [Add your schedule](#444-add-your-schedule-sadd)          | `sadd c/MODULE_CODE w/WEEKDAY ct/PERIOD cc/CLASS_TYPE cg/CLASS_GROUP cv/VENUE`                    | `sadd c/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD` |
+| [Edit your schedule](#445-edit-your-schedule-sedit)       | `sedit INDEX [c/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cg/CLASS_GROUP] [cv/VENUE]` | `sedit 1 w/Monday ct/09:00-10:00 cc/tut cv/COM1-B103`            |
+| [Delete your schedule](#446-delete-your-schedule-sdelete) | `sdelete INDEX`                                                                                   | `sdelete 1`                                                      |
+| [Clear your schedule](#447-clear-your-schedule-sclear)    | `sclear [c/MODULE_CODE]...`                                                                       | `sclear c/CS2103T c/CS1101S`                                     |
 
 ### 6.5. Miscellaneous Command Summary
 

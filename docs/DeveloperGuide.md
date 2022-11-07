@@ -398,7 +398,7 @@ The following activity diagram summarizes what happens when a user executes a `m
 Reason for choosing option 1:
 A professor is more highly likely to remember the module codes of the modules that he is teaching rather than the index in the list in our application. Hence, an additional step would be required of the professor if option 2 were to be chosen. Therefore, option 1 is preferred.
 
-### 5.7. Viewing more details(Name, Description, Tags) of a module feature
+### 5.7. Viewing more details(Name, Description, Tags, Schedules) of a module feature
 
 #### Implementation
 
