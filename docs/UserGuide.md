@@ -1,5 +1,3 @@
-# Contactmation User Guide
-
 ## **Table of contents**
 
 1. [Introduction](#introduction)
@@ -43,7 +41,7 @@
 6. [FAQ](#faq)
 7. [Future plans](#future-plans)
 8. [Glossary](#glossary)
-9. [Commands summary](#commands-summary)
+9. [Commands summary](#command-summary)
    1. [General commands](#general-commands-summary)
    2. [Contact commands](#contact-commands-summary)
    3. [Group commands](#group-commands-summary)
@@ -56,76 +54,144 @@
 
 > **What is Contactmation?**
 
-Contactmation is a powerful **desktop based team management solution** that **helps its users efficiently and
-effectively manage many projects and groups at once.**
+Contactmation is a powerful **desktop based project and task management solution** that **helps you efficiently and
+effectively manage many projects at once** through the [Command Line Interface (CLI)](#glossary).
 
-Contactmation will be able to help you save all your contact details, keep track of
-each projects' group and subgroup, and delegate tasks to each group.
+Contactmation will be able to help you save all your project member details, keep track of
+each project, and delegate tasks to each project.
 
 > **Who is Contactmation for?**
 
-Contactmation is for **project managers and supervisors** that want to maintain an organised view of their
+Contactmation is for **project managers and supervisors** who want to maintain an organised view of their
 projects and streamline the management of their projects.
-
-#### Purpose of this guide
-
-This guide elaborates on all the features available in Contactmation that are necessary for the purpose of Contactmation.
-It also binds the features together with real examples that allows the users to gain a clearer idea of how the features 
-are utilised. Some key components of Contactmation are established, in hopes of demonstrating the benefits of 
-Contactmation to users.
-
-#### How to use this guide
-
-The [table of contents](#table-of-contents) gives a complete overview of the guide. Following it **sequentially** effectively
-portrays the expected common usage of Contactmation.
 
 ---
 
 ## **About**
 
-### What it looks like
+### Purpose
 
-The following figure shows the different graphical components of our application.
-We will be referring to these terminologies throughout the user guide:
+This guide will elaborate on all the features available in Contactmation that will help make your experience of using 
+Contactmation pain-free.
+
+Examples with real-world applications are present to give you a clearer idea of how the features 
+can be utilised.
+
+### User Guide Navigation
+
+This guide is broken into different sections that will aid you in better understanding our application.
+
+Refer to:
+- The [contactmation window guide](#contactmation-window-guide) for a guide on the application window.
+- The [basic feature](#basic-features) section to get started on using the application.
+- The [advanced feature](#advanced-features) section for powerful tools that will help make your experience of
+using Contactmation much more streamlined.
+- The [glossary](#glossary) for explanations to the different terms used throughout this guide.
+- The [command summary](#command-summary) for a quick overview on how to use all our features.
+
+For a more detailed view of all the features present, please visit the [table of contents](#table-of-contents).
+
+### Contactmation Window Guide
+
+The following figure shows how our application would appear on your screen upon opening Contactmation.
+Each part of our application will be labelled as such:
 
 ![Contactmation ui elements](images/ContactmationUi.png)
 
----
+We will be referring to these terminologies throughout the user guide.
 
-## **Prerequisites**
+### **Prerequisites**
 
-- Ensure that `Java 11` and above is installed on your device. If you do not have `Java 11` installed, please refer to
-  this [Java 11 installation guide](https://www.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracle-jdk).
-- The current version of Contactmation can only be used in a desktop, but should work in all operating systems (such as 
+Before you start up Contactmation on your computer, 
+
+- Ensure that `Java version 11` or above is installed on your device. Do refer to the [FAQ](#faq) if you need help with 
+checking whether `Java 11` is installed on your computer, or if you need help with installing `Java 11`.
+
+
+- The current version of Contactmation can only be used in a desktop, but should work on all operating systems (such as 
 Windows, macOS and Linux etc.) as long as `Java 11` is installed.
 
 --- 
 
-## **Additional Information**
+## **Before you begin**
 
-### Definitions
+Before you begin, you will need to know how to interact with Contactmation.
 
-In this user guide, we define any parameters within **square brackets** ([ ]) e.g. `[t/new_tag]` as
-**optional parameters**, and commands within **angled brackets** (< >) e.g. `<command>` are **necessary parameters**.
+You may only interact with Contactmation by typing [commands](#glossary) into the 
+[command box](#contactmation-window-guide). Upon hitting the `Enter` key, you will be able to execute the command
+currently residing in the command box.
 
-**Ellipses** `...` indicate that more than 1 input of a certain type can be given to a single command.
-For example, `[t/tags ...]` means that an optional number (0 or more) of `tags` can be added to a single
-user command, but `t/tags...` means that 1 or more `tags` can be given to a single user command.
+> How do I properly write these commands? 
+ 
+We will go through the standardised formats for each [basic](#basic-features) and [advanced](#advanced-features) 
+feature in their respective sections. 
 
-Other keywords utilised in the Guide is defined in the [Glossary](#glossary).
+> How do I clear the sample data in my newly downloaded version of Contactmation?
 
-### Scoping
+Simply type in the word `clear` into the command box and press the `Enter` key on your desktop. All the sample
+data will be wiped. Do note that this action is **irreversible**.
 
-Since Contactmation is a multi group management contact application, it supports scoping to facilitate
-easy access between groups and subgroups of a group project.
+> How do I read the standardised formats for each feature?
 
-Scoping defines the relationship between different groups. For example, a subgroup can be contained within
-another group, similar to how a folder on your desktop can be contained within another folder.
+These formats may look cryptic at first glance. Do visit the [Standardised Format Style](#standardised-format-style)
+section to better understand how to read the formats. 
 
-There may also be many subgroups under a group, similar to how there may be many sub folders under a folder.
+### Standardised Format Style
 
-Adding to the analogy, your contacts can be thought of as files on your desktop. Contacts can thus be
-added to a group or a subgroup, similar to how files can be added into folders.
+This section aims to help you better understand the different terminologies used in the format section of each
+feature description.
+
+| Format                               | Explanation                                                                          |
+| ------------------------------------- | ------------------------------------------------------------------------------- |
+| **Square brackets** ([ ]) | Anything that is within the square brackets are entirely **optional**. You may skip anything wrapped in the square bracket and move on to the next [word](#glossary) in the [command sequence](#glossary). |
+| **Angled brackets** (< >) | Anything within angled brackets are placeholder words. These words will be replaced by other words for the command to run. The replacing words will be specified in the format section for each feature. |
+| **Ellipses** (`...`)      | The word which these ellipses are attached to can be repeated multiple times in a single command. |
+
+#### Combining the format styles
+
+The **innermost** format in a word has the **highest** priority, while the **outermost** format in a word
+has a **lower** priority than any format within it. However, since an outer format is considered after the inner format,
+the outer format has a **stronger connotation** to it.
+
+Here are additional examples to solidify your understanding of how these formats make sense when combined. 
+
+If the command format in the format section of a feature has `[t/tags...]`, that means that the **ellipses**
+will have a higher priority than the **square brackets**. This means that `t/tags` can be repeated multiple
+times, but `t/tags` can be entirely optional. Therefore, it is possible to **skip** `t/tags` altogether, or have
+1 or more `t/tags` in the command sequence.
+
+Other keywords utilised in the guide are defined in the [glossary](#glossary).
+
+### Making groups within groups
+
+This section aims to help you understand the concept of creating groups under other groups.
+
+> What is "making groups within groups"?
+ 
+Here is a scenario. Let us say you are a boss of a company called **Just_Incorporated**, and you would like to track
+the different departments in your company. Therefore, the departments in the company
+(e.g. Marketing and Research and development department) could act as groups within Contactmation.
+
+However, let us also say that you are closely monitoring a particular group in the Research and development
+department, and let us call this group is **Vero_Ltd**. Then this group, **Vero_Ltd**, would
+fall under the **Research and development** group in Contactmation.
+
+Here is how the grouping for this scenario would look like in theory:
+
+![Group within group illustration](images/Group_within_group_illustration.png)
+
+This will be how the grouping looks like in Contactmation:
+
+![Group within group illustration in contactmation](images/Group_within_group_illustration_contactmation.png)
+
+Note that **Vero_Ltd** is listed in group 3 as `/Research_And_Development/Vero_Ltd`.
+This means that **Vero_Ltd** is within the group `Research_And_Development`.
+
+> How do I create groups within groups?
+
+You can create groups within groups by using the [cg](#navigate-to-a-team) command.
+For more information on how to type the [command](#glossary), please visit the section on
+[standardised format styling](#standardised-format-style) that is used to type all commands.
 
 ---
 
@@ -134,10 +200,13 @@ added to a group or a subgroup, similar to how files can be added into folders.
 1. Ensure that the [prerequisites](#prerequisites) are met before installing Contactmation.
 
 2. Download the latest version of `contactmation.jar` from
-   [here](https://github.com/AY2223S1-CS2103T-T11-1/tp/releases).
+   [here](https://github.com/AY2223S1-CS2103T-T11-1/tp/releases). The file `contactmation.jar`
+    can be found under the `Assets` for each version of Contactmation.
+
+![Find the Contactmation jar file](images/QuickStartFindJar.png)
 
 3. Save `contactmation.jar` into a Desktop folder on your computer. This folder will now be the home folder
-   for Contactmation.
+    for Contactmation. Do look at the [FAQ](#faq) section for errors related to opening files used in Contactmation.
 
 4. Double-click on `contactmation.jar` to start up the application. You will be greeted with the current window
    if everything goes well:
@@ -682,9 +751,68 @@ mark hundreds of tasks in a matter of seconds!
 
 ## **FAQ**
 
+> How do I check whether `Java 11` is installed on my computer?
+
+This depends on the type of computer you are using.
+
+#### If you are using a Windows device:
+
+1. Click the search icon in the task bar on your desktop.
+
+![Desktop taskbar](images/Desktop-taskbar.png)
+
+2. Search for `Command Prompt` and open the application.
+3. Type in `java -version` in the `Command Prompt` application. You should see something similar to this:
+
+![Windows desktop terminal](images/WindowsCommandPromptCheckJavaVersion.png)
+
+4. When you press the `Enter` key on your computer, you should be greeted with something similar to this:
+
+![Windows desktop terminal executed](images/WindowsCommandPromptCheckJavaVersionExecute.png)
+
+5. The `Java` version in this example is listed as `java version 11.0.10`.
+
+#### If you are using a Macbook:
+
+1. Open the terminal by clicking on `Launchpad` and searching for `terminal` in the search bar.
+
+![Macbook taskbar](images/MacbookDesktopTaskbar.png)
+
+2. Follow steps 3 onwards from [here](#if-you-are-using-a-windows-device).
+
+#### If you are using a Linux machine:
+
+Due to the wide variety of Linux distributions out there, you will need to search online
+on how you can check for `Java 11` for your respective distribution.
+
+Here are some helpful [guides](https://phoenixnap.com/kb/check-java-version-linux) 
+for popular Linux distributions such as Ubuntu.
+
 > How can I install `Java 11`?
 
-Follow the guide for installing `Java 11` [here](#prerequisites).
+Follow the guide for installing `Java 11` [here](https://www.javatpoint.com/javafx-how-to-install-java).
+
+> Why is there an error in my result display stating: `Unable to save your information!`?
+
+This is due to an error in saving your Contactmation details in a separate file.
+To combat this, use the following steps:
+
+1. Your home folder should look something like this at first.
+
+![Save file folder](images/FaqSaveFileError.png)
+
+2. There are several files of note, which consists of the `data` folder, `config` file and `preferences`
+file. If the `data` folder is not present, then the following steps can be ignored for the
+`data` folder. If the `data` folder is present, then you should also find an `addressbook` file
+within the `data` folder. The following steps are for `config`, `preferences` and the `addressbook` file.
+
+3. Right-click on the file, and select `Properties`. You will be greeted a pop-up similar to this:
+
+![Save file property pop up](images/FaqSaveFileError2.png)
+
+4. Under `Attributes` in the `General` section, ensure that `Read-only` is **not ticked**.
+
+5. Click `Apply` and `OK` to save your changes.
 
 > Will this application also apply to a general, non-professional user?
 
@@ -707,7 +835,8 @@ Our future plans for Contactmation includes:
 
 | Vocabulary       | Description                                                                                        |
 |------------------| -------------------------------------------------------------------------------------------------- |
-| Command sequence | What you, the user, would write in the command box for the execution of a command.                 |
+| CLI / Command Line Interface | You can only interact with the application through text, which is typed in the [command box](#contactmation-window-guide).|
+| Command / Command sequence | What you would write in the command box to interact with the application.                |
 | Contact          | A contact with contact information.                                                                |
 | Team             | A container that contains people that work on a similar project.                                   |
 | Index            | The numerical placing of a group, contact or task in the current application display.              |
@@ -715,9 +844,10 @@ Our future plans for Contactmation includes:
 | Pipe             | The output of the previous section of commands will be used as input for the next set of commands. |
 | Root group       | Refers to the application not being in any scope.                                                  |
 | Scope            | A constraint on the groups, people and tasks you are able to view at one time on the display.      |
-| Task             | Assigned to people or groups                                                                       |
+| Task             | Assigned to people or groups.                                                                       |
+| Word             | Text in a command sequence that is separated from other words by a white space.                    |
 
-## **Commands summary**
+## **Command summary**
 
 ### General commands summary
 
