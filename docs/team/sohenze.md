@@ -47,11 +47,6 @@ CLI, and the application responds with its GUI, created with JavaFX.
     * Changes Made: Built upon a teammate's enhancement by implementing timeCreated in the UI and Storage component
     to allow timeCreated to be displayed to the user in the GUI, and to be saved to and read from 
     the data file respectively.
-    * Notable Implications:
-      * Implementing this feature required deep consideration on the equivalency of orders from the perspective
-      of the user.
-      * It was decided that timeCreated would not be checked during order equivalency checks as it had no practical
-      purpose for the user.
     * Relevant pull request(s): [#108](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/108)
     
   * Feature: **Sort Order Command**
@@ -59,34 +54,18 @@ CLI, and the application responds with its GUI, created with JavaFX.
     of creation.
     * Purpose: Supplementary feature of an application that manages orders which provides users further ease of use.
     * Notable Implications:
-      * The application previously displayed the order list to the user in the form of a FilteredList under JavaFX
-      collections.
-      * This is because the application supports filtering the displayed order list according to keywords provided
-      by the user in another feature implemented by a teammate. FilteredList does not support any modifications to it.
       * Wrapped the existing FilteredList within a SortedList under JavaFX collections and displayed the SortedList
       to the user instead. This supported both features and allowed the user to sort filtered orders as well.
     * Relevant pull request(s): [#108](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/108)
 
 * **Contributions to the UG**:
-  * Features Section:
-    * Deleting an order
-    * Deleting an item
-    * Editing an item
-    * Sorting orders
+  * Features Section: Deleting an order, Deleting an item, Editing an item, Sorting orders
   * Relevant pull request(s): [#101](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/101),
   [#108](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/108)
 
 * **Contributions to the DG**:
-  * Design Section:
-    * Architecture
-    * UI
-    * Logic
-    * Model
-    * Storage
-    * Implementation Section:
-      * Delete Item Feature
-      * Edit Item Feature
-      * Sort Orders Feature
+  * Design Section: Architecture, UI, Logic, Model, Storage
+  * Implementation Section: Delete Item Feature, Edit Item Feature, Sort Orders Feature
   * Relevant pull request(s): [#114](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/114),
   [#137](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/137),
   [#203](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/203)
