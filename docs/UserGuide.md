@@ -112,7 +112,7 @@ Shows a list of all persons in the application.
 
 Format: `listPersons [s/FIELD]`
 
-* Sorts the persons by the specified field in **ascending** order. `FIELD` must take one of the following values:
+* Sorts all persons by a specified field. `FIELD` must take one of the following values:
   * `n` or `N` sort by name in ascending lexicographical order, ignoring case differences
   * `d` or `D` sort by date of birth from oldest to youngest
   * `g` or `G` sort by gender, females first followed by males
@@ -278,7 +278,7 @@ Shows a list of all events in the application.
 
 Format: `listEvents [s/FIELD]`
 
-* Sorts the events by the specified field in **ascending** order. `FIELD` must take one of the following values:
+* Sorts the events by a specified field. `FIELD` must take one of the following values:
   * `e` or `E` sort by event title in ascending lexicographical order, ignoring case differences
   * `d` or `D` sort by date from oldest to newest
 
