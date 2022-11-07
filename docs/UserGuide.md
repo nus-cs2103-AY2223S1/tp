@@ -936,14 +936,7 @@ will not be saved!. </div>
 
 ## **Exiting the Program**
 
-You do not have to worry about exiting
-<<<<<<< HEAD
-**RC4HDB** without saving as any changes you've made is automatically saved after every command. For more information,
-the [file management section](#saving-your-data).
-=======
-**RC4HDB** without saving as any changes you've made is automatically saved after every command. For more information, visit
-the section on [saving your data](#saving-your-data).
->>>>>>> 8bd121b3801a364f9c1df55519fc63d9929a32d3
+You do not have to worry about exiting **RC4HDB** without saving as any changes you've made is automatically saved after every command. For more information, visit the section on [saving your data](#saving-your-data).
 
 ### Exiting the program : `exit`
 
