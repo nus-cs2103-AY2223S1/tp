@@ -96,7 +96,7 @@ This document is to assist you in using MODPRO smoothly and effectively to track
     - [Showing the tasks of an exam](#showing-the-tasks-of-an-exam)
   - [Other Features](#other-features)
     - [Clearing all the lists](#clearing-all-the-lists)
-    - [Opening the help window](#help)
+    - [Opening the help window](#opening-the-help-window)
     - [Exiting the program](#exiting-the-program)
 - [Future Features](#1.1)
 - [General](#general)
@@ -804,8 +804,8 @@ Clears all tasks, exams and modules currently in the respective stored lists.
 
 Format: `clearall`
 
-### Help
-Views the help window which displays the list of commands.
+### Opening the help window
+Opens the help window which displays the list of commands.
 
 Format: `help`
 
