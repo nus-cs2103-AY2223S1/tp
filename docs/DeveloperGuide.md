@@ -146,7 +146,7 @@ as a `Command` object.
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="1000" />
+[!ModelClassDiagram](images/ModelClassDiagram.png)
 
 The `Model` component,
 
@@ -165,7 +165,7 @@ should make sense on their own without depending on other components)
 model is given below. A generic Cobb class is created as the parent for BuyerBook and PropertyBook since the two 
 children classes have a lot of methods with identical purposes.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="1000" />
+[!BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 </div>
 
 
@@ -469,6 +469,7 @@ The new buyer or property is then added into the model, replacing the old one. T
 
 The following sequence diagram shows how the `EditBuyerCommand` is executed.
 ![EditBuyerSequenceDiagram](images/EditSequenceDiagram.png)
+<img src="images/EditSequenceDiagram.png" height="400" />
 
 #### Design Considerations
 **Aspect: How the edit commands should relate to each other:**
@@ -568,7 +569,7 @@ Based on command parameters passed in by the user, these predicates are construc
 can be found in the [filter-specific design considerations](#filter-specific-design-considerations) section located below.
 
 The class diagram below represents the overall structure of the predicates for `Buyers` and `Properties`. <br>
-<img src="images/FilterPredicatesClassDiagram.png" width="1000" />
+[!FilterPredicatesClassDiagram](images/FilterPredicatesClassDiagram.png)
 
 #### Filter-specific design considerations
 1. Filtering `Properties` by their prices takes in a `priceRange` instead of just a `Price` as it makes more sense for
@@ -613,8 +614,8 @@ As we allow sorting only by one criterion at a time, a `BuyerComparator` will on
 
 The UML diagrams below represent the overall structure of the `Comparator`s used.
 
-<img src="images/SortPropComparatorsClassDiagram.png" width="1000" height="300"/>
-<img src="images/SortPropComparatorsClassDiagram.png" width="1000" height="300"/>
+<img src="images/SortPropComparatorsClassDiagram.png" width="1000" height="200"/>
+<img src="images/SortPropComparatorsClassDiagram.png" width="1000" height="200"/>
 
 Below is a Sequence Diagram showing how a `sortbuyer -n ASC` command is executed through the model to modify the original `ObservableList`.
 
@@ -664,7 +665,7 @@ and manually input more specific conditions.
 Here is a Sequence Diagram of how `matchbuyer 1` is handled, assuming 1 is a valid index and the `Buyer` at index 1 
 contains both a `PriceRange` and `Characteristics`.
 
-![MatchBuyerSequenceDiagram](images/MatchBuyerCommandSequenceDiagram.png)
+<img src="images/MatchBuyerCommandSequenceDiagram.png" height="400 />
 
 We see how `MatchBuyerCommand` only works to create a combined predicate of `PriceRange` and `Characteristic`, which is 
 then passed to the constructor of `FilterPropertiesCommand` and executed.
