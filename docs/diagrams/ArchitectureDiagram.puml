@@ -18,18 +18,19 @@ Package " "<<Rectangle>>{
 Class "<$user>" as User MODEL_COLOR_T2
 Class "<$documents>" as File UI_COLOR_T1
 
+Main -up-> UI
+Main -left-> Logic
+Main -down> Model
+Main -down> Storage
+Main -left> Commons
+
+Logic --> Model
+Logic --> Storage
 
 UI --> Logic
-UI -right-> Model
-Logic --> Storage
-Logic -down-> Model
-Main --> UI
-Main --> Logic
-Main --> Storage
-Main -up-> Model
-Main -down-> Commons
+UI .down.> Model
 
-Storage -up.> Model
-Storage .right.>File
 User ..> UI
+Storage -right-> File
+
 @enduml
