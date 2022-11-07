@@ -1,5 +1,6 @@
 package eatwhere.foodguide.logic.parser;
 
+import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_HELP;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
@@ -129,5 +130,15 @@ public class ParserUtil {
      */
     public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if the DisplayHelp flag (-h) is present with no value associated with it.
+     * This helps account for edge cases in user input.
+     */
+    public static boolean isDisplayHelp(String args) {
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_HELP);
+        return arePrefixesPresent(argMultimap, PREFIX_HELP) &&
+                argMultimap.getValue(PREFIX_HELP).isEmpty();
     }
 }
