@@ -191,7 +191,6 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Cons: Comparatively more error prone.
    
 * **Alternative 2:** Use trip title as arguments.
-  itself.
     * Pros: Given the previous code structure, easy and fast to implement. Less error prone in term of user mistakes.
     * Cons: Creates many dummy Objects. In entering the command, using the exact trip's titles' name can be harder and time-consuming for the user.
 
