@@ -13,7 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Uid;
 
 /**
- * Parses input arguments and creates a new MarkCommand object
+ * Parses input arguments and creates a new UnmarkCommand object
  */
 public class UnmarkCommandParser implements Parser<UnmarkCommand> {
 

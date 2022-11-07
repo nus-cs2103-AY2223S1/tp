@@ -78,14 +78,14 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
 
-        if (person instanceof Nurse) {
+        if (person.isNurse()) {
             dateSlots.setText("HomeVisits DateSlot: " + NOT_APPLICABLE);
             homeVisits.setText(((Nurse) person).getHomesVisitsInString());
             unavailableDates.setText(((Nurse) person).getUnavailableDatesInString());
             category.getChildren().add(new Label(NURSE_LABEL_TEXT));
             physInfo.setText("Attending Physician: " + NOT_APPLICABLE);
             nokInfo.setText("NOK: " + NOT_APPLICABLE);
-        } else if (person instanceof Patient) {
+        } else if (person.isPatient()) {
             dateSlots.setText(((Patient) person).getDatesSlotsInString());
             homeVisits.setText("HomeVisits: " + NOT_APPLICABLE);
             unavailableDates.setText("Unavailable Dates: " + NOT_APPLICABLE);

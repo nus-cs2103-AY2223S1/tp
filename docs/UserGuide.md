@@ -70,13 +70,13 @@ Healthcare Xpress is a **desktop app for managing patients that require home-vis
 
 **:information_source: Additional information:**<br>
 
-- The HomeVisits is the homevisits that the nurse have to attend to and it is displayed in the format of `Date and Time : [UID] Patient Uid`. This cannot be added using the add command. It can only be added using the assign command.
+- HomeVisits are the visits to the patient's home that the nurse has to attend to. They are displayed in the format `Date and Time : [UID] Patient Uid`. They cannot be added using the add command. Instead, they can only be added using the assign command.
 
-- The HomeVisits DateSlot is the home visit date slot of the patient and it is displayed in the format of `[ ][ ] Date and Time`.
+- HomeVisit DateSlots refer to home visit date slots of the patient. They are displayed in the format `[ ][ ] Date and Time`.
 
-- The first bracket is to indicate whether this date slot has been assigned to a nurse. (Blank - not assigned, A - assigned).
+  - The first bracket indicates if this date slot has been assigned to a nurse. (Blank `[ ]` - not assigned, `[A]` - assigned).
 
-- The second bracket is to indicate whether this date slot has pass and visited. (Blank - the date slot has not pass, V - the date slot has pass and autochange to visited, FV - the date slot has pass but fail to visit).
+  - The second bracket indicates if this date slot has passed and visited. (Blank `[ ]` - the date slot has not passed, `[V]` - the date slot has passed and been automatically marked as visited, `[FV]` - the date slot has passed but the nurse failed to visit).
 
 </div>
 
@@ -87,6 +87,12 @@ Opens the help dialog, where help info for each command can be viewed.
 Format: `help`
 
 ![help message](images/Help.png)
+
+:bulb:**Tips:**<br>
+
+- You may look at the bottom of the miniature Healthcare Xpress to see summary of code use.
+
+![help message](images/HelpQuickCommandHelp.png)
 
 ### Adding a nurse or patient: `add`
 
@@ -122,7 +128,7 @@ Examples:
 
 2. Adds a nurse to the Healthcare Xpress Record System
 
-Format:`add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​ [ud/UNAVAILABLE_DATE]…​`
+Format: `add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​ [ud/UNAVAILABLE_DATE]…​`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -130,9 +136,9 @@ Format:`add c/N n/NAME p/PHONE_NUMBER e/EMAIL g/GENDER a/ADDRESS [t/TAG]…​ [
 
 - A nurse can have any number of tags (including 0).
 
-- A nurse can have any number of unavailable date (including 0).
+- A nurse can have any number of unavailable dates (including 0).
 
-- The unavailable date must be in `yyyy-MM-dd` format, eg `2022-11-11`.
+- Unavailable dates must be in `yyyy-MM-dd` format, eg `2022-11-11`.
 
 - You may type it in any order.
 
@@ -155,11 +161,11 @@ Format: `list [c/CATEGORY] [t/TAG] [g/GENDER] [a/ADDRESS]`
 
 ADDRESS: Non-exact address matching (e.g. Searching for `an` returns `Ang Mo Kio`, `Woodlands`)
 
-CATEGORY: Only accepts `N` for NURSES or `P` for PATIENTS. (Not case sensitive)
+CATEGORY: Only accepts `N` for NURSES or `P` for PATIENTS. (case-insensitive)
 
-GENDER: Only accepts `M` for MALE or `F` for FEMALE. (Not case sensitive)
+GENDER: Only accepts `M` for MALE or `F` for FEMALE. (case-insensitive)
 
-TAG: Exact, case sensitive tag matching (e.g. Searching for `dia` does not return `DIABETIC`)
+TAG: Exact, case-sensitive tag matching (e.g. Searching for `dia` does not return `DIABETIC`)
 
 Examples:
 
@@ -190,7 +196,7 @@ Format: `edit id/ID [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [ds/D
   4. To change a specific date and slot of a patient: you can type `ds/UPDATE_DATE_AND_SLOT dsi/TO_BE_UPDATED_DATE_AND_SLOT_INDEX`. The date and slot at this index in the list will be updated to the new date and slot given by you.
 - You can only use `ds/` and `dsi/` for **patients**. Nurses do not have any home-visit dates and slots.
 - The unavailable date works similar to the date and time edit, only using different indicators `ud/` and `udi/` to indicate the date and the index.
-- The **unavailable date** is only applicable to **nurse**.
+- The **unavailable date** is only applicable to **nurses**.
 
 <div markdown="block" class="alert alert-warning">
 
@@ -251,11 +257,11 @@ Examples:
 
 ### Assigning a patient's homevisit date slot to a nurse : `assign`
 
-Assign a specific patient's date slot(s) to a nurse.
+Assigns a specific patient's date slot(s) to a nurse.
 
 Format `assign id/NURSE'S_ID id/PATIENT'S_ID [dsi/DATE_AND_SLOT_INDEX]…​`
 
-- Assign the date slots of the patient with the specified 'PATIENT'S_ID' to the nurse with the specified 'NURSE'S_ID'.
+- Assigns the date slots of the patient with the specified 'PATIENT'S_ID' to the nurse with the specified 'NURSE'S_ID'.
 - The ID refers to the unique ID shown in the displayed person list.
 - The ID **must be a positive integer** 1, 2, 3, ...
 - There **must be 2 (and only 2) IDs, 1 belonging to a patient and 1 belonging to a nurse**.
@@ -275,7 +281,7 @@ Examples:
 
 ### Deassigning a patient's homevisit date slot from a nurse : `deassign`
 
-Deassign a specific patient's date slot from a nurse.
+Deassigns a specific patient's date slot from a nurse.
 
 Format `deassign id/ID [dsi/DATE_AND_SLOT_INDEX]…​`
 
@@ -288,9 +294,9 @@ Format `deassign id/ID [dsi/DATE_AND_SLOT_INDEX]…​`
 
 Examples:
 
-- `deassign id/1` deassign all the date slots of nurse with id of 1.
-- `deassign id/2 dsi/2` deassign the date slot with index 2 in the dateslot list of patient with id of 2.
-- `deassign id/1 dsi/2` deasign the second home visits in the homevisit list of nurse with id of 1.
+- `deassign id/1` deassigns all the date slots of nurse with id of 1.
+- `deassign id/2 dsi/2` deassigns the date slot with index 2 in the dateslot list of patient with id of 2.
+- `deassign id/1 dsi/2` deasigns the second home visits in the homevisit list of nurse with id of 1.
 
 ![deassign](images/Deassign.png)
 
