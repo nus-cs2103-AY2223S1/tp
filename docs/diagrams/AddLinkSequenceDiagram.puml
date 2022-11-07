@@ -33,6 +33,12 @@ activate AddLinkCommandParser
 AddLinkCommandParser -> ParserUtil : parseLinks()
 activate ParserUtil
 
+ParserUtil -> ParserUtil : parseLink()
+activate ParserUtil
+
+ParserUtil --> ParserUtil : link
+deactivate ParserUtil
+
 ParserUtil --> AddLinkCommandParser : links
 deactivate ParserUtil
 
