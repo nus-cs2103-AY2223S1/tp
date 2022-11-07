@@ -52,7 +52,7 @@ Given below are my contributions to the project.
 * Added the __Non-Functional Requirements__
 * Added the __Glossary__
 * Added __Target User Profile, Product Scope and Value Proposition__
-* Modified all the user stories and wrote use case UC-01
+* Edited user stories and use cases
 
 ### Contributions to other Documentations:
 * Product Ui image for landing page
