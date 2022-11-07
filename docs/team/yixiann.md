@@ -75,11 +75,11 @@ Given below are my contributions to the project.
 * **Community**:
 
   * Reported bugs and suggestions for other teams in the class:
-    * Stats command do not calculate amount wasted by performing qty * price [[Issue#449]] (https://github.com/AY2223S1-CS2103T-W16-2/tp/issues/449)
-    * Stats command expiry date do not count items that expire today [Issue#448](https://github.com/AY2223S1-CS2103T-W16-2/tp/issues/448)
-    * Stats command fail on FoodRem having less than 3 items [Issue#447](https://github.com/AY2223S1-CS2103T-W16-2/tp/issues/447)
-    * Rename tag does not modify tags in items [Issue#293](https://github.com/AY2223S1-CS2103T-W16-2/tp/issues/293)
-    * Rename tag to same name is possible [Issue#273](https://github.com/AY2223S1-CS2103T-W16-2/tp/issues/273)
+    * Stats command do not calculate amount wasted by performing qty * price [[Issue#449]]
+    * Stats command expiry date do not count items that expire today [[Issue#448]]
+    * Stats command fail on FoodRem having less than 3 items [[Issue#447]]
+    * Rename tag does not modify tags in items [[Issue#293]]
+    * Rename tag to same name is possible [[Issue#273]]
 
 Other PRs:
 
