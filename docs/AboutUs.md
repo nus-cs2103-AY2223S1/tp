@@ -65,8 +65,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/mjgui.png" width="200px">
 
-[[github](http://github.com/mjgui)]
-[[portfolio](team/mjgui.md)]
+[github](http://github.com/mjgui)
+
+[portfolio](team/mjgui.md)
 
 * Role: Developer
 * Responsibilities: In charge of Code Quality
