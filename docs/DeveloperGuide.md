@@ -227,6 +227,10 @@ default list.
 
 ![CheckoutState0](images/CheckoutState0.png)
 
+
+<div style="page-break-after: always;"></div>
+
+
 Step 2. The user executes `checkout june-2022` command to load the JSON `june-2022.json` to the storage.
 The `checkout` command calls `CheckoutCommandParser#parse()`, which checks if the user input is valid, which in turn
 calls `CheckoutCommand#execute()` if it is valid. If the list does not exist in the `data` folder, the list be created
@@ -242,6 +246,10 @@ and populated with sample data. `Model` and `Storage` are then loaded with the s
 `CommandResult` to `Logic`.
 
 ![CheckoutState2](images/CheckoutState2.png)
+
+
+<div style="page-break-after: always;"></div>
+
 
 The following sequence diagram shows how the checkout operation works:
 
@@ -491,7 +499,9 @@ The following sequence diagram shows how the `find` command works:
         * Limits User's freedom in how they want to search
         * Search type for the field may not be how the User wants to search
 
---------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 
 ## 5. Documentation, logging, testing, configuration, dev-ops
 
@@ -501,7 +511,9 @@ The following sequence diagram shows how the `find` command works:
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 
 ## 6. Appendix A: Requirements
 
