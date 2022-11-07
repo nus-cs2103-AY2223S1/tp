@@ -70,11 +70,15 @@ For a full list of commands and detailed instructions, head to the [Features](#f
 Our application is divided into 5 areas to maximise productivity, the specific uses are:
 
 1) Command Input - The dialog box where all user interaction are held.
+
 2) Command Result - A short answer whether the application has executed the command, or an error message if the
   application did not understand the command.
+
 3) Student List - A window that will display the details of the student(s).
+
 4) Statistics Window - A window that shows all the statistics of the tutor, such as the number of students and
 the money collected/owed.
+
 5) Schedule List - A scroll window which shows the schedule for the day, sorted by time.
 
 Basic Instructions:
@@ -152,17 +156,17 @@ Adds a student to the Teacher’s Pet.
 </div>
 
 ##### Student’s Contact Number:
-   - Student’s contact number must not be empty. 
-   - Student’s contact number must only contain numerical digits between `0` and `9`.
-   - Student's contact number must begin with `6`, `8` or `9`.
+   - Student’s Contact Number must not be empty. 
+   - Student’s Contact Number must only contain numerical digits between `0` and `9`.
+   - Student's Contact Number must begin with `6`, `8` or `9`.
 
 <div markdown="span" class="alert alert-info">ℹ **Note:** Contact number must contain exactly 8 digits. Contact number must be unique.
 </div>
 
 ##### Next of Kin’s Contact Number:
-- Next of Kin’s contact number must not be empty.
-- Next of Kin’s contact number must only contain numerical digits between `0` and `9`.
-- Next of Kin’s contact number must begin with `6`, `8` or `9`.
+- Next of Kin’s Contact Number must not be empty.
+- Next of Kin’s Contact Number must only contain numerical digits between `0` and `9`.
+- Next of Kin’s Contact Number must begin with `6`, `8` or `9`.
 
 <div markdown="span" class="alert alert-info">ℹ **Note:** Next of Kin’s contact number must contain exactly 8 digits.
 </div>
@@ -248,18 +252,18 @@ Edits an existing student in the list.
     </div>
 
 3. Amount Paid (`paid/`):
-    - Amount Paid stands for the amount that has been paid by the Student.
+    - Amount Paid stands for the amount that has been paid by the student.
     - Amount paid can only be an integer.
     - Amount paid must be non-negative.
 
 4. Amount Owed (`owed/`):
-    - Amount Owed stands for the amount that has been owed by the Student.
+    - Amount Owed stands for the amount that has been owed by the student.
     - Format: `owed/` must be followed by an integer.
     - Amount owed can only be an integer.
     - Amount owed must be non-negative.
 
 5. Rates per Class (`rate/`):
-    - Rates per Class stands for the amount of charge per Class for the Student.
+    - Rates per Class stands for the amount of charge per Class for the student.
     - Rates per Class can only be an integer.
     - Rates per Class must be non-negative.
 
@@ -338,7 +342,7 @@ Format: `pay INDEX-s AMOUNT_PAID`
 - The `AMOUNT_PAID` must be an integer and cannot be negative. e.g., `0, 1, 2, ...`.
 
 Example:
-- `pay 1 40` indicates that the 2nd student in the [Schedule List](#ui-overview) has paid $40.
+- `pay 1 40` indicates that the 1st student in the [Schedule List](#ui-overview) has paid $40.
 
 ![UiPay](images/UG-screenshots/UiPayBefore.png)
 ![UiPay](images/UG-screenshots/UiPayAfter.png)
@@ -479,8 +483,9 @@ Example:
 Finds all students with classes on a particular date.
 
 Formats:
-    1. `find dt/yyyy-MM-dd`
-    2. `find dt/Day-of-Week`
+
+1. `find dt/yyyy-MM-dd`
+2. `find dt/Day-of-Week`
 
 - Only the date is searched.
 
@@ -523,7 +528,7 @@ other tags on top of the two tags.
 While there is no available command at the moment, you can find the next available class through a series of steps.
 
 1. Use [find command](#finding-a-student-find), to find a specific day: `find dt/2022-11-07` will find the students
-   who have classes on `2022-11-07`
+   who have classes on `2022-11-07`.
 2. Use [sort command](#sort-the-displayed-students-sort), to sort by class: `sort class asc`.
 3. View each class for the student under the [Student List](#ui-overview) until you find the slot you want.
 
@@ -552,9 +557,9 @@ Format: `sort TYPE [ORDER]`
 
 #### Sort by Name
 
-Sorts the list of students in the [Student List](#ui-overview) by `name` and given `ORDER`.
+Sorts the list of students in the [Student List](#ui-overview) by `NAME` and given `ORDER`.
 
-If `ORDER` is left blank, it will be `asc` by default.
+If `ORDER` is left blank, it will be `ASC` by default.
 
 Examples:
 
@@ -586,9 +591,9 @@ If `ORDER` is left blank, it will be `DESC` by default.
 
 Examples:
 
-- `list` followed by `sort OWED` will list all the students according to how much money they owe in **descending** order.
-- `list` followed by `sort OWED ASC` will list all the students according to how much money they owe in ascending order.
-- `list` followed by `sort OWED DESC` will list all the students according to how much money they owe in descending order.
+- `list` followed by `sort owed` will list all the students according to how much money they owe in **descending** order.
+- `list` followed by `sort owed asc` will list all the students according to how much money they owe in ascending order.
+- `list` followed by `sort owed desc` will list all the students according to how much money they owe in descending order.
 
 [Back to top](#table-of-contents)
 
@@ -596,13 +601,13 @@ Examples:
 
 ### Deleting student(s): `delete`
 
-Deletes the specified student(s) from the student list.
+Deletes the specified student(s) from the [Student List](#ui-overview).
 
 Format: `delete INDEX [MORE_INDEXES]`
 
 - Deletes the student(s) at the specified `INDEX(ES)`.
-- The `INDEX(ES)` refers to the index numbers shown in the [Student List](#ui-overview) (bottom left section of the display).
-- The `INDEX(ES)` must be a positive integer within the size of the displayed student list. e.g., `1, 2, 3, ...`.
+- The `INDEX(ES)` refers to the index numbers shown in the [Student List](#ui-overview).
+- The `INDEX(ES)` must be a positive integer within the size of the [Student List](#ui-overview). e.g., `1, 2, 3, ...`.
 
 Examples:
 - `list` followed by `delete 1 2` deletes the 1st and 2nd student in the [Student List](#ui-overview).
