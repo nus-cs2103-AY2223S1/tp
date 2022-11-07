@@ -7,7 +7,7 @@ Tuthub is a desktop app for NUS professors who wish to track and choose their ne
 
 ## Summary of Contributions
 ### Code contributed
-Around 2.8k lines of code according to the [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=leirdas&breakdown=true)
+[RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=leirdas&breakdown=true)
 
 ### Enhancements implemented
 - **Enhancement**: Updates to the `Tutor` model including ([#107](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/107)):
