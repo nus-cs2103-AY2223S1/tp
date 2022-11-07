@@ -18,10 +18,9 @@ Here are some shortcuts to get help:
 
 * Table of Contents
 {:toc}
+<div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always"></div> 
-
+-------------------------------------------------------------------------------------------------------------------- 
 ## **Glossary**
 In this User Guide, there might some terms unknown to you. We have provided elaboration on some
 of these terms in the hopes that it will clear your doubts.
@@ -33,8 +32,9 @@ of these terms in the hopes that it will clear your doubts.
 | **Prefix**    | Prefix is the placeholder to indicate the type of information inputted. Here is a [list of all the prefixes](#prefix-summary).      |
 | **Parameter** | Parameters are the information that are needed to be passed together with the command such that it can be executed.                 |
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always"></div>
 ## **Quick start**
 
 1. Ensure you have Java `11` or above is installed in your Computer. Please kindly refer to [this guide](https://blog.hubspot.com/website/check-java-verison) for further instructions on how to do so.
@@ -48,19 +48,18 @@ of these terms in the hopes that it will clear your doubts.
    Note:
    If you are an Apple user, you may not be able to double-click the jar file to 
    start the app.
-   In that case, you can either right click the jar file and run it from the
-   drop-down menu, or run the following command in 
-   the terminal: java -jar HR_Pro_Max++.jar
+   
+   In that case, you can either right click the jar file and run it from the 
+   drop-down menu, or run the following command 
+   in the terminal:java -jar HR_Pro_Max++.jar
    ```
    ![Ui](images/Ui.png)
 6. You can proceed to the next section for a quick [overview of the user interface](#user-interface).
 7. Refer to the [Features](#features) below for details of the commands you can use.
 
 [Back to top](#table-of-contents)
-
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
-
+--------------------------------------------------------------------------------------------------------------------
 ## **User Interface**
 Our app's user interface is divided into 5 main parts:
 1. [Command Box](#command-box)
@@ -114,10 +113,8 @@ For information on all commands that are related to Staff, refer to the [Staff C
 ![Staff Panel](images/StaffPanel.png)
 
 [Back to top](#table-of-contents)
-
+<div style="page-break-after: always"></div>
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always"></div> 
-
 # **Features**
 
 <div markdown="block" class="alert alert-info">
@@ -152,10 +149,8 @@ For information on all commands that are related to Staff, refer to the [Staff C
 
 
 [Back to top](#table-of-contents)
-
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
-
+--------------------------------------------------------------------------------------------------------------------
 ## **Project Commands**
 This section contains information regarding all the commands that can be used to manage Projects.
 
@@ -170,10 +165,8 @@ This is a description of the different parameters for Projects.
 | **TAG**              | _Field for additional information_ <br> - Only alphanumeric characters are allowed. <br> - Tags are optional, allow multiple words and have a limit of 50 characters. <br> - Spaces are allowed but not an empty tag unless you are using the edit commands.                                                                                      |
 
 [Back to top](#table-of-contents)
-
+<div style="page-break-after: always"></div>
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always"></div> 
-
 ### Adding a Project : `addproj`
 
 Adds a Project to Project list.
@@ -298,10 +291,9 @@ Examples:
 
 [Back to top](#table-of-contents)<br>
 [Back to Project Glossary](#project-glossary)
+<div style="page-break-after: always"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always"></div> 
-
 ## **Staff Commands**
 
 Since each Project contains a list of Staff, we recommend that before using Staff commands on any Project,
@@ -325,9 +317,9 @@ Warning !!!:
 | **TAG**              | _Field for additional information_ <br> - Only alphanumeric characters are allowed. <br> - Tags are optional, allow multiple words and have a limit of 50 characters. Spaces are allowed but not an empty tag unless you are using the edit commands. |
 
 [Back to top](#table-of-contents)
-
+<div style="page-break-after: always"></div>
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always"></div> 
+ 
 
 ### Adding a Staff member to Project : `addstaff`
 
@@ -464,10 +456,8 @@ Staff whose name contains `Adrian` or `Lam` are also listed.
 
 [Back to top](#table-of-contents)<br>
 [Back to Staff Glossary](#staff-glossary)
-
+<div style="page-break-after: always"></div>
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always"></div> 
-
 ## **Task Commands**
 This section contains information on all the commands related to Tasks.
 
@@ -479,10 +469,8 @@ This section contains information on all the commands related to Tasks.
 | **TASK_DEADLINE**    | _Deadline of Task_ <br> - TASK_DEADLINE should be entered in the YYYY-MM-DD format.                                                                                                                                                                                                                                                                   |                                                                                                                                                              |
 
 [Back to top](#table-of-contents)
-
+<div style="page-break-after: always"></div>
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always"></div> 
-
 ### Adding a Task : `addtask`
 
 Adds a Task to the Task list.
@@ -606,10 +594,8 @@ Examples:
 * `unmarktask 2` Marks the second Task as not incomplete.
 
 [Back to top](#table-of-contents)
-
+<div style="page-break-after: always"></div>
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always"></div> 
-
 ## **General Commands**
 This section contains information on all the commands that are not related to any specific feature.
 
@@ -652,10 +638,8 @@ HR Pro Max++ data is saved in the hard disk automatically after any command that
 There is no need to save manually.
 
 [Back to top](#table-of-contents)
-
+<div style="page-break-after: always"></div>
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always"></div> 
-
 # **Summary**
 This section contains a summary of all the commands and prefixes in HR Pro Max++.
 
@@ -736,10 +720,8 @@ The prefix `t/` is for tags that are used for Projects and Staff only.
 | **t/**     | Tag                | t/TAG                  |
 
 [Back to top](#table-of-contents)
-
---------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always"></div> 
-
+<div style="page-break-after: always"></div>
+-------------------------------------------------------------------------------------------------------------------- 
 # **FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
