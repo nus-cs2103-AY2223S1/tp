@@ -761,7 +761,15 @@ Meeting date: 12 Nov 2022
 Tags: friends
 ```
 
-* Press `Ctrl-V` to paste the copied text.
+* Press `Ctrl-V` to paste the copied text.   
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**
+
+* `copy` command will automatically view the updated portfolio of the copied client.
+
+</div>
 
 [⬆ back to Table of Contents](#table-of-contents)
 

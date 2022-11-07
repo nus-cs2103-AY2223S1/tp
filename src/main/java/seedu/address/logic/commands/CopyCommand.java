@@ -50,7 +50,7 @@ public class CopyCommand extends Command {
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(stringSelection, null);
 
-        return new CommandResult(String.format(COPY_MESSAGE_SUCCESS, person.getName()));
+        return new CommandResult(String.format(COPY_MESSAGE_SUCCESS, person.getName()), index.getZeroBased());
     }
 
     @Override
