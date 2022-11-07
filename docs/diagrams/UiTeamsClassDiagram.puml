@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+Class "{abstract}\nUiPart" as UiPart
+Class TeamListPanel
+Class TeamCard
+Class TeamDetailsPanel
+Class TeamDetailsCard
+Class TaskListPanel
+Class TaskCard
+Class MemberListPanel
+Class MemberCard
+Class LinkListPanel
+Class LinkCard
+}
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+Class HiddenOutside #FFFFFF
+
+TeamDetailsCard -down-|> UiPart
+TeamCard --|> UiPart
+MemberCard --|> UiPart
+MemberListPanel --|> UiPart
+TaskCard --|> UiPart
+TaskListPanel --|> UiPart
+TeamDetailsPanel --|> UiPart
+LinkListPanel --|> UiPart
+LinkCard --|> UiPart
+TeamListPanel --|> UiPart
+
+TeamListPanel --> "1..*" TeamCard
+
+TeamDetailsPanel --> "1" TeamDetailsCard
+TeamDetailsCard --> "1" TaskListPanel
+TeamDetailsCard--> "1" MemberListPanel
+TaskListPanel --> "*" TaskCard
+MemberListPanel --> "*" MemberCard
+TeamDetailsCard --> "1" LinkListPanel
+LinkListPanel --> "*" LinkCard
+
+TeamCard ..> Model
+LinkCard ..> Model
+TeamDetailsCard ..> Model
+TaskCard ..> Model
+MemberCard ..> Model
+
+@enduml

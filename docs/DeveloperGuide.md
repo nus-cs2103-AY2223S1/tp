@@ -93,7 +93,13 @@ The sections below give more details of each component.
 The **API** of this component is specified
 in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
+The classes are related to each other as such:
+
 ![Structure of the UI Component](images/UiClassDiagram.png)
+
+For the sake of readability and understanding, the classes related to `TeamListPanel` and `TaskDetailsPanel` have been omitted in the above diagram. They have been extracted out in a separate diagram as follows:
+
+![Structure of the Teams Component of UI](images/UiTeamsClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
 , `StatusBarFooter`, `TeamListPanel`, `TeamDetailsPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
