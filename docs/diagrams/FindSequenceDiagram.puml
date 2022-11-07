@@ -11,37 +11,25 @@ participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
-participant ":NamePredicate" as NamePredicate MODEL_COLOR
-participant ":ModulePredicate" as ModulePredicate MODEL_COLOR
+participant ":XYZPredicate" as XYZPredicate MODEL_COLOR
 participant ":ModelManager" as ModelManager MODEL_COLOR
 end box
 
-[-> LogicManager: execute("...")
+note left LogicManager
+input is "find n/John m/CS2103T"
+end note
+[-> LogicManager: execute(input)
 activate LogicManager
 
-LogicManager -> ModQuikParser : parseCommand("...")
+LogicManager -> ModQuikParser : parseCommand(input)
 activate ModQuikParser
 
 create FindCommandParser
 ModQuikParser -> FindCommandParser
 activate FindCommandParser
-
-create NamePredicate
-FindCommandParser -> NamePredicate
-activate NamePredicate
-NamePredicate --> FindCommandParser
-deactivate NamePredicate
-
-create ModulePredicate
-FindCommandParser -> ModulePredicate
-activate ModulePredicate
-ModulePredicate --> FindCommandParser
-deactivate ModulePredicate
-
-FindCommandParser -> FindCommandParser : createChainedPredicates(predicates)
-activate FindCommandParser
-FindCommandParser --> FindCommandParser : predC
-deactivate FindCommandParser
+group ref [create chained predicate]
+    FindCommandParser -[hidden]> XYZPredicate
+end
 
 create FindCommand
 FindCommandParser -> FindCommand

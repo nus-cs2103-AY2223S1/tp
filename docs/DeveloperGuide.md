@@ -257,14 +257,16 @@ The finding students feature, implemented by the `find` command, allows the user
 The filtering is based on an AND search, for example, `find n/John m/CS2103T` will show only students that have "John" in their name and are also from the CS2103T module.
 
 #### Implementation
+The filtering logic is done with predicate classes that implement Java's Predicate interface.
+![FindPredicateClassDiagram](images/FindPredicateClassDiagram.png)
 
-The following sequence diagram shows how the `find` command works. The exact command has been omitted in the diagram, instead
+The following sequence diagrams shows how the `find` command works. The exact command has been omitted in the diagram, instead
 replaced with "..." for readibility.
-
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
+![FindSequenceDiagramRef](images/FindSequenceDiagramRef.png)
 
 When a user enters `find n/John m/CS2103T`, the FindCommandParser created will parse the tags in the command.
-For each valid tag, it creates the respective XYZPrediate. In the example command, there are two search criteria
+For each valid tag, it creates the respective XYZPredicate. In the example command, there are two search criteria
 corresponding to name and module, hence a `NamePredicate` and a `ModulePredicate` is created.
 
 These predicates are stored in a `List`, which is passed to the `createChainedPredicates` internal method that combines the predicates in the AND sense.
