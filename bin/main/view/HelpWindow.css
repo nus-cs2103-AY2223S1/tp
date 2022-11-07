@@ -1,0 +1,34 @@
+#copyButton, #helpMessage {
+    -fx-text-fill: white;
+}
+
+#copyButton {
+    -fx-background-color: dimgray;
+}
+
+#copyButton:hover {
+    -fx-background-color: gray;
+}
+
+#copyButton:armed {
+    -fx-background-color: darkgray;
+}
+
+
+.label {
+-fx-font-family: "segoe ui semibold";
+-fx-font-weight: 600;
+-fx-text-fill: white
+}
+
+#firstHalfCommands {
+-fx-background-color: derive(#2d2d30, 15%);
+}
+
+#secondHalfCommands {
+-fx-background-color: derive(#2A61EF, 35%);
+}
+
+#helpLinkContainer {
+-fx-background-color: #329BFF
+}
