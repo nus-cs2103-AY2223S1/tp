@@ -142,7 +142,7 @@ This is the view after executing the `listProduct` command.
 
 ![listProductWithDescription](images/ui-description/listProductWithDescription.png)
 
-### 4.4 Detailed Client List
+### 4.4 Detailed Client View
 
 This is the view after executing the `viewClient` command.
 
