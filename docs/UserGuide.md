@@ -541,6 +541,14 @@ To switch back to the [default view](#familiarising-yourself-with-the-interface)
 If you would like to switch back to the [default view](#familiarising-yourself-with-the-interface) of the list of income, you can use the [`view t/i` command](#view-entries-by-category).
 </div>
 
+### Command summary table
+
+You forgot the command formats and do not have internet to access the online user guide. 
+You just need to refresh your memory on the available command and command formats.
+
+Format: `help` <br/>
+Opens up the command summary table
+
 ### Clearing all entries
 
 You're giving your laptop to your younger brother and already backed up your PennyWise data. Clear all your entries so
