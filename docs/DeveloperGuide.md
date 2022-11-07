@@ -861,14 +861,13 @@ Prerequisite: Only 1 guest to be edited. The guest's index should exist.
 ### Marking Guests Rooms as Unclean
 
 Prerequisite: All guests room cleaning status will be edited.
-There should be at least one guest in the list.
 
    1. Test case: `markroomsunclean`<br>
-      Expected: all guests are marked as unclean, the icon will appear red instead of green
+      Expected: All guests are marked as unclean, the icon representing `isRoomClean` will change to red from green.
    2. Test case: `markroomunclean`<br>
-      Expected: The error will throw: "unknown command", because the user is **missing out the `s`**
+      Expected: The error will throw: "unknown command", because the command is **missing out the `s`**
    3. Test case: `markRoomsUnclean`<br>
-      Expected: The error will throw: "unknown command", because the user is **Capitalising the `R` or `U`**
+      Expected: The error will throw: "unknown command", because the command is **Capitalising the `R` or `U`**
 
 ### Changing guests bill value
 
