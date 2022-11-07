@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-* Table of Contents
+## Table of Contents
   {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -181,7 +181,7 @@ The table below shows a list of [command](#glossary) parameters that will be use
 
 ### Adding a student: `add`
 
-Adds a student to FRIDAY, with the given name, [Telegram handle](#glossary), consultation date, [Mastery Check](#glossary) date, and tags.
+You can add a student to FRIDAY, with the given name, [Telegram handle](#glossary), consultation date, [Mastery Check](#glossary) date, and tags.
 
 Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...`
 
@@ -246,7 +246,7 @@ on 2022-08-16, consultation date on 2022-11-11, and a tag "Colour blind".
 
 ![EditCommandInitial.png](images/EditCommandInitial.png)
 
-Outcome: Student's name changed to "Alex Yap", along with the following changed details: Telegram handle as "@AlexYap",
+Outcome: Student's name changed to "Alex Yap", along with the following details: Telegram handle as "@AlexYap",
 Mastery Check date as 2022-11-06, consultation date as 2022-10-10, and tags as "Experienced coder" and "Intern".
 
 ![EditCommandOutcome.png](images/EditCommandOutcome.png)
@@ -294,7 +294,10 @@ The table below shows a list of command parameters that will be used.
 
 ### Sorting students: `sort`
 
-Sorts all students in FRIDAY with the given criteria, in ascending or descending order. This will come in useful by allowing you to see which students have [Mastery Checks](#glossary) closest to the current date by sorting the list according to the students' Mastery Check dates, as shown in the example below.
+Once you have many students added to FRIDAY, viewing relevant information can get messy. To help with that, you can 
+sort students in FRIDAY with a given criteria, in ascending or descending order.
+As shown in the example below, this will come in useful by allowing you to see which students have [Mastery Checks](#glossary) closest 
+to the current date by sorting the list according to the students' Mastery Check dates.
 
 Format: `sort CRITERIA/ORDER`
 
@@ -312,7 +315,7 @@ Format: `sort CRITERIA/ORDER`
     * `a` (ascending)
     * `d` (descending)
 
-How criteria are sorted:
+Criteria are sorted in the following order: 
 * Names and Telegram handles - alphabetical order
 * Consultations and Mastery Checks - chronological order
 * Grades - numerical order
@@ -339,7 +342,7 @@ You can search for keywords using the `find` command and FRIDAY will show you th
 
 Format: `find KEYWORDS`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 **:bulb: Tip:** <br>
 * Use student name/telegram handle/consultation/mastery check date/remark to search up a particular student.
 * Multiple keywords can be entered and each keyword is separated by a space.
@@ -383,7 +386,8 @@ The table below shows a list of command parameters that will be used.
 
 ### Recording grades for a student: `grade`
 
-The `grade` command allows you to record the grades obtained for the assessments and examinations by a specified student.
+You can record examination grades obtained by a specified student using the `grade` command. This allows you to keep track
+of your students' progress to see how well they are performing in the module.
 
 Format: `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MIDTERM_SCORE] [ft/FINALS_SCORE]`
 
@@ -399,7 +403,7 @@ Format: `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MI
 * The index of the student must be specified and there should be exactly one `INDEX` parameter.
 </div>
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 **:bulb: Tip:** <br>
 * The scores are optional, but there should be at least one score specified for `grade` command to be valid.
 </div>
@@ -561,7 +565,7 @@ FRIDAY's data is saved in the hard disk automatically after any command that cha
 FRIDAY's student and alias data is saved as a JSON file at `[JAR file location]/data/friday.json`.<br>
 Advanced users are welcome to update data directly by editing the data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, FRIDAY will ignore all data and start with an empty file in the next run.<br>
 </div>
 
@@ -605,24 +609,24 @@ Some Frequently Asked Questions:
 
 ## Command Summary
 
-| Action                                       | Format                                                                                                   |
-|----------------------------------------------|----------------------------------------------------------------------------------------------------------|
-| **Add a student**                            | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...`               |
-| **Delete a student**                         | `delete INDEX`                                                                                           |
-| **Edit a student's details**                 | `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`                |
-| **Add remarks for a student**                | `remark INDEX [r/REMARK]`                                                                                |
+| Action                                       | Format                                                                                                  |
+|----------------------------------------------|---------------------------------------------------------------------------------------------------------|
+| **Add a student**                            | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...`              |
+| **Delete a student**                         | `delete INDEX`                                                                                          |
+| **Edit a student's details**                 | `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`               |
+| **Add remarks for a student**                | `remark INDEX [r/REMARK]`                                                                               |
 | **Record the grades for a student**          | `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MIDTERM_SCORE] [ft/FINALS_SCORE]` |
-| **Find a student's details**                 | `find KEYWORDS`                                                                                          |
-| **Mark a student's Mastery Check as passed** | `mark INDEX`                                                                                             |
-| **Unmark a student's Mastery Check**         | `unmark INDEX`                                                                                           |
-| **View all students**                        | `list`                                                                                                   |
-| **Sort students**                            | `sort CRITERIA/ORDER`                                                                                    |
-| **Add Alias**                                | `alias a/ALIAS k/COMMAND_KEYWORD`                                                                        |
-| **Delete Alias**                             | `unalias a/ALIAS`                                                                                        |
-| **View all alias**                           | `aliaslist`                                                                                              |
-| **Get a link to the User Guide**             | `guide`                                                                                                  |
-| **Getting Help**                             | `help`                                                                                                   |
-| **Exiting FRIDAY**                           | `exit`                                                                                                   |
+| **Find a student's details**                 | `find KEYWORDS`                                                                                         |
+| **Mark a student's Mastery Check as passed** | `mark INDEX`                                                                                            |
+| **Unmark a student's Mastery Check**         | `unmark INDEX`                                                                                          |
+| **View all students**                        | `list`                                                                                                  |
+| **Sort students**                            | `sort CRITERIA/ORDER`                                                                                   |
+| **Add Alias**                                | `alias a/ALIAS k/COMMAND_KEYWORD`                                                                       |
+| **Delete Alias**                             | `unalias a/ALIAS`                                                                                       |
+| **View all alias**                           | `aliaslist`                                                                                             |
+| **Get a link to the User Guide**             | `guide`                                                                                                 |
+| **Getting Help**                             | `help`                                                                                                  |
+| **Exiting FRIDAY**                           | `exit`                                                                                                  |
 
 [Table of Contents](#table-of-contents)
 
@@ -641,7 +645,7 @@ Some Frequently Asked Questions:
 
 6. **JAR:** The file format of FRIDAY.
 
-7. **Command:** The text that you enter in the input box is a command.
+7. **Command:** The text that you type in the input command box is a command.
 
 8. **Parameter:** The text that follows the first word of your input in the input box.
 
