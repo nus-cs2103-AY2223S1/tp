@@ -308,6 +308,8 @@ Here's a screenshot of Plannit before and after executing the command:
 Editing a module will bring you back to the home page.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### 2.1.4. Find module
 Suppose you want to filter the list of modules to find modules whose module codes starts with specific characters,
 you can search for them on the home page using the `find-module` command.
@@ -349,7 +351,6 @@ Here's a screenshot of Plannit before and after executing the command:
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | {::nomarkdown}<p align="center"><img src="images/list-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/list-module-after.png"/></p> <p align="left"><p>The module list has now been updated with every module!</p><p/>{:/} |
 
-<br>
 
 ### 2.2. Tasks
 #### 2.2.1. Add task
