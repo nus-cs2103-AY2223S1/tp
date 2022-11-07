@@ -4,43 +4,43 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":TruthTableParser" as TruthTableParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
+participant "<<class>>\nArgumentTokenizer" as ArgumentTokenizer LOGIC_COLOR
+participant ":CommandLine" as CommandLine LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute(\n"delete person 1")
 activate LogicManager
 
-LogicManager -> TruthTableParser : parseCommand("delete 1")
+LogicManager -> TruthTableParser : parseCommand(\n"delete person 1")
 activate TruthTableParser
 
-create DeleteCommandParser
-TruthTableParser -> DeleteCommandParser
-activate DeleteCommandParser
 
-DeleteCommandParser --> TruthTableParser
-deactivate DeleteCommandParser
+TruthTableParser -> ArgumentTokenizer : tokenize(\n"delete person 1")
+activate ArgumentTokenizer
 
-TruthTableParser -> DeleteCommandParser : parse("1")
-activate DeleteCommandParser
+ArgumentTokenizer --> TruthTableParser : args
+deactivate ArgumentTokenizer
+
+TruthTableParser -> CommandLine : parseArgs(args)
+activate CommandLine
 
 create DeleteCommand
-DeleteCommandParser -> DeleteCommand
+CommandLine -> DeleteCommand
 activate DeleteCommand
 
-DeleteCommand --> DeleteCommandParser : d
+DeleteCommand --> CommandLine : d
 deactivate DeleteCommand
 
-DeleteCommandParser --> TruthTableParser : d
-deactivate DeleteCommandParser
+CommandLine --> TruthTableParser : d
+deactivate CommandLine
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> TruthTableParser
-destroy DeleteCommandParser
+ArgumentTokenizer -[hidden]-> TruthTableParser
 
 TruthTableParser --> LogicManager : d
 deactivate TruthTableParser

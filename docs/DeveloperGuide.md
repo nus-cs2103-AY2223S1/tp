@@ -15,7 +15,7 @@ TruthTable is a **desktop app for managing software engineering teams, optimized
 ## **Acknowledgements**
 
 - Our application is based on the [AddressBook-Level3](https://se-education.org/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org/).
-- Our application makes use of the [Picocli](https://picocli.info/) library for parsing  commands.
+- Our application makes use of the [picocli](https://picocli.info/) library for parsing  commands.
 - Our application makes use of [JavaFX](https://openjfx.io/) as the UI framework.
 - Our application makes use of [Jackson](https://github.com/FasterXML/jackson) as the JSON parser.
 - Our application makes use of [JUnit5](https://junit.org/junit5/) as the testing framework.
@@ -139,22 +139,28 @@ call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
+Here are the other classes in `Logic` (some of which omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The classes in Orange above are provided by PicoCli. For more info, check out the
+[picocli documentation page](https://picocli.info/).
+</div>
+
 How the parsing works:
 
-- When called upon to parse a user command, the `TruthTableParser` class creates an `XYZCommandParser` (`XYZ` is a
-  placeholder for the specific command name e.g., `AddPersonCommandParser`) which uses the other classes shown above to parse
-  the user command and create a `XYZCommand` object (e.g., `AddPersonCommand`) which the `TruthTableParser` returns back as
-  a `Command` object.
-- All `XYZCommandParser` classes (e.g., `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser`
-- All `XYZCommandParser` classes (e.g., `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser`
-  interface so that they can be treated similarly where possible e.g, during testing.
+- When called upon to parse a user command, the `TruthTableParser` class calls the static method `tokenize` from 
+  `ArgumentTokenizer`, which will split a string into a string array of tokens `args` (inspired by the 
+  [Shell Command Language](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_03), 
+  a string is split into space-separated strings, except for quoted strings which will remain as a single token, 
+  e.g. `token1 "token 2" token-3` will be read as 3 separate tokens `token1`, `token 2`, `token-3`).
+- The `TruthTableParser` class passes `args` to the `CommandLine` class provided by picocli, which will parse the  
+  command `XYZComnand` (`XYZ` is a placeholder for the specific command e.g. `DeletePersonCommand`), converting any
+  arguments from strings to specific types using `ABCConverter` (`ABC` is a placeholder for the type argument e.g. 
+ `IndexConverter` since `DeletePersonCommand` takes in an integer as an `Index`).
+- All `ABCConverter` classes (e.g., `IndexConverter`, `NameConverter`, `EmailConverter` ...) extend the 
+  `CommandLine.IConverter` interface to be utilized by picocli.
 
 ### Model component
 
