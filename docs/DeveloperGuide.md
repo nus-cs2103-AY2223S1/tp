@@ -926,16 +926,24 @@ Use case ends.
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should work on any computer fewer than five years old. 
-3. Should be able to hold up to 1000 buyers without a noticeable sluggishness in performance for typical usage.
-4. Should be able to respond within two seconds.
-5. Should be downloaded and available to use within one minute.
-6. Should work without requiring an installer.
-7. Should avoid to include hard-to-test features
-7. Should not depend on a remote server.
-8. Should save data locally in a human editable text file.
-9. Should be able to be packaged into a JAR file.
-10. Should have a GUI with readable font, at least size 11, and resizable.
-6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3. Should be able to hold up to 1000 buyers without noticeable sluggishness in performance for typical usage.
+4. Should be able to hold up to 1000 properties without noticeable sluggishness in performance for typical usage.
+5. Should be able to respond to any given command within two seconds.
+6. Should be downloaded and available to use within one minute.
+7. Should work without requiring an installer.
+8. Should be fully initialised and ready for use within three seconds of launch.
+9. Should not depend on a remote server.
+10. Should not require access to an internet connection.
+11. Should save data locally in a human editable text file.
+12. Should be able to be packaged into a JAR file.
+13. Should have a graphical user interface with readable font, at least size 11, and resizable.
+14. Should have a graphical user interface which is intuitive and user-friendly.
+15. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+16. Should be entirely open-source, so data privacy is ensured.
+17. A user should be able to use all features of the app without confusion after reading the User Guide.
+18. Should be able to be deleted entirely within 30 seconds.
+19. Should not cause performance issues on the machine on which it is running, i.e. become a resource hog.
+20. Should not require the user to have any prior technical knowledge or expertise.
 
 ### Glossary
 
