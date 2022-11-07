@@ -141,7 +141,7 @@ Example:<br>
 Upon typing `help` or clicking on the `help` option, a help window
 as such will appear:
 
-<img src="images/HelpWindow.png" width="275" />
+<img src="images/HelpWindow.png" width="325" />
 
 You can choose a specific command by clicking on the drop-down menu in order to view the
 information for that command.
