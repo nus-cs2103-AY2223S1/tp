@@ -57,11 +57,9 @@ Given below are my contributions to the project.
   * Release v1.3.trial, v1.3.0, v1.4
   * Wrap up v1.2, v1.3, 1.4
 
-* **Review/mentoring contributions**: 
-  * PR #25
-  * PR #39
-  * PR #53
-  * PR #54
-  * PR #56
+* **Review/mentoring contributions**: [About 40 pull requests](https://github.com/AY2223S1-CS2103T-W17-3/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
+  * PRs reviewed (with non-trivial review comments):
 
-* **Contributions beyond the project team**: to be added soon
+* **Contributions beyond the project team**: 
+  * Contributed to forum discussions (examples: 1, 2, 3)
+  * Reported bugs and suggestions for other teams in the class (examples: 1, 2, 3, 4, 5)
