@@ -136,7 +136,7 @@ This section contains all the information pertaining to the features of **FAP**
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
- 
+
 * Parameter hints will be shown after a command action.
 
 </div>
@@ -293,7 +293,7 @@ Format: `clear`
 Exits the program.
 
 Format: `exit`
- 
+
 ### 5.2 Appointment command features
 
 #### 5.2.1 Adding an appointment : `aa`
@@ -424,7 +424,7 @@ The following figure shows the Calendar Popup being activated within the Calenda
 After typing in the command word, the command's parameters and their respective prefixes are shown. An example of a valid command will also be shown.
 ![result for 'parameter_hints'](images/ParameterHintsExample.png)
 #### 5.4.2 Command history
-Use the up and down keys to navigate through previously typed commands. Users can edit the command first or press enter to execute the command. 
+Use the up and down keys to navigate through previously typed commands. Users can edit the command first or press enter to execute the command.
 * Only valid commands will be saved in the command history
 * Command history will only save up to 20 previously typed valid commands
 * Consecutive duplicate commands will not be saved (e.g entering "list" 3 times in a row will only add "list" to command history once)
@@ -482,10 +482,10 @@ Action | Format, Examples
 
 ## 8. Glossary
 
-Term | Meaning 
+Term | Meaning
 --------|------------------
 **Command Line Interface (CLI)** | A CLI is a text-based user interface that allows users to input commands in the form of text.
 **Graphical User Interface (GUI)** | A GUI is a graphics-based user interface that allows users to interact with elements such as icons and buttons when running a program.
-**Command** | An instruction given by the user that is to be executed. 
+**Command** | An instruction given by the user that is to be executed.
 **Parameter** | Variables that have been typed by the user that is to be provided to the command to be executed.
 **Prefix** | Indicator for a specific parameter to be input during the command. Prefixes end with a slash (/)

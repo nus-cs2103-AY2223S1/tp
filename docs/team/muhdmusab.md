@@ -18,7 +18,7 @@ Given below are my contributions to the project.
   - Justification: FAs require a method to note down all their scheduled appointments, hence adding an appointment for a client is necessary.
 - ### Feature: Implemented `Calendar Popup`.
   - What it does: Allows the user to view the full `Appointment` details in the form of a popup whenever the user interacts with a Calendar Button in the Calendar.
-  - Justification: As appointment details may potentially be large, e.g. long length of location, the Calendar Display may not fit the full details. Hence, a Calendar Popup is needed to view the full details when in the Calendar Display. 
+  - Justification: As appointment details may potentially be large, e.g. long length of location, the Calendar Display may not fit the full details. Hence, a Calendar Popup is needed to view the full details when in the Calendar Display.
 - ### Feature: Implemented mouse-less `Calendar Navigation`.
   - What it does: Allows the user to toggle the next/previous month in the Calendar Display using the `N` or `B` key respectively and also allows the user to navigate through the appointments in the Calendar Display using either the `Shift`/`Shift` + `Tab` keys or `Up`/`Down`/`Left`/`Right` keys.
   - Justification: FAs require a quick way to navigate the Calendar and also the appointments within the Calendar, hence a mouse-less method is necessary for expert users to navigate quickly.

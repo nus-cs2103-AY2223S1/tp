@@ -27,16 +27,18 @@ Given below are my contributions to the project.
     - Changed the UI to include an additional panel for the `Appointment` model and their attributes .
   - ### Contributions to the UG:
     - Added documentation for the Calendar features section.
+    - Updated the prefix section into a table.
   - ### Contributions to the DG:
-    - Added implementation details and design consideration for `Calendar` features section.
+    - Added implementation details and design consideration for `da` and `Calendar` features section.
     - Added activity diagrams for `Calendar` features section.
     - Added Use Cases for Display appointments of the current month in a calendar view and Display appointments of a new month in a calendar view.
-    - Updated the ModelCLassDiagram and UiClassDiagram.
+    - Updated the ModelCLassDiagram and UiClassDiagram, added CalendarUiClassDiagram.
   - ### Contributions to team-based tasks
     - Reported bugs as issues for better tracking.
   - ### Review/mentoring contributions:
     - Reviewed and merged pull requests
     - Helped to resolve merge conflicts in other members’ pull requests
   - ### Community
+    - Maintained issues and closed milestones.
     - Fixed bugs from PE-D.
 
