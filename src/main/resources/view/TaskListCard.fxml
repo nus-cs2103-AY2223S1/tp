@@ -22,7 +22,7 @@
                     </Label>
                     <CheckBox fx:id="isDone" disable="true" mnemonicParsing="false" />
 
-                    <Label fx:id="personName" text="\$first" styleClass="cell_big_label" />
+                    <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
                 </HBox>
             <HBox spacing="5">
                 <Label text="Deadline:" />
