@@ -158,7 +158,7 @@ Notes on symbols in first column:
 
 * `aa n/Bernice Yu s/2022-01-23 09:00 d/Dioni Yong t/CT` adds another appointment for Bernice Yu.
 
-<img src="images/ug/addcommand/aa3.png">
+<img src="images/ug/addcommand/aa2.png">
 
 ### 1.1.3 Add a bill of an appointment `addbill`, `ab`
 
@@ -225,11 +225,11 @@ Edits a patient's information, such as name, phone number, address, email, remar
 * `editpatient 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be
    `91234567` and `johndoe@example.com` respectively.
 
-<img src = "images/ug/editcommand/editpatient.png">
+<img src = "images/ug/editcommand/ep1.png">
 
 * `editpatient 2 n/Betsy Crower t/` edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
-<img src = "images/ug/editcommand/editpatient2.png">
+<img src = "images/ug/editcommand/ep2.png">
 
 ### 1.2.2 Edit an appointment of a patient `editappointment`, `ea`
 
@@ -249,10 +249,10 @@ Edits an appointment of a patient, such as name, medical test, slot, and doctor.
 * Existing values will be updated to the input values.
 
 #### Examples:
-* `editappointment 1 n/zanw t/CT Scan s/2021-03-01 10:00 d/Tan` Edits the name, medical test, slot,
-   and doctor of the 1st appointment to be `zanw`, `CT Scan`, `2021-03-01 10:00`, and `Tan` respectively.
+* `editappointment 1 n/David Li t/CT Scan s/2021-03-01 10:00 d/Tan` Edits the name, medical test, slot,
+   and doctor of the 1st appointment to be `David Li`, `CT Scan`, `2021-03-01 10:00`, and `Tan` respectively.
 
-<img src = "images/ug/editcommand/editappointment.png">
+<img src = "images/ug/editcommand/ea1.png">
 
 ### 1.2.3 Edit a bill of an appointment `editbill`, `eb`
 
@@ -273,11 +273,11 @@ Edits a bill of an appointment.
 #### Examples:
 * `editbill 1 a/100` Edits the amount of the 1st bill to be `100`.
 
-<img src="images/ug/editcommand/editbill.png">
+<img src="images/ug/editcommand/eb1.png">
 
 
-* `editbill 1 d/2020-10-10` edits the bill date of the 1st bill to be `2020-10-10`.
-<img src="images/ug/editcommand/editbill2.png">
+* `editbill 1 d/2022-10-10` edits the bill date of the 1st bill to be `2022-10-10`.
+<img src="images/ug/editcommand/eb2.png">
 
 ## 1.3 Find
 
@@ -300,13 +300,13 @@ special characters).
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
 #### Examples:
-* ```findpatient n/ale``` returns ``Alex Yeoh`` and ``alex tan``.
+* ```findpatient n/alex``` returns ``Alex Yeoh`` and ``alex tan``.
 
-<img src="images/ug/findcommand/findpatientAlex.png">
+<img src="images/ug/findcommand/fp_alex.png">
 
 * ```fp t/friends t/colleagues n/bernice``` returns only ``Bernice Yu`` with the tags ``friends`` and ``colleagues``.
 
-<img src="images/ug/findcommand/findpatientBernice.png">
+<img src="images/ug/findcommand/fp_byu.png">
 
 ### 1.3.2 Find appointment(s) `findappointment`, `fa`
 
@@ -330,13 +330,13 @@ special characters).
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
 #### Examples:
-* ```findappointment t/x-ray``` returns ``Bernice Yu`` with "X-ray" appointment.
+* ```findappointment t/x-ray``` returns `Bernice Yu`'s appointment with medical test `X-ray`.
 
-<img src="images/ug/findcommand/findappointmentXray.png">
+<img src="images/ug/findcommand/fa_xray.png">
 
-* ```fa d/Dr Tan n/Alex``` returns only ``Alex Yeoh``'s appointment with "Dr Tan".
+* ```fa d/Dr Tan n/Alex``` returns only `Alex Yeoh`'s appointment with `Dr Tan`.
 
-<img src="images/ug/findcommand/findappointmentAlex.png">
+<img src="images/ug/findcommand/fa_alextan.png">
 
 
 ### 1.3.3 Find bill(s) `findbill`, `fb`
@@ -360,7 +360,7 @@ special characters).
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
 #### Examples:
-`findbill n/Ber p/unpaid` returns Bernice's unpaid bill
+`findbill n/Ber p/unpaid` returns `Bernice`'s unpaid bill
 
 <img src="images/ug/findcommand/fb.png">
 
@@ -672,7 +672,7 @@ Reverses the most recent command.
 
 Original Data
 
-<img src="images/ug/undoredocommand/undo1.PNG">
+<img src="images/ug/undoredocommand/undo1.png">
 
 Execute `deletepatient 1` to delete all information of Bernice Yu.
 
@@ -701,7 +701,7 @@ Reverses the most recent undo command.
 
 Original Data
 
-<img src="images/ug/undoredocommand/redo1.PNG">
+<img src="images/ug/undoredocommand/redo1.png">
 
 Execute `deletepatient 1` to delete all information of Bernice Yu.
 
