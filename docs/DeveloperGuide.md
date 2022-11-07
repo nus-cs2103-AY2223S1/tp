@@ -1128,6 +1128,20 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+### Delete Meetings
+
+1. Deleting assigned meeting
+
+   1. `Meeting 2 mt/20-12-2012-20:12` to assign meeting time `20-12-2012-20:12` to the second client.
+   
+   2. Test case `deletemeeting 2 mt/20-12-2012-20:12`<br>
+      Expected: Meeting time `20-12-2012-20:12` removed from second client. `Results display` updated.
+      
+   3. Test case `deletemeeting 2 mt/11-11-2011-11:11`<br>
+      Expected: No meeting removed. Error message `Couldn't find meeting time` and details shown in the command display.
+      
+   4. Other incorrected deletemeeting commands to try: `deletemeeting 2`, `deletemeeting 0 mt/20-12-2012-20:12`
+      Expected: No meeting removed. Error details shown in the command display.
 
 ### Remove past meetings
 
@@ -1234,7 +1248,7 @@ testers are expected to do more *exploratory* testing.
    4. Delete the `data` folder along with the file `FABook.json` inside.
    
    5. Re-launch the app.<br>
-      Expected: The app launches with an empty list.
+      Expected: The app launches with a auto-generated list of sample data containing six sample clients. The first sample client is `Alex Yeoh`.
    
    6. Re-exit the app after any number of actions.<br>
       Expected: The `data` folder is re-created with the file `FABook.json` inside.
