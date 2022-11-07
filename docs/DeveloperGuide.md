@@ -158,6 +158,134 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+
+### Display of person and task list
+
+#### 1. Motivation
+
+Given below is a partial class diagram of the **old UI**.
+
+<img src="images/UiClassDiagram.png" width="500" height="400" />
+
+In the original implementation, there is only one `PersonListPanel` that displays a list of people using `PersonCard`.
+This was sufficent, as the original addressbook only had to manage a list of people.
+However, our product needs to display tasks in addition to people, as this is a core feature of our product.
+
+Tasks have a lot of information regarding them, such as deadline, priority, description and category. Thus, including them as
+labels within the `PersonCard` would quickly lead to a very messy and disorganized display. Additionally, we intended for each person
+to be able to be assigned to multiple tasks. Thus, this would introduce the probelm of having a dynamic number of labels for each
+`PersonCard`, and potentially make the UI even more messy,
+
+Therefore, it is necessary to have a **separate list panel** for tasks, as well as people. This would allow the information for tasks to be
+cleanly displayed seperate from the information releveant to people
+
+#### 2. Implementation of the new UI
+
+As you can see from the diagrm, the `MainWindow` is filled with both the person and task list
+Similar to the person list, the task list will contain all the tasks currently stored in the application
+By having separate list panels, it will be easier to display the tasks and people seperately
+
+<img src="images/UiClassDiagramNew.png" />
+
+Each task is given a card, similar to the `PersonCard`, that displays the information regarding the task.
+The user can navigate between the dispays using a tab at the top of the UI display.
+
+#### 3. Alternatives considered
+
+We went through several iterations and design alternatives when considering the design of our User Interface
+
+* **Alternative 1 :** Display the people on the Left, and the spotlighted person's task on the right
+    * Pros: Able to spotlight a single person's tasks and the details regarding those tasks
+    * Cons: Displaying the result of filtering or sorting through all available tasks at once would be very difficult, and confusing for the user
+* **Alternative 2:** Display all the people on the Left, and all tasks on the right
+    * Pros: Allow the sorting and filtering of tasks to be carried our much easier
+    * Cons: Could result in too much information being present, which could overwhelm the user.
+
+
+### \[Proposed\] Undo/redo feature
+
+#### Proposed Implementation
+
+The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+
+* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
+* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
+* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+
+These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+
+![UndoRedoState0](images/UndoRedoState0.png)
+
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+
+![UndoRedoState1](images/UndoRedoState1.png)
+
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+
+![UndoRedoState2](images/UndoRedoState2.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+
+</div>
+
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+
+![UndoRedoState3](images/UndoRedoState3.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+than attempting to perform the undo.
+
+</div>
+
+The following sequence diagram shows how the undo operation works:
+
+![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+
+</div>
+
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+
+![UndoRedoState4](images/UndoRedoState4.png)
+
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+
+![UndoRedoState5](images/UndoRedoState5.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/CommitActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How undo & redo executes:**
+
+* **Alternative 1 (current choice):** Saves the entire address book.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Individual command knows how to undo/redo by
+  itself.
+  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
+
+_{more aspects and alternatives to be added}_
+
+### \[Proposed\] Data archiving
+
+_{Explain here how the data archiving feature will be implemented}_
+
 ### \[Proposed\] Adding a Task into the TaskList.
 
 #### Proposed Implementation
@@ -416,7 +544,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to add a new member
 2. HackAssist shows a list of fields to input (Name,Phone Number, Email, Address, Tags)
 3. User inputs fields
-4. HackAssist shows list of all members, including new member 
+4. HackAssist shows list of all members, including new member
 
 Use case ends.
 
@@ -441,7 +569,7 @@ Extensions:
 3. User inputs fields
 4. HackAssist displays confirmation message
 5. HackAssist removes the user's name and email from all the tasks assigned to that user
-6. HackAssist shows list of all members, excluding deleted member, and the updated task list 
+6. HackAssist shows list of all members, excluding deleted member, and the updated task list
 
 Use case ends.
 
@@ -496,7 +624,7 @@ Extensions:
 1. User requests to add a new member
 2. HackAssist shows a list of fields to input (Name, Description, Priority, Category, Status)
 3. User inputs fields
-4. HackAssist shows list of all members, including new member 
+4. HackAssist shows list of all members, including new member
 
 Use case ends.
 
@@ -529,7 +657,7 @@ Extensions:
 3. User inputs fields
 4. HackAssist displays confirmation message
 5. HackAssist removes the task from task list and all members assigned to that task
-6. HackAssist shows list of all tasks, excluding deleted task, and the updated person list 
+6. HackAssist shows list of all tasks, excluding deleted task, and the updated person list
 
 Use case ends.
 
@@ -553,7 +681,7 @@ Extensions:
 2. HackAssist shows current list of tasks
 3. User edits the task to have the email of a current member
 4. User is updated to be assigned to existing task
-5. Task is updated to show the user assigned to it, and that user's email 
+5. Task is updated to show the user assigned to it, and that user's email
 
 Use case ends.
 
@@ -580,7 +708,7 @@ Extensions:
 2. HackAssist shows a list of fields to input (index and one or more of Name, Description, Priority, Category, Status )
 3. User inputs fields
 4. HackAssist displays confirmation message
-5. HackAssist shows list of all members, with that particular member's fields updated 
+5. HackAssist shows list of all members, with that particular member's fields updated
 
 Use case ends.
 
@@ -612,7 +740,7 @@ Extensions:
 
 1. User requests to filter the tasks by category
 2. User inputs the category
-3. HackAssist shows the filtered task list 
+3. HackAssist shows the filtered task list
 
 Use case ends.
 
@@ -632,7 +760,7 @@ Extensions:
 
 1. User requests to filter the tasks by category
 2. User inputs the category
-3. HackAssist shows the filtered task list 
+3. HackAssist shows the filtered task list
 
 Use case ends.
 
@@ -652,7 +780,7 @@ Extensions:
 
 1. User requests to sort the tasks by priority
 2. User inputs ascending or descending
-3. HackAssist shows the sorted task list 
+3. HackAssist shows the sorted task list
 
 Use case ends.
 
@@ -668,7 +796,7 @@ Extensions:
 
 1. User requests to sort the tasks by deadline
 2. User inputs ascending or descending
-3. HackAssist shows the sorted task list 
+3. HackAssist shows the sorted task list
 
 Use case ends.
 

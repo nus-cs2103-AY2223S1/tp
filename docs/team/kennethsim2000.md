@@ -5,7 +5,7 @@ title: Kenneth's Project Portfolio Page
 
 ### Project: HackAssist
 
-HackAssist is a desktop address book and task management application used to better manage tasks allocation in Hackathons. 
+HackAssist is a desktop address book and task management application used to better manage tasks allocation in Hackathons.
 
 The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is optimized for use via a Command Line Interface(CLI) while still having the benefits of a Graphical User Interface(GUI). If you can type fast, HackAssist can get your task management done faster than traditional GUI apps.
 

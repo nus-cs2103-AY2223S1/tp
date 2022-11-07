@@ -16,7 +16,7 @@ For advanced users, you can go straight to the [Command Summary](#command-summar
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer. 
+1. Ensure you have Java `11` or above installed in your Computer.
    * To check if you have Java installed, please open up a terminal (search for `Command Prompt` on Windows and `Terminal` on Mac OS) and type in `java -version`. This will show your java version, if you have it installed.
    * If you do not have Java 11 or above installed, please proceed to this [link](https://www.oracle.com/java/technologies/downloads/#java11) and download the appropriate Java for your operating system.
 
@@ -51,7 +51,6 @@ Refer to the [Features](#features) below for details of each command.
 ![Ui](images/layout2.png)
 
 1. Command Box: This is where you key in your commands. Press Enter to execute it.
-  
 2. Feedback Box: This is where you can see the response from HackAssist when you execute a command. You will either see a confirmation message, or an error message informing you what went wrong with your command.
 
 3. Tabs: This is where you can choose for HackAssist to display Members or Tasks List
@@ -66,8 +65,7 @@ Refer to the [Features](#features) below for details of each command.
 
 ## Features
 
-This section provides information on how you can use HackAssist commands for people management and tasks management. 
-
+This section provides information on how you can use HackAssist commands for people management and tasks management.
 You can click [General](#general) to learn about general commands, [People Management](#people-management) to learn about commands specific to People Management, or [Task Management](#tasks-management) to learn about commands specific to Task Management.
 
 Before you learn any commands, please read the following notes about HackAssist command format.
@@ -139,7 +137,7 @@ If your changes to the data file makes its format invalid, HackAssist will disca
 #### Adding a person: `add`
 
 Adds a new person to the address book.
-* Note: You cannot add a task if another task with the same name already exists in the task list. 
+* Note: You cannot add a task if another task with the same name already exists in the task list.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -218,11 +216,11 @@ The following commands are for viewing and managing your hackathon tasks. These 
 
 #### Adding a task: `addTask`
 
-Adds a task to the task list. Note that you cannot add a task if another task with the same name already exists in the task list. 
+Adds a task to the task list. Note that you cannot add a task if another task with the same name already exists in the task list.
 
 Format: `addTask n/TASK_NAME d/DESCRIPTION pr/PRIORITY c/CATEGORY dl/DEADLINE [pe/EMAIL_OF_PERSON_ASSIGNED]`
 
-* If the optional parameter `pe/EMAIL_OF_PERSON_ASSIGNED` is provided, the task will be assigned to that person. If not, it will remain unassigned. This might be useful at the beginning of your project when you are scoping out the tasks that need to be done. 
+* If the optional parameter `pe/EMAIL_OF_PERSON_ASSIGNED` is provided, the task will be assigned to that person. If not, it will remain unassigned. This might be useful at the beginning of your project when you are scoping out the tasks that need to be done.
 
 Refer to the [Task Parameters](#task-parameters) section for details about the format of each parameter.
 
@@ -234,7 +232,7 @@ Examples:
 #### Deleting a task: `deleteTask`
 
 Deletes a task from the task list.
-* **Note: The task will be permanently deleted**. To mark a task as `completed` but have it remain in the task list, use the [`editTask`](#editing-a-task-edittask) command instead. 
+* **Note: The task will be permanently deleted**. To mark a task as `completed` but have it remain in the task list, use the [`editTask`](#editing-a-task-edittask) command instead.
 
 Format: `deleteTask INDEX`
 * Deletes the task at the specified `INDEX`.
@@ -246,7 +244,7 @@ Examples:
 
 #### Editing a Task: `editTask`
 
-Edits the parameter(s) of an existing task in the task list. You can also use this command to mark tasks as `completed` or to assign the task to a person in your team. 
+Edits the parameter(s) of an existing task in the task list. You can also use this command to mark tasks as `completed` or to assign the task to a person in your team.
 
 Format: `editTask INDEX [n/TASK_NAME] [d/DESCRIPTION] [pr/PRIORITY] [c/CATEGORY] [dl/DEADLINE] [pe/EMAIL_OF_PERSON_ASSIGNED] [do/IS_DONE]`
 
@@ -304,13 +302,13 @@ Format: `listTasks`
 
 #### Sorting tasks: `sort`
 
-Sorts the task list by the specified field in the specified order. For instance, you can sort tasks in descending order of PRIORITY to help you decide which tasks should be done first. 
+Sorts the task list by the specified field in the specified order. For instance, you can sort tasks in descending order of PRIORITY to help you decide which tasks should be done first.
 
 Format: `sort [pr/ORDER] [dl/ORDER]`
 
 * Exactly one of the optional parameters must be provided.
 * Use the `pr/` parameter to sort by PRIORITY.
-* Use the `dl/` parameter to sort by DEADLINE. 
+* Use the `dl/` parameter to sort by DEADLINE.
 * Order must be either `asc` for ascending or `desc` for descending.
 
 Examples:
