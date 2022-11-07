@@ -823,6 +823,8 @@ Format: `exit`
 * Add more error messages when duplicate prefixes are being used.
 
 --------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## General 
 
 ### Saving data to the data file
