@@ -55,7 +55,7 @@
               <VBox style="-fx-background-color: #FAFAFA;" styleClass="right-panel-vbox" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                         <Pane minHeight="25.0" prefHeight="25.0" prefWidth="400.0" styleClass="result-display-pane">
                            <children>
-                              <Label prefHeight="25.0" styleClass="result_heading" text="SEARCH RESULTS">
+                              <Label prefHeight="25.0" styleClass="result_heading" text="COMMAND RESULTS">
                                  <padding>
                                     <Insets left="12.0" top="10.0" />
                                  </padding>
