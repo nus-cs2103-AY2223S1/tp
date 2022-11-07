@@ -7,8 +7,7 @@ title: Developer Guide
 
 ## **Introduction**
 
-Cobb is a brownfield software project based off of [AddressBook3](https://se-education.org/addressbook-level3/). It is a 
-JavaFX application that helps property agents manage their database of buyers and properties using a command-line interface.
+Cobb is a JavaFX application that helps property agents manage their database of buyers and properties using a command-line interface.
 
 ### **Purpose**
 
@@ -27,6 +26,7 @@ of the guide.
 --------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
 
+Based off on [AddressBook-Level3](https://github.com/se-edu/addressbook-level3). <br>
 Libraries used: [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [JavaFX](https://openjfx.io),
 [PlantUML](https://plantuml.com).
 --------------------------------------------------------------------------------------------------------------------

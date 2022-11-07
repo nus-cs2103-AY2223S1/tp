@@ -21,7 +21,7 @@ public class SortPropertiesCommand extends Command {
     public static final String COMMAND_WORD = "sortprops";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sorts properties by property name, price or entry time in ascending or descending order."
+            + ": Sorts properties by property name, price or time of creation in ascending or descending order."
             + " You can only sort by one criteria at a time.\n"
             + "Parameters: "
             + "[" + PREFIX_NAME + " NAME<ASC/DESC>] "
