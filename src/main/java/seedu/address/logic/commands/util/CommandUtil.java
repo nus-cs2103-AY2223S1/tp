@@ -47,7 +47,7 @@ public class CommandUtil {
     public static final String[] ACCEPTABLE_SORT_WEIGHT_PARAMETER = new String[]{"WEIGHT", "W"};
 
     /**
-     * Checks if a given parameter matches any parameter in a given parameter array.
+     * Checks if a given parameter matches any parameter in a given acceptable parameters array.
      * @param acceptableParameters The given parameter array.
      * @param parameter The given parameter.
      * @return The boolean value.

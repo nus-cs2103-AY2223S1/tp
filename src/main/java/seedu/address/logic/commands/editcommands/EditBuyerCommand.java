@@ -18,7 +18,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 
 /**
- * Edits the details of an existing buyer.
+ * Edits the details of an existing Buyer.
  */
 public class EditBuyerCommand extends EditCommand {
 

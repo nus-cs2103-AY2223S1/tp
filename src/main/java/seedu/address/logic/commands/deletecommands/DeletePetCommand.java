@@ -29,7 +29,7 @@ public class DeletePetCommand extends DeleteCommand {
     private final Index targetIndex;
 
     /**
-     * Creates a DeleteCommand to delete the specified {@code Person}.
+     * Creates a DeletePetCommand to delete the specified {@code Pet}.
      */
     public DeletePetCommand(Index targetIndex) {
         this.targetIndex = targetIndex;

@@ -32,7 +32,7 @@ public class DeleteSupplierCommand extends DeleteCommand {
     private final Index targetIndex;
 
     /**
-     * Creates a DeleteCommand to delete the specified {@code Person}.
+     * Creates a DeleteSupplierCommand to delete the specified {@code Supplier}.
      */
     public DeleteSupplierCommand(Index targetIndex) {
         this.targetIndex = targetIndex;

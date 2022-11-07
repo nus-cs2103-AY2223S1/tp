@@ -49,7 +49,7 @@ If this is the first time you are using this user guide, it is highly recommende
     * [Filtering items by attributes](#filtering-items-by-attributes--filter)
         + [Filtering orders](#filtering-orders--filter-o)
         + [Filtering pets](#filtering-pets--filter-p)
-    * [Sorting contacts](#sorting-contacts--sort)
+    * [Sorting contacts](#sorting-contacts-and-items--sort)
     * [Clearing all contacts](#clearing-all-entries--clear)
     * [Exiting the program](#exiting-the-program--exit)
     * [Automation of information flow (future feature)](#automation-of-information-flow-coming-in-v20)
@@ -350,7 +350,7 @@ Check out [Add Command using the popup window](#adding-a-contact-with-a-popup-wi
 
 To help you better understand the hierarchy of the second sample command, we illustrate its structure as follows:
 
-![img.png](!img="images/AddBuyerCommandIllustration.png" weight=200px height=200px)
+<img src="images/AddBuyerCommandIllustration.png" alt="drawing" width="550"/>
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -416,7 +416,7 @@ Check out [Add Command using the popup window](#adding-a-contact-with-a-popup-wi
 
 To help you better understand the hierarchy of the second sample command, we illustrate its structure as follows:
 
-![img.png](AddSupplierCommandIllustration.png)
+<img src="AddSupplierCommandIllustration.png" alt="drawing" width="550"/>
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -583,32 +583,15 @@ Example:
 
 </div>
 
-Using the original set of sample data without any modification.
-The following picture shows the display list before the match command is executed.
+Using the original set of sample data without any modification, the following picture shows the display list before the
+match command is executed. The original order is `Shiro`, `Ashy`, `Plum`, `Page`, `Snowy`, and `Buddy`.
 
 ![before match command](images/BeforeMatch.png)
 
-The following picture shows the display list after `match 1` is executed.
+The following picture shows the display list after `match 1` is executed. Now the order is `Snowy`, `Page`, `Plum`
+, `Ashy`, `Shiro`, and `Buddy`.
 
 ![after match command](images/AfterMatch.png)
-
-To have a deeper understanding of what it does, take a look at the two illustrations below. Take the four pets Shiro,
-Ashy, Page and Snowy as examples. Plum and Buddy are ignored fore simplicity.
-
-**We assign a score to each pet according to how many attributes they have are the same as requested, and how much
-deviation, if they don’t fit, the attributes have from expected values.** The higher the score, the more suitable the pet.
-In this table, Shiro has all requested attributes except its price. However, its price is too far away from the
-acceptable range fifty to ninety, so a very low score. Ashy does not satisfy any requirement, so another low score. In
-the next row, some of Page’s attributes fit and the others do not, so an intermediate score. Finally, although Snowy is
-a little bit old, it satisfies all other requirements. Because the difference between its age and the expected age is
-not too big, it has a high overall score.
-
-![img.png](images/MatchCommandIllustration1.png)
-
-The next thing our app will do is sort the pets by their scores. This sorted list will be displayed on the screen. Now,
-as a smart pet sale coordinator who wants to maximise utility and profit, you may want to sell Snowy to this customer.
-
-![img.png](images/MatchCommandIllustration2.png)
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -871,7 +854,7 @@ Examples:
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
 
-### Sorting contacts : `sort`
+### Sorting contacts and items : `sort`
 
 Sorts the specified list based on the default or given attribute(s) as sorting criteria.
 
@@ -881,9 +864,9 @@ Format: `sort KEY [ATTRIBUTE]…​`
 
 | Contact / Item to Sort |     KEY      | Default Sorting Criteria | Possible ATTRIBUTE to Sort <br> (acceptable parameters)                                                                                                                                                           | Examples                                   |
 |:----------------------:|:------------:|:------------------------:|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
-|         Buyer          |   buyer, b   |     Number of orders     | Name (name, n), <br> Phone (phone, ph), <br> Email (email, e), <br> Location (location, l), <br> Address (address, a) <br> Number of Orders(order) <br>                                                           | `sort buyer name`, <br> `sort b p n`       |
-|        Supplier        | supplier, s  |      Number of pets      | Name (name, n), <br> Phone (phone, ph), <br> Email (email, e), <br> Location (location, l), <br> Address (address, a) <br> Number of Pets(pets) <br>                                                              | `sort supplier e`, <br> `sort s address`   |
-|       Deliverer        | deliverer, d |           Name           | Name (name, n), <br> Phone (phone, ph), <br> Email (email, e), <br> Location (location, l), <br> Address (address, a) <br> Number of Orders(order) <br>                                                           | `sort d location`,  <br>`sort deliverer n` |
+|         Buyer          |   buyer, b   |     Number of orders     | Name (name, n), <br> Phone (phone, ph), <br> Email (email, e), <br> Location (location, l), <br> Address (address, a), <br> Number of Orders(order) <br>                                                           | `sort buyer name`, <br> `sort b p n`       |
+|        Supplier        | supplier, s  |      Number of pets      | Name (name, n), <br> Phone (phone, ph), <br> Email (email, e), <br> Location (location, l), <br> Address (address, a), <br> Number of Pets(pet) <br>                                                              | `sort supplier e`, <br> `sort s address`   |
+|       Deliverer        | deliverer, d |           Name           | Name (name, n), <br> Phone (phone, ph), <br> Email (email, e), <br> Location (location, l), <br> Address (address, a), <br> Number of Orders(order) <br>                                                           | `sort d location`,  <br>`sort deliverer n` |
 |         Order          |   order, o   |         Due date         | Due Date (duedate, d), <br> Price Range (pricerange, pr), <br> Settled Price (price, p), <br> Order Status (orderstatus, os) <br>                                                                                 | `sort order pr`, `sort o d p os`           |
 |          Pet           |    pet, p    |          Price           | Price (price, p), <br> Name (name, n), <br> Color (color, c), <br> Color Pattern (colorpattern, cp), <br> Birth Date (birthdate, bd), <br> Species (species, s), <br> Height (height, h), <br> Weight (weight, w) | `sort pet color`, `sort p s cp`            |
 
@@ -959,7 +942,7 @@ Advanced users are welcome to update the data directly by editing that data file
 <div markdown="span" class="alert alert-warning">
 
 :exclamation: **Caution:** If your changes to the data file makes its format invalid, PetCode will discard all data and
-start with an empty data file at the next run. For certain data changes, PetCode will discard the change and initiate the respective data value to its default value.
+start with an empty data file at the next run. For certain data changes, PetCode will discard the change and initialise the respective data value to its default value.
 
 </div>
 

@@ -1,7 +1,7 @@
 package seedu.address.model.pet;
 
 /**
- * Represents the color pattern of a pet. For example, stripped, grid, dark.
+ * Represents the color pattern of a pet. For example, striped, grid, dark.
  */
 public class ColorPattern implements Comparable<ColorPattern> {
 

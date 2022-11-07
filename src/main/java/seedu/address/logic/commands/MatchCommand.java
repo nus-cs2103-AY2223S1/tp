@@ -16,7 +16,7 @@ import seedu.address.model.pet.Pet;
 import seedu.address.model.pet.PetGrader;
 
 /**
- * Matches pets given an order.
+ * Matches Pets given an Order.
  */
 public class MatchCommand extends Command {
 
@@ -34,7 +34,7 @@ public class MatchCommand extends Command {
 
     /**
      * Constructs a MatchCommand object.
-     * @param index The index of the order that needs to be matched to pets.
+     * @param index The index of the Order that needs to be matched to Pets.
      */
     public MatchCommand(Index index) {
         this.index = index;

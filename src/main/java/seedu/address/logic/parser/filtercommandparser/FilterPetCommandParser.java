@@ -18,7 +18,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.pet.Pet;
 
 /**
- * Parses input arguments and creates a new FilterPetCommand object.
+ * Parses input arguments and creates a {@code FilterPetCommand}.
  */
 public class FilterPetCommandParser implements Parser<FilterPetCommand> {
     public static final String COLOR_PREFIX = "p_c";

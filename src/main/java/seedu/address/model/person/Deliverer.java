@@ -7,7 +7,7 @@ import java.util.Objects;
 import seedu.address.commons.core.index.UniqueId;
 
 /**
- * Represents a deliverer.
+ * Represents a deliverer that is also a person.
  */
 public class Deliverer extends Person {
 

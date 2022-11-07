@@ -140,12 +140,12 @@ Given below is a partial class diagram of the `Ui` component.
 <img src="images/UiClassDiagram.png" width="700"/>
 
 The UI consists of a `MainWindow` that is made up of parts including `CommandBox`, `ResultDisplay`, `StatusBarFooter`.
-The `mainWindow` also has `HelpWindow` and `AddCommandPopupWindow` that will be shown to the user when required.
+The `MainWindow` also has `HelpWindow` and `AddCommandPopupWindow` that will be shown to the user when required.
 Detailed implementation of the `AddCommandPopupWindow` is written [here](#pop-up-window-for-add-command).
 All these UI components, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between
 classes that represent parts of the visible GUI.
 
-Furthermore, the `MainWindow` can be filled by **one** list panel, such as `BuyerListPanel` and `PetListPanel`, for display.
+Furthermore, the `MainWindow` can be filled by **one** list panel, such as `BuyerListPanel` or `PetListPanel`, for display.
 The list panel displayed depends on the input `Command`.
 Each list panel can have any number of the corresponding card. For example, `BuyerListPanel` can have any number
 of `BuyerCard`.
@@ -209,23 +209,23 @@ Given below is a diagram showing some other classes in `Logic` (omitted from the
 
 :information_source: **Different commands have different ways of implementing their respective parsers.**<br><br>
 
-**Some parsers can return different `Command` objects.**<br>
+**Some parsers can return different `Command` objects.**<br><br>
 The `SortCommandParser` returns one of `SortCommand`'s subclasses -- `SortBuyerCommand`,
-`SortDelivererCommand`, `SortSupplierCommand`, `SortOrderCommand`, and `SortPetCommand`.<br>
+`SortDelivererCommand`, `SortSupplierCommand`, `SortOrderCommand`, and `SortPetCommand`.<br><br>
 The implementation of `SortCommandParser` was done such that the `SortCommand` is able to accept multiple inputs for the
 `LIST_TYPE` and `ATTRIBUTES` parameters. Hence, the `SortCommandParser` makes use of `SortCommandParserUtil`
 and `CommandUtil` classes which help to parse the multiple valid parameters and return the correct `SortCommand`
-subclass.<br>
+subclass.<br><br>
 Given below is the Parser classes diagram for the `SortCommand`.<br>
 <img src="images/SortCommandParserClasses.png" width="600" /> <br><br>
 
-**Some `Command` objects are similar but have their own parsers and behave distinctly.**<br>
+**Some `Command` objects are similar but have their own parsers and behave distinctly.**<br><br>
 The `AddressBookParser` creates `DeleteBuyerCommandParser`, `DeleteSupplierCommandParser`,
 `DeleteDelivererCommandParser`, `DeleteOrderCommandParser`, or a `DeletePetCommandParser` depending on the user's input.
 Each `DeleteCommand` parser then returns the respective `DeleteCommand` to `AddressBookParser` for execution,
-i.e `DeleteBuyerCommandParser` parse method returns a `DeleteBuyerCommand` object.<br>
+i.e `DeleteBuyerCommandParser` parse method returns a `DeleteBuyerCommand` object.<br><br>
 This way of implementation is done for commands that are very similar but have different `COMMAND_WORD`s, such as the
-AddCommand, DeleteCommand, EditCommand, FilterCommand, and FindCommand.<br>
+AddCommand, DeleteCommand, EditCommand, FilterCommand, and FindCommand.<br><br>
 Given below is the Parser classes diagram for the `DeleteCommand`.
 **`ParserUtil` and `Index` classes are omitted from the diagram to reduce graph complexity.**<br>
 <img src="images/DeleteCommandParserClasses.png" width="1500" height="250"/>
@@ -585,6 +585,25 @@ At this stage, the weights are pre-set and fixed, so the score may not truly ref
 a buyer's or a sale coordinator's perspective. In future implementations, we will allow users to configure these weights,
 if they don't want to use the default weights.
 
+#### Example
+To have a deeper understanding of what it does, take a look at the two illustrations below. Take the four pets Shiro,
+Ashy, Page and Snowy as examples. Plum and Buddy are ignored fore simplicity.
+
+**We assign a score to each pet according to how many attributes they have are the same as requested, and how much
+deviation, if they don’t fit, the attributes have from expected values.** The higher the score, the more suitable the pet.
+In this table, Shiro has all requested attributes except its price. However, its price is too far away from the
+acceptable range fifty to ninety, so a very low score. Ashy does not satisfy any requirement, so another low score. In
+the next row, some of Page’s attributes fit and the others do not, so an intermediate score. Finally, although Snowy is
+a little bit old, it satisfies all other requirements. Because the difference between its age and the expected age is
+not too big, it has a high overall score.
+
+![img.png](images/MatchCommandIllustration1.png)
+
+The next thing our app will do is sort the pets by their scores. This sorted list will be displayed on the screen. Now,
+as a smart pet sale coordinator who wants to maximise utility and profit, you may want to sell Snowy to this customer.
+
+![img.png](images/MatchCommandIllustration2.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -729,23 +748,32 @@ suppliers.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-#### PetCode user stories
-
-##### Buyer side
-
-| Priority | As a …​                                | I want to …​                                                                                                                                                          | So that I can…​                                                                      |
-|----------|----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------|
-| `* * *`  | pet sale coordinator                   | list a summary of all orders from the buyers in storage                                                                                                               | have an overview of what the buyers want.                                            |
-| `* * *`  | pet sale coordinator                   | be able to delete any contacts of clients who changed their mind about buying pets and any pet suppliers that have closed down or no longer want to supply pets to me | remove entries that I no longer need.                                                |
-| `* * *`  | pet sale coordinator                   | add an order to a buyer                                                                                                                                               | know what they want to buy and what their requirements are.                          |
-| `* * *`  | pet sale coordinator                   | be able to find all contacts (Buyers, Suppliers, Deliverers) by attributes (e.g Email)                                                                                | not waste time searching for a specific contact details.                             |
-| `* * *`  | pet sale coordinator                   | be able to filter all orders by attributes (e.g Price range)                                                                                                          | not waste time searching for a specific order.                                       |
-| `* * *`  | pet sale coordinator                   | be able to filter all pets by attributes (e.g Color)                                                                                                                  | not waste time searching for a specific pet.                                         |
-| `* * *`  | pet sale coordinator with many pets    | find the pet that best matches a specific order                                                                                                                       | efficiently find the best pet for my client.                                         |
-| `* * *`  | pet sale coordinator                   | edit the details of a particular contact                                                                                                                              | update client information whenever it changes.                                       |
-| `* *`    | pet sale coordinator with many clients | sort the orders from the buyers based on their urgency (time)                                                                                                         | know which order I should deal with first.                                           |
-| `*`      | pet sale coordinator                   | hide private contact details                                                                                                                                          | protect my client's privacy in case someone else sees their particulars by accident. |
-
+| Priority | As a …​                                                                   | I want to …​                                                                            | So that I can…​                                                 |
+|----------|---------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|-----------------------------------------------------------------|
+| `* * *`  | pet sale coordinator who has new partnerships                             | add contacts of buyers, deliverers and suppliers                                        | keep in touch with them whenever needed.                        |
+| `* * *`  | pet sale coordinator who types fast                                       | add contacts of buyers, deliverers and suppliers using CLI                              | efficiently manage my business.                                 |
+| `* *`    | pet sale coordinator who is more familiar with GUI                        | add contacts of buyers, deliverers and suppliers using GUI                              | not be confused by CLI commands and prefixes.                   |
+| `* * *`  | pet sale coordinator                                                      | be able to delete any contacts of people                                                | remove entries that I no longer need.                           |
+| `* *`    | pet sale coordinator whose clients change their contacts frequently       | be able to edit contact information about clients                                       | get their latest number and address for easy contact.           |
+| `* *`    | pet sale coordinator                                                      | be able to find all contacts (buyers, suppliers, deliverers) by attributes (e.g. email) | not waste time searching for a specific contact details.        |
+| `* * *`  | pet sale coordinator                                                      | list a summary of all contacts in storage                                               | have an overview of my network.                                 |
+| `* *`    | pet sale coordinator who has business partners from different backgrounds | sort all contacts by attributes (e.g. name)                                             | have a more organised view of my business partners.             |
+| `* * *`  | pet sale coordinator                                                      | add an order to a buyer                                                                 | keep track of they want to buy and what their requirements are. |
+| `* * *`  | organised pet sale coordinator                                            | delete an order from a buyer                                                            | free up storage and clean workplace.                            |
+| `* * *`  | pet sale coordinator                                                      | list a summary of all orders from the buyers in storage                                 | have an overview of what the buyers want.                       |
+| `* *`    | pet sale coordinator                                                      | be able to filter all orders by attributes (e.g. price range)                           | not waste time searching for a specific order.                  |
+| `* *`    | pet sale coordinator                                                      | check which buyer is associated with an order                                           | see the contact detail of the buyer to negotiate.               |
+| `* *`    | pet sale coordinator with many orders to handle                           | sort the orders from the buyers based on their urgency (time)                           | know which order I should deal with first.                      |
+| `* * *`  | pet sale coordinator                                                      | add a pet to a supplier                                                                 | keep track of what they want to sell and their stock situation. |
+| `* * *`  | organised pet sale coordinator                                            | delete a pet from a supplier                                                            | free up storage and clean workplace.                            |
+| `* * *`  | pet sale coordinator                                                      | list a summary of all pets from the suppliers in storage                                | have an overview of what the suppliers have.                    |
+| `* * *`  | pet sale coordinator                                                      | be able to filter all pets by attributes (e.g. color)                                   | not waste time searching for a specific pet.                    |
+| `* *`    | pet sale coordinator                                                      | check which supplier is associated with a pet                                           | see the contact detail of the supplier to negotiate.            |
+| `* * *`  | pet sale coordinator with many pets                                       | find the pet that best matches a specific order                                         | efficiently find the best pet for my client.                    |
+| `* * *`  | pet sale coordinator with many pets available for sale                    | sort the pets based on relevance (e.g. price)                                           | know which pet is the most relevant to my concern               | 
+| `*`      | beginner user                                                             | read guides and seek help                                                               | know how to use PetCode                                         |
+| `*`      | normal user                                                               | quit when I do not need it for now                                                      | save my computer resources                                      |
+| `*`      | pet sale coordinator with messy records of contacts and items             | clear all records                                                                       | start from the beginning to organise my data                    |
 
 ### Use cases
 

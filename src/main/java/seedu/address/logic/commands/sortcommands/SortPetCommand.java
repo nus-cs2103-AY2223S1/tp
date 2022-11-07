@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.pet.Pet;
 
 /**
- * Sorts the pet list.
+ * Sorts the Pets' list.
  */
 public class SortPetCommand extends SortCommand {
 
@@ -23,7 +23,7 @@ public class SortPetCommand extends SortCommand {
     private final Comparator<Pet> comparator;
 
     /**
-     * Constructs a sortPetCommand with specified comparator.
+     * Constructs a SortPetCommand with specified comparator.
      * @param comparator The specified comparator.
      */
     public SortPetCommand(Comparator<Pet> comparator) {

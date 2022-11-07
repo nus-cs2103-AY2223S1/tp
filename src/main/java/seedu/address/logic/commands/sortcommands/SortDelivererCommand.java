@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Deliverer;
 
 /**
- * Sorts the deliverer list.
+ * Sorts the Deliverers' list according to the specified /default attribute.
  */
 public class SortDelivererCommand extends SortCommand {
 

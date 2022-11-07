@@ -8,7 +8,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Represents the additional requests of an order.
+ * Represents the additional requests of an Order.
  */
 public class AdditionalRequests {
 

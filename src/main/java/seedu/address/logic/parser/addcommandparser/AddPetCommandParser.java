@@ -23,7 +23,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.pet.Pet;
 
 /**
- * Parses input arguments and creates a new AddPetCommand object
+ * Parses input arguments and creates an {@code AddPetCommand}.
  */
 public class AddPetCommandParser implements Parser<AddPetCommand> {
 
