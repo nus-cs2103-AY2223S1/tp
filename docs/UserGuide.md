@@ -164,8 +164,9 @@ Curious about the various commands? Refer to the [Features](#features) below to 
 Think of PennyWise as a helpful personal budgeting assistant. Whenever you spend or earn money, all you need to do is
 tell PennyWise and PennyWise will help you log and save it as a new Entry! An Entry is what PennyWise terms as a
 particular expenditure or income logged into the application. PennyWise defines an expenditure and income as things that
-you spend money on, and things that make you money respectively! Not only that, PennyWise will help you
-analyse your data, so you can easily get an overview of your overall expenditure or income.
+you spend money on, and things that make you money respectively! Not only that, PennyWise will help you analyse your
+data, so you can easily get an overview of your overall expenditure or income.
+
 
 However, in order to do this, PennyWise will need some data from you! Whenever you log an entry, whether expenditures or
 incomes, you need to tell PennyWise the following:
@@ -253,6 +254,7 @@ step-by-step!
   </pre>
 
 - PennyWise will **IGNORE** any extra words or characters present after the following commands:
+
  `summary` (except [`summary [mo/MONTH]`](#summary-of-entries)) `help`, `clear` and `exit`.
   e.g. `summary abcdefg` will be interpreted as `summary` and `help 123456` will also be interpreted as `help`.
 
@@ -265,13 +267,10 @@ step-by-step!
 - **ALL** identifiers are <ins>case-sensitive</ins>.
   e.g. `d/Lunch` as a descriptor for "Lunch" is accepted by PennyWise, however `D/Lunch` would not be accepted.
 
-<<<<<<< HEAD
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
 - Adding identifiers that are not used in the command will result in an error.
 </div>
 
-=======
->>>>>>> 8c5c5f061728c204ec920ee374ae7a8c5c211788
 ### Categorising your expenses and income
 
 For **ALL** entries, categories are <ins>COMPULSORY</ins> and every entry can only contain <ins>one</ins> category. The
@@ -521,7 +520,7 @@ Format: `view t/ENTRY_TYPE`
 
 You went on a shopping spree today. Find out how today's expenditure compared to the rest of the month.
 
-You were tipped for your exceptional service as a part-time server today. Find out how today's income weighs up to the
+Or, were you tipped for your exceptional service as a part-time server today? Find out how today's income weighs up to the
 rest of the month.
 
 Format: `view t/ENTRY_TYPE mo/MONTH`
@@ -544,9 +543,8 @@ Format: `view t/ENTRY_TYPE mo/MONTH`
     The List Display will also be filtered to show only income in Jan 2022.
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
-The `MONTH` field is optional. If a month is specified, the entry details for the corresponding month is shown,
-accompanied by a Line Graph on the right of the application. If no month is specified, the application displays an
-error.
+
+The `MONTH` field determines whether you get a pie chart or a line graph. Including the `MONTH` field gives you a line graph, whereas excluding it gives you a pie chart.
 </div>
 
 <div markdown="block" class="alert alert-primary">:bulb: **Tip:**
