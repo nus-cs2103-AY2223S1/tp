@@ -43,7 +43,7 @@ Given below are my contributions to the project.
   * Added methods to `Model` to support adding, deleting and editing staff, such as `Model.getStaffFromProjectAtIndex()` and 
   `Model.addStaffToProject()`. These methods were added to improve code quality and better adherence to SOLID principles, since it 
   ensured that all commands involving the manipulation of `StaffList` communicated via the `Model` interface, instead of allowing 
-  commands to directly call methods from the `Model` package. 
+  commands to directly call methods from classes in the `Model` package. 
 
 * **Documentation**:
 
