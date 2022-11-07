@@ -236,7 +236,7 @@ Format: `findstudent KEYWORD [MORE_KEYWORDS]`
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `findstudent yeoh` returns `Alex Yeoh` and `Yeoh Hern Yu` in the sample student list you start with. 
+* `findstudent yeoh` on the sample data you start with filters the student list to contain only `Alex Yeoh`. 
 
 ### Adding grades to a student : `grade`
 
