@@ -552,7 +552,7 @@ A tag consists of a category name that can be a maximum of 10 characters.
 
 <br>
 
-#### 7.4.1. Creating a Tag: `tag create`
+#### 7.4.1. Creating a tag: `tag create`
 
 You can create a new `TAG` and add it into the tag list.
 
@@ -574,7 +574,7 @@ Great! You have successfully learnt how to add your first `TAG` you have made. N
 
 <br>
 
-#### 7.4.2. Deleting a Tag: `tag delete`
+#### 7.4.2. Deleting a tag: `tag delete`
 
 You can delete a `TAG` from the tag list.
 
@@ -602,7 +602,7 @@ Wonderful! You have successfully deleted a tag.
 
 <br>
 
-#### 7.4.3. Editing a Tag: `tag edit`
+#### 7.4.3. Editing a tag: `tag edit`
 
 If you make a mistake or want to update your `TAG`, you can simply update it with this command.
 
@@ -639,7 +639,7 @@ Fantastic! You have successfully learnt how to change tags.
 
 <br>
 
-#### 7.4.4. Adding a Tag to a Contact: `tag add`
+#### 7.4.4. Adding a tag to a contact: `tag add`
 
 You can add a `TAG` from the tag list to a contact.
 * `Coming soon in v1.5`, we will upgrade `tag add` to add tags to todos.
@@ -677,7 +677,7 @@ Awesome! You have successfully learnt to add a tag to a contact.
 
 <br>
 
-#### 7.4.5. Removing a Tag from a Contact: `tag remove`
+#### 7.4.5. Removing a tag from a contact: `tag remove`
 
 You can remove a `TAG` from a contact.
 * `Coming soon in v1.5`, we will upgrade `tag remove` to remove tags from todos.
@@ -792,7 +792,7 @@ Example:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 9. Command summary
+## 9. Command Summary
 
 | Action                                                                    | Format and Examples                                                                                                                                                                                                  |
 |---------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
