@@ -36,6 +36,12 @@ import seedu.address.testutil.PersonBuilder;
 
 public class CreateMeetingCommandTest {
 
+    private final Person amy = new PersonBuilder().withTags("Classmate", "Dalao").build();
+    private final Person bruceLee = new PersonBuilder().withName("Bruce Lee").withTags("Idol", "Legend").build();
+    private final Person bruce = new PersonBuilder().withName("Bruce").withTags("Friend", "Leader").build();
+    private final Person tony = new PersonBuilder().withName("Tony").build();
+    private final Person cj = new PersonBuilder().withName("Choi Jeong").build();
+
     @Test
     public void execute_meetingCreatedByModel_addSuccessful() throws Exception {
         String meetingInfo = "Amy ;;; Do CS2103 Project ;;; 20-11-2000 1530 ;;; University Town";
@@ -51,11 +57,28 @@ public class CreateMeetingCommandTest {
     }
 
     @Test
-    public void execute_duplicateMeeting_throwsDuplicateMeetingException() throws Exception {
+    public void execute_duplicateSinglePersonMeeting_throwsDuplicateMeetingException() throws Exception {
         String meetingInfo = "Amy ;;; Do CS2103 Project ;;; 20-11-2000 1530 ;;; University Town";
         CreateMeetingCommand createMeetingCommand = new CreateMeetingCommandParser().parse(meetingInfo);
 
         Meeting validMeeting = new MeetingBuilder().build();
+        CreateMeetingCommandTest.ModelStubWithMeeting modelStub =
+            new CreateMeetingCommandTest.ModelStubWithMeeting(validMeeting);
+
+        assertThrows(CommandException.class, () -> createMeetingCommand.execute(modelStub));
+        try {
+            String actualFeedBack = createMeetingCommand.execute(modelStub).getFeedbackToUser();
+        } catch (CommandException ce) {
+            assertEquals(CreateMeetingCommand.DUPLICATE_MEETINGS, ce.getMessage());
+        }
+    }
+
+    @Test
+    public void execute_duplicateMultiplePersonMeeting_throwsDuplicateMeetingException() throws Exception {
+        String meetingInfo = "tony }} jeong ;;; Do CS2103 Project ;;; 20-11-2000 1530 ;;; University Town";
+        CreateMeetingCommand createMeetingCommand = new CreateMeetingCommandParser().parse(meetingInfo);
+
+        Meeting validMeeting = new MeetingBuilder().withPersons(cj, tony).build();
         CreateMeetingCommandTest.ModelStubWithMeeting modelStub =
             new CreateMeetingCommandTest.ModelStubWithMeeting(validMeeting);
 
@@ -193,8 +216,11 @@ public class CreateMeetingCommandTest {
         private final UniqueMeetingList meetings;
 
         AddressBookStub() {
-            addPerson(new PersonBuilder().withTags("Classmate", "Dalao").build());
-            addPerson(new PersonBuilder().withName("Bruce Lee").withTags("Idol", "Legend").build());
+            addPerson(amy);
+            addPerson(bruceLee);
+            addPerson(bruce);
+            addPerson(tony);
+            addPerson(cj);
         }
 
         /*
