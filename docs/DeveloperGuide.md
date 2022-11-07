@@ -231,6 +231,47 @@ The below activity diagram shows what happens when a user uses the `sort` comman
 
 ![SortActivityDiagram](images/SortActivityDiagram.png)
 
+### Add user using GitHub account
+
+Adding of a GitHub account uses the following classes:
+
+- `seedu.address.logic.commands.AddCommand` - Adds user with GitHub account
+- `seedu.address.logic.commands.parser.AddCommandParser` - Parses GitHub username to add
+- `seedu.address.github.GithubApi` - Defines error handling and consolidates API calls
+- `seedu.address.github.UserInfoRoute.UserInfoRequest` - Calls API to get user information and profile image
+- `seedu.address.github.UserInfoWrapper` - Parses API response by `UserInfoRoute`
+- `seedu.address.github.UserRepoRoute.UserRepoRequest` - Calls API to get user repositories information
+- `seedu.address.github.UserRepoWrapper` - Parses API response by `UserRepoRoute`
+- `seedu.address.model.person.github.User` - Holds all parsed information about GitHub user
+- `seedu.address.model.person.github.Repo` - Holds all parsed information about a specific GitHub repository
+
+When adding a contact, the user will be able to give a GitHub username to add, from which we pull all relevant data from:
+
+- `Name`
+- `Location`
+- `Email`
+- `Profile Picture`
+
+The updated `Add` command uses the following classes:
+
+- `AddCommand` - Creates and adds `Person` object to list of contacts
+- `AddCommandParser` - Parses the arguments supplied by the user for the `Add` command, differentiates between adding local name and GitHub account.
+- `GithubApiWrapper` - Retrieves information from GitHub API to populate user detail fields
+
+Flow of adding user:
+
+1. Since the user is unsure of name/location/other info about the contact they wish to add, they wish to pull it straight from GitHub. Say the contact's GitHub account is `@exampleaccount`. The user executes the command `add github/exampleaccount`
+2. `AddCommandParser` parses the command, returning an `AddCommand` which will add a contact using their GitHub username.
+3. It then creates the `User` object with the username, which uses `GithubApi` to get all relevant information about the user and their repos.
+    1. `GithubApi` object will create the `UserInfoWrapper` and `UserRepoWrapper` objects pertaining to the user,
+    2. These will create `UserInfoRoute.UserInfoRequest` and `UserRepoRoute.UserRepoRequest` objects to call the API
+    3. The wrappers will parse the information and pass it back to the `User` object.
+4. The `User` class initialises all needed information as well as a list of `Repo`s owned by the user.
+
+The UML diagram below shows how the dependencies between the related different classes work:
+
+![PlantUML diagram](images/GithubApiUML.png)
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -714,4 +755,3 @@ GithubContact enables advanced users to make direct edits to the data file locat
 
    1. If an edit to the data file invalidates the information's format, when opened, GithubContact will delete the data
       file and start with a fresh, empty data file.
-
