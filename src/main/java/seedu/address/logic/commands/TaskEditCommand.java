@@ -15,8 +15,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.task.Name;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskName;
 import seedu.address.model.team.Team;
 
 /**
@@ -41,7 +41,7 @@ public class TaskEditCommand extends Command {
 
     private final Index taskIndex;
     private final Index teamIndex;
-    private final Name newName;
+    private final TaskName newTaskName;
     private final LocalDate newDeadline;
     private final EditTaskDescriptor editTaskDescriptor;
 
@@ -50,18 +50,18 @@ public class TaskEditCommand extends Command {
      *
      * @param teamIndex of the team in the filtered team list to edit.
      * @param taskIndex index of the task to be edited.
-     * @param newName name of the new task name.
+     * @param newTaskName name of the new task name.
      */
-    public TaskEditCommand(Index teamIndex, Index taskIndex, Name newName, LocalDate newDeadline) {
+    public TaskEditCommand(Index teamIndex, Index taskIndex, TaskName newTaskName, LocalDate newDeadline) {
         requireNonNull(taskIndex);
         requireNonNull(teamIndex);
 
         this.teamIndex = teamIndex;
         this.taskIndex = taskIndex;
-        this.newName = newName;
+        this.newTaskName = newTaskName;
         this.newDeadline = newDeadline;
         this.editTaskDescriptor = new EditTaskDescriptor();
-        editTaskDescriptor.setName(newName);
+        editTaskDescriptor.setName(newTaskName);
         editTaskDescriptor.setDeadline(Optional.ofNullable(newDeadline));
     }
 
@@ -85,12 +85,12 @@ public class TaskEditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
-        model.editTask(teamIndex, taskIndex, newName, newDeadline);
+        model.editTask(teamIndex, taskIndex, newTaskName, newDeadline);
         String deadlineString = newDeadline == null ? "" : newDeadline.toString();
-        String nameString = newName == null
+        String nameString = newTaskName == null
                 ? lastShownTeamList.get(teamIndex.getZeroBased())
                 .getTask(taskIndex.getZeroBased()).getName().toString()
-                : newName.toString();
+                : newTaskName.toString();
         return new CommandResult(String.format(MESSAGE_SUCCESS, nameString, deadlineString));
     }
 
@@ -101,11 +101,11 @@ public class TaskEditCommand extends Command {
     private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
         assert taskToEdit != null;
 
-        Name updatedName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
+        TaskName updatedTaskName = editTaskDescriptor.getName().orElse(taskToEdit.getName());
         LocalDate updatedDeadline = editTaskDescriptor.getDeadline()
                 .orElse(taskToEdit.getDeadline().orElse(null));
 
-        return new Task(updatedName, updatedDeadline, taskToEdit.getIsDone());
+        return new Task(updatedTaskName, updatedDeadline, taskToEdit.getIsDone());
     }
 
     @Override
@@ -114,7 +114,7 @@ public class TaskEditCommand extends Command {
                 || (other instanceof TaskEditCommand // instanceof handles nulls
                 && taskIndex.equals(((TaskEditCommand) other).taskIndex)
                 && teamIndex.equals(((TaskEditCommand) other).teamIndex)
-                && newName.equals(((TaskEditCommand) other).newName))
+                && newTaskName.equals(((TaskEditCommand) other).newTaskName))
                 && newDeadline.equals(((TaskEditCommand) other).newDeadline);
     }
 
@@ -123,7 +123,7 @@ public class TaskEditCommand extends Command {
      * corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
-        private Name name;
+        private TaskName taskName;
         private Optional<LocalDate> deadline;
 
         public EditTaskDescriptor() {}
@@ -133,7 +133,7 @@ public class TaskEditCommand extends Command {
          * Copy constructor.
          */
         public EditTaskDescriptor(EditTaskDescriptor toCopy) {
-            setName(toCopy.name);
+            setName(toCopy.taskName);
             setDeadline(toCopy.deadline);
         }
 
@@ -141,15 +141,15 @@ public class TaskEditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, deadline);
+            return CollectionUtil.isAnyNonNull(taskName, deadline);
         }
 
-        public void setName(Name name) {
-            this.name = name;
+        public void setName(TaskName taskName) {
+            this.taskName = taskName;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+        public Optional<TaskName> getName() {
+            return Optional.ofNullable(taskName);
         }
 
         public void setDeadline(Optional<LocalDate> deadline) {

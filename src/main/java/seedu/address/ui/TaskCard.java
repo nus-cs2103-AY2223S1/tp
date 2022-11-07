@@ -27,7 +27,7 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label taskName;
     @FXML
     private Label id;
     @FXML
@@ -44,8 +44,8 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         isDone.setSelected(task.getIsDone());
-        name.setText(task.getName().fullName);
-        name.setWrapText(true);
+        taskName.setText(task.getName().fullName);
+        taskName.setWrapText(true);
         deadline.setWrapText(true);
         deadline.setText(task.getDeadlineString());
 

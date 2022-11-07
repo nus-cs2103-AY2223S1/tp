@@ -283,6 +283,7 @@ Step 2. The user might want to update the name of the task in the future. The us
 The following sequence diagram shows how the edit task operation works:
 ![TaskEditSequenceDiagram](images/TaskEditSequenceDiagram.png)
 
+
 ### Delete Task Feature
 
 #### Implementation
@@ -561,7 +562,7 @@ Step 1 and 2 is repeated until all members have been added
 
       Use case ends.
 
-* 1c. New name is already used by another team.
+* 1c. new name is already used by another team.
 
     * 1c1. EZLead displays an error message.
 

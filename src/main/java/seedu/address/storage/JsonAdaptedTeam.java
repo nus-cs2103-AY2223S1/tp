@@ -1,7 +1,5 @@
 package seedu.address.storage;
 
-import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,10 +10,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
-import seedu.address.model.team.Name;
 import seedu.address.model.team.Team;
-
-
+import seedu.address.model.team.TeamName;
 
 /**
  * Jackson-friendly version of {@link Team}.
@@ -75,14 +71,15 @@ public class JsonAdaptedTeam {
      */
     public Team toModelType() throws IllegalValueException {
         if (teamName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TeamName.class.getSimpleName()));
         }
 
-        if (!Name.isValidName(teamName)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!TeamName.isValidName(teamName)) {
+            throw new IllegalValueException(TeamName.MESSAGE_CONSTRAINTS);
         }
 
-        final seedu.address.model.team.Name modelName = new Name(teamName);
+        final TeamName modelTeamName = TeamName.of(teamName);
 
         final List<Task> modelTasks = new ArrayList<>();
 
@@ -96,6 +93,6 @@ public class JsonAdaptedTeam {
             modelMembers.add(member.toModelType());
         }
 
-        return new Team(modelName, modelTasks, modelMembers);
+        return new Team(modelTeamName, modelTasks, modelMembers);
     }
 }

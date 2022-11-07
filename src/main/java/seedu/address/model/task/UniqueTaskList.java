@@ -49,7 +49,7 @@ public class UniqueTaskList implements Iterable<Task> {
         internalList.add(toAdd);
     }
 
-    public Task getTask(Name taskName) {
+    public Task getTask(TaskName taskName) {
         requireNonNull(taskName);
         System.out.println(internalList.size());
         for (Task task : internalList) {
@@ -149,10 +149,10 @@ public class UniqueTaskList implements Iterable<Task> {
      * Edit a task from this {@code TaskList}.
      *
      * @param index The {@code task} of the task to be edited.
-     * @param newName The new name of the task.
+     * @param newTaskName The new name of the task.
      */
-    public void edit(int index, Name newName, LocalDate newDeadline) {
-        internalList.get(index).editTaskDesc(newName, newDeadline);
+    public void edit(int index, TaskName newTaskName, LocalDate newDeadline) {
+        internalList.get(index).editTaskDesc(newTaskName, newDeadline);
     }
 
     /**

@@ -3,8 +3,8 @@ package seedu.address.testutil;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import seedu.address.model.task.Name;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskName;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -16,7 +16,7 @@ public class TaskBuilder {
     public static final Optional<LocalDate> DEFAULT_DEADLINE = Optional.ofNullable(null);
     public static final boolean DEFAULT_IS_DONE = false;
 
-    private Name name;
+    private TaskName taskName;
     private Optional<LocalDate> deadline;
     private boolean isDone;
 
@@ -24,7 +24,7 @@ public class TaskBuilder {
      * Creates a {@code TaskBuilder} with the default details.
      */
     public TaskBuilder() {
-        name = new Name(DEFAULT_NAME);
+        taskName = TaskName.of(DEFAULT_NAME);
         deadline = DEFAULT_DEADLINE;
         isDone = DEFAULT_IS_DONE;
     }
@@ -33,7 +33,7 @@ public class TaskBuilder {
      * Initializes the TaskBuilder with the data of {@code taskToCopy}.
      */
     public TaskBuilder(Task taskToCopy) {
-        name = taskToCopy.getName();
+        taskName = taskToCopy.getName();
         deadline = taskToCopy.getDeadline();
         isDone = taskToCopy.getIsDone();
     }
@@ -42,7 +42,7 @@ public class TaskBuilder {
      * Sets the {@code Name} of the {@code Task} that we are building.
      */
     public TaskBuilder withName(String name) {
-        this.name = new Name(name);
+        this.taskName = TaskName.of(name);
         return this;
     }
 
@@ -63,7 +63,7 @@ public class TaskBuilder {
     }
 
     public Task build() {
-        return new Task(name, deadline.orElse(null), isDone);
+        return new Task(taskName, deadline.orElse(null), isDone);
     }
 
 
