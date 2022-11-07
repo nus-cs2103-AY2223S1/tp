@@ -328,9 +328,9 @@ find-module CS
 In either of the above examples, we find every module whose module code starts with CS in Plannit. Here's
 a screenshot of Plannit before and after executing the command:
 
-| Before executing the command                                                                                                                                | After executing the command                                                                                                                                                                  |
-|-------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/find-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/find-module-after.png"/></p> <p align="left"><p>The module list is now updated with modules whose module code starts with `CS`!</p><p/>{:/} |
+| Before executing the command                                                                                                                                    | After executing the command                                                                                                                                                                             |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/find-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p><br>{:/} | {::nomarkdown}<p align="center"><img src="images/find-module-after.png"/></p> <p align="left"><p>The module list is now updated with modules whose module code starts with <code>CS</code>!</p><p/>{:/} |
 
 
 <div markdown="span" class="alert alert-info"> :information_source: **Note:**<br/>
@@ -351,6 +351,7 @@ Here's a screenshot of Plannit before and after executing the command:
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | {::nomarkdown}<p align="center"><img src="images/list-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/list-module-after.png"/></p> <p align="left"><p>The module list has now been updated with every module!</p><p/>{:/} |
 
+<div style="page-break-after: always;"></div>
 
 ### 2.2. Tasks
 #### 2.2.1. Add task
@@ -487,7 +488,7 @@ home page and view more details of a specific module, you may use the
 [`goto`](#251-navigate-between-modules) command.
 </div>
 
-<br>
+<div style="page-break-after: always;"></div>
 
 ### 2.3. Links
 All links in Plannit are composed of a URL and an alias (case-sensitive). Aliases are short nicknames defined by you 
@@ -584,7 +585,7 @@ You may open link(s) from a specific module to your default browser using the `o
 Links will be opened by means of their corresponding alias.
 
 <div markdown="span" class="alert alert-info"> :bulb: **Tip:**<br/>  
-Hover your cursor over aliases in Plannit to peak at their associated URL.
+Hover your cursor over aliases in Plannit to peek at their associated URL.
 </div>
 
 An alternative way to open links is by means of clicking on their aliases on the application window.
@@ -619,7 +620,8 @@ open-link m/CS2040 la/nus mods la/kattis
 ```
 In the above example, we are opening the links with the URL `https://www.nusmods.com` and `open.kattis.com`
 from the module with module code `CS2040`, using their corresponding link alias `nus mods` and `kattis` respectively.
-<br>
+
+<div style="page-break-after: always;"></div>
 
 ### 2.4. Contacts
 The terms "contact" and "person" have similar meanings and for the majority of the time, can be understood as referring
@@ -843,6 +845,7 @@ Here's a screenshot of Plannit before and after executing the command:
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | {::nomarkdown}<p align="center"><img src="images/list-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/list-person-after.png"/></p> <p align="left"><p>The person list has now been updated with every person!</p><p/>{:/} |
 
+<div style="page-break-after: always;"></div>
 
 ### 2.5. Navigation
 With navigation functionalities, you now have the ability to navigate between different modules in Plannit!
