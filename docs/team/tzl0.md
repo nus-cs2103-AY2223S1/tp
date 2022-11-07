@@ -18,17 +18,17 @@ Given below are my contributions to the project.
 
 * **New features**:
   * **Object Entity**
-    * Added class `Appointment` to encapsulate the reservation information including the name of the patient,
+    * Implemented class `Appointment` to encapsulate the reservation information including the name of the patient,
       doctor name, time slot and the medical test to take.
-    * Added class `Bill` to encapsulate the bill of the appointment with the bill information including
+    * Implemented class `Bill` to encapsulate the bill of the appointment with the bill information including
       bill amount, bill date and the payment status of the bill.
   * **Commands**
     * Implemented class `CommandWord` to enable shortcuts for the long command words.
-    * Added `AddAppointmentCommand` to add `Appointment` to the application.
-    * Added `AddBillCommand` to add `Bill` to the application.
-    * Added `EditAppointmentCommand` to modify the existing `Appointment` in the application.
-    * Added `SelectPatientCommand` to show the appointments and bills of a patient.
-    * Added `SelectAppointmentCommand` to show the bills of a patient.
+    * Implemented `AddAppointmentCommand` to add `Appointment` to the application.
+    * Implemented `AddBillCommand` to add `Bill` to the application.
+    * Implemented `EditAppointmentCommand` to modify the existing `Appointment` in the application.
+    * Implemented `SelectPatientCommand` to show the appointments and bills of a patient.
+    * Implemented `SelectAppointmentCommand` to show the bills of a patient.
   * *Added extensive tests to new features*.
 
 * **Graphic User Interface of the product**:
@@ -44,7 +44,7 @@ Given below are my contributions to the project.
   * Written the add commands and select commands in the User Guide
 
 * **Contributions to the Developer Guide**:
-  * Updated existing class diagrams including Model, Ui and Storage.
+  * Updated existing class diagrams including `Model`, `Ui` and `Storage`.
   * Created sequence diagrams for add, edit and select features.
   * Added Command Shortcut Feature.
 
@@ -53,10 +53,10 @@ Given below are my contributions to the project.
   * Ui image for the landing product.
   * Maintained the product website.
 
-* ** Review/mentoring contributions**:
+* **Review/mentoring contributions**:
   * Mentored the implementation of find commands to support finding by multiple fields.
-  * Mentored the implementation of EditBillCommand.
-  * Mentored the implementation of DeleteCommands to support the deletion of appointments
+  * Mentored the implementation of `EditBillCommand`.
+  * Mentored the implementation of delete commands to support the deletion of appointments
     and bills when deleting a patient.
 
 
