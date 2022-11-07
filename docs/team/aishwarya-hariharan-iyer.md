@@ -57,17 +57,13 @@ Given below are my contributions to the project.
           Client Command (Pull request [\#236](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/236))
         * Write-up for Find Command Feature consisting of Find Project Command, Find Issue Command, and Find Client 
           Command (Pull request [\#244](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/244))
-        * UML Sequence Diagram for deleting a client from the app
-        * UML Sequence Diagram for finding a client in the app
-        * Design considerations for Delete Command Feature
-        * Design considerations for Find Command Feature 
+        * UML Sequence Diagram for deleting a client from the app and for finding a client in the app
+        * Design considerations for Delete Command Feature and for Find Command Feature 
         * Instructions for Manual Testing of all find commands and all client commands (Pull request [\#240](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/240))
         * User Stories for all find commands and all client commands (Pull request [\#115](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/115))
 
 * **Contributions to team-based tasks and beyond**:
     * Created some issues for the weekly deliverables
-    * Reviewed and approved some PRs, explored in detail various design decisions using comments in assigned PRs and 
-      issues
+    * Reviewed and approved some PRs
     * Helped manage weekly meetings by setting Zoom links and taking notes
     * Reported bugs and suggestions for other teams in the class [(Link)](https://github.com/Aishwarya-Hariharan-Iyer/ped/issues)
-
