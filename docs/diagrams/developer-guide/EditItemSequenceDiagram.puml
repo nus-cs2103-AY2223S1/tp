@@ -70,19 +70,19 @@ deactivate TrackOParser
 LogicManager -> EditItemCommand : execute(model)
 activate EditItemCommand
 
-EditItemCommand -> Model : getFilteredItemList()
+EditItemCommand -> Model : get item by index
 activate Model
 
-Model --> EditItemCommand : filteredItemList
+Model --> EditItemCommand : inventoryItemToEdit
 deactivate Model
 
-EditItemCommand -> EditItemCommand : createEditedItem(itemToEdit, descriptor)
+EditItemCommand -> EditItemCommand : createEditedItem(inventoryItemToEdit, descriptor)
 activate EditItemCommand
 
-EditItemCommand --> EditItemCommand : editedItem
+EditItemCommand --> EditItemCommand : editedInventoryItem
 deactivate EditItemCommand
 
-EditItemCommand -> Model : setItem(itemToEdit, editedItem)
+EditItemCommand -> Model : setItem(inventoryItemToEdit, editedInventoryItem)
 activate Model
 deactivate Model
 
