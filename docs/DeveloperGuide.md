@@ -261,8 +261,8 @@ The following activity diagram summarizes what happens when a user executes a ne
 <img src="images/FindActivityDiagram.png" width="450" />
 
 #### Design considerations:
-- Allow usage of multiple attributes (name and/ or tag) as search term to filter out stalls/ reviews that has the specified keywords
-- Users can enter multiple search keywords to find all relevant stalls/ reviews
+- Allow usage of multiple attributes (name and/or tag) as search term to filter out stalls/reviews that have the specified keywords
+- Users can enter multiple search keywords to find all relevant stalls/reviews
 
 ### Listing all Reviews feature
 
@@ -417,7 +417,7 @@ Aside from rating, the other fields are stored as strings. The accepted format i
 | Address        | Any nonempty ASCII text                                                                                                                                         |
 | Content        | Any nonempty ASCII text                                                                                                                                         |
 | Date           | A date in the format DD/MM/YYYY, D/MM/YYYY, DD/M/YYYY, D/M/YYYY, or with dashes instead of slashes                                                              |
-| Name           | Nonempty alphanumeric string with spaces, capitalisation preserved, duplicate spaces removed for the actual name                                                |
+| Name           | Nonempty alphanumeric string with spaces, capitalization preserved, duplicate spaces removed for the actual name                                                |
 | Rating         | An integer or floating point number from 0 (inclusive) to 6 (exclusive), rounded down (after interpreted as a floating point number) for the actual rating      |
 | Tag            | Alphanumeric token without spaces, interpreted as lowercase for the actual tag                                                                                  |
 
@@ -539,13 +539,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Target user profile**:
 
-* Food critics want to keep track of all the food stalls and reviews given
-* has a need to manage a significant number of food stalls and reviews
+* Food critics who want to keep track of all the food stalls and reviews given
+* have a need to manage a significant number of food stalls and reviews
 * prefer desktop apps over other types
 * can type fast
-* prefers typing to mouse interactions
+* prefer typing to mouse interactions
 * is reasonably comfortable using CLI apps
-* needs a local database to store all information
+* need a local database to store all information
 
 **Value proposition**:
 
@@ -583,7 +583,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user                      | send the reviews through other social media platforms                                                                        | share the review with my friends without having to make separate posts                                                                                 | No                                                |
 | `* * *`  | user                      | include a date/day on my reviews                                                                                             | track how much reviewing I have done over time                                                                                                         | Yes (by Date)                                     |
 | `*`      | user                      | see review that are most recent by date (sorting)                                                                            | get the most updated review                                                                                                                            | Yes                                               |
-| `*`      | user                      | archive existing stalls / review                                                                                             | not be distracted by previous reviews made                                                                                                             | Yes (by copying data file to another location)    |
+| `*`      | user                      | archive existing stalls/reviews                                                                                              | not be distracted by previous reviews made                                                                                                             | Yes (by copying data file to another location)    |
 | `* * *`  | new user                  | check out what tools are available in this application                                                                       | learn how to use the application                                                                                                                       | Yes                                               |
 | `* * *`  | user helping another user | import data                                                                                                                  | get existing lists from friends/coworkers to work on                                                                                                   | Yes (by copying data into `foodwhere.json` file)  |
 | `* * *`  | user                      | export data                                                                                                                  | archive my data entries somewhere else                                                                                                                 | Yes (by copying data file to another location)    |
@@ -1131,11 +1131,11 @@ testers are expected to do more *exploratory* testing.
    
     3. Test case: `sfind t/opendaily`<br>
        Condition: There is a stall with the tag `opendaily`<br>
-       Expected: Status message responds with the number of stalls that has `opendaily` as a tag. GUI updates to show these stalls.
+       Expected: Status message responds with the number of stalls that have `opendaily` as a tag. GUI updates to show these stalls.
    
     4. Test case: `sfind n/chicken t/opendaily`<br>
        Condition: There is a stall with the word `chicken` in its name and/or with the tag `opendaily`<br>
-       Expected: Status message responds with the number of stalls with `chicken` as a word in the name and/or has `opendaily` as a tag. GUI updates to show these stalls.
+       Expected: Status message responds with the number of stalls with `chicken` as a word in the name and/or have `opendaily` as a tag. GUI updates to show these stalls.
    
     5. Test case: `sfind n/`<br>
        Expected: No stalls are found. GUI updates to show no stalls.
@@ -1158,11 +1158,11 @@ testers are expected to do more *exploratory* testing.
 
     3. Test case: `rfind t/delicious`<br>
        Condition: There is a review with the tag `delicious`<br>
-       Expected: Status message responds with the number of reviews that has `delicious` as a tag. GUI updates to show these reviews.
+       Expected: Status message responds with the number of reviews that have `delicious` as a tag. GUI updates to show these reviews.
 
     4. Test case: `rfind n/chicken t/delicious`<br>
        Condition: There is a review with the word `chicken` in its stall name or with the tag `delicious`<br>
-       Expected: Status message responds with the number of reviews with `chicken` as a word in the stall name and/or has `delicious` as a tag. GUI updates to show these reviews.
+       Expected: Status message responds with the number of reviews with `chicken` as a word in the stall name and/or have `delicious` as a tag. GUI updates to show these reviews.
    
     5. Test case: `rfind n/`<br>
        Expected: No reviews are found. GUI updates to show no reviews.
@@ -1180,13 +1180,13 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Multiple stalls in the list.
 
     2. Test case: `ssort name`<br>
-       Expected: Status message responds that stalls has been sorted by name (A-Z). GUI updates to show sorted stalls.
+       Expected: Status message responds that stalls have been sorted by name (A-Z). GUI updates to show sorted stalls.
 
     3. Test case: `ssort reversedname`<br>
-       Expected: Status message responds that stalls has been sorted by name (Z-A). GUI updates to show sorted stalls.
+       Expected: Status message responds that stalls have been sorted by name (Z-A). GUI updates to show sorted stalls.
    
     4. Test case: `ssort address`<br>
-       Expected: Stalls are not sorted. Error details shown in the status message. GUI does not update.
+       Expected: Stalls are not sorted. Error details are shown in the status message. GUI does not update.
 
     5. Other incorrect stall sort commands to try: `ssort`, `ssort abc`<br>
        Expected: Similar to previous.
@@ -1198,25 +1198,25 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Multiple reviews in the list.
 
     2. Test case: `rsort name`<br>
-       Expected: Status message responds that reviews has been sorted by name (A-Z). GUI updates to show sorted reviews.
+       Expected: Status message responds that reviews have been sorted by name (A-Z). GUI updates to show sorted reviews.
 
     3. Test case: `rsort reversedname`<br>
-       Expected: Status message responds that reviews has been sorted by name (Z-A). GUI updates to show sorted reviews.
+       Expected: Status message responds that reviews have been sorted by name (Z-A). GUI updates to show sorted reviews.
    
     4. Test case: `rsort date`<br>
-       Expected: Status message responds that reviews has been sorted by date (Oldest to Newest). GUI updates to show sorted reviews.
+       Expected: Status message responds that reviews have been sorted by date (oldest to newest). GUI updates to show sorted reviews.
 
     5. Test case: `rsort reverseddate`<br>
-       Expected: Status message responds that reviews has been sorted by date (Newest to Oldest). GUI updates to show sorted reviews.
+       Expected: Status message responds that reviews have been sorted by date (newest to oldest). GUI updates to show sorted reviews.
    
     6. Test case: `rsort rating`<br>
-       Expected: Status message responds that reviews has been sorted by rate (Lowest to Highest). GUI updates to show sorted reviews.
+       Expected: Status message responds that reviews have been sorted by rating (lowest to highest). GUI updates to show sorted reviews.
 
     7. Test case: `rsort reversedrating`<br>
-       Expected: Status message responds that reviews has been sorted by date (Highest to Lowest). GUI updates to show sorted reviews.
+       Expected: Status message responds that reviews have been sorted by rating (highest to lowest). GUI updates to show sorted reviews.
 
     8. Test case: `rsort content`<br>
-       Expected: Reviews are not sorted. Error details shown in the status message. GUI does not update.
+       Expected: Reviews are not sorted. Error details are shown in the status message. GUI does not update.
 
     9. Other incorrect review sort commands to try: `rsort`, `rsort abc`<br>
        Expected: Similar to previous.
