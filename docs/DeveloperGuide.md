@@ -359,16 +359,15 @@ The **sequence diagram** below shows how a client is deleted for user input `del
 
 </div>
 
-The sequence diagram above is applicable for deleting `transaction` and `remark`, with just the following changes:
-- For delete transaction:
-    - `userInput` is changed to `delete 1 m/transaction`
-    - `parse("1 m/transaction")` returns `d`, which is a `DeleteTransactionCommand`
-    - `deleteClient(1)` is changed to `deleteTransaction(1)`
-- For delete remark:
-    - `userInput` is changed to `delete 1 m/remark`
-    - `parse("1 m/remark")` returns `d`, which is a `DeleteRemarkCommand`
-    - `deleteClient(1)` is changed to `deleteRemark(1)`
-    
+The process of deleting a `transaction` is almost the same as the process stated above, with a main difference in how the `DeleteTransactionCommand` and **Model** interact as shown in the sequence diagram below.
+
+![DeleteTransactionDiagram](images/DeleteTransactionDiagram.png)
+
+
+The process for deleting a `remark` is the same as the process of deleting a `transaction`, except for the following differences:
+* `userInput` is changed to `delete 1 m/remark`
+* `parse("1 m/remark")` returns `d`, which is a `DeleteRemarkCommand` instead of a `DeleteTransactionCommand`
+* `deleteTransaction(1)` is changed to `deleteRemark(1)`
 
 #### Design Considerations:
 
@@ -749,4 +748,5 @@ It is definitely much more than the original developer guide.
 
 Overall, our team has spent **a lot more effort in our application, user guide, developer guide** than the original
 AB3.
+
 
