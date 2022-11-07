@@ -160,7 +160,7 @@ Format: `help [COMMAND]`
 Examples:
 
 * `help add -s` - This shows a detailed help message on the `add -s` command.
-  
+
   ![help add -s](images/helpSingleCommand.png)
 
 * `help` - This shows an open window revealing the URL to the user guide which could be copied to the user's clipboard.
@@ -396,7 +396,7 @@ Example:
   Before:
 
   ![Before adding a deadline](images/add-deadline-1.png)
-  
+
   After:
 
   ![After adding a deadline](images/add-deadline-2.png)
