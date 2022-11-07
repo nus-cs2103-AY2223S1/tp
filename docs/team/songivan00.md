@@ -44,6 +44,8 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added Non-Functional Requirements
     * Worked on the implementation of the proposed edit task feature in v1.3
+    
+  
 
 * **Contributions to team-based tasks**:
   * Submitted product name, target user profile and value proposition via TEAMMATES

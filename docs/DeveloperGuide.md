@@ -238,6 +238,35 @@ The `add` command follows the [general command implementation flow](#logic-compo
 * The `add` command shares the `m/` prefix for modules with the other commands.
   * The `by/` prefix is chosen for the deadline, as it is a good compromise between brevity and comprehensibility ("do this *by* a certain date").
 
+
+### Edit task feature
+
+#### About
+
+CodeConnect will allow the user to edit an existing task in the task list.
+
+Example of command use:
+- `edit 1 m/CS1101S`
+
+#### Proposed Implementation flow
+
+Outline of how components work together when the user enters a `edit` task command:
+1. The user input will be sent to `CodeConnectParser`
+2. `CodeConnectParser` will take note of the command word and argument of the user input and create a `EditTaskComanndParser` instance.
+3. The `EditTaskCommandParser` will call its `parse` method to get the index and create a `EditTaskDescriptor` instance that stores the edited field
+4. A new `EditTaskCommand` will then be created with the parsed index and `EditTaskDescriptor` object
+5. That `EditTaskCommand` object will execute and a new `Task` will be created with the new fields
+6. The `model` will then be updated accordingly with the new Edited Task.
+
+![Activity Diagram](images/EditTaskActivityDiagram.png)
+<div style="text-align: center">Activity diagram of editc command execution</div>
+
+#### Design Considerations
+
+Initially we felt that being able to edit more than 1 field per edit task command was not as important, as
+a task object does not have that many fields to begin with. However, we felt that implementing it will still
+make it a lot easier in the event that a user want to have multiple changes to a task.
+
 ### Marking and unmarking of tasks
 
 #### About
@@ -263,35 +292,6 @@ Both the `mark` and `unmark` commands follow [general command implementation flo
 However, users could forget to input spaces when inputting indexes of multiple tasks, leading to unintended tasks being
 marked/unmarked. This was considered to be an acceptable trade-off as users would be completing tasks one at a time
 most of the time, so a mass mark/unmark feature is a nice-to-have one.
-
-### \[Proposed\] Edit task feature
-
-#### About
-
-CodeConnect will allow the user to edit an existing task in the task list.
-
-Example of command use:
-- `edit 1 m/CS1101S`
-
-#### Proposed Implementation flow
-
-Outline of how components work together when the user enters a `edit` task command:
-1. The user input will be sent to `CodeConnectParser`
-2. `CodeConnectParser` will take note of the command word and argument of the user input and create a `EditTaskComanndParser` instance.
-3. The `EditTaskCommandParser` will call its `parse` method to get the index and create a `EditTaskDescriptor` instance that stores the edited field
-4. A new `EditTaskCommand` will then be created with the parsed index and `EditTaskDescriptor` object
-5. That `EditTaskCommand` object will execute and a new `Task` will be created with the new fields
-6. The `model` will then be updated accordingly with the new Edited Task.
-
-#### Activity Diagram
-
-![Activity Diagram](images/EditTaskActivityDiagram.png)
-
-#### Design Considerations
-
-Initially we felt that being able to edit more than 1 feature per edit task command was not as important, as
-a task object does not have that many fields to begin with. However, we felt that implementing it will still
-make it a lot easier in the event that a user want to have multiple changes to a task.
 
 --------------------------------------------------------------------------------------------------------------------
 
