@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
@@ -245,6 +246,11 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
+        boolean a = truthTable.equals(other.truthTable);
+        boolean b = userPrefs.equals(other.userPrefs);
+        boolean c = filteredPersons.equals(other.filteredPersons);
+        List<Person> yo = filteredPersons.stream().collect(Collectors.toList());
+        List<Person> dog = other.filteredPersons.stream().collect(Collectors.toList());
         return truthTable.equals(other.truthTable)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);

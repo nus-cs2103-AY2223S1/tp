@@ -60,12 +60,8 @@
   ],
   "teams": [
     {
-      "teamName": "first",
-      "description": "empty description"
-    },
-    {
-      "teamName": "second",
-      "description": "empty description"
+      "teamName": "default",
+      "description": "A default team created just for you"
     }
   ]
 }

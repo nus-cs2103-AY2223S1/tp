@@ -16,6 +16,7 @@ import static seedu.address.logic.parser.CliSyntax.LABEL_TEAM_NAME;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import picocli.CommandLine;
 import seedu.address.commons.util.CollectionUtil;
@@ -94,7 +95,10 @@ public class EditTeamCommand extends Command {
         List<Team> teamList = model.getTeamList();
         List<Team> teamListCopy = new ArrayList<>(teamList);
 
-        if ((!editedTeam.isSameTeam(currentTeam)) && (teamListCopy.contains(editedTeam))) {
+        List<Team> filteredListWithTargetTeam = teamList.stream()
+                .filter(editedTeam::isSameTeam).collect(Collectors.toList());
+
+        if ((!editedTeam.isSameTeam(currentTeam)) && (filteredListWithTargetTeam.size() != 0)) {
             throw new CommandException(MESSAGE_DUPLICATE_TEAM);
         }
 
@@ -106,22 +110,6 @@ public class EditTeamCommand extends Command {
         return new CommandResult(String.format(MESSAGE_EDIT_TEAM_SUCCESS, editedTeam));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof EditTeamCommand)) {
-            return false;
-        }
-
-        // state check
-        EditTeamCommand e = (EditTeamCommand) other;
-        return arguments.equals(e.arguments);
-    }
 
     private static class Arguments {
         @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG},
@@ -134,18 +122,6 @@ public class EditTeamCommand extends Command {
                 description = FLAG_TEAM_DESCRIPTION_DESCRIPTION)
         private Description description;
 
-        @Override
-        public boolean equals(Object other) {
-            if (other == this) {
-                return true;
-            } else if (other instanceof Arguments) {
-                Arguments target = (Arguments) other;
-                return this.name != null && this.name.equals(target.name)
-                        && this.description != null && this.description.equals(target.description);
-            } else {
-                return false;
-            }
-        }
     }
 
     /**
@@ -189,25 +165,6 @@ public class EditTeamCommand extends Command {
 
         public void setDescription(Description description) {
             this.description = description;
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            // short circuit if same object
-            if (other == this) {
-                return true;
-            }
-
-            // instanceof handles nulls
-            if (!(other instanceof EditTeamDescriptor)) {
-                return false;
-            }
-
-            // state check
-            EditTeamDescriptor descriptor = (EditTeamDescriptor) other;
-
-            return getName().equals(descriptor.getName())
-                    && getDescription().equals(descriptor.getDescription());
         }
 
     }

@@ -10,10 +10,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class TeamName {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Team description should only contain alphanumeric characters, cannot contain spaces "
-                    + "and it should not be blank";
+            "Team names should not be blank and cannot contain quotation marks (' and \")";
 
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String VALIDATION_REGEX = "^[^'\\s\"][^'\"]+$";
 
     public static final TeamName DEFAULT_NAME = new TeamName("default");
 

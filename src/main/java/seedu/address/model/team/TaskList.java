@@ -11,7 +11,6 @@ import java.util.Map;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.DuplicateTaskException;
 import seedu.address.model.person.exceptions.TaskNotFoundException;
 
@@ -59,7 +58,7 @@ public class TaskList implements Iterable<Task> {
         }
 
         if (!target.equals(editedTask) && contains(editedTask)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateTaskException();
         }
 
         internalList.set(index, editedTask);
@@ -104,36 +103,6 @@ public class TaskList implements Iterable<Task> {
         return internalUnmodifiableList;
     }
 
-    public String getCompletedTasksString() {
-        if (internalList.isEmpty()) {
-            return ""; //return NO_TASKS;
-        }
-        StringBuilder sb = new StringBuilder();
-        int i = 1;
-        for (Task task : internalList) {
-            if (task.isComplete()) {
-                sb.append(String.format("%d. %s\n", i, task));
-            }
-            i++;
-        }
-        return sb.toString();
-    }
-
-    public String getIncompleteTasksString() {
-        if (internalList.isEmpty()) {
-            return ""; //return NO_TASKS;
-        }
-        StringBuilder sb = new StringBuilder();
-        int i = 1;
-        for (Task task : internalList) {
-            if (!task.isComplete()) {
-                sb.append(String.format("%d. %s\n", i, task));
-            }
-            i++;
-        }
-        return sb.toString();
-    }
-
     @Override
     public Iterator<Task> iterator() {
         return internalList.iterator();
@@ -153,10 +122,6 @@ public class TaskList implements Iterable<Task> {
 
     @Override
     public String toString() {
-        if (internalList.isEmpty()) {
-            //Set it to an empty string for now so that the team commands will only show the name of the team.
-            return ""; //return NO_TASKS;
-        }
         StringBuilder sb = new StringBuilder();
         int i = 1;
         for (Task task : internalList) {

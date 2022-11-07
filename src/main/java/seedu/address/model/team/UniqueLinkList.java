@@ -116,5 +116,12 @@ public class UniqueLinkList implements Iterable<Link> {
         return true;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UniqueLinkList // instanceof handles nulls
+                && internalLinks.equals(((UniqueLinkList) other).internalLinks));
+    }
+
 
 }

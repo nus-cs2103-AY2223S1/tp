@@ -51,7 +51,7 @@ means switching from GUI-based applications to CLI code editors.
 Hence, TruthTable allows you to use a **CLI for all your project management needs**, reducing the impact of context
 switching.
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-info">
 **:star: For experienced CLI users:**
 
 TruthTable's command syntax is actually very similar to other command line applications like
@@ -65,45 +65,36 @@ Hence, you will become familiar with TruthTable's commands in no time.
 If you are a software engineering team lead looking to get started with TruthTable, make sure that you have the 
 [pre-requisites installed](#getting-started).
 
-This document will also guide you on how to 
-[migrate your existing project information onto TruthTable](#migrating-to-truthtable), and get familiar with all 
-of TruthTable's [features](#key-features-of-truthtable). 
+This document will guide you on how to get familiar with all of TruthTable's [features](#key-features-of-truthtable). 
 
 If you are an experienced user of TruthTable, this guide also contains valuable tips on how you can maximise your 
 productivity while using TruthTable.
 
-Here are the symbols and text styles to look out for while using this guide:
+Here are the alerts to look out for while using this guide:
 
-| Symbol               | Meaning                                                                        |
-|----------------------|--------------------------------------------------------------------------------|
-| :information_source: | Important information for all users to take note                               |
-| :bulb:               | Tip for all users                                                              |
-| :star:               | Tip for advanced users                                                         |
-| :exclamation:        | Critical information to be wary of                                             |
+<div markdown="block" class="alert alert-primary">**:information_source: Important alert**:
+Important information for all users to take note
+</div>
+
+<div markdown="block" class="alert alert-success">**:bulb: Tip**:
+Tip for all users
+</div>
+
+<div markdown="block" class="alert alert-info">**:star: Tip**:
+This alert contains helpful information
+</div>
+
+<div markdown="block" class="alert alert-warning">**:exclamation: Warning alert**:
+This alert contains important information to be wary of.
+</div>
+
+Here are some text styles to look out for as well.
 
 | Text Style                 | Meaning                                              |
 |----------------------------|------------------------------------------------------|
 | [Glossary link](#glossary) | Clickable link to navigate to a section in the guide |
 | `text with background`     | Text relevant to the commands or name of a file      |
 | <kbd>Esc</kbd>             | Keyboard button                                      |
-
-Throughout the guide, there will also be alerts that look the following.
-
-<div markdown="block" class="alert alert-dark">**Miscellaneous alert**:
-This alert contains miscellaneous information
-</div>
-
-<div markdown="block" class="alert alert-info">**Important alert**:
-This alert contains important information
-</div>
-
-<div markdown="block" class="alert alert-primary">**Helpful alert**:
-This alert contains helpful information
-</div>
-
-<div markdown="block" class="alert alert-warning">**Warning alert**:
-This alert contains important information to be wary of.
-</div>
 
 ## Table of Contents
 
@@ -140,8 +131,8 @@ After opening TruthTable for the first time, you should see the following screen
 
 ![Application Interface](images/ApplicationInterface.png)
 
-Each section contains several components, which will be labelled in their respective sections below. These 
-components are numbered, and their names and descriptions will be displayed in a tabular format.
+Each section contains several [components](#component), which will be labelled in their respective sections below. 
+These parts are numbered, and their names and descriptions will be displayed in a tabular format.
 
 ### Teams Section
 
@@ -150,6 +141,10 @@ components are numbered, and their names and descriptions will be displayed in a
 [//]: # (TODO: reference to team explanation / why at least 1 will always appear)
 This section displays the names of all the teams that you have created in TruthTable. Only the names of each team 
 is listed.  
+
+<div markdown="block" class="alert alert-primary">**:information_source: Note:**
+There will always be one team in TruthTable, 
+</div>
 
 | Number | Component       | Description                                    |
 |--------|-----------------|------------------------------------------------|
@@ -225,8 +220,7 @@ designed to be **easy to remember** and **natural**, so you will get up to speed
 All instructions are executed through **commands**. Each command can have **flags specified after the command**, 
 which modifies how the instruction should be carried out.
 
-For each of these flags, there may be **parameters** specified after it. But, **not all commands**
-require flags to appear before parameters.
+For each of these flags, there may be **parameters** specified after it. But, **not all commands** require this.
 
 Note that flags and parameters always **come after the command**.
 
@@ -246,7 +240,7 @@ Here's a summary of what each highlighted section represents.
 
 ### Understanding the help message
 
-Every command in TruthTable has their own flags and parameters, you don't have to remember all of them.
+Every command in TruthTable has their own flags and parameters, so you don't have to remember all of them.
 
 Instead, each command allows you to specify the `-h` and `--help` flag, which brings up the available flags
 and parameters for the command. Alternatively, you can also refer to this user guide to find out the details of
@@ -263,12 +257,12 @@ Here's a summary of what each highlighted section represents.
 | 1      | Command                         | -                      | Only alphabets and spaces (all commands can be found [here](#commands))        |
 | 2      | Optional Flag with no Parameter | `[-flag]`              | -                                                                              |
 | 3      | Optional Flag with Parameters   | `[-flag=<parameters>]` | An ellipsis `...` is present only if more than 1 parameter is **allowed**      |
-| 4      | Required Flag with Parameters   | `flag=<parameters>`    | An ellipsis `...` is present only if more than 1 parameter is **required**     |
+| 4      | Required Flag with Parameters   | `flag=<parameters>`    | An ellipsis `...` is present only if more than 1 parameter is **allowed**      |
 | 5      | Required Parameter              | `<parameter>`          | All parameters are required by default                                         |
 | 6      | Flag/Parameter Name and Alias   | -                      | All aliases of a flag/parameter will be listed and separated with commas (`,`) |
 | 7      | Flag/Parameter Description      | -                      | Brief description of flag/parameter                                            |
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-primary">
 **:information_source: Important note for flags**
 
 - Specifying an "equal" sign (`=`) after the flag is optional, and it has no effect on the command.
@@ -278,7 +272,7 @@ Here's a summary of what each highlighted section represents.
 
 </div>
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-primary">
 **:information_source: Important note for parameters**
 
 Use of quotation marks around parameters (`""` and `''`) is optional.
@@ -301,7 +295,7 @@ For instance,
 - `"'"` is invalid as `'` will be passed as a parameter, which is invalid.
 </div>
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-success">
 **:bulb: Flags with multiple parameters**
 
 If a flag is displayed with `...` behind it, this means that the flag accepts more than 1 parameter.
@@ -311,8 +305,8 @@ A valid command is `assign task 1 -a 1 2 3` where `1 2 3` are recognised as the 
 </div>
 
 
-<div markdown="block" class="alert alert-primary">
-**:star: POSIX clustered short options**: TruthTable supports clustered options as specified 
+<div markdown="block" class="alert alert-info">
+**:star: POSIX clustered short options:** TruthTable supports clustered options as specified 
 <a href="https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html#tag_12_02" target="_blank">here</a>
 </div>
 
@@ -332,33 +326,21 @@ Refer to the [command summary section](#command-aliases) to view the commands an
 
 ---
 
-## Migrating to TruthTable
-
-If you're looking to migrate your team information onto TruthTable, here is a step-by-step guide on how to do so.
-
-### Creating the team
-
-### Adding your members
-
-### Adding your links
-
-### Adding your tasks
-
-### Delegating work
-
-### Visualising progress
-
-[Back to Table of Contents](#table-of-contents)
-
----
 ## Commands
 
-<div markdown="block" class="alert alert-info">**:information_source: Make sure you have 
+<div markdown="block" class="alert alert-primary">**:information_source: Make sure you have 
 [read this section](#understanding-truthtables-cli) before continuing!**
 </div>
 
-TruthTable allows you to manage members, tasks, links, and members. For member management, you will need to create the 
-person's record in TruthTable first, before assigning them to different teams.
+TruthTable allows you to manage members, tasks, links, and members. 
+
+<div markdown="block" class="alert alert-primary">**:information_source: Persons and Members**
+
+The persons in TruthTable (as seen in the [persons section](#persons-section)) may not be in a team. Hence, not all 
+persons are members. However, any member of a team must be an existing person in TruthTable.
+
+This is why TruthTable distinguishes between persons and member commands.
+</div>
 
 Consequently, the commands are split into **5** main sections:
 
@@ -368,12 +350,24 @@ Consequently, the commands are split into **5** main sections:
 4. [Link commands](#commands-to-manage-links--urls)
 5. [General commands](#general-commands)
 
-<div markdown="block" class="alert alert-info">**:information_source: Notes about command format**
+<div markdown="block" class="alert alert-primary">**:information_source: Command Format**
 
-- Format for each command adheres to the structure laid out in the 
-[help command section](#example-command-help-message-add-person---help)
+The format for each command adheres to the structure laid out in the 
+[help command section](#example-command-help-message-add-person---help).
+</div>
+
+<div markdown="block" class="alert alert-primary">**:information_source: Parameters and Constraints**
+
+Parameters are written in uppercase and wrapped with angle brackets (e.g. `<PARAMETER>`) in this guide.
+<br>
+
+Each parameter has their own constraints, which can be found [here](#flag-and-parameter-constraints).
+</div>
+
+
+<div markdown="block" class="alert alert-primary">**:information_source: Notes on Flags and Parameters**
+
 - Every command has a `-h` and `--help` flag available to see their help message
-- Parameters are in uppercase and wrapped with angle brackets, e.g. `<PARAMETER>`
 - Flags wrapped with brackets (`()`) indicates that at least 1 flag inside the brackets
   must be specified
   - For `([-n <NAME>] [-p <PHONE>] [-e <EMAIL>] [-t [<TAGS>]]...)`, the following examples are valid
@@ -406,11 +400,7 @@ Consequently, the commands are split into **5** main sections:
   - For e.g. `help with extra words` will display an error message
 </div>
 
-<div markdown="block" class="alert alert-info">**:information_source: Parameter constraints can be found 
-[here](#flag-and-parameter-constraints)**
-</div>
-
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-success">
 **:bulb: Letter casing for parameters**
 
 Note that the parameters in this user guide are all upper-cased, which differs from the lower-cased parameters in 
@@ -436,7 +426,7 @@ Adds a person to TruthTable.
 | `-p`,`--phone`  | :heavy_check_mark: | Phone of person (e.g. 98765432)         |
 | `-t`,`--tags`   | :x:                | Tags of person (e.g. Frontend, Backend) |
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-success">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
@@ -467,7 +457,7 @@ Edits an existing person in TruthTable.
 
 * Edits the person at the specified `PERSON_INDEX`, which refers to the index number shown in the
   [persons section](#persons-section)
-* `PERSON_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `PERSON_INDEX` **must be a positive integer:** 1, 2, 3,...
 * Each field only updates if the flag for that field is specified.
 * When editing tags, the existing tags of the person will be **completely replaced** by the new tags specified.
 * So, you can remove all the person’s tags by typing `-t` without specifying any tags after it.
@@ -495,7 +485,7 @@ Deletes the specified person from TruthTable.
 
 * Deletes the person at the specified `PERSON_INDEX`, which refers to the index number shown in the
   [persons section](#persons-section)
-* `PERSON_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `PERSON_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
 - `delete p`
@@ -522,7 +512,7 @@ Finds all persons whose names contain any of the given keywords.
 * The search is case-insensitive, e.g. `hans` will match `Hans`.
 * The order of the keywords does not matter, e.g. `Hans Bo` will match `Bo Hans`.
 * Persons with names partially matching the keywords will be returned, e.g. `han` will match `Hans`.
-* Persons with names matching at least one keyword will be returned, e.g. `hans bo` will return `Hans Gruber`, `Bo
+* Persons with names matching at least one keyword will be returned, e.g. `hans bo` will match `Hans Gruber`, `Bo
   Yang`.
 
 **Command Aliases:**
@@ -567,7 +557,7 @@ the team, an error message will be displayed.
 |----------------|----------|-------------------------------------|
 | `-h`, `--help` | :x:      | Shows help message for this command |
 
-* `PERSON_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `PERSON_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
 - `add m`
@@ -589,7 +579,7 @@ Delete a team member from the user’s team.
 |----------------|----------|-------------------------------------|
 | `-h`, `--help` | :x:      | Shows help message for this command |
 
-* `MEMBER_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `MEMBER_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
 - `delete m`
@@ -604,7 +594,7 @@ Delete a team member from the user’s team.
 
 Finds all members in the current team whose names or emails contain any of the given keywords.
 
-<div markdown="span" class="alert alert-info">
+<div markdown="span" class="alert alert-primary">
 :information_source: **Note:** You can find members using **either** emails or names. This means that you 
 should **not** use both `-n` and `-e` in the `find member` command. 
 </div>
@@ -617,13 +607,13 @@ should **not** use both `-n` and `-e` in the `find member` command.
 | `-n`, `--name`  | :hash:   | Keywords to filter by name          |
 | `-e`, `--email` | :hash:   | Keywords to filter by email         |
 
-:hash: - exactly one flag must be specified
+:hash: - exactly one of the flags for name or email must be specified
 
 * Only the name or email is searched.
 * The search is case-insensitive, e.g. `hans` will match `Hans`.
 * The order of the keywords does not matter, e.g. `Hans Bo` will match `Bo Hans`.
 * Persons with names/emails partially matching the keywords will be returned, e.g. `han` will match `Hans`.
-* Persons matching at least one keyword will be returned, e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+* Persons matching at least one keyword will be returned, e.g. `Hans Bo` will match `Hans Gruber`, `Bo Yang`.
 
 **Command Aliases:**
 - `find m`
@@ -683,10 +673,6 @@ Summary of the commands to manage teams can be found [here](#summary-of-team-com
 #### Creating a new team: `add team`
 
 Add a new team to your list of teams, an error will be displayed if the team name is already in use.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** 
-Team name must consist only of alphanumeric characters (i.e., **spaces are NOT allowed**).
-</div>
 
 **Format:** `add team [-h] [-d=TEAM_DESCRIPTION] <TEAM_NAME>`
 
@@ -788,7 +774,7 @@ Add a new task to your current team. Each task can have multiple assignees and a
 * `TASK_DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks 
   (`""`)
   around the parameter**.
-* `TASK_ASSIGNEES` **must be positive integers**: 1, 2, 3,...
+* `TASK_ASSIGNEES` **must be positive integers:** 1, 2, 3,...
 
 **Command Aliases:**
 - `add ta`
@@ -809,6 +795,14 @@ Edits a specified task in the current team's task list.
 
 **Format:** `edit task [-h] ([-n=<NAME>] [-d=<DEADLINE>] [-a[=<ASSIGNEES>...]]...) <TASK_INDEX>`
 
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Command Format:**
+
+Ensure that `TASK_INDEX` is entered before entering any `ASSIGNEES`, as they both take in positive integers. 
+Passing `TASK_INDEX` after `ASSIGNEES` makes it impossible to distinguish which number is actually the `TASK_INDEX`.
+</div>
+
+
 | Flags              | Required   | Remarks                                                      |
 |--------------------|------------|--------------------------------------------------------------|
 | `-h`, `--help`     | :x:        | Shows help message for this command                          |
@@ -822,7 +816,7 @@ Edits a specified task in the current team's task list.
   [team members section](#current-team-section)
 * `DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks (`""`)
   around the parameter**.
-* `TASK_INDEX` and `ASSIGNEES` **must be positive integers**: 1, 2, 3,...
+* `TASK_INDEX` and `ASSIGNEES` **must be positive integers:** 1, 2, 3,...
 * Each field only updates if the flag for that field is specified.
 * When editing assignees, the existing assignees of the task will be **completely replaced** by the new assignees 
   specified.
@@ -854,7 +848,7 @@ Delete an existing task from the team at the given task index.
 |----------------|----------|-------------------------------------|
 | `-h`, `--help` | :x:      | Shows help message for this command |
 
-* `TASK_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
 - `delete ta`
@@ -881,7 +875,7 @@ To reset the task list, see the [list tasks command](#list-tasks-in-team-list-ta
 * The search is case-insensitive. e.g. `user guide` will match `User Guide`
 * The order of the keywords does not matter. e.g. `User Guide` will match `guide user`
 * Tasks with names partially matching the keywords will be returned, e.g. `user` will match `userguide`.
-* Tasks with names matching at least one keyword will be returned, e.g. `guide case` will return `use case`, `user
+* Tasks with names matching at least one keyword will be returned, e.g. `guide case` will match `use case`, `user
   guide`.
 
 **Command Aliases:**
@@ -890,7 +884,7 @@ To reset the task list, see the [list tasks command](#list-tasks-in-team-list-ta
 - `f ta`
 
 **Examples:**
-* `find task -n User Guide` finds tasks with **names** containing **either** the word "User" or "Guide".
+* `find task User Guide` finds tasks with **names** containing **either** the word "User" or "Guide".
 
 #### Mark tasks as done: `mark`
 
@@ -902,7 +896,7 @@ Mark a specified task as done. To undo this command, see the [unmark command](#u
 |----------------|----------|-------------------------------------|
 | `-h`, `--help` | :x:      | Shows help message for this command |
 
-* `TASK_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
 - `m`
@@ -921,7 +915,7 @@ Mark a specified task as incomplete. This will undo the [mark command](#mark-tas
 |----------------|----------|-------------------------------------|
 | `-h`, `--help` | :x:      | Shows help message for this command |
 
-* `TASK_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
 - `u`
@@ -940,7 +934,7 @@ Set a deadline for an existing task, and the deadline must be in `YYYY-MM-DD HH:
 |----------------|----------|-------------------------------------|
 | `-h`, `--help` | :x:      | Shows help message for this command |
 
-* `TASK_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 * `TASK_DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks 
   (`""`)
   around the parameter**.
@@ -960,12 +954,21 @@ Assign an existing task to a team member in the user’s team.
 
 **Format:** `assign task [-h] -a[=<TASK_ASSIGNEES>...] [-a[=<TASK_ASSIGNEES>...]]... <TASK_INDEX>`
 
+<div markdown="block" class="alert alert-success">**:bulb: Note**:
+
+The format for the `-a` flag indicates that you must specify at least 1 `-a` flag in your command,
+- the first instance of `-a` indicates that you must specify the `-a` flag, and
+- the second instance of `-a` indicates that you can specify 0 or more `-a` flags.
+<br>
+This results in requiring at least 1 `-a` flag. 
+</div>
+
 | Flags              | Required           | Remarks                                                      |
 |--------------------|--------------------|--------------------------------------------------------------|
 | `-h`, `--help`     | :x:                | Shows help message for this command                          |
 | `-a`, `--assignee` | :heavy_check_mark: | Index of members in [members section](#current-team-section) |
 
-* `TASK_INDEX` and `TASK_ASSIGNEES` **must be positive integers**: 1, 2, 3,...
+* `TASK_INDEX` and `TASK_ASSIGNEES` **must be positive integers:** 1, 2, 3,...
 * The original assignees of the task will not be replaced with this command, instead, only new assignees can be added.
 * To remove assignees from a task, you can use the [`edit task` command](#edit-task-in-team-edit-task)
 
@@ -991,7 +994,7 @@ or if the task has already been assigned to all members of the team.
 |----------------|----------|-------------------------------------|
 | `-h`, `--help` | :x:      | Shows help message for this command |
 
-* `TASK_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
 - `assign r`
@@ -1012,7 +1015,7 @@ Find all tasks that have been assigned to a particular member in the currently s
 |----------------|----------|-------------------------------------|
 | `-h`, `--help` | :x:      | Shows help message for this command |
 
-* `MEMBER_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `MEMBER_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
 - `to`
@@ -1125,7 +1128,7 @@ Edit an existing link in the currently selected team.
 
 :asterisk: - at least one of the flags for link and name must be specified
 
-* `LINK_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `LINK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
 - `edit l`
@@ -1147,7 +1150,7 @@ Delete the specified link from the currently selected team.
 |----------------|----------|-------------------------------------|
 | `-h`, `--help` | :x:      | Shows help message for this command |
 
-* `LINK_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `LINK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
 - `delete l`
@@ -1472,6 +1475,12 @@ The user interface is some interface of which we interact with computers and com
 Examples include
 - Monitors
 - Keyboards
+
+### Component
+
+References a part of the user interface.
+
+For instance, the input box in the [command section](#command-section) is a component of said section.
 
 ### JSON File
 
