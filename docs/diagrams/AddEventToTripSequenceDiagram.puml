@@ -13,11 +13,6 @@ end box
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 participant "toAddInto:Trip" as trip MODEL_COLOR
-participant "event:Event" as event MODEL_COLOR
-participant "trip:Title" as tTitle MODEL_COLOR
-participant "event:Title" as eTitle MODEL_COLOR
-participant "fakeTrip:Trip" as Trip MODEL_COLOR
-participant "fakeEvent:Event" as Event MODEL_COLOR
 end box
 
 [-> LogicManager : execute("add-et n/Dive t/Bali")
@@ -35,20 +30,6 @@ deactivate AddEventToTripCommandParser
 
 TravelrParser -> AddEventToTripCommandParser : parse("n/Dive t/Bali")
 activate AddEventToTripCommandParser
-
-create "eTitle"
-AddEventToTripCommandParser -> "eTitle"
-activate "eTitle"
-
-"eTitle" --> AddEventToTripCommandParser : eventTitle
-deactivate "eTitle"
-
-create "tTitle"
-AddEventToTripCommandParser -> "tTitle"
-activate "tTitle"
-
-"tTitle" --> AddEventToTripCommandParser : tripTitle
-deactivate "tTitle"
 
 create AddEventToTripCommand
 AddEventToTripCommandParser -> AddEventToTripCommand
@@ -68,20 +49,6 @@ deactivate TravelrParser
 LogicManager -> AddEventToTripCommand : execute()
 activate AddEventToTripCommand
 
-create Trip
-AddEventToTripCommand -> Trip
-activate Trip
-
-Trip --> AddEventToTripCommand : fakeTrip
-deactivate Trip
-
-create Event
-AddEventToTripCommand -> Event
-activate Event
-
-Event --> AddEventToTripCommand : fakeEvent
-deactivate Event
-
 alt invalid trip or event
 
 create CommandException
@@ -93,7 +60,26 @@ AddEventToTripCommand -> LogicManager
 deactivate CommandException
 
 end
-create AddEventToTripCommand
+
+
+AddEventToTripCommand -> Model : addEventToTrip(...)
+activate Model
+
+Model -> Model : changeBucketList
+activate Model
+Model --> Model
+deactivate Model
+
+Model -> trip : addEvent(..)
+activate trip
+
+trip --> Model
+deactivate trip
+
+Model --> AddEventToTripCommand :
+deactivate Model
+
+
 create CommandResult
 AddEventToTripCommand -> CommandResult
 activate CommandResult
