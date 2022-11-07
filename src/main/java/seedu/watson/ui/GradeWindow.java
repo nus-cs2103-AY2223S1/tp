@@ -21,7 +21,6 @@ import seedu.watson.storage.Storage;
  * Controller for a GradeWindow page
  */
 public class GradeWindow extends UiPart<Stage> {
-    private static final Logger logger = LogsCenter.getLogger(GradeWindow.class);
     private static final String FXML = "GradeWindow.fxml";
     private String assessmentString;
     private int index = 0;
@@ -102,11 +101,18 @@ public class GradeWindow extends UiPart<Stage> {
      *                               </ul>
      */
     public void show(List<Student> studentList, String assessmentString) {
-        logger.fine("Showing the grading page.");
         this.studentList = studentList;
         this.assessmentString = assessmentString;
         startGrading();
         updateUiToNextStudent();
+    }
+
+    /**
+     * A method to test the index of the grade window
+     * @return index of the grade window
+     */
+    public int getIndex() {
+        return index;
     }
 
     /**
