@@ -25,10 +25,11 @@ Given below are my largest contributions to the project.
   * Justification: This feature helps simplify debt-adding processes for users who are confused about how to calculate GST and Service Charge by doing the calculation for them.
   * Highlights: The final implementation of this feature made use of an elegant design where target users (NUS students) simply have to make use of common Singaporean lingo, a money amount followed `++`, to indicate a need for PayMeLah to calculate GST and Service Charge. Through the use of OOP design and encapsulation, modifications done to the `Money` class to implement this feature did not cause regressions in any other classes that have dependencies with `Money`, enabling the usage of this feature across commands such as `adddebt` and `splitdebt` and ensuring extensibility to future commands.
 
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=waynezsy&tabRepo=AY2223S1-CS2103T-W13-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
-  * Managed deadlines and milestones, including `v1.1`, `v1.2`, `v1.2b`, `v1.3`, `v1.3b` and `v1.4`.
+  * Managed deadlines and milestones consistently from `v1.1` to `v1.4`.
 
 * **Enhancements implemented**:
   * Refactored the code for multi-index command parsing, including both functional code for commands such as `splitdebt` and `deletedebt` and test code to prevent regressions. [#153](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/153)
@@ -36,7 +37,7 @@ Given below are my largest contributions to the project.
 * **Documentation**:
   * User Guide:
     * Introduction: Welcome message and [Using this guide](https://ay2223s1-cs2103t-w13-3.github.io/tp/UserGuide.html#using-this-guide) [#267](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/267)
-    * [Adding your first debt](https://ay2223s1-cs2103t-w13-3.github.io/tp/UserGuide.html#tutorial-adding-your-first-debt) [#273](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/273)
+    * [Tutorial: Adding your first debt](https://ay2223s1-cs2103t-w13-3.github.io/tp/UserGuide.html#tutorial-adding-your-first-debt) [#273](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/273)
     * [Input-specific behaviour](https://ay2223s1-cs2103t-w13-3.github.io/tp/UserGuide.html#input-specific-behavior) [#184](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/184)
     * [Adding a debt: `adddebt`](https://ay2223s1-cs2103t-w13-3.github.io/tp/UserGuide.html#adding-a-debt-adddebt) [#281](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/281)
     * Tweaks to existing feature documentation, including `help` and `add` [#201](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/201)
