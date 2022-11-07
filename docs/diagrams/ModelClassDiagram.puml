@@ -13,6 +13,7 @@ Class ModelManager
 Class UserPrefs
 
 Class UniqueStudentList
+Class UniqueScheduleList
 Class Student
 Class Address
 Class AdditionalNotes
@@ -33,6 +34,7 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
 TeachersPet .up.|> ReadOnlyTeachersPet
+
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
@@ -65,6 +67,10 @@ Class -[hidden]right-> MoneyOwed
 MoneyOwed -[hidden]right-> MoneyPaid
 MoneyPaid -[hidden]right-> RatesPerClass
 RatesPerClass -[hidden]right-> AdditionalNotes
+
+TeachersPet *--> "1" UniqueScheduleList
+UniqueScheduleList --> "~* filtered" Student
+
 
 ModelManager -->"~* filtered" Student
 @enduml

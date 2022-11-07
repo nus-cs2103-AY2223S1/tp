@@ -7,9 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.student.Class;
 import seedu.address.model.student.Student;
-import seedu.address.model.timerange.TimeRange;
 
 /**
  * The API of the Model component.
@@ -79,12 +77,6 @@ public interface Model {
      * The student identity of {@code editedStudent} must not be the same as another existing student in Teacher's Pet.
      */
     void setStudent(Student target, Student editedStudent);
-
-    /**
-     * Returns the first available class within the range specified by {@code TimeRange}
-     * @return the first available {@code Class}
-     */
-    Class findAvailableClass(TimeRange timeRange);
 
     /**
      * Sorts the current filtered student list with the given {@code comparator}.

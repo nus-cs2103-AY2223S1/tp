@@ -10,7 +10,7 @@ public class Mark {
     public static final String MESSAGE_CONSTRAINTS = "Mark can take in a boolean value,"
             + " and its default value is false";
 
-    private Boolean isPresent;
+    private final Boolean isPresent;
 
     /**
      * Constructs {@code Mark} to track attendance.
