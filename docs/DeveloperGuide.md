@@ -655,4 +655,3 @@ testers are expected to do more *exploratory* testing.
 
     4. Test Case: While Tuthub is running, delete `tuthub.json`. Try carrying out a valid command, e.g. `view 1`.<br/>
        Expected: Command works as per usual. Upon carrying out the command, a new `tuthub.json` file will be created.
-2. 
