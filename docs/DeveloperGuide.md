@@ -651,43 +651,43 @@ Expected: No profile is added. Error details shown in the status message.
 
 1. Prerequisites: Profile to be added to Event is currently shown on the Profiles list. Event for Profile to be added to exist in the current event list.
 
-2. Test case: `event -ap 1 pr/1`
+2. Test case: `event -ap 1 pr/1`<br>
    Expected: Event has an attendee added with the name and number of the Profile. Details of the event shown in the status message.
 
 ### Deleting an attendee from an Event
 
 1. Prerequisites: Event to remove attendee from exist. Attendee to be removed exist in the Event.
 
-2. Test case: `event -dp 1 pr/1`
+2. Test case: `event -dp 1 pr/1`<br>
    Expected: Event no longer has attendee. Details of the event shown in the status message.
 
 ### Viewing upcoming Events
 
-1. Test case: `event -u 5`
+1. Test case: `event -u 5`<br>
    Expected: Event starting in the next 5 days will be displayed to the Events list.
 
 ### Viewing all Events
 
-1. Test case: `event -v`
+1. Test case: `event -v`<br>
    Expected: All Events are displayed to the Events list.
 
 ### Editing an Event
 
 1. Prerequisites: Event to be edited exist in the current list. Start and end includes both date and time.
 
-2. Test case: `event -e 1 n/Formal Dinner t/RC4 s/22/10/2022 09:00`
+2. Test case: `event -e 1 n/Formal Dinner t/RC4 s/22/10/2022 09:00`<br>
    Expected: Event on the current list is updated with the new title, with only one tag RC4, and the new start time. Event list is resorted. Details of the Event edited is displayed in the status message.
 
 ### Finding an Event
 
-1. Test case: `event -f Presentation`
+1. Test case: `event -f Presentation`<br>
    Expected: Event list will display all Events which contains "presentation", case-insensitive, within its title.
 
 ### Deleting an Event
 
 1. Prerequisites: Event to be deleted exist in the current list.
 
-2. Test case: `event -d 1`
+2. Test case: `event -d 1`<br>
    Expected: Event deleted is no longer visible in the list of events. Details of the Event deleted is displayed in the status message.
 
 ### Accessing the Help Window
@@ -698,7 +698,7 @@ Expected: No profile is added. Error details shown in the status message.
 2. Incorrect help commands to try:: `help ...` (where ... contains any combination of characters)<br>
    Expected: No help window appears. Error details shown in the status message.
 
-### Clearing all data
+### Clearing all datag
 
 1. Prerequisites: Some data has been added with the `profile -a` and `event -a` commands.
 
