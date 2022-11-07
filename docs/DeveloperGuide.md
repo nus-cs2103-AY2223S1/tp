@@ -795,6 +795,40 @@ testers are expected to do more *exploratory* testing.
    4. Incorrect sort commands from first case.
       Expected: Same expected results as the first case.
 
+### Adding comments
+1. Adding comment to a tutor while all tutors are being shown
+
+    1. Prerequisites: List all tutors using the `list` command. At least one tutor in the list.
+
+    2. Test case: `comment 1 c/Test comment`
+       Expected: "Test comment" should be added to the first tutor. This can be seen by viewing the first tutor profile.
+
+    3. Test case: `comment 1 Test comment`<br>
+       Expected: No comment is added. Error details shown in status message (Wrong command format).
+
+    4. Test case: `comment 1`<br>
+       Expected: No comment is added. Error details shown in status message (Empty comment).
+
+    5. Other incorrect comment commands to try: `comment`, `comment x p/Test comment 1`, `...` (where x is any number greater than the size of the tutor list, and p is any prefix other than `c/`)<br>
+       Expected: Similar to 3.
+
+### Deleting comments
+1. Deleting comment from a tutor while all tutors are being shown
+
+    1. Prerequisites: List all tutors using the `list` command. At least one tutor in the list. At least one comment for said tutor.
+
+    2. Test case: `deletecomment 1 1`
+       Expected: First comment deleted from first tutor in the list. This can be seen by viewing the first tutor profile.
+
+    3. Test case: `deletecomment 1`<br>
+       Expected: No comment is deleted. Error details shown in status message (Wrong command format).
+
+    4. Test case: `deletecomment 1 0`<br>
+       Expected: No comment is added. Error details shown in status message (Index out of range).
+
+    5. Other incorrect comment commands to try: `deletecomment`, `deletecomment x y`, `...` (where x is any number greater than the tutor list and y is any number greater than the comment list of the tutor)<br>
+       Expected: Similar to 3.
+
 ### Mailing tutor(s)
 
 1. Mailing the tutor list while all tutors are being shown
