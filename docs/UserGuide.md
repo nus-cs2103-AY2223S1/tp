@@ -144,6 +144,9 @@ Examples:
 
 * `find CS2040S` returns both the module `cs2040s` as well as contacts with `cs2040s` under their `module` field.
   <img src="images/find.png"/>
+
+<div style="page-break-after: always;"></div>
+
 * `find Friday` returns `CS2100` and `CS2103T`, assuming both modules have lectures or tutorials on Friday.
   <img src="images/find2.png"/>
 
@@ -163,6 +166,8 @@ Format: `help`
 You can access this window by clicking the File button on the top left of the app, followed by Help. Or you can just press F1!
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Exiting the program: `exit`
 
 Exits the program.
@@ -178,6 +183,8 @@ Alternatively, you can click the File button on the top left of the app, followe
 SoCompiler data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 [Back to top](#socompiler-user-guide)
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
