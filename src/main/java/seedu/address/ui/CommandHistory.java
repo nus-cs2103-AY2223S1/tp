@@ -15,7 +15,7 @@ public class CommandHistory {
      * Creates a new CommandHistory object with a new list of commands.
      */
     public CommandHistory() {
-        this(new ArrayList<>());
+        this(new ArrayList<>(1000));
     }
 
     /**

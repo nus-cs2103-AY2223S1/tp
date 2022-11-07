@@ -616,8 +616,8 @@ They are:
 
 When a key is pressed, `MainWindow` will recursively go through its child elements until it finds the first matching 
 `EventHandler`, which is the `CommandBox#commandTextField#getOnKeyPressed()` handler. This will then call the 
-`CommandBox#handleKeyPress(event)` to check the key pressed. If the 'UP' arrow key was pressed, 
-`CommandHistory#previousCommand()` is called to set the command to the previous command, if any. If the 'DOWN' arrow key
+`CommandBox#handleKeyPress(event)` to check the key pressed. If the `UP` arrow key was pressed, 
+`CommandHistory#previousCommand()` is called to set the command to the previous command, if any. If the `DOWN` arrow key
 was pressed, `CommandHistory#nextCommand()` is called to set the command to the next command, if any. If the `Ctrl` + 
 `Shift` + `C` keys were pressed together, it will clear all the text in the `commandTextField` with the 
 `CommandBox#setCommandTextField(str)` command. 
