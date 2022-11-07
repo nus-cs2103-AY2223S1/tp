@@ -126,7 +126,7 @@ User Guide.
     <td><strong>Command Line Interface (CLI)</strong></td>
     <td>
       A text-based interface that is used to operate software (such as ConnectNUS) and operating systems. CLI
-      allows a user to perform tasks by entering commands. </br>
+      allows a user to perform tasks by entering commands. <br>
       Users enter the specific command, press “Enter”, and then wait for a response.
       After receiving the command, the CLI processes it accordingly and shows the output/result on the screen.
     </td>
@@ -202,6 +202,8 @@ Step 6: The GUI similar to the below should appear in a few seconds. Do note tha
 
   <img src="images/Ui.png" width="390" />
 
+<div style="page-break-after: always;"></div>
+
 Step 7: Refer to the [Features](#features) section below to for more details on how to use ConnectNUS.
 
 As recommended in the introduction, we would like to direct you to read the [Notes about the command format](#notes-about-the-command-format) section next.
@@ -270,6 +272,8 @@ You may:
 - [Edit user](#editing-user)
 - [Delete user](#deleting-user)
 
+<div style="page-break-after: always;"></div>
+
 ### Adding user
 
 Add your own user profile into the contact list.
@@ -290,6 +294,8 @@ Examples:
 ![Add User Profile](images/AddUserProfile.png)
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Editing user
 
@@ -333,6 +339,8 @@ You may:
 - [Edit contacts](#editing-contacts)
 - [Delete contacts](#deleting-contacts)
 - [Clear all contacts](#clearing-all-contacts)
+
+<div style="page-break-after: always;"></div>
 
 ### Adding contacts
 
@@ -438,6 +446,8 @@ Format: `clear`
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ## Module features
 
 These are features that allow you to manage the current, previous and planned modules that you or your contacts have.
@@ -469,6 +479,8 @@ Examples:
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Edit contact's modules
 
 Directly edit your contact's module list by adding or deleting modules from their list, so you can keep track of
@@ -495,6 +507,8 @@ Examples:
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Checking Modules Left
 
 Check which modules you need to clear in order to fulfill core requirements or focus area requirements, to quickly see
@@ -508,7 +522,6 @@ Format: `modsleft INDEX`
 * This feature is currently compatible with CS students who enrolled in AY21/22, additional compatability with students from other AYs and other majors will be added in future versions.
 
 The index reference list is as shown:
-
 1. CS Core Requirements
 2. Algorithms & Theory
 3. Artificial Intelligence
@@ -528,6 +541,8 @@ Examples:
 ![Modules Left](images/ModulesLeft.png)
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Refreshing to Next Semester
 
@@ -580,6 +595,8 @@ Examples:
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Listing lessons / Viewing timetable
 
 Shows the list of lessons in a separate window, sorted by day and time.
@@ -615,6 +632,8 @@ Examples:
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting lessons
 
 Deletes a lesson from the user or a contact.
@@ -644,6 +663,8 @@ Examples:
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ## Filtering features
 
 These features allow you to only see the list of people adhering to the criteria set, so that you can view only those persons
@@ -669,11 +690,11 @@ Examples:
 
 * `filtertag friends` lists all contacts with a friends tag.
 
-![Filter Tag 1](images/FilterTagFriends.png)
+<img src="images/FilterTagFriends.png" width="250">
 
 * `filtertag friends family` lists all contacts with either a friends or family tag.
 
-![Filter Tag 2](images/FilterTagFriendsFamily.png)
+<img src="images/FilterTagFriendsFamily.png" width="250">
 
 [Scroll back to top](#table-of-contents)
 
@@ -691,7 +712,7 @@ Examples:
 
 * `filtercurrmod CS1000` lists all contacts with module code CS1000 in their current modules list.
 
-![Filter Current Module](images/FilterCurrModCS1000.png)
+<img src="images/FilterCurrModCS1000.png" width="250">
 
 [Scroll back to top](#table-of-contents)
 
@@ -709,7 +730,8 @@ Examples:
 
 * `filterprevmod CS2000` lists all contacts with module code CS2000 in their previous modules list.
 
-![Filter Previous Module](images/FilterPrevModCS2000.png)
+<img src="images/FilterPrevModCS2000.png" width="250">
+
 
 [Scroll back to top](#table-of-contents)
 
@@ -727,7 +749,7 @@ Examples:
 
 * `filterplanmod CS23333` lists all contacts with module code CS3333 in their planned modules list.
 
-![Filter Planned Module](images/FilterPlanModCS3333.png)
+* <img src="images/FilterPlanModCS3333.png" width="250">
 
 [Scroll back to top](#table-of-contents)
 
