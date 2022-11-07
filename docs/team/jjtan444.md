@@ -35,7 +35,7 @@ Given below are my contributions to the project.
   and `findTask` commands.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jjtan444&breakdown=true)
-
+<div style="page-break-after: always;"></div>
 * **Enhancements to existing features**:
 * Improved `findProj` command to be able to find `Project` with keywords that matches part of the `Project` name.
 * Improved `findTask` command to be able to find `Task` with keywords that matches part of the `TaskDescription`.
