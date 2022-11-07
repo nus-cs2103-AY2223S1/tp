@@ -1,0 +1,101 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaAssistParser" as TaAssistParser LOGIC_COLOR
+participant "e:ExportCommand" as ExportCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":ExportCsvStorageAction" as ExportCsvStorageAction LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":Storage" as Storage STORAGE_COLOR
+end box
+
+[-> LogicManager : execute("export")
+activate LogicManager
+
+LogicManager -> TaAssistParser : parseCommand("export")
+activate TaAssistParser
+
+create ExportCommand
+TaAssistParser -> ExportCommand
+activate ExportCommand
+
+ExportCommand --> TaAssistParser : e
+deactivate ExportCommand
+
+TaAssistParser --> LogicManager : e
+deactivate TaAssistParser
+
+LogicManager -> ExportCommand : execute(model)
+activate ExportCommand
+
+ExportCommand -> Model : getFocusedClass()
+activate Model
+
+Model --> ExportCommand : focusedClass
+deactivate Model
+
+ExportCommand -> Model : getStudentList()
+activate Model
+
+Model --> ExportCommand : students
+deactivate Model
+
+create ExportCsvStorageAction
+ExportCommand -> ExportCsvStorageAction
+activate ExportCsvStorageAction
+
+ExportCsvStorageAction --> ExportCommand
+deactivate ExportCsvStorageAction
+
+create CommandResult
+ExportCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ExportCommand
+deactivate CommandResult
+
+ExportCommand --> LogicManager : result
+deactivate ExportCommand
+
+LogicManager -> CommandResult : hasStorageAction()
+activate CommandResult
+
+CommandResult --> LogicManager : true
+deactivate CommandResult
+
+LogicManager -> CommandResult : performStorageAction(storage)
+activate CommandResult
+
+CommandResult -> ExportCsvStorageAction : act(storage)
+activate ExportCsvStorageAction
+
+ExportCsvStorageAction -> Storage : exportAsCsv(fileName, fileData)
+activate Storage
+
+Storage --> ExportCsvStorageAction
+deactivate Storage
+
+create CommandResult
+ExportCsvStorageAction -> CommandResult
+activate CommandResult
+
+CommandResult --> ExportCsvStorageAction
+deactivate CommandResult
+
+ExportCsvStorageAction --> CommandResult : result
+deactivate ExportCsvStorageAction
+
+CommandResult --> LogicManager : result
+deactivate CommandResult
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

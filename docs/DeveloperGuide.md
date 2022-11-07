@@ -504,6 +504,28 @@ The following sequence diagram shows how changes are propagated to the `UI` thro
   * Pros: Easy to implement.
   * Cons: Hard to maintain. Each `Command` now needs to know that `CommandResult` can pass data other than for result display.
 
+### Exporting data as CSV
+This feature allows the user to extract data efficiently from TA-Assist to be used for other purposes such as statistical analysis or result collation on other platforms. Unlike other commands which only works on the model, the `export` command requires access to `Storage` to create a new CSV file and write data to it. This is facilitated by the `ExportCsvStorageAction` class, which is a children of the `StorageAction` class, where further action onto the `Storage` component is processed.
+
+#### CommandResult class
+The `CommandResult` class can contain just the feedback to the user, or it can also contain either a `UiAction` or `StorageAction`. These two classes represent an action to be performed by the `Ui` and `Storage` respectively.
+
+#### ExportCsvStorageAction class
+The `ExportCsvStorageAction` class is a `StorageAction` that requests the `Storage` to export a CSV file.
+
+The following sequence diagram shows how the `export` command exports a CSV file with the help of `Storage`:
+
+<img class="center" src="images/ExportCommandSequenceDiagram.png" w="800"/>
+
+#### Design considerations
+**Aspect: How commands should access the `Storage` class:**
+* **Option 1 (Current Choice).** Create a new class of objects `StorageActions` to act on the `Storage` class.
+  * Pros: Most commands that does not require access to `Storage` will have `Storage` hidden from them. Also, having a class `StorageActions` will allow future features updates such as exporting to Excel files be easier to implement.
+  * Cons: Unable to have commands that act on `Storage` first before acting on `Model`.
+* **Option 2.** Let all commands execute with access to both `Model` and `Storage`.
+  * Pros: Allows the program to have commands that act on `Storage` and `Model` in any order.
+  * Cons: Unnecessary exposure of `Storage` to other commands that does not require access to it. In our case, this is the majority of the commands.
+
 ### UI Implementation
 #### Home Screen
 
