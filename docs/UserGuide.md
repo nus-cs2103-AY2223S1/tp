@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-##Introduction
+## Introduction
 
 Welcome to the User Guide of MODPRO!
 
@@ -15,10 +15,10 @@ MODPRO helps you…
 
 It is highly optimised for students who prefer Command Line Interface (CLI) by allowing those who type fast to key in commands to track their modules. If you struggle to type fast, we also provide a Graphical User interface (GUI) to assist you in using MODPRO.
 
-###The Graphical User Interface (GUI)
+### The Graphical User Interface (GUI)
 
 To give you a quick overview of MODPRO, the following image shows you the main components of the GUI.
-![Ui](images/)
+![Ui](images/GUI.png)
 
 The table below summarises the function of each component.
 
