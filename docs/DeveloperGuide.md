@@ -49,6 +49,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
+<div style="page-break-after: always;"></div>
 The rest of the App consists of four components.
 
 * [**`UI`**](#ui-component): The UI of the App.
@@ -109,6 +110,7 @@ How the `Logic` component works:
 1. The command can communicate with the `BobaBotModel` when it is executed (e.g. to add a customer).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
+<div style="page-break-after: always;"></div>
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete p/1234567")` API call.
 
 ![Interactions Inside the Logic Component for the `delete p/1234567` Command](images/DeleteSequenceDiagram.png)
@@ -116,6 +118,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
@@ -154,6 +157,7 @@ The `BobaBotModel` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `BobaBotModel` represents data entities of the domain, they should make sense on their own without depending on other components)
 
+<div style="page-break-after: always;"></div>
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) bobaBotModel is given below. It has a `Tag` list in the `BobaBot`, which `Customer` references. This allows `BobaBot` to only require one `Tag` object per unique tag, instead of each `Customer` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
@@ -201,10 +205,12 @@ The following sequence diagram shows how the add feature works, following the fl
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
 The following activity diagram summarizes the flow of when a user enters an add command:
 
 ![AddActivityDiagram](images/AddActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
 **Aspect: How `add` is executed**
 * **Alternative 1 (current choice):** User can only add a customer with unique `PHONE_NUMBER` and `EMAIL` that does not already exist in database.
 
@@ -242,10 +248,12 @@ The following sequence diagram shows how the edit feature works, following the f
 
 ![EditSequenceDiagram](images/EditSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
 The following activity diagram summarizes the flow of when a user enters an edit command:
 
 ![EditActivityDiagram](images/EditCommandActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
 **Aspect: How `edit` is executed**
 * **Alternative 1 (current choice):** User can edit a customer via either `PHONE_NUMBER` or `EMAIL`.
 
@@ -301,10 +309,12 @@ The sequence diagram below shows how the `delete` feature parsing an input `p/12
 
 ![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
 The activity diagram below illustrates how the `delete` operation works.
 
 ![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
 **Aspect: How `delete` is executed**
 * **Alternative 1 (current choice):** User can delete a customer via either `PHONE_NUMBER` or `EMAIL`.
 
@@ -344,10 +354,12 @@ The following sequence diagram shows how the find feature works, following the f
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
 The following activity diagram summarizes the flow of when a user enters a find command:
 
 ![FindActivityDiagram](images/FindCommandActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
 **Aspect: How `find` is executed**
 * User can search for a specific customer via `PHONE_NUMBER` or `EMAIL`,
 or just search for occurrence of keywords (including name) vaguely.
@@ -384,6 +396,7 @@ Step 1. The user launches the application for the first time. The `VersionedBoba
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
+<div style="page-break-after: always;"></div>
 Step 2. The user executes `delete p/87438807` command to delete the customer with phone number `87438807` which corresponds to `Alex Yeoh` from the bobaBot. The `delete` command calls `BobaBotModel#commitBobaBot()`, causing the modified state of the bobaBot after the `delete p/87438807` command executes to be saved in the `bobaBotStateList`, and the `currentStatePointer` is shifted to the newly inserted bobaBot state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
@@ -442,7 +455,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the customer being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
 
 <div style="page-break-after: always;"></div>
 ### \[Proposed\] Data archiving
@@ -462,6 +474,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -738,6 +751,7 @@ Guarantee: bobaBot will be exited.
 
    Use case ends.
 
+<div style="page-break-after: always;"></div>
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -765,6 +779,7 @@ Guarantee: bobaBot will be exited.
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
@@ -791,6 +806,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+<div style="page-break-after: always;"></div>
 ### Adding a customer
 
 1. Adding a customer to bobaBot
@@ -815,6 +831,7 @@ testers are expected to do more *exploratory* testing.
    5. Other incorrect add commands to try: `add`, `add p/`, `add hello`, `...`<br>
       Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
 ### Editing a customer
 
 1. Editing a customer via `PHONE_NUMBER`
@@ -843,6 +860,7 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect edit commands to try: `edit`, `edit e/`, `edit hello`, `...`<br>
        Expected: Invalid edit command format error message will be shown in the status message.
 
+<div style="page-break-after: always;"></div>
 ### Increasing a customer's reward
 
 1. Increase a customer's reward via `PHONE_NUMBER`
@@ -871,6 +889,7 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect increment commands to try: `incr`, `incr e/charlotte@example.com`, `incr e/`, `incr hello`, `...`<br>
        Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
 ### Decreasing a customer's reward
 
 1. Decrease a customer's reward via `PHONE_NUMBER`
@@ -899,6 +918,7 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect increment commands to try: `decr`, `decr e/charlotte@example.com`, `decr e/`, `decr hello`, `...`<br>
        Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
 ### Listing all customers
 
 1. Viewing all customers within bobaBot
@@ -938,6 +958,7 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `find al`<br>
       Expected: `Alex Yeoh` and `Roy Balakrishnan` should be listed.
    
+<div style="page-break-after: always;"></div>
 ### Deleting a customer
 
 1. Deleting a customer via `PHONE_NUMBER`
@@ -966,6 +987,7 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect delete commands to try: `delete`, `delete e/`, `delete hello`, `...`<br>
        Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
 ### Undoing an unintended command
 
 1. Undo an unintended command that has been executed.
@@ -1005,6 +1027,7 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `clear`<br>
       Expected: All customers' data cleared.
 
+<div style="page-break-after: always;"></div>
 ### Calculating simple arithmetic
 
 1. Performs simple arithmetic calculation
