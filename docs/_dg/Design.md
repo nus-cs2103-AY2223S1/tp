@@ -41,3 +41,5 @@ The `.puml` files used to create diagrams in this document can be found in the [
 ### Common Classes
 
 Classes used by multiple components are in the `seedu.foodrem.commons` package.
+
+**API** : [Commons]({{ page.master_branch }}/{{ page.main_src }}/commons)
