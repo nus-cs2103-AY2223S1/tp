@@ -1537,3 +1537,17 @@ testers are expected to do more *exploratory* testing.
     1. Test case: Delete all data files (i.e. `modulelist.json`, `taskbook.json`).<br>
        Expected: The application will start with an empty module and task list. The application will create a new data file 
        when the user exits the application.
+
+    2. Test case: Delete a closing bracket in one or more data files (i.e. `modulelist.json`, `taskbook.json`).
+       Expected: The application will start with an empty module and task list.
+       The application will create a new data file when the user exits the application.
+
+    3. Test case: Modify the date of one the tasks in the `taskbook.json` file to be of an invalid format, for example `09-09-2022`.
+       Expected: Similar to previous
+
+    4. Test case: Modify the date of one the tasks in the `taskbook.json` file, but maintain the same format.
+       Expected: The application boots up normally, with the saved data (if any), and the changes should be reflected on the UI.
+
+    5. Test case: Modify the module code of one the tasks in the `taskbook.json` file to be one that is not in the module list.
+       Expected: The application will start with an empty module and task list.
+       The application will create a new data file when the user exits the application.
