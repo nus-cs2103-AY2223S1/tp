@@ -562,23 +562,23 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action         | Format, Examples                                                                                                                                       |
-|----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**        | `add n/CLIENT a/ADDRESS p/PHONE e/EMAIL [t/TAG]...`<br> e.g., `add n/Alice a/Yishun Street 81 p/9876543 e/alice@gmail.com`                             |
-| **Buy**        | `buy INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]` <br/> e.g., `buy 2 q/100 g/apples price/1.5`                                                       |
-| **Clear**      | `clear`                                                                                                                                                |
-| **Delete**     | `delete INDEX m/MODE`<br> e.g., `delete 3 m/client` or `view 1` followed by `delete 3 m/remark`                                                        |
-| **Edit**       | `edit INDEX m/MODE FIELDS [MORE_FIELDS]...` <br> e.g.,`edit 1 a/Blk 221 Yishun St 81 p/818181` or `view 1` followed by `edit 3 m/transaction g/mango ` |
-| **Exit**       | `exit`                                                                                                                                                 |
-| **Filter**     | `filter TYPE` <br> e.g., `filter sell` or `filter buy`                                                                                                 |
-| **Find**       | `find KEYWORD [MORE_KEYWORDS]...`<br> e.g., `find John`                                                                                                |
-| **Help**       | `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                                                         |
-| **List**       | `list`                                                                                                                                                 |
-| **Remark**     | `remark INDEX REMARK [t/TAG]...`<br> e.g., `remark 3 Punctual Buyer` or `remark 5 Fast and Decisive Buyer t/favourite`                                 |                                                                     |
-| **Sell**       | `sell INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]` <br/> e.g., `sell 2 q/100 g/apples price/1.5 d/07/11/2022`                                        |
-| **Sort**       | `sort INDEX ORDER` <br> e.g.,`sort 1 latest` or `sort 3 oldest`                                                                                        | 
-| **User Guide** | `user_guide`                                                                                                                                           |
-| **View**       | `view INDEX` <br> e.g., `view 5`                                                                                                                       |
+| Action         | Format, Examples                                                                                                                                                |
+|----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**        | `add n/CLIENT a/ADDRESS p/PHONE e/EMAIL [t/TAG]...`<br> e.g., `add n/Alice a/Yishun Street 81 p/9876543 e/alice@gmail.com`                                      |
+| **Buy**        | `buy INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]` <br/> e.g., `buy 2 q/100 g/apples price/1.5`                                                                |
+| **Clear**      | `clear`                                                                                                                                                         |
+| **Delete**     | `delete INDEX m/MODE`<br> e.g., `delete 3 m/client` or `view 1` followed by `delete 3 m/remark`                                                                 |
+| **Edit**       | `edit INDEX m/MODE FIELDS [MORE_FIELDS]...` <br> e.g.,`edit 1 m/client a/Blk 221 Yishun St 81 p/818181` or `view 1` followed by `edit 3 m/transaction g/mango ` |
+| **Exit**       | `exit`                                                                                                                                                          |
+| **Filter**     | `filter TYPE` <br> e.g., `filter sell` or `filter buy`                                                                                                          |
+| **Find**       | `find KEYWORD [MORE_KEYWORDS]...`<br> e.g., `find John`                                                                                                         |
+| **Help**       | `help [COMMAND]` <br> e.g.,`help` or `help add` or `help sort`                                                                                                  |
+| **List**       | `list`                                                                                                                                                          |
+| **Remark**     | `remark INDEX REMARK [t/TAG]...`<br> e.g., `remark 3 Punctual Buyer` or `remark 5 Fast and Decisive Buyer t/favourite`                                          |                                                                     |
+| **Sell**       | `sell INDEX q/QUANTITY g/GOODS price/PRICE [d/DATE]` <br/> e.g., `sell 2 q/100 g/apples price/1.5 d/07/11/2022`                                                 |
+| **Sort**       | `sort INDEX ORDER` <br> e.g.,`sort 1 latest` or `sort 3 oldest`                                                                                                 | 
+| **User Guide** | `user_guide`                                                                                                                                                    |
+| **View**       | `view INDEX` <br> e.g., `view 5`                                                                                                                                |
 
 [Back to Table of Contents](#table-of-contents)
 
