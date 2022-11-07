@@ -3,7 +3,7 @@ layout: page
 title: Andrew Lo Zhi Sheng's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: GithubContact
 
 GithubContact is an address book **integrated with Github's Public API**, targeted at software engineering project
 managers to help them communicate and collaborate with their teams smoothly.
@@ -59,6 +59,10 @@ Given below are my contributions to the project.
     * Added use cases for the `set` Command.
     * Wrote the implementation for the `set` command.
     * Added sequence diagram for `set` command.
+    * Added activity diagram for `set` command.
+    * Added activity diagram for `sort` command.
+    * Wrote instructions and test cases for manual testing for every command.
+    
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [#139](https://github.com/AY2223S1-CS2103T-W08-2/tp/pull/139),
                                                      [#79](https://github.com/AY2223S1-CS2103T-W08-2/tp/pull/79)
