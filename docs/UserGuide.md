@@ -11,8 +11,8 @@ Waddle allows you to plan your travels in **3 simple steps**.
 3. Make a schedule for your trip
 
 **It's that simple**.
-<div style="page-break-before: always"></div>
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div>
 
 ## Table of Contents
 
@@ -49,8 +49,8 @@ Waddle allows you to plan your travels in **3 simple steps**.
    1. [**Home page commands**](#home-page-commands)
    2. [**Item planning page commands**](#item-planning-page-commands)
 
-<div style="page-break-before: always"></div>
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div>
 
 ## Quick start
 
@@ -129,7 +129,6 @@ Exits the Waddle program.
 Format: `exit`
 
 <div style="page-break-after: always"></div>
-
 ### The main page
 
 The main page, or home page, of Waddle displays the list of itineraries you have created and stored in the app.
