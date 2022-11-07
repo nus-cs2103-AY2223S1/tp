@@ -86,19 +86,28 @@ public class EditCommand extends Command {
             + "and there are no unavailable dates (and their indexes) for patient. "
             + "Please remove the unavailable dates field and its index field.";
 
-    /*public static final String MESSAGE_INVALID_NUMBERS_OF_DATESLOT_AND_DATESLOTINDEX = "The dateSlot index "
-            + "provided is more than the dateSlot provided." + "Please remove the dateSlot index or add more dateSlot.";
-
-    public static final String MESSAGE_OUT_OF_BOUND_DATESLOTINDEX = "The dateSlot index given is out of bounds "
-            + "of the existing list." + "Please retype another index that is within the range or left it empty.";
-
-    public static final String MESSAGE_INVALID_NUMBERS_OF_UNAVAILABLEDATES_AND_UNAVAILABLEDATESINDEX = "The unavailable date index "
-            + "provided is more than the unavailable date provided."
-            + "Please remove the unavailable date index or add more unavailable date.";
-
-    public static final String MESSAGE_OUT_OF_BOUND_UNAVAILABLEDATESINDEX = "The unavailable date index "
-            + "given is out of bounds of the existing list."
-            + "Please retype another index that is within the range or left it empty.";*/
+    /*
+     * public static final String
+     * MESSAGE_INVALID_NUMBERS_OF_DATESLOT_AND_DATESLOTINDEX = "The dateSlot index "
+     * + "provided is more than the dateSlot provided." +
+     * "Please remove the dateSlot index or add more dateSlot.";
+     *
+     * public static final String MESSAGE_OUT_OF_BOUND_DATESLOTINDEX =
+     * "The dateSlot index given is out of bounds "
+     * + "of the existing list." +
+     * "Please retype another index that is within the range or left it empty.";
+     *
+     * public static final String
+     * MESSAGE_INVALID_NUMBERS_OF_UNAVAILABLEDATES_AND_UNAVAILABLEDATESINDEX =
+     * "The unavailable date index "
+     * + "provided is more than the unavailable date provided."
+     * + "Please remove the unavailable date index or add more unavailable date.";
+     *
+     * public static final String MESSAGE_OUT_OF_BOUND_UNAVAILABLEDATESINDEX =
+     * "The unavailable date index "
+     * + "given is out of bounds of the existing list."
+     * + "Please retype another index that is within the range or left it empty.";
+     */
 
     private final Uid targetUid;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -165,7 +174,7 @@ public class EditCommand extends Command {
      * edited with {@code editPersonDescriptor}.
      */
     public Person createEditedPerson(Model model, List<Person> personList, Person personToEdit,
-                                     EditPersonDescriptor editPersonDescriptor) throws CommandException {
+            EditPersonDescriptor editPersonDescriptor) throws CommandException {
         assert personToEdit != null;
         Category updatedCategory = editPersonDescriptor.getCategory().orElse(personToEdit.getCategory());
         Uid uid = editPersonDescriptor.getUid().orElse(personToEdit.getUid());
@@ -195,11 +204,10 @@ public class EditCommand extends Command {
         throw new IllegalArgumentException(Category.MESSAGE_CONSTRAINTS);
     }
 
-
     private Patient createUpdatedPatient(Uid uid, Name updatedName, Gender updatedGender, Phone updatedPhone,
-                                         Email updatedEmail, Address updatedAddress, Set<Tag> updatedTags,
-                                         EditPersonDescriptor editPersonDescriptor, Person personToEdit,
-                                         Model model, List<Person> personList) throws CommandException {
+            Email updatedEmail, Address updatedAddress, Set<Tag> updatedTags,
+            EditPersonDescriptor editPersonDescriptor, Person personToEdit,
+            Model model, List<Person> personList) throws CommandException {
 
         Optional<Physician> updatedPhysician = editPersonDescriptor.getPhysician()
                 .orElse(((Patient) personToEdit).getAttendingPhysician());
@@ -218,8 +226,8 @@ public class EditCommand extends Command {
     }
 
     private Patient createNewPatient(Uid uid, Name updatedName, Gender updatedGender, Phone updatedPhone,
-                                     Email updatedEmail, Address updatedAddress, Set<Tag> updatedTags,
-                                     EditPersonDescriptor editPersonDescriptor) {
+            Email updatedEmail, Address updatedAddress, Set<Tag> updatedTags,
+            EditPersonDescriptor editPersonDescriptor) {
 
         Optional<Physician> updatedPhysician = editPersonDescriptor.getPhysician()
                 .orElse(Optional.empty());
@@ -232,9 +240,9 @@ public class EditCommand extends Command {
     }
 
     private Nurse createUpdatedNurse(Uid uid, Name updatedName, Gender updatedGender, Phone updatedPhone,
-                                     Email updatedEmail, Address updatedAddress, Set<Tag> updatedTags,
-                                     EditPersonDescriptor editPersonDescriptor, Person personToEdit,
-                                     Model model, List<Person> personList) throws CommandException {
+            Email updatedEmail, Address updatedAddress, Set<Tag> updatedTags,
+            EditPersonDescriptor editPersonDescriptor, Person personToEdit,
+            Model model, List<Person> personList) throws CommandException {
 
         List<Date> originalDate = ((Nurse) personToEdit).getUnavailableDates();
         Optional<List<Date>> toBeUpdateDate = editPersonDescriptor.getUnavailableDates();
@@ -253,8 +261,8 @@ public class EditCommand extends Command {
     }
 
     private Nurse createNewNurse(Uid uid, Name updatedName, Gender updatedGender, Phone updatedPhone,
-                                     Email updatedEmail, Address updatedAddress, Set<Tag> updatedTags,
-                                     EditPersonDescriptor editPersonDescriptor) {
+            Email updatedEmail, Address updatedAddress, Set<Tag> updatedTags,
+            EditPersonDescriptor editPersonDescriptor) {
 
         List<Date> updatedUnavailableDate = editPersonDescriptor.getUnavailableDates().orElse(null);
         List<HomeVisit> updatedHomeVisitList = editPersonDescriptor.getHomeVisits().orElse(null);
@@ -601,10 +609,9 @@ public class EditCommand extends Command {
         private final Boolean isDateSlotsGivenEmpty;
         private final Boolean isDateSlotIndexesGivenEmpty;
 
-
         EditedDateSlotCreator(Model model, List<Person> personList, List<DateSlot> originalDateSlots,
-                              Optional<List<DateSlot>> toBeUpdateDateSlots,
-                              Optional<List<Index>> toBeUpdateDateSlotsIndexes) {
+                Optional<List<DateSlot>> toBeUpdateDateSlots,
+                Optional<List<Index>> toBeUpdateDateSlotsIndexes) {
             this.model = model;
             this.personList = personList;
             this.originalDateSlotList = originalDateSlots;
@@ -647,10 +654,12 @@ public class EditCommand extends Command {
         private boolean getIsDateSlotIndexesGivenEmpty() {
             return !isDateSlotIndexesGivenNull && toBeUpdateDateSlotsIndexes.isEmpty();
         }
+
         private List<DateSlot> createEditedDateSlotList() throws CommandException {
 
             if (isDelete()) {
-                // Deletes all the dateTime in the existing list/ Deletes specific dateTime in the existing list
+                // Deletes all the dateTime in the existing list/ Deletes specific dateTime in
+                // the existing list
                 return removeActionForDateSlot();
 
             } else if (isAdd()) {
@@ -661,10 +670,9 @@ public class EditCommand extends Command {
                 // Remove specific dateSlot in the existing list and add the given dateSlot
                 return editActionForDateSlot();
 
-            } else {
-                // Remain as original dateTime list, no changes made
-                return originalDateSlotList;
             }
+            // Remain as original dateTime list, no changes made
+            return originalDateSlotList;
         }
 
         private Boolean isDelete() {
@@ -722,7 +730,8 @@ public class EditCommand extends Command {
 
     /**
      * To create the edited unavailable date list.
-     * If adding a new unavailable date occurs, then the respective home visit will be checked and removed if clash
+     * If adding a new unavailable date occurs, then the respective home visit will
+     * be checked and removed if clash
      */
     public static class EditedUnavailableDateCreator {
 
@@ -730,9 +739,9 @@ public class EditCommand extends Command {
                 + "given is out of bounds of the existing list."
                 + " Please retype another index that is within the range or left it empty.";
 
-        public static final String MESSAGE_INVALID_NUMBERS_OF_UNAVAILABLE_DATES_AND_UNAVAILABLE_DATE_INDEXES =
-                "The unavailable date index " + "provided is more than the unavailable date provided."
-                        + " Please remove the unavailable date index or add more unavailable date.";
+        public static final String MESSAGE_INVALID_NUMBERS_OF_UNAVAILABLE_DATES_AND_UNAVAILABLE_DATE_INDEXES = "The unavailable date index "
+                + "provided is more than the unavailable date provided."
+                + " Please remove the unavailable date index or add more unavailable date.";
 
         private final Model model;
         private final Person nurseToEdit;
@@ -745,11 +754,10 @@ public class EditCommand extends Command {
         private final Boolean isUnavailableDatesGivenEmpty;
         private final Boolean isUnavailableDateIndexesGivenEmpty;
 
-
         EditedUnavailableDateCreator(Model model, Person nurseToEdit, List<Person> personList,
-                                     List<Date> originalUnavailableDates,
-                                     Optional<List<Date>> toBeUpdateUnavailableDates,
-                                     Optional<List<Index>> toBeUpdateUnavailableDateIndexes) {
+                List<Date> originalUnavailableDates,
+                Optional<List<Date>> toBeUpdateUnavailableDates,
+                Optional<List<Index>> toBeUpdateUnavailableDateIndexes) {
             this.model = model;
             this.nurseToEdit = nurseToEdit;
             this.personList = personList;
@@ -794,6 +802,7 @@ public class EditCommand extends Command {
         private boolean getIsUnavailableDateIndexesGivenEmpty() {
             return !isUnavailableDateIndexesGivenNull && toBeUpdateUnavailableDateIndexes.isEmpty();
         }
+
         private List<Date> createEditedUnavailableDateList(EditPersonDescriptor editPersonDescriptor)
                 throws CommandException {
 
@@ -810,7 +819,8 @@ public class EditCommand extends Command {
                 return addActionForUnavailableDate(editPersonDescriptor);
 
             } else if (isEdit()) {
-                // Remove specific unavailable dates in the existing list and add the given unavailable dates
+                // Remove specific unavailable dates in the existing list and add the given
+                // unavailable dates
                 return editActionForUnavailableDates(editPersonDescriptor);
 
             } else {
@@ -898,6 +908,4 @@ public class EditCommand extends Command {
 
     }
 
-
 }
-

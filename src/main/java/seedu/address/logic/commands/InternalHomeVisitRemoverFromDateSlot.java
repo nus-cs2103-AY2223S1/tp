@@ -58,7 +58,6 @@ public class InternalHomeVisitRemoverFromDateSlot {
         Boolean hasRemoveHomeVisits = false;
         if (patientDateSlotIndex.isEmpty()) {
             hasRemoveHomeVisits = removeHomeVisitsFromAllDateSlot();
-
         } else {
             hasRemoveHomeVisits = removeHomeVisitsFromSpecificDateSlot();
         }
