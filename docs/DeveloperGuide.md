@@ -870,7 +870,8 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case: `view 1`<br/>Expected: The list of clients panel is filtered to left only the first client in the original list. All transactions and remarks with first client is shown in the transaction list panel and remark list panel respectively.
     3. Test case: `view 0`<br/>Expected: List of clients panel is not filtered. Transactions panel and Remarks panel is not updated. Error details is shown in the `Application's Reply` panel.
-    4. Other incorrect view commands to try: `view abc`, `view x` (where x is larger than the client list size displayed)
+    4. Other incorrect view commands to try: `view abc`, `view x` (where x is larger than the client list size displayed)<br/>
+    Expected: Similar to previous.
 
 ### Deleting a client
 
@@ -884,7 +885,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete 0 m/client`<br>
       Expected: No client is deleted. Error details shown in the `Application's Reply` panel.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x m/client` (where x is larger than the client list size), `delete 1`<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x m/client` (where x is larger than the displayed client list size), `delete 1`<br>
       Expected: Similar to previous.
 
 ### Deleting a transaction
@@ -894,7 +895,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: View a single client using the `view` command. Use `view 1` (must have at least one client in the list). Multiple transactions in the transaction list panel.
     2. Test case: `delete 1 m/transaction`<br/>Expected: First transaction is deleted from the list. Details of the deleted transaction shown in the `Application's Reply` panel.
     3. Test case: `delete 0 m/transaction`<br/>Expected: No transaction is deleted. Error details shown in the `Application's Reply` panel.
-    4. Other incorrect delete commands to try: `delete`, `delete x m/transaction` (where x is larger than the transaction list size), `delete 1`<br/>Expected: Similar to previous.
+    4. Other incorrect delete commands to try: `delete`, `delete x m/transaction` (where x is larger than the transaction list size displayed), `delete 1`<br/>Expected: Similar to previous.
 
 2. Deleting a transaction while more than one client is shown in the client list.
    1. Prerequisites: List all clients using the `list` command. More than one client in the list.
@@ -918,7 +919,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `edit 1 m/client n/JohnDoe`<br/>Expected: First client's name is changed to JohnDoe. Details of the edited client shown in the `Application's Reply` panel.
     2. Test case: `edit 0 m/client`<br/>Expected: No client is edited. Error details shown in the `Application's Reply` panel.
-    3. Other incorrect edit client commands to try: `edit`, `edit x m/client` (where x is larger than the transaction list size), `edit 1 m/client n/`, `delete 1`<br/>Expected: Similar to previous.
+    3. Other incorrect edit client commands to try: `edit`, `edit x m/client` (where x is larger than the transaction list size displayed), `edit 1 m/client n/`, `delete 1`<br/>Expected: Similar to previous.
 
 ### Editing a transaction
 
@@ -927,7 +928,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: View a single client using the `view` command. Use `view 1` (must have at least one client in the list). Multiple transactions in the transaction list panel.
     2. Test case: `edit 1 m/transaction g/Oranges q/100`<br/>Expected: First transaction goods name and quantity is edited in the list. Details of the edited transaction shown in the `Application's Reply` panel.
     3. Test case: `edit 0 m/transaction`<br/>Expected: No transaction is edited. Error details shown in the `Application's Reply` panel.
-    4. Other incorrect edit transaction commands to try: `edit`, `edit x m/transaction` (where x is larger than the transaction list size),`edit 1 m/transaction q/12g/`edit 1`<br/>Expected: Similar to previous.
+    4. Other incorrect edit transaction commands to try: `edit`, `edit x m/transaction` (where x is larger than the transaction list size displayed),`edit 1 m/transaction q/12g/`edit 1`<br/>Expected: Similar to previous.
 
 2. Editing a transaction while more than one client is shown in the client list.
     1. Prerequisites: List all clients using the `list` command. More than one client in the list.
@@ -940,7 +941,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: View a single client using the `view` command. Use `view 1` (must have at least one client in the list). One or multiple remarks in the transaction list panel.
     2. Test case: `edit 1 m/remark new Edited Remark`<br/>Expected: First remark is edited in the list to be `new Edited Remark`. Details of the edited remark shown in the `Application's Reply` panel.
     3. Test case: `edit 0 m/remark`<br/>Expected: No remark is edited. Error details shown in the `Application's Reply` panel.
-    4. Other incorrect edit remark commands to try: `edit`, `edit x m/remark` (where x is larger than the transaction list size)<br/>Expected: Similar to previous.
+    4. Other incorrect edit remark commands to try: `edit`, `edit x m/remark` (where x is larger than the transaction list size displayed)<br/>Expected: Similar to previous.
 
 2. Editing a remark while more than one client is shown in the client list.
     1. Prerequisites: List all clients using the `list` command. More than one client in the list.
