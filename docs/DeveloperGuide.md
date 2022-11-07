@@ -301,7 +301,7 @@ While the `ModuleClass` object for the module "CS1231S" might be saved in `modul
 ```
 
 #### Design considerations
-* **Alternative 1 (Current Choice)**: The `StudentModuleData` and `SessionData` objects only save the `ModuleClass` name and
+* **Option 1 (Current Choice).**: The `StudentModuleData` and `SessionData` objects only save the `ModuleClass` name and
 `Session` name respectively. Because in any of their functionality, we do not need to know the list of `Sessions` in the
 `ModuleClass` object or the `Date` of the `Session` object. 
   * **Pros**:
@@ -316,12 +316,12 @@ While the `ModuleClass` object for the module "CS1231S" might be saved in `modul
     on the session list in the `ModuleClass` object, for example. So we need to remember that the actual `ModuleClass` and
     `Session` objects are stored in `Model` and not in the `StudentModuleData` and `SessionData` objects.
   
-* **Alternative 2**: Same as alternative 1 but we save the names of `ModuleClass` and `Session` as a `String`. 
+* **Option 2**: Same as option 1, but we save the names of `ModuleClass` and `Session` as a `String`. 
   * **Pros**: Makes the intention more clear that only the names are required in these classes. 
   * **Cons**: We lose some functionality of the `ModuleClass` and `Session` objects, such as `isSame`, `toString` and other
     methods. In this approach, we would need to recreate them for `String` instead. 
   
-* **Alternative 3**: While loading the data, we first load `ModuleClass` objects and `Student` objects into two separate lists. 
+* **Option 3**: While loading the data, we first load `ModuleClass` objects and `Student` objects into two separate lists. 
   Then for each `Student` object and each `StudentModuleData` object, we iterate through the list of `ModuleClass` objects
   and reference the correct `ModuleClass` object. Then for each of the `SessionData` in the `StudentModuleData` object, we 
   iterate through the list of `Sessions` in the `ModuleClass` object and reference the correct `Session` object.
@@ -364,11 +364,11 @@ the GUI to the user.
 
 #### Design considerations:
 
-* **Alternative 1 (Current Choice)**: Let each student maintain a collection of module classes that the student is being assigned to.
+* **Option 1 (Current Choice)**: Let each student maintain a collection of module classes that the student is being assigned to.
   * **Pros**: Only captures necessary information, and easier to implement. This structure is also easier to capture session information for the students.
   * **Cons**: Will be creating multiple `StudentModuleData` objects for a module class when multiple students are assigned to the module class. This may cause performance issues from the large number of objects created.
   
-* **Alternative 2**: Create a matrix of students and classes to determine which module class is assigned to which student.
+* **Option 2**: Create a matrix of students and classes to determine which module class is assigned to which student.
   * **Pros**: Will allow fast query to whether a student is assigned to a module class, or when looking for all the students assigned to a certain module class.
   * **Cons**: Can possibly be storing a lot of unnecessary information. Considering the target audience of TAs, it is very unlikely for them to be teaching the same student for multiple module classes.
 
@@ -503,18 +503,18 @@ The following sequence diagram shows how changes are propagated to the `UI` thro
 #### Design considerations
 
 **Aspect: How query data is passed to `UI`:**
-* **Option 1 (Current Choice).** Pair `Student` and `SessionData` together in a `StudentView` class.
-  * Pros: With `Observable` pattern, can be made to automatically update when a new student is graded. Simplifies `UI` implementation.
-  * Cons: Complicates design of `Model` as it adds another class just for handling the "view" of a student.
-* **Option 2.** Maintain two `ObservableList`-s for `Student` and `SessionData` seperately.
-  * Pros: Reduces the need of a encapsulating class, which simplifies the design of `Model`.
-  * Cons: Hard to maintain. Accidental slip-up in updating one list but not the other can occur.
-* **Option 3.** Let UI query the data from `Student`
-  * Pros: `Model` needs no change.
-  * Cons: Breaks abstraction principle. Non-trivial querying of fields from `Student` should be handled by `Model`.
-* **Option 4.** Pass data through `CommandResult`
-  * Pros: Easy to implement.
-  * Cons: Hard to maintain. Each `Command` now needs to know that `CommandResult` can pass data other than for result display.
+* **Option 1 (Current Choice)** Pair `Student` and `SessionData` together in a `StudentView` class.
+  * **Pros**: With `Observable` pattern, can be made to automatically update when a new student is graded. Simplifies `UI` implementation.
+  * **Cons**: Complicates design of `Model` as it adds another class just for handling the "view" of a student.
+* **Option 2** Maintain two `ObservableList`-s for `Student` and `SessionData` seperately.
+  * **Pros**: Reduces the need of a encapsulating class, which simplifies the design of `Model`.
+  * **Cons**: Hard to maintain. Accidental slip-up in updating one list but not the other can occur.
+* **Option 3** Let UI query the data from `Student`
+  * **Pros**: `Model` needs no change.
+  * **Cons**: Breaks abstraction principle. Non-trivial querying of fields from `Student` should be handled by `Model`.
+* **Option 4** Pass data through `CommandResult`
+  * **Pros**: Easy to implement.
+  * **Cons**: Hard to maintain. Each `Command` now needs to know that `CommandResult` can pass data other than for result display.
 
 ### Exporting data as CSV
 This feature allows the user to extract data efficiently from TA-Assist to be used for other purposes such as statistical analysis or result collation on other platforms. Unlike other commands which only works on the model, the `export` command requires access to `Storage` to create a new CSV file and write data to it. This is facilitated by the `ExportCsvStorageAction` class, which is a children of the `StorageAction` class, where further action onto the `Storage` component is processed.
@@ -532,11 +532,11 @@ The following sequence diagram shows how the `export` command exports a CSV file
 #### Design considerations
 **Aspect: How commands should access the `Storage` class:**
 * **Option 1 (Current Choice).** Create a new class of objects `StorageActions` to act on the `Storage` class.
-  * Pros: Most commands that does not require access to `Storage` will have `Storage` hidden from them. Also, having a class `StorageActions` will allow future features updates such as exporting to Excel files be easier to implement.
-  * Cons: Unable to have commands that act on `Storage` first before acting on `Model`.
+  * **Pros**: Most commands that does not require access to `Storage` will have `Storage` hidden from them. Also, having a class `StorageActions` will allow future features updates such as exporting to Excel files be easier to implement.
+  * **Cons**: Unable to have commands that act on `Storage` first before acting on `Model`.
 * **Option 2.** Let all commands execute with access to both `Model` and `Storage`.
-  * Pros: Allows the program to have commands that act on `Storage` and `Model` in any order.
-  * Cons: Unnecessary exposure of `Storage` to other commands that does not require access to it. In our case, this is the majority of the commands.
+  * **Pros**: Allows the program to have commands that act on `Storage` and `Model` in any order.
+  * **Cons**: Unnecessary exposure of `Storage` to other commands that does not require access to it. In our case, this is the majority of the commands.
 
 ### UI Implementation
 #### Home Screen
