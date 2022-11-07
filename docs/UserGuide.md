@@ -48,8 +48,6 @@ Boxes like this indicate more tips to help you make the most out of CodeConnect.
 
 </div>
 
-<div class="page-new"></div>
-
 ## Quick start
 
 CodeConnect works on all major OSes (Windows, Mac, Linux) and only requires Java 11 or above installed on your computer.
@@ -65,8 +63,6 @@ CodeConnect works on all major OSes (Windows, Mac, Linux) and only requires Java
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
     ![UiOnStartup](images/UiOnStartup.png)
-    <div class="page-new"></div>
-
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
@@ -133,6 +129,7 @@ Several commands below require an `index` to be specified, as they operate on a 
 * This value ranges from 1, 2, 3...
 
 </div>
+
 ### Managing tasks
 
 This section contains all the commands for the Task features. 
@@ -189,8 +186,6 @@ CodeConnect will happily accept deadlines that are in the past, in case you want
 
 </div>
 
-<div class="page-new"></div>
-
 #### Editing a task: `edit`
 
 Edits the specified task.
@@ -204,7 +199,7 @@ Examples:
 
 <div markdown="block" class="alert alert-info">
 
-:question: What is Field Prefixes?
+:question: What are Field Prefixes?
 
 `field_prefix` can be any task field used in the [add task command](#adding-a-task-add).
 
@@ -233,8 +228,6 @@ This command has similar spelling to the [clear command](#clearing-all-contacts-
 
 </div>
 
-<div class="page-new"></div>
-
 #### Marking a task: `mark`
 
 Marks the specified task as complete.
@@ -256,8 +249,6 @@ Format:
 
 Example:
 `unmark 3` - undo the marking of the task at index 2 shown by a cross beside the task description.
-
-<div class="page-new"></div>
 
 #### Finding tasks: `find`
 
@@ -287,8 +278,6 @@ Examples:
 `find m/CS2103T` returns this:
 
 ![findTasks](images/findTask.png)
-
-<div class="page-new"></div>
 
 #### Listing all tasks : `list`
 
@@ -333,8 +322,6 @@ Every tag must begin with a tag prefix `t/`. If you would like to add multiple t
 Modules, however, may be entered as **space separated**. For example, `m/MOD1 MOD2 MOD3` will correctly assign 3 modules to the contact.
 
 </div>
-
-<div class="page-new"></div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 
@@ -402,8 +389,6 @@ Examples:
 * `findc m/CS1231S CS1101S` - returns all contacts that are taking at least one module that matches "CS1231S" or "CS1101S".
 * `findc m/1S` - returns all contacts that are taking at least one module that matches "1S".
 * `findc ts/2` -returns contacts that are taking the module that the task at index 2 belongs to
-
-<div class="page-new"></div>
 
 #### Quick-search for contacts: `saveme`
 
