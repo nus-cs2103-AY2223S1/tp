@@ -35,7 +35,7 @@ import seedu.modquik.model.tutorial.TutorialName;
  * Contains utility methods for populating {@code ModQuik} with sample data.
  */
 public class SampleDataUtil {
-    public static Student[] getSamplePersons() {
+    public static Student[] getSampleStudents() {
         return new Student[] {
             new Student(new Name("Alex Yeoh"),
                     new StudentId("A0000000a"),
@@ -129,8 +129,8 @@ public class SampleDataUtil {
 
     public static ReadOnlyModQuik getSampleModQuik() {
         ModQuik sampleAb = new ModQuik();
-        for (Student sampleStudent : getSamplePersons()) {
-            sampleAb.addPerson(sampleStudent);
+        for (Student sampleStudent : getSampleStudents()) {
+            sampleAb.addStudent(sampleStudent);
         }
         for (Tutorial sampleTutorial: getSampleTutorials()) {
             sampleAb.addTutorial(sampleTutorial);

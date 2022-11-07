@@ -15,26 +15,26 @@ import static seedu.modquik.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 import java.util.Set;
 
 import seedu.modquik.logic.commands.student.AddStudentCommand;
-import seedu.modquik.logic.commands.student.EditStudentCommand.EditPersonDescriptor;
+import seedu.modquik.logic.commands.student.EditStudentCommand.EditStudentDescriptor;
 import seedu.modquik.model.student.Student;
 import seedu.modquik.model.tag.Tag;
 
 /**
  * A utility class for Person.
  */
-public class PersonUtil {
+public class StudentUtil {
 
     /**
      * Returns an add command string for adding the {@code person}.
      */
     public static String getAddStudentCommand(Student student) {
-        return AddStudentCommand.COMMAND_WORD + " " + getPersonDetails(student);
+        return AddStudentCommand.COMMAND_WORD + " " + getStudentDetails(student);
     }
 
     /**
      * Returns the part of command string for the given {@code person}'s details.
      */
-    public static String getPersonDetails(Student student) {
+    public static String getStudentDetails(Student student) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + student.getName().fullName + " ");
         sb.append(PREFIX_ID + student.getId().id + " ");
@@ -53,9 +53,9 @@ public class PersonUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditStudentDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditPersonDescriptor descriptor) {
+    public static String getEditStudentDescriptorDetails(EditStudentDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getId().ifPresent(id -> sb.append(PREFIX_ID).append(id.id).append(" "));

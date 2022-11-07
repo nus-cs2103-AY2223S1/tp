@@ -20,7 +20,7 @@ import seedu.modquik.model.util.SampleDataUtil;
 /**
  * A utility class to help with building Person objects.
  */
-public class PersonBuilder {
+public class StudentBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_ID = "A0000000Z";
@@ -53,7 +53,7 @@ public class PersonBuilder {
     /**
      * Creates a {@code PersonBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public StudentBuilder() {
         name = new Name(DEFAULT_NAME);
         id = new StudentId(DEFAULT_ID);
         phone = new Phone(DEFAULT_PHONE);
@@ -72,7 +72,7 @@ public class PersonBuilder {
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
-    public PersonBuilder(Student studentToCopy) {
+    public StudentBuilder(Student studentToCopy) {
         name = studentToCopy.getName();
         id = studentToCopy.getId();
         phone = studentToCopy.getPhone();
@@ -89,7 +89,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public StudentBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
@@ -97,7 +97,7 @@ public class PersonBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withTags(String ... tags) {
+    public StudentBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
         return this;
     }
@@ -105,15 +105,15 @@ public class PersonBuilder {
     /**
      * Sets the {@code Phone} of the {@code Person} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
+    public StudentBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
         return this;
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Email} of the {@code Student} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
+    public StudentBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }
@@ -131,7 +131,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code ID} of the {@code Person} that we are building.
      */
-    public PersonBuilder withId(String id) {
+    public StudentBuilder withId(String id) {
         this.id = new StudentId(id);
         return this;
     }
@@ -139,7 +139,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Telegram} of the {@code Person} that we are building.
      */
-    public PersonBuilder withTelegram(String telegram) {
+    public StudentBuilder withTelegram(String telegram) {
         this.telegramHandle = new TelegramHandle(telegram);
         return this;
     }
@@ -147,7 +147,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code ModuleCode} of the {@code Person} that we are building.
      */
-    public PersonBuilder withTutorialModule(String tutorialModule) {
+    public StudentBuilder withTutorialModule(String tutorialModule) {
         this.moduleCode = new ModuleCode(tutorialModule);
         return this;
     }
@@ -155,7 +155,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code TutorialName} of the {@code Person} that we are building.
      */
-    public PersonBuilder withTutorialName(String tutorialName) {
+    public StudentBuilder withTutorialName(String tutorialName) {
         this.tutorialName = new TutorialName(tutorialName);
         return this;
     }
@@ -163,7 +163,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Attendance} of the {@code Person} that we are building.
      */
-    public PersonBuilder withAttendance(String attendance) {
+    public StudentBuilder withAttendance(String attendance) {
         this.attendance = new Attendance(attendance);
         return this;
     }
@@ -171,7 +171,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Participation} of the {@code Person} that we are building.
      */
-    public PersonBuilder withParticipation(String participation) {
+    public StudentBuilder withParticipation(String participation) {
         this.participation = new Participation(participation);
         return this;
     }
@@ -179,7 +179,7 @@ public class PersonBuilder {
     /**
      * Sets the {@code Grade} of the {@code Person} that we are building.
      */
-    public PersonBuilder withGrade(String grade) {
+    public StudentBuilder withGrade(String grade) {
         this.grade = new Grade(grade);
         return this;
     }
