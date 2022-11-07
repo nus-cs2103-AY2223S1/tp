@@ -58,11 +58,9 @@ class ConsultCommandTest {
 
     @Test
     void execute_invalidIndex_failure() {
-        Index invalidIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index invalidIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 2);
         ConsultCommand invalidIndexConsult = new ConsultCommand(invalidIndex, pastAppointment);
-        System.out.println("hi");
         assertCommandFailure(invalidIndexConsult, model, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        System.out.println("hi");
     }
 
     @Test
