@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.hrpro.commons.core.Messages.MESSAGE_PROJECTS_LISTED_PLURAL_OVERVIEW;
+import static seedu.hrpro.commons.core.Messages.MESSAGE_PROJECTS_LISTED_SINGULAR_OVERVIEW;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.hrpro.testutil.TypicalHrPro.getTypicalHrPro;
 import static seedu.hrpro.testutil.TypicalProjects.COCONUT;
@@ -72,6 +73,16 @@ public class FindCommandTest {
         expectedModel.updateFilteredProjectList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(COCONUT, ELLE, FIONA), model.getFilteredProjectList());
+    }
+
+    @Test
+    public void execute_oneKeyword_oneProjectFound() {
+        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_SINGULAR_OVERVIEW, 1);
+        ProjectNameContainsKeywordsPredicate predicate = preparePredicate("Kunz");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredProjectList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(FIONA), model.getFilteredProjectList());
     }
 
     /**
