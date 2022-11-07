@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.client.EditClientCommand;
 import seedu.address.logic.commands.project.EditProjectCommand;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
@@ -55,9 +54,9 @@ public class EditProjectCommandParserTest {
                 String.format(Repository.MESSAGE_CONSTRAINTS));
 
         //invalid deadline
-        assertParseFailure(parser, EditClientCommand.COMMAND_FLAG, " d/10102003 p/1",
+        assertParseFailure(parser, EditProjectCommand.COMMAND_FLAG, " d/10102003 p/1",
                 String.format(Deadline.MESSAGE_CONSTRAINTS));
-        assertParseFailure(parser, EditClientCommand.COMMAND_FLAG, " d/ p/1",
+        assertParseFailure(parser, EditProjectCommand.COMMAND_FLAG, " d/ p/1",
                 String.format(Deadline.MESSAGE_CONSTRAINTS));
     }
 
