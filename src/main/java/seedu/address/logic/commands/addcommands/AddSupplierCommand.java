@@ -38,8 +38,8 @@ public class AddSupplierCommand extends AddPersonCommand {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_LOCATION + "Vietnam "
-            + PREFIX_PET + AddPetCommand.COMMAND_WORD + " (...Pet1 fields) "
-            + PREFIX_PET + AddPetCommand.COMMAND_WORD + " (...Pet2 fields) ";
+            + PREFIX_PET + AddPetCommand.COMMAND_WORD + " (pet1 prefixes and parameters) "
+            + PREFIX_PET + AddPetCommand.COMMAND_WORD + " (pet2 prefixes and parameters) ";
 
     public static final String MESSAGE_SUCCESS = "New supplier added: %1$s";
     public static final String MESSAGE_DUPLICATE_SUPPLIER = "This supplier already exists in the address book";
