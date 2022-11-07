@@ -61,9 +61,37 @@ Welcome HR executives and Department Heads! Coydir is a desktop app to efficient
 
 ## Using this Guide
 
-### Navigating the User Guide
+###Symbols and Syntax
+Here are some symbols to look out for while using this guide:
 
-**[To be updated]**
+| Symbol               | Meaning                                      | 
+|----------------------|----------------------------------------------|
+| `code`               | Text relevant to commands or name of a file. |
+| :information source: | Information that is useful to take note of.  |
+| :bulb:               | Tips for Coydir Users.                       |
+| :exclamation:        | Be wary and proceed with caution.            |
+
+### Navigating the User Guide
+This document might look daunting at first! But fear not, in this section, you will learn how to use 
+this user guide like a professional.
+
+####Interested in how to setup? 
+
+You can head over to [Quick Start](#quick-start) to install and run Coydir.
+
+####Interested in what Coydir can do?
+
+You can head over to [Features](#features) to learn how to use the features 
+offered in Coydir.
+
+####Have some questions that you are unsure of?
+You can head over to [FAQ](#faq) to view some frequently asked questions to get your answer. 
+However, if your question is not answered in the _FAQ_, you can always contact us at _coydir@gmail.com_, and 
+we will be happy to answer you.
+
+####Just want a quick overview of all the features Coydir can offer?
+You can head over to [Command Summary](#command-summary) for a quick look of all the commands you can use.
+
 
 ### The User Interface
 
