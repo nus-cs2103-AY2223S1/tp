@@ -175,7 +175,7 @@ alphanumeric characters, spaces and these following special characters: `()&!':.
   - e.g. `b/1000.505` will be reflected as $1,000.51.
 
 </div>
-
+<div style="page-break-after: always"></div>
 
 ### Listing all itineraries : `list`
 
@@ -225,6 +225,8 @@ Format: `edit INDEX [d/DESCRIPTION] [c/COUNTRY] [sd/START_DATE] [du/DURATION] [p
 Examples:
 * `edit 1 du/15 sd/2023-11-03` Edits the duration and start date of the first itinerary to be `15` and `2023-11-03` respectively.
 * `edit 2 c/India` Edits the country of the second itinerary to be `India`.
+
+<div style="page-break-after: always"></div>
 
 ### Deleting an itinerary : `delete`
 
