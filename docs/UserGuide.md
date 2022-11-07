@@ -25,6 +25,16 @@ to use and what it does for all the features available in myStudent. If you don'
 
 <div markdown="block" class="alert alert-info">
 
+:information_source: Notes about some keywords in this user guide:
+
+* **Entry**: an entry is a **student**, a **tutor** or a **class**.
+
+* **Displayed list**: it refers to the current list that is displayed. 
+There are three possible list: the **student list**, the **tutor list** and the **class list**. 
+Only one of the three will be displayed at one time, and this list is referred to as the **displayed list**. 
+
+<div markdown="block" class="alert alert-info">
+
 :information_source: Notes about the command format in this user guide:
 
 * **Format** appears in each command section. It refers to the format of the inputs that you need to type into the command box to execute the commands.
@@ -164,9 +174,8 @@ Note that the card for the person being displayed will be highlighted as well.
 
 ### 4. List Tabs
 
-There are three list tabs: Student, Tutor and Class.  
+There are three tabs: `Student`, `Tutor` and `Class`.  
 The highlighted tab indicates which list is currently being displayed.
-
 
 <p align="center">
 
@@ -175,7 +184,7 @@ The highlighted tab indicates which list is currently being displayed.
 </p>
 
 
-The above shows that the **student list** is the one that is currently being displayed.
+The above shows that the **student list** is the **displayed list**.
 
 ### 5. Description Panel
 
@@ -904,7 +913,7 @@ Note that the **displayed list** is the **class list**, so `find d/monday #/tag`
 
 ### Exporting address books to csv
 
-Export Students, Tutors, and TuitionClasses address books into their own .csv files to be used in other programs.  
+Export the `Student`, `Tutor`, and `TuitionClass` address books into their own .csv files to be used in other programs.  
 They are named `students.csv`, `tutors.csv`, and `tuitionClasses.csv` respectively.
 
 <p align="center">
