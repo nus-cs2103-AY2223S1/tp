@@ -11,6 +11,7 @@ Waddle allows you to plan your travels in **3 simple steps**.
 3. Make a schedule for your trip
 
 **It's that simple**.
+
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
 
@@ -66,8 +67,10 @@ To begin planning your travels with Waddle, simply set it up as follows:
    Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-And you're ready to waddle! To execute any command, type it command in the command box and press Enter. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+And you're ready to waddle! To execute any command, type it command in the command box and press Enter. e.g. typing **`help`** and pressing Enter will open the help window.
+<div style="page-break-after: always"></div>
+
+Some example commands you can try:
 
    * **`list`** : Lists all itineraries.
 
@@ -92,9 +95,7 @@ For more commands and their details, refer to the [Features](#features) section 
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   - e.g. in `add d/DESCRIPTION ...`, `DESCRIPTION` is a parameter which can be used as `add d/My Japan Trip`.
-
-* Unlesss stated otherwise, all parameters should contain alphanumerical characters only.
-
+   
 * Items in square brackets are optional.<br>
   - e.g. `d/DESCRIPTION [c/COUNTRY] sd/START_DATE du/DURATION` can be used as `d/My Japan Trip c/Japan sd/2023-04-01 du/14` or as `d/My Japan Trip sd/2023-04-01 du/14`.
 
@@ -136,7 +137,7 @@ The main page, or home page, of Waddle displays the list of itineraries you have
 
 [Commands exclusive to the main page](#commands-on-the-main-page) can help you:
 * [add](#creating-a-new-itinerary--add) new itineraries
-* [view](#listing-all-itineraries--list) or [find](#locating-itineraries-by-description--find) existing itineraries
+* [list](#listing-all-itineraries--list) or [find](#locating-itineraries-by-description--find) existing itineraries
 * [edit](#editing-the-details-of-an-itinerary--edit) or [delete](#deleting-an-itinerary--delete) existing itineraries
 * [clear](#clearing-itineraries--clear) all existing itineraries
 
@@ -165,8 +166,7 @@ alphanumeric characters, spaces and these following special characters: `()&!':.
 
 **:information_source: Notes:**<br>
 
-* You cannot add an itinerary with the same description as an existing itinerary.<br>
-
+* You cannot add an itinerary with the same description as an existing itinerary.
 * Waddle only accepts english letters and spaces for `COUNTRY`, special characters like `'`, `&`, `!` are not allowed.<br>
   - Example of invalid input: `c/Côte d'Ivoire`, `c/中国`
 * The budget input should only contain numbers and one decimal point.<br>
@@ -185,7 +185,7 @@ Format: `list`
 
 ### Locating itineraries by description : `find`
 
-Finds itineraries with descriptions containing any of the given keywords.
+Finds itineraries with names containing any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -225,6 +225,8 @@ Format: `edit INDEX [d/DESCRIPTION] [c/COUNTRY] [sd/START_DATE] [du/DURATION] [p
 Examples:
 * `edit 1 du/15 sd/2023-11-03` Edits the duration and start date of the first itinerary to be `15` and `2023-11-03` respectively.
 * `edit 2 c/India` Edits the country of the second itinerary to be `India`.
+
+<div style="page-break-after: always"></div>
 
 ### Deleting an itinerary : `delete`
 
@@ -273,10 +275,10 @@ Here's an example of how the item planning page looks like:
 
 <div style="page-break-after: always"></div>
 
-[Commands exclusive to the planning page](#commands-on-the-planning-page) can help you:
+[Commands exclusive to the planning page](#commands-on-the-item-planning-page) can help you:
 * [add](#adding-an-item--add) new items
 * [edit](#editing-the-details-of-an-item--edit) or [delete](#deleting-an-item--delete) existing items
-* [view](viewing-vacant-time-slots--free) the vacant time slots on your itinerary
+* [view](#viewing-vacant-timeslots--free) the vacant time slots on your itinerary
 * [schedule](#scheduling-an-item--plan) or [unschedule](#unscheduling-an-item--unplan) items
 * export your itinerary via your [clipboard](#copying-to-clipboard--copy) or as a [pdf](#exporting-as-pdf-file--pdf) file
 
@@ -293,7 +295,7 @@ Adds an item to the wishlist without a scheduled day and time.
 Format: `add d/DESCRIPTION du/DURATION [p/PRIORITY] [c/COST] `
 
 * `DESCRIPTION` cannot be blank and must only contain alphanumeric characters, spaces and these following special characters: `()&!':.,-`.
-* `DURATION` is the time taken for the item in _minutes_. The duration must be more than 0 minutes and not more than 1440 minutes (1 day).
+* `DURATION` is the time taken for the item in _minutes_. The duration must be more than 0 minutes and shorter than 1440 minutes (1 day).
     - e.g. `du/100` is 100 minutes (or 1 hour and 40 minutes).
 
 * `PRIORITY` is used to rank the importance of an item. It must be a number from 1 to 5, with 1 being the highest priority.
@@ -319,6 +321,8 @@ Format: `add d/DESCRIPTION du/DURATION [p/PRIORITY] [c/COST] `
 Examples:
 * `add d/Go to the Louvre p/2 du/1`
 * `add d/Skiing du/14 c/100`
+
+<div style="page-break-after: always"></div>
 
 ### Editing the details of an item : `edit`
 
@@ -388,7 +392,7 @@ Examples:
 * `plan 2 d/3 st/12:00` would add the 2nd item in the Wishlist to Day 3, starting at 12pm.
 * `plan 1 d/1 st/14:50:10` would add the 1st item in the Wishlist to Day 1, starting at 14:50pm, 10 seconds in.
 
-<p><div style="page-break-after: always"></div></p>
+<div style="page-break-after: always"></div>
 
 ### Unscheduling an item : `unplan`
 
@@ -418,8 +422,7 @@ Here's an example of how the copied text would look like: <br>
 
 **:information_source: Note:** <br>
 
-* The generated text includes all days within the itinerary, even if there are no items planned for the day.<br>
-
+* The generated text includes all days within the itinerary, even if there are no items planned for the day.
 * The generated text does not include the items in the Wishlist. For items to be reflected in the generated text, they must be planned.<br>
 
 </div>
@@ -448,7 +451,7 @@ Here's an example of how the generated PDF would look like: <br>
 
 ### Returning to main page : `home`
 
-Returns you to the main itinerary list page.
+Returns you to the [main itinerary list page](#the-main-page).
 
 Format: `home`
 
@@ -486,14 +489,14 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 ### Home page commands
 
 | Action                                                           | Format, Examples                                                                                                                                                  |
-| ------------------------------------------------------------------ |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [**Help**](#viewing-help--help)                                  | `help`                                                                                                                                                            |
 | [**Add Itinerary**](#creating-a-new-itinerary--add)              | `add d/DESCRIPTION sd/START DATE du/DURATION [c/COUNTRY] [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g., `add d/Germanyyyy sd/2025-05-10 du/14 c/Germany p/4 b/7500` |
 | [**List Itineraries**](#listing-all-itineraries--list)           | `list`                                                                                                                                                            |
+| [**Find Itinerary**](#locating-itineraries-by-description--find) | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find India Trip`                                                                                                        |
 | [**Edit Itinerary**](#editing-the-details-of-an-itinerary--edit) | `edit INDEX [n/NAME] [c/COUNTRY] [du/DURATION] [s/START DATE] [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g.,`edit 1 du/15 sd/2025-04-10`                            |
 | [**Delete Itinerary**](#deleting-an-itinerary--delete)           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                               |
 | [**Clear Itineraries**](#clearing-itineraries--clear)            | `clear`                                                                                                                                                           |
-| [**Find Itinerary**](#locating-itineraries-by-name--find)        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find India Trip`                                                                                                        |
 | [**Select Itinerary**](#selecting-an-itinerary--select)          | `select INDEX`<br> e.g., `select 3`                                                                                                                               |
 | [**Exit**](#exiting-waddle--exit)                                | `exit`                                                                                                                                                            |
 
@@ -502,14 +505,15 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 ### Item planning page commands
 
 | Action                                                       | Format, Examples                                                                                         |
-| -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+|--------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| [**Help**](#viewing-help--help)                              | `help`                                                                                                                                                            |  
 | [**Add Item**](#adding-an-item--add)                         | `add d/DESCRIPTION [p/PRIORITY] [c/COST] [du/DURATION]`<br> e.g.,`add d/Visit Taj Mahal p/5 c/40 du/180` |
 | [**Edit Item**](#editing-the-details-of-an-item--edit)       | `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`<br> e.g., `edit 4.1 c/50`               |
 | [**Delete Item**](#deleting-an-item--delete)                 | `delete INDEX`<br> e.g., `delete 3`                                                                      |
+| [**View Vacant Timeslots**](#viewing-vacant-timeslots--free) | `free`                                                                                                   |
 | [**Schedule Item**](#scheduling-an-item--plan)               | `plan INDEX d/DAY NUMBER st/START TIME`<br> e.g., `plan 1 d/4 st/12:00`                                  |
 | [**Unschedule Item**](#unscheduling-an-item--unplan)         | `unplan INDEX`<br> e.g., `unplan 3.2`                                                                    |
-| [**View Vacant Timeslots**](#viewing-vacant-timeslots--free) | `free`                                                                                                   |
-| [**Return to Main Page**](#returning-to-main-page--home)     | `home`                                                                                                   |
 | [**Copy to clipboard**](#copying-to-clipboard--copy)         | `copy`                                                                                                   |
-| [**Export to PDF**](#exporting-to-pdf-file--pdf)             | `pdf`                                                                                                    |
+| [**Export to PDF**](#exporting-as-pdf-file--pdf)             | `pdf`                                                                                                    |
+| [**Return to Main Page**](#returning-to-main-page--home)     | `home`                                                                                                   |
 | [**Exit**](#exiting-waddle--exit)                            | `exit`                                                                                                   |

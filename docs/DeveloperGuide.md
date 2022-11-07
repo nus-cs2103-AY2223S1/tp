@@ -10,7 +10,7 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * [Apache PDFBox®](https://pdfbox.apache.org/)
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* * [Apache Commons](https://commons.apache.org/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -177,7 +177,7 @@ Additionally, we will explain the methods of particular concern below.
 * `Item#getStartTime()` — Returns the start time of the item.
 * `Item#getEndTime()` — Returns the end time of the item.
 
-Given below is an example usage scenario and how the Plan/Unplan mechanism behaves at each step.
+Given below is an example usage scenario and how the Plan/Unplan mechanism behaves at each step. The sequence diagram is a partial diagram showing omitting the details of how the `PlanCommand` is executed. This detail will be shown in the next sequence diagram.
 
 ![PlanSequenceDiagram](images/PlanSequenceDiagram.png)
 
@@ -194,8 +194,6 @@ Step 4. `Itinerary` gets the item from its unscheduledItemList at the specified 
 Step 5. `Day`self invokes `Day#getConflictingItems(item)`. If there are no conflicting items, the incoming item is added into the day's `itemList`. If there are conflicting items, a CommandException is thrown with a time conflict message.
 
 Step 6. If the item is successfully added, a `CommandResult` object is created with the success message.
-
-The following sequence diagram shows how the undo operation works:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The Unplan command works in a similar manner. Instead of `Itinerary#planItem(itemIndex, dayNumber, startTime)` and `Day#addItem(item)`, `Itinerary#unplanItem(MultiIndex)` and `Day#removeitem(Index)` are called instead.
 
@@ -321,7 +319,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | fast user                            | add custom shortcuts for commands               |                                                                      |
 
 
-*{More to be added}*
 
 ### Use cases
 
@@ -410,7 +407,6 @@ Use case ends.
   Use case ends.
 
 
-*{More to be added}*
 
 ### Non-Functional Requirements
 
@@ -420,7 +416,6 @@ Use case ends.
 4. The GUI should be intuitive and easy to understand.
 5. The system should respond in at most 1 second.
 
-*{More to be added}*
 
 ### Glossary
 
@@ -449,10 +444,9 @@ testers are expected to do more *exploratory* testing.
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
 
 ### Deleting an itinerary
 
@@ -466,13 +460,3 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
