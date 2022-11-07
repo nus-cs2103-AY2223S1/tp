@@ -353,10 +353,11 @@ Examples:
 
 ## Glossary
 
-| Word      | Definition                                                              |
-|-----------|-------------------------------------------------------------------------|
-| GUI       | Graphical User Interface - The visual representation of the application |
-| Parameter | Input to the command called                                             |
+| Word      | Definition                                                                                                   |
+|-----------|--------------------------------------------------------------------------------------------------------------|
+| GUI       | Graphical User Interface - The visual representation of the application                                      |
+| Parameter | Inputs provided after the main command. For example, `c/uiux` is a parameter to the command `filter c/uiux`, |
+| JSON file | A file format (JavaScript Object Notation) used for storing data                                             |
 
 --------------------------------------------------------------------------------------------------------------------
 
