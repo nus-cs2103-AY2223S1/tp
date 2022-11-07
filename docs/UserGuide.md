@@ -115,7 +115,7 @@ p.s. Not too sure about some technical terms in this guide? Check out our [gloss
 As you read through this document, you might come across some symbols and highlighted words, as described 
 in the table below:
 
-| Syntax, Symbol                                  | Meaning                                                                                                                                         |
+| Symbol/Syntax                                   | Meaning                                                                                                                                         |
 |-------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
 | :information_source: **Notes**                  | Information that you need to pay attention to.                                                                                                  |
 | :bulb: **Tip**                                  | Information that you may find helpful.                                                                                                          |
