@@ -42,11 +42,11 @@ Given below are my contributions to the project.
 
   - Developer Guide:
     - Add user stories and user stories [#98](https://github.com/AY2223S1-CS2103T-T13-1/tp/pull/98)
-
     - Update UML Diagrams [#130](https://github.com/AY2223S1-CS2103T-T13-1/tp/pull/130)
 
   - **Reviewing/mentoring contributions**:
-    - ---To be added soon---
+    - Help release for milestones and issues
+    - Help review pull requests and issues and resolve merge conflicts
 
   - **Contributions beyond the project team**:
     * [Reported bugs for PED](https://github.com/LuYiting0913/ped/issues)
