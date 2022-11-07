@@ -151,6 +151,8 @@ Refer to the [Features](#3-features) section for details of each command.
   e.g. `delete -d i/A0123456X r/2` would delete the 2nd highest priority deadline for the student with student
   ID of A0123456X.
 
+</div>
+
 <div style="page-break-after: always;"></div>
 
 ### 3.1. General Features
@@ -171,15 +173,11 @@ Examples:
 
   ![help add](images/helpMessage.png)
 
-<div style="page-break-after: always;"></div>
-
 #### 3.1.2. List of FYPs: `list`
 
 Shows a list of final year projects with the student IDs.
 
 Format: `list`
-
-<div style="page-break-after: always;"></div>
 
 ![list](images/list-command.png)
 
@@ -210,7 +208,7 @@ Format for each variant of `sort`:
 
 :information_source: <b>NOTE</b><br> A `sort` command without the flag specified explicitly will be interpreted as `sort -p` by default.
 
-<div style="page-break-after: always;"></div>
+</div>
 
 #### 3.1.4. Clearing the FYP list: `clear`
 
@@ -253,8 +251,6 @@ Examples:
 * `add -s i/A0987654X n/Alex Yeoh p/Data Caching e/e09876567@u.nus.edu`
 * `add i/A0987654X n/Alex Yeoh p/Data Caching e/e09876567@u.nus.edu`
 
-<div style="page-break-after: always;"></div>
-
 #### 3.2.2. Removing students FYP: `delete -s`
 
 Removes a FYP from the FYP manager. The specified student ID must exist in the FYP manager previously.
@@ -276,13 +272,9 @@ Suppose we have Alex Yeoh as a new student in the list with the details given in
 
 ![Before deleting student](images/delete-student-1.png)
 
-<div style="page-break-after: always;"></div>
-
 Running either of the example delete student command above will result in this state.
 
 ![After deleting student](images/delete-student-2.png)
-
-<div style="page-break-after: always;"></div>
 
 #### 3.2.3. Marking project status: `mark`
 
@@ -308,8 +300,6 @@ Examples:
 
   ![Marking a student](images/mark-command.png)
 
-<div style="page-break-after: always;"></div>
-
 #### 3.2.4. Searching keyword: `find`
 
 Finds projects whose field (as specified by user) contains any of the given keyword(s).
@@ -328,8 +318,6 @@ Format for each variant of `find`:
 
    ![find -p](images/find-p.png)
 
-<div style="page-break-after: always;"></div>
-
 2. `StudentId`: `find -i KEYWORD/[KEYWORD2/KEYWORD3/…]`
 
    Example: `find -i A01` finds all students with student ID containing `A01`.
@@ -341,8 +329,6 @@ Format for each variant of `find`:
    Example: `find -n Alex/Vivi/roy` finds all students with name that contains either `Alex`, `Vivi`, or `roy`.
 
    ![find -n](images/find-n.png)
-
-<div style="page-break-after: always;"></div>
 
 4. `Tags`: `find -t KEYWORD/[KEYWORD2/KEYWORD3/…]`
 
@@ -371,8 +357,6 @@ Remark:
 * A neat alternative to `list`: `find -i a` or `find -i /a` will function the same way as `list` and returns a list
   of all students, as student ID always begins with letter 'A' and the keyword supplied is case-insensitive.
 
-<div style="page-break-after: always;"></div>
-
 #### 3.2.5. Edit student details: `edit`
 
 Edits student details according to the input.
@@ -389,8 +373,6 @@ Examples:
   Before:
 
   ![Before editing student](images/edit-student-1.png)
-
-<div style="page-break-after: always;"></div>
 
   After:
 
@@ -420,8 +402,6 @@ Example:
 
   ![Before adding a deadline](images/add-deadline-1.png)
 
-<div style="page-break-after: always;"></div>
-
   After:
 
   ![After adding a deadline](images/add-deadline-2.png)
@@ -431,8 +411,6 @@ Example:
 Removes a deadline assigned to a student specified by ID & a priority rank (for example, below highlighted task has a priority rank of 2).
 
 ![Priority](images/Priority.png)
-
-<div style="page-break-after: always;"></div>
 
 The specified deadline must exist in the student's deadline list previously.
 
@@ -457,8 +435,6 @@ the data of your previous FypManager home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-<div style="page-break-after: always;"></div>
-
 ## 5. Command summary
 
 ### 5.1. General Commands
@@ -472,8 +448,6 @@ the data of your previous FypManager home folder.
 | **Clear**                  | `clear`                                                                                                                                             |
 | **Exit**                   | `exit`                                                                                                                                              |
 
-<div style="page-break-after: always;"></div>
-
 ### 5.2. Student Commands
 
 | Action                     | Format, Examples                                                                                                                                    |
@@ -486,8 +460,6 @@ the data of your previous FypManager home folder.
 | **Find by Student Name**   | `find -n KEYWORD/[KEYWORD2/KEYWORD3/…]`<br> e.g., `find -n John`                                                                                    |
 | **Find by Tags**           | `find -t KEYWORD/[KEYWORD2/KEYWORD3/…]`<br> e.g., `find -t Handsome/Look`                                                                           |
 | **Edit**                   | `edit STUDENT_ID [n/STUDENT_NAME] [p/FYP_NAME] [e/EMAIL]`<br> e.g., `edit A0234567H n/John Hoe`                                                     |
-
-<div style="page-break-after: always;"></div>
 
 ### 5.3. Deadline Commands
 
