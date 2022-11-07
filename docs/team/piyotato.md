@@ -23,7 +23,8 @@ title: Sheyuan's Project Portfolio Page
   * Added `MultiStateAttribute` to abstract the commonalities betweeen `Attendance`, `Assignment`, and `Participation`.
 
 * **Documentation**:
-  * Wrote User Guide and Developer Guide.
+  * Wrote the preface for User Guide, and helped with its planning and organization.
+  * Prepared the UI screenshots for the User Guide.
 
 * **Community**:
   * Reviewed 36 pull requests from team members.
