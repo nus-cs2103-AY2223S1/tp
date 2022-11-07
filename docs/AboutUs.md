@@ -14,9 +14,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/vshnv2001.png" width="200px">
 
 
-[[github](https://github.com/johndoe)]
+[[github](https://github.com/Vshnv2001)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities : Application Logic and Testing
 
 ### Tang Zhi Lin
 

@@ -25,7 +25,7 @@ DeleteAttributeCommandParser.
   * Did the UML for the DeleteAttributeCommand.
 
 * **Community**:
-  * The Following PRs were reviewed by me:
+  * The Following PRs were reviewed **in depth** by me:
     * https://github.com/AY2223S1-CS2103T-W08-2/tp/pull/144
     * https://github.com/AY2223S1-CS2103T-W08-2/tp/pull/247/files
     * https://github.com/AY2223S1-CS2103T-W08-2/tp/pull/141
