@@ -782,7 +782,7 @@ This includes, but is not limited to:
 * Redesigning the `edit` command to include more fields
 * Adding a new command to `suggest` friends
 * Adding and designing a help window to show the user a list of commands
-* Adding the auto-complete feature to the command box
+* Adding the autocomplete feature to the command box
 
 Amongst these changes, we had the hardest time redesigning the `Person` model, as we encountered various bugs after
 we had modified it to include additional fields, thus in the end we took many hours to fix more than 200 test cases related to it. 
