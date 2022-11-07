@@ -481,6 +481,7 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 | [**Exit**](#exiting-waddle--exit)                                | `exit`                                                                                                                                                            |
 
 <div style="page-break-after: always"></div>
+
 ### Item planning page commands
 
 | Action                                                       | Format, Examples                                                                                         |
