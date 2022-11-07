@@ -121,6 +121,7 @@ Each of the four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
+<div style="page-break-after: always;"></div>
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
@@ -128,7 +129,6 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 The sections below give more details of each component.
 
 [<*Back to ToC*>](#table-of-contents)
-
 <div style="page-break-after: always;"></div>
 
 ### UI component
@@ -286,6 +286,8 @@ displayed
   * Cons: Potentially violates OOP.
   
 [<*Back to ToC*>](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### List records feature
 
@@ -454,6 +456,8 @@ Given below is an example usage scenario for the command.
 
 [<*Back to ToC*>](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### About Appointment Features
 
 > Each `Patient` holds an appointment reference for record keeping that the user is able to edit and clear.
@@ -481,6 +485,8 @@ been edited by `AddAppointmentCommand#execute()`.
 The method `AddAppointmentCommand#execute()` returns a `CommandResult` object, which stores information about the completion 
 of the command.
 
+<div style="page-break-after: always;"></div>
+
 The diagram below details how the operation of adding an appointment works.
 
 ![AddAppointmentSequenceDiagram](images/AddAppointmentSequenceDiagram.png)
@@ -507,6 +513,8 @@ Given below is an example usage scenario for the command.
 
 [<*Back to ToC*>](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Clear appointment feature
 
 #### Implementation:
@@ -526,7 +534,6 @@ Given below is an example usage scenario for the command.
 
 **Step 3:** The patient's appointment(if any) will be cleared. 
 
-<div style="page-break-after: always;"></div>
 Below is an activity diagram illustrating an example process of how the `Appointment` commands can be utilised.
 
 ![AppointmentActivityDiagram](images/AppointmentActivityDiagram.png)
@@ -549,6 +556,7 @@ Given below is an example usage scenario for the command.
 [<*Back to ToC*>](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
