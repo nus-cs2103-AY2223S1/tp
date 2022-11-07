@@ -113,6 +113,10 @@ Features marked with * can only be utilised when you are at the home page.
 
 **:information_source: Notes about the command format:**<br>
 
+* Prefixes are used to separate your input for different fields.<br>
+  e.g. in `add-person n/Amy e/amy@gmail.com p/91234567`, `n/`, `e/`, and `p/` are the prefixes used to differentiate
+  and identify your input for the three different fields.
+
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add m/MODULE`, `MODULE` is a parameter which can be used as `add m/MODULE`.
 
@@ -149,12 +153,12 @@ potentially be your study buddy.
 You can add a module into Plannit. To prepare for the modules in the upcoming semester, you can add
 your list of modules, one by one, into Plannit.
 
-This command will require one flag, and one flag is optional:
+This command will require one prefix, and another optional prefix:
 
-| Field                       | Flag | Constraints                                                                                                                |
-|-----------------------------|------|----------------------------------------------------------------------------------------------------------------------------|
-| **Module Code**             | `m/` | {::nomarkdown}<ul><li>Is non-case sensitive</li> <li>Can only be non-empty string of alphanumeric characters</li></ul>{:/} |
-| **Module Title (Optional)** | `t/` | Can be any string of characters                                                                                            |
+| Field                       | Prefix | Constraints                                                                                                                |
+|-----------------------------|--------|----------------------------------------------------------------------------------------------------------------------------|
+| **Module Code**             | `m/`   | {::nomarkdown}<ul><li>Is non-case sensitive</li> <li>Can only be non-empty string of alphanumeric characters</li></ul>{:/} |
+| **Module Title (Optional)** | `t/`   | Can be any string of characters                                                                                            |
 
 Format: `add-module m/MODULE_CODE [t/MODULE_TITLE]`
 * Module code will be automatically treated as uppercase. For example, `cs1231s` will be treated 
@@ -204,11 +208,11 @@ You can delete the module with the indicated module code from Plannit. This coul
 the end of the semester when you would want to do some cleanup and prepare for the modules for 
 next semester.
 
-This command will require one flag:
+This command will require one prefix:
 
-| Field           | Flag | Constraints                                                                                                                |
-|-----------------|------|----------------------------------------------------------------------------------------------------------------------------|
-| **Module Code** | `m/` | {::nomarkdown}<ul><li>Is non-case sensitive</li> <li>Can only be non-empty string of alphanumeric characters</li></ul>{:/} |
+| Field           | Prefix | Constraints                                                                                                                |
+|-----------------|--------|----------------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/`   | {::nomarkdown}<ul><li>Is non-case sensitive</li> <li>Can only be non-empty string of alphanumeric characters</li></ul>{:/} |
 
 Format: `delete-module m/MODULE_CODE`
 * Module code must correspond to a currently displayed module on screen (case-insensitive).
@@ -244,12 +248,12 @@ You can edit a module on Plannit using the `edit-module` command. In this way, y
 titles and descriptions without having to delete and recreate the entire module, together with its
 associated links, tasks and contacts.
 
-This command will require an index and at least one of the following flags:
+This command will require an index and at least one of the following prefixes:
 
-| Field            | Flag | Constraints                                                                                                                |
-|------------------|------|----------------------------------------------------------------------------------------------------------------------------|
-| **Module Code**  | `m/` | {::nomarkdown}<ul><li>Is non-case sensitive</li> <li>Can only be non-empty string of alphanumeric characters</li></ul>{:/} |
-| **Module Title** | `t/` | Can be any string of characters                                                                                            |
+| Field            | Prefix | Constraints                                                                                                                |
+|------------------|--------|----------------------------------------------------------------------------------------------------------------------------|
+| **Module Code**  | `m/`   | {::nomarkdown}<ul><li>Is non-case sensitive</li> <li>Can only be non-empty string of alphanumeric characters</li></ul>{:/} |
+| **Module Title** | `t/`   | Can be any string of characters                                                                                            |
 
 Format: `edit-module INDEX ([m/MODULE_CODE] [t/MODULE_TITLE])`
 * `INDEX` is the currently displayed index number of the module you are editing for on the screen.
@@ -502,11 +506,11 @@ Link aliases will be paired with link URLs according to their respective order o
 Plannit provides no guarantee of the link URL's existence.
 </div>
 
-| Field           | Flag  | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-|-----------------|-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Module Code** | `m/`  | {::nomarkdown}<ul><li>Is non-case sensitive</li> <li>Can only be non-empty string of alphanumeric characters</li></ul>{:/}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| **Link URL**    | `l/`  | {::nomarkdown}<ul><li>Supported by 'https' or 'http' (used by most URLs)</li><li>The inclusion of http headers `http://` or `https://` at the front of the input is optional (exact spelling required if included)<li>Whitespace characters are not allowed</li><li>At least one top-level domain, e.g., `.com` or `.org`</li><li>Only hyphen `-` or alphanumeric characters allowed for and on the left of the top level domain (besides the optional https header)</li><li>Domain length of 1 to 256 characters (e.g., the domain is `google` for `www.google.com`)</li><li>Any non-whitespace characters found on a typical english keyboard allowed for the remainder of the input</li></ul>{:/} |
-| **Link Alias**  | `la/` | {::nomarkdown}<ul><li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li></ul>{:/}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Field           | Prefix | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+|-----------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/`   | {::nomarkdown}<ul><li>Is non-case sensitive</li> <li>Can only be non-empty string of alphanumeric characters</li></ul>{:/}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| **Link URL**    | `l/`   | {::nomarkdown}<ul><li>Supported by 'https' or 'http' (used by most URLs)</li><li>The inclusion of http headers `http://` or `https://` at the front of the input is optional (exact spelling required if included)<li>Whitespace characters are not allowed</li><li>At least one top-level domain, e.g., `.com` or `.org`</li><li>Only hyphen `-` or alphanumeric characters allowed for and on the left of the top level domain (besides the optional https header)</li><li>Domain length of 1 to 256 characters (e.g., the domain is `google` for `www.google.com`)</li><li>Any non-whitespace characters found on a typical english keyboard allowed for the remainder of the input</li></ul>{:/} |
+| **Link Alias**  | `la/`  | {::nomarkdown}<ul><li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li></ul>{:/}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 
 Format: `add-link m/MODULE_CODE l/LINK_URL la/LINK_ALIAS [l/LINK_URL la/LINK_ALIAS]*`
 * Each link must belong to a specific module.
@@ -543,10 +547,10 @@ If there exists a link alias that is detected as invalid within a chained comman
 none of the links in the command will be deleted.
 
 
-| Field           | Flag  | Constraints                                                                                                                                                                                                            |
-|-----------------|-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Module Code** | `m/`  | {::nomarkdown}<ul><li>Is non-case sensitive</li> <li>Can only be non-empty string of alphanumeric characters</li></ul>{:/}                                                                                             |
-| **Link Alias**  | `la/` | {::nomarkdown}<ul><li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li></ul> {:/} |
+| Field           | Prefix | Constraints                                                                                                                                                                                                            |
+|-----------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/`   | {::nomarkdown}<ul><li>Is non-case sensitive</li> <li>Can only be non-empty string of alphanumeric characters</li></ul>{:/}                                                                                             |
+| **Link Alias**  | `la/`  | {::nomarkdown}<ul><li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li></ul> {:/} |
 
 Format: `delete-link m/MODULE_CODE la/LINK_ALIAS [la/LINK_ALIAS]*`
 * Module code must correspond to a currently displayed module on screen (case-insensitive).
@@ -589,10 +593,10 @@ Permissions from your operating system may be required for some users to open li
 (They are enabled by default for most users)
 </div>
 
-| Field           | Flag  | Constraints                                                                                                                                                                                                           |
-|-----------------|-------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Module Code** | `m/`  | {::nomarkdown}<ul><li>Is non-case sensitive</li> <li>Can only be non-empty string of alphanumeric characters</li></ul>{:/}                                                                                            |
-| **Link Alias**  | `la/` | {::nomarkdown}<ul><li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li></ul>{:/} |
+| Field           | Prefix | Constraints                                                                                                                                                                                                           |
+|-----------------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/`   | {::nomarkdown}<ul><li>Is non-case sensitive</li> <li>Can only be non-empty string of alphanumeric characters</li></ul>{:/}                                                                                            |
+| **Link Alias**  | `la/`  | {::nomarkdown}<ul><li>Alphanumeric and whitespace characters</li><li>Trailing and leading whitespace characters will be removed</li><li>Character limit of 15</li><li>At least 1 alphanumeric character</li></ul>{:/} |
 
 Format: `open-link m/MODULE_CODE la/LINK_ALIAS [la/LINK_ALIAS]*`
 * Module code must correspond to a currently displayed module on screen (case-insensitive).
@@ -620,13 +624,13 @@ of contact.
 #### 2.4.1. Add person
 You may add a contact to Plannit using the `add-person` command.
 
-This command will require three flags:
+This command will require three prefixes:
 
-| Field     | Flag | Constraints                                                                                                                       |
-|-----------|------|-----------------------------------------------------------------------------------------------------------------------------------|
-| **Name**  | `n/` | {::nomarkdown}<ul><li>Is case sensitive</li> <li>Can only be non-empty string of alphanumeric characters and spaces</li></ul>{:/} |
-| **Email** | `e/` | Can only be of the format [`local-part@domain`](#4-glossary)                                                                      |
-| **Phone** | `p/` | Can only be 8 digits long                                                                                                         |
+| Field     | Prefix | Constraints                                                                                                                       |
+|-----------|--------|-----------------------------------------------------------------------------------------------------------------------------------|
+| **Name**  | `n/`   | {::nomarkdown}<ul><li>Is case sensitive</li> <li>Can only be non-empty string of alphanumeric characters and spaces</li></ul>{:/} |
+| **Email** | `e/`   | Can only be of the format [`local-part@domain`](#4-glossary)                                                                      |
+| **Phone** | `p/`   | Can only be 8 digits long                                                                                                         |
 
 Format: `add-person n/NAME e/EMAIL p/PHONE_NUMBER`
 * You cannot add a duplicate name into Plannit.
@@ -656,12 +660,12 @@ This would be useful when you want to find study buddies. In this case, you can 
 student studying the same module using the `add-person-to-module` command, then use `goto` to
 find your list of potential study buddies.
 
-This command will require two flags:
+This command will require two prefixes:
 
-| Field           | Flag | Constraints                                                                                                                       |
-|-----------------|------|-----------------------------------------------------------------------------------------------------------------------------------|
-| **Module Code** | `m/` | {::nomarkdown}<ul><li>Is non-case sensitive</li> <li>Can only be non-empty string of alphanumeric characters</li></ul>{:/}        |                                                             |
-| **Name**        | `n/` | {::nomarkdown}<ul><li>Is case sensitive</li> <li>Can only be non-empty string of alphanumeric characters and spaces</li></ul>{:/} |
+| Field           | Prefix | Constraints                                                                                                                       |
+|-----------------|--------|-----------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/`   | {::nomarkdown}<ul><li>Is non-case sensitive</li> <li>Can only be non-empty string of alphanumeric characters</li></ul>{:/}        |                                                             |
+| **Name**        | `n/`   | {::nomarkdown}<ul><li>Is case sensitive</li> <li>Can only be non-empty string of alphanumeric characters and spaces</li></ul>{:/} |
 
 Format: `add-person-to-module m/MODULE_CODE n/NAME`
 * If a person has already been added to a module, the person cannot be added to the module again.
@@ -698,11 +702,11 @@ module using the [`goto`](#251-navigate-between-modules) command.
 #### 2.4.3. Delete person
 You may delete a contact from Plannit using the `delete-person` command.
 
-This command will require one flag:
+This command will require one prefix:
 
-| Field    | Flag | Constraints                                                                                                                       |
-|----------|------|-----------------------------------------------------------------------------------------------------------------------------------|
-| **Name** | `n/` | {::nomarkdown}<ul><li>Is case sensitive</li> <li>Can only be non-empty string of alphanumeric characters and spaces</li></ul>{:/} |
+| Field    | Prefix | Constraints                                                                                                                       |
+|----------|--------|-----------------------------------------------------------------------------------------------------------------------------------|
+| **Name** | `n/`   | {::nomarkdown}<ul><li>Is case sensitive</li> <li>Can only be non-empty string of alphanumeric characters and spaces</li></ul>{:/} |
 
 Format: `delete-person n/NAME`
 * You cannot delete a non-existent contact in Plannit.
@@ -729,12 +733,12 @@ Deleting a person from Plannit will bring you back to the home page.
 You can remove the association between a person and a module (if it exists) using the `delete-person-from-module`
 command.
 
-This command will require two flags:
+This command will require two prefixes:
 
-| Field           | Flag | Constraints                                                                                                                       |
-|-----------------|------|-----------------------------------------------------------------------------------------------------------------------------------|
-| **Module Code** | `m/` | {::nomarkdown}<ul><li>Is non-case sensitive</li> <li>Can only be non-empty string of alphanumeric characters</li></ul>{:/}        |                                                             |
-| **Name**        | `n/` | {::nomarkdown}<ul><li>Is case sensitive</li> <li>Can only be non-empty string of alphanumeric characters and spaces</li></ul>{:/} |
+| Field           | Prefix | Constraints                                                                                                                       |
+|-----------------|--------|-----------------------------------------------------------------------------------------------------------------------------------|
+| **Module Code** | `m/`   | {::nomarkdown}<ul><li>Is non-case sensitive</li> <li>Can only be non-empty string of alphanumeric characters</li></ul>{:/}        |                                                             |
+| **Name**        | `n/`   | {::nomarkdown}<ul><li>Is case sensitive</li> <li>Can only be non-empty string of alphanumeric characters and spaces</li></ul>{:/} |
 
 Format: `delete-person-from-module m/MODULE_CODE n/NAME`
 * You can only delete the specified person from the specified module if the person was originally associated to the
@@ -761,13 +765,13 @@ Deleting a person will bring you back to the home page.
 #### 2.4.5. Edit person
 You may edit a contact using the `edit-person` command.
 
-This command will require an index and minimally any of the three flags:
+This command will require an index and minimally any of the three prefixes:
 
-| Field     | Flag | Constraints                                                                                                                       |
-|-----------|------|-----------------------------------------------------------------------------------------------------------------------------------|
-| **Name**  | `n/` | {::nomarkdown}<ul><li>Is case sensitive</li> <li>Can only be non-empty string of alphanumeric characters and spaces</li></ul>{:/} |
-| **Email** | `e/` | Can only be of the format [`local-part@domain`](#4-glossary)                                                                      |
-| **Phone** | `p/` | Can only be 8 digits long                                                                                                         |
+| Field     | Prefix | Constraints                                                                                                                       |
+|-----------|--------|-----------------------------------------------------------------------------------------------------------------------------------|
+| **Name**  | `n/`   | {::nomarkdown}<ul><li>Is case sensitive</li> <li>Can only be non-empty string of alphanumeric characters and spaces</li></ul>{:/} |
+| **Email** | `e/`   | Can only be of the format [`local-part@domain`](#4-glossary)                                                                      |
+| **Phone** | `p/`   | Can only be 8 digits long                                                                                                         |
 
 Format: `edit-person INDEX ([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])`
 * `INDEX` is the currently displayed index number of the contact you are editing for on the screen.
