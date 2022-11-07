@@ -5,7 +5,9 @@ title: Developer Guide
 
 # **SoCompiler Developer Guide**
 
-SoCompiler is a **desktop app for managing contacts and module information, optimized for use via a [Command Line Interface](#command-line-interface) (CLI)** while still having the benefits of a [Graphical User Interface](#graphical-user-interface) (GUI). It is built specifically for [School of Computing](#school-of-computing) (SOC) students in NUS but can also be used by other students from NUS.
+SoCompiler is a **desktop app for managing contacts and module information, optimized for use via a [Command Line Interface](#command-line-interface) 
+(CLI)** while still having the benefits of a [Graphical User Interface](#graphical-user-interface) (GUI). 
+It is built specifically for [School of Computing](#school-of-computing) (SOC) students in NUS but can also be used by other students from NUS.
 
 This developer guide will expose the architecture behind SoCompiler and showcase the specifics of how commands are handled by the application.
 
@@ -56,15 +58,22 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## 2. **Design**
 
-SoCompiler aims to provide features that are intuitive and simple to use. Keeping this in mind, we pursed an iterative approach, adding new features amidst evolving requirements. This gives rise to the following main guiding principles for SoCompiler:
+SoCompiler aims to provide features that are intuitive and simple to use. Keeping this in mind, 
+we pursed an iterative approach, adding new features amidst evolving requirements. 
+This gives rise to the following main guiding principles for SoCompiler:
 
 **Maintainability**
 
-This project is built upon an application called [AddressBook Level 3 (AB3)](https://se-education.org/addressbook-level3/), which follows the Model View Controller(MVC) design pattern. Ab3 was developed in a manner that facilitates easy modification. We capitilised on this fact and built upon existing components in AB3, such as [UI](#32-ui-component), [Logic](#33-logic-component), [Model](#34-model-component) and [Storage](#35-storage-component).
+This project is built upon an application called [AddressBook Level 3 (AB3)](https://se-education.org/addressbook-level3/), 
+which follows the Model View Controller(MVC) design pattern. 
+Ab3 was developed in a manner that facilitates easy modification. 
+We capitalised on this fact and built upon existing components in AB3, such as [UI](#22-ui-component), 
+[Logic](#23-logic-component), [Model](#24-model-component) and [Storage](#25-storage-component).
 
 **Command Line Interface (CLI) Oriented**
 
-As our target audience is SOC students who usually type fast and are familiar with command line interfaces, we designed SoCompiler to be more efficient at managing contacts and module information using commands compared to other apps in the market.
+As our target audience is SOC students who usually type fast and are familiar with command line interfaces, 
+we designed SoCompiler to be more efficient at managing contacts and module information using commands compared to other apps in the market.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -86,8 +95,8 @@ Given below is a quick overview of main components and how they interact with ea
 
 **`Main`** has two classes
 called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java)
-and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It
-is responsible for,
+and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). 
+It is responsible for,
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -660,15 +669,15 @@ otherwise)
 
 ### 6.5. Glossary
 
-#### Command Line Interface
+#### Command Line Interface (CLI)
 
 It is an interface where users input text commands to interact with the computer/program.
 
-#### Graphical User Interface
+#### Graphical User Interface (GUI)
 
 It is an interface where users can interact with apps/electrical devices through graphical icons and audio indicators.
 
-#### School of Computing
+#### School of Computing (SOC)
 
 It refers to the School of Computing from the National University of Singapore.
 

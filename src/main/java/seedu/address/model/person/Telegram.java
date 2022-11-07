@@ -11,7 +11,7 @@ public class Telegram {
     public static final String EMPTY_TELEGRAM = "";
     public static final String MESSAGE_CONSTRAINTS =
         "Telegram handles should start with a @ symbol and "
-            + "should only have alphanumeric characters after the @. "
+            + "should only have alphanumeric characters and underscores after the @. "
             + "The minimum length of the telegram handle should be 5 characters, not including the @ symbol. "
             + "Additionally, it does not accept spaces between any characters";
 
