@@ -1009,6 +1009,7 @@ Do the test cases sequentially to ensure correct expectation.
    Expected: An empty instance of EdRecord will be started, with more detailed error message logged.
 
 ## 9. Effort
+
 Implementing ModQuik was not easy. We have summarised the difficulties and challenges our team have encountered when developing ModQuik and listed it below.
 
 ### 9.1 Code Design
@@ -1029,3 +1030,5 @@ For instance, though rare, a student may end up having the same TA for 2 mods.
 There are many plausible arguments, and it also depends on how the user uses the product. If given more time...
 
 ### 9.2 User Interface
+
+AB3 did not have any different tabs. There was only one page showing the Person’s contacts. By adding tabs, we could implement different UIs into each tab to give the user a better experience. In order to do so, it requires us to put in more thought on how to render the tabs. By default, JavaFx create tabs in horizontal order on the top of TabPane and changing the tabs at left will cause the headers be vertical. We had to tackle aspects regarding setting tabs placed at left and ensuring keeping the tab headers horizontal. Furthermore, having multiple tabs required us to manipulate the tab toggling for certain commands as our target user is fast-typists who prefer typing over other means of input. In addition, we encountered difficulties in creating a pie chart and customizing the chart legends to show the number of students in each category, which required much time. Finally, implementing and styling the UI was not easy. Changing layout and adding icons is important to provide a standardised and modern look to the application. In order to do so, it required us to overhaul the existing CSS file in AddressBook Level-3.
