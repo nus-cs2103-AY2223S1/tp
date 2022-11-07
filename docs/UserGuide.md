@@ -876,7 +876,7 @@ To reset the task list, see the [list tasks command](#list-tasks-in-team-list-ta
 - `f ta`
 
 **Examples:**
-* `find task -n User Guide` finds tasks with **names** containing **either** the word "User" or "Guide".
+* `find task User Guide` finds tasks with **names** containing **either** the word "User" or "Guide".
 
 #### Mark tasks as done: `mark`
 
