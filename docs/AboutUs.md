@@ -27,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/nopehax.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Storage
 
 ### Ong Wen Pin
 
@@ -46,7 +46,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/tantzeyeong.md)]
 
 * Role: Developer
-* Responsibilities: Storage
+* Responsibilities: Model
 
 ### Totsuka Tomofumi
 
