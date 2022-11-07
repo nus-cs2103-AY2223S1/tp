@@ -798,3 +798,5 @@ testers are expected to do more *exploratory* testing.
 
    5.1. Test case: `taskunmark t/1 task/1`<br>
    Expected output in the **Main Window**: Task marked as not done message. The box next to the name of the task is now blank.
+
+[Back to Top ↑](#table-of-contents)
