@@ -19,6 +19,7 @@ This developer's guide consists of the following sections. Note that TaskBook is
 * The use of SortedList in ModelManager was inspired by [Harmonia](https://github.com/AY2122S2-CS2103T-T09-1/tp), a project also based on AddressBook-Level3.
 * The saving and storing of TaskBook in StorageManager was adapted from AddressBook-Level3 to include support for Tasks.
 * Third party libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5).
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -231,7 +232,7 @@ A second field, `sortedTasks`, then stores `filteredTasks` wrapped in a `SortedL
 
 `SortedList` implements the method `SortedList#setComparator(Comparator<? super E> comparator)` that takes in a comparator used to sort the tasks. The method `ModelManager#updateSortedTaskList(Comparator<Task> comparator)` is thus implemented to allow for setting of a comparator in `sortedTasks`.
 
-By default, the sorting comparator is `null`. `sortedTasks` will be of the same order as `filteredTasks` in chronological order that the tasks were added in.
+When the sorting comparator is `null`, `sortedTasks` will be of the same order as `filteredTasks` in chronological order that the tasks were added in. By default, the sorting comparator is `null`.
 
 The `Ui` displays the `sortedTasks` version of the task list by default on the right side panel.
 
