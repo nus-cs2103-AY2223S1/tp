@@ -256,7 +256,7 @@ Example:
 Find tasks by their name or module. <br>
 Finding tasks by module makes it convenient for you to see what tasks you have for a particular module at one look, while finding them by name helps you to look for a specific task quickly rather than scrolling through the entire task list.
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 :bulb: Note
 * The search is case-insensitive. e.g. `find n/tutorial` will match `Tutorial`
@@ -372,11 +372,12 @@ Finds contacts by their name, modules they are taking, or a specified task. <br>
 Contacts can be found by their names, or by the modules that they take. Finding contacts via module makes it very convenient to see who are your options if you need help for a that module.
 
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 :bulb: Note on searching by name or module
+
 Refer to the note at [searching for tasks](#finding-tasks-find) for more information on how
-CodeConnect searches by name or module
+CodeConnect searches by name or module.
 
 </div>
 
@@ -413,9 +414,8 @@ Deletes all contacts.
 
 Format: `clear`
 
-<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**<br>
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 Deleted contacts are **unrecoverable**!
-
 </div>
 
 Click [here](#introduction) to return to the top of the page.
