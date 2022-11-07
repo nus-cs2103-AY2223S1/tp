@@ -20,6 +20,11 @@ Given below are my contributions to the project.
     * Highlights: The feature is defensively written to prevent the save file from becoming corrupted. Furthermore, the storage of Tasks is independent of storage of Contacts even though they are in the same JSON file, this minimizes dependencies between them and thus possible errors or conflicts. The storage of Tasks also uses Jackson's `@JsonTypeInfo` and `@JsonSubTypes` for seamless saving and loading of Tasks while maintaining the specific Task subtype.
     * Credits: Integrated Task storage into existing Contact storage implemented in AB-3. Used annotations from the Jackson library.
 
+* **New Feature**: Added self-assignment for Tasks ([#178](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/178).
+    * What it does: Since all tasks must be attached to a contact, this feature allows the user to self-assign tasks that are not assigned to or by another person.
+    * Justification: The static Myself person is a constant that is not stored in the contact list and cannot be edited by the user. This ensures that the static Myself person cannot be incorrectly edited by the user.
+    * Highlights: The feature is defensively written to prevent the static Myself person from becoming corrupted. This ensures that the self-assignment commands do not break as they rely on the static Myself person.
+
 * **Team tasks**:
     * [#116](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/116) Refactored existing "AddressBook" instances to "TaskBook".
     * [#268](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/268) Managed Integration Tests.
@@ -29,6 +34,7 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
         * [#82](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/82) Added instructions for Deadline command.
+        * [#178](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/178) Added instructions for adding self-assigned Tasks.
         * [#243](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/243) Updated Quick Start with a valid Todo command.
         * [#303](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/303) Updated Contact Delete command description.
     * Developer Guide:
