@@ -1,8 +1,8 @@
 ---
 layout: page
-title: User Guide
+title: HealthContact User Guide
 ---
-# HealthContact User Guide
+
 
 HealthContact is a software for the receptionist of a family clinic
 who arranges telemedicine services between doctors and patients.
@@ -206,11 +206,12 @@ Notes on symbols in first column:
 Edits a patient's information, such as name, phone number, address, email, remarks, and tags.
 
 #### Command word:
+
 `editpatient` or `ep`
 
 #### Format:
-`Command word <index of patient> <prefix><input> ...`
 
+`Command word <index of patient> <prefix><input> ...`
 
 #### Parameter List
 
@@ -229,7 +230,7 @@ Edits a patient's information, such as name, phone number, address, email, remar
 * Edits the patient at the specified index. The index of patient refers to the index number shown in the displayed patient list.
 
   The index **must be a positive integer** 1, 2, 3, …​
-* <input> refers to the new value of the field to be edited.
+* `<input>` refers to the new value of the field to be edited.
 * User input should be different from the previous information that the patient has.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -250,6 +251,7 @@ Edits a patient's information, such as name, phone number, address, email, remar
 | `+` | `t/`    | Tag           | One alphanumeric word                                                                                  |
 
 #### Examples:
+
 * `editpatient 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the first patient on the displayed list to be
    `91234567` and `johndoe@example.com` respectively.
 
@@ -264,12 +266,13 @@ Edits a patient's information, such as name, phone number, address, email, remar
 Edits an appointment of a patient, such as name, medical test, slot, and doctor.
 
 #### Command word:
+
 `editappointment` or `ea`
 #### Format:
+
 `Command word <index of appointment> <prefix><input> ...`
 
 #### Parameter List
-
 
 |       | Prefix | Meaning              | Input Constraint                                                                        |
 |-------|--------|----------------------|-----------------------------------------------------------------------------------------|
@@ -283,7 +286,7 @@ Edits an appointment of a patient, such as name, medical test, slot, and doctor.
 * Edits the appointment at the specified index. The index of appointment refers to the index number shown in the displayed appointment list.
 
 * The index **must be a positive integer** 1, 2, 3, …​
-* The <input> refers to the new value of the field to be edited.
+* The `<input>` refers to the new value of the field to be edited.
 * User input should be different from the previous information that the appointment has.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -310,6 +313,7 @@ Edits an appointment of a patient, such as name, medical test, slot, and doctor.
 Edits the bill of an appointment.
 
 #### Command word:
+
 `editbill` or `eb`
 
 #### Format: 
@@ -331,6 +335,7 @@ Edits the bill of an appointment.
 * Existing values will be updated to the input values.
 
 #### Examples:
+
 * `editbill 1 a/100` edits the amount of the first bill to be `100`.
 
 <img src="images/ug/editcommand/eb1.png">
@@ -346,9 +351,11 @@ Filters patients by one or more fields using their prefixes, and their correspon
 special characters). The filtered patients are then listed as an indexed list.
 
 #### Command word:
+
 `findpatient` or `fp`
 
 #### Format:
+
 ```Command word <prefix><input> ...``` <br>
 
 * The command words are ``findpatient`` or ``fp``.
@@ -361,6 +368,7 @@ special characters). The filtered patients are then listed as an indexed list.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
 #### Parameter List
+
 | Prefix  | Meaning       | Input Constraint                                                                                 |
 |---------|---------------|--------------------------------------------------------------------------------------------------|
 | `n/`    | Name          | Non-empty alphanumeric characters and spaces                                                     |
@@ -387,9 +395,11 @@ Filters appointments by one or more fields using their prefixes, and their corre
 special characters).
 
 #### Command word:
+
 `findappointment` or `fa`
 
 #### Format:
+
 ```Command word <prefix><input> ...```
 
 * The command words are `findappointment` or `fa`.
@@ -402,6 +412,7 @@ special characters).
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
 #### Parameter List
+
 | Prefix | Meaning       | Input Constraint                             |
 |--------|---------------|----------------------------------------------|
 | `n/`   | Name          | Non-empty alphanumeric characters and spaces |
@@ -427,9 +438,11 @@ Filters bills by one or more fields using their prefixes, and their correspondin
 special characters).
 
 #### Command word:
+
 `findbill` or `fb`
 
 #### Format:
+
 ```Command word <prefix><input> ...```
 
 * The command words are `findbill` or `fb`.
@@ -442,6 +455,7 @@ special characters).
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
 #### Parameter List
+
 | Prefix | Meaning        | Input Constraint                                                                                       |
 |--------|----------------|--------------------------------------------------------------------------------------------------------|
 | `n/`   | Name           | Non-empty alphanumeric characters and spaces                                                           |
@@ -462,6 +476,7 @@ special characters).
 Sorts patients by a single field.
 
 #### Command word:
+
 `sortpatient` or `sop`
 
 #### Format:
@@ -490,9 +505,11 @@ Sorts patients by a single field.
 Sorts appointments by a single field.
 
 #### Command word:
+
 `sortappointment` or `soa`
 
 #### Format:
+
 ```Command word c/<input> o/<input> ...```
 
 
@@ -518,9 +535,11 @@ Sorts appointments by a single field.
 Sorts bills by a single field.
 
 #### Command word:
+
 `sortbill` or `sob`
 
 #### Format:
+
 ```Command word c/<input> o/<input> ...```
 
 
@@ -612,9 +631,11 @@ Notes on symbols in first column:
 Sets the payment status of a bill to "paid".
 
 #### Command word:
+
 `setpaid` or `sp`
 
 #### Format:
+
 ```Command word <index of bill>```
 
 * The command words are `setpaid` or `sp`.
@@ -622,6 +643,7 @@ Sets the payment status of a bill to "paid".
 * The index must be a valid positive integer 1, 2, 3, …​
 
 #### Example:
+
 * ```setpaid 1``` sets the first bill on the displayed bill list as paid, in this case, `Bernice Yu`'s bill.
 
 Before:
@@ -637,9 +659,11 @@ After:
 Sets the payment status of a bill to "unpaid".
 
 #### Command word:
+
 `setunpaid` or `sup`
 
 #### Format:
+
 ```Command word <index of bill>```
 
 * The command words are `setunpaid` or `sup`.
@@ -663,9 +687,11 @@ After:
 Removes all conditions previously applied to the list and shows all patients, appointments and bills.
 
 #### Command word:
+
 `list` or `ls`
 
 #### Format
+
 ```Command word```
 
 #### Example:
@@ -681,9 +707,11 @@ Removes all conditions previously applied to the list and shows all patients, ap
 Deletes a patient by the index number of the patient in the list.
 
 #### Command word:
+
 `deletepatient` or `dp`
 
 #### Format:
+
 ```Command word <index of patient>```
 
 * The command words are `deletepatient` or `dp`.
@@ -711,9 +739,11 @@ After:
 Deletes an appointment by the index number of the appointment in the list.
 
 #### Command word:
+
 `deleteappointment` or `da`
 
 #### Format:
+
 ```Command word <index of appointment>```
 
 * The command words are `deleteappointment` or `da`.
@@ -741,9 +771,11 @@ After:
 Deletes a bill by the index number of the bill in the list.
 
 #### Command word:
+
 `deletebill` or `db`
 
 #### Format:
+
 ```Command word <index of bill>```
 
 * The command words are `deletebill` or `db`.
