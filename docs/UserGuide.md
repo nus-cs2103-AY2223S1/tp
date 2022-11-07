@@ -142,7 +142,7 @@ The app comes with some sample patients by default. Type `clear` in the command 
 6. Refer to the [Features](#features) below for details of each command. Alternatively, you may refer to the
    [Command Summary](#command-summary) at the end of this guide.
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -161,7 +161,7 @@ The app comes with some sample patients by default. Type `clear` in the command 
 | Single-valued attribute | A patient's detail that consist of a single value. A patient's single-valued attributes are also called the patient's contact details. <br> Single-valued attributes: `NAME`, `PHONE`, `EMAIL`, `ADDRESS`.  |
 | Multi-valued attribute  | A patient's detail that consist of a list of values. <br> Multi-valued attributes: `TAG`, `TASK`, `CONDITION`, `MEDICATION`, `REMARK`.                                                                      |
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -209,7 +209,7 @@ The app comes with some sample patients by default. Type `clear` in the command 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -332,7 +332,7 @@ Example:`r/Allergic to peanuts`
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -364,7 +364,7 @@ Format: **`help`**
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -415,7 +415,7 @@ Examples:
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -456,7 +456,7 @@ Example:
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -480,7 +480,7 @@ You can use the `undo` command to undo an accidental `delete` command.
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -546,7 +546,7 @@ Example:
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -577,7 +577,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -599,7 +599,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -654,7 +654,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -698,7 +698,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -720,7 +720,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -760,7 +760,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -791,7 +791,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -813,7 +813,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -854,7 +854,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -887,7 +887,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -909,7 +909,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -948,7 +948,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -978,7 +978,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1000,7 +1000,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1012,7 +1012,7 @@ Format: `list`
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1033,7 +1033,7 @@ Examples:
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1073,7 +1073,7 @@ Examples:
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1102,7 +1102,7 @@ Examples:
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1135,7 +1135,7 @@ This command replaces `DATE` in the [previous command](#viewing-all-tasks-for-a-
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1156,7 +1156,7 @@ Examples:
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1186,7 +1186,7 @@ This command replaces `PATIENT_INDEX` in the [previous command](#viewing-all-tas
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1214,7 +1214,7 @@ Only the last 100 commands which modifies the application data can be undone.
 data file at the next run.
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1230,7 +1230,7 @@ Example:
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1254,7 +1254,7 @@ You can use the `undo` command to undo an accidental `clear` command.
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1266,7 +1266,7 @@ Format: **`exit`**
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1277,7 +1277,7 @@ You do not need to save manually.
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1292,7 +1292,7 @@ If your changes to the data file makes its format invalid, UniNurse will discard
 data file at the next run.
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1304,7 +1304,7 @@ the data of your previous UniNurse home folder.
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1343,4 +1343,4 @@ the data of your previous UniNurse home folder.
 | **Clear all entries**                   | `clear`                                                                                                     |
 | **Exit**                                | `exit`                                                                                                      |
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
