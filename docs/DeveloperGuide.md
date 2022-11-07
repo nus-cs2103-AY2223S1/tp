@@ -286,6 +286,7 @@ Given below is an example usage scenario and how the autocomplete mechanism beha
 Step 1. The user enters `search n/John p/12345678 a/N` in the `CommandBox`. The `CommandBox#setAutocompleteListener()` calls `CommandBox#autocompleteAction()` as a key is pressed when the user types the command.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** At this step, the command is not executed yet as the user has not pressed the enter key.
+</div>
 
 Step 2. The `CommandBox#autocompleteAction()` calls `AutocompleteManager#getAutocompleteEntries(String userInput)` to get a list of autocomplete entries.
 
@@ -296,6 +297,7 @@ Step 4. The search command arguments will be passed to `AutocompleteManager#getL
 Step 5. The `AutocompleteManager#updateFilteredPersonList(String argsString)` takes in the arguments without the last prefix and argument - `n/John p/12345678` and filters the `UniquePersonList` based on the condition and contact information available in ` n/John p/12345678`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** For `OR` condition, no filter will be applied to `UniquePersonList` (i.e. this returns every person in the list). This is because when the user wants to perform an `OR` condition search, the `Person` in `UniquePersonList` only has to satisfy one of the arguments given. Since we are autocompleting only the last prefix and argument, the `Person` in `UniquePersonList` will only need to satisfy the last prefix and argument.
+</div>
 
 Step 6. After the `UniquePersonList` is filtered, `AutocompleteManager#generateAutocompleteEntries(String argsWithoutLastPrefixArgument, String lastPrefixArgument)` will filter the filtered `UniquePersonList` with the last prefix and argument to generate a list of autocomplete entries.
 
@@ -303,6 +305,7 @@ For example, the filtered `UniquePersonList` has `Person1 - {n/John Loh, p/12345
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The example, `Person1 - {n/John Loh, p/12345678, a/NUS}`, used above means the
 `UniquePersonList` has a `Person` with information `n/John Loh`, `p/12345678` and `a/NUS`.
+</div>
 
 Step 7. The `CommandBox#autocompleteAction` will pass the list of autocomplete entries to `CommandBox#populatePopup(List<String> autocompleteEntries, String originalSearchInput)` to populate the autocomplete display box with the autocomplete entries and display to the user.
 
