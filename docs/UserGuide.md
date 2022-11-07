@@ -226,9 +226,9 @@ If you are an advanced user, SoConnect allows you to freely edit its data files 
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution:**
-If your changes to a data file renders it invalid, SoConnect will discard the data file and start with an empty data file at the next run.
-* Familiarise yourself with the format of the data files before attempting any changes.
+**:warning: Warning**<br>
+If your changes to a data file renders it invalid, SoConnect will discard the data file and start with an empty data file at the next run.<br>
+* Familiarise yourself with the format of the data files before attempting any changes.<br>
 * Backup your data files in a separate folder before attempting any changes.
 
 </div>
@@ -252,7 +252,7 @@ A contact of a person consists of
 
 <div markdown="block" class="alert alert-primary">
 
-**:memo: Note:**<br>
+**:memo: Note**<br>
 * You might forget that you have already [added a contact](#721-adding-a-contact-add), but no need to worry about having duplicate contacts! We help you to detect duplicate contacts by checking existing contacts for the exact same name (case-sensitive) whenever you add a new contact or [edit an existing contact](#722-editing-a-contact--edit).
 * What if you are trying to add the contacts of 2 different people with the same name? You can make use of the case-sensitivity of names and numbers to help you differentiate between the contacts. (e.g. `Alex Yeoh`,`Alex yeoh`,`Alex Yeoh 1`,`Alex Yeoh 2` can all be added as 4 different valid contacts)
 * Names currently only accept [alphanumeric](#alphanum) characters and spaces to help you avoid mistakes when typing them. If a name you are trying to add has special characters like `,` or `/`, it is alright to leave the special characters out for now as SoConnect does not require you to store the exact legal names of your contacts.
@@ -269,7 +269,7 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
 <div markdown="block" class="alert alert-primary">
 
-**:memo: Note:**
+**:memo: Note**<br>
 
 [Tags](#tag) have to be created first before you can add them to a contact.
 
@@ -297,9 +297,9 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 * At least 1 of the 4 optional parameters must be provided.
 * Existing information will be updated with the parameters provided. Information of the parameters not provided will remain unchanged.
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
-**:memo: Note:**
+**:information_source: Info**<br>
 
 To edit the tags of a contact, you can refer to [adding a tag](#744-adding-a-tag-to-a-contact-tag-add) and [removing a tag](#745-removing-a-tag-from-a-contact-tag-remove).
 
@@ -381,7 +381,7 @@ How *[tags](#tag) (t/TAG)* are sorted:
 
 <div markdown="block" class="alert alert-primary">
 
-**:memo: Note:**<br>
+**:memo: Note**<br>
 * When sorting by tags, unlike other parameters, you have to specify a value (an existing `TAG`) to sort by.
 * For other parameters (i.e. `n/ e/ a/ p/`), values provided are ignored. (e.g. sorting by `n/Alfred` is a valid command, the list will be sorted by name alphabetically, and the name given `Alfred` is ignored)
 
@@ -391,9 +391,9 @@ Format: `sort [n/] [p/] [e/] [a/] [t/TAG]…​`
 * At least 1 of the optional parameters must be provided.
 * To sort in reverse order from the orders given above, use these modified parameters: `[n/!] [p/!] [e/!] [a/!] [t/!TAG]`.
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-success">
 
-**:memo: Note:**
+**:bulb: Tip**<br>
 
 You can use multiple parameters to sort if you want to organise your contacts even more! Your list will be sorted by the first parameter you provide as per usual. Here's how the other parameters will be used:
 1. Contacts with identical values for the first parameter are identified. (e.g. same phone number, same email, same address, or contains the same tag)
@@ -450,7 +450,7 @@ A todo consists of
 
 <div markdown="block" class="alert alert-primary">
 
-**:memo: Note:**<br>
+**:memo: Note**<br>
 * You might forget that you have already [added a todo](#731-adding-a-todo-todo-add), but no need to worry about having duplicate todos! We help you to detect duplicate todos by checking existing todos whenever you add a new todo or [edit an existing todo](#732-editing-a-todo--todo-edit). Duplicate todos are todos with the exact same information for every parameter.
 * What if you want to add 2 todos with the same description? You are still able to do so, as long as the todos have different tags, dates, or priorities.
 * Priority of a todo can strictly only be `low`, `medium`, or `high`. `Coming soon in v1.5`, we will add smarter priorities (to accept other variations such as `Low`, `Medium`, `High`, `L`, `M`, `H`).
@@ -470,7 +470,7 @@ Format: `todo add d/DESCRIPTION date/DATE pr/PRIORITY [t/TAG]…​`
 
 <div markdown="block" class="alert alert-primary">
 
-**:memo: Note:**
+**:memo: Note**
 
 [Tags](#tag) have to be created first before you can add them to a todo.
 
@@ -581,7 +581,9 @@ You can delete a `TAG` from the tag list.
 Format: `tag delete t/TAG`
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:** When `TAG` is deleted, `TAG` is removed from all the contacts which previously had it.
+
+**:information_source: Info**<br> 
+When `TAG` is deleted, `TAG` is removed from all the contacts which previously had it.
 </div>
 
 **Expected Input in Command Box**
@@ -607,8 +609,8 @@ If you make a mistake or want to update your `TAG`, you can simply update it wit
 Format: `tag edit t/TAG1 t/TAG2`
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:** 
 
+**:information_source: Info**<br>
 * The new Tag must not have the same name as any other existing tags.
 * `TAG1` represents the current name of the tag and `TAG2` represents the new name of the tag.
 * This command will replace `TAG1` in all contacts and todos to `TAG2`. 
@@ -645,12 +647,16 @@ You can add a `TAG` from the tag list to a contact.
 
 Format: `tag add INDEX t/TAG`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-success">
+
+**:bulb: Tip**<br>
 A contact can have any number of tags. Add as many as you want.
 </div>
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:** The tag has to be created first before you can add it into a contact.
+
+**:information_source: Info**<br> 
+The tag has to be created first before you can add it into a contact.
 
 Refer to [`Creating a Tag`](#creating-a-tag-tag-create) on how to create a tag.
 </div>
@@ -701,7 +707,7 @@ Welcome to the Customisation Commands section! In this section, you can learn to
 
 <div markdown="block" class="alert alert-primary">
 
-**:memo: Note:**<br>
+**:memo: Note**<br>
 * You might be wondering why you can only customise contacts and not [todos](#todo). Fret not, we are working hard on making that possible for you! `Coming soon in v1.5`, we will introduce customisation commands for todos.
 
 </div>
