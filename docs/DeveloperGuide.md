@@ -321,7 +321,7 @@ The find item feature allows the user to find `InventoryItem`(s) by keyword(s) g
 
 The find item command is supported by `FindItemCommand`. It extends `Command`.
 
-Given below is an example usage scenario and how the find order mechanism behaves at each step.
+Given below is an example usage scenario and how the find item mechanism behaves at each step.
 
 Step 1. The user executes `findi chair mattress` command to find the orders containing items with the keywords
 keychain or apple. The `findi` command calls `FindItemCommandParser` which checks for the correct command
@@ -522,7 +522,6 @@ The following activity diagram below illustrates the general flow of the user's 
   * Pros: Better user experience. Users can be sure that any previously entered input is already validated by the application, making it less overwhelming to input large amounts of information.
   * Cons: Harder to implement as it deviates from the original command execution structure (where one instance of user input relates to one full command execution).
 
-
 ### Find Order Feature
 
 The find order feature allows the user to find an `Order` to be tracked by the system.
@@ -550,7 +549,11 @@ that will filter the items according to the keywords. The predicate is passed in
 </div>
 
 The following sequence diagram shows how the find order operation works:
+
 ![FindOrderSequenceDiagram](images/FindOrderSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a valid find order command:
+![FindOrderActivityDiagram](images/FindOrderActivityDiagram.png)
 
 #### Design considerations
 
@@ -930,8 +933,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Listing all orders after calling `findo`
   * Prerequisites: List all orders using the `listo` command. There are already multiple existing orders.
-    Of these orders, there exist 2 orders made by customers with `Chan` in their names.
-  * Before testing, enter `findo n/Chan`<br/>
+    Of these orders, there exist 2 orders made by customers with `Chan` in their names. Before testing, enter `findo n/Chan`<br/>
     Expected: Order list displays 2 orders by customers with `Chan` in their name.
   * Test case: Enter `listo` into the command box.<br/>
     Expected: ALl orders listed in the order list.
