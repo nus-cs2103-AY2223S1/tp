@@ -44,7 +44,7 @@ The following are my contributions to the project:
   * [PRs Reviewed by me](https://github.com/AY2223S1-CS2103T-W17-2/tp/pulls?page=1&q=is%3Apr+reviewed-by%3AJasonYapzx)
 
 * **Enhancements to existing features**:
-  * Removed traces of AB3 code (`Person`, `addressbook`) in the documentation and code base. PRs: [\#35](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/35), [\#40](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/40), [\70](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/70) 
+  * Removed traces of AB3 code (`Person`, `addressbook`) in the documentation and code base. PRs: [\#35](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/35), [\#40](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/40), [\#70](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/70) 
   * Wrote additional tests for existing features to increase coverage from 64.86% to 67.35% (+2.49%) and 67.09% to 68.60% (+1.50%). PRs: [\#86](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/86), [\#165](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/165)
   * Refactoring of JavaFX CSS to allow for a responsive application if the window size of the application was changed. [\152](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/152)
   * Created PennyWise's logo.
@@ -56,7 +56,7 @@ The following are my contributions to the project:
   * Developer Guide:
     * Added implementation details of the `add` feature. PRs: [\70](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/70)
     * Added all use cases for PennyWise into the DG. PRs: [\70](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/70)
-    * Added test cases for `add`, `delete`, `edit`, `view`, `summary` into the DG. PRs: [\70](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/70), [\76](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/76) 
+    * Added test cases for `add`, `delete`, `edit`, `view`, `summary` into the DG. PRs: [\70](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/70), [\76](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/76)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#34](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/34), [\#71](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/71), [\#81](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/81), [\#104](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/104)
