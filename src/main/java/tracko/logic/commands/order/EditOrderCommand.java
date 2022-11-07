@@ -27,7 +27,7 @@ import tracko.model.order.Order;
 import tracko.model.order.Phone;
 
 /**
- * Edits the details of an existing Order in the address book.
+ * Edits the details of an existing Order in TrackO.
  */
 public class EditOrderCommand extends Command {
 

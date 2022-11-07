@@ -69,7 +69,7 @@ public class DeleteItemCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND;
 
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of inventory list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getTrackO().getInventoryList().size());
 
         DeleteItemCommand deleteItemCommand = new DeleteItemCommand(outOfBoundIndex);
