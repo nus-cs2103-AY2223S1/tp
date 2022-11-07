@@ -108,7 +108,7 @@ When providing multiple arguments with the same delimiter, the last instance of 
 
 <!-- TODO: ACTIVITY DIAGRAM -->
 
-The `sort` feature sorts the list of items currently displayed to the user by a specified [[ flag:flag ]]. A list of available criteria for sorting includes:
+The `sort` feature sorts the list of items currently displayed to the user by a specified [[ flag ]]. A list of available criteria for sorting includes:
 
 * Name
 * Quantity
