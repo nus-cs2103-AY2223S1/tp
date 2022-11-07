@@ -33,13 +33,8 @@ public class TypePropertyCommandParser implements Parser<TypePropertyCommand> {
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
         for (int i = 0; i < nameKeywords.length; i++) {
-            try {
-                ParserUtil.parsePropertyType(
-                        nameKeywords[i]);
-            } catch (IllegalArgumentException ex) {
-                throw new ParseException(
-                        "Invalid Property Type specified! Property Type must be one of HDB, CONDO, or LANDED");
-            }
+            ParserUtil.parsePropertyType(
+                    nameKeywords[i]);
         }
 
         return new TypePropertyCommand(new PropertyTypeContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
