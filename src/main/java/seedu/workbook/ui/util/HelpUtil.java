@@ -61,7 +61,7 @@ public class HelpUtil {
             case EXIT:
                 return EDIT_HEADER;
             default:
-                return "Command Example Here.";
+                return "Command Header Here.";
         }
     }
 
