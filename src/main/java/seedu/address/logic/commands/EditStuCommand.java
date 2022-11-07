@@ -54,7 +54,7 @@ public class EditStuCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG] "
             + "[" + PREFIX_ID + "ID] "
-            + "[" + PREFIX_HANDLE + "HANDLE]"
+            + "[" + PREFIX_HANDLE + "HANDLE] "
             + "[" + PREFIX_MODULE_CODE + "MODULE]..."
             + "[" + PREFIX_STUDENT_TA + "TA]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
