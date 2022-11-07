@@ -29,7 +29,6 @@ import seedu.address.model.student.Money;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.timerange.TimeRange;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -295,32 +294,6 @@ public class ParserUtilTest {
     public void parseDateToFind_invalidDate_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseClass(INVALID_DATE_MISSING_DASHES));
         assertThrows(ParseException.class, () -> ParserUtil.parseClass(""));
-    }
-
-    @Test
-    public void parseTimeRange_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTimeRange(null));
-    }
-
-    @Test
-    public void parseTimeRange_invalidTimeRange_throwsParseException() {
-        // duration exceeds the difference between start time and end time
-        assertThrows(ParseException.class, () -> ParserUtil.parseTimeRange("1000-1100 100"));
-
-        // start time is not before end time
-        assertThrows(ParseException.class, () -> ParserUtil.parseTimeRange("1000-0900 100"));
-
-        // invalid format
-        assertThrows(ParseException.class, () -> ParserUtil.parseTimeRange("1000 1100 30"));
-    }
-
-    @Test
-    public void parseTimeRange_validTimeRange_returnsTimeRange() throws ParseException {
-        LocalTime expectedStartTimeRange = LocalTime.of(12, 0);
-        LocalTime expectedEndTimeRange = LocalTime.of(14, 0);
-        Integer expectedDuration = 60;
-        TimeRange expectedTimeRange = new TimeRange(expectedStartTimeRange, expectedEndTimeRange, expectedDuration);
-        assertEquals(expectedTimeRange, ParserUtil.parseTimeRange(VALID_TIME_RANGE));
     }
 
     @Test
