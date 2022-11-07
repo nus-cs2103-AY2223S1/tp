@@ -196,6 +196,9 @@ public class CommandTestUtil {
         model.updateFilteredTutorialList(new TutNameContainsKeywordsPredicate(Arrays.asList(splitContent[0])));
 
         assertEquals(1, model.getFilteredTutorialList().size());
+    }
+    
+    /**
      * Updates {@code model}'s filtered list to show only the question at the given {@code targetIndex} in the
      * {@code model}'s question list.
      */
