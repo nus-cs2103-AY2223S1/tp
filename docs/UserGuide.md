@@ -327,7 +327,7 @@ Example:
 
 * `add -d i/A0123456G n/Random Task d/23-10-2022 23:59`
 
-#### 3.3.2 Removing a student's deadline: `delete -d`
+#### 3.3.2. Removing a student's deadline: `delete -d`
 
 Removes a deadline assigned to a student specified by ID & a priority rank (Below highlighted task has a priority rank of 2). The specified deadline must exist in the student's deadline list previously.
 ![Priority](images/Priority.png) <br>
