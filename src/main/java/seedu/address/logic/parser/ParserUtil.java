@@ -238,7 +238,7 @@ public class ParserUtil {
      *
      * @param remarks The remarks to be parsed.
      * @return A list of remarks.
-     * @throws ParseException if any {@code remark} is invalid or is empty string.
+     * @throws ParseException if any {@code remark} is invalid or is empty.
      */
     public static List<Remark> parseRemarks(String remarks) throws ParseException {
         requireNonNull(remarks);

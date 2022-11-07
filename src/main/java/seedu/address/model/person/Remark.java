@@ -35,10 +35,11 @@ public class Remark {
     }
 
     /**
-     * Returns true if a given string is a valid remark and remark is not empty.
+     * Returns true if a given string is a valid remark and is not empty.
      */
     public static boolean isValidRemarkNonEmpty(String test) {
-        return test.matches(VALIDATION_REGEX) && !(test.trim().isEmpty());
+        assert test != null : "Remark to be tested should not be null";
+        return test.matches(VALIDATION_REGEX) && !test.trim().isEmpty();
     }
 
     @Override
