@@ -32,7 +32,7 @@ class JsonAdaptedTrip {
     private final String dateField;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedTrip} with the given Trip details.
      */
     @JsonCreator
     public JsonAdaptedTrip(@JsonProperty("title") String title, @JsonProperty("description") String description,
@@ -65,9 +65,9 @@ class JsonAdaptedTrip {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted Trip object into the model's {@code Trip} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted Trip.
      */
     public Trip toModelType() throws IllegalValueException {
         final List<Event> tripEvents = new ArrayList<>();

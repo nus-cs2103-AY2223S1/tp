@@ -19,7 +19,7 @@ class JsonAdaptedEvent {
     private final String description;
 
     /**
-     * Constructs a {@code JsonAdaptedTag} with the given {@code tagName}.
+     * Constructs a {@code JsonAdaptedEvent} with the given Event details.
      */
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("title") String title, @JsonProperty("description") String description) {
@@ -28,7 +28,7 @@ class JsonAdaptedEvent {
     }
 
     /**
-     * Converts a given {@code Tag} into this class for Jackson use.
+     * Converts a given {@code Event} into this class for Jackson use.
      */
     public JsonAdaptedEvent(Event source) {
         title = source.getTitle().fullTitle;
@@ -37,9 +37,9 @@ class JsonAdaptedEvent {
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.
+     * Converts this Jackson-friendly adapted Event object into the model's {@code Event} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted Event.
      */
     public Event toModelType() throws IllegalValueException {
         if (title == null) {

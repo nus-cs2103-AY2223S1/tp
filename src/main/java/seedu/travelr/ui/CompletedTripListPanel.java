@@ -9,7 +9,7 @@ import javafx.scene.layout.Region;
 import seedu.travelr.model.trip.Trip;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of Trips.
  */
 public class CompletedTripListPanel extends UiPart<Region> {
     private static final String FXML = "CompletedTripListPanel.fxml";
@@ -19,7 +19,7 @@ public class CompletedTripListPanel extends UiPart<Region> {
     private ListView<Trip> tripListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code TripListPanel} with the given {@code ObservableList}.
      */
     public CompletedTripListPanel(ObservableList<Trip> tripList, Image completed) {
         super(FXML);
@@ -30,7 +30,7 @@ public class CompletedTripListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Trip} using a {@code TripCard}.
      */
     class TripListViewCell extends ListCell<Trip> {
         @Override

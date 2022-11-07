@@ -31,11 +31,9 @@ public class EventCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label description;
-    //  @FXML
-    //  private FlowPane events;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code EventCard} with the given {@code Event} and index to display.
      */
     public EventCard(Event event, int displayedIndex) {
         super(FXML);
@@ -43,9 +41,6 @@ public class EventCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         title.setText(event.getTitle().fullTitle);
         description.setText(event.getDescription().value);
-        //      event.getEvents().stream()
-        //              .sorted(Comparator.comparing(event -> event.title.toString()))
-        //              .forEach(event -> events.getChildren().add(new Label(event.title.toString())));
     }
 
     @Override

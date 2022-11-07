@@ -40,7 +40,7 @@ public class SummaryCard extends UiPart<Region> {
     private Label totalUniqueLocations;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code SummaryCard} with the given {@code SummaryVariables} to display.
      */
     public SummaryCard(SummaryVariables summaryVariables) {
         super(FXML);

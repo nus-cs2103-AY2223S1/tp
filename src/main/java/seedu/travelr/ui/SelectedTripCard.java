@@ -11,7 +11,7 @@ import javafx.scene.layout.Region;
 import seedu.travelr.model.trip.ObservableTrip;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Trip}.
  */
 public class SelectedTripCard extends UiPart<Region> {
 

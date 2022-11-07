@@ -43,7 +43,6 @@ public class JsonTravelrStorage implements TravelrStorage {
      * @throws DataConversionException if the file is not in the correct format.
      */
     public Optional<ReadOnlyTravelr> readTravelr(Path filePath) throws DataConversionException {
-        // No problems here for storage
         requireNonNull(filePath);
 
         Optional<JsonSerializableTravelr> jsonTravelr = JsonUtil.readJsonFile(
