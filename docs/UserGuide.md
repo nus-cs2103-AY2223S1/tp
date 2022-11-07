@@ -22,6 +22,7 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
         * [Manually Editing Data File](#editing-the-data-file)
     * [Client Features](#client-features)<br>
         * [Adding a Client](#adding-a-client--addclient)
+        * [Switching to Client View](#switching-to-the-view-of-currently-listed-clients--clients)
         * [Listing all Clients](#listing-all-clients--allclients)
         * [Editing a Client](#editing-a-client--editclient)
         * [Searching for a Client](#searching-for-clients--findclient)
