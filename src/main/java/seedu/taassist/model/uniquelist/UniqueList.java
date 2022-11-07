@@ -71,22 +71,6 @@ public class UniqueList<T extends Identity<T> & Comparable<T>> implements Iterab
     }
 
     /**
-     * Adds all elements in {@code toAddList} to the list. The elements must not already exist in the list.
-     *
-     * @param toAddList Elements to add.
-     * @throws DuplicateElementException If any element in {@code toAddList} already exists.
-     */
-    public void addAll(Collection<T> toAddList) {
-        requireAllNonNull(toAddList);
-        for (T toAdd : toAddList) {
-            if (contains(toAdd)) {
-                throw new DuplicateElementException();
-            }
-        }
-        internalList.addAll(toAddList);
-    }
-
-    /**
      * Replaces the element {@code target} in the list with {@code editedElement}.
      * {@code target} must exist in the list.
      * The identity of {@code editedElement} must not be the same as another existing element in the list.
