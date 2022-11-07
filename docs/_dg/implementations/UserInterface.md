@@ -35,7 +35,7 @@ The individual "view" is responsible to generate the JavaFX `Node` structure to 
 
 A sequence diagram of this process is as follows:
 
-<!-- TODO: Add diagram -->
+![](images/UISequenceDiagram.png)
 
 ```note
 The above sequence diagram assumes the caller requested a `String` to be rendered.
@@ -45,4 +45,4 @@ The above sequence diagram assumes the caller requested a `String` to be rendere
 
 Currently, `UiView` uses a very hacky method to determine the type of the object that was requested to be rendered; it uses consecutive `instanceof` expressions. Ideally, there should be a common interface where the necessary operations required can be achieved through dynamic binding. A possible class diagram is as follows:
 
-<!-- TODO: Add diagram -->
+![](images/UIProposedClassDiagram.png)
