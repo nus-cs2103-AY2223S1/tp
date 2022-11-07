@@ -156,6 +156,10 @@
     "moduleCode" : "CS2040S",
     "moduleName" : "Data and Algorithms for CS Students",
     "moduleCredit" : "4"
+  }, {
+    "moduleCode" : "ma2001",
+    "moduleName" : "Linear Algebra",
+    "moduleCredit" : "4"
   } ],
   "exams" : [ {
     "description" : "Midterm Exam",
@@ -177,5 +181,9 @@
       "description": "CS2040 Finals",
       "date": "29-11-2022",
       "moduleCode": "cs2040"
+  }, {
+      "description": "Midterm",
+      "date": "20-11-2023",
+      "moduleCode": "ma1521"
     }]
 }
