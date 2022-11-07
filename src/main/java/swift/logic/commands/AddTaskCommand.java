@@ -74,8 +74,6 @@ public class AddTaskCommand extends Command {
         }
 
         model.addTask(toAdd);
-        model.hotUpdateAssociatedContacts();
-
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), CommandType.TASKS);
     }
 
