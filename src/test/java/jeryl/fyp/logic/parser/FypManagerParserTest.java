@@ -147,7 +147,11 @@ public class FypManagerParserTest {
         assertTrue(parser.parseCommand(SortProjectNameCommand.COMMAND_WORD) instanceof SortProjectNameCommand);
         assertTrue(parser.parseCommand(SortProjectNameCommand.COMMAND_WORD + " 3")
                 instanceof SortProjectNameCommand);
+
+        //check if input `sort` works
         assertTrue(parser.parseCommand(SortProjectNameCommand.ALTERNATIVE_COMMAND_WORD)
+                instanceof SortProjectNameCommand);
+        assertTrue(parser.parseCommand(SortProjectNameCommand.ALTERNATIVE_COMMAND_WORD + " 3")
                 instanceof SortProjectNameCommand);
     }
 
