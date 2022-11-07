@@ -458,10 +458,9 @@ The following Sequence Diagram summarises steps 4 to 5.
 
 **Value proposition**
 1. One easy-to-access place to track each student’s individual progress
-2. Makes TA’s lives easier by removing the need to manually filter students
+2. Makes CS1101S TA’s lives easier by removing the need to manually filter students
 3. Easier and more convenient to manage and schedule meetings with students
 4. Manage students faster than a typical mouse/GUI driven app
-5. Constraint: won’t be able to actually grade assignments using FRIDAY
 
 
 ### User stories
@@ -955,21 +954,21 @@ testers are expected to do more *exploratory* testing.
 ### Editing a student
 1. Editing a student's details
     1. Prerequisites: List all students using the list command. Multiple students in the list.
-    2. Test case: edit 1 n/Bobby t/Bobster
+    2. Test case: `edit 1 n/Bobby t/Bobster`<br>
        Expected: Edits the first student in the list to have a name of Bobby and a Telegram handle of Bobster
-    3. Test case: edit 0 n/Tommy
+    3. Test case: `edit 0 n/Tommy`<br>
        Expected: No student is edited. Error details shown in the status message.
-    4. Other incorrect formats: edit c/Yelan, edit 1, edit 2 m/.
+    4. Other incorrect formats: `edit c/Yelan`, `edit 1`, `edit 2 m/`.<br>
        Expected: Similar to previous.
 
 ### Editing a student's remark
 1. Editing a student's remark
     1. Prerequisites: List all students using the list command. Multiple students in the list.
-    2. Test Case: remark 1 r/Aspiring to be a CS1101S TA next year
+    2. Test Case: `remark 1 r/Aspiring to be a CS1101S TA next year`<br>
        Expected: Edits the first student in the list to have a remark Aspiring to be a CS1101S TA next year.
-    3. Test Case: remark 0 r/Loves Math
+    3. Test Case: `remark 0 r/Loves Math`<br>
        Expected: No student is edited. Error details shown in the status message.
-    4. Other incorrect formats: remark r/Loves coding, remark 2, remark 3 r/.
+    4. Other incorrect formats: `remark r/Loves coding`, `remark 2`, `remark 3 r/`.<br>
        Expected: Similar to previous.
 
 ### Sorting students
@@ -1001,31 +1000,20 @@ testers are expected to do more *exploratory* testing.
 ### Deleting aliases
 1. Deleting aliases
     1. Prerequisites: An alias del has been added for delete.
-    2. Test case: unalias a/del <br>
+    2. Test case: `unalias a/del` <br>
        Expected: The alias del is deleted.
-    3. Test case: unalias a/ls <br>
+    3. Test case: `unalias a/ls` <br>
        Expected: No alias is deleted. Error details shown in the status message.
    
 ### Recording grades for students
 1. Editing the grades of a student
     1. Prerequisites: List all students using the `list` command. Multiple students in the list. The index provided is  
        valid and the student exists.
-    2. Test case: `grade 1 ra1/95.60`
+    2. Test case: `grade 1 ra1/95.60`<br>
        Expected: Edits the first student in the list to have a score of 95.60 in their RA1 grade.
-    3. Test case: `grade 0 ra2/90`
+    3. Test case: `grade 0 ra2/90`<br>
        Expected: No student is edited. Error details shown in the status message.
-    4. Other incorrect formats: `grade 3, grade ra1/50, grade 2 pa/A, grade 1 ft/200, grade 1 mt/90.33333`
-       Expected: Similar to previous.
-
-### Recording grades for students
-1. Editing the grades of a student
-    1. Prerequisites: List all students using the list command. Multiple students in the list. The index provided is  
-       valid and the student exists.
-    2. Test case: grade 1 ra1/95.60
-        1. Expected: Edits the first student in the list to have a score of 95.60 in their RA1 grade.
-    3. Test case: grade 0 ra2/90
-        1. Expected: No student is edited. Error details shown in the status message.
-    4. Other incorrect formats: grade 3, grade ra1/50, grade 2 pa/A, grade 1 ft/200, grade 1 mt/90.33333
+    4. Other incorrect formats: `grade 3`, `grade ra1/50`, `grade 2 pa/A`, `grade 1 ft/200`, `grade 1 mt/90.33333`<br>
        Expected: Similar to previous.
 
 ### Marking and unmarking a student's Mastery Check
@@ -1033,21 +1021,21 @@ testers are expected to do more *exploratory* testing.
 1. Marking a student's Mastery Check as passed
 
     1. Prerequisites: A student with Mastery Check date 2020-09-01, a student with Mastery Check date 2050-01-02 and a student with no scheduled Mastery Check date have already been added.
-    2. Test case: mark 1
+    2. Test case: `mark 1`<br>
        Expected: The Mastery Check of the first student is marked as passed. A "(passed)" string is added behind the Mastery Check date of student 1.
-    3. Test case: mark 2
+    3. Test case: `mark 2`<br>
        Expected: No marking of any Mastery Checks as passed is done. Error details shown in status message.
-    4. Other incorrect mark commands to try: mark, mark 3, ...
+    4. Other incorrect mark commands to try: mark, mark 3, ...<br>
        Expected: Similar to previous.
 
 2. Unmarking a student's Mastery Check
 
     1. Prerequisites: A student with Mastery Check already marked as passed and a student with Mastery Check date of 2021-03-04 (not marked as passed yet) have already been added.
-    2. Test case: unmark 1
+    2. Test case: `unmark 1`<br>
        Expected: The Mastery Check of the first student is unmarked. The "(passed)" string behind student 1's Mastery Check date is removed.
-    3. Test case: unmark 2
+    3. Test case: `unmark 2`<br>
        Expected: No unmarking of any Mastery Checks is done. Error details shown in status message.
-    4. Other incorrect unmark commands to try: unmark, unmark 0,
+    4. Other incorrect unmark commands to try: `unmark`, `unmark 0`,
 
 ### Saving data
 
@@ -1071,7 +1059,7 @@ testers are expected to do more *exploratory* testing.
 ### Difficulty level
 
 We believe that we have worked hard during this entire project to come with a product that is functional and widely applicable.
-If the difficulty of the individual project is a 5 the difficulty of implementing <b>FRIDAY</b> was a 5. This is because:
+If the difficulty of the individual project is a 5 the difficulty of implementing <b>FRIDAY</b> was a 8. This is because:
 
 * We pushed more complex designs and features that required more planning and trial and error and learning along the way.
 * Working as a team also meant that we had to delegate admin tasks and designate roles on a weekly basis which was a challenge for us as well.
@@ -1088,7 +1076,7 @@ If the difficulty of the individual project is a 5 the difficulty of implementin
 
 ### Effort required
 When this projects work was compared to the amount of effort needed for the IP, it can be said that the same amount of effort
-if not more was put into this project as compared to the IP. We believe we put in 100% of the effort each one of us put into our IP and that's a conservative estimate. This project required all members working around the clock
+if not more was put into this project as compared to the IP. We believe we put in 160% of the effort each one of us put into our IP and that's a conservative estimate. This project required all members working around the clock
 and a high amount of effort was used to achieve weekly deliverables and ensure a working product was available at all times. 
 
 ### Achievements
