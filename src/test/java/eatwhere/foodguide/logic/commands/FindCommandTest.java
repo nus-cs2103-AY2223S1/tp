@@ -73,7 +73,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_Keyword_notCaseSensitive() {
+    public void execute_keyword_notCaseSensitive() {
         String expectedMessage = String.format(MESSAGE_EATERIES_LISTED_OVERVIEW, 1);
         FindCommand command;
 
@@ -111,7 +111,7 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_Keyword_searchesSubstrings() {
+    public void execute_keyword_searchesSubstrings() {
         String expectedMessage;
         FindCommand command;
 

@@ -85,7 +85,7 @@ public class FindLocationCommandTest {
     }
 
     @Test
-    public void execute_Keyword_notCaseSensitive() {
+    public void execute_keyword_notCaseSensitive() {
         String expectedMessage;
         FindLocationCommand command;
 

@@ -84,7 +84,7 @@ public class FindTagCommandTest {
     }
 
     @Test
-    public void execute_Keyword_notCaseSensitive() {
+    public void execute_keyword_notCaseSensitive() {
         String expectedMessage = String.format(MESSAGE_EATERIES_LISTED_OVERVIEW, 1);
         FindTagCommand command;
 
