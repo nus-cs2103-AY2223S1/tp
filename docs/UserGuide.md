@@ -445,6 +445,8 @@ Format: `swap-task m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER`
 * You may only specify two task numbers at once. Both task numbers must be 
   different.
 
+<div style="page-break-after: always;"></div>
+
 Example:
 ```
 swap-task m/CS2103T ts/1 3
