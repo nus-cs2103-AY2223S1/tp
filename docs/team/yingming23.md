@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page-with-header
 title: Li Yingming's Project Portfolio Page
 ---
 

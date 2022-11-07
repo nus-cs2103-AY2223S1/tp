@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page-with-header
 title: Sun Yu Ting's Project Portfolio Page
 ---
 

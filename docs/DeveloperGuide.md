@@ -398,8 +398,6 @@ The following sequence diagram shows how the FindModule operation works:
 
 </div>
 
-[Back to Top](#socompiler-developer-guide)
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## 4. **Documentation, logging, testing, configuration, dev-ops**
@@ -423,6 +421,8 @@ SoCompiler is built-upon [AddressBook-Level3](https://github.com/se-edu/addressb
 * Font used for the GUI were obtained from [Google Fonts](https://fonts.google.com/), where all fonts are under open source licenses and can be used in commercial and non-commercial products.
 
 [Back to Top](#socompiler-developer-guide)
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -694,6 +694,8 @@ It is an interface where users input text commands to interact with the computer
 #### Graphical User Interface (GUI)
 
 It is an interface where users can interact with apps/electrical devices through graphical icons and audio indicators.
+
+<div style="page-break-after: always;"></div>
 
 #### School of Computing (SOC)
 
