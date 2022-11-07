@@ -11,26 +11,26 @@ SectresBook helps secretaries to maintain all the information of the members of 
 
 **New Features Implemented**
 
-1. **_Loan Property of a Person_**
+1. **_Loan Property of a Person_** (Pull Request [#50](https://github.com/AY2223S1-CS2103T-W12-2/tp/pull/50))
   * **What it does**: Implements the ability to track monetary amounts that are represented as loaned amounts. The loan amounts must be between -1 trillion to 1 trillion inclusive.
   * **Justification**: A treasurer requires the need to keep track of monetary transactions. A loan is a data type created to serve this purpose.
   
-2. **_User Interface Design_**
+2. **_User Interface Design_** (Pull Request [#75](https://github.com/AY2223S1-CS2103T-W12-2/tp/pull/75))
    * **What it does**: Remodel and redesigned the user interface as shown in the landing page. Various small icons, images, alignment details and transitions are also applied for visual enhancement.
    * **Justification**: The previous UI design did not look appealing, so a more visually appealing design was created. This will help the product's publicity and attractiveness to clients.
    * **Highlights**: Event based triggers (space to start typing, esc to exit typing), transition effects and embellishments.
 
-3. **_Inspect command_**
+3. **_Inspect command_** (Pull Request [#75](https://github.com/AY2223S1-CS2103T-W12-2/tp/pull/75))
    * **What it does**: Inspects a person in the person's list. Inspection is a UI-centric command that updates UI values. It does not mutate any data in the model. This is also equivalent to just click on the person card.
    * **Justification**: The UI requires more flexibility when coupled with the CLI, there shouldn't be things that the GUI can do that the CLI cannot, so the `inspect` command was created.
 
-4. **_Show and Hide Notes Panel Command_**
+4. **_Show and Hide Notes Panel Command_** (Pull Request [#75](https://github.com/AY2223S1-CS2103T-W12-2/tp/pull/75))
    * **What it does**: Shows/hides the notes panel by applying a translational transition with a fade transition to the StackPane containing the notes panel with anchor points on an AnchorPane. 
    * **Justification**: It is difficult to view more than 6 people in the list at the same time especially if working on a monitor with a smaller resolution. By hiding the notes panel, more screen real estate can be given to the person list and inspect panel.
 
-5. **_Edit By Name_**
+5. **_Edit By Name_** (Pull Request [#52](https://github.com/AY2223S1-CS2103T-W12-2/tp/pull/52))
    * **What it does**: Adding onto the ability to edit by index, I implemented an ability to edit by any keyword of the person's name. This makes it more convenient to specify edit operations without checking for name
-   * **Justificaton**: It is easier to recall a person's name than to read the index from the list.
+   * **Justification**: It is easier to recall a person's name than to read the index from the list.
 
 **Project management**:
 
@@ -64,7 +64,7 @@ SectresBook helps secretaries to maintain all the information of the members of 
   1. Added Edit _Sequence Diagram_ involving either searching by index or by name and Inspect _Sequence Diagram_ for the `inspect` command
   2. Updated the UI _Class Diagram_ to reflect the current state of the UI organisation and the Person _Class Diagram_ by adding the loans property to the Person _Class Diagram_
   3. Wrote the sections involving [UI design](https://ay2223s1-cs2103t-w12-2.github.io/tp/DeveloperGuide.html#ui-features) and the implementation details of [`inspect`](https://ay2223s1-cs2103t-w12-2.github.io/tp/DeveloperGuide.html#inspect-feature), and `showNotes` and `hideNotes`, found [here](https://ay2223s1-cs2103t-w12-2.github.io/tp/DeveloperGuide.html#showing-and-hiding-the-notes-panel-feature).
-  4. Added UI _Activity Diagram_ that describes how a user would interact with the UI
+  4. Added UI _Activity Diagram_ that describes how a user would interact with the UI (Pull request [#189](https://github.com/AY2223S1-CS2103T-W12-2/tp/pull/189))
 
 -----------------------------
 
