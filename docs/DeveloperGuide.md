@@ -482,7 +482,6 @@ A new buyer or property is then created with the edited fields, and any fields t
 The new buyer or property is then added into the model, replacing the old one. The new entity will then be displayed to the user, and a success message is displayed.
 
 The following sequence diagram shows how the `EditBuyerCommand` is executed.
-![EditBuyerSequenceDiagram](images/EditSequenceDiagram.png)
 <img src="images/EditSequenceDiagram.png" height="400" />
 
 #### Design Considerations

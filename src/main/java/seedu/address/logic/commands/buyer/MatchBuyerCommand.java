@@ -34,7 +34,7 @@ public class MatchBuyerCommand extends Command {
             + "Pass in " + PREFIX_STRICT + " to reduce the matches to only properties that satisfy all of the"
             + " buyer's desired characteristics.\n"
             + "Parameters: INDEX "
-            + "[" + PREFIX_STRICT + " STRICT]\n"
+            + "[" + PREFIX_STRICT + "]\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_STRICT;
 
     public static final String MESSAGE_MATCHED_BUYER_SUCCESS = "%s matched properties for the buyer:\n%s";
