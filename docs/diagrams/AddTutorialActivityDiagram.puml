@@ -1,0 +1,14 @@
+@startuml
+start
+
+repeat
+:User executes "addtut" command;
+repeat while () is ([tutorial added is a duplicate])
+-> [tutorial not duplicate];
+
+:tutorial added to tutorial list;
+
+:Updated tutorial list saved to SETA;
+
+stop
+@enduml

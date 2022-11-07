@@ -1,0 +1,64 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddTutorialCommandParser" as AddTutorialCommandParser LOGIC_COLOR
+participant "a:AddTutorialCommand" as AddTutorialCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
+end box
+[-> LogicManager : execute(addtut g/T08 c/UML diagrams t/2022-10-01 1400)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(addtut g/T08 c/UML diagrams t/2022-10-01 1400)
+activate AddressBookParser
+
+create AddTutorialCommandParser
+AddressBookParser -> AddTutorialCommandParser :AddTutorialCommandParser()
+activate AddTutorialCommandParser
+
+AddTutorialCommandParser --> AddressBookParser
+deactivate AddTutorialCommandParser
+
+AddressBookParser -> AddTutorialCommandParser : parse("g/T08 c/UML diagrams t/2022-10-01 1400")
+activate AddTutorialCommandParser
+
+create AddTutorialCommand
+AddTutorialCommandParser -> AddTutorialCommand :AddTutorialCommand()
+activate AddTutorialCommand
+
+AddTutorialCommand --> AddTutorialCommandParser
+deactivate AddTutorialCommand
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddTutorialCommand : execute()
+activate AddTutorialCommand
+
+AddTutorialCommand -> Model : addTutorial(Tutorial t)
+activate Model
+
+Model -> AddressBook : addTutorial(Tutorial t)
+activate AddressBook
+
+AddressBook -> AddressBook :resetData(ReadOnlyAddressBook newData)
+AddressBook --> Model :
+deactivate AddressBook
+
+Model --> AddTutorialCommand
+deactivate Model
+
+AddTutorialCommand --> LogicManager : result
+deactivate AddTutorialCommand
+AddTutorialCommand -[hidden]-> LogicManager : result
+destroy AddTutorialCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

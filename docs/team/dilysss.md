@@ -1,5 +1,6 @@
 ---
-layout: page title: Dilys Pang's Portfolio Page
+layout: page 
+title: Dilys Pang's Portfolio Page
 ---
 
 ### Project: SETA
@@ -13,10 +14,12 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the ability to add a student.
     * What it does: Allows the user to add a student with their name, email and telegram handle.
-    * Justification: This feature improves the product significantly because a user can add students into SETA to keep track of his or her students under him.
-    * Highlights: This enhancement requires me to create new classes. It was also tricky because I added some additional checks within this feature, such as including an internal 
-      check to ensure that adding a student name will be case-insensitive. 
-      (E.g. if a student with the name "Alice Tan" is already in the addressbook, "alice   Tan" cannot be added).
+    * Justification: This feature improves the product significantly because a user can add students into SETA to keep
+      track of his or her students under him.
+    * Highlights: This enhancement requires me to create new classes. It was also tricky because I added some additional
+      checks within this feature, such as including an internal
+      check to ensure that adding a student name will be case-insensitive.
+      (E.g. if a student with the name "Alice Tan" is already in the addressbook, "alice Tan" cannot be added).
 
 
 * **New Feature**: Added the ability to edit a student's details.
@@ -38,7 +41,7 @@ Given below are my contributions to the project.
 * **New Feature**: Added the ability to list all students.
     * What it does: Allows the user to view the details of all his or her students at once.
     * Justification: This feature improves the product significantly because a user can easily have a overview of all
-      the students he or she has. This feature allows the user to go back to view all his students after executing a 
+      the students he or she has. This feature allows the user to go back to view all his students after executing a
       `findstu` command.
     * Highlights: This enhancement requires me to create new classes and make changes to existing classes.
 
@@ -53,13 +56,13 @@ Given below are my contributions to the project.
 
 * **Project management**:
     * Managed releases v1.2 - v1.4 on Github.
-    
+
 * **Enhancements to existing features**:
     * Updated the GUI.
         * Changed the layout of the application.
-          * Added a close button
-          * Changed the look of the help button
-          * Amended window size of application
+            * Added a close button
+            * Changed the look of the help button
+            * Amended window size of application
         * Changed the GUI colour scheme.
 
 * **Documentation**:
@@ -74,9 +77,9 @@ Given below are my contributions to the project.
           and `StorageClassDiagram`.
 
 * **Team-based tasks**:
-  * Maintaining issue tracker by adding issues addressed to myself or other team members.
-  * Documenting parts in UG not specific to my features (E.g. Quick start, FAQ).
-  * Helped to merge Pull Requests of team members.
+    * Maintaining issue tracker by adding issues addressed to myself or other team members.
+    * Documenting parts in UG not specific to my features (E.g. Quick start, FAQ).
+    * Helped to merge Pull Requests of team members.
 
 * **Community**:
     * PRs reviewed: [\#108](https://github.com/AY2223S1-CS2103T-T08-4/tp/pull/108)
