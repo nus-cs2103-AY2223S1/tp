@@ -346,6 +346,8 @@ Outcome: Students are sorted by Mastery Check date, from earliest to latest.
 
 #### Finding individual student details: `find`
 
+Once you have many students added to FRIDAY, viewing specific information can be hectic.
+To help you with finding specific information FRIDAY provides you with a find command .
 You can search for keywords using the `find` command and FRIDAY will show you the students whose details match these keywords.
 
 Format: `find KEYWORDS`
