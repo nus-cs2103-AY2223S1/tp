@@ -846,7 +846,7 @@ With navigation functionalities, you now have the ability to navigate between di
 #### 2.5.1. Navigate between modules
 Suppose you want to focus on a single module, you can do so using the `goto` command.
 
-This gives you a clear view of the tasks, links, and contacts associated with a particular module.
+This gives you a clear view of the tasks, links, and contacts associated with the particular module.
 
 Format: `goto MODULE_CODE`
 * You should provide a module code of an existing module in Plannit.
@@ -880,10 +880,8 @@ For Macbook user: If tasks are not shown, double-click on the module to open it!
 </div>
 
 #### 2.5.2. Navigate to home
-Suppose you want to have an overview of all modules and contacts in Plannit,
+Suppose you want to return to the home page to have an overview of all modules and contacts in Plannit,
 you can do so using the `home` command.
-
-You may navigate to the home page using the `home` command.
 
 Format:  `home`
 
