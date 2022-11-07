@@ -71,9 +71,9 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-F12-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/UiClassDiagramNew.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-F12-2/tp/blob/master/src/main/java/seedu/address/MainApp.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-F12-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -157,6 +157,9 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Filter and Sort
+
 
 
 ### Display of person and task list
@@ -286,7 +289,7 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### \[Proposed\] Adding a Task into the TaskList.
+### \[Implemented\] Adding a Task into the TaskList.
 
 #### Proposed Implementation
 
@@ -309,7 +312,7 @@ The following sequence diagram shows how the AddTask operation works:
 The following activity diagram summarizes what happens when a user executes a AddTask command:
 ![AddTaskActivityDiagram](images/AddTaskCommandActivityDiagram.png)
 
-### \[Proposed\] Deleting a Task into the TaskList.
+### \[Implemented\] Deleting a Task from the TaskList.
 
 #### Proposed Implementation
 
@@ -336,7 +339,8 @@ The following sequence diagram shows how the DeleteTask operation works:
 The following activity diagram summarizes what happens when a user executes a DeleteTask command:
 ![AddTaskActivityDiagram](images/DeleteTaskCommandActivityDiagram.png)
 
-### Edit Task Feature
+### \[Implemented\] Edit Task Feature
+Edit Task Feature
 
 #### Implementation
 
@@ -352,25 +356,34 @@ The sequence diagram is shown below:
 
 ### Sort Tasks Feature
 
+#### Motivation
+Sorting tasks makes it easier for the user to organize and find tasks, and is a key feature of our application. When displaying the sorted list, we had to still keep a record of all the original tasks, as the user would not expect the sort function to make changes to the stored tasks. Thus, we had to find a way to display a separeate list of tasks while not modifing the original list.
+
 #### Implementation
 
-When the `sort` command is entered, a `Comparator<Task>` is created which will be an instance of either `model.task.SortByDeadline` or `model.task.SortByPriority`. This `Comparator<Task>` will be reversed if the task list needs to be sorted in descending order. The `SortedList<Task>` in the `Model` will then be updated to use the new `Comparator<Task>`.
+When the `sort` command is entered, a `Comparator<Task>` is created which will be an instance of either `model.task.SortByDeadline` or `model.task.SortByPriority`, depending on what the user requested. This `Comparator<Task>` will be reversed if the task list needs to be sorted in descending order. The `SortedList<Task>` in the `Model` will then be updated to use the new `Comparator<Task>`.
+
+A seperate SortedList of tasks is mantained with this comparator. This ensures that the orignal list of tasks and their order is mantained while the user views the sorted List.
 
 The following sequence diagram shows what happens when the command is executed:
 
 ![SortTaskCommandSequenceDiagram](images/SortTaskCommandSequenceDiagram.png)
 
-### \[Proposed\] Task and Person display each other
 
-#### Proposed Implementation
 
-Currently, A person in the addressbook has no relation to the tasks assigned to that person. This feature will allow tasks and persons to be related to each other, and allow the UI to display which tasks are assigned to a person, and which person is in charge of a task.
+### \[Implemented\] Task and Person display each other
+
+#### Implementation
+Previously, A person in the addressbook has no relation to the tasks assigned to that person. This feature will allow tasks and persons to be refrence each other.
+This would allow the UI to display which tasks are assigned to a person, and which person is in charge of a task.
+
+Additionally, whenever a person's name or email is edited, we want the tasks that they are assigned to to be updated. Likewise, whenever a task's details are changed, our application should reflect those changes in the details of the person that is assigned to that task.
 
 This will be implemented by modifying 3 already existing commands
 
 * `Add` — Whenever a person is added, any task that shares the same email as the new Person's email wil be updated to reflect the person's name.
 * `Delete` — Whenever a person is deleted, their tasks will be edited to reflect that they are not assigned to any person
-* `Edit` — Whenever a person is edited, their tasks will be edited to reflect the new changes
+* `Edit` — Whenever a person is edited, their tasks will be edited to reflect the new changes to that person
 
 Given below is an example usage scenario.
 
