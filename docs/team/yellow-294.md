@@ -34,7 +34,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Fixed UG related bugs after PED: [#148](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/148)
+        * Fixed UG related bugs after PED: [#148](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/148), [#179](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/179)
     * Developer Guide:
         * Added implementation details of the AddAssignments feature: [#72](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/72)
 
@@ -45,6 +45,9 @@ Given below are my contributions to the project.
       [#70](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/70),
       [#81](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/81),
       [#155](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/155),
+      [#164](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/164),
+      [#171](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/171),
+  
 
 
 
