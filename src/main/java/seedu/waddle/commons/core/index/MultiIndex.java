@@ -10,10 +10,17 @@ public class MultiIndex {
     public static final String MESSAGE_CONSTRAINTS =
             "Index should only contain positive integers separated by a decimal point";
     public static final String VALIDATION_REGEX = "\\d+\\.?\\d*";
-    private List<Index> indices;
+    private final List<Index> indices;
 
     public MultiIndex() {
         indices = new ArrayList<>();
+    }
+
+    /**
+     * Returns true if a given string is a valid multi index.
+     */
+    public static boolean isValidMultiIndex(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     public void appendZeroBasedIndex(int index) {
@@ -63,22 +70,12 @@ public class MultiIndex {
         return indices.get(pos - 1);
     }
 
-    /**
-     * Returns true if a given string is a valid multi index.
-     */
-    public static boolean isValidMultiIndex(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
-
     public boolean containsMultiIndex() {
         return this.indices.size() >= 2;
     }
 
     private boolean isValidPos(int pos) {
-        if (pos < 1 || pos > indices.size()) {
-            return false;
-        }
-        return true;
+        return pos >= 1 && pos <= indices.size();
     }
 
     @Override
@@ -91,5 +88,12 @@ public class MultiIndex {
             }
         }
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof MultiIndex // instanceof handles nulls
+                && indices.equals(((MultiIndex) other).indices));
     }
 }
