@@ -38,10 +38,10 @@ public class EmailTest {
         assertFalse(Email.isValidEmail("e0!234567")); // symbol in digits
         assertFalse(Email.isValidEmail("e 01234567")); // space between letter and digits
         assertFalse(Email.isValidEmail("e0123 4567")); // space between digits
+        assertFalse(Email.isValidEmail("E1234567")); // upper case letter
 
         // valid email
         assertTrue(Email.isValidEmail("e1234567")); // all different numbers
-        assertTrue(Email.isValidEmail("E1234567")); // upper case letter
         assertTrue(Email.isValidEmail("e0000000")); // all same numbers
     }
 }
