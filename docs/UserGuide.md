@@ -17,7 +17,8 @@
           1. [Clear command](#clear-command-clear)
           2. [Exit command](#exits-the-program-exit)
           3. [Add a field](#add-a-new-field-field-add)
-          4. [Delete a field](#delete-a-field-field-delete)
+          4. [Edit a field](#edit-a-field-field-edit)
+          5. [Delete a field](#delete-a-field-field-delete)
        2. [Team/Group commands](#2-teamgroup-commands)
           1. [Create a team](#create-a-team)
           2. [Delete a team](#delete-a-team)
@@ -408,6 +409,25 @@ the `DESCRIPTION` as `High` to the task with `INDEX` 1.
 
 ![Add field to task](images/AddFieldUserGuideExample.png)
 
+### Edit a field: `field edit`
+
+This command will attempt to edit an **existing** field that belongs to a group, task or person. It replaces the
+description of an existing field name to a new description.
+
+However, if the field name does not exist, then the field should be added first through the `field add` command
+explained above. Field names are case-sensitive.
+
+**Format**:
+
+- `field edit u/<INDEX> <FIELD NAME> <NEW DESCRIPTION>` to edit the field named `FIELD NAME` to the person at 
+   the current `INDEX`
+- `field edit g/<INDEX> <FIELD NAME> <NEW DESCRIPTION>` to edit the field named `FIELD NAME` to the group at
+   the current `INDEX`
+- `field edit t/<INDEX> <FIELD NAME> <NEW DESCRIPTION>` to edit the field named `FIELD NAME` to the task at
+   the current `INDEX`
+
+![Edit Field Example]()
+
 ### Delete a field: `field delete`
 
 The command will attempt to delete a field that belongs to a group, task or person.
@@ -434,9 +454,9 @@ can be used on groups.
 
 Team-related commands in Contactmation begin with the `team` keyword.
 
-### Create a team
+### Create a team: `team new`
 
-Contactmation provides the `team new` command to create a new team with a specified team name.
+Contactmation provides the `team new` command to create a new team with a specified team name in the current scope.
 
 **Format**: `team new <TEAM NAME>`
 
@@ -504,13 +524,12 @@ command (`cg`) in Contactmation follows a similar syntax to the change directory
 Once you have navigated to a team, you can add a new contact within that team, which is done through the same command
 as adding a contact to Contactmation.
 
-
 **Format**: `person new n/<NAME> [p/<PHONE>] [e/<EMAIL>] [a/<ADDRESS>] [t/<TAG>]...`
 
 **Examples**:
 
-- `person new n/Spongebob`
-- `person new n/Squidward Tentacles p/01234567 e/squidward@gmail.com a/Bikini Bottom Krusty Krab t/contact`
+- `person new n/Charlotte Smith`
+- `person new n/Michael Brown p/01234567 e/michael.brown@gmail.com a/West Coast Avenue Blk 321 14-540A t/Employee`
 
 ### Removing contacts from team: `team remove`
 
@@ -529,7 +548,7 @@ the application window.
 Contactmation allows the creation and deletion of a subteam within a team using the same command as
 [creating a team](#create-a-team) and [deleting a team](#delete-a-team).
 
-### Finding a team: `team remove`
+### Finding a team: 
 
 Contactmation allows for searching of teams with the [find command](#find-command-find).
 
