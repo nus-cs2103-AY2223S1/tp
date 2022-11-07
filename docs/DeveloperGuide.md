@@ -299,7 +299,7 @@ Step 2. The method `LogicManager#execute` is called on the user input, prompting
 
 Step 3. The `execute` method of `ViewCommand` is then called on the object, which returns a `CommandResult` object.
 
-Step 4. This finds the `person` from the list from the `model#getFilteredPersonList` by its index which is `1` in this case. If there does not exist a `person` object with index `1`, a `CommandException` will be thrown and a message indicating invalid index given will be shown. If the `person` object exists, then the `MainWindow#handleView` will be trigger, which results in the panel on the right being updated with the correct `person` information.
+Step 4. This finds the `person` from the list from the `model#getFilteredPersonList` by its index which is `1` in this case. If there does not exist a `person` object with index `1`, a `CommandException` will be thrown and a message indicating invalid index given will be shown. If the `person` object exists, then the `MainWindow#handleView` will be triggered, which results in the panel on the right being updated with the correct `person` information.
 
 ### View Department feature
 
