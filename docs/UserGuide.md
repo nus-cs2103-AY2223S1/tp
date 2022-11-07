@@ -235,7 +235,6 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd applicant in the address book.
 * `find n/Betsy` followed by `delete 1` deletes the 1st applicant in the results of the `find` command.
 
-
 <div style="page-break-after: always;"></div>
 
 ### 3.7 Locating applicants by field: `find`
