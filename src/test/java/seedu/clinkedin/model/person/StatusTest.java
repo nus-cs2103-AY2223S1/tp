@@ -38,4 +38,34 @@ public class StatusTest {
         assertTrue(Status.isValidStatus("Accepted but applicant wants to negotiate compensation package"));
         // long names
     }
+
+    @Test
+    public void status_toString() {
+        String statusString = "Application";
+        Status status1 = new Status(statusString);
+        Status status2 = new Status("Application");
+        assertTrue(status1.toString().equals(status2.toString()));
+        assertTrue(status1.toString().equals(statusString));
+        assertTrue(status2.toString().equals(statusString));
+    }
+
+    @Test
+    public void equalityTests() {
+        Status status1 = new Status("Application");
+        Status status2 = new Status("Application");
+        assertTrue(status1.equals(status2));
+        assertTrue(status1.equals(status1));
+        assertFalse(status1.equals(null));
+        assertFalse(status1.equals(5));
+    }
+
+    @Test
+    public void hashcodeTests() {
+        Status status1 = new Status("OA");
+        Status status2 = new Status("OA");
+        int hashcode1 = status1.hashCode();
+        int hashcode2 = status2.hashCode();
+        assertTrue(hashcode1 == hashcode2);
+        assertTrue(hashcode1 == hashcode1);
+    }
 }

@@ -3,6 +3,7 @@ package seedu.clinkedin.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_DEGREETAG;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NOTE;
@@ -38,8 +39,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_FRIEND = "Java";
+    public static final String VALID_TAG_HUSBAND = "Masters";
     public static final String VALID_STATUS_AMY = "Application Received";
     public static final String VALID_STATUS_BOB = "Rejected";
     public static final String VALID_NOTE_AMY = "She is strong at Python.";
@@ -56,7 +57,7 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_SKILLTAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_SKILLTAG + VALID_TAG_HUSBAND;
+    public static final String TAG_DESC_HUSBAND = " " + PREFIX_DEGREETAG + VALID_TAG_HUSBAND;
     public static final String STATUS_DESC_AMY = " " + PREFIX_STATUS + VALID_STATUS_AMY;
     public static final String STATUS_DESC_BOB = " " + PREFIX_STATUS + VALID_STATUS_BOB;
     public static final String NOTE_DESC_AMY = " " + PREFIX_NOTE + VALID_NOTE_AMY;
@@ -70,6 +71,7 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_SKILLTAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + ""; // '@' not allowed in status
+
     public static final String INVALID_RATING_DESC = " " + PREFIX_RATING + "4.9";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -84,7 +86,7 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_FRIEND).withStatus(VALID_STATUS_AMY).withRating(VALID_RATING_AMY).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withStatus(VALID_STATUS_BOB).withRating(VALID_RATING_BOB)
+                .withTags(VALID_TAG_HUSBAND).withStatus(VALID_STATUS_BOB).withRating(VALID_RATING_BOB)
                 .build();
     }
 
