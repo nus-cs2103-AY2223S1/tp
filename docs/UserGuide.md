@@ -67,6 +67,7 @@ To begin planning your travels with Waddle, simply set it up as follows:
    ![Ui](images/Ui.png)
 
 And you're ready to waddle! To execute any command, type it command in the command box and press Enter. e.g. typing **`help`** and pressing Enter will open the help window.
+<div style="page-break-after: always"></div>
 
 Some example commands you can try:
 
