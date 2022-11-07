@@ -936,9 +936,9 @@ testers are expected to do more *exploratory* testing.
    Expected: First student has attendance record for class `T05` removed. Details of the updated student shown in the status message.
    Student Card of the first student is updated.<br><br>
 
-   b. Test case: `unmark 2 c/T05`<br>
+   c. Test case: `unmark 2 c/T05`<br>
    Suppose the second student does not have class `T05` recorded. <br/>
-   Expected: Nothing is changed. Message that second student does not have class `T05` is displayed.<br><br>
+   Expected: Nothing is changed. Message that second student does not have class `T05` is shown in the status message.<br><br>
 
 ## Importing File
 
@@ -960,6 +960,49 @@ testers are expected to do more *exploratory* testing.
    d. Test case: `import`<br>
    Suppose a CSV file with improper format is selected. <br/>
    Expected: Nothing happens. StudMap displays an error in the status message.<br><br>
+
+## Tagging Students
+
+1. Tagging a student
+
+   a. Prerequisites: List all students using the `list` command. Multiple students in the list.<br><br>
+
+   b. Test case: `tag 1 t/friend`<br>
+   Expected: First student has new tag `friend` added. Details of the updated student shown in the status message.
+   Student Card of the first student is updated.<br><br>
+
+   c. Test case: `tag all t/hello`<br>
+   Expected: All students have new tag `hello` added. Details of the updated students shown in the status message.
+   Student Cards of all students are updated.<br><br>
+
+## Untagging Students
+
+1. Removing tags from student
+
+   a. Prerequisites: List all students using the `list` command. Multiple students in the list.<br><br>
+
+   b. Test case: `untag 1 t/friend`<br>
+   Suppose first student has tag `friend`. <br/>
+   Expected: First student has tag `friend` removed. Details of the updated student shown in the status message.
+   Student Card of the first student is updated.<br><br>
+
+   c. Test case: `untag 2 t/man`<br>
+   Suppose second student does not have tag `man` <br/>
+   Expected: Nothing is changed. Message that second student does not have tag man `man` is shown in the status message.<br/><br/>
+
+## Filtering
+
+1. Filtering student list by attributes
+
+   a. Prerequisites: List all students using the `list` command. Multiple students in the list.<br><br>
+
+   b. Test case: `filter t/friend`<br>
+   Suppose there are students with tag `friend` <br/>
+   Expected: All students with tag `friend` are displayed in the student list.<br><br>
+
+   c. Test case: `filter a/A02`<br>
+   Suppose there are students with assignment `A02` <br/>
+   Expected: All students with assignment `A02` are displayed in the student list.<br><br>
 
 ---
 
