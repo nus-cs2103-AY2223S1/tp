@@ -1,0 +1,28 @@
+@startuml
+start
+:User enters an AddCommand;
+:AddCommandParser checks for valid format;
+
+if () then ([valid format])
+    if () then ([subcommand is 'user'])
+        if () then ([valid format])
+            :Create and execute AddUserCommand;
+            :UI updates its list of users to reflect addition of user;
+        else ([invalid])
+            :Show error message;
+        endif
+    else ([subcommand is 'book'])
+        if () then ([valid format])
+            :Return and execute AddBookCommand;
+            :UI updates its list of books to reflect addition of book;
+        else ([invalid])
+            :Show error message;
+        endif
+    endif
+else ([invalid])
+    :Show error message;
+endif
+
+
+stop
+@enduml
