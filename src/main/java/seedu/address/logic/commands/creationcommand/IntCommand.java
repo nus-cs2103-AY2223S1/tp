@@ -45,7 +45,6 @@ public class IntCommand extends PureCommand {
             public IntCommand parse(String userInput) throws ParseException {
                 userInput = userInput.trim();
                 ParserUtil.Pair p = ParserUtil.splitPipe(userInput);
-                System.out.println(p);
                 if (p.getFirst().length() == 0) {
                     throw new ParseException(INVALID_INPUT);
                 }

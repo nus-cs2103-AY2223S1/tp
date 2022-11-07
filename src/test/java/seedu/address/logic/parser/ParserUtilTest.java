@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.attribute.Address;
 import seedu.address.model.attribute.Email;
+import seedu.address.model.attribute.Field;
 import seedu.address.model.attribute.Name;
 import seedu.address.model.attribute.Phone;
 import seedu.address.model.group.Group;
@@ -32,7 +33,7 @@ public class ParserUtilTest {
     private static final String INVALID_PATH_NAME = "invalid team\\";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PHONE = "123456";
+    private static final String VALID_PHONE = "91234560";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
@@ -225,5 +226,18 @@ public class ParserUtilTest {
     @Test
     public void parseGroup_invalidTeamNameHasWhitespace_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseGroup(INVALID_TEAM_NAME));
+    }
+
+    @Test
+    public void parseField_validFieldName_returnsField() throws ParseException {
+        Field expectedField = ParserUtil.parseField("fieldStub");
+        Field actualField = new Field("fieldStub");
+
+        assertEquals(expectedField, actualField);
+    }
+
+    @Test
+    public void parseField_invalidFieldName_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseField(" "));
     }
 }

@@ -8,6 +8,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 public class CommandResultTest {
+
+    @Test
+    public void createCommandObject_rest() {
+        CommandResult commandResultStub = new CommandResult("test", true, false, "result");
+        assertTrue(commandResultStub.isShowHelp());
+        assertFalse(commandResultStub.isExit());
+        assertEquals(commandResultStub.getResult(), java.util.Optional.ofNullable("result"));
+    }
+
     @Test
     public void equals() {
         CommandResult commandResult = new CommandResult("feedback");
