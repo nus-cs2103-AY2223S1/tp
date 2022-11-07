@@ -78,7 +78,7 @@ Friendnancial is a **desktop application, optimized for use by financial advisor
 
 Adds a contact to Friendnancial.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​ a/Address b/BIRTHDAY`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​ a/ADDRESS b/BIRTHDAY`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
@@ -268,14 +268,14 @@ Friendnancial data is saved in the hard disk automatically after any command tha
 
 ## Command Summary
 
-| Action     | Format, Examples                                                                                                                                    |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG] a/ADDRESS b/BIRTHDAY` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com t/friend b/18-08-2000` |
-| **Clear**  | `clear`                                                                                                                                             |
-| **Delete** | `delete INDEX` or `delete n/NAME`<br> e.g., `delete 3`, `delete n/paul`                                                                              |
-| **Find**   | `find [n/KEYWORD, t/TAG, b/BIRTHDAY]`<br> e.g., `find n/James Jake`                                                                                   |
-| **List**   | `list`                                                                                                                                              |
-| **Remind** | `remind INDEX r/REMINDER d/DATE` <br> e.g., `remind 2 r/update client information d/20-10-2022`                                                     |
-| **DeleteR** | `deleteR INDEX`<br> e.g., `deleteR 1`                                                                              |
-| **Insurance**   | `insurance INDEX [hi/] [di/] [ci/] [li/]`|
-| **Help**   | `help` |
+| Action     | Format, Examples                                                                                                                                                                    |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG] a/ADDRESS b/BIRTHDAY` <br> e.g., `add n/James Ho p/92224444 e/jamesho@example.com t/friend a/Blk 441 Hougang Ave 8 S530441 b/18-08-2000` |
+| **Clear**  | `clear`                                                                                                                                                                             |
+| **Delete** | `delete INDEX` or `delete n/NAME`<br> e.g., `delete 3`, `delete n/paul`                                                                                                             |
+| **Find**   | `find [n/KEYWORD, t/TAG, b/BIRTHDAY]`<br> e.g., `find n/James Jake`                                                                                                                 |
+| **List**   | `list`                                                                                                                                                                              |
+| **Remind** | `remind INDEX r/REMINDER d/DATE` <br> e.g., `remind 2 r/update client information d/20-10-2022`                                                                                     |
+| **DeleteR** | `deleteR INDEX`<br> e.g., `deleteR 1`                                                                                                                                               |
+| **Insurance**   | `insurance INDEX [hi/] [di/] [ci/] [li/]`                                                                                                                                           |
+| **Help**   | `help`                                                                                                                                                                              |

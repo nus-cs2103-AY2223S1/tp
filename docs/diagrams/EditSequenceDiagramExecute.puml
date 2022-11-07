@@ -1,0 +1,66 @@
+@startuml
+!include style.puml
+mainframe **s****d** execute edit command
+
+box Logic LOGIC_COLOR_T1
+
+participant "r:EditCommand" as EditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "lastShownList:List" as List LOGIC_COLOR
+participant "editedPerson:Person" as Person LOGIC_COLOR
+end box
+
+[-> EditCommand : execute()
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+
+activate EditCommand
+
+EditCommand -> Model : getFilteredPersonList()
+activate Model
+
+create List
+Model --> List
+deactivate Model
+
+activate List
+
+EditCommand -> List : get(1)
+
+List --> EditCommand: personToEdit
+deactivate List
+
+EditCommand --> EditCommand : createEditedPerson(personToEdit, editPersonDescriptor)
+activate EditCommand
+
+create Person
+EditCommand -> Person
+activate Person
+
+Person --> EditCommand : editedPerson
+deactivate Person
+EditCommand --> EditCommand: editedPerson
+deactivate EditCommand
+
+EditCommand -> Model : setPerson(personToEdit, editedPerson)
+activate Model
+
+Model --> EditCommand
+
+deactivate Model
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditCommand
+deactivate CommandResult
+
+[<--EditCommand: result
+
+deactivate EditCommand
+
+@enduml
