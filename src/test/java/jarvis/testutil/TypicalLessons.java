@@ -65,6 +65,9 @@ public class TypicalLessons {
     }
 
     public static List<Lesson> getTypicalLessons() {
-        return new ArrayList<>(Arrays.asList(CONSULT_1, MC_1, STUDIO_1));
+        Consult consultOne = new Consult(CONSULT_DESCRIPTION_1, TP3, CONSULT_STUDENTS);
+        MasteryCheck masteryCheckOne = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_1, TP1, MASTERY_CHECK_STUDENTS);
+        Studio studioOne = new Studio(STUDIO_DESCRIPTION_1, TP2, STUDIO_STUDENTS);
+        return new ArrayList<>(Arrays.asList(consultOne, masteryCheckOne, studioOne));
     }
 }
