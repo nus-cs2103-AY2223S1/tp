@@ -82,9 +82,9 @@ Please make yourself familiar with the content here before moving to other secti
 
 #### Understanding the GUI
 
-Figure 2 depicts the GUI of FRIDAY which is annotated with a description of each GUI component
+Figure 2 depicts the [GUI](#glossary) of FRIDAY which is annotated with a description of each GUI component
 
-[Layout](images/layout.png)
+![Layout](images/layout.png)
 <i> Figure 2 Layout</i>
 
 #### Understanding Symbols and syntax
@@ -100,14 +100,14 @@ The table explains the general syntax and common occurrences throughout the user
 
 #### Understanding command terms and general information
 
-Some terms that you may encounter along the way may confuse you. To help you understand all these terms this user guide has a dedicated [glossary](#Glossary) section with all the key terms 
+Some terms that you may encounter along the way may confuse you. To help you understand all these terms this user guide has a dedicated [glossary](#glossary) section with all the key terms 
 and hyperlinks to the first occurrence of the word in each section of the User guide.
 
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about CLI:**<br>
 
-* [Layout](images/layout.png)
+* ![Layout](images/layout.png)
   <i> Figure 3 Layout</i>
 * In this image above we have a labelled box in red called the command box. CLI or command line interface refers to
   <b>commands</b> in the form of text/<b>lines</b> that you as a user enter in the command box to create a response
