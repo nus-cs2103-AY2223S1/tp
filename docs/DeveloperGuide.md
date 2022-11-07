@@ -498,7 +498,7 @@ testers are expected to do more *exploratory* testing.
    1. Download the jar file and copy into an empty folder
 
    1. Double-click the jar file
-   
+
       Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
@@ -506,21 +506,21 @@ testers are expected to do more *exploratory* testing.
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.
-   
+
       Expected: The most recent window size and location is retained.
 
 1. Exiting the program
-   
+
     1. Enter the `exit` command.
-    
-       Expected: The program should exit.
-    
+
+       Expected: The program exits.
+
     1. Reopen the program. Click the close button on the top right of the window.
-    
+
        Expected: Similar to previous.
-       
+
     1. Reopen the program. Select the File → Exit menu entry.
-    
+
        Expected: Similar to previous.
 
     *All three should also work when the GUI is showing an invalid command.*
@@ -530,25 +530,25 @@ testers are expected to do more *exploratory* testing.
 1. Using menu items
 
    1. Select the Help → Help menu entry.
-   
+
       Expected: A window showing a clickable link to the [User Guide](UserGuide.html) is shown.
-      
+
       *Note: This window is known to open with zero dimensions on Linux X11.*
-      
+
    1. Close the help window. Press `F1`.
-   
+
       Expected: Similar to previous.
-   
+
 1. Switching tabs
 
    1. Prerequisites: The Contacts tab is selected.
-   
+
    1. Click on the Tasks tab.
-   
+
       Expected: The Tasks tab is highlighted. A list of tasks is shown. The data file path at the bottom changes to the task list file (`/data/tasks.json` by default).
-      
+
    1. Click on the Contacts tab.
-   
+
       Expected: The Contacts tab is highlighted. A list of contacts is shown. The data file path at the bottom changes to the contact list file (`/data/addressbook.json` by default).
 
 ### Managing tasks
@@ -556,29 +556,29 @@ testers are expected to do more *exploratory* testing.
 1. Adding a task
 
    1. Prerequisites: A task with the same name and module as below does not already exist. (It does not exist in the sample data)
-      
+
    1. Test case: `add Programming assignment m/CS1234 by/2022-01-02 3:45pm`
-   
+
       Expected: The app switches to the Task tab. A new task is shown in the GUI and its details are shown in the result box.
-      
+
    1. Test case: `add Get groceries by/tomorrow`
-   
+
       Expected: Similar to previous.
-      
+
    1. Test case: `add Math assignment m/MA4321`
-   
+
       Expected: The command turns red and the result box shows an error message. No tasks are added.
-   
+
    1. Test case: `add Math assignment m/MA4321/R by/2022-01-02 3:45pm`
-   
+
       Expected: Similar to previous.
-      
+
    1. Test case: `add Math assignment m/ by/2022-01-02 3:45pm`
-   
+
       Expected: Similar to previous.
-      
+
    1. Test case: `add Programming assignment m/CS1234 by/2022-01-02 4pm`
-   
+
       Expected: Similar to previous.
 
 1. Listing tasks
@@ -586,59 +586,59 @@ testers are expected to do more *exploratory* testing.
    1. `add Math assignment m/MA4321 by/2022-01-02 2pm` (so that a sort order can be derived)
 
    1. Test case: `list`
-   
+
       Expected: The app switches to the Task tab. Tasks are listed in order of most recently added first. The result box displays the matching message.
-      
+
    1. Test case: `list time`
-   
+
       Expected: The app switches to the Task tab. Tasks are listed in order of increasing due date. The result box displays the matching message.
-      
+
    1. Test case: `list foo`
-   
+
       Expected: The app switches to the Task tab. Tasks are listed in order of most recently added first. The result box displays the matching message.
-      
+
 1. Finding tasks
 
    1. Prerequisites: A task with "ign" in its name exists (if you're following this guide, there will be one)
-   
+
    1. Test case: `find n/ign`
-   
+
       Expected: The app switches to the Task tab. Matching tasks are shown. The result box displays the matching message.
-   
+
    1. Test case: `find n/ign m/CS`
-   
+
       Expected: The command turns red and the result box shows an error message. The tasks shown in the tasks tab do not change.
-   
+
    1. Test case: `find`
-   
+
       Expected: Similar to previous.
-   
+
    1. Test case: `find n/asdfghjk`
-   
+
       Expected: The app switches to the Task tab. No tasks are shown. The result box displays a message about listing tasks.
-   
+
 1. Marking and unmarking tasks
 
    1. Prerequisites: There are at least two tasks. (if you're following this guide, there will be)
 
    1. Run `list time` to change the sort order.
-   
+
    1. Test case: `mark 2`
-   
+
       Expected: The app switches to the Task tab. The list is still sorted by increasing deadline. The 2nd task in the list is marked. The result box displays the matching message.
-   
+
    1. Test case: `mark 2`
-   
+
       Expected: The command turns red and the result box shows an error message. The tasks shown in the tasks tab do not change.
-   
+
    1. Test case: `mark -1`
-   
+
       Expected: Similar to previous.
-   
+
    1. Test case: `mark`
-   
+
       Expected: Similar to previous.
-      
+
    1. Repeat the steps above for the `unmark` command.
 
 1. Editing tasks
@@ -646,53 +646,53 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: A task with the name "Get groceries" exists. (if you're following this guide, there will be one)
 
    1. Run `find n/Get groceries`
-   
+
    1. Test case: `edit 1 m/CS1234`
-   
+
       Expected: The app switches to the Task tab. The 1st task in the list has its module set to `CS1234`. The result box displays a message about the task being edited.
-   
+
    1. Test case: `edit 1 m/CS1234`
-   
+
       Expected: The app switches to the Task tab. The 1st task in the list does not change. The result box displays a message about the task being edited.
-      
+
    1. Test case: `edit 1 n/Programming assignment`
-   
+
       Expected: The command turns red and the result box shows an error message. The tasks shown in the tasks tab do not change.
-      
+
    1. Test case: `edit n/Programming assignment`
-   
+
       Expected: Similar to previous.
-      
+
    1. Test case: `edit 1`
-   
+
       Expected: Similar to previous.
-      
+
 1. Deleting tasks
 
    1. Run `list time` to change the sort order.
-   
+
    1. Test case: `del -1`
-   
+
       Expected: The command turns red and the result box shows an error message. The tasks shown in the tasks tab do not change.
-   
+
    1. Test case: `del`
-   
+
       Expected: Similar to previous.
-      
+
    1. Test case: `del 1 n/Hello`
-   
+
       Expected: Similar to previous.
-   
+
    1. Test case: `del 1`
-   
+
       Expected: The app switches to the Task tab. The list is still sorted by increasing deadline. The 1st task in the list is deleted. The result box displays the matching message.
-      
+
 1. Clearing completed tasks
 
    1. Prerequisites: At least one, but not all, tasks are marked. (if you're following this guide, `mark 2`)
-   
+
    1. Test case: `clean now`
-   
+
       Expected: The app switches to the Task tab. The list is still sorted and filtered like before the command. All marked tasks and none of the unmarked tasks are deleted. The result box displays the matching message.
 
 ### Deleting a person
@@ -702,15 +702,15 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `listc` command. Multiple persons in the list.
 
    1. Test case: `delete 1`
-      
+
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`
-   
+
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)
-   
+
       Expected: Similar to previous.
 
 ### Saving data
@@ -718,14 +718,14 @@ testers are expected to do more *exploratory* testing.
 1. Autosave
 
    1. Prerequisites: The task and contact to be added do not already exist.
-   
+
    1. Enter `add Learn Racket programming by/next week`. Close and reopen the app.
-   
-      Expected: The added task should still be there.
-      
+
+      Expected: The added task is still there.
+
    1. Enter `addc Ethan Wong p/81234567`. Close and reopen the app.
-   
-      Expected: The added contact should still be there.
+
+      Expected: The added contact is still there.
 
 1. Dealing with missing/corrupted data files
 
