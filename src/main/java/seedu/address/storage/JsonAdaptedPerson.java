@@ -228,7 +228,7 @@ class JsonAdaptedPerson {
         if (upcomingAppointment == null) {
             modelUpcomingAppointment = new UpcomingAppointment((LocalDate) null);
         } else if (!UpcomingAppointment.isValidDate(upcomingAppointment)) {
-            // remove upcoming appointment
+            // remove upcoming appointment if date has passed
             modelUpcomingAppointment = new UpcomingAppointment((LocalDate) null);
         } else {
             modelUpcomingAppointment = new UpcomingAppointment(upcomingAppointment);
