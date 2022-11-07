@@ -30,6 +30,22 @@ title: Developer Guide
     - [Non-function Requirements](#non-functional-requirements)
     - [Glossary](#glossary)
   - [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
+    - [Adding a book](#adding-a-book)
+    - [Adding a user](#adding-a-user)
+    - [Deleting a book](#deleting-a-book)
+    - [Deleting a user](#deleting-a-user)
+    - [Loaning a book](#loaning-a-book)
+    - [Returning a book](#returning-a-book)
+    - [Finding a book](#finding-a-book)
+    - [Finding a user](#finding-a-user)
+    - [Editing a book](#editing-a-book)
+    - [Editing a user](#editing-a-user)
+    - [Listing all books](#listing-all-books)
+    - [Listing all users](#listing-all-users)
+    - [Listing all books and user](#listing-all-books-and-user)
+    - [Listing all loans](#listing-all-loans)
+    - [Listing all overdue loans](#listing-all-overdue-loans)
+  - [Appendix: Effort](#appendix-effort)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -249,23 +265,22 @@ The `add` command is an important command that is commonly used in BookFace. It 
 
 #### Design consideration:
 
-Since `add` is used for the operations of both adding a book and adding a user, `AddSubCommand` is created to handle differentiating between adding a book and adding a user.
+Since `add` is used for the operations of both adding a book and adding a user, the enum `AddSubCommand` is created within `Parser` of the `Logic` component to handle differentiating between adding a book and adding a user.
+
+The activity diagram for adding a user or a book is as follows:
+
+![AddActivityDiagram](images/AddActivityDiagram.png)
 
 #### Adding a book with `add book`
 
 `add book` adds a new book to the model. Specifically, `ModelManager` maintains a list of books and contains the method `addbook()` that is invoked by `AddBookCommand` to perform this adding operation.
 
-The updating of the model is represented in the following diagram:
+The updating of the model is represented in the following sequence diagram:
 
-![AddBookSimpleDiagram](images/AddBookSimpleDiagram.png)
-
-*The above will be updated with a more accurate diagram*
-
-The following is the sequence diagram for this operation:
-*To be updated with sequence diagram.*
+![AddBookSequenceDiagram](images/AddSequenceDiagram.png)
 
 #### Adding a user with `add user`
-*To be updated.*
+`add user` follows the same logic and thus closely follows the sequence diagram of `add book`, but uses `AddUserArgumentsParser` and `AddUserCommand` in place of the `add book` variants.
 
 ### Delete feature
 #### Deleting a book/user
@@ -688,31 +703,188 @@ testers are expected to do more *exploratory* testing.
    1. Open command prompt/terminal within the folder and enter <br>`java -jar BookFace.jar`<br>
    Expected: Shows the GUI with a set of sample user records. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. _{ more test cases …​ }_
 
-### Deleting a person
 
-1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+### Adding a book
+1. Adding a book while all books are being shown
+   1. Prequisites: List all books using the `list books` or `list all` command.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `add book t/Moby Dick a/Herman Melville`<br>
+      Expected: Successful addition of the book to the bottom of the book list. 
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `add book t/Moby Dick`<br>
+      Expected: No book is added. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect add book commands to try: `add book`, `add book t/Herman Melville`, `...` (where one or more compulsory parameter prefixes are missing) <br>
+      Expected: Similar to previous
+
+### Adding a user
+1. Adding a user while all users are being shown
+   
+   1. Prerequisites: List all users using the `list users` or `list all` command.
+
+   2. Test case: `add user n/James Bond p/96629813 e/jamesbond@gmail.com`<br>
+      Expected: Successful addition of the user to the bottom of the person list.
+
+   3. Test case: `add user n/James Bond p/96629813`<br>
+      Expected: No user is added. Error details shown in the status message.
+
+   4. Other incorrect add user commands to try: `add user`, `add user n/James Bond`, `...` (where one or more compulsory parameter prefixes are missing) <br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+
+### Deleting a book
+1. Deleting a book 
+   1. Prequisites: List all books using the `list books` or `list all` command, and there is at least one or more books in the book list. 
+
+   2. Test case: `delete book 1`<br>
+      Expected: First book is deleted from the book list. Details of the deleted book are shown in the status message.
+
+   3. Test case: `delete book 0`<br>
+      Expected: No book is deleted. Error details shown in the status message.
+
+   4. Other incorrect delete book commands to try: `delete book`, `delete book x`, `...` (where x is larger than the book list size)<br>
+      Expected: Similar to previous
+
+2. Deleting a book that is loaned out
+   1. Prerequisites: At least one or more user and book in BookFace, and book is loaned out using the `loan 1 1` command.
+
+   2. Test case: `delete book 1`<br> 
+      Expected: No book is deleted. Error message shown in the status message.
+
+### Deleting a user
+
+1. Deleting a user while all users are being shown
+
+   1. Prerequisites: List all users using the `list users` or `list all` command, and there is at least one or more users in the person list.
+
+   2. Test case: `delete user 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+
+   3. Test case: `delete user 0`<br>
+      Expected: No person is deleted. Error details shown in the status message.
+
+   4. Other incorrect delete user commands to try: `delete user`, `delete user x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Loaning a book
+
+1. Loaning a book that is already loaned
+
+   1. Prerequisites: A book at index 1 that is loaned to a user using the `loan 1 1` command, and other books in BookFace that are not loaned out.
+
+   2. Test case: `loan 2 1`<br>
+      Expected: Book at the first index remains loaned to the first loaner that has not returned the book. Error details shown in the status message.
+
+   3. Test case: `loan 2 2`<br>
+      Expected: Book at index 2 loaned out to user at index 2. Details of the loan are shown in the status message. 
+
+### Returning a book
+
+1. Return a book that is not loaned
+
+   1. Prerequisites: A book at index 2 that is not on loan, and a book at index 1 that is loaned out using the `loan 1 1` command.
+
+   2. Test case: `return 2`<br>
+      Expected: Book is not returned as it is not on loan. Error details shown in the status message.
+
+   3. Test case: `return 1`<br>
+      Expected: Book is no longer on loan. Return details shown in the status message.
+
+### Finding a book
+
+1. Finding a book while all books are being shown
+
+   1. Prerequisites: List all books using the `list books` or `list all` command, and there is at least one or more books in BookFace.
+
+   2. Test case: `find book Moby`<br>
+      Expected: All books with authors and titles containing "Moby" (case insensitive) is shown. Details of the number of matching books found shown in the status message.
+
+   3. Test case: `find book`<br>
+      Expected: No change in books displayed. Error details shown in the status message.
+
+### Finding a user
+
+1. Finding a user while all users are being shown
+
+   1. Prerequisites: List all users using the `list users` or `list all` command, and there is at least one or more users in BookFace.
+
+   2. Test case: `find user James`<br>
+      Expected: All users with names containing "James" (case insensitive) is shown. Details of the number of matching users found shown in the status message.
+
+   3. Test case: `find user`<br>
+      Expected: No change in users displayed. Error details shown in the status message.
+
+### Editing a book
+1. Editing a book while all books are being shown
+
+   1. Prerequisites: List all books using the `list books` or `list all` command, and there is at least one or more books in BookFace.
+   
+   2. Test case: `edit book 1 a/Thomas Jefferson`<br>
+      Expected: Book at index 1 has its author set to "Thomas Jefferson". Edited book details shown in the status message.
+   
+   3. Test case: `edit book 1`<br>
+      Expected: No change in details for book at index 1. Error details shown in the status message.
+
+### Editing a user
+1. Editing a user while all users are being shown
+   
+   1. Prerequisites: List all users using the `list users` or `list all` command, and there is at least one or more users in BookFace.
+   
+   2. Test case: `edit user 1 n/Leonard Chong`<br>
+      Expected: User at index 1 has their name set to "Leonard Chong". Edited user details shown in the status message.
+   
+   3. Test case: `edit user 1`<br>
+      Expected: No change in details for user at index 1. Error details shown in the status message. 
+
+### Listing all books
+1. Listing all books from a narrowed down list of books
+
+   1. Prerequisites: A narrowed down list of books is shown after using the `find book KEYWORD`, `list loans` or `list overdue` commands.
+
+   2. Test case: `list books`<br>
+      Expected: All books are shown. Message shown in the status message.
+    
+### Listing all users
+1. Listing all users from a narrowed down list of users
+
+   1. Prerequisites: A narrowed down list of users is shown after using the `find user KEYWORD`, `list loans` or `list overdue` commands.
+   
+   2. Test case: `list users`<br>
+      Expected: All users are shown. Success message shown in the status message.
+
+### Listing all books and user
+1. Listing all books and users from a narrowed down list of users and books
+   
+   1. Prerequisites: Books and users shown are a narrowed down list of books and users after using the `find book KEYWORD`, `find user KEYWORD`, `list loans` or `list overdue` commands.
+   
+   2. Test case: `list all`<br>
+      Expected: All users and books shown. Success message shown in the status message.
+
+### Listing all loans
+1. Listing all loans when all users and books are being shown
+
+   1. Prerequisites: List all users and books using the `list all` command.
+   
+   2. Test case: `list loans`<br>
+      Expected: All books that are loaned out and users who have ongoing loans are shown.
+
+### Listing all overdue loans
+1. Listing all overdue loans when all loans are being shown
+
+   1. Prequisites: List all loans using the `list loans` command.
+   
+   2. Test case: `list overdue`<br>
+      Expected: All books that are overdue and users who owe overdue books are shown.
 
 ### Saving data
 
