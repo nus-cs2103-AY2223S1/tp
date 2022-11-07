@@ -46,7 +46,7 @@ You can reach us at the email `seer@comp.nus.edu.sg`
 [[portfolio](team/tantzeyeong.md)]
 
 * Role: Developer
-* Responsibilities: Storage
+* Responsibilities: Model
 
 ### Totsuka Tomofumi
 
