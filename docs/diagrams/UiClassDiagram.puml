@@ -15,11 +15,10 @@ Class PersonListPanel
 Class PersonCard
 Class StatusBarFooter
 Class CommandBox
-Class CalendarDisplay
-Class "{abstract}\nCalendarButton" as CalendarButton
-Class EventButton
-Class NextButton
-Class PreviousButton
+
+package Calendar_Ui <<Rectangle>> {
+Class HiddenCalendar_Ui #FFFFFF
+}
 }
 
 package Model <<Rectangle>> {
@@ -29,6 +28,8 @@ Class HiddenModel #FFFFFF
 package Logic <<Rectangle>> {
 Class HiddenLogic #FFFFFF
 }
+
+
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
@@ -40,12 +41,11 @@ MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" PersonListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
-MainWindow *-down-> "1" CalendarDisplay
+MainWindow *-down-> Calendar_Ui
 
-PersonListPanel -down> "*" PersonCard
-CalendarDisplay -down--> "2..*" CalendarButton
+PersonListPanel -left> "*" PersonCard
 
-MainWindow -left-|> UiPart
+MainWindow -down-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
@@ -53,18 +53,14 @@ PersonListPanel --|> UiPart
 PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
-CalendarDisplay --|> UiPart
-CalendarButton --|> UiPart
-EventButton -up|> CalendarButton
-NextButton -up-|> CalendarButton
-PreviousButton -up-|> CalendarButton
+Calendar_Ui --|> UiPart
 
-CalendarButton ..> Model
 PersonCard ..> Model
+Calendar_Ui ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-CalendarDisplay -[hidden]left- PersonListPanel
+Calendar_Ui -[hidden]left- PersonListPanel
 PersonListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay

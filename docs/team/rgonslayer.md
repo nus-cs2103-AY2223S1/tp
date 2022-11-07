@@ -19,7 +19,7 @@
  - Enhanced Find command to find by range of yearly income
  - Enhanced Find command to find by client tags
  - Enhanced Sort Command to sort by client tags
- - ### Contributions to the UG: 
+ - ### Contributions to the UG:
  - ### Contributions to the DG:
  - ### Contributions to team-based tasks:
  - Ensured timely submission of team project deliverables.

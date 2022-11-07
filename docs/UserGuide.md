@@ -9,9 +9,9 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Introduction
-Financial Advisor Planner (FAP) is a **desktop app for Financial Advisors (FA) to manage their clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FAP can get your client management tasks done faster than traditional GUI apps. With FAP, you can now 
+Financial Advisor Planner (FAP) is a **desktop app for Financial Advisors (FA) to manage their clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FAP can get your client management tasks done faster than traditional GUI apps. With FAP, you can now schedule your appointments, manage and find clients easily.
 
-## 2. About
+## 2. Using the User Guide
 
 ### 2.1 Navigating the User Guide
 
@@ -21,7 +21,8 @@ This section aims to help you navigate the user guide.
 2. [Section 3, Quick start](#3-quick-start) has been provided to help you set up **Financial Advisor Planner**.
 3. [Section 4, Prefixes](#4-prefixes) has been provided where the prefixes are documented.
 4. [Section 5, Features](#5-features) has been provided where the main features and their commands are documented.
-5. [Section 8, Glossary](#8-glossary) has been provided where certain terms that are used in this document are defined.
+5. [Section 7, Command Summary](#7-command-summary) has been provided where the commands are summarised in a list for easy reference.
+6. [Section 8, Glossary](#8-glossary) has been provided where certain terms that are used in this document are defined.
 
 ### 2.2 Tips for reading the User Guide
 
@@ -58,9 +59,9 @@ Symbol/Syntax        | Meaning
 
    * **`clear`** : Deletes all contacts.
 
-   * **`sort KEYWORD`** : Sorts the contacts based on the `KEYWORD`.
+   * **`sort`**`KEYWORD`: Sorts the contacts based on the `KEYWORD`.
 
-   * **`find`** `n/John`: looks for contact that matches keyword ‘John’
+   * **`find`** `n/John`: looks for contact that matches name (Prefix - n/) ‘John’
 
    * **`exit`** : Exits the app.
 
@@ -84,21 +85,24 @@ The following figures show the overall GUI of **FAP**
 --------------------------------------------------------------------------------------------------------------------
 ## 4. Prefixes
 
-Prefixes are an indicator for a specific type of parameter to be input during any command. The following section shows the type of prefixes that are used in the app.
+Prefixes are an indicator for a specific type of parameter to be input during any command. The following section shows the type of prefixes that are used in the app. It also shows which prefixes are available for the respective commands that uses prefixes.
 
-Format: `Prefix/Parameter`
-1. n/NAME
-2. p/PHONE
-3. e/EMAIL
-4. a/ADDRESS
-5. i/YEARLY_INCOME
-6. m/MONTHLY_CONTRIBUTIONS
-7. c/CLIENT_TYPE
-8. r/RISK_APPETITE
-9. ip/INVESTMENT_PLAN
-10. t/TAG
-11. l/Location 
-12. d/DATE_AND_TIME
+Prefix | Parameter              | add                | edit               | find               | aa                 | ea                 |
+-------|------------------------|--------------------|--------------------|--------------------|--------------------|--------------------|
+n      | NAME                   | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                |
+p      | PHONE                  | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                |
+e      | EMAIL                  | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                | :x:                |
+a      | ADDRESS                | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                | :x:                |
+i      | YEARLY_INCOME          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                |
+m      | MONTHLY_CONTRIBUTIONS  | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                | :x:                |
+c      | CLIENT_TYPE            | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                |
+r      | RISK_APPETITE          | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                |
+ip     | INVESTMENT_PLAN        | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                |
+t      | TAG                    | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x:                | :x:                |
+l      | LOCATION               | :x:                | :x:                | :x:                | :heavy_check_mark: | :heavy_check_mark: |
+d      | DATE_AND_TIME          | :x:                | :x:                | :x:                | :heavy_check_mark: | :heavy_check_mark: |
+
+
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Prefix l/Location is a lower case L, and not an uppercase i. </div>
@@ -122,6 +126,8 @@ This section contains all the information pertaining to the features of **FAP**
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
+* For keywords with multiple whitespaces in between the different words, these whitespaces will be replaced with 1 whitespace.
+
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
@@ -130,6 +136,7 @@ This section contains all the information pertaining to the features of **FAP**
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+ 
 * Parameter hints will be shown after a command action.
 
 </div>
@@ -156,14 +163,16 @@ Format: `help`
 
 #### 5.1.2 Adding a client: `add`
 
-Adds a client to the list of clients. 
+Adds a client to the list of clients.
 
 Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS i/YEARLY_INCOME m/MONTHLY_CONTRIBUTIONS r/RISK_APPETITE ip/INVESTMENT_PLAN c/CLIENT_TYPE [t/TAG]…​`
 
-* This command is case-sensitive for the parameter NAME.
+Refer to [Prefixes](#4-prefixes) for the types of prefixes.
+
+* This command is case-sensitive for the parameters NAME, EMAIL, ADDRESS, and INVESTMENT_PLAN.
 * After each execution of add command, the displayed contact list resets to the original contact list.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
 <br>
 RISK_APPETITE can only have the values ‘HIGH’, ‘MEDIUM’ or ‘LOW’
 <br>
@@ -178,7 +187,7 @@ Do note that t/TAG is an OPTIONAL TAG, the rest are compulsory. That is to say t
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$200000 m/$5000 c/POTENTIAL r/Medium ip/Savings Plan`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/200000 m/5000 c/POTENTIAL r/Medium ip/Savings Plan`
 
 #### 5.1.3 Listing all clients : `list`
 
@@ -192,9 +201,11 @@ Edits an existing client in the list of clients.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [m/MONTHLY_CONTRIBUTIONS] [r/RISK_APPETITE] [ip/INVESTMENT PLAN] [c/CLIENT_TYPE] [t/TAG]…​`
 
+Refer to [Prefixes](#4-prefixes) for the types of prefixes.
+
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3,…​
 * At least one of the fields must be provided.
-* * After each execution of edit command, the displayed contact list resets to the original contact list.
+* After each execution of edit command, the displayed contact list resets to the original contact list.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
 * You can remove all the client’s tags by typing `t/` without
@@ -204,9 +215,9 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 
-#### 5.1.5 Filtering clients by keyword: `find`
+#### 5.1.5 Find clients by keyword: `find`
 
-Finds clients whose names contain any of the given keywords.
+Finds clients who match the find criteria.
 
 Format: `find PREFIX/ KEYWORD [MORE_KEYWORDS]
 [n/ NAME [MORE_NAMES]]
@@ -224,15 +235,12 @@ Refer to [Prefixes](#4-prefixes) for the types of prefixes.
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
 * Only full words will be matched e.g. Han will not match Hans
 * Clients matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
-* The search also applies to other information available such as mobile number or policy numbers.
-  E.g John Doe has the mobile number 87438807
-    * find p/87438807 will return John Doe
 * The search can be limited to certain categories by using find [CATEGORY] KEYWORD instead.
   * E.g find p/87438807 will return John Doe
 
 Examples:
 
-john - `HIGH`, Alex Yeoh - `HIGH`, David Li - `MEDIUM`, John Doe - `LOW` 
+john - `HIGH`, Alex Yeoh - `HIGH`, David Li - `MEDIUM`, John Doe - `LOW`
 
 * `find n/ John` returns `john` and `John Doe`
 * `find n/ alex david` returns `Alex Yeoh`, `David Li`
@@ -245,26 +253,34 @@ Deletes the specified client from the list of clients.
 Format: `delete INDEX`
 
 * Deletes the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
+* The index refers to the index number shown in the current displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd client in the list of clients.
 * `find n/Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
-#### 5.1.7 Sorting: `sort KEYWORD`/  `sort KEYWORD desc`
+#### 5.1.7 Sorting: `sort`
 
-* Sorts the contacts shown in the list of clients by alphabetical order. It is ascending by default.
-* You can sort the contacts in descending order by adding `desc` behind the `KEYWORD`.
-* The `KEYWORD` is case-insensitive. e.g. sort NaME is the same as sort name. However, do note that the command word sort is case sensitive and must be in lower case.
-
+* Returns all the contacts sorted by the given `KEYWORD`
 
 Format: sort `KEYWORD` / sort `KEYWORD desc`
 
 Types of `KEYWORD`: `name`, `appt`, `risk`, `income`, `monthly`
 
-* Returns all the contacts sorted by the given `KEYWORD`
+* Sorts the contacts shown in the list of clients according to given KEYWORD. It is ascending by default.
+* You can sort the contacts in descending order by adding `desc` behind the `KEYWORD`.
+* The `KEYWORD` is case-insensitive. e.g. sort NaME is the same as sort name. However, do note that the command word sort is case sensitive and must be in lower case.
+* Sort format:
+  * `name` sorts by alphabetical order
+  * `appt` sorts by date and time
+  * `risk` sorts from low to high or high to low
+  * `income` & `monthly` sorts by specified order (<, > or =)
+  * `client` sorts by current or potential clients
 
+Types of `KEYWORD`: `name`, `appt`, `risk`, `income`, `monthly`, `client`
+
+* Returns all the contacts sorted by the given keyword
 
 #### 5.1.8 Clearing all entries : `clear`
 
@@ -286,7 +302,9 @@ Adds an appointment with inputs DATE_AND_TIME and LOCATION for an existing clien
 
 Format: `aa INDEX d/DATE_AND_TIME l/LOCATION`
 
-Example: `aa 1 d/21-01-2023 12:30 l/Jurong Point, Starbucks`
+Refer to [Prefixes](#4-prefixes) for the types of prefixes.
+
+Example: `aa 1 d/09-11-2022 12:30 l/Jurong`
 
 The appointment details will be added to the specified client's information.
 
@@ -298,7 +316,7 @@ Also, the appointment details will be added to the calendar.
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 <br>
 
-* DATE_AND_TIME has the format `dd-MM-yyyy HH:mm` (e.g "01-03-2022 18:00" represents 1st March 2022, 6:00 PM)
+* DATE_AND_TIME has the format `dd-mm-yyyy hh:mm` (e.g "01-03-2022 18:00" represents 1st March 2022, 6:00 PM)
 * Month, Day, Hour, Minutes can only take in a 2 digit number
 * Year can only take in a 4 digit number
 </div>
@@ -317,6 +335,9 @@ Examples:
 Edits an appointment for an existing client in the list of clients. This will also update the Calendar and the appointment will be shown in the matching month in the Calendar.
 
 Format: `ea PERSON_INDEX.APPOINTMENT_INDEX [d/DATE_AND_TIME] [l/LOCATION]`
+
+Refer to [Prefixes](#4-prefixes) for the types of prefixes.
+
 * Edits the client's appointment using specified PERSON_INDEX and APPOINTMENT_INDEX.
 * The PERSON_INDEX refers to the index number shown in the displayed client list. The index must be a positive integer 1, 2, 3,…​
 * The APPOINTMENT_INDEX refers to the index number shown in the displayed client's appointment list. The index can only be 1, 2, or 3.
@@ -447,16 +468,17 @@ Action | Format, Examples
 --------|------------------
 **Add client** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/YEARLY_INCOME r/RISK_APPETITE m/MONTHLY_CONTRIBUTIONS c/CLIENT_TYPE [t/TAG]…​ ` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/60000 r/Low s/1000 t/friend t/colleague`
 **Add Appointment** | `aa INDEX d/DATE_AND_TIME l/LOCATION` <br> e.g., `aa 1 d/21-01-2023 12:30 l/Jurong Point, Starbucks`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [r/RISK_APPETITE] [m/MONTHLY_CONTRIBUTIONS] [c/CLIENT_TYPE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Edit Appointment** | `ea PERSON_INDEX.APPOINTMENT_INDEX [d/DATE_AND_TIME] [l/LOCATION]` <br> e.g., `ea 1.2 d/21-01-2023 12:30 l/NUS, TechnoEdge`
-**Delete Appointment** | `da PERSON_INDEX.APPOINTMENT_INDEX` <br> e.g, `da 1.2`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [r/RISK_APPETITE] [m/MONTHLY_CONTRIBUTIONS] [c/CLIENT_TYPE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Exit** | `exit`
+**Delete Appointment** | `da PERSON_INDEX.APPOINTMENT_INDEX` <br> e.g, `da 1.2`
 **Find** | `find PREFIX/KEYWORD [MORE_KEYWORDS]` e.g., `find n/James Jake`
+**Sort** | `sort KEYWORD, sort KEYWORD desc`
 **List** | `list`
 **Help** | `help`
-**Sort** | `sort KEYWORD, sort KEYWORD desc` 
+**Exit** | `exit`
+
 
 ## 8. Glossary
 
