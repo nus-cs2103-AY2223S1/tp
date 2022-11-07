@@ -40,16 +40,6 @@ public class UnlinkCommand extends Command {
     private final Index personIndex;
     private final Index internshipIndex;
 
-    /*
-    Not sure if UnlinkCommand(Person, Internship) is needed, hence commenting this for now
-    /**
-     * Creates an UnlinkCommand to link the specified {@code Person} {@code Internship}
-     */
-    /*
-    public unLinkCommand(Person person, Internship internship) {
-    }
-     */
-
     /**
      * Creates an UnlinkCommand to unlink a {@code Person} and an {@code Internship}
      * based on the given {@code personIndex} and {@code internshipIndex}
