@@ -2,6 +2,7 @@ package seedu.clinkedin.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -43,4 +44,10 @@ public class RatingTest {
         String rating = "1";
         assertEquals(new Rating(rating).toString(), rating);
     }
+
+    @Test
+    public void validRating() {
+        assertTrue(Rating.isValidRatingStr("0"));
+    }
+
 }
