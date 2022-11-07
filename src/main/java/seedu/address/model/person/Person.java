@@ -22,6 +22,8 @@ import seedu.address.model.item.exceptions.ItemCannotBeParentException;
 public class Person extends AbstractDisplayItem {
 
     private Set<AbstractSingleItem> parents = new HashSet<>();
+    public static final String MESSAGE_INVALID_PERSON_NAME =
+        "Person name must begin with a letter, isalphanumeric and can only contains space and dash.";
 
     /**
      * Every field must be present and not null.

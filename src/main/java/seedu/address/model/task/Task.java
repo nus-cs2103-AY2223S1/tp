@@ -131,8 +131,8 @@ public class Task extends AbstractSingleItem {
         }
         Task task = (Task) o;
         return Objects.equals(completedTime, task.completedTime)
-                && Objects.equals(description, task.description)
-                && Objects.equals(getAttributes(), task.getAttributes());
+            && Objects.equals(description, task.description)
+            && Objects.equals(getAttributes(), task.getAttributes());
     }
 
     /**

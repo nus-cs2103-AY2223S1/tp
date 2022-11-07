@@ -16,6 +16,7 @@ import seedu.address.model.attribute.Name;
 import seedu.address.model.attribute.Phone;
 import seedu.address.model.group.Group;
 import seedu.address.model.group.Path;
+import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -24,7 +25,9 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    
     private static final String PATH_VALIDATION_REGEX = "([a-zA-Z0-9_-]+\\/?)+([a-zA-Z0-9_-]+)";
+    private static final String PERSON_NAME_PATTERN = "[A-Za-z][a-zA-Z \\-]*";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing
@@ -174,6 +177,15 @@ public class ParserUtil {
         return new Field(fieldName);
     }
 
+    public static Name parsePersonName(String name) throws ParseException {
+        requireNonNull(name);
+        name = name.replaceAll("\\s+", " ").trim();
+        if (!name.matches(PERSON_NAME_PATTERN)) {
+            throw new ParseException(Person.MESSAGE_INVALID_PERSON_NAME);
+        }
+        return new Name(name);
+    }
+
     /**
      * Checks if the path is valid. Only alphanumeric, hyphen, underscore and slash are allowed.
      *
@@ -183,6 +195,8 @@ public class ParserUtil {
     public static boolean isValidPath(String path) {
         return path.matches(PATH_VALIDATION_REGEX);
     }
+
+
 
     /**
      * Splits the str by "|"
