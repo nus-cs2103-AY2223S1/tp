@@ -14,25 +14,26 @@ participant ":Model" as Model MODEL_COLOR
 participant "CS1231:Module" as CS1231 MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add-link m/CS1231 l/...")
+[-> LogicManager : execute("add-link m/CS1231 l/... la/alias")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("add-link m/CS1231 l/...")
+LogicManager -> AddressBookParser : parseCommand("add-link m/CS1231 l/... la/alias")
 activate AddressBookParser
 
 create AddLinkCommandParser
-AddressBookParser -> AddLinkCommandParser : AddLinkCommandParser("m/CS1231 l/...")
+AddressBookParser -> AddLinkCommandParser : AddLinkCommandParser("m/CS1231 l/... la/alias")
 activate AddLinkCommandParser
 
 create Link
-AddLinkCommandParser -> Link
+AddLinkCommandParser -> Link :
 activate Link
 
-Link --> AddLinkCommandParser
+Link --> AddLinkCommandParser : link
+
 deactivate Link
 
 create AddLinkCommand
-AddLinkCommandParser -> AddLinkCommand : ("CS1231", ...)
+AddLinkCommandParser -> AddLinkCommand : ("CS1231", link)
 activate AddLinkCommand
 
 AddLinkCommand --> AddLinkCommandParser
@@ -40,6 +41,7 @@ deactivate AddLinkCommand
 
 AddLinkCommandParser --> AddressBookParser
 deactivate AddLinkCommandParser
+AddLinkCommand -[hidden]-> AddLinkCommand
 destroy AddLinkCommandParser
 
 AddressBookParser --> LogicManager
@@ -75,6 +77,7 @@ deactivate Model
 
 AddLinkCommand --> LogicManager : commandResult
 deactivate AddLinkCommand
+AddLinkCommand -[hidden]-> AddLinkCommand
 destroy AddLinkCommand
 
 [<--LogicManager : commandResult
