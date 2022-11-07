@@ -1,5 +1,5 @@
 ---
-layout: alt-page
+layout: page
 title: Tin Jingyao's Project Portfolio Page
 ---
 
@@ -19,7 +19,7 @@ Given below are my contributions to the project.
     * What it does: Each module can now store 2 zoom links, one for the lecture and another for the tutorial.
     * Justification: From our personal experience, modules are not likely to have more than 2 zoom links. By fixing the number of addable zoom links, the GUI can display the zoom links in a more presentable manner.
     * Highlights: Zoom links are clearly labelled as lecture and tutorial zoom links so users can easily differentiate them.
-
+    
 * **Code contributed**:
     * https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=tin-jy&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other
 

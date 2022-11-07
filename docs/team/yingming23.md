@@ -1,5 +1,5 @@
 ---
-layout: alt-page
+layout: page
 title: Li Yingming's Project Portfolio Page
 ---
 
@@ -11,14 +11,14 @@ Given below are my contributions to the project.
 
 * **New Feature**:
 
-    * **Delete Module**
-        * What it does: Delete Module
-        * Justification: After a semester is over, or if the student is not taking the module anymore, they would need to be able to delete the module from the list.
-    * **Sync with NUSMods**
-        * What it does: Automatically update module title from input module code
-        * Justification: Ease of use for the user.
-        * Highlights: Ability to immediately get title with just the module code.
-        * Credits: Parsing of NUSMods Json file done by `@avock`.
+  * **Delete Module**
+      * What it does: Delete Module 
+      * Justification: After a semester is over, or if the student is not taking the module anymore, they would need to be able to delete the module from the list.
+  * **Sync with NUSMods**  
+      * What it does: Automatically update module title from input module code
+      * Justification: Ease of use for the user.
+      * Highlights: Ability to immediately get title with just the module code.
+      * Credits: Parsing of NUSMods Json file done by `@avock`.
 
 
 * **Code contributed**:
