@@ -654,7 +654,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **Extensions**
 
-- 1a. Teacher requests to find by address with a blank or white space only parameter.
+- 1a. Teacher requests to find by address with a blank or white space as the only parameter.
     - 1a1. Teacher’s Pet displays invalid address format command message.
 
       Use case ends.
