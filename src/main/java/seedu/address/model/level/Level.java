@@ -2,6 +2,8 @@ package seedu.address.model.level;
 
 import seedu.address.model.level.exceptions.InvalidLevelException;
 
+// Solution below adapted from:
+// https://github.com/dextertanyj/tp/blob/master/src/main/java/tutorspet/model/lesson/Day.java
 /**
  * Represents the level of education.
  */
@@ -39,18 +41,6 @@ public enum Level {
         }
         throw new InvalidLevelException(); //change to return null?
     }
-
-    //    /**
-    //     * Returns true if a given string is a valid value in enum Level
-    //     */
-    //    public static boolean isValidLevel(String level) {
-    //        for (Level l : Level.values()) {
-    //            if (l.name().equals(level)) {
-    //                return true;
-    //            }
-    //        }
-    //        return false;
-    //    }
 
     @Override
     public String toString() {
