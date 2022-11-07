@@ -18,7 +18,6 @@ public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
     public static final String FULL_COMMAND_WORD = "t unmark";
 
-
     public static final String MESSAGE_USAGE = FULL_COMMAND_WORD
         + ": Indicates the task at the specified INDEX in the displayed task list is completed.\n"
         + "Parameters: INDEX\n"
@@ -26,6 +25,8 @@ public class UnmarkCommand extends Command {
 
     public static final String MESSAGE_UNMARK_TASK_SUCCESS = "Successfully Unmarked Task: %1$s";
     public static final String MESSAGE_TASK_ALREADY_UNMARKED = "The task is already unmarked!";
+    public static final String MESSAGE_NO_TASK_IN_THE_LIST =
+        "There is no task in the task list so unmark operation cannot be done!";
 
     private final Index targetIndex;
 
@@ -37,6 +38,10 @@ public class UnmarkCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
+
+        if (lastShownList.size() == 0) {
+            throw new CommandException(MESSAGE_NO_TASK_IN_THE_LIST);
+        }
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(
