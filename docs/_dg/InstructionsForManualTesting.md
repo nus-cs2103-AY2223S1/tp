@@ -298,7 +298,7 @@ The [[ help-window:Help Window ]] pops up and shows a general help message.
 `help new`
 
 Expected Output: 
-The [[ help-window:Help Window ]] pops up and shows a general help message with the help information for `new` command.
+The [[ help-window:Help Window ]] pops up and shows a general help message with the help information for the `new` command.
 
 ### Reset
 
