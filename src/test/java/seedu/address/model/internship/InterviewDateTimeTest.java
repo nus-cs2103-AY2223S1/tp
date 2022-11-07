@@ -17,6 +17,12 @@ public class InterviewDateTimeTest {
 
     @Test
     public void constructor_invalidInterviewDateTime_throwsIllegalArgumentException() {
+        // empty date and time
+        assertThrows(IllegalArgumentException.class, () -> new InterviewDateTime(""));
+
+        // blank date and time
+        assertThrows(IllegalArgumentException.class, () -> new InterviewDateTime(" "));
+
         // valid date and invalid time
         assertThrows(IllegalArgumentException.class, () -> new InterviewDateTime(TypicalDateTimes.SECOND_VALID_DATE
                 + " " + TypicalDateTimes.FIRST_INVALID_TIME));
