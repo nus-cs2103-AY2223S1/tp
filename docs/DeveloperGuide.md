@@ -231,7 +231,7 @@ The following activity diagram summarises the action taken when the `AddTeamComm
 The `add task` feature allows users to add a specific task to their team's task list. The following is an example of how
 a task is added:
 
-Precondition: Task name is valid (it cannot be empty or begin with a space).
+Precondition: Task name is valid (it cannot be empty or have quotation marks).
 
 1. User keys in the add task command with the name of the task to be added (e.g. `add_task Complete Resume`)
 2. A task is created and added to the current team's task list.
@@ -303,16 +303,16 @@ The add member to team feature allows users to add a user to the current team us
 
 The following is an example usage scenario of how a member is added to a team:
 
-Precondition: Name provided is valid and the current working team is set to the team that the member should be added to.
+Precondition: Index provided is valid and the current working team is set to the team that the member should be added to.
 
-1. User keys in `add_member` command with the person's name.
-2. The person with the specified name in the list is added to the team.
+1. User keys in `add_member` command along with the person's index.
+2. The person at the specified index in the list is added to the team.
 
 If any of the following occurs:
 
-1. Name is not alphanumeric
-2. Name provided does not match any persons' name
-3. Person with specified name is already in the team
+1. The index provided is less than 1
+2. The index provided is greater than the number of persons in TruthTable
+3. Person at the specified index is already in the team
 
 Then, an appropriate exception will be thrown and the respective error message will be shown to the user.
 
