@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -55,6 +57,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void setAddressBook(AddressBookStorage addressBookStorage) {
+        requireNonNull(addressBookStorage);
         this.addressBookStorage = addressBookStorage;
     }
 

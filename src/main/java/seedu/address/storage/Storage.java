@@ -23,7 +23,6 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     @Override
     Path getAddressBookFilePath();
 
-    @Override
     void setAddressBook(AddressBookStorage addressBookStorage);
 
     @Override
