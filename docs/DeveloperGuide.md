@@ -2,8 +2,45 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-  {:toc}
+
+## Table of Contents
+* [Acknowledgements](#acknowledgements)
+* [Setting up, getting started](#setting-up-getting-started)
+* [Design](#design)
+  * [Architecture](#architecture)
+  * [UI Component](#ui-component)
+  * [Logic Component](#logic-component)
+  * [Model Component](#model-component)
+  * [Storage Component](#storage-component)
+* [Properties Objects](#properties-objects)
+  * [Properties of Person Objects](#properties-of-person-objects)
+  * [Properties of Note Objects](#properties-of-note-objects)
+* [Implementation](#implementation)
+  * [Person Features](#person-features)
+    * [Edit Feature](#edit-feature)
+    * [Delete Person](#delete-person)
+    * [Find Person](#find-person)
+    * [Edit Loan Feature](#edit-loan-value-and-history-of-person-by-editloan-feature)
+    * [Find by Tag Feature](#find-persons-and-notes-by-tag-featured)
+  * [Notes Features](#notes-features)
+    * [Add Note Feature](#addnote-feature)
+    * [Delete Note Feature](#deletenote-feature)
+    * [Edit Note Feature](#editnote-feature)
+  * [UI Features](#ui-features)
+    * [General UI Design and Mechanism](#general-ui-design-and-mechanism)
+    * [Inspect Feature](#inspect-feature)
+    * [Showing and Hiding Panel Feature](#showing-and-hiding-the-notes-panel-feature)
+  * [[Proposed] Undo redo feature](#proposed-undoredo-feature)
+* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix](#appendix-requirements)
+  * [Requirements](#appendix-requirements)
+    * [Product scope](#product-scope)
+    * [User stories](#user-stories)
+    * [Use Cases](#use-cases)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+  * [Instructions for manual testing](#appendix-instructions-for-manual-testing)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -214,7 +251,7 @@ During instantiation, a note object can be declared with any of these properties
 
 -------------------
 
-## **Implementation**
+## Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -738,11 +775,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -1092,7 +1124,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
     2. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Result display shows details of the deleted contact. Timestamp in the result display is updated.
+       Expected: First contact is deleted from the list. Result display shows details of the deleted contact.
 
     3. Test case: `delete 0`<br>
        Expected: No person is deleted. Result display shows error message stating non-positive indices not allowed.
