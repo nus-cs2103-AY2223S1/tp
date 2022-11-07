@@ -159,16 +159,16 @@ This section describes some noteworthy details on how certain features are imple
 
 The sort persons feature allows the user to sort persons by their name, date of birth or gender.
 
-The field to sort persons by is encapsulated within the `SortField` class. `SortField` stores the sort field enumeration (`SortFieldType`) as well as the `Comparator` object that defines the sorting logic.
+The field to sort persons by is encapsulated within the `PersonSortField` class. `PersonSortField` stores the sort field enumeration (`PersonSortFieldType`) as well as the `Comparator` object that defines the sorting logic.
 
-The following class diagram shows how the `SortField` class integrates with the other components:
+The following class diagram shows how the `PersonSortField` class integrates with the other components:
 
-![SortFieldClassDiagram](images/SortFieldClassDiagram.png)
+![PersonSortFieldClassDiagram](images/PersonSortFieldClassDiagram.png)
 <br><br>
 
 Sorting is performed as part of `listPersonsCommand#execute()`. The sorting operation is exposed in the `Model` interface as `Model#sortPersons()` which calls `AddressBook#sortPersons()` which in turn calls `UniquePersonList#sort()` to sort the underlying `ObservableList<Person>`.
 
-The following sequence diagram illustrates the relevant sorting method calls for the command `listPersons s/n` with a `SortField` object `s`:
+The following sequence diagram illustrates the relevant sorting method calls for the command `listPersons s/n` with a `PersonSortField` object `s`:
 
 ![SortPersonsSequenceDiagram](images/SortPersonsSequenceDiagram.png)
 
