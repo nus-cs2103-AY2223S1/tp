@@ -1,0 +1,46 @@
+@startuml
+start
+:User executes addStudentCommand;
+
+if () then ([all prefixes present and no
+multiple of the same prefix])
+    :Parse prefixes;
+    if () then ([all prefixes
+    formatted correctly])
+        :Checks if name, student id, phone, email, telegram handle, module, tutorial, and grade(if any),
+        attendance(if any), participation (if any), tags (if any) provided are correctly formatted;
+        if () then ([name, student id, phone, email, telegram handle, module, tutorial, and grade(if any),
+        attendance(if any), participation (if any), tags (if any) provided are correctly formatted])
+            :Create new Student using name, student id, ,phone, email, telegram handle,
+            module, tutorial, and grade(if any), attendance(if any), participation (if any), tags (if any);
+            :Check if student created
+            already exists in ModQuik;
+            if() then ([no duplicate student
+         exists in ModQuik])
+                :Check if student id provided
+                already exists in ModQuik;
+                if() then ([no duplicate student id in ModQuik])
+                    :Add new Student to ModQuik;
+                 else ([else])
+                    :Display error message that student id 
+                    provided already exists in ModQuik;
+                endif
+            else ([else])
+                : Display error message that the student
+                provided already exists in ModQuik;
+            endif
+        else ([else])
+            :Display error message that name and/or student id and/or phone and/or email
+            and/or telegram handle and/or module and/or tutorial and/or grade and/or
+            attendance and/or participation and/or tags provided is wrongly formatted;
+        endif
+    else ([else])
+        :Display error message on
+        invalid prefix format;
+    endif
+else ([else])
+    :Display error message
+    and show command format;
+endif
+stop
+@enduml

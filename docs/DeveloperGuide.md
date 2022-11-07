@@ -154,6 +154,18 @@ Classes used by multiple components are in the `seedu.modquik.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add student feature
+
+#### Implementation
+
+
+The following activity diagram illustrates what happens when the `addStudent` command is called to add a student into ModQuik. There is a need to check that the given student id does not already exist in ModQuik.
+
+![AddStudentActivityDiagram](images/AddStudentActivityDiagram.png)
+
+Referencing the above activity diagram, TAble will first check that all prefixes are present and formatted correctly, and that no multiple of the same prefix exists. It will then proceed to check if the name, matric number, email address, and tags (if any) are formatted correctly. It will then create a Student object using the provided name, matric number, email address, and tags (if any) and then check if there is a duplicate student inside TAble. If there are no duplicate student inside TAble, it will check across every student in TAble to see if the provided matric number or email address already exists inside TAble. If the provided matric number or email address does not belong to any student inside TAble already, the created student is then added into TAble and a message is returned indicating success. The new student will appear in the TAble.
+
+
 ### Show grade chart feature
 
 This feature allows user to navigate to view grade chart of students without mouse which is crucial as target users are who can type fast and prefer typing over other means of input.
