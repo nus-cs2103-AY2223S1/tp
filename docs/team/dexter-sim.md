@@ -24,6 +24,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=dexter-sim&breakdown=true)
 
 * **Enhancements to existing features**:
+  * Improve code quality by reducing nesting ([#266](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/266)).
   * Fix bug regarding adding of duplicate tasks ([#160](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/160)). 
   * Abstract out description field of task into its own class ([#97](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/97)).
   * Update parse and command mechanism for contact and task add and delete ([#95](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/95)).
@@ -45,3 +46,5 @@ Given below are my contributions to the project.
   ([#174](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/174)) 
   ([#247](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/247))
   ([#263](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/263)).
+  * Contributed to forum discussions:
+  ([#104](https://github.com/nus-cs2103-AY2223S1/forum/issues/104)).
