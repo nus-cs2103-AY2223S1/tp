@@ -1,0 +1,31 @@
+@startuml
+left to right direction
+skinparam actorStyle awesome
+actor "User" as user
+rectangle NotionUS {
+  usecase "Add a Task" as UC1
+  usecase "Edit a Task" as UC2
+  usecase "Delete a Task" as UC3
+  usecase "Tag a Task" as UC4
+  usecase "Mark a Task" as UC5
+  usecase "Unmark a Task" as UC6
+  usecase "Find a Task" as UC7
+  usecase "Filter displayed Tasks" as UC8
+  usecase "Archive a task" as UC9
+  usecase "Show archived tasks" as UC10
+  usecase "Clear all tasks" as UC11
+  usecase "Autocompleting commands" as UC12
+}
+user --> UC1
+user --> UC2
+user --> UC3
+user --> UC4
+user --> UC5
+user --> UC6
+user --> UC7
+user --> UC8
+user --> UC9
+user --> UC10
+user --> UC11
+user --> UC12
+@enduml
