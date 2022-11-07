@@ -116,7 +116,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W15-4/tp/blob/master/src/main/java/friday/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="500" />
+<img src="images/ModelClassDiagram.png" width="600" />
 
 
 The `Model` component,
@@ -128,7 +128,7 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Friday`, which `Student` references. This allows `Friday` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="650" />
+<img src="images/BetterModelClassDiagram.png" width="700" />
 
 </div>
 
@@ -137,7 +137,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W15-4/tp/blob/master/src/main/java/friday/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="600" />
+<img src="images/StorageClassDiagram.png" width="650" />
 
 The `Storage` component,
 * can save both FRIDAY data and user preference data in json format, and read them back into corresponding objects.
@@ -213,28 +213,37 @@ The following Sequence Diagram summarises the aforementioned steps.
 | **Option 2** <br> Accept multiple criteria and sort in the order they are given | More precise sorting when many students have matching details, e.g. same Mastery Check dates | Sorting becomes confusing for the user and difficult to implement if many criteria are given |
 
 ### Alias feature
+#### Rationale
+Some advanced users might want to customise the command words. 
+This feature will allow them to do so, enabling these users to be more efficient in using FRIDAY.
 
 #### Implementation
+The current implementation of the alias feature will allow users to add a non-empty one word alias for a [default command](#glossary).
 
-The alias command will be executed by `AliasCommand`. Aliases added will be stored in a `AliasMap`, while
-in-built command names (e.g. add, delete) will be stored in a constant `LIST_RESERVED_KEYWORD` in the `ReservedKeyword` class.
+The following activity diagram will outline the process when the `alias` command is executed.
 
 ![Alias Command Activity Diagram](images/AliasCommandActivityDiagram.png)
+
+The alias command will be executed by `AliasCommand`. Aliases added will be stored in a `AliasMap`, while
+default command names (e.g. add, delete) will be stored in a constant `LIST_RESERVED_KEYWORD` in the `ReservedKeyword` class.
 
 Given below is an example usage scenario and how the alias mechanism behaves at each step.
 
 1. The user launches the application for the first time. FRIDAY will initialise a `Friday`
 with an empty `AliasMap`.
 
-2. The user executes `alias a/ls k/list` command to add an alias `ls` for the command `list`. `FridayParser` will parse 
+2. The user executes `alias a/ls k/list` command to add an alias `ls` for the default command `list`. `FridayParser` will parse 
 `alias` and create a new `AliasCommandParser`.`AliasCommandParser` will parse `a/ls k/list` and create an `AlliasCommand` with `Alias("ls")` 
 and a `ReservedKeyword("list")`. When executing the `AliasCommand`, the command will check that `list` is in the `LIST_RESERVED_KEYWORD`,`ls` is not in the 
-`AliasMap` and `ls` is a valid alias. After all the conditions are fulfilled, `Model#addAlias(Alias("ls"), ReservedKeyword("list")))` will be called to add
+`AliasMap` and `ls` is a valid alias. After all the conditions are fulfilled, `Model#addAlias(Alias("ls"), ReservedKeyword("list"))` will be called to add
 this alias-keyword mapping into `AliasMap`.
 
 3. The user executes `ls` using the alias of the `list` command. `Model#getKeyword("ls")` will check `AliasMap` in `Model` 
 for an alias-keyword mapping. As there is a mapping of `ls` to `list`, `Model#getKeyword("ls")` will return `list`. 
 `list` will then be assigned to `commandWord` in `FridayParser`. `commandWord` will then be used to get the command to be executed.
+`ListCommand` will then be executed.
+
+The following sequence diagram shows how the alias `ls` is used to execute the default command `list`.
 ![Using Alias Sequence Diagram](images/UsingAliasSequenceDiagram.png)
 
 #### Design considerations
@@ -864,6 +873,7 @@ For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `us
 * **Mastery Check**: An assessment of the students' understanding of topics conducted by the user (the teaching assistants).
 There are two Mastery Checks through the semester. Students will be assessed by their knowledge of the topics covered by presenting to their teaching assistant in pairs.
 Since users have to arrange dates to meet with their students to conduct the Mastery Checks, FRIDAY allows users to record the scheduled dates for each student.
+* **Default Command**: The original command word for a command in FRIDAY. (e.g. `add`,`sort`)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
