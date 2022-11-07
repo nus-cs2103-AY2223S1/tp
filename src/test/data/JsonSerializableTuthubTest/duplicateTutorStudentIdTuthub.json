@@ -1,0 +1,22 @@
+{
+  "tutors": [ {
+    "name": "John Doe",
+    "phone": "94351253",
+    "email": "e7654321@u.nus.edu",
+    "module": [ "CS2103T" ],
+    "year": "4",
+    "studentId": "A1234567X",
+    "teachingNomination": "1",
+    "rating": "4.2",
+    "tagged": [ "friends" ]
+  }, {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "e1234567@u.nus.edu",
+    "module": [ "CS2100" ],
+    "year": "3",
+    "studentId": "A1234567X",
+    "teachingNomination": "0",
+    "rating": "4.2"
+  } ]
+}
