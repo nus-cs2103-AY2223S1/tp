@@ -75,19 +75,19 @@ public class PersonCard extends UiPart<Region> {
         if (flowpanes[0] != null) {
             Label address = new Label(person.getAddress().value);
             address.maxWidthProperty().bind(flowpanes[0].maxWidthProperty());
-            address.setStyle("-fx-font-size: 12;-fx-font-family: \"Karla\"; -fx-text-fill: #FFDFEA; "
+            address.setStyle("-fx-font-size: 12;-fx-font-family: \"Karla\";-fx-text-fill: #FFDFEA;"
                     + "-fx-wrap-text: true;");
             flowpanes[0].getChildren().add(address);
         }
         if (flowpanes[1] != null) {
             Label email = new Label(person.getEmail().value);
-            email.setStyle("-fx-font-size: 12;-fx-font-family: \"Karla\"; -fx-text-fill: #FFDFEA; "
+            email.setStyle("-fx-font-size: 12;-fx-font-family: \"Karla\";-fx-text-fill: #FFDFEA;"
                     + "-fx-wrap-text: true;");
             flowpanes[1].getChildren().add(email);
         }
         if (flowpanes[2] != null) {
             Label phone = new Label(person.getPhone().value);
-            phone.setStyle("-fx-font-size: 12;-fx-font-family: \"Karla\"; -fx-text-fill: #FFDFEA; "
+            phone.setStyle("-fx-font-size: 12;-fx-font-family: \"Karla\";-fx-text-fill: #FFDFEA;"
                     + "-fx-wrap-text: true;");
             flowpanes[2].getChildren().add(phone);
         }
@@ -96,9 +96,9 @@ public class PersonCard extends UiPart<Region> {
                     .sorted(Comparator.comparing(tag -> tag.tagName))
                     .forEach(tag -> flowpanes[3].getChildren().add((new Label(tag.tagName))));
             flowpanes[3].getChildren().forEach(label -> label.setStyle("-fx-background-color: #3142D3;"
-                    + "-fx-font-size: 12; -fx-label-padding: 3 7 3 7; -fx-background-radius: 15;"
-                    + "-fx-font-family: \"Karla\"; -fx-border-radius: 2;"
-                    + "-fx-padding: 1 3 1 3; -fx-text-fill: #FFDFEA; -fx-wrap-text: true;"));
+                    + "-fx-font-size: 12;-fx-label-padding: 3 7 3 7;-fx-background-radius: 15;"
+                    + "-fx-font-family: \"Karla\";-fx-border-radius: 2;"
+                    + "-fx-padding: 1 3 1 3;-fx-text-fill: #FFDFEA;-fx-wrap-text: true;"));
         }
     }
 
