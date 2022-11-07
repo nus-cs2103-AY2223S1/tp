@@ -1426,7 +1426,9 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 1. Deleting a module with the module being displayed currently.
 
-    1. Prerequisites: List all modules using the `list-module` command. At least one module in the list.
+    1. Prerequisites:
+       * Listed all modules using the `list-module` command. 
+       * At least one module in the list.
 
     2. Test case: `delete-module m/CS2103T`<br>
        Expected:
@@ -1445,23 +1447,27 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 2. Deleting module while some, but not all, modules are being shown
 
-    1. Prerequisites: Search module using `find-module` or navigate to module using `goto`. The following test case assumes `goto CS2103T` is the most recent command before the deletion.
+    1. Prerequisites: 
+         * Search module using `find-module` or navigate to module using `goto`.
+    
+    2. Assumptions:
+         * For the following test cases, `goto CS2103T` is the most recent command before the deletion.
 
-    2. Test case: `delete-module m/CS2103T`<br>
+    3. Test case: `delete-module m/CS2103T`<br>
         Expected:
          * Module `CS2103T` is deleted from the list.
          * Details of the deleted module shown in the result display.
 
-    3. Test case: `delete-module m/MA2104`<br>
+    4. Test case: `delete-module m/MA2104`<br>
        Expected:
         * No module is deleted.
         * Error details shown in the result display. Module list and person list remain the same.
 
-    4. Test case: `delete-module m/GE3238`<br>
+    5. Test case: `delete-module m/GE3238`<br>
        Expected: Similar to (3).
         * Note: GE3238 exists on Plannit but gets filtered away by `goto CS2103T`.
 
-    5. Other incorrect `delete-module` commands to try: `delete-module`, `delete-module m/MODULE_CODE`, `...` (where `MODULE_CODE` is a module code which does not exist in Plannit)<br>
+    6. Other incorrect `delete-module` commands to try: `delete-module`, `delete-module m/MODULE_CODE`, `...` (where `MODULE_CODE` is a module code which does not exist in Plannit)<br>
        Expected: Similar to (3).
 
 <!-- @@author Tan-Jia-Rong -->
@@ -1469,7 +1475,9 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 1. Finding modules while all modules are being shown
 
-    1. Prerequisites: Must be at the home page. Multiple modules in Plannit.
+    1. Prerequisites: 
+        * Must be at the home page.
+        * Multiple modules in Plannit.
 
     2. Test case: `find-module cS`<br>
         Expected:
@@ -1490,7 +1498,9 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 2. Finding modules while not all modules are being shown
 
-    1. Prerequisites: Must be at the home page. Multiple modules in Plannit.
+    1. Prerequisites: 
+        * Must be at the home page. 
+        * Multiple modules in Plannit.
 
     2. Test case: `find-module CS2103T`<br>
        Assumption: Module `CS2103T` is not in the current module list<br>
@@ -1500,7 +1510,8 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 3. Finding modules while not at home page
 
-    1. Prerequisites: Must not be at the home page.
+    1. Prerequisites: 
+        * Must not be at the home page.
 
     2. Test case: `find-module CS2103T`<br>
        Expected:
@@ -1512,7 +1523,9 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 1. Listing modules while not all modules are shown
 
-    1. Prerequisites: Must be at the home page. Multiple modules in Plannit.
+    1. Prerequisites:
+       * Must be at the home page.
+       * Multiple modules in Plannit.
 
     2. Test case: `list-module`<br>
        Expected:
@@ -1525,7 +1538,8 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 2. Listing all modules while not at home page
 
-    1. Prerequisites: Must not be at the home page.
+    1. Prerequisites:
+        * Must not be at the home page.
 
     2. Test case: `list-module`<br>
        Expected:
@@ -1536,7 +1550,8 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 <!-- @@author teoyuqi -->
 ### Adding a task
 1. Adding a task to a module in Plannit
-    1. Prerequisites: List all modules using the `list-module` command.
+    1. Prerequisites:
+        * List all modules using the `list-module` command.
 
     2. Test case: `add-task m/CS2103T td/Complete week 7's weekly assignments`<br>
         Expected:
@@ -1555,7 +1570,8 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 ### Deleting a task
 1. Deleting a task from a module in Plannit
 
-    1. Prerequisites: List all modules using the `list-module` command.
+    1. Prerequisites:
+        * List all modules using the `list-module` command.
 
     2. Test case: `delete-task m/CS2103T tn/2`<br>
         Expected:
@@ -1573,7 +1589,8 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
     
 ### Swapping the order of a pair of tasks
 1. Swapping the order of two tasks in a module in Plannit
-    1. Prerequisites: List all modules using the `list-module` command.
+    1. Prerequisites:
+        * List all modules using the `list-module` command.
 
     2. Test case: `swap-task m/CS2103T ts/1 2`<br>
         Expected:
@@ -1595,7 +1612,8 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 1. Adding a link to a module in Plannit
 
-    1. Prerequisite: Use the `list-module` command to display all existing modules (from the sample data) in Plannit.
+    1. Prerequisite:
+        * Use the `list-module` command to display all existing modules (from the sample data) in Plannit.
 
     2. Test case: `add-link m/CS2103T la/Google l/google.com`<br>
        Expected:
@@ -1614,7 +1632,8 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 1. Deleting a link from a module in Plannit
 
-    1. Prerequisite:  Use the `list-module` command to display all existing modules (from the sample data) in Plannit.
+    1. Prerequisite:
+        * Use the `list-module` command to display all existing modules (from the sample data) in Plannit.
 
     2. Test case: `delete-link m/CS2103T la/Team Repo`<br>
        Expected:
@@ -1633,7 +1652,8 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 1. Opening a link from a module in Plannit
 
-    1. Prerequisites:  Use the `list-module` command to display all existing modules (from the sample data) in Plannit.
+    1. Prerequisites:
+        * Use the `list-module` command to display all existing modules (from the sample data) in Plannit.
 
     2. Test case: `open-link m/CS2103T la/Team Repo`<br>
        Expected:
@@ -1652,7 +1672,8 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 1. Adding a person to Plannit
 
-    1. Prerequisites:  Person to be added does not have the same name (case-sensitive) as anyone else that is already in Plannit.
+    1. Prerequisites:
+        * Person to be added does not have the same name (case-sensitive) as anyone else that is already in Plannit.
 
     2. Test case: `add-person n/Amy e/amy@gmail.com p/91234567`<br>
        Expected:
@@ -1677,7 +1698,9 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 1. Adding a person to a module
 
-    1. Prerequisite: Both the person to be added to the module and the module itself are currently displayed on Plannit. Also, the person to be added to the module has not yet been added to the module.
+    1. Prerequisites: 
+        * Both the person to be added to the module and the module itself are currently displayed on Plannit.
+        * The person to be added to the module has not yet been added to the module.
 
     2. Test case: `add-person-to-module m/MA2001 n/Alex Yeoh`<br>
        Assumption: both `MA2001` and `Alex Yeoh` are currently displayed on Plannit<br>
@@ -1708,7 +1731,8 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 1. Deleting a person from Plannit while the contact to be deleted is shown.
 
-    1. Prerequisites: Person to be deleted is currently displayed on screen.
+    1. Prerequisites:
+        * Person to be deleted is currently displayed on screen.
 
     2. Test case: `delete-person n/Alex Yeoh`<br>
        Expected:
@@ -1730,7 +1754,9 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 1. Deleting a person from module while both the specified module and person are displayed on screen.
 
-    1. Prerequisites: Both the person to be deleted from the module and the module itself are currently displayed on screen. Also, the person to be deleted from the module must have already been added to the module.
+    1. Prerequisites:
+        * Both the person to be deleted from the module and the module itself are currently displayed on screen.
+        * The person to be deleted from the module must have already been added to the module.
 
     2. Test case: `delete-person-from-module m/CS2103T n/David Li`<br>
        Expected:
@@ -1751,7 +1777,8 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 1. Editing a person in Plannit while the contact to be edited is shown.
 
-    1. Prerequisites: Person to be edited is currently displayed on screen.
+    1. Prerequisites:
+        * Person to be edited is currently displayed on screen.
 
     2. Test case: `edit-person 1 n/Armin`<br>
        Expected:
@@ -1774,7 +1801,9 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 1. Finding persons while all persons are being shown
 
-   1. Prerequisites: Must be at the home page. Multiple persons in Plannit.
+   1. Prerequisites:
+       * Must be at the home page.
+       * Multiple persons in Plannit.
 
    2. Test case: `find-person Alex`<br>
       Expected:
@@ -1795,7 +1824,9 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 2. Finding persons while not all persons are being shown
 
-    1. Prerequisites: Must be at the home page. Multiple persons in Plannit.
+    1. Prerequisites:
+        * Must be at the home page.
+        * Multiple persons in Plannit.
 
     2. Test case: `find-person Bernice`<br>
        Assumption: Person `Bernice` is not in the current person list<br>
@@ -1805,7 +1836,8 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 3. Finding persons while not at home page 
 
-    1. Prerequisites: Must not be at the home page.
+    1. Prerequisites:
+        * Must not be at the home page.
 
     2. Test case: `find-person Bernice`<br>
        Expected:
@@ -1817,7 +1849,9 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 1. Listing persons while not all persons are shown
 
-   1. Prerequisites: Must be at the home page. Multiple persons in Plannit.
+   1. Prerequisites:
+       * Must be at the home page.
+       * Multiple persons in Plannit.
 
    2. Test case: `list-person`<br>
       Expected:
@@ -1830,7 +1864,8 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 2. Listing all persons while not at home page
 
-    1. Prerequisites: Must not be at the home page.
+    1. Prerequisites:
+        * Must not be at the home page.
 
     2. Test case: `list-person`<br>
        Expected:
