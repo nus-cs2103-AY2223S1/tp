@@ -58,7 +58,7 @@ are an experienced user, the command summary at the bottom can get you up to spe
 3. Copy the file to the folder you want to use as the home folder for your module tracker.
 
 4. Download the `backupData` folder from [here](https://github.com/AY2223S1-CS2103T-W10-4/tp/releases), and place it in the same
-folder as `modtrekt.jar`.
+folder as `modtrekt.jar`. Do not rename, delete or move this folder or its contents as doing so may result in the application not working as expected.
 
 5. Double-click the file to start the app. The GUI similar to the screenshot below should appear in a few seconds. Note
    how the app contains some sample data.
