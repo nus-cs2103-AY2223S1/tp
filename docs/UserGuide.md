@@ -243,7 +243,7 @@ Format:
 `mark {task_index}`
 
 Example:
-`mark 2` - marks the task with index 2 as done shown by a tick beside the task description.
+`mark 2` - marks the task at index 2 as done shown by a tick beside the task description.
 
 ![marktask](images/markTask.png)
 
@@ -255,7 +255,7 @@ Format:
 `unmark {task_index}`
 
 Example:
-`unmark 3` - undo the marking of the task with index 2 shown by a cross beside the task description.
+`unmark 3` - undo the marking of the task at index 2 shown by a cross beside the task description.
 
 <div class="page-new"></div>
 
@@ -471,7 +471,7 @@ CodeConnect data are saved in the hard disk automatically after any command that
 
 ### Editing the data file
 
-CodeConnect data are saved as a JSON file either in  `[JAR file location]/data/contacts.json` for your contacts or `[JAR file location]/data/task.json` for your tasks. Advanced users are welcome to update data directly by editing that data file.
+CodeConnect data are saved as a JSON file either in  `[JAR file location]/data/contacts.json` for your contacts or `[JAR file location]/data/tasks.json` for your tasks. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, CodeConnect will discard all data and start with an empty data file at the next run.
