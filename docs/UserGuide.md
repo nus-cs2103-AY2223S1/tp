@@ -5,28 +5,28 @@ title: User Guide
 
 # Introduction
 
-Welcome to the Real-Time User Guide!
+Welcome to the REal-Time User Guide!
 
 
-Real-Time is a desktop application for _Real-Estate agents_ to manage client information, schedule meetings,
+REal-Time is a desktop application for _Real-Estate agents_ to manage client information, schedule meetings,
 and track client offers and listings.
 
-## About Real-Time
+## About REal-Time
 
 It is optimized for use via a Command Line Interface ([CLI](#Glossary)) while still having the
 benefits of a Graphical User Interface ([GUI](#Glossary)).
-If you can type fast, Real-Time can get your contact management tasks done faster than traditional GUI apps.
+If you can type fast, REal-Time can get your contact management tasks done faster than traditional GUI apps.
 
 ## Fun fact
-The **"Rea"** in **Real-Time** stands for _Real-Estate agents_, which is the intended target user of our application!
+The **"REa"** in **REal-Time** stands for _Real-Estate agents_, which is the intended target user of our application!
 
 ## Using this guide
 
-Now that you have read the introduction and learnt about what our product does, get started in using Real-Time by
+Now that you have read the introduction and learnt about what our product does, get started in using REal-Time by
 following the guide provided in the [Quick Start](#quick-start) section. Otherwise,
-* If you are still unsure of the commands used in Real-Time, the [Command Summary](#command-summary) is a good place to
+* If you are still unsure of the commands used in REal-Time, the [Command Summary](#command-summary) is a good place to
 start.
-* The [Prefix Summary](#prefix-summary) and [Glossary](#glossary) are also great places to understand Real-Time
+* The [Prefix Summary](#prefix-summary) and [Glossary](#glossary) are also great places to understand REal-Time
 better.
 * If you are a developer and would like to help improve our product, take a look at our [Developer Guide](https://ay2223s1-cs2103t-w15-2.github.io/tp/DeveloperGuide.html).
 
@@ -45,17 +45,17 @@ better.
 click [here](https://www.oracle.com/sg/java/technologies/downloads/#java11) and download the appropriate file depending
 on your Operating System ([OS](#Glossary)) (_e.g, Linux, Windows, macOS_).
 
-2. Download the latest `Real-Time.jar` file from [here](https://github.com/AY2223S1-CS2103T-W15-2/tp/releases). The
-`Real-Time.jar` file is located in the "Assets" section as shown below.
+2. Download the latest `REal-Time.jar` file from [here](https://github.com/AY2223S1-CS2103T-W15-2/tp/releases). The
+`REal-Time.jar` file is located in the "Assets" section as shown below.
 ![downloadRelease](./images/downloadRelease.png)
 
-3. Copy the file to the folder you want to use as the _home folder_ for Real-Time.
+3. Copy the file to the folder you want to use as the _home folder_ for REal-Time.
 
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds.
 Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Refer to the [Layout](#layout) if you are still unsure in navigating Real-Time's interface.
+5. Refer to the [Layout](#layout) if you are still unsure in navigating REal-Time's interface.
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and
 pressing Enter will open the help window.<br>
@@ -67,7 +67,7 @@ pressing Enter will open the help window.<br>
 
    * [**`clear`**](#clearing-all-entries--clear) : Deletes all clients, meetings, listings and offers.
 
-   * [**`exit`**](#exit-Real-Time--exit) : Exits the app.
+   * [**`exit`**](#exit-real-time--exit) : Exits the app.
 
 8. Refer to the [Features](#features) below for details of each command.
 
@@ -81,15 +81,15 @@ ___
 
 `Command Box` - You can enter commands here.<br>
 
-`Feedback Box` - Real-Time feedbacks to your commands will appear here.<br>
+`Feedback Box` - REal-Time feedbacks to your commands will appear here.<br>
 
-`Client Box` - All clients in Real-Time will appear here.<br>
+`Client Box` - All clients in REal-Time will appear here.<br>
 
-`Offer Box` - All offers in Real-Time will appear here.<br>
+`Offer Box` - All offers in REal-Time will appear here.<br>
 
-`Listing Box` - All listings in Real-Time will appear here.<br>
+`Listing Box` - All listings in REal-Time will appear here.<br>
 
-`Meeting Box` - All meetings in Real-Time will appear here.
+`Meeting Box` - All meetings in REal-Time will appear here.
 
 
 Back to [Table of Contents](#table-of-contents)
@@ -97,22 +97,22 @@ Back to [Table of Contents](#table-of-contents)
 --------------------------------------------------------------------------------------------------------------------
 
 # Command format
-#### We highly recommend you to read this section before using Real-Time
-Real-Time functions are based on commands that you enter. Real-Time has 4 main types
+#### We highly recommend you to read this section before using REal-Time
+REal-Time functions are based on commands that you enter. REal-Time has 4 main types
 of commands. let's learn how to write them!
 
 ## 1. `add`
 
 This type of command includes `addC` `addO` `addL` `addM` and is used to add a new
-entry into Real-Time.
+entry into REal-Time.
 
 Back to [Table of Contents](#table-of-contents)
 
 **Format:** `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
-This command adds a client into Real-Time.<br>
+This command adds a client into REal-Time.<br>
 1. `addC` is the **Command Word**
-2. `n/` `p/` `e/` `a/` are **Prefixes**. Prefixes help Real-Time distinguish between different inputs.
+2. `n/` `p/` `e/` `a/` are **Prefixes**. Prefixes help REal-Time distinguish between different inputs.
 3. `NAME` `PHONE_NUMBER` `EMAIL` `ADDRESS` are the **Data Field** that you can input. For example, `NAME` in `n/NAME` can be replaced with `n/John Doe`.
 
 Let's say you want to add a client named `John Doe`, his phone number
@@ -139,7 +139,7 @@ will be taken. If you specify `n/John Dough n/John Doe`, only `n/John Doe` will 
 
 ## 2. `del`
 This type of command includes `delC` `delO` `delL` `delM` and is used to delete a
-current entry from Real-Time.
+current entry from REal-Time.
 
 Back to [Table of Contents](#table-of-contents)
 
@@ -158,7 +158,7 @@ delL 2
 
 ## 3. `edit`
 This type of command includes `editC` `editO` `editL` `editM` and is used to edit the details
-of a current entry in Real-Time.
+of a current entry in REal-Time.
 
 Back to [Table of Contents](#table-of-contents)
 
@@ -167,7 +167,7 @@ Back to [Table of Contents](#table-of-contents)
 Let's say there is an existing offer at `INDEX` 2 that `Betsy Crowler` made for `john_house` with offer price `100000`
 but Betsy Crower just increased her offer price to `200000`, you also realised that you spelt her
 name wrongly the first time you add this offer, and it is actualy `Besty Crower` and you want to update this
-change in Real-Time.<br>
+change in REal-Time.<br>
 
 You can enter the following command:<br>
 
@@ -177,13 +177,13 @@ editO 2 n/Betsy Crower o/123456
 
 ## 4. `list`
 This type of command includes `listC` `listL` and is used to list all the entries
-of the specific type in Real-Time.
+of the specific type in REal-Time.
 
 Back to [Table of Contents](#table-of-contents)
 
 **Format:** `listC`
 
-Let's say you want to see all the clients in Real-Time.<br>
+Let's say you want to see all the clients in REal-Time.<br>
 
 You can enter the following command:
 ```text
@@ -203,7 +203,7 @@ In this section, we provide you the basic steps needed to [add](#adding-a-client
 
 ### Adding a client: `addC`
 
-> Adds a client to Real-Time.
+> Adds a client to REal-Time.
 
 **Format:** `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -241,7 +241,7 @@ New client added: [details of the newly added client]
 ```
 
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format]() section here.
+   [Command Format](#command-format) section here.
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
 Back to [Table of Contents](#table-of-contents)<br>
@@ -251,7 +251,7 @@ ___
 
 ### Deleting a client : `delC`
 
-> Deletes the client at the specified index in Real-Time.
+> Deletes the client at the specified index in REal-Time.
 
 **Format** - `delC INDEX`
 
@@ -268,18 +268,18 @@ delC -1
 ```
 [screenshots to be added]<br>
 **Expected Success Output:**<br>
-The client at `INDEX` 1 is deleted from Real-Time.<br>
+The client at `INDEX` 1 is deleted from REal-Time.<br>
 
 **Feedback Box:**
 ```text
 Deleted Client: [details of the deleted client]
 ```
 **Note:**
-1. `listC` followed by `delC 2` deletes the 2nd client in the Real-Time.
+1. `listC` followed by `delC 2` deletes the 2nd client in the REal-Time.
 2. `findC Betsy` followed by `delC 1` deletes the 1st client in the results of the `findC` command.
 
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format]() section here.
+   [Command Format](#command-format) section here.
 
 Back to [Table of Contents](#table-of-contents)<br>
 Back to [Managing Clients](#managing-clients)
@@ -288,7 +288,7 @@ ___
 
 ### Editing a client : `editC`
 
-> Edits an existing client in Real-Time.
+> Edits an existing client in REal-Time.
 
 **Format:** `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -329,7 +329,7 @@ Edited Client: [newly updated details of client]
 
 **Help:**
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format]() section here.
+   [Command Format](#command-format) section here.
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
 Back to [Table of Contents](#table-of-contents)<br>
@@ -375,7 +375,7 @@ The list of clients in the Client Box is updated to a list of all matches from t
 
 **Help:**
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format]() section here.
+   [Command Format](#command-format) section here.
 
 Back to [Table of Contents](#table-of-contents)<br>
 Back to [Managing Clients](#managing-clients)
@@ -416,7 +416,7 @@ ___
 ### Adding an offer: `addO`
 
 
-> Adds an offer to Real-Time.
+> Adds an offer to REal-Time.
 
 **Format:** `addO l/LISTING_ID n/NAME o/OFFER_PRICE`
 
@@ -429,20 +429,20 @@ _Success_
 ```text
 addO l/BEDOK_NORTH_BLK123_12 n/John Doe o/2000000
 ```
-[screenshots to be added]<br>
+![addOfferSuccess](images/AddOfferSuccess.png)<br>
 _Failure_
 ```text
 Missing fields:
-add0 l/BEDOK_NORTH_BLK123_12 n/John Doe
+addO l/BEDOK_NORTH_BLK123_12 n/John Doe
 ```
-[screenshots to be added]<br>
+![addOfferFailure1](images/AddOfferFailure1.png)<br>
 ```text
 Invalid offer price:
 addO l/BEDOK_NORTH_BLK123_12 n/John Doe o/-1
 ```
-[screenshots to be added]<br>
+![addOfferFailure2](images/AddOfferFailure2.png)<br>
 **Expected Success Output:**<br>
-A new offer is added to Real-Time<br>
+A new offer is added to REal-Time<br>
 
 **Feedback Box:**
 ```text
@@ -451,7 +451,7 @@ New offer added: [offer details]
 
 **Help:**
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format]() section here.
+   [Command Format](#command-format) section here.
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
 Back to [Table of Contents](#table-of-contents)<br>
@@ -461,7 +461,7 @@ ___
 
 ### Deleting an offer : `delO`
 
-> Deletes the specified offer in Real-Time.
+> Deletes the specified offer in REal-Time.
 
 **Format** - `delO INDEX`
 
@@ -470,27 +470,27 @@ _Success_
 ```text
 delO 2
 ```
-[screenshots to be added]<br>
+![DeleteOfferSuccess](images/DeleteOfferSuccess.png)<br>
 _Failure_
 ```text
 Invalid index:
 delO 0
 ```
-[screenshots to be added]<br>
+![DeleteOfferInvalid1](images/DeleteOfferInvalid1.png)<br>
 ```text
 delO
 ```
-[screenshots to be added]<br>
+![DeleteOfferInvalid2](images/DeleteOfferInvalid2.png)<br>
 **Expected Success Output:**<br>
-The offer at `INDEX` 2 is deleted from Real-Time.<br>
+The offer at `INDEX` 2 is deleted from REal-Time.<br>
 
 **Feedback Box:**
 ```text
 Deleted Offer: [details of the deleted offer]
 ```
 **Help:**
-1. If you have any confusion of the notation, you can refer to the
-[Command Format]() section here.
+1. If you have any confusion of the notation, you can refer to the 
+[Command Format](#command-format) section here.
 
 Back to [Table of Contents](#table-of-contents)<br>
 Back to [Managing Offers](#managing-offers)
@@ -499,7 +499,7 @@ ___
 
 ### Editing an offer : `editO`
 
-> Edits an existing offer in Real-Time.
+> Edits an existing offer in REal-Time.
 
 **Format:** `editO INDEX [n/NAME] [o/OFFER_PRICE] [l/LISTING_ID]`
 
@@ -508,18 +508,18 @@ _Success_
 ```text
 editO 2 n/Betsy Crower o/200000
 ```
-[screenshots to be added]<br>
+![EditOfferSuccess](images/EditOfferSuccess.png)<br>
 _Failure_
 ```text
 Invalid index:
 editO -1 n/Betsy Crower o/200000
 ```
-[screenshots to be added]<br>
+![EditOfferInvalidIndex](images/EditOfferInvalidIndex.png)<br>
 ```text
 Invalid client name:
 editO 2 n/Betsy Cr@wer o/200000
 ```
-[screenshots to be added]<br>
+![EditOfferInvalidName](images/EditOfferInvalidName.png)<br>
 **Expected Success Output:**<br>
 The offer at `INDEX` 2 is edited according to the fields provided.<br>
 
@@ -535,7 +535,7 @@ Edited Offer: [newly updated details of offer]
 
 **Help:**
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format]() section here.
+   [Command Format](#command-format) section here.
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
 Back to [Table of Contents](#table-of-contents)<br>
@@ -553,7 +553,7 @@ In this section, we provide you the basic steps needed to [add](#adding-a-listin
 
 ### Adding a listing: `addL`
 
-> Adds a listing to Real-Time.
+> Adds a listing to REal-Time.
 
 **Format:** `addL l/LISTING_ID a/ADDRESS n/OWNER_NAME ap/ASKING_PRICE [t/TAG]…​`
 
@@ -579,7 +579,7 @@ addL l/007 a/100 Charming Ave n/Joke Peralta`
 ![addL Missing Parameter example](images/addLMissingParam.png)
 
 **Expected Success Output:**<br>
-A new listing is added to Real-Time<br>
+A new listing is added to REal-Time<br>
 
 **Feedback Box:**
 ```text
@@ -588,7 +588,7 @@ New listing added: [listing details]
 
 **Help:**
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format]() section here.
+   [Command Format](#command-format) section here.
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
 Back to [Table of Contents](#table-of-contents)<br>
@@ -597,7 +597,7 @@ ___
 
 ### Deleting a listing : `delL`
 
-> Deletes the listing at the specified Index from Real-Time.
+> Deletes the listing at the specified Index from REal-Time.
 
 **Format:** `delL id/INDEX`
 
@@ -615,7 +615,7 @@ delL 2356739457
 ![deleteL Invalid ListingId example](images/deleteLInvalidId.png)
 
 **Expected Success Output:**<br>
-The listing at `INDEX` 1 is deleted from Real-Time.<br>
+The listing at `INDEX` 1 is deleted from REal-Time.<br>
 
 **Feedback Box:**
 ```text
@@ -623,7 +623,7 @@ Deleted Listing: [details of the deleted listing]
 ```
 **Help:**
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format]() section here.
+   [Command Format](#command-format) section here.
 
 Back to [Table of Contents](#table-of-contents)<br>
 Back to [Managing Listings](#managing-listings)
@@ -632,7 +632,7 @@ ___
 
 ### Editing a listing : `editL`
 
-> Edits an existing listing in the Real-Time.
+> Edits an existing listing in the REal-Time.
 
 **Format:** `editL INDEX [l/LISTING_ID] [a/ADDRESS] [n/OWNER_NAME] [ap/ASKING_PRICE] [t/TAG]…​`
 
@@ -674,7 +674,7 @@ Edited Client: [newly updated details of client]
 
 **Help:**
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format]() section here.
+   [Command Format](#command-format) section here.
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
 Back to [Table of Contents](#table-of-contents)<br>
@@ -713,7 +713,7 @@ and [edit](#editing-a-meeting--editm)meetings.
 
 ### Adding a meeting: `addM`
 
-> Adds a meeting to the Real-Time.
+> Adds a meeting to the REal-Time.
 
 **Format:** `addM id/LISTING_ID n/CLIENT_NAME d/DATE_TIME`
 
@@ -738,7 +738,7 @@ addM id/007 n/Joke Peralta d/tomorrow 12pm
 
 **Help:**
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format]() section here.
+   [Command Format](#command-format) section here.
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
 Back to [Table of Contents](#table-of-contents)<br>
@@ -747,7 +747,7 @@ ___
 
 ### Deleting a meeting : `delM`
 
-> Deletes the meeting at the specified index from Real-Time.
+> Deletes the meeting at the specified index from REal-Time.
 
 **Format:** `delM id/INDEX`
 
@@ -765,7 +765,7 @@ delM -1
 [screenshots to be added]<br>
 
 **Expected Success Output:**<br>
-The meeting at `INDEX` 1 is deleted from Real-Time.<br>
+The meeting at `INDEX` 1 is deleted from REal-Time.<br>
 
 **Feedback Box:**
 ```text
@@ -773,7 +773,7 @@ Deleted Meeting: [details of the deleted listing]
 ```
 **Help:**
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format]() section here.
+   [Command Format](#command-format) section here.
 
 Back to [Table of Contents](#table-of-contents)
 Back to [Managing Meetings](#managing-meetings)
@@ -781,7 +781,7 @@ ___
 
 ### Editing a meeting : `editM`
 
-> Edits an existing meeting in Real-Time.
+> Edits an existing meeting in REal-Time.
 
 **Format:** `editM INDEX [n/NAME] [d/DATE_TIME]`
 
@@ -818,7 +818,7 @@ Edited Meeting: [newly updated details of meeting]
 
 **Help:**
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format]() section here.
+   [Command Format](#command-format) section here.
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
 Back to [Table of Contents](#table-of-contents)<br>
@@ -829,7 +829,7 @@ ___
 ## General
 
 In this section, we provide you the basic steps needed to use the [help](#viewing-help--help), [clear](#clearing-all-entries--clear) and
-[exit](#exit-Real-Time--exit) commands.
+[exit](#exit-real-time--exit) commands.
 
 **If this is not the section you are looking for**, click [here](#table-of-contents) to go back to the **Table of Contents**.
 
@@ -838,7 +838,7 @@ Available commands: `help` `clear` `exit`
 
 ### Viewing help : `help`
 
-> Show a help window for Real-Time
+> Show a help window for REal-Time
 
 **Format:** `help`
 
@@ -853,28 +853,28 @@ Back to [General](#general)
 
 ### Clearing all entries : `clear`
 
-> Clears all entries in Real-Time.
+> Clears all entries in REal-Time.
 
 **Example Input:**<br>
 ```text
 clear
 ```
 **Expected Success Output:**<br>
-All data in Real-Time is cleared
+All data in REal-Time is cleared
 
 Back to [Table of Contents](#table-of-contents)<br>
 Back to [General](#general)
 
 ___
-### Exit Real-Time : `exit`
-> Exits Real-Time
+### Exit REal-Time : `exit`
+> Exits REal-Time
 
 **Example Input:**<br>
 ```text
 exit
 ```
 **Expected Success Output:**<br>
-The Real-Time window closes.
+The REal-Time window closes.
 
 Back to [Table of Contents](#table-of-contents)<br>
 Back to [General](#general)
@@ -884,7 +884,7 @@ ___
 
 ### Saving the data
 
-Real-Time data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+REal-Time data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 Back to [Table of Contents](#table-of-contents)<br>
 Back to [General](#general)
@@ -893,10 +893,10 @@ ___
 
 ### Editing the data file
 
-Real-Time data are saved as a JSON file `[JAR file location]/data/realtime.json`.
+REal-Time data are saved as a JSON file `[JAR file location]/data/realtime.json`.
 Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** If your changes to the data file makes its format invalid, Real-Time will
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:** If your changes to the data file makes its format invalid, REal-Time will
 discard all data and start with an empty data file at the next run.
 </div>
 
@@ -908,8 +908,8 @@ Back to [General](#general)
 |  Term   |                                Description                                 |
 |:-------:|:--------------------------------------------------------------------------:|
 | **OS**  | The operating system is the software that is used to run in your computer. |
-| **CLI** |                                To be added                                 |
-| **GUI** |                                To be added                                 |
+| **CLI** |            Interface that takes in text commands from the user             |
+| **GUI** |  A form of user interface that allows users to interact through graphics   |
 
 Back to [Introduction](#introduction)<br>
 Back to [Table of Contents](#table-of-contents)
