@@ -262,7 +262,7 @@ Examples:
 * `editTask 2 c/frontend pe/charlotte@example.com` edits the category of the 2nd task in the displayed task list to be `frontend` and assigns the task to  the person with email `charlotte@example.com`.
 * `editTask 4 do/true` marks the 4th task in the displayed task list as `completed`.
 
-#### Finding a Task using keywords : `findTask`
+#### Finding a Task using keywords: `findTask`
 
 Finds tasks with names or descriptions that contain any of the given keywords.
 
