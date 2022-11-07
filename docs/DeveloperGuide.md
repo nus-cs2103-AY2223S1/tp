@@ -706,7 +706,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-**Use case: UC04 - Edit personal details of an applicant**
+**Use case: UC04 - Edit an applicant's details**
 
 **Guarantees:**
 
