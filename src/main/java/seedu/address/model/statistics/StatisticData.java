@@ -10,10 +10,7 @@ import javafx.scene.chart.PieChart.Data;
  * Guarrantees: Immutable, data points are not null.
  */
 public class StatisticData {
-
-    //PieChart data point.
     public final Data chartData;
-
     /**
      * Constructs a {@code StatisticData} with the given {@code name} and {@code value}.
      * {@code name} and {@code value} must not be null.
@@ -21,19 +18,6 @@ public class StatisticData {
     public StatisticData(String name, Double value) {
         requireAllNonNull(name, value);
         this.chartData = new Data(name, value);
-    }
-
-    /**
-     * Returns true if {@code otherData} has the same name as this instance of {@code StatisticData},
-     * false otherwise.
-     */
-    public boolean isSameName(StatisticData otherData) {
-        //short-circuit if same object.
-        if (otherData == this) {
-            return true;
-        }
-        return otherData != null
-                && otherData.getName().equals(getName());
     }
 
     public String getName() {
@@ -49,7 +33,19 @@ public class StatisticData {
     }
 
     /**
-     * Increments {@code value} by 1, to facillitate generating of statistics.
+     * Returns true if both StatisticData points have the same name.
+     */
+    public boolean isSameStatisticData(StatisticData otherData) {
+        //short-circuit if same object
+        if (otherData == this) {
+            return true;
+        }
+        return otherData != null
+                && otherData.getName().equals(getName());
+    }
+
+    /**
+     * Increments {@code value} by 1, to facilitate generating of statistics.
      */
     public void updateValueByOne() {
         double initialValue = this.getValue();

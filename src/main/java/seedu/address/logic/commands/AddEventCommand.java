@@ -12,7 +12,7 @@ import seedu.address.model.event.Event;
 
 
 /**
- * Adds an Event to the application.
+ * Adds an Event to the event list of the application.
  */
 public class AddEventCommand extends Command {
 
@@ -33,12 +33,13 @@ public class AddEventCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New Event added: %1$s";
 
-    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the application";
+    public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the event list of the"
+            + " application";
 
     private final Event toAdd;
 
     /**
-     * Constructor for AddEventCommand
+     * Creates an AddEventCommand to add the specified {@code Event}
      * @param event to be wrapped by AddEventCommand object
      */
     public AddEventCommand(Event event) {

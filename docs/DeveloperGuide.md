@@ -182,17 +182,17 @@ The following sequence diagram illustrates the relevant sorting method calls for
 
 **Aspect: How sorting is performed:**
 
-Ideally, sorting should be a "view" level operation that doesn't change the underlying persons list. However, the way the UI is designed makes it difficult to implement sorting as such. The issue is that the UI is **hardcoded** to only display persons from the `UniquePersonList` object. As such, any changes to the persons list must be made directly to the `UniquePersonList` object. i.e. A modified copy of the persons list cannot be passed to the UI during runtime since the UI is hardcoded to show only the `UniquePersonList` object.
+Ideally, sorting should be a "view" level operation that doesn't change the underlying person list. However, the way the UI is designed makes it difficult to implement sorting as such. The issue is that the UI is **hardcoded** to only display persons from the `UniquePersonList` object. As such, any changes to the person list must be made directly to the `UniquePersonList` object. i.e. A modified copy of the person list cannot be passed to the UI during runtime since the UI is hardcoded to show only the `UniquePersonList` object.
 
 Therefore, given the constraints of the UI, sorting is implemented as a **permanent operation**.
 
 
-* **Alternative 1 (current choice):** Sort the underlying persons list directly.
+* **Alternative 1 (current choice):** Sort the underlying person list directly.
   * Pros: User can directly use the index numbers of the sorted list to interact with the persons using other commands such as `editPerson` or `deletePerson`.
   * Cons: Sorted result is permanent, instead of being a "view" level operation.
 
-* **Alternative 2:** Sort the persons list at the UI level.
-   * Pros: Sorted result is not permanent. So sorting won't interfere with the underlying persons list.
+* **Alternative 2:** Sort the person list at the UI level.
+   * Pros: Sorted result is not permanent. So sorting won't interfere with the underlying person list.
    * Cons: Requires redesigning a significant part of the `UI`, `Logic` and `Model` classes.
 
 ### Adding Events

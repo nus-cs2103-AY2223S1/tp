@@ -14,16 +14,16 @@ Given below are my contributions to the project.
 * **Enhancements implemented**:
     * **New Feature**: Added gender field to a person (Pull requests [#50](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/50), [#52](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/52))
         * What it does: 
-          1. Allows the user to add a person with gender field to contact list
-          2. Allows the user to edit the gender of a person after adding the person to contact list.
+          1. Allows the user to add a person with gender field to person list
+          2. Allows the user to edit the gender of a person after adding the person to person list.
         * Justification: Gender is a common field in personal profile, and it can be used in demographic
       analysis for marketing event attendees (related command `makeStats` is implemented by another team member).
       
     * **New Feature**: Added the feature to tag persons to an event (Pull requests [#93](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/93))
        * What it does: 
-           1. Allows the user to tag 1 or more persons in the contact list to an event in the event list by `tagEvent` command. 
+           1. Allows the user to tag 1 or more persons in the person list to an event in the event list by `tagEvent` command. 
            2. Allows the user to untag from an event in the event list 1 or more persons tagged to the event previously by `untagEvent` command.
-      * Justification: Tagging persons to event allows the user to easily keep track of all attendees in the contact list for a marketing event in the event list.
+      * Justification: Tagging persons to event allows the user to easily keep track of all attendees in the person list for a marketing event in the event list.
       * Highlights: This feature requires storing reference of `Person` to an `Event` in storage,
       to minimize duplications in storage, a new field `Uid` is added to `Person` object to identify unique person.
       This feature also requires immediate GUI display update of event attendees after tagging and editing related commands.
