@@ -5,17 +5,17 @@ package seedu.workbook.ui.util;
  */
 public class HelpUtil {
 
-    public static final String ADD_COMMAND = "add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/EMAIL] "
+    public static final String ADD_EXAMPLE= "add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/EMAIL] "
             + "[l/PROGRAMMING LANGUAGE]… [t/TAG]…";
-    public static final String EDIT_COMMAND = "edit INDEX [c/COMPANY] [r/ROLE] [s/STAGE] [d/DATETIME] [e/EMAIL] "
+    public static final String EDIT_EXAMPLE = "edit INDEX [c/COMPANY] [r/ROLE] [s/STAGE] [d/DATETIME] [e/EMAIL] "
             + "[l/PROGRAMMING LANGUAGE]… [t/TAG]…";
-    public static final String DELETE_COMMAND = "delete INDEX";
-    public static final String CLEAR_COMMAND = "clear";
-    public static final String LIST_COMMAND = "list";
-    public static final String FIND_COMMAND = "find  c/COMPANY | r/ROLE | s/STAGE";
-    public static final String UNDO_COMMAND = "undo";
-    public static final String REDO_COMMAND = "redo";
-    public static final String EXIT_COMMAND = "exit";
+    public static final String DELETE_EXAMPLE = "delete INDEX";
+    public static final String CLEAR_EXAMPLE = "clear";
+    public static final String LIST_EXAMPLE = "list";
+    public static final String FIND_EXAMPLE = "find  c/COMPANY | r/ROLE | s/STAGE";
+    public static final String UNDO_EXAMPLE = "undo";
+    public static final String REDO_EXAMPLE= "redo";
+    public static final String EXIT_EXAMPLE = "exit";
     public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t10-3.github.io/tp/UserGuide.html";
     public static final String URL_MESSAGE = "Refer to the user guide for more information: " + USERGUIDE_URL;
 
@@ -34,23 +34,23 @@ public class HelpUtil {
     public static String getCommandExample(Command command) {
         switch(command) {
             case ADD:
-                return ADD_COMMAND;
+                return ADD_EXAMPLE;
             case EDIT:
-                return EDIT_COMMAND;
+                return EDIT_EXAMPLE;
             case DELETE:
-                return DELETE_COMMAND;
+                return DELETE_EXAMPLE;
             case CLEAR:
-                return CLEAR_COMMAND;
+                return CLEAR_EXAMPLE;
             case LIST:
-                return LIST_COMMAND;
+                return LIST_EXAMPLE;
             case FIND:
-                return FIND_COMMAND;
+                return FIND_EXAMPLE;
             case UNDO:
-                return UNDO_COMMAND;
+                return UNDO_EXAMPLE;
             case REDO:
-                return REDO_COMMAND;
+                return REDO_EXAMPLE;
             case EXIT:
-                return EDIT_COMMAND;
+                return EDIT_EXAMPLE;
             default:
                 return "Command Example Here.";
         }
