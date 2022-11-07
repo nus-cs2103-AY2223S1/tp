@@ -720,40 +720,212 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample persons and events. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `listPersons` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    2. Test case: `deletePerson 1`<br>
+       Expected: First person is deleted from the person list. Details of the deleted person shown in the result display.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    3. Test case: `deletePerson 0`<br>
+       Expected: No person is deleted. Error message is shown in the result display.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    4. Other incorrect deletePerson commands to try: `deletePerson`, `deletePerson x`, `...` (where x is larger than the person list size)<br>
+       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+2. Deleting a person while some persons are being shown
+
+    1. Prerequisites: List only some persons using the `find` command and specify certain keywords.
+
+    2. Test case: `deletePerson 1`<br>
+       Expected: First person is deleted from the current displayed person list. Details of the deleted person shown in the result display.
+
+    3. Test case: `deletePerson 0`<br>
+       Expected: No person is deleted from the current displayed person list. Error message is shown in the result display.
+
+    4. Other incorrect deletePerson commands to try: `deletePerson`, `deletePerson x`, `...` (where x is larger than the person list size)<br>
+       Expected: Similar to previous.
+
+### Adding a person
+
+1. Adding a person
+
+    1. Prerequisites: The name of the newly added person should not exist in any of the current persons stored in the application.
+
+    2. Test case: `addPerson n/person a/street e/person@gmail.com p/12345678 d/01/01/2000 g/m`<br>
+       Expected: A person is added to the end of the person list. Details of the added person shown in the result display.
+
+    3. Test case: `addPerson n/person`<br>
+       Expected: No person is added. Error message is shown in the result display.
+
+    4. Other incorrect addPerson commands to try: `addPerson 1`, `addPerson n/person a/street e/person@gmail.com p/12345678 d/01.01.2000 g/m`, `...`
+       (where the date of birth is in the wrong format)<br>
+       Expected: Similar to previous.
+
+### Listing Events by Event Date
+1. Listing Events by their Event Titles
+    1. Prerequisites: Multiple events in the event list.
+
+    2. Test case: `listEvents s/d`<br>
+       Expected: All events are listed and sorted by their dates from oldest event date to newest event date.
+       A success message is shown in the result display. The top event has the oldest event date.
+
+    3. Test case: `listEvents 123`<br>
+       Expected: Current event list remains the same and no events are sorted. Error message is shown in the result display.
+
+    4. Other incorrect listEvent commands to try: `LISTEVENTS s/d`, `listEvents s/d e`, `listEvents s/n`<br>
+       Expected: Similar to second test case.
+
+    5. `listEvents s/d` lists and sorts all events by their dates even if the event list does not display all events due to the `findEvents` command.
+
+### Tagging Person(s) to an Event
+1. Tagging a person to an Event
+    1. Prerequisites: There must be at least 1 event in the event list and 1 person in the person list.
+
+    2. Whenever a valid tagging is done, all events in the current event list are displayed and the tagged event is updated to reflect the new tagged person.
+
+    3. Test case: `tagEvent 1 p/1`<br>
+       Expected: The first person in the current person list is tagged to the first event in the current event list. A success message is shown in the
+       result display, indicating that the name of the first person has been tagged to the event title of the first event.
+
+    4. Test case: `tagEvent 0 p/1`<br>
+       Expected: No person is tagged to an event. Error message is shown in the result display.
+
+    5. Other incorrect tagEvent commands to try: `tagEvent x p/y` (where either x is larger than the size of the current event list or y is
+       larger than the size of the current person list), `TAGEVENT 1 p/1`, `tagEvent 1 p/x` (where x is the index of a person that is already tagged in the first event
+       in the current event list).<br>
+       Expected: Similar to second test case.
+
+2. Tagging multiple persons to an Event
+    1. Prerequisites: There must be at least 1 event in the event list and more than 1 person in the person list.
+
+    2. Whenever a valid tagging is done, all events in the current event list are displayed and the tagged event is updated to reflect the new tagged persons.
+
+    3. Test case: `tagEvent 1 p/1 2`<br>
+       Expected: The first and second person in the current person list is tagged to the first event in the current event list. A success message
+       is shown in the result display, indicating that the name of the first and second person has been tagged to the event title of the first event.
+
+    4. Test case: `tagEvent 0 p/1 2`<br>
+       Expected: No persons are tagged to an event. Error message is shown in the result display.
+
+    5. Other incorrect tagEvent commands to try: `tagEvent x p/y z` (where either x is larger than the size of the current event list or y or z is
+       larger than the size of the current person list), `TAGEVENT 1 p/1 2`. `tagEvent 1 p/x y` (where either x or y is the index of a person that is already tagged in the
+       first event in the current event list)<br>
+       Expected: Similar to second test case.
+
+### Untagging Person(s) from an Event
+1. Untagging a person from an Event
+    1. Prerequisites: There must be at least 1 person tagged to an event in the event list and this person must appear in the current displayed person list.
+
+    2. Whenever a valid untagging is done, all events in the current event list are displayed and the untagged event is updated to reflect the leftover tagged person(s).
+
+    3. Test case: `untagEvent x p/y` (where x is the index of an event present in the current event list and y is the index of a person that is in the current person list and
+       also is tagged to the event in event index x)<br>
+       Expected: The person with index y in the current person list is untagged from the event with index x in the current event list. A success message is shown in the
+       result display, indicating that the name of the person with index y in the current person list has been untagged from the event title of the event with index x
+       in the current event list.
+
+    4. Test case: `untagEvent 0 p/1`<br>
+       Expected: No person is untagged from an event. Error message is shown in the result display.
+
+    5. Other incorrect tagEvent commands to try: `untagEvent x p/y` (where either x is larger than the size of the current event list or y is
+       larger than the size of the current person list), `UNTAGEVENT 1 p/1`, `untagEvent 1 p/x` (where x is the index of a person that is not tagged in the first event
+       in the current event list).<br>
+       Expected: Similar to second test case.
+
+2. Untagging multiple persons from an Event
+    1. Prerequisites: There must be more than 1 person tagged to an event in the event list and these persons must appear in the current displayed person list.
+
+    2. Whenever a valid untagging is done, all events in the current event list are displayed and the untagged event is updated to reflect the leftover tagged person(s).
+
+    3. Test case: `untagEvent x p/y z` (where x is the index of an event present in the current event list and y and z is the index of a person that is in the current person list and
+       also is tagged to the event in event index x)<br>
+       Expected: The persons with index y and z in the current person list are untagged from the event with index x in the current event list. A success message is shown in the
+       result display, indicating that the names of the persons with index y and z in the current person list has been untagged from the event title of the event with index x
+       in the current event list.
+
+    4. Test case: `untagEvent 0 p/1 2`<br>
+       Expected: No person is untagged from an event. Error message is shown in the result display.
+
+    5. Other incorrect tagEvent commands to try: `untagEvent x p/y z` (where either x is larger than the size of the current event list or y or z is
+       larger than the size of the current person list), `UNTAGEVENT 1 p/1 2`, `untagEvent 1 p/x y` (where either x or y is the index of a person that is not tagged in the first event
+       in the current event list).<br>
+       Expected: Similar to second test case.
+
+### Generating a pie chart statistic for an Event
+1. Generating a pie chart statistic from an Event
+    1. Prerequisites: An event in the current event list should have at least 1 tagged person.
+
+    2. Test case: `makeStats x t/g` (where x is the index of an event that has at least 1 tagged person)<br>
+       Expected: A new window is opened, showing a pie chart of the gender statistics for the event in event index x of the current event list.
+       Success message is shown in the result display.
+
+    3. Test case: `makeStats 0 t/g`<br>
+       Expected: No new window is opened. Error message is shown in the result display.
+
+    4. Other incorrect makeStats commands to try: `MAKESTATS 1 t/g`, `makeStats 1 t/g a`<br>
+       Expected: Similar to second test case.
+
+### Creating a mailing list for an Event
+1. Generating a mailing list from an Event
+    1. Prerequisites: An event in the current event list should have at least 1 tagged person.
+
+    2. Test case: `mailEvent 1`<br>
+       Expected: A CSV file with the name of the first event title of the first event is created in the /data folder.
+       Success message is shown in the result display.
+
+    3. Test case: `mailEventStats 0`<br>
+       Expected: No CSV files are created. Error message is shown in the result display.
+
+    4. Other incorrect makeStats commands to try: `MAILEVENT 1`, `mailEvent x` (where x is larger than the size of the displayed event list)<br>
+       Expected: Similar to second test case.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Test case: Delete the data file manually when not inside the application (by deleting the addressbook.json file)<br>
+       Expected: Duke The Market launches with a set of sample data. Executing any valid command that updates data will create a new data file
+       with the new data.
 
-1. _{ more test cases …​ }_
+    2. Test case: Add invalid characters like `*` into the data file manually when not inside the application (by editing the addressbook.json file)<br>
+       Expected: Duke The Market launches with an empty set of data. Executing any valid command that updates will create a new data file
+       with the new data.
+
+    3. Test case: Deleting or editing the data file manually while inside the application<br>
+       Expected: Executing any valid command will overwrite whatever changes were made manually and the data file will contain new data
+       according to the application that is currently running.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+
+Our group felt that the project was slightly difficult. Although our group has put in extensive effort into the planning of the project,
+we still encountered numerous merge conflicts and situations that we did not expect (needing to change how we implement the storage of certain
+entities). Compared to other groups, we believe that we have put in an average amount of effort because one of the past lectures mentioned how
+most groups had over-exceeded the amount of effort that is actually required.
+
+Fortunately, some members within the group was able to experience first-hand working with others on a serious Software Engineering project. For
+those that were more experienced, we still had new takeways when we worked with other members in the group and we were able to guide each other
+and receive proper feedback from other groups in class as well as hold respectful discussions within the group. We believe our product has
+some use in the real world as it is simple enough to be used and can even be extended to other uses.
+
+Additionally, our group gained more experience when it came to manual and automated testing. We were better able to learn a more complex test suite
+offered by AB3 and adapted it for own use.
+
+Compared to AB3 which deals with only one entity type (Person), our group dealt with two entity types (Person and Event). Though some of the fields
+were similar in implementation, our group had struggled slightly with learning how to tag multiple person(s) to one event as each suggestion that
+every team member came up with had its pros and flaws.
