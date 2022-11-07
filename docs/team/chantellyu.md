@@ -25,7 +25,7 @@ Given below are my contributions to the project.
     an application in the list that did not contain a dated task. Changed the code to allow entries with tasks to be 
     sorted, while those without dated tasks would be listed at the bottom.
 
-* **Contributions to the UG:**: 
+* **Contributions to the UG**: 
   * Added complete documentation for the following features: `edit`, `remark`.
   * Updated documentation for other features.
   * Proofread UG for readability and comprehensibility.
