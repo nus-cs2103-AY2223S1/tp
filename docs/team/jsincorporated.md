@@ -5,7 +5,7 @@ title: Ng Jun Sheng's Project Portfolio Page
 
 ### Project: uNivUSal
 
-uNivUSal is a desktop application used to link CS2103T users to all the modes of communication of other users to make their lives easier. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+uNivUSal is a desktop application used to link CS2103T users to all the modes of communication of other users to make their lives easier. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 20 kLoC.
 
 Given below are my contributions to the project.
 
