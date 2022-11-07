@@ -60,6 +60,8 @@ This document is to assist you in using MODPRO smoothly and effectively to track
 * For the experienced users, you can learn more about these unique features that can help you manage your tasks better: [adding tags to your tasks](#adding-the-tags-to-a-task), [sorting your list](#sorting-the-task-list), [filtering your list](#filtering-the-task-list), [linking an exam to a task](#linking-an-exam)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 - [Quick Start](#quick-start)
 - [Features](#features)
