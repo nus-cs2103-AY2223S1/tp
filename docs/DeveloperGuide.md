@@ -23,7 +23,7 @@ and implementations of key features in TruthTable, in case you are interested in
 ## **Acknowledgements**
 
 - Our application is based on the [AddressBook-Level3](https://se-education.org/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org/).
-- Our application makes use of the [picocli](https://picocli.info/) library for parsing  commands.
+- Our application makes use of the [picocli](https://picocli.info/) library for parsing commands.
 - Our application makes use of [JavaFX](https://openjfx.io/) as the UI framework.
 - Our application makes use of [Jackson](https://github.com/FasterXML/jackson) as the JSON parser.
 - Our application makes use of [JUnit5](https://junit.org/junit5/) as the testing framework.
@@ -453,13 +453,13 @@ executed:
 
 ## **Appendix: Requirements**
 
-### Product scope
+### app scope
 
 **Target user profile**:
 
 - Tech-savvy university student leading teams in software engineering modules to build software projects
 - Having trouble keeping track of the team’s progress and delegating tasks effectively
-- Student who prefers CLI to GUI for productivity’s sake
+- Student who prefers CLI to GUI for appivity’s sake
 - Desperate for a single source of truth on who is doing what and by when
 
 **Value proposition**:
@@ -468,7 +468,7 @@ executed:
   Google Docs)
 - Users can visualize teams’ progress easily
 - Users can delegate tasks to their teammates conveniently
-- CLI interface to manage project tasks much more quickly than GUI based products
+- CLI interface to manage project tasks much more quickly than GUI based apps
 
 ### User stories
 
@@ -1255,59 +1255,65 @@ testers are expected to do more *exploratory* testing.
 
 ## Effort
 
-TruthTable was a project of high complexity and required extensive effort by all team
-members to create the product
+TruthTable was a complex project requiring extensive effort by all our team members.
 
-### Going beyound our limits
-Here are some features and aspects of our project that really makes our project distinct,
-unique and high quality.
+### Going beyond our limits
+Here are some features of our project that makes our project distinct and unique:
 
-#### Using Picocli as our parsing library
-As our product is catered for Software Engineering team leads, we want our product to feel
-exactly like how CLI should be like. Software Engineering team leads are generally proficient
-with using the terminal to get things done, such as using git and most have good familiarity with
-Linux OS systems. Hence, we decided that the original AB3 parser was not going to make it as the
-parsing is unintuitive and hard to write, and increases the learning difficulty of our target users.
-We opted to scrape the parsers and used Picocli as our parsing library, which enabled things like
-subcommands (using commands like `add person` instead of `add_person`) and flags to specify options,
-which generally reduces the number of keystrokes and makes it **extremely intuitive** for users to use
-our proudct
+#### Using `picocli` as our parsing library
+As our app is catered for Software Engineering team leads, we wanted our app to feel similar to other Command-Line 
+Interfaces (CLI) they may be acquainted with.
+Software Engineering team leads are generally proficient with using the Terminal to get things done, 
+such as using `git` via its CLI, and many are highly familiar with the shell on Linux OS. Hence, we decided that the 
+original  AddressBook Level-3 (AB3) parser was not suitable as its syntax was relatively unintuitive, and steepens the 
+learning curve for our target users.
+
+
+We opted to scrape the parsers and used [picocli](https://picocli.info/) as our parsing library, which enabled things 
+like subcommands (using commands with spaces in them like `add person` instead of `add_person`) and flags to specify 
+options (e.g. `-n` vs `n/` in AB3), which and makes it **more intuitive** for users.
 
 #### Multiple Classes
-As our product primary function is to assign tasks to team members, we have to introduce new classes like
-Teams, Tasks and Links. This added a high degree of complexity to our project as entities can be tied to each
-other in multiple ways, such as enabling tasks to have multiple assignees. This made our product very useful
-and unique, and offered a good variety of functions that make our product useful for Software Engineering
-team leads.
+As our application's primary function is to manage software engineering projects, including URLs, tasks, and team members 
+within each team, we had to introduce new classes like `Team`, `Task` and `Link`. This added a high degree of complexity
+to our app as entities can be tied to each other in multiple ways, such as enabling tasks to have multiple assignees.
+This allows our app to provide extra functionality that makes our app more useful for Software Engineering team leads.
 
 This resulted in the number of commands increasing from **9** (in AB3) to **42** (in TruthTable), which meant
-that more classes has to be written to accommodate the wide variety of commands, and more testing has to be done
-to enable our product works as intended.
+that more classes had to be written to accommodate the wide variety of commands (including intermediary data types such 
+as `Index` and new objects in our model such as `Team` and `Task`), and more testing had to be done to ensure our 
+app works as intended.
 
 #### Improved UI
-The original AB3 only displays the list of persons which is limiting and not very useful. To make our product
-effective, we created displays for teams, members, tasks and links which really made it easy for the user to
-track the outcomes of their commands. We thought that the dark theme of AB3 was uninspiring and made use of
-own light theme to give this product a nice, warm and welcoming feel.
+The original AB3 program only displayed the list of persons which is not very useful for a task management application.
+To make our app effective, we created additional panels for teams, members, tasks and links which makes it easier for the
+user to track the status of their team as they execute their commands. 
+
+In terms of colour scheme, we thought that the dark theme of AB3 was uninspiring and made use of own light theme to give
+this app a nice, warm and welcoming feel. For users that prefer a dark scheme however, we have provided the ability to 
+switch themes as well.
 
 #### Extensive Testing
-The use of picocli means that all parser classes has to be removed, and the way the commands are generated is
-different. Hence, all commands and parser tests in AB3 has to be removed, so they have to be reimplemented.
-Furthermore, the increased number of classes, along with all the commands means that more testing has to be done
-and code coverage is likely to decrease.
+The use of picocli meant that all parser classes had to be removed, and the way the commands are generated is
+different. Hence, all commands and parser tests in AB3 had to be removed and reimplemented.
 
-Hence, we took it as an opportunity to do extensive testing for our application through writing effective unit tests  
+Furthermore, the increased number of classes, along with all the commands, means that code coverage is likely to decrease 
+and more testing had to be done.
+
+Hence, we took it as an opportunity to do extensive testing for our application through writing effective unit tests 
 for our commands, parsers and model objects. We redesigned how testing is done for commands and manage to cover
-all commands successfully. We maintained a **~73%** code coverage from the original **~72%** in AB3, increased the
-number of tests cases from **248** (in AB3) to **527** (in TruthTable). There is a high quality assurance that comes
-with our product which makes our product high quality.
+all commands successfully. We maintained a **~73%** code coverage from the original **~72%** in AB3, and increased the
+number of test cases from **248** (in AB3) to **527** (in TruthTable).
 
-### Remarks
-Overall, this project has been extremely fulfilling and our team has managed to create something novel and unique.
-We pushed our limits and picked up skills that was extremely valuable in writing software and good quality code.
-This section only scratches the surface of the level of effort that we put into this project, and there was many
-other things like discussion and documentation. The additional challenges that we overcome as a team is not included
-to keep things concise.
+### Conclusion
+Overall, this project has been extremely fulfilling, and we believe our team has managed to create a highly functional app.
+Over the few months of development, we pushed our limits and picked up skills that are extremely valuable in writing 
+quality code and designing robust software.
 
-Hopefully, we hope that this developer guide will help you to understand more about this novel product and we welcome
-anyone to try, maintain or even extend our product for better use.
+This section only scratches the surface of the level of effort that we put into this project, and there were many
+other things like the countless discussions that went into design decisions big and small, and the invisible effort of 
+documentation in this project. The additional challenges that we overcome as a team are not included here for the sake 
+of brevity.
+
+Hopefully, we hope that this Developer Guide will help you to understand the design and implementation of TruthTable. We
+welcome all Software Engineering student team leads to try, maintain or even extend our application.
