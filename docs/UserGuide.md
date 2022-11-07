@@ -488,7 +488,7 @@ Examples:
 
 Finds all students with a particular tag.
 
-Format: `find t/tagName`
+Format: `find t/TAG_NAME`
 
 - Only one tag can be searched at each time.
 - The tag is case-insensitive.

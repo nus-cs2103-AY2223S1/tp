@@ -81,8 +81,7 @@ To check if you have Java `11` or above installed, follow the steps for your ope
   - [Mac Link](https://www.youtube.com/watch?v=pxi3iIy4F5A)
 
 ### Step 2: Install `teacherspet.jar`
-- Once you have completed step 1, download the latest `teacherspet.jar` from 
-https://github.com/AY2223S1-CS2103T-T09-4/tp/releases.
+- Once you have completed step 1, download the latest `teacherspet.jar` from [here](https://github.com/AY2223S1-CS2103T-T09-4/tp/releases).
 - Copy the file to the folder you want to use which will become the *home folder* for your application.
 - Double-click the file to start the app. The GUI as seen below should appear in a few seconds.
    In this case, **Teacher's Pet** contains some sample data.
@@ -95,13 +94,13 @@ https://github.com/AY2223S1-CS2103T-T09-4/tp/releases.
 
 **Teacher's Pet** is divided into 5 areas to maximise productivity:
 
-1. Input Command - The dialog box where you will input your desired commands.
-2. Application’s Reply - A short answer whether **Teacher's Pet** has executed the command, or an error message if the
+1. Command Input - The dialog box where you will input your desired commands.
+2. Command Result - A short answer whether **Teacher's Pet** has executed the command, or an error message if the
   **Teacher's Pet** did not understand the command.
-3. Student's Details - A window that will display the details of the student(s).
+3. Student List - A window that will display the details of the student(s).
 4. Statistics Window - A window that shows all the statistics of the tutor, such as the number of students and
 the money collected/owed.
-5. Day’s Schedule List - A scroll window which shows the schedule for the day, sorted by time.
+5. Schedule List - A scroll window which shows the schedule for the day, sorted by time.
 
 ![Partition](images/UG-screenshots/UiPartition.png)
 
@@ -207,12 +206,14 @@ command to work as expected.
 ##### Email:
     - Email must not be empty. 
     - Email should be in the format of `local@domain`, where:
-      - Local address should only contain alphanumeric characters and these special characters `+_.-`.
+      - Local address should only contain alphanumeric characters and these special characters
+        `+_.-`.
       - Consecutive special characters are not supported.
       - The domain name must:
         1. End with a domain label at least 2 characters long.
         2. Have each domain label start and end with alphanumeric characters.
-        3. Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+        3. Have each domain label consist of alphanumeric characters, separated only by hyphens,
+           if any.
 
 ##### Tags:
     - Tags are optional.
@@ -336,8 +337,7 @@ The `mark` command marks an existing student under [Day's Schedule List](#ui-ove
 
 When a student has been `mark`ed, a couple of things will happen.
 1. **Teacher's Pet** will increase the student's owed amount by the rates per class. 
-2. A cross will be displayed beside the student's name indicating that the student has attended the class. 
-3. The student's next class will be set a week later at the same time, provided there is an available time slot.
+2. A cross will be displayed beside the student's name indicating that the student has attended the class.
 
 Format: `mark INDEX-s`
 
@@ -352,10 +352,6 @@ Example:
 
 ![UiMark](images/UG-screenshots/UiMark.png)
 
-<div markdown="span" class="alert alert-success">💡 **Tip:** If you want to charge the student for missing the class, you can do so by executing
-the mark command. This increases the amount owed but frees up that time slot for another student.
-</div>
-
 [↑ Back to top](#table-of-contents)
 
 ---
@@ -368,7 +364,7 @@ The `pay` command indicates that a student has paid a certain amount of money.
 
 Format: `pay INDEX-s AMOUNT_PAID`
 
-- Marks the student as present at the specified `INDEX-s`.
+- Indicates that the student at a specified `INDEX-s` has paid.
 - The index refers to the index number shown in the Schedule panel (bottom right).
 - The index must be a positive integer. e.g., `1, 2, 3, ...`.
 - The amount paid must be an integer and cannot be negative. e.g., `0, 1, 2, ...`.
@@ -441,7 +437,7 @@ Format: `find n/KEYWORD [MORE_KEYWORDS]`
 
 Example:
 
-`find n/Yeoh` returns `Alex Yeoh`.
+`find n/alex` returns `Alex Yeoh`.
 
 ![UiFindName](images/UG-screenshots/UiFindName.png)
 
@@ -493,14 +489,14 @@ Example:
 
 Finds all students with a particular next of kin's contact number.
 
-Formats: `find np/NEXT_OF_KIN_CONTACT_NUMBER`
+Format: `find np/NEXT_OF_KIN_CONTACT_NUMBER`
 
 - Only one contact number can be searched at each time.
 
 <div markdown="span" class="alert alert-danger">❗ **Caution:** Do not include more than one contact number such as find np/91232323 81231232.
 </div>
 
-Examples:
+Example:
 
 `find np/91232323` returns all students with the next of kin's contact number set as `91232323`.
 
@@ -531,7 +527,7 @@ Examples:
 
 Finds all students with a particular tag.
 
-Formats: `find t/tagName`
+Format: `find t/TAG_NAME`
 
 - Only one tag can be searched at each time.
 
@@ -757,19 +753,19 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 ## Prefix Summary
 
-| Prefix                                              | Meaning | Examples                                             |
-|-----------------------------------------------------|:--------|------------------------------------------------------|
-| Name of student                                     | n/      | `n/Alice`                                            |
-| Phone number of student                             | p/      | `p/81234567`                                         |
-| Next of Kin Phone number                            | np/     | `np/65432109`                                        |
-| Email of student                                    | e/      | `e/alice@email.com`                                  |
-| Date and time of student's class                    | dt/     | `dt/2022-10-27 1300-1400`                            |
-| Address of student                                  | a/      | `a/15 Bukit Timah Road, Singapore 155203`            |
-| Amount paid by student                              | paid/   | `paid/300`                                           |
-| Amount owed by student                              | owed/   | `owed/200`                                           |
-| Rates per Class                                     | rate/   | `rate/100`                                           |
-| Additional notes of student (create new notes)      | nt/     | `nt/I have created new notes for Alice`              |
-| Additional notes of student (append existing notes) | nt-a/   | `nt-a/I have added more notes to the existing notes` |
-| Tags of student                                     | t/      | `t/python`                                           |
+| Representation of                                   | Prefix | Examples                                             |
+|-----------------------------------------------------|:-------|------------------------------------------------------|
+| Name of student                                     | n/     | `n/Alice`                                            |
+| Phone number of student                             | p/     | `p/81234567`                                         |
+| Next of Kin Phone number                            | np/    | `np/65432109`                                        |
+| Email of student                                    | e/     | `e/alice@email.com`                                  |
+| Date and time of student's class                    | dt/    | `dt/2022-10-27 1300-1400`                            |
+| Address of student                                  | a/     | `a/15 Bukit Timah Road, Singapore 155203`            |
+| Amount paid by student                              | paid/  | `paid/300`                                           |
+| Amount owed by student                              | owed/  | `owed/200`                                           |
+| Rates per Class                                     | rate/  | `rate/100`                                           |
+| Additional notes of student (create new notes)      | nt/    | `nt/I have created new notes for Alice`              |
+| Additional notes of student (append existing notes) | nt-a/  | `nt-a/I have added more notes to the existing notes` |
+| Tags of student                                     | t/     | `t/python`                                           |
 
 [↑ Back to top](#table-of-contents)
