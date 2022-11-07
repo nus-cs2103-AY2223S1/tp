@@ -46,7 +46,7 @@ In order to be a successful SoCompiler Developer, you need a general understandi
    2. [Deleting a Person](#72-deleting-a-person)
    3. [Saving Data](#73-saving-data)
 
-<div style="page-break-after: always;"></div>   
+<div style="page-break-after: always;"></div>
 
 ---------------------------------------------------------------------------------------------------------------------
 ## 1. **Getting started**
@@ -125,6 +125,8 @@ Each of the four main components (also shown in the diagram above),
 * defines its *[Application Programming Interface](#application-programming-interface) (API)*  in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding
   API `interface` mentioned in the previous point.
+
+<div style="page-break-after: always;"></div>
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using
 the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component
@@ -332,6 +334,8 @@ The following sequence diagram shows how the AddModule operation works:
 
 [Back to Top](#socompiler-developer-guide)
 
+<div style="page-break-after: always;"></div>
+
 ### 3.3. Delete Module feature
 
 The DeleteModule commands extends `Command`, and takes in an `Index` to be deleted. Additionally, it implements the following operation:
@@ -364,6 +368,8 @@ The following sequence diagram shows how the DeleteModule operation works:
 </div>
 
 [Back to Top](#socompiler-developer-guide)
+
+<div style="page-break-after: always;"></div>
 
 ### 3.4. Find Module feature
 
