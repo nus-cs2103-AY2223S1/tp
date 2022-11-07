@@ -1,5 +1,11 @@
 package seedu.workbook.ui.util;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Contains utility methods used in implementing methods regarding {@code HelpWindow} for GUI.
  */
@@ -28,11 +34,49 @@ public class HelpUtil {
     public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t10-3.github.io/tp/UserGuide.html";
     public static final String URL_MESSAGE = "Refer to the user guide for more information: " + USERGUIDE_URL;
 
+    public static final List<String> listOfHeaders = Arrays.asList(
+            ADD_HEADER,
+            LIST_HEADER,
+            FIND_HEADER,
+            EDIT_HEADER,
+            DELETE_HEADER,
+            CLEAR_HEADER,
+            UNDO_HEADER,
+            REDO_HEADER,
+            EXIT_HEADER
+    );
+
+    public static final List<String> listOfExamples = Arrays.asList(
+            ADD_EXAMPLE,
+            LIST_EXAMPLE,
+            FIND_EXAMPLE,
+            EDIT_EXAMPLE,
+            DELETE_EXAMPLE,
+            CLEAR_EXAMPLE,
+            UNDO_EXAMPLE,
+            REDO_EXAMPLE,
+            EXIT_EXAMPLE  
+    );
+
+    public static final Map<Command, String> headerForCommands = new HashMap<>();
+    public static final Map<Command, String> exampleForCommands = new HashMap<>();
+
     /**
      * Contains all commands supported by WB.
      */
     public enum Command {
         ADD, LIST, FIND, EDIT, DELETE, CLEAR, UNDO, REDO, EXIT,
+    }
+
+    /*
+     * Static initialization block to populate the maps.
+     * Each command is mapped to a header and example.
+     */
+    static {
+        for (int i = 0; i < Command.values().length; i++) {
+            headerForCommands.put(Command.values()[i], listOfHeaders.get(i));
+            exampleForCommands.put(Command.values()[i], listOfExamples.get(i));
+        }
     }
 
     /**
@@ -41,28 +85,7 @@ public class HelpUtil {
      * @return Command header as String.
      */
     public static String getCommandHeader(Command command) {
-        switch(command) {
-        case ADD:
-            return ADD_HEADER;
-        case EDIT:
-            return EDIT_HEADER;
-        case DELETE:
-            return DELETE_HEADER;
-        case CLEAR:
-            return CLEAR_HEADER;
-        case LIST:
-            return LIST_HEADER;
-        case FIND:
-            return FIND_HEADER;
-        case UNDO:
-            return UNDO_HEADER;
-        case REDO:
-            return REDO_HEADER;
-        case EXIT:
-            return EXIT_HEADER;
-        default:
-            return "Command Header Here.";
-        }
+        return headerForCommands.get(command);
     }
 
     /**
@@ -71,28 +94,7 @@ public class HelpUtil {
      * @return Command example as String.
      */
     public static String getCommandExample(Command command) {
-        switch(command) {
-        case ADD:
-            return ADD_EXAMPLE;
-        case EDIT:
-            return EDIT_EXAMPLE;
-        case DELETE:
-            return DELETE_EXAMPLE;
-        case CLEAR:
-            return CLEAR_EXAMPLE;
-        case LIST:
-            return LIST_EXAMPLE;
-        case FIND:
-            return FIND_EXAMPLE;
-        case UNDO:
-            return UNDO_EXAMPLE;
-        case REDO:
-            return REDO_EXAMPLE;
-        case EXIT:
-            return EXIT_EXAMPLE;
-        default:
-            return "Command Example Here.";
-        }
+        return exampleForCommands.get(command);
     }
 
     public static String getUserGuideUrl() {
