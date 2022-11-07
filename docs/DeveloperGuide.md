@@ -18,7 +18,11 @@ If you are a developer that recently joined the PayMeLah development team, or a 
 --------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* JavaFX for providing the API for rendering GUI.
+* Jackson for providing the API for parsing JSON files.
+* JUnit for providing a unit testing framework.
+* [Zephyr](https://stackoverflow.com/users/6485651/zephyr) for providing [inspiration](https://stackoverflow.com/a/52458162) for the right-aligned label in the `PersonListPanel` class.
+* Our application is based on the [AddressBook-Level 3 (AB-3)](https://se-education.org/addressbook-level3/) project. All features present in our application are in addition to those already present in AB-3.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -282,13 +286,17 @@ This feature is facilitated by `MarkCommand`/`UnmarkCommand`, and `MarkCommandPa
 
 When given a valid user index, the `MarkCommandParser`/`UnmarkCommandParser` will create a new `Debt` object marked as paid/unpaid in the `DebtList` of the specified `Person`.
 
-An example of the internal state when a valid `mark` command is provided by the user is given by the object diagram below.
+To speed up marking `Debt` objects as paid (for example, when 1 person has paid for multiple debts in 1 shot) in the `DebtList` of 1 `Person`, the `MarkCommand` can take in multiple indices such that a replaced `Debt` object (only if it is unpaid) will be added to the `DebtList` for each mark operation.
 
-**(Insert object diagram here)**
+An example of the new objects in the internal state when a valid `mark` command provided by the user, `mark 1 debt/2 3`, has been parsed and then executed is given by the object diagrams below.
 
-The activity diagram below details all the possible behaviour of PayMeLah when a user inputs a valid `mark` command.
+<img src="images/MarkObjectDiagram.png" width="450" />
+<img src="images/MarkAfterObjectDiagram.png" width="280" />
 
-**(Insert activity diagram here)**
+The activity diagrams below detail the behaviour of PayMeLah when a user inputs a `mark` command of valid syntax to be executed.
+
+<img src="images/MarkActivityDiagram.png" width="450" />
+<img src="images/MarkActivityDiagramRake.png" width="450" />
 
 ### Undo feature: `undo`
 
@@ -357,7 +365,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user    | mark debts as paid/unpaid                                                                     | I know whether the debts has been paid or not                       |
 | `* * *`  | user    | close the application                                                                         |                                                                     |
 | `* * *`  | user    | specify if an amount of money in the debt is inclusive or exclusive of GST and service charge | I do not have to manually calculate the final debt amount           |
-| `* *`    | user    | see an overview of all the debts owed                                                         | I am in better control of my overall financial situation            |
 | `* *`    | user    | search for a person’s contact                                                                 | I can easily access his contact details                             |
 | `* *`    | user    | save my contacts and debts over multiple usage sessions of the app                            | I do not need to key in data again when I exit and re-enter the app |
 | `* *`    | user    | sort the list of contacts by name, amount owed and how long they have owed the debt           | I can quickly decide who to prioritize chasing for debts.           |
@@ -681,7 +688,7 @@ testers are expected to do more *exploratory* testing.
     * Increased user-friendliness of UG significantly
     * Maintenance (inclusive of revisions and updates) of existing DG documentation
     * Inclusion of new features and corresponding insights in DG
-    
+
 * Challenges faced:
   * Learning of regex to ensure continuity with AB3 parse format
   * Learning of JavaFX to update GUI

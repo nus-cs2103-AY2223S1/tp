@@ -45,16 +45,18 @@ Here are some of the symbols and text formatting to look out for as you make use
 
 1. To run the PayMeLah application, you will need to have *Java 11* or above [installed](https://www.baeldung.com/java-check-is-installed) in your Computer ([Mac](https://www.geeksforgeeks.org/how-to-install-java-on-macos/), [Windows](https://phoenixnap.com/kb/install-java-windows)).
 
-1. Next, you will need to prepare an [empty folder](https://www.wikihow.com/Make-a-New-Folder-on-a-Computer) to download PayMeLah to.
+2. Next, you will need to prepare an [empty folder](https://www.wikihow.com/Make-a-New-Folder-on-a-Computer) to download PayMeLah to.
 
-1. Now, you will need to visit [this link](https://github.com/AY2223S1-CS2103T-W13-3/tp/releases) to click and download the latest version of *paymelah.jar*. Make sure to download it to the folder you created in step 2! <br>
+3. Now, you will need to visit [this link](https://github.com/AY2223S1-CS2103T-W13-3/tp/releases) to click and download the latest version of *paymelah.jar*. Make sure to download it to the folder you created in step 2! <br>
    <img src="images/howToDownload_1.png" width="500" /> <br>
    <img src="images/howToDownload_2.png" width="500" /> <br>
 
-1. Finally, you are ready to use PayMeLah. Simply double-click the *paymelah.jar* in the folder you created to start the app. After a few seconds, you should see PayMeLah appear. Notice how we have some sample persons and debts present for you to experiment with our [features](#features).  <br>
+<div style="page-break-after: always;"></div>
+
+4. Finally, you are ready to use PayMeLah. Simply double-click the *paymelah.jar* in the folder you created to start the app. After a few seconds, you should see PayMeLah appear. Notice how we have some sample persons and debts present for you to experiment with our [features](#features).  <br>
    <img src="images/Ui.png" width="800" /> <br>
 
-1. Now, let’s continue to learn how to [navigate the application](#tutorial-navigating-the-application-interface) before familiarising ourselves with the [features](#features) you can use in PayMeLah.
+5. Now, let’s continue to learn how to [navigate the application](#tutorial-navigating-the-application-interface) before familiarising ourselves with the [features](#features) you can use in PayMeLah.
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -65,33 +67,37 @@ Here are some of the symbols and text formatting to look out for as you make use
 
 * PayMeLah uses a Command Line Interface (CLI) - which means that you perform actions by entering commands for PayMeLah to carry out.
 * Once a command has been successfully carried out, PayMeLah will display the results accordingly.
-* Refer to the diagram below to find out about the different components of PayMeLah that are responsible for receiving commands, displaying results, and more.
+* Refer to the diagrams in the following pages to find out about the different components of PayMeLah that are responsible for receiving commands, displaying results, and more!
+
+<div style="page-break-after: always;"></div>
 
 | Number | Component Name | Details                                                                                                                                               |
 |:------:|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
-|   1.   | Command Box    | The box where you enter commands for PayMeLah to carry out.                                                                                           | 
+|   1.   | Command Box    | The box where you enter commands for PayMeLah to carry out.                                                                                           |
 |   2.   | Message Box    | The box where a success message will be displayed when PayMeLah carries out a command successfully, or an error message when PayMeLah fails to do so. |
-|   3.   | Person Card    | The card containing personal details.                                                                                                                 | 
-|   4.   | Debt List      | The box containing the list of debts owed by a person.                                                                                                | 
+|   3.   | Person Card    | The card containing personal details.                                                                                                                 |
+|   4.   | Debt List      | The box containing the list of debts owed by a person.                                                                                                |
 |   5.   | Person List    | The box containing the full list of person cards. Only one person card can be viewed at a time.                                                       |
-
 <img src="images/UiDetails.png" width="800" /> <br>
+
+<div style="page-break-after: always;"></div>
 
 | Number | Component Name  | Details                                       |
 |:------:|-----------------|-----------------------------------------------|
-|   1.   | Person Index    | The index of the person in the person list.   | 
+|   1.   | Person Index    | The index of the person in the person list.   |
 |   2.   | Name            | The person’s name.                            |
-|   3.   | Phone Number    | The person’s phone number.                    | 
-|   4.   | Telegram Handle | The person’s Telegram handle.                 | 
-|   5.   | Tags            | The tags attached to the person.              | 
-|   6.   | Address         | The person’s address.                         | 
-|   7.   | Total Debt      | The total amount of money owed by the person. | 
+|   3.   | Phone Number    | The person’s phone number.                    |
+|   4.   | Telegram Handle | The person’s Telegram handle.                 |
+|   5.   | Tags            | The tags attached to the person.              |
+|   6.   | Address         | The person’s address.                         |
+|   7.   | Total Debt      | The total amount of money owed by the person. |
 
 <img src="images/PersonCard.png" width="800" /> <br>
+<div style="page-break-after: always;"></div>
 
 | Number | Component Name | Details                                     |
 |:------:|----------------|---------------------------------------------|
-|   1.   | Debt Index     | The index of the debt in the debt list.     | 
+|   1.   | Debt Index     | The index of the debt in the debt list.     |
 |   2.   | Description    | The debt’s description.                     |
 |   3.   | Money          | The amount of money owed for the debt.      |
 |   4.   | Date/Time      | The date and time of the debt.              |
@@ -128,7 +134,7 @@ Although you can make use of the mouse to perform some functions in PayMeLah, yo
 
 ### Tutorial: Adding your first debt
 
-Once you have familiarised yourself with PayMeLah’s [user interface](#tutorial-navigating-the-application), it is time to officially start using PayMeLah! The following section provides a step-by-step guide that walks you through the process of adding a debt to PayMeLah. You can choose to follow the sample commands word-for-word, or if you are feeling adventurous, you can try replacing the sample inputs with your own inputs instead.
+Once you have familiarised yourself with PayMeLah’s [user interface](#tutorial-navigating-the-application-interface), it is time to officially start using PayMeLah! The following section provides a step-by-step guide that walks you through the process of adding a debt to PayMeLah. You can choose to follow the sample commands word-for-word, or if you are feeling adventurous, you can try replacing the sample inputs with your own inputs instead.
 
 <div markdown="block" class="alert alert-secondary">
 **:star: Using the keyboard instead of the mouse**
@@ -137,7 +143,7 @@ As this section is meant for new users, it will not cover how to navigate the ap
 
 </div>
 
-1. If you are a first time user, your PayMeLah may still be filled with the sample data that came with the [installation process](#tutorial-installing-paymelah). You can remove all the sample data with a single [`clear` command](#clearing-debts-clear), which you can do by simply entering `clear`. Don’t worry about losing this data - they are unlikely to be useful to you! Soon, your PayMeLah
+1. If you are a first time user, your PayMeLah may still be filled with the sample data that came with the [installation process](#tutorial-installing-paymelah). You can remove all the sample data with a single [`clear` command](#clearing-all-entries-clear), which you can do by simply entering `clear`. Don’t worry about losing this data - they are unlikely to be useful to you! Soon, your PayMeLah
    will be filled with the information you actually want instead.
 
 1. You should see that the person list is now empty.
@@ -150,7 +156,9 @@ As this section is meant for new users, it will not cover how to navigate the ap
 
 1. You are now ready to add a debt to `Ryan Tan` using the [`adddebt` command](#adding-a-debt-adddebt)! This time, the example we will use is `adddebt 1 d/mcdonalds m/9.80`. Entering this command will add a debt of `$9.80` with the description `mcdonalds` to the 1st person in the person list, who happens to be `Ryan Tan`.
 
-1. The person card for `Ryan Tan` should now be updated. Congratulations! You have just added your first debt to PayMeLah!
+<div style="page-break-after: always;"></div>
+
+6. The person card for `Ryan Tan` should now be updated. Congratulations! You have just added your first debt to PayMeLah!
    ![YourFirstDebt](images/YourFirstDebt.png)
 
 Of course, this is not yet the end of your journey with PayMeLah - there are still several other commands you may require while using PayMeLah, including commands such as `deletedebt` and `find`. You can find out more about these commands in the [features](#features) section below.
@@ -185,6 +193,8 @@ Of course, this is not yet the end of your journey with PayMeLah - there are sti
 <div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
 Be very careful with how a command is formatted! If the `…` is found within the diamond brackets `<>` that correspond to an input as in `<person index…>`, then only the input itself is to be repeated. However, if the `…` is found outside the `<>` as in `[t/<tag>]…`, then both the prefix and input must be repeated.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 * Inputs can be in any order.<br>
   e.g. if the command specifies `d/<description> m/<money>`, `m/<money> d/<description>` is also acceptable.
@@ -252,6 +262,8 @@ This command will only undo commands that directly modified PayMeLah's data cont
 The undo history of PayMeLah will only save your 10 most recent commands that modified its data! Make sure to check the list of persons regularly if you are making many changes in one session!
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### Clearing all entries: `clear`
 
 Clears all entries from PayMeLah.<br>
@@ -273,6 +285,8 @@ Format: `exit`
 You can also just press the 'X' button in the upper right corner. There is no difference, and both methods help safely exit PayMeLah :)
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Features for Managing Persons
 
 #### Adding a person: `add`
@@ -292,6 +306,8 @@ A person can have any number of tags (including 0).
 Examples:
 * `add n/John Doe p/98765432 tele/johndoe a/John street, block 123, #01-01` will add a person named `John Doe` with `98765432` as his phone number, `johndoe` as their Telegram handle and `John street, block 123, #01-01` as their address to PayMeLah.
 * `add n/Betsy Crowe t/friend a/Newgate Prison t/criminal` will add a person named `Betsy Crowe` with `Newgate Prison` as their address and both `friend` and `criminal` as their tags to PayMeLah.
+
+<div style="page-break-after: always;"></div>
 
 #### Editing a person: `edit`
 
@@ -358,6 +374,9 @@ You might find it difficult to find the index of a specific person when your lis
 Be very careful! The default behaviour is slightly different across the different combinations of whether you provided date and time inputs.
 </div>
 
+(Continued on next page)
+<div style="page-break-after: always;"></div>
+
 * One person **cannot** have 2 debts with the same description, money, date and time. However, they **can** have 2 debts with 3 out of 4 of description, money, date and time being the same.
 
 <div markdown="block" class="alert alert-secondary"> **:star: Advanced Tip:**
@@ -369,9 +388,11 @@ Example:
 * `adddebt 3 d/McDonalds m/8.9` will add a debt with the current date and time to the 3rd person in the person list. This debt is worth `$8.90` and has the description `McDonalds`.
 * `adddebt 1 4 d/chicken rice m/10++ date/2022-10-12 time/13:00` will add debts with `2022-10-12` and `13:00` as the date and time respectively to **both** the 1st person and 4th person. These debts require Service Charge and GST to be added to an initial price of `$10`, and will be recorded with the description `chicken rice`. Note that PayMeLah will automatically calculate the money for both debts and display the amounts as `$11.77`.
 
+<div style="page-break-after: always;"></div>
+
 #### Splitting a debt: `splitdebt`
 
-Splits a debt among several people in PayMeLah for you to track. <br>  
+Splits a debt among several people in PayMeLah for you to track. <br>
 This command will help you with the Maths of dividing shared costs equally among people in PayMeLah. Sharing is made easy as PayMeLah does the Maths for you!
 
 Format: `splitdebt <person index…> d/<description> m/<money> [date/<date>] [time/<time>]`
@@ -388,6 +409,8 @@ You might find it difficult to find the index of a specific person when your lis
 Splitting a debt is just like [adding a debt](#adding-a-debt-adddebt) to multiple people; however, here we divide the money of the debt over the people who shared it (and round up to the closest cent). Thus, you can similarly tell PayMeLah to add Service Charge and GST to the amount of money specified by including `++` at the back of the amount. A single `+` will add only GST instead.
 </div>
 
+(Continued on next page)
+<div style="page-break-after: always;"></div>
 
 * If you specify **neither date nor time**, the date and time will conveniently default to the current date and time.
 * If you specify **only the time but not the date**, the date will conveniently default to the current date.
@@ -402,6 +425,8 @@ Be very careful! The default behaviour is slightly different across the differen
 Examples:
 * `splitdebt 1 2 d/Pizza m/33.99` will add debts with the current date and time to the 1st and 2nd person in the person list. This debt has the description `Pizza`and is worth `$33.99` in total before being divided by 2, over the 1st person and the 2nd person. Note that PayMeLah will automatically calculate the money for both debts and display the amounts as `$17.00`.
 * `splitdebt 0 2 5 d/KFC chicken bucket m/30+ date/2022-10-12` will add debts with `2022-10-12` and with the default `00:00` as the date and time respectively to **both** the 2nd person and 5th person. These debts will be recorded with the description `KFC chicken bucket` and require GST to be added to an initial total price of `$30` before dividing the costs by 3, over yourself, the 2nd person and the 5th person. Note that PayMeLah will automatically calculate the money for both debts and display the amounts as `$10.70`.
+
+<div style="page-break-after: always;"></div>
 
 #### Deleting a debt: `deletedebt`
 
@@ -424,9 +449,10 @@ Format: `cleardebts <person index>`
 You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the index of the person that you are looking for.
 </div>
 
-
 Example:
 * `cleardebts 3` will delete all the debts, paid or unpaid, from the 3rd person in the current person list.
+
+<div style="page-break-after: always;"></div>
 
 #### Marking debts as paid: `mark`
 
@@ -481,7 +507,7 @@ Format: `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<
 [d/<description>…] [m/<money>…] [above/<money>] [below/<money>]
 [date/<date>…] [before/<date>] [after/<date>] [time/<time>…]`
 
-Here is a summary of the inputs this command accepts:
+The following table is a summary of all the inputs this command can accept:
 
 | Input              | Description                                                                                                                                                                                                                                                                                                                                                                                                                                       | Examples                                                                                                                                                                                                                                                                                                                        |
 |--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -505,6 +531,8 @@ Note:
 * The order of the conditions does not matter.
 * At least one input must be provided, `find` cannot work with no inputs.
 
+<div style="page-break-after: always;"></div>
+
 ##### Combining inputs to `find`
 
 When multiple inputs are provided to `find`, only people matching all conditions will be shown.
@@ -520,7 +548,9 @@ Examples:
 * `find d/burger m/10` will match anyone who both owes money for `burger` and owes `$10.00` for something (or someone who owes `$10.00` for `burger`).
 * `find above/10 below/20 d/fries` will match anyone who both owes money for `fries` and owes between `$10.00` and `$20.00` inclusive for something (or someone who owes between `$10.00` and `$20.00` inclusive for `fries`).
 * `find before/2022-11-30 after/2022-11-01 time/11:00` will match anyone who both owes money for something between `2022-11-01` and `2022-11-30` inclusive (the month of November 2022) and owes money for something at `11:00` (or someone who owes money for something at `11:00` during the month of November 2022).
-* `find tele/janesmith above/10 below/20 before/2022-11-30 after/2022-11-01` will match anyone with the Telegram handle `@janesmith` who both owes between `$10.00` and `$20.00` inclusive for something and owes money for something during the month of November 2022 (or someone who owes between `$10.00` and `$20.00` inclusive for something during the month of November 2022). 
+* `find tele/janesmith above/10 below/20 before/2022-11-30 after/2022-11-01` will match anyone with the Telegram handle `@janesmith` who both owes between `$10.00` and `$20.00` inclusive for something and owes money for something during the month of November 2022 (or someone who owes between `$10.00` and `$20.00` inclusive for something during the month of November 2022).
+
+<div style="page-break-after: always;"></div>
 
 #### Locating persons by debt description: `finddebt`
 
@@ -546,6 +576,8 @@ Shows a list of all persons in PayMeLah.<br>
 You can use this command to return to displaying the full list of people you have added to PayMeLah.
 
 Format: `list`
+
+<div style="page-break-after: always;"></div>
 
 #### Listing all debtors: `listdebtors`
 
@@ -575,6 +607,7 @@ When you sort by time since oldest debt, all persons who do not owe any debt wil
 Format: `sort <criterion prefix><order>`
 
 Example: `sort n/+` sorts and displays the list of persons in ascending alphabetical order of their names.
+
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -614,21 +647,21 @@ As a workaround for now, you may delete the old debt using [`deletedebt`](#delet
 
 ## FAQ
 
-**Q**: How do I transfer my data to PayMeLah on another Computer?<br>
+**Q1**: How do I transfer my data to PayMeLah on another Computer?<br>
 **A**: You can install PayMeLah in the other computer and replace the data file in the other computer with the data file in your current computer's PayMeLah home folder.
 
-**Q**: I can't find something that I **know** I have added to PayMeLah. Where did it go?<br>
+**Q2**: I can't find something that I **know** I have added to PayMeLah. Where did it go?<br>
 **A**: If you are trying to locate a person, try using the [`find` command](#locating-persons-by-inputs-find)! When searching for names, the `find` command is case-insensitive and returns partial matches, so it will find `Bobby` even if you search for `bob`.<br>
 If you are trying to locate a debt by its description, consider using the [`finddebt` command](#locating-persons-by-debt-description-finddebt) instead to make use of case-insensitive search for debt descriptions.<br>
 <div markdown="span" class="alert alert-primary">:bulb: **Other Tips:**
-1. You can try [combining inputs](#combining-inputs-to-find) to narrow your search scope, but sometimes, you cannot find something because you may have misremembered a detail like the date, or keyed it into PayMeLah wrongly by accident. In this situation, you may want to consider not making your search scope too specific.
+1. You can try [combining inputs](#combining-inputs-to-find) to narrow your search scope, but sometimes, you cannot find something because you may have misremembered a detail like the date, or keyed it into PayMeLah wrongly by accident. In this situation, you may want to consider not making your search scope too specific.<br>
 2. As a last resort, the [`list` command](#listing-all-persons-list) will list every person in PayMeLah. You can then [sort the list](#sorting-list-of-persons-sort) to make it easier to manually check through the list. If you still cannot find the person or debt you are looking for in the full person list displayed by `list`, then unfortunately it means the item you are looking for is not in PayMeLah :(
 </div>
 
-**Q**: PayMeLah is not letting me use the command I want! What can I do?<br>
+**Q3**: PayMeLah is not letting me use the command I want! What can I do?<br>
 **A**: Oh no! Calm down - let's troubleshoot together. First, head to the [Command Summary](#command-summary) section to make sure you are using the command in the correct format. You can also click on the links there to read more about the specifics of each command. If PayMeLah continues to misbehave, do drop us an email at paymelah.app@gmail.com, and we will do our best to help you as soon as possible!
 
-**Q**: Why can't PayMeLah do _this_?
+**Q4**: Why can't PayMeLah do _this_?
 **A**: We are so sorry that PayMeLah does not support this feature at the moment :( However, PayMeLah is a constant work in progress and we hope to deliver the features that you are looking for in the near future! In the meantime, feel free to drop us feedback at paymelah.app@gmail.com so that we can better understand and serve your needs :)
 
 [Return to Table of Contents](#table-of-contents)
@@ -668,7 +701,7 @@ If you are trying to locate a debt by its description, consider using the [`find
 |-------------------------------------------------------------------------|------------------|
 | [**Help**](#viewing-help-help)                                          | `help`           |
 | [**Undo**](#undoing-a-command-undo)                                     | `undo`           |
-| [**Clear**](#exiting-the-program-exit)                                  | `clear`          |
+| [**Clear**](#clearing-all-entries-clear)                                | `clear`          |
 | [**Exit**](#exiting-the-program-exit)                                   | `exit`           |
 
 
@@ -678,6 +711,7 @@ If you are trying to locate a debt by its description, consider using the [`find
 | [**Edit person**](#editing-a-person-edit)                                 | `edit <index> [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…`<br> e.g.,`edit 2 n/James Lee tele/James_L33`                                         |
 | [**Delete person**](#deleting-a-person-delete)                            | `delete <index>`<br> e.g., `delete 3`                                                                                                                                        |
 
+<div style="page-break-after: always;"></div>
 
 | *Actions for* <br> [**Managing Debts**](#features-for-managing-debts) | Format, Examples                                                                                                                                        |
 |-----------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -689,6 +723,7 @@ If you are trying to locate a debt by its description, consider using the [`find
 | [**Unmark debts**](#marking-debts-as-unpaid-unmark)                   | `unmark <person index> debt/<debt index…>` <br> e.g., `unmark 2 debt/2 3`                                                                               |
 | [**Get statement**](#getting-the-statement-statement)                 | `statement`                                                                                                                                             |
 
+<div style="page-break-after: always;"></div>
 
 | *Actions for* <br> [**Searching**](#features-for-searching)      | Format, Examples                                                                                                                                                                                                                                        |
 |------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
