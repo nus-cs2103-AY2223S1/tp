@@ -124,12 +124,6 @@ Here's a partial class diagram of the `Ui` component, certain components have be
 
 ![Structure of the UI Component](images/dg-images/UiClassDiagram.png)
 
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The reason PersonListPanel can only have PersonCard or ContactCard is that only 1 form of information,
-list of patients or next of kin details, can be listed at one time.
-</div>
-
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, etc. 
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures 
 the commonalities between classes that represent parts of the visible GUI.
