@@ -258,6 +258,8 @@ Examples:
 
 [Back to top](#socompiler-user-guide)
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Commands for Modules
