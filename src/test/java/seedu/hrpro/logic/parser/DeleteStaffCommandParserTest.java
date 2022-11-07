@@ -2,7 +2,7 @@ package seedu.hrpro.logic.parser;
 
 import static seedu.hrpro.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.hrpro.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.hrpro.logic.commands.CommandTestUtil.INVALID_STAFFNAME_DESC;
+import static seedu.hrpro.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.hrpro.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.hrpro.logic.commands.CommandTestUtil.STAFFNAME_DESC_JAY;
 import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -34,11 +34,18 @@ public class DeleteStaffCommandParserTest {
     @Test
     public void parse_missingCompulsoryFields_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteStaffCommand.MESSAGE_USAGE);
+        String inValidInputMessage = ProjectName.MESSAGE_CONSTRAINTS;
 
-        //Missing project name field
-        assertParseFailure(parser, STAFFNAME_DESC_JAY, expectedMessage);
+        // Missing project name field
+        assertParseFailure(parser, "1", expectedMessage);
 
-        //Missing staff name field
+        // Have project name prefix but no project name
+        assertParseFailure(parser, "1 pn/", inValidInputMessage);
+
+        // Have project name but no prefix
+        assertParseFailure(parser, "1" + VALID_NAME_BOB, expectedMessage);
+
+        // Missing staff index field
         assertParseFailure(parser, NAME_DESC_BOB, expectedMessage);
 
     }
@@ -59,8 +66,12 @@ public class DeleteStaffCommandParserTest {
         //Invalid project name
         assertParseFailure(parser, "1 " + INVALID_NAME_DESC, ProjectName.MESSAGE_CONSTRAINTS);
 
-        //Invalid index
-        assertParseFailure(parser, "-10 " + INVALID_STAFFNAME_DESC,
+        // Negative index
+        assertParseFailure(parser, "-10 " + NAME_DESC_AMY,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteStaffCommand.MESSAGE_USAGE));
+
+        // Zero index
+        assertParseFailure(parser, "0 " + NAME_DESC_AMY,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteStaffCommand.MESSAGE_USAGE));
     }
 }

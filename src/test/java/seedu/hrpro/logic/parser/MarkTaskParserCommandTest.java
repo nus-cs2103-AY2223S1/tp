@@ -22,13 +22,24 @@ public class MarkTaskParserCommandTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
+        // alphanumeric input
         assertParseFailure(parser, "CS2103T TP",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkTaskCommand.MESSAGE_USAGE));
 
+        // random character input
         assertParseFailure(parser, "!!!",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkTaskCommand.MESSAGE_USAGE));
 
+        // blank input
         assertParseFailure(parser, "",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkTaskCommand.MESSAGE_USAGE));
+
+        // zero index
+        assertParseFailure(parser, "0",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkTaskCommand.MESSAGE_USAGE));
+
+        // negative index
+        assertParseFailure(parser, "-9",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkTaskCommand.MESSAGE_USAGE));
     }
 }
