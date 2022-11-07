@@ -29,6 +29,7 @@ title: Developer Guide
    * [Glossary](#glossary)
 8. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing) 
 
+<div style="page-break-after: always;"></div>
 ---
 
 ## **Overview**
@@ -60,6 +61,7 @@ the design implementation of Watson for further development.
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
+<div style="page-break-after: always;"></div>
 ---
 
 ## **Design**
@@ -112,6 +114,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
 ### UI component
 
 The **API** of this component is specified in [UiManager.java](https://github.com/AY2223S1-CS2103T-T08-1/tp/blob/master/src/main/java/seedu/address/ui/UiManager.java)
@@ -142,6 +145,8 @@ The `GradeWindow` is a separate GUI window that is displayed when the user enter
 The `GradeWindow` allows users to enter the `Grade` for an `Assesment` for all students taking a `Subject` as specified by the `GradeCommand`
 
 
+<div style="page-break-after: always;"></div>
+---
 
 ### Logic component
 
@@ -174,6 +179,9 @@ How the parsing works:
 - When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 - All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+---
+
 ### Model component
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -193,6 +201,9 @@ The `Model` component,
 
 </div>
 
+<div style="page-break-after: always;"></div>
+---
+
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -209,6 +220,7 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
+<div style="page-break-after: always;"></div>
 ---
 
 ## **Implementation**
@@ -232,6 +244,9 @@ The command will be used as such:
 - Words in `UPPER_CASE` are the inputs to be supplied by the user.
 - Words in square brackets are optional, but at least one of them must be present.
 
+<div style="page-break-after: always;"></div>
+---
+
 ### Sort feature
 
 #### current Implementation
@@ -246,6 +261,9 @@ As with all other commands, the sort command has a `Parser` subclass that goes t
 The command will be used as such:
 - sort by English grade in ascending order - e.g.`sort asc s/ENGLISH`
 - sort by Math grade in descending order - e.g. `sort desc S/MATH`
+
+<div style="page-break-after: always;"></div>
+---
 
 ### Grade feature
 
@@ -271,6 +289,8 @@ The command works in the following steps: <br>
 4) Once the grade is entered, the method `updateUiToNextStudent` will be called to update the `Student` specified in the `GradeWindow` to the next available `Student` in the `StudentList`. <br>
 5) Repeat step 4 until  the grades of all `Students` in the `StudentList` have been entered accordingly. <br>
 
+<div style="page-break-after: always;"></div>
+---
 
 ### Grade Prediction feature
 
@@ -313,7 +333,11 @@ The command works in the following steps:
 3) The `PredictGrade` method in `PredictionUtil` class will be used to predict the grade given the arguments provided <br>
 4) A new `PredictionWindow` will be opened to display the predicted grade <br>
 
+<div style="page-break-after: always;"></div>
+---
+
 ### Attendance feature
+
 #### current Implementation
 
 The Attendance command consists of these following classes:
@@ -332,7 +356,10 @@ The command works in the following steps:
 2) `AttendanceCommandParser` will parse the `AttendanceCommand` to check whether the provided arguments are valid <br>
 3) For each `Student` in the specified `StudentClass`, the `updateAttendance` method in the `Attendance` class is called to update the model to indicate whether the `Student` is present. <br>
 
-## **Documentation, logging, testing, configuration, dev-ops**
+<div style="page-break-after: always;"></div>
+---
+
+## **Documentation, testing, logging, configuration, dev-ops**
 
 - [Documentation guide](Documentation.md)
 - [Testing guide](Testing.md)
@@ -340,6 +367,7 @@ The command works in the following steps:
 - [Configuration guide](Configuration.md)
 - [DevOps guide](DevOps.md)
 
+<div style="page-break-after: always;"></div>
 ---
 
 ## **Appendix: Requirements**
@@ -358,6 +386,9 @@ The command works in the following steps:
 
 **Value proposition**: manage and retrieve information of students faster than a typical mouse/GUI driven app
 
+<div style="page-break-after: always;"></div>
+---
+
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -374,6 +405,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | teacher  | add remarks to students                                 | remember important details about my students          |
 | `* *`    | teacher  | sort my students by grade                               | see student's performance at a glance                 |
 | `*`      | teacher  | import information from existing databases              | I can set up Watson quickly                           |
+
+<div style="page-break-after: always;"></div>
+---
 
 ### Use cases
 
@@ -565,6 +599,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+<div style="page-break-after: always;"></div>
+---
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -579,6 +616,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 
+<div style="page-break-after: always;"></div>
 ---
 
 ## **Appendix: Instructions for manual testing**
