@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_WITH_HELP_COMMAND;
-import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.parser.CliSyntax.FLAG_ASSIGNEE_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_COMPLETE_TASKS_STR;
@@ -10,11 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_DEADLINE_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_DESCRIPTION_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_EMAIL_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_INCOMPLETE_TASKS_STR;
-import static seedu.address.logic.parser.CliSyntax.FLAG_LINK_NAME_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
-import static seedu.address.logic.parser.CliSyntax.FLAG_PERSON_EMAIL_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_PHONE_STR;
-import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_NAME_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -25,13 +21,12 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_TWO;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import picocli.CommandLine;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddLinkCommand;
@@ -334,7 +329,6 @@ public class TruthTableParserTest {
         FindTaskCommand nameFindCommand = (FindTaskCommand) parser.parseCommand(commandString);
         assertEquals(new TaskNameContainsKeywordsPredicate(keywords),
                 ParserHelper.getParameterPosition(TaskNameContainsKeywordsPredicate.class, 0, nameFindCommand));
-
     }
 
     @Test
@@ -478,11 +472,52 @@ public class TruthTableParserTest {
     }
 
     @Test
+    public void parseCommand_addTaskDateOnly_throwsParseException() {
+        String commandString = AddTaskCommand.FULL_COMMAND + " "
+                + "validTaskName"
+                + FLAG_DEADLINE_STR + " "
+                + "2022-12-02";
+        assertThrows(ParseException.class, () -> parser.parseCommand(commandString));
+    }
+
+    @Test
+    public void parseCommand_addTaskWrongDateFormat_throwsParseException() {
+        String commandString = AddTaskCommand.FULL_COMMAND + " "
+                + "validTaskName"
+                + FLAG_DEADLINE_STR + " "
+                + "23:59" + "2022-12-02";
+        assertThrows(ParseException.class, () -> parser.parseCommand(commandString));
+    }
+
+    @Test
+    public void parseCommand_findNameInvalidParameters_throwsParseException() {
+        List<String> keywords = Collections.singletonList("invalid?keyword");
+        String commandString = FindMemberCommand.FULL_COMMAND + " "
+                + FLAG_NAME_STR + " "
+                + keywords.stream().collect(Collectors.joining(" "));
+        assertThrows(ParseException.class, () -> parser.parseCommand(commandString));
+    }
+
+    @Test
+    public void parseCommand_findEmailInvalidParameters_throwsParseException() {
+        List<String> keywords = Collections.singletonList("?\"");
+        String commandString = FindMemberCommand.FULL_COMMAND + " "
+                + FLAG_EMAIL_STR + " "
+                + keywords.stream().collect(Collectors.joining(" "));
+        assertThrows(ParseException.class, () -> parser.parseCommand(commandString));
+    }
+
+    @Test
+    public void parseCommand_findTaskInvalidParameters_throwsParseException() {
+        List<String> keywords = Collections.singletonList("invalid\"keyword");
+        String commandString = FindTaskCommand.FULL_COMMAND + " "
+                + keywords.stream().collect(Collectors.joining(" "));
+        assertThrows(ParseException.class, () -> parser.parseCommand(commandString));
+    }
+
+    @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_WITH_HELP_COMMAND,
                 HelpCommand.MESSAGE_USAGE), () -> parser.parseCommand("unknownCommand"));
     }
-
-
-
 }

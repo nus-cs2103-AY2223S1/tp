@@ -33,7 +33,6 @@ public class TruthTableParser {
             .registerConverter(Tag.class, new TagConverter())
             .registerConverter(LinkName.class, new LinkNameConverter())
             .registerConverter(Url.class, new UrlConverter())
-            .registerConverter(Task.class, new TaskConverter())
             .registerConverter(TaskName.class, new TaskNameConverter())
             .registerConverter(TeamName.class, new TeamNameConverter())
             .registerConverter(Description.class, new DescriptionConverter())
