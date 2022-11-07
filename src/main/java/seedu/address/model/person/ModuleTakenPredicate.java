@@ -38,14 +38,4 @@ public class ModuleTakenPredicate implements Predicate<Person> {
             return false;
         }
     }
-
-    @Override
-    public String toString() {
-        String moduleKeywords = "";
-        for (String keyword : keywords) {
-            moduleKeywords += keyword + " ";
-        }
-        return moduleKeywords.trim();
-    }
-
 }
