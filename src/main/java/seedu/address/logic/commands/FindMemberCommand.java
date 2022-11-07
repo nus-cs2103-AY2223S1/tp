@@ -10,6 +10,8 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_SEARCH_KEYWORDS_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.LABEL_MEMBER_EMAIL_KEYWORDS;
+import static seedu.address.logic.parser.CliSyntax.LABEL_MEMBER_NAME_KEYWORDS;
 
 import java.util.function.Predicate;
 
@@ -31,16 +33,8 @@ public class FindMemberCommand extends Command {
     public static final String COMMAND_WORD = "member";
     public static final String ALIAS = "m";
     public static final String FULL_COMMAND = FindCommand.COMMAND_WORD + " " + COMMAND_WORD;
-
-    public static final String MESSAGE_USAGE = FULL_COMMAND + ": Finds all team members whose details contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "If names is used, returns all members with names that contain these keywords\n"
-            + "If email is used, return all members with emails that contain a substring of these keywords\n"
-            + "Parameters: "
-            + "[" + FLAG_NAME_STR + " NAME] "
-            + "[" + FLAG_EMAIL_STR + " EMAIL] \n"
-            + "Example: " + FULL_COMMAND + " "
-            + FLAG_NAME_STR + " Alex ";
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to find a member in the current team.\n";
 
     public static final String MESSAGE_SUCCESS = "Showing all %1$d member(s) containing search string(s): %2$s\n"
             + "Type `list members` to show all members again.";
@@ -63,7 +57,7 @@ public class FindMemberCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         model.updateFilteredMembersList(predicate.getPredicate());
@@ -74,13 +68,13 @@ public class FindMemberCommand extends Command {
 
     private static class Exclusive {
         @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true, arity = "1",
-                paramLabel = "nameKeywords",
+                paramLabel = LABEL_MEMBER_NAME_KEYWORDS,
                 parameterConsumer = NameContainsKeywordsPredicateConverter.class,
                 description = FLAG_NAME_SEARCH_KEYWORDS_DESCRIPTION)
         private NameContainsKeywordsPredicate nameContainsKeywordsPredicate;
 
         @CommandLine.Option(names = {FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG}, required = true, arity = "1",
-                paramLabel = "emailKeywords",
+                paramLabel = LABEL_MEMBER_EMAIL_KEYWORDS,
                 parameterConsumer = EmailContainsKeywordsPredicateConverter.class,
                 description = FLAG_EMAIL_SEARCH_KEYWORDS_DESCRIPTION)
         private EmailContainsKeywordsPredicate emailContainsKeywordsPredicate;

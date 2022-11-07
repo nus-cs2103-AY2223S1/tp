@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_DEADLINE_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_INDEX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_INDEX;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -25,24 +27,20 @@ public class SetDeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
     public static final String ALIAS = "d";
     public static final String FULL_COMMAND = SetCommand.COMMAND_WORD + " " + COMMAND_WORD;
-
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Sets a deadline to the specified existing task.\n"
-            + "Parameters: TASK_INDEX (must be a positive integer) \n"
-            + "Parameters: DEADLINE (format: YYYY-MM-DD HH:mm) \n"
-            + "Example: " + FULL_COMMAND + " 1" + " 2023-02-25 23:59";
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to set a deadline for a task.\n";
 
     public static final String MESSAGE_SET_DEADLINE_SUCCESS = "Set Deadline: %1$s %2$s";
     public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist. "
             + "There are less than %1$s tasks in your list.";
 
-    @CommandLine.Parameters(arity = "1", description = FLAG_TASK_INDEX_DESCRIPTION)
-    private Index index;
+    @CommandLine.Parameters(arity = "1", paramLabel = LABEL_TASK_INDEX, description = FLAG_TASK_INDEX_DESCRIPTION)
+    private Index taskIndex;
 
     @CommandLine.Parameters(arity = "1..2", parameterConsumer = LocalDateTimeConverter.class,
+            paramLabel = LABEL_TASK_DEADLINE,
             description = FLAG_TASK_DEADLINE_DESCRIPTION)
     private LocalDateTime deadline;
-
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
@@ -57,22 +55,22 @@ public class SetDeadlineCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         List<Task> taskList = model.getFilteredTaskList();
-        if (index.getZeroBased() >= taskList.size()) {
-            throw new CommandException(String.format(MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, index.getOneBased()));
+        if (taskIndex.getZeroBased() >= taskList.size()) {
+            throw new CommandException(String.format(MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, taskIndex.getOneBased()));
         }
 
-        Task originalTask = taskList.get(index.getZeroBased());
+        Task originalTask = taskList.get(taskIndex.getZeroBased());
         Task newTask = originalTask.setDeadline(deadline);
 
         model.getTeam().setTask(originalTask, newTask);
 
         return new CommandResult(String.format(MESSAGE_SET_DEADLINE_SUCCESS,
-                taskList.get(index.getZeroBased()).getName(),
-                taskList.get(index.getZeroBased()).getDeadlineAsString()));
+                taskList.get(taskIndex.getZeroBased()).getName(),
+                taskList.get(taskIndex.getZeroBased()).getDeadlineAsString()));
     }
 
 }

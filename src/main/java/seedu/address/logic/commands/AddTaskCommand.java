@@ -11,6 +11,8 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_ASSIGNEES_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_DEADLINE_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_NAME_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_NAME;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -36,34 +38,26 @@ public class AddTaskCommand extends Command {
     public static final String COMMAND_WORD = "task";
     public static final String ALIAS = "ta";
     public static final String FULL_COMMAND = AddCommand.COMMAND_WORD + " " + COMMAND_WORD;
-
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Adds a task to the current team.\n"
-            + "Parameters:"
-            + " NAME "
-            + FLAG_DEADLINE_STR + " DEADLINE "
-            + FLAG_ASSIGNEE_STR + " ASSIGNEE "
-            + "Example: " + FULL_COMMAND + " "
-            + " \"Review PR\" "
-            + FLAG_DEADLINE_STR + " \"02-Dec-2022 23:59\" "
-            + FLAG_ASSIGNEE_STR + " 1 "
-            + FLAG_ASSIGNEE_STR + " 2 ";
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to add a new task to the current team's task list.\n";
 
     public static final String MESSAGE_ADD_TASK_SUCCESS = "Added Task: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the team";
-    public static final String MESSAGE_TASK_NAME_FORMAT_ERROR = "Task name cannot be empty";
     public static final String MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS = "Invalid member index provided";
 
 
-    @CommandLine.Parameters(arity = "1", description = FLAG_TASK_NAME_DESCRIPTION)
+    @CommandLine.Parameters(arity = "1", paramLabel = LABEL_TASK_NAME, description = FLAG_TASK_NAME_DESCRIPTION)
     private TaskName taskName;
 
     @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG},
-        description = FLAG_TASK_ASSIGNEES_DESCRIPTION, arity = "*")
+            paramLabel = LABEL_TASK_NAME, description = FLAG_TASK_ASSIGNEES_DESCRIPTION,
+            arity = "*")
     private List<Index> assignees = new ArrayList<>();
 
     @CommandLine.Option(names = {FLAG_DEADLINE_STR, FLAG_DEADLINE_STR_LONG},
-            parameterConsumer = LocalDateTimeConverter.class, description = FLAG_TASK_DEADLINE_DESCRIPTION)
+            parameterConsumer = LocalDateTimeConverter.class,
+            paramLabel = LABEL_TASK_DEADLINE,
+            description = FLAG_TASK_DEADLINE_DESCRIPTION)
     private LocalDateTime deadline;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
@@ -82,7 +76,7 @@ public class AddTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
 

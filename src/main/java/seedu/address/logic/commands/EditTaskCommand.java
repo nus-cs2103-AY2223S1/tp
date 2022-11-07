@@ -14,6 +14,10 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_ASSIGNEES_DESCRIPTI
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_DEADLINE_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_INDEX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_NAME_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_ASSIGNEES;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_INDEX;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.time.LocalDateTime;
@@ -42,27 +46,16 @@ public class EditTaskCommand extends Command {
     public static final String COMMAND_WORD = "task";
     public static final String ALIAS = "ta";
     public static final String FULL_COMMAND = EditCommand.COMMAND_WORD + " " + COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to edit a task's details.\n";
 
-    public static final String MESSAGE_USAGE =
-            FULL_COMMAND + ": Edits a current task identified by the index number used in the displayed task list. \n"
-                    + "Existing values will be overwritten by the input values. \n"
-                    + "Parameters: INDEX (must be a positive integer) "
-                    + FLAG_NAME_STR + " NAME "
-                    + FLAG_DEADLINE_STR + " DEADLINE \n"
-                    + FLAG_ASSIGNEE_STR + "MEMBER_INDEX \n"
-                    + "Example: " + FULL_COMMAND + " 1 "
-                    + FLAG_NAME_STR + " \"Review PR\" "
-                    + FLAG_DEADLINE_STR + " \"02-Dec-2022 23:59\" "
-                    + FLAG_ASSIGNEE_STR + "1";
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited task: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "A task with the same name already exists.";
     public static final String MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS = "Invalid member index provided";
-    public static final String MESSAGE_DEADLINE_BADLY_FORMATTED = "Deadline is badly formatted.";
 
     private final EditTaskDescriptor editTaskDescriptor;
 
-    @CommandLine.Parameters(arity = "1", description = FLAG_TASK_INDEX_DESCRIPTION)
+    @CommandLine.Parameters(arity = "1", paramLabel = LABEL_TASK_INDEX, description = FLAG_TASK_INDEX_DESCRIPTION)
     private Index index;
 
     @CommandLine.ArgGroup(exclusive = false, multiplicity = "1")
@@ -109,7 +102,7 @@ public class EditTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
 
@@ -117,8 +110,8 @@ public class EditTaskCommand extends Command {
         if (arguments.deadline != null) {
             editTaskDescriptor.setDeadline(arguments.deadline);
         }
-        if (arguments.taskName != null) {
-            editTaskDescriptor.setName(arguments.taskName);
+        if (arguments.name != null) {
+            editTaskDescriptor.setName(arguments.name);
         }
         List<Task> taskList = model.getTeam().getFilteredTaskList();
 
@@ -132,7 +125,7 @@ public class EditTaskCommand extends Command {
 
         if (editTaskDescriptor.getAssignees().isPresent()) {
             List<Index> assignees = editTaskDescriptor.getAssignees().get();
-            for (Index index: assignees) {
+            for (Index index : assignees) {
                 if (index.getZeroBased() >= memberList.size()) {
                     throw new CommandException(MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS);
                 }
@@ -156,15 +149,19 @@ public class EditTaskCommand extends Command {
     }
 
     private static class Arguments {
-        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, description = FLAG_TASK_NAME_DESCRIPTION)
-        private TaskName taskName;
+        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG},
+                paramLabel = LABEL_TASK_NAME,
+                description = FLAG_TASK_NAME_DESCRIPTION)
+        private TaskName name;
 
         @CommandLine.Option(names = {FLAG_DEADLINE_STR, FLAG_DEADLINE_STR_LONG},
+                paramLabel = LABEL_TASK_DEADLINE,
                 parameterConsumer = LocalDateTimeConverter.class, description = FLAG_TASK_DEADLINE_DESCRIPTION)
         private LocalDateTime deadline;
 
-        @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG}, description =
-                FLAG_TASK_ASSIGNEES_DESCRIPTION, arity = "*")
+        @CommandLine.Option(names = {FLAG_ASSIGNEE_STR, FLAG_ASSIGNEE_STR_LONG},
+                paramLabel = LABEL_TASK_ASSIGNEES,
+                description = FLAG_TASK_ASSIGNEES_DESCRIPTION, arity = "*")
         private List<Index> assignees = new ArrayList<>();
 
     }

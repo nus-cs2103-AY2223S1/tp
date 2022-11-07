@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.FLAG_MEMBER_INDEX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.LABEL_MEMBER_INDEX;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -24,11 +26,8 @@ public class TasksOfCommand extends Command {
     public static final String COMMAND_WORD = "tasksof";
     public static final String ALIAS = "to";
     public static final String FULL_COMMAND = COMMAND_WORD;
-
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Displays all tasks of a particular team member.\n"
-            + "Parameters: MEMBER_INDEX (must be a valid positive integer)\n"
-            + "Example: " + FULL_COMMAND + " 1";
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to view all tasks assigned to a particular team member.\n";
 
     public static final String MESSAGE_SUCCESS = "Showing all %1$d task(s) assigned to %2$s. \n"
             + "Type `list tasks` to show all tasks again.";
@@ -37,8 +36,8 @@ public class TasksOfCommand extends Command {
     public static final String MESSAGE_MEMBER_INDEX_TOO_SMALL = "This index is invalid. "
             + "Please input a valid positive integer.";
 
-    @CommandLine.Parameters(arity = "1")
-    private Index index;
+    @CommandLine.Parameters(arity = "1", paramLabel = LABEL_MEMBER_INDEX, description = FLAG_MEMBER_INDEX_DESCRIPTION)
+    private Index memberIndex;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
@@ -53,17 +52,17 @@ public class TasksOfCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         List<Person> members = model.getFilteredMemberList();
-        if (index.getZeroBased() >= members.size()) {
+        if (memberIndex.getZeroBased() >= members.size()) {
             throw new CommandException(
-                    String.format(MESSAGE_MEMBER_INDEX_TOO_LARGE, index.getOneBased()));
-        } else if (index.getOneBased() < 1) {
+                    String.format(MESSAGE_MEMBER_INDEX_TOO_LARGE, memberIndex.getOneBased()));
+        } else if (memberIndex.getOneBased() < 1) {
             throw new CommandException(MESSAGE_MEMBER_INDEX_TOO_SMALL);
         }
-        Person member = members.get(index.getZeroBased());
+        Person member = members.get(memberIndex.getZeroBased());
         Predicate<Task> predicate = task -> task.checkAssignee(member);
         model.updateFilteredTaskList(predicate);
 

@@ -6,9 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_DESCRIPTION_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
-import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TEAM_DESCRIPTION_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TEAM_NAME_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TEAM_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TEAM_NAME;
 
 import java.util.List;
 
@@ -28,28 +29,19 @@ public class AddTeamCommand extends Command {
     public static final String COMMAND_WORD = "team";
     public static final String ALIAS = "te";
     public static final String FULL_COMMAND = AddCommand.COMMAND_WORD + " " + COMMAND_WORD;
-
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Adds a new team \n"
-            + "Parameters: "
-            + " TEAM_NAME "
-            + "[" + FLAG_DESCRIPTION_STR + " TEAM_DESCRIPTION] \n"
-            + "Example:\n"
-            + "1. " + FULL_COMMAND + " "
-            + "CS2103T "
-            + FLAG_DESCRIPTION_STR + " \"A team to manage CS2103T\"\n"
-            + "2. " + FULL_COMMAND + " "
-            + FLAG_NAME_STR + " CS2102 ";
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to create a new team in TruthTable.\n";
 
     public static final String MESSAGE_ADD_TEAM_SUCCESS = "Added team: %1$s";
-
     public static final String MESSAGE_TEAM_EXISTS = "There is already an existing team with the same name!";
 
-    @CommandLine.Parameters(arity = "1", description = FLAG_TEAM_NAME_DESCRIPTION)
+    @CommandLine.Parameters(arity = "1", paramLabel = LABEL_TEAM_NAME,
+            description = FLAG_TEAM_NAME_DESCRIPTION)
     private TeamName teamName;
 
     @CommandLine.Option(names = {FLAG_DESCRIPTION_STR, FLAG_DESCRIPTION_LONG}, defaultValue =
-            Description.NO_DESCRIPTION_STRING, description = FLAG_TEAM_DESCRIPTION_DESCRIPTION)
+            Description.NO_DESCRIPTION_STRING, paramLabel = LABEL_TEAM_DESCRIPTION,
+            description = FLAG_TEAM_DESCRIPTION_DESCRIPTION)
     private Description description;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
@@ -65,7 +57,7 @@ public class AddTeamCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         Team team = new Team(teamName, description);

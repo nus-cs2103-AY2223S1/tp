@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TASK_INDEX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TASK_INDEX;
 
 import java.util.List;
 
@@ -23,18 +24,15 @@ public class MarkCommand extends Command {
     public static final String ALIAS = "m";
     public static final String FULL_COMMAND = COMMAND_WORD;
 
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Marks the specified existing task as complete.\n"
-            + "Parameters: TASK_INDEX (must be a valid positive integer) \n"
-            + "Example: " + FULL_COMMAND + " 1";
-
     public static final String MESSAGE_MARK_SUCCESS = "Marked as complete: [x] %1$s";
     public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist. "
             + "There are less than %1$s tasks in your list.";
     public static final String MESSAGE_ALREADY_MARKED = "This task has already been marked as complete.";
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to mark a task in the current team's task list as completed.\n";
 
-    @CommandLine.Parameters(arity = "1", description = FLAG_TASK_INDEX_DESCRIPTION)
-    private Index index;
+    @CommandLine.Parameters(arity = "1", paramLabel = LABEL_TASK_INDEX, description = FLAG_TASK_INDEX_DESCRIPTION)
+    private Index taskIndex;
 
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec commandSpec;
@@ -49,18 +47,18 @@ public class MarkCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         List<Task> taskList = model.getFilteredTaskList();
-        if (index.getZeroBased() >= taskList.size()) {
-            throw new CommandException(String.format(MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, index.getOneBased()));
+        if (taskIndex.getZeroBased() >= taskList.size()) {
+            throw new CommandException(String.format(MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, taskIndex.getOneBased()));
         }
-        if (taskList.get(index.getZeroBased()).isComplete()) {
+        if (taskList.get(taskIndex.getZeroBased()).isComplete()) {
             throw new CommandException(MESSAGE_ALREADY_MARKED);
         }
 
-        Task originalTask = taskList.get(index.getZeroBased());
+        Task originalTask = taskList.get(taskIndex.getZeroBased());
         Task markedTask = originalTask.mark(true);
 
         model.getTeam().setTask(originalTask, markedTask);

@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_MEMBER_INDEX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.LABEL_MEMBER_INDEX;
 
 import java.util.List;
 
@@ -24,17 +25,13 @@ public class DeleteMemberCommand extends Command {
     public static final String COMMAND_WORD = "member";
     public static final String ALIAS = "m";
     public static final String FULL_COMMAND = DeleteCommand.COMMAND_WORD + " " + COMMAND_WORD;
-
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Deletes the person identified by the index number used in the members list.\n"
-            + ": Run `list_members` to see members in your current team.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + FULL_COMMAND + " 1";
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to delete a member from the current team.\n";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Member: %1$s";
 
-    @CommandLine.Parameters(arity = "1", description = FLAG_MEMBER_INDEX_DESCRIPTION)
-    private Index index;
+    @CommandLine.Parameters(arity = "1", paramLabel = LABEL_MEMBER_INDEX, description = FLAG_MEMBER_INDEX_DESCRIPTION)
+    private Index targetIndex;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
@@ -49,16 +46,16 @@ public class DeleteMemberCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
-        List<Person> teamMembers = model.getTeam().getFilteredMemberList();
+        List<Person> teamMembers = model.getTeam().getTeamMembers();
 
-        if (index.getZeroBased() >= teamMembers.size()) {
+        if (targetIndex.getZeroBased() >= teamMembers.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = teamMembers.get(index.getZeroBased());
+        Person personToDelete = teamMembers.get(targetIndex.getZeroBased());
         model.getTeam().removeMember(personToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }

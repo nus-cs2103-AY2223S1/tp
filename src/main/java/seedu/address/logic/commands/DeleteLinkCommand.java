@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_LINK_INDEX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.LABEL_LINK_INDEX;
 
 import java.util.List;
 
@@ -24,15 +25,15 @@ public class DeleteLinkCommand extends Command {
     public static final String COMMAND_WORD = "link";
     public static final String ALIAS = "l";
     public static final String FULL_COMMAND = DeleteCommand.COMMAND_WORD + " " + COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to delete a link from the current team.\n";
 
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Deletes an existing link identified by the index number used in the displayed link list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + FULL_COMMAND + " 1";
     public static final String MESSAGE_DELETE_LINK_SUCCESS = "Deleted Link: %1$s";
 
-    @CommandLine.Parameters(arity = "1", description = FLAG_LINK_INDEX_DESCRIPTION)
-    private Index index;
+    @CommandLine.Parameters(arity = "1",
+            paramLabel = LABEL_LINK_INDEX,
+            description = FLAG_LINK_INDEX_DESCRIPTION)
+    private Index targetIndex;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
@@ -47,14 +48,14 @@ public class DeleteLinkCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         List<Link> lastShownList = model.getLinkList();
-        if (index.getOneBased() > lastShownList.size()) {
+        if (targetIndex.getOneBased() > lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_LINK_DISPLAYED_INDEX);
         }
-        Link linkToDelete = lastShownList.get(index.getZeroBased());
+        Link linkToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteLink(linkToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_LINK_SUCCESS, linkToDelete));
     }

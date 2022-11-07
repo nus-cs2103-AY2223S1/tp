@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TEAM_NAME_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.LABEL_TEAM_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
@@ -26,21 +27,15 @@ public class SetTeamCommand extends Command {
     public static final String COMMAND_WORD = "team";
     public static final String ALIAS = "te";
     public static final String FULL_COMMAND = SetCommand.COMMAND_WORD + " " + COMMAND_WORD;
-
-
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Sets the current team to an existing team. \n"
-            + "Parameters: TEAM_NAME\n"
-            + "Example: " + FULL_COMMAND + " project";
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to change the current working team.\n";
 
     public static final String MESSAGE_SET_TEAM_SUCCESS = "Set current team: %1$s";
-
     public static final String MESSAGE_TEAM_ALREADY_SET = "You are already on this team!";
-
     public static final String MESSAGE_TEAM_NOT_EXISTS = "This team you are trying to set does not exist!";
 
-    @CommandLine.Parameters(arity = "1", description = FLAG_TEAM_NAME_DESCRIPTION)
-    private TeamName teamName;
+    @CommandLine.Parameters(arity = "1", paramLabel = LABEL_TEAM_NAME, description = FLAG_TEAM_NAME_DESCRIPTION)
+    private TeamName targetTeamName;
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
@@ -55,12 +50,12 @@ public class SetTeamCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         List<Team> teamList = model.getTeamList();
         Team currentTeam = model.getTeam();
-        Team targetTeam = new Team(teamName);
+        Team targetTeam = new Team(targetTeamName);
         List<Team> filteredListWithTargetTeam = teamList.stream()
                 .filter(targetTeam::isSameTeam).collect(Collectors.toList());
 

@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_HELP_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_SEARCH_KEYWORDS_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.LABEL_PERSON_NAME_KEYWORDS;
 
 import picocli.CommandLine;
 import seedu.address.commons.core.Messages;
@@ -22,13 +23,10 @@ public class FindPersonCommand extends Command {
     public static final String COMMAND_WORD = "person";
     public static final String ALIAS = "p";
     public static final String FULL_COMMAND = FindCommand.COMMAND_WORD + " " + COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to find a person in TruthTable.\n";
 
-    public static final String MESSAGE_USAGE = FULL_COMMAND + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + FULL_COMMAND + " alice bob charlie";
-
-    @CommandLine.Parameters(arity = "1", paramLabel = "nameKeywords",
+    @CommandLine.Parameters(arity = "1", paramLabel = LABEL_PERSON_NAME_KEYWORDS,
             parameterConsumer = NameContainsKeywordsPredicateConverter.class,
             description = FLAG_NAME_SEARCH_KEYWORDS_DESCRIPTION)
     private NameContainsKeywordsPredicate predicate;
@@ -46,7 +44,7 @@ public class FindPersonCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);

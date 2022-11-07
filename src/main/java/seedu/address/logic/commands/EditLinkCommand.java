@@ -11,6 +11,9 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR_LONG;
+import static seedu.address.logic.parser.CliSyntax.LABEL_LINK_INDEX;
+import static seedu.address.logic.parser.CliSyntax.LABEL_LINK_NAME;
+import static seedu.address.logic.parser.CliSyntax.LABEL_LINK_URL;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,18 +37,15 @@ public class EditLinkCommand extends Command {
     public static final String COMMAND_WORD = "link";
     public static final String ALIAS = "l";
     public static final String FULL_COMMAND = EditCommand.COMMAND_WORD + " " + COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to edit a link's details.\n";
 
-    public static final String MESSAGE_USAGE =
-            FULL_COMMAND + ": Edits a current link identified by the index number used in the displayed link list. \n"
-                    + "Existing values will be overwritten by the input values. \n"
-                    + "Parameters: INDEX (must be a positive integer) " + FLAG_NAME_STR + " NAME "
-                    + FLAG_URL_STR + " PHONE \n" + "Example: " + FULL_COMMAND + " 1 " + FLAG_NAME_STR
-                    + " \"Google\" " + FLAG_URL_STR + " https://google.com ";
     public static final String MESSAGE_EDIT_LINK_SUCCESS = "Edited link: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_LINK = "This link already exists in the team.";
 
-    @CommandLine.Parameters(arity = "1", index = "0", description = FLAG_LINK_INDEX_DESCRIPTION)
+    @CommandLine.Parameters(arity = "1", index = "0",
+            paramLabel = LABEL_LINK_INDEX,
+            description = FLAG_LINK_INDEX_DESCRIPTION)
     private Index index;
 
     @CommandLine.ArgGroup(exclusive = false, multiplicity = "1")
@@ -80,7 +80,7 @@ public class EditLinkCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         List<Link> lastShownList = model.getLinkList();
@@ -109,10 +109,14 @@ public class EditLinkCommand extends Command {
     }
 
     private static class Arguments {
-        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, description = FLAG_LINK_NAME_DESCRIPTION)
+        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG},
+                paramLabel = LABEL_LINK_NAME,
+                description = FLAG_LINK_NAME_DESCRIPTION)
         private LinkName name;
 
-        @CommandLine.Option(names = {FLAG_URL_STR, FLAG_URL_STR_LONG}, description = FLAG_LINK_URL_DESCRIPTION)
+        @CommandLine.Option(names = {FLAG_URL_STR, FLAG_URL_STR_LONG},
+                paramLabel = LABEL_LINK_URL,
+                description = FLAG_LINK_URL_DESCRIPTION)
         private Url url;
 
     }
