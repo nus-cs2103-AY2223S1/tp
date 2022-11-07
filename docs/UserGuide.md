@@ -45,6 +45,8 @@ It consists of a step-by-step installation guide and an explanation of the key G
    1. Navigate to the folder where you placed your WorkBook at.
    2. Run: `java -jar WorkBook.jar`. <br>The GUI, as shown below in one of the two layouts, should appear within seconds.<br>
 
+<div style="page-break-after: always;"></div>
+
 |          Wide Layout           |             Narrow Layout             | 
 |:------------------------------:|:-------------------------------------:|
 | ![wide layout](images/Ui2.png) | ![narrow layout](images/UiNarrow.png) |
@@ -64,6 +66,8 @@ For the narrow layout, everything else is the same except for the labelled light
 |              Wide Layout               |
 |:--------------------------------------:|
 | ![wide layout](images/AnnotatedUi.png) |
+
+<div style="page-break-after: always;"></div>
 
 |                     Narrow Layout                      |  
 |:------------------------------------------------------:|
@@ -132,6 +136,8 @@ This section describes important information for you to take note of before and 
 * An example is shown below:
 ![SortExample](images/SortExample.png)
 
+<div style="page-break-after: always;"></div>
+
 ### 4.4 Responsive UI when resizing window
 
 * The UI will change dynamically depending on the window width.
@@ -144,6 +150,8 @@ This section describes important information for you to take note of before and 
 |:--------------------------------------:|
 | Resize the window to a wider width to get this layout |
 | ![wide layout](images/AnnotatedUi.png) |
+
+<div style="page-break-after: always;"></div>
 
 |                     Narrow Layout                      |  
 |:------------------------------------------------------:|
@@ -302,6 +310,8 @@ Format: `find c/COMPANY | r/ROLE | s/STAGE`
 </div>
 
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `find r/Engineer` returns `Software Engineer` and `Backend Engineer`:
 
@@ -439,6 +449,8 @@ and then `redo` will restore the WorkBook version with the added internship.
 If you perform 2 consecutive `undo` commands, the WorkBook will be restored to the version before both
 `edit` and `clear` commands. When you perform a `redo` command now,
 the WorkBook version will contain the edited stage and email for the first internship.
+
+<div style="page-break-after: always;"></div>
 
 
 | State                                                                      | What you will see                        |
