@@ -313,7 +313,7 @@ The command works in the following steps:
 3) The `PredictGrade` method in `PredictionUtil` class will be used to predict the grade given the arguments provided <br>
 4) A new `PredictionWindow` will be opened to display the predicted grade <br>
 
-###Attendance feature
+### Attendance feature
 #### current Implementation
 
 The Attendance command consists of these following classes:
