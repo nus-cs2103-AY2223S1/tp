@@ -118,16 +118,10 @@ Format: `add c/COMPANY ct/CONTACT e/EMAIL p/POSITION d/DATE_APPLIED s/STATUS [t/
 <br>
 
 1. <code>CONTACT</code> must be 5-15 digits long. <i>[COMING SOON: allowing spaces and country codes in contacts]</i><br>
-2. Emails should be of the format local-part@domain and adhere to the following constraints:<br>
-
-* The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-).<br>
-    The local-part may not start or end with any special characters, nor can it contain consecutive special characters.
-* This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.<br>
-The domain name must:
-  * have each domain label consist of alphanumeric characters, separated only by singular hyphens, if any</li>
-  * have each domain label start and end with alphanumeric characters
-  end with a domain label that contains at least 2 consecutive alphanumeric characters
-
+2. <code>EMAILS</code> should be of the format <code>local-part@domain</code>.<br>
+The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters, nor can it contain consecutive special characters.<br>
+The local-part is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.
+Each domain label consists of alphanumeric characters, separated only by singular hyphens, if any, and they must each start and end with alphanumeric characters. The domain name must end with a domain label that contains at least 2 consecutive alphanumeric characters.<br>
 3. <code>DATE_APPLIED</code> must be specified in the format <em>yyyy-MM-dd</em>.<br>
 4. <code>STATUS</code> must be one of the following: <b>pending</b>, <b>interview</b>, <b>offered</b>, <b>rejected</b>.<br>
 5. Do note that an <b>interview</b> <code>STATUS</code> does not imply that the application has an associated interview in the interview list. The purpose of the status is to help users in tracking the applications according to their own preferences (e.g. user can put the status as `pending` instead of `interview` for an application even if an interview is received).<br>
