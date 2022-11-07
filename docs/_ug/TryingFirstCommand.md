@@ -16,7 +16,7 @@ The first word of every command allows FoodRem to distinguish different commands
 * [Flags](#flags) such as `n/` and `qty/` are delimiters that enable FoodRem to distinguish different parameters supplied by you without ambiguity
 * [Placeholders](#placeholders) such as `ITEM_NAME` and `QUANTITY` shows you what you should place in each portion of the command
 
-Notice that there is a pair of square brackets `[]` surrounding some [[ parameter:parameters ]] like `qty/QUANTITY` in the format. This indicates that the parameter is **optional**. Each of these [[ placeholder:placeholders ]] have a default value based on the commands. These are documented in the [Commands](#commands) section for each command.
+Notice that there is a pair of square brackets `[]` surrounding some [[ parameter:parameters ]] like `qty/QUANTITY` in the format. This indicates that the parameter is **optional**. Each of these [[ placeholder:placeholders ]] in the [[ parameter:parameters ]] have a default value based on the commands. These are documented in the [Commands](#commands) section for each command.
 
 ```note
 The [Placeholder](#placeholders) section covers the restrictions for respective placeholders. For example, the date format of BOUGHT_DATE, certain characters you cannot use and the limit and precision of numbers.
