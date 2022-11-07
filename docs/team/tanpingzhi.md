@@ -34,9 +34,20 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Add documentation for the `target` and `locate` features.
+      * Add documentations
+        * `locate`: (PR [#99](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/99/files))
+        * `target`: (PR [#146](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/146))
+      * Update Non-Functional Requirements (PR [#19](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/19/files))
     * Developer Guide:
-        * Add implementation details for `target` and `locate` features, together with activity and sequence diagrams.
+      * Add implementation details for the following features
+        * `target`:
+          * Sequence diagram (PR [#86](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/86))
+        * `locate`
+          * Activity diagram (PR [#146](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/146/files))
 * **Community**:
-  * Fix bugs.
-  * Tested and merged multiple PRs.
+  * Opened issue(s) for the team: [#37](https://github.com/AY2223S1-CS2103T-T17-2/tp/issues/37)
+  * Tested and merged multiple PR's (non-exhaustive): [#78](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/78), 
+  [#91](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/91),
+  [#56](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/56)
+  * Bug reports for other teams: [issues](https://github.com/TanPingZhi/ped/issues)
+  * Forum posts [#188](https://github.com/nus-cs2103-AY2223S1/forum/issues/188), [#341](https://github.com/nus-cs2103-AY2223S1/forum/issues/341)
