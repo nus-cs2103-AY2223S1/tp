@@ -20,6 +20,8 @@ import bookface.model.book.Title;
  */
 class JsonAdaptedBook {
 
+    public static final String INVALID_RETURN_DATE_UNLOANED = "An unloaned Book's returnDate field is not the empty "
+            + "string!";
     public static final String MISSING_BOOK_FIELD_MESSAGE_FORMAT = "Book's %s field is missing!";
     public static final String INVALID_BOOK_FORMAT = "Invalid format for a loaned book detected!";
 
@@ -92,7 +94,7 @@ class JsonAdaptedBook {
         }
 
         if (!isLoaned && !StringUtil.containsWhitespaceOnly(returnDate)) {
-            throw new IllegalValueException("An unloaned Book's returnDate field is not the empty string!");
+            throw new IllegalValueException(INVALID_RETURN_DATE_UNLOANED);
         }
 
         if (isLoaned && StringUtil.containsWhitespaceOnly(returnDate)) {
@@ -104,7 +106,7 @@ class JsonAdaptedBook {
                 final Date modelDate = DATE_FORMAT.parse(returnDate);
                 return new Book(modelTitle, modelAuthor, modelDate);
             } catch (java.text.ParseException pe) {
-                throw new ParseException(String.valueOf(pe));
+                throw new ParseException(pe.getMessage());
             }
         } else {
             return new Book(modelTitle, modelAuthor);

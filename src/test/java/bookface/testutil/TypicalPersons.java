@@ -2,6 +2,7 @@ package bookface.testutil;
 
 import static bookface.testutil.TypicalBooks.getSingleBook;
 import static bookface.testutil.TypicalBooks.getTypicalBooks;
+import static bookface.testutil.TypicalBooks.getTypicalLoanedBook;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,7 +36,7 @@ public class TypicalPersons {
             .withEmail("anna@example.com").build();
     public static final Person HILLY = new PersonBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends").withBooksToLoan(getTypicalLoanedBook()).build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")

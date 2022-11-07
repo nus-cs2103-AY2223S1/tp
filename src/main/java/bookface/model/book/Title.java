@@ -11,7 +11,8 @@ import bookface.commons.util.AppUtil;
 public class Title {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters, punctuations and spaces, and it should not be blank";
+            "Book titles should only contain alphanumeric characters, punctuations and spaces, and they should not "
+                    + "be blank";
 
     /*
      * The first character of the address must not be a whitespace,
