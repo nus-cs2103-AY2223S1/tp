@@ -567,17 +567,67 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+### Adding a Profile
+
+1. Prerequisites: No profiles exist in the list with the phone number `12345678` and the email `johndoe@u.nus.edu`
+
+2. Test case: `profile -a n/John Doe p/12345678 e/johndoe@u.nus.edu`<br>
+Expected: A profile with the name `John Doe`, phone number `12345678`, email `johndoe@u.nus.edu` is added to the list of profiles in alphabetical order. Details of the added profile shown in the status message.
+
+3. Test case: `profile -a n/John Doe`<br>
+Expected: No profile is added. Error details shown in the status message. 
+
+### Editing a Profile
+
+1. Editing a profile from the displayed list
+
+   1. Test case: `profile -e 1 n/Alice Yeoh`<br>
+      Expected: The name of the first profile is changed to `Alice Yeoh`. Details of the profile with the edited details shown in the status message. If the first profile is attending any events, the profile's name will be updated under the event as well.
+
+   2. Test case: `profile -e 1`<br>
+      Expected: The first profile remains the same. Error details shown in the status message.
+   
+   3. Test case: `profile -e 0`<br>
+      Expected: No profile is edited. Error details shown in the status message.
+
+### Viewing Profiles
+
+1. Viewing all Profiles while a select few Profiles are shown
+
+   1. Prerequisites: Filter some profiles using the `profile -f Alex` command. Profiles with the word `Alex` in the name will remain in the list.
+
+   2. Test case: `profile -v`<br>
+      Expected: All profiles will be shown in the list. A success message is shown.
+
+   3. Test case: `profile -v Bernice`<br>
+      Expected: The profile list remains the same. Error details shown in the status message.
+
+### Finding a Profile by name
+
+1. Finding a profile by name from all profiles in NUScheduler
+
+   1. Prerequisites: List all profiles using the `profile -v` command. Multiple profiles in the list. At least one profile with the name `Alex` exists.
+
+   2. Test case: `profile -f Alex`<br>
+      Expected: Profiles containing the word `Alex` are shown in the list. The number of profiles displayed is shown in the status message.
+
+   3. Test case: `profile -f Alex Bernice`<br>
+      Expected: Profiles containing either the word `Alex` or `Bernice` or both are shown in the list. The number of profiles displayed is shown in the status message.
+
+   4. Test case: `profile -f`<br>
+      Expected: The profile list remains the same. Error details shown in the status message.
+
 ### Deleting a Profile
 
-1. Deleting a Profile while all Profiles are being shown
+1. Deleting a profile while all profiles are being shown
 
-   1. Prerequisites: List all Profiles using the `profile -v` command. Multiple Profiles in the list.
+   1. Prerequisites: List all profiles using the `profile -v` command. Multiple profiles in the list.
 
    2. Test case: `profile -d 1`<br>
-      Expected: First profile is deleted from the list. Details of the deleted profile shown in the status message. If first profile is attending any events, the profile will be removed from the event as well.
+      Expected: The first profile is deleted from the list. Details of the deleted profile shown in the status message. If the first profile is attending any events, the profile will be removed from the event as well.
 
-   3. Test case: `profile - d 0`<br>
-      Expected: No Profile is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `profile -d 0`<br>
+      Expected: No Profile is deleted. Error details shown in the status message.
 
    4. Other incorrect delete commands to try: `profile -d`, `profile -d x`, `...` (where x is larger than the list size, or 1000)<br>
       Expected: Similar to previous.
