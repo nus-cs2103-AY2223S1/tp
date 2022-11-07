@@ -10,7 +10,7 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * This project is based on the AddressBook-Level3 project created by the SE-EDU initiative. 
-* Libraries used: JavaFX, Jackson, JUnit5
+* Libraries used: JavaFX, Jackson, JUnit5.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -1050,3 +1050,50 @@ testers are expected to do more *exploratory* testing.
 
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+### Viewing a student
+
+1. Viewing a specific student(full view) in `Pupilist`
+   1. Prerequisite: At least one person in the list. Alex Yeoh is name of a person in the list. No such person with name XYZ ABC in the list.
+   2. Test case: `view Alex Yeoh` <br>
+      Expected: person with name Alex Yeoh is displayed in a PersonCard and is th e only person displayed to the user, along with the rest of his field details.
+   3. Test case: `view XYZ ABC` <br>
+      Expected: CommandBox shows `Provided name is invalid`
+   4. Other incorrect unmark commands to try: `view` (without any name).
+
+### Next Session feature
+
+1. Viewing the next session timing and student to attend to.
+   1. Prerequisite: Multiple persons in the unfiltered list. Reference time for `Pupilist` to check as base time is `Mon 00:00`. There are multiple persons with different session timings. <br>
+      One person with name `Alex Yeoh` has a session timing of `Mon 07:00` and is the closest session to the current time(reference time) of `Mon 00:00`.
+   2. Test case: `list`
+      Expected: CommandBox shows `Listed all persons \n next Session: Alex Yeoh Mon 07:00`
+   3. Prerequisite: No person with a session timing.
+   4. Prerequisite: No person with any session timings.
+      Test case: `list`
+      Expected: CommandBox shows `Listed all persons \n No next Session timing!`
+   5. Other cases to try: on launch of application next session feedback to user in CommandBox.
+
+### Adding of attendance to student
+
+1. Adding attendance to a student in `Pupilist`
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   2. Test case: `attendance 1 a/2022-08-08` <br>
+      Expected: `2022-08-08` will be added to the attendance of the student in the first index in the list. It will be marked as absent by default and displayed as `2022-08-08 [Absent]`.
+   3. Test case: `attendance a/2022-08-08` <br>
+     Expected: Grade is not added to any persons. Error details shown in the status message.
+   4. Other incorrect commands to try: `attendance` , `attendance 1 a/`.
+
+### Adding of session to student
+
+1. Adding session to a student in `Pupilist`
+   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   2. Test case: `session 1 s/Mon 09:00` <br>
+      Expected: `Mon 09:00` will be added to the attendance of the student in the first index in the list.
+   3. Test case: `session 1 s/Thur 09:00` <br>
+      Expected: Session is not added to any persons. Error details shown in the status message.
+   4. Test case: `session 1 s/Thur 25:00` <br>
+      Expected: Session is not added to any persons. Error details shown in the status message.
+   5. Test case: `session s/Thu 09:00` <br>
+      Expected: Session is not added to any persons. Error details shown in the status message.
+   6. Other incorrect commands to try: `session` , `session 1 a/`.
