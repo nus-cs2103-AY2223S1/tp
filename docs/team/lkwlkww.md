@@ -42,7 +42,24 @@ Given below are my contributions to the project.
   * [Example 1](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/209)
   * [Example 2](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/206)
 
+<div style="page-break-after: always;"></div>
+
 ### Contributions to the Developer Guide (Extracts)
+#### Glossary
+
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Property**: A listed unit of a property
+* **Command**: A text input keyed in by the user, in the command box of the GUI.
+  * A command must have a keyword (e.g. `select`, `clear`)
+  * A command might require a flag, and/or a parameter(s)
+* **Flag**: A flag denoting if a command is for properties or clients, i.e., `-p` and `-c`
+* **Parameter**: A combination of a prefix and an argument(s) that functions as inputs to a command
+  * Examples: `n/Samuel` is a name parameter; `a/Woodlands` is an address parameter
+* **Prefix**: The symbol used in a parameter to indicate which parameter it is for
+  * Examples: `n/` is the prefix for the name parameter; `a/` is the prefix for the address parameter
+* **Argument**: The user-defined inputs for parameters
+  * Examples: "Jaime" could be an argument for the name parameter; "Sembawang" could be an argument for the addresss parameter
+
 #### Select feature
 ##### High-level details
 * The select feature is meant to expand on either a `Property` or a `Client` to display its details in the GUI.
@@ -80,23 +97,11 @@ This sequence diagram shows the interactions between the `Logic`, `Model`, and `
 
 The logic for `SelectClientCommand` and `SelectClientCommandParser` are similar and derivable from the diagrams too.
 
-#### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Property**: A listed unit of a property
-* **Command**: A text input keyed in by the user, in the command box of the GUI.
-  * A command must have a keyword (e.g. `select`, `clear`)
-  * A command might require a flag, and/or a parameter(s)
-* **Flag**: A flag denoting if a command is for properties or clients, i.e., `-p` and `-c`
-* **Parameter**: A combination of a prefix and an argument(s) that functions as inputs to a command
-  * Examples: `n/Samuel` is a name parameter; `a/Woodlands` is an address parameter
-* **Prefix**: The symbol used in a parameter to indicate which parameter it is for
-  * Examples: `n/` is the prefix for the name parameter; `a/` is the prefix for the address parameter
-* **Argument**: The user-defined inputs for parameters
-  * Examples: "Jaime" could be an argument for the name parameter; "Sembawang" could be an argument for the addresss parameter
+<div style="page-break-after: always;"></div>
 
 ### Contributions to the User Guide (Extracts)
 #### Prefix list
+
 | Prefix | Associated Parameter    | Definition                                                                                                                            | Examples                          | Remarks                                                                                                                                                                                                                                                                                            |
 |--------|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `n/`   | `NAME`                  | Refers to the name of a property or client.<br>                                                                                       | `n/PINNACLE@DUXTON`<br>`n/Walter` | Each property or client can only have one name.                                                                                                                                                                                                                                                    |
@@ -108,3 +113,4 @@ The logic for `SelectClientCommand` and `SelectClientCommandParser` are similar 
 | `s/`   | `PROPERTY_STATUS`       | Refers to availability of property<br>Must be one of AVAILABLE, SOLD, or PENDING                                                      | `s/AVAILABLE`, `s/PENDING`        | Each property can only have one property status.<br> Valid property statuses: `AVAILABLE`, `SOLD`, `PENDING`<br> Arguments for this parameter are case-insensitive.                                                                                                                                |
 | `ic/`  | `INTERESTED_CLIENTS`    | Refers to list of clients who are considering to purchase a particular property.                                                      | `ic/Samuel`                       | Each property can have multiple clients interested in it.<br>                                                                                                                                                                                                                                      |
 | `ip/`  | `INTERESTED_PROPERTIES` | Refers to list of properties that a client is interested in.                                                                          | `ip/duxton`                       | Each client can be interested in multiple properties.<br>                                                                                                                                                                                                                                          |
+
