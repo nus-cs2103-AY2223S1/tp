@@ -353,6 +353,8 @@ Format: `find nm/STUDENT-NAME` or `find id/ID`
 * The search is case-insensitive. E.g _hans_ will match _Hans_.
 * The search only recognises whole words, and searching for substrings is not valid. E.g. _Han_ will not match _Hans_.
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `find nm/lee` displays the list of students with _lee_ in their name.
 ![FindByName](images/FindByName.png)
@@ -378,6 +380,8 @@ Format: `toggleView`
 **Concise View**
 
 ![Concise](images/ToggleViewConcise.png)
+
+<div style="page-break-after: always;"></div>
 
 **Detailed View**
 
@@ -414,6 +418,8 @@ Format: `viewStats class/CLASS exam/EXAM-NAME filter/FILTER`
 * Exam name is case-insensitive.
 * Filter is either _ON_ or _OFF_, and is case-insensitive.
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `viewStats class/4A exam/SA1 filter/off` displays the mean obtained by _Class 4A_ for _SA1_, as well as the list of 
 all the students in the _Class 4A_, arranged in ascending grades for _SA1_.
@@ -436,6 +442,8 @@ Shows a summary of all the available commands.
 
 In case you have forgotten how to use any of the commands in Class-ify, you may use this command to open a window that 
 displays a command summary table.
+
+The image below shows what the help window will look like.
 
 ![HelpWindow](images/HelpWindow.png)
 
