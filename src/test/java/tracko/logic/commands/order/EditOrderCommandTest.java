@@ -2,13 +2,8 @@ package tracko.logic.commands.order;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static tracko.logic.commands.CommandTestUtil.DESC_AMY;
-import static tracko.logic.commands.CommandTestUtil.DESC_BOB;
 import static tracko.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static tracko.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static tracko.logic.commands.CommandTestUtil.assertCommandFailure;
-import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static tracko.logic.commands.CommandTestUtil.showOrderAtIndex;
 import static tracko.testutil.TypicalIndexes.INDEX_FIRST;
 import static tracko.testutil.TypicalIndexes.INDEX_SECOND;
 import static tracko.testutil.TypicalOrders.getTrackOWithTypicalOrders;
@@ -22,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import javafx.util.Pair;
 import tracko.commons.core.Messages;
 import tracko.commons.core.index.Index;
+import tracko.logic.commands.CommandTestUtil;
 import tracko.logic.commands.order.EditOrderCommand.EditOrderDescriptor;
 import tracko.model.Model;
 import tracko.model.ModelManager;
@@ -57,7 +53,7 @@ public class EditOrderCommandTest {
         Model expectedModel = new ModelManager(model.getTrackO(), new UserPrefs());
         expectedModel.setOrder(model.getFilteredOrderList().get(0), editedOrder);
 
-        assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -83,7 +79,7 @@ public class EditOrderCommandTest {
         Model expectedModel = new ModelManager(model.getTrackO(), new UserPrefs());
         expectedModel.setOrder(lastOrder, editedOrder);
 
-        assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -95,24 +91,24 @@ public class EditOrderCommandTest {
 
         Model expectedModel = new ModelManager(model.getTrackO(), new UserPrefs());
 
-        assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_filteredList_success() {
-        showOrderAtIndex(model, INDEX_FIRST);
+        CommandTestUtil.showOrderAtIndex(model, INDEX_FIRST);
 
         Order orderInFilteredList = model.getFilteredOrderList().get(INDEX_FIRST.getZeroBased());
-        Order editedOrder = new OrderBuilder(orderInFilteredList).withName(VALID_NAME_BOB).build();
+        Order editedOrder = new OrderBuilder(orderInFilteredList).withName(CommandTestUtil.VALID_NAME_BOB).build();
         EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST,
-                new EditOrderDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditOrderDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(EditOrderCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
 
         Model expectedModel = new ModelManager(model.getTrackO(), new UserPrefs());
         expectedModel.setOrder(model.getFilteredOrderList().get(0), editedOrder);
 
-        assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandSuccess(editOrderCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -122,7 +118,7 @@ public class EditOrderCommandTest {
             .withName(VALID_NAME_BOB).build();
         EditOrderCommand editOrderCommand = new EditOrderCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(editOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
     }
 
     /**
@@ -131,15 +127,15 @@ public class EditOrderCommandTest {
      */
     @Test
     public void execute_invalidOrderIndexFilteredList_failure() {
-        showOrderAtIndex(model, INDEX_FIRST);
+        CommandTestUtil.showOrderAtIndex(model, INDEX_FIRST);
         Index outOfBoundIndex = INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getTrackO().getOrderList().size());
 
         EditOrderCommand editOrderCommand = new EditOrderCommand(outOfBoundIndex,
-                new EditOrderDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditOrderDescriptorBuilder().withName(CommandTestUtil.VALID_NAME_BOB).build());
 
-        assertCommandFailure(editOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
+        CommandTestUtil.assertCommandFailure(editOrderCommand, model, Messages.MESSAGE_INVALID_ORDER_DISPLAYED_INDEX);
     }
 
     @Test
@@ -155,7 +151,7 @@ public class EditOrderCommandTest {
                 .withUnlinkedPair(unlinkedPair).build();
         EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST.fromZeroBased(0), descriptor);
 
-        assertCommandFailure(editOrderCommand, copiedModel, EditOrderCommand.MESSAGE_ONE_ORDERED_ITEM);
+        CommandTestUtil.assertCommandFailure(editOrderCommand, copiedModel, EditOrderCommand.MESSAGE_ONE_ORDERED_ITEM);
     }
 
     @Test
@@ -176,7 +172,7 @@ public class EditOrderCommandTest {
 
         Model expectedModel = new ModelManager(copiedModel.getTrackO(), new UserPrefs());
         expectedModel.setOrder(copiedModel.getFilteredOrderList().get(0), editedOrder);
-        assertCommandSuccess(editOrderCommand, copiedModel, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandSuccess(editOrderCommand, copiedModel, expectedMessage, expectedModel);
     }
 
     @Test
@@ -189,15 +185,15 @@ public class EditOrderCommandTest {
                 .withUnlinkedPair(unlinkedPair).build();
         EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST.fromZeroBased(0), descriptor);
 
-        assertCommandFailure(editOrderCommand, copiedModel, EditOrderCommand.MESSAGE_NONEXISTENT_ITEM);
+        CommandTestUtil.assertCommandFailure(editOrderCommand, copiedModel, EditOrderCommand.MESSAGE_NONEXISTENT_ITEM);
     }
 
     @Test
     public void equals() {
-        final EditOrderCommand standardCommand = new EditOrderCommand(INDEX_FIRST, DESC_AMY);
+        final EditOrderCommand standardCommand = new EditOrderCommand(INDEX_FIRST, CommandTestUtil.DESC_AMY);
 
         // same values -> returns true
-        EditOrderDescriptor copyDescriptor = new EditOrderDescriptor(DESC_AMY);
+        EditOrderDescriptor copyDescriptor = new EditOrderDescriptor(CommandTestUtil.DESC_AMY);
         EditOrderCommand commandWithSameValues = new EditOrderCommand(INDEX_FIRST, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -208,10 +204,10 @@ public class EditOrderCommandTest {
         assertFalse(standardCommand.equals(null));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditOrderCommand(INDEX_SECOND, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditOrderCommand(INDEX_SECOND, CommandTestUtil.DESC_AMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditOrderCommand(INDEX_FIRST, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditOrderCommand(INDEX_FIRST, CommandTestUtil.DESC_BOB)));
     }
 
 }

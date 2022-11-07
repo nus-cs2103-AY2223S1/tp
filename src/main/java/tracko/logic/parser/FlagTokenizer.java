@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
  * 1. Any input following the flag will be ignored.<br>
  * 2. If a flag exists, its corresponding argument value will be tokenized to the boolean {@code true}.<br>
  */
-public class FlagTokenizer extends ArgumentToken {
+public class FlagTokenizer {
     /**
      * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps flags to their
      * respective argument values. Only the given flags will be recognized in the arguments string.
@@ -44,11 +44,11 @@ public class FlagTokenizer extends ArgumentToken {
     private static List<FlagPosition> findFlagPositions(String argsString, Flag flag) {
         List<FlagPosition> positions = new ArrayList<>();
 
-        int flagPosition = findFlagPosition(argsString, flag.getFlag(), 0);
+        int flagPosition = findFlagPosition(argsString, flag.getToken(), 0);
         while (flagPosition != -1) {
             FlagPosition extendedFlag = new FlagPosition(flag, flagPosition);
             positions.add(extendedFlag);
-            flagPosition = findFlagPosition(argsString, flag.getFlag(), flagPosition);
+            flagPosition = findFlagPosition(argsString, flag.getToken(), flagPosition);
         }
 
         return positions;
@@ -116,7 +116,7 @@ public class FlagTokenizer extends ArgumentToken {
                                                FlagPosition nextFlagPosition) {
         Flag flag = currentFlagPosition.getFlag();
 
-        int valueStartPos = currentFlagPosition.getStartPosition() + flag.getFlag().length();
+        int valueStartPos = currentFlagPosition.getStartPosition() + flag.getToken().length();
         //value = preamble string when valueStartPos == 0
         String value = argsString.substring(valueStartPos, nextFlagPosition.getStartPosition());
 

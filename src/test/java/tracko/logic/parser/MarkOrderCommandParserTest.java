@@ -1,6 +1,7 @@
 package tracko.logic.parser;
 
 import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static tracko.logic.commands.order.MarkOrderCommand.MESSAGE_USAGE;
 import static tracko.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static tracko.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static tracko.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
@@ -38,10 +39,10 @@ public class MarkOrderCommandParserTest {
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkOrderCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
 
         assertParseFailure(parser, "1",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkOrderCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
 
         //preamble is not a valid index
         assertParseFailure(parser, "a -p",
@@ -52,14 +53,14 @@ public class MarkOrderCommandParserTest {
     public void parse_invalidFlags_throwsParseException() {
         //wrong tag
         assertParseFailure(parser, "a -e",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkOrderCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
 
         //wrong tag but contains the correct tag format
         assertParseFailure(parser, "1 -p-d",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkOrderCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
 
         //wrong tag but contains the correct tag format
         assertParseFailure(parser, "1 -d-p",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkOrderCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
     }
 }

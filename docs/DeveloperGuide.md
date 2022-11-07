@@ -13,6 +13,7 @@ title: Developer Guide
 initiative at [https://se-education.org/](https://se-education.org/)
 * Libraries used in our application: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), 
 [JUnit5](https://github.com/junit-team/junit5)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -109,7 +110,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+![ParserClassesDiagram](images/developer-guide/ParserClasses.png)
 
 How the parsing works:
 * When called upon to parse a user command, the `TrackOParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddOrderCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddOrderCommand`) which the `TrackOParser` returns back as a `Command` object.
@@ -238,7 +239,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How add item executes:**
 
-* **Alternative 1 (current choice): ** User inputs all required fields in a single input
+* **Alternative 1 (current choice):** User inputs all required fields in a single input
   * Pros: easier to implement
   * Cons: user input is very long and may be more prone to typos
 
@@ -934,57 +935,142 @@ testers are expected to do more *exploratory* testing.
    ii. Double-click the jar file Expected: Shows the GUI with a set of sample orders and items. 
    The window automatically expands to occupy the entire screen.
 
+
+### Adding an inventory item
+1. Adding an inventory item
+   1. Prerequisites: None
+   2. Test case: `addi i/Chair q/100 d/Wooden Chair sp/50 cp/10 t/Fragile` <br>
+  Expected: Inventory item is added to the inventory list. Details of the added inventory item shown in the status message.
+   3. Test case: `addi i/Chair d/Wooden Chair sp/50 cp/10 t/Fragile` <br>
+  Expected: No inventory item is added. Error details shown in the status message.
+   4. Other incorrect addi commands to try: `addi`, `addi x`, `...`(where x is a string containing the inventory item details but is missing a required parameter) <br>
+  Expected: similar to previous.
+
+### Listing all inventory items
+1. Display all inventory items of a populated inventory list
+   1. Prerequisites: Have an inventory list containing 1 or more inventory items
+   2. Test case: `listi` <br>
+  Expected: All inventory items are displayed.
+
+2. Display all inventory items of an empty inventory list
+   1. Prerequisites: Have an inventory list containing 0 inventory items
+   2. Test case: `listi` <br>
+  Expected: No inventory items are displayed.
+
+### Finding an inventory item
+1. Finding an inventory item that exists in the inventory list
+   1. Prerequisites: Have an inventory list containing only inventory items with the item names `Chair`, `Table`, `Bed`.
+   2. Test case: `findi Chair` <br>
+  Expected: Only the inventory item with the item name `Chair` is displayed. Number of inventory items
+  found shown in the status message.
+   4. Test case: `findi` <br>
+  Expected: No inventory item is found, no change to current displayed inventory item list.
+  Error details shown in the status message.
+
+2. Finding an inventory item that does not exist in the inventory list
+   1. Prerequisites: Have an inventory list containing only inventory items with the item names `Chair`, `Table`, `Bed`.
+   2. Test case: `findi pen` <br>
+  Expected: No inventory item is displayed in the inventory list. 0 inventory items
+  found shown in the status message.
+
 ### Listing all orders
 
 1. Listing all orders after calling `findo`
-  * Prerequisites: List all orders using the `listo` command. There are already multiple existing orders.
-    Of these orders, there exist 2 orders made by customers with `Chan` in their names. Before testing, enter `findo n/Chan`<br/>
-    Expected: Order list displays 2 orders by customers with `Chan` in their name.
-  * Test case: Enter `listo` into the command box.<br/>
-    Expected: ALl orders listed in the order list.
-  * Alternative negative test case: Enter `listO` into the command box.<br/>
-    Expected: Result display shows `Unknown command`.
+* Prerequisites: List all orders using the `listo` command. There are already multiple existing orders.
+  Of these orders, there exist 2 orders made by customers with `Chan` in their names. Before testing, enter `findo n/Chan`<br/>
+  Expected: Order list displays 2 orders by customers with `Chan` in their name.
+* Test case: Enter `listo` into the command box.<br/>
+  Expected: ALl orders listed in the order list.
+* Alternative negative test case: Enter `listO` into the command box.<br/>
+  Expected: Result display shows `Unknown command`.
 
 ### Finding order(s)
 
 1. Finding an order while all orders are being shown
-   * Prerequisites: List all orders using the `listo` command. Multiple orders in the list.
-   * Test case: Enter `findo -d` into the command box.</br>
-   Expected: Orders which have been delivered are displayed. The number of orders which 
-   correspond to the search parameters is displayed in the result display.
-   * Test case: Enter `findo n/Alex a/Geylang` into the command box.<br/>
-   Expected: Orders which have a customer name `Alex` and address containing the word 
-   `Geylang` will be displayed. The number of orders which correspond to the search 
-   parameters is displayed in the result display.
-   * Test case: Enter `findo Alex` into the command box.<br/>
-   Expected: Result display displays an invalid command format message with the 
-   specifications of the correct `findo` command format.
-   * Other incorrect `findo` commands to try: `findo`, `findo -e`.
-   Expected: Similar to previous.
+* Prerequisites: List all orders using the `listo` command. Multiple orders in the list.
+* Test case: Enter `findo -d` into the command box.</br>
+  Expected: Orders which have been delivered are displayed. The number of orders which
+  correspond to the search parameters is displayed in the result display.
+* Test case: Enter `findo n/Alex a/Geylang` into the command box.<br/>
+  Expected: Orders which have a customer name `Alex` and address containing the word
+  `Geylang` will be displayed. The number of orders which correspond to the search
+  parameters is displayed in the result display.
+* Test case: Enter `findo Alex` into the command box.<br/>
+  Expected: Result display displays an invalid command format message with the
+  specifications of the correct `findo` command format.
+* Other incorrect `findo` commands to try: `findo`, `findo -e`.
+  Expected: Similar to previous.
 
 ### Sorting orders by time created
 
 1. Sorting orders by time created while all orders are being shown
-   * Prerequisites: List all orders using the `listo` command. Multiple orders in the order list.
-   * Test case: Enter `sorto old` into the command box.<br/>
-   Expected: Orders in the order card will be displayed from oldest to newest.
-   * Test case: Enter `sorto new` into the command box.<br/>
-   Expected: Orders in the order card will be displayed from newest to oldest.
-   * Test case: Enter `sorto hello` into the command box.<br/>
-   Expected: Result display displays an invalid command format message with the
-   specifications of the correct `sorto` command format.
+* Prerequisites: List all orders using the `listo` command. Multiple orders in the order list.
+* Test case: Enter `sorto old` into the command box.<br/>
+  Expected: Orders in the order card will be displayed from oldest to newest.
+* Test case: Enter `sorto new` into the command box.<br/>
+  Expected: Orders in the order card will be displayed from newest to oldest.
+* Test case: Enter `sorto hello` into the command box.<br/>
+  Expected: Result display displays an invalid command format message with the
+  specifications of the correct `sorto` command format.
 
 ### Deleting an order
 
 1. Deleting an order while all orders are being shown 
-   1. Prerequisites: List all orders using the `listo` command. Multiple orders in the list. 
-   2. Test case: `deleteo 1` <br>
+   * Prerequisites: List all orders using the `listo` command. Multiple orders in the orders list. 
+   * Test case: `deleteo 1` <br>
    Expected: First order is deleted from the list. Details of the deleted order shown in the status message. 
-   3. Test case: `deleteo 0` <br>
+   * Test case: `deleteo 0` <br>
    Expected: No order is deleted. Error details shown in the status message. 
-   4. Other incorrect delete commands to try: `deleteo`, `deleteo x`, `...` (where x is larger than the list size) <br>
+   * Other incorrect delete commands to try: `deleteo`, `deleteo x`, `...` (where x is larger than the list size) <br>
    Expected: Similar to previous.
-2. Deleting an order while 
+   <br><br>
+2. Deleting an order while only some orders are being shown 
+   * Prerequisites: Find orders using the `findo` keyword. For example, with the sample data loaded in TrackO, the 
+   command `findo i/pillow` can be used. A number of orders (less than total orders) in the orders list.
+   * Test case: `deleteo 1` <br> 
+   Expected: First order in the current list is deleted from the list. Details of the deleted order shown in the 
+   status message.
+   * Test case: `deleteo 0` <br>
+   Expected: No order is deleted. Error details shown in the status message.
+   * Other incorrect delete commands to try: `deleteo`, `deleteo x`, `...` (where x is larger than the current 
+   list size) <br>
+   Expected: Similar to previous.
+
+### Editing an order
+
+1. Editing an order while all orders are being shown
+   * Prerequisites: List all orders using the `listo` command. Multiple orders in the orders list.
+   * Test case with sample data: `edito 4 p/91234567` (Note: the order at the index must not be 
+   labelled as paid / delivered / completed) <br>
+     Expected: Phone number of the fourth order in the list is updated to `91234567`. Updated details of the edited 
+   order shown in the status message.
+   * Test case: `edito 0` <br>
+     Expected: No order is edited. Error details shown in the status message.
+   * Other incorrect edit commands to try: `edito`, `edito x`, `...` (where x is the index of a completed order) <br>
+     Expected: Similar to previous.
+
+### Marking an order
+
+1. Marking an order while all orders are being shown
+   * Prerequisites: List all orders using the `listo` command. Multiple orders in the orders list.
+   * Test case with sample data: `marko 3 -p` (Note: the order at the index must not already be paid) <br>
+     Expected: First order in the list is marked as paid. Details of the marked order shown in the status message.
+   * Test case: `marko 0 -p` <br>
+     Expected: No order is marked. Error details shown in the status message.
+   * Other incorrect mark commands to try: `marko`, `marko x`, `...` (where x is less than the size of the list) <br>
+     Expected: Similar to previous.
+   <br><br>
+2. Marking an order while only some orders are being shown
+   * Prerequisites: Find orders using the `findo` keyword. For example, with the sample data loaded in TrackO, the
+     command `findo i/mattress` can be used. A number of orders (less than total orders) in the orders list.
+   * Test case: `marko 1 -d` <br>
+     Expected: First order in the current list is marked as delivered. Details of the marked order shown in the
+     status message.
+   * Test case: `marko 0 -d` <br>
+     Expected: No order is marked. Error details shown in the status message.
+   * Other incorrect mark commands to try: `marko`, `marko x -p`, `...` (where x is the index of an order already paid)
+   <br>
+     Expected: Similar to previous.
 
 ### Saving data
 

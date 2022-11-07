@@ -1,6 +1,7 @@
 package tracko.logic.parser;
 
 import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static tracko.logic.commands.item.FindItemCommand.MESSAGE_USAGE;
 import static tracko.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.Arrays;
@@ -17,7 +18,7 @@ public class FindItemCommandParserTest {
     @Test
     public void parse_emptyArg_throwsParseException() {
         CommandParserTestUtil.assertParseFailure(parser, "     ",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindItemCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
     }
 
     @Test
