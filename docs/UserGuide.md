@@ -47,8 +47,8 @@ This guide uses icons and formatting to differentiate between the different type
 
 This document is to assist you in using MODPRO smoothly and effectively to track your tasks and progress.
 
-* For first-time users, you can proceed to [Quick Start](#quick-start) for a guide on how to set up MODPRO and a short tutorial on the basic commands. Once you are familiar with the interface, you can start exploring our extensive list of features [here](#features)
-* For the experienced users, you can learn more about these unique features that can help you manage your tasks better: [adding tags to your tasks](#adding-a-tag-to-a-task), [sorting your list](#sorting-the-task-list), [filtering your list](#filtering-the-task-list), [linking an exam to a task](#linking-an-exam)
+* For **first-time users**, you can proceed to [Quick Start](#quick-start) for a guide on how to set up MODPRO and a short tutorial on the basic commands. Once you are familiar with the interface, you can start exploring our extensive list of features [here](#features)
+* For the **experienced users**, you can learn more about these unique features that can help you manage your tasks better: [adding tags to your tasks](#adding-a-tag-to-a-task), [sorting your list](#sorting-the-task-list), [filtering your list](#filtering-the-task-list), [linking an exam to a task](#linking-an-exam)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Table of Contents
@@ -108,10 +108,10 @@ This document is to assist you in using MODPRO smoothly and effectively to track
 5. Type the command in the command box and press Enter to execute it. <br>
    e.g. typing help and pressing Enter will open the help window. <br>
    Here are some commands you can try:
-   * m add c/CS2100 m/Computer Organisation mc/4 : Adds the module called Computer Organisation with the module code CS2100 into the module list.
-   * m delete 1 : Deletes the 1st module shown in the displayed module list.
-   * m list : Lists all modules stored in the module list.
-   * exit : Exits the app.
+   * `m add c/CS2100 m/Computer Organisation mc/4` : Adds the module called Computer Organisation with the module code CS2100 into the module list
+   * `m delete 1` : Deletes the first module shown in the displayed module list
+   * `m list` : Lists all modules stored in the module list
+   * `exit` : Exits the app
 
 
 6. Refer to the [Features](#features) below for details of each command.
@@ -280,54 +280,85 @@ Examples:
 Edits the specified task, by updating the existing values to the input values.
 
 Format: `t edit INDEX [m/MODULE]* [d/DESCRIPTION]*`
-* Edits the task at the specified `INDEX` in the task list. 
-* At least one of the optional fields must be provided.
-* The input values should not be the same as existing values.
-* If `INDEX` is non-positive or more than the number of tasks in the list, an error message will be displayed.
+
+Parameters:
+* `INDEX` refers to the index number (shown in the displayed task list) of the task to be edited.
+* `MODULE` refers to the module code of the module that will replace the existing module of the task specified.
+* `DESCRIPTION` refers to the description that will replace the existing description of the task specified.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** MODULE is case-insensitive.
+</div>  
+
+Restrictions:
+* `INDEX`
+  * `INDEX` should be an integer greater than 0 and less than 2147483648
+  * `INDEX` should not be greater than the number of tasks in the displayed task list.
+* `MODULE`
+  * `MODULE` should be at least 6 characters long. 
+  * The first two characters of `MODULE` should be alphabetical and the remaining characters should be alphanumeric.
+  * `MODULE` should be the module code of an existing module in the stored module list. 
+* `DESCRIPTION` should not be empty.
+* The input values should not be the same as existing values. 
+* The edited task should not be the same as any existing task in the stored task list.
+
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Warning:** If a task is linked to an exam, and its module is changed, the task will be unlinked from the exam.
+</div>
 
 Examples:
 
-`t edit 1 d/Assignment 2` changes the description of the first task in the task list to 'Assignment 2'.
+`t edit 1 d/Assignment 2` changes the description of the first task in the displayed task list to 'Assignment 2'.
 
-`t edit 2 m/CS2040 d/tutorial 2` changes the module and description of the second task in the task list to 'CS2040' and 'tutorial 2' respectively.
-<div markdown="span" class="alert alert-info">
+`t edit 2 m/CS2040 d/tutorial 2` changes the module and description of the second task in the displayed task list to 'CS2040' and 'tutorial 2' respectively.
 
-:information_source: **Note:** If a task is linked to an exam, and its module is changed, the task will be unlinked from the exam.
-</div>
 
 ### Marking a task
-Indicates the specified task is completed
+Indicates the specified task is completed.
 
 Format: `t mark INDEX`
-* Indicates the task at the specified `INDEX` in the task list is completed. 
-* The `INDEX` refers to the index number shown in the task list. 
-* The `INDEX` must be a positive integer 1, 2, 3, …​
-* If the `INDEX` is non-positive or more than the number of tasks in the list, an error message will be displayed.
 
+Parameter:
+`INDEX` refers to the index number (shown in the displayed task list) of the task to be marked.
+
+Restrictions:
+* `INDEX`
+  * `INDEX` should be an integer greater than 0 and less than 2147483648
+  * `INDEX` should not be greater than the number of tasks in the displayed task list.
+* The task specified should not be already marked.
+  
 Examples:
 
-`t mark 1` indicates the first task in the task list is completed.
+`t mark 1` indicates the first task in the displayed task list is completed.
 
-`t mark 3` indicates the third task in the task list is completed.
+`t mark 3` indicates the third task in the displayed task list is completed.
 
-### Unmarking a task
-Indicates the specified task is not completed
-
-Format: `t unmark INDEX`
-* Indicates the task at the specified `INDEX` in the task list is not completed. 
-* The `INDEX` refers to the index number shown in the task list. 
-* The `INDEX` must be a positive integer 1, 2, 3, …​
-* If the index is non-positive or more than the number of tasks in the list, an error message will be displayed.
-
-Examples:
-
-`t unmark 1` indicates the first task in the task list is not completed.
-
-`t unmark 3` indicates the third task in the task list is not completed.
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** You can sort and filter tasks based on their completion status. The percentage of completed tasks are also shown for each exam and module. 
+:bulb: **Tip:** You can sort and filter tasks based on their completion status. The percentage of completed tasks are also shown for each exam and module.
 </div>
+
+
+### Unmarking a task
+Indicates the specified task is not completed.
+  
+Format: `t unmark INDEX`
+  
+Parameter:
+* `INDEX` refers to the index number (shown in the displayed task list) of the task to be unmarked.
+
+Restrictions:
+* `INDEX` 
+  * `INDEX` should be an integer greater than 0 and less than 2147483648
+  * `INDEX` should not be greater than the number of tasks in the displayed task list.
+* The task specified should not be already unmarked.
+    
+Examples:
+
+`t unmark 1` indicates the first task in the displayed task list is not completed.
+
+`t unmark 3` indicates the third task in the displayed task list is not completed.
+
 
 ### Listing Tasks
 Lists tasks stored in task list
