@@ -19,8 +19,9 @@ Given below are my contributions to the project.
 
 * **New Features**:
   * Added `Request` field
-  * Allows the user to record requests of guests in a single command.
-  * Allows the user to set the request to default value if there are no request.
+    * Allows the user to record requests of guests in a single command.
+    * Allows the user to set the request to default value if there are no request.
+    * Added test cases for Request.
 
 * **Enhancements to existing features**:
   * Refactored some part belong to AddressBook 3 to fit the GuestBook specificity.
@@ -37,25 +38,20 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
+    * Optimized quick start guide
     * Handled bold and boxing after bill in UG
     * Updated UG command summary to allow quick start
   * Developer Guide:
     * Refactored Logic appendix part(Content and PUML graph)
+    * Added User Stories section
+    * Added Manual Testing Guide section: Test cases and expected results
     * Added proposed implementation in Developer Guide
 
 * **Contributions to team-based tasks**:
   * Facilitated and tidied up contents of postmortem v1.2
   * Facilitated and tidied up contents of postmortem v1.3
+  * Facilitated and tidied up contents of postmortem v1.4
 
 * **Review/mentoring contributions**:
   * Team members' PR reviews (with non-trivial review comments): pull request #201, #200, #197, #194, #190, #118, #114, #111, #104, #95, #80, #78, #74, #73, #67, #48
   * Reported bugs for other teams ([ped](https://github.com/Lan-Jingbo/ped/issues)).
-
-* **Contributions beyond the project team**:
-  * to be added soon
-
-* **Community**:
-  * to be added soon
-
-* **Tools**:
-  * to be added soon
