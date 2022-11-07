@@ -786,7 +786,7 @@ Use case ends.
 
 **Extensions**
 * 2a. The property does not exist.
-    * 1a1. Cobb shows an error message.
+    * 2a1. Cobb shows an error message.
     * Use case ends.
 * 3a. The new details cause the property to be a duplicate of another property.
     * 3a1. Cobb shows an error message.
