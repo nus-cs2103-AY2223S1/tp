@@ -27,6 +27,8 @@ UniNurse offers the following features:
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Using this guide**
 
 This guide walks you through all the features of UniNurse, as well as tips, so you can reap all the benefits of
@@ -46,6 +48,8 @@ Here are some symbols used throughout this user guide:
 | :exclamation:        | Warning                                  |
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Table of Contents**
 
@@ -104,6 +108,8 @@ Here are some symbols used throughout this user guide:
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Quick start**
 
 1. Ensure you have [Java 11](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) or above
@@ -130,6 +136,7 @@ The app comes with some sample patients by default. Type `clear` in the command 
 {: refdef}
 <div align="center"><i> UniNurse user interface </i></div>
 
+<div style="page-break-after: always;"></div>
 <br>
 
 5. Type your command in the command box and hit `Enter` to execute the command. Here are some example commands
@@ -147,6 +154,8 @@ The app comes with some sample patients by default. Type `clear` in the command 
 [Back to Table of Contents ↑](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Glossary**
 
@@ -166,6 +175,8 @@ The app comes with some sample patients by default. Type `clear` in the command 
 [Back to Table of Contents ↑](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Command format**
 
@@ -215,6 +226,8 @@ The app comes with some sample patients by default. Type `clear` in the command 
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Patient parameter constraints**
 
 A patient's attributes can be categorized into two: *single-valued attributes* and *multi-valued attributes*. A patient's single-valued attributes consist of their name, phone, email, and address, and their multi-valued attributes consist of their tags, tasks, conditions, medications, and remarks.
@@ -239,6 +252,8 @@ Example: `n/John Doe`
 
 Example: `p/91234567`
 
+<div style="page-break-after: always;"></div>
+
 #### `e/EMAIL`
 
 `EMAIL` should be in the form of `local-part@domain`, where:
@@ -260,6 +275,10 @@ Example: `johndoe@gmail.com`
 
 Example:`a/John street, block 123, #01-01`
 
+<br>
+
+[Back to Table of Contents ↑](#table-of-contents)
+
 ### Multi-valued attributes
 
 #### `t/TAG`
@@ -269,6 +288,8 @@ Example:`a/John street, block 123, #01-01`
 `TAG` is specified by the prefix `t/`, and its index by the flag `-t`.
 
 Example:`t/12-A nursing home`
+
+<div style="page-break-after: always;"></div>
 
 #### `d/TASK_DESCRIPTION | DATE TIME | INTERVAL TIME_PERIOD`
 
@@ -308,6 +329,12 @@ Example:`m/Amoxicillin | 0.5g every 8 hours`
 
 Example:`r/Allergic to peanuts`
 
+<br>
+
+[Back to Table of Contents ↑](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
+
 ### Patient parameter summary
 
 | Parameter    | Type                    | Flag | Prefix |
@@ -337,6 +364,8 @@ Example:`r/Allergic to peanuts`
 [Back to Table of Contents ↑](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Features**
 
@@ -370,6 +399,8 @@ Format: **`help`**
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Adding a patient: `add`
 
 You can add a patient to the patient list with the `add` command.
@@ -380,7 +411,7 @@ Format: **`add`** `n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]… [d/TASK_DESCRIPTI
 
 :bulb: **Tip:**
 
-You can view the constraints for each parameter in the [Parameter constraints](#patient-parameter-constraints) section.
+You can view the constraints for each parameter in the [Patient parameter constraints](#patient-parameter-constraints) section.
 
 </div>
 
@@ -421,6 +452,8 @@ Examples:
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Editing a patient’s contact details: `edit` `-p`
 
@@ -463,6 +496,8 @@ Example:
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a patient: `delete` `-p`
 
 You can delete a patient from the patient list with the `delete` command.
@@ -481,11 +516,11 @@ You can use the `undo` command to undo an accidental `delete` command.
 
 </div>
 
-<br>
-
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a tag: `add` `-p`
 
@@ -516,7 +551,10 @@ You can add multiple tags at once when you first [add a patient](#adding-a-patie
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 <a name="edit-multi-valued-attributes"></a>
+
 <div markdown="block" class="alert alert-success">
 
 :bulb: **Tip:**
@@ -553,6 +591,8 @@ Example:
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Editing a tag: `edit` `-p` `-t`
 
 You can edit a tag of a patient with the `edit` command.
@@ -584,6 +624,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a tag: `delete` `-p` `-t`
 
 You can delete a tag of a patient with the `delete` command.
@@ -606,6 +648,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Adding a task: `add` `-p`
 
 You can add a task or recurring task to a patient with the `add` command.
@@ -616,7 +660,7 @@ Format: **`add`** `-p PATIENT_INDEX d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL
 
 :information_source: **Notes:**
 
-* `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in [Task parameters](#patient-parameter-constraints).
+* `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in [Task parameters](#dtask_description--date-time--interval-time_period).
 * If `DATE TIME` is omitted, the task will be created with a date and time 24 hours from the moment of creation.
 * If `DATE` is specified but `TIME` is omitted, the task will be created with a default time of `0000` hours.
 * If `INTERVAL TIME_PERIOD` is omitted, then the task created will be a non-recurring task, i.e. a one-off task.
@@ -637,6 +681,8 @@ Format: **`add`** `-p PATIENT_INDEX d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL
 If you enter a `TIME` of `2400`, then the date and time will be set to `0000` hours of the next day.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 Examples:
 * `list` followed by `add -p 1 d/Administer 3ml of example medicine` adds a task to the 1st patient in the patient list.
@@ -662,6 +708,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Editing a task: `edit` `-p` `-d`
 
@@ -708,6 +756,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a task: `delete` `-p` `-d`
 
 You can delete a task of a patient with the `delete` command.
@@ -729,6 +779,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a medical condition: `add` `-p`
 
@@ -770,6 +822,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Editing a medical condition: `edit` `-p` `-c`
 
 You can edit a medical condition of a patient with the `edit` command.
@@ -801,6 +855,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a medical condition: `delete` `-p` `-c`
 
 You can delete a medical condition of a patient with the `delete` command.
@@ -822,6 +878,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a medication: `add` `-p`
 
@@ -864,6 +922,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Editing a medication: `edit` `-p` `-m`
 
 You can edit a medication of a patient with the `edit` command.
@@ -898,6 +958,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a medication: `delete` `-p` `-m`
 
 You can delete a medication of a patient with the `delete` command.
@@ -919,6 +981,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a remark: `add` `-p`
 
@@ -959,6 +1023,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Editing a remark: `edit` `-p` `-r`
 
 You can edit a remark of a patient with the `edit` command.
@@ -988,6 +1054,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting a remark: `delete` `-p` `-r`
 
@@ -1023,6 +1091,8 @@ Format: `list`
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Viewing all details of a patient: `focus` `-p`
 
 You can view all details of a specified patient using the `focus` command.
@@ -1043,6 +1113,8 @@ Examples:
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Finding patients: `find`
 
@@ -1073,6 +1145,8 @@ Examples:
 * `find jo` displays patients with names `Joe` and `John`, patients with emails `jo@example.com`, and patients with tag `joints`.
 * `find n/alice n/meier` displays patients `Alice Tan` and `Benson Meier`.
 
+<div style="page-break-after: always;"></div>
+
 {:refdef: style="text-align: center;"}
 ![result for 'find alice meier'](images/findAliceMeierResult.png)
 {: refdef}
@@ -1083,6 +1157,8 @@ Examples:
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Viewing all tasks for a particular day: `view`
 
@@ -1134,6 +1210,8 @@ If today's date is 2022-11-04, `view --today` will display those 2 tasks.
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-success">
 
 :bulb: **Tip:**
@@ -1145,6 +1223,8 @@ This command replaces `DATE` in the [previous command](#viewing-all-tasks-for-a-
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Viewing all tasks of a patient: `view` `-p`
 
@@ -1166,6 +1246,8 @@ Examples:
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Viewing all tasks of all patients: `view` `-p` `--all`
 
@@ -1259,8 +1341,6 @@ You can use the `undo` command to undo an accidental `clear` command.
 
 </div>
 
-<br>
-
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
@@ -1314,6 +1394,8 @@ the data of your previous UniNurse home folder.
 [Back to Table of Contents ↑](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Command summary**
 
