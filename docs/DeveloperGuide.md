@@ -1094,10 +1094,10 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
     1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the result display is updated.
 
     1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+       Expected: No person is deleted. Error details shown in the status message. Result display remains the same.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
@@ -1116,49 +1116,49 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a note with title that is yet to exist
    1. Test case: `addNote title/event content/november 3rd 4pm`
-      Expected: Note with title `event` and content `november 3rd 4pm` added into notes list. Status bar displays message stating new note is added. Notes display panel shows new note.
+      Expected: Note with title `event` and content `november 3rd 4pm` added into notes list. Result display shows message stating new note is added. Notes display panel shows new note.
       
-   2. Test case: `addNote title/event content/november 3rd 4pm tag/progs` Status bar displays message stating new note is added. Notes display panel shows new note.
+   2. Test case: `addNote title/event content/november 3rd 4pm tag/progs` Result display shows message stating new note is added. Notes display panel shows new note.
    
    3. Test case: incorrect `addNote` commands (e.g. `addNote`, `addNote title/event`, `addNote content/groceries`)
-      Expected: No new note is added to notes list. Status bar displays error message stating incorrect command format.
+      Expected: No new note is added to notes list. Result display shows error message stating incorrect command format.
    
 2. Adding a note with a duplicate title
    1. Test case: `addNote title/event content/november 3rd 4pm`
-      Expected: No new note is added to notes list. Status bar displays message stating that note already exists in the notes list. No change to the notes display panel.
+      Expected: No new note is added to notes list. Result display shows message stating that note already exists in the notes list. No change to the notes display panel.
       
 ### Editing a note
 
 1. Editing a note
     1. Test case: `editNote 1 content/meeting at mpsh`, assuming there exists at least 1 note in the current notes list.
-       Expected: Note at index 1 in the current notes list have its content changed to `meeting at mpsh`. Status bar displays message stating note was edited.
+       Expected: Note at index 1 in the current notes list have its content changed to `meeting at mpsh`. Result display shows message stating note was edited.
        
     2. Test case: `editNote progs content/meeting at mpsh`, assuming there exists a note with title `progs`.
-       Expected: Note with title `progs` in the current notes list have its content changed to `meeting at mpsh`. Status bar displays message stating note was edited.
+       Expected: Note with title `progs` in the current notes list have its content changed to `meeting at mpsh`. Result display shows message stating note was edited.
    
     3. Test case: `editNote 5 content/meeting at mpsh`, assuming there are less than 5 notes in the current notes list.
-       Expected: No note was edited. Status bar displays error message stating index provided to be invalid.
+       Expected: No note was edited. Result display shows error message stating index provided to be invalid.
        
     4. Test case: `editNote content/meeting at mpsh`
        Expected: No note was edited. Status bar display error message stating at least one field to be edited has to be provided.
        
     5. Test case: incorrect `editNote` commands (e.g. `editNote`, `editNote content/abc`)
-       Expected: No note was edited. Status bar displays error message stating invalid command format.
+       Expected: No note was edited. Result display shows error message stating invalid command format.
 
 ### Deleting a note
 
 1. Deleting a note
    1. Test case: `deleteNote 1`, assuming there exists at least 1 note in the current notes list.
-      Expected: Note at index 1 is removed from the current notes list. Status bar displays message stating note was deleted.
+      Expected: Note at index 1 is removed from the current notes list. Result display shows message stating note was deleted.
    
    2. Test case: `deleteNote`
-      Expected: No note was deleted. Status bar displays error message stating invalid command format.
+      Expected: No note was deleted. Result display shows error message stating invalid command format.
 
 ### Finding a note
 
 1. Finding a note
    1. Test case: `findNote progs`
-      Expected: Notes with title containing the keyword `progs` are shown on the notes display panel. Status bar displays message stating number of notes listed.
+      Expected: Notes with title containing the keyword `progs` are shown on the notes display panel. Result display shows message stating number of notes listed.
                 If there are no notes with `progs` in the title, notes display panel will be empty.
    
    2. Test case: `findNote`
@@ -1168,16 +1168,16 @@ testers are expected to do more *exploratory* testing.
 
 1. List notes
    1. Test case: `listNote`
-      Expected: Notes display panel is populated with all existing notes. Status bar displays message stating listed all notes.
+      Expected: Notes display panel is populated with all existing notes. Result display shows message stating listed all notes.
 
 ### Hide notes
 
 1. Hide notes
    1. Test case: `hideNotes`, assuming notes display panel is on shown on the GUI.
-      Expected: Notes display panel is hidden from the GUI. Persons list and Inspect section is extended horizontally to fill the GUI. Status bar displays message stating notes panel hidden.
+      Expected: Notes display panel is hidden from the GUI. Persons list and Inspect section is extended horizontally to fill the GUI. Result display shows message stating notes panel hidden.
    
-   2. Test case: `hideNotes`, assuming notes display panel is already hidden. Status bar displays message stating notes panel hidden.
-      Expected: No change to the GUI. Status bar displays message stating notes panel hidden.
+   2. Test case: `hideNotes`, assuming notes display panel is already hidden. Result display shows message stating notes panel hidden.
+      Expected: No change to the GUI. Result display shows message stating notes panel hidden.
    
    3. Other `hideNotes` commands with additional arguments (e.g. `hideNotes 1`, `hideNotes abc`)
          Expected: Additional arguments are ignored, behaviour is same as `hideNotes`.
@@ -1186,10 +1186,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Show notes
    1. Test case: `showNotes`, assuming notes display panel is hidden from GUI.
-      Expected: Notes display panel appears on the right side of the GUI. Persons list and Inspect section becomes horizontally narrower. Status bar displays message stating notes panel shown.
+      Expected: Notes display panel appears on the right side of the GUI. Persons list and Inspect section becomes horizontally narrower. Result display shows message stating notes panel shown.
    
    2. Test case: `showNotes`, assuming notes display panel is already shown on the GUI.
-      Expected: No change to the GUI. Status bar displays message stating notes panel shown.
+      Expected: No change to the GUI. Result display shows message stating notes panel shown.
 
    3. Other `showNotes` commands with additional arguments (e.g. `showNotes 1`, `showNotes abc`)
       Expected: Additional arguments are ignored, behaviour is same as `showNotes`.
@@ -1198,7 +1198,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Find using tag
    1. Test case: `findTag cs2103`
-      Expected: Persons list display persons tagged with `cs2103`. Notes display panel displays notes tagged with `cs2103`. Status bar displays message stating number of people listed in the persons list.
+      Expected: Persons list display persons tagged with `cs2103`. Notes display panel displays notes tagged with `cs2103`. Result display shows message stating number of people listed in the persons list.
                 If there is no person tagged with `cs2103`, the persons list will be empty.
                 If there is no note tagged with `cs2103`, the notes display panel will be empty.
 
