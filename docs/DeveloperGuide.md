@@ -535,8 +535,6 @@ how internship campus recruiters work with their applicants’ data.
 Say goodbye to opening multiple windows to retrieve the information you need and
 focus on what matters more: matching the right people for the right job.
 
-<div style="page-break-after: always;"></div>
-
 ### 6.2 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -865,7 +863,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Main Success Scenario (MSS)**: Describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong
 
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 
 ## 7. Appendix B: Instructions for manual testing
 
