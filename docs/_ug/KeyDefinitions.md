@@ -44,7 +44,14 @@ Flags are [[ delimiter:delimiters ]] that enable FoodRem to distinguish differen
 
 You would put in the corresponding [Placeholder](#placeholders) immediately after each flag.
 
-Please refer to the [Command Format](#command-format) to see how Flags and Placeholders are used together.
+```tip
+You may find the following image taken from the subsequent [Command Format](#command-format) section helpful:
+
+![CommandExample](images/CommandExample.png)
+
+```
+
+Please refer to the subsequent [Command Format](#command-format) section to see how Flags and Placeholders are used together.
 
 | Flag | Corresponding Placeholder |
 |------|---------------------------|
@@ -60,7 +67,7 @@ Please refer to the [Command Format](#command-format) to see how Flags and Place
 
 Placeholders show you what type of parameters you can supply to a command. These follow immediately after a [Flag](#flags).
 
-Please refer to the [Command Format](#command-format) to see how Flags and Placeholders are used together.
+Please refer to the subsequent [Command Format](#command-format) section to see how Flags and Placeholders are used together.
 
 ```note
 The placeholders `INDEX`, `COMMAND_WORD`, and `KEYWORD` do not have any corresponding flags. They are marked as "Not Applicable" in the table below.
