@@ -1,9 +1,6 @@
 ---
-layout: page 
-title: Marcus Lee's Project Portfolio Page
+layout: page title: Marcus Lee's Project Portfolio Page
 ---
-### Project: OmniHealth
-
 OmniHealth is a **Patient Management System** tailored to private clinicians to manage patients' details, records and
 upcoming appointments. As a private clinician, you can manage and monitor your patient database all in one location.
 OmniHealth allows you to manage and search for your patient's details and records with ease with its management system,
@@ -30,12 +27,11 @@ Given below are my contributions to the project.
     * Justification: Since the target users are doctors, this is a key feature that allows users to plan out their
       schedule of when next to see a patient. Due to the nature of different illnesses and medication requirements, the
       ability to forward plan appointments for the user's patients would greatly benefit their workflow.
-    * Highlights: This feature entailed adding code to most of the areas of OmniHealth, including its model, UI and test
-      cases, as well as requiring changes to existing commands.
-
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=marclzh&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=marclzh&tabRepo=AY2223S1-CS2103T-T14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 <div style="page-break-after: always;"></div>
+
+* **Code
+  contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=marclzh&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=marclzh&tabRepo=AY2223S1-CS2103T-T14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
     * Created team's organisation and repository.
@@ -51,6 +47,8 @@ Given below are my contributions to the project.
     * Wrote test cases for `Record` and `Appointment` classes. (Pull
       Requests [\#58](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/58)
       , [\#91](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/91)
+    * Added Logging for `Appointment`, `AddAppointmentCommand`, `ClearAppointmentCommand`, `ClearRecordCommand`
+      , `Record` and `RecordList` classes. [\#176](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/176)
 
 * **Documentation**:
     * User Guide:
@@ -61,9 +59,8 @@ Given below are my contributions to the project.
           , [\#98](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/98))
         * Added details on date validation for features that include
           dates. [\#149](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/149)
-        * Improved continuity of UG, allowing for better
-          flow. [\#149](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/149)
-        * Amended various issues found by other students. [\#149](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/149)
+        * Improved continuity of UG, allowing for better flow and amended various issues raised by other
+          students. [\#149](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/149)
     * Developer Guide:
         * Added implementation details of the `Clear Record`
           feature. [\#89](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/89)

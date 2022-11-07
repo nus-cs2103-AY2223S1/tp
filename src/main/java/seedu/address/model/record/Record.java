@@ -12,6 +12,10 @@ import java.time.format.ResolverStyle;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Logger;
+
+import seedu.address.MainApp;
+import seedu.address.commons.core.LogsCenter;
 
 /**
  * Represents a single record in the record list of a Person object.
@@ -22,6 +26,9 @@ public class Record implements Comparable<Record> {
     public static final String MESSAGE_INVALID_DATE_FORMAT = "Record dates have to be of format dd-MM-yyyy HHmm!"
             + "Please also ensure this is a valid date!";
     public static final String MESSAGE_FUTURE_DATE = "Record dates must not be later than the current date!";
+
+    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+
     /* Data Fields */
     public final String record;
     private final LocalDateTime recordDate;
@@ -39,6 +46,7 @@ public class Record implements Comparable<Record> {
         this.recordDate = recordDate;
         this.record = record;
         this.medications = meds;
+        logger.info("Record created with record date: " + this.recordDate + " with record " + this.record);
     }
 
     /**
@@ -66,6 +74,7 @@ public class Record implements Comparable<Record> {
         try {
             LocalDateTime.parse(testDate, DATE_FORMAT);
         } catch (DateTimeParseException e) {
+            logger.warning("Record date is invalid");
             return false;
         }
         return true;

@@ -4,7 +4,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.MainApp;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -30,6 +33,8 @@ public class AddAppointmentCommand extends Command {
     public static final String DATE_MISSING = "No date & time given! "
             + "Appointments must have date & time, formatted in d/dd-MM-yyyy HHmm.";
 
+    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+
     private final Index index;
     private final String appointmentDate;
 
@@ -42,8 +47,14 @@ public class AddAppointmentCommand extends Command {
     public AddAppointmentCommand(Index index, String appointmentDate) {
         requireAllNonNull(index, appointmentDate);
 
+        assert index != null;
+        assert appointmentDate != null;
+
         this.index = index;
         this.appointmentDate = appointmentDate;
+
+        logger.info("Appointment created for index: " + this.index.getOneBased()
+                + " & Appointment Date: " + this.appointmentDate);
     }
 
     @Override
@@ -51,8 +62,11 @@ public class AddAppointmentCommand extends Command {
         List<Person> lastShownList = CommandUtil.prepareFilteredList(model, index);
 
         if (!Appointment.isFutureDate(appointmentDate)) {
+            logger.warning("Appointment Date is in the future.");
             throw new CommandException(Appointment.MESSAGE_DATE_PAST);
         }
+
+        assert Appointment.isFutureDate(appointmentDate);
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getBirthdate(),
@@ -62,6 +76,9 @@ public class AddAppointmentCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+
+        logger.info("Appointment has been added successfully.");
+
         return new CommandResult(String.format(MESSAGE_SUCCESS,
                 personToEdit.getName().toString()) + ": " + appointmentDate);
     }
