@@ -19,7 +19,7 @@ If you can type fast, ModQuik can get your lesson management tasks done faster t
 
 ## 2. Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. For more instructions, click [here](installing-java-11).
 
 1. Download the latest `modquik.jar` [here](https://github.com/AY2223S1-CS2103T-W17-3/tp/releases).
 
@@ -73,7 +73,7 @@ This guide aims to
 
 **Highlights** <br>
 Highlighted text refers to commands, parameters, fields values or any user inputs.
-e.g. [`commands`](#glossary) [`PARAMETERS`](#glossary)
+e.g. [`commands`](glossary) [`PARAMETERS`](glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -678,6 +678,7 @@ _Details coming soon..._
 
 ## 7. Appendix
 
+<a name="glossary"></a>
 ### 7.1 Glossary
 
 | Term                               | Description                                                                                                                                                                                    |
@@ -691,8 +692,19 @@ _Details coming soon..._
 
 ### 7.2 Notes
 
+<a name="installing-java-11"></a>
+#### 7.2.1 Instructions on installing Java 11
+1. Check that you have Java 11 installed by running `java --version` in your terminal. The output should similar to this:
+```
+openjdk 11.0.12 2021-07-20 LTS
+OpenJDK Runtime Environment Zulu11.50+19-CA (build 11.0.12+7-LTS)
+OpenJDK 64-Bit Server VM Zulu11.50+19-CA (build 11.0.12+7-LTS, mixed mode)
+```
+1. If Java 11 is not installed, visit [this site](https://www.oracle.com/java/technologies/downloads/#java11) to download.
+1. Repeat step 1 to ensure Java 11 has been installed correctly.
+
 <a name="notes-autocorrect-dates"></a>
-#### 7.2.1 Note on autocorrecting invalid dates
+#### 7.2.2 Note on autocorrecting invalid dates
 
 ModQuik will assume some invalid dates to be correct and autocorrect the date to the last valid day of that month. See the below examples for a better explanation.
 
@@ -779,3 +791,5 @@ Examples:
 [`clear`]: #clear
 [`help`]: #help
 [`exit`]: #exit
+
+[glossary]: #glossary
