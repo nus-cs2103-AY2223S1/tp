@@ -289,7 +289,7 @@ Adds an item to the wishlist without a scheduled day and time.
 Format: `add d/DESCRIPTION du/DURATION [p/PRIORITY] [c/COST] `
 
 * `DESCRIPTION` cannot be blank and must only contain alphanumeric characters, spaces and these following special characters: `()&!':.,-`.
-* `DURATION` is the time taken for the item in _minutes_. The duration must be more than 0 minutes and shorter than 1440 minutes (1 day).
+* `DURATION` is the time taken for the item in _minutes_. The duration must be more than 0 minutes and not more than 1440 minutes (1 day).
     - e.g. `du/100` is 100 minutes (or 1 hour and 40 minutes).
 
 * `PRIORITY` is used to rank the importance of an item. It must be a number from 1 to 5, with 1 being the highest priority.
@@ -306,7 +306,7 @@ Format: `add d/DESCRIPTION du/DURATION [p/PRIORITY] [c/COST] `
   * The default `PRIORITY` is 1.<br>
   * The default `COST` is $0.<br>
 * The cost input should only contain numbers and one decimal point.<br>
-  - Example of invalid input: `c/1,000,000`
+  - Examples of invalid input: `c/1,000,000`
 * If more than 2 decimal places are provided for the cost, Waddle rounds it up to 2 decimal places.<br>
   - e.g. `b/1000.505` will be reflected as $1,000.51.
 
@@ -323,6 +323,7 @@ Edits an existing item in the item list.
 Format: `edit INDEX [d/DESCRIPTION] [p/PRIORITY] [c/COST] [du/DURATION]`
 
 * Edits the item at the specified `INDEX`. The index refers to the index number displayed in either the wishlist, or the scheduled items in the day lists.
+* The index of a scheduled item refers to the index number displayed in the list of days, the format being `DAY_NUMBER`.`ITEM_INDEX`.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -390,8 +391,7 @@ Takes an item from the itinerary and puts it back into the Wishlist.
 
 Format: `unplan INDEX`
 
-* Unschedules the item at the specified `INDEX`. 
-* The index refers to the index number displayed in the list of scheduled items in the list of days, the format being `[DAY NUMBER]`.`[ITEM INDEX]`.
+* Unschedules the item at the specified `INDEX` as displayed on the day lists.
 * When an item is unscheduled, its cost is automatically added back to the budget of the itinerary.
 
 Examples:
