@@ -851,7 +851,48 @@ testers are expected to do more *exploratory* testing.
 
 ### Find
 
-1. The expected behaviour of the `find` command is documented in detail in the UG, please refer to it for example test cases to try.
+1. Finding people using single person-related input
+
+   1. Prerequisites: One or more persons has a name containing `david`.
+
+   1. Test cases: `find n/david`, `find n/davi`, `find n/DaVid`<br>
+      Expected: All person(s) who have a name containing `david` (ignoring whitespace and capitalisation) are listed.
+
+   1. Test cases: `find david`<br>
+      Expected: PayMeLah warns that the command format is incorrect.
+
+1. Finding people using single debt-related input
+
+   1. Prerequisites: One or more persons has a debt whose description is exactly `burger`.
+
+   1. Test cases: `find d/burger`<br>
+      Expected: All person(s) who have a debt with exact description `burger` are listed.
+
+   1. Test cases: `find d/Burger`, `find d/burgers`<br>
+      Expected: No one is listed, unless they have a debt with exact description `Burger`, `burgers`, etc. (case-sensitive exact matching)
+   
+1. Finding people using multiple inputs
+
+   1. Prerequisites: One or more people with the exact tag `friends` has a debt whose description is exactly `burger`.
+
+   1. Test cases: `find t/friends d/burger`, `find d/burger t/friends`<br>
+      Expected: All person(s) with the exact tag `friends`  and a debt with exact description `burger` are listed.
+
+1. Finding people using a threshold input
+
+   1. Prerequisites: One or more people have a debt with monetary amount above or equal to `$10.00`, one or more people have only debts with monetary amount below `$9.99`.
+
+   2. Test cases: `find above/10`, `find above/$10.00`
+      Expected: All person(s) with a debt with a monetary amount above to or equal to 10 dollars are listed, those who do not have such a debt are not.
+
+1. Finding people with multiple threshold inputs
+
+   1. Prerequisites: One or more people have debts only before `2022-10-31`, one or more people have debts only after `2022-12-01`, one or more people have a debt within `2022-11-01` to `2022-11-30`.
+
+   1. Test cases: `find after/2022-11-01 before/2022-11-30`
+      Expected: All persons(s) with a debt within the month of November 2022 are listed, but those people with no debt in this month are not.
+
+The expected behaviour of the `find` command is documented in detail in the UG, please refer to it for more example test cases to try.
 
 ### Find debts
 
