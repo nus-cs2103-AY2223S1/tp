@@ -546,7 +546,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is `Tuthub` and the **Actor** is the `NUS Computing Professor`, unless specified otherwise)
+(For all use cases below, the **System** is `Tuthub` and the **Actor** is the `NUS Professor`, unless specified otherwise)
 
 **Use case: UC1 - Listing all tutor profiles**
 
