@@ -1,0 +1,80 @@
+@startuml
+!include style.puml
+
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":RealTimeParser" as RealTimeParser LOGIC_COLOR
+participant ":AddClientCommandParser" as AddClientCommandParser LOGIC_COLOR
+participant "o: AddClientCommand" as AddClientCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+-> LogicManager : execute(userInput)
+activate LogicManager
+
+LogicManager -> RealTimeParser : parseCommand(userInput)
+activate RealTimeParser
+
+create AddClientCommandParser
+RealTimeParser -> AddClientCommandParser
+activate AddClientCommandParser
+
+AddClientCommandParser --> RealTimeParser
+deactivate AddClientCommandParser
+
+note right of AddClientCommandParser
+Arguments in userInput are seperated by their prefixes
+using the tokenize method in the ArgumentTokenizer class.
+Each attribute is parsed by their respective parsers in the ParserUtil class
+and is used to instantiate an Client object.
+end note
+
+RealTimeParser -> AddClientCommandParser : parse(userInput))
+activate AddClientCommandParser
+
+
+create AddClientCommand
+AddClientCommandParser -> AddClientCommand
+activate AddClientCommand
+return o
+return o
+return o
+destroy AddClientCommandParser
+
+
+LogicManager -> AddClientCommand : execute(model)
+destroy RealTimeParser
+activate AddClientCommand
+
+
+AddClientCommand -> Model : hasClient(o)
+activate Model
+
+Model --> AddClientCommand
+deactivate Model
+
+AddClientCommand -> Model : addClient(o)
+activate Model
+
+Model --> AddClientCommand
+deactivate Model
+
+create CommandResult
+AddClientCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddClientCommand
+deactivate CommandResult
+
+AddClientCommand --> LogicManager : result
+deactivate AddClientCommand
+
+<--LogicManager
+deactivate LogicManager
+
+@enduml

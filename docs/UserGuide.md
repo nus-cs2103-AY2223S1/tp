@@ -606,7 +606,7 @@ _Success_
 ```text
 delL 1
 ```
-![deleteL example](images/deleteL.png)
+![delL example](images/delL.png)
 _Failure_
 ```text
 Invalid index:

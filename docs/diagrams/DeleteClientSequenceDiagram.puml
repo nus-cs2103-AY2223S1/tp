@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":RealTimeParser" as RealTimeParser LOGIC_COLOR
+participant ":DeleteClientCommandParser" as DeleteClientCommandParser LOGIC_COLOR
+participant "c:DeleteClientCommand" as DeleteClientCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+-> LogicManager : execute("delC 1")
+activate LogicManager
+
+LogicManager -> RealTimeParser : parseCommand("delC 1")
+activate RealTimeParser
+
+create DeleteClientCommandParser
+RealTimeParser -> DeleteClientCommandParser
+activate DeleteClientCommandParser
+
+DeleteClientCommandParser --> RealTimeParser
+deactivate DeleteClientCommandParser
+
+RealTimeParser -> DeleteClientCommandParser : parse("1")
+activate DeleteClientCommandParser
+
+create DeleteClientCommand
+DeleteClientCommandParser -> DeleteClientCommand
+activate DeleteClientCommand
+
+DeleteClientCommand --> DeleteClientCommandParser : c
+deactivate DeleteClientCommand
+
+DeleteClientCommandParser --> RealTimeParser : c
+deactivate DeleteClientCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteClientCommandParser -[hidden]-> RealTimeParser
+destroy DeleteClientCommandParser
+
+RealTimeParser --> LogicManager : c
+deactivate RealTimeParser
+
+LogicManager -> DeleteClientCommand : execute()
+activate DeleteClientCommand
+
+DeleteClientCommand -> Model : deleteClient(1)
+activate Model
+
+Model --> DeleteClientCommand
+deactivate Model
+
+create CommandResult
+DeleteClientCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteClientCommand
+deactivate CommandResult
+
+DeleteClientCommand --> LogicManager : result
+deactivate DeleteClientCommand
+
+
+[<--LogicManager
+deactivate LogicManager
+destroy DeleteClientCommand
+@enduml
