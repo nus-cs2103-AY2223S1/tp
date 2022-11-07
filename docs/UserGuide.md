@@ -213,6 +213,7 @@ Optional arguments:
   * The `INTERESTED_CLIENT` argument should be a case-sensitive substring of the Client's name.<br>
   * If more than 1 client matches the substring, an error message will be shown. Users should then use a more specific search, or input the Client's exact name (case-sensitive).
   * If no clients matches the search, an error message will be shown.
+  * To add multiple clients, users should type `ic/[INTERESTED_CLIENT]` for each client. For example, `ic/Samuel ic/Alice`
 * The `-i` flag allows the user to upload images of the property. A file chooser dialog will appear after running the command.<br>
 
 ![file_chooser](images/ug_add_property.png)
@@ -220,7 +221,7 @@ Optional arguments:
 </div>
 
 Examples:
-* `add -p n/KAMPUNG@ADMIRALTY a/676 Woodlands Drive 71, Singapore 730676 p/800,000 h/HDB t/Neighbourhood t/Elderly ic/James s/AVAILABLE`
+* `add -p n/KAMPUNG@ADMIRALTY a/676 Woodlands Drive 71, Singapore 730676 p/800,000 h/HDB t/Neighbourhood t/Elderly ic/James ic/Jaime s/AVAILABLE`
 * `add -p n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301 p/1,000,000 h/HDB t/Luxury`
 
 
@@ -449,6 +450,7 @@ Optional arguments:
   * The `INTERESTED_PROPERTY` argument should be a case-sensitive substring of the Properties's name.<br>
   * If more than 1 property matches the substring, an error message will be shown. Users should then use a more specific search, or input the Property's exact name (case-sensitive).
   * If no properties matches the search, an error message will be shown.
+  * To add multiple properties, users should type `ip/[INTERESTED_PROPERTY]` for each property. For example, `ip/unit1 ip/unit2`
 * The `-i` flag allows the user to upload images of the client. A file chooser dialog will appear after running the command.<br>
 
 ![file_chooser](images/ug_add_client.png)
