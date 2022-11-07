@@ -122,13 +122,13 @@ FoodRem contains the following items, each with their own attributes:
 > Sorts the list of currently displayed items by the provided criteria
 
 ```note
-* `\n` : Sort by item name
-* `\qty` : Sort by item quantity
-* `\u` : Sort by item unit
-* `\bgt` : Sort by item bought date
-* `\exp` : Sort by item expiry date
-* `\p` : Sort by item price
-* `\r` : Sort by item remarks
+* `sort n/` : Sort by item name
+* `sort qty/` : Sort by item quantity
+* `sort u/` : Sort by item unit
+* `sort bgt/` : Sort by item bought date
+* `sort exp/` : Sort by item expiry date
+* `sort p/` : Sort by item price
+* `sort r/` : Sort by item remarks
 ```
 
 ```warning
