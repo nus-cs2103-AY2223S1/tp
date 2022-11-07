@@ -151,7 +151,7 @@ diagram}
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<img src="images/diagrams/ParserClasses.png" width="600"/>
 
 How the parsing works:
 
