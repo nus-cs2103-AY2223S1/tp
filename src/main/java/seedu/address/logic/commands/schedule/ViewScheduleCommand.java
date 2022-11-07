@@ -13,10 +13,10 @@ import seedu.address.model.Model;
 public class ViewScheduleCommand extends Command {
     public static final String COMMAND_WORD = "sview";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views all timeslots which satisfies all selection "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views all schedules"
             + "requirements.\n"
-            + "Format: view schedule [w/ WEEKDAY] [m/ MODULE]\n"
-            + "Example: " + COMMAND_WORD + " m/ CS2103T";
+            + "Format: view schedule\n"
+            + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Showed all schedules";
     @Override

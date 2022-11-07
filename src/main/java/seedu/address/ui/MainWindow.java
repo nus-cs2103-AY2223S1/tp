@@ -449,7 +449,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleShowTabModule();
             }
             if (commandResult.isShowScheduleList()) {
-                handleShowTabSchedule();
+                handleShowTabAllSchedules();
             }
             if (commandResult.isShowHorizontalTimeTable()) {
                 timetableModel = 0;

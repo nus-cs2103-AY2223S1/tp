@@ -20,7 +20,6 @@ public class ViewScheduleCommandParser implements Parser<ViewScheduleCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewScheduleCommand parse(String args) throws ParseException {
-
         return new ViewScheduleCommand();
     }
 
@@ -31,7 +30,4 @@ public class ViewScheduleCommandParser implements Parser<ViewScheduleCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
-
-
 }
