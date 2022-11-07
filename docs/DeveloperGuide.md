@@ -801,6 +801,22 @@ testers are expected to do more *exploratory* testing.
    
    4. Other incorrect delete commands to try: `deletetask`, `deletetask x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+### Adding a grade to a student
+
+1. Adding a grade to a student while student list is being shown
+
+    1. Prerequisites: List all students using the `liststudent` or `listall` command. There must be at least one student in the list.
+
+    2. Test case: `grade 1 ra1/17 mt/55` <br>
+       Expected: The RA1 score will be set to 17.0 and the Midterm score will be set to 55.0 for the first student in the student list.
+
+    3. Test case: `grade 1 ra1/17 mt/55 pa/40 fn/101` <br>
+       Expected: No marks will be updated. Error details shown in status message.
+
+    4. Other incorrect delete commands to try: `grade 1 ra1/19`, `grade x`, `...` (where x is larger than the list size or where input score for the assessment is greater than the total marks)<br>
+       Expected: Similar to previous.
+
    
 ### Saving data
 
