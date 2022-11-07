@@ -40,18 +40,32 @@ The command you would like to enter into the command box would be:
 
 Alternatively, executing these would do the same thing:
 
-* `new qty/30 n/Potatoes bgt/05-09-2022 u/kg` _(Reordering the flags)_
-* `new qty/100 n/Carrots qty/30 n/Potatoes bgt/05-09-2022 u/kg` _({{ site.data.constraints.lastValueOfDuplicates }} In this case, the name "Carrots" will be overridden by "Potatoes", and the quantity "100" will be overridden by "30")_
+* `new qty/30 n/Potatoes bgt/05-09-2022 u/kg`
+
+  This is because the order of the flags does not matter.
+
+* `new qty/100 n/Carrots qty/30 n/Potatoes bgt/05-09-2022 u/kg`
+
+  {{ site.data.constraints.lastValueOfDuplicates }} In this case, the name "Carrots" will be overridden by "Potatoes", and the quantity "100" will be overridden by "30".
 
 However, note that the following executions are invalid:
 
-* `newn/Potatoesqty/30u/kgbgt/05-09-2022` _(Removing spaces between the placeholders and flags)_
-* `new qty/-48 n/PÖtátÖes bgt/05/09/22 u/|kg|` _(Restrictions of placeholders not followed)_
-* `new` _(Insufficient information provided, you must minimally provide a name)_
+* `newn/Potatoesqty/30u/kgbgt/05-09-2022`
 
-_Find out more about restrictions in the sections [Flags](#flags), [Placeholders](#placeholders) and [Commands](#commands)._
+  There must be between the placeholders and flags.
+
+* `new qty/-48 n/PÖtátÖes bgt/05/09/22 u/|kg|`
+
+  The restrictions of placeholders are not followed.
+
+* `new`
+
+  There is insufficient information provided; you must minimally provide a name.
+
+Find out more about restrictions in the sections [Flags](#flags), [Placeholders](#placeholders) and [Commands](#commands).
 
 ---
+
 Let's try out another command -- the `inc` command! `inc` lets you increment the quantity of an item.
 
 ```warning
