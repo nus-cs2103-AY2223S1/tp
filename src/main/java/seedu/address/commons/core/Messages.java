@@ -12,5 +12,9 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_MISSING_DIAGNOSIS = "The diagnosis cannot be empty!";
     public static final String MESSAGE_MISSING_DATE = "The date field is missing!";
+    public static final String MESSAGE_APPOINTMENT_DELETION_SUCCESS = "Past appointment deleted for %1$s.\n";
+    public static final String MESSAGE_INVALID_APPOINTMENT_DELETION = "No past appointments to delete.";
+    public static final String MESSAGE_CONSULT_SUCCESS = "Consulted Patient: %1$s";
+
 
 }
