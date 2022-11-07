@@ -98,7 +98,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Tutor` object residing in the `Model`.
 
-In addition to the third point above, the `CommmandExecutor` functional interface, initially encapsulated inside the `CommandBox` class, was abstracted out to allow multiple `UI` components to communicate with the `Logic` component. The `CommandExecutor` is first created in `MainWindow` and passed down to `CommandBox` and `TutorListCard` to keep a link to `Logic` for the components to execute a command.
+In addition to the third point above, the `CommmandExecutor` functional interface, initially encapsulated inside the `CommandBox` class, was abstracted out to allow multiple `UI` components to communicate with the `Logic` component. `MainWindow` creates a `CommandExecutor`, which is then passed down to `CommandBox` and `TutorListCard` to communicate with `Logic` in order to execute a command.
 
 <img src="images/CommandExecutorClassDiagram.png" width="280" />
 
@@ -272,7 +272,7 @@ The following sequence diagram demonstrates the above operations (excluding the 
 
 ### View Feature
 
-The `view` command involves operations within the UI to display/hide the tutor details panel. 
+The `view` command involves operations within the `UI` and communication with `Logic` and `Model` to display/hide the tutor details panel. 
 
 <ins>Implementation</ins>
 
@@ -302,7 +302,7 @@ Step 6: This causes the `TutorDetailsPanel` of the `tutor` to be set as visible,
 **Aspect: Method to pass a `Tutor` to UI**
 - **Alternative 1:** Store the tutor to be viewed as a field in `Model` **(chosen)**.
   - Pros: Better OOP practice since `Model` handles all the data related to tutors.
-  - Cons: The `tutorToView` may be null if there are no tutors in the list to be displayed, so more checks may be needed.
+  - Cons: Harder to implement as more supporting methods are required to communicate between `UI` and `Model`.
 
 - **Alternative 2:** Store the tutor in `CommandResult`.
   - Pros: Easier to implement and fewer methods may be needed in `Logic` and `Model` as the tutor can be passed to
