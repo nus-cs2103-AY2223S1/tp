@@ -37,8 +37,8 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 ExerciseTracker *--> "1" ExerciseList
 ExerciseTracker *--> "1" ExerciseHashMap
-ExerciseHashMap ---> "~* all" Exercise
-ExerciseList ---> "~* all" Exercise
+ExerciseHashMap ---> "~*" Exercise
+ExerciseList ---> "~*" Exercise
 Exercise *--> Name
 Exercise *--> Weight
 Exercise *--> Reps
