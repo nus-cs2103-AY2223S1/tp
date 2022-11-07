@@ -373,7 +373,7 @@ Format: `list`
 
 ### Finding contacts
 
-Finds persons whose names contain any of the given keywords, for easy viewing of those you are looking for.
+Finds persons whose names contain any of the given keywords, to quickly view those you want.
 
 Format: `find KEYWORD [MORE_KEYWORDS]…`
 
@@ -384,9 +384,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]…`
 * Persons matching at least one keyword will be returned (i.e. OR search). e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-
-* `find John` returns john and John Doe
-* `find alex david` returns `Alex Yeoh`, `David Li`
+* `find alex David` returns `Alex Yeoh`, `David Li`
 
 <img src="images/FindCommand.png" width="450">
 
