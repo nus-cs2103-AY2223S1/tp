@@ -224,7 +224,7 @@ The delete student feature is facilitated by `DeleteStudentCommandParser` and `D
 
 Given below is an example usage scenario and how the delete student mechanism behaves at each step:
 1. The user enters delete student command and provides the student ID of student to be deleted.
-2. `FYPManagerParser` creates a new `DeleteStudentCommandParser` after preliminary processing of user input.
+2. `FypManagerParser` creates a new `DeleteStudentCommandParser` after preliminary processing of user input.
 3. `DeleteStudentCommandParser` creates a new `DeleteStudentCommand` based on the processed input.
 4. `LogicManager` executes the `DeleteStudentCommand`.
 5. `DeleteStudentCommand` calls `Model#getFilteredStudentList()` to get the list of student with FYP, and then gets the student at the specified index using the unique studentId.
@@ -435,7 +435,7 @@ The edit student feature is facilitated by `EditCommandParser` and `EditCommand`
 Given below is an example usage scenario and how the edit student mechanism behaves at each step:
 
 1. The user enters delete deadline command and provides the student ID and other parameters(eg: student name, project name) to be changed to.
-2. `FYPManagerParser` creates a new `EditCommandParser` after preliminary processing of user input.
+2. `FypManagerParser` creates a new `EditCommandParser` after preliminary processing of user input.
 3. `EditCommandParser` creates a new `EditCommand` based on the processed input.
 4. `LogicManager` executes the `EditCommand`.
 5. `EditCommand` calls `Model#getFilteredStudentList()` and gets the student list.
@@ -463,8 +463,8 @@ The following activity diagram summarizes what happens when a user executes am e
 The edit deadline command is designed to be used in conjunction with find student command. For instance, the user would first use find student using project name to find the student taking FYP using `find machine`
 to find students taking machine learning projects before doing `edit A0123456X p/AI` to edit student from FYP Manager.
 
-This integration between edit command with find student command is important because FYPManager can store large number of students with FYP, making it not fesiable for users to scroll through the list.
-By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student ID, users can edit the student attributes from the FYPManager.
+This integration between edit command with find student command is important because FypManager can store large number of students with FYP, making it not fesiable for users to scroll through the list.
+By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student ID, users can edit the student attributes from the FypManager.
 
 
 ###  `Help` Feature
