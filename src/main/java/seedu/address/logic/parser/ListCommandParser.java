@@ -20,7 +20,7 @@ import seedu.address.model.tag.Tag;
  */
 public class ListCommandParser implements Parser<ListCommand> {
 
-    boolean parametersAreValid = true;
+    private boolean parametersAreValid = true;
 
     /**
      * Parses user input for the list command.
