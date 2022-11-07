@@ -22,12 +22,13 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
       5. [Manually Editing Data File](#editing-the-data-file)
    2. [Client Features](#client-features)<br>
       1. [Adding a Client](#adding-a-client--addclient)
-      2. [Listing all Clients](#listing-all-clients--allclients)
-      3. [Editing a Client](#editing-a-client--editclient)
-      4. [Searching for a Client](#searching-for-clients--findclient)
-      5. [Deleting a Client](#deleting-a-client--deleteclient)
-      6. [Sorting all Clients](#sorting-all-clients--sort)
-      7. [Pin a Client](#pin-a-client-pin)
+      2. [Switching to Client View](#switching-to-the-view-of-currently-listed-clients--clients)
+      3. [Listing all Clients](#listing-all-clients--allclients)
+      4. [Editing a Client](#editing-a-client--editclient)
+      5. [Searching for a Client](#searching-for-clients--findclient)
+      6. [Deleting a Client](#deleting-a-client--deleteclient)
+      7. [Sorting all Clients](#sorting-all-clients--sort)
+      8. [Pin a Client](#pin-a-client-pin)
    3. [Policy Features](#policy-features)<br>
       1. [Adding a Policy](#adding-a-policy--addpolicy)
       2. [Switching to Policy View](#switching-to-the-view-of-currently-listed-policies--policies)
@@ -48,9 +49,6 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
 5. [Glossary](#glossary)
 
 
-
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -61,7 +59,7 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
 3. Copy the file to the folder you want to use as the _home folder_ for your Long Time No See application.
 
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
-![GUI.png](./images/GUI.png)
+![Ui.png](./images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -94,10 +92,10 @@ As such, the features available to you are split into **4** main features:
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the [parameters](#parameter) to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addClient n/NAME`, `NAME` is a parameter which can be used as `addClient n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…` after them can be used multiple times.<br>
   e.g. `[t/TAG]…​` can be used as `​` (i.e. 0 times).<br>
@@ -128,7 +126,7 @@ Format: `help`
 
 Example Usage: `help`
 
-Example Result: Help message Pop up appears
+Example Result: Help message pop up appears
 
 ### Clearing all entries : `clear`
 
@@ -222,6 +220,19 @@ Example Usage:
 * `addClient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01, b/2000-05-05 i/5000.0 ra/L` adds John Doe into the LTNS.
 * `addClient n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal b/1920-05-06 i/1000000 ra/H` adds Betsy Crowe into the LTNS.
 
+### Switching to the view of currently listed clients : `clients`
+Switches the display to show the current list of clients.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you previously filtered the client list and switched to view events/policy/income, this command will allow you to return to the filtered list of clients. 
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you wish to view the **full** list of clients, you may do so with the command `allClients`. 
+</div>
+
+Format: `clients`
+
+Example Usage: `clients`
 
 ### Listing all clients : `allClients`
 
@@ -343,7 +354,8 @@ Below is an example of what you will expect to see when you call `sort email`:
 ### Pin a Client: `pin`
 Allows pin and unpin of important clients to be viewed separately with command `viewPin`
 * Format: `pin INDEX` <br>
-Example Usage: 
+
+Example Usage:
 * `pin 1` pins the first client on list
 
 ### Assigning a Client to an Event/Policy 
@@ -396,7 +408,7 @@ These are the valid companies and their corresponding codes.
 | FWD          | FWD Singapore Private Limited      |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Commissions must take positive percentages within 0% to 100%! (e.g. 10%, 3.5%, 1.0%)
+Commissions must take positive percentages within 0% to 100%! (e.g. 10% 3.5% 1.0%)
 </div>  
 
 Example Usage:
@@ -407,7 +419,7 @@ Example Usage:
 ### Switching to the view of currently listed policies : `policies`
 Switches the display to show the current list of policies.
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If you previously filtered the policy list and switched to view events/contacts/income, this command will allow you to return to the filtered list of policies. 
+If you previously filtered the policy list and switched to view events/clients/income, this command will allow you to return to the filtered list of policies. 
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -428,7 +440,7 @@ Switches the display to show **all** the policies stored.
 
 Format: `allPolicies` <br />
 Example Usage: `allPolicies` <br />
-Example Result: Shows all policies stored in the LTNS, on the screen.
+Example Result: Shows all policies stored in LTNS, on the screen.
 
 ### Deleting a policy : `deletePolicy`
 Deletes the policy at the specified `INDEX`.
@@ -438,7 +450,7 @@ The index **must be a positive integer** 1, 2, 3, …​
 Format: `deletePolicy POLICY_INDEX`
 
 Example Usage:
-* `allPolicies` followed by `deletePolicy 2` deletes the 2nd policy in the LTNS.
+* `allPolicies` followed by `deletePolicy 2` deletes the 2nd policy in LTNS.
 * `findPolicy ti/PruShield` followed by `deletePolicy 1` deletes the 1st policy in the results of the `findPolicy` command.
 
 
@@ -494,8 +506,8 @@ first client in the list from Step 2, with the following details:
 
 ### Listing out policies assigned to a client : `listAssigned`
 
-If you'd like to recall which policies a client has taken up this command lists out, in the command box, the policies 
-that have been assigned to a specific client.
+If you'd like to recall which policies a client has taken up, this command lists out the policies 
+that have been assigned to a specific client, in the status message.
 
 Format: `listAssigned CLIENT_INDEX`
 
@@ -567,11 +579,11 @@ If you have not added this Client to your Client list, you can refer to the [Add
 
 ### Deleting an Event: `deleteEvent`
 
+Deletes the event at the specified `EVENT_INDEX`. The index refers to the index number shown in the displayed event list.
+The index **must be a positive integer** 1, 2, 3, …​
+
 Format: `deleteEvent EVENT_INDEX`
 
-* Deletes the event at the specified `EVENT_INDEX`.
-* The index refers to the index number shown in the displayed event list.
-* The index **must be a positive integer** 1, 2, 3, …​
 * Example Usage: `deleteEvent 2`
 * Example Result: deletes the 2nd event from the list.
 
@@ -581,8 +593,8 @@ Format: `deleteEvent EVENT_INDEX`
 This allows you to view all Events that have been previously added.
 * Note that events are automatically sorted in chronological order.
 
-Format: `allEvents`
-Example Usage: `allEvents`
+Format: `allEvents` <br>
+Example Usage: `allEvents` <br>
 Example Results: Lists all events added to the app, automatically sorted in chronological order.
 
 ![result for 'allEventsSample'](images/allEventsSample.png)
@@ -695,7 +707,9 @@ A: Fret not! Simply drop us an email at e0725346@u.nus.edu, and we will reply wi
 | **Edit Client**           | `editClient (INDEX of CLIENT) [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br><br> e.g: `editClient 2 n/James Lee e/jameslee@example.com`                                                                  |
 | **View All Clients**      | `allClients`                                                                                                                                                                                                              |
 | **View Filtered Clients** | `clients`                                                                                                                                                                                                                 |                                                              
-| **Sort Clients**          | `sort (KEYWORD)`<br> eg. `sort name`                                                                                                                                                                                         |
+| **Sort Clients**          | `sort SORTING_METRIC`<br> eg. `sort name`                                                                                                                                                                                 |
+| **Pin**                   | `pin (INDEX of CLIENT)` <br><br> e.g: `pin 1`                                                                                                                                                                             |
+| **View Pinned**           | `viewPin`                                                                                                                                                                                                                 |
 
 Note: `allClients` shows all existing clients inside LTNS, while `clients` show all clients based on filter metric placed previously.
 
@@ -728,14 +742,6 @@ Note: `allPolicies` shows all existing policies inside LTNS, while `policies` sh
 | **View Calendar**        | `calendar`                                                                                                                                                                             |                                                                                                                                                                                                     
 
 Note: `allEvents` shows all existing events inside LTNS, while `events` show all events based on filter metric placed previously.
-
-### Miscellaneous Commands
-
-| Action          | Format, Examples                                    |
-|-----------------|-----------------------------------------------------|
-| **Sort**        | `sort [COMPARABLE_METRIC]` <br><br> e.g: `sort AGE` |
-| **Pin**         | `pin (INDEX of CLIENT)` <br><br> e.g: `pin 1`       |
-| **View Pinned** | `viewPin`                                           |
 
 #### Additional Notes:
 * For better clarity, `INDEX` has been placed in parentheses to denote clearly which index is being referred to (either CLIENT, POLICY or EVENT). At the same time, it is compulsory to include `INDEX`.

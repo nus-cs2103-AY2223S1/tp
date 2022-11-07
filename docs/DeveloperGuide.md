@@ -293,8 +293,7 @@ Policy and Person indices that are not found in the `UniquePersonList` and `Uniq
 would be regarded as invalid indices. 
 </div>
 
-Step 3: The `PolicyAssignCommand` is executed. The corresponding policy and person objects are retrieved and  
-if not already assigned, the policy is assigned to the person.
+Step 3: The `PolicyAssignCommand` is executed. The corresponding policy and person objects are retrieved and if not already assigned, the policy is assigned to the person.
 
 #### Design considerations
 
@@ -475,23 +474,26 @@ Alternative 1 was preferred over alternative 2 due to the following reasons:
 
 Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                   | I want to …​                      | So that I can…​                                                       |
-|----------|-------------------------------------------|-----------------------------------|-----------------------------------------------------------------------|
-| `***`    | new user                                  | see usage instructions            | refer to instructions when I forget how to use the App                |
-| `***`    | user                                      | add a new person                  |                                                                       |
-| `***`    | user                                      | delete a person                   | remove entries that I no longer need                                  |
-| `***`    | user                                      | find a person by name             | locate details of persons without having to go through the entire list |
-| `**`     | user                                      | hide private contact details      | minimize chance of someone else seeing them by accident               |
-| `*`      | user with many persons in my contact list | sort persons by name              | locate a person easily                                                |
-| `**`     | new user                                  | see sample data                   | Have a better understanding of the app's default layout               |
-| `**`     | user                                      | filter my clients by keywords     | Locate my clients easily, based on a particular critera               |
-| `**`     | user                                      | update my client list             | Edit their contact details                                            |
-| `*`      | user                                      | have a reliable method            | store contact information without losing data                         |
-| `*`      | user                                      | view individual client's profiles | keep track of multiple, unique clients                                |
-| `*`      | user                                      | pin important clients             | be reminded of users which are of higher priority                     |
-| `*`      | user                                      | add an event                      |                                                                       |
-| `*`      | user                                      | delete an event                   | remove events that I no longer need to keep track of                  |
-| `**`     | user                                      | view my upcoming events           | be reminded of my upcoming events for the week                        |
+| Priority | As a …​                                                | I want to …​                      | So that I can…​                                                        |
+|----------|--------------------------------------------------------|-----------------------------------|------------------------------------------------------------------------|
+| `***`    | new user                                               | see usage instructions            | refer to instructions when I forget how to use the App                 |
+| `***`    | financial advisor                                      | add a new person                  |                                                                        |
+| `***`    | financial advisor                                      | delete a person                   | remove entries that I no longer need                                   |
+| `***`    | financial advisor                                      | find a person by name             | locate details of persons without having to go through the entire list |
+| `***`    | financial advisor                                      | add a new policy                  | keep track of policies that I want to propose to my clients            |
+| `***`    | financial advisor                                      | delete a policy                   | remove policies that I do not want to propose to my clients            |
+| `**`     | financial advisor                                      | assign policies to my clients     | keep track of sales made                                               |
+| `**`     | financial advisor                                      | hide private contact details      | minimize chance of someone else seeing them by accident                |
+| `*`      | financial advisor with many persons in my contact list | sort persons by name              | locate a person easily                                                 |
+| `**`     | new user                                               | see sample data                   | Have a better understanding of the app's default layout                |
+| `**`     | financial advisor                                      | filter my clients by keywords     | Locate my clients easily, based on a particular critera                |
+| `**`     | financial advisor                                      | update my client list             | Edit their contact details                                             |
+| `*`      | financial advisor                                      | have a reliable method to         | store contact information without losing data                          |
+| `*`      | financial advisor                                      | view individual client's profiles | keep track of multiple, unique clients                                 |
+| `*`      | financial advisor                                      | pin important clients             | be reminded of users which are of higher priority                      |
+| `*`      | financial advisor                                      | add an event                      |                                                                        |
+| `*`      | financial advisor                                      | delete an event                   | remove events that I no longer need to keep track of                   |
+| `**`     | financial advisor                                      | view my upcoming events           | be reminded of my upcoming events for the week                         |
 
 
 
