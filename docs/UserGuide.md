@@ -190,8 +190,9 @@ Adds a student to the Teacher’s Pet.
 - Tags are optional.
 - A student can have any number of tags (including 0).
 - Tags must only contain alphanumeric characters.
+- Tags cannot be blank or contain spacings.
     
-<div markdown="span" class="alert alert-info">ℹ **Note:** Tags must contain at least 1 alphanumeric character, cannot contain spacings and limited to `40` characters long.
+<div markdown="span" class="alert alert-info">ℹ **Note:** One tag is limited to `40` characters long.
 </div>
 
 Format: `add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
@@ -601,7 +602,7 @@ Format: `delete INDEX [MORE_INDEXES]`
 
 - Deletes the student(s) at the specified `INDEX(ES)`.
 - The `INDEX(ES)` refers to the index numbers shown in the [Student List](#ui-overview) (bottom left section of the display).
-- The `INDEX(ES)` must be a positive integer within the size of the displayed student list. e.g., `1, 2, 3, ...`.
+- An index must be a positive integer within the size of the displayed student list.
 
 Examples:
 - `list` followed by `delete 1 2` deletes the 1st and 2nd student in the [Student List](#ui-overview).
