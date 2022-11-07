@@ -120,6 +120,8 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W16-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
+Here's a partial class diagram of the `Ui` component, certain components have been omitted for brevity's sake:
+
 ![Structure of the UI Component](images/dg-images/UiClassDiagram.png)
 
 <div markdown="span" class="alert alert-primary">
