@@ -4,10 +4,6 @@
 
 The statistics command is implemented as a standalone command that ties together the `Item` and `Tag` class. By performing calculations, it returns relevant statistics to the user.
 
-The class diagram is as such:
-
-<!-- TODO: ADD ITEM CLASS DIAGRAM -->
-
 #### General Design Considerations
 
 The `stats` command calculates and provides users a list of statistics relating to FoodRem's inventory. The list of statistics provided is as follows:
@@ -19,14 +15,7 @@ The `stats` command calculates and provides users a list of statistics relating 
 #### Displaying Statistics
 
 ##### Overview
-
-The activity diagram is as such:
-
-<!-- TODO: ACTIVITY DIAGRAM -->
-
-The sequence diagram is as such:
-
-<!-- TODO: SEQUENCE DIAGRAM -->
+The `stats` command displays the calculated statistics based on the inventory by FoodRem.
 
 ##### Feature Details
 
