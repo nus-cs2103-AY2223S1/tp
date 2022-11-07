@@ -5,9 +5,7 @@ title: Jiang Zhimeng's Project Portfolio Page
 
 ### Project: myStudent
 
-MyStudents helps tuition center admins manage details of the students, tutors and classes. It is optimized for CLI users so that frequent tasks can be done faster by typing in commands. 
-
-MyStudent is a brown-field project evolved based on [AB3](https://github.com/nus-cs2103-AY2223S1/tp). Compared to AB3 that only manipulates one type of entity `Person`, myStudent needs to manipulate three
+MyStudents helps tuition center admins manage details of the students, tutors and classes. It is optimized for CLI users so that frequent tasks can be done faster by typing in commands. MyStudent is a brown-field project evolved based on [AB3](https://github.com/nus-cs2103-AY2223S1/tp). Compared to AB3 that only manipulates one type of entity `Person`, myStudent needs to manipulate three
 types of entities: `Student`, `Tutor` and `TuitionClass`. To adapt to the three different entities, myStudent has made enhancements to the existing structure and commands of AB3. Additionally, myStudent has also implemented some new commands and new GUI features.
 
 Given below are my contributions to the project.
@@ -18,8 +16,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * In charge of the `Ui`.
-  * Set up the team Organisation.
-  * Set up the team Repository. 
+  * Set up the team Organisation and Repository.
   * Managed release [v1.3.1](https://github.com/AY2223S1-CS2103T-F12-4/tp/releases/tag/v1.3.1).
 
 * **New features implemented**:
@@ -38,7 +35,6 @@ of the specified `Student` or `Tutor` in a separate description panel.
     * The user can click at the `student card` or `tutor card` to display the description of the `student` 
   or `tutor`, which supplements the `show command`.
   * Implemented different themes for the GUI. The user is able to change the color scheme [#122](https://github.com/AY2223S1-CS2103T-F12-4/tp/pull/122).
-  * Implemented opening and exiting animations for the GUI [#122](https://github.com/AY2223S1-CS2103T-F12-4/tp/pull/122).
 
 * **Enhancements to existing features**:
   * Modified the `list command` [#49](https://github.com/AY2223S1-CS2103T-F12-4/tp/pull/49).
