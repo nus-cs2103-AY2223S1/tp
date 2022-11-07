@@ -6,13 +6,7 @@ start
 'diamond we place it as the true branch instead.
 
 if () then ([valid format])
-    if () then ([subcommand is 'users'])
-        :Create and execute ListUsersCommand;
-        :UI updates to show all users;
-    else ([subcommand is 'books'])
-        :Create and execute ListBooksCommand;
-        :UI updates to show all books;
-    endif
+    :Parse Subcommand ⋔;
 else ([else])
     :Show error message;
 endif
