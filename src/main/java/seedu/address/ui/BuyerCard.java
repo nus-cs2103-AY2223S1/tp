@@ -62,7 +62,7 @@ public class BuyerCard extends UiPart<Region> {
         priority.getChildren().add(new Label(buyer.getPriority().toString()));
         priceRange.setText("Budget: " + buyer.getPriceRange()
                 .map(PriceRange::toString).orElse("Not Specified"));
-        desiredCharacteristics.setText("Desired Characteristics: " + buyer
+        desiredCharacteristics.setText("Characteristics: " + buyer
                 .getDesiredCharacteristics().map(Characteristics::toString)
                 .orElse("Not Specified"));
     }
