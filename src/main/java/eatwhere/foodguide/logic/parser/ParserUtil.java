@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -139,6 +140,6 @@ public class ParserUtil {
     public static boolean isDisplayHelp(String args) {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_HELP);
         return arePrefixesPresent(argMultimap, PREFIX_HELP)
-                && argMultimap.getValue(PREFIX_HELP).isEmpty();
+                && argMultimap.getValue(PREFIX_HELP).equals(Optional.of(""));
     }
 }
