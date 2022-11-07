@@ -800,7 +800,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all tutors using the `list` command. At least one tutor in the list.
 
-    2. Test case: `comment 1 c/Test comment`
+    2. Test case: `comment 1 c/Test comment`<br>
        Expected: "Test comment" should be added to the first tutor. This can be seen by viewing the first tutor profile.
 
     3. Test case: `comment 1 Test comment`<br>
@@ -817,7 +817,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all tutors using the `list` command. At least one tutor in the list. At least one comment for said tutor.
 
-    2. Test case: `deletecomment 1 1`
+    2. Test case: `deletecomment 1 1`<br>
        Expected: First comment deleted from first tutor in the list. This can be seen by viewing the first tutor profile.
 
     3. Test case: `deletecomment 1`<br>
