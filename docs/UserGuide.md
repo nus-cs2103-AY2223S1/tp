@@ -153,11 +153,23 @@ This command edits a listing in Real-Time at the specified `INDEX`.
 
 <div markdown="block" class="alert alert-info">
 
+## General
+
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+> Show a help window for Real-Time
 
-Format - `help`
+**Example Input:**<br>
+```text
+help
+```
+
+**Expected output:**<br>
+
+A window displaying help similar to below will appear.
+
+![help message](images/helpMessage.png)
+
 
 ![help message](images/helpMessage.png)
 
@@ -167,9 +179,17 @@ ___
 
 ### Clearing all entries : `clear`
 
-Clears all entries in REal-Time.
+> Clears all entries in REal-Time.
 
-Format - `clear`
+**Example Input:**<br>
+```text
+clear
+```
+**Expected output:**<br>
+Feedback Box:
+```text
+Real-Time has cleared all data!
+```
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -177,9 +197,15 @@ ___
 
 ### Exiting the program : `exit`
 
-Exits the program.
+> Exits the program.
 
-Format - `exit`
+**Example Input:**<br>
+```text
+exit
+```
+**Expected output:**<br>
+
+The Real-Time window closes.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -675,54 +701,7 @@ ___
 
 
 ___
-## General
 
-
-### Viewing help : `help`
-
-> Show a help window for Real-Time
-
-**Example Input:**<br>
-```text
-help
-```
-
-**Expected output:**<br>
-
-A window displaying help similar to below will appear.
-
-![help message](images/helpMessage.png)
-
-### Clearing all entries : `clear`
-
-> Clears all entries in REal-Time.
-
-**Example Input:**<br>
-```text
-clear
-```
-**Expected output:**<br>
-Feedback Box:
-```text
-Real-Time has cleared all data!
-```
-___
-
-### Exiting the program : `exit`
-
-> Exits the program.
-
-**Example Input:**<br>
-```text
-exit
-```
-**Expected output:**<br>
-
-The Real-Time window closes.
-
-[Back to Table of Contents](#table-of-contents)
-
-___
 
 ### Saving the data
 
