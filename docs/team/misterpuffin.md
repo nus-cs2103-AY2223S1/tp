@@ -22,7 +22,7 @@ Given below are my contributions to the project.
   * Attribution: This feature is inspired by CLI terminals which allow you to view previous commands.
 
 * **New Feature**: Added the ability to upload images.
-  * What it does: allows the user to upload images for both Property and Client models. 
+  * What it does: allows the user to upload images for both Property and Client models.
   * Justification: This feature makes the product more visually appealing, and helps property agents easier identify the Property they are looking for.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=misterpuffin&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
@@ -39,7 +39,7 @@ Given below are my contributions to the project.
   * User Guide:
     * Added documentation for the features `undo` [\#114](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/114)
     * Added documentation for Image Upload [\#114](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/114)
-     
+
   * Developer Guide:
     * Added implementation details of the `undo` feature. [\#243](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/243)
     * Added implementation details of the image upload feature. [\#243](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/243)

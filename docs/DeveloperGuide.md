@@ -300,7 +300,7 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 ![RangeActivityDiagram](images/RangeActivityDiagram.png)
 
 ### Filter by Property Status Feature
-This feature allows users to filter properties by `PropertyStatusEnum`. 
+This feature allows users to filter properties by `PropertyStatusEnum`.
 
 The feature is activated by the command patter `status -p [property_status]`
 
@@ -334,7 +334,7 @@ Aspect: Input format for `StatusPropertyCommand`
 
 - **Alternative 1** (current choice): Accept both lower and upper case for `StatusPropertyCommand` argument
 (e.g. accept both `status -p available` and `status -p AVAILABLE` inputs)
-  - Pros: 
+  - Pros:
     - Less prone to error for the user
     - More intuitive for the user
   - Cons:
@@ -401,14 +401,14 @@ models in order to determine the location to source for the uploaded images.
 
 ### Undo feature
 
-The undo mechanism is facilitated by `CommandQueue`. 
+The undo mechanism is facilitated by `CommandQueue`.
 
 `CommandQueue` stores a List of Commands which had been executed during the application lifecycle, and is stored as a field in the `Model` class.
 Everytime the `LogicManager` executes a command, it will call `Model#addCommand()`, which adds the `Command` to the `CommandQueue`.
-In addition, the initial state of the `PropertyDirectory` and `ClientDirectory` is saved on initialization. 
+In addition, the initial state of the `PropertyDirectory` and `ClientDirectory` is saved on initialization.
 
 The undo functionality is exposed in the `Model` interface as `Model#undoCommand()`.
-This method handles the resetting of `PropertyDirectory` and `ClientDirectory` to its initial states, and then executing all the commands except for the most recent one. 
+This method handles the resetting of `PropertyDirectory` and `ClientDirectory` to its initial states, and then executing all the commands except for the most recent one.
 
 Here is the sequence diagram for when `undo` command is executed.
 ![UndoSequenceDiagram.png](images/UndoSequenceDiagram.png)
@@ -457,10 +457,6 @@ Step 5. The user then decides to execute the command `list -p`. Commands that do
 Step 6. The user executes `clear -p`, which calls `Model#addCommand()`. We notice that `addCommand` is no longer in the `CommandQueue`, and is now replaced by `clearCommand`
 
 ![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
@@ -546,7 +542,7 @@ Use case ends.
 
 1. User requests to add a property
 2. Condonery adds the property into the Property Directory
- 
+
 Use case ends.
 
 **Extensions**
@@ -833,7 +829,7 @@ Listing all properties
 
    Prerequisites: Property List must contain at least one Property.
    - Test case: `list -p`
-     - Expected: Property List will be updated to show all properties stored. 
+     - Expected: Property List will be updated to show all properties stored.
      Result display will output a success message: `Listed all properties`
 
 ### Clearing all properties
@@ -854,13 +850,13 @@ Prerequisites: Property List must contain at least one Property.
 
 ### Filtering properties by tags
 Finding all properties in the Property List with specified tags
-   
+
 Prerequisites: Property List must contain at least one Property.
    - Test case (finding properties with tag of `Luxury`): `filter -p Luxury`
      - Expected: Property List will display all properties with matching tag of `Luxury`
    - Test case (finding properties with tag of `Luxury` and `City`): `filter -p Luxury City`
      - Expected: Property List will display all properties with matching tags of `Luxury` and `City`
-   
+
 ### Filtering properties within price range
 Finding all properties in the Property List with specified price range
 
@@ -889,7 +885,7 @@ Finding all properties in the Property List with the specified Property Type
      - Expected: Property List will display all properties with the type of `HDB`
    - Test case (finding all properties with type of `HOUSE`): `type -p HOUSE`
      - Expected: Condonery will display an error message stating `HOUSE` is not a valid property type
-     
+
 ### Select a property to view its interested clients
    Prerequisites: Property List must contain at least one Property.
    - Test case (selecting a property with valid index): `select -p 1`
@@ -938,7 +934,7 @@ Listing all clients
 
    - Test case: `list -c`
    - Expected: Client List will be updated to show all clients stored. Result display will output a success message: `Listed all clients`
-   
+
 ### Clearing all clients
    Clearing all properties in the Property List
 
@@ -955,7 +951,7 @@ Finding clients in the Client List with name
      - Expected: Client List will display all clients with matching name of `John`
    - Test case (finding client name of `John Lee` with exact match): `find -c John Lee`
      - Expected: Client List will display all clients with matching name of `John Lee`
-     
+
 ### Filtering clients by tags
 Finding all clients in the Client List with specified tags
    Prerequisites: Client List must contain at least one Client.
@@ -963,10 +959,10 @@ Finding all clients in the Client List with specified tags
      - Expected: Client List will display all clients with matching tag of `friend`
    - Test case (finding properties with tag of `rich` and `friend`): `filter -c friend`
      - Expected: Client List will display all clients with matching tags of `rich` and `friend`
-     
+
 ## **Appendix: Effort**
 Majority of the complexity faced in building our app came from dealing with multiple entities, namely Property and Client.
-Our group faced trouble in implementing a 2-way association between Clients and Properties. 
+Our group faced trouble in implementing a 2-way association between Clients and Properties.
 
 * For example, editing a `Client` with an association should update all references to the `Client`. As previously AB3 relied on an immutable implementation of editing entities, we had to do heavy testing to make sure that the information between all associations are synced.
 * Moreover, we had to ensure that storage of the 2-way association is feasible. Currently, our `Property` entities store a list of Interested Clients. Along the way, we realised that we are unable to store a list of Properties in a `Client` entity, as this resulted in our serialised storage being circular. We had to change a lot of our code to fix this, as we realised our previous implementation could not handle the storage requirement.
