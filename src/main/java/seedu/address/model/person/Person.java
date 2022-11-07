@@ -132,6 +132,11 @@ public class Person {
                 .append(getEmail());
         }
 
+        if (!(getTelegram().toString().equals(""))) {
+            builder.append("; Telegram: ")
+                    .append(getTelegram());
+        }
+
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
