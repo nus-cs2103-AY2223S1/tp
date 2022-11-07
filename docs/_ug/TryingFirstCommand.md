@@ -41,7 +41,7 @@ The command you would like to enter into the command box would be:
 Alternatively, executing these would do the same thing:
 
 * `new qty/30 n/Potatoes bgt/05-09-2022 u/kg` _(Reordering the flags)_
-* `new qty/100 n/Carrots qty/30 n/Potatoes bgt/05-09-2022 u/kg` _(Only last parameters are taken if multiple parameters are provided)_
+* `new qty/100 n/Carrots qty/30 n/Potatoes bgt/05-09-2022 u/kg` _({{ site.data.constraints.lastValueOfDuplicates }} In this case, the name "Carrots" will be overridden by "Potatoes", and the quantity "100" will be overridden by "30")_
 
 However, note that the following executions are invalid:
 
