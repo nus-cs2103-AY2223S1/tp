@@ -54,7 +54,7 @@ Please refer to the [Command Format](#command-format) to see how Flags and Place
 
 #### Placeholders
 
-Placeholders in this FoodRem User Guide refers to the UPPER_CASE words that can be replaced by valid user input supplied. These placeholders follow immediately after a [Flag](#flags).
+Placeholders in this User Guide refers to the UPPER_CASE words that can be replaced by valid user input supplied. These placeholders follow immediately after a [Flag](#flags).
 
 Please refer to the [Command Format](#command-format) to see how Flags and Placeholders are used together.
 
