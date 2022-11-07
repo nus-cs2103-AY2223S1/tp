@@ -57,4 +57,4 @@ Given below are my contributions to the project.
     * Created test cases for the `Timetable` class.  [\#212](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/212)
     * Guided the format of User Guide and Developer Guide for easy readability and navigation.
     * Standardised the format of the Developer Guide. [\#221](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/221)
-    * Proofread User Guide and Developer Guide. [\#232](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/232)
+    * Proofread User Guide and Developer Guide. [\#233](https://github.com/AY2223S1-CS2103T-T14-4/tp/pull/233)
