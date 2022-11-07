@@ -44,8 +44,7 @@ public class EditMeetingCommand extends Command {
             + PREFIX_DATE + "23122022 ";
 
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided. "
-        + "The values should not be the same as before";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_MEETING =
             "This meeting conflicts with another that exists in MyInsuRec";
 
@@ -69,16 +68,12 @@ public class EditMeetingCommand extends Command {
         requireNonNull(model);
         List<Meeting> lastShownList = model.getFilteredMeetingList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.getOneBased() > lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED_INDEX);
         }
 
         Meeting meetingToEdit = lastShownList.get(index.getZeroBased());
         Meeting editedMeeting = createEditedMeeting(meetingToEdit, editMeetingDescriptor);
-
-        if (meetingToEdit.equals(editedMeeting)) {
-            throw new CommandException(MESSAGE_NOT_EDITED);
-        }
 
         // update meeting list
         try {
@@ -103,13 +98,14 @@ public class EditMeetingCommand extends Command {
             throws CommandException {
         assert meetingToEdit != null;
 
+        Optional<MeetingDate> meetingDateOptional = editMeetingDescriptor.getDate();
+        if (meetingDateOptional.isPresent() && MeetingDate.isBeforeToday(meetingDateOptional.get())) {
+            throw new CommandException(MeetingDate.MESSAGE_INVALID_DATE);
+        }
         MeetingDate updatedDate = editMeetingDescriptor.getDate().orElse(meetingToEdit.getMeetingDate());
         Description updatedDescription = editMeetingDescriptor.getDescription().orElse(meetingToEdit.getDescription());
         MeetingTime updatedEndTime = editMeetingDescriptor.getEndTime().orElse(meetingToEdit.getMeetingEndTime());
         MeetingTime updatedStartTime = editMeetingDescriptor.getStartTime().orElse(meetingToEdit.getMeetingStartTime());
-        if (MeetingDate.isBeforeToday(updatedDate)) {
-            throw new CommandException(MeetingDate.MESSAGE_INVALID_DATE);
-        }
         if (updatedEndTime.isBefore(updatedStartTime)) {
             throw new CommandException(MESSAGE_END_TIME_BEFORE_START_TIME);
         }
