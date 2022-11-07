@@ -26,10 +26,6 @@ public class TypePropertyCommandParser implements Parser<TypePropertyCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, TypePropertyCommand.MESSAGE_USAGE));
         }
-        System.out.println(trimmedArgs);
-
-
-
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
         for (int i = 0; i < nameKeywords.length; i++) {
