@@ -37,11 +37,10 @@ import seedu.address.model.person.Physician;
  */
 public class TypicalPersons {
 
-    private static final List<String> assignedDateSlotStringOne = new ArrayList<>(List.of("2022-10-15,1:5",
+    public static final List<String> ASSIGNED_DATE_SLOT_STRING_ONE = new ArrayList<>(List.of("2022-10-15,1:5",
             "2022-12-22,2:8"));
-    private static final List<String> assignedDateSlotStringTwo = new ArrayList<>(List.of("2022-12-10,2:8",
+    public static final List<String> ASSIGNED_DATE_SLOT_STRING_TWO = new ArrayList<>(List.of("2022-12-10,2:8",
             "2023-01-11,3:5"));
-
     public static final Person ALICE = new PersonBuilder()
             .withUid("1").withCategory("P")
             .withName("Alice Pauline").withGender("F")
@@ -65,7 +64,7 @@ public class TypicalPersons {
             .withUid("3").withCategory("P")
             .withName("Carl Kurz").withGender("M")
             .withPhone("95352563")
-            .withAssignedDatesSlots(assignedDateSlotStringTwo)
+            .withAssignedDatesSlots(ASSIGNED_DATE_SLOT_STRING_TWO)
             .withEmail("heinz@example.com")
             .withAddress("wall street").build();
     public static final Person DANIEL = new PersonBuilder()
@@ -93,7 +92,7 @@ public class TypicalPersons {
             .withGender("F")
             .withPhone("9482427")
             .withEmail("lydia@example.com")
-            .withAssignedDatesSlots(assignedDateSlotStringOne)
+            .withAssignedDatesSlots(ASSIGNED_DATE_SLOT_STRING_ONE)
             .withAddress("little tokyo").build();
     public static final Person GEORGE = new PersonBuilder()
             .withUid("7")
@@ -105,7 +104,7 @@ public class TypicalPersons {
             .withAddress("4th street")
             .withUnavailableDateList("2022-11-10", "2022-12-13").build();
 
-    public static final Person Lily = new PersonBuilder()
+    public static final Person LILY = new PersonBuilder()
             .withUid("8")
             .withCategory("N")
             .withName("Lily Wang")
@@ -172,6 +171,6 @@ public class TypicalPersons {
     }
 
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, Lily));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, LILY));
     }
 }
