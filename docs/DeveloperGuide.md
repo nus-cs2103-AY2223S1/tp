@@ -705,7 +705,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
 * 2b. The given index is not a positive integer or is out of bounds.
 
-    * 2a1. InternConnect shows an error message.
+    * 2b1. InternConnect shows an error message.
 
       Use case ends.
 
