@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ProfNusParser" as ProfNusParser LOGIC_COLOR
 participant ":ViewTargetModuleCommandParser" as ViewTargetModuleCommandParser LOGIC_COLOR
 participant "v:ViewTargetModuleCommand" as ViewTargetModuleCommand LOGIC_COLOR
 participant "CommandResult" as CommandResult LOGIC_COLOR
@@ -16,7 +16,7 @@ end box
 [-> LogicManager : execute("vtarget 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("vtarget 1")
+LogicManager -> ProfNusParser : parseCommand("vtarget 1")
 note left
 the "1" supplied here
 as part of the argument
@@ -25,16 +25,16 @@ module in the list of
 modules, from one-based
 indexing.
 end note
-activate AddressBookParser
+activate ProfNusParser
 
 create ViewTargetModuleCommandParser
-AddressBookParser -> ViewTargetModuleCommandParser
+ProfNusParser -> ViewTargetModuleCommandParser
 activate ViewTargetModuleCommandParser
 
-ViewTargetModuleCommandParser --> AddressBookParser
+ViewTargetModuleCommandParser --> ProfNusParser
 deactivate ViewTargetModuleCommandParser
 
-AddressBookParser -> ViewTargetModuleCommandParser
+ProfNusParser -> ViewTargetModuleCommandParser
 activate ViewTargetModuleCommandParser
 
 create ViewTargetModuleCommand
@@ -44,12 +44,12 @@ activate ViewTargetModuleCommand
 ViewTargetModuleCommand --> ViewTargetModuleCommandParser : v
 deactivate ViewTargetModuleCommand
 
-ViewTargetModuleCommandParser --> AddressBookParser : v
+ViewTargetModuleCommandParser --> ProfNusParser : v
 deactivate ViewTargetModuleCommandParser
 
-AddressBookParser --> LogicManager : v
+ProfNusParser --> LogicManager : v
 destroy ViewTargetModuleCommandParser
-deactivate AddressBookParser
+deactivate ProfNusParser
 
 LogicManager -> ViewTargetModuleCommand : execute()
 activate ViewTargetModuleCommand
