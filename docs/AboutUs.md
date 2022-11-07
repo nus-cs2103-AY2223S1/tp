@@ -15,7 +15,8 @@ We are a team based in the [School of Computing, National University of Singapor
 [[github](https://github.com/cadencjk)
 [portfolio](team/cadencjk.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: UI
 
 ### Sean Er Wen Han
 
