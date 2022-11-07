@@ -34,6 +34,7 @@ Given below are my contributions to the project.
   * `Deadline` field to use localDate parsing to allow for more accurate date inputs
   * Add new fields to the Staff class - `Staff department`, `Staff Contact`, `Staff Name`
   * Bug fixes (E.g. Pull Request [#78](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/78), [#140](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/140))
+  * Check for code quality
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=maxng17&breakdown=true)
 
@@ -42,7 +43,7 @@ Given below are my contributions to the project.
   * Manage the Jar file release for V1.2
   * Project demo for tutorial for V1.2 and V1.3
   * Review PR (e.g. Pull Request [#71](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/71), [#124](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/124))
-  * Increase code coverage for test case (e.g. Pull Request [#84](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/84))
+  * Increase code coverage with test cases (e.g. Pull Request [#84](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/84))
 
 * **Documentation**:
 
@@ -51,6 +52,8 @@ Given below are my contributions to the project.
   * Developer Guide
     * Add mark and unmark task implementation plans together with Diagrams (e.g. Pull request [#110](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/110))
     * Add delstaff command implementation
+    * Effort appendix
+    * Update exiting class Diagram from AB3 with latest implementation
 
 * **Community**:
   * PE dry run: Found a total of 15 bugs and suggestions [within this Repo](https://github.com/maxng17/ped/issues)
