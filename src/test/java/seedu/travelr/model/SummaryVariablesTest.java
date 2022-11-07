@@ -2,27 +2,25 @@ package seedu.travelr.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 
-
-
 class SummaryVariablesTest {
 
-    static SummaryVariables sv;
+    private static SummaryVariables sv;
 
     @BeforeAll
     static void setup() {
         sv = new SummaryVariables();
-        sv.set(1,1,1,1.0,1.0);
+        sv.set(1, 1, 1, 1.0, 1.0);
     }
 
     @Test
@@ -30,22 +28,22 @@ class SummaryVariablesTest {
         ObservableList<Trip> trips = FXCollections.observableArrayList();
         ObservableList<Event> events = FXCollections.observableArrayList();
         sv.refresh(trips, events);
-        sv.set(1,1,1,1.0,1.0);
+        sv.set(1, 1, 1, 1.0, 1.0);
         assertEquals(1, 1);
     }
 
     @Test
     void testSet() {
         SummaryVariables sv = new SummaryVariables();
-        sv.set(1,1,1,1.0,1.0);
+        sv.set(1, 1, 1, 1.0, 1.0);
         assertEquals(1, 1);
     }
 
     @Test
     void getTripsProgressTest() {
-        SimpleStringProperty TripProgress = sv.getTripsProgress();
+        SimpleStringProperty tripProgress = sv.getTripsProgress();
         assertEquals(new SimpleStringProperty("100.0% of trips completed").getValue(),
-                TripProgress.getValue());
+                tripProgress.getValue());
     }
 
     @Test
