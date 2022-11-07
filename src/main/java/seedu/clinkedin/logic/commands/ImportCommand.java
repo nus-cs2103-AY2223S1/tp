@@ -57,7 +57,7 @@ public class ImportCommand extends Command {
 
 
     /**
-     * Creates an ImportCommand to import an AddressBook
+     * Creates an ImportCommand to import an AddressBook.
      */
     public ImportCommand(String fileName, FileType fileType) {
         requireAllNonNull(fileName, fileType);
@@ -66,7 +66,7 @@ public class ImportCommand extends Command {
     }
 
     /**
-     * Creates an ImportCommand to import an AddressBook
+     * Creates an ImportCommand to import an AddressBook.
      */
     public ImportCommand() {
         this.onlyCommand = true;

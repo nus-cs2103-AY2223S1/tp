@@ -203,8 +203,18 @@ public class VersionedAddressBook extends AddressBook {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
-        // TODO: refine later
+        StringBuilder sb = new StringBuilder();
+        sb.append("Number of undos left: ");
+        sb.append(currentStatePointer + "\n\n");
+        sb.append("Person List:\n");
+        for (Person p : persons) {
+            sb.append(p.toString() + "\n");
+        }
+        sb.append("\nPrefix Map:\n");
+        for (Prefix p : prefixMap.keySet()) {
+            sb.append(p.toString() + " " + prefixMap.get(p).toString() + "\n");
+        }
+        return sb.toString();
     }
 
     @Override
@@ -225,7 +235,8 @@ public class VersionedAddressBook extends AddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof VersionedAddressBook // instanceof handles nulls
-                && persons.equals(((VersionedAddressBook) other).persons));
+                && persons.equals(((VersionedAddressBook) other).persons)
+                && prefixMap.equals(((VersionedAddressBook) other).prefixMap));
     }
 
     @Override
