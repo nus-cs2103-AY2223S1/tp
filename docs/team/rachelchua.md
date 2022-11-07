@@ -11,8 +11,8 @@ Given below are my contributions to the project.
 
 * **New Feature**: To be added soon
   * Added an exam class and its following fields classes to store the exams in an exam list.
-    * What it does: Implemented an exam column so that user can see their exam in one column, link the revision tasks to the exam and thus, track their progress for the exam.
-    * Justification: Allows students to track their revision progress for the exam so that they can stay on track for their revision despite their busy schedule and finish their revision on time.
+    * What it does: Implemented an exam column so that user can see their exam in one column. 
+    * Justification: Allows students to track their revision progress for the exam so that they can stay on track for their revision despite their busy schedule.
   * Added the AddExamCommand class together with other exam related fields classes.
     * What it does: Add an exam to the exam list with the following fields of Exam Description, Exam Date, and Module
     * Justification: Allows you to add an exam in exam list to track your exams.
@@ -31,7 +31,7 @@ Given below are my contributions to the project.
     * Credits: Referenced AB3 implementation for list persons. 
   * Added the FindModulesCommand class
     * What it does: Find the modules that contain the keyword inputted partially or fully by the user
-    * Justification: User can now easily find the modules by keyword inputted from the long list of modules that they have taken as it is difficult to find a module manually by scrolling.
+    * Justification: User can now easily find the modules.
     * Credits: Referenced AB3 implementation for find person.
   * Added the ListModulesCommand
     * What it does: List all the modules in the task list
@@ -47,9 +47,12 @@ Given below are my contributions to the project.
       * ListTasks command,  
       * ListModules command, 
       * AddExamCommand, 
-      * EditExamCommand. 
+      * EditExamCommand
     * Developer Guide:
-        * AddExamCommand. Included the sequence diagram. 
+        * AddExamCommand
+        * FindTasksCommand
+        * Manual Testing for commands that I implemented.
+        * Use Cases, User Stories for commands that I implemented. 
 
 * **Community**:
     * PRs reviewed.
