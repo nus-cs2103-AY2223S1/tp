@@ -39,7 +39,7 @@ public class EditIterationCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the details of the iteration identified "
             + "by the index number used in the displayed iteration list.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer less than 2147483648) "
             + "[" + PREFIX_ITERATION_DATE + "DATE " + "]"
             + "[" + PREFIX_ITERATION_DESCRIPTION + "DESCRIPTION " + "]"
             + "[" + PREFIX_ITERATION_IMAGEPATH + "IMAGE PATH " + "]"

@@ -22,7 +22,7 @@ public class OpenCommissionCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Opens a commission and shows commission's details and iterations\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must be a positive integer less than 2147483648)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
 

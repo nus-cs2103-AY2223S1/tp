@@ -40,7 +40,7 @@ public class AddCommissionCommand extends Command {
             + PREFIX_TAG + "neon ";
 
     public static final String MESSAGE_SUCCESS = "New commission added: %1$s";
-    public static final String MESSAGE_DUPLICATE_COMMISSION = "This commission already exists in art buddy";
+    public static final String MESSAGE_DUPLICATE_COMMISSION = "This commission already exists in ArtBuddy.";
 
     private final Commission.CommissionBuilder toAdd;
 
