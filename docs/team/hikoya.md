@@ -13,7 +13,7 @@ Given below are my contributions to the project.
 
 * **New Features**
   * Implemented `Rating` class, which adds a rating for a `Review` for critics to rate a stall from 0 to 5 inclusive. ([#151](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/151)) 
-  * Implemented copying of `Stall` and `Review` data onto the computer clipboard, which enables the user to right-click on either a `Stall` or `Review` to copy the name, address, or any other information such as tags to the system clipboard. ([#169](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/169]), [#237](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/237))
+  * Implemented copying of `Stall` and `Review` data onto the computer clipboard, which enables the user to right-click on either a `Stall` or `Review` to copy the name, address, or any other information such as tags to the system clipboard. ([#169](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/169), [#237](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/237))
     * Justification: This feature allows the user to easily edit the content without typing out the entire review if the data is very long into the command text box.
 * **Enhancements to Graphical User Interface (GUI)**
   * Modified user interface to have two separate lists for `Stall` and `Review`. ([#46](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/46), [#82](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/82), [#88](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/88), [#99](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/99), [#126](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/126), [#138](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/138), [#162](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/162))
@@ -46,7 +46,7 @@ Given below are my contributions to the project.
     * Added use cases 1 to 5, 13 and table of user stories. ([#38](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/38), [#259](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/259))
     * Added implementation of Review class and updated User Interface UML diagrams. ([#180](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/180))
     * Added use case for clear command. ([#259](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/259))
-    * Fixed numbering and formatting. ([#339](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/339), [#365](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/365))
+    * Fixed numbering and formatting. ([#339](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/339), [#365](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/365), [#378](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/378))
     * Add new column in user stories to indicate features implemented in current version. ([#365](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/365))
 * **Community**
   * Updated the user guide URL in the HelpWindow. ([#44](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/44))
@@ -58,6 +58,7 @@ Given below are my contributions to the project.
   * Answered questions or helped out to solve tasks posted by others in forum. ([Forum](https://github.com/nus-cs2103-AY2223S1/forum/issues?q=is%3Aissue+commenter%3AHikoya)) 
   * Set up GitHub Projects as an issue tracker to track project progress. ([GitHub Projects](https://github.com/orgs/AY2223S1-CS2103-W14-2/projects/1))
   * Create the product demo video as part of our submission requirements.
+  * Edit JavaDocs to adhere to coding standards. ([#369](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/369), [#380](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/380))
 * **Tools**
   * IntelliJ IDEA
   * JavaFX Scene Builder
