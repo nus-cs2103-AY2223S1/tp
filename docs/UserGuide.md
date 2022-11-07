@@ -328,9 +328,9 @@ find-module CS
 In either of the above examples, we find every module whose module code starts with CS in Plannit. Here's
 a screenshot of Plannit before and after executing the command:
 
-| Before executing the command                                                                                                                                    | After executing the command                                                                                                                                                        |
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/find-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p><br>{:/} | {::nomarkdown}<p align="center"><img src="images/find-module-after.png"/></p><p>The module list is now updated with modules whose module code starts with <code>CS</code>!</p>{:/} |
+| Before executing the command                                                                                                                                | After executing the command                                                                                                                                                        |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {::nomarkdown}<p align="center"><img src="images/find-module-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/find-module-after.png"/></p><p>The module list is now updated with modules whose module code starts with <code>CS</code>!</p>{:/} |
 
 
 <div markdown="span" class="alert alert-info"> :information_source: **Note:**<br/>
