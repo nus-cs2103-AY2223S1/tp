@@ -1,13 +1,13 @@
 package jarvis.model;
 
 import static jarvis.testutil.TypicalLessons.CONSULT_1;
+import static jarvis.testutil.TypicalLessons.MC_1;
 import static jarvis.testutil.TypicalLessons.DT2;
 import static jarvis.testutil.TypicalLessons.DT3;
 import static jarvis.testutil.TypicalLessons.DT4;
 import static jarvis.testutil.TypicalLessons.MASTERY_CHECK_DESCRIPTION_1;
 import static jarvis.testutil.TypicalLessons.MASTERY_CHECK_DESCRIPTION_2;
 import static jarvis.testutil.TypicalLessons.MASTERY_CHECK_STUDENTS;
-import static jarvis.testutil.TypicalLessons.MC_1;
 import static jarvis.testutil.TypicalLessons.MC_2;
 import static jarvis.testutil.TypicalLessons.STUDIO_1;
 import static jarvis.testutil.TypicalStudents.ALICE;
@@ -19,6 +19,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+
+import jarvis.testutil.TypicalLessons;
 
 class MasteryCheckIntegrationTest {
 

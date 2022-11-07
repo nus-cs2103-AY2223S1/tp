@@ -13,9 +13,9 @@ import jarvis.model.Student;
 public class StudentUtil {
 
     /**
-     * Returns an add command string for adding the {@code student}.
+     * Returns an add student command string for adding the {@code student}.
      */
-    public static String getAddCommand(Student student) {
+    public static String getAddStudentCommand(Student student) {
         return AddStudentCommand.COMMAND_WORD + " " + getStudentDetails(student);
     }
 
@@ -30,7 +30,7 @@ public class StudentUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditStudentDescriptor}'s details.
      */
     public static String getEditStudentDescriptorDetails(EditStudentDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();

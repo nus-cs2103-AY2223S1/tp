@@ -120,8 +120,9 @@ public class AddConsultCommand extends Command {
         if (consultDesc == null) {
             consultDescEquality = ac.consultDesc == null;
         } else {
-            consultDescEquality = ac.equals(ac.consultDesc);
+            consultDescEquality = consultDesc.equals(ac.consultDesc);
         }
+
         return consultDescEquality
                 && consultPeriod.equals(ac.consultPeriod)
                 && studentIndexSet.equals(ac.studentIndexSet);

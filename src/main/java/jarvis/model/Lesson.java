@@ -161,6 +161,14 @@ public abstract class Lesson implements Comparable<Lesson> {
         return resMap;
     }
 
+    public LessonAttendance getLessonAttendance() {
+        return attendance;
+    }
+
+    public LessonNotes getLessonNotes() {
+        return notes;
+    }
+
     public String getStudentNotesString(Student student) {
         return notes.getStudentNotesString(student);
     }
