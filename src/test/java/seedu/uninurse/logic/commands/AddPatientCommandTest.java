@@ -219,6 +219,11 @@ public class AddPatientCommandTest {
         }
 
         @Override
+        public void refreshList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean canUndo() {
             throw new AssertionError("This method should not be called.");
         }

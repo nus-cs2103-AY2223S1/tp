@@ -43,13 +43,14 @@ public class LogicManager implements Logic {
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
+        model.updatePersons(); // Update persons before command is executed in case of CommandException
 
         CommandResult commandResult;
         Command command = uninurseBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
+        model.updatePersons(); // Update persons after command is executed
         try {
-            model.updatePersons();
             storage.saveUninurseBook(model.getUninurseBook());
             if (command.isUndoable()) {
                 model.makeSnapshot(commandResult);
@@ -99,5 +100,10 @@ public class LogicManager implements Logic {
     @Override
     public PersonListTracker getPersonListTracker() {
         return model.getPersonListTracker();
+    }
+
+    @Override
+    public void refreshList() {
+        model.refreshList();
     }
 }

@@ -256,6 +256,7 @@ public class MainWindow extends UiPart<Stage> {
         } catch (DuplicateEntryException | InvalidAttributeIndexException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
+            logic.refreshList();
             outputPanel.handleViewPatient(logic.getPatientOfInterest());
             throw e;
         } catch (CommandException | ParseException e) {
