@@ -408,7 +408,7 @@ These are the valid companies and their corresponding codes.
 | FWD          | FWD Singapore Private Limited      |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Commissions must take positive percentages within 0% to 100%! (e.g. 10%, 3.5%, 1.0%)
+Commissions must take positive percentages within 0% to 100%! (e.g. 10% 3.5% 1.0%)
 </div>  
 
 Example Usage:
@@ -440,7 +440,7 @@ Switches the display to show **all** the policies stored.
 
 Format: `allPolicies` <br />
 Example Usage: `allPolicies` <br />
-Example Result: Shows all policies stored in the LTNS, on the screen.
+Example Result: Shows all policies stored in LTNS, on the screen.
 
 ### Deleting a policy : `deletePolicy`
 Deletes the policy at the specified `INDEX`.
@@ -450,7 +450,7 @@ The index **must be a positive integer** 1, 2, 3, …​
 Format: `deletePolicy POLICY_INDEX`
 
 Example Usage:
-* `allPolicies` followed by `deletePolicy 2` deletes the 2nd policy in the LTNS.
+* `allPolicies` followed by `deletePolicy 2` deletes the 2nd policy in LTNS.
 * `findPolicy ti/PruShield` followed by `deletePolicy 1` deletes the 1st policy in the results of the `findPolicy` command.
 
 
@@ -506,8 +506,8 @@ first client in the list from Step 2, with the following details:
 
 ### Listing out policies assigned to a client : `listAssigned`
 
-If you'd like to recall which policies a client has taken up this command lists out, in the command box, the policies 
-that have been assigned to a specific client.
+If you'd like to recall which policies a client has taken up, this command lists out the policies 
+that have been assigned to a specific client, in the status message.
 
 Format: `listAssigned CLIENT_INDEX`
 
