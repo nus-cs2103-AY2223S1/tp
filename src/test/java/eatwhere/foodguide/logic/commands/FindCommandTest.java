@@ -64,11 +64,71 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleEateriesFound() {
         String expectedMessage = String.format(MESSAGE_EATERIES_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        NameContainsKeywordsPredicate predicate = preparePredicate("Carl Elle Fiona");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredEateryList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(TypicalEateries.CARL, TypicalEateries.ELLE, TypicalEateries.FIONA),
+                model.getFilteredEateryList());
+    }
+
+    @Test
+    public void execute_Keyword_notCaseSensitive() {
+        String expectedMessage = String.format(MESSAGE_EATERIES_LISTED_OVERVIEW, 1);
+        FindCommand command;
+
+        // Identical to stored input
+        NameContainsKeywordsPredicate predicateCamelCase = preparePredicate("Abalone");
+        command = new FindCommand(predicateCamelCase);
+        expectedModel.updateFilteredEateryList(predicateCamelCase);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(TypicalEateries.ALICE),
+                model.getFilteredEateryList());
+
+        // Capital letters
+        NameContainsKeywordsPredicate predicateUpperCase = preparePredicate("BAR");
+        command = new FindCommand(predicateUpperCase);
+        expectedModel.updateFilteredEateryList(predicateUpperCase);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(TypicalEateries.BENSON),
+                model.getFilteredEateryList());
+
+        // Mixed capital and small letters
+        NameContainsKeywordsPredicate predicateMixedCase = preparePredicate("cAfEtErIa");
+        command = new FindCommand(predicateMixedCase);
+        expectedModel.updateFilteredEateryList(predicateMixedCase);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(TypicalEateries.CARL),
+                model.getFilteredEateryList());
+
+        // Small letters
+        NameContainsKeywordsPredicate predicateLowerCase = preparePredicate("diner");
+        command = new FindCommand(predicateLowerCase);
+        expectedModel.updateFilteredEateryList(predicateLowerCase);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(TypicalEateries.DANIEL),
+                model.getFilteredEateryList());
+    }
+
+    @Test
+    public void execute_Keyword_searchesSubstrings() {
+        String expectedMessage;
+        FindCommand command;
+
+        expectedMessage = String.format(MESSAGE_EATERIES_LISTED_OVERVIEW, 1);
+        NameContainsKeywordsPredicate predicateDanielPart = preparePredicate("dan");
+        command = new FindCommand(predicateDanielPart);
+        expectedModel.updateFilteredEateryList(predicateDanielPart);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(TypicalEateries.DANIEL),
+                model.getFilteredEateryList());
+
+        expectedMessage = String.format(MESSAGE_EATERIES_LISTED_OVERVIEW, 2);
+        NameContainsKeywordsPredicate predicateDanielEllePart = preparePredicate("el");
+        command = new FindCommand(predicateDanielEllePart);
+        expectedModel.updateFilteredEateryList(predicateDanielEllePart);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(TypicalEateries.DANIEL, TypicalEateries.ELLE),
                 model.getFilteredEateryList());
     }
 

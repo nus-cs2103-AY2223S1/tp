@@ -23,39 +23,59 @@ import eatwhere.foodguide.model.eatery.Eatery;
  */
 public class TypicalEateries {
 
-    public static final Eatery ALICE = new EateryBuilder().withName("Alice Pauline")
-            .withLocation("123, Jurong West Ave 6, #08-111").withCuisine("aliceexamplecom")
+    public static final Eatery ALICE = new EateryBuilder().withName("Alice Abalone")
+            .withLocation("University Town")
+            .withCuisine("Chinese")
             .withPrice("$")
-            .withTags("friends").build();
-    public static final Eatery BENSON = new EateryBuilder().withName("Benson Meier")
-            .withLocation("311, Clementi Ave 2, #02-25")
-            .withCuisine("johndexamplecom").withPrice("$$")
-            .withTags("owesMoney", "friends").build();
-    public static final Eatery CARL = new EateryBuilder().withName("Carl Kurz").withPrice("$$$")
-            .withCuisine("heinzexamplecom").withLocation("wall street").build();
-    public static final Eatery DANIEL = new EateryBuilder().withName("Daniel Meier").withPrice("$")
-            .withCuisine("corneliaexamplecom").withLocation("10th street").withTags("friends").build();
-    public static final Eatery ELLE = new EateryBuilder().withName("Elle Meyer").withPrice("$$")
-            .withCuisine("wernerexamplecom").withLocation("michegan ave").build();
-    public static final Eatery FIONA = new EateryBuilder().withName("Fiona Kunz").withPrice("$$$")
-            .withCuisine("lydiaexamplecom").withLocation("little tokyo").build();
-    public static final Eatery GEORGE = new EateryBuilder().withName("George Best").withPrice("$")
-            .withCuisine("annaexamplecom").withLocation("4th street").build();
+            .withTags("seafood").build();
+    public static final Eatery BENSON = new EateryBuilder().withName("Benson Bar")
+            .withLocation("University Town")
+            .withCuisine("Beverages")
+            .withPrice("$$")
+            .withTags("alcohol").build();
+    public static final Eatery CARL = new EateryBuilder().withName("Carl Cafeteria")
+            .withLocation("Block S3, Faculty of Science")
+            .withCuisine("Western")
+            .withPrice("$$$").build();
+    public static final Eatery DANIEL = new EateryBuilder().withName("Daniel Diner")
+            .withLocation("Block S4, Faculty of Science")
+            .withCuisine("Mixed")
+            .withPrice("$")
+            .withTags("steak").build();
+    public static final Eatery ELLE = new EateryBuilder().withName("Elle Eatery")
+            .withLocation("Block E5, Faculty of Engineering")
+            .withCuisine("Mixed")
+            .withPrice("$$").build();
+    public static final Eatery FIONA = new EateryBuilder().withName("Fiona Fastfood")
+            .withLocation("Block E6, Faculty of Engineering")
+            .withCuisine("Western")
+            .withPrice("$$$").build();
+    public static final Eatery GEORGE = new EateryBuilder().withName("George Grill")
+            .withLocation("Block A7, Faculty of Arts")
+            .withCuisine("Western")
+            .withPrice("$").build();
 
     // Manually added
-    public static final Eatery HOON = new EateryBuilder().withName("Hoon Meier").withPrice("$$")
-            .withCuisine("stefanexamplecom").withLocation("little india").build();
-    public static final Eatery IDA = new EateryBuilder().withName("Ida Mueller").withPrice("$$$")
-            .withCuisine("hansexamplecom").withLocation("chicago ave").build();
+    public static final Eatery HOON = new EateryBuilder().withName("Hoon Hamburgers")
+            .withLocation("University Town")
+            .withCuisine("Snacks")
+            .withPrice("$$").build();
+    public static final Eatery IDA = new EateryBuilder().withName("Ida Indian")
+            .withLocation("Block S9, Faculty of Science")
+            .withCuisine("Indian")
+            .withPrice("$$$").build();
 
     // Manually added - Eatery's details found in {@code CommandTestUtil}
-    public static final Eatery AMY = new EateryBuilder().withName(VALID_NAME_AMY).withPrice(VALID_PRICE_AMY)
-            .withCuisine(VALID_CUISINE_AMY).withLocation(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Eatery BOB = new EateryBuilder().withName(VALID_NAME_BOB).withPrice(VALID_PRICE_BOB)
-            .withCuisine(VALID_CUISINE_BOB).withLocation(VALID_ADDRESS_BOB)
+    public static final Eatery AMY = new EateryBuilder().withName(VALID_NAME_AMY)
+            .withLocation(VALID_ADDRESS_AMY)
+            .withCuisine(VALID_CUISINE_AMY)
+            .withPrice(VALID_PRICE_AMY)
+            .withTags(VALID_TAG_FRIEND).build();
+    public static final Eatery BOB = new EateryBuilder().withName(VALID_NAME_BOB)
+            .withLocation(VALID_ADDRESS_BOB)
+            .withCuisine(VALID_CUISINE_BOB)
+            .withPrice(VALID_PRICE_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalEateries() {} // prevents instantiation
 
