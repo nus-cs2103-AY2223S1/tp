@@ -9,9 +9,20 @@ This guide provides an overview on how to perform the main functionalities of Ha
 
 For advanced users, you can go straight to the [Command Summary](#command-summary).
 
-* Table of Contents
-{:toc}
+<h2>Table of Contents</h2>
 
+- **[Quick start](#quick-start)**
+- **[Layout](#layout)**
+- **[Features](#features)**
+   * [General](#general)
+   * [People Management](#people-management)
+   * [Task Management](#task-management)
+- **[Command summary](#command-summary)**
+- **[FAQ](#faq)**
+- **[Glossary](#glossary)**
+- **[Appendix](#appendix)**
+   * [Person Parameters](#person-parameters)
+   * [Task Parameters](#task-parameters)
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -176,6 +187,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 * Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index must be a positive integer 1, 2, 3, …​
 * At least one of the optional fields must be provided, otherwise you would not be updating anything.
 * Existing values will be updated to the input values.
+*  None of the provided optional fields may be of the same value as the original value
 * When editing tags, all existing tags of the person will be removed and completely replaced with the new tags.
 * You can remove all the person’s tags by typing `t/` without specifying any tags after it.
 * To edit what tasks a person is assigned to, instead of editing the person, edit the relevant task. The edit will be reflected in the person list after you edit the task. There is no way to edit a task using the edit person command.
@@ -210,9 +222,9 @@ Format: `list`
 
 <br>
 
-### Tasks Management
+### Task Management
 
-The following commands are for viewing and managing your hackathon tasks. These tasks can be related to software development, product design, project presentation etc. Each task can be assigned to a person to represent that they are responsible for completing that task.
+The following commands are for viewing and managing your hackathon tasks. These tasks may be related to software development, product design, project presentation etc. Each task can be assigned to a person to represent that they are responsible for completing that task.
 
 #### Adding a task: `addTask`
 
@@ -250,6 +262,7 @@ Format: `editTask INDEX [n/TASK_NAME] [d/DESCRIPTION] [pr/PRIORITY] [c/CATEGORY]
 
 * Edits the task at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed task list. It must be a positive integer 1, 2, 3, …​ and less than or equal to the number of tasks in the task list.
 * At least one of the optional fields must be provided.
+* None of the provided optional fields may be of the same value as the original value
 * Existing values will be updated to the input values.
 * To un-assign a person from a task, write `none` in the EMAIL_OF_PERSON_ASSIGNED field, i.e. `pe/none`.
 * To mark a task's status as `completed` or `not completed`, write `true` or `false` in the IS_DONE field, e.g. `do/true`.
