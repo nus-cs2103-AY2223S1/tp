@@ -44,7 +44,9 @@ public class TypicalPersons {
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withAddress("4th street").build();
 
     // Manually added
-    public static final Person HOON = new PersonBuilder().withName("Hoon Meier")
+    public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withAddress("little india").build();
+
+    public static final Person JOON = new PersonBuilder().withName("Joon Meier")
             .withAddress("little india").withRole("Backend Engineer")
             .withGithubUser("sh4nH").withTags("friends").build();
 
@@ -85,7 +87,19 @@ public class TypicalPersons {
         return ab;
     }
 
+    public static AddressBook getTypicalAddressBookForFindTest() {
+        AddressBook ab = new AddressBook();
+        for (Person person : getTypicalPersonsForFindTest()) {
+            ab.addPerson(person);
+        }
+        return ab;
+    }
+
     public static List<Person> getTypicalPersons() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, HOON, LEE, FANG));
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static List<Person> getTypicalPersonsForFindTest() {
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE, JOON, LEE, FANG));
     }
 }

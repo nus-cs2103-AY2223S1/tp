@@ -11,7 +11,7 @@ import static seedu.address.testutil.TypicalPersons.DANIEL;
 import static seedu.address.testutil.TypicalPersons.FANG;
 import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.GEORGE;
-import static seedu.address.testutil.TypicalPersons.HOON;
+import static seedu.address.testutil.TypicalPersons.JOON;
 import static seedu.address.testutil.TypicalPersons.LEE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -80,7 +80,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.filterPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(FIONA, HOON, LEE), model.getSortedFilteredPersonList());
+        assertEquals(Arrays.asList(FIONA, JOON, LEE), model.getSortedFilteredPersonList());
     }
 
     @Test
@@ -100,7 +100,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.filterPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL, HOON, LEE, FANG), model.getSortedFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL, JOON, LEE, FANG), model.getSortedFilteredPersonList());
     }
 
     @Test
@@ -110,7 +110,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.filterPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, HOON, FANG), model.getSortedFilteredPersonList());
+        assertEquals(Arrays.asList(ALICE, JOON, FANG), model.getSortedFilteredPersonList());
     }
 
     @Test
@@ -120,7 +120,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.filterPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(HOON), model.getSortedFilteredPersonList());
+        assertEquals(Arrays.asList(JOON), model.getSortedFilteredPersonList());
     }
 
     @Test
