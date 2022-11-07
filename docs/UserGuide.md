@@ -19,8 +19,8 @@ If you are a [School of Computing](#school-of-computing-soc) (SOC) student, this
 Even if you are not, fret not! Just have a quick look at the [command summary](#command-summary) (they are rather intuitive) and start typing to give it a try!
 
 For first-time users, we also recommend you to first read through the various [person fields](#person-fields) as well as [module fields](#module-fields) to familiarise yourself with what each field represent and their constraints.
-
 <div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Table of Contents
@@ -51,7 +51,6 @@ For first-time users, we also recommend you to first read through the various [p
 - [Command Summary](#command-summary)
 - [FAQ](#faq)
 - [Glossary](#glossary)
-
 <div style="page-break-after: always;"></div>
 
 ## Quick start
@@ -73,8 +72,8 @@ For first-time users, we also recommend you to first read through the various [p
 5. Type a command in the command box and press Enter to execute it.
 
 6. Refer to the [Command Summary](#command-summary) below for details of each command.
-
 <div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## The [GUI](#graphical-user-interface-gui) Layout
@@ -87,8 +86,8 @@ For first-time users, we also recommend you to first read through the various [p
 * D: Module List. This is where all modules are displayed with their individual fields.
 
 [Back to top](#socompiler-user-guide)
-
 <div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Things to note
@@ -125,7 +124,6 @@ For first-time users, we also recommend you to first read through the various [p
 Displays all modules and contacts stored in the app.
 
 Format: `list`
-
 <div style="page-break-after: always;"></div>
 
 ### Finding keywords in contacts and/or modules: `find`
@@ -165,7 +163,6 @@ Format: `help`
 <div markdown="span" class="alert alert-primary"> :bulb: **Tip:** 
 You can access this window by clicking the File button on the top left of the app, followed by Help. Or you can just press F1!
 </div>
-
 <div style="page-break-after: always;"></div>
 
 ### Exiting the program: `exit`
@@ -183,7 +180,6 @@ Alternatively, you can click the File button on the top left of the app, followe
 SoCompiler data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 [Back to top](#socompiler-user-guide)
-
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
@@ -246,7 +242,7 @@ Examples:
 
 ### Finding a contact: `findp`
 
-Finds contacts with any of the given keywords in any field.
+Find contacts with any of the given keywords in any field.
 
 Format: `findp KEYWORD [MORE_KEYWORD]…​`
 
@@ -256,12 +252,16 @@ Format: `findp KEYWORD [MORE_KEYWORD]…​`
 * Full words are characterized by having a space before and after the word; e.g. Searching `Alex` will only match `Alex` and not `Alex-`
 * Contacts matching at least one keyword will be returned; e.g. `findp mcghee broad` will return the contacts `Bob McGhee` and `Seaward Broad`.
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 
 * `findp yeoh yu` returns contacts `Alex Yeoh` and `Bernice Yu`
   <img src="images/findp.png"/>
 
 [Back to top](#socompiler-user-guide)
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -369,9 +369,7 @@ Examples:
 | Lecture Zoom Link  | Zoom link of a lecture                            | lz/        | ✓        | Must be a valid [URL](#url) which begins with https://                     |           
 | Tutorial Details   | Details of a tutorial, e.g. location and time     | t/         | ✓        |                                                                            |          
 | Tutorial Zoom Link | Zoom link of a tutorial                           | tz/        | ✓        | Must be a valid [URL](#url) which begins with https://                     |           
-| Assignment Details | Details of an assignment, e.g. title and due date | a/         | ✓        | Should only contain [alphanumeric](#alphanumeric) characters and spaces.   |     
-
-[Back to top](#socompiler-user-guide)
+| Assignment Details | Details of an assignment, e.g. title and due date | a/         | ✓        | Should only contain [alphanumeric](#alphanumeric) characters and spaces.   |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -421,6 +419,8 @@ Examples:
 **A**: We do not wish to restrict your freedom by restricting those fields. Do check that the information you input is accurate.
 
 [Back to top](#socompiler-user-guide)
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
