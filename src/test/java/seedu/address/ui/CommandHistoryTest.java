@@ -59,7 +59,7 @@ class CommandHistoryTest {
     }
 
     @Test
-    void nextCommand_CapsAtArraySize() {
+    void nextCommand_capsAtArraySize_success() {
         commandHistory.addCommand(commands[0]);
         commandHistory.addCommand(commands[1]);
         commandHistory.previousCommand();
