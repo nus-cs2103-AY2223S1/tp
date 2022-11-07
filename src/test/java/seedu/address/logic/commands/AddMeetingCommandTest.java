@@ -29,8 +29,8 @@ import seedu.address.testutil.PersonBuilder;
 
 class AddMeetingCommandTest {
 
-    private static final String MEETINTTIME_STUB_1 = "10-10-2022-22:30";
-    private static final String MEETINTTIME_STUB_2 = "01-09-2023-03:04";
+    private static final String MEETINGTIME_STUB_1 = "10-10-2022-22:30";
+    private static final String MEETINGTIME_STUB_2 = "01-09-2023-03:04";
     private static final String SECOND_PERSON_MEETINGTIME = "11-04-2022-11:00";
     private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -39,7 +39,7 @@ class AddMeetingCommandTest {
     public void execute_addSingleMeetingUnfilteredList_success() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson)
-                .withMeetingTimes(MEETINTTIME_STUB_1).build();
+                .withMeetingTimes(MEETINGTIME_STUB_1).build();
 
         Set<MeetingTime> editedTimes = new HashSet<>();
         editedTimes.addAll(editedPerson.getMeetingTimes());
@@ -58,7 +58,7 @@ class AddMeetingCommandTest {
     public void execute_addMultipleMeetingUnfilteredList_success() {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson)
-                .withMeetingTimes(MEETINTTIME_STUB_1, MEETINTTIME_STUB_2).build();
+                .withMeetingTimes(MEETINGTIME_STUB_1, MEETINGTIME_STUB_2).build();
 
         Set<MeetingTime> editedTimes = new HashSet<>();
         editedTimes.addAll(editedPerson.getMeetingTimes());
@@ -79,7 +79,7 @@ class AddMeetingCommandTest {
 
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson)
-                .withMeetingTimes(SECOND_PERSON_MEETINGTIME, MEETINTTIME_STUB_1).build();
+                .withMeetingTimes(SECOND_PERSON_MEETINGTIME, MEETINGTIME_STUB_1).build();
 
         Set<MeetingTime> editedTimes = new HashSet<>();
         editedTimes.addAll(editedPerson.getMeetingTimes());
@@ -100,7 +100,7 @@ class AddMeetingCommandTest {
 
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson)
-                .withMeetingTimes(SECOND_PERSON_MEETINGTIME, MEETINTTIME_STUB_1, MEETINTTIME_STUB_2).build();
+                .withMeetingTimes(SECOND_PERSON_MEETINGTIME, MEETINGTIME_STUB_1, MEETINGTIME_STUB_2).build();
 
         Set<MeetingTime> editedTimes = new HashSet<>();
         editedTimes.addAll(editedPerson.getMeetingTimes());
@@ -127,7 +127,7 @@ class AddMeetingCommandTest {
     public void undo_commandExecuted_undoSuccessful() throws Exception {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(firstPerson)
-                .withMeetingTimes(MEETINTTIME_STUB_1, MEETINTTIME_STUB_2).build();
+                .withMeetingTimes(MEETINGTIME_STUB_1, MEETINGTIME_STUB_2).build();
 
         Set<MeetingTime> editedTimes = new HashSet<>();
         editedTimes.addAll(editedPerson.getMeetingTimes());
