@@ -1,6 +1,6 @@
 ---
 name: Argument
-show-in: [ug, dg]
+show-in: [ug]
 ---
 
 A value that is passed into a command.

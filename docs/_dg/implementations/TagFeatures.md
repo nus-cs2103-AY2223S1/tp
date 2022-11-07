@@ -19,7 +19,7 @@
 
 The tagging functionality is facilitated by the `UniqueTagList` stored in `FoodRem`. Additionally, each `Item` stores its own sets of associated `Tag` objects in an internal `Set<Tag>`.
 
-* Creating, updating and deleting tags will modify the tags within the `UniqueTagList` which contains all existing `Tag` objects.
+* Creating, updating and deleting [[ tag:tags ]] will modify the tags within the `UniqueTagList` which contains all existing `Tag` objects.
 * Tagging/untagging a `Tag` to an `Item` will add/remove the corresponding `Tag` object to the `Set<Tag>` stored within `Item`.
 
 Given below is an UML diagram of `Tag` and the classes related to it:
@@ -49,7 +49,7 @@ When storing a tag, these are the alternatives considered.
     * Easily extensible (defining a new `Tag` or `Item` can be as simple as creating a new node in the tree)
 
   * Cons:
-    * Example of over engineering, unnecessarily complicates things as compared to alternative 1
+    * Example of over-engineering, unnecessarily complicates things when compared to alternative 1
     * Unlikely to have deeply nested relationships for `Tag`, adding each `Tag` to an `Item` is much simpler
     * Unlikely to need so many `Tag`, in which case alternative one would result in faster operations by using hash tables instead of a tree
 
@@ -113,4 +113,24 @@ Here is the sequence diagram showing the interactions between the different comp
 When the `TagCommand` is executed to tag a tag to an item, a copy of the item is created and the tag is added to it before replacing this new copy of the item with the original item in the list of items in FoodRem. We chose to replace the original item with the new item because this will allow the UI to detect a change in the `UniqueItemList` and thus update and show the item with their new tag included.
 
 #### Filtering Items by Tag Name
-<!-- TODO: Fill up -->
+
+##### Overview
+
+The `filtertag` command filters the Item List for items tagged with the specified `tag`.
+
+##### Feature Details
+
+Here is the activity diagram showing the process of the `tag` command:
+
+![FilterTagItemActivityDiagram](images/FilterTagActivityDiagram.png)
+
+
+Here is the sequence diagram showing the interactions between the different components during a `tag` command.
+
+![FilterTagSequenceDiagram](images/FilterTagSequenceDiagram.png)
+
+1. The user specifies a tag name of the tag to filter for.
+1. If the tag name is not provided, the user will be prompted to enter the command correctly via an error message.
+1. The tag name is cross-referenced with the current tags in the database and an error is thrown if the tag does not exist in the database.
+1. If the tag name is valid, the model filters the Item List for items that are tagged with this specified tag.
+1. If step 1 - 4 successfully complete, the displayed Item List in the GUI will be updated to only display items tagged with the specified tag.

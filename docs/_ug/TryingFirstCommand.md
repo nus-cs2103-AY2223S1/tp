@@ -52,7 +52,7 @@ However, note that the following executions are invalid:
 _Find out more about restrictions in the sections [Flags](#flags), [Placeholders](#placeholders) and [Commands](#commands)._
 
 ---
-Let's try out another command - the `inc` command! `inc` lets you increment the quantity of an item.
+Let's try out another command -- the `inc` command! `inc` lets you increment the quantity of an item.
 
 ```warning
 The format for different commands are not always identical. For example, executing the `new` command and the `inc` command will have different formats!

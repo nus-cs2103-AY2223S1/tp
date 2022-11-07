@@ -24,7 +24,7 @@ public class HelpCommand extends Command {
                     + "in the command box, where COMMAND_WORD is any one of the following:\n"
                     + CommandType.listAllCommandWords() + ".\n\n"
                     + MORE_INFORMATION;
-    public static final String NOT_A_COMMAND = "\"%s\" is not a valid command\n\n" + HELP_FORMAT_GENERAL;
+    public static final String NOT_A_COMMAND = "\"%s\" is not a valid command.\n\n" + HELP_FORMAT_GENERAL;
     private static final String SHOWING_HELP_MESSAGE = "Opened help window.";
     private static final String HELP_FORMAT_SPECIFIC = "%s\n\n" + HELP_FORMAT_GENERAL;
 

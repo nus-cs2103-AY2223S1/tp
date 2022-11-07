@@ -46,11 +46,14 @@
     }
 
     pre,
-    hr,
+    hr {
+      page-break-before: avoid;
+      page-break-after: avoid;
+    }
+
     ul,
     ol {
       page-break-before: avoid;
-      page-break-after: avoid;
     }
 
     p,
@@ -107,6 +110,37 @@
         // For PrinceXML compatibility
         text-decoration: underline;
         text-underline-style: dotted;
+      }
+    }
+  }
+
+  article.post {
+    .command-container {
+      page-break-before: avoid;
+
+      * + * {
+        // Use old-style spacing due to unsupported
+        // column-gap for flex items
+        margin-left: 1rem;
+      }
+    }
+
+    .command-container,
+    .input-container,
+    .output-image {
+      page-break-inside: avoid;
+    }
+
+    .input-container,
+    .output-image {
+      box-sizing: border-box;
+    }
+
+    .input-container {
+      pre,
+      code {
+        // PrinceXML does not support break-spaces
+        white-space: pre-line;
       }
     }
   }

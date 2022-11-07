@@ -21,7 +21,7 @@ show-toc: true
 
 {% include_relative _ug/Installation.md %}
 
-## Quickstart Guide
+## Quick Reference Guide
 
 {% include_relative _ug/QuickstartGuide.md %}
 

@@ -11,10 +11,19 @@
 {%- for node in nodes offset:1 -%}
   {% assign data = node | split: ']]' %}{% assign tag = data | first | strip | split: '#' %}{% assign type = tag | first | strip %}{% assign number = tag | last | strip %}
   {%- if type == 'PR' -%}
-    <span class="pr-badge">
+    <span class="ppp-badge">
       {% include icons/git-merge.svg class="icon" %}
-      <a href="https://github.com/{{ site.repository }}/pull/{{ number }}">PR#{{ number }}</a>
+      <a target="_blank" href="https://github.com/{{ site.repository }}/pull/{{ number }}">PR#{{ number }}</a>
       <span class="tooltip"><strong>Pull Request</strong> #{{ number }}<br><small>View on GitHub</small></span>
+    </span>
+    {%- for tail in data offset:1 -%}
+      {{ tail }}
+    {%- endfor -%}
+  {% elsif type == 'Issue' %}
+    <span class="ppp-badge">
+      {% include icons/issue-closed.svg class="icon" %}
+      <a target="_blank" href="https://github.com/{{ site.repository }}/issues/{{ number }}">Issue#{{ number }}</a>
+      <span class="tooltip"><strong>Issue</strong> #{{ number }}<br><small>View on GitHub</small></span>
     </span>
     {%- for tail in data offset:1 -%}
       {{ tail }}

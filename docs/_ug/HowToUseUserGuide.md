@@ -1,13 +1,17 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 Thank you for choosing FoodRem! We are delighted to have you as a user and we aim to serve you and your business well!
 
+```info
+We **highly recommend** that you read through the User Guide in a **sequential order**. Please note the importance of the [Quick Reference Guide](#quick-reference-guide) section, which covers how to use FoodRem!
+```
+
 ```tip
-We **highly recommend** that you read through the User Guide in a **sequential order**. Please note the importance of the [Quickstart Guide](#quickstart-guide) section, which covers how to use FoodRem!
+This User Guide is highly navigable; simply click on any item in the [Table of Contents](#toc-heading) and be directed to it! Clicking on the respective headings will bring you back to the Table of Contents, so it's easy to jump across sections!
 ```
 
 If you have not installed FoodRem head over to the [Installation](#installation) section.
 
-Once FoodRem is installed, you can head over to the section [Quickstart Guide](#quickstart-guide) which covers the basics of using FoodRem. This includes:
+Once FoodRem is installed, you can head over to the section [Quick Reference Guide](#quick-reference-guide) which covers the basics of using FoodRem. This includes:
 
 * FoodRem's [Layout](#layout)
 * What [Items and Tags](#key-definitions) are in FoodRem

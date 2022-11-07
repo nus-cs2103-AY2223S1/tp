@@ -9,17 +9,19 @@ Example of a [Tag](#tag):
 
 > Creates a new tag with the provided tag name
 
-**Example Input:**
+**Example:**
 
-```text
-newtag n/Vegetables
-```
+{% capture notes %}
+**Assumption:**
 
-**Example Output:**<br>Command Output Box:
-
-```text
-New tag added: Vegetables
-```
+FoodRem does not already contain a tag called "Vegetables".
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="newtag n/Vegetables"
+  commandOutputBox="images/tagCommands/commandOutputBox/newtag.png"
+%}
 
 ---
 
@@ -29,19 +31,23 @@ New tag added: Vegetables
 
 > List all tags in FoodRem
 
-**Example Input:**
+**Example:**
 
-```text
-listtag
-```
+{% capture notes %}
+**Assumption:**
 
-**Example Output:**<br>Command Output Box:
+Initially, FoodRem contains only the following three tags:
 
-```text
-Listed all tags:
-Vegetables
-Carrots
-```
+* Fruits
+* Meat
+* Vegetables
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="listtag"
+  commandOutputBox="images/tagCommands/commandOutputBox/listtag.png"
+%}
 
 ---
 
@@ -51,24 +57,21 @@ Carrots
 
 > Tags the item at the specified index
 
-**Example Input:**
+**Example:**
 
-```text
-tag 1 n/Vegetables
-```
+{% capture notes %}
+**Assumptions:**
 
-**Example Output:**<br>Command Output Box:
-
-```text
-Item tagged successfully.
-Name: Onions
-Quantity: 8 kg
-Bought Date: 10-10-2022
-Expiry Date: 10-11-2022
-Price: $6
-Remarks: No Remarks
-Tags: {Vegetables}
-```
+* The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the item named "Carrot" at INDEX value 1.
+* There exists a tag called "Vegetables".
+* The "Carrot" item has not already been tagged under "Vegetables".
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="tag 1 n/Vegetables"
+  commandOutputBox="images/tagCommands/commandOutputBox/tag.png"
+%}
 
 ---
 
@@ -78,24 +81,20 @@ Tags: {Vegetables}
 
 > Untags the item at the specified index
 
-**Example Input:**
+**Example:**
 
-```text
-untag 1 n/Vegetables
-```
+{% capture notes %}
+**Assumptions:**
 
-**Example Output:**<br>Command Output Box:
-
-```text
-Item untagged successfully
-Name: Onions
-Quantity: 8 kg
-Bought Date: 10-10-2022
-Expiry Date: 10-11-2022
-Price: $6
-Remarks: No Remarks
-Tags: {}
-```
+* The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the item named "Carrot" at INDEX value 1.
+* The "Carrot" item is currently tagged under "Vegetables".
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="untag 1 n/Vegetables"
+  commandOutputBox="images/tagCommands/commandOutputBox/untag.png"
+%}
 
 ---
 
@@ -109,38 +108,24 @@ Tags: {}
 The first `TAG_NAME` in the command refers to the current tag you wish to rename while the second `TAG_NAME` refers to the new name you wish to rename the current tag to.
 ```
 
-**Example Input:**
-
-```text
-renametag n/Vegetables n/Veggies
+```note
+If you encounter an error message saying "This tag name already exists in FoodRem," it means that the new name you wish to rename the current tag to is already taken by another tag in FoodRem.
 ```
 
-**Example Output:**<br>Command Output Box:
+**Example:**
 
-```text
-Original tag: Vegetables
-Renamed tag: Veggies
-```
+{% capture notes %}
+**Assumptions:**
 
----
-
-#### Delete a tag: `deletetag`
-
-**Format**: `deletetag n/TAG_NAME`
-
-> Deletes a tag that exists in FoodRem
-
-**Example Input:**
-
-```text
-deletetag n/Veggies
-```
-
-**Example Output:**<br>Command Output Box:
-
-```text
-Tag deleted: Veggies
-```
+* Initially, there exists a tag called "Vegetables".
+* FoodRem does not already contain a tag called "Veggies".
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="renametag n/Vegetables n/Veggies"
+  commandOutputBox="images/tagCommands/commandOutputBox/renametag.png"
+%}
 
 ---
 
@@ -150,22 +135,52 @@ Tag deleted: Veggies
 
 > Filters and shows items that contain a specific tag
 
-**Example Input:**
+**Example:**
 
-```text
-filtertag n/fruits
+{% capture notes %}
+**Assumption:**
+
+Initially, FoodRem only contains the following items:
+
+1. Banana (tagged as "Fruits")
+1. Carrot (tagged as "Vegetables")
+1. Papaya (tagged as "Fruits")
+1. Tomato (tagged as "Vegetables")
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="filtertag n/Fruits"
+  itemListBox="images/tagCommands/itemListBox/filtertag.png"
+%}
+
+---
+
+#### Delete a tag: `deletetag`
+
+**Format**: `deletetag n/TAG_NAME`
+
+> Deletes a tag that exists in FoodRem
+
+```warning
+* There is **no** additional confirmation for deleting a tag that is in use
+* Deleting a tag that is already in use will also untag the items under that tag
 ```
 
-**Example Output:**<br>Command Output Box:
-
-```text
-Filtered by tag: fruits
-2 items left after filtering!
+```tip
+You might find the abovementioned [Filtertag Command](#filter-by-a-tag-filtertag) useful to check that a tag is not in use before deleting it. 
 ```
 
-Item List Box:
+**Example:**
 
-```text
-1. Apples 8 kg (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
-2. Onions 8 kg $1 (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
-```
+{% capture notes %}
+**Assumption:**
+
+Initially, there already exists a tag called "Veggies".
+{% endcapture %}
+{%
+  include command-format.md
+  notes=notes
+  input="deletetag n/Veggies"
+  commandOutputBox="images/tagCommands/commandOutputBox/deletetag.png"
+%}
