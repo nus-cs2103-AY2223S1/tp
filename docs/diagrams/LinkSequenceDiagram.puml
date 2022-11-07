@@ -56,6 +56,10 @@ LinkCommand -> Model : setPerson(personToLink, linkedPerson)
 
 LinkCommand -> Model : setInternship(internshipToLink, linkedInternship)
 
+LinkCommand -> Model : refreshPersonList()
+
+LinkCommand -> Model : refreshInternshipList()
+
 create CommandResult
 LinkCommand -> CommandResult
 activate CommandResult

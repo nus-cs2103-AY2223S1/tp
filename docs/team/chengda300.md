@@ -32,6 +32,6 @@ Given below are my contributions to the project.
     * Added "list internship"
     * Added "sort person"
   * Developer Guide:
-    * Added "sort person" implementation
+    * Added "sort person" implementation, activity diagram, sequence diagram, use case and manual test cases.
 
 * **Code Reviews**: [#145](https://github.com/AY2223S1-CS2103T-F11-1/tp/pull/145)

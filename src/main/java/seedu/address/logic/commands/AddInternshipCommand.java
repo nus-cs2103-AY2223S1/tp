@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK_INDEX;
 import java.util.List;
 import java.util.Objects;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -100,7 +101,11 @@ public class AddInternshipCommand extends Command {
         Person contactPerson = null;
         // If a linkIndex is supplied to the command,
         // attempt to find a contactPerson via the provided index in the filtered person list
-        if (linkIndex != null && linkIndex.getZeroBased() < lastShownList.size()) {
+        if (linkIndex != null) {
+            if (linkIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+
             contactPerson = lastShownList.get(linkIndex.getZeroBased());
 
             // The person to link to must not already be linked to an internship

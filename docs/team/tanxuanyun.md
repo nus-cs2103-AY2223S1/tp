@@ -22,7 +22,9 @@ Users will be able to save contact person information to manage them more conven
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=tanxuanyun&breakdown=true)
 
 * **Project management**:
-  * `to be added soon`
+  * Prepare meeting agenda 
+  * Created and assigned issues to team members.
+  * Reviewed team members’ pull requests
 
 * **Enhancements to existing features**:
   * Allow phone and email in add -p command to be optional 
@@ -31,17 +33,23 @@ Users will be able to save contact person information to manage them more conven
 
 * **Documentation**:
   * User Guide:
-    * Added introduction to InterNUS
+    * Updated introduction to InterNUS
     * Added instruction on how to use the guide
-    * Added quick start section
+    * Updated quick start section
     * Added feature description for add -p command
     * Added user interface section 
   * Developer Guide:
+    * Updated acknowledgments
+    * Updated UI component section
     * Updated logic component section 
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): ([to be added soon]())
-
-* **Tools**:
-  * `to be added soon`
-
+  * Reported bugs for another team [here](https://github.com/tanxuanyun/ped/issues)
+  * PRs reviewed (trivial comment):
+  [#141](https://github.com/AY2223S1-CS2103T-F11-1/tp/pull/141), 
+  [#172](https://github.com/AY2223S1-CS2103T-F11-1/tp/pull/172), 
+  [#174](https://github.com/AY2223S1-CS2103T-F11-1/tp/pull/174), 
+  [#185](https://github.com/AY2223S1-CS2103T-F11-1/tp/pull/185),
+  [#271](https://github.com/AY2223S1-CS2103T-F11-1/tp/pull/271), 
+  [#284](https://github.com/AY2223S1-CS2103T-F11-1/tp/pull/284)
+  

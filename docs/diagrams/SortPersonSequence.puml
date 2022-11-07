@@ -15,10 +15,10 @@ end box
 
 participant ":FilteredList" as FilteredList #222222
 
-[-> LogicManager : execute("sortp n/")
+[-> LogicManager : execute("sort -p n/")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("sortp n/")
+LogicManager -> AddressBookParser : parseCommand("sort -p n/")
 activate AddressBookParser
 
 create SortPersonCommandParser

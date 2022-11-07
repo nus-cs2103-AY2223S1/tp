@@ -3,8 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERNSHIP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -111,8 +109,8 @@ public class LinkCommand extends Command {
 
         model.setPerson(personToLink, linkedPerson);
         model.setInternship(internshipToLink, linkedInternship);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
+        model.refreshPersonList();
+        model.refreshInternshipList();
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS, linkedPerson.getName(), linkedInternship.getDisplayName()));
     }

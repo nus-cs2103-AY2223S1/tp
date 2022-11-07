@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -100,12 +101,21 @@ public class AddPersonCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         // By default, use the internshipId field in the command
         InternshipId idToLink = internshipId;
+
         List<Internship> lastShownList = model.getFilteredInternshipList();
         Internship internshipToLink = null;
-        if (linkIndex != null && linkIndex.getZeroBased() < lastShownList.size()) {
+        // If a linkIndex is supplied to the command,
+        // attempt to find an internship via the provided index in the filtered internship list
+        if (linkIndex != null) {
+            if (linkIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+            }
+
             internshipToLink = lastShownList.get(linkIndex.getZeroBased());
+
             if (internshipToLink.getContactPersonId() == null) {
                 idToLink = internshipToLink.getInternshipId();
             }

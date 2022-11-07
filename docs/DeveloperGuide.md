@@ -9,7 +9,12 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+This project is based on the [AddressBook Level-3](https://github.com/nus-cs2103-AY2223S1/tp) project created by
+the [SE-EDU initiative](https://se-education.org).
+
+Libraries used:
+
+* [JavaFX](https://openjfx.io/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -18,7 +23,7 @@ title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
@@ -52,7 +57,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete -p 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -73,7 +78,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `InternshipListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -86,7 +91,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -98,7 +103,7 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletep 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete -p 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete -p 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -110,11 +115,11 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPersonCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPersonCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+The **API** of this component is specified in [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -135,7 +140,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+The **API** of this component is specified in [`Storage.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -173,6 +178,9 @@ Given below is an example usage scenario.
 The sequence diagram is given below.
 ![SortPersonSequence](images/EditInternshipSequence.png)
 
+The following activity diagram summarizes what happens when a user executes an `EditInternshipCommand`:
+![SortPersonActivity](images/EditInternshipActivity.png)
+
 ### Sort Person list
 
 #### Implementation
@@ -183,12 +191,15 @@ The sequence diagram is given below.
 4. The command parser will then create a `SortPersonCommand` with the corresponding internal variable (`n/` means sort by name, `c/` means sort by associated company name). This is facilitated by the `Criteria` enumeration.
 5. The method then returns all the way back to `LogicManager`, which is then stored as a variable called `command`.
 6. Then, the command is executed by calling the `execute()` method of `SortPersonCommand` (the command that was returned earlier) directly.
-7. Based on its internal variable, it will call `sortPersonlist()` in the `Model` class on the person list, and passes the sort criteria.
-8. The person list will then set the comparator based on the criteria that was passed earlier, and the list is sorted based on that comparator.
+7. Based on its internal variable, it will call `sortPersonlist()` in the `Model` class on the person list, and passes the sort criterion.
+8. The person list will then set the comparator based on the criterion that was passed earlier, and the list is sorted based on that comparator.
 9. Afterwards, `SortPersonCommand` creates a `CommandResult` to denote that the operation is completed, and returns this `CommandResult` back to `LogicManager`.
 
 The sequence diagram is given below.
 ![SortPersonSequence](images/SortPersonSequence.png)
+
+The activity diagram is given below.
+![SortPersonActivity](images/SortPersonActivity.png)
 
 #### Design considerations
 
@@ -231,6 +242,9 @@ The sequence diagram is given below.
 
 The sequence diagram is given below.
 ![LinkSequence](images/LinkSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user attempts to link a person and an internship:
+![LinkActivity](images/LinkActivityDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -310,15 +324,8 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete -p`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -328,7 +335,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -345,47 +352,38 @@ _{Explain here how the data archiving feature will be implemented}_
 
 * Keep track of multiple company contacts and applications’ progress simultaneously (the reply rates from companies are very low)
 * Keep track of colleagues' information post-internship
-* Keep track of internship application windows of multiple companies
+* Keep track of internship applications of multiple companies
+* Keep track of contact information of hiring managers, and link them to internship openings
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​          | I want to …​                                                                                             | So that I can…​                                                                                        |
-|----------|------------------|----------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| * * *    | First time user  | I can see a summary of commands                                                                          | I can know the functionalities of the app quickly                                                      |
-| * * *    | First time user  | I can delete internship status                                                                           | so that I know that I have finished my interview process with the company                              |
-| * * *    | First time user  | I can see suggested information I need to fill in while I'm adding a contact                             | I don't have to keep referring to the help page to know the information I can add (email, company etc) |
-| * * *    | Second time user | I can pre-load my data from the previous session                                                         | I do not need to re-add everyone again                                                                 |
-| * * *    | Second time user | I can purge all current data                                                                             | I can get rid of sample contacts I used for exploring the app                                          |
-| * * *    | Lazy user        | search contacts by groups or tags                                                                        | I do not need to manually filter them                                                                  |
-| * * *    | User             | I can edit contacts                                                                                      | I do not need to delete and re-add to fix a typo error                                                 |
-| * * *    | User             | delete contacts individually                                                                             |                                                                                                        |
-| * * *    | User             | add the company name to each contact                                                                     | I know which company the contact is representing                                                       |
-| * * *    | User             | navigate the address book easily                                                                         | using the address book should not be a headache by itself                                              |
-| * * *    | User             | I can sort contact by interview status                                                                   | so that I can know which company interview I can prepare for                                           |
-| * * *    | User             | I can sort contact by interview date                                                                     | so that I can know when to prepare for interview                                                       |
-| * * *    | User             | I can see a reminder of the next upcoming interview on the homescreen                                    | so that I know the upcoming interview without opening the address book                                 |
-| * *      | First time user  | I can view user guide                                                                                    | so that I can know all the functions                                                                   |
-| * *      | First time user  | I can see the app populated with sample contacts                                                         | I can easily see how the app will look like when it is in use                                          |
-| * *      | Second time user | see tips suggesting shortcuts or shortforms                                                              | I can potentially achieve faster commands and actions                                                  |
-| * *      | Second time user | see a summary of the internship information I have keyed in so far on starting the app                   | I can know where I left off from the last time I used the app                                          |
-| * *      | Forgetful user   | search contacts by the time it was added                                                                 | I can figure out whom I added at that time                                                             |
-| * *      | Expert user      | Create tags with different priorities                                                                    | Sort contacts by priority                                                                              |
-| * *      | Expert user      | Mass import contacts directly                                                                            | Use the app on another device                                                                          |
-| * *      | Expert user      | Mass edit contacts (e.g. find and replace/set)                                                           | Set common information amongst groups of contacts quickly                                              |
-| * *      | User             | archive contacts                                                                                         | I know which internships I've been rejected from                                                       |
-| * *      | User             | Add colors to tags and contacts                                                                          | Distinguish between contacts easier in the GUI                                                         |
-| * *      | User             | I can purge all interview status                                                                         | so that I can still save all contact after I have found a job                                          |
-| *        | First time user  | I can update the application process attached to a company (application date, round1, interview dates..) | I can see my progress for the internships                                                              |
-| *        | Lazy user        | Leaving halfway when inputting contact information saves it as draft and lets me continue from last time | I dont lose my progress when accidentally leaving or can leave temporarily to work on it next time     |
-| *        | Forgetful user   | I can sort the companies by upcoming interview dates                                                     | I can see a clear timeline and prevent clashing dates                                                  |
-| *        | Expert user      | Create email templates per company                                                                       | Easily draft up internship application emails                                                          |
-| *        | User             | add job roles to each contact                                                                            | I know which role I'm contacting that particular person for (front-end, back-end etc)                  |
-| *        | User             | Personalize GUI colors and color themes (light mode, dark mode etc.)                                     | Make the app more visually appealing                                                                   |
-
-*{More to be added}*
+| Priority | As a …​          | I want to …​                                                                           | So that ​                                                                                              |
+|----------|------------------|----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| * * *    | First time user  | See a summary of commands                                                              | I can know the functionalities of the app quickly                                                      |
+| * * *    | First time user  | Delete internship status                                                               | I know that I have finished my interview process with the company                                      |
+| * *      | First time user  | View the user guide                                                                    | I can know all the functions                                                                           |
+| * *      | First time user  | See the app populated with sample contacts when launching the app for the first time   | I can easily see how the app will look like when it is in use                                          |
+| * *      | First time user  | See a help message when I use a command word incorrectly                               | I can easily learn how to use individual commands without the need to keep referring to the user guide |
+| * * *    | Second time user | Pre-load my data from the previous session                                             | I do not need to re-add everyone again                                                                 |
+| * * *    | Second time user | Purge all current data                                                                 | I can get rid of sample contacts I used for exploring the app                                          |
+| * *      | Second time user | See a summary of the internship information I have keyed in so far on starting the app | I can know where I left off from the last time I used the app                                          |
+| * * *    | Lazy user        | Find contacts by name                                                                  | I do not need to manually filter them                                                                  |
+| * * *    | Lazy user        | Find internships by company and role                                                   | I do not need to manually filter them                                                                  |
+| * * *    | User             | Edit contacts and internships individually                                             | I do not need to delete and re-add to fix a typo error                                                 |
+| * * *    | User             | Delete contacts and internships individually                                           | I can remove contacts and internships that I no longer need                                            |
+| * * *    | User             | Add the company name to each contact                                                   | I know which company the contact is representing                                                       |
+| * * *    | User             | Add internship status to each internship                                               | I know whether I have been accepted, rejected or still awaiting reply                                  |
+| * * *    | User             | Sort internships by internship status                                                  | I can know which company interview I can prepare for                                                   |
+| * * *    | Forgetful user   | Sort internships by upcoming interview dates                                           | I can see a clear timeline and prevent clashing dates                                                  |
+| * *      | User             | Add roles to each internship                                                           | I know which role I am applying for (front-end, back-end etc)                                          |
+| * *      | User             | Add a company to each internship                                                       | I know which company I am apply for (Google, Shopee etc)                                               |
+| * * *    | User             | Link a contact to an internship as its contact person                                  | I know who to contact for potential updates if I need to                                               |
+| * * *    | User             | Unlink a contact and an internship                                                     | I can remove the contact person for an internship once I no longer need it                             |
+| * *      | Expert user      | Mass import contacts directly                                                          | I can use the app on another device                                                                    |
+| *        | User             | Personalize GUI colors and color themes (light mode, dark mode etc.)                   | I can make the app more visually appealing                                                             |
 
 ### Use cases
 
@@ -507,7 +505,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
       Use case ends.
 
-*{More to be added}*
+**Use case: UC5 - Sort person list**
+
+**MSS**
+1. User requests to sort person list and supplies a criterion prefix.
+2. InterNUS sorts person list based on the specified criterion prefix.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User submits a blank or invalid criterion prefix.
+
+     * 1a1. InterNUS notifies the user that the criterion prefix is invalid and only 1 criterion prefix can be specified.
+    
+       Use case ends.
+
+* 1b. User submits more than 1 criterion prefixes.
+
+     * 1b1. InterNUS notifies the user that the criterion prefix is invalid and only 1 criterion prefix can be specified.
+
+       Use case ends.
 
 
 ### Non-Functional Requirements
@@ -524,15 +542,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 10. Each contact person can only link to one internship and each internship is only linked to one contact person
 
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
@@ -557,7 +573,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
 
 ### Editing a person
 
@@ -573,7 +588,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect edit commands to try: `edit -p 1`, `edit -p x t/colleague`(where x is larger than the list size).<br>
        Expected: Similar to previous.
-1. _{ more test cases …​ }_
+
 
 ### Deleting a person
 
@@ -590,12 +605,53 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete -p`, `delete -p x`, `...` (where x is larger than the list size).<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+
+### Sorting person list
+
+1. Sorts person list while all persons are being shown
+
+   1. Prerequisites: List all persons using the `list -p` command. Multiple persons in the list.
+
+   1. Test case: `sort -p n/`<br>
+      Expected: Person list is sorted by the persons' names.
+
+   1. Test case: `sort -p c/`<br>
+      Expected: Person list is sorted by the company's names that each person is working at. Persons without an attached company name are listed at the bottom of the list.
+
+   1. Test case: `sort -p n/ c/`<br>
+      Expected: Error is thrown to show that only 1 criterion prefix can be used, and it should be recognisable.
+
+   1. Other incorrect sort person commands to try: `sort -p rbivrv`, `sort -p      `, `sort -p n/ krvnkr`, `...`.<br>
+      Expected: Similar to previous.
+
+2. Sorts person list while not all persons are being shown
+
+   1. Prerequisites: Filter the persons list with `find -p` command. Multiple persons in the list.
+
+   1. Test case: `sort -p n/`<br>
+   Expected: Person list is sorted by the remaining persons' names.
+
+   1. Test case: `sort -p c/`<br>
+   Expected: Person list is sorted by the company's names that each remaining person is working at. Remaining persons without an attached company name are listed at the bottom of the list.
+
+   1. Test case: `sort -p n/ c/`<br>
+   Expected: Error is thrown to show that only 1 criterion prefix can be used, and it should be recognisable.
+
+   1. Other incorrect sort person commands to try: `sort -p rbivrv`, `sort -p      `, `sort -p n/ krvnkr`, `...`.<br>
+   Expected: Similar to previous.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Prerequisites: Go to the folder `data` and find the file `addressbook.json`. App is not launched.
 
-1. _{ more test cases …​ }_
+   1. Test case: Delete the `data` folder <br>
+   Expected: On app launch, InterNUS is populated with sample data.
+
+   1. Test case: Delete the `addressbook.json` file <br>
+   Expected: On app launch, InterNUS is populated with sample data.
+
+   1. Test case: Delete the second line of `addressbook.json`, which should be `"persons" : [ {`<br>
+   Expected: On app launch, InterNUS will have no persons or internships data (i.e. empty lists).
+
