@@ -219,18 +219,20 @@ _Success_
 addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01
 addC n/Betsy Crowe t/friend e/betsy@example.com a/Newgate Prison p/1234567 t/criminal
 ```
-[screenshots to be added]<br>
+![addClientSuccess](images/addclientjohndoe.png)<br>
+
+![addClientSuccess](images/addclientbetsy.png)<br>
 _Failure_
 ```text
 Invalid client name:
 addC n/John D@e p/98765432 e/johnd@example.com a/John street, block 123, #01-01
 ```
-[screenshots to be added]<br>
+![addClientFailure](images/invalidclientname.png)<br>
 ```text
 Missing fields:
 addC n/John Doe a/John street, block 123, #01-01
 ```
-[screenshots to be added]<br>
+![addClientFailure](images/addclientmissing.png)<br>
 **Expected Success Output:**<br>
 A new client is added to RealTime.<br>
 
@@ -260,13 +262,13 @@ _Success_
 ```text
 delC 1
 ```
-[screenshots to be added]<br>
+![deleteClientSuccess](images/deleteclient.png)<br>
 _Failure_
 ```text
 Invalid index:
 delC -1
 ```
-[screenshots to be added]<br>
+![deleteClientFailure](images/invaliddelete.png)<br>
 **Expected Success Output:**<br>
 The client at `INDEX` 1 is deleted from Real-Time.<br>
 
@@ -298,18 +300,20 @@ _Success_
 editC 1 p/91234567 e/johndoe@example.com
 editC 2 n/Betsy Crower t/
 ```
-[screenshots to be added]<br>
+![editClientSuccess](images/editclient.png)<br>
+
+![editClientSuccess](images/editbetsy.png)<br>
 _Failure_
 ```text
 Invalid index:
 editC 0 p/12345678
 ```
-[screenshots to be added]<br>
+![editClientFailure](images/invaliddeleteindex.png)<br>
 ```text
 Missing fields:
 editC 1
 ```
-[screenshots to be added]<br>
+![editClientFailure](images/editmissingfield.png)<br>
 **Expected Success Output:**<br>
 The client at the specified `INDEX` is edited according to the fields provided.<br>
 
@@ -348,14 +352,13 @@ _Success_
 ```text
 findC John
 ```
-[screenshots to be added]<br>
+![findClientSuccess](images/findclient.png)<br>
 _Failure_
 ```text
 No keywords provided:
 findC
 ```
-[screenshots to be added]<br>
-**Expected Success Output:**<br>
+![findClientFailure](images/findclientinvalid.png)<br>
 The list of clients in the Client Box is updated to a list of all matches from the findC command.
 
 **Feedback Box:**
@@ -390,7 +393,7 @@ ___
 
 **Expected Success Output:**<br>
 The full list of clients appears in the Client Box.<br>
-[screenshots to be added]<br>
+![listClientSuccess](images/listclient.png)<br>
 
 **Feedback Box:**
 ```text
