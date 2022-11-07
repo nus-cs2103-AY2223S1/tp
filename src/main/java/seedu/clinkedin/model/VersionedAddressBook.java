@@ -204,7 +204,6 @@ public class VersionedAddressBook extends AddressBook {
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons";
-        // TODO: refine later
     }
 
     @Override

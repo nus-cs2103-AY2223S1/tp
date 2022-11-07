@@ -21,7 +21,8 @@ import seedu.clinkedin.logic.commands.FindCommand;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
 import seedu.clinkedin.model.link.Link;
 import seedu.clinkedin.model.person.Address;
-import seedu.clinkedin.model.person.DetailsContainKeywordsPredicate;
+import seedu.clinkedin.model.person.DetailsContainGeneralKeywordsPredicate;
+import seedu.clinkedin.model.person.DetailsContainPrefixedKeywordsPredicate;
 import seedu.clinkedin.model.person.Email;
 import seedu.clinkedin.model.person.Name;
 import seedu.clinkedin.model.person.Note;
@@ -30,33 +31,24 @@ import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FindCommand object.
  */
 public class FindCommandParser implements Parser<FindCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @param args The arguments to be parsed.
+     * @return A FindCommand object for execution.
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public FindCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, CliSyntax.getPrefixes());
 
         if (arePrefixesPresent(argMultimap, CliSyntax.getPrefixes()) && argMultimap.getPreamble().isEmpty()) {
-            Set<Name> nameList = ParserUtil.parseNames(argMultimap.getAllValues(PREFIX_NAME));
-            Set<Phone> phoneList = ParserUtil.parsePhones(argMultimap.getAllValues(PREFIX_PHONE));
-            Set<Email> emailList = ParserUtil.parseEmails(argMultimap.getAllValues(PREFIX_EMAIL));
-            Set<Address> addressList = ParserUtil.parseAddresses(argMultimap.getAllValues(PREFIX_ADDRESS));
-            Set<Status> statusList = ParserUtil.parseStatuses(argMultimap.getAllValues(PREFIX_STATUS));
-            Set<Note> noteList = ParserUtil.parseNotes(argMultimap.getAllValues(PREFIX_NOTE));
-            Set<Rating> ratingList = ParserUtil.parseRatings(argMultimap.getAllValues(PREFIX_RATING));
-            Set<Link> linkList = ParserUtil.parseLinks(argMultimap.getAllValues(PREFIX_LINK));
-            Map<Prefix, List<String>> prefToStrings = new HashMap<>();
-            CliSyntax.getPrefixTags().stream().forEach(pref -> prefToStrings.put(pref, argMultimap.getAllValues(pref)));
-            return new FindCommand(new DetailsContainKeywordsPredicate(nameList,
-                    phoneList, emailList, addressList, statusList, noteList, ratingList, linkList, prefToStrings));
-
+            return prefixPresentParser(argMultimap);
         }
 
         String trimmedArgs = args.trim();
@@ -67,15 +59,41 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String[] detailsKeywords = trimmedArgs.split("\\s+");
 
-        return new FindCommand(new DetailsContainKeywordsPredicate(Arrays.asList(detailsKeywords)));
+        return new FindCommand(new DetailsContainGeneralKeywordsPredicate(Arrays.asList(detailsKeywords)));
     }
 
     /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
+     * Returns true if any of the prefixes are present in the given argument multimap.
+     *
+     * @param argumentMultimap The argument multimap to be checked.
+     * @param prefixes The prefixes to be checked.
+     * @return True if any of the prefixes are present in the given argument multimap.
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
+    /**
+     * Parses the given {@code String} of arguments in the context of a prefixed-based FindCommand
+     * and returns a FindCommand object for execution.
+     *
+     * @param argMultimap The argument multimap containing the prefixes and their values.
+     * @return A FindCommand object for execution.
+     * @throws ParseException If the user input does not conform the expected format.
+     */
+    private FindCommand prefixPresentParser(ArgumentMultimap argMultimap) throws ParseException {
+        assert arePrefixesPresent(argMultimap, CliSyntax.getPrefixes());
+        Set<Name> nameList = ParserUtil.parseNames(argMultimap.getAllValues(PREFIX_NAME));
+        Set<Phone> phoneList = ParserUtil.parsePhones(argMultimap.getAllValues(PREFIX_PHONE));
+        Set<Email> emailList = ParserUtil.parseEmails(argMultimap.getAllValues(PREFIX_EMAIL));
+        Set<Address> addressList = ParserUtil.parseAddresses(argMultimap.getAllValues(PREFIX_ADDRESS));
+        Set<Status> statusList = ParserUtil.parseStatuses(argMultimap.getAllValues(PREFIX_STATUS));
+        Set<Note> noteList = ParserUtil.parseNotes(argMultimap.getAllValues(PREFIX_NOTE));
+        Set<Rating> ratingList = ParserUtil.parseRatings(argMultimap.getAllValues(PREFIX_RATING));
+        Set<Link> linkList = ParserUtil.parseLinks(argMultimap.getAllValues(PREFIX_LINK));
+        Map<Prefix, List<String>> prefToStrings = new HashMap<>();
+        CliSyntax.getPrefixTags().stream().forEach(pref -> prefToStrings.put(pref, argMultimap.getAllValues(pref)));
+        return new FindCommand(new DetailsContainPrefixedKeywordsPredicate(nameList,
+                phoneList, emailList, addressList, statusList, noteList, ratingList, linkList, prefToStrings));
+    }
 }

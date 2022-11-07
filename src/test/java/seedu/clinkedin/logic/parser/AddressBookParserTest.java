@@ -25,7 +25,7 @@ import seedu.clinkedin.logic.commands.ListCommand;
 import seedu.clinkedin.logic.commands.RedoCommand;
 import seedu.clinkedin.logic.commands.UndoCommand;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
-import seedu.clinkedin.model.person.DetailsContainKeywordsPredicate;
+import seedu.clinkedin.model.person.DetailsContainGeneralKeywordsPredicate;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.testutil.EditPersonDescriptorBuilder;
 import seedu.clinkedin.testutil.PersonBuilder;
@@ -76,7 +76,7 @@ public class AddressBookParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new DetailsContainKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new DetailsContainGeneralKeywordsPredicate(keywords)), command);
     }
 
     @Test
