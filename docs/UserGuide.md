@@ -27,11 +27,11 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
       4. [Searching for a Client](#searching-for-clients--findclient)
       5. [Deleting a Client](#deleting-a-client--deleteclient)
       6. [Sorting all Clients](#sorting-all-clients--sort)
-      7. [Pin a Client](#pin-a-client--pin)
+      7. [Pin a Client](#pin-a-client-pin)
    3. [Policy Features](#policy-features)<br>
       1. [Adding a Policy](#adding-a-policy--addpolicy)
       2. [Switching to Policy View](#switching-to-the-view-of-currently-listed-policies--policies)
-      3. [Listing all Policies](#viewing-all-policies-in-the-address-book--allpolicies)
+      3. [Listing all Policies](#viewing-all-policies-allpolicies)
       4. [Deleting a Policy](#deleting-a-policy--deletepolicy)
       5. [Searching for a Policy](#searching-for-a-policy--findpolicy)
       6. [Assigning a Policy to a Client](#assigning-a-policy-to-a-client--assign)
@@ -39,7 +39,7 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
       8. [Deleting Assigned Policies from a Client](#deleting-assigned-policies-from-a-client--deleteassigned)
       9. [Tracking your Income](#tracking-your-income---viewincome)
    4. [Event Features](#event-features)
-      1. [Adding an Event](#adding-an-event--addevent)
+      1. [Adding an Event](#adding-an-event-addevent)
       2. [Listing all Events](#viewing-all-events--allevents)
       3. [Searching for an Event](#searching-for-an-event--findevent)
       4. [Viewing all Events in the next 7 days](#viewing-all-events-in-the-next-7-days--calendar)
@@ -66,9 +66,9 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`allClients`** : Lists all clients in the Address Book.
+   * **`allClients`** : Lists all clients in the LTNS.
 
-   * **`addClient`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-301 b/2000-01-01 i/90000.0 ra/M` : Adds a client named `John Doe` to the Address Book.
+   * **`addClient`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-301 b/2000-01-01 i/90000.0 ra/M` : Adds a client named `John Doe` to the LTNS.
 
    * **`deleteClient`**`3` : Deletes the 3rd client shown in the current list.
 
@@ -93,7 +93,7 @@ As such, the features available to you are split into **4** main features:
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the [parameters](#parameter) to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -114,10 +114,6 @@ As such, the features available to you are split into **4** main features:
 
 * Click [here](#command-format-table) for a list of all possible parameters and their constraints
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Parameters refer to the information you type into the app to be stored. For example, `n/John` where John is the parameter
-</div>
-
 </div>
 
 ## Common Features
@@ -130,6 +126,10 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+Example Usage: `help`
+
+Example Result: Help message Pop up appears
+
 ### Clearing all entries : `clear`
 
 Clears all data from your application. 
@@ -141,14 +141,21 @@ This action is irreversible!
 
 Format: `clear`
 
+Example Usage: `clear`
+
+Example Result: Clears all Application data.
+
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+Example Usage: `exit`
 
+Example Result: Exits the app
+
+### Saving the data
 
 LTNS application data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
@@ -164,7 +171,7 @@ Below is an example of what your JSON File should look like:
 
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, LTNS will discard all data and start with an empty data file at the next run.
 </div>
 
 
@@ -173,7 +180,7 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 
 ### Adding a client : `addClient`
 
-Adds a client to the address book.
+Adds a client to the LTNS.
 
 Format: `addClient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ b/BIRTHDAY i/INCOME ra/RISK_APPETITE`
 
@@ -211,19 +218,22 @@ This information will be displayed in the app
 | Ninth          | More than S$280,000, less than or equal to $320,000 |
 | Tenth          | More than $320,0000                                 |
 
-Examples:
-* `addClient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01, b/2000-05-05 i/5000.0 ra/L`
-* `addClient n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal b/1920-05-06 i/1000000 ra/H`
+Example Usage:
+* `addClient n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01, b/2000-05-05 i/5000.0 ra/L` adds John Doe into the LTNS.
+* `addClient n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal b/1920-05-06 i/1000000 ra/H` adds Betsy Crowe into the LTNS.
+
 
 ### Listing all clients : `allClients`
 
-Shows a list of all clients in the address book.
+Shows a list of all clients in the LTNS, without any filters.
 
 Format: `allClients`
 
+Example Usage: `allClients`
+
 ### Editing a client : `editClient`
 
-Edits an existing client in the address book.
+Edits an existing client in the LTNS.
 
 Format: `editClient CLIENT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] ​`
 
@@ -234,7 +244,7 @@ Format: `editClient CLIENT_INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG
 * You can remove all the client’s tags by typing `t/` without
     specifying any tags after it. 
 
-Examples:
+Example Usage:
 *  `editClient 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
 *  `editClient 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 *  `editClient 3 b/2000-01-01` Edits the birthday of the 3rd client to be the 1st January 2000.
@@ -243,7 +253,15 @@ Examples:
 
 Search for clients based on certain [metrics](#metric)
 
-Format: `findClient [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] [ti/TITLE] [cov/COVERAGE]…​ [cmp/COMPANY]`
+Format: `findClient [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] [ti/TITLE] [cov/COVERAGE]…​ [cmp/COMPANY_CODE]`
+
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
+At least one metric has to be specified for the command to be valid
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Title, Coverage and Company Code refer to the Assigned Policy information of the client. More details can be found in the [Policies](#policy-features) section
+</div>
 
 The following table illustrates the details of each metric and their search range:
 
@@ -251,17 +269,17 @@ The following table illustrates the details of each metric and their search rang
 |---------------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Name          | n/     | - The search is case-insensitive. e.g `hans` will match `Hans`<br/> - The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`<br/> - Only full words will be matched e.g. `Han` will not match `Hans`<br/> - clients matching at least one keyword will be listed. <br/> e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`       |
 | Phone         | p/     | - All clients whose phone number contains the exact specified numbers will be listed                                                                                                                                                                                                                                                                      |
-| Email         | e/     | - The search is case-insensitive. e.g `alice@example.com` will match `Alice@example.com`                                                                                                                                                                                                                                                                  |
-| Address       | a/     | - The search is case-insensitive. e.g `Bedok` will match `bedok`<br/>                                                                                                                                                                                                                                                                                     |
+| Email         | e/     | - The search is case-insensitive. e.g `alice@example.com` will match `Alice@example.com` <br/> - All clients whose email matches the input will be listed                                                                                                                                                                                                 |
+| Address       | a/     | - The search is case-insensitive. e.g `Bedok` will match `bedok`<br/> - All clients whose address contains the input will be listed                                                                                                                                                                                                                       |
 | Tag           | t/     | - The search is case-insensitive. e.g `friends` will match `Friends`<br/> - Only full words will be matched e.g. `colleagues` will not match `colleague`<br/> - More than one tag can be specified to list all clients that have all the specified tags. <br/> e.g. `friends` and `family` will list all clients with both the `friends` and `family` tag |
 | Birthday      | b/     | - Only clients whose birthday falls on the specified date will be listed                                                                                                                                                                                                                                                                                  |
 | Income        | i/     | - Any valid income value can be entered and it will be matched with the corresponding income bracket<br/> - All clients whose income falls under the same income bracket as the specified income will be listed <br/> e.g `15000` will be matched with `12000`                                                                                            |
 | Risk Appetite | ra/    | - All clients whose risk appetite matches the specified risk level will be listed                                                                                                                                                                                                                                                                         |
 | Title         | ti/    | - The search is case insensitive. e.g `Health Plan` will match `health plan`<br/> - Clients who are covered by a policy of which title contains at least one keyword will be listed                                                                                                                                                                       |
 | Coverage      | cov/   | - More than one coverage can be specified to list all clients with all of the specified coverage types. <br/> e.g. `HEALTH` and `LIFE` will list all clients with both the `HEALTH` and `LIFE` coverage type <br/> - Clients who are covered by policies which covers all the specified coverage types will be listed                                     |
-| Company       | cmp/   | - Clients who are covered by a policy belonging to the specified company will be listed                                                                                                                                                                                                                                                                   |
+| Company Code  | cmp/   | - Clients who are covered by a policy belonging to the specified company will be listed                                                                                                                                                                                                                                                                   |
 
-Examples:
+Example Usage:
 
 * `findClient n/John` returns `john` and `John Doe`
 * `findClient n/alex david` returns `Alex Yeoh`, `David Li`
@@ -274,7 +292,7 @@ Below is an example of what you will expect to see when you call `findClient n/a
 
 ### Deleting a client : `deleteClient`
 
-Deletes the specified client from the address book.
+Deletes the specified client from the LTNS.
 
 Format: `deleteClient CLIENT_INDEX`
 
@@ -282,19 +300,18 @@ Format: `deleteClient CLIENT_INDEX`
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
-* `allClients` followed by `deleteClient 2` deletes the 2nd client in the address book.
+Example Usage:
+* `allClients` followed by `deleteClient 2` deletes the 2nd client in the LTNS.
 * `findClient n/Betsy` followed by `deleteClient 1` deletes the 1st Client in the results of the `findClient` command.
 
 ### Sorting all Clients : `sort`
 
-This allows you to sort your clients in the address book based on a specified metric.
+This allows you to sort your clients in the LTNS based on a specified metric.
 
 Format: `sort KEYWORD`
 
 * Sorts the list of clients based on specified keyword
 * Keyword must be from client details
-
 
 
 Sorting **KEYWORDS** are shown in the table below: 
@@ -311,12 +328,12 @@ Sorting **KEYWORDS** are shown in the table below:
 
 
 <div markdown="span" class="alert alert-primary">:warning: **Warning:**
-If your client's name contains non-alphanumeric characters, sorting by name might not function properly!
+If your client's name contains numbers, sorting by name might behave incorrectly!
 </div>
 
-Examples:
-* `sort name` will display your address book in alphabetical order based on their name
-* `sort phone` will display your addresss book in numerical order based on their phone numbers
+Example Usage: 
+* `sort name` will display your Client list view in alphabetical order based on their name
+* `sort phone` will display your Client list view in numerical order based on their phone numbers
 
 
 Below is an example of what you will expect to see when you call `sort email`:
@@ -324,20 +341,21 @@ Below is an example of what you will expect to see when you call `sort email`:
 ![SortEmailExample](./images/SortEmailExample.png)
 
 ### Pin a Client: `pin`
-* Format: `pin INDEX`
-* Description: Allows pin and unpin of important clients to be viewed separately with command `viewPin`
-* Example Usage: `pin 1` pins the first client on list
+Allows pin and unpin of important clients to be viewed separately with command `viewPin`
+* Format: `pin INDEX` <br>
+Example Usage: 
+* `pin 1` pins the first client on list
 
 ### Assigning a Client to an Event/Policy 
-An existing client in your Client Book can be assigned to an Event or Policy.<br>
-To find out how to do so, you can refer to the [Adding an Event](#adding-an-event--addevent) guide to assign a Client to an Event or refer to the [Assigning a Policy to a Client](#assigning-a-policy-to-a-client-assign) guide to find out how you can assign a Client to a Policy.
+An existing client in your Client list can be assigned to an Event or Policy.<br>
+To find out how to do so, you can refer to the [Adding an Event](#adding-an-event-addevent) guide to assign a Client to an Event or refer to the [Assigning a Policy to a Client](#assigning-a-policy-to-a-client--assign) guide to find out how you can assign a Client to a Policy.
 
 ## Policy Features
 Store policies from a large assortment of companies, with different coverages and customisable yearly commissions! Assign them to a client when you secure a deal with ease.
 
 ### Adding a policy : `addPolicy`
 
-Adds a policy to the address book.
+Adds a policy to the LTNS.
 
 Format: `addPolicy ti/TITLE cmp/COMPANY_CODE cms/Y1COMMISION% Y2COMISSION% Y3ONWARDS% cov/COVERAGE...`
 
@@ -381,7 +399,7 @@ These are the valid companies and their corresponding codes.
 Commissions must take positive percentages within 0% to 100%! (e.g. 10% 3.5% 1.0%)
 </div>  
 
-Examples:
+Example Usage:
 * `addPolicy ti/PruShield cmp/PRU cms/10% 5% 1% cov/LIFE`
 * `addPolicy ti/ManuInvest Duo cmp/MNF cms/6% 3% 1.5% cov/INVESTMENT cov/LIFE`
 
@@ -405,12 +423,12 @@ Example Result: Shows the currently listed policies on the screen.
 
 
 
-### Viewing all policies in the address book : `allPolicies`
-Switches the display to show **all** the policies stored in the address book.
+### Viewing all policies: `allPolicies`
+Switches the display to show **all** the policies stored.
 
 Format: `allPolicies` <br />
 Example Usage: `allPolicies` <br />
-Example Result: Shows all policies stored in the address book, on the screen.
+Example Result: Shows all policies stored in the LTNS, on the screen.
 
 ### Deleting a policy : `deletePolicy`
 Deletes the policy at the specified `INDEX`.
@@ -419,36 +437,40 @@ The index **must be a positive integer** 1, 2, 3, …​
 
 Format: `deletePolicy POLICY_INDEX`
 
-Examples:
-* `allPolicies` followed by `deletePolicy 2` deletes the 2nd policy in the address book.
+Example Usage:
+* `allPolicies` followed by `deletePolicy 2` deletes the 2nd policy in the LTNS.
 * `findPolicy ti/PruShield` followed by `deletePolicy 1` deletes the 1st policy in the results of the `findPolicy` command.
 
 
 ### Searching for a Policy : `findPolicy`
 
-Search for policies based on certain metrics
+Search for policies based on certain [metrics](#metric)
 
-Format: `findPolicy [ti/TITLE] [cov/COVERAGE]…​ [cmp/COMPANY]`
+Format: `findPolicy [ti/TITLE] [cov/COVERAGE]…​ [cmp/COMPANY_CODE]`
+
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
+At least one metric has to be specified for the command to be valid
+</div>
 
 The following table illustrates the details of each metric and their search range:
 
-| Metric   | Prefix | Search range                                                                                                                                                                                                                                                                                |
-|----------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Title    | ti/    | - The search is case insensitive. e.g `Health Plan` will match `health plan`<br/> - Policies which titles contains at least one keyword will be listed                                                                                                                                      |
-| Coverage | cov/   | - More than one coverage can be specified to list all policies with all of the specified coverage types. <br/> e.g. `HEALTH` and `LIFE` will list all policies with both the `HEALTH` and `LIFE` coverage type <br/> - Policies which cover all the specified coverage types will be listed |
-| Company  | cmp/   | - Policies which belong to the specified company will be listed                                                                                                                                                                                                                             |
+| Metric       | Prefix | Search range                                                                                                                                                                                                                                                                                |
+|--------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Title        | ti/    | - The search is case insensitive. e.g `Health Plan` will match `health plan`<br/> - Policies which titles contains at least one keyword will be listed                                                                                                                                      |
+| Coverage     | cov/   | - More than one coverage can be specified to list all policies with all of the specified coverage types. <br/> e.g. `HEALTH` and `LIFE` will list all policies with both the `HEALTH` and `LIFE` coverage type <br/> - Policies which cover all the specified coverage types will be listed |
+| Company Code | cmp/   | - Policies which belong to the specified company will be listed                                                                                                                                                                                                                             |
 
-Examples:
+Example Usage:
 * `findPolicy ti/Health plan` returns policies with the title `health plan` and `life plan`
-* `findPolicy cov/LIFE cov/HEALTH` returns policies that cover both LIFE and HEALTH
-* `findPolicy cmp/PRU` returns policies that belong to Prudential Assurance Company
-* `findPolicy ti/Shield cov/LIFE` returns polices with Shield in its title and covers the LIFE coverage type
+* `findPolicy cov/LIFE cov/HEALTH` returns policies that cover both `LIFE` and `HEALTH`
+* `findPolicy cmp/PRU` returns policies that belong to `Prudential Assurance Company`
+* `findPolicy ti/Shield cov/LIFE` returns polices with `Shield` in its title and covers the `LIFE` coverage type
 
 ### Assigning a Policy to a Client : `assign` 
 
 If you have successfully sealed a deal with a client, you can keep track of this by assigning the policy to your client! 
 
-If you have yet to add either your Client or Policy to the Application, you can refer to the [Adding a Client](#adding-a-client-add) or [Adding a Policy](#adding-a-policy) guides.
+If you have yet to add either your Client or Policy to the Application, you can refer to the [Adding a Client](#adding-a-client--addclient) or [Adding a Policy](#adding-a-policy--addpolicy) guides.
 
 Format: `assign CLIENT_INDEX POLICY_INDEX pr/PREMIUM sd/STARTDATE ed/ENDDATE`
 
@@ -485,7 +507,7 @@ Example Usage:
 ### Deleting assigned policies from a client : `deleteAssigned`
 
 Unfortunate, but it happens. If a client cancels their policy prematurely, reflect the deletion of their assigned policy
-in the address book using this command.
+in the LTNS using this command.
 
 Format: `deleteAssigned CLIENT_INDEX ASSIGNED_POLICY_INDEX`
 
@@ -495,14 +517,15 @@ Example Usage:
 
 ### Tracking your Income  : `viewIncome`
 
-Format: `viewIncome <year>`
+Of course, as a financial advisor you would want to know your income! Automatically calculate your 3 year expected income (with selected year as starting year)
 
-* Automatically calculates your 3 year expected income (with selected year as starting year)
+Format: `viewIncome YEAR`
 
-Rules:
-* Year must be between 1900 and 2200
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Year chosen must be between 1900 and 2100
+</div>
 
-Examples:
+Example Usage:
 * `viewIncome 2000` will display the expected income for years 2000, 2001 and 2002
 * `viewIncome 1899` will not be allowed since 1899 is not between 1900 and 2200
 
@@ -512,16 +535,37 @@ Examples:
 
 ## Event Features
 
-### Adding an Event : `addEvent`
-* Format: `addEvent desc/EVENT_DESCRIPTION n/CLIENT_NAME date/EVENT_DATE st/START_TIME et/END_TIME`
-* Description: Adds an event into the address book. Note the following restrictions
-    * `START_TIME` must before `END_TIME`. All times are in the format: `HH:MM`.
-    * `EVENT_DATE` follows a standard date format for our app (i.e: `YYYY-MM-DD`).
-    * `CLIENT_NAME` indicates the name of a valid client within the address book. All Events must be tagged to a single client.
-        * If you have not added this Client to your Client Book, you can refer to the [Adding a Client](#adding-a-client-add) guide to add your Client first.
+### Adding an Event: `addEvent`
+
+An `Event` represents an appointment with an existing Client. It has the duration (represented by the start and end time) and
+the date of the appointment. It also has a handy description to briefly describe the contents of the meeting.
+
+Never miss another meeting today!
+
+Format: `addEvent desc/EVENT_DESCRIPTION n/CLIENT_NAME date/EVENT_DATE st/START_TIME et/END_TIME`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+    START_TIME must be chronologically before END_TIME. All times are in the format: `HH:MM`.
+</div>
+
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+    EVENT_DATE follows a standard date format for our app (i.e: YYYY-MM-DD).
+</div>
+
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+    CLIENT_NAME indicates the name of a valid client within the Client List. All Events must be tagged to a single client.
+</div>
+
+If you have not added this Client to your Client list, you can refer to the [Adding a Client](#adding-a-client--addclient) guide to add your Client first.
+
+
 * Example Usage: `addEvent desc/CS101 Consultation n/Ben Leong date/2023-01-01 st/12:00 et/13:00`
 * Example Result: add an event with `Ben Leong` from `12:00` to `13:00` for the `1st January 2023` for a CS101 consultation.
 
+
+### Deleting an Event: `deleteEvent`
 
 Format: `deleteEvent EVENT_INDEX`
 
@@ -538,24 +582,30 @@ This allows you to view all Events that have been previously added.
 * Note that events are automatically sorted in chronological order.
 
 Format: `allEvents`
+Example Usage: `allEvents`
+Example Results: Lists all events added to the app, automatically sorted in chronological order.
 
 ![result for 'allEventsSample'](images/allEventsSample.png)
 
 ### Searching for an Event : `findEvent`
 
-Search for events based on certain metrics
+Search for events based on certain [metrics](#metric)
 
-Format: `findEvent [desc/DESCRIPTION] [n/NAME] [date/DATE]`
+Format: `findEvent [desc/EVENT_DESCRIPTION] [n/NAME] [date/EVENT_DATE]`
+
+<div markdown="span" class="alert alert-primary">:information_source: **Note:**
+At least one metric has to be specified for the command to be valid
+</div>
 
 The following table illustrates the details of each metric and their search range:
 
-| Metric                                                                     | Prefix | Search range                                                                                                                                                                                                                                                                                                                                                                                        |
-|----------------------------------------------------------------------------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Description                                                                | desc/  | - The search is case-insensitive. e.g `Meeting to discuss plans` will match `meeting to discuss plans`<br/> - Only full phrases will be matched e.g. `Meeting to discuss plans` will not match `Plans`<br/> - Only events for which description contains the complete specified phrase will be listed. <br/> e.g. `discuss plans` will return `Meeting to discuss plans` and `Discuss plans`        |
-| Name<br/><br/> Note: Name here refers to the name of the event participant | n/     | - The search is case-insensitive. e.g `John` will match `john`<br/> - The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`<br/> - Only full words will be matched e.g. `Han` will not match `Hans`<br/> - Events with the participant name contains at least one keyword will be listed. <br/> e.g. `Hans Bo` will return events which involve `Hans Gruber` or `Bo Yang` |
-| Date                                                                       | date/  | - Only events which occur on the specified date will be listed                                                                                                                                                                                                                                                                                                                                      |
+| Metric                                                                     | Prefix | Search range                                                                                                                                                                                                                                                                                                                                                                                            |
+|----------------------------------------------------------------------------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Event Description                                                          | desc/  | - The search is case-insensitive. e.g `Meeting to discuss plans` will match `meeting to discuss plans`<br/> - Only full phrases will be matched e.g. `Meeting to discuss plans` will not match `Plans`<br/> - Only events for which description contains the complete specified phrase will be listed. <br/> e.g. `discuss plans` will return `Meeting to discuss plans` and `Discuss plans`            |
+| Name<br/><br/> Note: Name here refers to the name of the event participant | n/     | - The search is case-insensitive. e.g `John` will match `john`<br/> - The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`<br/> - Only full words will be matched e.g. `Han` will not match `Hans`<br/> - Events with the participant name containing at least one keyword will be listed. <br/> e.g. `Hans Bo` will return events which involve `Hans Gruber` or `Bo Yang`   |
+| Event Date                                                                 | date/  | - Only events which occur on the specified date will be listed                                                                                                                                                                                                                                                                                                                                          |
 
-Examples:
+Example Usage:
 
 * `findEvent desc/coffee break meeting` returns events `morning coffee break meeting` and `afternoon coffee break meeting`
 * `findEvent n/Bernice` returns all events for which participant name contains `Bernice`
@@ -574,13 +624,17 @@ Q: How do I transfer my data to another Computer? <br/>
 A : Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous LTNS home folder.
 
 Q: Why am I seeing `The person you specified doesn't exist` when trying to add an event?<br/>
-A : When adding an Event involving a client, this client must exist in your client book first.
+A : When specifying the Client that you're meeting for this event, this Client must exist in your client list first.
+
+Q: Why am I seeing `This Event overlaps with another event....` when trying to add an event? <br/>
+A: When adding an event, it's date and time cannot overlap with another event! But fret not, we've listed all overlapping events for your convenience, 
+so you can view other events were causing the clash :) 
 
 Q: Why am I seeing a `Sorting metric does not exist` when trying to sort my client list? <br/>
 A : You may be typing a wrong <b>keyword</b> or calling a sorting metric which is not supported. You may refer to [this list](#sorting-all-clients--sort) for a list of supported **keywords**. If you would like to suggest more sorting **keywords**, do feel free to contact us! 
 
 Q: Why is a blank screen shown when I use the `calendar` feature? <br/>
-A: You may not have added any upcoming events in the next 7 days! You may want to [Add an Event](#adding-an-event--addevent) first. Alternatively, you can choose to [view all Events](#viewing-all-events--allevents) instead.
+A: You may not have added any upcoming events in the next 7 days! You may want to [Add an Event](#adding-an-event-addevent) first. Alternatively, you can choose to [view all Events](#viewing-all-events--allevents) instead.
 
 Q: What if a company whose policy I want to add is not available in the given list of company codes? <br/>
 A: Let us know which company you require at e0725346@u.nus.edu and if we get enough requests, we might add yours in the next version!
@@ -594,31 +648,33 @@ A: Fret not! Simply drop us an email at e0725346@u.nus.edu, and we will reply wi
 
 --------------------------------------------------------------------------------------------------------------------
 
+
+## Command format table
+
+| Parameter Name      | Prefix | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+|---------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name                | n/     | - Only alphanumeric characters and spaces can be specified, and it should not be blank<br/> - Only a maximum of 60 characters is allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Phone               | p/     | - Only numbers are allowed<br/>e.g `3.3` is not valid<br/> - At least 3 numbers have to be specified<br/> - Only a maximum of 25 digits is allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Email               | e/     | <!--- Emails should be of the format `local-part@domain`<br/> - The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-)<br/> - The local-part cannot start or end with any special characters<br/> - The domain name is made up of domain labels separated by periods<br/> - The domain name must end with a domain label at least 2 characters long, have each domain label start and end with alphanumeric characters and have each domain label consist of alphanumeric characters, separated only by hyphens, if any --> - Only valid emails are allowed<br/> e.g `Alice` is not valid while `Alice@email.com` is valid |
+| Address             | a/     | - Any length of textual input except for an empty space is valid                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Tag                 | t/     | - Only single word, alphanumeric inputs are allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Birthday            | b/     | - Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `1990-12-30`<br/> - Birthdays cannot be set in the future or before the 20th century (i.e 1900)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Income              | i/     | - Only positive decimal numbers are allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Risk Appetite       | ra/    | - Only one of the 3 levels, {H, M, L}, is allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Title               | ti/    | - Only alphanumeric characters and spaces can be specified, and it should not be blank<br/> - Only a maximum of 40 characters is allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Coverage            | cov/   | - Only inputs of the valid coverage type options are allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Company Code        | cmp/   | - Only one of the valid company codes is allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Commission          | cms/   | - Has to be in the format of (Y1COMMISSION)% (Y2COMMISSION)% (Y3ONWARDS)%, where the commission values in the brackets are to be replaced with decimal values between 0 and 100 inclusive                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Premium             | pr/    | - Only positive numbers below 1000000000, with or without 2 decimal places are allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Start date          | sd/    | - Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`<br/> - Only dates that fall between the 20th and 21th century are allowed (i.e between the years 1900 and 2100)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| End date            | ed/    | - Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`<br/> - Only dates that fall between the 20th and 21th century are allowed (i.e between the years 1900 and 2100) <br/> - Should be later than the associated start date                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Event Description   | desc/  | - Only alphanumeric characters and spaces can be specified, and it should not be blank<br/> - Only a maximum of 175 characters is allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Event Date          | date/  | - Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`<br/> - Only dates that fall between the 20th and 21th century are allowed (i.e between the years 1900 and 2100)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Start time          | st/    | - Only valid time inputs of the HH:mm format are allowed. e.g `23:59`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| End time            | et/    | - Only valid time inputs of the HH:mm format are allowed. e.g `23:59` <br/> - Should be later than the associated start time                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+
+
 ## Command summary
-
-### Command format table
-
-| Parameter Name                                               | Prefix | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-|--------------------------------------------------------------|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Name                                                         | n/     | - Only alphanumeric characters and spaces can be specified, and it should not be blank<br/> - Only a maximum of 100 characters is allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| Phone                                                        | p/     | - Only numbers are allowed<br/>e.g `3.3` is not valid<br/> - At least 3 numbers have to be specified<br/> - Only a maximum of 25 digits is allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Email                                                        | e/     | <!--- Emails should be of the format `local-part@domain`<br/> - The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-)<br/> - The local-part cannot start or end with any special characters<br/> - The domain name is made up of domain labels separated by periods<br/> - The domain name must end with a domain label at least 2 characters long, have each domain label start and end with alphanumeric characters and have each domain label consist of alphanumeric characters, separated only by hyphens, if any --> - Only valid emails are allowed<br/> e.g `Alice` is not valid while `Alice@email.com` is valid |
-| Address                                                      | a/     | - Any length of textual input except for an empty space is valid                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| Tag                                                          | t/     | - Only single word, alphanumeric inputs are allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| Birthday                                                     | b/     | - Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `1990-12-30`<br/> - Birthdays cannot be set in the future or before the 20th century (i.e 1900)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Income                                                       | i/     | - Only positive decimal numbers are allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| Risk Appetite                                                | ra/    | - Only one of the 3 levels, {H, M, L}, is allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| Title                                                        | ti/    | - Only alphanumeric characters and spaces can be specified, and it should not be blank<br/> - Only a maximum of 40 characters is allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| Coverage                                                     | cov/   | - Only inputs of the valid coverage type options are allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| Company                                                      | cmp/   | - Only one of the valid company abbreviations is allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| Commission                                                   | cms/   | - Has to be in the format of (1st year percentage)% (2nd year percentage)% (3rd year and beyond percentage)%, where the percentages are decimal values between 0 and 100 inclusive                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Premium                                                      | pr/    | - Only positive numbers, with up to 2 decimals are allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| Start date                                                   | sd/    | - Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`<br/> - Only dates that fall between the 20th and 21th century are allowed (i.e between the years 1900 and 2100)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| End date<br/><br/> Note: End date has to be after Start date | ed/    | - Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`<br/> - Only dates that fall between the 20th and 21th century are allowed (i.e between the years 1900 and 2100) <br/> - Should be later than the associated start date                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Event Description                                            | desc/  | - Only alphanumeric characters and spaces can be specified, and it should not be blank<br/> - Only a maximum of 175 characters is allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| Event Date                                                   | date/  | - Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`<br/> - Only dates that fall between the 20th and 21th century are allowed (i.e between the years 1900 and 2100)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Start time                                                   | st/    | - Only valid time inputs of the HH:mm format are allowed. e.g `23:59`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| End time<br/><br/> Note: End time has to be after Start time | et/    | - Only valid time inputs of the HH:mm format are allowed. e.g `23:59`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
 
 ### General Commands
 
@@ -633,20 +689,21 @@ A: Fret not! Simply drop us an email at e0725346@u.nus.edu, and we will reply wi
 
 | Action                    | Format, Examples                                                                                                                                                                                                          |
 |---------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Find Client**           | `findClient [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] [ti/POLICY_TITLE] [cov/POLICY_COVERAGE]…​ [cmp/POLICY_COMPANY]` <br><br> e.g: `findClient n/Jim p/98765432`      |
+| **Find Client**           | `findClient [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]… [b/BIRTHDAY] [i/INCOME] [ra/RISK_APPETITE] [ti/TITLE] [cov/COVERAGE]…​ [cmp/COMPANY_CODE]` <br><br> e.g: `findClient n/Jim p/98765432`                      |
 | **Add Client**            | `addClient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS t/TAG…​`  <br><br> e.g: `addClient n/Clement Tan p/98765432 e/clementTan@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney b/2019-05-05 i/10000.00 ra/M` |
 | **Delete Client**         | `deleteClient (INDEX of CLIENT)` <br><br> e.g: `deleteClient 3`                                                                                                                                                           |
 | **Edit Client**           | `editClient (INDEX of CLIENT) [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​` <br><br> e.g: `editClient 2 n/James Lee e/jameslee@example.com`                                                                  |
 | **View All Clients**      | `allClients`                                                                                                                                                                                                              |
 | **View Filtered Clients** | `clients`                                                                                                                                                                                                                 |                                                              
+| **Sort Clients**          | `sort (KEYWORD)`<br> eg. `sort name`                                                                                                                                                                                         |
 
-Note: `allClients` shows all existing clients inside LTNS, while `clients` show all clients based on filter matrices placed previously.
+Note: `allClients` shows all existing clients inside LTNS, while `clients` show all clients based on filter metric placed previously.
 
 ### Commands For Policy
 
 | Action                     | Format, Examples                                                                                                                                              |
 |----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Find Policy**            | `findPolicy [ti/POLICY_TITLE] [cov/POLICY_COVERAGE] [cmp/POLICY_COMPANY]` <br/><br>  e.g: `findPolicy cov/LIFE`                                               |        
+| **Find Policy**            | `findPolicy [ti/TITLE] [cov/COVERAGE]…​ [cmp/COMPANY_CODE]` <br/><br>  e.g: `findPolicy cov/LIFE`                                                             |        
 | **Add Policy**             | `addPolicy ti/POLICY_TITLE cmp/POLICY_COMPANY cms/POLICY_COMMISSION cov/POLICY_COVERAGE...` <br><br> e.g: `addPolicy ti/Health cmp/MNF cms/4% 3% 2% cov/LIFE` |                                                                                                                         
 | **Delete Policy**          | `deletePolicy (INDEX of POLICY)` <br> <br> e.g: `deletePolicy 1`                                                                                              |                                                                                                                                                                                             
 | **View All Policies**      | `allPolicies`                                                                                                                                                 |
@@ -656,25 +713,21 @@ Note: `allClients` shows all existing clients inside LTNS, while `clients` show 
 | **List Assigned**          | `listAssigned (INDEX of CLIENT) ` <br> <br> e.g: `listAssigned 1`                                                                                             |
 | **View Income**            | `viewIncome YEAR` <br><br> e.g: `viewIncome 2000`                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                           
 
-Note: `allPolicies` shows all existing policies inside LTNS, while `policies` show all policies based on filter matrices placed previously.
+Note: `allPolicies` shows all existing policies inside LTNS, while `policies` show all policies based on filter metric placed previously.
 
 ### Commands For Events
 
 
-| Action                   | Format, Examples                                                                                                                                                           |
-|--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Find Event**           | `findEvent [desc/DESCRIPTION] [n/PERSON_NAME] [date/DATE]` <br/><br> e.g: `findEvent date/2022-05-05`                                                                      |
-| **Add Event**            | `addEvent desc/DESCRIPTION n/NAME date/DATE st/START_TIME et/END_TIME` <br><br>  e.g: `addEvent desc/Meet Clement at Noon n/Clement Tan date/2022-10-10 st/12:00 et/13:00` |
-| **Delete Event**         | `deleteEvent (INDEX of EVENT)` <br><br>  e.g: `deleteEvent 1`                                                                                                              |
-| **View All Events**      | `allEvents`                                                                                                                                                                |
-| **View Filtered Events** | `events`                                                                                                                                                                   |
-| **View Calendar**        | `calendar`                                                                                                                                                                 |                                                                                                                                                                                                     
+| Action                   | Format, Examples                                                                                                                                                                       |
+|--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Find Event**           | `findEvent [desc/EVENT_DESCRIPTION] [n/NAME] [date/EVENT_DATE]` <br/><br> e.g: `findEvent date/2022-05-05`                                                                             |
+| **Add Event**            | `addEvent desc/EVENT_DESCRIPTION n/NAME date/EVENT_DATE st/START_TIME et/END_TIME` <br><br>  e.g: `addEvent desc/Meet Clement at Noon n/Clement Tan date/2022-10-10 st/12:00 et/13:00` |
+| **Delete Event**         | `deleteEvent (INDEX of EVENT)` <br><br>  e.g: `deleteEvent 1`                                                                                                                          |
+| **View All Events**      | `allEvents`                                                                                                                                                                            |
+| **View Filtered Events** | `events`                                                                                                                                                                               |
+| **View Calendar**        | `calendar`                                                                                                                                                                             |                                                                                                                                                                                                     
 
-Note: `allEvents` shows all existing events inside LTNS, while `events` show all events based on filter matrices placed previously.
-
-#### Additional Notes:
-* For better clarity, `INDEX` has been placed in parentheses to denote clearly which index is being referred to (either CLIENT, POLICY or EVENT). At the same time, it is compulsory to include `INDEX`.
-<br> E.g: `(INDEX of EVENT)` refers to index from a list of events.
+Note: `allEvents` shows all existing events inside LTNS, while `events` show all events based on filter metric placed previously.
 
 ### Miscellaneous Commands
 
@@ -684,28 +737,32 @@ Note: `allEvents` shows all existing events inside LTNS, while `events` show all
 | **Pin**         | `pin (INDEX of CLIENT)` <br><br> e.g: `pin 1`       |
 | **View Pinned** | `viewPin`                                           |
 
+#### Additional Notes:
+* For better clarity, `INDEX` has been placed in parentheses to denote clearly which index is being referred to (either CLIENT, POLICY or EVENT). At the same time, it is compulsory to include `INDEX`.
+  <br> E.g: `(INDEX of EVENT)` refers to index from a list of events.
+
 ## Glossary 
 
-### Parameter
-
+#### Parameter
+Parameters refer to the information you type into the app to be stored. For example, `n/John` where John is the parameter.
 
 #### Policy
-An insurance or investment package entailing the details of the insurance and/or investment
+An insurance or investment package entailing the details of the insurance and/or investment.
 
 #### Coverage 
-Specific to an insurance policy, coverage describes the amount of risk or liability which is covered by the insurance policy
+Specific to an insurance policy, coverage describes the amount of risk or liability which is covered by the insurance policy.
 
 #### Graphic User Interface (GUI)
-A User Interface that allows users to interact with the application through visual components
+A User Interface that allows users to interact with the application through visual components.
 
 #### Command-Line Interface (CLI)
-A Text-Based User Interface which allows you to use the application in the form of typing out "commands"
+A Text-Based User Interface which allows you to use the application in the form of typing out "commands".
 
 #### JSON File 
 A file which is used to store data in text form. 
 
 #### Metric 
-A standard of measurement. In the case of LTNS, a metric in sorting or searching tells the application how to compare the clients
+A standard of measurement. In the case of LTNS, a metric in sorting or searching tells the application how to compare the clients.
 
 #### Income Bracket
 Various income level ranges categorised by levels. LTNS uses the Inland Revenue Authority of Singapore's (IRAS) measurement of an income bracket.

@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-W13-2/tp/tree/master/docs/diagrams) folder. Refer to the [PlantUML Tutorial at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,7 +69,7 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/ui/Ui.java) and it's class diagram is shown below
 
 ![Structure of UI Component](./images/UiClassDiagram.png)
 
@@ -90,9 +90,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
-
-Here's a (partial) class diagram of the `Logic` component:
+The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/logic/Logic.java) and it's (partial) class diagram is shown below
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
@@ -118,34 +116,41 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+The **API** of this component is specified in [`Model.java`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/model/Model.java) and its class diagram is shown below
+
+<img src="images/ModelClassDiagram.png" width="750" />
 
 
 The `Model` component,
 
-* stores the following address book data
+* stores the following data
   * all `Person` objects (which are contained in a `UniquePersonList` object)
   * all `Policy` objects (which are contained in a `UniquePolicyList` object)
-  <img src="images/ModelPolicyClassDiagram.png" width="500" />
   * all `Event` objects (which are contained in a `UniqueEventList` object)
+
+
+  <img src="images/ModelPolicyClassDiagram.png" width="500" />
+
+
+
   <img src="images/ModelEventClassDiagram.png"  width="500"/>
+
 * stores the currently 'selected' `XYZ` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<XYZ>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** `XYZ` refers to either Person, Policy or Event</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `XYZ` here refers to either Person, Policy or Event</div>
 
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+The **API** of this component is specified in [`Storage.java`](https://github.com/AY2223S1-CS2103T-W13-2/tp/blob/master/src/main/java/longtimenosee/storage/Storage.java) and its class diagram is shown below
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
+* can save both app data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -177,13 +182,13 @@ The following sequence diagram summarizes how pin works:
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-#### Pin activity diagram:
-<img src="images/PinActivityDiagram.png" width="250" />
+Pin activity diagram: <br><br>
+<img src="images/PinActivityDiagram.png" width="300" />
 
-#### View Pin Activity diagram:
-<img src="images/ViewPinActivityDiagram.png" width="250" />
+View pin activity diagram: <br><br>
+<img src="images/ViewPinActivityDiagram.png" width="300" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How pin and viewPin executes:**
 
@@ -191,7 +196,7 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Easy to implement.
     * Cons: Hard for additional extensions given that this method uses a boolean attribute.
 
-* **Alternative 2:** Saves the entire address book of clients pinned.
+* **Alternative 2:** Saves the entire list of clients pinned.
   * Pros: More potential for further extensions.
   * Cons: May result in performance issues in terms of memory usage.
   
@@ -246,8 +251,11 @@ As any commands called which modifies the `AddressBook` will save these changes 
   * Cons: less abstraction; information about client attributes will have to be unnecessarily exposed to `Model` class 
 
 
-##Policy Features
+## Policy Features
+
 ### Assigning clients a policy
+
+#### Implementation
 
 Users can assign existing policies to a client, whilst providing uptake details
 such as the premium amount and start/end dates. This is facilitated by the `PolicyAssignCommand` class
@@ -271,7 +279,7 @@ The use of `command_details` serves to substitute the command `"assign 1 1 pr/20
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/AssignPolicyActivityDiagram.png" width="700" />
+<img src="images/AssignPolicyActivityDiagram.png" width="800" />
 
 
 Step 1: The user enters `parse(assign 1 1 pr/200 sd/2020-10-12 ed/2022-10-12)` command to assign the first policy
@@ -311,33 +319,41 @@ This feature builds on the new policy class created. Where each client has a set
 
 The main calculation done in class FinancialAdvisorIncome is a function called calculateIncome. This function iterates through a list of clients and for each client, it iterates through the list of policies they have. For each of the policies, LocalDate and Period are used to determine which commission (out of the 3 year differing rates) the assigned policy of the current person is in. Subsequently, all commissions are multiplied by policy premium with the duration of the policy (relative from start date to given date) and summed to give income for a particular year.
 
-* `viewIncome <Year>` — Invokes the calculation of user's three year income with `<Year>` as the first year via the function .
+* `viewIncome YEAR` — Invokes the calculation of user's three year income with `YEAR` as the first year via the function .
 
-Given below is an example usage scenario and how the pin mechanism behaves at each step. (To be continued)
+The following sequence diagram summarizes how viewIncome works:
 
-#### Design considerations:
+![ViewIncomeSequenceDiagram](images/ViewIncomeSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+View income activity diagram: <br><br>
+<img src="images/ViewIncomeActivityDiagram.png" width="300" />
+
+#### Design considerations
 
 **Aspect: How viewIncome executes:**
 
 * **Alternative 1 (current choice):** Encapsulate user's income into a class of its own
-    * Pros: By assigning FinancialAdvisorIncome as a class, we are able to add an additional layer of abstraction to deriving the financial advisors income. By doing so, it is easier to utilise the income for other features.
+    * Pros: By assigning FinancialAdvisorIncome as a class, we are able to add an additional layer of abstraction to deriving the financial advisors income. By doing so, it is easier to utilize the income for other features.
     * Cons: Might pose a problem for retrival of values from class.
 
-* **Alternative 2:** Saves the entire address book of clients pinned.
+* **Alternative 2:** Saves the entire list of clients pinned.
     * Pros: More potential for further extensions.
     * Cons: May result in performance issues in terms of memory usage.
 
 ## Event Features
+
 ### AddEvent Feature
 
-### Proposed Implementation
+#### Proposed Implementation
 The proposed `AddEvent` feature is facilitated by the `AddressBook` Model. The `AddressBook` contains information on the list of people and the current events available (i.e: `UniqueEventList` and `UniquePersonList`). The `AddEventParser`  serves as an additional <i>abstraction of logic</i> to determine the validity of an Event on the following conditions, and throws an appropriate exception based on the following conditions.
 
 * Valid Client Name : An event is tagged to a single Client. The Client’s name must already exist in the `UniqueEventList`. If said person specified does not exist, the `AddEventParser` throws an: `InvalidPersonException`
 
 * No overlapping events: . If the event overlaps with another event (i.e: occurs on the same day, and has a start and end time that coincides with another event in `UniqueEventList`, the `AddEventParser` throws an: `OverlapEventException`.)
 
-### Given below is an example usage scenario and how the `AddEventCommand` behaves at each step.
+Given below is an example usage scenario and how the `AddEventCommand` behaves at each step.
 
 <B>Step 1</B>. The user launches the application for the first time. The` AddressBook` model is initialized with both the appropriate `UniquePersonList` and `UniqueEventList`. The lists are empty, with a person named `John Williams`.
 
@@ -348,70 +364,58 @@ The proposed `AddEvent` feature is facilitated by the `AddressBook` Model. The `
 <B>Step 3</B>. The user then adds a new event `newEvent desc JurassicWorld Soundtrack  pName John Williams, date/2020-01-01, start/12:30 end/13:00`. This time window of this event overlaps with the previously event, and the Event List is no longer updated. An `OverlapEventException` is thrown by the parser.
 
 
-### The following activity diagram summarizes how an `AddEventCommand` is parsed at each step.
+The following activity diagram summarizes how an `AddEventCommand` is parsed at each step.
 
 <p align ="center"> <img src="images/AddEventActivityDiagram.png" width="650" /> </p>
 
+#### Design considerations
 
+**Aspect: Encapsulation of client vs event:**
 
-## Design considerations:
+* **Alternative 1 (current choice):** Event class is a stand-alone class with reference to a Client
+    * Pros: Object-Oriented Programming approach, easier to implement, more scalable in handling Event features
 
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
-
-
-**Aspect: Should events that occured in the past be auto-deleted on startup of app?:**
-* **Alternative 1 (current choice):** Don't delete, in fact allow users to add events that happened in the past.
-    * Pros: Our target audience (Financial Advisors) might need to look up what past events or meetings have occured. Keeping past events serves as a good record.Increase in storage
-    * Cons: More storage used by app
-
-* **Alternative 2 :** Delete all past events, users are not permitted to add events that happened in the past
-    * Pros: Less storage used up by app
-    * Cons: Difficult to implement without bugs.
+* **Alternative 2:** An event becomes an attribute of Client 
+    * Pros: Also an intuitive Object-Oriented Programming approach
+    * Cons: Difficult and less efficient to implement Event features such as searching
 
 ## General Features
-### `Find` feature
+### Find feature
 
 #### Implementation
 
-The find mechanism is facilitated by `FilteredList` from the JavaFx library, by using `FilteredList#setPredicate()` to update the list of clients being displayed based on the specified metrics.
+Note: `XYZ` here refers to either Client, Policy or Event
 
-Given below is an example usage scenario and how the `find` mechanism behaves at each step.
+The `findXYZ` mechanism is facilitated by `FilteredList` from JavaFx, by using `FilteredList#setPredicate()` to update the list of XYZ being displayed based on the specified metrics.
 
-Step 1. The user executes a `find` command to find any clients matching the given metrics. The `find` command calls `AddressBookParser#parseCommand()`, which parses the arguments and calls `FindCommandParser#parse()` with the obtained results
+Given below is an example usage scenario and how the `findXYZ` mechanism behaves at each step.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the arguments to the command is invalid, the execution will stop at this step.
+Step 1. The user executes a `findXYZ` command to find any clients matching the given metrics. The `findXYZ` command calls `AddressBookParser#parseCommand()`, which parses the arguments and calls `FindXYZCommandParser#parse()` with the obtained results
+
+Step 2. `FindXYZCommandParser#parse()` goes through the arguments and check which prefixes are present and creates a `FindXYZCommand` object with the corresponding predicates.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the arguments to the command is invalid, the execution will stop by this step.
 </div>
 
-Step 2. `FindCommandParser#parse()` goes through the arguments and check which prefixes are present and creates a `FindCommand` object with the corresponding predicates.
+Step 3. `LogicManager` executes the `FindXYZCommand` using the combined predicates, which calls `Model#updateFilteredXYZList()` and updates the list of XYZ displayed
 
-Step 3. `LogicManager` executes the `FindCommand` using the combined predicates, which calls `Model#updateFilteredPersonList()` and updates the list of clients displayed
-
-The following sequence diagram shows how the find operation works:
+The following sequence diagram shows how the findXYZ operation works:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindXYZCommandParser` and `FindXYZCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-The following activity diagram summarizes what happens when a user executes a find command:
+The following activity diagram summarizes what happens when a user executes a findXYZ command:
 
 ![FindSequenceDiagram](images/FindActivityDiagram.png)
 
 
-#### Design considerations:
+#### Design considerations
 
-**Aspect: How `find` executes:**
+**Aspect: How `findXYZ` executes:**
 
-* **Alternative 1 (current choice):** Utilise predicates and test for each predicate against each contact in the address book by making use of the JavaFx filteredList library.
+* **Alternative 1 (current choice):** Utilise predicates and test for each predicate against each contact in the LTNS by making use of `FilteredList`
     * Pros: 
       * Easy extension for additional predicates, by adding predicate classes
       * Lesser user implementation
@@ -419,7 +423,7 @@ The following activity diagram summarizes what happens when a user executes a fi
       * If there are too many predicates, there could be an excessive number of classes to manage
       * Lesser control over lower level details of predicate testing
 
-* **Alternative 2:** Take in user conditions and test for each person in the address book
+* **Alternative 2:** Take in user defined conditions and test for each person in the LTNS
     * Pros: 
       * More control over lower level details.
       * More efficient algorithms can be used for searching which can improve the overall runtime
@@ -428,12 +432,9 @@ The following activity diagram summarizes what happens when a user executes a fi
       * Larger overhead in writing code
 
 Alternative 1 was preferred over alternative 2 due to the following reasons:
-  * We could make use of the existing JavaFx library and reduce the amount of additional code that is required.
+  * We could make use of `FilteredList` and reduce the amount of additional code that is required.
   * In addition, there is also a greater guarantee on the correctness of the code as compared to if we were to implement our own algorithms
   * Lesser testing overhead, which meant that we can focus more testing on the features implementation and reduce more potential bugs
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** A similar execution path can be observed for other find related operations like findPolicy and findEvent.
-</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -454,8 +455,8 @@ Alternative 1 was preferred over alternative 2 due to the following reasons:
 **Target user profile**:
 
 * has a need to manage a significant number of clients
-* Is a financial advisor
-* Has a  need to store additional client-related information
+* is a financial advisor
+* has a  need to store additional client-related information
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -466,27 +467,34 @@ Alternative 1 was preferred over alternative 2 due to the following reasons:
 
 ### User stories
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                      | So that I can…​                                                        |
-|----------|--------------------------------------------|-----------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions            | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person                  |                                                                        |
-| `* * *`  | user                                       | delete a person                   | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name             | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details      | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name              | locate a person easily                                                 |
-| `**`     | new user                                   | see sample data                   | Have a better understanding of the app's default layout                |
-| `**`     | user                                       | filter my clients by keywords     | Locate my clients easily, based on a particular critera                |
-| `**`     | user                                       | update my client list             | Edit their contact details                                             |
-| `*`      | user                                       | have a reliable method            | store contact information without losing data                          |
-| `*`      | user                                       | view individual client's profiles | keep track of multiple, unique clients                                 |
-| `*`      | user                                       | pin important clients             | be reminded of users which are of higher priority                      |
-*{More to be added}* 
+| Priority | As a …​                                   | I want to …​                      | So that I can…​                                                       |
+|----------|-------------------------------------------|-----------------------------------|-----------------------------------------------------------------------|
+| `***`    | new user                                  | see usage instructions            | refer to instructions when I forget how to use the App                |
+| `***`    | user                                      | add a new person                  |                                                                       |
+| `***`    | user                                      | delete a person                   | remove entries that I no longer need                                  |
+| `***`    | user                                      | find a person by name             | locate details of persons without having to go through the entire list |
+| `**`     | user                                      | hide private contact details      | minimize chance of someone else seeing them by accident               |
+| `*`      | user with many persons in my contact list | sort persons by name              | locate a person easily                                                |
+| `**`     | new user                                  | see sample data                   | Have a better understanding of the app's default layout               |
+| `**`     | user                                      | filter my clients by keywords     | Locate my clients easily, based on a particular critera               |
+| `**`     | user                                      | update my client list             | Edit their contact details                                            |
+| `*`      | user                                      | have a reliable method            | store contact information without losing data                         |
+| `*`      | user                                      | view individual client's profiles | keep track of multiple, unique clients                                |
+| `*`      | user                                      | pin important clients             | be reminded of users which are of higher priority                     |
+| `*`      | user                                      | add an event                      |                                                                       |
+| `*`      | user                                      | delete an event                   | remove events that I no longer need to keep track of                  |
+| `**`     | user                                      | view my upcoming events           | be reminded of my upcoming events for the week                        |
+
+
 
 ### Use cases
 
+
 (For all use cases below, the **System** is `LongTimeNoSee (LTNS)` and the **Actor** is the `user`, unless specified otherwise)
+
+**General Use Cases**
 
 **Use case 1: Help**
 
@@ -497,6 +505,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. LTNS displays a help message
 
    Use case ends
+
+
+**Client related Use Cases**
 
 **Use Case 2: Add client**
 
@@ -510,32 +521,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends
 
-**Use case 3: List clients**
+**Use case 3: Viewing all clients**
 
 **MSS**
 
-1. User requests to list all clients
+1. User requests to view all clients.
 2. LTNS displays a list of all clients
 
    Use case ends
 
-**Use case 4: View clients**
+**Use case 4: View currently filtered clients**
 
 **MSS**
 
-1. User loads the application
-2. User clicks on a specific client from the list view
-3. User can update information specific to his client (i.e: Birthday / Events/ Notes etc.)
-4. User switches to his default view
-5. LTNS shows a list of clients stored in the database
+1. User requests to view a list of all currently filtered clients 
+2. LTNS displays a list of currently filtered clients
 
    Use case ends.
 
-**Use case 6: Delete a person**
+**Use case 5: Delete a person**
 
 **MSS**
 
-1. User requests to <u>list clients(UC3)</u>
+1. User requests to <u>view all clients(UC3)</u>
 2. User requests to delete a specific person in the list
 3. LTNS deletes the person
 
@@ -553,11 +561,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
     
-**Use case 7: Sort a list**
+**Use case 6: Sort a list**
 
 **MSS**
 
-1. User requests to <u>list clients(UC3)</u>, which will be shown based on date added (default sort)
+1. User requests to <u>view all clients(UC3)</u>, which will be shown based on date added (default sort)
 2. User requests to sort the list based on name (or any other metric)
 3. LTNS shows the list of clients, sorted in alphabetical order based on client's name. (or based on how the metric is compared)
 
@@ -569,11 +577,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**Use case 8: Delete a person**
+**Use case 7: Delete a person**
 
 **MSS**
 
-1. User requests to <u>list clients(UC3)</u>
+1. User requests to <u>list all clients(UC3)</u>
 2. User requests to delete a specific person in the list
 3. LTNS deletes the person
 
@@ -601,18 +609,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
    Use case ends
 
-**Extensions**
-
-* 2a. LTNS displays a highlighted box on pinned clients when using the list command.
-
-  Use case ends.
-
-**Use case 9: Find a contact**
+**Use case 9: Find a client/policy/event**
 
 **MSS**
 
 1. User requests to search by a certain metric.
-2. LTNS shows a list of clients with matching metrics.
+2. LTNS shows a list of clients/policies/events with matching metrics.
 
    Use case ends
 
@@ -623,7 +625,188 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 2a1. LTNS displays a new list of clients with matching metrics.
 
     Use case ends.
+
+**Policy related Use Cases**
+
+**Use Case 10: Add Policy** 
+
+**MSS**
+
+1. User loads the application
+2. User inputs the command to add a policy
+3. User tags on the details he would like to specify
+4. LTNS switches to the default policy view automatically
+5. LTNS adds the latest policy to the list policy view
+
+    Use Case ends
+
+**Extensions**
+
+* 3a. User attempts to add a Policy which already exists 
+  * 3a1. LTNS displays en error message.
   
+    Use Case resumes at Step 2
+
+
+**Use Case 11: Assign Policy**
+
+**MSS**
+
+1. Use loads the application
+2. User inputs the command to assign a existing policy to an existing client
+3. User tags on the details he would like to specify 
+4. LTNS switches to the default client view automatically 
+5. LTNS assigns the specified policy to the specified client
+    
+    Use Case ends
+
+**Extensions**
+* 3a. User inputs an invalid index when specifying the policy 
+    * 3a.1 LTNS displays an error message.
+      
+        Use Case resumes at Step 2
+
+
+
+* 3b. User inputs an invalid index when specifying the client
+    * 3b.1 LTNS displays an error message.
+
+      Use Case resumes at Step 2
+
+
+**Use Case 12: Viewing all policies**
+
+**MSS**
+
+1. User requests to view all policies.
+2. LTNS displays a list of all policies
+
+   Use case ends
+
+
+**Use case 13: View currently filtered policies**
+
+**MSS**
+
+1. User requests to view a list of all currently filtered policies
+2. LTNS displays a list of currently filtered policies
+
+   Use case ends.
+
+**Use Case 14: Deleting a policy**
+
+
+**MSS**
+
+1. User requests to <u>list all policies(UC12)</u>
+2. User requests to delete a specific policy in the list
+3. LTNS deletes the policy
+
+   Use case ends
+
+
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+
+
+* 3a. The given index is invalid.
+
+    * 3a1. LTNS shows an error message.
+
+      Use case resumes at step 2.
+
+
+**Event related Use Cases**
+
+
+
+
+**Use Case 15: Add Event**
+
+**MSS**
+
+1. User loads the application
+2. User inputs the command to add an event
+3. User tags on the event details he would like to specify
+4. LTNS adds the latest event to list of events.
+5. LTNS switches to the default event view automatically
+
+
+   Use case ends
+
+
+**Extensions**
+* 4a. The event specified overlaps with another event
+  * 4a1. LTNS displays an error message 
+
+    Use Case resumes at Step 3.
+  
+
+
+* 4b. The event specifies a client that doesn't exist in LTNS 
+    * 4b1. LTNS displays an error message
+
+    Use Case resumes at Step 3.
+
+
+**Use case 16: Delete an event**
+
+**MSS**
+
+1. User requests to <u>view all events(UC 17)</u>
+2. User requests to delete a specific event in the list
+3. LTNS deletes the event
+
+   Use case ends
+
+
+**Extensions**
+
+* 2a. The event list is empty.
+
+  Use Case ends.
+
+
+* 3a. The given index is invalid.
+
+    * 3a1. LTNS shows an error message.
+
+      Use Case resumes at step 2.
+
+**Use case 17: View all events**
+
+**MSS**
+
+1. User requests to view all events
+2. LTNS displays a list of all events
+
+   Use Case ends
+
+**Use case 18: View currently filtered events**
+
+**MSS**
+
+1. User requests to view all currently filtered events 
+2. LTNS displays a list of all currently filtered events.
+
+    Use Case ends
+
+
+**Use case 19: View Calendar**
+
+**MSS**
+
+1. User requests to view his calendar 
+2. LTNS displays a list of all events in his calendar 
+    
+    Use Case ends
+
+
 
 ### Non-Functional Requirements
 
@@ -631,7 +814,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  _mainstream OS_ includes Windows, MacOS, Linux systems with 64-bit machines
 3.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-5.  Size of windows should be scalable to full screen for maximum screen utilisation
+5.  Size of windows should be scalable to full screen for maximum screen utilization
 6. Performance requirements: Should be able to serve its features right now
 8. Extremely intuitive and minimalistic design to avoid confusion. 
 9. The product is not required to handle the direct contacting of users.
@@ -642,8 +825,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Client**: A client is a person being served by the financial advisor.
-*  **Policy**: An investment or insurance policy that is being sold by an insurance company, through the financial advisor.
-*  **Financial advisor**: A professional paid to offer financial advice to clients
+* **Policy**: An investment or insurance policy that is being sold by an insurance company, through the financial advisor.
+* **Financial advisor**: A professional paid to offer financial advice to clients
+* **Event**: Any event or appointment that involves a client in the client list 
+* **Risk Appetite**: Level of risk a client is willing to accept or tolerate when making financial decisions
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -676,26 +861,84 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Testing client functions
 
-1. Deleting a person while all persons are being shown
+#### Adding a client
+1. Adding a Client
+   1. Prerequisites: None
+   2. Test case: `addClient n/Clement Tan p/98765432 e/clementTan@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney b/2019-05-05 i/10000.00 ra/M` <br>
+      Expected: Adds a client named `Clement Tan`, switches to the client display.
+   3. Test case: `addClient n/Jaron Tan p/9111111 e/JaronTan@example.com a/311, Clementi Ave 2, #02-25 t/friends b/2019-05-05 i/10000.00 ra/M` <br>
+      Suppose a client with the name `Jaron Tan` already exists in the LTNS.
+      Expected: An error message for a duplicate client should be displayed.
+   
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+#### Deleting a client 
+1. Deleting a client
+    1. Prerequisites: Client list is not empty 
+    2. Test Case: `deleteClient 1` <br>
+       Expected: Deletes the first client on the currently filtered clients list
+   3.  Test Case: `deleteClient 300` <br>
+       Suppose there is no client at index 300
+   
+       Expected: An error message for invalid client index should be displayed
+   
+#### Editing a client 
+1. Editing a client 
+   1. Prerequisites: Client list is not empty
+   2. Test Case: `editClient 1 n/Bob` <br>
+      Expected: Edits the client with an index of 1 to a new name `Bob`.
+   3. Test Case: `editClient 300 t/InvalidIndex` <br>
+      Suppose there is no client at index 300
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: An error message for invalid client index should be displayed
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+#### Switching to the client view
+1. Switching to the client view
+    1. Prerequisites: None
+    2. Test case: `clients` <br>
+       Expected: Client view is shown, list of currently filtered clients is displayed.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+#### Listing all clients
+1. Listing all clients
+    1. Prerequisites: The current client list should be filtered.
+    2. Test case: `allClients` <br>
+       Expected: All clients stored in LTNS are displayed.
 
-1. _{ more test cases …​ }_
 
-## Testing policy functions
+#### Pinning a client
+1. Pinning a new client
+   1. Prerequisites: List of clients is not empty, currently viewing list of clients
+   2. Test case: `pin 1` <br>
+      Expected: Pinned client message shown to user in status message. 
+   3. Test case: `pin 3` <br>
+      Suppose that there is no client in index 3 <br>
+      Expected: An error message for invalid client index should be displayed.
 
-### Adding a policy
+
+#### Sorting the client list 
+1. Sorting the client list 
+   1. Prerequisites: List of clients is not empty, currently viewing list of clients. Client names do not contain numbers.
+   2. Test case: `sort name`
+      Expected: Sort client message shown to user in status message, client list sorted in alphabetical order
+   3. Test case: `sort risk appetite`
+      Expected: Sort client message shown to user in status message, client list sorted by Risk Appetite from high to low
+   4. Test case: `sort address`
+      Expected: An error message indicating that the sorting metric does not exist should be displayed 
+
+#### Searching for a client
+1. Searching for a client
+   1. Prerequisites: List of clients is not empty
+   2. Test case: `findClient n/Alex t/friends`
+      Suppose that there is a client named `Alex` and tagged with the `friends` tag in LTNS
+      Expected: Message indicating the number of clients found is displayed and client details of `Alex` is shown
+   3. Test case: `findClient n/jeffrey`
+      Suppose that there is no client named `Jeffrey` in LTNS
+      Expected: Message indicating that no clients were found is displayed
+
+### Testing policy functions
+
+#### Adding a policy
 1. Adding a new policy
    1. Prerequisites: None
    2. Test case: `addPolicy ti/PruShield cmp/AIA cms/10% 5% 1% cov/LIFE` <br>
@@ -704,7 +947,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Policy "already added" message shown to user in status message.
    4. Other incorrect `addPolicy` commands to try: `addPolicy`, `addPolicy ti/p` (or any other field left blank)
 
-### Deleting a policy
+#### Deleting a policy
    1. Deleting a policy
       1. Prerequisites: Current displayed policy list has to be non-empty
       2. Test case: `deletePolicy 1`<br>
@@ -713,19 +956,29 @@ testers are expected to do more *exploratory* testing.
          Expected: No policy is deleted. Error details shown in the status message.
       4. Other incorrect `deletePolicy` commands to try: `deletePolicy`, `deletePolicy x` (where x is larger than the list size)
 
-### Switching to the policy view
+#### Switching to the policy view
    1. Switching to the policy view
       1. Prerequisites: None
       2. Test case: `policies` <br>
          Expected: Policy view is shown, list of currently filtered policies is displayed.
    
-### Listing all policies
+#### Listing all policies
    1. Listing all policies
       1. Prerequisites: The current policy list should be filtered. 
-      2. Test cases: `allPolicies` <br>
+      2. Test case: `allPolicies` <br>
          Expected: All policies stored in LTNS are displayed.
-      
-### Assigning a policy
+
+#### Searching for a policy
+1. Searching for a policy
+    1. Prerequisites: List of policies is not empty
+    2. Test case: `findPolicy ti/Health Plan cov/HEALTH`
+       Suppose that there is a policy named `Health Plan` that covers `Health Insurance` in LTNS
+       Expected: Message indicating the number of policies found is displayed and policies details of `Health Plan` is shown
+    3. Test case: `findPolicy cov/LIFE`
+       Suppose that there are no policies which covers `Life Insurance` in LTNS
+       Expected: Message indicating that no policies were found is displayed
+
+#### Assigning a policy
 1. Assigning a policy
    1. Prerequisites: The current policy and client list should be non-empty.
    2. Test case: `assign 1 1 pr/2000 sd/2010-10-10 ed/2021-10-12` <br>
@@ -734,7 +987,7 @@ testers are expected to do more *exploratory* testing.
       Expected: An error message for invalid client index should be displayed.
    4. Other incorrect `assign` commands to try: `assign 1 0`, `assign`
 
-### Deleting an assigned policy
+#### Deleting an assigned policy
 1. Deleting the first assigned policy from the first client
    1. Prerequisites: The current, first person in the client list has policies assigned to them.
    2. Test case: `deleteAssigned 1 1` <br>
@@ -743,7 +996,7 @@ testers are expected to do more *exploratory* testing.
       Expected: An error message for invalid client index should be displayed.
    4. Other incorrect `deleteAssigned` commands to try: `deleteAssigned 1 0`, `deleteAssigned`
 
-### Viewing a client's assigned policies
+#### Viewing a client's assigned policies
 1. Viewing the policies of the first client in the list
    1. Prerequisites: There must be clients in the current displayed client list.
    2. Test case: `listAssigned 1` <br>
@@ -751,30 +1004,69 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `listAssigned 0` <br>
       Expected: An error message for invalid client index should be displayed.
 
-### Deleting a person
-2. Deleting a person while all persons are being shown
+#### Viewing projected income
+1. Viewing the projected income for the years 2000, 2001, 2002
+    1. Prerequisites: There must be policies assigned to clients that happens to be in either 2000, 2001, 2002.
+    2. Test case: `viewIncome 2000` <br>
+       Expected: A graph should show up with x-axis "year" containing 2000, 2001, 2002 and y-axis "income"
+    3. Test case: `viewIncome 2200` <br>
+       Expected: An error message for invalid year should be displayed.
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+### Testing event functions
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+#### Adding an Event
+1. Adding a Event
+    1. Prerequisites: 
+        1. The `Event` should specify the `Name` of a Client that already exists (i.e: A non-empty client List)
+    2. Test case: `addEvent desc/Meet Clement at Noon n/Clement Tan date/2022-10-10 st/12:00 et/13:00 ` <br>
+       Expected: Adds an event tied to an existing client with the name `Clement Tan` on 10th October from 12:00 to 13:00.
+    3. Test case: `addEvent desc/Meet Missing Client at Noon n/Missing Client date/2022-10-10 st/12:00 et/13:00 ` <br>
+       Suppose a client with the name `Missing Client` does not already exist in the LTNS.
+       Expected: An error message for an invalid client name should be displayed.
+   4.  Test Case: `addEvent desc/Meet Clement Tan at Noon n/Clement Tan date/2022-10-10 st/12:00 et/13:00` <br>
+        Supposed there is another event taking place from `12:00` to `12:30`on `2022-10-10` as well. <br>
+        Expected: An error message for an overlapping event should be displayed.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+#### Deleting an event
+1. Deleting a event
+    1. Prerequisites: Event list is not empty
+    2. Test Case: `deleteEvent 1` <br>
+       Expected: Deletes the first event on the currently filtered events list
+    3.  Test Case: `deleteEvent300` <br>
+        Suppose there is no event at index 300 <br>
+        Expected: An error message for invalid event index should be displayed
 
-3. _{ more test cases …​ }_
 
-### Saving data
+#### Switching to the event view
+1. Switching to the event view
+    1. Prerequisites: None
+    2. Test case: `events` <br>
+       Expected: Events view is shown, list of currently filtered events is displayed.
 
-1. Dealing with missing/corrupted data files
+#### Switching to the calendar view
+1. Switching to the calendar view
+    1. Prerequisites: None
+    2. Test case: `calendar` <br>
+       Expected: Calendar view is shown, events happening in the next 7 days are shown.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+#### Listing all events
+1. Listing all events
+    1. Prerequisites: The current event list should be filtered.
+    2. Test case: `allEvents` <br>
+       Expected: All events stored in LTNS are displayed.
 
-1. _{ more test cases …​ }_
+#### Searching for an event
+1. Searching for an event
+    1. Prerequisites: List of events is not empty
+    2. Test case: `findEvent desc/coffee break date/2023-01-01`
+       Suppose that there is an event with the description `coffee break with alex` that occurs on `1st January 2023` in LTNS
+       Expected: Message indicating the number of events found is displayed and event details of `coffee break with alex` is shown
+    3. Test case: `findEvent date/2023-05-05`
+       Suppose that there are no events which occur on `5th May 2023` in LTNS
+       Expected: Message indicating that no events were found is displayed
 
+       
 
 ## Effort
 
@@ -804,7 +1096,7 @@ considering the significantly increased amount of code to cover.
 Fringe enhancements (though fringe, were not trivial), include implementing the integration of graphical displays through
 JavaFX's relevant libraries.
 
-As a cherry on top, we also went the extra mile of a complete UI refresh to give the product a new look and feel we felt would honour
+As a cherry on top, we also went the extra mile of a complete UI refresh to give the product a new look and feel, we felt would honour
 the professional nature of the product's usage.
 
 Of course, these are the overall end-goals that we were able to meet and achieve. However, this section does not reflect the

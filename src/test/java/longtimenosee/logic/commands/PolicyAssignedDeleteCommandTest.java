@@ -30,7 +30,7 @@ import longtimenosee.model.policy.Premium;
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code PolicyAssignCommand}.
  */
-public class PolicyDeleteAssignedCommandTest {
+public class PolicyAssignedDeleteCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -43,7 +43,7 @@ public class PolicyDeleteAssignedCommandTest {
         Policy policyToAdd = model.getFilteredPolicyList().get(INDEX_FIRST_POLICY.getZeroBased());
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
         expectedAssignCommand.execute(model);
-        PolicyDeleteAssignedCommand expectedDeleteCommand = new PolicyDeleteAssignedCommand(INDEX_FIRST_PERSON,
+        PolicyAssignedDeleteCommand expectedDeleteCommand = new PolicyAssignedDeleteCommand(INDEX_FIRST_PERSON,
                 INDEX_FIRST_POLICY);
         String expectedMessage = String.format(expectedDeleteCommand.MESSAGE_ASSIGN_POLICY_SUCCESS,
                 policyToAdd.getTitle(), personToAdd.getName());
@@ -54,26 +54,26 @@ public class PolicyDeleteAssignedCommandTest {
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        PolicyDeleteAssignedCommand policyDeleteAssignedCommand = new PolicyDeleteAssignedCommand(outOfBoundIndex,
+        PolicyAssignedDeleteCommand policyAssignedDeleteCommand = new PolicyAssignedDeleteCommand(outOfBoundIndex,
                 INDEX_FIRST_POLICY);
-        assertCommandFailure(policyDeleteAssignedCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(policyAssignedDeleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
 
     @Test
     public void equals() {
-        PolicyDeleteAssignedCommand deleteFirstCommand = new PolicyDeleteAssignedCommand(INDEX_FIRST_PERSON,
+        PolicyAssignedDeleteCommand deleteFirstCommand = new PolicyAssignedDeleteCommand(INDEX_FIRST_PERSON,
                 INDEX_FIRST_POLICY);
-        PolicyDeleteAssignedCommand deleteSecondCommand = new PolicyDeleteAssignedCommand(INDEX_SECOND_PERSON,
+        PolicyAssignedDeleteCommand deleteSecondCommand = new PolicyAssignedDeleteCommand(INDEX_SECOND_PERSON,
                 INDEX_SECOND_POLICY);
-        PolicyDeleteAssignedCommand deleteThirdCommand = new PolicyDeleteAssignedCommand(INDEX_SECOND_PERSON,
+        PolicyAssignedDeleteCommand deleteThirdCommand = new PolicyAssignedDeleteCommand(INDEX_SECOND_PERSON,
                 INDEX_FIRST_POLICY);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        PolicyDeleteAssignedCommand deleteFirstCommandCopy = new PolicyDeleteAssignedCommand(INDEX_FIRST_PERSON,
+        PolicyAssignedDeleteCommand deleteFirstCommandCopy = new PolicyAssignedDeleteCommand(INDEX_FIRST_PERSON,
                 INDEX_FIRST_POLICY);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 

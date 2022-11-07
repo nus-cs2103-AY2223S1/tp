@@ -31,7 +31,7 @@ import longtimenosee.model.policy.AssignedPolicy;
 import longtimenosee.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing Client in the LTNS.
  */
 public class EditCommand extends Command {
 

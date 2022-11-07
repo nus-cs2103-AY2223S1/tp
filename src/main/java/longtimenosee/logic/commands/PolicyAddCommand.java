@@ -11,7 +11,8 @@ import longtimenosee.model.Model;
 import longtimenosee.model.policy.Policy;
 
 /**
- * Adds a policy to the address book.
+ * Adds a policy to the LTNS.
+ * This policy is just a template, refer to {@code PolicyAssignCommand}
  */
 public class PolicyAddCommand extends Command {
     public static final String COMMAND_WORD = "addPolicy";
@@ -19,7 +20,6 @@ public class PolicyAddCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a policy to the LTNS. \n"
             + "Parameters: "
             + PREFIX_TITLE + "TITLE "
-            //Todo: Replace message with a command that lists out different companies
             + PREFIX_COMPANY + "COMPANY_CODE "
             + PREFIX_COMMISSION + "Year1% Year2% Remaining% "
             + "[" + PREFIX_COVERAGES + "COVERAGE]...\n"
@@ -27,7 +27,6 @@ public class PolicyAddCommand extends Command {
             + PREFIX_TITLE + "PruShield "
             + PREFIX_COMPANY + "PRU "
             + PREFIX_COMMISSION + "15% 7.5% 1% "
-            //Todo: Replace message with a command that lists out different coverages
             + PREFIX_COVERAGES + "HEALTH "
             + PREFIX_COVERAGES + "LIFE";
 

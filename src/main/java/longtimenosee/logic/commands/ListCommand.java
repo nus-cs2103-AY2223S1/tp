@@ -6,7 +6,7 @@ import static longtimenosee.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import longtimenosee.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all Clients in the LTNS to the user.
  */
 public class ListCommand extends Command {
 

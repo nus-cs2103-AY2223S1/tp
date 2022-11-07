@@ -14,13 +14,13 @@ import longtimenosee.model.policy.AssignedPolicy;
 
 
 /**
- * Policy assign command, used to assign a policy to a client.
+ * Policy assigned delete command, used to delete an assigned policy from a client.
  */
-public class PolicyDeleteAssignedCommand extends Command {
+public class PolicyAssignedDeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteAssigned";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": deletes assigned policy from a person.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": deletes assigned policy from a Client.\n"
             + "Parameters: "
             + "CLIENT_INDEX "
             + "ASSIGNED_POLICY_INDEX "
@@ -33,11 +33,11 @@ public class PolicyDeleteAssignedCommand extends Command {
     private final Index targetPolicyIndex;
 
     /**
-     * Constructor for PolicyAssignCommand.
+     * Constructor for PolicyAssignedDeleteCommand.
      * @param targetPersonIndex
      * @param targetPolicyIndex
      */
-    public PolicyDeleteAssignedCommand(Index targetPersonIndex, Index targetPolicyIndex) {
+    public PolicyAssignedDeleteCommand(Index targetPersonIndex, Index targetPolicyIndex) {
         this.targetPersonIndex = targetPersonIndex;
         this.targetPolicyIndex = targetPolicyIndex;
     }
@@ -71,8 +71,8 @@ public class PolicyDeleteAssignedCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof PolicyDeleteAssignedCommand // instanceof handles nulls
-                && targetPersonIndex.equals(((PolicyDeleteAssignedCommand) other).targetPersonIndex) // state check
-                && targetPolicyIndex.equals(((PolicyDeleteAssignedCommand) other).targetPolicyIndex)); // state check
+                || (other instanceof PolicyAssignedDeleteCommand // instanceof handles nulls
+                && targetPersonIndex.equals(((PolicyAssignedDeleteCommand) other).targetPersonIndex) // state check
+                && targetPolicyIndex.equals(((PolicyAssignedDeleteCommand) other).targetPolicyIndex)); // state check
     }
 }

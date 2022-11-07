@@ -6,7 +6,7 @@ import longtimenosee.model.AddressBook;
 import longtimenosee.model.Model;
 
 /**
- * Clears the address book.
+ * Clears the LTNS.
  */
 public class ClearCommand extends Command {
 

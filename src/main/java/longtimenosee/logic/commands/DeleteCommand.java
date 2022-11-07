@@ -11,7 +11,7 @@ import longtimenosee.model.Model;
 import longtimenosee.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a person identified using it's displayed index from the LTNS.
  */
 public class DeleteCommand extends Command {
 

@@ -13,6 +13,8 @@ import longtimenosee.commons.exceptions.IllegalValueException;
 import longtimenosee.commons.util.FileUtil;
 import longtimenosee.commons.util.JsonUtil;
 import longtimenosee.model.ReadOnlyAddressBook;
+import longtimenosee.model.event.exceptions.OverlapEventException;
+import longtimenosee.model.event.exceptions.PersonNotFoundException;
 
 /**
  * A class to access AddressBook data stored as a json file on the hard disk.
@@ -56,6 +58,14 @@ public class JsonAddressBookStorage implements AddressBookStorage {
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
+        } catch (PersonNotFoundException pnf) {
+            logger.info("Attempted to add event with associated with a missing person in "
+                    + filePath + "\n" + pnf);
+            throw new DataConversionException(pnf);
+        } catch (OverlapEventException oee) {
+            logger.info("Attempted to add overlapping event "
+                    + filePath + "\n" + oee);
+            throw new DataConversionException(oee);
         }
     }
 

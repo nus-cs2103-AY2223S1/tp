@@ -3,16 +3,16 @@ layout: page
 title: Marcus's Project Portfolio Page
 ---
 
-# Project: Long Time No See (LTNS)
+## Project: Long Time No See (LTNS)
 
 Long Time No See (LTNS) is a desktop task tracking app made for financial advisors to manage their clients, policies and events. Made simpler with an intuitive and minimalistic graphical user interface (GUI) and customised functionalities to pinpoint your needs, LTNS will enable you to stay close to your dearest clients!
 
-## Summary of Contributions:
+### Summary of Contributions:
 
-### Code contributed:
+#### Code contributed:
 [tP Code Dashboard](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=marcusczh&breakdown=true)
 
-### Features implemented:
+#### Features implemented:
 
 Implemented all search related functionalities:
 - Searching for a client: `findClient` 
@@ -34,26 +34,27 @@ Implemented all search related functionalities:
     - As the enhancement required the use of all the individual Person/Policy/Event attributes, it required a significant understanding of how each attribute was implemented and their constraints
     - As an added touch, it is also possible to specify more than one metric in each search, to provide the user with the possibility to narrow down the search range
 
-### Contributions to the UG:
+#### Contributions to the UG:
 - Added documentation for the following features
   - Searching for a client: `findClient`
   - Searching for a policy: `findPolicy`
   - Searching for an event: `findEvent`
 - Created a summary table to orientate readers on all the possible prefixes, along with their input constraints.
 
-### Contributions to the DG:
+#### Contributions to the DG:
 - Added Implementation details for all `find` related commands 
 - Added use cases
 
-### Contributions to team-based tasks:
+#### Contributions to team-based tasks:
 - Set up the GitHub team organisation and repo
 - Maintained GitHub tools
   - Created issue labels
   - Created and maintained milestones
 - Managed all releases on GitHub
 
-### Review/mentoring contributions:
+#### Review/mentoring contributions:
 - Main reviewer for Reuben
+- PRs reviewed (with non-trivial review comments): [\#59](https://github.com/AY2223S1-CS2103T-W13-2/tp/pull/59), [\#67](https://github.com/AY2223S1-CS2103T-W13-2/tp/pull/67), [\#71](https://github.com/AY2223S1-CS2103T-W13-2/tp/pull/71), [\#182](https://github.com/AY2223S1-CS2103T-W13-2/tp/pull/182), [\#190](https://github.com/AY2223S1-CS2103T-W13-2/tp/pull/190), [\#212](https://github.com/AY2223S1-CS2103T-W13-2/tp/pull/212)
 
-### Contributions beyond the project team:
+#### Contributions beyond the project team:
 - Reported an above average number of bugs in the [Practical Exam Dry Run](https://github.com/marcusczh/ped/issues)

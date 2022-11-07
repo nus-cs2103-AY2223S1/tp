@@ -9,7 +9,7 @@ import longtimenosee.model.person.predicate.PinnedPersonPredicate;
 
 
 /**
- * Lists all persons pinned to the user.
+ * Lists all Clients pinned to the user.
  */
 public class ViewPinCommand extends Command {
 
