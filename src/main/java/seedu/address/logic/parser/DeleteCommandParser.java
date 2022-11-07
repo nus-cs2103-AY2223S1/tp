@@ -22,7 +22,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
 
         try {
             index = ParserUtil.parseIndex(args);
-            assert index.getOneBased() > 0 : "index should be positive integer";
+            assert index.getOneBased() > 0 : "index should be a positive integer";
         } catch (ParseException pe) {
             if (pe.getMessage().equals(MESSAGE_INVALID_COMMAND_FORMAT)) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
