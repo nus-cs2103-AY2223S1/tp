@@ -15,6 +15,8 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * Contributed to the `Book` and `BookList` classes to accommodate book operations in the BookFace app.
   * Implemented the `add book` command, a core use case of BookFace.
+* **Contributions to team-based tasks**
+  * Refactoring of AddressBook code base to BookFace.
 * **Documentation**:
     * User Guide:
       * List loans, Clear, Changing the Theme and Exit features.
