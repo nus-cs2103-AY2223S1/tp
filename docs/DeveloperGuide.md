@@ -81,6 +81,17 @@ The sections below give more details of each component.
 
 **API** : [`Ui.java`](https://github.com/AY2223S1-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/uninurse/ui/Ui.java)
 
+**Description**
+
+The `UI` component manages the user interface of the application so that it responds appropriately to all commands (valid or invalid) that a user inputs.
+
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder.
+For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/uninurse/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T12-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+
+**Components**
+
+Here's a (partial) class diagram of the `UI` component:
+
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of 4 crucial parts:
@@ -96,7 +107,7 @@ Other miscellaneous parts (such as `StatusBarFooter`, `HelpWindow`) are also inc
 
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-Additionally, the structure of `OutputPanel` is as shown below:
+Additionally, the structure of `OutputPanel` (simplified in class diagram above) is shown below:
 ![Structure of the OutputPanel Component](images/OutputPanelClassDiagram.png)
 
 `OutputPanel` is a UI part that loads the appropriate view based on the command result. Similar to `MainWindow`, all views and the `OutputPanel` inherit from the abstract `UiPart` class. The `OutputPanel` supports the following views:
@@ -110,7 +121,8 @@ Additionally, the structure of `OutputPanel` is as shown below:
 | `UpdatedPersonListPanel`                      | Displays a list of `UpdatedPatientCard`s after using a `find` command           |
 | `UndoCard`, `RedoCard`, `ModifiedPatientCard` | Displays the outcome of an `undo`/`redo` command                                |
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/uninurse/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T12-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+
+**Functionality**
 
 The `UI` component,
 
@@ -246,7 +258,7 @@ The `viewTask` command is executed when the user enters the command into the UI 
 
 Note that `TaskListPanel` only displays the complete list of tasks of the specified patient and essential information such as the patient name and tags.
 
-The following sequence diagrams illustrates the interactions between the `UI`, `Logic` and `Model` component when the command is being executed.
+The following sequence diagrams illustrate the interactions between the `UI`, `Logic` and `Model` component when the command is being executed.
 
 <img src="images/ViewTaskSequenceDiagram1.png" width="900" />
 
