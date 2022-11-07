@@ -171,11 +171,11 @@ This section describes some noteworthy details on how certain features are imple
 
 CodeConnect has features that allow you to search for tasks and contacts. The finding features use the following commands:
 
-* `find n/` —  Finds tasks in the TaskList by their description(name)
-* `find m/` —  Finds tasks in the TaskList by their module
-* `findc n/` —  Finds contacts in the AddressBook by their name
-* `findc m/` —  Finds contacts in the AddressBook by their module
-* `findc ts/` —  Finds contacts in the AddressBook by the module of the task at the given index
+* `find n/` - Finds tasks in the TaskList by their description(name)
+* `find m/` - Finds tasks in the TaskList by their module
+* `findc n/` - Finds contacts in the AddressBook by their name
+* `findc m/` - Finds contacts in the AddressBook by their module
+* `findc ts/` - Finds contacts in the AddressBook by the module of the task at the given index
 
 Examples of command use:
 - `find n/ quiz` - Find all tasks containing the word "quiz"
@@ -188,7 +188,10 @@ Examples of command use:
 
 #### Implementation Flow
 
+Only the execution of `findc` command will be shown below as all the commands are implemented in a similar way.
+
 Outline of how components work together when the user enters a find command:
+
 1. User enters `findc m/ CS1101S` into the command prompt box
 2. The user input will be sent to `CodeConnectParser`
 3. `CodeConnectParser` send the argument `m/CS1101S` to `FindContactCommandParser`
@@ -238,6 +241,8 @@ Examples of command use:
 
 #### Implementation flow
 
+Only the execution of `add` command will be shown below as both commands are implemented in a similar way.
+
 Outline of how components work together when the user enters an add command:
 
 1. User enters `add Finish Lab3 by/tomorrow m/CS2030S` into the command prompt box
@@ -278,6 +283,8 @@ Example of command use:
 * `editc 2 p/91919100` - Changes the phone number of the contact at index 2 to "91919100"
 
 #### Implementation flow
+
+Only the execution of `edit` command will be shown below as both commands are implemented in a similar way.
 
 Outline of how components work together when the user enters an edit command:
 1. User enters `edit 3 m/CS1101S` into the command prompt box
@@ -344,13 +351,14 @@ However, users could forget to input spaces when inputting indexes of multiple t
 marked/unmarked without the users even realising it. Limiting the number of tasks that can be marked/unmarked to 1 is thus 
 considered to be an acceptable trade-off.
 
-### Listing of tasks
+### Listing features
 
 #### About
 
-CodeConnect allows users to list all of their tasks with `list` and `list time` commands.
-* `list` command lists all the tasks in the order of most recently added task on top.
-* `list time` command lists all the tasks in the order of the task with the earliest deadline on top.
+CodeConnect has features that allow you to list out all the contacts and tasks. The listing features use the following commands:
+* `list` - Shows a list of all tasks
+* `list time` - Shows a list of all tasks sorted by deadline
+* `listc` - Shows a list of all contacts
 
 #### Implementation flow
 
@@ -360,7 +368,7 @@ will be reflected in the `sortedTaskList`, the `Ui` displays `sortedTaskList` in
 method SortedList#setComparator(Comparator<? super E> comparator). The above method is called in 
 `ModelManager#updateSortedTaskList(Comparator<Task> comparator)` that allows for the sorting of `sortedTaskList` with a comparator.
 
-As `list` and `list time` are implemented in a similar way, only the execution of `list time` will be shown below.
+Only the execution of `list time` command will be shown below as all listing commands are implemented in a similar way.
 
 Outline of how components work together when the user enters a list command:
 1. User enters `list time` into the command prompt box
