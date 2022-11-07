@@ -245,19 +245,17 @@ This section describes some noteworthy details on how certain features are imple
 ### Command Parsing
 The [**Logic**](#logic-component) section briefly explains how the user's input is broken down, but the process is explained more thoroughly here.
 
-Parsing of commands is a three-step process - processing the first command word, then the arguments (if any), and constructing the Command instance.
+This process works by creating handling the parsing of commands and arguments separately. The first word in the user input is taken to be the command, and the rest of the input to be arguments. A `Command` object is then generated.
 
-The `add`, `edit`, `find`, `list`, and `delete` commands can apply to either users or books. These commands need additional subcommands and additional parsers to handle the different execution logic and command-line flags for users and books. Thus, the arguments to these commands are actually subcommands.
+One feature is that a command can recursively contain another command as a subcommand. We chose this approach as the `add`, `edit`, `find`, `list`, and `delete` commands can apply to either users or books. These commands need additional subcommands and additional parsers to handle the different execution logic and command-line flags for users and books. Thus, a recursive structure allows for easy extensibility and to share code via parent classes.
 
-Compare the commands `loan 1 1` with `delete user 1`. `loan 1 1` has two integer arguments, which cannot be broken down further. However, the arguments `user 1` for `delete` can be treated as a single self-complete subcommand on their own.
-
-These commands (and subcommands) are represented as enums to associate each possible command from the user with a parser.
+Compare the command `loan 1 1` with `delete user 1`. `loan 1 1` has two integer arguments, which cannot be broken down further. However, the arguments `user 1` for `delete` can be treated as a single self-complete subcommand on their own.
 
 #### Design consideration:
 
-This approach was chosen to reduce code duplication, and to manage the complexity of `PrimaryParser`. Now, `DeleteUserCommand` (`delete user`) and `DeleteBookCommand` (`delete book`) can share similar code through a common parent `DeleteCommand` (`delete`).
+This approach was chosen to reduce code duplication and to manage the complexity of `PrimaryParser`. For example, `DeleteUserCommand` (`delete user`) and `DeleteBookCommand` (`delete book`) can share similar code through a common parent `DeleteCommand` (`delete`). Such commands which can contain subcommands like `add` or `delete` also inherit from the abstract `CommandParser`, which has a shared `parse()` method. This proved to be useful, as the `list` command in particular has many subcommands.
 
-Enums were chosen, as they use less memory (as enums are `final` subclasses of java.lang.Enum) than HashMap for key-value storage, and are easy to modify. Furthermore, they help to ensure type-checking during compile-time, preventing bugs. They also have a semantic value; they represent to both readers and future developers the current allowed constants.
+These commands (and subcommands) are represented as enums to associate each possible command from the user with a `Parser` specific to that command. Enums were chosen, as they use less memory (as enums are `final` subclasses of `java.lang.Enum`) than `HashMap` for key-value storage, and are easy to modify. Furthermore, they help to ensure type-checking during compile-time, preventing bugs. They also have a semantic value; they represent to both us developers and to readers of the code the current allowed constants.
 
 ### Add feature
 #### Adding a book/user
