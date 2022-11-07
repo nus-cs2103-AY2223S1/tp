@@ -7,7 +7,7 @@
 
 
 
-<HBox fx:id="urlMessageContainer" stylesheets="HelpWindow.css" alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:id="urlMessageContainer" alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
       <Label fx:id="urlMessage" text="URL">
          <HBox.margin>
