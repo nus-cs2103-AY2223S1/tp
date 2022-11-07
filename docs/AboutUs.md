@@ -20,6 +20,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [portfolio](team/devanshshah1309.md)
 
 * Role: Developer
+* Responsibilities: In charge of the UI Component.
 
 ### Marcus Pang
 
@@ -32,6 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [portfolio](team/marcuspang.md)
 
 * Role: Developer
+* Responsibilities: In charge of the Parser component.
 
 ### Gui Ling Ling
 
@@ -42,6 +44,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [portfolio](team/ling-ui.md)
 
 * Role: Developer
+* Responsibilities: In charge of CI/CD.
 
 
 ### Chang Jing Yan
@@ -55,6 +58,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [portfolio](team/changjy44.md)
 
 * Role: Developer
+* Responsibilities: In charge of testing.
 
 
 ### Gui Ming Jiang
@@ -65,3 +69,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/mjgui.md)]
 
 * Role: Developer
+* Responsibilities: In charge of Code Quality
