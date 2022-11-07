@@ -690,6 +690,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
+**UC05: Edit an event**
+
+**MSS**
+
+1. User requests to list events
+2. Duke The Market shows a list of events
+3. User requests to edit one or more fields of a specific event on the list (event title, date, time or purpose)
+4. Duke The Market edits the event
+
+   Use case ends.
+
+**Extensions**
+
+* 3a. User enters data in an invalid format.
+
+    * 3a1. Duke The Market requests for the correct data
+
+    * 3a2. User enters new data
+
+  Steps 3a1-3a2 are repeated until the data entered is correct
+
+  Use case resumes at step 4.
+
+**UC06: Sort customers by a field**
+
+**MSS**
+
+1. User requests to sort all customers based on a field (e.g Gender)
+2. Duke The Market displays a sorted list of all customers
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Field to sort by is not a valid.
+
+    * 1a1. Duke The Market requests for the correct field to sort by
+
+    * 1a2. User enters new field to sort by
+
+  Steps 1a1-1a2 are repeated until the field entered is correct
+
+  Use case resumes at step 2.
+
 
 ### Non-Functional Requirements
 
