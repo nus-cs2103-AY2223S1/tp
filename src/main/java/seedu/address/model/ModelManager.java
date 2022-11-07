@@ -183,6 +183,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addReminder(Person person, Reminder reminder) {
+        person.getReminders().add(reminder);
         unsortedReminders.add(new Pair<>(person, reminder));
     }
 

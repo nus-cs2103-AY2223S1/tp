@@ -26,7 +26,7 @@ It is written in Java and has about 10 kLoC.
 in a few minutes
   * Add hooks to attract prospective users to use the application
 
-  **User Guide**: 
+  **User Guide**:
   * Add Quick Glossary Table for slightly more technical terms to allow users to quickly understand some terms before reading
   * Updated the screenshots of the UI in order to keep up with the changes
   * Updated information on the edit function that was changed
@@ -49,7 +49,7 @@ in a few minutes
   * Wrote additional tests for features
   * Handled most of the UI changes and UI debugging
 
-- **Review/mentoring contributes**: 
+- **Review/mentoring contributes**:
   * Reviewed PRs with non-trivial comments on how to improve styles and deleting redundant code. [\100](https://github.com/AY2223S1-CS2103T-W10-2/tp/pull/100)
-  * Reported bugs and suggestions of the team and provided simple solutions to fix it 
+  * Reported bugs and suggestions of the team and provided simple solutions to fix it
   * Helped team members with git flow control to maintain clean commits [\#175](https://github.com/AY2223S1-CS2103T-W10-2/tp/pull/175)

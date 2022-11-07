@@ -12,10 +12,10 @@ Friendnancial is a **desktop application, optimized for use by financial advisor
 --------------------------------------------------------------------------------------------------------------------
 ## Short Glossary For Non-technical Users
 
-| Technical Terms | Meaning                                                                                   | 
+| Technical Terms | Meaning                                                                                   |
 |-----------------|-------------------------------------------------------------------------------------------|
-| **GUI**         | Graphical User Interface - A system of interactive visual components for computer software| 
-| **CLI**         | Command Line Interface - A text based user interface to run programs                      | 
+| **GUI**         | Graphical User Interface - A system of interactive visual components for computer software|
+| **CLI**         | Command Line Interface - A text based user interface to run programs                      |
 | **Index**       | A number indicating the order of a person within the contact list, used in conjunction with commands|
 | **Parameter**   | Refers to the information typed along with the commands. For example the command <br/>`add n/John Doe` means that the parameter is `n/John Doe` |
 
@@ -277,5 +277,5 @@ Friendnancial data is saved in the hard disk automatically after any command tha
 | **List**   | `list`                                                                                                                                              |
 | **Remind** | `remind INDEX r/REMINDER d/DATE` <br> e.g., `remind 2 r/update client information d/20-10-2022`                                                     |
 | **DeleteR** | `deleteR INDEX`<br> e.g., `deleteR 1`                                                                              |
-| **Insurance**   | `insurance INDEX [hi/] [di/] [ci/] [li/]`|                                                                                                           
+| **Insurance**   | `insurance INDEX [hi/] [di/] [ci/] [li/]`|
 | **Help**   | `help` |

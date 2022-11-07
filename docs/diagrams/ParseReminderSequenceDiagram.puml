@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ReminderCommandParser" as ReminderCommandParser LOGIC_COLOR
+participant "r:ReminderCommand" as ReminderCommand LOGIC_COLOR
+end box
+
+
+[-> LogicManager : execute("remind 1 \n r/zoom call \n d/10-10-2023")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("remind 1 \n r/zoom call \n d/10-10-2023")
+activate AddressBookParser
+
+create ReminderCommandParser
+AddressBookParser -> ReminderCommandParser
+activate ReminderCommandParser
+
+ReminderCommandParser --> AddressBookParser
+deactivate ReminderCommandParser
+
+AddressBookParser -> ReminderCommandParser : parse("1 \n r/zoom call \n d/10-10-2023")
+activate ReminderCommandParser
+
+create ReminderCommand
+ReminderCommandParser -> ReminderCommand
+activate ReminderCommand
+
+ReminderCommand --> ReminderCommandParser : r
+deactivate ReminderCommand
+
+ReminderCommandParser --> AddressBookParser : r
+deactivate ReminderCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ReminderCommandParser -[hidden]-> AddressBookParser
+destroy ReminderCommandParser
+
+AddressBookParser --> LogicManager : r
+deactivate AddressBookParser
+
+LogicManager -> ReminderCommand: execute()
+
+ref over ReminderCommand: execute reminder command
+
+ReminderCommand --> LogicManager: result
+
+
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
