@@ -230,14 +230,14 @@ Welcome to the General Commands section! In this section, you can learn about va
 
 If you are ever stuck or in need of help while using SoConnect, the `help` command will be there to assist you! The `help` command will link you to this user guide, providing you with easy access to guidance on how to use SoConnect.
 
-Format: `help`
+**Format:** `help`
 
-**Example Input in Command Box**
+**Example Input in Command Box:**
 ```
 help
 ```
 
-**Example Result**
+**Example Result:**
 
 ![help message](images/helpMessage.png)
 
@@ -247,7 +247,7 @@ help
 
 When you are done with your [contact management](#72-contact-management-commands) and [todo management](#73-todo-management-commands), you can exit SoConnect at any time using the `exit` command.
 
-Format: `exit`
+**Format:** `exit`
 
 <br>
 
@@ -304,7 +304,7 @@ A contact of a person consists of
 
 You can add a contact using the `add` command as shown below. While the `NAME`, `PHONE_NUMBER`, `EMAIL`, and `ADDRESS` parameters are mandatory, you can include as many `TAG` parameters as you wish (including none).
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
+**Format:** `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -316,14 +316,14 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
 </div>
 
-**Example Input in Command Box**
+**Example Input in Command Box:**
 ```
-add n/John Doe t/friend p/98765432 e/johnd@example.com a/John street, block 123, #01-01
+add n/John Doe t/friends p/98765432 e/johnd@example.com a/John street, block 123, #01-01
 ```
 
-**Example Result**
+**Example Result:**
 
-(insert image of a successful contact addition)
+![Contact Add](images/ContactAdd.png)
 
 <br>
 
@@ -331,7 +331,7 @@ add n/John Doe t/friend p/98765432 e/johnd@example.com a/John street, block 123,
 
 You might have included the wrong information when [adding a contact](#721-adding-a-contact-add), or you might need to update the information of a contact. Regardless, you can accomplish both easily using the `edit` command as shown below. All you need is the `INDEX` of the contact you want to modify along with the parameters you want to update.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
+**Format:** `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 
 * At least 1 of the 4 optional parameters must be provided.
 * Existing information will be updated with the parameters provided. Information of the parameters not provided will remain unchanged.
@@ -344,14 +344,20 @@ To edit the tags of a contact, you can refer to [adding a tag](#744-adding-a-tag
 
 </div>
 
-**Example Input in Command Box**
+**Example Input in Command Box:**
 ```
-`edit 1 p/91234567 e/johndoe@example.com`
+`edit 7 p/91234567 e/johndoe@example.com`
 ```
 
-**Example Result: Comparing the Before and After**
-    (insert image of before the edit command)
-    (insert image of after the edit command)
+**Example Result:**
+
+Before:
+
+![Contact Edit Before](images/ContactEditBefore.png)
+
+After:
+
+![Contact Edit After](images/ContactEditAfter.png)
 
 <br>
 
@@ -359,7 +365,7 @@ To edit the tags of a contact, you can refer to [adding a tag](#744-adding-a-tag
 
 Whenever you need to view a list of all the contacts you have in your SoConnect, you can easily do so using the `list` command. You can directly use the `list` command without the need of any parameters!
 
-Format: `list`
+**Format:** `list`
 
 <br>
 
@@ -371,7 +377,7 @@ You can easily find the contacts that you are interested in using the `search` c
 
 If you are looking for a very specific search, you can use `and` condition search to search for contacts that have information matches **all** the given parameter.
 
-Format: `search [and] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
+**Format:** `search [and] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
 * The search using `n/NAME` is case-insensitive. (e.g. `hans` will match `Hans`).
 * At least 1 of the optional parameters must be provided.
@@ -380,12 +386,12 @@ Format: `search [and] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 The preamble `and` is optional, so you can perform `and` condition search without including the word `and`, i.e. `search n/Alex p/12345678` gives the same result as `search and n/Alex p/12345678`.
 </div>
 
-**Example Input in Command Box**
+**Example Input in Command Box:**
 ```
 `search and n/Bernice t/cs2100 t/friends`
 ```
 
-**Example Result**
+**Example Result:**
 
 ![And Condition Search](images/AndConditionSearch.png)
 
@@ -454,7 +460,7 @@ How *[tags](#tag) (t/TAG)* are sorted:
 
 </div>
 
-Format: `sort [n/] [p/] [e/] [a/] [t/TAG]…​`
+**Format:** `sort [n/] [p/] [e/] [a/] [t/TAG]…​`
 * At least 1 of the optional parameters must be provided.
 * To sort in reverse order from the orders given above, use these modified parameters: `[n/!] [p/!] [e/!] [a/!] [t/!TAG]`.
 
@@ -469,23 +475,23 @@ You can use multiple parameters to sort if you want to organise your contacts ev
 
 </div>
 
-**Example Input in Command Box**
+**Example Input in Command Box:**
 ```
 sort n/!
 ```
 
-**Example Result**
+**Example Result:**
 
-(insert image of a successful reverse sorting by name)
+![Sort Name Reverse](images/SortNameReverse.png)
 
-**Example Input in Command Box**
+**Example Input in Command Box:**
 ```
-`sort t/friend n/`
+`sort t/cs2100 n/`
 ```
 
-**Example Result**
+**Example Result:**
 
-(insert image of a successful sorting by the friend tag and names. If possible, have 2 contacts with the friend tag and 2 contacts without the friend tag)
+![Sort Tag Name](images/SortTagName.png)
 
 <br>
 
@@ -493,7 +499,7 @@ sort n/!
 
 If you [added a contact](#721-adding-a-contact-add) by mistake, or you no longer wish to keep a particular contact, you can delete it easily using the `delete` command. All you need is the `INDEX` of the contact and poof, it's gone!
 
-Format: `delete INDEX`
+**Format:** `delete INDEX`
 
 <br>
 
@@ -501,7 +507,7 @@ Format: `delete INDEX`
 
 Want a fresh start? You can reset and get a clean, empty list of contacts using the `clear` command. You can directly use the `clear` command without the need of any parameters!
 
-Format: `clear`
+**Format:** `clear`
 
 <br>
 
@@ -530,7 +536,7 @@ A todo consists of
 
 You can add a todo using the `todo add` command as shown below. While the `DESCRIPTION`, `DATE`, and `PRIORITY` parameters are mandatory, you can include as many `TAG` parameters as you wish (including none).
 
-Format: `todo add d/DESCRIPTION date/DATE pr/PRIORITY [t/TAG]…​`
+**Format:** `todo add d/DESCRIPTION date/DATE pr/PRIORITY [t/TAG]…​`
 
 * `DATE` should be of the format dd-MM-yyyy (e.g. 24-03-2022).
 * The todo list will always be sorted by date from earliest to latest (for todos with the same date, they will be sorted in decreasing priority order).
@@ -545,9 +551,14 @@ Format: `todo add d/DESCRIPTION date/DATE pr/PRIORITY [t/TAG]…​`
 
 </div>
 
-Examples:
-* `todo add d/Watched recorded videos for CS2100 date/24-10-2022 pr/low t/CS2100`
-* `todo add d/Prepare slides for OP2 date/25-03-2022 pr/high t/CS2101 t/CS2103T`
+**Example Input in Command Box:**
+```
+`todo add d/cs2103 UG date/07-11-2022 pr/high t/cs2103`
+```
+
+**Example Result:**
+
+![Todo Add](images/TodoAdd.png)
 
 <br>
 
@@ -555,13 +566,13 @@ Examples:
 
 You can update the information of a todo easily using the `todo edit` command as shown below. All you need is the `INDEX` of the todo you want to modify along with the parameters you want to update.
 
-Format: `todo edit INDEX [d/DESCRIPTION] [date/DATE] [pr/PRIORITY] [t/TAG]…​`
+**Format:** `todo edit INDEX [d/DESCRIPTION] [date/DATE] [pr/PRIORITY] [t/TAG]…​`
 
 * At least 1 of the 4 optional fields must be provided.
 * Existing information will be overwritten with the parameters provided. Information of the parameters not provided will remain unchanged.
 
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-primary">
 **:memo: Note:**<br/>
 [Tags](#tag) have to be created first before you can add them to a contact.
 
@@ -578,18 +589,20 @@ Format: `todo edit INDEX [d/DESCRIPTION] [date/DATE] [pr/PRIORITY] [t/TAG]…​
 
 </div>
 
-**Example Input in Command Box**
+**Example Input in Command Box:**
 
 ```
 `todo edit 2 pr/medium t/cs2103 t/cs2100`
 ```
 
-**Example Result**
+**Example Result:**
 
 Before:
+
 ![Todo edit before](images/TodoEditBefore.png)
 
 After:
+
 ![Todo edit after](images/TodoEditAfter.png)
 
 <br>
@@ -598,7 +611,7 @@ After:
 
 You can delete a particular todo after you have completed the todo or you no longer wish to keep it. This can be done easily using the `todo delete` command. All you need is the `INDEX` of the contact!
 
-Format: `todo delete INDEX`
+**Format:** `todo delete INDEX`
 
 <br>
 
@@ -606,7 +619,7 @@ Format: `todo delete INDEX`
 
 You can delete all your todos using the `todo clear` command. This resets and gets you a clean and empty list of todos.
 
-Format: `todo clear`
+**Format:** `todo clear`
 
 <br>
 
@@ -631,17 +644,20 @@ Todo header tells you the todos that are shown in the todo list.
 
 </div>
 
-**Example Input in Command Box**
+**Example Input in Command Box:**
+
 ```
 `todo show pr/medium`
 ```
 
-**Example Result**
+**Example Result:**
 
 Before:
+
 ![Todo Show Before](images/TodoShowBefore.png)
 
 After:
+
 ![Todo Show After](images/TodoShowAfter.png)
 
 <br>
@@ -658,19 +674,16 @@ A tag consists of a category name that can be a maximum of 10 characters.
 
 You can create a new `TAG` and add it into the tag list.
 
-Format: `tag create t/TAG`
+**Format:** `tag create t/TAG`
 
-**Example Input in Command Box**
+**Example Input in Command Box:**
 ```
-tag create t/friends
-```
-
-**Output in Command Result Box**
-```
-New Tag created: [friends]
+tag create t/cca
 ```
 
-   (insert image of a successful creation of the `friends` tag)
+**Example Result:**
+
+![Tag Create](images/TagCreate.png)
 
 Great! You have successfully learnt how to add your first `TAG` you have made. Now, you can start utilising the other tag features.
 
@@ -680,23 +693,27 @@ Great! You have successfully learnt how to add your first `TAG` you have made. N
 
 You can delete a `TAG` from the tag list.
 
-Format: `tag delete t/TAG`
+**Format:** `tag delete t/TAG`
 
-<div markdown="block" class="alert alert-info">
-**:information_source: Note:** When `TAG` is deleted, `TAG` is removed from all the contacts which previously had it.
+<div markdown="block" class="alert alert-primary">
+
+**:memo: Note:** When `TAG` is deleted, `TAG` is removed from all the contacts which previously had it.
 </div>
 
-**Expected Input in Command Box**
+**Expected Input in Command Box:**
 ```
 tag delete t/friends
 ```
 
-**Output in Command Result Box**
-```
-Tag deleted: [friends]
-```
+**Example Result:**
 
-   (insert successful deletion of `Test2` tag)
+Before:
+
+![Tag Delete Before](images/TagDeleteBefore.png)
+
+After:
+
+![Tag Delete After](images/TagDeleteAfter.png)
 
 Wonderful! You have successfully deleted a tag.
 
@@ -706,10 +723,10 @@ Wonderful! You have successfully deleted a tag.
 
 If you make a mistake or want to update your `TAG`, you can simply update it with this command.
 
-Format: `tag edit t/TAG1 t/TAG2`
+**Format:** `tag edit t/TAG1 t/TAG2`
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:** 
+**:information_source: Info:** 
 
 * The new Tag must not have the same name as any other existing tags.
 * `TAG1` represents the current name of the tag and `TAG2` represents the new name of the tag.
@@ -717,23 +734,20 @@ Format: `tag edit t/TAG1 t/TAG2`
 
 </div>
 
-**Example Input in Command Box**
+**Example Input in Command Box:**
 ```
-tag edit t/friends t/bestFriends
-```
-
-**Output in Command Result Box**
-```
-Tag has changed from [friends] to [bestFriends]
+tag edit t/friends t/bestFriend
 ```
 
-* You can refer to the Before and After comparison below.
+**Example Result:**
 
-   Before:
-   (insert image a contact with `friends` tag)
+Before:
 
-   After:
-   (insert image of the same contact with `bestFriends` tag instead of `friend`, with the Command Result Box)
+![Tag Edit Before](images/TagEditBefore.png)
+
+After:
+
+![Tag Edit After](images/TagEditAfter.png)
 
 Fantastic! You have successfully learnt how to change tags.
 
@@ -745,29 +759,26 @@ You can add a `TAG` from the tag list to a contact.
 * `Coming soon in v1.5`, we will upgrade `tag add` to add tags to todos.
 * Consider using [Adding a todo](#731-adding-a-todo-todo-add) or [Editing a todo](#732-editing-a-todo--todo-edit) to add tags to todos.
 
-Format: `tag add INDEX t/TAG`
+**Format:** `tag add INDEX t/TAG`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A contact can have any number of tags. Add as many as you want.
 </div>
 
-<div markdown="block" class="alert alert-info">
-**:information_source: Note:** The tag has to be created first before you can add it into a contact.
+<div markdown="block" class="alert alert-primary">
+**:memo: Note:** The tag has to be created first before you can add it into a contact.
 
 Refer to [`Creating a Tag`](#creating-a-tag-tag-create) on how to create a tag.
 </div>
 
-**Example Input in Command Box**
+**Example Input in Command Box:**
 ```
-tag add 1 t/friends
-```
-
-**Output in Command Result Box**
-```
-Tag added: [friends]
+tag add 3 t/bestFriend
 ```
 
-   (insert image of a successful addition of the `friends` tag to contact `1`)
+**Example Result:**
+
+![Tag Add](images/TagAdd.png)
 
 Awesome! You have successfully learnt to add a tag to a contact.
 
@@ -779,19 +790,16 @@ You can remove a `TAG` from a contact.
 * `Coming soon in v1.5`, we will upgrade `tag remove` to remove tags from todos.
 * Consider using [Editing a todo](#732-editing-a-todo--todo-edit) to remove tags from todos.
 
-Format: `tag remove INDEX t/TAG`
+**Format:** `tag remove INDEX t/TAG`
 
-**Example Input in Command Box**
+**Example Input in Command Box:**
 ```
-tag remove 1 t/friends
-```
-
-**Output in Command Result Box**
-```
-Tag removed: [friends]
+tag remove 3 t/bestFriend
 ```
 
-   (insert image of contact `1` without the `friend` tag with the resu )
+**Example Result:**
+
+![Tag Remove](images/TagRemove.png)
 
 Nice! You have successfully removed a tag from a contact.
 
