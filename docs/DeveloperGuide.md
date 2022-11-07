@@ -593,3 +593,15 @@ testers are expected to do more *exploratory* testing.
    2. Edit any email to a non-NUS email.
    3. Relaunch `NUScheduler.jar`.
    4. Expected: Data is invalid thus NUScheduler starts with an empty data file.
+
+## **Appendix: Effort**
+
+NUScheduler is not only developed to work with profile details, but simultaneously with events as well. As such, it was a challenging experience for us to implement both features in a cohesive way for our target users. The initial preparation of the codebase was tedious, as we had to rename the given `Person` class in our AB3 fork. This caused many test cases to break and it took us some time to fix this. This was a part of our experience in understanding the codebase, which also involved learning how the command pattern used by AB3 works.
+
+The implementation of our “flag” command syntax to make the pattern more CLI-like very rigorously tested our ability to pattern-match using regex. We needed to ensure that the flags were entered directly after the main command, while also trying not to hardcode the flag into the command. This pushed us to learn more about regex in detail, including using capturing groups and lookaheads to ensure incorrect command patterns are never allowed.
+
+After understanding the codebase, we moved to implementing the `Event` class as well, while simultaneously adding more commands for the `Profile` class. This tested our ability to manage code conflicts, and we took some time to ensure that the quality of our code was unaffected after every merge.
+
+One of our biggest changes in v1.3 was implementing the `AddProfilesToEventCommand`. It created dependencies between the `Profile` and `Event` classes, so it was very difficult to write unit tests for commands that involved both classes. The conversion of `JsonAdaptedEvent`s to the model’s `Event` object also had to be modified to check for the existence of the `Profile`s saved under the `Event` (to check for any illegal modifications to the data file and ensure that the same `Profile` is referenced in the `Event`). The implementation also caused issues with the updating of the UI as any changes made to the `Attendees` was not automatically reflected in the UI. Therefore, we had to make even more changes to the model to refresh the UI.
+
+All in all, despite the limited time window of development, we not only managed to create a cohesive product for our target users, but also managed to learn a lot about effective software development practices.
