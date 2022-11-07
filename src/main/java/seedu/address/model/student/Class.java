@@ -311,7 +311,8 @@ public class Class {
      * @return true if both startTime and endTime are 0000.
      */
     public static boolean isFullDayClass(LocalTime startTime, LocalTime endTime) {
-        return endTime.getHour() == 0 && endTime.getMinute() == 0 && startTime.getHour() == 0 && startTime.getMinute() == 0;
+        return endTime.getHour() == 0 && endTime.getMinute() == 0
+                && startTime.getHour() == 0 && startTime.getMinute() == 0;
     }
 
     @Override
