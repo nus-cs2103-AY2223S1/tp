@@ -586,6 +586,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: View more details about a module**
+
+**MSS**
+
+1. User requests to list modules
+2. ProfNUS shows a list of modules
+3. User requests to view more details about a module in the list
+4. ProfNUS displays the module name, module code, module description,
+and any tags given to the module, along with the schedules for that module.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. ProfNUS shows an error message.
+
+      Use case resumes at step 2.
+
 **Use case: Add a student**
 
 **MSS**
@@ -635,50 +659,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 5a1. ProfNUS shows an error message.
 
       Use case resumes at step 2.
-
-**Use case: Add an event**
-
-**MSS**
-
-1. User requests to list modules
-2. ProfNUS shows a list of modules
-3. User requests to add an event to the module
-4. ProfNUS adds the event
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-
-
-**Use case: Delete an event**
-
-**MSS**
-
-1. User requests to list modules
-2. ProfNUS shows a list of modules
-3. User requests to delete an event in the module
-4. ProfNUS deletes the event
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. ProfNUS shows an error message.
-
-      Use case resumes at step 2.
-
-
 
 **Use case: Add a schedule**
 
