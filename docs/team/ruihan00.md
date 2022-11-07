@@ -10,7 +10,7 @@ PennyWise is a desktop application that **empowers students with the ability to 
 
 The following are my contributions to the project:
 
-* **New Feature**: Added the ability to summarise financial entries. PRs: [\36](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/36), [\#89](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/89), [\#137](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/137)
+* **New Feature**: Added the ability to summarise financial entries. PRs: [\#36](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/36), [\#89](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/89), [\#137](https://github.com/AY2223S1-CS2103T-W17-2/tp/pull/137)
     * What it does: `summary` allow users to summarise all financial entries or monthly entries and obtain total expenses, income and balance.
     * Justification: This feature allows users to view their current budget balance and the amount they have spent/earned in the time period.
   
