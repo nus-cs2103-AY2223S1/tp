@@ -1,0 +1,19 @@
+@startuml
+start
+:User executes vtarget command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([invalid index entered]
+)
+:Show error message;
+else ([else]
+)
+    :Filters list of modules to specified module;
+    :Update GUI to show module name, module code,
+     module description, along with any tags
+     given to the module;
+endif
+stop
+@enduml
