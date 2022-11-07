@@ -14,6 +14,8 @@ Here are some shortcuts to get help:
 * If you are unsure of the terminology, check our [Glossary section](#glossary).
 * To see how all our commands work, head to our [Features section](#features).
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **Table of Contents**
 
 * Table of Contents
@@ -51,7 +53,7 @@ of these terms in the hopes that it will clear your doubts.
    start the app.
 
    In that case, you can either right click the jar file and run it from the drop-down 
-   menu, or run the following command in the terminal: java -jar HR_Pro_Max++.jar
+   menu, or run the following command in the terminal:java -jar HR_Pro_Max++.jar
    ```
    ![Ui](images/Ui.png)
 6. You can proceed to the next section for a quick [overview of the user interface](#user-interface).
