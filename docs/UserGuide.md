@@ -77,7 +77,7 @@ This section guides you along the process of downloading and opening FRIDAY.
 
 ## Features
 
-This section contains all the information and details of each feature of **FRIDAY**. These features are split into 5 sections depending on their purpose and function:
+This section contains all the information and details of each feature of **FRIDAY**. These features are split into 5 sections based on their purpose and function:
 1. [Student management](#Student management)
 2. [Organizing students](#Organizing students)
 3. [Grading students](#Grading students)
