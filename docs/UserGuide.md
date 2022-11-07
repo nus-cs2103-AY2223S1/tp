@@ -325,7 +325,7 @@ Format for each variant of `find`:
 
 4. `Tags`: `find -t KEYWORD/[KEYWORD2/KEYWORD3/…]`
 
-   Example: `find -t colleague/fri/fam` finds all students with tag that contains either `colleague`, `fri`, or `fam`.
+   Example: `find -t colleague/fri/fam` finds all students with a tag that contains either `colleague`, `fri`, or `fam`.
 
    ![find -t](images/find-t.png)
 
@@ -390,18 +390,18 @@ Example:
 * `add -d i/A0272758C n/Buy Prof some coffee d/06-11-2022 13:30`
 
   Before:
-  
-  <img src="images/add-deadline-1.png" width=50%>
+
+  ![Before adding a deadline](images/add-deadline-1.png)
   
   After:
 
-  <img src="images/add-deadline-2.png" width=50%>
+  ![After adding a deadline](images/add-deadline-2.png)
 
 #### 3.3.2 Removing a student's deadline: `delete -d`
 
 Removes a deadline assigned to a student specified by ID & a priority rank (for example, below highlighted task has a priority rank of 2).
 
-<img src="images/Priority.png" width=80%>
+![Priority](images/Priority.png)
 
 The specified deadline must exist in the student's deadline list previously.
 
