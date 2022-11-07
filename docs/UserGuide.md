@@ -2,6 +2,8 @@
 layout: page title: PennyWise User Guide
 ---
 
+![PennyWise Logo](images/PennyWiseLogo.png)
+
 Well, hello there! Welcome to your personal budgeting assistant, PennyWise. After this guide, you will understand how to
 use PennyWise, and spend every penny wisely. 🤑
 
@@ -13,7 +15,7 @@ easy comprehension of expenditure and savings.
 _Interested?_ Head over to [Quick Start](#quick-start) to get started. Enjoy!
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
-Already set PennyWise up? Jump right straight to the [features](#features) section to see what features are available!
+Already done with the set-up? Jump right straight to the [features](#features) section to see what features are available!
 </div>
 
 # Table of Contents
@@ -31,8 +33,8 @@ Already set PennyWise up? Jump right straight to the [features](#features) secti
     * [Formatting](#formatting)
 * [Quick start](#quick-start)
 * [Before Using PennyWise](#before-using-pennywise)
-  * [What is an Entry](#what-is-an-entry)
-  * [Familiarising yourself with the interface](#familiarising-yourself-with-the-interface)
+    * [What is an Entry](#what-is-an-entry)
+    * [Familiarising yourself with the interface](#familiarising-yourself-with-the-interface)
 * [Understanding the command formats](#understanding-the-command-formats)
     * [Categorising your expenses and income](#categorising-your-expenses-and-income)
     * [Guidelines on organising your expenses and income](#guidelines-on-organising-your-expenses-and-income)
@@ -48,7 +50,7 @@ Already set PennyWise up? Jump right straight to the [features](#features) secti
         * [Delete an income from the income list](#delete-an-income-from-the-income-list)
     * [Summary of entries:](#summary-of-entries)
         * [Summary of all entries in the currently shown list](#summary-of-all-entries-in-the-currently-shown-list)
-        * [Summary of all entries the specified month](#summary-of-all-entries-the-specified-month)
+        * [Summary of all entries in the specified month](#summary-of-all-entries-in-the-specified-month)
     * [View entries by category:](#view-entries-by-category)
     * [View entries by month:](#view-entries-by-month)
     * [Clearing all entries:](#clearing-all-entries)
@@ -62,8 +64,8 @@ Already set PennyWise up? Jump right straight to the [features](#features) secti
 
 ## Purpose of Guide
 
-This guide aims to teach those new to PennyWise how to navigate and utilise the application. It also provides
-experienced or returning users a mini refresher course on how to make the most out of PennyWise.
+This guide aims to teach those new to PennyWise how to navigate and utilise the application. It also acts as 
+a refresher for any experienced or returning users, allowing you to make the most out of PennyWise.
 
 ## How to use this User Guide
 
@@ -148,10 +150,10 @@ Curious about the various commands? Refer to the [Features](#features) below to 
 
 ### What is an Entry
 
-Think of PennyWise as a helpful personal budgeting assistant. Whenever you spend or earn money, all you need to do is 
-tell PennyWise and PennyWise will help you log and save it as a new Entry! An Entry is what PennyWise terms as a 
+Think of PennyWise as a helpful personal budgeting assistant. Whenever you spend or earn money, all you need to do is
+tell PennyWise and PennyWise will help you log and save it as a new Entry! An Entry is what PennyWise terms as a
 particular expenditure or income logged into the application. PennyWise defines an expenditure and income as things that
-you spend money on, and things that make you money respectively! Not only that, PennyWise will help you 
+you spend money on, and things that make you money respectively! Not only that, PennyWise will help you
 analyse your data, so you can easily get an overview of your overall expenditure or income.
 
 However, in order to do this, PennyWise will need some data from you! Whenever you log an entry, whether expenditures or
@@ -205,7 +207,7 @@ All commands follow this format except: [`delete`](#deleting-entries),
     command | entry identifier | input | [optional inputs]
 </pre>
 
-For example, given the command `add t/e d/Lunch a/15.60 da/15-08-2022 c/Food`, let us decompose the command format
+For example, given the command `add t/e d/Lunch a/15.60 da/15-08-2022 c/Food`, let us deconstruct the command format
 step-by-step!
 
 |      Format      |                Example                 |
@@ -220,7 +222,7 @@ step-by-step!
 
 - PennyWise will always take the **LAST OCCURRENCE** of a command prefix should there be more than 1 of the same command
   prefix in a given command. <br/>
-  e.g. PennyWise will add the following `Income` with the description: "October Allowance" upon running the following command. 
+  e.g. PennyWise will add the following `Income` with the description: "October Allowance" upon running the following command.
   <pre>
     <code>
         add t/i d/Monthly Allowance a/200.00 da/01-10-2022 c/Allowance d/Oct Allowance d/October Allowance
@@ -233,9 +235,9 @@ step-by-step!
     </code>
   </pre>
 
-- PennyWise will **IGNORE** any extra words or characters present after the following commands: 
- `summary` (except [`summary [mo/MONTH]`](#summary-of-entries)) `help`, `clear` and `exit`. 
-  e.g. `summary abcdefg` will be interpreted as `summary` and `help 123456` will also be interpreted as `help`.  
+- PennyWise will **IGNORE** any extra words or characters present after the following commands:
+ `summary` (except [`summary [mo/MONTH]`](#summary-of-entries)) `help`, `clear` and `exit`.
+  e.g. `summary abcdefg` will be interpreted as `summary` and `help 123456` will also be interpreted as `help`.
 
 - Words in `UPPER_CASE` are the parameters that you must supply<br>
   e.g. In `delete INDEX_OF_ENTRY t/ENTRY_TYPE`, `INDEX_OF_ENTRY` is a parameter which can be used as `delete 10 t/e`.
@@ -245,7 +247,14 @@ step-by-step!
 
 - **ALL** identifiers are <ins>case-sensitive</ins>.
   e.g. `d/Lunch` as a descriptor for "Lunch" is accepted by PennyWise, however `D/Lunch` would not be accepted.
-  
+
+<<<<<<< HEAD
+<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
+- Adding identifiers that are not used in the command will result in an error.
+</div>
+
+=======
+>>>>>>> 8c5c5f061728c204ec920ee374ae7a8c5c211788
 ### Categorising your expenses and income
 
 For **ALL** entries, categories are <ins>COMPULSORY</ins> and every entry can only contain <ins>one</ins> category. The
@@ -303,9 +312,16 @@ OR we could even [edit](#editing-entries) the original entry directly to reflect
     </code>
 </pre>
 
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+Descriptions are case-insensitive as well! PennyWise will interpret `Teh Beng` as the same as `teh beng`.
+</div>
+
+
 <p align="right">
     <a href="#top">Back to Top </a>
 </p>
+
+
 
 ## Features
 
@@ -340,6 +356,14 @@ Adds an entry to the specified list.
 
 ![AddCommandIncome](images/ug/AddCommandIncome.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Do not see the entry you just added?:**
+If you did a [view by month](#view-entries-by-month) command before adding new entries, and you cannot find the entry you just added in the
+List Display, don't worry! This is because List Display is still filtered by the month specified.
+If the entry you just added does not fall within the month, it will not be shown. Simply use the [view by category](#view-entries-by-category)
+command to get the entire entry list, and you will find your newly added entry!
+Refer to the sections on [view](#view-entries-by-category) command to find out more.
+</div>
+
 ### Editing entries
 
 Whoops! You made an error in your previous entry. Fret not, you can easily edit it.
@@ -373,8 +397,8 @@ Edits an entry, where at least **1** of the optional fields description/amount/d
 
 ### Deleting entries
 
-You were going to watch the latest Kungfu Panda movie, but your friend bailed on you :(. You already logged the entry,
-so now you need to delete it.
+You were going to watch the latest Kungfu Panda movie, but your friend bailed on you :(. Or you were going to sell your
+old textbooks only to find the buyer cancelled his order. You already logged the entry, so now you need to delete it.
 
 Format:  `delete INDEX_OF_ENTRY t/ENTRY_TYPE` <br/>
 Deletes an entry from the specified list.
@@ -434,7 +458,7 @@ The command format is provided below:
 
 ![SummaryCommand](images/ug/SummaryCommand.png)
 
-#### Summary of all entries the specified month
+#### Summary of all entries in the specified month
 
 - Examples: `summary mo/2022-10`
 - Expected:
@@ -453,8 +477,10 @@ The command format is provided below:
 
 ### View entries by category
 
-You've always been a foodie, but how much of your total expenditure is spent on food? You have multiple income streams,
-but which helped you earn the most money? View your entries in a pie chart to find out.
+You've always been a foodie, but how much of your total expenditure is spent on food?
+
+You have multiple income streams, but which helped you earn the most money? View your entries in a pie chart to find
+out.
 
 Format: `view t/ENTRY_TYPE`
 
@@ -476,6 +502,9 @@ Format: `view t/ENTRY_TYPE`
 
 You went on a shopping spree today. Find out how today's expenditure compared to the rest of the month.
 
+You were tipped for your exceptional service as a part-time server today. Find out how today's income weighs up to the
+rest of the month.
+
 Format: `view t/ENTRY_TYPE mo/MONTH`
 
 | Input              | Explanation                                                                              |
@@ -485,22 +514,45 @@ Format: `view t/ENTRY_TYPE mo/MONTH`
 
 1. View a Line Graph of all expenditures in a specified month
     - Examples: `view t/e mo/2022-01` where we specify the month to be January 2022.
-    - Expected: `Show graphically all expenditure by month` and a Line Graph on the right of the application
+    - Expected: `Show graphically all expenditure by month` and a Line Graph on the right of the application.
+   The List Display will also be filtered to show only expenditures in Jan 2022.
 
    ![ViewCommandExpenditureMonth](images/ug/ViewCommandExpenditureMonth.png)
 
 2. View a Line Graph of all incomes in a specified month
     - Examples: `view t/i mo/2022-01`
     - Expected: `Show graphically all income by month` and a Line Graph on the right of the application
+    The List Display will also be filtered to show only income in Jan 2022.
 
-- The `MONTH` field is optional. If a month is specified, the entry details for the corresponding month is shown,
-  accompanied by a Line Graph on the right of the application. If no month is specified, the application displays an
-  error.
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+The `MONTH` field is optional. If a month is specified, the entry details for the corresponding month is shown,
+accompanied by a Line Graph on the right of the application. If no month is specified, the application displays an
+error.
+</div>
+
+<div markdown="block" class="alert alert-primary">:bulb: **Tip:**
+You can think of the view entries by month command as applying a month filter to the entry list,
+and view entries by category command as clearing any filters on the entry list.
+</div>
+
+<div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
+Note that if you manually switch between the income list display and expenditure list display, all filters (if any)
+will be cleared and a pie chart will be drawn. Manual toggling is equivalent to typing the command `view t/e` or `view t/i`.
+</div>
+
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 To switch back to the [default view](#familiarising-yourself-with-the-interface) of the list of expenditures, simply use the [`view t/e` command](#view-entries-by-category).
 If you would like to switch back to the [default view](#familiarising-yourself-with-the-interface) of the list of income, you can use the [`view t/i` command](#view-entries-by-category).
 </div>
+
+### Command summary table
+
+You forgot the command formats and do not have internet to access the online user guide. 
+You just need to refresh your memory on the available command and command formats.
+
+Format: `help` <br/>
+Opens up the command summary table
 
 ### Clearing all entries
 
@@ -516,7 +568,7 @@ Danger zone! This command is irreversible- it is not possible to retrieve entrie
 
 ### Exiting the program
 
-You're done logging your expenses for the day. Let's exit the application.
+You're done logging your expenses and income for the day. Let's exit the application.
 
 Format: `exit` <br/>
 Exits the program.
@@ -577,14 +629,22 @@ out for our future software updates!
 
 | Action              | Format, Examples                                                                                                                                        |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**             | `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY` <br> e.g. `add t/e d/Lunch a/15.60 da/10-10-2022 c/Food`                                   |
-| **Delete**          | `delete INDEX_OF_ENTRY t/ENTRY_TYPE` <br> e.g. `delete 2 t/e`                                                                                           |
-| **Edit**            | `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`<br> e.g. `edit 2 t/i a/150.00 da/22-10-2022` |
-| **Summary**         | `summary [mo/MONTH]`<br> e.g. `summary mo/2022-09`                                                                                                      |
-| **View (Category)** | `view t/ENTRY_TYPE` <br> e.g. `view t/e`                                                                                                                |
-| **View (Month)**    | `view t/ENTRY_TYPE mo/MONTH` <br> e.g. `view t/i mo/2022-10`                                                                                            |
-| **Clear**           | `clear`                                                                                                                                                 |
-| **Exit**            | `exit`                                                                                                                                                  |
+| **
+Add**             | `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY` <br> e.g. `add t/e d/Lunch a/15.60 da/10-10-2022 c/Food`                                   |
+| **
+Delete**          | `delete INDEX_OF_ENTRY t/ENTRY_TYPE` <br> e.g. `delete 2 t/e`                                                                                           |
+| **
+Edit**            | `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`<br> e.g. `edit 2 t/i a/150.00 da/22-10-2022` |
+| **
+Summary**         | `summary [mo/MONTH]`<br> e.g. `summary mo/2022-09`                                                                                                      |
+| **View (
+Category)** | `view t/ENTRY_TYPE` <br> e.g. `view t/e`                                                                                                                |
+| **View (
+Month)**    | `view t/ENTRY_TYPE mo/MONTH` <br> e.g. `view t/i mo/2022-10`                                                                                            |
+| **
+Clear**           | `clear`                                                                                                                                                 |
+| **
+Exit**            | `exit`                                                                                                                                                  |
 
 <p align="right">
     <a href="#top">Back to Top </a>

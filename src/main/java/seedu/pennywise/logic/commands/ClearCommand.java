@@ -2,6 +2,7 @@ package seedu.pennywise.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.pennywise.model.GraphConfiguration;
 import seedu.pennywise.model.Model;
 import seedu.pennywise.model.PennyWise;
 
@@ -18,6 +19,9 @@ public class ClearCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setPennyWise(new PennyWise());
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS,
+                false,
+                false,
+                GraphConfiguration.UPDATE_CURR_GRAPH_CONFIG);
     }
 }

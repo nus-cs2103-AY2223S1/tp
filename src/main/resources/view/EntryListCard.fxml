@@ -42,7 +42,7 @@
             <children>
                <ImageView fitHeight="18.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                   <image>
-                      <!-- Icon obtained from https://www.streamlinehq.com/icons/plump-duo?search=calendar -->
+                      <!-- Icon obtained from https://www.streamlinehq.com/icons/plump-duo/interface-essential/calendar/interface-calendar -->
                      <Image url="@../images/calendar.png" />
                   </image>
                </ImageView>

@@ -20,6 +20,7 @@ import seedu.pennywise.commons.core.GuiSettings;
 import seedu.pennywise.commons.core.LogsCenter;
 import seedu.pennywise.logic.Logic;
 import seedu.pennywise.logic.commands.CommandResult;
+import seedu.pennywise.logic.commands.ViewCommand;
 import seedu.pennywise.logic.commands.exceptions.CommandException;
 import seedu.pennywise.logic.parser.exceptions.ParseException;
 import seedu.pennywise.model.GraphConfiguration;
@@ -129,10 +130,24 @@ public class MainWindow extends UiPart<Stage> {
 
         entryPane = new EntryPane(expenseEntryPanel, incomeEntryPanel);
         entryPanePlaceholder.getChildren().add(entryPane.getRoot());
+
         entryPane.getExpenses().setOnSelectionChanged((EventHandler<Event>) evt -> {
+            Object data = entryPane.getExpenses().getUserData();
+            entryPane.getExpenses().setUserData(false);
+            if (!entryPane.getExpenses().isSelected()) {
+                return;
+            }
+
+            // if the change in tab selection is caused by a user command (eg. view t/e)
+            if (data != null && data.equals(true)) {
+                return;
+            }
+
+            // if the change in tab selection is caused by user manually toggling,
+            // show pie chart with reset filters
             GraphConfiguration expenditureGraphConfig = new GraphConfiguration(
                     new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE),
-                    this.currGraphPanel.getGraphType(),
+                    new GraphType(GraphType.GRAPH_TYPE_CATEGORY),
                     true);
             CommandResult expenditureCommandResult = new CommandResult(
                     "",
@@ -140,11 +155,29 @@ public class MainWindow extends UiPart<Stage> {
                     false,
                     expenditureGraphConfig);
             this.updateGraph(expenditureCommandResult);
+            this.resultDisplay.setFeedbackToUser(
+                    String.format(
+                            ViewCommand.MESSAGE_SUCCESS,
+                            EntryType.ENTRY_TYPE_EXPENDITURE_LABEL,
+                            GraphType.GRAPH_TYPE_CATEGORY_LABEL));
         });
         entryPane.getIncome().setOnSelectionChanged((EventHandler<Event>) evt -> {
+            Object data = entryPane.getIncome().getUserData();
+            entryPane.getIncome().setUserData(false);
+            if (!entryPane.getIncome().isSelected()) {
+                return;
+            }
+
+            // if the change in tab selection is caused by a user command (eg. view t/e)
+            if (data != null && data.equals(true)) {
+                return;
+            }
+
+            // if the change in tab selection is caused by user manually toggling,
+            // show pie chart with reset filters
             GraphConfiguration incomeGraphConfig = new GraphConfiguration(
                     new EntryType(EntryType.ENTRY_TYPE_INCOME),
-                    this.currGraphPanel.getGraphType(),
+                    new GraphType(GraphType.GRAPH_TYPE_CATEGORY),
                     true);
             CommandResult incomeCommandResult = new CommandResult(
                     "",
@@ -152,6 +185,12 @@ public class MainWindow extends UiPart<Stage> {
                     false,
                     incomeGraphConfig);
             this.updateGraph(incomeCommandResult);
+            this.resultDisplay.setFeedbackToUser(
+                    String.format(
+                            ViewCommand.MESSAGE_SUCCESS,
+                            EntryType.ENTRY_TYPE_INCOME_LABEL,
+                            GraphType.GRAPH_TYPE_CATEGORY_LABEL));
+
         });
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -166,6 +205,7 @@ public class MainWindow extends UiPart<Stage> {
                 logic.getExpensePieChartData());
 
         graphPanelPlaceholder.getChildren().add(this.currGraphPanel.getRoot());
+
     }
 
 
