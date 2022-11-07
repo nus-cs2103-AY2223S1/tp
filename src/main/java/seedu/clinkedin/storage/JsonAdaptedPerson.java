@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import javafx.collections.ObservableMap;
 import seedu.clinkedin.commons.exceptions.IllegalValueException;
 import seedu.clinkedin.model.link.Link;
+import seedu.clinkedin.model.link.exceptions.DuplicateLinkException;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;
 import seedu.clinkedin.model.person.Name;
@@ -26,6 +27,8 @@ import seedu.clinkedin.model.person.UniqueTagTypeMap;
 import seedu.clinkedin.model.tag.Tag;
 import seedu.clinkedin.model.tag.TagType;
 import seedu.clinkedin.model.tag.UniqueTagList;
+import seedu.clinkedin.model.tag.exceptions.DuplicateTagException;
+import seedu.clinkedin.model.tag.exceptions.DuplicateTagTypeException;
 import seedu.clinkedin.model.tag.exceptions.TagTypeNotFoundException;
 
 /**
@@ -99,6 +102,7 @@ class JsonAdaptedPerson {
         if (tags == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "tags"));
         }
+
         final Map<TagType, UniqueTagList> personTags = new HashMap<>();
 
         for (List<JsonAdaptedTag> tags : tags) {
@@ -113,11 +117,22 @@ class JsonAdaptedPerson {
             List<Tag> tagList = new ArrayList<>();
             for (JsonAdaptedTag jsonAdaptedTag : tags.subList(1, tags.size())) {
                 Tag toModelType = jsonAdaptedTag.toModelType();
-                tagList.add(toModelType);
+                if (tagList.contains(toModelType)) {
+                    DuplicateTagException duplicateTag = new DuplicateTagException();
+                    throw new IllegalValueException(String.format(duplicateTag.getMessage(), toModelType));
+                } else {
+                    tagList.add(toModelType);
+                }
             }
+
             UniqueTagList uniqueTagList = new UniqueTagList();
             uniqueTagList.setTags(tagList);
-            personTags.put(t, uniqueTagList);
+            if (personTags.containsKey(t)) {
+                DuplicateTagTypeException duplicateTagType = new DuplicateTagTypeException();
+                throw new IllegalValueException(String.format(duplicateTagType.getMessage(), t));
+            } else {
+                personTags.put(t, uniqueTagList);
+            }
         }
 
         if (links == null) {
@@ -125,7 +140,13 @@ class JsonAdaptedPerson {
         }
         final List<Link> personLinks = new ArrayList<>();
         for (JsonAdaptedLink link : links) {
-            personLinks.add(link.toModelType());
+            Link toModelTypeLink = link.toModelType();
+            if (personLinks.contains(toModelTypeLink)) {
+                DuplicateLinkException duplicateLink = new DuplicateLinkException(toModelTypeLink.toString());
+                throw new IllegalValueException(duplicateLink.getMessage());
+            } else {
+                personLinks.add(link.toModelType());
+            }
         }
 
         if (name == null) {
@@ -186,7 +207,6 @@ class JsonAdaptedPerson {
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelStatus, modelNote,
                 modelRating, modelLinks);
     }
-
 }
 
 
