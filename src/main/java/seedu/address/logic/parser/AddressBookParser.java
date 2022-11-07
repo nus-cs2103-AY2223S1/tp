@@ -222,4 +222,16 @@ public class AddressBookParser {
             throw new CommandException(e.getMessage());
         }
     }
+
+    /**
+     * Returns true if the given command is valid
+     */
+    public static boolean isValidCommand(String toExecute) {
+        try {
+            AddressBookParser.get().parseCommand(toExecute);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
+    }
 }
