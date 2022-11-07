@@ -418,9 +418,69 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `InterNUS` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `InterNUS` and the **Actor** is the `User`, unless specified otherwise)
 
-**Use case: UC1 - Delete a person**
+**Use case: UC1 - Add a person to InterNUS**
+
+**MSS**
+
+1. User requests to add a person to InterNUS.
+2. InterNUS adds the new person.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The person is missing compulsory details.
+    * 1a1. InterNUS notifies the User about the missing details.
+    * 1a2. User specifies the details of the person to add.
+
+      Steps 1a1-1a2 are repeated until the required details are entered.<br>
+      Use case resumes at step 2.
+
+* 1b. The person's details are of the incorrect format.
+    * 1b1. InterNUS notifies the User about the correct format required.
+    * 1b2. User corrects the details of the person.
+
+      Steps 1b1-1b2 are repeated until the details entered are of the correct format.<br>
+      Use case resumes at step 2.
+
+* 1c. The person is a duplicate.
+    * 1c1. InterNUS notifies the User that the person already exists.
+
+      Use case ends.
+
+**Use case: UC2 - Add an internship to InterNUS**
+
+**MSS**
+
+1. User requests to add an internship to InterNUS.
+2. InterNUS adds the new internship.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The internship is missing compulsory details.
+    * 1a1. InterNUS notifies the User about the missing details.
+    * 1a2. User specifies the details of the internship to add.
+
+      Steps 1a1-1a2 are repeated until the required details are entered.<br>
+      Use case resumes at step 2.
+
+* 1b. The internship's details are of the incorrect format.
+    * 1b1. InterNUS notifies the User about the correct format required.
+    * 1b2. User corrects the details of the internship.
+
+      Steps 1b1-1b2 are repeated until the details entered are of the correct format.
+      Use case resumes at step 2.
+
+* 1c. The internship is a duplicate.
+    * 1c1. InterNUS notifies the User that the internship already exists.
+
+      Use case ends.
+
+**Use case: UC3 - Delete a person**
 
 **MSS**
 
@@ -441,17 +501,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. InterNUS shows an error message.
 
-      Use case ends.
+      Use case resumes at step 3.
 
-* 3b. The person found at the index is a contact person for an internship
+* 3b. The person found at the index is a contact person for an internship.
     * 3b1. InterNUS looks up the affected internship.
 
-    * 3b2. InterNUS removes the contact person from the internship.
+    * 3b2. InterNUS removes the internship's link to that person.
 
       Use case resumes at step 4.
 
-
-**Use case: UC2 - Delete an internship**
+**Use case: UC4 - Delete an internship**
 
 **MSS**
 
@@ -472,71 +531,56 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. InterNUS shows an error message.
 
-      Use case ends.
+      Use case resumes at step 3.
 
 * 3b. The internship found at the index is associated with a person.
 
     * 3b1. InterNUS looks up the affected person.
 
-    * 3b2. InterNUS removes the internship from the person.
+    * 3b2. InterNUS removes the person's link to the internship.
 
       Use case resumes at step 4.
 
-
-**Use case: UC3 - Add a contact person to an internship**
+**Use case: UC5 - Link a contact person to an internship**
 
 **MSS**
 
-1. User adds an internship to InterNUS
-2. InterNUS creates a new internship entry in the displayed internship list
-3. User adds a person to InterNUS
-4. InterNUS creates a new person contact the displayed contact list
-5. User requests to set a specific person as the contact person for a specific internship
-6. InterNUS sets the person as the contact person for the internship
+1. User adds an internship to InterNUS (UC2).
+2. User adds a person to InterNUS (UC1).
+3. User requests to set the added person as the contact person for the added internship.
+4. InterNUS sets the person as the contact person for the internship.
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The desired internship to set the contact person for is already in the list.
+* 3a. The internship already has a contact person linked to it.<br>
+    Use case ends.
 
-    * 1a1. No new internship is created.
+* 3b. The person is already the contact person of another internship.<br>
+    Use case ends.
 
-      Use case resumes at step 3.
-
-* 3a. The desired person to set as the contact person is already in the list
-
-    * 3a1. No new person is created.
-
-      Use case resumes at step 5.
-
-
-**Use case: UC4 - Add an interview date for an internship**
+**Use case: UC6 - Add an interview date for an internship**
 
 **MSS**
 
-1. User adds an internship to the internship list.
-2. InterNUS creates a new internship entry.
-3. User requests to set the interview date of a specific internship.
-4. InterNUS sets the interview date for the internship.
+1. User adds an internship to the internship list (UC2).
+2. User requests to set the interview date of a specific internship.
+3. InterNUS sets the interview date for the internship.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. The desired internship to set the interview date for is already in the list.
+* 2a. The interview date given is invalid.
 
-    * 1a1. No new internship is created.
+    * 2a1. InterNUS notifies the user why the given date is invalid.
+    * 2a2. User corrects the invalid interview date.
 
+      Steps 2a1-2a2 are repeated until the date given is of the correct format.<br>
       Use case resumes at step 3.
 
-* 3a. The interview date given is invalid.
-
-    * 3a1. InterNUS notifies the user why the given date is invalid.
-    
-      Use case ends.
-
-**Use case: UC5 - Sort person list**
+**Use case: UC7 - Sort person list**
 
 **MSS**
 1. User requests to sort person list and supplies a criterion prefix.
@@ -549,14 +593,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. User submits a blank or invalid criterion prefix.
 
      * 1a1. InterNUS notifies the user that the criterion prefix is invalid and only 1 criterion prefix can be specified.
-    
-       Use case ends.
+     * 1a2. User enters a criterion prefix.
+
+       Steps 1b1-1b2 are repeated until the criterion prefix entered is valid.<br>
+       Use case resumes at step 2.
 
 * 1b. User submits more than 1 criterion prefixes.
 
      * 1b1. InterNUS notifies the user that the criterion prefix is invalid and only 1 criterion prefix can be specified.
+     * 1b2. User enters 1 criterion prefix.
 
-       Use case ends.
+       Steps 1b1-1b2 are repeated until 1 valid criterion prefix is entered .<br>
+       Use case resumes at step 2.
 
 <div style="page-break-after: always;"></div>
 
