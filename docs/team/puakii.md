@@ -31,6 +31,8 @@ Given below are my contributions to the project.
     * Allow users to easily navigate between sections in UG
   * Added table of  contents for `Command` section
     * Allow users to easily navigate between different commands
+  * Updated "Setting Up" section 
+    * Include tutorial on how to find Java version
 
 * **Contributions to the DG**:
   * Update DG from `Person` to `Internship`
