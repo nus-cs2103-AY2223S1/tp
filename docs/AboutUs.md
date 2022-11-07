@@ -54,7 +54,7 @@ You can reach us via [GitHub Issues](https://github.com/AY2223S1-CS2103T-W15-4/t
 <img src="images/kaij77.png" width="200px">
 
 [[github](http://github.com/kaij77)]
-[[portfolio](team/kaijiun.md)]
+[[portfolio](team/kaij77.md)]
 
 * Role: Developer
 * Responsibilities: Testing and Dev Ops
