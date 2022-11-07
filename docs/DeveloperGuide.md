@@ -2,11 +2,21 @@
 layout: page
 title: Developer Guide
 ---
+
+<p align="center">
+  <img src="./images/user-guide/tuthub.png" />
+</p>
+
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
+
+## Introduction
+Welcome to the Developer Guide for **Tuthub**, a Command Line Interface (CLI) App that will help you find your next batch of teaching assistants (TA) in no time! Tuthub is a desktop app for NUS professors who wish to track and choose their next batch of teaching assistants/tutors based on their past performance and records but have little time to spare for tedious administrative work.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
