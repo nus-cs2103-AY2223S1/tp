@@ -65,11 +65,11 @@ meaning `Task` added first will be displayed at the top.
     * Update UG to show task can have multiple `TAG`
       (Pull Request [#171](https://github.com/AY2223S1-CS2103T-W08-4/tp/pull/171))
     * Fix numbering issue in UG
-      (Pull Request [#171](https://github.com/AY2223S1-CS2103T-W08-4/tp/pull/171))
+      (Pull Request [#262](https://github.com/AY2223S1-CS2103T-W08-4/tp/pull/262))
     * Add examples and explanation on how colors in our SupplyItem panel is determined
-      (Pull Request [#171](https://github.com/AY2223S1-CS2103T-W08-4/tp/pull/171))
+      (Pull Request [#262](https://github.com/AY2223S1-CS2103T-W08-4/tp/pull/262))
     * Added links at the bottom of the page back to the top.
-      (Pull Request [#171](https://github.com/AY2223S1-CS2103T-W08-4/tp/pull/171))
+      (Pull Request [#262](https://github.com/AY2223S1-CS2103T-W08-4/tp/pull/262))
   * Developer Guide:
     * Add AddTaskCommand implementation into Developer's guide
       (Pull Request [#144](https://github.com/AY2223S1-CS2103T-W08-4/tp/pull/144))
@@ -82,4 +82,4 @@ meaning `Task` added first will be displayed at the top.
     
 * **Review/mentoring contributions**:
   * Review pull request and comment on teammates pull request as per our forking workflow
-  [reviewed pull request](https://github.com/AY2223S1-CS2103T-W08-4/tp/pulls?q=is%3Apr+reviewed-by%3A%40me+is%3Aclosed)
+    ([reviewed pull request](https://github.com/AY2223S1-CS2103T-W08-4/tp/pulls?q=is%3Apr+reviewed-by%3A%40me+is%3Aclosed))
