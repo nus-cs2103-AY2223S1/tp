@@ -2,8 +2,29 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+
+<h2>Table of Contents</h2>
+
+- **[Acknowledgements](#acknowledgements)**
+- **[Setting up, getting started](#setting-up-getting-started)**
+- **[Design](#design)**
+   * [Architecture](#architecture)
+   * [UI Component](#ui-component)
+   * [Logic Component](#logic-component)
+   * [Model Component](#model-component)
+   * [Storage Component](#storage-component)
+- **[Implementation](#implementation)**
+   * [Display of person and task list](#display-of-person-and-task-list)
+   * [Adding a Task into the TaskList](#implemented-adding-a-task-into-the-tasklist)
+   * [Deleting a Task from the TaskList](#implemented-deleting-a-task-from-the-tasklist)
+   * [Edit Task Feature](#implemented-edit-task-feature)
+   * [Task and Person display each other](#implemented-task-and-person-display-each-other)
+   * [Persistent Storage for Task](#persistent-storage-for-task)
+   * [Persistent Storage for Member](#persistent-storage-for-member)
+   * [Reference of Person in Task in Data File](#reference-of-person-in-task-in-data-file)
+   * [Filtering of tasks by Task Category, Task Deadline or Both](#proposed-filtering-of-tasks-by-task-category-task-deadline-or-both)
+- **[Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)**
+- **[Appendix: Requirements](#appendix-requirements)**
 
 --------------------------------------------------------------------------------------------------------------------
 
