@@ -126,6 +126,8 @@ This section contains all the information pertaining to the features of **FAP**
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
+* For keywords with multiple whitespaces in between the different words, these whitespaces will be replaced with 1 whitespace.
+
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
@@ -134,6 +136,7 @@ This section contains all the information pertaining to the features of **FAP**
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+ 
 * Parameter hints will be shown after a command action.
 
 </div>
