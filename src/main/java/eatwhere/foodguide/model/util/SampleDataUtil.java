@@ -154,7 +154,7 @@ public class SampleDataUtil {
             new Eatery(new Name("Subway (UTown)"), new Price("$$"),
                         new Cuisine("Western"), new Location("University Town"),
                         getTagSet()),
-            new Eatery(new Name("Supersnacks (UTown)"), new Price(""),
+            new Eatery(new Name("Supersnacks (UTown)"), new Price("$$"),
                         new Cuisine("Western"), new Location("University Town"),
                         getTagSet()),
             new Eatery(new Name("Triplets (UTown)"), new Price("$$$"),

@@ -38,7 +38,7 @@ public class Price {
      * Returns true if a given string is a valid price indicator.
      */
     public static boolean isValidPrice(String test) {
-        return test == null || test.equals("") || test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
