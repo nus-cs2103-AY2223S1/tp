@@ -70,7 +70,7 @@ __Code Contributed__: All my code contribution can be viewed here:
   group related commands together and improve user readability
 - Added all hyperlinks across the whole user guide to improve navigability.
 
-####### Contributions to the DG
+###### Contributions to the DG
 - Updated the [`Ui`](https://checkup.netlify.app/developerguide#ui-component)
   component to reflect our changes and created a new UML Class Diagram for it.
 - Wrote the documentation for the [`add`](https://checkup.netlify.app/developerguide#add-command),
@@ -84,11 +84,11 @@ __Code Contributed__: All my code contribution can be viewed here:
   - UML Sequence Diagram to illustrate the flow of the feature.
 - Added user stories, use cases and manual testing for all the above-mentioned features.
 
-####### Contributions to team-based tasks
+###### Contributions to team-based tasks
 - Ensured team was on schedule to meet deadlines and milestone submissions.
 - Split and planned tasks for team members.
 - Checked for code quality and adherence to coding standards.
 
-####### Review/mentoring contributions
+###### Review/mentoring contributions
 - Reviewed PRs for team members through the SDLC versions.
 - Aided teammates with debugging and highlighted errors / potential coding standards breaches to teammates.
