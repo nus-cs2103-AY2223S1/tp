@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COST_SKINNY;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_SKINNY;
 import static seedu.waddle.testutil.Assert.assertThrows;
-import static seedu.waddle.testutil.TypicalItems.SHOPPING;
-import static seedu.waddle.testutil.TypicalItems.SKINNY;
+import static seedu.waddle.testutil.TypicalItems.getShopping;
+import static seedu.waddle.testutil.TypicalItems.getSkinny;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -29,19 +29,21 @@ public class UniqueItemListTest {
 
     @Test
     public void contains_itemNotInList_returnsFalse() {
-        assertFalse(uniqueItemList.contains(SHOPPING));
+        assertFalse(uniqueItemList.contains(getShopping()));
     }
 
     @Test
     public void contains_itemInList_returnsTrue() {
-        uniqueItemList.add(SHOPPING);
-        assertTrue(uniqueItemList.contains(SHOPPING));
+        Item shopping = getShopping();
+        uniqueItemList.add(shopping);
+        assertTrue(uniqueItemList.contains(shopping));
     }
 
     @Test
     public void contains_itemWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueItemList.add(SHOPPING);
-        Item editedShopping = new ItemBuilder(SHOPPING).withDuration(VALID_DURATION_SKINNY)
+        Item shopping = getShopping();
+        uniqueItemList.add(shopping);
+        Item editedShopping = new ItemBuilder(getShopping()).withDuration(VALID_DURATION_SKINNY)
                 .withCost(VALID_COST_SKINNY).build();
         assertTrue(uniqueItemList.contains(editedShopping));
     }
@@ -53,40 +55,44 @@ public class UniqueItemListTest {
 
     @Test
     public void add_duplicateItem_throwsDuplicateItineraryException() {
-        uniqueItemList.add(SHOPPING);
-        assertThrows(DuplicateItemException.class, () -> uniqueItemList.add(SHOPPING));
+        Item shopping = getShopping();
+        uniqueItemList.add(shopping);
+        assertThrows(DuplicateItemException.class, () -> uniqueItemList.add(shopping));
     }
 
     @Test
     public void setItinerary_nullTargetItem_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueItemList.setItem(null, SHOPPING));
+        assertThrows(NullPointerException.class, () -> uniqueItemList.setItem(null, getShopping()));
     }
 
     @Test
     public void setItem_nullEditedItem_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueItemList.setItem(SHOPPING, null));
+        assertThrows(NullPointerException.class, () -> uniqueItemList.setItem(getShopping(), null));
     }
 
     @Test
     public void setItem_targetItemNotInList_throwsItemNotFoundException() {
-        assertThrows(ItemNotFoundException.class, () -> uniqueItemList.setItem(SHOPPING, SHOPPING));
+        Item shopping = getShopping();
+        assertThrows(ItemNotFoundException.class, () -> uniqueItemList.setItem(shopping, shopping));
     }
 
     @Test
     public void setItem_editedItemIsSameItem_success() {
-        uniqueItemList.add(SHOPPING);
-        uniqueItemList.setItem(SHOPPING, SHOPPING);
+        Item shopping = getShopping();
+        uniqueItemList.add(shopping);
+        uniqueItemList.setItem(shopping, shopping);
         UniqueItemList expectedUniqueItemList = new UniqueItemList();
-        expectedUniqueItemList.add(SHOPPING);
+        expectedUniqueItemList.add(shopping);
         assertEquals(expectedUniqueItemList, uniqueItemList);
     }
 
     @Test
     public void setItem_editedItemHasSameIdentity_success() {
-        uniqueItemList.add(SHOPPING);
-        Item editedShopping = new ItemBuilder(SHOPPING).withDuration(VALID_DURATION_SKINNY)
+        Item shopping = getShopping();
+        uniqueItemList.add(shopping);
+        Item editedShopping = new ItemBuilder(getShopping()).withDuration(VALID_DURATION_SKINNY)
                 .withCost(VALID_COST_SKINNY).build();
-        uniqueItemList.setItem(SHOPPING, editedShopping);
+        uniqueItemList.setItem(shopping, editedShopping);
         UniqueItemList expectedUniqueItemList = new UniqueItemList();
         expectedUniqueItemList.add(editedShopping);
         assertEquals(expectedUniqueItemList, uniqueItemList);
@@ -94,18 +100,22 @@ public class UniqueItemListTest {
 
     @Test
     public void setItem_editedItemHasDifferentIdentity_success() {
-        uniqueItemList.add(SHOPPING);
-        uniqueItemList.setItem(SHOPPING, SKINNY);
+        Item shopping = getShopping();
+        Item skinny = getSkinny();
+        uniqueItemList.add(shopping);
+        uniqueItemList.setItem(shopping, skinny);
         UniqueItemList expectedUniqueItemList = new UniqueItemList();
-        expectedUniqueItemList.add(SKINNY);
+        expectedUniqueItemList.add(skinny);
         assertEquals(expectedUniqueItemList, uniqueItemList);
     }
 
     @Test
     public void setItem_editedItemHasNonUniqueIdentity_throwsDuplicateItemException() {
-        uniqueItemList.add(SHOPPING);
-        uniqueItemList.add(SKINNY);
-        assertThrows(DuplicateItemException.class, () -> uniqueItemList.setItem(SHOPPING, SKINNY));
+        Item shopping = getShopping();
+        Item skinny = getSkinny();
+        uniqueItemList.add(shopping);
+        uniqueItemList.add(skinny);
+        assertThrows(DuplicateItemException.class, () -> uniqueItemList.setItem(shopping, skinny));
     }
 
     @Test
@@ -115,7 +125,8 @@ public class UniqueItemListTest {
 
     @Test
     public void remove_existingItem_removesItem() {
-        uniqueItemList.add(SHOPPING);
+        Item shopping = getShopping();
+        uniqueItemList.add(shopping);
         uniqueItemList.remove(0);
         UniqueItemList expectedUniqueItemList = new UniqueItemList();
         assertEquals(expectedUniqueItemList, uniqueItemList);
@@ -128,9 +139,11 @@ public class UniqueItemListTest {
 
     @Test
     public void setItem_uniqueItemList_replacesOwnListWithProvidedUniqueItemList() {
-        uniqueItemList.add(SHOPPING);
+        Item shopping = getShopping();
+        Item skinny = getSkinny();
+        uniqueItemList.add(shopping);
         UniqueItemList expectedUniqueItemList = new UniqueItemList();
-        expectedUniqueItemList.add(SKINNY);
+        expectedUniqueItemList.add(skinny);
         uniqueItemList.setItems(expectedUniqueItemList);
         assertEquals(expectedUniqueItemList, uniqueItemList);
     }
@@ -142,17 +155,20 @@ public class UniqueItemListTest {
 
     @Test
     public void setItem_list_replacesOwnListWithProvidedList() {
-        uniqueItemList.add(SHOPPING);
-        List<Item> itemList = Collections.singletonList(SKINNY);
+        Item shopping = getShopping();
+        Item skinny = getSkinny();
+        uniqueItemList.add(shopping);
+        List<Item> itemList = Collections.singletonList(skinny);
         uniqueItemList.setItems(itemList);
         UniqueItemList expectedUniqueItemList = new UniqueItemList();
-        expectedUniqueItemList.add(SKINNY);
+        expectedUniqueItemList.add(skinny);
         assertEquals(expectedUniqueItemList, uniqueItemList);
     }
 
     @Test
     public void setItem_listWithDuplicateItem_throwsDuplicateItemException() {
-        List<Item> listWithDuplicateItem = Arrays.asList(SHOPPING, SHOPPING);
+        Item shopping = getShopping();
+        List<Item> listWithDuplicateItem = Arrays.asList(shopping, shopping);
         assertThrows(DuplicateItemException.class, ()
                 -> uniqueItemList.setItems(listWithDuplicateItem));
     }

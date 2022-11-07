@@ -7,8 +7,9 @@ import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COST_SKINNY;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_SKINNY;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_ITEM_DESC_SKINNY;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PRIORITY_SKINNY;
-import static seedu.waddle.testutil.TypicalItems.SHOPPING;
-import static seedu.waddle.testutil.TypicalItems.SKINNY;
+import static seedu.waddle.testutil.TypicalItems.getArt;
+import static seedu.waddle.testutil.TypicalItems.getShopping;
+import static seedu.waddle.testutil.TypicalItems.getSkinny;
 
 import java.time.LocalTime;
 
@@ -22,30 +23,30 @@ public class ItemTest {
     @Test
     public void isSameItem() {
         // same object -> returns true
-        assertTrue(SHOPPING.isSameItem(SHOPPING));
+        assertTrue(getShopping().isSameItem(getShopping()));
 
         // null -> returns false
-        assertFalse(SHOPPING.isSameItem(null));
+        assertFalse(getShopping().isSameItem(null));
 
         // same name, all other attributes different -> returns true
-        Item editedShopping = new ItemBuilder(SHOPPING)
+        Item editedShopping = new ItemBuilder(getShopping())
                 .withPriority(VALID_PRIORITY_SKINNY).withCost(VALID_COST_SKINNY)
                 .withDuration(VALID_DURATION_SKINNY).build();
-        assertTrue(SHOPPING.isSameItem(editedShopping));
+        assertTrue(getShopping().isSameItem(editedShopping));
 
         // different name, all other attributes same -> returns false
-        editedShopping = new ItemBuilder(SHOPPING).withDesc(VALID_ITEM_DESC_SKINNY).build();
-        assertFalse(SHOPPING.isSameItem(editedShopping));
+        editedShopping = new ItemBuilder(getShopping()).withDesc(VALID_ITEM_DESC_SKINNY).build();
+        assertFalse(getShopping().isSameItem(editedShopping));
 
         // name differs in case, all other attributes same -> returns false
-        Item editedSkinny = new ItemBuilder(SKINNY).withDesc(VALID_ITEM_DESC_SKINNY
+        Item editedSkinny = new ItemBuilder(getSkinny()).withDesc(VALID_ITEM_DESC_SKINNY
                 .toLowerCase()).build();
-        assertFalse(SKINNY.isSameItem(editedSkinny));
+        assertFalse(getSkinny().isSameItem(editedSkinny));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_ITEM_DESC_SKINNY + " ";
-        editedSkinny = new ItemBuilder(SKINNY).withDesc(nameWithTrailingSpaces).build();
-        assertFalse(SKINNY.isSameItem(editedSkinny));
+        editedSkinny = new ItemBuilder(getSkinny()).withDesc(nameWithTrailingSpaces).build();
+        assertFalse(getSkinny().isSameItem(editedSkinny));
     }
 
     @Test
@@ -92,36 +93,37 @@ public class ItemTest {
 
     @Test
     public void equals() {
+        Item shopping = getShopping();
         // same values -> returns true, test does not work
-        Item shoppingCopy = new ItemBuilder(SHOPPING).build();
-        // assertTrue(SHOPPING.equals(shoppingCopy));
+        Item shoppingCopy = new ItemBuilder(getShopping()).build();
+        assertTrue(shopping.equals(shoppingCopy));
 
         // same object -> returns true
-        assertTrue(SHOPPING.equals(SHOPPING));
+        assertTrue(shopping.equals(shopping));
 
         // null -> returns false
-        assertFalse(SHOPPING.equals(null));
+        assertFalse(shopping.equals(null));
 
         // different type -> returns false
-        assertFalse(SHOPPING.equals(5));
+        assertFalse(shopping.equals(5));
 
         // different item -> returns false
-        assertFalse(SHOPPING.equals(SKINNY));
+        assertFalse(shopping.equals(getSkinny()));
 
         // different name -> returns false
-        Item editedShopping = new ItemBuilder(SHOPPING).withDesc(VALID_ITEM_DESC_SKINNY).build();
-        assertFalse(SHOPPING.equals(editedShopping));
+        Item editedShopping = new ItemBuilder(getShopping()).withDesc(VALID_ITEM_DESC_SKINNY).build();
+        assertFalse(shopping.equals(editedShopping));
 
         // different duration -> returns false
-        editedShopping = new ItemBuilder(SHOPPING).withDuration(VALID_DURATION_SKINNY).build();
-        assertFalse(SHOPPING.equals(editedShopping));
+        editedShopping = new ItemBuilder(getShopping()).withDuration(VALID_DURATION_SKINNY).build();
+        assertFalse(shopping.equals(editedShopping));
 
         // different priority -> returns false
-        editedShopping = new ItemBuilder(SHOPPING).withPriority(VALID_PRIORITY_SKINNY).build();
-        assertFalse(SHOPPING.equals(editedShopping));
+        editedShopping = new ItemBuilder(getShopping()).withPriority(VALID_PRIORITY_SKINNY).build();
+        assertFalse(shopping.equals(editedShopping));
 
         // different cost -> returns false
-        editedShopping = new ItemBuilder(SHOPPING).withCost(VALID_COST_SKINNY).build();
-        assertFalse(SHOPPING.equals(editedShopping));
+        editedShopping = new ItemBuilder(getShopping()).withCost(VALID_COST_SKINNY).build();
+        assertFalse(shopping.equals(editedShopping));
     }
 }
