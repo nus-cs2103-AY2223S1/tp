@@ -24,7 +24,7 @@ import jarvis.model.TimePeriod;
 /**
  * Parses input arguments and creates a new AddConsultCommand object
  */
-public class AddConsultCommandParser {
+public class AddConsultCommandParser implements Parser<AddConsultCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddConsultCommand
@@ -74,5 +74,4 @@ public class AddConsultCommandParser {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }

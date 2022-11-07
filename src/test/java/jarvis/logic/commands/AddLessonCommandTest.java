@@ -1,21 +1,19 @@
 package jarvis.logic.commands;
 
-import static jarvis.testutil.Assert.assertThrows;
+import static jarvis.testutil.TypicalLessons.TP1;
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
-import org.junit.jupiter.api.Test;
-
 import jarvis.commons.core.GuiSettings;
-import jarvis.logic.commands.exceptions.CommandException;
+import jarvis.commons.core.index.Index;
 import jarvis.model.Lesson;
+import jarvis.model.LessonBook;
 import jarvis.model.Model;
 import jarvis.model.ReadOnlyLessonBook;
 import jarvis.model.ReadOnlyStudentBook;
@@ -24,68 +22,33 @@ import jarvis.model.ReadOnlyUserPrefs;
 import jarvis.model.Student;
 import jarvis.model.StudentBook;
 import jarvis.model.Task;
-import jarvis.testutil.StudentBuilder;
+import jarvis.model.TimePeriod;
+import jarvis.testutil.TypicalStudents;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 
-public class AddStudentCommandTest {
+public abstract class AddLessonCommandTest {
 
-    @Test
-    public void constructor_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddStudentCommand(null));
+    public static final TimePeriod VALID_TIME_PERIOD = TP1;
+    public static final Set<Index> VALID_STUDENT_INDEX = getFirstStudentIndex();
+
+    public static Set<Index> getFirstStudentIndex() {
+        Set<Index> studentIndex = new HashSet<>();
+        studentIndex.add(Index.fromOneBased(Integer.parseInt("1")));
+        return studentIndex;
     }
 
-    @Test
-    public void execute_studentAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingStudentAdded modelStub = new ModelStubAcceptingStudentAdded();
-        Student validStudent = new StudentBuilder().build();
-
-        CommandResult commandResult = new AddStudentCommand(validStudent).execute(modelStub);
-
-        assertEquals(String.format(AddStudentCommand.MESSAGE_SUCCESS, validStudent), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validStudent), modelStub.studentsAdded);
-    }
-
-    @Test
-    public void execute_duplicateStudent_throwsCommandException() {
-        Student validStudent = new StudentBuilder().build();
-        AddStudentCommand addStudentCommand = new AddStudentCommand(validStudent);
-        ModelStub modelStub = new ModelStubWithStudent(validStudent);
-
-        assertThrows(CommandException.class,
-                AddStudentCommand.MESSAGE_DUPLICATE_STUDENT, () -> addStudentCommand.execute(modelStub));
-    }
-
-    @Test
-    public void equals() {
-        Student alice = new StudentBuilder().withName("Alice").withMatricNum("A9383493F").build();
-        Student bob = new StudentBuilder().withName("Bob").withMatricNum("A0123456Z").build();
-        Student bobby = new StudentBuilder().withName("Bobby").withMatricNum("A0123456Z").build();
-        AddStudentCommand addAliceCommand = new AddStudentCommand(alice);
-        AddStudentCommand addBobCommand = new AddStudentCommand(bob);
-        AddStudentCommand addBobbyCommand = new AddStudentCommand(bobby);
-
-        // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
-
-        // same values -> returns true
-        AddStudentCommand addAliceCommandCopy = new AddStudentCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
-
-        // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
-
-        // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
-
-        // different student -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
-
-        // student with different name but same matric num -> returns true
-        assertTrue(addBobCommand.equals(addBobbyCommand));
+    public List<Student> getStudentsInLesson() {
+        StudentBook studentBook = TypicalStudents.getTypicalStudentBook();
+        List<Student> studentList = new FilteredList<>(studentBook.getStudentList());
+        List<Student> studentsInLesson = new ArrayList<>();
+        studentsInLesson.add(studentList.get(0)); // VALID_STUDENT_INDEX only gets first student
+        return studentsInLesson;
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -265,45 +228,116 @@ public class AddStudentCommandTest {
     }
 
     /**
-     * A Model stub that contains a single student.
+     * A Model stub that contains a single Lesson and a sample StudentBook.
      */
-    private class ModelStubWithStudent extends ModelStub {
-        private final Student student;
+    public class ModelStubWithLesson extends AddLessonCommandTest.ModelStub {
+        private final Lesson lesson;
+        private final StudentBook studentBook = TypicalStudents.getTypicalStudentBook();
+        private final FilteredList<Student> filteredStudents = new FilteredList<>(studentBook.getStudentList());
 
-        ModelStubWithStudent(Student student) {
-            requireNonNull(student);
-            this.student = student;
+        ModelStubWithLesson(Lesson lesson) {
+            requireNonNull(lesson);
+            this.lesson = lesson;
         }
 
         @Override
-        public boolean hasStudent(Student student) {
-            requireNonNull(student);
-            return this.student.equals(student);
+        public boolean hasLesson(Lesson lesson) {
+            requireNonNull(lesson);
+            return this.lesson.equals(lesson);
+        }
+
+        @Override
+        public ObservableList<Student> getFilteredStudentList() {
+            return filteredStudents;
+        }
+
+        @Override
+        public ObservableList<Lesson> getFilteredLessonList() {
+            List<Lesson> lessonList = new ArrayList<>();
+            lessonList.add(lesson);
+            return new FilteredList<Lesson>(FXCollections.observableList(lessonList));
+        }
+
+        // used in add lesson command to highlight lessons in Ui that have conflict in schedule, not used for test
+        @Override
+        public void setLesson(Lesson targetLesson, Lesson editedLesson) {
+            return;
+        }
+
+        //used in add lesson commands to highlight lessons in Ui that have conflict in schedule, not used for the test
+        @Override
+        public void updateFilteredLessonList(Predicate<Lesson> predicate) {
+            return;
+        }
+
+        // used in AddStudioCommand to get all students in student list, not needed in test as student list unfiltered
+        @Override
+        public void updateFilteredStudentList(Predicate<Student> predicate) {
+            return;
+        }
+
+        @Override
+        public boolean hasPeriodClash(Lesson lessonToAdd) {
+            return lesson.hasTimingConflict(lessonToAdd);
         }
     }
 
     /**
-     * A Model stub that always accept the student being added.
+     * A Model stub that contains a sample StudentBook and always accept the lesson being added.
      */
-    private class ModelStubAcceptingStudentAdded extends ModelStub {
-        final ArrayList<Student> studentsAdded = new ArrayList<>();
+    public class ModelStubAcceptingLessonAdded extends AddLessonCommandTest.ModelStub {
+        final ArrayList<Lesson> lessonsAdded = new ArrayList<>();
+        private final StudentBook studentBook = TypicalStudents.getTypicalStudentBook();
+        private final FilteredList<Student> filteredStudents = new FilteredList<>(studentBook.getStudentList());
 
         @Override
-        public boolean hasStudent(Student student) {
-            requireNonNull(student);
-            return studentsAdded.stream().anyMatch(student::equals);
+        public boolean hasLesson(Lesson lesson) {
+            requireNonNull(lesson);
+            return lessonsAdded.stream().anyMatch(lesson::equals);
         }
 
         @Override
-        public void addStudent(Student student) {
-            requireNonNull(student);
-            studentsAdded.add(student);
+        public void addLesson(Lesson lesson) {
+            requireNonNull(lesson);
+            lessonsAdded.add(lesson);
         }
 
         @Override
-        public ReadOnlyStudentBook getStudentBook() {
-            return new StudentBook();
+        public ReadOnlyLessonBook getLessonBook() {
+            return new LessonBook();
+        }
+
+        @Override
+        public ObservableList<Student> getFilteredStudentList() {
+            return filteredStudents;
+        }
+
+        @Override
+        public ObservableList<Lesson> getFilteredLessonList() {
+            return null;
+        }
+
+        // used in AddStudioCommand to get all students in student list, not needed in test as student list unfiltered
+        @Override
+        public void updateFilteredStudentList(Predicate<Student> predicate) {
+            return;
+        }
+
+        // used in add lesson command to highlight lessons in Ui that have conflict in schedule, not used for the test
+        @Override
+        public void setLesson(Lesson targetLesson, Lesson editedLesson) {
+            return;
+        }
+
+        //used in add lesson commands to highlight lessons in Ui that have conflict in schedule, not used for the test
+        @Override
+        public void updateFilteredLessonList(Predicate<Lesson> predicate) {
+            return;
+        }
+
+        @Override
+        public boolean hasPeriodClash(Lesson lesson) {
+            return false;
         }
     }
-
 }

@@ -27,7 +27,7 @@ public class TaskDesc {
      * Returns true if a given string is a valid task description.
      */
     public static boolean isValidTaskDesc(String taskDesc) {
-        return !taskDesc.isEmpty();
+        return !taskDesc.strip().isEmpty();
     }
 
     @Override
