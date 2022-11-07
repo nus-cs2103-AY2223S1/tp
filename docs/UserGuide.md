@@ -97,6 +97,13 @@ Danger zone! Do pay attention to the information here carefully.
 
 - `Highlights` are used to denote commands or output from the application.
 
+| Term                               | Definition                                                                                                                                                          |
+|------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Field**                          | Represents the Description, Amount, Date, Category and Type of an entry in the application.                                                                         |
+| **Identifier**                     | The field code that are entered during user input, so that PennyWise knows what your inputs are e.g. `t/`, `d/`, `a/`, `da/` `c/`.                                  |
+| **JSON File**                      | JavaScript Object Notation File. Data interchange format file that uses human-readable text to store and transmit data objects consisting of attribute–value pairs. |
+| **Graphical User Interface (GUI)** | The graphical user interface is a form of user interface that allows users to interact with electronic devices through graphical icons.                             |
+
 <p align="right">
     <a href="#top">Back to Top </a>
 </p>
