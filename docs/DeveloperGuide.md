@@ -379,9 +379,10 @@ Step 1: The user enters the command `deletecomment 1 1`.
 
 Step 2: The `TuthubParser` verifies the `DeleteCommentCommand#COMMAND_WORD`, and requests `DeleteCommentCommandParser` to parse.
 The `DeleteCommentCommandParser` verifies the appropriateness of the user input (`tutorIndex` and `commentIndex`).
-In this case, the `tutorIndex` and `commentIndex` are both set to `1`.
 
 Step 3: Upon parsing, a new `DeleteCommentCommand` is created based on the `tutorIndex` and the `commentIndex`.
+Both indexes are converted to 0 based indexing.
+In this case, the `tutorIndex` and `commentIndex` are both set to `0`.
 
 Step 4: In the `DeleteCommentCommand` execution, the `model#getFilteredTutorList` is called upon to retrieve the list of displayed tutors.
 The `Tutor` whose index matches the `tutorIndex` is then stored. 
