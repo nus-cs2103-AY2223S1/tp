@@ -297,6 +297,7 @@ target `Internship` object with the updated one.
 3. The `AddTaskCommandParser` then checks for the validity of `TASKNAME` and `TASKTIME`. If either `TASKNAME` or
 `TASKTIME` is absent or invalid, a `ParseException` would be thrown.
 4. The `AddTaskCommandParser` then creates the `AddTaskCommand` based on the processed input.
+5. The `AddTaskCommand` throws a `CommandException` if no internship was selected.
 
 #### Command execution
 
