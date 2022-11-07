@@ -22,21 +22,25 @@ Around 4.5k lines of code according to the [RepoSense Link](https://nus-cs2103-a
 
 - **Enhancement: Created a simpler and more pleasing GUI**
   - Purpose: Improve the user experience to make the app more professional and appealing to professors.
-  - Contribution: Made use of Figma to plan the app layout as well as Canvas to create the app icons, modified `JavaFx` and `css` files to update styles.
+  - Highlights: 
+    1. Made use of Figma to plan the app layout as well as Canvas to create the app icons.
+    2. Modified `JavaFx` and `css` files to update color scheme of app and design of `UI` components.
+    3. Enhanced `HelpWindow` by adding a concise table of command formats.
 
 - **Enhancement: Update `Tutor` model**
-  - Change: Updated definition of the same `Tutor` to those with the same email or student ID and altered test cases accordingly.
+  - Change: Updated definition of the same `Tutor` to those with the same email or student ID and created corresponding test cases.
 
 - **Enhancement: Refactor `AddressBook` to `Tuthub`**
   - Change: Replaced all instances of `AddressBook` and `Person` to `Tuthub` and `Tutor` and conducted checks to ensure that all remaining traces are replaced.
 
-
 ### Contributions to the UG
-- Added write-ups, screenshots and diagrams for **Introduction**, **About this Document** and **Glossary** sections, and added documentation for `add`, `view` and `list` commands.
+- Added write-ups for **Introduction**, **About this Document** and **Glossary** sections
+- Added documentation for `add`, `view` and `list` commands.
 - Tweaked the sequence of sections to enhance the overall flow of the document.
+- Added all screenshots and labels.
 
 ### Contributions to the DG
-- Added implementation details for UI component and `view` command.
+- Added implementation details and UML diagrams for UI component and `view` command.
 - Updated use cases, user stories, glossary, product scope and instructions for manual testing.
 
 ### Reviewing contributions
