@@ -28,6 +28,7 @@ public class Name {
     public Name(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        assert(name.length() != 0);
         fullName = name;
     }
 
