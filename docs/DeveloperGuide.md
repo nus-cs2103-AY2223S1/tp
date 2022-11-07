@@ -1191,7 +1191,7 @@ our commitment to improving the features and testability of TrackAScholar and im
 * Pin / Unpin
 
 
-### Notable design principles used
+### Notable Achievements accomplished
 * Utilised Test Driven Development
   * Every time our team puts in either a new feature or a new field to TrackAScholar, 
   we strive to write JUnit test cases alongside the new functional code added,
