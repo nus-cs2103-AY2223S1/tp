@@ -163,7 +163,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
-
+<div style="page-break-after: always"></div>
 Here are the other classes in Logic (omitted from the class diagram above) that are used to update the Calendar whenever the user interacts with the Calendar's UI:
 
 <img src="images/CalendarLogicClassDiagram.png" width="300"/>
@@ -175,7 +175,7 @@ How the `Logic` component works during the user's interaction with the Calendar:
 More about our `Ui` design decisions [can be found here](#ui-component)
 
 *Figure 8. Class diagram showing the classes in the `Logic` component used for during the User's interaction with the Calendar*
-
+<div style="page-break-after: always"></div>
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
