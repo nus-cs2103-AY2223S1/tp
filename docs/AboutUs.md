@@ -47,7 +47,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/darrencsacc.md)]
 
 * Role: Developer
-* Responsibilities: Documentation
+* Responsibilities: Documentation + Testing
 
 
 ### Benjy Tan
