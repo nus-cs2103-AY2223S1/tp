@@ -37,9 +37,6 @@ public class EditAppointmentDescriptor {
         return CollectionUtil.isAnyNonNull(dateTime, location);
     }
 
-    /**
-     * Returns an Optional<DateTime> object
-     */
     public Optional<DateTime> getDateTime() {
         return Optional.ofNullable(dateTime);
     }
@@ -52,9 +49,6 @@ public class EditAppointmentDescriptor {
         this.dateTime = dateTime;
     }
 
-    /**
-     * Returns an Optional<DateTime> object
-     */
     public Optional<Location> getLocation() {
         return Optional.ofNullable(location);
     }
