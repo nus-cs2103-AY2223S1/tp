@@ -392,7 +392,7 @@ From the diagram, it can be seen that a `Buyer` object consists of the following
 - A `Phone`, representing the phone number of the buyer.
 - An `Address`, representing the address of the buyer.
 - An `Email`, representing the email address of the buyer.
-- An `entryTime`, representing the time of creation of the buyer (created and accessed internally).
+- An `entryTime`, representing the creation time of the buyer (created and accessed internally).
 - A `Priority`, representing the priority of the buyer - High, Normal or Low.
 - A `PriceRange`, representing the price range of properties that a buyer is willing to consider.
 - A `Characteristics`, representing the characteristics of a property that a buyer is looking for.
@@ -406,7 +406,7 @@ From the diagram, it can be seen that a `Property` object consists of the follow
 - An `Address`, representing the address of the property.
 - A `Description`, representing a short description of the property.
 - An `Owner`, representing the Owner of the property. An owner has an `ownerName` and an `ownerPhone`.
-- A `propertyEntryTime`, representing the time of creation of the property (created and accessed internally).
+- A `propertyEntryTime`, representing the creation time of the property (created and accessed internally).
 - A `Price`, representing the price of the property.
 - A `Characteristics`, representing the characteristics that a property possesses.
 
@@ -427,8 +427,7 @@ From the diagram, it can be seen that a `Property` object consists of the follow
     * Increases coupling of different classes.
     * Increases the number of classes in the codebase.
     
-
-
+  
 * **Alternative 2**: All individual attributes are stored directly in the `Property` or `Buyer` classes, with all related
   functionality also implemented within them. This would result in `Buyer` and `Property` objects similar to that in the 
   UML diagram below.
@@ -450,7 +449,7 @@ denote his budget, requirements for the property, and buyer priority respectivel
 
 These three fields are all optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`.
 When the user chooses not to indicate a buyer priority, the buyer's priority will be set to the default priority as `NORMAL`.
-When the user creates a buyer, the entry time is also automatically stored as an `LocalDateTime`.
+When the user creates a buyer, the entry time is also automatically stored as a `LocalDateTime`.
 
 The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide.
 
@@ -473,7 +472,7 @@ The activity diagram for the creation of a buyer can be seen below.
 The `Property` class represents a property with property-specific fields. `Price` and `Characteristics` denote the price and feature of the property respectively.
 
 The `price` field is mandatory while the `characteristics` field is optional. When the user chooses not to indicate a property's characteristics, the `characteristics` field of a property may be null. Hence, it has been implemented using `Optional<T>`.
-When the user creates a property, the entry time is also automatically stored as an `LocalDateTime`.
+When the user creates a property, the entry time is also automatically stored as a `LocalDateTime`.
 
 The structure for executing an `addprop` command follows the flow as mentioned in the "Logic component" section of this guide.
 
@@ -538,7 +537,7 @@ references to these objects and displays them on the user's screen. These predic
 being tested, consequently, they might give different outputs when applied to a given list.
 
 #### Design Considerations
-In order to allow for multiple-condition filtering, that is, the composition of multiple filter predicates, an abstract 
+In order to allow for multiple-condition filtering, that is, the concatenation of multiple filter predicates, an abstract 
 `AbstractFilterXYZPredicate` class was created to employ polymorphic behaviour, where XYZ represents the entry type that
 we are working with, for example `AbstractFilterBuyersPredicate` or `AbstractFilterPropsPredicate`. 
 
@@ -554,8 +553,8 @@ concrete predicate classes were implemented:
 4. `FilterPropsContainingAnyCharacteristicsPredicate`
 5. `FilterPropsByOwnerNamePredicate`
 
-Based on command parameters passed in by the user, these predicates are constructed and composed together to form a single
-`Predicate`, which is then used to filter the `ObservableArrayList` directly. More specifics regarding composition behaviour
+Based on command parameters passed in by the user, these predicates are constructed and concatenated together to form a single
+`Predicate`, which is then used to filter the `ObservableArrayList` directly. More specifics regarding concatenation behaviour
 can be found in the [filter-specific design considerations](#filter-specific-design-considerations) section located below.
 
 The below UML diagram represents the overall structure of the predicates for `Buyers` and `Properties`.
@@ -565,9 +564,9 @@ The below UML diagram represents the overall structure of the predicates for `Bu
 #### Filter-specific design considerations
 1. Filtering `Properties` by their prices takes in a `priceRange` instead of just a `Price` as it makes more sense for
    agents to want to identify properties that fit within a certain price range instead of a fixed price.
-2. For both `filterBuyers` and `filterProps`, the default composed predicate will be a logical **AND** of all individual
+2. For both `filterBuyers` and `filterProps`, the default concatenated predicate will be a logical **AND** of all individual
    predicates, that is, all  predicates need to be satisfied in order for the entry to pass through the filter.
-3. For both `filterBuyers` and `filterProps`, passing in the `-fuzzy` flag will change the final composed predicate to be
+3. For both `filterBuyers` and `filterProps`, passing in the `-fuzzy` flag will change the final concatenated predicate to be
    a logical **OR** of all individual predicates, that is, only one of the predicates needs to be satisfied in order
    for the entry to pass through the filter.
 4. If the `-c` flag is specified, that is, desired characteristics are supplied as filter conditions, the default behaviour
