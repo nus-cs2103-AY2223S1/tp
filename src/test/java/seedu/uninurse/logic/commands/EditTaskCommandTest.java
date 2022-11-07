@@ -1,165 +1,209 @@
-// package seedu.uninurse.logic.commands;
+package seedu.uninurse.logic.commands;
 
-// import static org.junit.jupiter.api.Assertions.assertEquals;
-// import static org.junit.jupiter.api.Assertions.assertNotEquals;
-// import static org.junit.jupiter.api.Assertions.assertTrue;
-// import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure;
-// import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
-// import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
-// import static seedu.uninurse.testutil.Assert.assertThrows;
-// import static seedu.uninurse.testutil.TypicalDateTime.DATE_TIME_ONE;
-// import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
-// import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-// import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-// import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
-// import static seedu.uninurse.testutil.TypicalTasks.TASK_CARE_PLAN;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.uninurse.logic.commands.CommandTestUtil.DESC_TASK_DESCRIPTION_DATETIME_INSULIN;
+import static seedu.uninurse.logic.commands.CommandTestUtil.DESC_TASK_DESCRIPTION_INSULIN;
+import static seedu.uninurse.logic.commands.CommandTestUtil.DESC_TASK_INSULIN;
+import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.uninurse.logic.commands.EditTaskCommand.COMMAND_TYPE;
+import static seedu.uninurse.logic.commands.EditTaskCommand.MESSAGE_SUCCESS;
+import static seedu.uninurse.testutil.Assert.assertThrows;
+import static seedu.uninurse.testutil.TypicalDateTime.DATE_TIME_ONE;
+import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
+import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_ATTRIBUTE;
+import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalTasks.TYPICAL_TASK_INSULIN;
 
-// import org.junit.jupiter.api.Test;
+import java.util.Optional;
 
-// import seedu.uninurse.commons.core.Messages;
-// import seedu.uninurse.commons.core.index.Index;
-// import seedu.uninurse.model.Model;
-// import seedu.uninurse.model.ModelManager;
-// import seedu.uninurse.model.UninurseBook;
-// import seedu.uninurse.model.UserPrefs;
-// import seedu.uninurse.model.person.Patient;
-// import seedu.uninurse.model.task.Task;
-// import seedu.uninurse.testutil.PersonBuilder;
+import org.junit.jupiter.api.Test;
 
-// /**
-//  * Contains integration tests (interaction with the Model) and unit tests for {@code EditTaskCommand}.
-//  */
-// class EditTaskCommandTest {
-//     private static final String TASK_STUB = "Some task";
+import seedu.uninurse.commons.core.Messages;
+import seedu.uninurse.commons.core.index.Index;
+import seedu.uninurse.logic.commands.EditTaskCommand.EditTaskDescriptor;
+import seedu.uninurse.model.Model;
+import seedu.uninurse.model.ModelManager;
+import seedu.uninurse.model.UninurseBook;
+import seedu.uninurse.model.UserPrefs;
+import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.task.NonRecurringTask;
+import seedu.uninurse.model.task.Task;
+import seedu.uninurse.testutil.PatientBuilder;
 
-//     private final Model model = new ModelManager(getTypicalUninurseBook(), new UserPrefs());
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for {@code EditTaskCommand}.
+ */
+class EditTaskCommandTest {
+    private final Model model = new ModelManager(getTypicalUninurseBook(), new UserPrefs());
 
-//     @Test
-//     public void constructor_nullPatientIndex_throwsNullPointerException() {
-//         assertThrows(NullPointerException.class, () ->
-//                 new EditTaskCommand(null, INDEX_FIRST_ATTRIBUTE, TASK_CARE_PLAN));
-//     }
+    @Test
+    public void constructor_nullPatientIndex_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+                new EditTaskCommand(null, INDEX_FIRST_ATTRIBUTE, DESC_TASK_INSULIN));
+    }
 
-//     @Test
-//     public void constructor_nullTaskIndex_throwsNullPointerException() {
-//         assertThrows(NullPointerException.class, () ->
-//                 new EditTaskCommand(INDEX_FIRST_PERSON, null, TASK_CARE_PLAN));
-//     }
+    @Test
+    public void constructor_nullTaskIndex_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+                new EditTaskCommand(INDEX_FIRST_PERSON, null, DESC_TASK_INSULIN));
+    }
 
-//     @Test
-//     public void constructor_nullTask_throwsNullPointerException() {
-//         assertThrows(NullPointerException.class, () ->
-//                 new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE, null));
-//     }
+    @Test
+    public void constructor_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () ->
+                new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE, null));
+    }
 
-//     @Test
-//     public void execute_nullModel_throwsNullPointerException() {
-//         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE,
-//                 TASK_CARE_PLAN);
-//         assertThrows(NullPointerException.class, () -> editTaskCommand.execute(null));
-//     }
+    @Test
+    public void execute_nullModel_throwsNullPointerException() {
+        EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE,
+                DESC_TASK_INSULIN);
+        assertThrows(NullPointerException.class, () -> editTaskCommand.execute(null));
+    }
 
-//     @Test
-//     public void execute_editTask_success() {
-//         // Use second patient as the first patient in typical persons does not have a task
-//         Patient secondPatient =
-//                 model.getPatient(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
+    @Test
+    public void execute_validIndicesUnfilteredList_success() {
+        // Use second patient as the first patient in typical patients does not have a task
+        Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
 
-//         Task initialTask = secondPatient.getTasks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
-//         Task editedTask = new Task(TASK_STUB);
+        Task initialTask = patientToEdit.getTasks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
+        Task editedTask = new NonRecurringTask(TYPICAL_TASK_INSULIN, DATE_TIME_ONE);
 
-//         Patient editedPatient = new PersonBuilder(secondPatient)
-//                 .withTasks(secondPatient.getTasks().edit(INDEX_FIRST_ATTRIBUTE.getZeroBased(), editedTask)
-//                         .getInternalList().toArray(Task[]::new))
-//                 // to convert the TaskList into an array of string representation of tasks
-//                 .build();
+        Patient editedPatient = new PatientBuilder(patientToEdit).withTasks(patientToEdit.getTasks()
+                .edit(INDEX_FIRST_ATTRIBUTE.getZeroBased(), editedTask)
+                .getInternalList().toArray(Task[]::new)).build();
 
-//         EditTaskCommand editTaskCommand =
-//                 new EditTaskCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE, editedTask);
+        EditTaskCommand editTaskCommand =
+                new EditTaskCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE, DESC_TASK_DESCRIPTION_DATETIME_INSULIN);
 
-//         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS,
-//                 INDEX_FIRST_ATTRIBUTE.getOneBased(), editedPatient.getName().toString(), initialTask, editedTask);
+        String expectedMessage = String.format(MESSAGE_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
+                editedPatient.getName().toString(), initialTask, editedTask);
 
-//         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-//         expectedModel.setPerson(secondPatient, editedPatient);
-//         expectedModel.setPatientOfInterest(editedPatient);
+        Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
+        expectedModel.setPatient(patientToEdit, editedPatient);
+        expectedModel.setPatientOfInterest(editedPatient);
 
-//         assertCommandSuccess(editTaskCommand, model, expectedMessage,
-//                 EditTaskCommand.EDIT_TASK_COMMAND_TYPE, expectedModel);
-//     }
+        assertCommandSuccess(editTaskCommand, model, expectedMessage, COMMAND_TYPE, expectedModel);
+    }
 
-//     @Test
-//     public void execute_invalidPersonIndexUnfilteredList_failure() {
-//         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-//         EditTaskCommand editTaskCommand = new EditTaskCommand(outOfBoundIndex, INDEX_FIRST_ATTRIBUTE,
-//                 new Task(TASK_STUB));
+    @Test
+    public void execute_invalidPersonIndexUnfilteredList_failure() {
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        EditTaskCommand editTaskCommand =
+                new EditTaskCommand(outOfBoundIndex, INDEX_FIRST_ATTRIBUTE, DESC_TASK_INSULIN);
 
-//         assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-//     }
+        assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
 
-//     @Test
-//     public void execute_invalidPersonIndexFilteredList_failure() {
-//         showPersonAtIndex(model, INDEX_FIRST_PERSON);
-//         Index outOfBoundIndex = INDEX_SECOND_PERSON;
+    @Test
+    void execute_validIndicesFilteredList_success() {
+        // use second person in TypicalPatients since there is a task to edit
+        showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-//         assertTrue(outOfBoundIndex.getZeroBased() < model.getUninurseBook().getPersonList().size());
+        Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
 
-//         EditTaskCommand editTaskCommand = new EditTaskCommand(outOfBoundIndex, INDEX_FIRST_ATTRIBUTE,
-//                 new Task(TASK_STUB));
+        Task initialTask = patientToEdit.getTasks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
+        Task editedTask = new NonRecurringTask(TYPICAL_TASK_INSULIN, DATE_TIME_ONE);
 
-//         assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-//     }
+        Patient editedPatient = new PatientBuilder(patientToEdit).withTasks(patientToEdit.getTasks()
+                .edit(INDEX_FIRST_ATTRIBUTE.getZeroBased(), editedTask)
+                .getInternalList().toArray(Task[]::new)).build();
 
-//     @Test
-//     public void execute_invalidTaskIndex_failure() {
-//         Patient firstPatient =
-//                 model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
+        EditTaskCommand editTaskCommand =
+                new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE, DESC_TASK_DESCRIPTION_DATETIME_INSULIN);
 
-//         Index outOfBoundIndex = Index.fromOneBased(firstPatient.getTasks().size() + 1);
-//         EditTaskCommand editTaskCommand =
-//                 new EditTaskCommand(INDEX_FIRST_PERSON, outOfBoundIndex, new Task(TASK_STUB));
+        String expectedMessage = String.format(MESSAGE_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
+                editedPatient.getName().toString(), initialTask, editedTask);
 
-//         assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_INVALID_TASK_INDEX);
-//     }
+        Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
+        showPersonAtIndex(expectedModel, INDEX_SECOND_PERSON);
+        expectedModel.setPatient(patientToEdit, editedPatient);
+        expectedModel.setPatientOfInterest(editedPatient);
 
-//     @Test
-//     public void execute_duplicateTask_throwsCommandException() {
-//         Patient secondPatient =
-//                 model.getPatient(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
+        assertCommandSuccess(editTaskCommand, model, expectedMessage, COMMAND_TYPE, expectedModel);
+    }
 
-//         Task initialTask = secondPatient.getTasks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
+    @Test
+    public void execute_invalidPersonIndexFilteredList_failure() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        Index outOfBoundIndex = INDEX_SECOND_PERSON;
 
-//         Task duplicateTask = new Task(initialTask.getTaskDescription(), initialTask.getDateTime());
+        // ensures that outOfBoundIndex is still in bounds of uninurse book list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getUninurseBook().getPersonList().size());
 
-//         EditTaskCommand editTaskCommand =
-//                 new EditTaskCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE, duplicateTask);
+        EditTaskCommand editTaskCommand =
+                new EditTaskCommand(outOfBoundIndex, INDEX_FIRST_ATTRIBUTE, DESC_TASK_INSULIN);
 
-//         assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_DUPLICATE_TASK);
-//     }
+        assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
 
-//     @Test
-//     public void equals() {
-//         final EditTaskCommand standardCommand = new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE,
-//                 new Task(TASK_STUB, DATE_TIME_ONE));
+    @Test
+    public void execute_invalidTaskIndex_failure() {
+        Patient patient = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
 
-//         // same values -> returns true
-//         EditTaskCommand commandWithSameValues = new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE,
-//                 new Task(TASK_STUB, DATE_TIME_ONE));
+        Index outOfBoundIndex = Index.fromOneBased(patient.getTasks().size() + 1);
+        EditTaskCommand editTaskCommand =
+                new EditTaskCommand(INDEX_FIRST_PERSON, outOfBoundIndex, DESC_TASK_INSULIN);
 
-//         assertEquals(standardCommand, commandWithSameValues);
+        assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_INVALID_TASK_INDEX);
+    }
 
-//         // same object -> returns true
-//         assertEquals(standardCommand, standardCommand);
+    @Test
+    public void execute_duplicateTask_throwsCommandException() {
+        Patient patient = model.getPatient(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
 
-//         // null -> returns false
-//         assertNotEquals(null, standardCommand);
+        Task initialTask = patient.getTasks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
-//         // different index -> returns false
-//         assertNotEquals(standardCommand, new EditTaskCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE,
-//                 new Task(TASK_STUB)));
+        EditTaskDescriptor duplicateTaskDescriptor = new EditTaskDescriptor(
+                Optional.of(initialTask.getTaskDescription()), Optional.of(initialTask.getDateTime()),
+                Optional.empty());
 
-//         // different task -> returns false
-//         assertNotEquals(standardCommand, new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE,
-//                 new Task("not task stub")));
-//     }
-// }
+        EditTaskCommand editTaskCommand =
+                new EditTaskCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE, duplicateTaskDescriptor);
+
+        assertCommandFailure(editTaskCommand, model,
+                String.format(Messages.MESSAGE_DUPLICATE_TASK, patient.getName().toString()));
+    }
+
+    @Test
+    public void equals() {
+        EditTaskCommand editFirstPersonFirstTaskDescriptorStub =
+                new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE, DESC_TASK_INSULIN);
+        EditTaskCommand editSecondPersonFirstTaskDescriptorStub =
+                new EditTaskCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE, DESC_TASK_INSULIN);
+        EditTaskCommand editFirstPersonSecondTaskDescriptorStub =
+                new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_SECOND_ATTRIBUTE, DESC_TASK_INSULIN);
+        EditTaskCommand editFirstPersonFirstTaskDescriptorStubOther =
+                new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE, DESC_TASK_DESCRIPTION_INSULIN);
+
+        // same object -> returns true
+        assertEquals(editFirstPersonFirstTaskDescriptorStub, editFirstPersonFirstTaskDescriptorStub);
+
+        // same values -> returns true
+        EditTaskCommand editFirstPersonFirstTaskDescriptorStubCopy =
+                new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE, DESC_TASK_INSULIN);
+        assertEquals(editFirstPersonFirstTaskDescriptorStub, editFirstPersonFirstTaskDescriptorStubCopy);
+
+        // different types -> returns false
+        assertNotEquals(1, editFirstPersonFirstTaskDescriptorStub);
+
+        // null -> returns false
+        assertNotEquals(null, editFirstPersonFirstTaskDescriptorStub);
+
+        // different person index -> returns false
+        assertNotEquals(editFirstPersonFirstTaskDescriptorStub, editSecondPersonFirstTaskDescriptorStub);
+
+        // different task index -> returns false
+        assertNotEquals(editFirstPersonFirstTaskDescriptorStub, editFirstPersonSecondTaskDescriptorStub);
+
+        // different descriptor -> returns false
+        assertNotEquals(editFirstPersonFirstTaskDescriptorStub,
+                editFirstPersonFirstTaskDescriptorStubOther);
+    }
+}

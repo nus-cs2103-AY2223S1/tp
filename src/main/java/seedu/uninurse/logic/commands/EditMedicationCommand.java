@@ -41,7 +41,7 @@ public class EditMedicationCommand extends EditGenericCommand {
     public static final String MESSAGE_SUCCESS = "Edited medication %1$d of %2$s:\n"
             + "Before: %3$s\n"
             + "After: %4$s";
-    public static final String MESSAGE_FAILURE = "At least one field to edit must be provided.";
+    public static final String MESSAGE_FAILURE = "At least one field to edit in medication must be provided.";
     public static final CommandType COMMAND_TYPE = CommandType.EDIT_PATIENT;
 
     private final Index patientIndex;
@@ -135,6 +135,8 @@ public class EditMedicationCommand extends EditGenericCommand {
      * will replace the corresponding field value of the medication.
      */
     public static class EditMedicationDescriptor {
+        public static final String MESSAGE_CONSTRAINTS = "Medication should not end with \"|\" ";
+
         private final Optional<String> medicationType;
         private final Optional<String> medicationDosage;
 

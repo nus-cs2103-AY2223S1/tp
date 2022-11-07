@@ -220,6 +220,12 @@ public class ModelManager implements Model {
         persistentUninurseBook.getWorkingCopy().updatePersons();
     }
 
+    @Override
+    public void refreshList() {
+        Predicate<? super Person> predicate = filteredPersons.getPredicate();
+        filteredPersons.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
+        filteredPersons.setPredicate(predicate);
+    }
     //=========== Undo and Redo =============================================================================
 
     @Override

@@ -44,19 +44,19 @@ public class EditTaskCommand extends EditGenericCommand {
             + COMMAND_WORD + " " + PREFIX_OPTION_PATIENT_INDEX + " 2 "
             + PREFIX_OPTION_TASK_INDEX + " 1 "
             + PREFIX_TASK_DESCRIPTION + "|| 3 weeks\n";
-
-    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited task %1$d of %2$s:\n"
+    public static final String MESSAGE_SUCCESS = "Edited task %1$d of %2$s:\n"
             + "Before: %3$s\n"
             + "After: %4$s";
-    public static final String MESSAGE_NOT_EDITED = "Task to edit must be provided.";
-
-    public static final CommandType EDIT_TASK_COMMAND_TYPE = CommandType.TASK;
+    public static final String MESSAGE_FAILURE = "At least one field to edit in tasks must be provided.";
+    public static final CommandType COMMAND_TYPE = CommandType.TASK;
 
     private final Index patientIndex;
     private final Index taskIndex;
     private final EditTaskDescriptor editTaskDescriptor;
 
     /**
+     * Creates an EditTaskCommand to edit a Task from the specified patient.
+     *
      * @param patientIndex of the patient in the filtered patient list to edit.
      * @param taskIndex of the task to be edited.
      * @param editTaskDescriptor descriptor with details to edit for the task.
@@ -122,9 +122,9 @@ public class EditTaskCommand extends EditGenericCommand {
             PersonListTracker personListTracker = model.setPatient(patientToEdit, editedPatient);
             model.setPatientOfInterest(editedPatient);
 
-            return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS,
+            return new CommandResult(String.format(MESSAGE_SUCCESS,
                     taskIndex.getOneBased(), editedPatient.getName(), initialTask, updatedTask),
-                    EDIT_TASK_COMMAND_TYPE, personListTracker);
+                    COMMAND_TYPE, personListTracker);
         } catch (DuplicateTaskException dte) {
             model.setPatientOfInterest(patientToEdit);
             throw new DuplicateEntryException(String.format(Messages.MESSAGE_DUPLICATE_TASK, patientToEdit.getName()));
@@ -155,6 +155,8 @@ public class EditTaskCommand extends EditGenericCommand {
      * will replace the corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
+        public static final String MESSAGE_CONSTRAINTS = "Task description should not end with \"|\" ";
+
         private final Optional<String> description;
         private final Optional<DateTime> dateAndTime;
         private final Optional<String> recurAndFreq;

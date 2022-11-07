@@ -677,6 +677,7 @@ Format: **`edit`** `-p PATIENT_INDEX -d TASK_INDEX d/<TASK_DESCRIPTION> | <DATE 
 * If a `INTERVAL TIME_PERIOD` is provided for what was originally a non-recurring task, the edit will transform it into a recurring one based on the given frequency
 * Tasks are automatically sorted in chronological order upon modification, i.e. if a task on `25-10-22` is edited to be `30-10-22`, its new `TASK INDEX` would be based on the displayed order in the patient's task list.
 * If there are duplicate tasks after editing a task, it will not be edited.
+* You cannot have a `|` at the end or else a warning will be thrown.
 </div>
 
 Examples:
@@ -877,6 +878,7 @@ Format: **`edit`** `-p PATIENT_INDEX -m MEDICATION_INDEX m/<MEDICATION_TYPE> | <
 * If no new `MEDICATION_TYPE` or `DOSAGE` are provided, then original values will be used.
 * At least one of `MEDICATION_TYPE` or `DOSAGE` must be present, or else the medication will not be edited.
 * If there are duplicate medications after editing a medication, it will not be edited.
+* You cannot have a `|` at the end or else a warning will be thrown.
 
 </div>
 
