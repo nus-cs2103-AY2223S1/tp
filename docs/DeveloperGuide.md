@@ -364,7 +364,7 @@ the GUI to the user.
 
 #### Design considerations:
 
-* **Alternative 2 (Current Choice)**: Let each student maintain a collection of module classes that the student is being assigned to.
+* **Alternative 1 (Current Choice)**: Let each student maintain a collection of module classes that the student is being assigned to.
   * **Pros**: Only captures necessary information, and easier to implement. This structure is also easier to capture session information for the students.
   * **Cons**: Will be creating multiple `StudentModuleData` objects for a module class when multiple students are assigned to the module class. This may cause performance issues from the large number of objects created.
   
