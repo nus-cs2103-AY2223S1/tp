@@ -38,7 +38,6 @@ public class Company implements Comparable<Company> {
         return test.matches(VALIDATION_REGEX);
     }
 
-
     @Override
     public String toString() {
         return company;

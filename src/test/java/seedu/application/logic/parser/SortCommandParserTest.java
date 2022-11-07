@@ -1,6 +1,7 @@
 package seedu.application.logic.parser;
 
 import static seedu.application.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.application.logic.commands.CommandTestUtil.UNKNOWN_PREFIX;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_REVERSE;
 import static seedu.application.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -92,5 +93,20 @@ class SortCommandParserTest {
 
         assertParseFailure(parser, " " + PREFIX_ORDER + " " + PREFIX_REVERSE,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_unexpectedPrefix_failure() {
+
+        // with order specified
+        assertParseFailure(parser, " " + PREFIX_ORDER + "company" + UNKNOWN_PREFIX,
+                Parser.MESSAGE_UNKNOWN_PREFIX_FOUND + SortCommand.MESSAGE_USAGE);
+
+        assertParseFailure(parser, " " + UNKNOWN_PREFIX + PREFIX_ORDER + "company",
+                Parser.MESSAGE_UNKNOWN_PREFIX_FOUND + SortCommand.MESSAGE_USAGE);
+
+        // without order specified
+        assertParseFailure(parser, UNKNOWN_PREFIX,
+                Parser.MESSAGE_UNKNOWN_PREFIX_FOUND + SortCommand.MESSAGE_USAGE);
     }
 }

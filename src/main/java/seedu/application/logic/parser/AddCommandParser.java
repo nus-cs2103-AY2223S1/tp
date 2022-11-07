@@ -14,6 +14,7 @@ import java.util.stream.Stream;
 
 import seedu.application.logic.commands.AddCommand;
 import seedu.application.logic.parser.exceptions.ParseException;
+import seedu.application.logic.parser.exceptions.ParsePrefixException;
 import seedu.application.model.application.Application;
 import seedu.application.model.application.Company;
 import seedu.application.model.application.Contact;
@@ -37,6 +38,13 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_COMPANY, PREFIX_CONTACT, PREFIX_EMAIL,
                 PREFIX_POSITION, PREFIX_DATE, PREFIX_STATUS, PREFIX_TAG);
+
+        for (Prefix prefix : ArgumentTokenizer.findPrefix(args)) {
+            if (!argMultimap.hasPrefix(prefix)) {
+                throw new ParsePrefixException(Parser.MESSAGE_UNKNOWN_PREFIX_FOUND
+                        + AddCommand.MESSAGE_USAGE);
+            }
+        }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_COMPANY, PREFIX_CONTACT, PREFIX_EMAIL, PREFIX_POSITION, PREFIX_DATE,
                 PREFIX_STATUS) || !argMultimap.getPreamble().isEmpty()) {

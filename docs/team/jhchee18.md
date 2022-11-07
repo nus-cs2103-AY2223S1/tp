@@ -22,6 +22,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
     * Managed milestones to ensure issues and deliverables are completed on time.
+    * Prepared demos for v1.2 and v1.3 for tutorial classes.
 
 * **Enhancements to existing features**:
     * Updated the GUI color scheme. (PR [#135](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/135))
@@ -34,8 +35,10 @@ Given below are my contributions to the project.
     * Developer Guide:
         * Added implementation details for `interview` and `remove-i` features. (PR [#96](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/96))
         * Included UML diagrams for `interview` and the proposed `find-i` (find interview) feature. (PR [#96](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/96))
+        * Included test cases for `interview` and `remove-i` features. 
     * Other:
         * Updated README.md and index.md to ensure [GitHub](https://github.com/AY2223S1-CS2103-F14-3/tp) and the [CinternS Product Website](https://ay2223s1-cs2103-f14-3.github.io/tp/) are displaying correctly.
 
 * **Community**:
-    * Reported bugs and suggestions for other teams in the class (Issues: [here](https://github.com/jhchee18/ped/issues)).
+      * PRs reviewed (with non-trivial review comments) (PR [#91](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/91), PR [#199](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/199)).
+      * Reported 17 bugs and suggestions for other teams in the class (Issues: [here](https://github.com/jhchee18/ped/issues)).
