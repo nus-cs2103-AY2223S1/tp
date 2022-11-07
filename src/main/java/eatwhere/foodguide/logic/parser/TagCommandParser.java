@@ -1,8 +1,7 @@
 package eatwhere.foodguide.logic.parser;
 
-import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_HELP;
 import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_TAG;
-import static eatwhere.foodguide.logic.parser.ParserUtil.arePrefixesPresent;
+import static eatwhere.foodguide.logic.parser.ParserUtil.isDisplayHelp;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
@@ -29,12 +28,11 @@ public class TagCommandParser implements Parser<TagCommand> {
      */
     public TagCommand parse(String args) throws ParseException, DisplayCommandHelpException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TAG, PREFIX_HELP);
-
-        if (arePrefixesPresent(argMultimap, PREFIX_HELP)) {
+        if (isDisplayHelp(args)) {
             throw new DisplayCommandHelpException(TagCommand.MESSAGE_USAGE);
         }
+
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
         Index index;
 
