@@ -2,64 +2,66 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
 
---------------------------------------------------------------------------------------------------------------------
+- Table of Contents
+  {:toc}
+
+---
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+
 </div>
 
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+The **_Architecture Diagram_** given above explains the high-level design of the App.
 
 Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+
+- At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+- At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
-
+- [**`UI`**](#ui-component): The UI of the App.
+- [**`Logic`**](#logic-component): The command executor.
+- [**`Model`**](#model-component): Holds the data of the App in memory.
+- [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+- defines its _API_ in an `interface` with the same name as the Component.
+- implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -79,10 +81,10 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 
 The `UI` component,
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- executes user commands using the `Logic` component.
+- listens for changes to `Model` data so that the UI can be updated with the modified data.
+- keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+- depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 ### Logic component
 
@@ -93,6 +95,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
+
 1. When `Logic` is called upon to execute a command, it uses the `HealthcareXpressParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
@@ -110,28 +113,28 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `HealthcareXpressParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `HealthcareXpressParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+- When called upon to parse a user command, the `HealthcareXpressParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `HealthcareXpressParser` returns back as a `Command` object.
+- All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
+
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
-
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+- stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+- does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
-
 
 ### Storage component
 
@@ -140,19 +143,31 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+
+- can save both address book data and user preference data in json format, and read them back into corresponding objects.
+- inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+- depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Unique ID Mechanism
+
+#### Motivation
+
+Individuals who are the being model by the subclasses of `Person` may have very similar attributes, such as name gender and tags. As such there is a high chance that the medical administrator may be confused when looking at similar persons. Thus a unique id (UID) was introduced to act as the differentiator for such persons.
+
+#### Implementation for unique ID
+The unique ID mechanism is facilitated by the `Uid` class. The `Uid` instance utilizes the `AtomicLong` class and ensures that unique `Uid` are used throughout the system.
+
+Originally there was a `UidManager` class which facilitated the generation and implementation of ensuring that there is no repeated `Uid` objects. However, this was later refactored to utilize the `AtomicLong` class.
 
 ### Add feature
 
@@ -200,25 +215,27 @@ The following activity diagram summarizes what happens when a user executes an a
 
 **Aspect: How to deal with duplication:**
 
-* **Alternative 1:** Check the name. If the name is the same, then shows duplicate error and that patient would not be added.
-    * Pros: Easy to implement.
-    * Cons: If the 2 different patients have the exact same name, the user would not be able to add that patient.
+- **Alternative 1:** Check the name. If the name is the same, then shows duplicate error and that patient would not be added.
 
-* **Alternative 2:** Check the name. If the name is the same, then shows duplicate warning but that patient would still be added.
-    * Pros: If the 2 different patients have the exact same name, the user would still be able to add that patient. At the same time, it will show potential duplication to the user.
-    * Cons: The user have to manually check whether it is the same person and delete it if it is a duplication.
-    * Cons: The user might miss out the duplicated patients.
+  - Pros: Easy to implement.
+  - Cons: If the 2 different patients have the exact same name, the user would not be able to add that patient.
+
+- **Alternative 2:** Check the name. If the name is the same, then shows duplicate warning but that patient would still be added.
+  - Pros: If the 2 different patients have the exact same name, the user would still be able to add that patient. At the same time, it will show potential duplication to the user.
+  - Cons: The user have to manually check whether it is the same person and delete it if it is a duplication.
+  - Cons: The user might miss out the duplicated patients.
 
 **Aspect: The home-visit `DateTime` input:**
 
-* **Alternative 1:** The `DateTime` input is in the format of `YYYY-MM-DDTHH:mm` and it can in any time.
-    * Pros: More specific date and time recorded for the patient.
-    * Pros: More flexible in the home visit date and time that a patient can choose.
-    * Cons: It is hard to determine/check time crashes when assigning a home-visit `DateTime` to a nurse.
+- **Alternative 1:** The `DateTime` input is in the format of `YYYY-MM-DDTHH:mm` and it can in any time.
 
-* **Alternative 2:** The `DateTime` input will be in the format of `YYYY-MM-DD` and slot. The slot will have fixed starting time and fixed duration.
-    * Pros: It is easy to determine/check time crashes when assigning a home-visit `DateTime` slot to a nurse.
-    * Cons: Less flexible in the home visit date and time that a patient can choose.
+  - Pros: More specific date and time recorded for the patient.
+  - Pros: More flexible in the home visit date and time that a patient can choose.
+  - Cons: It is hard to determine/check time crashes when assigning a home-visit `DateTime` to a nurse.
+
+- **Alternative 2:** The `DateTime` input will be in the format of `YYYY-MM-DD` and slot. The slot will have fixed starting time and fixed duration.
+  - Pros: It is easy to determine/check time crashes when assigning a home-visit `DateTime` slot to a nurse.
+  - Cons: Less flexible in the home visit date and time that a patient can choose.
 
 ### Mark feature
 
@@ -259,13 +276,15 @@ The following activity diagram shows what happens when a user marks an appointme
 #### Design considerations
 
 ** Aspect: Marking Appointments that are already marked: **
-* **Alternative 1:** Print and error message to inform the user that the Appointment has already been marked.
-  * Pros: User will be made aware that they have probably erroneously marked the wrong Appointment, and make the necessary correction.
-  * Cons: More difficult to implement, requires more thorough testing.
 
-* **Alternative 2:** Make no changes and raise no exceptions.
-  * Pros: Easier to implement and test.
-  * Cons: User may have erroneously marked the wrong Appointment, and may not notice.
+- **Alternative 1:** Print and error message to inform the user that the Appointment has already been marked.
+
+  - Pros: User will be made aware that they have probably erroneously marked the wrong Appointment, and make the necessary correction.
+  - Cons: More difficult to implement, requires more thorough testing.
+
+- **Alternative 2:** Make no changes and raise no exceptions.
+  - Pros: Easier to implement and test.
+  - Cons: User may have erroneously marked the wrong Appointment, and may not notice.
 
 ### List feature
 
@@ -301,13 +320,14 @@ The following activity diagram summarizes what happens when a user executes the 
 
 **Aspect: Dealing with one invalid input amoung multiple valid inputs:**
 
-* **Alternative 1:** Verify validity of all inputs. If an input is invalid, ignore it and list based on the other given inputs.
-    * Pros: It might be more convenient for the user in certain circumstances where exact criteria matching is not vital.
-    * Cons: The user might think that the returned list fits the given criteria exactly, which might lead to user errors.
+- **Alternative 1:** Verify validity of all inputs. If an input is invalid, ignore it and list based on the other given inputs.
 
-* **Alternative 2:** Verify validity of all inputs. If an input is invalid, do not process the command.
-    * Pros: If a list is returned then the user can be sure that all returned users match the given criteria exactly.
-    * Cons: Possibly inefficient if exact matching is not vital.
+  - Pros: It might be more convenient for the user in certain circumstances where exact criteria matching is not vital.
+  - Cons: The user might think that the returned list fits the given criteria exactly, which might lead to user errors.
+
+- **Alternative 2:** Verify validity of all inputs. If an input is invalid, do not process the command.
+  - Pros: If a list is returned then the user can be sure that all returned users match the given criteria exactly.
+  - Cons: Possibly inefficient if exact matching is not vital.
 
 ### Update Emergency Contacts feature
 
@@ -325,7 +345,7 @@ The new `NextOfKin` or `Physician` will have the contact details as stated by th
 
 The new `Patient`, with the contact info, is then passed to `Model`, so that the details are saved in the database.
 
-Given below is an example scenario and how the `UpdateContactCommand` behaves at each step, 
+Given below is an example scenario and how the `UpdateContactCommand` behaves at each step,
 illustrated with the following sequence diagram:
 
 ![UpdateContactSequenceDiagram](images/UpdateContactSequenceDiagram.png)
@@ -338,7 +358,7 @@ Step 3. `UpdateContactCommandParser` checks validity of the given arguments and 
 
 Step 4. The `UpdateContactCommand` is executed, and a new `Physician` with the given contact info is created`.
 
-Step 5. `UpdateContactCommand` gets `Patient` with UID 3 from the database, and updates the `Patient` to contain 
+Step 5. `UpdateContactCommand` gets `Patient` with UID 3 from the database, and updates the `Patient` to contain
 `Physician` John Doe.
 
 Step 6. `Model` updates the database, and displays the attending physician on `Patient` UID 3.
@@ -353,9 +373,9 @@ The activity diagram below summarises exception handling of UpdateContactCommand
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
+- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
+- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
@@ -416,14 +436,15 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+- **Alternative 1 (current choice):** Saves the entire address book.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
+  - Pros: Easy to implement.
+  - Cons: May have performance issues in terms of memory usage.
+
+- **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  - Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -431,18 +452,17 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
-* [Documentation guide](Documentation.md)
-* [Testing guide](Testing.md)
-* [Logging guide](Logging.md)
-* [Configuration guide](Configuration.md)
-* [DevOps guide](DevOps.md)
+- [Documentation guide](Documentation.md)
+- [Testing guide](Testing.md)
+- [Logging guide](Logging.md)
+- [Configuration guide](Configuration.md)
+- [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Requirements**
 
@@ -450,21 +470,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* medical administrator who has a need to manage a significant number of patients and nurses
-* prefer desktop apps over other types
-* can type fast with precision
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+- medical administrator who has a need to manage a significant number of patients and nurses
+- prefer desktop apps over other types
+- can type fast with precision
+- prefers typing to mouse interactions
+- is reasonably comfortable using CLI apps
 
 **Value proposition**: manage patient nurse relations faster than a typical mouse/GUI driven app
-
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …                | I can …                                                                                                  | So that …                                                                                                                                       |
-|----------|-----------------------|----------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
+| -------- | --------------------- | -------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
 | `*`      | medical administrator | export a current week’s schedule for nurses so that                                                      | they can check their schedules independently                                                                                                    |
 | `* * *`  | medical administrator | quickly add the details of a patients that require home visits so that                                   | retrieve them later                                                                                                                             |
 | `* * *`  | medical administrator | quickly add the details of the nurse                                                                     | retrieve them later for matching                                                                                                                |
@@ -500,7 +519,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | medical administrator | give patients different priorities                                                                       | if a patient’s condition is more serious, I need to assign more nurses / more experienced nurses to the patient’s home visits                   |
 | `*`      | medical administrator | archive the patient records                                                                              | there is still a record of the patient after deletion                                                                                           |
 
-*{More to be added}*
+_{More to be added}_
 
 ### Use cases
 
@@ -516,25 +535,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 **Extensions**
-* 1a. The given inputs/specifications are invalid.
 
-    * 1a1. Healthcare Xpress shows an error message.
+- 1a. The given inputs/specifications are invalid.
 
-      Use case ends.
+  - 1a1. Healthcare Xpress shows an error message.
 
-* 1b. The given specifications are nurses and areas only.
+    Use case ends.
 
-    * 1b1. Healthcare Xpress shows an error message.
+- 1b. The given specifications are nurses and areas only.
 
-      Use case ends.
+  - 1b1. Healthcare Xpress shows an error message.
 
-* 1c. There are no patients/nurses that satisfy the specifications.
+    Use case ends.
 
-    * 1c1. Healthcare Xpress shows a blank list.
+- 1c. There are no patients/nurses that satisfy the specifications.
 
-      Use case ends.
+  - 1c1. Healthcare Xpress shows a blank list.
 
-* *a. At any time, medical administrator choose to exit the program.
+    Use case ends.
+
+- \*a. At any time, medical administrator choose to exit the program.
 
   Use case ends.
 
@@ -548,19 +568,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 **Extensions**
-* 1a. The given inputs are invalid.
 
-    * 1a1. Healthcare Xpress shows an error message.
+- 1a. The given inputs are invalid.
 
-      Use case ends.
+  - 1a1. Healthcare Xpress shows an error message.
 
-* 1b. There is not only one patient/nurse that can match the find inputs.
+    Use case ends.
 
-    * 1b1. Healthcare Xpress returns a list of patients/nurses that matched and the first one being the most matched.
+- 1b. There is not only one patient/nurse that can match the find inputs.
 
-      Use case ends.
+  - 1b1. Healthcare Xpress returns a list of patients/nurses that matched and the first one being the most matched.
 
-* *a. At any time, medical administrator choose to exit the program.
+    Use case ends.
+
+- \*a. At any time, medical administrator choose to exit the program.
 
   Use case ends.
 
@@ -575,13 +596,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 **Extensions**
-* 2a. The given id number is invalid.
 
-    * 2a1. Healthcare Xpress shows an error message.
+- 2a. The given id number is invalid.
 
-      Use case resumes at step 1.
+  - 2a1. Healthcare Xpress shows an error message.
 
-* *a. At any time, medical administrator chooses to exit the program.
+    Use case resumes at step 1.
+
+- \*a. At any time, medical administrator chooses to exit the program.
 
   Use case ends.
 
@@ -596,27 +618,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-* 1a. Only nurse/nurses are shown.
 
-    * 1a1. Medical administrator requests to mark a nurse.
+- 1a. Only nurse/nurses are shown.
 
-    * 1a2. Healthcare Xpress shows an error message.
+  - 1a1. Medical administrator requests to mark a nurse.
 
-      Use case ends.
+  - 1a2. Healthcare Xpress shows an error message.
 
-* 2a. The given id number is invalid.
+    Use case ends.
 
-    * 2a1. Healthcare Xpress shows an error message.
+- 2a. The given id number is invalid.
 
-      Use case resumes at step 1.
+  - 2a1. Healthcare Xpress shows an error message.
 
-* 2b. The given id number is not a patient.
+    Use case resumes at step 1.
 
-    * 2b1. Healthcare Xpress shows an error message.
+- 2b. The given id number is not a patient.
 
-      Use case resumes at step 1.
+  - 2b1. Healthcare Xpress shows an error message.
 
-* *a. At any time, medical administrator chooses to exit the program.
+    Use case resumes at step 1.
+
+- \*a. At any time, medical administrator chooses to exit the program.
 
   Use case ends.
 
@@ -631,19 +654,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-* 2a. The given id number is invalid.
 
-    * 2a1. Healthcare Xpress shows an error message.
+- 2a. The given id number is invalid.
 
-      Use case resumes at step 1.
+  - 2a1. Healthcare Xpress shows an error message.
 
-* 2b. The given details to be edited is invalid / in wrong format.
+    Use case resumes at step 1.
 
-    * 2b1. Healthcare Xpress shows an error message.
+- 2b. The given details to be edited is invalid / in wrong format.
 
-      Use case resumes at step 1.
+  - 2b1. Healthcare Xpress shows an error message.
 
-* *a. At any time, medical administrator chooses to exit the program.
+    Use case resumes at step 1.
+
+- \*a. At any time, medical administrator chooses to exit the program.
 
   Use case ends.
 
@@ -658,19 +682,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-* 2a. The given id number is invalid.
 
-    * 2a1. Healthcare Xpress shows an error message.
+- 2a. The given id number is invalid.
 
-      Use case resumes at step 1.
+  - 2a1. Healthcare Xpress shows an error message.
 
-* 2b. The given details is invalid / in the wrong format.
+    Use case resumes at step 1.
 
-    * 2b1. Healthcare Xpress shows an error message.
+- 2b. The given details is invalid / in the wrong format.
 
-      Use case resumes at step 1.
+  - 2b1. Healthcare Xpress shows an error message.
 
-* *a. At any time, medical administrator chooses to exit the program.
+    Use case resumes at step 1.
+
+- \*a. At any time, medical administrator chooses to exit the program.
 
   Use case ends.
 
@@ -685,19 +710,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-* 2a. The given id number is invalid.
 
-    * 2a1. Healthcare Xpress shows an error message.
+- 2a. The given id number is invalid.
 
-      Use case resumes at step 1.
+  - 2a1. Healthcare Xpress shows an error message.
 
-* 2b. The given index of the tag / tags is out of bounds.
+    Use case resumes at step 1.
 
-    * 2b2. Healthcare Xpress shows an error message.
+- 2b. The given index of the tag / tags is out of bounds.
 
-      Use case resumes at step 1.
+  - 2b2. Healthcare Xpress shows an error message.
 
-* *a. At any time, medical administrator chooses to exit the program.
+    Use case resumes at step 1.
+
+- \*a. At any time, medical administrator chooses to exit the program.
 
   Use case ends.
 
@@ -712,33 +738,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-* 1a. Only nurse/nurses are shown.
 
-    * 1a1. Medical administrator request to add a date and time to the nurse.
+- 1a. Only nurse/nurses are shown.
 
-    * 1a2. Healthcare Xpress shows an error message.
+  - 1a1. Medical administrator request to add a date and time to the nurse.
 
-      Use case ends.
+  - 1a2. Healthcare Xpress shows an error message.
 
-* 2a. The given id number is invalid.
+    Use case ends.
 
-    * 2a1. Healthcare Xpress shows an error message.
+- 2a. The given id number is invalid.
 
-      Use case resumes at step 1.
+  - 2a1. Healthcare Xpress shows an error message.
 
-* 2b. The given id number is not a patient.
+    Use case resumes at step 1.
 
-    * 2b1. Healthcare Xpress shows an error message.
+- 2b. The given id number is not a patient.
 
-      Use case resumes at step 1.
+  - 2b1. Healthcare Xpress shows an error message.
 
-* 2c. The given date and time is invalid or in wrong format.
+    Use case resumes at step 1.
 
-    * 2c1. Healthcare Xpress shows an error message.
+- 2c. The given date and time is invalid or in wrong format.
 
-      Use case resumes at step 1.
+  - 2c1. Healthcare Xpress shows an error message.
 
-* *a. At any time, medical administrator chooses to exit the program.
+    Use case resumes at step 1.
+
+- \*a. At any time, medical administrator chooses to exit the program.
 
   Use case ends.
 
@@ -753,27 +780,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-* 1a. Only nurse/nurses are shown.
 
-    * 1a1. Medical administrator request to delete a date and time from the nurse.
+- 1a. Only nurse/nurses are shown.
 
-    * 1a2. Healthcare Xpress shows an error message.
+  - 1a1. Medical administrator request to delete a date and time from the nurse.
 
-      Use case ends.
+  - 1a2. Healthcare Xpress shows an error message.
 
-* 2a. The given id number is invalid.
+    Use case ends.
 
-    * 2a1. Healthcare Xpress shows an error message.
+- 2a. The given id number is invalid.
 
-      Use case resumes at step 1.
+  - 2a1. Healthcare Xpress shows an error message.
 
-* 2b. The given id number is not a patient.
+    Use case resumes at step 1.
 
-    * 2b1. Healthcare Xpress shows an error message.
+- 2b. The given id number is not a patient.
 
-      Use case resumes at step 1.
+  - 2b1. Healthcare Xpress shows an error message.
 
-* *a. At any time, medical administrator chooses to exit the program.
+    Use case resumes at step 1.
+
+- \*a. At any time, medical administrator chooses to exit the program.
 
   Use case ends.
 
@@ -788,39 +816,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-* 1a. Only nurse/nurses are shown.
 
-    * 1a1. Medical administrator request to update a date and time from the nurse.
+- 1a. Only nurse/nurses are shown.
 
-    * 1a2. Healthcare Xpress shows an error message.
+  - 1a1. Medical administrator request to update a date and time from the nurse.
 
-      Use case ends.
+  - 1a2. Healthcare Xpress shows an error message.
 
-* 2a. The given id number is invalid.
+    Use case ends.
 
-    * 2a1. Healthcare Xpress shows an error message.
+- 2a. The given id number is invalid.
 
-      Use case resumes at step 1.
+  - 2a1. Healthcare Xpress shows an error message.
 
-* 2b. The given id number is not a patient.
+    Use case resumes at step 1.
 
-    * 2b1. Healthcare Xpress shows an error message.
+- 2b. The given id number is not a patient.
 
-      Use case resumes at step 1.
+  - 2b1. Healthcare Xpress shows an error message.
 
-* 2c. The new date and time given is invalid or in wrong format.
+    Use case resumes at step 1.
 
-    * 2c1. Healthcare Xpress shows an error message.
+- 2c. The new date and time given is invalid or in wrong format.
 
-      Use case resumes at step 1.
+  - 2c1. Healthcare Xpress shows an error message.
 
-* 2d. The patient has been assigned to a nurse and the new updated date and time crashes with that nurse existing schedule.
+    Use case resumes at step 1.
 
-    * 2d2. Healthcare Xpress shows an error message.
+- 2d. The patient has been assigned to a nurse and the new updated date and time crashes with that nurse existing schedule.
 
-      Use case ends.
+  - 2d2. Healthcare Xpress shows an error message.
 
-* *a. At any time, medical administrator choose to exit the program.
+    Use case ends.
+
+- \*a. At any time, medical administrator choose to exit the program.
 
   Use case ends.
 
@@ -835,25 +864,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-* 2a. Any given id number is invalid.
 
-    * 2a1. Healthcare Xpress shows an error message.
+- 2a. Any given id number is invalid.
 
-      Use case resumes at step 1.
+  - 2a1. Healthcare Xpress shows an error message.
 
-* 2b. The given id numbers are both patients or nurses.
+    Use case resumes at step 1.
 
-    * 2b1. Healthcare Xpress shows an error message.
+- 2b. The given id numbers are both patients or nurses.
 
-      Use case resumes at step 1.
+  - 2b1. Healthcare Xpress shows an error message.
 
-* 2c. The given id number's nurse has another home-visit at the same date and time.
+    Use case resumes at step 1.
 
-    * 2c1. Healthcare Xpress shows an error message.
+- 2c. The given id number's nurse has another home-visit at the same date and time.
 
-      Use case resumes at step 1.
+  - 2c1. Healthcare Xpress shows an error message.
 
-* *a. At any time, Medical administrator chooses to exit the program.
+    Use case resumes at step 1.
+
+- \*a. At any time, Medical administrator chooses to exit the program.
 
   Use case ends.
 
@@ -868,25 +898,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-* 2a. Any given id number is invalid.
 
-    * 2a1. Healthcare Xpress shows an error message.
+- 2a. Any given id number is invalid.
 
-      Use case resumes at step 1.
+  - 2a1. Healthcare Xpress shows an error message.
 
-* 2b. One given id number is not a nurse.
+    Use case resumes at step 1.
 
-    * 2b1. Healthcare Xpress shows an error message.
+- 2b. One given id number is not a nurse.
 
-      Use case resumes at step 1.
+  - 2b1. Healthcare Xpress shows an error message.
 
-* 2c. Two given id numbers is both patients or both nurses.
+    Use case resumes at step 1.
 
-    * 2c1. Healthcare Xpress shows an error message.
+- 2c. Two given id numbers is both patients or both nurses.
 
-      Use case resumes at step 1.
+  - 2c1. Healthcare Xpress shows an error message.
 
-* *a. At any time, medical administrator choose to exit the program.
+    Use case resumes at step 1.
+
+- \*a. At any time, medical administrator choose to exit the program.
 
   Use case ends.
 
@@ -901,52 +932,52 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-* 2a. Any given id number is invalid.
 
-    * 2a1. Healthcare Xpress shows an error message.
+- 2a. Any given id number is invalid.
 
-      Use case resumes at step 1.
+  - 2a1. Healthcare Xpress shows an error message.
 
-* 2b. The three given id numbers do not belong to two nurses and one patient.
+    Use case resumes at step 1.
 
-    * 2b1. Healthcare Xpress shows an error message.
+- 2b. The three given id numbers do not belong to two nurses and one patient.
 
-      Use case resumes at step 1.
+  - 2b1. Healthcare Xpress shows an error message.
 
-* *a. At any time, medical administrator choose to exit the program.
+    Use case resumes at step 1.
+
+- \*a. At any time, medical administrator choose to exit the program.
 
   Use case ends.
 
 ### Non-Functional Requirements
 
 1. Technical Requirements:
-    1. The application should work on any _mainstream OS_, such as Windows, Linux, and macOS, as long as it has Java `11` or above installed.
-    2. The application should be compatible with both _32-bit_ and _64-bit_ environments.
+   1. The application should work on any _mainstream OS_, such as Windows, Linux, and macOS, as long as it has Java `11` or above installed.
+   2. The application should be compatible with both _32-bit_ and _64-bit_ environments.
 2. Performance Requirements:
-    1. Should be able to hold up to _10000 patients and nurses_ without noticeable sluggishness in performance for typical usage.
-    2. The application should be able to launch within _5 seconds_.
-    3. The application should be able to respond to each command within _1 second_.
+   1. Should be able to hold up to _10000 patients and nurses_ without noticeable sluggishness in performance for typical usage.
+   2. The application should be able to launch within _5 seconds_.
+   3. The application should be able to respond to each command within _1 second_.
 3. Quality requirements:
-    1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands)
-       should be able to accomplish most of the tasks faster using commands than using the mouse.
-    2. A user with minimal knowledge on how to operate text-based applications should be able to quickly learn how to use it.
+   1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands)
+      should be able to accomplish most of the tasks faster using commands than using the mouse.
+   2. A user with minimal knowledge on how to operate text-based applications should be able to quickly learn how to use it.
 4. Constraints:
-    1. Each version of the application should be _backwards compatible_ with data produced by earlier versions.
-    2. Specifications of dates and times should be compliant with ISO 8601 standard, and in the GMT+8 time zone.
+   1. Each version of the application should be _backwards compatible_ with data produced by earlier versions.
+   2. Specifications of dates and times should be compliant with ISO 8601 standard, and in the GMT+8 time zone.
 5. Project Scope:
-    1. The application is not required to handle the printing of the patient-nurse visitation schedule.
-
+   1. The application is not required to handle the printing of the patient-nurse visitation schedule.
 
 ### Glossary
 
-* **Medical Administrator**: A person who oversees, plan, direct, and coordinate home-visits for patients.
-* **Patients**: A person receiving or registered to receive home visits due to special needs.
-* **Nurses**: A person trained to care for the sick or infirm, especially trained to do home-visiting.
-* **Healthcare Xpress**: A desktop app for managing patients that require home-visits.
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+- **Medical Administrator**: A person who oversees, plan, direct, and coordinate home-visits for patients.
+- **Patients**: A person receiving or registered to receive home visits due to special needs.
+- **Nurses**: A person trained to care for the sick or infirm, especially trained to do home-visiting.
+- **Healthcare Xpress**: A desktop app for managing patients that require home-visits.
+- **Mainstream OS**: Windows, Linux, Unix, OS-X
+- **Private contact detail**: A contact detail that is not meant to be shared with others
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## **Appendix: Instructions for manual testing**
 
@@ -970,7 +1001,7 @@ testers are expected to do more *exploratory* testing.
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+      Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 
