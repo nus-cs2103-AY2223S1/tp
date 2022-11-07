@@ -135,10 +135,10 @@ public class ParserUtil {
     public static Price parsePrice(String offerPrice) throws ParseException {
         requireNonNull(offerPrice);
         String trimmedPrice = offerPrice.trim();
-        if (!Price.isValidPrice(offerPrice)) {
+        if (!Price.isValidPrice(trimmedPrice)) {
             throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         }
-        return new Price(offerPrice);
+        return new Price(trimmedPrice);
     }
 
     /**

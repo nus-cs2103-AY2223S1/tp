@@ -12,13 +12,15 @@ Class RealTime
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
+Class UniqueClientList
+Class UniqueOfferList
+Class UniqueListingList
+Class UniqueMeetingList
+
+Class Client
+Class Offer
+Class Meeting
+Class Listing
 
 }
 
@@ -27,24 +29,29 @@ HiddenOutside ..> Model
 
 RealTime .up.|> ReadOnlyRealTime
 
-ModelManager .up.|> Model
+ModelManager .up....|> Model
 Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyRealTime
-ModelManager -left-> "1" RealTime
+ModelManager -up-> "1" RealTime
 ModelManager -right-> "1" UserPrefs
-UserPrefs .up.|> ReadOnlyUserPrefs
+UserPrefs .up....|> ReadOnlyUserPrefs
 
-RealTime *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+RealTime *--> "1" UniqueClientList
+RealTime *--> "1" UniqueOfferList
+RealTime *--> "1" UniqueListingList
+RealTime *--> "1" UniqueMeetingList
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+UniqueClientList -down-> "~* all" Client
+UniqueOfferList -down-> "~* all" Offer
+UniqueListingList -down-> "~* all" Listing
+UniqueMeetingList -down-> "~* all" Meeting
 
-ModelManager -->"~* filtered" Person
+ModelManager -up->"~* filtered" Client
+ModelManager -up->"~* filtered" Offer
+ModelManager -up->"~* filtered" Listing
+ModelManager -up->"~* filtered" Meeting
+
+UniqueClientList -right[hidden]- UniqueOfferList
+UniqueOfferList -right[hidden]- UniqueListingList
+UniqueListingList -right[hidden]- UniqueMeetingList
 @enduml

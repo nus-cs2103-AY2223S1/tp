@@ -18,8 +18,7 @@ public class OfferContainsListingIdPredicate implements Predicate<Offer> {
     @Override
     public boolean test(Offer offer) {
         return listingId.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
-                        offer.getListing().toString(), String.valueOf(listingId)));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(offer.getListing().toString(), keyword));
     }
 
     @Override

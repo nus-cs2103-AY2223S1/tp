@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":RealTimeParser" as RealTimeParser LOGIC_COLOR
+participant ":DeleteOfferCommandParser" as DeleteOfferCommandParser LOGIC_COLOR
+participant "o:DeleteOfferCommand" as DeleteOfferCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+-> LogicManager : execute("delO 1")
+activate LogicManager
+
+LogicManager -> RealTimeParser : parseCommand("delO 1")
+activate RealTimeParser
+
+create DeleteOfferCommandParser
+RealTimeParser -> DeleteOfferCommandParser
+activate DeleteOfferCommandParser
+
+DeleteOfferCommandParser --> RealTimeParser
+deactivate DeleteOfferCommandParser
+
+RealTimeParser -> DeleteOfferCommandParser : parse("1")
+activate DeleteOfferCommandParser
+
+create DeleteOfferCommand
+DeleteOfferCommandParser -> DeleteOfferCommand
+activate DeleteOfferCommand
+
+DeleteOfferCommand --> DeleteOfferCommandParser : o
+deactivate DeleteOfferCommand
+
+DeleteOfferCommandParser --> RealTimeParser : o
+deactivate DeleteOfferCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteOfferCommandParser -[hidden]-> RealTimeParser
+destroy DeleteOfferCommandParser
+
+RealTimeParser --> LogicManager : o
+deactivate RealTimeParser
+
+LogicManager -> DeleteOfferCommand : execute()
+activate DeleteOfferCommand
+
+DeleteOfferCommand -> Model : deleteOffer(1)
+activate Model
+
+Model --> DeleteOfferCommand
+deactivate Model
+
+create CommandResult
+DeleteOfferCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteOfferCommand
+deactivate CommandResult
+
+DeleteOfferCommand --> LogicManager : result
+deactivate DeleteOfferCommand
+
+
+[<--LogicManager
+deactivate LogicManager
+destroy DeleteOfferCommand
+@enduml
