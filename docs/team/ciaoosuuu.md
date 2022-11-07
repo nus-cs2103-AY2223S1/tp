@@ -55,13 +55,17 @@ it was necessary to look through the heavy documentation to implement this featu
      ([#56](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/56),
       [#57](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/57))
     * Added Model class UML diagram ([#59](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/59))
+    * Added Logic and Parser class UML diagram ([#257](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/257))
     * Added implementation details for export to PDF command ([#245](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/245))
 
 * **Team-based tasks**:
   * Enabled assertion in gradle ([#89](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/89))
   * Created milestone v1.4
-  * Made use of issue tracker
+  * Made use of issue tracker to create issues and assign issues
   * Provided pull request reviews for teammates
+
+* **Community**:
+  * Assisted other teams by reporting more than average number of bugs for PE Dry run
   
 * **Tools**:
   * Integrated a third party library (Apache PDFBox) to the project
