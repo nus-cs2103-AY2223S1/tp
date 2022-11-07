@@ -22,7 +22,7 @@ Given below are my contributions to the project.
     * Highlights:
       * Before this command, changing the tags of a task required the user to edit the entire task, including re-adding tags that were already present.
       * This required an in-depth analysis of the system and consideration of design alternatives. The implementation too was challenging when done in a way so as not to interfere with the functionality of existing commands.
-      * Writing the test cases for this command also proved to be non-trivial as many of the test utilities had to be edited to accomodate the new command.
+      * Writing the test cases for this command also proved to be challenging as many of the test utilities had to be edited to accommodate the new command.
 
 * **Contributions to the UG**:
   * Refined the Introduction
@@ -38,6 +38,10 @@ Given below are my contributions to the project.
     * Created UML sequence diagram to detail the mechanism of the feature
   * Updated use cases
     * Added the UML use case diagram to summarise the use cases and their possible extension.
+
+* **Contributions to team-based-tasks**:
+  * Fixed JSON file typo that was inherited from AB3
+    * This required learning how to use JSON
 
 * **Reviewing/Mentoring**:
   * List of all PR reviews for team members can be viewed [here](https://github.com/AY2223S1-CS2103T-F12-3/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Adoimoiboi+)
