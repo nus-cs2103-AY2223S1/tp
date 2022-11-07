@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_APPOINTMENT;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -40,7 +41,8 @@ public class FindCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_REASON + "REASON] "
             + "[" + PREFIX_DATE_TIME_START + "DATE_START] "
-            + "[" + PREFIX_DATE_TIME_END + "DATE_END]\n"
+            + "[" + PREFIX_DATE_TIME_END + "DATE_END] "
+            + "[" + PREFIX_TAG_APPOINTMENT + "APPOINTMENT_TAG...]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John "
             + PREFIX_PHONE + "9876 "
@@ -50,7 +52,8 @@ public class FindCommand extends Command {
             + PREFIX_TAG + "nose "
             + PREFIX_REASON + "checkup "
             + PREFIX_DATE_TIME_START + "2022-10-20 00:00 "
-            + PREFIX_DATE_TIME_END + "2023-10-20 00:00";
+            + PREFIX_DATE_TIME_END + "2023-10-20 00:00 "
+            + PREFIX_TAG_APPOINTMENT + "nose";
 
     private final CombinedPersonPredicate personPredicate;
     private final CombinedAppointmentPredicate appointmentPredicate;
