@@ -517,13 +517,13 @@ testers are expected to do more *exploratory* testing.
     
     1. Reopen the program. Click the close button on the top right of the window.
     
-       Expected: The program should exit.
+       Expected: Similar to previous.
        
     1. Reopen the program. Select the File → Exit menu entry.
     
-       Expected: The program should exit.
+       Expected: Similar to previous.
 
-    *Both should also work when the GUI is showing an invalid command.*
+    *All three should also work when the GUI is showing an invalid command.*
 
 ### GUI functionality
 
@@ -537,7 +537,7 @@ testers are expected to do more *exploratory* testing.
       
    1. Close the help window. Press `F1`.
    
-      Expected: The help window is shown.
+      Expected: Similar to previous.
    
 1. Switching tabs
 
@@ -563,7 +563,7 @@ testers are expected to do more *exploratory* testing.
       
    1. Test case: `add Get groceries by/tomorrow`
    
-      Expected: The app switches to the Task tab. A new task is shown in the GUI and its details are shown in the result box.
+      Expected: Similar to previous.
       
    1. Test case: `add Math assignment m/MA4321`
    
@@ -571,15 +571,15 @@ testers are expected to do more *exploratory* testing.
    
    1. Test case: `add Math assignment m/MA4321/R by/2022-01-02 3:45pm`
    
-      Expected: The command turns red and the result box shows an error message. No tasks are added.
+      Expected: Similar to previous.
       
    1. Test case: `add Math assignment m/ by/2022-01-02 3:45pm`
    
-      Expected: The command turns red and the result box shows an error message. No tasks are added.
+      Expected: Similar to previous.
       
    1. Test case: `add Programming assignment m/CS1234 by/2022-01-02 4pm`
    
-      Expected: The command turns red and the result box shows an error message. No tasks are added.
+      Expected: Similar to previous.
 
 1. Listing tasks
 
@@ -611,7 +611,7 @@ testers are expected to do more *exploratory* testing.
    
    1. Test case: `find`
    
-      Expected: The command turns red and the result box shows an error message. The tasks shown in the tasks tab do not change.
+      Expected: Similar to previous.
    
    1. Test case: `find n/asdfghjk`
    
@@ -633,11 +633,11 @@ testers are expected to do more *exploratory* testing.
    
    1. Test case: `mark -1`
    
-      Expected: The command turns red and the result box shows an error message. The tasks shown in the tasks tab do not change.
+      Expected: Similar to previous.
    
    1. Test case: `mark`
    
-      Expected: The command turns red and the result box shows an error message. The tasks shown in the tasks tab do not change.
+      Expected: Similar to previous.
       
    1. Repeat the steps above for the `unmark` command.
 
@@ -661,11 +661,11 @@ testers are expected to do more *exploratory* testing.
       
    1. Test case: `edit n/Programming assignment`
    
-      Expected: The command turns red and the result box shows an error message. The tasks shown in the tasks tab do not change.
+      Expected: Similar to previous.
       
    1. Test case: `edit 1`
    
-      Expected: The command turns red and the result box shows an error message. The tasks shown in the tasks tab do not change.
+      Expected: Similar to previous.
       
 1. Deleting tasks
 
@@ -677,11 +677,11 @@ testers are expected to do more *exploratory* testing.
    
    1. Test case: `del`
    
-      Expected: The command turns red and the result box shows an error message. The tasks shown in the tasks tab do not change.
+      Expected: Similar to previous.
       
    1. Test case: `del 1 n/Hello`
    
-      Expected: The command turns red and the result box shows an error message. The tasks shown in the tasks tab do not change.
+      Expected: Similar to previous.
    
    1. Test case: `del 1`
    
