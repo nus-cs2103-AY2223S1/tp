@@ -3,12 +3,15 @@ layout: page
 title: Setting up and getting started
 ---
 
-- Table of Contents
+## **Tables of Contents**
+{:.no_toc}
+
+1. Table of Contents
 {:toc}
 
 ---
 
-## Setting up the project in your computer
+## **Setting up the project in your computer**
 
 <div markdown="span" class="alert alert-warning">:warning: **Caution** <br>
 Follow the steps in the following guide precisely. Things will not work out if you deviate in some steps.
@@ -27,7 +30,7 @@ If you plan to use Intellij IDEA (highly recommended):
 
 ---
 
-## Before writing code
+## **Before writing code**
 
 1. **Configure the coding style**
 

@@ -23,7 +23,6 @@ use its text-based commands. Get started now by heading over to [How to use this
 ---
 
 ## **Table of Contents**
-
 {:.no_toc}
 
 1. Table of Contents
@@ -103,11 +102,11 @@ To toggle between Contact View and Task View, you can use the [`Ctrl + Tab`](#to
 
 This table showcases the components shared by both Contact View and Task View.
 
-| Component Name        | Image                                                                    |
-| --------------------- | ------------------------------------------------------------------------ |
-| **Menu Bar**          | ![Menu Bar](images/user-guide/menu-bar.png)                              |
-| **Command Input Box** | ![Command Input Box](images/user-guide/command-input-box.png)            |
-| **Search Results**    | ![Search Results](images/user-guide/search-results.png){:height="120px"} |
+| Component Name        | Image                                                                      |
+|-----------------------|----------------------------------------------------------------------------|
+| **Menu Bar**          | ![Menu Bar](images/user-guide/menu-bar.png)                                |
+| **Command Input Box** | ![Command Input Box](images/user-guide/command-input-box.png)              |
+| **Command Results**   | ![Command Results](images/user-guide/command-results.png){:height="120px"} |
 
 #### Contact View
 
