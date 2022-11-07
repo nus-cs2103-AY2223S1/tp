@@ -4,6 +4,10 @@ import static seedu.hrpro.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.hrpro.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.hrpro.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.hrpro.testutil.TypicalIndexes.INDEX_FIRST_PROJECT;
+import static seedu.hrpro.testutil.TypicalIndexes.INDEX_MAX_PROJECT;
+import static seedu.hrpro.testutil.TypicalIndexes.INVALID_INDEX_MAX_PLUS_ONE;
+import static seedu.hrpro.testutil.TypicalIndexes.VALID_INDEX_MAX;
+import static seedu.hrpro.testutil.TypicalIndexes.VALID_INDEX_ONE;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,20 +26,27 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_PROJECT));
+        // first index
+        assertParseSuccess(parser, VALID_INDEX_ONE, new DeleteCommand(INDEX_FIRST_PROJECT));
+
+        // max index
+        assertParseSuccess(parser, VALID_INDEX_MAX, new DeleteCommand(INDEX_MAX_PROJECT));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
+
         // random character
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "a", expectedMessage);
 
         // zero index
-        assertParseFailure(parser, "0", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "0", expectedMessage);
 
         // negative index
-        assertParseFailure(parser, "-3", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                DeleteCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "-3", expectedMessage);
+
+        // index larger than max integer
+        assertParseFailure(parser, INVALID_INDEX_MAX_PLUS_ONE, expectedMessage);
     }
 }

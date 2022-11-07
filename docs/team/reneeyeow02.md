@@ -64,6 +64,11 @@ Given below are my contributions to the project.
   * Added to NFRs in the Developer Guide. (Pull request [#216](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/216))
   * Added to Glossary in the Developer Guide. (Pull request [#216](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/216))
   * Added to manual testing in the Developer Guide. (Pull request [#216](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/216))
-  * Added sorttask section in the Developer Guide. (Pull request [#216](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/216))
-  * Overall language and formatting edits for Developer Guide and User Guide. (Pull request [\#222](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/222)),
-  (Pull request [\#203](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/203)), (Pull request [\#192](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/192)), (Pull request [\#141](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/141))
+  * Added sorttask section in the Developer Guide. (Pull request [#216](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/216)), 
+  (Pull request [/#231](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/231))
+  * Overall language and formatting edits for Developer Guide and User Guide. (Pull request [\#231](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/231)),
+  (Pull request [\#222](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/222)), (Pull request [\#203](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/203)), 
+  (Pull request [\#192](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/192)), (Pull request [\#141](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/141))
+
+* **Community**:
+  * PE dry run: Found a total of 5 bugs and suggestions [within this repo](https://github.com/reneeyeow02/ped/issues).
