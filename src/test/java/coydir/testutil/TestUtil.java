@@ -72,4 +72,15 @@ public class TestUtil {
         return String.valueOf(count);
     }
 
+    /**
+     * Resets (@code EmployeeId) class to the state it should have after loading typical persons
+     */
+    public static void resetTypicalEmployeeId() {
+        restartEmployeeId(1);
+        //7 is the number of employees in the typical
+        for (int i = 0; i < 7; i++) {
+            new EmployeeId();
+        }
+    }
+
 }
