@@ -767,13 +767,13 @@ testers are expected to do more *exploratory* testing.
 
 ### Launch and shutdown
 
-1. Initial launch
+1. Initial launch.
 
    1. Download the jar file and copy into an empty folder.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts and todos. The window size may not be optimum.
 
-2. Saving window preferences
+2. Saving window preferences.
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
@@ -786,11 +786,11 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a new contact.
    1. Prerequisite: There is no contact named `John Doe`.
-   2. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+   2. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`.
    3. Expected: New contact with the same details added in the contact list.
 2. Adding a contact that has existed before.
    1. Prerequisite: There is a contact named `Betsy Crowe` in the contact list.
-   2. Text case: `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567`
+   2. Text case: `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567`.
    3. Expected: Error message `This person already exists in the SoConnect.` is displayed.
    
 #### Editing a contact
@@ -825,10 +825,10 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
 
-   1. Test case: `delete 1`<br>
+   1. Test case: `delete 1`.<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `delete 0`.<br>
       Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
@@ -845,7 +845,7 @@ testers are expected to do more *exploratory* testing.
 #### Adding a todo
 
 1. Adding a new todo.
-   1. Test case: `todo add d/Watched recorded videos for CS2100 date/24-10-2022 pr/low t/CS2100`
+   1. Test case: `todo add d/Watched recorded videos for CS2100 date/24-10-2022 pr/low t/CS2100`.
    2. Expected: New todo with the same details is shown in the list.
 
 #### Editing a todo
