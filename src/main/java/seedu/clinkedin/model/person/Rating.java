@@ -41,6 +41,7 @@ public class Rating {
         return Integer.toString(value);
     }
 
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

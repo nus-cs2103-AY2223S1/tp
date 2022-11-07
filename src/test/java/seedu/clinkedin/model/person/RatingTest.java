@@ -1,6 +1,7 @@
 package seedu.clinkedin.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -47,7 +48,43 @@ public class RatingTest {
 
     @Test
     public void validRating() {
+
         assertTrue(Rating.isValidRatingStr("0"));
+        assertTrue(Rating.isValidRatingStr("1"));
+        assertTrue(Rating.isValidRatingStr("2"));
+        assertTrue(Rating.isValidRatingStr("3"));
+        assertTrue(Rating.isValidRatingStr("9"));
+        assertTrue(Rating.isValidRatingStr("10"));
+        assertFalse(Rating.isValidRatingStr("-129"));
+        assertFalse(Rating.isValidRatingStr("9875845639"));
+        assertFalse(Rating.isValidRatingStr("happy monkey"));
+        assertFalse(Rating.isValidRatingStr("-----"));
+        assertFalse(Rating.isValidRatingStr("0.1"));
+        assertFalse(Rating.isValidRatingStr("89+0138"));
     }
 
+    @Test
+    public void hashcodeTest() {
+        Rating rating = new Rating("4");
+        Rating equalRating = new Rating("4");
+        Rating smallerRating = new Rating("1");
+        Rating largerRating = new Rating("9");
+
+        assertEquals(rating.hashCode(), rating.hashCode());
+        assertEquals(rating.hashCode(), equalRating.hashCode());
+        assertFalse(rating.hashCode() == largerRating.hashCode());
+        assertFalse(rating.hashCode() == smallerRating.hashCode());
+    }
+
+    @Test
+    public void compareRatingTest() {
+        Rating rating = new Rating("4");
+        Rating equalRating = new Rating("4");
+        Rating smallerRating = new Rating("1");
+        Rating largerRating = new Rating("9");
+
+        assertEquals(rating.compare(equalRating), 0);
+        assertEquals(rating.compare(smallerRating), -1);
+        assertEquals(rating.compare(largerRating), 1);
+    }
 }
