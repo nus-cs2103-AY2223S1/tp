@@ -438,8 +438,8 @@ Below is an example of the general flow of a find by address command.
 2. `AddressContainsKeywordsPredicate` will be generated and a predicate value will be returned to `FindCommandParser`.
 3. `FindCommandParser` will send the predicate value to `FindCommand`.
 4. `FindCommand` will be generated and the command will be returned to the `FindCommandParser`.
-5. `FindCommand` will call the `execute(model)` function, and pass the predicate value into `Model` through `updateFilteredTaskList`.
-6. `filteredTasks` list will be updated accordingly in `ModelManager` and the list display in Teacher's Pet will be updated.
+5. `FindCommand` will call the `execute(model)` function, and pass the predicate value into `Model` through `updateFilteredStudentList`.
+6. `filteredStudents` list will be updated accordingly in `ModelManager` and the list display in Teacher's Pet will be updated.
 7. `CommandResult` will eventually be returned and feedback will be given to the user.
 
 The Sequence Diagram below shows how the components interact with each other when the user issues a find command:
