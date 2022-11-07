@@ -472,13 +472,13 @@ Step 6. `LogicManager` will call `EditAppointmentCommand::execute(model)` method
 
 Step 7. Further validation is performed, such as checking whether an `Appointment` with the same Datetime exists and whether the user's edited Location field is changed.
 
-Step 6. If the command is valid, the `remove` and `add` method of the `MaximumSortedList` containing the client's `Appointments` is called,
+Step 8. If the command is valid, the `remove` and `add` method of the `MaximumSortedList` containing the client's `Appointments` is called,
 removing the old appointment and adding the newly edited appointment. `Person` and `Model` will be updated accordingly.
 The `MaximumSortedList<Appointment>` object present in the specified client `Person` will be updated as shown below:
 <br><br>
 ![After Edit Appointment Object Diagram](images/AfterEditAppointmentObjectDiagram.png)
 <br><br>
-Step 7. `EditAppointmentCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
+Step 9. `EditAppointmentCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
 
 This is shown in the diagram below:
 <br>
