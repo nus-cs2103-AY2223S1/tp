@@ -72,8 +72,8 @@ Added the following:
 - Updated ui UML ([#48](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/48))
 - Added sequence diagrams for how DisplayItems are being generated as visible UI ([#48](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/48))
 - Updated logic UML
-- Added explanation to how the model and logic system works.
-- Added Detailed View to future implementations.
+- Added explanation to how the model and logic system works. ([#181](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/181))
+- Added Detailed View to future implementations. ([#181](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/181))
 
 ### Contributions to team-based tasks
 
@@ -94,4 +94,4 @@ Added the following:
 
 ### Contributions beyond the project team
 
-- Reported bugs for other teams during the PE-D ([list of reports](https://github.com/Eclipse-Dominator/ped/issues).
+- Reported bugs for other teams during the PE-D ([list of reports](https://github.com/Eclipse-Dominator/ped/issues)).
