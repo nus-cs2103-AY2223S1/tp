@@ -22,8 +22,7 @@ Given below are my contributions to the project.
           delete clients as well.
         * Justification: Each project can be tied to at most one client so that developers can know who is in charge
           of their work. Moreover, the feature can later be expanded to have attributes such as importance of the
-          client for the developer. For example, a client who is a potential employer might be more important than a
-          friend for whom the developer is developing a project.
+          client for the developer. 
         * Highlights: As with all other classes in `DevEnable` clients can be found and filtered based on their
           attributes, sorted, pinned and much more.
         * Credits: The `Client` class is based on the AB3's `Person` class and replaces it in DevEnable. However,
@@ -47,6 +46,8 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
     * Wrote parser tests for edit commands of `Client`, `Project` and `Issue` (Pull request [\#248](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/248))
     * Wrote parser tests for the different `find` commands and for the `AddClientCommand` (Pull requests [\#248](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/248), [\#94](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/94))
+
+<div style="page-break-after: always;"></div>
 
 * **Documentation**:
 
