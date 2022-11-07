@@ -29,15 +29,11 @@ to use and what it does for all the features available in myStudent. If you don'
 
 * **Entry**: an entry is a **student**, a **tutor** or a **class**.
 
-* **Displayed list**: it refers to the current list that is displayed. 
-There are three possible list: the **student list**, the **tutor list** and the **class list**. 
-Only one of the three will be displayed at one time, and this list is referred to as the **displayed list**. 
 
-</div>
+* **Displayed list**: it refers to the current list that is displayed.
+  There are three possible list: the **student list**, the **tutor list** and the **class list**.
+  Only one of the three will be displayed at one time, and this list is referred to as the **displayed list**.
 
-<div markdown="block" class="alert alert-info">
-
-:information_source: Notes about the command format in this user guide:
 
 * **Format** appears in each command section. It refers to the format of the inputs that you need to type into the command box to execute the commands.
   (E.g., `Format: delete <index>` means that you need to type in `delete` followed by an `index` to execute the command.)
@@ -50,6 +46,11 @@ Only one of the three will be displayed at one time, and this list is referred t
 * **Fields** are information to be supplied to the command by the user for the application to execute.  
   (E.g., `name` or `phone`)
 
+</div>
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: Notes about the command format in this user guide:
 
 * `< >` - indicate that enclosing field is *mandatory*.   
   (E.g., `add n/<name>`, where `<name>` is a mandatory field "name" and a valid input could be `add n/John Doe`.)
@@ -71,6 +72,7 @@ Only one of the three will be displayed at one time, and this list is referred t
 Below is a quick guide on how to get started.
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Quick Start
 1. Ensure you have Java 11 or above installed in your Computer.
@@ -132,11 +134,12 @@ All your data will be saved as .json files in their respective location as speci
 The default location of the files will be in a folder named `data` in your [home folder](#quick-start).  
 Do **NOT** modify these files directly as it may cause irreparable damage to your data, cause the application to not work as intended, or both.  
 If you need to modify the details of your entries, please do so within the myStudent application. Your data will be saved automatically.  
-Some applicable commands that helps to modify your data are: [assign](#assign-class-to-a-person-assign), [unassign](#unassign-class-from-a-person-unassign) and [edit](#editing-an-entity-edit). 
+Some applicable commands that helps to modify your data are: [assign](#assign-class-to-a-person-assign), [unassign](#unassign-class-from-a-person-unassign) and [edit](#editing-an-entry-edit). 
     
 </div>
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Layout
 
@@ -224,6 +227,8 @@ For more information regarding `Export`, you can click [here](#exporting-address
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## Features
 
 ### Viewing help: `help`
@@ -256,6 +261,8 @@ Examples:
 Plays a neat animation before exiting myStudent.
 
 Format: `exit`
+
+<div style="page-break-after: always;"></div>
 
 ## Adding and Removing Entries
 
@@ -428,6 +435,8 @@ Examples:
 <img src="images/deleteCommand_after.png"/>
 
 </p>
+
+<div style="page-break-after: always;"></div>
 
 ## Manipulation of data
 
@@ -692,6 +701,8 @@ Examples:
 
 </p>
 
+<div style="page-break-after: always;"></div>
+
 ## Presentation and Organisation of data
 
 ### Showing the details of a person: `show`
@@ -910,6 +921,8 @@ Note that the **displayed list** is the **tutor list**, so `find i/NUS q/Bachelo
 </p>
 
 Note that the **displayed list** is the **class list**, so `find d/monday #/tag` returns all classes conducted on Monday and have the tag “hard”.
+
+<div style="page-break-after: always;"></div>
 
 ## Advanced
 
