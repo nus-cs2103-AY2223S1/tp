@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.core.Messages.MESSAGE_CONSULT_SUCCESS;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -49,7 +50,7 @@ class ConsultCommandTest {
     @Test
     void execute_allFieldsSpecifiedFilteredList_success() {
         Person person = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        String expectedMessage = String.format(ConsultCommand.MESSAGE_SUCCESS, person.getName().fullName);
+        String expectedMessage = String.format(MESSAGE_CONSULT_SUCCESS, person.getName().fullName);
 
         assertCommandSuccess(consultCommand, model, expectedMessage, model);
         //Teardown
@@ -71,7 +72,7 @@ class ConsultCommandTest {
         Person personUpcoming =
                 new PersonBuilder().withName(person.getName().fullName).withUpcomingAppointment(date).build();
         model.setPerson(person, personUpcoming);
-        String expectedMessage = String.format(ConsultCommand.MESSAGE_SUCCESS, person.getName().fullName);
+        String expectedMessage = String.format(MESSAGE_CONSULT_SUCCESS, person.getName().fullName);
 
         assertCommandSuccess(consultCommand, model, expectedMessage, model);
 
