@@ -18,7 +18,7 @@ food options in NUS and  make an informed decision on where to eat.
   * [Find](#finding-eateries-by-name--find) / [FindTag](#finding-eateries-by-tag--findtag) /
     [FindLocation](#finding-eateries-by-location--findlocation) / [FindCuisine](#finding-eateries-by-cuisine--findcuisine)
   * [Tag](#add-tag-to-eatery--tag) / [Untag](#remove-tag-from-eatery--untag)
-  * [Add](#add-eatery-add) / [Delete](#delete-eatery--delete)
+  * [Add](#add-eatery--add) / [Delete](#delete-eatery--delete) / [Edit](#edit-eatery--edit)
   * [Fav](#favourite-eatery--fav) / [Unfav](#unfavourite-eatery--unfav)
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
@@ -294,9 +294,16 @@ Note how the eatery at index 70 disappears after the delete command.
 ![Ui](images/user-guide/UgAddDeleteComparison.png)
 <br><br>
 
+### Edit eatery : `edit`
+
+_... Details coming soon ..._
+
+<br>
+
 ### Favourite Eatery : `fav`
 
-_Favourites an eatery from NUSEatWhere's database._
+_Favourites an eatery from NUSEatWhere's database. <br>
+The favourite tag is standardized to be "<3" when using this command._
 
 **Format:** `fav INDEX [-h]`
 
@@ -310,7 +317,8 @@ Example: `fav 3`
 
 ### Unfavourite Eatery : `unfav`
 
-_Unfavourites an eatery from NUSEatWhere's database._
+_Unfavourites an eatery from NUSEatWhere's database. <br>
+The tag to be removed is standardized to be "<3" when using this command._
 
 **Format:** `unfav INDEX [-h]`
 
@@ -322,25 +330,6 @@ Example: `unfav 3`
 
 <br>
 
-### Edit eatery : `edit`
-
-_... Details coming soon ..._
-
-<br>
-
-
-### Edit tag `[coming in later versions]`
-
-_... Details coming soon ..._
-
-<br>
-
-
-### List all tags `[coming in later versions]`
-
-_... Details coming soon ..._
-
-<br>
 
 --------------------------------------------------------------------------------------------------------------------
 
