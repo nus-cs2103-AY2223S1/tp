@@ -715,14 +715,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Guarantees:**
 
-- A list of students whose names match the keyword input will be displayed if at least one of such entity exists and 
-there is no syntax error.
+- A list of students whose fields match the respective keyword inputs will be displayed if at least one of such student exists and 
+the command format is valid.
 
 **MSS**
 
 1. User get <ins>list of Students (UC8)<ins>.
-2. User requests to find students based on keyword input.
-3. myStudent shows a list of all students whose names match the keyword input.
+2. User requests to find students based on keyword inputs that matches multiple fields of a student.
+3. myStudent shows a list of all students whose fields match the respective keyword inputs.
 
     Use case ends.
 
@@ -742,13 +742,14 @@ there is no syntax error.
 
 **Guarantees:**
 
-- A list of tutors whose names match the keyword input will be displayed if at least one of such entity exists.
+- A list of tutors whose fields match the respective keyword inputs will be displayed if at least one of such tutor exists and
+  the command format is valid.
 
 **MSS**
 
 1. User get <ins>list of tutors (UC9)<ins>.
-2. User requests to find tutors based on keyword input.
-3. myStudent shows a list of all tutors whose names match the keyword input.
+2. User requests to find tutors based on keyword inputs that matches multiple fields of a tutor.
+3. myStudent shows a list of all tutors whose fields match the respective keyword inputs.
 
     Use case ends.
 
@@ -768,13 +769,14 @@ there is no syntax error.
 
 **Guarantees:**
 
-- A list of tuition classes whose names match the keyword input will be displayed if at least one of such entity exists.
+- A list of tuition classes whose fields match the respective keyword inputs will be displayed if at least one of such tuition classes exists and
+  the command format is valid.
 
 **MSS**
 
 1. User get <ins>list of tuition classes (UC10)<ins>.
-2. User requests to find tuition classes based on keyword input.
-3. myStudent shows a list of all tuition classes whose names match the keyword input.
+2. User requests to find tuition classes based on keyword inputs that matches multiple fields of a tuition class.
+3. myStudent shows a list of all tuition classes whose fields match the respective keyword inputs.
 
     Use case ends.
 

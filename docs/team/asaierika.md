@@ -3,7 +3,7 @@ layout: page
 title: Jiang Zhimeng's Project Portfolio Page
 ---
 
-### Project: myStudents
+### Project: myStudent
 
 MyStudents helps tuition center admins manage details of the students, tutors and classes. It is optimized for CLI users so that frequent tasks can be done faster by typing in commands. 
 
