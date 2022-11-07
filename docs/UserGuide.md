@@ -53,9 +53,8 @@ To tell if you already have the correct version of Java installed on your system
 ---
 ## Quick start
 
-1. Please ensure you have installed the app. If you haven't, please refer to the [Installation Guide](#installation-guide).
 
-2. Type your desired command into the command box and press `<Enter>` to execute it. e.g. typing **`help`** and pressing
+1. Type your desired command into the command input field and press `<Enter>` to execute it. e.g. typing **`help`** and pressing
    `<Enter>` will open the help window.<br>
    Some example commands you can try:
 
@@ -69,8 +68,8 @@ To tell if you already have the correct version of Java installed on your system
 
     * **`view`** `1` : Views the 1st contact shown in the current patient list panel by displaying it on the patient details panel.
 
-3. Refer to the [Features](#features) below for details of each command.
-
+2. Refer to the [Features](#features) below for details of each command.
+ 
 <sup><sub>[back to top](#back-to-topt)</sub></sup>
 
 ---
