@@ -1029,7 +1029,7 @@ point for testers to work on; testers are expected to do more exploratory testin
 
    1. Prerequisites: There is an empty list of applicants in InternConnect
 
-   2. Test case: `find specifer/SPECIFER_KEYWORD` <br>
+   2. Test case: `find n/Bobby` <br>
       Expected: No applicants will be listed in the left display panel. `0 persons listed!` shown in the status message.
 
 
