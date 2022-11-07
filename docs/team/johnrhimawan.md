@@ -68,10 +68,12 @@ Given below are my contributions to the project.
   * Updated documentation for other features.
   * Updated the missing features in the command summary
   * Update FAQ in UG
+
 * **Contributions to the DG**:
   * Added explanation, implementation, diagrams and design considerations for the following feature: `addtask`.
   * Added explanation, implementation, diagrams and design considerations for the following feature: `sort`.
   * Updated mentions of AddressBook to InTrack
+
 * **Contributions to team-based tasks**:
   * Provided idea on evolving AB3 to become an internship tracker
   * Setting up team meetings
@@ -83,10 +85,13 @@ Given below are my contributions to the project.
   * Added FAQ in user guide
   * Rename addressbook to InTrack in `index.md`
   * Add NFR and Glossary to DG
+
 * **Review/mentoring contributions:**:
-  * Reviewed team members' PRs
+  * Reviewed team members' PRs (Examples: [#103](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/103), [#126](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/126), [#97](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/97))
   * Helped in debugging others code
   * Helped in testing
+
 * **Contributions beyond the project team**:
   * Contributed in forum discussion (Examples: [1](https://github.com/nus-cs2103-AY2223S1/forum/issues/374)
 , [2](https://github.com/nus-cs2103-AY2223S1/forum/issues/352))
+  * Found bugs in PE-D (Examples: [1](https://github.com/AY2223S1-CS2103T-T08-2/tp/issues/160), [2](https://github.com/AY2223S1-CS2103T-T08-2/tp/issues/140), [3](https://github.com/AY2223S1-CS2103T-T08-2/tp/issues/146))
