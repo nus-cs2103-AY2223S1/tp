@@ -199,7 +199,7 @@ The `Model` component,
 *Figure 10. Improved class diagram showing the classes in the `Model`*
 </div>
 
-
+<div style="page-break-after: always"></div>
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -219,7 +219,7 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always"></div>
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -257,7 +257,7 @@ Currently, the appointment feature supports 3 different type of command:
 2. `edit`
 3. `delete`
 
-
+<div style="page-break-after: always"></div>
 #### Add Command
 
 Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
@@ -279,7 +279,7 @@ This is shown in the diagram below:
 ![Add Sequence Diagram](images/AddCommandSequenceDiagram.png)
 <br>
 *Figure 12: Sequence Diagram showing the execution of an `add` (Add) command*
-
+<div style="page-break-after: always"></div>
 #### Edit Command
 
 Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
@@ -306,7 +306,7 @@ This is shown in the diagram below:
 ![Edit Sequence Diagram](images/EditCommandSequenceDiagram.png)
 <br>
 *Figure 13: Sequence Diagram showing the execution of an `edit` (Edit) command for name*
-
+<div style="page-break-after: always"></div>
 #### Delete Command
 
 Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
@@ -328,7 +328,7 @@ This is shown in the diagram below:
 ![Delete Sequence Diagram](images/DeleteSequenceDiagram.png)
 <br>
 *Figure 14: Sequence Diagram showing the execution of an `d 1` (Delete Appointment) command*
-
+<div style="page-break-after: always"></div>
 ### Special Tag feature
 This feature allows users to record key information about clients as special tag, which are colour coded to make it easier to interpret at a glance. 
 
@@ -378,7 +378,7 @@ Here are the Prefix to be used with add and edit commands:
     * Cons: Display across various clients may be inconsistent, and certain information may be obscured when too many tags are added.
   
 
-
+<div style="page-break-after: always"></div>
 ### Appointment feature
 
 This feature represents an appointment between a user and a client. An appointment consists of a DateTime and a Location.
@@ -403,7 +403,7 @@ Currently, the appointment feature supports 3 different type of command:
 1. `add appointment`
 2. `edit appointment`
 3. `delete appointment`
-
+<div style="page-break-after: always"></div>
 #### Add Appointment Command
 
 Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
@@ -449,7 +449,7 @@ This is shown in the diagram below:
 * **Alternative 2**: Multiple `Appointments` can be added in each command
   * Pros: Lower number of commands needed to be executed to add all the desired `Appointments`
   * Cons: Complex input validation as unique `DateTimes` and `Locations` must be enforced within the command and alongside the existing `Appointments`. The maximum number of `Appointments` must also be enforced. Also, length of user input may be very long
-
+<div style="page-break-after: always"></div>
 #### Edit Appointment Command
 
 Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
@@ -494,7 +494,7 @@ This is shown in the diagram below:
 * **Alternative 2**: Multiple `Appointments` can be edited in each command
     * Pros: Lower number of commands needed to be executed to edit all the desired `Appointments`
     * Cons: Complex input validation as multiple index must be enforced within the command and alongside the existing `Appointments`. The maximum number of `Appointments` to edit must also be enforced.
-
+<div style="page-break-after: always"></div>
 #### Delete Appointment Command
 
 Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
@@ -533,7 +533,7 @@ This is shown in the diagram below:
 * **Alternative 2**: Multiple `Appointments` can be deleted in each command
     * Pros: Lower number of commands needed to be executed to delete all the desired `Appointments`
     * Cons: Complex input validation as multiple index must be enforced within the command and alongside the existing `Appointments`. The maximum number of `Appointments` to delete must also be enforced.
-
+<div style="page-break-after: always"></div>
 ### Sort feature
 
 The `sort` command allows the user to sort the clients by a keyword input by the user.
@@ -600,7 +600,7 @@ The following activity diagram summarizes what happens when a user executes the 
 * **Alternative 2**: Compare the appointment dates in String.
     * Pros: No need to convert the values to another type.
     * Cons: Hard to implement as there are many different comparisons that can be made, like year, date, time and month.
-
+<div style="page-break-after: always"></div>
 ### Find feature
 
 The `find` command allows the user to search for multiple fields at once. An OR search is performed and clients matching at least one keyword will be returned.
