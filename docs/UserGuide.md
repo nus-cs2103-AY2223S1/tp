@@ -816,7 +816,7 @@ After executing `showNotes`:
 **Q** Why are `hideNotes` and `showNotes` in plural, but the rest of the operations in singular nouns?<br><br>
 **A** `hideNotes` and `showNotes` are a separate class of commands that are _UI-Centric_, meaning that they only operate on the user interface, as they only shift a panel in the UI, and do not modify any underlying data of the application. The pluarity of the command disambiguates its usage from the other commands that mutates data. For more information, please read our developer guide.
 
-To ease interpretation, you may read `showNotes` as _"show the **notes panel**"_ or `hideNotes` as _"hide the **notes panel**"_, while `listNote` may be read as _"list each individual **note**"_, `findNote` as _"find each **note** matching"_ and `editNote` as _"edit this **note**"_.
+<p>To ease interpretation, you may read `showNotes` as _"show the **notes panel**"_ or `hideNotes` as _"hide the **notes panel**"_, while `listNote` may be read as _"list each individual **note**"_, `findNote` as _"find each **note** matching"_ and `editNote` as _"edit this **note**"_.
 </div>
 
 ### General Features
