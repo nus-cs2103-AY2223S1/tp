@@ -1170,6 +1170,15 @@ testers are expected to do more *exploratory* testing.
    3. Enter `undo`<br>
       Expected: Removed client restored. Success message shown in the command display.
       
+4. Undoing list (non-undoable)
+
+   1. Prerequisite: No previous commands this session. Re-laund the app if there were previous inputs.
+   
+   2. Use `list` command to view entire list.
+   
+   3. Enter `undo`<br>
+      Expected: No changes made to FABook. Error details shown in the command display.
+      
 4. Undoing with non-undoable commands in between
 
    1. Similar to test 1, use `create` command to add a client to list.
@@ -1195,6 +1204,24 @@ testers are expected to do more *exploratory* testing.
    5. Re-enter `undo` with same number of repetition as step 3<br>
       Expected: All removed clients restored. Clients restored in reverse order of removal.
    
+6. Undoing redo
+
+   1. Use `create` command to add a client to list.
+   
+   2. Enter `undo`<br>
+      Expected: Recently added client removed.
+   
+   3. Enter `redo`<br>
+      Expected: Client re-added.
+      
+   4. Enter `undo`<br>
+      Expected: Client re-removed.
+   
+   5. Enter `redo`<br>
+      Expected: Client re-added.
+      
+   6. Enter `undo`<br>
+      Expected: Client re-removed.
 
 ### Saving data
 
