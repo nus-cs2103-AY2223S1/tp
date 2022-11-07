@@ -19,8 +19,10 @@ object "__:Appointment__" as appointment {
 object "__WestMall:Location__" as location {
 }
 
-object "__15-02-2022 12:00:DateTime__" as dateTime {
+object "__:DateTime__" as dateTime {
+ - localDateTime = 15-02-2022 12:00
 }
+
 
 person --> appointmentList
 appointmentList --> appointment
