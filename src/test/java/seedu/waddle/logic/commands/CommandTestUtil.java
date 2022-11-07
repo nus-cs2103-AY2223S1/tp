@@ -77,7 +77,7 @@ public class CommandTestUtil {
     public static final String BUDGET_DESC_WINTER = " " + PREFIX_BUDGET + VALID_BUDGET_WINTER;
     public static final String BUDGET_DESC_TEST = " " + PREFIX_BUDGET + VALID_BUDGET_TEST;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_DESCRIPTION + "Family Trip&"; // '&' not allowed
+    public static final String INVALID_NAME_DESC = " " + PREFIX_DESCRIPTION + "Family Trip^"; // '&' not allowed
     public static final String INVALID_COUNTRY_DESC = " " + PREFIX_COUNTRY + "Germany("; // '(' not allowed in country
     public static final String INVALID_START_DATE_DESC = " " + PREFIX_START_DATE + "Jan 01"; // wrong format
     public static final String INVALID_DURATION_DESC = " " + PREFIX_ITINERARY_DURATION

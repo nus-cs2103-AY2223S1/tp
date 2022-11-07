@@ -14,7 +14,7 @@ import seedu.waddle.model.itinerary.Description;
 import seedu.waddle.model.itinerary.People;
 
 public class ParserUtilTest {
-    private static final String INVALID_DESCRIPTION = "W!nter";
+    private static final String INVALID_DESCRIPTION = "W**nter";
     private static final String INVALID_COUNTRY = "+651234";
     private static final String INVALID_START_DATE = "2022/03/15";
     private static final String INVALID_END_DATE = "202-04-15";
