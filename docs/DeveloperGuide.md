@@ -244,7 +244,7 @@ How undo & redo executes:
     * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by itself
-    * Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
+    * Pros: Will use less memory (e.g. for `undo`, just executes the reverse of the most recent command).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
 ### Add Feature
@@ -407,9 +407,9 @@ Creating predicates:
     - Pros: Predicates are more clearly separated and defined
     - Cons: More classes to maintain
 
-###Delete Feature
+### Delete Feature
 
-####Current Implementation
+#### Current Implementation
 
 The delete feature is now separated for the patients, appointments and bills sections. Deleting a patient also deletes
 related appointments and bills. Deleting an appointment deletes its related bills.
@@ -593,11 +593,11 @@ Step 3. The application displays the list of patients sorted according to the pa
 **Aspect:**
 
 How sort executes:
-1. __Alternative 1 (current choice):__ Saves the entire HealthContact
+1. __Alternative 1:__ Saves the entire HealthContact
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
-2. __Alternative 2:__ Individual command knows how to sort by itself
-  * Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
+2. __Alternative 2 (current choice):__ Individual command knows how to sort by itself
+  * Pros: Will use less memory (e.g. for `sortpatient`, just sort the patient list).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 
@@ -869,7 +869,8 @@ Use case ends.
     * Use case resumes from step 7.
 
 **Use case: UC-07 - Patient requests for the clinic to delete his/her data**
-**Precondition**: All bills for all appointments have been paid.
+
+Precondition: All bills for all appointments have been paid.
 
 **MSS**
 
@@ -1272,15 +1273,7 @@ testers are expected to do more *exploratory* testing.
 
     4. Other incorrect select commands to try: `selectappointment`, `selectappointment x`(where x is larger than the list size)<br>
        Expected: Similar to previous.
-
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+    
 
 -----------------------------------------------------------------------------------------------------------------
 
@@ -1328,7 +1321,7 @@ testers are expected to do more *exploratory* testing.
 
 
 * Delete feature
-  * DeleteCommand in AB3 versus DeletePatientCommand, DeleteAppointmentCommand and DeleteBillCommand in HealthContact
+  * Delete Command in AB3 versus DeletePatientCommand, DeleteAppointmentCommand and DeleteBillCommand in HealthContact
   
 | AB3 (DeleteCommand)            | HealthContact                                                                                                                            |
 |--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
@@ -1338,20 +1331,20 @@ testers are expected to do more *exploratory* testing.
 * Undo and Redo feature
   * UndoCommand in HealthContact is a new command which AB3 does not have.
   * RedoCommand in HealthContact is a new command which AB3 does not have.
-  * They have to be implemented in the way such that the undo and redo commands are able to undo and redo the commands that are related to the respective entities, i.e. Patient, Appointment and Bill
-  * They have to cater to the edge cases in Sort, Select and Listcommands. 
+  * UndoCommand undoes the previous command entered that changes the state of the data, whereas the RedoCommand redoes the previous command entered.
+  * They have to cater to the edge cases in Sort, Select and List commands. 
   * They have to be implemented in such a way where commands which do not change the state of HealthContact e.g. (List, Select, Find) will not be able to be undone or redone.
 
 * Sort feature
   * SortPatientCommand, SortAppointmentCommand and SortBillCommand in HealthContact are new commands which AB3 does not have.
-  * They have to be implemented in the way such that the sort commands are able to sort the respective entities, i.e. Patient, Appointment and Bill
+  * They have to be implemented in the way such that the sort commands are able to sort the respective entities, i.e. patient, appointment and bill
   * They are implemented in a way such that they are able to sort fields case-insensitively.
 
 * Select feature
   * SelectPatientCommand, SelectAppointmentCommand and SelectBillCommand in HealthContact are new commands which AB3 does not have.
-  * They have to be implemented in the way such that the select commands are able to select the respective entities, i.e. Patient, Appointment and Bill
+  * SelectPatientCommand, SelectAppointmentCommand and SelectBillCommand selects a patient, appointment and bill respectively to view their details.
   * They are implemented in a way such that select commands can be done by selecting the index of the entity in the list of the respective entity.
 
 * Set bill payment status feature
   * SetPaidCommand and SetUnpaidCommand in HealthContact are new commands which AB3 does not have.
-  * They have to be implemented in the way such that the setpaid and setunpaid commands are able to set the Bill as paid or unpaid.
+  * SetPaidCommand and SetUnpaidCommand set the payment status of a bill to paid and unpaid respectively.
