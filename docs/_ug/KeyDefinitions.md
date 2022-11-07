@@ -3,8 +3,6 @@
 
 An [[ item:Item ]] in FoodRem represents something in your inventory. This can be an ingredient, a piece of equipment, and more. Feel free to include or exclude certain attributes for each item, although you must minimally provide a name for the item.
 
-{% include page-break.html %}
-
 The following are the attributes stored for each item:
 
 * Item name
@@ -33,8 +31,6 @@ Feel free to add tags as you see fit to organize your inventory. Examples of how
 * Noting its perishability, e.g. `Perishable`, `Non-Perishable`
 
 Tags can be renamed and these changes would be reflected on all items immediately.
-
-{% include page-break.html %}
 
 FoodRem Tags are unique by name and case-sensitive. This means you cannot add two or more tags of the same name.
 
