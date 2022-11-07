@@ -1,6 +1,6 @@
 ---
 layout: page
-title: samuelcheongws's Project Portfolio Page
+title: Samuel Cheong's Project Portfolio Page
 ---
 
 ### Project: TrackAScholar
@@ -21,15 +21,20 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Managed releases `v1.4` on GitHub
+  * Ensure good version control, based on the repo
 
 * **Enhancements to existing features**: 
-* Added `ApplicationStatusTest` and `SortCommandTest` and other Import command tests to increase code coverage and ensure that programs work as expected. [#66](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/66), [#70](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/70)
+* Added `ApplicationStatusTest` and `SortCommandTest` and other Import command tests to increase code coverage by 5% and ensure that programs work as expected. [#66](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/66), [#70](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/70)
 
 * **Documentation**: 
-  * User Guide: Added documentation for the features import and edit
-  * Developer Guide: Added documentation, sequence diagrams, and activity diagrams for the features import and edit [#108](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/108), [#127](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/127),  [#180](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/180)
+  * User Guide: 
+    * Added documentation for the features import and edit
+  * Developer Guide: 
+    * Added documentation, sequence diagrams, and activity diagrams for `import` feature [#127](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/127)
+    * Added documentation, sequence diagrams, and activity diagrams for `edit` feature [#108](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/108), [#180](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/180)
 
 * **Community**:
 * Reviewed several PRs, including [#92](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/92)
 * Found several bugs for CS2103T-W12-3 and suggested improvements.
+* Hosted multiple discussion sessions with team members on PR issues and weekly tasks.
 * Reported bugs for team F-11-4 [here](https://github.com/samuelcheongws/ped/issues)
