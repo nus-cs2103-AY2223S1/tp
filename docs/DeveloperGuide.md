@@ -1014,20 +1014,25 @@ Do the test cases sequentially to ensure correct expectation.
 Implementing ModQuik was not easy. We have summarised the difficulties and challenges our team have encountered when developing ModQuik and listed it below.
 
 ### 9.1 Code Design
-As we are creating a tool for TAs to manage all their teaching responsibilities, we have to implement several new classes to get the minimum viable product of ModQuik.
-We created `Tutorial`, `Consultation` and `Reminder` classes and its associated inner field classes. When applicable, we try to abstract out commonly reused classes.
-However, it was not easy to identify them, and we had to make many subsequent changes along the way to due to other design considerations such as the fact that tutorials are repeated on a weekly basis while consultations are usually a one-off thing.
+As we are creating a tool for TAs to manage all their teaching responsibilities, we have to implement several new entities (`Tutorial`, `Consultation` and `Reminder`) for ModQuik as compared to AB-3 where there was only 1 entity type (`Person`).
+When applicable, we try to abstract out commonly reused classes.
 We also created multiple Parser classes for each of the subsequent classes that we have created in order for our commands to work properly.
-As we use multi-word commands, this poses yet another challenge to implement a bug-free way of parsing inputs as it created a plethora of ways for invalid inputs to occur.
+As we used multi-word commands, this poses yet another challenge to implement a bug-free way of parsing inputs as it created more ways for invalid inputs to occur.
 
-One major challenge that we faced was limiting the number of classes that a TA could add. In reality, TAs could only teach up to 2 modules every semester.
+One major challenge that we faced was limiting the number of classes that a TA could add. In reality, TAs could only teach up to 2 modules every semester. Though rare, a student may also end up having the same TA for 2 mods.
 However, this would require us to implement tight constraints on our user as we would have to validate the inputs every step along the way.
 The most inconvenient aspect is that editing any student entry that involves changing the module code will require user to first delete a module (if they are already capped at 2 modules) and then add the new module.
+
 This presents yet another dilemma, because if the TA deletes the module code, then by design all the student entries related to the module should be deleted as well.
-However, this would not be desirable as the TA might simply want to add another student into the list of students, and such design would not accommodate nicely to accidental errors.
 Moreover, if we were to link the module to the students, editing the tutorial module code will also edit all the affiliated student entries, but this might not be the intended behaviour.
-For instance, though rare, a student may end up having the same TA for 2 mods.
 
 ### 9.2 User Interface
-
-AB3 did not have any different tabs. There was only one page showing the Person’s contacts. By adding tabs, we could implement different UIs into each tab to give the user a better experience. In order to do so, it requires us to put in more thought on how to render the tabs. By default, JavaFx create tabs in horizontal order on the top of TabPane and changing the tabs at left will cause the headers be vertical. We had to tackle aspects regarding setting tabs placed at left and ensuring keeping the tab headers horizontal. Furthermore, having multiple tabs required us to manipulate the tab toggling for certain commands as our target user is fast-typists who prefer typing over other means of input. In addition, we encountered difficulties in creating a pie chart and customizing the chart legends to show the number of students in each category, which required much time. Finally, implementing and styling the UI was not easy. Changing layout and adding icons is important to provide a standardised and modern look to the application. In order to do so, it required us to overhaul the existing CSS file in AddressBook Level-3.
+AB3 did not have any different tabs. There was only one page showing the Person’s contacts.
+By adding tabs, we could implement different UIs into each tab to give the user a better experience.
+In order to do so, it requires us to put in more thought on how to render the tabs.
+By default, JavaFx create tabs in horizontal order on the top of TabPane and changing the tabs at left will cause the headers be vertical.
+We had to tackle aspects regarding setting tabs placed at left and ensuring keeping the tab headers horizontal.
+Furthermore, having multiple tabs required us to manipulate the tab toggling for certain commands as our target user is fast-typists who prefer typing over other means of input.
+In addition, we encountered difficulties in creating a pie chart and customizing the chart legends to show the number of students in each category, which required much time. 
+Finally, implementing and styling the UI was not easy. Changing layout and adding icons is important to provide a standardised and modern look to the application.
+In order to do so, it required us to overhaul the existing CSS file in AddressBook Level-3.
