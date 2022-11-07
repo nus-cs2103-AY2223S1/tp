@@ -1,5 +1,14 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_CHOCOLATE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_SOCKS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TITLE_CHOCOLATE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EVENT_TITLE_SOCKS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PURPOSE_CHOCOLATE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PURPOSE_SOCKS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_CHOCOLATE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_SOCKS;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -48,6 +57,15 @@ public class TypicalEvents {
     public static final Event CHOPSTICK_SALE = new EventBuilder().withEventTitle("Chopstick Sale")
             .withDate("04/09/2022").withStartTime("09:25")
             .withPurpose("$0.80 off all chopsticks").build();
+
+    // Manually added - Event's details found in {@code CommandTestUtil}
+    public static final Event CHOCOLATE = new EventBuilder().withEventTitle(VALID_EVENT_TITLE_CHOCOLATE)
+            .withDate(VALID_DATE_CHOCOLATE).withStartTime(VALID_START_TIME_CHOCOLATE)
+            .withPurpose(VALID_PURPOSE_CHOCOLATE).build();
+
+    public static final Event SOCKS = new EventBuilder().withEventTitle(VALID_EVENT_TITLE_SOCKS)
+            .withDate(VALID_DATE_SOCKS).withStartTime(VALID_START_TIME_SOCKS)
+            .withPurpose(VALID_PURPOSE_SOCKS).build();
 
     private TypicalEvents() {
     } // prevents instantiation
