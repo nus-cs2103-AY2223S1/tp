@@ -67,6 +67,8 @@ Given below are my contributions to the project.
     * [#81](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/81)
     * [#82](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/82)
     * [#154](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/154)
+    * [#199](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/199)
+    * [#200](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/200)
 
 * **Contributions beyond the project team**:
   * Reported bugs and provided suggestions for other teams: [Bugs](https://github.com/nerbnerb/ped/issues)
