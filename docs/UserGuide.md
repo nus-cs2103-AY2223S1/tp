@@ -1457,7 +1457,7 @@ A text-based [user interface](#user-interface) which allows the user to perform 
 Find out more in the [understanding TruthTable's CLI section](#understanding-truthtables-cli).
 
 Examples include
-- <a href="https://en.wikipedia.org/wiki/Unix_shell" target="_blank">Unix shells</a> like (sh, zsh, Bash)
+- <a href="https://en.wikipedia.org/wiki/Unix_shell" target="_blank">Unix shells</a> like `sh`, `zsh`, `Bash`
 - <a href="https://en.wikipedia.org/wiki/Cmd.exe" target="_blank">Command Prompt</a> in the Windows Operating System
 
 ### Graphical User Interface 
