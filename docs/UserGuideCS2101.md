@@ -24,7 +24,7 @@ tutorials.
 * Table of Contents
     * **[Quick Start](#quick-start)**
     * **[Features](#features)**
-        * **[Student](#students)**
+        * **[Students](#students)**
             * Adding a student: [`addstu`](#adding-a-student--addstu)
             * Editing a student: [`editstu`](#editing-a-student-editstu)
             * Adding student's attendance: [`attendance`](#adding-students-attendance--attendance)
@@ -42,6 +42,7 @@ tutorials.
             * Adding a tutorial: [`addtut`](#adding-a-tutorial--addtut)
             * Deleting a tutorial: [`deletetut`](#deleting-a-tutorial--deletetut)
             * Marking a tutorial: [`marktut`](#marking-a-tutorial-marktut)
+            * Unmarking a tutorial: [`unmarktut`](#unmarking-a-tutorial-unmarktut)
         * **Exiting the program**: [`exit`](#exiting-the-program--exit)
     * **[FAQ](#faq)**
     * **[Command Summary](#command-summary)**
@@ -207,8 +208,7 @@ Example:
 ### Deleting a student: `deletestu`
 
 Removes a specific student.
-If a student has left the module or swapped tutorial group, you can delete him from the list. This feature is hardly 
-used.
+If a student has left the module or swapped tutorial group, you can delete him from the list. 
 
 Format: `deletestu INDEX`
 

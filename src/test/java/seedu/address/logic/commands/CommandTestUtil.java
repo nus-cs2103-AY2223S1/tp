@@ -3,9 +3,12 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CONTENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -29,14 +32,8 @@ public class CommandTestUtil {
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
-    public static final String VALID_PHONE_AMY = "11111111";
-    public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
     public static final String VALID_EMAIL_BOB = "bob@example.com";
-    public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
-    public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_TAG_HUSBAND = "husband";
-    public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_DESCRIPTION_Q1 = "What's the difference between composition and aggregation?";
     public static final String VALID_DESCRIPTION_Q2 = "Why are association roles used?";
 
@@ -45,7 +42,7 @@ public class CommandTestUtil {
     public static final String VALID_GROUP_TUTURIAL2 = "T09";
     public static final String VALID_CONTENT_TUTORIAL1 = "UML";
     public static final String VALID_CONTENT_TUTORIAL2 = "Developer Guide";
-    public static final String VALID_TIME_TUTORIAL1 = "2022-10-01 1400";
+    public static final String VALID_TIME_TUTORIAL1 = "2022-10-01 0800";
     public static final String VALID_TIME_TUTORIAL2 = "2022-10-01 1600";
     public static final String VALID_TELEGRAM_AMY = "@amy";
     public static final String VALID_TELEGRAM_BOB = "@bob_choo";
@@ -69,6 +66,11 @@ public class CommandTestUtil {
 
     public static final String DESCRIPTION_Q1 = " " + VALID_DESCRIPTION_Q1;
     public static final String DESCRIPTION_Q2 = " " + VALID_DESCRIPTION_Q2;
+
+    public static final String GROUP_TUTORIAL1 = " " + PREFIX_GROUP + VALID_GROUP_TUTORIAL1;
+    public static final String CONTENT_TUTORIAL1 = " " + PREFIX_CONTENT + VALID_CONTENT_TUTORIAL1;
+    public static final String TIME_TUTORIAL1 = " " + PREFIX_TIME + VALID_TIME_TUTORIAL1;
+
     public static final String ATTENDANCE_DESC_AMY = " " + PREFIX_ATTENDANCE + VALID_ATTENDANCE_AMY;
     public static final String ATTENDANCE_DESC_BOB = " " + PREFIX_ATTENDANCE + VALID_ATTENDANCE_BOB;
 
@@ -162,5 +164,6 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredQuestionList().size());
     }
+
 
 }
