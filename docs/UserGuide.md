@@ -61,7 +61,8 @@ Welcome HR executives and Department Heads! Coydir is a desktop app to efficient
 
 ## Using this Guide
 
-###Symbols and Syntax
+### Symbols and Syntax
+
 Here are some symbols to look out for while using this guide:
 
 | Symbol               | Meaning                                      |

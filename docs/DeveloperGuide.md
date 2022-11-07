@@ -57,13 +57,11 @@ title: Developer Guide
 
 ---
 
-## Acknowledgements
+### Acknowledgements
 
 This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
----
-
-<h2 id="setting-up-getting-started">Setting up, getting started</h2>
+<h3 id="setting-up-getting-started">Setting up, getting started</h3>
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -79,7 +77,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/diagrams/ArchitectureDiagram.png" class="centerImage" width="280" /><br>
+<img src="images/diagrams/ArchitectureDiagram.png" class="centerImage" width="200" /><br>
 
 The **_Architecture Diagram_** given above explains the high-level design of the App.
 
