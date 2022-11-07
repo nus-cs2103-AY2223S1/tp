@@ -545,6 +545,14 @@ Format: `filterT KEYWORD [MORE_KEYWORDS]...`
 
 * Successive `filterT` commands are not cumulative, e.g. `filterT cs2103t` followed by `filterT math` will return the same result as `filterT math`.
 
+<div markdown="block" class="alert alert-warning">
+
+:warning: There will be an error if you:<br>
+
+* Do not adhere to label name constraints. Label names must be alphanumeric with no spaces.
+
+</div>
+
 Examples:
 
 * `filterT cs2103t` will return tasks with label `cs2103t`.
