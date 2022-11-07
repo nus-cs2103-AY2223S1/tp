@@ -101,8 +101,12 @@ Refer to the [Features](#3-features) section for details of each command.
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add -s n/FYP_NAME`, `FYP_NAME` is a parameter which can be used as `add -s n/Neural Network`.
-*  Having multiple prefix parameter as inputs would result in latest (right most input) to be read. <br>
-  e.g. `add -s i/A0123456J i/A6543210J n/Russell Dash` will be read as `add -s i/A6543210J n/Russell Dash`.
+
+* Having multiple parameters when exactly one is required will result in the latest parameter being read. <br>
+  e.g. `add -s i/A0123456J i/A6543210J n/Russell Dash` will be read as `add -s i/A6543210J n/Russell Dash` as the student ID parameter appears twice.
+
+* Adding or editing duplicate student tags will result in only the set of distinct tags being added or edited into the student. <br>
+  e.g. `edit A0123456J t/SOC t/ML t/SOC` will result in the student with student ID A0123456J to have two tags, `SOC` and `ML`.
 
 * Items in square brackets are optional.<br>
   e.g. `n/FYP_NAME [t/TAG]` can be used as `n/Neural Network t/SOC` or as `n/Data Caching`.
@@ -139,7 +143,7 @@ Refer to the [Features](#3-features) section for details of each command.
 * `DEADLINE_DATETIME` can be in the format of **"DD-MM-YYYY HH:mm"** or **"YYYY-MM-DD HH:mm"**.<br>
   e.g. `05-11-2022 08:00`, `2022-11-05 08:00`.
 
-* For deadline tasks, a priority rank specifies the importance of said task. <br>
+* For deadline tasks, a priority rank `DEADLINE_RANK` specifies the importance of said task. <br>
   e.g. `delete -d i/A0123456X r/2` would delete the 2nd highest priority deadline for the student with student
   ID of A0123456X.
 
@@ -156,13 +160,20 @@ Format: `help [COMMAND]`
 Examples:
 
 * `help add -s` - This shows a detailed help message on the `add -s` command.
+  
+  ![help add -s](images/helpSingleCommand.png)
+
 * `help` - This shows an open window revealing the URL to the user guide which could be copied to the user's clipboard.
+
+  ![help add](images/helpMessage.png)
 
 #### 3.1.2. List of FYPs: `list`
 
 Shows a list of final year projects with the student IDs.
 
 Format: `list`
+
+![list](images/list-command.png)
 
 #### 3.1.3. Sorting the FYP list: `sort`
 
@@ -176,11 +187,20 @@ The two fields that the user can sort by are:
 Format for each variant of `sort`:
 
 1. `ProjectName`: `sort [-p]`
+
+   From the uncompleted list, we can see that the project names are sorted (ignoring cases).
+
+   ![sort -p](images/sort-p.png)
+
 2. `ProjectStatus`: `sort -s`
+
+   We can see that those who are yet to start are gathered on top of the uncompleted list.
+
+   ![sort -s](images/sort-s.png)
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: A `sort` command without the flag specified explicitly will be interpreted as `sort -p` by default.
+:information_source: <b>NOTE</b><br> A `sort` command without the flag specified explicitly will be interpreted as `sort -p` by default.
 
 </div>
 
@@ -204,7 +224,7 @@ Adds a new FYP of a student to the FYP manager. The same student ID should not e
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: An `add` command without the `-s` flag specified explicitly will be interpreted as `add -s` by default.
+:information_source: <b>NOTE</b><br> An `add` command without the `-s` flag specified explicitly will be interpreted as `add -s` by default.
 
 </div>
 
@@ -217,8 +237,12 @@ A student can have any number of tags! (including 0)
 Examples:
 
 * `add -s i/A0123456G n/Jane Doe p/Neural Network e/e0123456@u.nus.edu t/NN t/Difficult`
+
+  ![Adding a student](images/add-student.png)
+
 * `add -s i/A0987654X n/Alex Yeoh p/Data Caching e/e09876567@u.nus.edu`
 * `add i/A0987654X n/Alex Yeoh p/Data Caching e/e09876567@u.nus.edu`
+
 
 #### 3.2.2. Removing students FYP: `delete -s`
 
@@ -226,7 +250,7 @@ Removes a FYP from the FYP manager. The specified student ID must exist in the F
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: A `delete` command without the `-s` flag specified explicitly will be interpreted as `delete -s` by default.
+:information_source: <b>NOTE</b><br> A `delete` command without the `-s` flag specified explicitly will be interpreted as `delete -s` by default.
 
 </div>
 
@@ -237,24 +261,37 @@ Examples:
 * `delete -s i/A0987654X`
 * `delete i/A0987654X`
 
+Suppose we have Alex Yeoh as a new student in the list with the details given in the image below.
+
+![Before deleting student](images/delete-student-1.png)
+
+Running either of the example delete student command above will result in this state.
+
+![After deleting student](images/delete-student-2.png)
+
 #### 3.2.3. Marking project status: `mark`
 
-Marks a FYP as "Done"/"In Progress"/"Yet to Start", etc.
+Marks a FYP as Done/In Progress/Yet to Start, etc.
 
 Format: `mark i/STUDENT_ID s/STATUS`
 
 * Current supported statuses are as follows:
-    * **"DONE"** - Done
-    * **"IP"** - In Progress
-    * **"YTS"** - Yet To Start
+    * `DONE` - Done
+    * `IP` - In Progress
+    * `YTS` - Yet To Start
 
 * Parsing of status is  *case-sensitive*: <br>
-    * **DONE** instead of *Done*, *done*, etc.
+    * `DONE` instead of `Done`, `done`, etc.
 
 Examples:
 
 * `mark i/A0123456G s/DONE`
 * `mark i/A0234567H s/YTS`
+* `mark i/A0210283B s/IP`
+
+  Suppose initially we have Charlotte Oliveiro as one of the students who have completed the project. Suppose there are new things for Charlotte to do, which requires us to change the project status from `DONE` to `IP`. Running the last example of mark command will result in the state below.
+
+  ![Marking a student](images/mark-command.png)
 
 #### 3.2.4. Searching keyword: `find`
 
@@ -269,18 +306,37 @@ The four fields that the user can search by are:
 Format for each variant of `find`:
 
 1. `ProjectName`: `find [-p] KEYWORD/[KEYWORD2/KEYWORD3/…]`
+
+   Example: `find -p neu/gen` finds all project names that contain at least one of the keywords, `neu` or `gen`.
+
+   ![find -p](images/find-p.png)
+
 2. `StudentId`: `find -i KEYWORD/[KEYWORD2/KEYWORD3/…]`
+
+   Example: `find -i A01` finds all students with student ID containing `A01`.
+
+   ![find -i](images/find-i.png)
+
 3. `StudentName`: `find -n KEYWORD/[KEYWORD2/KEYWORD3/…]`
+
+   Example: `find -n Alex/Vivi/roy` finds all students with name that contains either `Alex`, `Vivi`, or `roy`.
+
+   ![find -n](images/find-n.png)
+
 4. `Tags`: `find -t KEYWORD/[KEYWORD2/KEYWORD3/…]`
+
+   Example: `find -t colleague/fri/fam` finds all students with a tag that contains either `colleague`, `fri`, or `fam`.
+
+   ![find -t](images/find-t.png)
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: A `find` command without the flag specified explicitly will be interpreted as `find -p` by default.
+:information_source: <b>NOTE</b><br> A `find` command without the flag specified explicitly will be interpreted as `find -p` by default.
 
 </div>
 
 * the `/` in the above examples shows multiple input parameters. <br>
-  e.g. `find -i A0123456X/A0123456G` will search for all students with either student ID of *A0123456X* or *A0123456G*.
+  e.g. `find -i A0123456X/A0123456G` will search for all students with either student ID of `A0123456X` or `A0123456G`.
 * Only the four specified fields above could be searched, and only one field can be searched at any one time.
 * The keyword is case-insensitive, e.g. `Neural NetWORK` will match `neural network`.
 * The keyword could contain spaces, e.g. `practical guide of machine learning` is allowed.
@@ -288,11 +344,6 @@ Format for each variant of `find`:
 * Leading and trailing spaces are ignored, e.g. ` neural network  ` will match `neural network`.
 * Projects matching at least one keyword will be returned (i.e. `OR` search),
   e.g. `find -t neural network/tree` will match project tags containing `neural network` or `decision tree`.
-
-Examples:
-
-* `find -t Neural Network` searches for all projects with at least one tag containing `Neural Network`.
-* `find -p Neural/Network / Data` searches for all projects with `Neural` or `Network` or `Data` in their titles.
 
 Remark:
 
@@ -308,6 +359,17 @@ Format: `edit STUDENT_ID [n/STUDENT_NAME] [p/FYP_NAME] [e/EMAIL] [t/TAG]…​`
 * At least one of the optional fields must be present.
 
 Examples:
+
+* `edit A0210283B n/Not Charlotte` sets the name of the student with student ID `A0210283B` into
+  `Not Charlotte`.
+
+  Before:
+
+  ![Before editing student](images/edit-student-1.png)
+
+  After:
+
+  ![After editing student](images/edit-student-2.png)
 
 * `edit A0123456G p/Food Genetics` sets the project name of the student with student ID `A0123456G` into
   `Food Genetics`.
@@ -325,19 +387,30 @@ Format: `add -d i/STUDENT_ID n/DEADLINE_NAME d/DEADLINE_DATETIME`
 
 Example:
 
-* `add -d i/A0123456G n/Random Task d/23-10-2022 23:59`
+* `add -d i/A0272758C n/Buy Prof some coffee d/06-11-2022 13:30`
+
+  Before:
+
+  ![Before adding a deadline](images/add-deadline-1.png)
+  
+  After:
+
+  ![After adding a deadline](images/add-deadline-2.png)
 
 #### 3.3.2 Removing a student's deadline: `delete -d`
 
-Removes a deadline assigned to a student specified by ID & a priority rank (Below highlighted task has a priority rank of 2). The specified deadline must exist in the student's deadline list previously.
-![Priority](images/Priority.png) <br>
+Removes a deadline assigned to a student specified by ID & a priority rank (for example, below highlighted task has a priority rank of 2).
+
+![Priority](images/Priority.png)
+
+The specified deadline must exist in the student's deadline list previously.
+
 Format: `delete -d i/STUDENT_ID r/DEADLINE_RANK`
 
 Example:
 
-* `delete -d i/A0123456G r/1`
+* `delete -d i/A0123456G r/1` will delete the first deadline of the student with student ID `A0123456G`.
 
-  
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
@@ -349,7 +422,7 @@ Example:
 the data of your previous FypManager home folder.
 
 **Q**: What happens if I modify the data file?<br>
-**A**: Although extremely discouraged, the application will start with a fresh new sample data.
+**A**: Although extremely discouraged, the application will start with an empty data.
 
 --------------------------------------------------------------------------------------------------------------------
 

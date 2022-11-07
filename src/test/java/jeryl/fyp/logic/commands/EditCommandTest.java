@@ -1,5 +1,6 @@
 package jeryl.fyp.logic.commands;
 
+import static jeryl.fyp.commons.core.Messages.MESSAGE_DUPLICATE_STUDENT;
 import static jeryl.fyp.logic.commands.CommandTestUtil.DESC_AMY;
 import static jeryl.fyp.logic.commands.CommandTestUtil.DESC_BOB;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
@@ -114,7 +115,7 @@ public class EditCommandTest {
         EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptorBuilder(studentToEdit).build();
         EditCommand editCommand = new EditCommand(validStudentId, editStudentDescriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_STUDENT);
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_STUDENT);
     }
 
     @Test
@@ -127,7 +128,7 @@ public class EditCommandTest {
         EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptorBuilder(studentToEdit).build();
         EditCommand editCommand = new EditCommand(validStudentId, editStudentDescriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_STUDENT);
+        assertCommandFailure(editCommand, model, MESSAGE_DUPLICATE_STUDENT);
     }
 
     @Test

@@ -41,7 +41,12 @@ public class UncompletedStudentListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new StudentCard(student, getIndex() + 1).getRoot());
+                StudentCard studentCard = new StudentCard(student, getIndex() + 1);
+                // Resolve border issue
+                if (getIndex() == 0) {
+                    this.setStyle("-fx-border-width: 0px 0px 1px 0px;");
+                }
+                setGraphic(studentCard.getRoot());
             }
         }
     }
