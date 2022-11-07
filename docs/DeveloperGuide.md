@@ -16,6 +16,7 @@ In order to be a successful SoCompiler Developer, you need a general understandi
 * Java language
 * JavaFx
 
+<div style="page-break-after: always;"></div>
 
 ## **Table of Contents**
 
