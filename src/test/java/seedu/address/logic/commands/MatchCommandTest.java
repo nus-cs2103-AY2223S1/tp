@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
@@ -57,13 +56,6 @@ public class MatchCommandTest {
 
         // different indexes -> return false
         assertFalse(firstCommand.equals(secondCommand));
-    }
-
-    @Test
-    public void execute() {
-        MatchCommand command = new MatchCommand(INDEX_FIRST);
-        CommandResult commandResult = new CommandResult(MatchCommand.MESSAGE_SUCCESS);
-        assertCommandSuccess(command, model, commandResult, expectedModel);
     }
 
     @Test
