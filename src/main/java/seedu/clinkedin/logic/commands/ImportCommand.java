@@ -1,6 +1,7 @@
 package seedu.clinkedin.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.clinkedin.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.clinkedin.commons.util.FileUtil.importFromCsvFile;
 import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_PATH;
 
@@ -59,6 +60,7 @@ public class ImportCommand extends Command {
      * Creates an ImportCommand to import an AddressBook
      */
     public ImportCommand(String fileName, FileType fileType) {
+        requireAllNonNull(fileName, fileType);
         this.filePath = fileName;
         this.fileType = fileType;
     }
