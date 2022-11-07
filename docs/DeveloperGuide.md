@@ -329,7 +329,7 @@ The autocomplete feature is facilitated through the `TextFields` class under the
 The `TextFields` class provides a static method `bindAutoCompletion` that will create a new autocompletion binding between
 the given TextField using the given autocomplete suggestions.
 
-Everytime the user modifies the input, a `AutoCompletePopup` object, which is a `PopupWindow`, will appear below the CommandBox.
+Everytime the user modifies the input, a `AutoCompletePopup` object, which is a `PopupWindow`, will appear below the `CommandBox`.
 The object will display a list of suggestions that matches the current text in the text field.
 
 Alternative implementations of coming up with our own classes were considered aside from using the ControlsFX library. 
