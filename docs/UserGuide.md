@@ -470,7 +470,7 @@ Format: `clear`
 
 **:information_source: Note:**<br>
 
-* When using the `clear` command, the target calorie intake will be reset to the default 2000 calories.
+When using the `clear` command, the target calorie intake will be reset to the default 2000 calories.
 
 </div>
 
