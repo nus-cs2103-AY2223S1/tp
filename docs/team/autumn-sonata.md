@@ -37,9 +37,19 @@ Code contribution for this project is listed in [RepoSense](https://nus-cs2103-a
 
 ### Main Enhancements implemented
 
-- Updated the **storage components**. [#62](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/62)
+- Extension of all `Storage` classes to support the `Model` component of the project. [#62](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/62)
+  - Add `JsonAdaptedAbstractDisplayItem` to abstract components for `JsonAdaptedPerson`, `JsonAdaptedGroup` 
+  and `JsonAdaptedTask`. [#62](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/62)
+  - Add `JsonAdaptedAbstractAttribute` to convert all `AbstractAttribute` to Json format and correctly parse them back into
+  their respective classes. 
+  - Add `JsonAdaptedCustomCommandBuilder` to save alias and macros.
 - Updated the **testing for the storage components** that increased code coverage by `5.58%`. [#168](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/168)
 - Made builder classes for **easier testing of model classes**. [#155](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/155)
+  - Add `GroupBuilder`, `PersonBuilder` and `TaskBuilder` for easy building of `Group`, `Person` and `Task` during testing. [#155](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/155)
+  - Add `TypicalGroups`, `TypicalPersons` and `TypicalTasks` for standardised test cases of valid `Group`, `Person` and `Task`. [#155](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/155)
+  - Add `invalidGroupAddressBook`, `invalidTaskAddressBook` to existing `invalidPersonAddressBook` for checking of Json file data retrieval. [#155](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/155)
+  - Add `invalidAndValidGroupAddressBook`, `invalidAndValidTaskAddressBook` to existing `invalidAndValidPersonAddressBook` for checking of errors in Json file data retrieval. [#155](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/155)
+  - Add typical, duplicate and invalid Json files in `JsonAddressBookStorageTest` for testing of save and load functions in `JsonSerializableAddressBookTest`. [#155](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/155)
 
 ### Contributions to the user guide
 
