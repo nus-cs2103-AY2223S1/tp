@@ -493,7 +493,7 @@ Examples:
 * `rfind r/cold d/10-2022` returns a record that matches both `cold` in the record data field, and has a date within Oct 2022.
 
 <sub>[return to table of contents](#table-of-contents)</sub>
-<div style="page-break-after: always;"></div>
+
 #### Clearing all patient records : `rclear`
 
 > Clears all records of a specific patient from Omnihealth.
