@@ -236,6 +236,16 @@ Format: `filepath INDEX f/FILEPATH`
 ![filepath](images/UserGuide/filepath.png)
 Example given: `filepath 2 f/C:\Users\Eugene Tay\Downloads\Tutorial_8_qns.pdf`
 
+<div markdown="block" class="alert alert-block alert-success">
+
+:bulb: **Note:**
+Although relative file paths are allowed e.g. `Downloads/Sample_Wealth_Accumulation_Plan`, it is not recommended as it can lead to loss in all file information in the case where the FABook application is moved.
+
+:bulb: **Note:**
+Do ensure that you have read access to the specified PDF files. 
+
+</div>
+
 Other example:
 * `filepath 2 f/C:/Users/Ryzen/Downloads/CS2103T-T08-3.pdf`
 
@@ -383,6 +393,16 @@ Format: `file INDEX`
 
 ![file](images/UserGuide/file.png)
 Example given: `file 2`
+
+<div markdown="block" class="alert alert-block alert-success">
+
+:bulb: **Note:**
+Do ensure that you have read access to the specified PDF files.
+
+For Mac users with FileVault:
+If FileVault is turned on, the application will not be able to access your PDF files, so will require you to turn it off in System Preferences > Security & Privacy > FileVault
+
+</div>
 
 Examples:
 * `file 2`
