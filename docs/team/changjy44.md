@@ -39,7 +39,7 @@ Given below are my contributions to the project.
 
 * **Testing**:
   * Add extensive unit tests for commands, parser and model classes. ([PR #206](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/206))
-    * **Highlights**: As picocli was used for our parsing, all existing tests for commands and parsers were removed and have to be reimplemented from scratch. New testing infrastructure was also added to faciliate the tests.
+    * **Highlights**: As the picocli library was used for our parsing, all existing tests for commands and parsers were removed and had to be reimplemented from scratch. New testing infrastructure also had to be added to facilitate the tests.
 
 
 * **Documentation**:
