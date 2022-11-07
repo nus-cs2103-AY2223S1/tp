@@ -399,7 +399,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Person Class
+### **Person Class**
 Each `Person` in the AddressBook is implemented in the following way:
 
 ![Person Class Diagram](images/PersonClassDiagram.png)
@@ -409,7 +409,7 @@ All `Person` have a `Name`, `Email`, `Address` and `Phone` and a set of `Tag`, `
 
 <div style="page-break-after: always;"></div>
 
-### User Class
+### **User Class**
 
 `User` Class is implemented in a similar way.
 
@@ -436,7 +436,7 @@ in design.
 
 <div style="page-break-after: always;"></div>
 
-### Module Class
+### **Module Class**
 `CurrentModule`, `PlannedModule`, and `PreviousModule` implement the `Module` interface.
 
 ![Module Class Diagram](images/ModuleClassDiagram.png)
@@ -457,7 +457,7 @@ make the program slow.
 
 <div style="page-break-after: always;"></div>
 
-### Edit Modules
+### **Edit Modules**
 
 Editing modules is implemented such that you can directly add modules into each list of current, previous or planned modules.
 Users can also use this command to remove all instances of the same module from each list.
@@ -487,7 +487,7 @@ Removal of modules does not check the module lists to see if the module is prese
 
 <div style="page-break-after: always;"></div>
 
-### Checking Modules Left
+### **Checking Modules Left**
 This feature compares the user's current and previous modules list with a fixed list of CS Core Requirements or focus area
 modules. The program then finds the difference between the user's lists and the fixed list and outputs it onto the `ResultDisplay`.
 
@@ -510,7 +510,7 @@ batch and major for now.
 
 <div style="page-break-after: always;"></div>
 
-### Refreshing to Next Semester
+### **Refreshing to Next Semester**
 ConnectNUS has a feature that helps you to update the previous module lists and clear the current module list of your profile
 as well as any persons stored in the contact list at the start of each semester so that it is easy for you to update
 yours and your friend's profiles.
@@ -530,7 +530,7 @@ contact list will be cleared.
 
 <div style="page-break-after: always;"></div>
 
-### Adding Lessons
+### **Adding Lessons**
 ConnectNUS has a feature that allows you to add lessons to your profile as well as any persons stored in the contact list,
 so that it is easy to keep track of yours and your friend's schedules.
 
@@ -638,7 +638,7 @@ as significant of an issue.
 
 <div style="page-break-after: always;"></div>
 
-### Viewing Timetable
+### **Viewing Timetable**
 ConnectNUS gives you the ability to view not only your own timetable, but that of your contacts as well, after `Lesson`s
 have been added to your profile and their contact. This makes deconflicting schedules significantly faster and meetings can
 be arranged easily.
@@ -709,7 +709,7 @@ sorted and converted to `String` which is displayed in the `TimetableWindow` whi
 
 <div style="page-break-after: always;"></div>
 
-### Undo / Redo
+### **Undo / Redo**
 
 #### Implementation
 
@@ -845,7 +845,7 @@ Given below are the new Methods implemented:
 
 <div style="page-break-after: always;"></div>
 
-### Filter Feature
+### **Filter Feature**
 ConnectNUS has a filter function that allows you to filter all persons in your contact list according to `Tag`, `CurrentModule`,
 `PreviousModule` or `PlannedModule`. This allows you to find people who are taking specific mods such that you
 are able to reach out to friends for collaboration more quickly.
