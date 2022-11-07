@@ -760,7 +760,7 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 
 **MSS:**
 
-1. NotionUs shows all tasks. 
+1. NotionUS shows all tasks. 
 2. User requests to show the archived tasks.
 3. NotionUS displays the archived tasks.
 
