@@ -790,7 +790,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `SectresBook` and the **Actor** is the `user`, unless specified otherwise)
 
-### Use case: UC1 - Add a person
+#### Use case: UC1 - Add a person
 
 **MSS**
 1. User requests to add a person.
@@ -808,7 +808,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-### Use case: UC2 - Update a person
+#### Use case: UC2 - Update a person
 
 **MSS**
 1. User requests to list persons.
@@ -831,7 +831,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-### Use case: UC3 - Delete a person
+#### Use case: UC3 - Delete a person
 
 **MSS**
 
@@ -854,7 +854,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-### Use case: UC4 - Find a person
+#### Use case: UC4 - Find a person
 
 **MSS**
 1. User request to find using keyword.
@@ -862,7 +862,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-### Use case: UC5 - Display list of persons
+#### Use case: UC5 - Display list of persons
 
 **MSS**
 1. User requests to list persons.
@@ -870,7 +870,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-### Use case: UC6 - Edit Loan of person
+#### Use case: UC6 - Edit Loan of person
 
 **MSS**
 1. User requests to list persons.
@@ -892,7 +892,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-### Use case: UC7 - Find Person by their tag
+#### Use case: UC7 - Find Person by their tag
 
 **MSS**
 1. User requests to find using a tag keyword.
@@ -900,7 +900,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-### Use case: UC8 - Add a Note
+#### Use case: UC8 - Add a Note
 
 **MSS**
 1. User requests to add a note.
@@ -918,7 +918,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-### Use case: UC9 - Update a Note
+#### Use case: UC9 - Update a Note
 
 **MSS**
 1. User requests to list notes.
@@ -941,7 +941,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-### Use case: UC10 - Delete a Note
+#### Use case: UC10 - Delete a Note
 
 **MSS**
 1. User requests to list notes.
@@ -963,7 +963,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-### Use case: UC11 - Find a Note
+#### Use case: UC11 - Find a Note
 
 **MSS**
 1. User request to find using keyword.
@@ -971,7 +971,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-### Use case: UC12 - Display list of notes
+#### Use case: UC12 - Display list of notes
 
 **MSS**
 1. User has completed [UC11](#use-case-uc11---display-list-of-notes)
@@ -980,7 +980,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-### Use case: UC13 - Hide Note section
+#### Use case: UC13 - Hide Note section
 
 **MSS**
 1. User requests to hide the notes section of the Sectresbook.
@@ -993,7 +993,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-### Use case: UC14 - Show note section
+#### Use case: UC14 - Show note section
 
 **MSS**
 1. User requests to show the notes section.
@@ -1007,7 +1007,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-### Use case: UC15 - Exit program
+#### Use case: UC15 - Exit program
 
 **MSS**
 1. User requests to exit program. 
