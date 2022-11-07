@@ -190,7 +190,7 @@ public class ParserUtil {
             throw new ParseException(String.format(Date.MESSAGE_VALUE_CONSTRAINTS, trimmedDate));
         }
         //Check if date is after current date and if it is allowed.
-        if (Date.isAfterCurrentDate(trimmedDate) & !isFutureDateAllowed) {
+        if (Date.isAfterCurrentDate(trimmedDate) && !isFutureDateAllowed) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS_DOB);
         }
         return new Date(trimmedDate);
