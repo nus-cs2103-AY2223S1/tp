@@ -136,7 +136,7 @@ public class PersonCard extends UiPart<Region> {
             rating.setBackground(yellowBg);
         }
 
-        if (ratingNumber >= 7 && ratingNumber <= 10){
+        if (ratingNumber >= 7 && ratingNumber <= 10) {
             Color green = Color.rgb(16, 185, 67);
             Background greenBg = new Background(new BackgroundFill(green, corn, Insets.EMPTY));
             rating.setBackground(greenBg);
