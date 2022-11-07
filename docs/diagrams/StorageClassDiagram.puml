@@ -1,7 +1,7 @@
 @startuml
 !include style.puml
 skinparam arrowThickness 1.1
-skinparam arrowColor STORAGE_COLOR
+skinparam arrowColor BLACK
 skinparam classBackgroundColor STORAGE_COLOR
 
 package Storage {

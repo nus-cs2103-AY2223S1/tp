@@ -26,6 +26,7 @@ If you are looking to expand on our project, check out our [Developer Guide](Dev
     * [Adding a resident `add`](#adding-a-resident--add)
     * [Editing an existing resident `edit`](#editing-an-existing-resident--edit)
     * [Deleting an existing resident `delete`](#deleting-a-resident--delete)
+    * [Deleting multiple residents `remove`](#deleting-multiple-residents--remove)
     * [Clearing all residents `clear`](#clearing-all-entries--clear)
     * [Resident field format](#format-for-resident-fields)
   * [**Viewing residents**](#viewing-residents)
@@ -37,7 +38,6 @@ If you are looking to expand on our project, check out our [Developer Guide](Dev
     * [Filtering residents `filter`](#filtering-residents-by-field--filter)
   * [**File management**](#file-management)
     * [Finding your data](#finding-your-data)
-    * [Editing your data file](#editing-your-data-file)
     * [Saving your data](#saving-your-data)
     * [Creating a new data folder `file create`](#creating-a-new-data-folder--file-create)
     * [Deleting an existing data folder `file delete`](#deleting-an-existing-data-folder--file-delete)
@@ -68,6 +68,11 @@ If you are looking to expand on our project, check out our [Developer Guide](Dev
 
 **RC4HDB** is a desktop application which streamlines the daily workflow of **RC4 housing management staff**, by providing specialised features which solve their resident and venue management needs.
 
+As a potential **RC4HDB** user, you are expected to be:
+* A **RC4 housing management staff**
+* Experienced with administrative work
+* Comfortable using a keyboard
+
 Broadly, **RC4HDB** provides users with the ability to:
 * View and manage resident data
 * View and manage venues and any bookings
@@ -75,8 +80,8 @@ Broadly, **RC4HDB** provides users with the ability to:
 * Easily switch over to RC4HDB by importing old data from CSV files
 
 <div markdown="span" class="alert alert-info">
-If you can type fast, RC4HDB can be a convenient and intuitive way to facilitate your day-to-day
-workflow as a RC4 housing management staff member.
+RC4HDB is very **simple, and beginner-friendly**, and can be easily picked-up in a matter of days. Regardless of your typing speed, RC4HDB can be a **convenient and intuitive** way to facilitate your day-to-day workflow as a RC4 housing management staff member. But if you are fast at typing, you will find it very comfortable using
+RC4HDB.
 </div>
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
@@ -91,7 +96,7 @@ will serve you well in mastering RC4HDB!
 If you are a **new user**, the necessary knowledge for you to get started can be found [here](#quick-start).
 As you read on, you will find plenty of examples to help you familiarise with the features.
 
-If you are an **experienced user**, a [Command Summary](#command-summary) is also provided, so you don't have to memorise our commands.
+If you are an **experienced user**, a [command summary](#command-summary) is also provided, so you don't have to memorise our commands.
 
 Before exploring the user guide, you should familiarise yourself with the following symbols.
 
@@ -137,7 +142,7 @@ delete the folder called `data` as this would cause all your data to be deleted!
 
 Try typing `help` into the command box where it says "Enter Command here..." and pressing the Enter/Return key on your keyboard to execute it! This command will open a help window which shows you a quick summary of our available commands.
 
-For more details on commands, refer to our [Command Guide](#command-guide) below.
+For more details on commands, refer to our [command guide](#command-guide) below.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -146,7 +151,7 @@ For more details on commands, refer to our [Command Guide](#command-guide) below
 ## **Command Guide**
 
 Below shows a breakdown of how the commands in **RC4HDB** are structured. Don't be afraid that you
-may have typed a command incorrectly as **RC4HDB** will warn you in the event that this happens!
+may have typed a command incorrectly as **RC4HDB** will inform you in the event that this happens!
 
 <div markdown="block" class="alert alert-info">
 
@@ -201,27 +206,23 @@ if it is open. </div>
 
 ---
 
-### **Modifying Resident Data**
+## **Modifying Resident Data**
 
-In order to maintain the database, we have provided several basic commands such as `add`, `edit`, `delete` and `clear`
-to help you modify resident data within **RC4HDB**.
+In order to maintain the database, we have provided several **basic commands** such as `add`, `edit`, `delete` and `clear`
+to help you modify resident data within RC4HDB.
 
 Note:
-* **RC4HDB** does not allow duplicate residents to exist within the database, as a measure to prevent unintentional adding of duplicate residents.
+* RC4HDB **does not allow duplicate residents** to exist within the database, as a measure to prevent unintentional adding of duplicate residents.
 * Two residents are considered duplicates of each other if any of the following are same:
-  * matriculation number
-  * phone number
-  * email
-  * room
-
----
+  * Matriculation number
+  * Phone number
+  * Email
+  * Room
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Before proceeding to learn more about resident commands it would be good to have a quick read about the **resident fields**, which will
-be used in the commands.
+be used in the commands. The resident <a>[fields](#glossary-of-terms)</a> can be found <a>[here](#format-for-resident-fields)</a>.
 </div>
-
-The resident [fields](#glossary-of-terms) can be found [here](#format-for-resident-fields).
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -229,7 +230,7 @@ The resident [fields](#glossary-of-terms) can be found [here](#format-for-reside
 
 ### Adding a resident : `add`
 
-Adds a resident into **RC4HDB**. Does **not** allow any [duplicate residents](#modifying-resident-data) to be added.
+Adds a resident. Does **not** allow any [duplicate residents](#modifying-resident-data) to be added.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL r/FLOOR-UNIT g/GENDER h/HOUSE m/MATRIC_NUMBER [t/TAG]…​`
 
@@ -240,9 +241,7 @@ A resident can have any number of tags (including 0).
 Examples:
 * `add n/John Doe p/98765432 e/johnDoe@gmail.com r/5-1 g/M h/D m/A9876543B` adds a resident named John Doe, with
   relevant personal and student information.
-
-
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com r/2-3 p/1234567 m/A3456789B g/F h/A` adds a resident named
+* `add n/Betsy Crowe t/friend e/betsycrowe@example.com r/2-3 p/12345678 m/A3456789B g/F h/A` adds a resident named
   Betsy Crowe, with relevant personal and student information.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
@@ -251,10 +250,9 @@ Examples:
 
 ### Editing an existing resident : `edit`
 
-Edits the data of an existing resident in **RC4HDB**. Does **not** allow any [duplicate residents](#modifying-resident-data) to be created due to the editing of a resident.
+Edits the data of an existing resident. Does **not** allow any [duplicate residents](#modifying-resident-data) to be created due to the editing of a resident.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/FLOOR-UNIT] [g/GENDER] [h/HOUSE] [m/MATRIC_NUMBER] [t/TAG]…​`
-
 * Edits the resident at the specified `INDEX`.
 * The index refers to the index number shown in the displayed residents list.
 * The index **must be a positive integer:** 1, 2, 3, …​
@@ -274,10 +272,9 @@ Examples:
 
 ### Deleting a resident : `delete`
 
-Deletes the specified resident from **RC4HDB**.
+Deletes the specified resident.
 
 Format: `delete INDEX`
-
 * Deletes the resident at the specified `INDEX`.
 * The index refers to the index number shown in the displayed resident list.
 * The index **must be a positive integer:** 1, 2, 3, …​
@@ -288,8 +285,6 @@ The delete command can be used in conjunction with other commands such as list a
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd resident in the database.
-
-
 * `find Betsy` followed by `delete 1` deletes the 1st resident in the results of the `find` command.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
@@ -298,30 +293,28 @@ Examples:
 
 ### Deleting multiple residents : `remove`
 
-Deletes the specified resident from the RC4HDB database.
+Deletes residents whose fields match the input keywords.
 
-Format: `remove [/SPECIFIER] KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
-
-* A specifier is required in order for the command to work. If not it is an invalid command format
+Format: `remove /SPECIFIER KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
+* A specifier is required in order for the command to work. If not, it is an invalid command format.
 * Currently, only two specifiers are supported:
   * `/all` returns a resident if it fulfills **all** of the specified keywords.
   * `/any` returns a resident if it fulfills **any** of the specified keywords.
 * Repeated keys are not permitted for both specifiers, e.g. `remove /all h/D h/A` will not work.
-* However, tags can be repeated in the command e.g. `remove /all t/exchange t/fresher`
+* However, tags can be repeated in the command e.g. `remove /all t/exchange t/fresher`.
 * Valid keys are those included [here](#format-for-resident-fields), and any additional tags.
 
 Examples:
 * `remove /all h/D g/M` deletes residents who are in Draco house, **and** are Male.
 * `remove /any h/D h/A` deletes residents belonging to either `Draco` **or** `Aquila` house.
-* `remove g/M` deletes residents who are male.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
-### Clearing all entries : `clear`
-
 ---
 
-Clears all entries from **RC4HDB**.
+### Clearing all entries : `clear`
+
+Deletes all residents from **RC4HDB**.
 
 Format: `clear`
 
@@ -336,37 +329,37 @@ Deleted data can not be retrieved. Do use this command cautiously!
 ### Format for resident fields
 
 `n/NAME`
-* Whitespaces are allowed *i.e. `Michael B. Jordan` is allowed*
+* Whitespaces are allowed *i.e. `Michael B. Jordan` is allowed*.
 
 `p/PHONE_NUMBER`
-* Must be an **8**-digit non-negative integer
+* Must be an **8**-digit non-negative integer.
 
 `e/EMAIL`
-* Must follow the formatting for all standard emails *i.e. `Example@email.com` is accepted*
-* Can be both valid or invalid emails
+* Must follow the formatting for all standard emails *i.e. `Example@email.com` is accepted*.
+* Can be both valid or invalid emails.
 
 `r/FLOOR-UNIT`
-* The floor number and unit number must be separated by a hyphen
-* Both floor and unit numbers must be a positive integer. The floor number must be below 30 *i.e. `5-8` is valid and `-3-8` is invalid*
+* The floor number and unit number must be separated by a hyphen.
+* Both floor and unit number must be a positive integer less than 30 *i.e. `5-8` is valid, `0-8` is invalid, `30-1` is invalid*.
 
 `g/GENDER`
-* `M` or `F`
-* Not case-sensitive *i.e. `m` and `f` is also valid*
+* `M` or `F`.
+* Not case-sensitive *i.e. `m` and `f` are also valid*.
 
 `h/HOUSE`
-* Represents the RC4 house that the resident is allocated to
-* Must be either `A`, `D`, `L`, `N`, `U`
-* `A` stands for **Aquila**, `D` stands for **Draco**, `L` for **Leo**, `N` for **Noctua**`U` for **Ursa**
-* Not case-sensitive *i.e. `a`, `d`, `l`, `n` and `u` are also valid*
+* Represents the RC4 house that the resident is allocated to.
+* Must be either `A`, `D`, `L`, `N`, `U`.
+* `A` stands for **Aquila**, `D` stands for **Draco**, `L` for **Leo**, `N` for **Noctua**, `U` for **Ursa**.
+* Not case-sensitive *i.e. `a`, `d`, `l`, `n` and `u` are also valid*.
 
 `m/MATRIC_NUMBER`
-* Must be an uppercase `A`, followed by a **7**-digit non-negative integer and an uppercase alphabet. *i.e. `A0123456A`*
-* Not case-sensitive *i.e. `a0123456b`, `A0123456b` and `a0123456B` are also valid*
+* Must be an `A`, followed by a **7**-digit non-negative integer and an alphabet. *i.e. `A0123456A`*.
+* Not case-sensitive *i.e. `a0123456b`, `A0123456b` and `a0123456B` are also valid*.
 
 `t/TAG`
-* Represents any other key that could be used to identify a resident
-* Must be a string. No restrictions on formatting
-* Optional. A resident can have any number of tags, including 0
+* Can be used to add any other miscellaneous information that the resident can be identified by.
+* Can only contain alphanumeric characters, whitespaces are not allowed.
+* Optional. A resident can have any number of tags, including 0.
 * When editing tags, the existing tags of the resident will be removed i.e adding of tags is not cumulative.
 * You can remove all the resident’s tags by typing `t/` without specifying any tags after it.
 * Multiple tags can be added to the command using multiple keywords e.g `t/president t/exchange`.
@@ -379,26 +372,18 @@ Deleted data can not be retrieved. Do use this command cautiously!
 
 You might find yourself overloaded with information. These commands can help you hide resident fields from view, 
 find specific residents, or search for residents whose fields match a specific keyword. By de-cluttering your screen, 
-these commands will allow you to focus only on the information you need!
+these commands help you to focus only on the information you need!
 
 ### Listing all residents : `list`
 
-Lists *all* the residents in the **RC4HDB** database. If the table view is showing a filtered portion of the residents,
+Lists *all* the residents in the **RC4HDB** database with *all* fields included in the view. If the table view is showing a [filtered portion](#filtering-residents-by-field--filter) of the residents,
 calling `list` will restore and display the full list of residents.
 
-Format:
-* `list` to display *all* residents from the database with *all* columns shown in the table.
-  Calling `list` on our sample data will produce the following result:
-  
-
-  ![list command](images/ug-photos/list_command.png)
-
-Note:
-* Any input entered after the `list` command will be ignored.
+Format: `list`
+* Any input entered directly after `list` will be ignored. i.e. *`list asd`*, `asd` will be ignored.
+* Resets the columns in the table to the default view with *all* columns visible.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
-
-<br>
 
 ---
 
@@ -406,48 +391,37 @@ Note:
 
 Shows only the specified columns from the *current* table view.
 
-If your screen is too cluttered, you may use this command to show only the columns you need!
-Take note that:
+[comment]: <> (If your screen is too cluttered, you may use this command to show only the columns you need!)
+
+Note:
 
 1. You can only use `showonly` on existing columns in the current table view, and
-2. The `showonly` command does not modify the list of residents being displayed. 
-   
-Filtered residents *stay filtered*!
+2. The `showonly` command does not modify the list of residents being displayed. [Filtered residents](#filtering-residents-by-field--filter) *stay filtered*.
 
 Format: `showonly LETTER [MORE_LETTERS]`
+* Valid inputs include `i n p e r g h m t` (case-insensitive), which correspond to the first letter of each field in the table.
+    * This *should not* be confused with the `n/` or `p/` prefixes used in `add` or `filter`.
+* Letters *must* be separated by a single whitespace.
+* The order of each letter does not matter.
+* Duplicate letters are ignored.
+* There needs to be at least one column shown in the table at all times.
+* You can always use `reset` to restore the full table view!
 
-Calling `filter /all g/M` (click [here](#filtering-residents-by-field--filter) to learn about `filter`) followed by
-`showonly n g h` will produce the following result:
+Calling `filter /all g/M` on a full table, followed by `showonly n g h` will produce the following result:
 
+![showonly](images/ug-photos/showonly_photo.png)
 
-![showonly](images/ug-photos/showonly_command.png)
+As you can see,`showonly` displays only the specified columns, and does not change the filtered list of residents. 
 
-As you can see,`showonly` displays only the specified columns and preserves the filter! This is one way you can 
-use our commands in conjunction with one another.
-
-Sequential examples:
+The following examples are to be performed one after the other:
 
 1. `showonly n g h` on a full table returns a table with only the *name*, *gender* and *house* columns shown, as above.
 2. Using `showonly r p e` on the table from point 1 is **invalid** as the *room*, *phone* and
   *email* columns are *not present* in the current table.
 3. However, using `showonly n g` on said table is **valid**, and will return a table with only the *name* and
-  *email* columns shown.
-   
-
-Note:
-
-* Valid inputs include `i n p e r g h m t` (case-insensitive), which correspond to the first letter of each field in the table.
-  * This *should not* be confused with the `n/` or `p/` prefixes used in `add` or `filter`.
-* Letters *must* be separated by a single whitespace.
-* The order of each letter does not matter.
-* Duplicate letters are ignored. 
-* There needs to be at least one column shown in the table at all times.
-* You can always use `reset` to restore the full table view!
-
+  *gender* columns shown.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
-
-<br>
 
 ---
 
@@ -455,19 +429,30 @@ Note:
 
 Hides only the specified columns from the *current* table view.
 
-Use `hideonly` if there are more columns to show than hide.
-Like `showonly`:
+[comment]: <> (Use `hideonly` if there are more columns to show than hide.)
+
+Note:
 
 1. You can only use `hideonly` on existing columns in the current table view, and
-2. The `hideonly` command does not modify the list of residents being displayed. 
-   
-Residents found using `find` *stay displayed* in the table! (click [here](#locating-residents-by-name--find) to learn about `find`)
+2. The `hideonly` command does not modify the list of residents being displayed. Residents found using `find` *stay displayed* in the table. 
+
+(Click [here](#locating-residents-by-name--find) to learn about `find`)
 
 Format: `hideonly LETTER [MORE_LETTERS]`
+* Valid inputs include `i n p e r g h m t` (case-insensitive), which correspond to the first letter of each field in the table.
+    * This *should not* be confused with the `n/` or `p/` prefixes used in `edit` or `filter`.
+* Letters *must* be separated by a single whitespace.
+* The order of each letter does not matter.
+* Duplicate letters are ignored.
+* There needs to be at least one column shown in the table at all times.
+* You can always use `reset` to restore the full table view!
 
-![hideonly](images/ug-photos/hideonly_command.png)
+Calling `hideonly i r p e m t` on a full table will produce the following result:
 
-Sequential examples:
+![hideonly](images/ug-photos/hideonly_photo.png)
+
+
+The following examples are to be performed one after the other:
 
 1. `hideonly i r p e m t` on a full table returns a table with only the *index*, *room*, *phone*, *email*, *matric* 
    and *tags* columns hidden. 
@@ -477,39 +462,23 @@ Sequential examples:
 3. However, using `hideonly n` on said table is **valid**, and will return a table with only the *gender* and *house*
    columns shown, as the *name* column has been hidden.
 
-Note:
-
-* Valid inputs include `i n p e r g h m t` (case-insensitive), which correspond to the first letter of each field in the table.
-    * This *should not* be confused with the `n/` or `p/` prefixes used in `edit` or `filter`.
-* Letters *must* be separated by a single whitespace.
-* The order of each letter does not matter.
-* Duplicate letters are ignored.
-* There needs to be at least one column shown in the table at all times.
-* You can always use `reset` to restore the full table view!
-
-
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
-
-<br>
 
 ---
 
 ### Resetting hidden columns : `reset`
 
-Resets the columns in the table to the default view with *all* columns visible.
+Resets the columns in the table to the full view with *all* columns visible.
 
-Use this when you have called `showonly` or `hideonly` on the table!
+[comment]: <> (Use this when you have called `showonly` or `hideonly` on the table!)
 
 Format: `reset`
-
-Note:
-* Any input entered after the `reset` command will be ignored.
+* Any input entered directly after `reset` will be ignored. i.e. *`reset asd`*, `asd` will be ignored.
 * This command is different from the `list` command in that it does not affect the list of residents being displayed.
-  * However, both commands cause the full set of resident fields to be displayed in the table.
+    * However, both commands cause the full set of resident fields (i.e. the full set of columns) to be displayed in the table.
+
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
-
-<br>
 
 ---
 
@@ -517,29 +486,25 @@ Note:
 
 Finds residents whose names contain any of the given keywords.
 
-Format: `find NAME [ADDITIONAL_NAMES]`
-
-* The search is case-insensitive. e.g `peter pang` will match `Peter Pang`
+Format: `find KEYWORD [ADDITIONAL_NAMES]`
+* The search is case-insensitive. e.g `peter pang` will match `Peter Pang`.
 * Only the name is searched.
 * The order of the keywords does not matter.
-* Full and partial words will be matched e.g. `Nav` will match `Navarun`
-* Residents matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Quek Wei` will return `Quek Xiang`, `Jun Wei`
+* Full and partial words will be matched e.g. `Nav` will match `Navarun`.
+* Residents matching at least one keyword will be returned, e.g. `Quek Wei` will return `Quek Xiang`, `Jun Wei`.
 
 Calling `find el an` on our sample data will produce the following result:
 
-![find_command](images/ug-photos/find_command.png)
+![find_command](images/ug-photos/find_photo.png)
 
-As you can see, the residents with names containing either "el" or "an", and are listed as the result of the `find` command.
+As you can see, the residents with names containing either "el" or "an" are listed as the result of the `find` command.
 
 Examples:
-* `find shawn` returns `shawn` and `Shawn Tan`
+* `find shawn` returns `Shawn Lee` and `Shawn Ng`
 * `find elizabeth david` returns `Elizabeth Ong`, `David Lee`
 * `find char li` returns `Charmaine Yee`, `William Li`<br>
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
-
-<br>
 
 ---
 
@@ -547,15 +512,13 @@ Examples:
 Shows a list of residents whose fields match the input keywords.
 
 Format: `filter /SPECIFIER KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
-
-* A specifier is required in order for the command to work. If not it is an invalid command format
+* A specifier is required in order for the command to work. If not, it is an invalid command format.
 * Only one specifier can be entered in a command.
 * Currently, only two specifiers are supported:
   * `/all` returns a resident if it fulfills **all** of the specified keywords.
   * `/any` returns a resident if it fulfills **any** of the specified keywords.
-* Repeated keys are not permitted for `/all` specifier, e.g. `filter /all h/D h/A` will not work.
 * Repeated keys are not permitted for both specifiers, e.g. `filter /all h/D h/A` will not work.
-* However, tags can be repeated in the command e.g. `filter /all t/exhange t/fresher`
+* Tags can be repeated in the command e.g. `filter /all t/exhange t/fresher`.
 * Valid keys are those included [here](#format-for-resident-fields), and any additional tags.
 
 Examples:
@@ -572,12 +535,14 @@ Examples:
 To provide a streamlined way of managing **RC4** related data, **RC4HDB** provides users with the ability to organise their files using our file management commands.
 
 **RC4HDB** currently supports the following file management functionalities:
-* [**Creation**](#creating-a-new-data-folder--file-create) of new data folders
-* [**Deletion**](#deleting-an-existing-data-folder--file-delete) of old data folders
-* [**Switching**](#switching-to-a-different-data-folder--file-switch) between different data folders
+* [**Creation**](#creating-a-new-data-folder--file-create) of new data folders.
+* [**Deletion**](#deleting-an-existing-data-folder--file-delete) of old data folders.
+* [**Switching**](#switching-to-a-different-data-folder--file-switch) between different data folders.
 * [**Importing**](#importing-resident-data-from-csv-file--file-import) of resident data from a [CSV](#glossary-of-terms) file.
 
-<div markdown="span" class="alert alert-info">:information source: All file commands operate in the [data directory]().
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+Before proceeding to learn more about file commands it would be good to have a quick read about the **file command format** and **CSV files**, which will be used in the commands. They can be found <a>[here](#file-command-format)</a> and
+<a>[here](#csv-file-format)</a> respectively.
 </div>
 
 ---
@@ -596,24 +561,77 @@ To find out which **sub** data folder is currently open, look at the **footer**,
 
 ---
 
-### Editing your data file
-
-After familiarising yourself with **RC4HDB**, you are welcome to update data directly by editing the `resident_data.json` and `venue_data.json` found in your [**sub**](#finding-your-data) data folder. <span style="color:red">However, do take note that this is not the recommended method to edit data.</span>
-
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, RC4HDB will discard all data and start with an empty data 
-file at the next run.
-</div>
-
-[Back to Top](#welcome-to-rc4hdb-user-guide)
-
----
-
 ### Saving your data
 
 RC4HDB saves your data after every command. There is no need to save manually.
 
 [Back to Top](#welcome-to-rc4hdb-user-guide)
+
+---
+
+### Creating a new data folder : `file create`
+
+Creates a new [**sub**](#finding-your-data) folder with `FOLDER_NAME` as its name.
+
+Format: `file create FOLDER_NAME`
+* Does not create a new folder if the folder already exists.
+* After creating a new folder, RC4HDB will then create **fresh** data file to store **venue** and **resident** data.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The **FOLDER_NAME** must follow this <a>[format](#file-command-format)</a>. </div>
+
+Examples:
+* `file create rc4_data_2022` will create a new folder named `rc4_data_2022` with fresh data **resident** and **venue** data files.
+
+[↑ Back to Top](#welcome-to-rc4hdb-user-guide)
+
+---
+
+### Deleting an existing data folder : `file delete`
+
+Deletes a [**sub**](#finding-your-data) data folder.
+
+Format: `file delete FOLDER_NAME`
+* Does not delete the folder if it is currently open. You must switch to a different folder before deleting the previously open folder.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The **FOLDER_NAME** must follow this <a>[format](#file-command-format)</a>. </div>
+
+Examples:
+* `file delete rc4_data_2022` will delete the `rc4_data_2022` folder, along with the **resident** and **venue** data files inside the folder.
+
+[↑ Back to Top](#welcome-to-rc4hdb-user-guide)
+
+---
+
+### Switching to a different data folder : `file switch`
+
+Switches between different [**sub**](#finding-your-data) data folders.
+
+Format: `file switch FOLDER_NAME`
+* Does not create a new folder if the specified folder does not exist.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The **FOLDER_NAME** must follow this <a>[format](#file-command-format)</a>. </div>
+
+Examples:
+* `file switch rc4_data_2022` will switch the currently used folder to `rc4_data_2022`.
+
+[↑ Back to Top](#welcome-to-rc4hdb-user-guide)
+
+---
+
+### Importing resident data from CSV file : `file import`
+
+Imports data from [CSV](#glossary-of-terms) files. In order for RC4HDB to find your files, place them in the [**main**](#finding-your-data) data folder.
+
+Format: `file import FILE_NAME`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+The **FILE_NAME** must follow this <a>[format](#file-command-format)</a> and the **CSV** file must follow this <a>[format](#csv-file-format)</a>.
+</div>
+
+Examples:
+* `file import residents` will import the data from `residents.csv` into a new **resident** data file which can be found in the `residents` **sub** data folder in the **main** data folder.
+
+[↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
 
@@ -641,76 +659,11 @@ RC4HDB saves your data after every command. There is no need to save manually.
 
 ---
 
-### Creating a new data folder : `file create`
-
-Creates a new [**sub**](#finding-your-data) folder with the specified `FOLDER_NAME`, if such a folder does not exist. After creating a new folder, RC4HDB will then create **fresh** data file to store **venue** and **resident** data.
-
-Format: `file create FOLDER_NAME`
-* Does not create a new folder if the folder already exists.
-
-:information_source: `FOLDER_NAME` must follow this [format](#file-command-format).
-
-Examples:
-* `file create rc4_data_2022` will create a new folder named `rc4_data_2022` with fresh data **resident** and **venue** data files.
-
-[↑ Back to Top](#welcome-to-rc4hdb-user-guide)
-
----
-
-### Deleting an existing data folder : `file delete`
-
-RC4HDB provides users with the ability to delete their [**sub**](#finding-your-data) data folders when they no longer require them.
-
-Format: `file delete FOLDER_NAME`
-* Does not delete the folder if it is currently open. You may switch to a different folder before deleting the previously open folder.
-
-:information_source: `FOLDER_NAME` must follow this [format](#file-command-format).
-
-Examples:
-* `file delete rc4_data_2022` will delete the `rc4_data_2022` folder, along with the **resident** and **venue** data files inside the folder.
-
-[↑ Back to Top](#welcome-to-rc4hdb-user-guide)
-
----
-
-### Switching to a different data folder : `file switch`
-
-**RC4HDB** provides users with the ability to switch between different [**sub**](#finding-your-data) data folders.
-
-Format: `file switch FOLDER_NAME`
-* Does not create a new folder if the specified folder does not exist.
-
-:information_source: `FOLDER_NAME` must follow this [format](#file-command-format).
-
-Examples:
-* `file switch rc4_data_2022` will switch the currently used folder to `rc4_data_2022`.
-
-[↑ Back to Top](#welcome-to-rc4hdb-user-guide)
-
----
-
-### Importing resident data from CSV file : `file import`
-
-**RC4HDB** provides users with the ability to import data from [CSV](#glossary-of-terms) files. In order for RC4HDB to find your files, place them in the [**main**](#finding-your-data) data folder.
-
-Format: `file import FILE_NAME`
-
-:information_source: The csv file that you want to have imported must follow this [format](#csv-file-format).<br>
-
-Examples:
-* `file import residents` will import the data from `residents.csv` into a new **resident** data file which can be found in the `residents` **sub** data folder in the **main** data folder.
-
-[↑ Back to Top](#welcome-to-rc4hdb-user-guide)
-
----
-
 ### CSV file format
-
-:information_source: All fields must adhere to this [format](#format-for-resident-fields).<br>
 
 Format:
 * For clarity, the table column headers have been included. **DO NOT** include them in your **CSV** file.
-* All fields are mandatory, apart from `TAGS`, where users to input a `NIL`, which is **not** case-sensitive.
+* All fields are mandatory, apart from `TAGS`, where users have to input a `NIL`, which is **not** case-sensitive.
 
 | NAME         | PHONE_NUMBER | EMAIL                   | FLOOR-UNIT | GENDER | HOUSE  | MATRIC_NUMBER | TAGS                |
 |--------------|--------------|-------------------------|------------|--------|--------|---------------|---------------------|
@@ -731,9 +684,9 @@ add, remove bookings for those venues.
 
 ### Viewing the bookings
 
-To view the bookings, you will have to click on the tab labelled as bookings.
+To view the bookings, you will have to **click on the tab labelled as bookings**.
 
-![Booking tab](images/venue_tab_ui.png)
+![Booking tab](images/ug-photos/booking_photo.png)
 
 As you perform the booking commands, the table will automatically update to reflect the changes you have made.
 
@@ -743,14 +696,10 @@ from another venue, the table will automatically switch to that venue's booking.
 Alternatively, you can use the `venue view VENUE_NAME` command to switch manually.
 </div>
 
----
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 Before proceeding to learn more about venue commands, it would be good to have a quick read about the **venue fields**, which will
-be used in the commands.
+be used in the commands. The venue <a>[fields](#glossary-of-terms)</a> can be found <a>[here](#format-for-venue-fields)</a>.
 </div>
-
-The venue fields can be found [here](#format-for-venue-fields).
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -762,9 +711,15 @@ Adds a venue to the database.
 
 Format: `venue add VENUE_NAME`
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME** must follow this <a>[format](#format-for-venue-fields)</a>. </div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To view all venues, switch over to the bookings tab and refer to the list on the right!
+</div>
+
 Examples:
-* `venue add Meeting Room 3`
-* `venue add Multi-purpose Hall `
+* `venue add Meeting Room 3` adds a venue called `Meeting Room 3`.
+* `venue add Multi-purpose Hall ` adds a venue called `Multi-purpose Hall`.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -776,9 +731,15 @@ Deletes a venue from the database.
 
 Format: `venue delete VENUE_NAME`
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME** must follow this <a>[format](#format-for-venue-fields)</a>. </div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To view all venues, switch over to the bookings tab and refer to the list on the right!
+</div>
+
 Examples:
-* `venue delete Meeting Room`
-* `venue delete Hall`
+* `venue delete Meeting Room` deletes a venue called `Meeting Room`.
+* `venue delete Hall` deletes a venue called `Hall`.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -790,9 +751,15 @@ Displays all bookings for the specified venue.
 
 Format: `venue view VENUE_NAME`
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME** must follow this <a>[format](#format-for-venue-fields)</a>. </div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To view all venues, switch over to the bookings tab and refer to the list on the right!
+</div>
+
 Examples:
-* `venue view Meeting Room`
-* `venue view Hall`
+* `venue view Meeting Room` switches the current list of bookings displayed to the ones in `Meeting Room`.
+* `venue view Hall` switches the current list of bookings displayed to the ones in `Hall`.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -800,17 +767,22 @@ Examples:
 
 ### Adding a booking: `venue book`
 
-Adds a booking to the specified venue, time period and day.
+Adds a booking to the specified venue, at the given time period and day.
 
 Format: `venue book INDEX v/VENUE_NAME tp/TIME_PERIOD d/DAY`
-
 * Adds a booking under the resident specified at `INDEX`, at the specified `VENUE_NAME`, `TIME_PERIOD` and `DAY`.
 * The index refers to the index number shown in the displayed residents list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME**, **TIME_PERIOD**, and **DAY** must follow this <a>[format](#format-for-venue-fields)</a>. </div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To view all venues, switch over to the bookings tab and refer to the list on the right!
+</div>
+
 Examples:
-* `venue book 2 v/Meeting Room tp/8-9 d/TUE`
-* `venue book 1 v/Hall tp/13-14 d/WED`
+* `venue book 2 v/Meeting Room tp/8-9 d/TUE` books the Meeting Room from 8am to 9am on Tuesday.
+* `venue book 1 v/Hall tp/13-14 d/WED` books the Hall from 1pm to 2pm on Wednesday.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -818,13 +790,19 @@ Examples:
 
 ### Deleting a booking: `venue unbook`
 
-Deletes a booking from the specified venue, time period and day.
+Deletes a booking from the specified venue, at the given time period and day.
 
 Format: `venue unbook v/VENUE_NAME tp/TIME_PERIOD d/DAY`
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME**, **TIME_PERIOD**, and **DAY** must follow this <a>[format](#format-for-venue-fields)</a>. </div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To view all venues, switch over to the bookings tab and refer to the list on the right!
+</div>
+
 Examples:
-* `venue unbook v/Meeting Room tp/8-9 d/TUE`
-* `venue unbook v/Hall tp/13-18 d/WED`
+* `venue unbook v/Meeting Room tp/8-9 d/TUE` deletes the 8am to 9am Meeting Room booking on Tuseday.
+* `venue unbook v/Hall tp/13-18 d/WED` deletes the 1pm to 6pm Hall booking n Wednesday.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -833,21 +811,21 @@ Examples:
 ### Format for Venue fields
 
 `v/VENUE_NAME`
-* The name displayed for the venue will be the exactly identical to the one specified in `VENUE_NAME`
-* Can contain alphanumeric characters and whitespaces i.e. `m 3 3 t i n g r o o m` is valid
-* Case-insensitive i.e. venues `Meeting Room` and `meeting room` are identical
+* The name displayed for the venue will be the exactly identical to the one specified in `VENUE_NAME`.
+* Can contain alphanumeric characters and whitespaces i.e. `m 3 3 t i n g r o o m` is valid.
+* Case-insensitive i.e. venues `Meeting Room` and `meeting room` are identical.
 
 `tp/TIME_PERIOD`
-* The start time and end time must be separated by a hyphen *i.e. 8 to 9 must be indicated as `8-9`*
-* Must begin and end on the hour *i.e. `1230-13` will not be accepted*
-* Operates on a 24-hour format *i.e. `4p.m.` must be indicated as `16`*
-* Valid booking hours are from `8` to `22`
-* Blocks of time are allowed *i.e. `18-21` is accepted*
-* The start time must be earlier than end time
+* The start time and end time must be separated by a hyphen *i.e. 8 to 9 must be indicated as `8-9`*.
+* Must begin and end on the hour *i.e. `1230-13` will not be accepted*.
+* Operates on a 24-hour format *i.e. `4p.m.` must be indicated as `16`*.
+* Valid booking hours are from `8` to `23`.
+* Blocks of time are allowed *i.e. `18-21` is accepted*.
+* The start time must be earlier than end time.
 
 `d/DAY`
-* Must be the first three characters of a day *i.e. Monday must be indicated as mon*
-* Case-insensitive *i.e. tUe, TUE, tue are all valid*
+* Must be the first three characters of a day *i.e. Monday must be indicated as mon*.
+* Case-insensitive *i.e. tUe, TUE, tue are all valid*.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -899,8 +877,8 @@ will not be saved!. </div>
 ## **Exiting the Program**
 
 You do not have to worry about exiting
-**RC4HDB** without saving as any changes you've made is automatically saved after every command. For more information,
-the [file management section](#saving-the-data).
+**RC4HDB** without saving as any changes you've made is automatically saved after every command. For more information, visit
+the section on [saving your data](#saving-your-data).
 
 ### Exiting the program : `exit`
 
@@ -924,7 +902,7 @@ The file will be safe to remove from the `[JAR file location]/data` folder.
 
 Format: `file export FILE_NAME`
 
-:information_source: The csv file will be exported in this [format](#csv-file-format).<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The csv file will be exported in this format <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#csv-file-format">format</a>. </div>
 
 Examples:
 * `file export residents` will export the data from `residents.json` file into a `.csv` file named `residents.csv`.
@@ -937,9 +915,37 @@ Examples:
 
 ## **FAQ**
 
+**Q: I type very slowly, is RC4HDB any good for me?**
+
+**A**: You do not have to be fast at typing for RC4HDB to improve your workflow!
+
+<br>
+
+**Q: I have accidentally deleted an entry, is there any way for me to undo it?**
+
+**A**: Currently, we do not offer such an option, but you can look forward to RC4HDB v1.5, as we will be implementing that
+in the near future!
+
+<br>
+
+**Q: The text on the screen is too small, is there any way for me to resize it?**
+
+**A**: RC4HDB does not allow the text size to be changed, however, you can enlarge the text by changing your screen resolution. You may
+refer to this [link](https://support.microsoft.com/en-us/windows/change-your-screen-resolution-in-windows-5effefe3-2eac-e306-0b5d-2073b765876b) for Windows, and this [link](https://www.wikihow.com/Change-the-Screen-Resolution-on-a-Mac) for Mac.
+
+<br>
+
+**Q: Do I need an internet connection to be able to use RC4HDB?**
+
+**A**: You do not need an internet connection to use RC4HDB as everything is done on your device.
+
+<br>
+
 **Q: Can I search using fields other than the name?**
 
 **A**: You can use the `filter` command to search for people using the other fields.
+
+<br>
 
 **Q: Why is there a need to use `hideonly` if we can already use `showonly`?**
 
@@ -947,10 +953,14 @@ Examples:
 `hideonly i` has the same effect as `showonly n p e r g h m t` on a full table. Using `hideonly` helps to save 
 time on typing!
 
+<br>
+
 **Q: How do I remember which commands use letters (as compared to other commands which use key/value) as inputs?**
 
 **A**: Only the column hiding features, i.e. `showonly` and `hideonly`, use letters. You can remember this by 
 associating the "only" in these commands to the convenience of typing *only* letters!
+
+<br>
 
 **Q: The section for `showonly` and `hideonly` says that `i n p e r g h m t` are valid letters. However, I am getting an error message that says "Please enter columns to show or hide that are currently in the table view." when using these valid letters.** 
 
@@ -960,11 +970,19 @@ be present* in the current table. The error message mentioned above means that t
 *not fully present* in the table. Please make sure to *only* enter letters corresponding to the columns you see on your 
 screen when typing these commands. 
 
-**Q:** How can I resize the columns in table?
+<br>
+
+**Q: How can I resize the columns in the table?**
 
 **A:** Column resizing can be done the same way as they do in Excel. However, we only allow the resizing of the `Name` and `Email` columns.
 They other have a fixed size to allow for your ease of viewing. Alternatively, you could also use the `showonly` and `hideonly` commands if you
 do not wish to see them.
+
+<br>
+
+**Q: I can not find the information that I need in the User Guide, who can I contact?**
+
+**A:** You can drop us an email at *nseah21@gmail.com* .
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -993,12 +1011,10 @@ This term is short for JavaScript Object Notation. It is a common file type that
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 
-# Authors
+## Authors
 
 This User Guide was co-written by Alvin, Jordan, Neale, Nicholas, and Naren, the developers behind RC4HDB.
 For more information, please refer to our [about us](AboutUs.md) page.
-
-
 
 ---
 
@@ -1011,10 +1027,10 @@ commands. The tables below contain the full summary of our commands and how they
 
 ### General Commands
 
-| Action   | Format, Examples |
-|----------|------------------|
-| **Help** | `help`           |
-| **Exit** | `exit`           |
+| Action                                 | Format, Examples |
+|----------------------------------------|------------------|
+| [**Help**](#viewing-help--help)        | `help`           |
+| [**Exit**](#exiting-the-program--exit) | `exit`           |
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -1022,12 +1038,14 @@ commands. The tables below contain the full summary of our commands and how they
 
 ### Modifying Resident Commands
 
-| Action     | Format, Examples                                                                                                                                                                  |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL r/FLOOR-UNIT g/GENDER h/HOUSE m/MATRIC_NUMBER [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com r/2-1 g/M h/D m/A9876543B` |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/FLOOR-UNIT] [g/GENDER] [h/HOUSE] [m/MATRIC_NUMBER] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`              |
-| **Delete** | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                |
-| **Clear**  | `clear`                                                                                                                                                                           |
+| Action                                             | Format, Examples                                                                                                                                                                  |
+|----------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Add**](#adding-a-resident--add)                 | `add n/NAME p/PHONE_NUMBER e/EMAIL r/FLOOR-UNIT g/GENDER h/HOUSE m/MATRIC_NUMBER [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 e/jamesho@example.com r/2-1 g/M h/D m/A9876543B` |
+| [**Edit**](#editing-an-existing-resident--edit)    | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/FLOOR-UNIT] [g/GENDER] [h/HOUSE] [m/MATRIC_NUMBER] [t/TAG]…​`<br> e.g.`edit 2 n/James Lee e/jameslee@example.com`              |
+| [**Delete**](#deleting-a-resident--delete)         | `delete INDEX`<br> e.g. `delete 3`                                                                                                                                                |
+| [**Remove**](#deleting-multiple-residents--remove) | `remove [/SPECIFIER] KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`<br> e.g. `remove /all h/D g/M`                                                                                |
+| [**Clear**](#clearing-all-entries--clear)          | `clear`                                                                                                                                                                           |
+
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -1035,14 +1053,14 @@ commands. The tables below contain the full summary of our commands and how they
 
 ### Viewing Resident Commands
 
-| Action        | Format, Examples                                                                                           |
-|---------------|------------------------------------------------------------------------------------------------------------|
-| **List**      | `list`                                                                                                     |
-| **Show only** | `showonly LETTER [MORE_LETTERS]`<br/>e.g. `showonly n p e t`                                               |
-| **Hide only** | `hideonly LETTER [MORE_LETTERS]`<br/>e.g. `hideonly i r g h m`                                             |
-| **Reset**     | `reset`                                                                                                    |
-| **Find**      | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`                                                  |
-| **Filter**    | `filter /specifier KEY:VALUE [ADDITIONAL_KEYS:ADDITIONAL_VALUES]` <br> e.g. `filter /all h/D g/M`          |
+| Action                                                | Format, Examples                                                                                           |
+|-------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
+| [**List**](#listing-all-residents--list)              | `list`                                                                                                     |
+| [**Show only**](#showing-only-some-columns--showonly) | `showonly LETTER [MORE_LETTERS]`<br/>e.g. `showonly n p e t`                                               |
+| [**Hide only**](#hiding-only-some-columns--hideonly)  | `hideonly LETTER [MORE_LETTERS]`<br/>e.g. `hideonly i r g h m`                                             |
+| [**Reset**](#resetting-hidden-columns--reset)         | `reset`                                                                                                    |
+| [**Find**](#locating-residents-by-name--find)         | `find KEYWORD [MORE_KEYWORDS]`<br> e.g. `find James Jake`                                                  |
+| [**Filter**](#filtering-residents-by-field--filter)   | `filter /specifier KEY:VALUE [ADDITIONAL_KEYS:ADDITIONAL_VALUES]` <br> e.g. `filter /all h/D g/M`          |
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -1050,12 +1068,12 @@ commands. The tables below contain the full summary of our commands and how they
 
 ### File Management Commands
 
-| Action          | Format, Examples                                                |
-|-----------------|-----------------------------------------------------------------|
-| **Create File** | `file create FOLDER_NAME` <br> e.g. `file create rc4_data_2022` |
-| **Delete File** | `file delete FOLDER_NAME` <br> e.g. `file delete rc4_data_2022` |
-| **Switch File** | `file switch FOLDER_NAME` <br> e.g. `file switch rc4_data_2022` |
-| **Import File** | `file import FILE_NAME` <br> e.g. `file import students`        |
+| Action                                                                 | Format, Examples                                                |
+|------------------------------------------------------------------------|-----------------------------------------------------------------|
+| [**Create File**](#creating-a-new-data-folder--file-create)            | `file create FOLDER_NAME` <br> e.g. `file create rc4_data_2022` |
+| [**Delete File**](#deleting-an-existing-data-folder--file-delete)      | `file delete FOLDER_NAME` <br> e.g. `file delete rc4_data_2022` |
+| [**Switch File**](#switching-to-a-different-data-folder--file-switch)  | `file switch FOLDER_NAME` <br> e.g. `file switch rc4_data_2022` |
+| [**Import File**](#importing-resident-data-from-csv-file--file-import) | `file import FILE_NAME` <br> e.g. `file import students`        |
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -1063,13 +1081,13 @@ commands. The tables below contain the full summary of our commands and how they
 
 ### Venue Booking Commands
 
-| Action           | Format, Examples                                                                                          |
-|------------------|-----------------------------------------------------------------------------------------------------------|
-| **Add Venue**    | `venue add VENUE_NAME` <br> e.g. `venue add Meeting Room 3`                                               |
-| **Delete Venue** | `venue delete VENUE_NAME` <br> e.g. `venue delete Hall`                                                   |
-| **View Venue**   | `venue view VENUE_NAME` <br> e.g. `venue view Hall`                                                       |
-| **Book Venue**   | `venue book INDEX v/VENUE_NAME tp/TIME_PERIOD d/DAY` <br> e.g. `venue book 2 v/Meeting Room tp/8-9 d/TUE` |
-| **Unbook Venue** | `venue unbook v/VENUE_NAME tp/TIME_PERIOD d/DAY` <br> e.g. `venue unbook v/Meeting Room tp/8-9 d/TUE`     |
+| Action                                                | Format, Examples                                                                                          |
+|-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|
+| [**Add Venue**](#adding-a-venue--venue-add)           | `venue add VENUE_NAME` <br> e.g. `venue add Meeting Room 3`                                               |
+| [**Delete Venue**](#deleting-a-venue--venue-delete)   | `venue delete VENUE_NAME` <br> e.g. `venue delete Hall`                                                   |
+| [**View Venue**](#viewing-a-venue--venue-view)        | `venue view VENUE_NAME` <br> e.g. `venue view Hall`                                                       |
+| [**Book Venue**](#adding-a-booking-venue-book)        | `venue book INDEX v/VENUE_NAME tp/TIME_PERIOD d/DAY` <br> e.g. `venue book 2 v/Meeting Room tp/8-9 d/TUE` |
+| [**Unbook Venue**](#deleting-a-booking-venue-unbook)  | `venue unbook v/VENUE_NAME tp/TIME_PERIOD d/DAY` <br> e.g. `venue unbook v/Meeting Room tp/8-9 d/TUE`     |
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
