@@ -261,7 +261,34 @@ Additionally, the `execute()` call to `FavouriteCommand` is passed onto `TagComm
 
 This unique implementation of `FavouriteCommand` and `UnfavouriteCommand` is especially important to keep in mind if future modifications (e.g. keeping favourited eateries at the top of the list) are implemented.
 
+### Optional fields in Eateries _(currently not in use)_
+The ability to keep some fields optional is very useful as the user is less inclined to use a dummy input when seeking to decide on the contents on fields later.
+Hence, this works with the `edit` command to give the user even more flexibility.
+Due to the importance of the `price` field, this option is removed and no longer presented to the user in the current iteration of our product. However, it is still feasible to implement should the need for it arise.
 
+#### Implementation
+
+<p align="center">
+<img src="images/OptionalFieldActivityDiagram.png" /> <br>
+*The* ***Activity Diagram*** *shows how different the AddCommandParser and Eatery classes operate with different inputs.*
+</p>
+
+_(Note: This diagram omits references to `-h` help as it is presented on its own. For more information about help, you can refer to the
+[section about the -h command](#displaying-command-help) above.)_
+
+As seen from the diagram, the compulsory fields are always checked first to ensure that the argument map does not contain null values.
+Thereafter, the call to the optional field's constructor is handled within the `Eatery` object.
+The optional field should be able to receive both null and non-null values (or by using 2 different constructors), with the input left empty indicating that there is currently no value for the optional field.
+At the end, a complete eatery is returned to be added, with other classes having no idea whether the Eatery contains the optional field or not.
+<br>
+
+Since null values may cause NullPointerException errors, it is important that all data relating to this field is kept within the class itself.
+Hence, heavy abstraction should be used here. Such examples include:
+* Not giving public direct access to the value (e.g. `toString()` returns `" "` instead of null)
+* Keeping the parsing of the data files to the related optional field class only
+<br>
+
+There are several ways to deal with storing this optional value, but the one that was used for this particular implementation was storing the optional field as an empty `""` string. This is because the optional field constructor with a value did not allow null values. Hence, any empty strings appearing in the json save file must have been due to the use of the default constructor.
 
 ### \[Proposed\] Undo/redo feature
 
