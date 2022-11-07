@@ -9,14 +9,18 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.item.DisplayItem;
 
+// @@author jasonchristopher21
 /** Command to rename a group/task/person */
 public class EditFieldCommand extends FieldCommand {
 
     public static final String SUBCOMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = getFullCommand(SUBCOMMAND_WORD)
-        + " :Assigns an attribute to a given item.\n"
-        + getFullCommand(SUBCOMMAND_WORD) + "[t|u|g]/id [type] [value] [settings] [styleflags]";
+        + " :Edits an existing attribute of a given item.\n"
+        + getFullCommand(SUBCOMMAND_WORD) + " [t|u|g]/id [type] [value]\n"
+        + "e.g. field edit t/1 bug low severity"
+        + " OR task select 1 field edit bug low severity\n"
+        + "Edit bug attribute of task to low severity";
 
     public static final String NO_INPUT = "No input item is chosen!";
     public static final String MESSAGE_DUPLICATE = "An item with the same name already exist!";
