@@ -227,8 +227,7 @@ public class Commission {
 
     @Override
     public int hashCode() {
-        return Objects.hash(title, fee, deadline, tags, description, iterations, completionStatus,
-                customer.getName(), customer.getEmail());
+        return Objects.hash(title, fee, deadline, tags, description, iterations, completionStatus, customer);
     }
 
     @Override

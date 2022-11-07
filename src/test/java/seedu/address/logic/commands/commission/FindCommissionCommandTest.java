@@ -5,12 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_COMMISSIONS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalCommissions.ALICE_CAT;
-import static seedu.address.testutil.TypicalCommissions.ALICE_DEER;
-import static seedu.address.testutil.TypicalCommissions.CARL_ELEPHANT;
-import static seedu.address.testutil.TypicalCommissions.CARL_SHARK;
-import static seedu.address.testutil.TypicalCommissions.DANIEL_WHALE;
-import static seedu.address.testutil.TypicalCommissions.DANIEL_ZEBRA;
 import static seedu.address.testutil.TypicalCommissions.getTypicalAddressBookWithCommissions;
 
 import java.util.Arrays;
@@ -130,8 +124,6 @@ public class FindCommissionCommandTest {
         FindCommissionCommand command = new FindCommissionCommand(predicate);
         expectedModel.updateFilteredCommissionList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(new HashSet<>(Arrays.asList(CARL_SHARK, DANIEL_WHALE, ALICE_CAT, DANIEL_ZEBRA, CARL_ELEPHANT)),
-                new HashSet<>(model.getFilteredCommissionList()));
 
         expectedModel.updateFilteredCommissionList(Model.PREDICATE_SHOW_ALL_COMMISSIONS);
         model.updateFilteredCommissionList(Model.PREDICATE_SHOW_ALL_COMMISSIONS);
@@ -141,8 +133,6 @@ public class FindCommissionCommandTest {
         command = new FindCommissionCommand(predicate);
         expectedModel.updateFilteredCommissionList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(new HashSet<>(Arrays.asList(DANIEL_ZEBRA, DANIEL_WHALE, ALICE_DEER)),
-                new HashSet<>(model.getFilteredCommissionList()));
 
         expectedModel.updateFilteredCommissionList(Model.PREDICATE_SHOW_ALL_COMMISSIONS);
         model.updateFilteredCommissionList(Model.PREDICATE_SHOW_ALL_COMMISSIONS);
@@ -152,8 +142,6 @@ public class FindCommissionCommandTest {
         command = new FindCommissionCommand(predicate);
         expectedModel.updateFilteredCommissionList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(new HashSet<>(Arrays.asList(CARL_ELEPHANT, DANIEL_ZEBRA, ALICE_DEER)),
-                new HashSet<>(model.getFilteredCommissionList()));
 
         expectedModel.updateFilteredCommissionList(Model.PREDICATE_SHOW_ALL_COMMISSIONS);
         model.updateFilteredCommissionList(Model.PREDICATE_SHOW_ALL_COMMISSIONS);
@@ -163,8 +151,6 @@ public class FindCommissionCommandTest {
         command = new FindCommissionCommand(predicate);
         expectedModel.updateFilteredCommissionList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(new HashSet<>(Arrays.asList(DANIEL_ZEBRA)),
-                new HashSet<>(model.getFilteredCommissionList()));
 
         expectedModel.updateFilteredCommissionList(Model.PREDICATE_SHOW_ALL_COMMISSIONS);
         model.updateFilteredCommissionList(Model.PREDICATE_SHOW_ALL_COMMISSIONS);
