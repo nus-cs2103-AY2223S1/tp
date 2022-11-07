@@ -27,7 +27,7 @@ title: YANG Mingyang's Project Portfolio Page
   * Developer Guide:
     * Added documentation for user stories[#326](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/326).
     * Added documentation for Glossary[#326](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/326).
-    * Added documentation for features `sclear`, `tview` and `sview`[#326](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/326).
+    * Added documentation for features `sclear`, `tview` and `sview`[#326](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/326), [#332](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/332).
 
 
 * **Community**:
