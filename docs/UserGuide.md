@@ -363,7 +363,7 @@ Hides patients that contain any of the given tags.
 
 Format: `hide patients t/TAG [t/MORE_TAGS]...`
 
-* The search is **NOT** case-sensitive. e.g. `EAR` will match `ear`
+* The search is **NOT** case-sensitive. e.g. `t/EAR` has the same effect as `t/ear`
 * All tags of a patient are searched.
 
 Examples:
