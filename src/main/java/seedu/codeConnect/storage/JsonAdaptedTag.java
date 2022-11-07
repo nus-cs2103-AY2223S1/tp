@@ -2,6 +2,7 @@ package seedu.codeConnect.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import seedu.codeConnect.commons.exceptions.IllegalValueException;
 import seedu.codeConnect.model.tag.Tag;
 
@@ -25,6 +26,11 @@ class JsonAdaptedTag {
      */
     public JsonAdaptedTag(Tag source) {
         tagName = source.tagName;
+    }
+
+    @JsonValue
+    public String getTagName() {
+        return tagName;
     }
 
     /**
