@@ -1060,9 +1060,6 @@ point for testers to work on; testers are expected to do more exploratory testin
       Expected: No applicant is added. Template file created in `data/template/template.json`. Error details shown in
       the status message.
 
-<div style="page-break-after: always;"></div>
-
-
 3. Other incorrect import commands to try: `import`, `import folderName`(where `folderName` is a folder)<br>
    Expected: No applicant is added. Error details shown in the status message.
 
@@ -1112,10 +1109,6 @@ point for testers to work on; testers are expected to do more exploratory testin
    2. Test case: `checkout FILE_NAME`
       Expected: The file `FILE_NAME.json` is created at `data/` folder and its sample data is loaded into the 
       application. Success message shown in the status message.
-
-
-<div style="page-break-after: always;"></div>
-
 
 3. Checkout to an existing file with invalid data or invalid format.
 
