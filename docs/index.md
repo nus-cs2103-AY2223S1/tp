@@ -1,3 +1,8 @@
+---
+layout: page
+title: ArtBuddy
+---
+
 # Waddle 🦆
 
 [![CI Status](https://github.com/AY2223S1-CS2103T-W11-4/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103-W11-4/tp/actions)
@@ -5,7 +10,7 @@
 
 ![Ui](images/Ui.png)
 
-###Introduction
+**Introduction**
 
 * **Waddle** is a simple, no-frills travel planning application catered to people who love doing everything on their keyboards.
 * Features:
@@ -19,7 +24,7 @@
 
 
 
-###Acknowledgements
+**Acknowledgements**
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 
