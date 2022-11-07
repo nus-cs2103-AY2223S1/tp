@@ -85,6 +85,10 @@ Given below are my contributions to the project.
   * DeleteAppointmentCommand
   * DeleteBillCommand
   * ListCommand
+  * SetPaidCommand
+  * SetUnpaidCommand
+  * SelectPatientCommand
+  * SelectAppointmentCommand
 * Added Add feature implementation with sequence diagram.
 * Added Edit feature implementation with sequence diagram.
 * Added Effort for Edit feature implementation.
@@ -102,6 +106,8 @@ Given below are my contributions to the project.
 * Added test cases for DeleteAppointmentCommand class.
 * Added test cases for AddBillCommandParser class.
 * Added test cases for FindBillCommandParser class.
+* Maintained the issue tracker.
+* Released JAR file.
 
 ### Review/mentoring contributions:
 
@@ -109,13 +115,13 @@ Given below are my contributions to the project.
     * [Branch update delete patient command](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/81)
     * [Undo/Redo command](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/136)
     * [Update developer guide for SelectCommand](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/136)
-
-### Contributions beyond the project team:
-to be added soon
+    * [Add HealthContactParserTest](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/340)
 
 ### Tools:
 * IntelliJ
 * Gradle
+* CheckStyle
+* SourceTree
 
 ### Project management:
 to be added soon
