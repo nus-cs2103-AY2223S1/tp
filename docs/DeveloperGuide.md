@@ -432,7 +432,7 @@ The following activity diagram shows what happens when a user executes a `findc`
 
 The sort internship feature allows users to sort the list of internship application via the given parameter in the given
 order via the command `sort SORT_TYPE SORT_ORDER`, where `SORT_TYPE` can either be time or salary, and `SORT_ORDER`
-can either be a or d.
+can either be `a` or `d`.
 
 #### How it is implemented
 
@@ -456,14 +456,14 @@ Sort by salary:
 
 1. The `LogicManager` executes the `SortSalaryCommand`.
 2. The `SortSalaryCommand` checks if the `ORDER_TYPE` is `a` or `d`.
-3. If the `ORDER_TYPE` is a, then `Model#ascendSortSalary()` is called. If the `ORDER_TYPE` is d, then
+3. If the `ORDER_TYPE` is `a`, then `Model#ascendSortSalary()` is called. If the `ORDER_TYPE` is `d`, then
 `Model#descendSortSalary()` is called.
 
 Sort by time:
 
 1. The `LogicManager` executes the `SortTimeCommand`.
-2. The `SortTimeCommand` checks if the `ORDER_TYPE` is a or d.
-3. If the `ORDER_TYPE` is a, then `Model#ascendSortTime()` is called. If the `ORDER_TYPE` is d, then
+2. The `SortTimeCommand` checks if the `ORDER_TYPE` is `a` or `d`.
+3. If the `ORDER_TYPE` is `a`, then `Model#ascendSortTime()` is called. If the `ORDER_TYPE` is `d`, then
    `Model#descendSortTime()` is called.
 
 The following sequence diagram shows how the `sort` command works:
