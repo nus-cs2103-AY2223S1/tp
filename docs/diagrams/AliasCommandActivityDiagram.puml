@@ -1,0 +1,27 @@
+@startuml
+
+!include style.puml
+title Adding Alias
+
+start
+
+:Receives an ""alias"" command;
+
+if () then ([valid alias and valid reserved keyword])
+    :Parses the ""alias""
+    command, alias and reserved keyword;
+
+    :Adds alias-reserved keyword mapping into FRIDAY;
+
+    :Shows a success message;
+
+else ([else])
+
+    :Shows an invalid
+    command message;
+
+endif
+
+stop
+
+@enduml
