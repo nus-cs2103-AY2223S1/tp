@@ -229,7 +229,7 @@ Format: `sortproj`
 ```yaml
 
 Warning !!!:
-  * This command is irreversible, you will not be able to get back the original ordering
+  - This command is irreversible, you will not be able to get back the original ordering
     after this command.
 ```
 
@@ -295,7 +295,7 @@ you should first use the [view command](#view-the-staff-list-within-a-project--v
 
 ```yaml
 Warning !!!:
-  * Failing to do so may result in the Staff commands not working as intended.
+  - Failing to do so may result in the Staff commands not working as intended.
 ```
 
 
@@ -472,7 +472,7 @@ Format: `addtask tdesc/TASK_DESCRIPTION td/TASK_DEADLINE`
 ```yaml
 Note:
   - Both Task fields `TASK_DESCRIPTION` and `TASK_DEADLINE` must be present.
-  - `TASK_DEADLINE` follows the YYYY-MM-DD format.
+  - The `TASK_DEADLINE` follows the YYYY-MM-DD format.
 ```
 
 Examples:
@@ -531,8 +531,8 @@ Sorts all Tasks in displayed Task list by deadline. Earlier deadlines will be pl
 
 ```yaml
 Warning !!!:
-* This command is irreversible, you will not be able to get back the original ordering
-  after this command.
+  - This command is irreversible, you will not be able to get back the original ordering
+    after this command.
 ```
 
 Format: `sorttask`
@@ -544,8 +544,8 @@ Format: `sorttask`
 
 ```yaml
 Warning !!!:
-* This command is irreversible, you will not be able to get back the original ordering
-  after this command.
+  - This command is irreversible, you will not be able to get back the original ordering
+    after this command.
 ```
 
 Sorts all Tasks in displayed Task list by completion status. Incomplete tasks will be placed first.
@@ -619,7 +619,7 @@ Format: `clear`
 
 ```yaml
 Warning !!!:
-* This command is irreversible, you will not be able to recover data after clearing it.
+  - This command is irreversible, you will not be able to recover data after clearing it.
 ```
 
 [Back to top](#table-of-contents)
