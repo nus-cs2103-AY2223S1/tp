@@ -166,7 +166,7 @@ The features covered in this guide are:
 * [Mark Student Feature](#mark-student-feature)
 * [Sort-by feature](#sort-by-feature)
 * [Undo Command Feature](#undo-command-feature)
-* [[Proposed] Find-by feature](#proposed-find-by-feature)
+* [Find-by feature](#find-by-feature)
 
 ### Edit Class Feature
 
@@ -324,7 +324,7 @@ This feature allows the user(teacher) to sort the students from Teacher's Pet by
 
 #### Implementation Details
 
-The proposed `sort` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
+The `sort` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
 The `SortCommand` object will be creating a comparator based on the argument received and pass it to `TeachersPet` so that it will return the
 list of students as per usual. Additionally, it implements the following operation:
 - `TeachersPet#SortStudents(ComparatorM<Student>)` -- Updates the `students` by sorting the list with the given `Comparator`.
@@ -378,9 +378,9 @@ The following sequence diagram shows how the undo operation works:
 
 This feature allows the user (teacher) to find a list of students from Teacher's Pet by one of the specified keywords.
 
-#### Proposed Implementation
+#### Implementation Details
 
-The proposed `find` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
+The `find` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
 There are 7 different variations of `find`:
 1. Find by name: Find all matching student(s) with any matching full keyword(s) from name of student using `find n/[KEYWORDS]`.
 2. Find by email: Find all matching student(s) with any matching full keyword(s) from email of student using `find e/[KEYWORDS]`.
@@ -420,7 +420,7 @@ he or she is looking at. For example, if the teacher wants to have a 1-hour clas
 sure when is the next available date, he or she can simply run `avail 1000-1600 60` and the first available class would
 be output to the teacher.
 
-#### Implementation Details
+#### Proposed Implementation
 
 The main logic of the available class resides in `UniqueStudentlist::getAvailableClass`, where it takes a given
 `TimeRange` parameter and outputs the next available class.
