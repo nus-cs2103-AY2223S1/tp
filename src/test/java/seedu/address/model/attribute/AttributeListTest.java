@@ -40,7 +40,7 @@ class AttributeListTest {
     @Test
     void createAttributeInstance_withSettingAndStyle_success() {
         AttributeList attributeList = new AttributeList();
-        assertEquals(attributeList.createAttributeInstance("Position" ,"CEO", DEFAULT, DEFAULT_STYLE), 
+        assertEquals(attributeList.createAttributeInstance("Position","CEO", DEFAULT, DEFAULT_STYLE),
                 POSITION);
     }
 
