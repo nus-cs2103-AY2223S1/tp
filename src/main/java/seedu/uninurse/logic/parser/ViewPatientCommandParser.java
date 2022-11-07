@@ -1,5 +1,6 @@
 package seedu.uninurse.logic.parser;
 
+import static seedu.uninurse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIXES_OPTION_ALL;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_OPTION_PATIENT_INDEX;
@@ -24,9 +25,16 @@ public class ViewPatientCommandParser implements Parser<ViewPatientCommand> {
         requireAllNonNull(args);
 
         ArgumentMultimap options = ParserUtil.parseOptions(args, PREFIXES_OPTION_ALL);
+        args = ParserUtil.eraseOptions(args, PREFIXES_OPTION_ALL);
 
-        Index index = ParserUtil.parseIndex(options.getValue(PREFIX_OPTION_PATIENT_INDEX).orElse(""));
+        if (ParserUtil.optionsExactlyContains(options, PREFIX_OPTION_PATIENT_INDEX)
+                && args.trim().isEmpty()) {
+            Index index = ParserUtil.parseIndex(
+                    options.getValue(PREFIX_OPTION_PATIENT_INDEX).orElse(""));
+            return new ViewPatientCommand(index);
+        }
 
-        return new ViewPatientCommand(index);
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                ViewPatientCommand.MESSAGE_USAGE));
     }
 }

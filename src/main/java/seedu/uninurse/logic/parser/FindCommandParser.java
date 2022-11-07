@@ -4,6 +4,7 @@ import static seedu.uninurse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMA
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIXES_PATIENT_ALL;
 
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.uninurse.logic.commands.FindCommand;
@@ -34,6 +35,12 @@ public class FindCommandParser implements Parser<FindCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIXES_PATIENT_ALL);
 
         String[] keywords = argMultimap.getPreamble().trim().split("\\s+");
+
+        if (Arrays.stream(PREFIXES_PATIENT_ALL).anyMatch(
+                prefix -> argMultimap.getAllValues(prefix).stream().anyMatch(
+                        string -> string.trim().isEmpty()))) {
+            throw new ParseException(FindCommand.MESSAGE_FAILURE);
+        }
 
         return new FindCommand(new PatientMatchPredicate(List.of(keywords), argMultimap));
     }

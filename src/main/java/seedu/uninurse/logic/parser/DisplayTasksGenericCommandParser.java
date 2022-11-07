@@ -40,7 +40,8 @@ public class DisplayTasksGenericCommandParser implements Parser<DisplayTasksGene
         }
 
         if (ParserUtil.optionsExactlyContains(options, PREFIX_OPTION_PATIENT_INDEX)
-                && options.getValue(PREFIX_OPTION_PATIENT_INDEX).get().equals(SPECIAL_CHARACTER_ALL)) {
+                && options.getValue(PREFIX_OPTION_PATIENT_INDEX).get().equals(SPECIAL_CHARACTER_ALL)
+                && args.trim().isEmpty()) {
             return new ListTaskCommand();
         }
 
