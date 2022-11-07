@@ -34,10 +34,13 @@ public class Rating {
                 || test.equals("10");
     }
 
+
+
     @Override
     public String toString() {
         return Integer.toString(value);
     }
+
 
     @Override
     public boolean equals(Object other) {

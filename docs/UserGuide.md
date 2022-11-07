@@ -31,45 +31,45 @@ In this user guide, you will find instructions on how to install CLInkedIn and a
 
 ## Table of Contents
 
-1. [Using this Guide](#using-this-guide)
-2. [Useful Notations and Glossary](#useful-notations-and-glossary)
-3. [Quick start](#quick-start)
-4. [Features](#features)
-   1. [Viewing help `help`](#viewing-help--help)
-   2. [Adding/Deleting candidates in CLInkedIn](#addingdeleting-candidates-in-clinkedin)
-      1. [Adding a candidate `add`](#adding-a-candidate-add)
-      2. [Deleting a candidate `delete`](#deleting-a-candidate--delete)
-   3. [Adding/Editing/Deleting Tag Types in CLInkedIn](#addingeditingdeleting-tag-types-in-clinkedin)
-      1. [Creating a custom tag type `createTagType`](#creating-a-custom-tag-type-createtagtype)
-      2. [Editing tag type name `editTagType`](#editing-tag-type-name-edittagtype)
-      3. [Deleting an existing tag type `deleteTagType`](#deleting-an-existing-tag-type-deletetagtype)
-   4. [Modifying entries in CLInkedIn](#modifying-entries-in-clinkedin)
-      1. [Editing a candidate `edit`](#editing-a-candidate--edit)
-      2. [Adding an optional tag `addTag`](#adding-a-tag-to-an-existing-candidate--addtag)
-      3. [Deleting an optional tag `deleteTag`]([#deleting-a-tag-of-an-existing-candidate--deletetag)
-      4. [Adding optional information `addNote`](#adding-optional-information-addnote)
-      5. [Deleting optional information `deleteNote`](#deleting-optional-information-deletenote)
-      6. [Adding optional rating `addRate`](#adding-optional-rating-addrate)
-      7. [Deleting optional rating `deleteRate`](#deleting-optional-rating-deleterate)
-      8. [Adding optional links `addLink`](#adding-optional-links-addlink)
-      9. [Deleting optional links `deleteLink`](#deleting-optional-links-deletelink)
-   5. [Modifying contacts view in CLInkedIn](#modifying-contacts-view-in-clinkedin)
-      1. [Viewing the details of a person `view`](#viewing-the-details-of-a-person--view)
-      2. [Listing all persons `list`](#listing-all-persons--list)
-      3. [Sorting candidates based on rating `sort`](#sorting-candidates-based-on-rating-sort)
-      4. [Finding personal information and tags `find`](#finding-personal-information-and-tags-find)
-      5. [Clearing all contacts `clear`](#clearing-all-contacts--clear)
-      6. [Undoing previous command `undo`](#undoing-previous-command-undo)
-      7. [Redoing previous command `redo`](#redoing-previous-command-redo)
-      8. [Viewing statistics `stats`](#viewing-statistics-based-on-ratings-of-candidates-stats)
-      9. [Exporting the data in CLInkedIn `export`](#exporting-the-data-in-clinkedin-export)
-      10. [Importing data into CLInkedIn `import`](#importing-data-into-clinkedin-import)
-      11. [Exiting CLInkedIn `exit`](#exiting-clinkedin--exit)
-   6. [Miscellaneous Features/Commands](#miscellaneous-featurescommands)
-      1. [Saving the data](#saving-the-data)
-      2. [Editing the data file](#editing-the-data-file)
-5. [FAQ](#faq)
-6. [Command Summary](#command-summary)
+- [Using this Guide](#using-this-guide)
+- [Useful Notations and Glossary](#useful-notations-and-glossary)
+- [Quick start](#quick-start)
+- [Features](#features)
+  - [**Viewing help `help`**](#viewing-help--help)
+  - [**Adding/Deleting candidates in CLInkedIn**](#addingdeleting-candidates-in-clinkedin)
+    - [Adding a candidate `add`](#adding-a-candidate-add)
+    - [Deleting a candidate `delete`](#deleting-a-candidate--delete)
+  - [**Adding/Editing/Deleting Tag Types in CLInkedIn**](#addingeditingdeleting-tag-types-in-clinkedin)
+    - [Creating a custom tag type `createTagType`](#creating-a-custom-tag-type-createtagtype)
+    - [Editing tag type name `editTagType`](#editing-tag-type-name-edittagtype)
+    - [Deleting an existing tag type `deleteTagType`](#deleting-an-existing-tag-type-deletetagtype)
+  - [**Modifying entries in CLInkedIn**](#modifying-entries-in-clinkedin)
+    - [Editing a candidate `edit`](#editing-a-candidate--edit)
+    - [Adding an optional tag `addTag`](#adding-a-tag-to-an-existing-candidate--addtag)
+    - [Deleting an optional tag `deleteTag`]([#deleting-a-tag-of-an-existing-candidate--deletetag)
+    - [Adding optional information `addNote`](#adding-optional-information-addnote)
+    - [Deleting optional information `deleteNote`](#deleting-optional-information-deletenote)
+    - [Adding optional rating `addRate`](#adding-optional-rating-addrate)
+    - [Deleting optional rating `deleteRate`](#deleting-optional-rating-deleterate)
+    - [Adding optional links `addLink`](#adding-optional-links-addlink)
+    - [Deleting optional links `deleteLink`](#deleting-optional-links-deletelink)
+  - [**Modifying contacts view in CLInkedIn**](#modifying-contacts-view-in-clinkedin)
+    - [Viewing the details of a person `view`](#viewing-the-details-of-a-person--view)
+    - [Listing all persons `list`](#listing-all-persons--list)
+    - [Sorting candidates based on rating `sort`](#sorting-candidates-based-on-rating-sort)
+    - [Finding personal information and tags `find`](#finding-personal-information-and-tags-find)
+    - [Clearing all contacts `clear`](#clearing-all-contacts--clear)
+    - [Undoing previous command `undo`](#undoing-previous-command-undo)
+    - [Redoing previous command `redo`](#redoing-previous-command-redo)
+    - [Viewing statistics `stats`](#viewing-statistics-based-on-ratings-of-candidates-stats)
+    - [Exporting the data in CLInkedIn `export`](#exporting-the-data-in-clinkedin-export)
+    - [Importing data into CLInkedIn `import`](#importing-data-into-clinkedin-import)
+    - [Exiting CLInkedIn `exit`](#exiting-clinkedin--exit)
+  - [**Miscellaneous Features/Commands**](#miscellaneous-featurescommands)
+    - [Saving the data](#saving-the-data)
+    - [Editing the data file](#editing-the-data-file)
+- [FAQ](#faq)
+- [Command Summary](#command-summary)
 
 ## Using this guide
 
@@ -91,7 +91,7 @@ While exploring CLInkedIn's features with this user guide, do take note of these
 
 The following glossary table provides clarification of the terms commonly used in CLInkedIn:
 
-|   Term    | Meaning                                                                                                                                             |
+|  Symbol   | Meaning                                                                                                                                             |
 |:---------:|-----------------------------------------------------------------------------------------------------------------------------------------------------|
 | Candidate | An entry in CLInkedIn. You can add a candidate with the `add` command.                                                                              |
 |  Status   | Application stage the candidate is in. Example: `Application Received`, `OA in Progress`, `Shortlisted for Interview`, `Accepted`, `Rejected`, etc. |
@@ -100,6 +100,8 @@ The following glossary table provides clarification of the terms commonly used i
 |   Links   | Webpages to find more information about the candidate.                                                                                              |
 | TAG_TYPE  | Description of tag, eg: GPA, Skill, Degree, Job Type, etc. Only used in the following commands `createTagType`, `editTagType`, `deleteTagType`.     |
 | TAG_ALIAS | Prefix for tag type. Used in `add` and `edit` commands to specify prefix of attribute.                                                              |
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -352,6 +354,10 @@ Format: `addRate INDEX rate/<RATING>`
 - The index refers to the index number shown in the displayed person list.
 - The index must be a positive integer 1, 2, 3, …​
 - The rating must be an integer between 1 and 10 inclusive.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Warning:**
+`rate/0` is **not** a valid rating. If you input `addrate 1 rate/0`, there will be no rating shown. If you input `edit 1 rate/0`, you will remove the current rating of the candidate.
+</div>
 
 Example:
 

@@ -26,6 +26,7 @@ public class AddRateCommandParser implements Parser<AddRateCommand> {
                 PREFIX_RATING);
         Index index;
         Rating rating;
+
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
@@ -33,8 +34,7 @@ public class AddRateCommandParser implements Parser<AddRateCommand> {
                     AddRateCommand.MESSAGE_USAGE), ive);
         }
 
-        rating = new Rating(argMultimap.getValue(PREFIX_RATING).orElse("0"));
-
+        rating = ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).orElse("0"));
 
         return new AddRateCommand(index, rating);
     }

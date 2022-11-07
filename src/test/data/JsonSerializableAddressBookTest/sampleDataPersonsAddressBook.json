@@ -1,0 +1,64 @@
+{
+  "prefixMap" : [ "jtt/", "Job Type", "dt/", "Degree", "st/", "Skills" ],
+  "persons" : [ {
+    "name" : "Alex Yeoh",
+    "phone" : "87438807",
+    "email" : "alexyeoh@example.com",
+    "address" : "Blk 30 Geylang Street 29, #06-40",
+    "tags" : [ [ "Degree", "Bachelors" ], [ "Skills", "Data Analytics", "R" ], [ "Job Type", "Part Time" ] ],
+    "status" : "Application Received",
+    "note" : "Has been in the Dean's List twice!",
+    "rating" : "8",
+    "links" : [ "https://github.com", "https://telegram.org" ]
+  }, {
+    "name" : "Bernice Yu",
+    "phone" : "99272758",
+    "email" : "berniceyu@example.com",
+    "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
+    "tags" : [ ],
+    "status" : "Rejected",
+    "note" : "Has experience in marketing.",
+    "rating" : "3",
+    "links" : [ "https://instagram.org" ]
+  }, {
+    "name" : "Charlotte Oliveiro",
+    "phone" : "93210283",
+    "email" : "charlotte@example.com",
+    "address" : "Blk 11 Ang Mo Kio Street 74, #11-04",
+    "tags" : [ [ "Degree", "Masters" ], [ "Skills", "Machine Learning", "Python" ], [ "Job Type", "Full Time" ] ],
+    "status" : "OA in Progress",
+    "note" : "Has research experience in ML.",
+    "rating" : "8",
+    "links" : [ "https://twitter.com", "https://google.com" ]
+  }, {
+    "name" : "David Li",
+    "phone" : "91031282",
+    "email" : "lidavid@example.com",
+    "address" : "Blk 436 Serangoon Gardens Street 26, #16-43",
+    "tags" : [ [ "Degree", "Bachelors" ], [ "Job Type", "Internship" ] ],
+    "status" : "Application Withdrawn",
+    "note" : "Has only worked on individual projects. No job experience.",
+    "rating" : "4",
+    "links" : [ ]
+  }, {
+    "name" : "Irfan Ibrahim",
+    "phone" : "92492021",
+    "email" : "irfan@example.com",
+    "address" : "Blk 47 Tampines Street 20, #17-35",
+    "tags" : [ [ "Degree", "Bachelors" ], [ "Skills", "Web Development" ], [ "Job Type", "Internship" ] ],
+    "status" : "Rejected",
+    "note" : "Proficient in designing.",
+    "rating" : "6",
+    "links" : [ "https://telegram.org" ]
+  }, {
+    "name" : "Roy Balakrishnan",
+    "phone" : "92624417",
+    "email" : "royb@example.com",
+    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "tags" : [ [ "Degree", "Bachelors" ], [ "Skills", "PostgreSQL", "ReactJS" ], [ "Job Type", "Part Time" ] ],
+    "status" : "Interview in Progress",
+    "note" : "Has 5 years of work experience as a Backend developer!",
+    "rating" : "9",
+    "links" : [ "https://github.com", "https://telegram.com", "https://google.com" ]
+  } ]
+}
