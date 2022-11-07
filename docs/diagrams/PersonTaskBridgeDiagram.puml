@@ -18,6 +18,6 @@ Task --> "*" PersonTaskBridge
 PersonTaskBridgeList *-up-> "*" PersonTaskBridge
 
 AddressBook *--> "1" PersonTaskBridgeList
-Model --> "~* all" PersonTaskBridge
+Model --> "*" PersonTaskBridge
 
 @enduml
