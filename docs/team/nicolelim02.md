@@ -5,7 +5,7 @@ title: Nicole's Project Portfolio Page
 
 ### Project: NutriGoals
 
-NutriGoals is a desktop app that tracks a user’s diet and calorie consumption. By offering users recommendations on exercise and healthier eating selections, NutriGoals also aids in the adoption of a healthy lifestyle. 
+NutriGoals is a desktop app that tracks a user’s diet and calorie consumption. By offering users recommendations on exercise and healthier eating options, NutriGoals also aids in the adoption of a healthy lifestyle. 
 
 Given below are my contributions to the project.
 
@@ -52,6 +52,8 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
       * Add documentation for the `edit`, `profile`, `suggest` and `help` features.
+      * Add section numbers using CSS (Pull request [\#153](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/153)).
+      * Reorganised the sections (Pull request [\#163](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/163)).
     * Developer Guide:
       * Add use cases and user stories.
       * Add implementation details for `edit`, `profile` and `suggest` features, together with activity, object and sequence diagrams.
