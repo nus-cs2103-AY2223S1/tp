@@ -13,7 +13,7 @@ participant ":Model" as Model MODEL_COLOR
 end box
 [-> LogicManager : execute(add)
 
-LogicManager -> AddressBookParser : parseCommand(add n/John p/1309 e/john@mail.com a/singapore s/OA rate/9)
+LogicManager -> AddressBookParser : parseCommand(add n/John p/1309 e/john@mail.com a/singapore s/OA)
 activate AddressBookParser
 
 create AddCommandParser
@@ -23,7 +23,7 @@ activate AddCommandParser
 AddCommandParser --> AddressBookParser
 deactivate AddCommandParser
 
-AddressBookParser -> AddCommandParser : parse(n/John p/1309 e/john@mail.com a/singapore s/OA rate/9)
+AddressBookParser -> AddCommandParser : parse(n/John p/1309 e/john@mail.com a/singapore s/OA)
 activate AddCommandParser
 
 create AddCommand
