@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Terence Chong's Project Portfolio Page
- ---
+---
 
 ### Project: Teacher’s Address Book (TAB)
 
