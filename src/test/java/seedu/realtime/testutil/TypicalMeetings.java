@@ -18,21 +18,21 @@ public class TypicalMeetings {
             .withClient("Alice Pauline")
             .withListing("1")
             .withDateTime("2022-10-24 12:00")
-            .withTags("Viewing")
+            .withTags("viewing")
             .build();
 
     public static final Meeting BENSON = new MeetingBuilder()
             .withClient("Benson Meier")
             .withListing("2")
             .withDateTime("2022-10-25 12:00")
-            .withTags("Contract signing")
+            .withTags("contractSigning")
             .build();
 
     public static final Meeting CARL = new MeetingBuilder()
             .withClient("Carl Kurz")
             .withListing("3")
             .withDateTime("2022-10-21 08:00")
-            .withTags("Viewing", "With Children")
+            .withTags("viewing", "withChildren")
             .build();
 
     public static final Meeting DANIEL = new MeetingBuilder()
@@ -45,7 +45,7 @@ public class TypicalMeetings {
             .withClient("Elle Meyer")
             .withListing("5")
             .withDateTime("2020-09-30 12:00")
-            .withTags("Contract signing", "Tough client")
+            .withTags("contractSigning", "toughClient")
             .build();
 
     public static final Meeting FIONA = new MeetingBuilder()

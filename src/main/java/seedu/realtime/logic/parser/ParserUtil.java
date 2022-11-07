@@ -29,6 +29,8 @@ public class ParserUtil {
 
     public static final String INVALID_DATETIME_FORMAT = "Date time format incorrect! Use yyyy-MM-dd HH:mm";
 
+    public static final String DATETIME_FORMAT = "yyyy-MM-dd HH:mm";
+
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -159,7 +161,7 @@ public class ParserUtil {
     public static LocalDateTime parseDateTime(String dateTime) throws ParseException {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter format = DateTimeFormatter.ofPattern(DATETIME_FORMAT);
         try {
             LocalDateTime formattedDate = LocalDateTime.parse(trimmedDateTime, format);
             return formattedDate;

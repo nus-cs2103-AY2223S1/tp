@@ -47,8 +47,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_GARDEN = "garden";
     public static final String VALID_TAG_POOL = "pool";
     public static final String VALID_TAG_VIEWING = "viewing";
-    public static final String VALID_TAG_CONTRACT = "contract signing";
-    public static final String VALID_TAG_CHILDREN = "with children";
+    public static final String VALID_TAG_CONTRACT = "contractSigning";
+    public static final String VALID_TAG_CHILDREN = "withChildren";
     public static final String VALID_ID_AMY = "amy";
     public static final String VALID_ID_BOB = "bob";
     public static final String VALID_PRICE_1 = "1";

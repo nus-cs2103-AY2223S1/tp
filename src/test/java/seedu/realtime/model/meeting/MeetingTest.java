@@ -87,8 +87,8 @@ public class MeetingTest {
         editedAlice = new MeetingBuilder(ALICE).withClient(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different tags -> returns true
+        // different tags -> returns false
         editedAlice = new MeetingBuilder(ALICE).withTags(VALID_TAG_CONTRACT, VALID_TAG_CHILDREN).build();
-        assertTrue(ALICE.equals(editedAlice));
+        assertFalse(ALICE.equals(editedAlice));
     }
 }

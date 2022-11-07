@@ -1,5 +1,7 @@
 package seedu.realtime.testutil;
 
+import static seedu.realtime.logic.parser.ParserUtil.DATETIME_FORMAT;
+
 import seedu.realtime.model.listing.ListingId;
 import seedu.realtime.model.meeting.Meeting;
 import seedu.realtime.model.person.Name;
@@ -7,6 +9,7 @@ import seedu.realtime.model.tag.Tag;
 import seedu.realtime.model.util.SampleDataUtil;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,6 +22,8 @@ public class MeetingBuilder {
     public static final String DEFAULT_ID = "1";
     public static final String DEFAULT_DATETIME = "2022-10-12 12:00";
 
+    private DateTimeFormatter format = DateTimeFormatter.ofPattern(DATETIME_FORMAT);
+
     private Name client;
     private ListingId listing;
     private LocalDateTime dateTime;
@@ -30,7 +35,7 @@ public class MeetingBuilder {
     public MeetingBuilder() {
         client = new Name(DEFAULT_NAME);
         listing = new ListingId(DEFAULT_ID);
-        dateTime = LocalDateTime.parse(DEFAULT_DATETIME);
+        dateTime = LocalDateTime.parse(DEFAULT_DATETIME, format);
         tags = new HashSet<>();
     }
 
@@ -64,7 +69,7 @@ public class MeetingBuilder {
      * Sets the {@code dateTime} of the {@code Meeting} that we are building.
      */
     public MeetingBuilder withDateTime(String dateTime) {
-        this.dateTime = LocalDateTime.parse(dateTime);
+        this.dateTime = LocalDateTime.parse(dateTime, format);
         return this;
     }
 
