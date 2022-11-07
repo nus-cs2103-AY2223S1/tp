@@ -1,6 +1,6 @@
 ---
 layout: page
-title: benjytan45678's Project Portfolio Page
+title: Benjy Tan Meng Kiat's Project Portfolio Page
 ---
 
 ### Project: TrackAScholar
