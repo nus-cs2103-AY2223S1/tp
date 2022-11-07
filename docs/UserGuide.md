@@ -253,12 +253,11 @@ Edits an existing student in the list.
 
 3. Amount Paid (`paid/`):
     - Amount Paid stands for the amount that has been paid by the student.
-    - Amount paid can only be an integer.
-    - Amount paid must be non-negative.
+    - Amount Paid can only be an integer.
+    - Amount Paid must be non-negative.
 
 4. Amount Owed (`owed/`):
     - Amount Owed stands for the amount that has been owed by the student.
-    - Format: `owed/` must be followed by an integer.
     - Amount Owed can only be an integer.
     - Amount Owed must be non-negative.
 
