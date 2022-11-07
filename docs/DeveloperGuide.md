@@ -230,7 +230,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add a Team Feature
+### Add Team Feature
 
 #### Implementation
 
@@ -241,7 +241,7 @@ The `TruthTable` object is designed to have a list of teams called `UniqueTeamLi
 The following is an example of how a team is added:
 
 Precondition: Team name is valid (it cannot be empty or begin with a space)
-1. User keys in the add team command with the name of the team to be added (e.g. `add_team CS2103`)
+1. User keys in the add team command with the name of the team to be added (e.g. `add team CS2103`)
 2. A team is created added to the team list.
 
 If the team name provided is invalid, an appropriate exception will be thrown and the respective error message will be
@@ -250,7 +250,7 @@ shown to the user.
 The following activity diagram summarises the action taken when the `AddTeamCommand` is executed.
 ![AddTeamActivityDiagram](images/AddTeamActivityDiagram.png)
 
-### Add a Task Feature
+### Add Task Feature
 
 #### Implementation
 
@@ -259,7 +259,7 @@ a task is added:
 
 Precondition: Task name is valid (it cannot be empty or have quotation marks).
 
-1. User keys in the add task command with the name of the task to be added (e.g. `add_task Complete Resume`)
+1. User keys in the add task command with the name of the task to be added (e.g. `add task Complete Resume`)
 2. A task is created and added to the current team's task list.
 
 If the task name provided is invalid, an appropriate exception will be thrown and the respective error message will be
