@@ -592,7 +592,7 @@ testers are expected to do more *exploratory* testing.
    3. Relaunch `NUScheduler.jar`.
    4. Expected: Data is invalid thus NUScheduler starts with an empty data file.
 
-# Effort
+# **Appendix: Effort**
 
 NUScheduler is not only developed to work with profile details, but simultaneously with events as well. As such, it was a challenging experience for us to implement both features in a cohesive way for our target users. The initial preparation of the codebase was tedious, as we had to rename the given `Person` class in our AB3 fork. This caused many test cases to break and it took us some time to fix this. This was a part of our experience in understanding the codebase, which also involved learning how the command pattern used by AB3 works.
 
