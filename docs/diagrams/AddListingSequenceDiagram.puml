@@ -1,0 +1,80 @@
+@startuml
+!include style.puml
+
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":RealTimeParser" as RealTimeParser LOGIC_COLOR
+participant ":AddListingCommandParser" as AddListingCommandParser LOGIC_COLOR
+participant "l: AddListingCommand" as AddListingCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+-> LogicManager : execute(userInput)
+activate LogicManager
+
+LogicManager -> RealTimeParser : parseCommand(userInput)
+activate RealTimeParser
+
+create AddListingCommandParser
+RealTimeParser -> AddListingCommandParser
+activate AddListingCommandParser
+
+AddListingCommandParser --> RealTimeParser
+deactivate AddListingCommandParser
+
+note right of AddListingCommandParser
+Arguments in userInput are seperated by their prefixes
+using the tokenize method in the ArgumentTokenizer class.
+Each attribute is parsed by their respective parsers in the ParserUtil class
+and is used to instantiate an Listing object.
+end note
+
+RealTimeParser -> AddListingCommandParser : parse(userInput))
+activate AddListingCommandParser
+
+
+create AddListingCommand
+AddListingCommandParser -> AddListingCommand
+activate AddListingCommand
+return l
+return l
+return l
+destroy AddListingCommandParser
+
+
+LogicManager -> AddListingCommand : execute(model)
+destroy RealTimeParser
+activate AddListingCommand
+
+
+AddListingCommand -> Model : hasListing(o)
+activate Model
+
+Model --> AddListingCommand
+deactivate Model
+
+AddListingCommand -> Model : addListing(o)
+activate Model
+
+Model --> AddListingCommand
+deactivate Model
+
+create CommandResult
+AddListingCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddListingCommand
+deactivate CommandResult
+
+AddListingCommand --> LogicManager : result
+deactivate AddListingCommand
+
+<--LogicManager
+deactivate LogicManager
+
+@enduml

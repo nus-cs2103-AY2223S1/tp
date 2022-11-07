@@ -258,42 +258,170 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### \[Implemented\] Add Client feature
+
+#### Client
+REal-Time manages **_Clients_** of the user.
+
+#### Implementation
+
+To add an `Client` object, the `AddClientCommand` must be executed. This stores the `Client` object into the
+`UniqueClientList`. Following the command execution pathway, the implementation of adding clients uses the exposed
+`Model#addClient(Client)` method in the `Model` API.
+
+The `AddClientCommand` is parsed by the `AddClientCommandParser`.
+`AddClientCommandParser#parse()` parses the user input to return a `AddClientCommand` object that will be executed.
+
+Given below is an example usage scenario and how the add clients mechanism behaves at each step.
+
+Step 1. The user opens up the `REal-Time` application for the first time and observes that there are some sample data
+in the `UniqueClientList`.
+
+Step 2. The user keys in the command word for adding a client, `addC`, followed by the compulsory parameters needed to
+add a client, namely the `Name` component prefixed by `n/`, `Phone number` component prefixed by `p/`, the `Email address`
+component prefixed by `e/`, the `Address` component prefixed by `a/` and the optional `Tag` component prefixed by
+`t/`. In this scenario, the user keys in `addC n/John Doe p/12345678 e/john@gmail.com a/123 John Avenue t/friend t/ neighbor`
+into the command box which will execute the `AddClientCommandParser` to check through the arguments and ensure that the compulsory fields are
+present. It will then create the `Name`, `Phone`, `Email`, `Address` and `Tag` objects needed to instantiate an `Client` object. The
+parser returns a `AddClientCommand` object with the `Client` object ready to be added into `Model`
+
+Step 3. The `AddClientCommand` calls the `Model#addClient(Client)` to add the client and its relevant attributes.
+
+Step 4. Depending on whether the `UniqueClientList` already contains data or is an empty list, the added Client will
+be sorted automatically by the `ListingId` in lexicographical order. This is done using the `Collections#sort()` method
+and implementing a natural order by implementing the `Comparable` interface and overriding the `Comparable#compareTo()`
+method.
+
+The sequence diagram below shows the add client process.
+
+![addClientSequenceDiagram](images/AddClientSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for
+`AddClientCommandParser` and `RealTimeParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline
+reaches the end of diagram.
+</div>
+
+#### Design considerations
+
+**Aspect: Client-Listing interaction**
+
+* **Alternative 1 (current choice):** Separate Listings and Client objects
+    * Pros: Easier to maintain as they are separate objects, less dependency between each other
+    * Cons: No reference between the `Client` and `Listing` objects
+* **Alternative 2:** Allow Clients to have a Listing attribute instead
+    * Pros: Easier to reference between `Client` and `Listing`
+    * Cons: Large dependency between the two.
+
+### \[Implemented\] Delete Client feature
+
+The Delete Client feature allows users to delete the specified `Client` in the `UniqueClientList`.
+
+#### Implementation
+
+To delete an `Client` object, the `DeleteClientCommand` must be executed. The `DeleteClientCommand` extends the `Command`
+class.
+
+The `DeleteClientCommand` is parsed by the `DeleteClientCommandParser`. `DeleteClientCommandParser#parse()` parses the user
+input to return a `DeleteClientCommand` that will be executed.
+
+Given below is an example usage scenario and how the delete client mechanism behaves at each step.
+
+Step 1. The user enters `delL 1` in the command box.  This calls the `LogicManager#execute()` method which calls the
+`RealTimeParser#parse` method to be executed and will determine that the command is a `DeleteClientCommand` after parsing.
+
+Step 2. A `DeleteClientCommandParser` object is instantiated with the necessary arguments. It will return a
+`DeleteClientCommand` object with the specified `Index`.
+
+Step 3. The `DeleteClientCommand#execute()` method is called which calls the `Model#deleteClient(Client)` method to delete
+the Client at the specified `Index` in `Model`.
+
+The sequence diagram below shows the delete client process.
+
+![deleteClientSequenceDiagram](images/DeleteClientSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for
+`DeleteClientCommandParser` and `DeleteClientCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline
+reaches the end of diagram.
+</div>
+
+#### Design considerations
+
+**Aspect: Using index specific or attribute specific deletion**
+
+* **Alternative 1 (current choice):** Index specific
+    * Pros: Easier implementation and more suited for fast-typing
+    * Cons: Might accidentally delete the wrong `Client` if `Index` is mistyped
+* **Alternative 2:** Attribute specific
+    * Pros: User does not have to find for specific `Index`
+    * Cons: Many `Client` objects might share same attribute such as `Address` and `Phone Number`
+
+### \[Implemented\] Edit Client feature
+
+The Edit Client feature allows users to edit any attribute of an `Client` in the `UniqueClientList`.
+
+#### Implementation
+
+To edit an `Client`, the `EditClientCommand` is executed. The `EditClientCommand` extends the `Command` class.
+
+The `EditClientCommand` is parsed by the `EditClientCommandParser`. `EditClientCommandParser#parse()` parses the user input
+to return a `EditClientCommand` that will be executed.
+
+Given below is an example usage scenario and how the edit client mechanism behaves at each step.
+
+Step 1. The user enters `editC 1 n/Jane Doe p/87654321 a/123 Jane Lane` in the command box. This calls the `LogicManager#execute()`
+method which calls the `RealTimeParser#parse` method to be executed and will determine that the command is a
+`EditClientCommand` after parsing.
+
+Step 2. An `EditClientCommandParser` object is instantiated with the necessary arguments. It returns a `EditClientCommand`
+with the `Index` and `EditClientDescriptor` as parameters. The `EditClientDescriptor` contains the edited information that
+the edited `Client` is supposed to be updated to. In this scenario, we are changing the `Name`, `Phone` and `Address` attribute
+of the `Client`. The `EditClientDescriptor` is then updated through the `setName()`, `setName()` and `setAddress()` methods by
+the `EditClientDescriptor`.
+
+Step 3. The `EditClientCommand#execute()` method is called which creates the edited `Client` using the `createEditedClient`
+method which takes in the `Client` to be edited and the `EditClientDescriptor` that was created from the previous step.
+The edited `Client` is then checked if it is a duplicate or already exists in the `UniqueClientList` through the
+`Client#isSameClient()` and `Model#hasClient()` methods.
+
+An `Client` is the same if it contains the exact same `Name`.
+
+Step 4. The `Model#setClient(Client)` method is called to replace the target `Client` at the specified `Index` from earlier.
+The `Model#updateFilteredClientList()` is called to update the `UniqueClientList`.
 
 ### \[Implemented\] Add Offer feature
 
 #### Offers
 
-REal-Time manages **_Offers_** made by Clients that are interested when bidding for Listings. To model an
-
+REal-Time manages **_Offers_** made by Clients that are interested when bidding for Listings.
 #### Implementation
 
 To add an `Offer` object, the `AddOfferCommand` must be executed. This stores the `Offer` object into the
-`UniqueOfferList`. Following the command execution pathway, the implementation of adding offers uses the exposed
+`UniqueOfferList`. Following the command execution pathway, the implementation of adding clients uses the exposed
 `Model#addOffer(Offer)` method in the `Model` API.
 
 The `AddOfferCommand` is parsed by the `AddOfferCommandParser`.
 `AddOfferCommandParser#parse()` parses the user input to return a `AddOfferCommand` object that will be executed.
 
-Given below is an example usage scenario and how the add offers mechanism behaves at each step.
+Given below is an example usage scenario and how the add clients mechanism behaves at each step.
 
 Step 1. The user opens up the `REal-Time` application for the first time and observes that there are some sample data
 in the `UniqueOfferList`.
 
-Step 2. The user keys in the command word for adding an offer, `addO`, followed by the compulsory parameters needed to
-add an offer, namely the `Name` component prefixed by `n/`, `Price` component prefixed by `o/` and the `ListingId`
+Step 2. The user keys in the command word for adding a client, `addO`, followed by the compulsory parameters needed to
+add a client, namely the `Name` component prefixed by `n/`, `Price` component prefixed by `o/` and the `ListingId`
 component prefixed by `l/`. In this scenario, the user keys in `addO n/John Doe l/BEDOK_SOUTH o/600000` into the command box
 which will execute the `AddOfferCommandParser` to check through the arguments and ensure that the compulsory fields are
 present. It will then create the `Price`, `ListingId` and `Name` objects needed to instantiate an `Offer` object. The
 parser returns a `AddOfferCommand` object with the `Offer` object ready to be added into `Model`
 
-Step 3. The `AddOfferCommand` calls the `Model#addOffer(Offer)` to add the offer and its relevant attributes.
+Step 3. The `AddOfferCommand` calls the `Model#addOffer(Offer)` to add the client and its relevant attributes.
 
 Step 4. Depending on whether the `UniqueOfferList` already contains data or is an empty list, the added Offer will
 be sorted automatically by the `ListingId` in lexicographical order. This is done using the `Collections#sort()` method
 and implementing a natural order by implementing the `Comparable` interface and overriding the `Comparable#compareTo()`
 method.
 
-The sequence diagram below shows the add offer process.
+The sequence diagram below shows the add client process.
 
 ![addOfferSequenceDiagram](images/AddOfferSequenceDiagram.png)
 
@@ -306,8 +434,8 @@ reaches the end of diagram.
 
 **Aspect: Client-Offer interaction**
 
-* **Alternative 1 (current choice):** Seperate Offers and Client objects
-  * Pros: Easier to maintain as they are seperate objects, less dependency between each other
+* **Alternative 1 (current choice):** Separate Offers and Client objects
+  * Pros: Easier to maintain as they are separate objects, less dependency between each other
   * Cons: No reference between the `Client` and `Offer` objects
 * **Alternative 2:** Allow Clients to have an Offer attribute instead
   * Pros: Easier to reference between `Client` and `Offer`
@@ -388,6 +516,138 @@ An `Offer` is the same if it contains the exact same `Name`, `Price` and `Listin
 
 Step 4. The `Model#setOffer(Offer)` method is called to replace the target `Offer` at the specified `Index` from earlier.
 The `Model#updateFilteredOfferList()` is called to update the `UniqueOfferList`.
+
+
+### \[Implemented\] Add Listing feature
+
+#### Listing
+REal-Time manages **_Listings_** owned by Clients.
+
+#### Implementation
+
+To add an `Listing` object, the `AddListingCommand` must be executed. This stores the `Listing` object into the
+`UniqueListingList`. Following the command execution pathway, the implementation of adding listings uses the exposed
+`Model#addListing(Listing)` method in the `Model` API.
+
+The `AddListingCommand` is parsed by the `AddListingCommandParser`.
+`AddListingCommandParser#parse()` parses the user input to return a `AddListingCommand` object that will be executed.
+
+Given below is an example usage scenario and how the add listings mechanism behaves at each step.
+
+Step 1. The user opens up the `REal-Time` application for the first time and observes that there are some sample data
+in the `UniqueListingList`.
+
+Step 2. The user keys in the command word for adding a listing, `addL`, followed by the compulsory parameters needed to
+add a listing, namely the `ListingId` component prefixed by `l/`, `Address` component prefixed by `a/`, the `Owner name`
+component prefixed by `n/` and `Asking price` component prefixed by `ap/`. In this scenario, the user keys in
+`addL l/007 a/100 Charming avenue n/John Doe ap/800000` into the command box
+which will execute the `AddListingCommandParser` to check through the arguments and ensure that the compulsory fields are
+present. It will then create the `ListingId`, `Address`, `Name` and `Price` objects needed to instantiate an `Listing` object. The
+parser returns a `AddListingCommand` object with the `Listing` object ready to be added into `Model`
+
+Step 3. The `AddListingCommand` calls the `Model#addListing(Listing)` to add the listing and its relevant attributes.
+
+Step 4. Depending on whether the `UniqueListingList` already contains data or is an empty list, the added Listing will
+be sorted automatically by the `ListingId` in lexicographical order. This is done using the `Collections#sort()` method
+and implementing a natural order by implementing the `Comparable` interface and overriding the `Comparable#compareTo()`
+method.
+
+The sequence diagram below shows the add listing process.
+
+![addListingSequenceDiagram](images/AddListingSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for
+`AddListingCommandParser` and `RealTimeParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline
+reaches the end of diagram.
+</div>
+
+#### Design considerations
+
+**Aspect: Listing-Offer interaction**
+
+* **Alternative 1 (current choice):** Separate Listing and Offer objects
+    * Pros: Easier to maintain as they are separate objects, less dependency between each other
+    * Cons: `Offer` references the `ListingId` instead of `Listing` objects.
+* **Alternative 2:** Allow Offers to have a Listing attribute instead
+    * Pros: Easier to reference between `Offer` and `Listing`
+    * Cons: Large dependency between the two.
+
+### \[Implemented\] Delete Listing feature
+
+The Delete Listing feature allows users to delete the specified `Listing` in the `UniqueListingList`.
+
+#### Implementation
+
+To delete an `Listing` object, the `DeleteListingCommand` must be executed. The `DeleteListingCommand` extends the `Command`
+class.
+
+The `DeleteListingCommand` is parsed by the `DeleteListingCommandParser`. `DeleteListingCommandParser#parse()` parses the user
+input to return a `DeleteListingCommand` that will be executed.
+
+Given below is an example usage scenario and how the delete listing mechanism behaves at each step.
+
+Step 1. The user enters `delO 1` in the command box.  This calls the `LogicManager#execute()` method which calls the
+`RealTimeParser#parse` method to be executed and will determine that the command is a `DeleteListingCommand` after parsing.
+
+Step 2. A `DeleteListingCommandParser` object is instantiated with the necessary arguments. It will return a
+`DeleteListingCommand` object with the specified `Index`.
+
+Step 3. The `DeleteListingCommand#execute()` method is called which calls the `Model#deleteListing(Listing)` method to delete
+the Listing at the specified `Index` in `Model`.
+
+The sequence diagram below shows the delete listing process.
+
+![deleteListingSequenceDiagram](images/DeleteListingSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for
+`DeleteListingCommandParser` and `DeleteListingCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline
+reaches the end of diagram.
+</div>
+
+#### Design considerations
+
+**Aspect: Using index specific or attribute specific deletion**
+
+* **Alternative 1 (current choice):** Index specific
+    * Pros: Easier implementation and more suited for fast-typing
+    * Cons: Might accidentally delete the wrong `Listing` if `Index` is mistyped
+* **Alternative 2:** Attribute specific
+    * Pros: User does not have to find for specific `Index`
+    * Cons: Many `Listing` objects might share same attribute such as `Asking Price` and `Owner`.
+
+### \[Implemented\] Edit Listing feature
+
+The Edit Listing feature allows users to edit any attribute of an `Listing` in the `UniqueListingList`.
+
+#### Implementation
+
+To edit an `Listing`, the `EditListingCommand` is executed. The `EditListingCommand` extends the `Command` class.
+
+The `EditListingCommand` is parsed by the `EditListingCommandParser`. `EditListingCommandParser#parse()` parses the user input
+to return a `EditListingCommand` that will be executed.
+
+Given below is an example usage scenario and how the edit listing mechanism behaves at each step.
+
+Step 1. The user enters `editO 1 l/Bukit_timah_rd o/1000000` in the command box. This calls the `LogicManager#execute()`
+method which calls the `RealTimeParser#parse` method to be executed and will determine that the command is a
+`EditListingCommand` after parsing.
+
+Step 2. An `EditListingCommandParser` object is instantiated with the necessary arguments. It returns a `EditListingCommand`
+with the `Index` and `EditListingDescriptor` as parameters. The `EditListingDescriptor` contains the edited information that
+the edited `Listing` is supposed to be updated to. In this scenario, we are changing the `listingId` and `Price` attribute
+of the `Listing`. The `EditListingDescriptor` is then updated through the `setListing()` and `setListingPrice()` methods by
+the `EditListingDescriptor`.
+
+Step 3. The `EditListingCommand#execute()` method is called which creates the edited `Listing` using the `createEditedListing`
+method which takes in the `Listing` to be edited and the `EditListingDescriptor` that was created from the previous step.
+The edited `Listing` is then checked if it is a duplicate or already exists in the `UniqueListingList` through the
+`Listing#isSameListing()` and `Model#hasListing()` methods.
+
+An `Listing` is the same if it contains the exact same `Name`.
+
+Step 4. The `Model#setListing(Listing)` method is called to replace the target `Listing` at the specified `Index` from earlier.
+The `Model#updateFilteredListingList()` is called to update the `UniqueListingList`.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
