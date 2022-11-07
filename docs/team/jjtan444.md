@@ -44,19 +44,24 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the `findTask`, `sortTask`, `filterTask`, `markTask` and `unmarkTask` commands.
+    * Added documentation for the `findTask`, `sortTask`, `filterTask`, `markTask` and `unmarkTask` commands [\#134](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/134).
+    * Update User Guide for `findProj`, `findTask`, `findStaff` commands [\#191](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/191).
+    * Language and formatting edits for User Guide [\#188](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/188), [\#191](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/191),
+      [\#201](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/201).
   * Developer Guide:
-    * Update use case for `Project`
-    * Added use case for `Staff`
-    * Added UML Diagram for `TaskList`
+    * Update use case for `Project` [\#83](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/83).
+    * Added use cases for `Staff` [\#83](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/83), [\#218](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/218).
+    * Added `TaskList` section and UML Diagram for `TaskList` [\#105](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/105).
+    * Added `findTask` section and UML Diagram for `findTask` command [\#218](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/218).
+    * Added user stories for `Project`, `Task` and `Staff` commands [\#218](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/218).
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#140](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/140),
   [\#190](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/190),
-  [\#193](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/193)
+  [\#193](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/193).
   * Reported bugs and suggestions for other teams: [\#1](https://github.com/jjtan444/ped/issues/1),
   [\#2](https://github.com/jjtan444/ped/issues/2), [\#3](https://github.com/jjtan444/ped/issues/3),
   [\#4](https://github.com/jjtan444/ped/issues/4), [\#5](https://github.com/jjtan444/ped/issues/5),
   [\#6](https://github.com/jjtan444/ped/issues/6), [\#7](https://github.com/jjtan444/ped/issues/7),
-  [\#8](https://github.com/jjtan444/ped/issues/8)
+  [\#8](https://github.com/jjtan444/ped/issues/8).
 

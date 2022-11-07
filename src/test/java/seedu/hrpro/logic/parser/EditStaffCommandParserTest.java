@@ -95,20 +95,33 @@ public class EditStaffCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
+        // invalid project name
         assertParseFailure(parser, "1 " + INVALID_NAME_DESC,
-                ProjectName.MESSAGE_CONSTRAINTS); // invalid project name
+                ProjectName.MESSAGE_CONSTRAINTS);
+
+        // invalid staff name
         assertParseFailure(parser, "1 " + NAME_DESC_AMY + INVALID_STAFFNAME_DESC,
-                StaffName.MESSAGE_CONSTRAINTS); // invalid staff name
+                StaffName.MESSAGE_CONSTRAINTS);
+
+        // invalid contact
         assertParseFailure(parser, "1 " + NAME_DESC_AMY + INVALID_STAFFCONTACT_DESC,
-                StaffContact.MESSAGE_CONSTRAINTS); // invalid contact
+                StaffContact.MESSAGE_CONSTRAINTS);
+
+        // invalid department
         assertParseFailure(parser, "1 " + NAME_DESC_AMY + INVALID_STAFFDEPARTMENT_DESC,
-                StaffDepartment.MESSAGE_CONSTRAINTS); // invalid department
+                StaffDepartment.MESSAGE_CONSTRAINTS);
+
+        // invalid leave
         assertParseFailure(parser, "1 " + NAME_DESC_AMY + INVALID_STAFFLEAVE_DESC,
-                StaffLeave.MESSAGE_CONSTRAINTS); // invalid leave
+                StaffLeave.MESSAGE_CONSTRAINTS);
+
+        // invalid title
         assertParseFailure(parser, "1 " + NAME_DESC_AMY + INVALID_STAFFTITLE_DESC,
-                StaffTitle.MESSAGE_CONSTRAINTS); // invalid title
+                StaffTitle.MESSAGE_CONSTRAINTS);
+
+        // invalid tags
         assertParseFailure(parser, "1 " + NAME_DESC_AMY + INVALID_TAG_DESC,
-                Tag.MESSAGE_CONSTRAINTS); // invalid tags
+                Tag.MESSAGE_CONSTRAINTS);
 
         // invalid staff name followed by valid staff department
         assertParseFailure(parser, "1 " + NAME_DESC_AMY + INVALID_STAFFNAME_DESC + VALID_STAFFDEPARTMENT_ANDY,

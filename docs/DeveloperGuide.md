@@ -14,7 +14,7 @@ title: Developer Guide
 
 * `Task` and `Project` were inspired by AB3's `Person` object
 * Commands from AB3 were brought over to `Task` and `Project`
-* `ContainsNameIgnoreCase` method in `StringUtil` is inspired by https://stackoverflow.com/questions/86780/
+* `ContainsNameIgnoreCase` method in `StringUtil` is inspired by [https://stackoverflow.com/questions/86780/](https://stackoverflow.com/questions/86780/)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -89,7 +89,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays objects such as `Project` residing in the `Model`.
 
-### **Current implementation**
+### Current implementation
 The GUI reflects the entered projects, tasks, and staff members recorded in HR Pro Max++.
 There are 3 main columns, which from left to right are for `Task`, `Project` and `Staff` from model.
 Directly adding or removing `Project`, `Task`, or `Staff` would update the `ProjectListPanel`, `TaskListPanel` and `StaffListPanel` to show their respective `ProjectCard`, `StaffCard` and `TaskCard` respectively.
@@ -107,8 +107,8 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `HrProParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a project).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The command can communicate with `Model` when it is executed (e.g. to add a project).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delproj 1")` API call.
 
@@ -124,6 +124,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `HrProParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `HrProParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* Note that the `XYZCommandParser` is only created for commands that require additional parameters to be taken in. 
+Other commands (e.g., `ListCommand`, `Sort TaskCommand`) do not require any additional parameters and thus their parsing is handled by the `HrProParser` itself.
 
 ## **Model component**
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/model/Model.java)
@@ -177,7 +179,7 @@ The `Task` class,
 
 The `Storage` component,
 * can save both hr pro data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `HrProStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `HrProStorage` and `UserPrefStorage`, which means it can be treated as either one (if the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ## **Common classes**
@@ -192,7 +194,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ## **\[Proposed\] Undo/redo feature**
 
-### **Proposed Implementation**
+### Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedHrPro`. It extends `HrPro` with an undo/redo history, stored internally as an `hrProStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -212,7 +214,7 @@ Step 2. The user executes `delproj 5` command to delete the 5th project in the h
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `addproj n/David …​` to add a new project. The `add` command also calls `Model#commitHrPro()`, causing another modified hr pro state to be saved into the `hrProStateList`.
+Step 3. The user executes `addproj pn/David …​` to add a new project. The `add` command also calls `Model#commitHrPro()`, causing another modified hr pro state to be saved into the `hrProStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -247,7 +249,7 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitHrPro()`. Since the `currentStatePointer` is not pointing at the end of the `hrProStateList`, all hr pro states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitHrPro()`. Since the `currentStatePointer` is not pointing at the end of the `hrProStateList`, all hr pro states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `addproj pn/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -255,7 +257,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-### **Design considerations**
+### Design considerations
 
 **Aspect: How undo & redo executes:**
 
@@ -268,11 +270,9 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delproj`, just save the project being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
 ## **View Command**
 
-### **Implementation**
+### Implementation
 * The `ViewCommand` copies the `UniqueStaffList` from a `Project` object that is currently on the displayed list of `Project` objects.
 * This `Project` object is specified by the compulsory index argument following the `ViewCommand` e.g. `view 1` takes the first `Project` object on the displayed list.
 * The `UniqueStaffList` in `HrPro` will then be set to the contents of the copied `UniqueStaffList`.
@@ -283,7 +283,7 @@ The following sequence diagram shows how the view command works.
 
 ![view command](images/ViewCommandSequenceDiagram.png)
 
-### **Design considerations**
+### Design considerations
 * The `execute` method in `ViewCommand` interacts only with methods in `Model` to maintain the same level of abstraction.
 * We also decided to create a defensive copy of the project's `UniqueStaffList`, which exists in `HrPro`, to be linked to the UI for display.
 * Initially, we decided to create a target project attribute in `Model` that keeps track of the `Project` object being viewed, but we realised that this design exposes the `UniqueStaffList` attribute of the project to other components like UI. Also, other commands could potentially mutate this target project which would result in a lot of bugs.
@@ -291,7 +291,7 @@ The following sequence diagram shows how the view command works.
 
 ## **Task List**
 
-### **Implementation**
+### Implementation
 `Task List` is implemented in a way that is similar to
 `Staff List` and `Project List`. The `Task ` class is first created, alongside the supporting field
 classes `TaskDeadline` and `TaskDescription`. With these classes, the `Task` class can hold information
@@ -316,14 +316,14 @@ in one file so that the file can be read easily.
 
 ## **Find Task**
 
-### **Implementation**
+### Implementation
 Tasks can be found using their `TaskDescription`. The implementation would be to allow the keyword in the `findTask`
 command to match part of the `TaskDescription`.
 
 The following sequence diagram shows how the `findTask` command will run throughout HR Pro Max++.
 ![img.png](images/FindTaskDiagram.png)
 
-### **Design considerations**
+### Design considerations
 
 * We chose to find tasks by their `TaskDescription` as users are more likely to search for tasks by name.
 * We allowed for partial matching of the keyword to the `TaskDescription` as users may not remember the full name or a full word of the task.
@@ -335,12 +335,12 @@ The following sequence diagram shows how the `findTask` command will run through
 
 ## **Mark and unmark task**
 
-### **Implementation**
+### Implementation
 Tasks can be marked as either completed or not completed. The implementation would
 be to add a new field `TaskMark` into each `Task` object, with `TaskMark` only accepting a `true` or
 `false` value.
 
-The `true` value would mean that the task is marked as completed and the `false` value
+The `true` value would mean that the task is marked as completed and the `false` value would
 mean that the task is not yet done.
 
 The switching of `true` and `false` values for `TaskMark` will be facilitated using `marktask INDEX` and
@@ -353,14 +353,14 @@ The following sequence diagram shows how the mark command will run throughout HR
 
 ![mark command](images/MarkCommandSequenceDiagram.png)
 
-### **Design Considerations**
+### Design Considerations
 * We decided to add visual indicators to the `Task` card in the GUI to show the completion status of the `Task`,
 so as to make it easier for the user to identify the completion status of the `Task` at a glance.
 
 ## **Sort task**
 
-### **Implementation**
-Tasks can be sorted by their deadline. The implementation would be to add a field `TaskDeadline` into each `Task` object
+### Implementation
+Tasks can be sorted by their deadline. The implementation is to add a field `TaskDeadline` into each `Task` object
 and only allow the `TaskDeadline` field to accept a `LocalDate` value.
 
 The `LocalDate` is an immutable date-time object that represents a date, often viewed as year-month-day.
@@ -373,16 +373,20 @@ The following sequence diagram shows how the `sorttask` command will run through
 
 ![sorttask command](images/SortTaskSequenceDiagram.png)
 
-### **Design Considerations**
+Activity diagram for the sort task command
+![sorttask command](images/SortTaskActivityDiagram.png)
 
-* We chose to sort the tasks by their deadlines because it is more significant information compared to for example, the task description.
+### Design Considerations
+
+* We chose to sort the tasks by their deadlines because it provides the user with more significant information compared to for example, 
+sorting tasks by alphabetical order.
 * Sorting tasks is an irreversible process. The user will not be able to undo the sorting of tasks.
-    * Pros: Less memory and simpler implementation as there is no need to store the original order of the tasks.
+    * Pros: Less memory required and simpler implementation as there is no need to store the original order of the tasks.
     * Cons: Some users might want to undo the sorting to view the tasks in the original order.
 
 ## **Delete Staff from a project**
 
-### **Implementation**
+### Implementation
 
 For each Project, there is a Unique Staff list and removing Staff object from this list
 will remove Staff that are part of the project. This can be done using a delete command
@@ -403,7 +407,7 @@ with the PROJECT_NAME is not displayed, the Staff cannot be deleted also due to 
 * `getProjectWithName` - return a `Optional` which contains either a `Project` or not, based on PROJECT_NAME
 * `isSuccessStaffDelete` - returns a `Boolean` based on whether the `Staff` is deleted from the `Project`
 
-It then searches if the Staff is within the Project's Staff list. If it is, the Staff is deleted and if not, exception is thrown.
+It then checks if the Staff is within the Project's Staff list. If it is, the Staff is deleted and if not, an exception is thrown.
 
 Example Usage:
 ```
@@ -433,7 +437,7 @@ The activity diagram below shows the logic flow of the `delstaff` command.
 
 ![delstaff command](images/DeleteStaffCommandActivityDiagram.png)
 
-### **Design Considerations**
+### Design Considerations
 
 An alternative implementation of the `delstaff` command could be to implement it in the form `delstaff pn/PROJECT_NAME sn/STAFF_NAME`.
 * The `PROJECT_NAME` would then refer to a Project specified by the PROJECT_NAME in the Project List to delete the Staff from.
@@ -443,16 +447,16 @@ An alternative implementation of the `delstaff` command could be to implement it
 
 ## **Add Staff to Project**
 
-### **Implementation**
+### Implementation
 
 The feature to add Staff is facilitated by the `AddStaffCommand`. It extends the `Command` class with functionality
-to add a `Staff` to a `Project`, both of which are provided via the `addStaff` command.
+to add a `Staff` to a `Project`, both of which are provided via the `addstaff` command.
 
 The following operations are implemented:
 - `execute(Model model)` - Executes an `AddStaffCommand`.
 
 An example of an `AddStaffCommand` is:
-`addStaff pn/CS2103T sn/Betsy Crowe sp/1234567 st/Admin Staff sd/Admin sl/false`
+`addstaff pn/CS2103T sn/Betsy Crowe sp/1234567 st/Admin Staff sd/Admin sl/false`
 
 The arguments passed into the command are as follows:
 - `pn` is the `Project` name of the project to add the staff to.
@@ -479,7 +483,7 @@ Step 4. The `Staff` is added to the `Project`. The `execute()` method updates th
 Sequence diagram for the execution of `AddStaffCommand`
 ![AddStaffCommandExecution](images/AddStaffCommandSequenceDiagram.png)
 
-### **Design Considerations**
+### Design Considerations
 **Aspect: Whether to pass `Project` through `Index` or `ProjectName`**
 - **Alternative 1**: Users pass in the `Index` of the `Project` in the displayed `ProjectList` (Current Implementation)
   - Pros: This makes an easier command for users to use, since instead of typing `pn/Some Project Name`, users can instead
@@ -490,12 +494,12 @@ Sequence diagram for the execution of `AddStaffCommand`
   - Pros: This solution is more correct and precise, since there is less room for error, in the sense that if a user types
     `pn/Project_A`, then the staff will be added to Project_A (assuming the other checks in the command don't fail).
   - Cons: Users will have to know the full name of the project, and this approach does not allow rooms for typos, so a careless
-    user might add a staff to the wrong project.
+    user might add a staff member to the wrong project.
 
 
 ## **Edit Staff in Project**
 
-### **Implementation**
+### Implementation
 The edit staff feature is facilitated by the `EditStaffCommand`. It extends the `Command` class with functionality to 
 edit the `Staff` at a certain place in the Staff list belonging to a given `Project`, using the `INDEX` and `ProjectName` provided to the `EditStaffCommand`.
 The `Project` must be the `Project` which has its `StaffList` currently displayed in the staff panel.
@@ -503,7 +507,7 @@ The `Project` must be the `Project` which has its `StaffList` currently displaye
 The following operations are implemented:
 - `execute(Model model)` - Executes an `EditStaffCommand`.
 
-An example of an `FindStaffCommand` is:
+An example of a `EditStaffCommand` is:
 `editstaff 1 pn/CS2103T sn/John Doe`
 
 The arguments passed into the command are as follows:
@@ -523,7 +527,7 @@ The `EditStaffCommandParser`, which is a class that extends the `Parser` interfa
 `ProjectName` and an `EditStaffDescriptor`, which serves as a wrapper class for Staff attributes to be edited.
 
 Step 2. The `execute()` method in `EditStaffCommand` first checks if the passed `ProjectName` is valid, and whether the
-`Index` is a valid `Index` of a `Staff` inside the `FilteredStaffList`. These are done by checking if the `Optional` returned
+`Index` is a valid `Index` of a `Staff` inside the `FilteredStaffList`. This is done by checking if the `Optional`s returned
 from `Model.getStaffFromProjectAtIndex()` and `Model.getProjectWithName()` are empty. If they are, a `CommandException` is thrown
 for each failed check.
 
@@ -537,7 +541,7 @@ a `CommandException` is thrown.
 Sequence diagram for the `EditStaffCommand`
 ![EditStaffCommandSequenceDiagram](images/EditStaffCommandSequenceDiagram.png)
 
-### **Design Considerations**
+### Design Considerations
 **Aspect: Checking if the `Project`'s `Stafflist` is currently displayed**
 - **Alternative 1**: `EditStaffCommand` checks if the `Stafflist` of the `Project` whose `Staff` is to be edited is currently displayed (Current Implementation)
   - Pros: Consistent with design philosophy of HR Pro Max++, where any changes are to be directly on the `FilteredStaffList`.
@@ -553,7 +557,7 @@ Sequence diagram for the `EditStaffCommand`
     ship an `undo` command, users might permanently affect the database and if this is a mistake, would be very hard to recover from.
 
 ## **Find Staff in Project**
-### **Implementation**
+### Implementation
 
 The find staff feature is facilitated by the `FindStaffCommand`. It extends the `Command` class with functionality to find a `Staff` within the current
 active `Project`, that is, the current `Project` whose `StaffList` is being displayed onto the Staff Panel.
@@ -589,7 +593,7 @@ Sequence diagram for the `FindStaffCommand`
 Activity diagram for the `FindStaffCommand`
 ![FindStaffCommandActivityDiagram](images/FindStaffCommandActivityDiagram.png)
 
-### **Design Considerations**
+### Design Considerations
 **Aspect: Parsing keyword(s) as argument to `FindStaffCommand`**
 
 - **Alternative 1**: Parse based on keywords (Current Implementation)
@@ -623,9 +627,10 @@ Activity diagram for the `FindStaffCommand`
 
 HR Pro Max++ aims to help team leads in SMEs to help track and manage their projects, staff members within each project and tasks related to the projects.
 
-* prefer desktop apps over other types
-* can type fast and prefers it over mouse interactions
-* is reasonably comfortable using CLI apps
+Our target users: 
+* prefer desktop apps over other types of app
+* can type fast and prefer it over mouse interactions
+* are reasonably comfortable using CLI apps
 * need to oversee many projects
 * need to track staff members who are part of each project
 * need to record project details for easy access in the future
@@ -633,58 +638,58 @@ HR Pro Max++ aims to help team leads in SMEs to help track and manage their proj
 * need to record tasks to track their workload
 
 **Value proposition**:
-* For many SME, a problem they face when setting up their business is a lack of a database to help
+* For many SMEs, a problem they face when setting up their business is a lack of a database to help
 them track their business operations. This can result in inefficiency in their operations if they are not
 kept up to date of the latest project information or do not know who to contact. Therefore, we created
 HR Pro Max++ to be a free, easy and comprehensive employee and project management application.
-* For SME to earn profit, they would have to engage in many projects, so they can record the project details
+* For SMEs to earn profit, they would have to engage in many projects, so they can record the project details
 in our application to keep track of them.
-* Team lead can also record which one of their team members are involved with which project so that they will
+* Team leads can also record which team members are involved with what project so that they will
 know who to find and how to contact them.
-* Team lead can record down different tasks that are needed to be done for their various projects to be reminded
+* Team leads can record down different tasks that need to be done for their various projects
 
 
 ## **User stories**
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​   | I want to …​                                 | So that I can…​                               |
-|----------|-----------|----------------------------------------------|-----------------------------------------------|
-| `* * *`  | team lead | view the projects I am working on            | view my workload                              |
-| `* * *`  | team lead | add deadline to projects                     | aim to finish before then                     |
-| `* * *`  | team lead | record down tasks to do                      | track my remaining tasks                      |
-| `* * *`  | team lead | delete projects that are done or cancelled   | remove unnecessary information                |
-| `* * *`  | team lead | edit project details                         | to update project with the newest information |
-| `* * *`  | team lead | add staff to a project                       | to track who is working on each project       |
-| `* * *`  | new user  | record staff details one at a time           | ensure that I will not make any mistake       |
-| `* * *`  | team lead | add budget to a project                      | ensure that I will not exceed the budget      |
-| `* * *`  | team lead | access my member department                  | easily know who to contact                    |
-| `* * *`  | team lead | access my member titles                      | keep track of their job scope                 |
-| `* * *`  | team lead | access my member contacts from staff details | easily communicate with them                  |
-| `* * *`  | team lead | keep track of my staff leave status          | know who is currently available               |
-| `* * *`  | team lead | keep track of staff names                    | know the people I am leading                  |
-| `* * *`  | team lead | delete staff members from a project          | track who is working on each project          |
-| `* * *`  | team lead | view the staff of a project                  | easily know who is working on the project     |
-| `* * *`  | team lead | edit the staff detail of a project           | keep up to date on my staff information       |
-| `* * *`  | team lead | delete task from task list                   | know that I have completed them               |
-| `* * *`  | team lead | edit name for a task                         | keep it updated with the latest information   |
-| `* * *`  | team lead | mark task as complete                        | record that I have finished it                |
-| `* * *`  | team lead | mark task as incomplete                      | remind myself to do this task in the future   |
-| `* *`    | team lead | find staff in a project                      | know if he is involved in the project         |
-| `* *`    | team lead | sort projects by deadline                    | know which projects are due                   |
-| `* *`    | team lead | find task by name                            | find out more information about the task      |
-| `* *`    | team lead | sort task by deadline                        | know which task is more urgent                |
-| `* *`    | team lead | sort task which are complete                 | know my remaining tasks that have to be done  |
+| Priority | As a …​   | I want to …​                                   | So that I can…​                                 |
+|----------|-----------|------------------------------------------------|-------------------------------------------------|
+| `* * *`  | team lead | view the projects I am working on              | view my workload                                |
+| `* * *`  | team lead | add deadline to projects                       | know when I need to finish                      |
+| `* * *`  | team lead | record down tasks to do                        | track my remaining tasks                        |
+| `* * *`  | team lead | delete projects that are done or cancelled     | remove unnecessary information                  |
+| `* * *`  | team lead | edit project details                           | update project with the newest information      |
+| `* * *`  | team lead | add staff to a project                         | track who is working on each project            |
+| `* * *`  | new user  | record staff details one at a time             | ensure that I will not make any mistakes        |
+| `* * *`  | team lead | add budget to a project                        | ensure that I will not exceed the budget        |
+| `* * *`  | team lead | access my members' departments                 | easily see who to contact                       |
+| `* * *`  | team lead | access my members' titles                      | keep track of their job scope                   |
+| `* * *`  | team lead | access my members' contacts from staff details | easily communicate with them                    |
+| `* * *`  | team lead | keep track of my staff leave status            | know who is currently available                 |
+| `* * *`  | team lead | keep track of staff names                      | know the people I am leading                    |
+| `* * *`  | team lead | delete staff members from a project            | track who is working on each project            |
+| `* * *`  | team lead | view the staff of a project                    | easily know who is working on the project       |
+| `* * *`  | team lead | edit the staff detail of a project             | keep up to date on my staff information         |
+| `* * *`  | team lead | delete task from task list                     | remove mistakenly added tasks                   |
+| `* * *`  | team lead | edit name for a task                           | keep it updated with the latest information     |
+| `* * *`  | team lead | mark task as complete                          | record that I have finished it                  |
+| `* * *`  | team lead | mark task as incomplete                        | unmark tasks that I accidentally marked as done |
+| `* *`    | team lead | find staff in a project                        | check if someone is involved in the project     |
+| `* *`    | team lead | sort projects by deadline                      | know which projects are due soonest             |
+| `* *`    | team lead | find task by name                              | find out more information about the task        |
+| `* *`    | team lead | sort task by deadline                          | know which task is more urgent                  |
+| `* *`    | team lead | sort task by completetion status               | see all my remaining tasks that have to be done |
 
 ## **Use cases**
 
 (For all use cases below, the **System** is the `HR Pro Max++` and the **Actor** is the `user`, unless specified otherwise)
 
-### **Use case: UC01- Add a project**
+### Use case: UC01- Add a project
 
 **MSS**
 
-1. User request to add project.
+1. User requests to add project.
 2. HR Pro Max++ records the project details and display added project.
 
    Use case ends.
@@ -694,13 +699,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. HR Pro Max++ detects error in add project command.
     * 1a1. HR Pro Max++ shows error
 
-      Use case resume at step 1.
+      Use case resumes at step 1.
 
-### **Use case: UC02- Add staff member to project**
+### Use case: UC02- Add staff member to project
 
 **MSS**
 
-1. User request to list all current projects.
+1. User requests to list all current projects.
 2. HR Pro Max++ shows a list of all projects.
 3. User requests to add a staff member to a specific project in the list.
 4. HR Pro Max++ displays staff member added and stores them.
@@ -718,7 +723,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-### **Use case: UC03- Delete a Project**
+### Use case: UC03- Delete a Project
 
 **MSS**
 
@@ -743,25 +748,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-### **Use case: UC04- Edit Project details**
+### Use case: UC04- Edit Project details
 
 **MSS**
 
-1. User add a project(UC01).
-2. User request to edit project in Project list with new arguments.
+1. User adds a project(UC01).
+2. User requests to edit the project in Project list with new arguments.
 3. HR Pro Max++ records the change in local storage and display project with updated details.
 
    Use case ends.
 
-### **Use case: UC05- Edit Staff details**
+### Use case: UC05- Edit Staff details
 
 **MSS**
 
-1. User add staff to project(UC02).
+1. User adds staff to project(UC02).
 2. HR Pro Max++ displays staff member added and stores them.
 3. User realises staff detail is wrong.
-4. User delete staff detail.
-5. User add staff with updated detail.
+4. User deletes staff detail.
+5. User adds staff with updated detail.
 6. HR Pro Max++ displays updated staff member added and stores them.
 
     Steps 3-6 are repeated until staff member detail is correct.
@@ -771,26 +776,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The given project is invalid.
     * 1a1. HR Pro Max++ shows error.
 
-      Use case resume at step 1.
+      Use case resumes at step 1.
 * 4a. The given project is invalid.
     * 4a1 HR Pro Max++ shows error.
 
-      Use case resume at step 4.
+      Use case resumes at step 4.
 * 4b. The given staff is invalid.
     * 4b1 HR Pro Max++ shows error.
 
-      Use case resume at step 4.
+      Use case resumes at step 4.
 * 5a. The given project is invalid.
     * 5a1. HR Pro Max++ shows error.
 
-      Use case resume at step 5.
+      Use case resumes at step 5.
 
-### **Use case: UC06- View Staff details**
+### Use case: UC06- View Staff details
 
 **MSS**
 
-1. User add staff to project(UC02).
-2. User request to view staff details.
+1. User adds staff to project(UC02).
+2. User requests to view staff details.
 3. HR Pro Max++ displays staff details.
 
    Use case ends.
@@ -800,20 +805,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The given project is invalid.
     * 1a1. HR Pro Max++ shows error.
 
-      Use case resume at step 1.
+      Use case resumes at step 1.
 * 2a. The given project is invalid.
     * 2a1. HR Pro Max++ shows error.
 
-      Use case resume at step 2.
+      Use case resumes at step 2.
 
-###**Use case: UC07- Find staff in project**
+### Use case: UC07- Find staff in project
 
 **MSS**
 
-1. User add staff to project(UC02).
-2. User request to view staff details(UC06).
+1. User adds staff to project(UC02).
+2. User requests to view staff details(UC06).
 3. HR Pro Max++ displays staff details.
-4. User request to find a specific staff.
+4. User requests to find a specific staff.
 5. HR Pro Max++ displays staff details.
 
    Use case ends.
@@ -823,18 +828,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The given project is invalid.
     * 1a1. HR Pro Max++ shows error.
 
-      Use case resume at step 1.
+      Use case resumes at step 1.
 * 2a. The given project is invalid.
     * 2a1. HR Pro Max++ shows error.
 
-      Use case resume at step 2.
+      Use case resumes at step 2.
 * 4a. The given staff does not exist.
     * 4a1. HR Pro Max++ does not display any staff.
 
       Use case ends.
 
 
-## Non-Functional Requirements
+## **Non-Functional Requirements**
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to run without any additional installations beyond Java 11.
 3. Should be able to hold up to 1000 projects without a noticeable sluggishness in performance for typical usage.
@@ -851,7 +856,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 14. The fields in the GUI should be clearly labelled such that the user can easily understand what they are for.
 15. The User Guide and Developer Guide should be clearly written and easy to understand.
 
-## Glossary
+## **Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **SME** Small and medium-sized enterprises, business whose personnel fall below certain limits
@@ -934,7 +939,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Staff list of the first Project in the list is displayed. Success message shown in the Result Display.
 
     3. Test case: `view 0`<br>
-       Expected: No Staff list is shown. Error details shown in the Result Display. Status bar remains the same.
+       Expected: No Staff list is shown. Error details shown in the Result Display.
 
     4. Other incorrect view commands to try: `view`, `view x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
@@ -947,7 +952,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Staff list of the first Project in the list is displayed. Success message shown in the Result Display.
 
    3. Test case: `view 0`<br>
-      Expected: No Staff list is shown. Error details shown in the Result display. Status bar remains the same.
+      Expected: No Staff list is shown. Error details shown in the Result display.
 
    4. Other incorrect view commands to try: `view`, `view x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
@@ -1024,7 +1029,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all Tasks using the `list` command. Multiple Tasks in the list. Sort the Task list using the `sorttask` or `sortcomplete` command. Tasks should be marked as completed.
 
-    2. Test case: `marktask 1`<br>
+    2. Test case: `unmarktask 1`<br>
        Expected: First Task is marked as not completed. Success message shown in the Result Display.
 
     3. Test case: `unmarktask 0`<br>
@@ -1106,22 +1111,22 @@ testers are expected to do more *exploratory* testing.
       Expected: HR Pro Max++ launches with no data. Restarting the app should create a new data file with the sample data.
 
    2. Test case: Add invalid characters such as `^` to the data file directly (for example, by editing the `hrpro.json` file)<br>
-      Expected: HR Pro Max++ launches with no data. Restarting the app should create a new data file with the sample data.
+      Expected: HR Pro Max++ launches with no data. Any further changes you make (eg: adding a Project) will be reflected in the new data file.
 
 
 # **Appendix: Effort**
 
-For the effort placed into our group project, we felt that our group might have placed more than the average needed just in case.
+We felt that our group has placed more than the average effort needed into this group project, just in case.
 
 The initial AB3 had only `Person`, however our group refactored `Person` into `Project` and from there added `Staff` into each project,
-and a `Task`. While the `Task` is quite similar to the `Person` in terms of implementation for model and logic component, the difficult for both
-lied within making the regex for their fields. `TaskMark`, `Deadline` and `Tag`, required us to do some reading up on how the regex API works, and for `Deadline`,
-initially we have tried to do it using Java regex but decided to change implementation into `LocalDate`, which API we also had to read upon.
+and a `Task`. While the `Task` is quite similar to the `Person` in terms of implementation for model and logic component, the difficulty for both
+lay within making the regex for their fields. `TaskMark`, `Deadline` and `Tag`, required us to do some reading up on how the regex API works, and for `Deadline`,
+initially we tried to do it using Java regex but decided to change our implementation to use Java's `LocalDate`, which we also had to read up on to figure out how to use.
 
-The biggest challenge for the project was the `Staff` and everything related to it. `Staff` existed as a `UniqueStaffList` within `Project`, something not in `Person`. Hence
-there was nothing to reference too. We had many consideration on the implementation, perhaps wanting to save it independent from `Project` and to instead save a list of
-`Project` within each `Staff`. This caused many days of debate on the implementation. Such implementation also affected how it works when it came to UI and the logic for the commands.
-For `Staff` related commands, we had to switch between many implementation, whether we change the parameters passed or changed the way it is stored and reference to in modelManager. One other
+The biggest challenge for the project was implementing `Staff` and everything related to it. `Staff` existed as a `UniqueStaffList` within `Project`, which was something we could not reference from `Person`.
+We had many considerations for the implementation, perhaps wanting to save it independently from `Project` and to instead save a list of
+`Project` within each `Staff`. This caused many days of debate on the implementation. Such implementation also affected how it worked when it came to UI and the logic for the commands.
+For `Staff` related commands, we had to switch between many implementations, whether we changed the parameters passed or changed the way it was stored and reference to in modelManager. One other
 implementation was not to use a filterStaffList, but instead a targetProject field, which had us needing to change how storage and UI would work. Due to the difficulty of this, we could easily take a few days
 every week, contemplating on how `Staff` and its related commands should work, be implemented, and then implement them.
 
@@ -1132,12 +1137,12 @@ and had to read Java API such as for `Optional` and `Comparator` to reach a sati
 For the UI, we wanted a design that made us different from AB3, even if just a little. Our group has never worked with CSS files before or JavaFx, so we
 had to experiment for ourselves, searching for help through API and suggestion offered online. We tried using VBox and HBox to fit our design but ultimately changed
 to `splitpane` when our dimensions were wrong. We had to learn how the different attributes in fxml and CSS worked, if we wanted to increase the number of fields displayed,
-change to different colours and also how to make a `flowpane` display different colours based on different conditions. All of these took lots of time
-and even back in V1.2, we nearly could not finish by the deadline since we could not figure out some bugs with the UI.
+change to different colours and also how to make a `flowpane` display different colours based on different conditions. All of these changes took lots of time
+and even back in V1.2, we nearly could not finish by the deadline since we could not figure out how to fix some bugs with the UI.
 
 With storage, we also did not have experience with JSON files, and had to learn how they were created and saved using the original for `Person`.
-We had much difficult as we wanted `Project` to store a list of `Staff` objects but were unsure how to do it. Unlike the `Tag`, each `Staff` also had its
-own fields to save and load, due to that we had to experiment for numerous days till we saved it.
+We had much difficulty as we wanted `Project` to store a list of `Staff` objects but were unsure how to do it. Unlike the `Tag`, each `Staff` also had its
+own fields to save and load, and due to that we had to experiment for numerous days till we saved it.
 
 For the test cases, we started them since V1.2, and faced many challenges when having to deal with the many Stubs used and also just the general
 difficulty of writing good test cases. We have been doing test cases for every command made, every addition to model and have been aiming to ensure that we

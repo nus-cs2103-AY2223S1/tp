@@ -2,7 +2,6 @@ package seedu.hrpro.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_STAFFNAME_ANDY;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -19,7 +18,6 @@ import seedu.hrpro.model.Model;
 import seedu.hrpro.model.ModelManager;
 import seedu.hrpro.model.UserPrefs;
 import seedu.hrpro.model.project.Project;
-import seedu.hrpro.model.project.ProjectName;
 import seedu.hrpro.model.staff.Staff;
 import seedu.hrpro.testutil.ProjectBuilder;
 import seedu.hrpro.testutil.StaffBuilder;
@@ -89,7 +87,6 @@ public class AddStaffCommandTest {
     @Test
     public void equals() {
         final Staff staff = new StaffBuilder().build();
-        final ProjectName projectName = new ProjectName(VALID_NAME_AMY);
         final AddStaffCommand addStaffCommand = new AddStaffCommand(staff, INDEX_FIRST_PROJECT);
 
         // same object -> returns true

@@ -27,7 +27,16 @@ public class DeleteTaskParserTest {
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
+        // random character
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeleteTaskCommand.MESSAGE_USAGE));
+
+        // zero index
+        assertParseFailure(parser, "0", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeleteTaskCommand.MESSAGE_USAGE));
+
+        // negative index
+        assertParseFailure(parser, "-1", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 DeleteTaskCommand.MESSAGE_USAGE));
     }
 }
