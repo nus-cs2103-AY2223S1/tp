@@ -167,8 +167,8 @@ To use the CLI, you can type a command, which is supposed to be typed in a certa
 The command format for `help` is just `help`. You can just type **`help`** into the CLI and press Enter, SoConnect will open the help window.
 
 The command format for `add` is `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`. As mentioned [here](#63-command-format), since `t/TAG` is wrapped with square brackets and has the `…`​ at the back, you can choose whether to provide this parameter and even choose to provide this multiple times. The parameters can be provided in any order as long as they are after the command.<br>
-Valid usage e.g.: `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567` <br>
-Invalid usage e.g: `add n/Joe Tan` (Other parameters such as `p/PHONE_NUMBER e/EMAIL a/ADDRESS` must be provided as they are not wrapped in square brackets)
+Valid usage e.g. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567` <br>
+Invalid usage e.g. `add n/Joe Tan` (Other parameters such as `p/PHONE_NUMBER e/EMAIL a/ADDRESS` must be provided as they are not wrapped in square brackets)
 
 Do not worry about typing commands wrongly as SoConnect will guide you if and when you do so.
 
