@@ -48,8 +48,6 @@ Boxes like this indicate more tips to help you make the most out of CodeConnect.
 
 </div>
 
-<div class="page-new"></div>
-
 ## Quick start
 
 CodeConnect works on all major OSes (Windows, Mac, Linux) and only requires Java 11 or above installed on your computer.
@@ -65,8 +63,6 @@ CodeConnect works on all major OSes (Windows, Mac, Linux) and only requires Java
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
     ![UiOnStartup](images/UiOnStartup.png)
-    <div class="page-new"></div>
-
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
@@ -155,8 +151,6 @@ Examples:
 * `add finish problem set 5 by/tomorrow 5pm m/CS2040S`
 * `add finish SEP application by/2022-12-25 23:59`
 
-<div class="page-new"></div>
-
 <div markdown="block" class="alert alert-info">
 
 :bulb: Deadline Formats
@@ -196,8 +190,6 @@ However, only alphanumeric characters are allowed! (i.e. no spaces, special char
 CodeConnect will happily accept deadlines that are in the past, in case you want to use it to track start dates or track an assignment due a few hours ago you just found out about!
 
 </div>
-
-<div class="page-new"></div>
 
 #### Editing a task: `edit`
 
@@ -241,8 +233,6 @@ This command has similar spelling to the [clear command](#clearing-all-contacts-
 
 </div>
 
-<div class="page-new"></div>
-
 #### Marking a task: `mark`
 
 Marks the specified task as complete.
@@ -265,8 +255,6 @@ Format:
 Example:
 `unmark 3`
 
-<div class="page-new"></div>
-
 #### Searching for tasks: `find`
 
 Find tasks by their name or module. The finding is done by **matching keywords** in a **case-insensitive** manner. <br>
@@ -285,8 +273,6 @@ Examples:
 `find m/CS2103T` returns this:
 
 ![findTasks](images/findTaskModule.png)
-
-<div class="page-new"></div>
 
 #### Listing all tasks : `list`
 
@@ -330,8 +316,6 @@ Every tag must begin with a tag prefix `t/`. If you would like to add multiple t
 Modules, however, may be entered as **space separated**. For example, `m/MOD1 MOD2 MOD3` will correctly assign 3 modules to the contact.
 
 </div>
-
-<div class="page-new"></div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 
@@ -401,8 +385,6 @@ both contacts, as it searches for `John` and `Tan` independently, just like `fin
 
 </div>
 
-<div class="page-new"></div>
-
 #### Quick-search for contacts: `saveme`
 
 Finds contacts that can help with the task at the first index of the task list.
@@ -434,8 +416,6 @@ Deleted contacts are **unrecoverable**!
 
 <br>
 Click [here](#) to return to the top of the page.
-
-<div class="page-new"></div>
 
 ### Finishing up
 
