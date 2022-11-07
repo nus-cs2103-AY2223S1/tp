@@ -7,7 +7,7 @@ ModQuik is optimised for use via a Command Line Interface (CLI) while still havi
 ModQuik can get one's lesson management tasks done faster than traditional GUI apps if one is a fast typist.
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
