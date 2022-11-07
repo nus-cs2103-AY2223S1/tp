@@ -21,6 +21,7 @@ Class Phone
 Class Tag
 Class Occupation
 Class Social
+Class Group
 }
 
 Class HiddenOutside #FFFFFF
@@ -44,6 +45,7 @@ Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
 Person *--> "Social"
+Person *--> "*" "Group"
 
 Name -[hidden]right-> Occupation
 Phone -[hidden]right-> Address
