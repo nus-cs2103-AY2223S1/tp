@@ -2,6 +2,8 @@ package jarvis.model;
 
 import java.util.EnumMap;
 
+import jarvis.logic.commands.exceptions.InvalidMarkException;
+
 /**
  * A class to encapsulate a student's grades for all assessments.
  */
@@ -18,7 +20,13 @@ public class GradeProfile {
         }
     }
 
-    public void grade(Assessment a, int mark) {
+    /**
+     * Records the marks for the given assessment.
+     */
+    public void grade(Assessment a, double mark) {
+        if (mark < 0 || mark > a.getTotalMarks()) {
+            throw new InvalidMarkException();
+        }
         gradeMap.get(a).setGrade(mark);
     }
 
@@ -37,6 +45,10 @@ public class GradeProfile {
 
     public EnumMap<Assessment, GradeComponent> getGradeMap() {
         return gradeMap.clone();
+    }
+
+    public double getMarks(Assessment assessment) {
+        return gradeMap.get(assessment).getMarks();
     }
 
     // Getters (for JavaFX Use)
@@ -119,5 +131,19 @@ public class GradeProfile {
         GradeComponent gc = new GradeComponent(Assessment.STUDIO_ATTENDANCE);
         gc.setGrade(marks);
         gradeMap.put(Assessment.STUDIO_ATTENDANCE, gc);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) { // short circuit if same object
+            return true;
+        }
+
+        if (!(other instanceof GradeProfile)) { // instanceof handles nulls
+            return false;
+        }
+
+        GradeProfile gp = (GradeProfile) other;
+        return gradeMap.equals(gp.gradeMap);
     }
 }

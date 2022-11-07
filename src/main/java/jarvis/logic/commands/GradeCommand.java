@@ -34,7 +34,7 @@ public class GradeCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_RA1 + "17 " + PREFIX_MIDTERM + "55";
 
-    public static final String MESSAGE_SUCCESS = "Marks recorded for student: %1$s";
+    public static final String MESSAGE_SUCCESS = "Updated grades for student: %1$s";
 
     private final Index index;
     private final GradeProfile gradeProfile;
@@ -65,7 +65,20 @@ public class GradeCommand extends Command {
         studentToEdit.updateGrades(gradeProfile);
         model.setStudent(studentToEdit, studentToEdit);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-        return new CommandResult(String.format("Updated grades for " + studentToEdit));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, studentToEdit));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) { // short circuit if same object
+            return true;
+        }
+
+        if (!(other instanceof GradeCommand)) { // instanceof handles nulls
+            return false;
+        }
+
+        GradeCommand gc = (GradeCommand) other;
+        return index.equals(gc.index) && gradeProfile.equals(gc.gradeProfile);
+    }
 }
