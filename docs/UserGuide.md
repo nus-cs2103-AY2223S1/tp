@@ -253,7 +253,6 @@ Examples:
 Edits the data of an existing resident in **RC4HDB**. Does **not** allow any [duplicate residents](#modifying-resident-data) to be created due to the editing of a resident.
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/FLOOR-UNIT] [g/GENDER] [h/HOUSE] [m/MATRIC_NUMBER] [t/TAG]…​`
-
 * Edits the resident at the specified `INDEX`.
 * The index refers to the index number shown in the displayed residents list.
 * The index **must be a positive integer:** 1, 2, 3, …​
@@ -276,7 +275,6 @@ Examples:
 Deletes the specified resident from **RC4HDB**.
 
 Format: `delete INDEX`
-
 * Deletes the resident at the specified `INDEX`.
 * The index refers to the index number shown in the displayed resident list.
 * The index **must be a positive integer:** 1, 2, 3, …​
@@ -300,7 +298,6 @@ Examples:
 Deletes residents whose fields match the input keywords.
 
 Format: `remove /SPECIFIER KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
-
 * A specifier is required in order for the command to work. If not it is an invalid command format.
 * Currently, only two specifiers are supported:
   * `/all` returns a resident if it fulfills **all** of the specified keywords.
@@ -385,14 +382,13 @@ Lists *all* the residents in the **RC4HDB** database. If the table view is showi
 calling `list` will restore and display the full list of residents.
 
 Format: `list`
+* Any input entered after the `list` command will be ignored.
+* Resets the columns in the table to the default view with *all* columns visible.
 
 Calling `list` on our sample data will produce the following result:
   
 ![list command](images/ug-photos/list_command.png)
 
-Note:
-* Any input entered after the `list` command will be ignored.
-* Resets the columns in the table to the default view with *all* columns visible.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -493,8 +489,6 @@ Resets the columns in the table to the default view with *all* columns visible.
 Use this when you have called `showonly` or `hideonly` on the table!
 
 Format: `reset`
-
-Note:
 * Any input entered after the `reset` command will be ignored.
 * This command is different from the `list` command in that it does not affect the list of residents being displayed.
   * However, both commands cause the full set of resident fields to be displayed in the table.
@@ -508,7 +502,6 @@ Note:
 Finds residents whose names contain any of the given keywords.
 
 Format: `find NAME [ADDITIONAL_NAMES]`
-
 * The search is case-insensitive. e.g `peter pang` will match `Peter Pang`
 * Only the name is searched.
 * The order of the keywords does not matter.
@@ -535,7 +528,6 @@ Examples:
 Shows a list of residents whose fields match the input keywords.
 
 Format: `filter /SPECIFIER KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
-
 * A specifier is required in order for the command to work. If not it is an invalid command format
 * Only one specifier can be entered in a command.
 * Currently, only two specifiers are supported:
@@ -600,7 +592,7 @@ Creates a new [**sub**](#finding-your-data) folder with the specified `FOLDER_NA
 Format: `file create FOLDER_NAME`
 * Does not create a new folder if the folder already exists.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The **FOLDER_NAME** must follow this <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#file-command-format">format</a>. </div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The **FOLDER_NAME** must follow this <a>[format](#file-command-format)</a>. </div>
 
 Examples:
 * `file create rc4_data_2022` will create a new folder named `rc4_data_2022` with fresh data **resident** and **venue** data files.
@@ -617,7 +609,6 @@ Format: `file delete FOLDER_NAME`
 * Does not delete the folder if it is currently open. You must switch to a different folder before deleting the previously open folder.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The **FOLDER_NAME** must follow this <a href="https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#file-command-format">format</a>. </div>
-
 
 Examples:
 * `file delete rc4_data_2022` will delete the `rc4_data_2022` folder, along with the **resident** and **venue** data files inside the folder.
