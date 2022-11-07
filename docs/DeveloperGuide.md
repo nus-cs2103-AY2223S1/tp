@@ -371,6 +371,12 @@ The following activity diagram summarizes what happens when a user executes a fi
   * Cons:
 
 
+### Redisplay full task list after Finding or Filtering
+
+#### Implementation
+
+Once done with the filtered tasklist, the user should be able to revert the list to redisplay the original set of tasks. The user executes `listTasks`, creating an instance of `ListTaskCommand` which passes a `model.Model.PREDICATE_SHOW_ALL_TASKS` as an argument into `Model#updateFilteredTaskList(Predicate<Task>)`. Finally, `Model#getFilteredTaskList()` is called to update the tasklist to redisplay the original set of tasks unfiltered.
+
 ### Sort Tasks Feature
 
 #### Implementation
