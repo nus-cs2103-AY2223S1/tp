@@ -5,7 +5,7 @@ title: Sheyuan's Project Portfolio Page
 
 ### Project: StudMap
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=piyotato)
 
 * **Project management**:
   * Helped to coordinate multiple team meetings
@@ -23,7 +23,10 @@ title: Sheyuan's Project Portfolio Page
   * Added `MultiStateAttribute` to abstract the commonalities betweeen `Attendance`, `Assignment`, and `Participation`.
 
 * **Documentation**:
-  * Wrote User Guide and Developer Guide.
+  * Wrote the preface for User Guide
+  * Planned and organized the User Guide.
+  * Prepared the UI screenshots for the User Guide.
+  * Did general formatting of both User Guide and Developer Guide.
 
 * **Community**:
   * Reviewed 36 pull requests from team members.

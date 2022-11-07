@@ -30,7 +30,7 @@ to the project. You can also use this as a reference, if you are interested in d
 * [Jackson](https://github.com/FasterXML/jackson) for providing the API for parsing JSON files.
 * [JUnit](https://junit.org/junit5/) for providing a unit testing framework.
 * StudMap's Developer Guide is adapted
-  from [AB3's Developer Guide](https://se-education.org/addressbook-level3/DeveloperGuide.html);
+  from [AB3's Developer Guide](https://se-education.org/addressbook-level3/DeveloperGuide.html).
 
 ---
 
@@ -95,7 +95,7 @@ the `LogicManager.java` class which follows the `Logic` interface. Other compone
 through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the
 implementation of a component), as illustrated in the (partial) class diagram below.
 
-![Component Managers](images/diagrams/ComponentManagers.png)){: diagram}
+![Component Managers](images/diagrams/ComponentManagers.png){: diagram}
 
 The sections below give more details of each component.
 
@@ -152,6 +152,7 @@ diagram}
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 ![Parser Class](images/diagrams/ParserClasses.png)
+
 
 How the parsing works:
 
