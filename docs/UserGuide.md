@@ -507,7 +507,7 @@ If there exists a link URL or alias that is detected as invalid within a command
 none of the link(s) in the command will be added. 
 Link aliases will be paired with link URLs according to their respective order of input (left-to-right).
 
-<div markdown="span" class="alert alert-info"> :exclamation: **Alert:**<br/>  
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
 Plannit provides no guarantee of the link URL's existence.
 </div>
 
@@ -593,7 +593,7 @@ Multiple links can be opened at once using its corresponding alias according to 
 (left to right). If there exists a link alias that is detected as invalid within a chained command,
 the links to its left will be opened while the links to its right will not be opened.
 
-<div markdown="span" class="alert alert-info"> :exclamation: **Alert:**<br/>  
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**<br>
 Permissions from your operating system may be required for some users to open links from Plannit using either way<br>
 (They are enabled by default for most users)
 </div>
