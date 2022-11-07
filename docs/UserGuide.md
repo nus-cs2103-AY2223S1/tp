@@ -682,11 +682,7 @@ Examples:
 <div style="page-break-after: always;"></div>
 
 ### File Command Format:
-* All file commands have a `FOLDER_NAME` or `FILE_NAME` field depending on the command that is being used.
-=======
-### File Command Format:
 * All file commands have a `FOLDER_NAME` or `FILE_NAME` field depending on the command that is being used. 
->>>>>>> 8bd121b3801a364f9c1df55519fc63d9929a32d3
 * `FOLDER_NAME` signifies the name of the **sub** data folder that is being used.
 * `FILE_NAME` refers to the [CSV](#glossary-of-terms) file to be targeted.
 * Do not include any file types in the `FOLDER_NAME` or `FILE_NAME`. A file type is the description that comes after the `.` in a file. For example, The file name of the file `residents.csv` is just `residents`.
