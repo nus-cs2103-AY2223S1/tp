@@ -40,7 +40,7 @@ Given below are my contributions to the project.
 * Improved `findProj` command to be able to find `Project` with keywords that matches part of the `Project` name.
 * Improved `findTask` command to be able to find `Task` with keywords that matches part of the `TaskDescription`.
 * Improved `findStaff` command to be able to find `Staff` with multiple keywords.
-* Check for code quality
+* Checked for code quality.
 
 * **Project management**:
   * Project demonstration for submission.
@@ -57,7 +57,6 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Update use case for `Project` [\#83](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/83).
     * Added use cases for `Staff` [\#83](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/83), [\#218](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/218).
-    * Added `TaskList` section and UML Diagram for `TaskList` [\#105](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/105).
     * Added `findTask` section and UML Diagram for `findTask` command [\#218](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/218).
     * Added user stories for `Project`, `Task` and `Staff` commands [\#218](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/218).
 

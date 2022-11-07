@@ -9,6 +9,7 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # **Acknowledgements**
 
@@ -23,6 +24,7 @@ title: Developer Guide
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # **Design**
 
@@ -186,6 +188,7 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.hrpro.commons` package.
 
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 # **Implementation**
@@ -607,6 +610,7 @@ Activity diagram for the `FindStaffCommand`
   `findstaff Alex Lau` will either return no staff if there is no staff in the staff list with the name "Alex Lau", or only the staff "Alex Lau"
   - Cons: Users who want to perform search queries on the staff list such as finding all Jareds and all Laus, will have to do two separate
   `findstaff` calls when they could just call `findstaff Jared Lau` in an implementation that supports searching multiple keywords.
+<div style="page-break-after: always"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 # **Documentation, logging, testing, configuration, dev-ops**
@@ -616,7 +620,7 @@ Activity diagram for the `FindStaffCommand`
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
-
+<div style="page-break-after: always"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 # **Appendix: Requirements**
@@ -680,7 +684,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | team lead | find task by name                              | find out more information about the task        |
 | `* *`    | team lead | sort task by deadline                          | know which task is more urgent                  |
 | `* *`    | team lead | sort task by completetion status               | see all my remaining tasks that have to be done |
-
+<div style="page-break-after: always"></div>
 ## **Use cases**
 
 (For all use cases below, the **System** is the `HR Pro Max++` and the **Actor** is the `user`, unless specified otherwise)
@@ -866,7 +870,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **JAR** Stands for Java Archive, and is a file format used to aggregate many Java class files and associated metadata and resources (text, images, etc.) into one file for distribution.
 * **Prefix** A prefix is a short string of characters that is used to identify a command parameter. It is always ended by a backslash (`/`).
 * **Parameter** A parameter is a value in a command that is used to specify the behaviour of the command. Parameters are information to be supplied by the user.
-
+<div style="page-break-after: always"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 # **Appendix: Instructions for manual testing**
@@ -1113,7 +1117,7 @@ testers are expected to do more *exploratory* testing.
    2. Test case: Add invalid characters such as `^` to the data file directly (for example, by editing the `hrpro.json` file)<br>
       Expected: HR Pro Max++ launches with no data. Any further changes you make (eg: adding a Project) will be reflected in the new data file.
 
-
+<div style="page-break-after: always"></div>
 # **Appendix: Effort**
 
 We felt that our group has placed more than the average effort needed into this group project, just in case.
