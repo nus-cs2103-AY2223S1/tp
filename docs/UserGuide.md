@@ -158,14 +158,14 @@ The UI components description:
 
 5. The screen should appear in a few seconds when the app first launches as shown in the figure below. Note how the app contains some sample data.
 
-  |  ![Ui](images/darktheme.png)  |
-  |:-----------------------------:|
-  | InterNUS GUI with sample data |
+|  ![Ui](images/darktheme.png)  |
+|:-----------------------------:|
+| InterNUS GUI with sample data |
 
-
-6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-
-7. Refer to the [Features](#4-features) below for details of each command.
+<ol start="6">
+    <li>Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.</li>
+    <li>Refer to the [Features](#4-features) below for details of each command.</li>
+</ol>
 
 --------------------------------------------------------------------------------------------------------------------
 
