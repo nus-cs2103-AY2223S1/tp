@@ -6,7 +6,7 @@ import static seedu.watson.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
-import javafx.collections.ObservableList;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.watson.commons.core.GuiSettings;
@@ -17,6 +17,8 @@ import seedu.watson.model.ReadOnlyUserPrefs;
 import seedu.watson.model.student.Name;
 import seedu.watson.model.student.Student;
 import seedu.watson.testutil.StudentBuilder;
+
+import javafx.collections.ObservableList;
 
 public class PredictionCommandTest {
 
