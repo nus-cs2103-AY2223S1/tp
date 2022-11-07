@@ -381,6 +381,24 @@ The activity diagram below summarises exception handling of UpdateContactCommand
 
 ### Implementation:
 
+![AssignSequenceDiagram](images/AssignSequenceDiagram.png)
+
+Step 1. The user executes `assign id/3 id/2`
+
+Step 2. `HealthcareXpressParser` creates an `AssignCommandParser` to parse the arguments.
+
+Step 3. `AssignCommandParser` checks validity of the given arguments and creates an `AssignCommand`.
+
+Step 4. The `AssignCommand` is executed, and a new `InternalEditor` is created.
+
+Step 5. `AssignCommand` calls the `InternalEditor`'s methods of `editPatient` and `editNurse`.
+
+Step 6. `Model` updates the database, and displays all the persons.
+
+The activity diagram below summarises exception handling of AssignCommand:
+
+![AssignActivityDiagram](images/AssignActivityDiagram.png)
+<br></br>
 
 #### Design considerations:
 
@@ -401,6 +419,16 @@ The activity diagram below summarises exception handling of UpdateContactCommand
 - The deassign feature is necessary so that the medical administrator deassign a nurse to a patient's home visit if a mistake has been made or changes are necessary.
 
 ### Implementation:
+Step 1. The user executes `deassign id/3`
+
+Step 2. `HealthcareXpressParser` creates an `DeassignCommandParser` to parse the arguments.
+
+Step 3. `DeassignCommandParser` checks validity of the given arguments and creates an `DeassignCommand`.
+
+Step 4. The `DeassignCommand` is executed, the person with the id of 3 will have their home visits deassigned.
+
+Step 5. `Model` updates the database, and displays all the persons.
+<br></br>
 
 ### \[Proposed\] Undo/redo feature
 

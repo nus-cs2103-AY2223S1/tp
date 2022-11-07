@@ -1,0 +1,19 @@
+@startuml
+start
+:User executes assign command;
+
+if () then ([all the compulsory fields are present and valid])
+
+        if () then ([both persons are nurses or patients])
+        : Show error message about both persons being nurses or both persons being patients;
+        else ([else])
+        :Edit Patient dateslots;
+        :Edit Nurses homevists;
+        :Show all persons in the displayed list;
+        endif
+else ([else])
+:Show error message about the missing or invalid fields;
+
+endif
+stop
+@enduml
