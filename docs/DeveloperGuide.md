@@ -297,6 +297,8 @@ Lastly, upon execution, the `ListTaskCommand` builds a single predicate to be us
 
 The `mark` feature is implemented by acting on the current filtered`TaskPanel` with a one-based `Index` specified by the user, getting the target `Task` at the specified index, and marking it.
 
+![MarkTaskSequenceDiagram](images/MarkTaskSequenceDiagram.png)
+
 #### Example Usage of `task mark`
 
 1. User launches Arrow and the `TaskPanel` is populated with existing `Task` entries.
@@ -309,6 +311,8 @@ The `mark` feature is implemented by acting on the current filtered`TaskPanel` w
 ### Unmarking a Task Feature
 
 #### Current Implementation
+
+![MarkTaskSequenceDiagram](images/UnmarkTaskSequenceDiagram.png)
 
 The `unmark` feature is implemented by acting on the current filtered`TaskPanel` with a one-based `Index` specified by the user, getting the target `Task` at the specified index, and unmarking it.
 
