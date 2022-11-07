@@ -37,12 +37,12 @@ Given below are my contributions to the project.
     * Updated add, delete and edit commands to be consistent with new features. [\#173]()
     * Documented what purpose each section of the user interface serves [\#169]()
     * Updated find command image to be consistent with updated UI and command format [\#173]()
-    * Updated Quickstart image to be consistent with Updated UI and added labels for each section of the interface [#\169]()
+    * Updated Quickstart image to be consistent with Updated UI and added labels for each section of the interface [\#169]()
   * Developer Guide:
-    * Updated appendix to be consistent with new features [\#192]
-    * Expanded use cases to cover scenarios not covered in the original application [\#221]
-    * Updated description and implementation of UI to be consistent with new UI [\#206]
-    * Added UML and Activity Diagram for AddTask command [\#97]
+    * Updated appendix to be consistent with new features [\#192]()
+    * Expanded use cases to cover scenarios not covered in the original application [\#221]()
+    * Updated description and implementation of UI to be consistent with new UI [\#206]()
+    * Added UML and Activity Diagram for AddTask command [\#97]()
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#54](), [\#90](), [\#193]()
