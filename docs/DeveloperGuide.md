@@ -389,7 +389,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​          | I want to …​                                                                           | So that ​                                                                                              |
+| Priority | As a …           | I can …                                                                                | So that                                                                                                |
 |----------|------------------|----------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
 | * * *    | First time user  | See a summary of commands                                                              | I can know the functionalities of the app quickly                                                      |
 | * * *    | First time user  | Delete internship status                                                               | I know that I have finished my interview process with the company                                      |
@@ -568,15 +568,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. A user will not be able to communicate with the people in the contact. 
 5. A user will not be able to share contacts with others.
 6. Should work only for single user.
-7. The data should be stored in a human editable text file
+7. The data should be stored in a human editable text file.
 8. The GUI should work well for standard screen resolutions 1920x1080 and higher and for screen scales 100% and 125%. 
 9. The GUI should be usable for resolutions 1280x720 and higher and for screen scales 150%.
-10. Each contact person can only link to one internship and each internship is only linked to one contact person
+10. Each contact person can only link to one internship and each internship is only linked to one contact person.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
 
