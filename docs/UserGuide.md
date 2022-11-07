@@ -567,7 +567,11 @@ Format: `lock`
 
 The following dialog box will be displayed:
 
-![Password dialog box](images/LockWindow.png)
+|           ![Password dialog box](images/LockWindow.png)           |
+|:-----------------------------------------------------------------:|
+|                <sub>*Used command:* `lock` </sub>                 |
+
+
 
 <div markdown="block" class="alert alert-info">
 
@@ -749,16 +753,20 @@ Copies the data of an existing client in the FinBook into your Computer's clipbo
 
 Format: `copy INDEX`
 
-Example: `copy 1` with the sample data will result a copied output of:
+Example: `copy 2` with the sample data will result a copied output of:
 
 ```
-Name: Alex Yeoh
-Phone: 87438807
-Email: alexyeoh@example.com
-Address: Blk 30 Geylang Street 29, #06-40
-Income: $1000
-Meeting date: 12 Nov 2022
-Tags: friends
+Name: Bernice Yu
+Phone: 99272758
+Email: berniceyu@example.com
+Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18
+Income: $5300
+Meeting date: 20 Nov 2022
+Meeting Location: 21 Lower Kent Ridge Rd, Singapore 119077
+Tags: VIPClient, YuFamily
+Risk: high
+Plans: Education Savings Plan
+Note: Plans to save for College Education
 ```
 
 * Press `Ctrl-V` to paste the copied text.   
