@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_SLOT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_SLOT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -44,9 +43,8 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_UID, PREFIX_CATEGORY, PREFIX_NAME,
-                PREFIX_GENDER,
-                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_DATE_AND_SLOT, PREFIX_TAG,
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_UID, PREFIX_NAME,
+                PREFIX_GENDER, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_DATE_AND_SLOT, PREFIX_TAG,
                 PREFIX_DATE_AND_SLOT_INDEX, PREFIX_UNAVAILABLE_DATE, PREFIX_UNAVAILABLE_DATE_INDEX);
 
         Uid uid;
@@ -58,9 +56,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
-        if (argMultimap.getValue(PREFIX_CATEGORY).isPresent()) {
-            editPersonDescriptor.setCategory(ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get()));
-        }
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
@@ -79,10 +74,8 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         parseDatesSlotsForEdit(argMultimap.getAllValues(PREFIX_DATE_AND_SLOT))
                 .ifPresent(editPersonDescriptor::setDatesSlots);
-
         parseDateSlotIndexesForEdit(argMultimap.getAllValues(PREFIX_DATE_AND_SLOT_INDEX))
                 .ifPresent(editPersonDescriptor::setDateSlotIndexes);
-
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
         parseDatesForEdit(argMultimap.getAllValues(PREFIX_UNAVAILABLE_DATE))
                 .ifPresent(editPersonDescriptor::setUnavailableDates);
