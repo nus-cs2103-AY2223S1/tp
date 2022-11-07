@@ -3,20 +3,20 @@ layout: page
 title: Zhehao's Project Portfolio Page
 ---
 
-# Project: CS2103 tP
+#### Project: CS2103 tP
 
-## Overview
+#### Overview
 
 checkUp is a desktop patient medical record management system. The user interacts with it using a CLI, and it has a GUI
 created with JavaFX. It is written in Java, and has about 15 kLoC.
 
-## Summary of contributions
+#### Summary of contributions
 
-### Code contributed
+##### Code contributed
 All my code contribution can be viewed here:
 [RepoSense Report](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=charles1026&breakdown=true)
 
-#### Enhancements implemented
+##### Enhancements implemented
 
 - Updating `Person` class to support patient specific fields
   - Description: `Person` now supports `Name`, `Phone`, `Email`, `NextOfKin`, `PatientType`, `HospitalWing`, 
@@ -58,7 +58,7 @@ All my code contribution can be viewed here:
   - Justification: Allows doctors to quickly document their consultation with a patient without having to enter 
     multiple commands.
   
-#### Other code contributions
+##### Other code contributions
 
 - Fixed Patient Details Panel display bugs.
 - Fixed `UpcomingAppointment` and `PastAppointment` date parsing bugs.
@@ -66,7 +66,7 @@ All my code contribution can be viewed here:
 - Fixed duplicate `PastAppointment` not caught bug.
 - Added unit tests for all the enhancements in the section above.
 
-#### Contributions to the UG
+##### Contributions to the UG
 
 - Updated documentation for `add` and `edit` commands to reflect changes made to them.
 - Documented `view`, `delappt` and `consult` commands.
@@ -76,7 +76,7 @@ All my code contribution can be viewed here:
 - Reorganised the whole Features section to a 3 segment structure to group related commands together and improve user readability
 - Added all hyperlinks across the whole user guide to improve navigability.
 
-#### Contributions to the DG
+##### Contributions to the DG
 - Updated the `Ui` component to reflect our changes and created a new UML Class Diagram for it.
 - Wrote the documentation for the `add`, `edit`, `delappt`, `consult` and `view` commands, 
   as well as for the Patient Details Panel Clickability and Keyboard Shortcuts. Included for each command:
@@ -84,15 +84,14 @@ All my code contribution can be viewed here:
   - Text description of how the feature work.
   - UML Sequence Diagram to illustrate the flow of the feature.
 - Added user stories, use cases and manual testing for all the above-mentioned features.
- 
 
-#### Contributions to team-based tasks
+##### Contributions to team-based tasks
 
 - Ensured team was on schedule to meet deadlines and milestone submissions.
 - Split and planned tasks for team members.
 - Checked for code quality and adherence to coding standards.
 
-#### Review/mentoring contributions
+##### Review/mentoring contributions
 
 - Reviewed PRs for team members through the SDLC versions.
 - Aided teammates with debugging and highlighted errors / potential coding standards breaches to teammates.
