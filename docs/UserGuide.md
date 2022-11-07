@@ -450,6 +450,12 @@ Examples:<br>
 `sortprops -t ASC`: Sorts properties by time of entry from least recent to most recent.
 
 ### Match Commands
+
+<div markdown="span" class="alert alert-primary">:exclamation: **Note:**
+These commands might cause the [Buyer List](#2-buyer-list) and [Property List](#3-property-list) to only show a portion of 
+buyers and properties in the database. Use the [List Commands](#list-commands) to show all buyers and properties again.
+</div>
+
 #### Match specified buyer to properties: `matchbuyer`
 
 Intelligently matches a buyer in the database to all properties that are suitable for the buyer.
@@ -521,7 +527,7 @@ If your changes to the data file makes its format invalid, Cobb will discard all
 
 **Q**: Why am I not seeing some properties and buyers in my property and buyer lists?<br>
 **A**: You might be looking at a filtered portion of the database. This is because you previously executed a 
-[Filter Command](#filter-commands) or a [Find Command](#find-commands). To view all buyers and properties again, 
+[Filter Command](#filter-commands) or a [Find Command](#find-commands) or a [Match Command](#match-commands). To view all buyers and properties again, 
 use the [List Commands](#list-commands).
 
 **Q**: How do I transfer my data to another computer?<br>
