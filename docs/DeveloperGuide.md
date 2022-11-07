@@ -133,6 +133,7 @@ How the `Logic` component works:
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a student).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
+<div style="page-break-after: always;"></div>
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete id/123A")` API call.
 
@@ -145,6 +146,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
+<div style="page-break-after: always;"></div>
 
 How the parsing works:
 * When called upon to parse a user command, the `StudentRecordParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `StudentRecordParser` returns back as a `Command` object.
@@ -207,6 +209,7 @@ The `Student` class contains a total of 6 fields:
 * 1 set of `Exam`(s)
     * The type of exams are currently limited to _CA1_, _CA2_, _SA1_ and _SA2_.
     * Future implementations may allow teachers to create their own examinable items.
+<div style="page-break-after: always;"></div>
 
 **Implementation**
 
@@ -267,6 +270,7 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 <div markdown="span" class="alert alert-info">:information_source:
 **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+<div style="page-break-after: always;"></div>
 
 **Step 1: Parsing the command**
 
@@ -360,6 +364,7 @@ The `FindCommand` object created will then interact with the `ModelManager` to e
    is called, to filter the list of students.
 2. The filtered list is returned to the user, and they will be able to view the list of students whose name contains the
    specified keyword(s), or whose Id matches the specified Id.
+<div style="page-break-after: always;"></div>
 
 **Usage scenario**
 
@@ -428,6 +433,7 @@ The following Sequence diagram shows how the `ViewClassCommand` works:
 **Note:** The lifeline for `ViewClassCommandParser` should end at the destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
 
 **Step 1: Parsing the command**
 
@@ -473,6 +479,7 @@ The following activity diagram summarises the events that occur when the user ex
 ![ToggleView Activity Diagram](images/ToggleViewCommandActivityDiagram.png)
 
 The `Model`has an association with `FilteredStudent` where `FilteredStudent` encapsulates the current toggle status and `FilteredStudentList`. Executing the command will change the toggle status. The StudentListPanel is dependent on the toggle status in `FilteredStudent` to display or hide the students’ parent details properly in the `StudentCard`.
+<div style="page-break-after: always;"></div>
 
 Given below is an example usage scenario of how the ToggleView mechanism behaves at each step: 
 
@@ -529,6 +536,7 @@ Step 2: The mean of the exam scores for that class is calculated using `Model#ca
 Depending on the boolean value returned during the parsing of the filter prefix, the class list is further filtered using `Model#updateFilteredStudentList(Predicate<Student)` to show a flagged list. 
 
 The whole list is sorted according to the score of the particular exam, before it is returned and displayed to the user.
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram depicts how different components such as `Logic` and `Model` interact.
 
@@ -570,6 +578,7 @@ Click <a href="#top">here</a> to return to the top.
 Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 6. **Appendix: Requirements**
 
@@ -591,6 +600,7 @@ Ministry of Education (MOE) Teachers who:
 **Value Proposition**
 
 Class-ify is a **class management application** built specially for **Singapore Ministry of Education (MOE) teachers** to **monitor their student's academic progress easily**. Teachers can **generate exam statistics** for each class, and Class-ify quickly **flags out students** who require more support for contacting.
+<div style="page-break-after: always;"></div>
 
 ### 6.2 User stories
 
@@ -628,6 +638,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | 28  | Teacher giving exam feedback                    | Filter a list of students who scored above a certain grade   | Reward them for their good results                               | **       |
 | 29  | Teacher taking the same class for the next year | Update the class name of all students in the class           | Save time editing the records one by one                         | **       |
 | 30  | Teacher who made a grading error                | Update multiple records with the new score                   | Save time editing the records one by one                         | **       |
+
+<div style="page-break-after: always;"></div>
 
 ### 6.3 Use cases
 
@@ -776,6 +788,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2c. Not all students have received grades for the exam.
     * 2c1. Class-ify shows an error message stating mean score cannot be calculated.
+<div style="page-break-after: always;"></div>
 
 ### 6.4 Non-Functional Requirements
 
@@ -793,6 +806,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - Class-ify does not allow synchronisation of class lists with other teachers, but allows for sharing of data between teachers.
 - **Others**:
   - A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+<div style="page-break-after: always;"></div>
 
 ### 6.5 Glossary
 
@@ -807,6 +821,7 @@ which assumes that nothing goes wrong
 Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 7. **Appendix: Instructions for manual testing**
 
