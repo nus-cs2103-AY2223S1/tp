@@ -489,8 +489,8 @@ Formats:
 
 Examples:
 
-`find dt/2022-10-15` returns all students with classes on 15 October 2022.
-`find dt/Mon` returns all students with classes on the coming monday.
+* `find dt/2022-10-15` returns all students with classes on 15 October 2022.
+* `find dt/Mon` returns all students with classes on the coming monday.
 
 [↑ Back to top](#table-of-contents)
 
