@@ -196,6 +196,10 @@ Restrictions:
 Example:
 `t add m/CS2105 d/Assignment 1` adds a task with the module as 'CS2105' and description as 'Assignment 1' into the stored task list.
 
+| ![AddTaskCommand](images/AddTaskCommandDemo.png) |
+|:------------------------------------------------:|
+|         Demonstration of AddTaskCommand          |
+
 ### Deleting a task 
 Deletes the specified task according to the index given
 
@@ -303,6 +307,10 @@ Examples:
 `t filter m/cs2030 c/y` filters out all completed tasks that are under the module cs2030.
 
 `t filter l/n` filters out all tasks that are currently not linked to any exam.
+
+| ![FilterTasksCommand](images/FilterTasksCommandDemo.png) |
+|:--------------------------------------------------------:|
+|           Demonstration of FilterTasksCommand            |
 
 ### Finding task(s)
 Finds tasks stored in the task list by the task's description.
@@ -549,6 +557,10 @@ Restrictions:
 Example:
 
 `e showt 1` shows a list of all tasks linked to the first exam in the exam list.
+
+| ![ListExamTasksCommand](images/ListExamTasksCommandDemo.png) |
+|:------------------------------------------------------------:|
+|            Demonstration of ListExamTasksCommand             |
 
 ## Other Features
 
