@@ -53,9 +53,6 @@ For teachers who are teaching more than one module, please use one TAB for each 
 * Items in square brackets are optional.<br>
   e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/CS2103T-T12`, `t/CS2103T-T12 t/CS2103T-15` etc.
-
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
@@ -324,6 +321,15 @@ This can also be done by clicking File - Exit.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TAB home folder.
+
+**Q**: Why is editing of Position restricted?<br>
+**A**: TAB depicts the addressbook of a certain module at a certain period of time. Positions within TAB should be consistent in that time frame. For example, it would not make sense for a Student to become a Professor.
+
+**Q**: Why is editing of Tags restricted?<br>
+**A**: AB depicts the addressbook of a certain module at a certain period of time. Tags represent the module and tutorial group of a students. If a student were to drop the module halfway, he should be removed from TAB instead using the delete feature.
+
+**Q**: Why should there be only Persons from one module in each addressbook? This is a big limitation!<br>
+**A**: Not really. By only allowing Persons from one module in each addressbook, it ensures that your TAB is neat and streamlined. If you want to keep contacts across modules, please create a new TAB by using our `new` and `swap` features.
 
 **Q**: I just created a new book and nothing changed?<br>
 **A**: The new TAB's name appears at the bottom left corner.
