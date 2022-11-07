@@ -252,7 +252,7 @@ Step 2. User input is parsed by `DeleteCommandParser` which creates the `DeleteC
 
 Step 3. The `execute` method of `DeleteCommand` is then called on the object, which returns a `CommandResult` object.
 
-Step 4. This finds the `person` from the list from `model#getFilteredPersonList` by its employee ID which is `1` in this case. If there does not exist a `person` object with employee ID of `1`, a `CommandException` will be thrown and a message indicating invalid ID given will be shown. If the `person` object exists, then using `model#deletePerson()`, the `person` object is deleted from the `database`.
+Step 4. This finds the `person` from the database by its employee ID which is `1` in this case. If there does not exist a `person` object with employee ID of `1`, a `CommandException` will be thrown and a message indicating invalid ID given will be shown. If the `person` object exists, then using `model#deletePerson()`, the `person` object is deleted from the `database`.
 
 Step 5. storage#saveDatabase is then called on the current `database`, updates the database to not contain the deleted `person`.
 
@@ -281,7 +281,7 @@ Step 2. User input is parsed by `FindCommandParser` which creates a `PersonMatch
 
 Step 3. The `execute` method of `FindCommand` is then called on the object.
 
-Step 4. This then calls the `model#updateFilteredPersonList` method, which iterates through the list of `Person` objects returned by the `model#getFilteredPersonList` for the search parameter specified (in this case, name being "Alex"). It then keeps track of any `Person` objects that matches this specified parameter.
+Step 4. This then calls the `model#updateFilteredPersonList` method, which iterates through the list of `Person` objects returned by the database for the search parameter specified (in this case, name being "Alex"). It then keeps track of any `Person` objects that matches this specified parameter.
 
 Step 5. This returns a `CommandResult` object, which is returned to the `LogicManager`, and eventually, the `MainWindow`, prompting the `MainWindow` to call `model#getFilteredPersonList` and display the first-indexed person, if there is any.
 
@@ -340,7 +340,7 @@ The command takes in 3 parameters: employee ID, start date of leave, and end dat
 
 When a valid input is given, the `add-leave` command will add the given leave period to the employee of the given ID.
 
-- On the UI, the leave period will be added to the leave table shown in the employee profile at the side panel. 
+- On the UI, the leave period will be added to the leave table shown in the employee profile at the side panel.
 - The "Leaves-Left" field will also be updated accordingly, which is the deduction of the number of days which the new leave spans, from its previous value.
 
 Below is a sequence diagram and explanation of how `add-leave` is executed. In this example, we will look at the command `add-leave id/1 sd/01-01-2022 ed/01-01-2022`.
@@ -370,7 +370,7 @@ The command takes in 2 parameters: employee ID, and the one-based index of leave
 
 When a valid input is given, the `delete-leave` command will delete the given leave period of the employee of the given ID.
 
-- On the UI, the leave period will be removed from the leave table shown in the employee profile at the side panel. 
+- On the UI, the leave period will be removed from the leave table shown in the employee profile at the side panel.
 - The "Leaves-Left" field will also be updated accordingly, which is the addition of its previous value and the number of days which the deleted leave spans.
 
 Below is a sequence diagram and explanation of how `delete-leave` is executed. In this example, we will look at the command `delete-leave id/1 i/1`.
@@ -420,14 +420,14 @@ UML Diagram:
 
 **Step 2**: User executes `batch-add filename` command. In the `LogicManager` class, the `DatabaseParser` method is called.
 This will return a new `BatchAddCommandParser` object and `parse` function is then called.
-A helper function in `ParserUtil` helps to trim the filename and check if it is valid. 
+A helper function in `ParserUtil` helps to trim the filename and check if it is valid.
 
 Note: If no argument is provided or file not in CSV format, a`ParseException` will be thrown.
 
 **Step 3**: The `parse` function returns a `BatchAddCommand` which is then executed. In this `execute` function, the first
-step would be to read the information in the CSV file (`getInfo` function). A `BufferedReader` object is used to read the CSV file and converts 
-each row to a string of arguments (following the add command requirements) and creates a new `AddCommand`. These new `AddCommands` will be added 
-into a `List<AddCommand>`. 
+step would be to read the information in the CSV file (`getInfo` function). A `BufferedReader` object is used to read the CSV file and converts
+each row to a string of arguments (following the add command requirements) and creates a new `AddCommand`. These new `AddCommands` will be added
+into a `List<AddCommand>`.
 
 Note: If file does not exist in the folder, a `FileNotFound` exception is thrown too.
 
@@ -454,7 +454,7 @@ If there is any duplicate Person found, the function call will be aborted and th
   - Cons: If the user orders it wrongly, it will not work.
 - Alternative 2: Use the Header row to determine the data used.
   - Pros: No need to follow a specific ordering.
-  - Cons: Name of headers need to be the exact name used. 
+  - Cons: Name of headers need to be the exact name used.
 
 ---
 
@@ -490,44 +490,43 @@ Coydir enables the Company’s HR executive to quickly access the list of all em
 _Currently for Coydir v1.4_
 
 _Note_:
- **User** will refer to both HRE and HOD
+**User** will refer to both HRE and HOD
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                                    | I want to …​                                                            | So that I can…​                                                                                     |
-| ------ |--------------------------------------------|-------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
-| `* * *` | user                                       | add a new employee                                                      | keep the database updated with the employee list.                                                   |
-| `* * *` | user                                       | delete a employee                                                       | remove entries that I no longer need.                                                               |
-| `* * *` | user                                       | list people in the database                                             | keep track of who is in the company.                                                                |
-| `* * *` | user                                       | edit details of employees                                               | correct the details of the employees.                                                               |
-| `* * *` | user                                       | view the employee's email address                                       | contact them via email for work related updates.                                                    |
-| `* * *` | user                                       | view the employee's phone number                                        | contact them via phone for work related updates.                                                    |
-| `* * *` | user                                       | view the employee's address                                             | mail them relevant documents if need be.                                                            |
-| `* * *` | user                                       | view the employee's department                                          |                                                                                                     |
-| `* * *` | user                                       | view the employee's total number of leaves and number of leaves left    | track to make sure the leave requests from the employees are valid.                                 |
-| `* * *` | user                                       | view details of employees                                               | contact them if necessary.                                                                          |
-| `* * *` | user                                       | save my data                                                            | load the data I input previously.                                                                   |
-| `* * *` | user with many employees                   | find an employee                                                        | get all relevant information about a particular employee.                                           |
-| `* * *` | user                                       | find all employees in a specific department                             | see how many and who are in the specified department.                                               |
-| `* * *` | user                                       | find all employees in a specific position                               | see how many and who are in the specified position.                                                 |
-| `* * *` | new user                                   | know what commands I can do                                             | fully maximise the application and use all of the features provided.                                |
-| `* * *` | user                                       | add multiple employees at once                                          | avoid wasting time adding employees one by one when multiple new employees have joined the company. |
-| `* * *` | user                                       | keep track of leaves taken so far                                       | track which days the employee has taken leave over the year for accountability purposes.            |
-| `* * *` | user                                       | see if an employee is on leave today                                    | choose whether to allocate work to him based on his availability.                                   |
-| `* * *` | user                                       | rate my employee based on their performance                             |                                                                                                     |
-| `* * *` | user                                       | view the previous ratings of an employee                                | observe the performance trend and make managerial level decisions.                                  |
-| `* * *` | HOD                                        | have an overview of how many people in the department are on leave      | allocate manpower accordingly.                                                                      |
-| `* * *` | HOD                                        | have an overview of the ratings of my employees                         | reward high performers and identify poor performers                                                 |
-| `* *`  | user                                       | change colour and theme of the app                                      | use the app with my preferred mode (Dark or Light Mode).                                            |
-| `* *`  | HRE                                        | build an organisation chart                                             | view a high level overview of the company's organisation structure.                                 |
-| `* *`  | HRE                                        | archive past employees                                                  | keep a copy of past data while keeping current interface clean and fast.                            |
-| `* *`  | user                                       | to undo my previous command                                             | revert mistakes if necessary.                                                                       |
-| `* * `  | user dealing with confidential information | have some form of authentication                                        | prevent confidential data from being leaked out.                                                    |
-| `* * `  | HRE                                        | keep track of monthly salary of my employees                            | know how much to pay them every month.                                                              |
-| `* * `  | HRE                                        | keep track what time the employees starts and end work                  | factor in overtime into their pay.                                                                  |
-| `* * `  | HRE                                        | view the claims (transport claims, food claims etc) that employees make | compensate them back.                                                                               |
-| `* * `  | expert user                                | customizable shortcuts                                                  | run frequently used commands faster.                                                                |
-
+| -------- | ------------------------------------------ | ----------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `* * *`  | user                                       | add a new employee                                                      | keep the database updated with the employee list.                                                   |
+| `* * *`  | user                                       | delete a employee                                                       | remove entries that I no longer need.                                                               |
+| `* * *`  | user                                       | list people in the database                                             | keep track of who is in the company.                                                                |
+| `* * *`  | user                                       | edit details of employees                                               | correct the details of the employees.                                                               |
+| `* * *`  | user                                       | view the employee's email address                                       | contact them via email for work related updates.                                                    |
+| `* * *`  | user                                       | view the employee's phone number                                        | contact them via phone for work related updates.                                                    |
+| `* * *`  | user                                       | view the employee's address                                             | mail them relevant documents if need be.                                                            |
+| `* * *`  | user                                       | view the employee's department                                          |                                                                                                     |
+| `* * *`  | user                                       | view the employee's total number of leaves and number of leaves left    | track to make sure the leave requests from the employees are valid.                                 |
+| `* * *`  | user                                       | view details of employees                                               | contact them if necessary.                                                                          |
+| `* * *`  | user                                       | save my data                                                            | load the data I input previously.                                                                   |
+| `* * *`  | user with many employees                   | find an employee                                                        | get all relevant information about a particular employee.                                           |
+| `* * *`  | user                                       | find all employees in a specific department                             | see how many and who are in the specified department.                                               |
+| `* * *`  | user                                       | find all employees in a specific position                               | see how many and who are in the specified position.                                                 |
+| `* * *`  | new user                                   | know what commands I can do                                             | fully maximise the application and use all of the features provided.                                |
+| `* * *`  | user                                       | add multiple employees at once                                          | avoid wasting time adding employees one by one when multiple new employees have joined the company. |
+| `* * *`  | user                                       | keep track of leaves taken so far                                       | track which days the employee has taken leave over the year for accountability purposes.            |
+| `* * *`  | user                                       | see if an employee is on leave today                                    | choose whether to allocate work to him based on his availability.                                   |
+| `* * *`  | user                                       | rate my employee based on their performance                             |                                                                                                     |
+| `* * *`  | user                                       | view the previous ratings of an employee                                | observe the performance trend and make managerial level decisions.                                  |
+| `* * *`  | HOD                                        | have an overview of how many people in the department are on leave      | allocate manpower accordingly.                                                                      |
+| `* * *`  | HOD                                        | have an overview of the ratings of my employees                         | reward high performers and identify poor performers                                                 |
+| `* *`    | user                                       | change colour and theme of the app                                      | use the app with my preferred mode (Dark or Light Mode).                                            |
+| `* *`    | HRE                                        | build an organisation chart                                             | view a high level overview of the company's organisation structure.                                 |
+| `* *`    | HRE                                        | archive past employees                                                  | keep a copy of past data while keeping current interface clean and fast.                            |
+| `* *`    | user                                       | to undo my previous command                                             | revert mistakes if necessary.                                                                       |
+| `* * `   | user dealing with confidential information | have some form of authentication                                        | prevent confidential data from being leaked out.                                                    |
+| `* * `   | HRE                                        | keep track of monthly salary of my employees                            | know how much to pay them every month.                                                              |
+| `* * `   | HRE                                        | keep track what time the employees starts and end work                  | factor in overtime into their pay.                                                                  |
+| `* * `   | HRE                                        | view the claims (transport claims, food claims etc) that employees make | compensate them back.                                                                               |
+| `* * `   | expert user                                | customizable shortcuts                                                  | run frequently used commands faster.                                                                |
 
 ### Use cases
 
@@ -630,8 +629,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6. Coydir shows updated performance of employee.
 
 **Extensions**
+
 - 2a. The list is empty.
-  
+
   - 2a1. Coydir shows an error message.
 
     Use case ends.
@@ -645,7 +645,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 6a. Index to rate is invalid.
 
   - 6a1. Coydir shows an error message.
-   
+
     Use case ends.
 
 - 6b. Rating input is invalid.
@@ -659,7 +659,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 6c1. Coydir shows an error message.
 
     Use case ends.
-
 
 _{More to be added}_
 
@@ -964,7 +963,7 @@ You can do this by exiting the app, deleting whatever data file you currently ha
    2. **Follow-up Test Case**: `edit 1 d/Technology`<br>
       **Expected Outcome**: The right panel updates to show that Roy is now in the "Technology" department.
 
-   2. **Follow-up Test Case**: `edit 1 d/Sales`<br>
+   3. **Follow-up Test Case**: `edit 1 d/Sales`<br>
       **Expected Outcome**: The left panel now displays nobody. The right panel shows the home panel. Upon entering `list` followed by `view 6`, observe that Roy's department is now "Sales".
 
 ### Adding employee leaves
@@ -1055,7 +1054,7 @@ For the following tests, ensure that there is at least 1 employee (who will be i
 Any department (that has at least 1 person) can be used, but for ease and simplicity, we will be using "Sales" in our examples, as it is has the fewest letters.
 
 1. Viewing the department overview
-   
+
    1. **Test Case**: `view-department Sales`<br>
       **Expected Outcome**: On the right panel, the department name ("Sales") is shown.
       Other information includes number of employees (available, on leave), and ratings of all employees.
