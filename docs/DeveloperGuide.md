@@ -442,9 +442,84 @@ The following activity diagram summarizes what happens when a user executes the 
     * Pros: Shorter command input, as only the required keywords are inputted.
     * Cons: Longer search time for each individual command and more complex validation is required, as keywords may be different types like `String` or `Integer`.
 
+### Parameter hint (enhancement)
+This enhancement allows a user to view the correct prefixes and arguments of a command before entering the command.
+
+The parameter hints for the command will be shown in the ResultDisplay once the command word is typed out.
+
+Implementation:
+1. `CommandBox` takes in the `ResultDisplay` as one of the arguments for its constructor method
+2. In the `CommandBox` constructor method, `setupCommandHistoryNavigation()` is called which sets up `commandTextField`
+   to listen for the event when a valid command word is typed
+3. When the event occurs, `ResultDisplay#setFeedbackToUser()` is called to display the command's message usage in the `ResultDisplay`
+
+### Command History feature
+This feature allows the user to navigate to their previously entered commands using up/down arrow keys
+- Only valid commands will be saved in the command history
+- Command history will only save up to 20 previously typed valid commands
+- Consecutive duplicate commands will not be saved (e.g entering “list” 3 times in a row will only add “list” to command history once)
+
+`CommandHistory` has an index pointer which tracks where the user is currently at in the command history list
+and also manages the writing and reading of commands to and from the command history list.
+
+The following sequence diagram summarizes how a valid command is saved in TextCommandHistoryStorage:
+![Add to command history storage](images/AddToCommandHistorySequenceDiagram.png)
+<br><br>
+The following sequence diagram summarizes how an up arrow key navigates to the previous command:
+![Navigate command history](images/NavigateCommandHistorySequenceDiagram.png)
+
+### Calendar features
+The calendar feature allows a calendar to display with the corresponding appointments of the month in a calendar format. The feature consists of the following features:
+* `Calendar Display` — Can display appointments of a month in a calendar format.
+* `Calendar Navigation` — Can navigate between months with/without a mouse.
+* `Calendar Pop-Up` — Can view the details of each appointment.
+
+**Calendar Display**
+
+![Calendar Class Diagram](images/CalendarUiClassDiagram.png)
+
+*Figure x. Class diagram showing the classes for the Calendar in the `Ui` *
+
+Implementation:
+
+The following is a more detailed explanation on how `Calendar Display` works.
+1. When the app first launches, `MainWindow#fillInnerParts()` is called, which then initialises the `Calendar Display`. This then initialises the `CalendarLogic` and the relevant methods to build the the `Calendar Display`.
+2. Following which, when appointments are added,`Model#updateCalendarEventList()` is called which then updates the `Calendar Display` as well.
+
+The following activity diagram summarizes what happens when a user selects the Calendar tab:
+![Calendar Display Activity](images/CalendarDisplayActivityDiagram.png)
+
+**Calendar Navigation**
+The Calendar navigation allows a user to navigate between different months in the calendar and also navigate between the different appointments within the current month.
+This feature uses JavaFX's FocusModel features to obtain different behaviours when a Ui component is focused.
+
+Implementation:
+
+The following is a more detailed explanation on how `Calendar Navigation` works.
+1. Clicking on the Next/Prev buttons to view the next/previous month in the calendar
+2. Pressing N or B key to view the next/previous month in the calendar
+3. Pressing the ENTER key when the Next/Prev button is focused to view the next/previous month in the calendar
+4. Typing the date in the Jump Box and pressing the ENTER key to view the input month and year of the date.
+
+The following activity diagram summarizes what happens when a user selects a navigation feature:
+![Calendar Navigation Activity](images/CalendarNavigationActivityDiagram.png)
+
+#### Calendar Pop-up
+The calendar Pop-up allows user to view the details of the appointment in the calendar
+
+Implementation:
+
+The following is a more detailed explanation on how `Calendar Pop-Up` works.
+1. Clicking on the Up/Down/Left/Right keys to view adjacent appointments oriented in space in the calendar
+2. Pressing SHIFT or SHIFT + TAB key to view the next/previous appointment in the calendar
+3. Clicking on a desired appointment to view the appointment in the calendar
+
+The following activity diagram summarizes what happens when a user selects an appointment in the calendar tab:
+![Calendar Pop-Up Activity](images/CalendarPopUpActivityDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+#### Proposed future Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -521,81 +596,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
-
-### Parameter hint (enhancement)
-This enhancement allows a user to view the correct prefixes and arguments of a command before entering the command.
-
-The parameter hints for the command will be shown in the ResultDisplay once the command word is typed out.
-
-Implementation:
-1. `CommandBox` takes in the `ResultDisplay` as one of the arguments for its constructor method
-2. In the `CommandBox` constructor method, `setupCommandHistoryNavigation()` is called which sets up `commandTextField`
-to listen for the event when a valid command word is typed
-3. When the event occurs, `ResultDisplay#setFeedbackToUser()` is called to display the command's message usage in the `ResultDisplay`
-
-### Command History feature
-This feature allows the user to navigate to their previously entered commands using up/down arrow keys
-- Only valid commands will be saved in the command history
-- Command history will only save up to 20 previously typed valid commands
-- Consecutive duplicate commands will not be saved (e.g entering “list” 3 times in a row will only add “list” to command history once)
-
-`CommandHistory` has an index pointer which tracks where the user is currently at in the command history list
-and also manages the writing and reading of commands to and from the command history list.
-
-The following sequence diagram summarizes how a valid command is saved in TextCommandHistoryStorage:
-![Add to command history storage](images/AddToCommandHistorySequenceDiagram.png)
-<br><br>
-The following sequence diagram summarizes how an up arrow key navigates to the previous command:
-![Navigate command history](images/NavigateCommandHistorySequenceDiagram.png)
-
-### Calendar features
-The calendar feature allows a calendar to display with the corresponding appointments of the month in a calendar format. The feature consists of the following features:
-* `Calendar Display` — Can display appointments of a month in a calendar format.
-* `Calendar Navigation` — Can navigate between months with/without a mouse.
-* `Calendar Pop-Up` — Can view the details of each appointment.
-
-**Calendar Display**
-
-![Calendar Class Diagram](images/CalendarUiClassDiagram.png)
-
-*Figure x. Class diagram showing the classes for the Calendar in the `Ui` *
-
-Implementation:
-
-The following is a more detailed explanation on how `Calendar Display` works.
-1. When the app first launches, `MainWindow#fillInnerParts()` is called, which then initialises the `Calendar Display`. This then initialises the `CalendarLogic` and the relevant methods to build the the `Calendar Display`.
-2. Following which, when appointments are added,`Model#updateCalendarEventList()` is called which then updates the `Calendar Display` as well.
-
-The following activity diagram summarizes what happens when a user selects the Calendar tab:
-![Calendar Display Activity](images/CalendarDisplayActivityDiagram.png)
-
-**Calendar Navigation**
-The Calendar navigation allows a user to navigate between different months in the calendar and also navigate between the different appointments within the current month.
-This feature uses JavaFX's FocusModel features to obtain different behaviours when a Ui component is focused.
-
-Implementation:
-
-The following is a more detailed explanation on how `Calendar Navigation` works.
-1. Clicking on the Next/Prev buttons to view the next/previous month in the calendar
-2. Pressing N or B key to view the next/previous month in the calendar
-3. Pressing the ENTER key when the Next/Prev button is focused to view the next/previous month in the calendar
-4. Typing the date in the Jump Box and pressing the ENTER key to view the input month and year of the date.
-
-The following activity diagram summarizes what happens when a user selects a navigation feature:
-![Calendar Navigation Activity](images/CalendarNavigationActivityDiagram.png)
-
-#### Calendar Pop-up
-The calendar Pop-up allows user to view the details of the appointment in the calendar
-
-Implementation:
-
-The following is a more detailed explanation on how `Calendar Pop-Up` works.
-1. Clicking on the Up/Down/Left/Right keys to view adjacent appointments oriented in space in the calendar
-2. Pressing SHIFT or SHIFT + TAB key to view the next/previous appointment in the calendar
-3. Clicking on a desired appointment to view the appointment in the calendar
-
-The following activity diagram summarizes what happens when a user selects an appointment in the calendar tab:
-![Calendar Pop-Up Activity](images/CalendarPopUpActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
