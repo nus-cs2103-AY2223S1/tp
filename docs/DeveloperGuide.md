@@ -341,6 +341,9 @@ The following sequence diagram shows how the MarkCommand operation works:
 
 ![MarkCommandSequenceDiagram](images/MarkCommandSequenceDiagram.jpg)
 
+The following activity diagram illustrates what happens when a user executes `MarkCommand`:
+
+![MarkCommandActivityDiagram](images/MarkCommandActivityDiagram.jpg)
 #### Design considerations:
 
 **Implementation Choice: Why MarkCommand is implemented this way**
@@ -517,8 +520,12 @@ We give an example usage scenario of `SortProjectNameCommand` and `SortProjectSt
 
 ![SortProjectStatusCommandSequenceDiagram](images/SortProjectStatusCommandSequenceDiagram.jpg)
 
+The following activity diagram summarizes what happens when the user runs a `SortCommand`:
+
+![SortCommandActivityDiagram](images/SortCommandActivityDiagram.jpg)
+
 #### Future Implementations
-* Sorting of deadlines to be included in future iterations as well
+* Sorting of deadlines could be considered as well
 
 ###  `Exit` Feature
 #### Proposed Implementation
