@@ -964,6 +964,14 @@ We enabled adding past dates for archival purposes so that you can make the best
 <br>
 
 <details>
+<summary><strong>Q</strong>: Why is my new commission not in the commission list?</summary>
+<br>
+<strong>A</strong>: You might have accidentally filtered out your new commission with a prior <code>findcom</code> command.
+Try <code>listcom</code> to reset your commission search and see all your commissions!
+</details>
+<br>
+
+<details>
 <summary><strong>Q</strong>: What are file paths and root directories?</summary>
 <br>
 <strong>A</strong>: We don't expect you to have a lot of technical knowledge about a computer file system.
