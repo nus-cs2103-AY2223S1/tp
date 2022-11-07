@@ -677,7 +677,8 @@ Format: `editLoan INDEX <OR> NAME amt/VALUE reason/REASON`
 * The index refers to the index number shown in the displayed person list.
 * The index **must be a positive integer** 1,2,3 …​
 * The `VALUE` can be a positive or negative value with up to 2 decimal places.
-* The loan value will be changed by the value given i.e current loan + VALUE.
+* The `VALUE` may not contain delimiters to separate digits, i.e. `$1,000,000` must be expressed as `$1000000` in the program.
+* The loan value will be changed by the value given i.e current loan + `VALUE`.
 
 Examples:
 
