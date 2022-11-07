@@ -22,9 +22,9 @@ For new users, it is strongly recommended that you look through this User Guide 
 
 However, you may also choose to head over to the relevant sections as described below:
 
-- [Quick start](#Quick start) - To learn how to set up CodeConnect on your computer
+- [Quick start](#quick-start) - To learn how to set up CodeConnect on your computer
 - [Features](#features) - To learn the different features and commands used in CodeConnect
-- [Command Summary](#Command summary) - To have a complete overview of all the features and their respective command.
+- [Command Summary](#command-summary) - To have a complete overview of all the features and their respective command.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 
@@ -308,8 +308,7 @@ Format: `list`  `list time`
 
 </div>
 
-<br>
-Click [here](#) to return to the top of the page.
+Click [here](#introduction) to return to the top of the page.
 
 ### Managing contacts
 
@@ -388,7 +387,7 @@ Contacts can be found by their names, or by the modules that they take. Finding 
 <div markdown="block" class="alert alert-primary">
 
 :bulb: Note on searching by name or module
-Refer to the note at [searching for tasks](#searching-for-tasks-find) for more information on how
+Refer to the note at [searching for tasks](#finding-tasks-find) for more information on how
 CodeConnect searches by name or module
 
 </div>
@@ -418,7 +417,7 @@ Example:
 
 :question: What if I need help with a task that isn't index 1?
 
-There's a command for that! See [finding contacts](#searching-for-contacts-findc).
+There's a command for that! See [finding contacts](#finding-contacts-findc).
 
 </div>
 
@@ -433,8 +432,7 @@ Deleted contacts are **unrecoverable**!
 
 </div>
 
-<br>
-Click [here](#) to return to the top of the page.
+Click [here](#introduction) to return to the top of the page.
 
 ### Getting help
 
@@ -516,5 +514,4 @@ If your changes to the data file makes its format invalid, CodeConnect will disc
 | Task     | `ts/`   |
 | Deadline | `by/`   |
 
-<br>
-Click [here](#) to return to the top of the page.
+Click [here](#introduction) to return to the top of the page.
