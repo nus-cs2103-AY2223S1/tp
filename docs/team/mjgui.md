@@ -42,7 +42,9 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=mjgui)
 
 * **Project management**:
-    * To be added soon.
+    * Linked teammates' PRs to relevant issues
+    * Closed repeated or out-of-scope issues
+    * Assigned unassigned issues to relevant teammates for milestones 1.3 and 1.4
 
 * **Enhancements to existing features**:
     * Update sample data to have more realistic tags
@@ -56,7 +58,8 @@ Given below are my contributions to the project.
     * Developer Guide:
         * Updated Logic component, Model component and Storage component diagrams and descriptions
         * Added description of Assign Task Randomly feature
-        * Reviewed and edited manual testing
+        * Reviewed and edited section on Manual Testing
+        * Reviewed and edited section on Effort
         * Improved formatting (changed ordering of contents, fixed hierarchy of elements in table of contents)
 
 * **Community**:
@@ -65,4 +68,4 @@ Given below are my contributions to the project.
       , [\#95](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/95)
       , [\#100](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/100)
     * Contributed to forum discussions and helped peers with debugging (examples:
-      [\#404](https://github.com/nus-cs2103-AY2223S1/forum/issues/404)
+      [\#404](https://github.com/nus-cs2103-AY2223S1/forum/issues/404))
