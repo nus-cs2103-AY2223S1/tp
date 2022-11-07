@@ -17,7 +17,7 @@ With GuestBook, managing guests have never been easier.
 
 This user guide will ease you in using GuestBook and guide you along to incorporate GuestBook
 into your management workflow. It provides an in-depth description of GuestBook's core features
-and how to best use them to suite your needs. With our intuitive design, you will become
+and how to best use them to suit your needs. With our intuitive design, you will become
 a master at using GuestBook in no time!
 
 --------------------------------------------------------------------------------------------------------------------
