@@ -11,7 +11,7 @@ public class Link {
 
     public static final String MESSAGE_CONSTRAINTS = "Link is of an incorrect format.";
     private static final String OPTIONAL_PROTOCOL = "^https?://";
-    private static final String HOSTNAME = "(?:[-a-zA-Z0-9]{2,8}\\.)?[-a-zA-Z0-9][-a-zA-Z0-9-]{0,227}"
+    private static final String HOSTNAME = "(?:[-a-zA-Z0-9]{2,8}\\.)?[-a-zA-Z0-9][-a-zA-Z0-9-]{0,62}"
             + "(?:\\.[-a-zA-Z0-9]{2,8})+";
     private static final String PATH = "\\/[-a-zA-Z0-9+&@#/%=~$.?]*$";
     public static final String VALIDATION_REGEX = OPTIONAL_PROTOCOL + HOSTNAME + PATH;
