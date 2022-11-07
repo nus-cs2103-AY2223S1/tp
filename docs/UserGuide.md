@@ -2,16 +2,58 @@
 layout: page
 title: User Guide
 ---
+###Introduction
+Welcome to the User Guide of MODPRO!
 
-MODPRO is a desktop application which helps NUS students in tracking the progress of their modules. It is highly optimised for students who prefer Command Line Interface (CLI) by allowing those who type fast to key in commands to track their modules. It also provides a Graphic User interface(GUI) for those who prefer it.
+MODPRO is a desktop application which helps NUS students track the progress of their modules.
 
+MODPRO helps you…
+* organise your tasks by modules and exams
+* track your progress for each module and exam with a progress bar
+* easily navigate through your tasks by tagging your tasks, filtering and sorting your task list.
+
+It is highly optimised for students who prefer Command Line Interface (CLI) by allowing those who type fast to key in commands to track their modules. If you struggle to type fast, we also provide a Graphical User interface (GUI) to assist you in using MODPRO.
+
+###The Graphical User Interface (GUI)
+To give you a quick overview of MODPRO, the following image shows you the main components of the GUI.
+![Ui](images/)
+
+The table below summarises the function of each component.
+
+| **Component**             | **Function**                                                 |
+|---------------------------|--------------------------------------------------------------|
+| Menu Bar                  | To view the help window and to exit the application          |
+| Command Input             | To key in commands which will be executed                    |
+| Feedback Message Display  | To view the feedback given after the execution of a command  |
+| Task List                 | To view your tasks                                           |
+| Module List               | To view your modules                                         |
+| Exam List                 | To view your exams                                           |
+
+###Icons and formatting used in the guide
+
+This guide uses icons and formatting to differentiate between the different types of information so that it is comprehensible. The following table summarises the icons and formatting used, along with their meaning.
+
+| **Icon/Formatting**     | **Meaning**                                                       |
+|-------------------------|-------------------------------------------------------------------|
+| :information_source:    | Extra Information to take note of when navigating through MODPRO  |
+| :exclamation:           | Warnings to take note of when navigating through MODPRO           |
+| :bulb:                  | Tips that we provide                                              |
+| `WORD HIGHLIGHTED GREY` | Words that you can type into the Command Input                    |
+
+###Purpose of the guide
+This document is to assist you in using MODPRO smoothly and effectively to track your tasks and progress.
+
+* For first-time users, you can proceed to [Quick Start](#quick-start) for a guide on how to set up MODPRO and a short tutorial on the basic commands. Once you are familiar with the interface, you can start exploring our extensive list of features [here](#features)
+* For the experienced users, you can learn more about these unique features that can help you manage your tasks better: [adding tags to your tasks](#adding-a-tag-to-a-task), [sorting your list](#sorting-the-task-list), [filtering your list](#filtering-the-task-list), [linking an exam to a task](#linking-an-exam)
+
+--------------------------------------------------------------------------------------------------------------------
 ## Table of Contents
 - [Quick Start](#quick-start)
 - [Features](#features)
   - [Modules-Related Features](#modules-related-features)
     - [Adding a module](#adding-a-module)
-    - [Listing modules](#listing-modules)
-    - [Finding modules](#finding-modules)
+    - [Listing the modules](#listing-modules)
+    - [Finding a module](#finding-modules)
     - [Deleting a module](#deleting-a-module)
     - [Editing a module](#editing-a-module)
   - [Tasks-Related Features](#tasks-related-features)
@@ -20,12 +62,12 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
     - [Editing a task](#editing-a-task)
     - [Marking a task](#marking-a-task)
     - [Unmarking a task](#unmarking-a-task)
-    - [Listing tasks](#listing-tasks)
+    - [Listing the tasks](#listing-tasks)
     - [Filtering the task list](#filtering-the-task-list)
-    - [Finding tasks](#finding-tasks)
+    - [Finding a task](#finding-tasks)
     - [Sorting the task list](#sorting-the-task-list)
-    - [Adding a tag to a task](#adding-a-tag-to-a-task)
-    - [Editing the tag of a task](#editing-the-tags-of-a-task)
+    - [Adding the tags to a task](#adding-a-tag-to-a-task)
+    - [Editing the tags of a task](#editing-the-tags-of-a-task)
     - [Deleting the tags of a task](#deleting-the-tags-of-a-task)
     - [Clearing the task list](#clearing-the-task-list)
   - [Exams-Related Features](#exams-related-features)
@@ -37,8 +79,12 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
     - [Showing the tasks of an exam](#showing-the-tasks-of-an-exam)
   - [Other Features](#other-features)
     - [Clearing all the lists](#clearing-all-the-lists)
-    - [Help](#help)
+    - [Opening the help window](#help)
     - [Exiting the program](#exiting-the-program)
+- [General](#general)
+  - [Saving data to the data file](#saving-data-to-the-data-file)
+  - [Editing the data file](#editing-the-data-file)
+- [FAQ](#faq)
 - [Summary Of Commands](#summary-of-commands)
 
 
@@ -52,18 +98,33 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
 
 3. Copy the file to the folder you want to use as the _home folder_ for MODPRO.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. <br>
+4. Double-click the file to start the app. The GUI similar to the image below should appear in a few seconds. <br>
    ![Ui](images/Ui.png)
 
-5. Refer to the [Features](#features) below for details of each command.
+5. Type the command in the command box and press Enter to execute it. </br>
+   e.g. typing help and pressing Enter will open the help window. </br>
+   Here are some commands you can try:
+   * m add c/CS2100 m/Computer Organisation mc/4 : Adds the module called Computer Organisation with the module code CS2100 into the module list.
+   * m delete 1 : Deletes the 1st module shown in the displayed module list.
+   * m list : Lists all modules stored in the module list.
+   * exit : Exits the app.
+
+
+6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
-<div markdown="span" class="alert alert-info">
-**:information_source: How to read the command format:**<br>
+<div markdown="block" class="alert alert-info">
+**:information_source: How to read the command format:**</br>
   
+* Command words are case-insensitive.<br>
+  e.g. `t add` is the same as `T add` for command words
+
+* Prefixes are case-sensitive.<br>
+  e.g. `t add m/CS2030 d/Programming` is not the same as `t add M/CS2030 D/Programming` and the latter command will throw an error message
+
 * Words in UPPER_CASE are the parameters to be supplied by the user.<br>
   e.g. in `t add m/MODULE`, `MODULE` is a parameter which can be used as `t add m/CS2030`.
   
@@ -76,10 +137,10 @@ MODPRO is a desktop application which helps NUS students in tracking the progres
 * Parameters can be in any order.<br>
   e.g. if the command specifies `m/MODULE d/DESCRIPTION`, `d/DESCRIPTION m/MODULE` is also acceptable.
   
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command and it is specified multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `m/cs2030 m/cs2040`, only `m/cs2040` will be taken.
   
-* Extraneous parameters for commands that do not take in parameters (such as help, list, exit and clear) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as help, exit and clearall) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 </div>
 
@@ -559,7 +620,7 @@ Exits the program
 Format: `exit`
 
 --------------------------------------------------------------------------
-## General
+## General 
 
 ### Saving data to the data file
 * All MODPRO data will be manually saved to the hard disk after the execution of each command.
@@ -574,13 +635,20 @@ If changes made to the modpro.json makes the format invalid or invalid data is u
 MODPRO will discard all data stored and start with an empty data file.
 </div>
 
+--------------------------------------------------------------------------
+## FAQ
+
+1. What is the difference between the stored task list and the displayed task list 
+   * The stored task list is the list containing all the tasks you created, whereas the displayed task list is the one shown on your screen. 
+   * The stored task list and displayed task list could be different after the filter or find commands
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Summary of Commands
 
 | Command       | Format and Examples                                                                                                               |
 |---------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| **Module**    |
+| **Module**    |                                                                                                                                   |
 | **m add**     | **Format**: `m add c/MODULE_CODE m/MODULE_NAME mc/MODULAR_CREDIT`<br/> **Example**: `m add c/cs2103t m/software engineering mc/4` |
 | **m del**     | **Format**: `m del INDEX`<br/> **Example**: `m del 1`                                                                             |
 | **m edit**    | **Format**: `m edit INDEX [c/MODULE_CODE]* [m/MODULE_NAME]* [mc/MODULE_CREDIT]*`<br/> **Example**: `m edit 1 c/cs2040 mc/4`       |
