@@ -8,7 +8,8 @@ _Are you a new NUS student that's not sure what food options there are in NUS?
 Or perhaps are you stuck on what to eat for lunch?_ <br>
 
 Presenting to you, NUSEatWhere's `Food Guide`! Our `Food Guide` is a desktop application that stores
-information on NUS canteens and eateries, as well as supporting search functions and the ability to randomly generate
+information on NUS canteens and eateries.
+It also supports a variety of search functions and the ability to randomly generate
 eateries to eat at! 
 
 `Food Guide` is designed for all NUS Students who have a hard time remembering 
@@ -34,12 +35,12 @@ With `Food Guide`, you can search for the available food options in NUS and make
 * [Command Summary](#command-summary)
 
 ## Using the User Guide
-This user guide aims to orientate users (such as yourself!) on how to install, use, and troubleshoot `Food Guide`.
+This user guide aims to orientate users (such as _you!_) on how to install, use, and troubleshoot `Food Guide`.
 
-For all new users, we highly recommend you start at the [Quick Start](#Quick-start) section, which covers
+For all new users, we highly recommend you check out the [Quick Start](#Quick-start) section, which covers the
 installation instructions and the basic features of our application.
 
-After getting acquainted with `Food Guide`, you should take a look at our [Features](#features) section which
+After getting acquainted with `Food Guide`, you should take a look at our [Features](#features) section, which
 lists down all of our features in detail and how they work!
 
 Are you an experienced user that just needs a summary on how to use our application? <br>
@@ -67,19 +68,19 @@ The following image describes how `Food Guide` looks like upon opening the appli
 
 3. Make sure to move the file to your intended **home folder** for the NUSEatWhere application.
 
-4. Double-click the file to start the app. <br> 
-It should like the picture above in the [First Glance](#first-glance) section. 
+4. Double-click the file to start `Food Guide`. <br> 
+The application should like the picture above in the [First Glance](#first-glance) section. 
 
 5. You're done setting up the `Food Guide`! <br> 
 Go ahead and type some commands into the command box and press Enter to execute it. <br>
-e.g. typing **`help`** and pressing Enter will open the help window. <br>
+e.g. typing `help` and pressing Enter will open the help window. <br>
 
    Here are some example commands you can try:
 
-   * **`help`** : Lists all commands
-   * **`list`**: Lists all eateries
-   * **`find mala`**: List all eateries with 'mala' in its name
-   * **`exit`**: Closes the application
+   * `help`: Lists all commands
+   * `list`: Lists all eateries
+   * `find mala`: List all eateries with 'mala' in its name
+   * `exit`: Closes the application
 
 6. You can refer to [Features](#features) below for the details of each command.
 
@@ -91,10 +92,10 @@ This section summarizes all the commands supported in the `Food Guide`.
 We highly recommend you read this section before jumping into all the features below!
 
 1. When in doubt, you can always fall back on the `help` command.
-You can also add `-h` to the back of any command to get `Food Guide` to generate 
+For most commands, you can also add `-h` to the back to get `Food Guide` to generate 
 a help message on how to use the command (e.g. `find -h`)!
 
-2. To reset the eateries in the list to its default state, use `list`.
+2. To show all eateries, or reset the eateries in the list to its default state, use `list`.
 
 3. Make use of the various search commands (`find`, `findTag`, `findLocation`, `findCuisine`, `findPrice`) 
 to search for a specific eatery!
@@ -103,56 +104,61 @@ to search for a specific eatery!
 `find -r 1` to generate 1 random eatery to eat at.
 
 5. Customize `Food Guide` to suit your needs by adding tags to your eateries.
-You can use the `tag` and `untag` commands to manipulate tags attached to each eatery.
+You can use the `tag` and `untag` commands to change the tags attached to each eatery.
 
 6. Additionally, you can use the `fav` and `unfav` commands to mark some eateries as favourites!
 
-7. Lastly, we empower you to `add`, `edit` and `delete` eateries from `Food Guide`. 
+7. Lastly, we empower you to `add`, `edit` and `delete` eateries to and from `Food Guide`. 
 This may be useful to include eateries near NUS (such as Supper Stretch!).
-
-## Features
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:** <br>
+### Important! Before Reading This Guide
 
-* Words in `UPPER_CASE` are **parameters** to be supplied by the user. <br>
+* Words in `UPPER_CASE` are **parameters** (inputs) to be supplied by the user. <br>
   e.g. in `add -n NAME`, `NAME` is a parameter which can be used as `add -n Pasta Express`. <br><br>
 
 * Items in square brackets are **optional**. <br>
   e.g `-n NAME [-p PRICE]` can be used as `-n Pasta Shop -p $` or as `-n Pasta Shop`. <br><br>
 
 * Items with `…`​ after them can be used **one or more times**. <br>
-  e.g. `-t TAGNAME…​` can be used as `-t Foodcourt`, `-t Tea -t Coffee` etc.  <br>
-  Note:  (i.e. 0 times) is only allowed if there are square brackets, e.g. `[-t TAGNAME]` <br><br>
+  e.g. `find NAME…​` can be used as `find Frontier`, `find Frontier Deck` etc.  <br>
+  Note: For `-t TAGNAME1 [-t TAGNAME2]…​`, the correct input format is `-t mala -t vegetarian`.
+  Multiple `-t`s are required.<br><br>
 
 * **Prefixed parameters** _(e.g. -n, -p, -t, etc.)_ can be in **any order**. <br>
-  e.g. if the command specifies `-n NAME -t TAGNAME`, `-t TAGNAME -n NAME` is also acceptable. <br><br>
+  e.g. if the command specifies `-n NAME -t TAGNAME`, `-t TAGNAME -n NAME` is also acceptable
+  and will be treated identically.<br><br>
 
 * If a parameter is expected only once in the command, but you have specified it multiple times,
   only the last occurrence of the parameter will be taken. <br>
-  e.g. if you specify `-n nameA -n nameB`, only `-n nameB` will be taken. <br><br>
+  e.g. For `[-r NUMBER]`, if you specify `-r 1 -r 2`, it will be taken as only the input `-r 2`. <br><br>
 
 * Extra parameters for commands that do not take in parameters (such as `help`) will be ignored. <br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  e.g. if the command specifies `help 123`, it will be taken as `help`. <br><br>
+
+* The special `-h` parameter will provide a useful help message for how to use the command. 
+  This overrides the existing command behaviour. All other parameters will be ignored.
+  Additionally, inputs that contain `-h` 
 
 <br>
-
 </div>
 
-### Help command : `help`
+### Utility Commands
+
+#### Help command : `help`
 
 _Lists out all the available commands & their functions as a pop-out window. <br>
 The window also contains a link to this User Guide._
 
-**Format:** `help`
+**Format**: `help`
 
 <br>
 
-### Listing all eateries : `list`
+#### Listing all eateries : `list`
 
 _Lists out all eateries in NUSEatWhere database. <br>
-This can be used after a `find` command to return the list to its default state (all eateries displayed)._
+This resets the list to its default state. Use this after a `find` command view all eateries again._
 
 **Format:** `list [-h]`
 
@@ -161,7 +167,16 @@ This can be used after a `find` command to return the list to its default state 
 
 <br>
 
-### Finding eateries by name : `find`
+### Find Commands
+These commands search the list of eateries for ones that match your criteria. All find commands support
+a randomizer functionality to pick out a number of eateries at random.
+
+<div markdown="block" class="alert alert-info">
+If there are fewer eateries matching the criteria than the number specified to the randomizer,
+they will all be displayed.
+</div>
+
+#### Find eateries by name : `find`
 
 _Search for eateries with names that match the input. <br>
 You can also choose to randomize a list of eateries to decide on where to eat._
@@ -180,6 +195,7 @@ You can leave NAME empty if you are using the randomizer (-r) feature
 
 Note:
 * The search is case-insensitive. e.g `koi` will match `KOI`
+* Names are searched within words. e.g. `Front` will match `Frontier`
 * Eateries matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `find coffee cafe` will return eateries with either `coffee` or `cafe` in their name.
 
@@ -190,10 +206,76 @@ The command used is shown on the command line. <br>
 Note how only 2 random eateries with "mala" in their names are shown.
 ![Ui](images/user-guide/UgFindWildcard.png)
 
+<br>
+
+#### Find eateries by location : `findLocation`
+
+_Search for eateries that match the specified location(s). <br>
+You can also choose to randomize a list of eateries to decide on where to eat._
+
+**Format:** `findLocation LOCATIONNAME…​ [-r NUMBER] [-h]`
+
+**Arguments:** <br>
+`LOCATIONNAME`: returns eateries that match the keyword(s) <br>
+`NUMBER`: how many randomly selected eateries to show (more than 0) <br>
+`-h`: displays help message (specific to findLocation) <br>
+
+Note:
+* The search is case-insensitive. e.g `arts` will match `Arts`
+* Location names are searched within words. e.g. `Front` will match `Frontier`
+* Eateries matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `findLocation engineering science` will list eateries at either location.
+
+Example: `findLocation University Town -r 2` <br>
+Example: `findLocation University Town`
 
 <br>
 
-### Finding eateries by tag : `findTag`
+#### Find eateries by cuisine : `findCuisine`
+
+_Search for eateries that match the specified cuisine(s). <br>
+You can also choose to randomize a list of eateries to decide on where to eat._
+
+**Format:** `findCuisine CUISINENAME…​ [-r NUMBER] [-h]`
+
+**Arguments:** <br>
+`CUISINENAME`: returns eateries that match the keyword(s) <br>
+`NUMBER`: how many randomly selected eateries to show (more than 0) <br>
+`-h`: displays help message (specific to findCuisine)
+<br>
+
+Note:
+* The search is case-insensitive. e.g `korean` will match `Korean`
+* Eateries matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `findCuisine Western Japanese` will return eateries that sell either cuisine.
+
+Example: `findCuisine Chinese -r 2` <br>
+Example: `findCuisine Chinese`
+
+<br>
+
+#### Find eateries by price : `findPrice`
+
+_Search for eateries that match the specified price(s)._
+
+**Format:** `findPrice PRICE…​ [-r NUMBER] [-h]`
+
+**Arguments:** <br>
+`PRICE`: returns eateries that match the keyword(s) <br>
+`NUMBER`: how many randomly selected eateries to show (more than 0) <br>
+`-h`: displays help message (specific to findCuisine)
+<br>
+
+Note:
+* Persons matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `findPrice $ $$` will return eateries that have either of the prices.
+
+Example: `findPrice $ -r 2` <br>
+Example: `findPrice $`
+
+<br>
+
+#### Find eateries by tag : `findTag`
 
 _Search for eateries that match the specified tag(s).<br>
 You can also choose to randomize a list of eateries to decide on where to eat._
@@ -219,74 +301,10 @@ Example: `findTag restaurant`
 
 <br>
 
-### Finding eateries by location : `findLocation`
+### Adding and Editing Commands
+These commands modify the list of eateries in `Food Guide`, or change existing eateries.
 
-_Search for eateries that match the specified location(s). <br>
-You can also choose to randomize a list of eateries to decide on where to eat._
-
-**Format:** `findLocation LOCATIONNAME…​ [-r NUMBER] [-h]`
-
-**Arguments:** <br>
-`LOCATIONNAME`: returns eateries that match the keyword(s) <br>
-`NUMBER`: how many randomly selected eateries to show (more than 0) <br>
-`-h`: displays help message (specific to findLocation) <br>
-
-Note:
-* The search is case-insensitive. e.g `arts` will match `Arts`
-* Eateries matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `findLocation engineering science` will list eateries at either location.
-
-Example: `findLocation University Town -r 2` <br>
-Example: `findLocation University Town`
-
-<br>
-
-### Finding eateries by cuisine : `findCuisine`
-
-_Search for eateries that match the specified cuisine(s). <br>
-You can also choose to randomize a list of eateries to decide on where to eat._
-
-**Format:** `findCuisine CUISINENAME…​ [-r NUMBER] [-h]`
-
-**Arguments:** <br>
-`CUISINENAME`: returns eateries that match the keyword(s) <br>
-`NUMBER`: how many randomly selected eateries to show (more than 0) <br>
-`-h`: displays help message (specific to findCuisine)
-<br>
-
-Note:
-* The search is case-insensitive. e.g `korean` will match `Korean`
-* Eateries matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `findCuisine Western Japanese` will return eateries that sell either cuisine.
-
-Example: `findCuisine Chinese -r 2` <br>
-Example: `findCuisine Chinese`
-
-<br>
-
-
-### Finding eateries by price : `findPrice`
-
-_Search for eateries that match the specified price(s)._
-
-**Format:** `findPrice PRICE…​ [-r NUMBER] [-h]`
-
-**Arguments:** <br>
-`PRICE`: returns eateries that match the keyword(s) <br>
-`NUMBER`: how many randomly selected eateries to show (more than 0) <br>
-`-h`: displays help message (specific to findCuisine)
-<br>
-
-Note:
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `findPrice $ $$` will return eateries that have either of the prices.
-
-Example: `findPrice $ -r 2` <br>
-Example: `findPrice $`
-
-<br>
-
-### Add tag to eatery : `tag`
+#### Add tag to eatery : `tag`
 
 _Create custom tag(s) for an eatery to facilitate searching._
 
@@ -300,7 +318,7 @@ Example: `tag 1 -t coffee -t tea`
 
 <br>
 
-### Remove tag from eatery : `untag`
+#### Remove tag from eatery : `untag`
 
 _Remove custom tag(s) from eatery._
 
@@ -318,7 +336,7 @@ Note how the blue "cafe" tag on store 50 disappears after the untag command.
 ![Ui](images/user-guide/UgTagUntagComparison.png)
 <br><br>
 
-### Add eatery : `add`
+#### Add eatery : `add`
 
 _Adds a new eatery to NUSEatWhere's database. Eatery will be added to the end of the
 current list <br>
@@ -338,7 +356,7 @@ Example: `add -n KOI -l Central Square -c Drinks -p $$`
 
 <br>
 
-### Delete eatery : `delete`
+#### Delete eatery : `delete`
 
 _Deletes an eatery from NUSEatWhere's database_
 
@@ -355,7 +373,7 @@ Note how the eatery at index 70 disappears after the delete command.
 ![Ui](images/user-guide/UgAddDeleteComparison.png)
 <br><br>
 
-### Favourite Eatery : `fav`
+#### Favourite Eatery : `fav`
 
 _Favourites an eatery from NUSEatWhere's database._
 
@@ -369,7 +387,7 @@ Example: `fav 3`
 
 <br>
 
-### Unfavourite Eatery : `unfav`
+#### Unfavourite Eatery : `unfav`
 
 _Unfavourites an eatery from NUSEatWhere's database._
 
@@ -383,21 +401,7 @@ Example: `unfav 3`
 
 <br>
 
-### Edit eatery : `edit`
-
-_... Details coming soon ..._
-
-<br>
-
-
-### Edit tag `[coming in later versions]`
-
-_... Details coming soon ..._
-
-<br>
-
-
-### List all tags `[coming in later versions]`
+#### Edit eatery : `edit`
 
 _... Details coming soon ..._
 
@@ -407,26 +411,28 @@ _... Details coming soon ..._
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer? <br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous NUSEatWhere home folder.
+**Transferring data to friends or other devices**:
+NUSEatWhere's `Food Guide` automatically saves your data (including your tags and any new eateries) into a file
+`foodguide.json` in the `data` folder. Make a copy of this file and transfer it to your friend or the other device
+by any means of file sharing (thumbdrive, email, Google Drive, etc.) In the other installation of
+`Food Guide`, replace the default data file with your data.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-| Action           | Format                                                              |
-|:-----------------|:--------------------------------------------------------------------|
-| **Help**         | `help`                                                              |
-| **List**         | `list [-h]`                                                         |
-| **Find**         | `find NAME…​ [-r NUMBER] [-h]`                                      |
-| **FindTag**      | `findTag TAGNAME…​ [-r NUMBER] [-h]`                                |
-| **FindLocation** | `findLocation LOCATIONNAME…​ [-r NUMBER] [-h]`                      |
-| **FindCuisine**  | `findCuisine CUISINENAME…​ [-r NUMBER] [-h]`                        |
-| **FindPrice**    | `findPrice PRICE…​ [-r NUMBER] [-h]`									                       |
-| **Tag**          | `tag INDEX -t TAGNAME…​ [-h]`                                       |
-| **Untag**        | `untag INDEX -t TAGNAME…​ [-h]`                                     |
-| **Add**          | `add -n NAME -l LOCATION -c CUISINE [-p PRICE] [-t TAGNAME…​] [-h]` |
-| **Delete**       | `delete INDEX [-h]`                                                 |
-| **fav**          | `fav INDEX [-h]`                                                    |
-| **unfav**        | `unfav INDEX [-h]`                                                  |
+| Command Word    | Action                                  | Format                                                                |
+|:----------------|:----------------------------------------|:----------------------------------------------------------------------|
+| **help**        | View help window                        | `help`                                                                |
+| **list**        | List all eateries                       | `list [-h]`                                                           |
+| **find**        | Search for eateries by name             | `find NAME…​ [-r NUMBER] [-h]`                                     |
+| **findLocation**| Search for eateries by location         | `findLocation LOCATIONNAME…​ [-r NUMBER] [-h]`                     |
+| **findCuisine** | Search for eateries by cuisine          | `findCuisine CUISINENAME…​ [-r NUMBER] [-h]`                       |
+| **findPrice**   | Search for eateries by price            | `findPrice PRICE…​ [-r NUMBER] [-h]`						        |
+| **findTag**     | Search for eateries by tag              | `findTag TAGNAME…​ [-r NUMBER] [-h]`                               |
+| **tag**         | Adds tag(s) to an eatery                | `tag INDEX -t TAGNAME1 [-t TAGNAME2]…​ [-h]`                       |
+| **untag**       | Remove tag(s) from an eatery            | `untag INDEX -t TAGNAME1 [-t TAGNAME2]…​ [-h]`                     |
+| **add**         | Adds an eatery to `Food Guide`          | `add -n NAME -l LOCATION -c CUISINE [-p PRICE] [-t TAGNAME]…​ [-h]`|
+| **delete**      | Removes an eatery from `Food Guide`     | `delete INDEX [-h]`                                                   |
+| **fav**         | Adds an eatery to your favourites       | `fav INDEX [-h]`                                                      |
+| **unfav**       | Removes and eatery from your favourites | `unfav INDEX [-h]`                                                    |
