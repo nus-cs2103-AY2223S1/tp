@@ -44,11 +44,11 @@ public class StudentMatricNumTest {
         MatricNum matricNum1 = new MatricNum(VALID_MATRIC_NUM_AMY);
         MatricNum matricNum2 = new MatricNum(VALID_MATRIC_NUM_BOB);
 
-        //same values -> returns true
+        // same values -> returns true
         MatricNum matricNum1Copy = new MatricNum(VALID_MATRIC_NUM_AMY);
         assertTrue(matricNum1.equals(matricNum1Copy));
 
-        //same object -> returns true
+        // same object -> returns true
         assertTrue(matricNum1.equals(matricNum1));
 
         // null -> returns false
@@ -57,7 +57,7 @@ public class StudentMatricNumTest {
         // different type -> returns false
         assertFalse(matricNum1.equals(5));
 
-        //different values -> returns false
+        // different values -> returns false
         assertFalse(matricNum1.equals(matricNum2));
     }
 }

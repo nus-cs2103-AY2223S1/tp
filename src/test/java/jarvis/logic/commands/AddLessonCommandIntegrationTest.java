@@ -36,7 +36,8 @@ import jarvis.model.UserPrefs;
 import jarvis.testutil.LessonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddStudioCommand}.
+ * Contains integration tests (interaction with the Model) for {@code AddStudioCommand},
+ * {@code AddMasteryCheckCommand} and {@code AddConsultCommand}.
  */
 public class AddLessonCommandIntegrationTest {
 

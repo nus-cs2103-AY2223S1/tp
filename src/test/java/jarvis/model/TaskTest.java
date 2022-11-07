@@ -57,7 +57,7 @@ public class TaskTest {
     public void markAsNotDone_isTaskDone_returnsFalse() {
         Task newTask = new TaskBuilder().build();
         newTask.markAsNotDone();
-        assertFalse(newTask.isDone()); //task that is not done remains not done
+        assertFalse(newTask.isDone()); // task that is not done remains not done
 
         newTask.markAsDone();
         assertTrue(newTask.isDone());
@@ -67,22 +67,22 @@ public class TaskTest {
 
     @Test
     public void getDeadline() {
-        //no deadline
+        // no deadline
         Task taskWithoutDeadline = new TaskBuilder().withoutDeadline().build();
         assertEquals(null, taskWithoutDeadline.getDeadline());
 
-        //correct deadline
+        // correct deadline
         Task taskWithDeadline = new TaskBuilder().withDeadline(VALID_TASK_DEADLINE).build();
         assertEquals(VALID_TASK_DEADLINE, taskWithDeadline.getDeadline());
     }
 
     @Test
     public void getDeadlineString() {
-        //no deadline
+        // no deadline
         Task taskWithoutDeadline = new TaskBuilder().withoutDeadline().build();
         assertEquals("", taskWithoutDeadline.getDeadlineString());
 
-        //has deadline
+        // has deadline
         Task taskWithDeadline = new TaskBuilder().withDeadline(VALID_TASK_DEADLINE).build();
         String expectedDeadline = VALID_TASK_DEADLINE.format(DateTimeFormatter.ofPattern("MMM-dd-yyyy"));
         assertEquals(expectedDeadline, taskWithDeadline.getDeadlineString());

@@ -66,7 +66,7 @@ public class AddConsultCommandTest extends AddLessonCommandTest {
 
     @Test
     public void execute_clashTimePeriod_throwsCommandException() {
-        //valid consult with diff desc but same time period
+        // valid consult with diff desc but same time period
         Consult validConsult = new LessonBuilder().withDesc(DEFAULT_LESSON_DESC).withTimePeriod(DEFAULT_TIME_PERIOD)
                 .withStudents(getStudentsInLesson()).buildConsult();
 

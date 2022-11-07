@@ -39,11 +39,11 @@ public class TaskDescTest {
         TaskDesc desc1 = new TaskDesc("desc1");
         TaskDesc desc2 = new TaskDesc("desc2");
 
-        //same values -> returns true
+        // same values -> returns true
         TaskDesc desc1Copy = new TaskDesc("desc1");
         assertTrue(desc1.equals(desc1Copy));
 
-        //same object -> returns true
+        // same object -> returns true
         assertTrue(desc1.equals(desc1));
 
         // null -> returns false
@@ -52,7 +52,7 @@ public class TaskDescTest {
         // different type -> returns false
         assertFalse(desc1.equals(5));
 
-        //different values -> returns false
+        // different values -> returns false
         assertFalse(desc1.equals(desc2));
     }
 }

@@ -53,7 +53,7 @@ public class AddStudioCommandTest extends AddLessonCommandTest {
 
     @Test
     public void execute_clashTimePeriod_throwsCommandException() {
-        //valid studio with diff desc but same time period
+        // valid studio with diff desc but same time period
         Studio validStudio = new LessonBuilder().withDesc(DEFAULT_LESSON_DESC)
                 .withTimePeriod(DEFAULT_TIME_PERIOD).buildStudio();
 
