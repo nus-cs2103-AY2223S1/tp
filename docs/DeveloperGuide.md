@@ -263,6 +263,10 @@ Step 2. The user executes `edit 3 st/Java-JavaScript` to edit the skill tag `Jav
 
 Step 3. The user executes `deleteTag 3 st/JavaScript dt/Bachelors` to delete the skill tag `JavaScript` and degree tag `Bachelors` of the 3rd candidate in the displayed list of candidates. After being parsed by the `DeleteTagCommand` to a `DeleteTagCommand`, the `DeleteTagCommand` initializes a new `UniqueTagTypeMap` with the existing `UniqueTagTypeMap` of candidate `3` by invoking the `UniqueTagTypeMap#setTagTypeMap()` and removes the tags to be deleted by invoking `UniqueTagTypeMap#removeTags()`. After this, a new `Person` is created with the `updatedTags` and all other attributes same as that of the existing `Person`, and the `ModelManager#setPerson` is invoked to modify the addressBook with the updated candidate.
 
+The following sequence diagram shows how the `addTag` command operation works. The `deleteTag` command also operates in a similar fashion.
+
+![AddTagCommandSequenceDiagram](images/AddTagCommandSequenceDiagram.png)
+
 #### Design Considerations:
 
 **Aspect: How the addressBook is updated:**
