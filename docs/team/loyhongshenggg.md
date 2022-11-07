@@ -68,6 +68,6 @@ Given below are my contributions to the project.
 * **Tools**:
     * Figma (for mockup creation)
     * Javafx (for altering Ui changes)
-    * Canva (for icon and logo design)
+    * Canva (for demo video, icon and logo design)
     * CSS for altering GUI looks
 
