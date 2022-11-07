@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a ClientTag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class ClientTag extends Tag {
+public class ClientTag extends SpecialTag {
 
     public static final String MESSAGE_CONSTRAINTS = "Client tag name should be [POTENTIAL] or [CURRENT]";
     public static final String VALIDATION_REGEX = "(CURRENT|POTENTIAL)";
