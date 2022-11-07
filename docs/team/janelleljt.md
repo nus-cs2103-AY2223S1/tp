@@ -33,7 +33,7 @@ illustration of my contributions as well as the relevant documentation I have ad
   - Enhancement: **Price field to items**
     - Function: Field representing the price of a particular item.
     - Purpose: Allows the user to keep track of the sell price and cost price of their inventory items.
-    - Relevant pull request(s): [#103](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/103)
+    - Relevant pull request(s): [#103](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/103) <br/>
     
 - **Contributions to the User Guide**:
   - Features added:
@@ -41,15 +41,15 @@ illustration of my contributions as well as the relevant documentation I have ad
     - Finding order(s)
   - Wrote **Using this guide** portion of User Guide.
   - Wrote **Tutorial** portion of the User Guide.
-  - Relevant pull request(s): [#39](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/39), [#136](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/136), [#199](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/199)
+  - Relevant pull request(s): [#39](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/39), [#136](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/136), [#199](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/199) <br/>
 
 - **Contributions to the Developer Guide**:
-  - Added implementation details and design considerations for the find order command as well as a sequence diagram depicting the program flow.
-    - Relevant pull request(s): [#206](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/206)
+  - Added implementation details and design considerations for the find order command as well as an activity and sequence diagram depicting the program flow.
+    - Relevant pull request(s): [#206](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/206), [#224](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/224)
   - Added user profile, value proposition and user stories with differing priorities. 
     - Relevant pull request(s): [#43](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/43)
   - Added instructions for testing for `findo`, `listo` and `sorto` commands.
-    - Relevant pull request(s): [#224](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/224)
+    - Relevant pull request(s): [#224](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/224) <br/>
 
 - **Contributions to team-based tasks**:
   - Facilitated team discussions and delegation of work.
@@ -66,11 +66,11 @@ illustration of my contributions as well as the relevant documentation I have ad
       - `OrderDateTimeComparator`
       - `OrderMatchesFlagsAndPrefixPredicateTest`
       - `PhoneTest`
-    - Relevant pull request(s): [#209](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/209)
+    - Relevant pull request(s): [#209](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/209) <br/>
 
 - **Review/mentoring contributions**:
   - Provided timely feedback and suggestions to the pull requests of teammates.
-  - Suggested alternative implementation details.
+  - Suggested alternative implementation details. <br/>
             
 - **Contributions beyond the project team**:
   - Assisted in detecting an above average number of bugs for other teams and offered solutions to resolving the bugs 
