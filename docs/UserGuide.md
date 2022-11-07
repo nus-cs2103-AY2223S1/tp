@@ -28,7 +28,7 @@ If you can type fast, Condonery can get your contact management tasks done faste
 
    * **`list -p`** : Lists all properties.
 
-   * **`add -p`**`n/Pinnacle@Duxton a/Cantonment Rd, #1G, 085301 p/100,000 h/CONDO t/luxury` : Adds a listing named `Pinnacle@Duxton`, with the inputted details, to the property directory.
+   * **`add -p `** `n/Pinnacle@Duxton a/Cantonment Rd, #1G, 085301 p/100,000 h/CONDO t/luxury` : Adds a listing named `Pinnacle@Duxton`, with the inputted details, to the property directory.
 
    * **`list -p`** followed by **`delete 3`** : Deletes the 3rd property shown in the current list.
 
