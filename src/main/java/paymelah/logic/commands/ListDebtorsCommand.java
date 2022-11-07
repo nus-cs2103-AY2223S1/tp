@@ -2,6 +2,7 @@ package paymelah.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
+import static paymelah.model.debt.Money.ZERO_MONEY;
 
 import java.util.function.Predicate;
 
@@ -23,7 +24,8 @@ public class ListDebtorsCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MONEY + "20.00";
 
-    public static final String MESSAGE_SUCCESS_SPECIFIC = "Listed all persons with debts amounting to more than $%1$s.";
+    public static final String MESSAGE_SUCCESS_SPECIFIC = "Listed all persons with debts amounting to more than "
+                                                            + "or equal to $%1$s.";
     public static final String MESSAGE_SUCCESS_GENERIC = "Listed all persons with debts.";
     public static final String MESSAGE_NO_DEBTORS = "There are no persons with debts";
 
@@ -34,7 +36,7 @@ public class ListDebtorsCommand extends Command {
     }
 
     public ListDebtorsCommand() {
-        this.predicate = p -> !p.getDebts().isEmpty();
+        this.predicate = p -> !p.getDebts().isEmpty() && p.getDebtsAmountAsMoney().compareTo(ZERO_MONEY) > 0;
     }
 
     @Override

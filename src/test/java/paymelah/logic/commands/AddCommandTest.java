@@ -153,6 +153,31 @@ public class AddCommandTest {
         public void sortAddressBookPersonList(Comparator<Person> comparator) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void saveAddressBook() {
+            return;
+        }
+
+        @Override
+        public void saveCommandMessage(String s) {
+            return;
+        }
+
+        @Override
+        public int getHistoriesSize() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String popPreviousCommandMessage() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

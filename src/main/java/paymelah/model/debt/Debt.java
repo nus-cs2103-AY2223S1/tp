@@ -8,11 +8,12 @@ import java.util.Objects;
  * Represents a Debt in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Debt {
+public class Debt implements Comparable<Debt> {
     private final Description description;
     private final Money money;
     private final DebtDate date;
     private final DebtTime time;
+    private final boolean isPaid;
 
     /**
      * Every field must be present and not null.
@@ -28,6 +29,25 @@ public class Debt {
         this.money = money;
         this.date = date;
         this.time = time;
+        this.isPaid = false;
+    }
+
+    /**
+     * Every field must be present and not null.
+     *
+     * @param description The description of the debt.
+     * @param money The money amount of the debt.
+     * @param date The date of the debt.
+     * @param time The time of the debt.
+     * @param isPaid Whether the debt has been paid.
+     */
+    public Debt(Description description, Money money, DebtDate date, DebtTime time, boolean isPaid) {
+        requireAllNonNull(description, money, date, time, isPaid);
+        this.description = description;
+        this.money = money;
+        this.date = date;
+        this.time = time;
+        this.isPaid = isPaid;
     }
 
     public Description getDescription() {
@@ -46,6 +66,14 @@ public class Debt {
         return time;
     }
 
+    public boolean isPaid() {
+        return isPaid;
+    }
+
+    public Debt setPaid(boolean isPaid) {
+        return new Debt(description, money, date, time, isPaid);
+    }
+
     /**
      * Returns a Debt with the given description, money, date and time.
      */
@@ -60,7 +88,7 @@ public class Debt {
      * @return Debt that is a copy of this debt.
      */
     public Debt copyDebt() {
-        return new Debt(description, money, date, time);
+        return new Debt(description, money, date, time, isPaid);
     }
 
     /**
@@ -86,6 +114,27 @@ public class Debt {
                 && otherDebt.getTime().equals(this.getTime());
     }
 
+    /**
+     * Compares with another Debt using date and time.
+     */
+    @Override
+    public int compareTo(Debt o) {
+        int dateComparison = this.date.compareTo(o.date);
+        int timeComparison = this.time.compareTo(o.time);
+        int descriptionComparison = this.description.compareTo(o.description);
+        int moneyComparison = this.money.compareTo(o.money);
+        if (dateComparison != 0) {
+            return dateComparison;
+        }
+        if (timeComparison != 0) {
+            return timeComparison;
+        }
+        if (descriptionComparison != 0) {
+            return descriptionComparison;
+        }
+        return moneyComparison;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(description, money, date, time);
@@ -100,7 +149,8 @@ public class Debt {
                 .append(": ")
                 .append(getDescription())
                 .append("; $")
-                .append(getMoney());
+                .append(getMoney())
+                .append(isPaid() ? " (paid)" : " (unpaid)");
 
         return builder.toString();
     }

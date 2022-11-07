@@ -6,10 +6,10 @@ import java.util.Set;
 import paymelah.model.debt.Debt;
 import paymelah.model.debt.DebtList;
 import paymelah.model.person.Address;
-import paymelah.model.person.Email;
 import paymelah.model.person.Name;
 import paymelah.model.person.Person;
 import paymelah.model.person.Phone;
+import paymelah.model.person.Telegram;
 import paymelah.model.tag.Tag;
 import paymelah.model.util.SampleDataUtil;
 
@@ -20,12 +20,12 @@ public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
+    public static final String DEFAULT_TELEGRAM = "amy_handle";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
     private Phone phone;
-    private Email email;
+    private Telegram telegram;
     private Address address;
     private Set<Tag> tags;
     private DebtList debts;
@@ -36,7 +36,7 @@ public class PersonBuilder {
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
+        telegram = new Telegram(DEFAULT_TELEGRAM);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         debts = new DebtList();
@@ -48,7 +48,7 @@ public class PersonBuilder {
     public PersonBuilder(Person personToCopy) {
         name = personToCopy.getName();
         phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
+        telegram = personToCopy.getTelegram();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         debts = personToCopy.getDebts();
@@ -87,10 +87,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Telegram} of the {@code Person} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
-        this.email = new Email(email);
+    public PersonBuilder withTelegram(String telegram) {
+        this.telegram = new Telegram(telegram);
         return this;
     }
 
@@ -111,7 +111,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, tags, debts);
+        return new Person(name, phone, telegram, address, tags, debts);
     }
 
 }

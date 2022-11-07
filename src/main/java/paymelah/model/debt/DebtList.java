@@ -10,10 +10,11 @@ import java.util.List;
 import java.util.Objects;
 
 import paymelah.model.debt.exceptions.DebtNotFoundException;
+import paymelah.model.debt.exceptions.DuplicateDebtException;
 
 /**
  * Represents a list of a person's {@link Debt} in the address book.
- * Guarantees: debts are null, field values are validated, immutable.
+ * Guarantees: debts are not null, field values are validated, immutable.
  */
 public class DebtList {
     private final List<Debt> debts = new ArrayList<>();
@@ -52,16 +53,38 @@ public class DebtList {
     }
 
     /**
-     * Adds a debt to the list.
+     * Compares this DebtList's earliest Debt's DateTime to that of another DebtList.
+     */
+    public int compareEarliestDebtDateTimeWith(DebtList o) {
+        assert !isEmpty() && !o.isEmpty() : "compareEarliestDebtDateTimeWith should not be called "
+                                                + "when DebtLists are empty";
+        return debts.get(0).compareTo(o.debts.get(0));
+    }
+
+    /**
+     * Adds a debt to the list if it is not already in the list.
      *
      * @param toAdd The debt to add to the list.
      * @return The modified debt list.
      */
     public DebtList addDebt(Debt toAdd) {
         requireNonNull(toAdd);
+        if (this.contains(toAdd)) {
+            throw new DuplicateDebtException();
+        }
         DebtList edited = new DebtList(this);
-        edited.debts.add(toAdd);
-        edited.totalDebt = totalDebt.add(toAdd.getMoney().getValue());
+
+        int index = 0;
+        for (Debt prevDebt : edited.debts) {
+            if (toAdd.compareTo(prevDebt) < 0) {
+                break;
+            }
+            index++;
+        }
+        edited.debts.add(index, toAdd);
+        if (!toAdd.isPaid()) {
+            edited.totalDebt = totalDebt.add(toAdd.getMoney().getValue());
+        }
         return edited;
     }
 
@@ -78,7 +101,53 @@ public class DebtList {
         }
         DebtList edited = new DebtList(this);
         edited.debts.remove(toRemove);
-        edited.totalDebt = totalDebt.subtract(toRemove.getMoney().getValue());
+        if (!toRemove.isPaid()) {
+            edited.totalDebt = totalDebt.subtract(toRemove.getMoney().getValue());
+        }
+        return edited;
+    }
+
+    /**
+     * Marks a debt from the list as paid.
+     *
+     * @param toMark The debt to mark as paid from the list.
+     * @return The modified {@code DebtList}.
+     */
+    public DebtList markDebt(Debt toMark) {
+        requireNonNull(toMark);
+        if (!contains(toMark)) {
+            throw new DebtNotFoundException();
+        }
+
+        if (toMark.isPaid()) {
+            return this;
+        }
+
+        DebtList edited = new DebtList(this);
+        edited = edited.removeDebt(toMark);
+        edited = edited.addDebt(toMark.setPaid(true));
+        return edited;
+    }
+
+    /**
+     * Marks a debt from the list as unpaid.
+     *
+     * @param toUnmark The debt to mark as unpaid from the list.
+     * @return The modified {@code DebtList}.
+     */
+    public DebtList unmarkDebt(Debt toUnmark) {
+        requireNonNull(toUnmark);
+        if (!contains(toUnmark)) {
+            throw new DebtNotFoundException();
+        }
+
+        if (!toUnmark.isPaid()) {
+            return this;
+        }
+
+        DebtList edited = new DebtList(this);
+        edited = edited.removeDebt(toUnmark);
+        edited = edited.addDebt(toUnmark.setPaid(false));
         return edited;
     }
 
@@ -102,7 +171,9 @@ public class DebtList {
         DebtList debtList = new DebtList();
         for (Debt debt : list) {
             debtList.debts.add(debt);
-            debtList.totalDebt = debtList.totalDebt.add(debt.getMoney().getValue());
+            if (!debt.isPaid()) {
+                debtList.totalDebt = debtList.totalDebt.add(debt.getMoney().getValue());
+            }
         }
         return debtList;
     }

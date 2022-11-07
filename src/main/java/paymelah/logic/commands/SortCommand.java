@@ -1,6 +1,7 @@
 package paymelah.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static paymelah.logic.parser.CliSyntax.PREFIX_DATE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
 import static paymelah.logic.parser.CliSyntax.PREFIX_NAME;
 
@@ -18,10 +19,12 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts persons with given criteria and order. "
-            + "Use the symbol + to indicate ascending order and - to indicate descending order. "
+            + "Use the prefix for name, money or date, followed by "
+            + "the symbol + to indicate ascending order or - to indicate descending order.\n"
             + "Parameters: "
+            + "[" + PREFIX_NAME + "<order>] OR "
             + "[" + PREFIX_MONEY + "<order>] OR "
-            + "[" + PREFIX_NAME + "<order>]\n"
+            + "[" + PREFIX_DATE + "<order>]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MONEY + "-";
 
@@ -43,6 +46,8 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.saveAddressBook();
+        model.saveCommandMessage(String.format(MESSAGE_SUCCESS, criteria, order));
         model.sortAddressBookPersonList(comparator);
         return new CommandResult(String.format(MESSAGE_SUCCESS, criteria, order));
     }

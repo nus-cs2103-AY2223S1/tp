@@ -28,7 +28,9 @@ public class DebtListBuilder {
      * Adds a {@link Debt} to the {@code DebtList} that we are building.
      */
     public DebtListBuilder withDebt(Debt debt) {
-        debtList.add(debt);
+        if (!debtList.contains(debt)) {
+            debtList.add(debt);
+        }
         return this;
     }
 

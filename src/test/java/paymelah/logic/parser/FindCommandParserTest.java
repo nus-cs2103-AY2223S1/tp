@@ -1,15 +1,16 @@
 package paymelah.logic.parser;
 
-import static paymelah.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static paymelah.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static paymelah.logic.parser.CliSyntax.PREFIX_NAME;
 import static paymelah.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static paymelah.logic.parser.CommandParserTestUtil.assertParseSuccess;
-
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import paymelah.logic.commands.FindCommand;
-import paymelah.model.person.NameContainsKeywordsPredicate;
+import paymelah.model.person.PersonMatchesDescriptorPredicate;
+import paymelah.testutil.DebtsDescriptorBuilder;
+import paymelah.testutil.PersonDescriptorBuilder;
 
 public class FindCommandParserTest {
 
@@ -17,19 +18,20 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ",
-                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", FindCommand.MESSAGE_NO_KEYWORDS);
     }
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        FindCommand expectedFindCommand =
-                new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+        FindCommand expectedFindCommand = new FindCommand(new PersonMatchesDescriptorPredicate(
+                new PersonDescriptorBuilder().withName("Alice").build(),
+                new DebtsDescriptorBuilder().withDescriptions("burger").build()));
+        assertParseSuccess(parser, " " + PREFIX_NAME + "Alice " + PREFIX_DESCRIPTION + "burger", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, " \n " + PREFIX_NAME + "Alice \n \t " + PREFIX_DESCRIPTION + "burger  \t",
+                expectedFindCommand);
     }
 
 }

@@ -2,8 +2,10 @@ package paymelah.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static paymelah.commons.util.CollectionUtil.requireAllNonNull;
+import static paymelah.logic.parser.CliSyntax.PREFIX_DATE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
+import static paymelah.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,18 +25,20 @@ public class SplitDebtCommand extends Command {
     public static final String COMMAND_WORD = "splitdebt";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Splits a debt among several persons identified by their index numbers "
-            + "used in the displayed person list. Index '0' specifies the user as a Person.\n"
-            + "Parameters: PERSON_INDEX... (must be a non-negative integer."
-            + " multiple indexes must be separated by a 'space'. '0' cannot be the sole index.) "
+            + ": Splits a debt among several persons. You can use '0' to represent yourself.\n"
+            + "Parameters: <person index…> (must be a non-negative integer. '0' cannot be the sole index.) "
             + PREFIX_DESCRIPTION + "<description> "
             + PREFIX_MONEY + "<money> "
+            + "[" + PREFIX_DATE + "<date>] "
+            + "[" + PREFIX_TIME + "<time>]\n"
             + "Example: " + COMMAND_WORD + " 0 1 3 "
             + PREFIX_DESCRIPTION + "Large Pizza "
-            + PREFIX_MONEY + "33.99";
+            + PREFIX_MONEY + "33.99"
+            + PREFIX_DATE + "2022-10-12 "
+            + PREFIX_TIME + "12:00";
 
 
-    public static final String MESSAGE_SPLIT_DEBT_SUCCESS = "Added Debt: %1$s(Divided) to %2$s";
+    public static final String MESSAGE_SPLIT_DEBT_SUCCESS = "Added Debt: %1$s (Divided) to %2$s";
 
     private final Set<Index> debtorIndexes;
     private final Debt debt;
@@ -67,13 +71,15 @@ public class SplitDebtCommand extends Command {
             debtors.add(lastShownList.get(zeroBasedIndex));
         }
 
-        StringBuilder nameList = new StringBuilder();
+        model.saveAddressBook();
+        //CommandMessage is saved below after string is built
 
+        StringBuilder nameList = new StringBuilder();
         for (int i = 0; i < debtors.size(); i++) {
             Person debtorToEdit = debtors.get(i);
             Person editedPerson = new Person(
                     debtorToEdit.getName(), debtorToEdit.getPhone(),
-                    debtorToEdit.getEmail(), debtorToEdit.getAddress(),
+                    debtorToEdit.getTelegram(), debtorToEdit.getAddress(),
                     debtorToEdit.getTags(), debtorToEdit.getDebts().addDebt(debt.copyDebt()));
             model.setPerson(debtorToEdit, editedPerson);
 
@@ -86,6 +92,7 @@ public class SplitDebtCommand extends Command {
             }
         }
 
+        model.saveCommandMessage(String.format(MESSAGE_SPLIT_DEBT_SUCCESS, debt, nameList));
         return new CommandResult(String.format(MESSAGE_SPLIT_DEBT_SUCCESS, debt, nameList));
     }
 

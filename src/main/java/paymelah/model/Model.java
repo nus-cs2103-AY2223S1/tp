@@ -91,4 +91,29 @@ public interface Model {
      * @throws NullPointerException if {@code comparator} is null.
      */
     void sortAddressBookPersonList(Comparator<Person> comparator);
+
+    /**
+     * Saves a copy of the current {@code AddressBook} to the undo history.
+     */
+    void saveAddressBook();
+
+    /**
+     * Saves a copy of a given Command message to the undo history.
+     */
+    void saveCommandMessage(String s);
+
+    /**
+     * Returns the current size of the undo history.
+     */
+    int getHistoriesSize();
+
+    /**
+     * Retrieves the most recent {@code AddressBook} in the undo history and replace the current one with it.
+     */
+    void undoAddressBook();
+
+    /**
+     * Retrieves and displays the most recent Command message in the undo history.
+     */
+    String popPreviousCommandMessage();
 }

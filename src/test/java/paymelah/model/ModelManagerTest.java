@@ -10,13 +10,13 @@ import static paymelah.testutil.TypicalPersons.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import paymelah.commons.core.GuiSettings;
-import paymelah.model.person.NameContainsKeywordsPredicate;
+import paymelah.model.person.PersonMatchesDescriptorPredicate;
 import paymelah.testutil.AddressBookBuilder;
+import paymelah.testutil.PersonDescriptorBuilder;
 
 public class ModelManagerTest {
 
@@ -117,8 +117,8 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredPersonList(new PersonMatchesDescriptorPredicate(
+                new PersonDescriptorBuilder().withName(ALICE.getName().fullName).build()));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

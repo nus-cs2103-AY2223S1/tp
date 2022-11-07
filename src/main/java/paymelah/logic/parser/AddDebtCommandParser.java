@@ -8,6 +8,7 @@ import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TIME;
 import static paymelah.model.debt.DebtTime.DEFAULT_TIME;
 
+import java.util.Set;
 import java.util.logging.Logger;
 
 import paymelah.commons.core.LogsCenter;
@@ -41,11 +42,12 @@ public class AddDebtCommandParser implements Parser<AddDebtCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDebtCommand.MESSAGE_USAGE));
         }
 
-        Index index;
+        Set<Index> indices;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            indices = ParserUtil.parseIndices(argMultimap.getPreamble());
         } catch (ParseException pe) {
+            logger.warning("Add Debt command Person index list has items that cannot be parsed to an Index");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDebtCommand.MESSAGE_USAGE), pe);
         }
 
@@ -72,6 +74,6 @@ public class AddDebtCommandParser implements Parser<AddDebtCommand> {
 
         Debt debt = new Debt(description, money, date, time);
 
-        return new AddDebtCommand(index, debt);
+        return new AddDebtCommand(indices, debt);
     }
 }

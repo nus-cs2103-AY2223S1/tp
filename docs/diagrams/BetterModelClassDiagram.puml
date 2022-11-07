@@ -16,7 +16,7 @@ Person -up-> "*" Tag
 
 Person *--> Name
 Person *--> Phone
-Person *--> Email
+Person *--> Telegram
 Person *--> Address
 Person *--> DebtList
 @enduml

@@ -44,6 +44,10 @@ public class DebtTest {
         // different time -> returns false
         editedMcdonalds = new DebtBuilder(MCDONALDS).withTime("01:23").build();
         assertFalse(MCDONALDS.equals(editedMcdonalds));
+
+        // same fields different isPaid -> returns true
+        Debt paidMcdonalds = new DebtBuilder(MCDONALDS).withIsPaid(true).build();
+        assertTrue(MCDONALDS.equals(paidMcdonalds));
     }
 
     @Test

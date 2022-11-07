@@ -6,21 +6,26 @@ import static paymelah.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DATE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DEBT;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static paymelah.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
 import static paymelah.logic.parser.CliSyntax.PREFIX_NAME;
 import static paymelah.logic.parser.CliSyntax.PREFIX_PHONE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TAG;
+import static paymelah.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TIME;
 import static paymelah.testutil.Assert.assertThrows;
+import static paymelah.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static paymelah.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static paymelah.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import paymelah.commons.core.index.Index;
 import paymelah.logic.commands.exceptions.CommandException;
+import paymelah.logic.parser.ParserUtil.PersonDescriptor;
 import paymelah.model.AddressBook;
 import paymelah.model.Model;
 import paymelah.model.debt.Debt;
@@ -28,9 +33,9 @@ import paymelah.model.debt.DebtDate;
 import paymelah.model.debt.DebtTime;
 import paymelah.model.debt.Description;
 import paymelah.model.debt.Money;
-import paymelah.model.person.NameContainsKeywordsPredicate;
 import paymelah.model.person.Person;
-import paymelah.testutil.EditPersonDescriptorBuilder;
+import paymelah.model.person.PersonMatchesDescriptorPredicate;
+import paymelah.testutil.PersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -41,8 +46,8 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
-    public static final String VALID_EMAIL_AMY = "amy@example.com";
-    public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_TELEGRAM_AMY = "@amy_123";
+    public static final String VALID_TELEGRAM_BOB = "@bob_123";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
@@ -76,8 +81,8 @@ public class CommandTestUtil {
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
-    public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
-    public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+    public static final String TELEGRAM_DESC_AMY = " " + PREFIX_TELEGRAM + VALID_TELEGRAM_AMY;
+    public static final String TELEGRAM_DESC_BOB = " " + PREFIX_TELEGRAM + VALID_TELEGRAM_BOB;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
@@ -85,7 +90,7 @@ public class CommandTestUtil {
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
+    public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM + "bob bob"; // space within username
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
@@ -117,24 +122,37 @@ public class CommandTestUtil {
     public static final String INVALID_TIME_DESC = " " + PREFIX_TIME + "invalid time";
 
     public static final String VALID_DEBT_INDEX = " " + PREFIX_DEBT + "1";
-    public static final String VALID_DEBT_INDEXES = " " + PREFIX_DEBT + "1 2 3";
-    public static final String VALID_DEBT_INDEXES_REPEAT = " " + PREFIX_DEBT + "1 3 3 1";
+    public static final String VALID_DEBT_INDICES = " " + PREFIX_DEBT + "1 2 3";
+    public static final String VALID_DEBT_INDICES_REPEAT = " " + PREFIX_DEBT + "1 3 3 1";
     public static final String INVALID_DEBT_INDEX = " " + PREFIX_DEBT + "a";
     public static final String INVALID_DEBT_INDEX_ZERO = " " + PREFIX_DEBT + "0";
-    public static final String INVALID_DEBT_INDEXES = " " + PREFIX_DEBT + "1  2";
+    public static final String INVALID_DEBT_INDICES = " " + PREFIX_DEBT + "1 -1";
+
+    public static final Index SINGLE_VALID_INDEX = INDEX_FIRST_PERSON;
+    public static final Set<Index> SINGLE_VALID_INDEX_SET = new HashSet<>(List.of(SINGLE_VALID_INDEX));
+    public static final String SINGLE_VALID_INDEX_STRING = String.valueOf(SINGLE_VALID_INDEX.getOneBased());
+
+    public static final Index FIRST_VALID_MULTI_INDEX = INDEX_FIRST_PERSON;
+    public static final Index SECOND_VALID_MULTI_INDEX = INDEX_SECOND_PERSON;
+    public static final Index THIRD_VALID_MULTI_INDEX = INDEX_THIRD_PERSON;
+    public static final Set<Index> THIRD_VALID_MULTI_INDEX_SET = new HashSet<>(List.of(THIRD_VALID_MULTI_INDEX));
+    public static final Set<Index> MULTI_VALID_INDEX_SET =
+            new HashSet<>(List.of(FIRST_VALID_MULTI_INDEX, SECOND_VALID_MULTI_INDEX, THIRD_VALID_MULTI_INDEX));
+    public static final String MULTI_VALID_INDEX_STRING = FIRST_VALID_MULTI_INDEX.getOneBased()
+            + " " + SECOND_VALID_MULTI_INDEX.getOneBased() + " " + THIRD_VALID_MULTI_INDEX.getOneBased();
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditPersonDescriptor DESC_AMY;
-    public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final PersonDescriptor DESC_AMY;
+    public static final PersonDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+        DESC_AMY = new PersonDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withTelegram(VALID_TELEGRAM_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+        DESC_BOB = new PersonDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withTelegram(VALID_TELEGRAM_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
@@ -188,8 +206,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPersonList(new PersonMatchesDescriptorPredicate(
+                new PersonDescriptorBuilder().withName(person.getName().fullName).build()));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

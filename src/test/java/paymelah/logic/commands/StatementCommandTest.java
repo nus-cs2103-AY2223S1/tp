@@ -1,18 +1,16 @@
 package paymelah.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.fail;
 import static paymelah.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static paymelah.logic.parser.ParserUtil.prepareDebtContainsKeywordsPredicate;
 import static paymelah.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import paymelah.logic.parser.exceptions.ParseException;
 import paymelah.model.Model;
 import paymelah.model.ModelManager;
 import paymelah.model.UserPrefs;
-import paymelah.model.person.DebtContainsKeywordsPredicate;
+import paymelah.model.person.PersonMatchesDescriptorPredicate;
+import paymelah.testutil.DebtsDescriptorBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -37,14 +35,11 @@ class StatementCommandTest {
 
     @Test
     public void execute_statementOnFilteredList_success() {
-        String expectedMessage = String.format(StatementCommand.MESSAGE_SUCCESS, "19.40");
-        try {
-            DebtContainsKeywordsPredicate predicate = prepareDebtContainsKeywordsPredicate("burger");
-            model.updateFilteredPersonList(predicate);
-            expectedModel.updateFilteredPersonList(predicate);
-        } catch (ParseException e) {
-            fail("Invalid predicate");
-        }
+        String expectedMessage = String.format(StatementCommand.MESSAGE_SUCCESS, "9.00");
+        PersonMatchesDescriptorPredicate predicate = new PersonMatchesDescriptorPredicate(
+                new DebtsDescriptorBuilder().withDescriptions("supper jio").build());
+        model.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(new StatementCommand(), model, expectedMessage, expectedModel);
     }
 }

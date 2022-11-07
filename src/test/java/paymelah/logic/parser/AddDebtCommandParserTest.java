@@ -11,6 +11,10 @@ import static paymelah.logic.commands.CommandTestUtil.INVALID_MONEY_DESC;
 import static paymelah.logic.commands.CommandTestUtil.INVALID_TIME_DESC;
 import static paymelah.logic.commands.CommandTestUtil.MONEY_DESC_MCDONALDS;
 import static paymelah.logic.commands.CommandTestUtil.MONEY_DESC_SUPPER;
+import static paymelah.logic.commands.CommandTestUtil.MULTI_VALID_INDEX_SET;
+import static paymelah.logic.commands.CommandTestUtil.MULTI_VALID_INDEX_STRING;
+import static paymelah.logic.commands.CommandTestUtil.SINGLE_VALID_INDEX_SET;
+import static paymelah.logic.commands.CommandTestUtil.SINGLE_VALID_INDEX_STRING;
 import static paymelah.logic.commands.CommandTestUtil.TIME_DESC_MCDONALDS;
 import static paymelah.logic.commands.CommandTestUtil.TIME_DESC_SUPPER;
 import static paymelah.logic.commands.CommandTestUtil.VALID_DATE_MCDONALDS;
@@ -22,7 +26,8 @@ import static paymelah.logic.commands.CommandTestUtil.VALID_TIME_MCDONALDS;
 import static paymelah.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static paymelah.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static paymelah.testutil.DebtBuilder.DEFAULT_TIME;
-import static paymelah.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -42,46 +47,62 @@ public class AddDebtCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_MCDONALDS + MONEY_DESC_MCDONALDS
+        Set<Index> targetIndexSet = SINGLE_VALID_INDEX_SET;
+
+        String userInput = SINGLE_VALID_INDEX_STRING + DESCRIPTION_DESC_MCDONALDS + MONEY_DESC_MCDONALDS
                 + DATE_DESC_MCDONALDS + TIME_DESC_MCDONALDS;
 
         Debt expectedDebt = new DebtBuilder().withDescription(VALID_DESCRIPTION_MCDONALDS)
                 .withMoney(VALID_MONEY_MCDONALDS).withDate(VALID_DATE_MCDONALDS).withTime(VALID_TIME_MCDONALDS).build();
-        AddDebtCommand expectedCommand = new AddDebtCommand(targetIndex, expectedDebt);
+        AddDebtCommand expectedCommand = new AddDebtCommand(targetIndexSet, expectedDebt);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_multipleIndices_success() {
+        Set<Index> targetIndexSet = MULTI_VALID_INDEX_SET;
+
+        String userInput = MULTI_VALID_INDEX_STRING + DESCRIPTION_DESC_MCDONALDS + MONEY_DESC_MCDONALDS
+                + DATE_DESC_MCDONALDS + TIME_DESC_MCDONALDS;
+
+        Debt expectedDebt = new DebtBuilder().withDescription(VALID_DESCRIPTION_MCDONALDS)
+                .withMoney(VALID_MONEY_MCDONALDS).withDate(VALID_DATE_MCDONALDS).withTime(VALID_TIME_MCDONALDS).build();
+        AddDebtCommand expectedCommand = new AddDebtCommand(targetIndexSet, expectedDebt);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_missingOptionalParts_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Set<Index> targetIndexSet = SINGLE_VALID_INDEX_SET;
+
         // missing both date and time
-        String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_MCDONALDS + MONEY_DESC_MCDONALDS;
+        String userInput = SINGLE_VALID_INDEX_STRING + DESCRIPTION_DESC_MCDONALDS + MONEY_DESC_MCDONALDS;
 
         Debt expectedDebt = new DebtBuilder().withDescription(VALID_DESCRIPTION_MCDONALDS)
                 .withMoney(VALID_MONEY_MCDONALDS).withCurrentDate().withCurrentTime().build();
-        AddDebtCommand expectedCommand = new AddDebtCommand(targetIndex, expectedDebt);
+        AddDebtCommand expectedCommand = new AddDebtCommand(targetIndexSet, expectedDebt);
 
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // missing date only
-        userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_MCDONALDS + MONEY_DESC_MCDONALDS
+        userInput = SINGLE_VALID_INDEX_STRING + DESCRIPTION_DESC_MCDONALDS + MONEY_DESC_MCDONALDS
                 + TIME_DESC_MCDONALDS;
 
         expectedDebt = new DebtBuilder().withDescription(VALID_DESCRIPTION_MCDONALDS)
                 .withMoney(VALID_MONEY_MCDONALDS).withCurrentDate().withTime(VALID_TIME_MCDONALDS).build();
-        expectedCommand = new AddDebtCommand(targetIndex, expectedDebt);
+        expectedCommand = new AddDebtCommand(targetIndexSet, expectedDebt);
 
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // missing time only
-        userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_MCDONALDS + MONEY_DESC_MCDONALDS
+        userInput = SINGLE_VALID_INDEX_STRING + DESCRIPTION_DESC_MCDONALDS + MONEY_DESC_MCDONALDS
                 + DATE_DESC_MCDONALDS;
 
         expectedDebt = new DebtBuilder().withDescription(VALID_DESCRIPTION_MCDONALDS)
                 .withMoney(VALID_MONEY_MCDONALDS).withDate(VALID_DATE_MCDONALDS).withTime(DEFAULT_TIME).build();
-        expectedCommand = new AddDebtCommand(targetIndex, expectedDebt);
+        expectedCommand = new AddDebtCommand(targetIndexSet, expectedDebt);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -140,10 +161,6 @@ public class AddDebtCommandParserTest {
         assertParseFailure(parser, "1" + DESCRIPTION_DESC_SUPPER + MONEY_DESC_SUPPER + INVALID_TIME_DESC,
                 DebtTime.MESSAGE_CONSTRAINTS); // invalid time
 
-        // invalid field followed by valid field
-        assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC + MONEY_DESC_SUPPER,
-                Description.MESSAGE_CONSTRAINTS);
-
         // valid money followed by invalid money. The test case for invalid money followed by valid money
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + DESCRIPTION_DESC_SUPPER + MONEY_DESC_SUPPER + INVALID_MONEY_DESC,
@@ -157,27 +174,27 @@ public class AddDebtCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_SUPPER + DESCRIPTION_DESC_MCDONALDS
+        Set<Index> targetIndexSet = SINGLE_VALID_INDEX_SET;
+        String userInput = SINGLE_VALID_INDEX_STRING + DESCRIPTION_DESC_SUPPER + DESCRIPTION_DESC_MCDONALDS
                 + MONEY_DESC_SUPPER + MONEY_DESC_MCDONALDS + DATE_DESC_SUPPER + DATE_DESC_MCDONALDS
                 + TIME_DESC_SUPPER + TIME_DESC_MCDONALDS;
 
         Debt expectedDebt = new DebtBuilder().withDescription(VALID_DESCRIPTION_MCDONALDS)
                 .withMoney(VALID_MONEY_MCDONALDS).withDate(VALID_DATE_MCDONALDS).withTime(VALID_TIME_MCDONALDS).build();
-        AddDebtCommand expectedCommand = new AddDebtCommand(targetIndex, expectedDebt);
+        AddDebtCommand expectedCommand = new AddDebtCommand(targetIndexSet, expectedDebt);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + INVALID_DESCRIPTION_DESC + DESCRIPTION_DESC_MCDONALDS
+        Set<Index> targetIndexSet = SINGLE_VALID_INDEX_SET;
+        String userInput = SINGLE_VALID_INDEX_STRING + INVALID_DESCRIPTION_DESC + DESCRIPTION_DESC_MCDONALDS
                 + MONEY_DESC_MCDONALDS + DATE_DESC_MCDONALDS + TIME_DESC_MCDONALDS;
 
         Debt expectedDebt = new DebtBuilder().withDescription(VALID_DESCRIPTION_MCDONALDS)
                 .withMoney(VALID_MONEY_MCDONALDS).withDate(VALID_DATE_MCDONALDS).withTime(VALID_TIME_MCDONALDS).build();
-        AddDebtCommand expectedCommand = new AddDebtCommand(targetIndex, expectedDebt);
+        AddDebtCommand expectedCommand = new AddDebtCommand(targetIndexSet, expectedDebt);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }

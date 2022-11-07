@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static paymelah.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static paymelah.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static paymelah.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static paymelah.testutil.Assert.assertThrows;
 import static paymelah.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -17,16 +18,17 @@ import paymelah.logic.commands.AddCommand;
 import paymelah.logic.commands.ClearCommand;
 import paymelah.logic.commands.DeleteCommand;
 import paymelah.logic.commands.EditCommand;
-import paymelah.logic.commands.EditCommand.EditPersonDescriptor;
 import paymelah.logic.commands.ExitCommand;
 import paymelah.logic.commands.FindCommand;
 import paymelah.logic.commands.HelpCommand;
 import paymelah.logic.commands.ListCommand;
+import paymelah.logic.parser.ParserUtil.PersonDescriptor;
 import paymelah.logic.parser.exceptions.ParseException;
-import paymelah.model.person.NameContainsKeywordsPredicate;
 import paymelah.model.person.Person;
-import paymelah.testutil.EditPersonDescriptorBuilder;
+import paymelah.model.person.PersonMatchesDescriptorPredicate;
+import paymelah.testutil.DebtsDescriptorBuilder;
 import paymelah.testutil.PersonBuilder;
+import paymelah.testutil.PersonDescriptorBuilder;
 import paymelah.testutil.PersonUtil;
 
 public class AddressBookParserTest {
@@ -56,9 +58,9 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+        PersonDescriptor descriptor = new PersonDescriptorBuilder(person).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
@@ -72,8 +74,10 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                FindCommand.COMMAND_WORD + " " + PREFIX_DESCRIPTION
+                        + keywords.stream().collect(Collectors.joining(" " + PREFIX_DESCRIPTION)));
+        assertEquals(new FindCommand(new PersonMatchesDescriptorPredicate(
+                new DebtsDescriptorBuilder().withDescriptions(keywords.toArray(new String[0])).build())), command);
     }
 
     @Test

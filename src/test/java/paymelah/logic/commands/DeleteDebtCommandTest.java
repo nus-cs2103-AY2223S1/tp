@@ -78,6 +78,7 @@ public class DeleteDebtCommandTest {
         expectedMessage.append("1. ").append(toDelete.toString()).append("\n");
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        showDebtors(expectedModel);
         expectedModel.setPerson(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()), editedDebtor);
 
         assertCommandSuccess(deleteDebtCommand, model, expectedMessage.toString(), expectedModel);
@@ -126,6 +127,7 @@ public class DeleteDebtCommandTest {
         expectedMessage.append("2. ").append(toDeleteTwo.toString()).append("\n");
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        showDebtors(expectedModel);
         expectedModel.setPerson(model.getFilteredPersonList().get(INDEX_FIFTH_PERSON.getZeroBased()), editedDebtor);
 
         assertCommandSuccess(deleteDebtCommand, model, expectedMessage.toString(), expectedModel);

@@ -220,4 +220,20 @@ public class SplitDebtCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
+    @Test
+    public void parse_manyZeroIndices_success() {
+        Set<Index> personIndexSet = new HashSet<>(List.of(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON,
+                INDEX_THIRD_PERSON));
+        StringBuilder personIndexes = new StringBuilder();
+        personIndexSet.forEach(x -> personIndexes.append(x.getOneBased()).append(" 0 0 "));
+        String userInput = "0  0 " + personIndexes + " 0 0 0    0 0 0 0" + DESCRIPTION_DESC_MCDONALDS
+                + MONEY_DESC_TEN_DOLLARS + DATE_DESC_MCDONALDS + TIME_DESC_MCDONALDS;
+
+        Debt expectedDebt = new DebtBuilder().withDescription(VALID_DESCRIPTION_MCDONALDS)
+                .withMoney("2.50").withDate(VALID_DATE_MCDONALDS)
+                .withTime(VALID_TIME_MCDONALDS).build();
+        SplitDebtCommand expectedCommand = new SplitDebtCommand(personIndexSet, expectedDebt);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
 }
