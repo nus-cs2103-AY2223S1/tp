@@ -57,7 +57,7 @@ ExportCsvStorageAction --> ExportCommand
 deactivate ExportCsvStorageAction
 
 create CommandResult
-ExportCommand -> CommandResult
+ExportCommand -> CommandResult: action
 activate CommandResult
 
 CommandResult --> ExportCommand : result
