@@ -50,7 +50,7 @@ public class CollectionUtil {
         for (String keyword : keywords) {
             try {
                 Double keywordValue = Double.valueOf(keyword);
-                roundedKeywords.add(String.format("%.2f", keyword_value));
+                roundedKeywords.add(String.format("%.2f", keywordValue));
             } catch (NumberFormatException | NullPointerException e) {
                 throw new ParseException(MESSAGE_NOT_VALID_CAP);
             }
