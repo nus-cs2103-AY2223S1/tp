@@ -2,9 +2,13 @@
 layout: page
 title: DevOps guide
 ---
+# **DevOps Guide**
 
-* Table of Contents
-{:toc}
+* [Build Automation](#build-automation)
+* [Continuous Integration (CI)](#continuous-integration-ci)
+  * [Code coverage](#code-coverage)
+  * [Repository-wide checks](#repository-wide-checks)
+* [Making a release](#making-a-release)
 
 --------------------------------------------------------------------------------------------------------------------
 

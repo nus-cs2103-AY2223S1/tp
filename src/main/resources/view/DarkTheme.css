@@ -1,199 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
+
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    -fx-background-color: #ffffff;
+    background-color: #ffffff;
 }
 
-.label {
-    -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #555555;
-    -fx-opacity: 0.9;
-}
-
-.label-bright {
-    -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: white;
-    -fx-opacity: 1;
-}
-
-.label-header {
-    -fx-font-size: 32pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
-    -fx-opacity: 1;
-}
-
-.text-field {
-    -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Semibold";
-}
-
-.tab-pane {
-    -fx-padding: 0 0 0 1;
-}
-
-.tab-pane .tab-header-area {
-    -fx-padding: 0 0 0 0;
-    -fx-min-height: 0;
-    -fx-max-height: 0;
-}
-
-.table-view {
-    -fx-base: #1d1d1d;
-    -fx-control-inner-background: #1d1d1d;
-    -fx-background-color: #1d1d1d;
-    -fx-table-cell-border-color: transparent;
-    -fx-table-header-border-color: transparent;
-    -fx-padding: 5;
-}
-
-.table-view .column-header-background {
-    -fx-background-color: transparent;
-}
-
-.table-view .column-header, .table-view .filler {
-    -fx-size: 35;
-    -fx-border-width: 0 0 1 0;
-    -fx-background-color: transparent;
-    -fx-border-color:
-        transparent
-        transparent
-        derive(-fx-base, 80%)
-        transparent;
-    -fx-border-insets: 0 10 1 0;
-}
-
-.table-view .column-header .label {
-    -fx-font-size: 20pt;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
-    -fx-alignment: center-left;
-    -fx-opacity: 1;
-}
-
-.table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: -fx-focus-color;
-}
-
-.split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    -fx-border-color: transparent transparent transparent #4d4d4d;
-}
-
-.split-pane {
-    -fx-border-radius: 1;
-    -fx-border-width: 1;
-    -fx-background-color: derive(#1d1d1d, 20%);
+*:disabled {
+    -fx-opacity: 100;
 }
 
 .list-view {
     -fx-background-insets: 0;
-    -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-padding: 0 0 0 0;
+    -fx-background-color: transparent;
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
-    -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
+    -fx-graphic-text-gap: 0;
+    -fx-padding: 0 0 10 0;
+    -fx-background-color: transparent;
 }
 
-.list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+.list-cell #moduleCardPane, #personCardPane {
+    -fx-border-color: white;
+    /*
+     * Use this to add border for all panes, removed for now
+     */
+    -fx-border-width: 0;
+    -fx-background-radius: 10;
 }
 
-.list-cell:filled:odd {
-    -fx-background-color: #515658;
-}
-
-.list-cell:filled:selected {
-    -fx-background-color: #424d5f;
-}
-
-.list-cell:filled:selected #cardPane {
+.list-cell:filled:selected #moduleCardPaneardPane, #personCardPane {
     -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
+    /*
+     * use this ot add border color to selected pane, removed for now
+     */
+    -fx-border-width: 0;
 }
+
+.list-cell:filled:even #moduleCardPane {
+    -fx-background-color: #698f3f;
+}
+
+.list-cell:filled:odd #moduleCardPane {
+    -fx-background-color: derive(#698f3f, 20%);
+}
+
+.list-cell:filled:selected:even #moduleCardPane {
+    -fx-background-color: derive(#698f3f, 70%);
+}
+
+.list-cell:filled:selected:odd #moduleCardPane {
+    -fx-background-color: derive(#698f3f, 70%);
+}
+
+.list-cell:filled:even #personCardPane {
+    -fx-background-color: #804e49;
+}
+
+.list-cell:filled:odd #personCardPane {
+    -fx-background-color: derive(#804e49, 30%);
+}
+
+.list-cell:filled:selected:even #personCardPane {
+    -fx-background-color: derive(#804e49, 70%)
+}
+
+.list-cell:filled:selected:odd #personCardPane {
+    -fx-background-color: derive(#804e49, 70%);
+}
+
+/*
+ * CSS for all labels within card panels
+ */
 
 .list-cell .label {
-    -fx-text-fill: white;
+    -fx-text-fill: #0a122a;
 }
 
-.cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-font-size: 16px;
-    -fx-text-fill: #010504;
-}
-
-.cell_small_label {
+.list-cell .field_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #0a122a;
+    -fx-font-weight: bold;
+}
+
+
+.list-cell .cell_big_label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16px;
+}
+
+.list-cell .cell_small_label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+}
+
+
+/*
+ * General wrapper for every segment
+ */
+.borderless-pane {
+    -fx-background-color: #0a122a;
+    /*
+     * Used for debugging, always set to same color as background color
+     */
+    -fx-border-color: transparent;
+    -fx-padding: 0 10 20 10;
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent;
 }
 
-.pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
-     -fx-border-top-width: 1px;
-}
 
-.status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
-}
-
+/*
+ * Result of user command
+ */
 .result-display {
     -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
+    -fx-background-radius: 0;
+    -fx-border-radius: 0;
+    -fx-text-fill: #0a122a;
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
-}
-
-.result-display .label {
-    -fx-text-fill: black !important;
-}
-
-.status-bar .label {
     -fx-font-family: "Segoe UI Light";
+}
+
+.result-display .scroll-pane {
+    -fx-background: transparent;
+}
+
+.result-display .content {
+    -fx-background-color: #e7decd;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-width: 0px;
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 12pt;
     -fx-text-fill: white;
-    -fx-padding: 4px;
-    -fx-pref-height: 30px;
+    -fx-padding: 10px;
 }
 
-.status-bar-with-border {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 25%);
-    -fx-border-width: 1px;
-}
-
-.status-bar-with-border .label {
-    -fx-text-fill: white;
-}
-
-.grid-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 30%);
-    -fx-border-width: 1px;
-}
-
-.grid-pane .stack-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
-}
-
-.context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
-}
 
 .context-menu .label {
     -fx-text-fill: white;
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #0a122a;
 }
 
 .menu-bar .label {
@@ -204,14 +161,20 @@
 }
 
 .menu .left-container {
-    -fx-background-color: black;
+    -fx-background-color: #b0b0b0;
 }
 
 /*
- * Metro style Push Button
- * Author: Pedro Duque Vieira
- * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
+ * CSS for help dropdown
  */
+.context-menu {
+    -fx-background-color: #313b59;
+}
+
+/*
+ * Kept for the help button, to remove later on
+ */
+
 .button {
     -fx-padding: 5 22 5 22;
     -fx-border-color: #e2e2e2;
@@ -229,8 +192,8 @@
 }
 
 .button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
-  -fx-text-fill: #1d1d1d;
+    -fx-background-color: white;
+    -fx-text-fill: #1d1d1d;
 }
 
 .button:focused {
@@ -256,38 +219,62 @@
     -fx-background-color: derive(-fx-focus-color, 30%);
 }
 
-.dialog-pane {
-    -fx-background-color: #1d1d1d;
-}
-
-.dialog-pane > *.button-bar > *.container {
-    -fx-background-color: #1d1d1d;
-}
-
-.dialog-pane > *.label.content {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
+/*
+ * unique CSS for the copy button, separate from the help button
+ */
+#moduleCardPane .copyButton {
+    -fx-background-color: #3f6411;
     -fx-text-fill: white;
+    -fx-font-size: 3;
+    -fx-background-radius: 5em;
+    -fx-translate-x: 3;
+    -fx-min-height: 18;
+    -fx-max-height: 18;
+    -fx-min-width: 18;
+    -fx-max-width: 18;
+    -fx-border-width: 0;
+    -fx-background-size: 5px;
 }
 
-.dialog-pane:header *.header-panel {
-    -fx-background-color: derive(#1d1d1d, 25%);
+#moduleCardPane .copyButton:hover {
+    -fx-background-color: #67a616;
 }
 
-.dialog-pane:header *.header-panel *.label {
-    -fx-font-size: 18px;
-    -fx-font-style: italic;
-    -fx-fill: white;
+#moduleCardPane .copyButton:armed {
+    -fx-background-color: #8ce719;
+}
+
+#personCardPane .copyButton {
+    -fx-background-color: #723126;
     -fx-text-fill: white;
+    -fx-font-size: 3;
+    -fx-background-radius: 5em;
+    -fx-translate-x: 3;
+    -fx-min-height: 18;
+    -fx-max-height: 18;
+    -fx-min-width: 18;
+    -fx-max-width: 18;
+    -fx-border-width: 0;
+    -fx-background-size: 5px;
+}
+
+#personCardPane .copyButton:hover {
+    -fx-background-color: #a14535;
+}
+
+#personCardPane .copyButton:armed {
+    -fx-background-color: #c5553f;
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #0a122a;
+    -fx-padding: 0 10 10 8;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: #1d2646;
     -fx-background-insets: 3;
+    -fx-font-size: 1;
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
@@ -307,46 +294,61 @@
     -fx-padding: 8 1 8 1;
 }
 
+.list-title {
+    -fx-font-size: 40;
+    -fx-text-fill: #e7decd;
+    -fx-font-family: "Roboto Mono";
+    -fx-padding: 0 0 7 0;
+}
+
+.module_big_label {
+    -fx-font-size: 60;
+    -fx-text-fill: rgba(63, 100, 17, 0.41) !important;
+    -fx-font-family: "Poppins Bold";
+    -fx-translate-x: -10;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
-}
 
-#commandTypeLabel {
-    -fx-font-size: 11px;
-    -fx-text-fill: #F70D1A;
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-color: #e7decd;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
-    -fx-border-insets: 0;
-    -fx-border-width: 1;
+    -fx-background-radius: 10px;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-text-fill: #0a122a;
+    -fx-prompt-text-fill: #736e6b;
+    -fx-padding: 10px 15px;
 }
 
 #filterField, #personListPanel, #personWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
-#resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
-    -fx-background-radius: 0;
-}
 
-#tags {
+#tags, #assignmentDetails {
     -fx-hgap: 7;
     -fx-vgap: 3;
 }
 
-#tags .label {
-    -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
+#tags .label, #assignmentDetails .label {
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
-    -fx-background-radius: 2;
+    -fx-translate-y: 5;
+    -fx-background-radius: 3;
     -fx-font-size: 11;
+}
+
+#tags .label {
+    -fx-text-fill: #e7decd;
+    -fx-background-color: #723126;
+}
+
+#assignmentDetails .label {
+    -fx-text-fill: #e7decd;
+    -fx-background-color: #3f6411;
 }

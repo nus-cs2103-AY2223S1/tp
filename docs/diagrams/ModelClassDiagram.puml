@@ -14,12 +14,19 @@ Class UserPrefs
 
 Class UniquePersonList
 Class Person
-Class Address
 Class Email
 Class Name
 Class Phone
 Class Tag
+Class Telegram
 
+Class UniqueModuleList
+Class Module
+Class ModuleCode
+Class LectureDetails
+Class TutorialDetails
+Class ZoomLink
+Class AssignmentDetails
 }
 
 Class HiddenOutside #FFFFFF
@@ -39,12 +46,19 @@ UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> Address
+Person *--> ModuleCode
 Person *--> "*" Tag
+Person *--> Telegram
 
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+ModuleCode -[hidden]right-> TutorialDetails
+TutorialDetails -[hidden]right-> LectureDetails
 
-ModelManager -->"~* filtered" Person
+AddressBook *--> "1" UniqueModuleList
+UniqueModuleList --> "~* all" Module
+Module *--> ModuleCode
+Module *--> LectureDetails
+Module *--> TutorialDetails
+Module *--> "0..2" ZoomLink
+Module *--> "*" AssignmentDetails
 @enduml

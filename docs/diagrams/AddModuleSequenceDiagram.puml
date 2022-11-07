@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddModuleCommandParser" as AddModuleCommandParser LOGIC_COLOR
+participant ":AddModuleCommandParser" as AddModuleCommandParser LOGIC_COLOR
+participant "d:AddModuleCommand" as AddModuleCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addm \nm/CS1101S")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("addm \nm/CS1101S")
+activate AddressBookParser
+
+create AddModuleCommandParser
+AddressBookParser -> AddModuleCommandParser
+activate AddModuleCommandParser
+
+AddModuleCommandParser --> AddressBookParser
+deactivate AddModuleCommandParser
+
+AddressBookParser -> AddModuleCommandParser : parse("m/ CS1101S")
+activate AddModuleCommandParser
+
+create AddModuleCommand
+AddModuleCommandParser -> AddModuleCommand
+activate AddModuleCommand
+
+AddModuleCommand --> AddModuleCommandParser : moduleToAdd
+deactivate AddModuleCommand
+
+AddModuleCommandParser --> AddressBookParser : moduleToAdd
+deactivate AddModuleCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddModuleCommandParser -[hidden]-> AddressBookParser
+destroy AddModuleCommandParser
+
+AddressBookParser --> LogicManager : moduleToAdd
+deactivate AddressBookParser
+
+LogicManager -> AddModuleCommand : execute(model)
+activate AddModuleCommand
+
+AddModuleCommand -> Model : addModule(moduleToAdd)
+activate Model
+
+Model --> AddModuleCommand
+deactivate Model
+
+create CommandResult
+AddModuleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddModuleCommand
+deactivate CommandResult
+
+AddModuleCommand --> LogicManager : result
+deactivate AddModuleCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

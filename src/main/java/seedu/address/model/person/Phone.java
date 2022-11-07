@@ -1,6 +1,5 @@
 package seedu.address.model.person;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
@@ -9,10 +8,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Phone {
 
-
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
+    public static final String EMPTY_PHONE = "";
     public final String value;
 
     /**
@@ -21,7 +20,6 @@ public class Phone {
      * @param phone A valid phone number.
      */
     public Phone(String phone) {
-        requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
         value = phone;
     }
@@ -30,11 +28,17 @@ public class Phone {
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
+        if (test == null) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
+        if (value == null) {
+            return EMPTY_PHONE;
+        }
         return value;
     }
 

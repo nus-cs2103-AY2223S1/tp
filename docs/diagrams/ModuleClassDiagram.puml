@@ -1,0 +1,20 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+AddressBook *-down-> "1" UniqueModuleList
+
+UniqueModuleList -down-> "~* all" Module
+
+ModuleCode -[hidden]right-> TutorialDetails
+TutorialDetails -[hidden]right-> ZoomLink
+
+
+Module *--> ModuleCode
+Module *--> LectureDetails
+Module *--> TutorialDetails
+Module *--> "0..2" ZoomLink
+Module *--> "*" AssignmentDetails
+@enduml

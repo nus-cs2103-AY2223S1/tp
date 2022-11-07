@@ -1,0 +1,24 @@
+@startuml
+!include style.puml
+
+object "<u>:DeleteModuleCommand</u>" as DeleteModuleCommand LOGIC_COLOR
+object "<u>:DeleteModuleCommandParser</u>" as DeleteModuleCommandParser LOGIC_COLOR
+object "<u>:AddressBookParser</u>" as AddressBookParser LOGIC_COLOR
+object "<u>:Model</u>" as Model MODEL_COLOR
+object "<u>:CommandResult</u>" as CommandResult LOGIC_COLOR
+object "<u>:Index</u>" as Index COMMONS_COLOR {
+    zeroBasedIndex = 0
+}
+object "<u>moduleToDelete:Module" as Module LOGIC_COLOR
+
+AddressBookParser --> DeleteModuleCommandParser : calls
+AddressBookParser --> DeleteModuleCommand
+DeleteModuleCommandParser -> DeleteModuleCommand
+DeleteModuleCommandParser --> Index
+DeleteModuleCommand --> Model
+DeleteModuleCommand --> CommandResult : outputs
+DeleteModuleCommand -> Index
+DeleteModuleCommand --> Module
+Model -> Module : deletes
+
+@enduml

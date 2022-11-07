@@ -40,9 +40,13 @@ task coverage(type: JacocoReport) {
     }
 }
 
+run {
+    enableAssertions = true
+}
+
 dependencies {
     String jUnitVersion = '5.4.0'
-    String javaFxVersion = '11'
+    String javaFxVersion = '18'
 
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'mac'
@@ -66,7 +70,11 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'SoCompiler.jar'
+}
+
+run {
+    enableAssertions = true
 }
 
 defaultTasks 'clean', 'test'

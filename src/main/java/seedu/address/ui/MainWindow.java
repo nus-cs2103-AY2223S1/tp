@@ -3,9 +3,11 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -32,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private ModuleListPanel moduleListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -45,10 +48,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
-    private StackPane resultDisplayPlaceholder;
+    private StackPane moduleListPanelPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane resultDisplayPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -62,6 +65,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
+        primaryStage.setMinWidth(1430);
 
         setAccelerators();
 
@@ -78,6 +82,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -104,6 +109,8 @@ public class MainWindow extends UiPart<Stage> {
                 event.consume();
             }
         });
+
+        getRoot().addEventFilter(ContextMenuEvent.CONTEXT_MENU_REQUESTED, Event::consume);
     }
 
     /**
@@ -113,11 +120,11 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
+        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
+        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
@@ -129,6 +136,8 @@ public class MainWindow extends UiPart<Stage> {
     private void setWindowDefaultSize(GuiSettings guiSettings) {
         primaryStage.setHeight(guiSettings.getWindowHeight());
         primaryStage.setWidth(guiSettings.getWindowWidth());
+        primaryStage.setMinWidth(1200);
+        primaryStage.setMinHeight(900);
         if (guiSettings.getWindowCoordinates() != null) {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
@@ -145,6 +154,7 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
+        resultDisplay.setFeedbackToUser("Welcome back! Try typing addp for starters!");
     }
 
     void show() {
@@ -157,7 +167,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+            (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
@@ -165,6 +175,10 @@ public class MainWindow extends UiPart<Stage> {
 
     public PersonListPanel getPersonListPanel() {
         return personListPanel;
+    }
+
+    public ModuleListPanel getModuleListPanel() {
+        return moduleListPanel;
     }
 
     /**
