@@ -378,12 +378,12 @@ addO l/BEDOK_NORTH_BLK123_12 n/John Doe o/2000000
 addO l/BUKIT_PANJANG_RD_BLK456_10 n/Betsy Crowe o/2500000
 ```
 
-**Example output:**<br>
+**Expected output:**<br>
 A new offer is added to RealTime
 
 Feedback Box:
 ```text
-
+Offer added: [Details of offer]
 ```
 
 [Back to Table of Contents](#table-of-contents)
@@ -586,12 +586,22 @@ Adds a meeting to the address book.
 
 **Format:** `addM id/Listing_ID n/CLIENT_NAME d/DATE_TIME`
 
+**Example input:**<br>
+```text
+addM id/1 a/John street, block 123, #01-01 d/2022-10-20 12:00
+addM id/abc a/Changi Prison d/2022-10-21 14:00
+```
+
+**Expected output:**<br>
+A new meeting is added to RealTime
+
+Feedback Box:
+```text
+Meeting added: [Details of meeting]
+```
 Note:
 * DATE_TIME must be in this format, yyyy-MM-dd HH:mm
 
-Examples:
-* `addM id/1 a/John street, block 123, #01-01 d/2022-10-20 12:00`
-* `addM id/abc a/Changi Prison d/2022-10-21 14:00`
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -603,8 +613,18 @@ Deletes the specified meeting from the address book.
 
 **Format:** `delM INDEX`
 
-Examples:
-* `delM 2` deletes the 2nd meeting in the address book.
+**Example input:**<br>
+```text
+delM 2
+```
+
+**Expected output:**<br>
+Meeting 2 is deleted from RealTime
+
+Feedback Box:
+```text
+Meeting deleted: [Details of meeting]
+```
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -616,9 +636,21 @@ Edits an existing meeting in the address book.
 
 **Format:** `editM INDEX [n/OWNER_NAME] [d/DATE_TIME]`
 
-Examples:
-* `editM 1 n/Betsy Crowe d/2022-10-20 17:00`
-* `editM 2 n/Johnny Sins d/2022-10-22 12:00`
+**Example input:**<br>
+```text
+editM 1 n/Betsy Crowe d/2022-10-20 17:00
+editM 2 n/Johnny Sins d/2022-10-22 12:00
+```
+
+**Expected output:**<br>
+Meeting 1 was edited
+Meeting 2 was edited
+
+Feedback Box:
+```text
+Meeting edited: [Details of meeting]
+```
+
 
 [Back to Table of Contents](#table-of-contents)
 
