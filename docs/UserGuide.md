@@ -11,7 +11,8 @@ patient bills for the family clinic.
 
 ---
 
-## [Features](#1-features)
+## Features
+
 * [Add a patient (addpatient, ap)](#111-add-a-patient-addpatient-ap)
 * [Add an appointment of a patient (addappointment, aa)](#112-add-an-appointment-of-a-patient-addappointment-aa)
 * [Add a bill of an appointment (addbill, ab)](#113-add-a-bill-of-an-appointment-addbill-ab)
@@ -40,12 +41,9 @@ patient bills for the family clinic.
 * [Save the data](#114-save-the-data)
 * [Edit the data file](#115-edit-the-data-file)
 
-## [Command Summary]
+## Others
 
 * [Command summary table](#2-command-summary-table)
-
-## [Others]
-
 * [Frequently asked questions](#3-frequently-asked-questions)
 
 ---
