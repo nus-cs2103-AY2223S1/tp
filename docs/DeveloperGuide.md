@@ -14,7 +14,7 @@ title: Developer Guide
     * [Common classes](#common-classes)
 * [Implementation](#implementations)
     * [Filter transaction feature](#filter-feature-for-transactions)
-    * [Buy / Sell transaction feature](#buy-feature-for-transactions)
+    * [Buy / Sell transaction feature](#buysell-feature-for-transactions)
     * [Edit transaction feature](#editing-feature-for-transactions)
     * [Delete Client/Transaction/Remark feature](#delete-clienttransactionremark-feature)
     * [Sort feature]()
@@ -30,6 +30,8 @@ title: Developer Guide
       * [Add a remark to a client](#use-case-uc05---add-a-remark-to-a-client-br)
       * [Requesting help](#use-case-uc06---requesting-help)
       * [Clearing all data](#use-case-uc07---clearing-all-data)
+      * [Buying from a client](#use-case-uc08---buying-from-a-client)
+      * [Selling to a client](#use-case-uc09---selling-to-a-client)
     * [Non-Functional Requirements](#non-functional-requirements)
     * [Glossary](#glossary)
 * [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
@@ -189,7 +191,7 @@ have the same `Text` (case-insensitive). The `Remark` object contains the
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T09-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageDiagram.png" width="700" />
+<img src="images/StorageDiagram.png" />
 
 The `Storage` component,
 
@@ -252,13 +254,14 @@ The following activity diagram summarizes what happens when a user executes the 
     * Pros: Performs faster as the command only filters through one client transactions. Also, user would be able to know which client the filtered transactions are from.
     * Cons: User would have to manually select each client and filter the transactions.
 
-### Buy feature for transactions
+### Buy/Sell feature for transactions
 
-The proposed sort mechanism is facilitated by `BuyCommand`. It extends `Command` and `BuyCommandParser` which extends from `Parser`.
-To invoke the buy command, `BuyCommandParser` will parse the arguments from the user input via `BuyCommandParser#parse()` and returns the buy command
-if the arguments are valid.
+#### Implementation for Buy Transaction
 
-`BuyCommand` implements the `BuyCommandParser#execute()` operation which executes the command and returns the result message in a 
+The buy transaction mechanisms are facilitated by `BuyCommand`. The `BuyCommand` extends `Command` and `BuyCommandParser` which extends from `Parser`.
+To invoke either of the commands, `BuyCommandParser` will parse the arguments from the user input via `BuyCommandParser#parse()` or and returns the buy command if the arguments are valid.
+
+`BuyCommand` executes the `BuyCommand#execute()` operation which executes the command and returns the result message in a 
 `CommandResult` object.
 
 The operation is exposed in the `logic` interface as `Logic#execute()`.
@@ -267,13 +270,10 @@ Given below is an example usage scenario and how the buy transaction mechanism b
 
 Step 1. The user launches the application. The `UiManager` will call on the `MainWindow` to invoke the UI which displays the clients.
 
-![BuyState0](images/BuyState0-initial_state.png)
+Step 2. The user executes `buy 1 q/10 g/Apple p/0.5 d/17/05/2000` command to add a buy transaction of 10 apples at $0.50 each on 17/05/2000 to the
+client at index 1. This is done by calling the `BuyCommand#execute()` which will call `Model#getFilteredClientList()` to get the list of clients.
 
-Step 2. The user executes `buy 1 q/10 g/Apple p/0.5 d/17/05/2000` command to add a buy transaction of 10 apples at $0.50 each on the 17/05/2000 to the
-client at index 1.
-
-Step 3. The `Execute` of `BuyCommand` will call `Model#getFilteredClientList()` to get the list of clients. `List<Client>#get()` is called to
-get the client at the index to copy. The `BuyTransaction` is then added to the copied client by calling `Client#addTransaction(Transaction)`.
+Step 3. `List<Client>#get()` is called to get the client at the index. The `BuyTransaction` is then added to the copied client by calling `Client#addTransaction(Transaction)`.
 The copied client is replaced with the client at the index by calling `Model#setClient(Client, Client)`.
 
 The following sequence diagrams shows how the buy operation works:
@@ -292,14 +292,19 @@ The following activity diagram summarizes what happens when a user executes the 
 
 **Aspect: How buy transaction executes:**
 
-* **Alternative 1 (current choice):** Add buy transaction by into each client.
-    * Pros: Easy to implement and allow the user to see all the buy transactions for each client via view command.
+* **Alternative 1 (current choice):** Add buy transaction into each client.
+    * Pros: Easy to implement and allows the user to view all the buy transactions for each client via view command.
     * Cons: Users cannot see all buy transaction of every client at one time.
 * **Alternative 2:** Add buy transaction to JeeqTracker instead of per client.
     * Pros: Easy to see every past buy transaction with all the clients.
-    * Cons: Users may be overwhelmed if there are too many transactions. Also cannot distintively see which buy transaction belongs to which client.
+    * Cons: Users may be overwhelmed if there are too many transactions. Also, users would be unable to tell which buy transaction belongs to which client.
+
+#### Implementation for Sell Transaction
+
+Similar to Buy Transaction.
 
 _{more aspects and alternatives to be added}_
+
 
 --------------------------------------------------------------------------------------------------------------
 ### Editing feature for transactions
@@ -564,6 +569,38 @@ Users are able to perform several tasks within the application that is broken do
 
     Use case ends.
 
+#### **Use case: UC08 - Buying from a client**
+
+**MSS**
+
+1.  User requests to list clients
+2.  JeeqTracker shows a list of clients
+3.  User requests to add a buy transaction to a specific client in the list
+4.  JeeqTracker adds the buy transaction to the client
+
+    Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given client does not exist in the list.
+
+    * 3a1. JeeqTracker shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User fails to provide a valid command format to create a Buy Transaction.
+
+    * 3b1. JeeqTracker shows an error message.
+
+      Use case resumes at step 2.
+
+#### **Use case: UC09 - Selling to a client**
+
+* Similar to [UC08](#use-case-uc08---buying-from-a-client). Just changing Buy to Sell.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -657,6 +694,18 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `filter sold`<br/>Expected: No transaction is filtered. Error details shown in the `Application's Reply` panel.
    3. Other incorrect filter commands to try: `filter`, `filter all`, `filter 1`<br/>Expected: Similar to previous.
     
+### Adding buy/sell transactions
+
+1. Adding a transaction while only one client is shown in the client list.
+    
+   1. Test case: `buy 1 g/apples price/0.50 q/100`<br/>Expected: Details of the added transaction is shown in the Transactions Window.
+   2. Test case: `sell 0 g/apples price/0.50 q/100`<br/>Expected: No transaction is added. Error details shown in the `Application's Reply` panel.
+   3. Other incorrect buy/sell commands to try:`buy`, `sell 3`, `buy g/apples price/0.5 q/abc`<br/>Expected: Similar to previous.
+
+2. Adding a transaction while more than one client is shown in the client list.
+   1. Prerequisites: List all clients using the `list` command. More than one client in the list.
+   2. Test case: `buy 1 g/apples price/test q/100`<br/>Expected: No transaction is added. Error details shown in the Application's Reply panel.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data file
