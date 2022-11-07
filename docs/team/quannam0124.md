@@ -5,11 +5,7 @@ title: Nam Minh Quan's Project Portfolio Page
 
 ### Project: JeeqTracker
 
-JeeqTracker is a desktop app that allows small business owners to keep track of their business partners as well
-as their transactions.
-
-JeeqTracker is designed to be used with CLI (Command Line Interface), and it has GUI created using JavaFX.
-It is written in Java, and has about 10 kLoC.
+JeeqTracker is a desktop application created for home-based business owners / resellers that helps them manage the clients that they interact with by keeping track of their BUY / SELL transactions, and REMARKS of clients. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
