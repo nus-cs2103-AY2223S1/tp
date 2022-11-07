@@ -913,7 +913,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with corrupted data files
 
-    1. Open `addressbook.json`. There are some pre-loaded tasks in this file.
+    1. Open `addressbook.json`. There are some preloaded tasks in this file.
 
     2. In line 2, change `tasks` to `task`. This corrupts the file and system will recognise the mismatch.
 
@@ -928,7 +928,7 @@ testers are expected to do more *exploratory* testing.
 
 2. Dealing with missing data files
 
-    1. Open `addressbook.json`. There are some pre-loaded tasks in this file.
+    1. Open `addressbook.json`. There are some preloaded tasks in this file.
 
     2. Delete `addressbook.json` manually.
 
