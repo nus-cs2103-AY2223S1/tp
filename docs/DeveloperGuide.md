@@ -36,7 +36,11 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-T17-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+</div>
+
+<div markdown="span" class="alert alert-info">
+**:information_source: Note:** The lifeline for the sequence diagrams should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Architecture
@@ -49,7 +53,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T17-3/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T17-3/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -82,24 +86,24 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T17-3/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ProfileListPanel`, `EventListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T17-3/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T17-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Profile` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Profile` and `Event` objects residing in the `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T17-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -127,7 +131,7 @@ How the parsing works:
 * All `XCommandParser`, `YCommandParser` and `ZXCommandParser` classes implements the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T17-3/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -135,7 +139,7 @@ Both `Event` and `Profile` data are handled by the `Model` component. Since the 
 
 The `Model` component,
 * stores the NuScheduler data i.e., all `Profile` objects (which are contained in a `UniqueProfileList` object).
-* stores the currently 'selected' `Profile` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Profile>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Profile` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable, sorted `ObservableList<Profile>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -148,14 +152,14 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T17-3/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
 * can save both NuScheduler data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `NuSchedulerStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Common classes
 
@@ -175,15 +179,15 @@ In this section, we will describe how our add commands are implemented. In NUSch
 
 Since both `AddProfileCommand` and `AddEventCommand` are implemented in a similar manner, we will be using the `AddProfileCommand` to illustrate the implementation of add commands.
 
-The `AddProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `AddProfileCommand` overrides the `Command#execute` method, to add new profiles when called.
+The `AddProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `AddProfileCommand` overrides the `Command#execute()` method, to add new profiles when called.
 
 #### Implementation
 
 1. When the user inputs a command to add a profile, the input is passed to `LogicManager` to be executed.
-2. `LogicManager` will call `NuSchedulerParser#parseCommand`, which will create a new `ProfileCommandParser`.
-3. The method `ProfileCommandParser#parse` is then called, and return a new `AddProfileCommandParser`.
-4. The method `AddProfileCommandParser#parse` will then return a new `AddProfileCommand`, if the user has entered the correct inputs.
-5. The `LogicManager` will call `Command#execute` method of the `AddProfileCommand`, which will then create a new `Profile` using the `Model#addProfile` method.
+2. `LogicManager` will call `NuSchedulerParser#parseCommand()`, which will create a new `ProfileCommandParser`.
+3. The method `ProfileCommandParser#parse()` is then called, and return a new `AddProfileCommandParser`.
+4. The method `AddProfileCommandParser#parse()` will then return a new `AddProfileCommand`, if the user has entered the correct inputs.
+5. The `LogicManager` will call `Command#execute()` method of the `AddProfileCommand`, which will then create a new `Profile` using the `Model#addProfile()` method.
 6. When the command completes successfully, a `CommandResult` object is returned to the `LogicManager`, which will then display a success message to the user.
 
 The following sequence diagram shows how the `AddProfileCommand` works.
@@ -211,16 +215,18 @@ In this section, we will describe how our delete commands are implemented. In NU
 
 Since both `DeleteProfileCommand` and `DeleteEventCommand` are implemented in a similar manner, we will be using the `DeleteProfileCommand` to illustrate the implementation of delete commands.
 
-The `DeleteProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `DeleteProfileCommand` overrides the `Command#execute` method, to delete the specified profile when called.
+The `DeleteProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `DeleteProfileCommand` overrides the `Command#execute()` method, to delete the specified profile when called.
 
 #### Implementation
 
 1. When the user inputs a command to delete a profile, the input is passed to `LogicManager` to be executed.
-2. `LogicManager` will call `NuSchedulerParser#parseCommand`, which will create a new `ProfileCommandParser`.
-3. The method `ProfileCommandParser#parse` is then called, and returns a new `DeleteProfileCommandParser`.
-4. The method `DeleteProfileCommandParser#parse` will then return a new `DeleteProfileCommand`, if the user has entered the correct inputs.
-5. The `LogicManager` will call `Command#execute` method of the `DeleteProfileCommand`, which will then delete the `Profile` at the specified index, using the `Model#deleteProfile` method.
-6. When the command completes successfully, a `CommandResult` object is returned to the `LogicManager`, which will then display a success message to the user.
+2. `LogicManager` will call `NuSchedulerParser#parseCommand()`, which will create a new `ProfileCommandParser`.
+3. The method `ProfileCommandParser#parse()` is then called, and returns a new `DeleteProfileCommandParser`.
+4. The method `DeleteProfileCommandParser#parse()` will then call the method `ParserUtil#parseIndex()` which will return a `Index` object.
+5. The `Index` object is then used to create a `DeleteProfileCommand`, if the user has entered the correct inputs.
+6. `DeleteProfileCommand` then gets returned to the `LogicManager`.
+7. The `LogicManager` will call `Command#execute()` method of the `DeleteProfileCommand`, which will then delete the `Profile` at the specified index, using the `Model#deleteProfile()` method.
+8. When the command completes successfully, a `CommandResult` object is returned to the `LogicManager`, which will then display a success message to the user.
 
 The following sequence diagram shows how the `DeleteProfileCommand` works.
 
@@ -242,16 +248,17 @@ In this section, we will describe how our edit commands are implemented. In NUSc
 
 Since both `EditProfileCommand` and `EditEventCommand` are implemented in a similar manner, we will be using the `EditProfileCommand` to illustrate the implementation of edit commands.
 
-The `EditProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `EditProfileCommand` overrides the `Command#execute` method, to edit existing profiles when called.
+The `EditProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `EditProfileCommand` overrides the `Command#execute()` method, to edit existing profiles when called.
 
 #### Implementation
 
 1. When the user inputs a command to edit a profile, the input is passed to `LogicManager` to be executed.
-2. `LogicManager` will call `NuSchedulerParser#parseCommand`, which will create a new `ProfileCommandParser`.
-3. The method `ProfileCommandParser#parse` is then called, and return a new `EditProfileCommandParser`.
-4. The method `EditProfileCommandParser#parse` will then return a new `EditProfileCommand`, if the user has entered the correct inputs.
-5. The `LogicManager` will call `Command#execute` method of the `EditProfileCommand`, which will then update the `Profile` with the new details, using the `Model#setProfile` method.
-6. When the command completes successfully, a `CommandResult` object is returned to the `LogicManager`, which will then display a success message to the user.
+2. `LogicManager` will call `NuSchedulerParser#parseCommand()`, which will create a new `ProfileCommandParser`.
+3. The method `ProfileCommandParser#parse()` is then called, and return a new `EditProfileCommandParser`.
+4. The method `EditProfileCommandParser#parse()` will then create a new `EditProfileDescriptor` object.
+5. The method `EditProfileCommandParser#parse()` will then pass this `EditProfileDescriptor` object as a parameter to create a new `EditProfileCommand`. The `EditProfileCommand` is then returned, if the user has entered the correct inputs. 
+6. The `LogicManager` will call `Command#execute()` method of the `EditProfileCommand`, which will then update the `Profile` with the new details, using the `Model#setProfile()` method.
+7. When the command completes successfully, a `CommandResult` object is returned to the `LogicManager`, which will then display a success message to the user.
 
 The following sequence diagram shows how the `EditProfileCommand` works.
 
@@ -273,14 +280,14 @@ In this section, we will describe how our view commands are implemented. In NUSc
 
 Since both `ViewProfileCommand` and `ViewEventCommand` are implemented in a similar manner, we will be using the `ViewProfileCommand` to illustrate the implementation of view commands.
 
-The `ViewProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `ViewProfileCommand` overrides the `Command#execute` method, to view existing profiles when called.
+The `ViewProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCommand` is an abstract class which extends the `Command` class. `ViewProfileCommand` overrides the `Command#execute()` method, to view existing profiles when called.
 
 #### Implementation
 
 1. After the user command is parsed by `NuSchedulerParser`, a `Command` object (more precisely, a `ViewCommand` object) will be returned to the `LogicManager`.
-2. The `LogicManager` will then call `Command#execute` of the `ViewCommand`, passing the `Model` object as parameter.
-3. During the execution of the `ViewCommand`, `Model#updateFilteredProfileList` will be called. The method takes in a `Predicate`, in this case the `Predicate` returns `true` for all inputs. This is to allow all `Profile`s to be listed.
-4. `Model#updateFilteredProfileList` method will then update the `FilteredList` to contain all `Profile`s, which will then be reflected on the terminal.
+2. The `LogicManager` will then call `Command#execute()` of the `ViewCommand`, passing the `Model` object as parameter.
+3. During the execution of the `ViewCommand`, `Model#updateFilteredProfileList()` will be called. The method takes in a `Predicate`, in this case the `Predicate` returns `true` for all inputs. This is to allow all `Profile`s to be listed.
+4. `Model#updateFilteredProfileList()` method will then update the `FilteredList` to contain all `Profile`s, which will then be reflected on the terminal.
 5. At the end of method, a `CommandResult` object will be returned which will be used to indicate a successful execution of the command in the display.
 
 The following sequence diagram shows what happens when `ViewCommand` gets executed.
@@ -297,15 +304,15 @@ The following activity diagram summarizes what happens when a user executes a vi
 
 In this section, we will describe how view upcoming events command is implemented.
 
-The `ViewUpcomingEventsCommand` class extends the `EventCommand` abstract class. `EventCommand` extends the abstract `Command` class. `ViewUpcomingEventsCommand` overrides the `Command#execute` method, to display upcoming event commands when called.
+The `ViewUpcomingEventsCommand` class extends the `EventCommand` abstract class. `EventCommand` extends the abstract `Command` class. `ViewUpcomingEventsCommand` overrides the `Command#execute()` method, to display upcoming event commands when called.
 
 #### Implementation
 
-1. When the user inputs a command to view upcoming events, `LogicManager` will call `NuSchedulerParser#parseCommand`, which will create a new `ViewUpcomingEventsCommandParser`.
-2. The method `ViewUpcomingEventsCommandParser#parse` is then called. It calls `ParserUtil#parseDays`which returns the days input as an integer.
+1. When the user inputs a command to view upcoming events, `LogicManager` will call `NuSchedulerParser#parseCommand()`, which will create a new `ViewUpcomingEventsCommandParser`.
+2. The method `ViewUpcomingEventsCommandParser#parse()` is then called. It calls `ParserUtil#parseDays()`which returns the days input as an integer.
 3. Days input will be used to create a new `StartDateWithinTimeFramePredicate`.
 4. Using the days integer and the predicate, `ViewUpcomingEventsCommandParser` creates `ViewUpcomingEventsCommand` which gets returned to `LogicManager`.
-5. The `LogicManager` will call `Command#execute` method of the `ViewUpcomingEventsCommand`, which will then call `Model#updateFilteredEventList` to display the desired events.
+5. The `LogicManager` will call `Command#execute()` method of the `ViewUpcomingEventsCommand`, which will then call `Model#updateFilteredEventList()` to display the desired events.
 6. When the command completes successfully, a `CommandResult` object is returned to the `LogicManager`, which will then display a success message to the user.
 
 The following sequence diagram shows what happens when `ViewUpcomingEventsCommand` gets executed.
@@ -316,19 +323,20 @@ The following activity diagram summarizes what happens when a user executes a vi
 
 ![ViewUpcomingEventsCommandActivityDiagram](images/commands/ViewUpcomingEventsCommandActivityDiagram.png)
 
-### AddProfilesToEventCommand
+### Add Profiles To Event Command
 
 #### Description
 
-In this section, we will describe how the `AddProfilesToEventCommand` is implemented. `AddAttendeesCommand` is used to add existing `Profile`s to an `Event` as attendees.
+In this section, we will describe how the `AddProfilesToEventCommand` is implemented. `AddProfilesToEventCommand` is used to add existing `Profile`s to an `Event` as attendees.
 
-The `AddProfilesToEventCommand` class extends the `EventCommand` abstract class. `EventCommand` is an abstract class which extends the `Command` class. `AddProfilesToEventCommand` overrides the `Command#execute` method to add new attendees to an event when called.
+The `AddProfilesToEventCommand` class extends the `EventCommand` abstract class. `EventCommand` is an abstract class which extends the `Command` class. `AddProfilesToEventCommand` overrides the `Command#execute()` method to add new attendees to an event when called.
 
 #### Proposed implementation
 
 Similar to other commands, the user input to add attendees is passed to `LogicManager` to be executed. The following details the key difference in the methods that is invoked when the `AddProfilesToEventCommand#execute()` method is called:
 
 * `Model#addEventAttendees()` - Adds the specified `Profile`s to the `Attendees` attribute of the `Event`.
+* `Model#addEventToAttendees()` - Adds the specified `Event`  to the `EventsAttending` attribute of each `Profile` specified.
 
 Given below is an example usage scenario on how `AddProfilesToEventCommand` can be used and how it works.
 
@@ -436,6 +444,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC02 - Delete a profile**
 
+**Preconditions**: Must have at least one profile.
+
 **MSS**
 
 1. User requests to <u>view all profiles (UC01)</u>.
@@ -490,20 +500,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC05 - Add attendees to event**
 
+**Preconditions**: Must have at least one profile and one event.
+
 **MSS**
 
-1. User requests to add a profile to the event.
-2. NUScheduler adds the profile to the event and displays the updated event attendees.
+1. User requests to add multiple profiles to an event.
+2. NUScheduler adds the profiles to the event and displays the updated event attendees.
 
 **Extensions**
 
-* 1a. The given event to add profile to is invalid.
+* 1a. The given event index to add profiles to is invalid.
 
     * 1a1. NUScheduler shows an error message.
 
       Use case ends.
 
-* 1b. The given profile to add is invalid
+* 1b. One or more of the given profile indexes is invalid.
 
     * 1b1. NUScheduler shows an error message.
 
@@ -518,7 +530,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. Response to any commands should be displayed within 5 seconds.
 6. A user's individual schedule should not be accessible to other users.
 7. The _GUI_ should display data logic warnings when commands are entered with incomplete fields.
-8. The _GUI_ should be at least 1280 by 720 pixels to clearly display all information.
+8. The _GUI_ should be at least 1000 by 700 pixels to clearly display all information.
 
 ### Glossary
 
@@ -546,33 +558,163 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample profiles and events.
+   2. Double-click the jar file.<br>
+      Expected: Shows the GUI with a set of sample profiles and events.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+
+### Adding a Profile
+
+1. Prerequisites: No profiles exist in the list with the phone number `12345678` and the email `johndoe@u.nus.edu`
+
+2. Test case: `profile -a n/John Doe p/12345678 e/johndoe@u.nus.edu`<br>
+Expected: A profile with the name `John Doe`, phone number `12345678`, email `johndoe@u.nus.edu` is added to the list of profiles in alphabetical order. Details of the added profile shown in the status message.
+
+3. Test case: `profile -a n/John Doe`<br>
+Expected: No profile is added. Error details shown in the status message. 
+
+### Editing a Profile
+
+1. Editing a profile from the displayed list
+
+   1. Test case: `profile -e 1 n/Alice Yeoh`<br>
+      Expected: The name of the first profile is changed to `Alice Yeoh`. Details of the profile with the edited details shown in the status message. If the first profile is attending any events, the profile's name will be updated under the event as well.
+
+   2. Test case: `profile -e 1`<br>
+      Expected: The first profile remains the same. Error details shown in the status message.
+   
+   3. Test case: `profile -e 0`<br>
+      Expected: No profile is edited. Error details shown in the status message.
+
+### Viewing Profiles
+
+1. Viewing all Profiles while a select few Profiles are shown
+
+   1. Prerequisites: Filter some profiles using the `profile -f Alex` command. Profiles with the word `Alex` in the name will remain in the list.
+
+   2. Test case: `profile -v`<br>
+      Expected: All profiles will be shown in the list. A success message is shown.
+
+   3. Test case: `profile -v Bernice`<br>
+      Expected: The profile list remains the same. Error details shown in the status message.
+
+### Finding a Profile by name
+
+1. Finding a profile by name from all profiles in NUScheduler
+
+   1. Prerequisites: List all profiles using the `profile -v` command. Multiple profiles in the list. At least one profile with the name `Alex` exists.
+
+   2. Test case: `profile -f Alex`<br>
+      Expected: Profiles containing the word `Alex` are shown in the list. The number of profiles displayed is shown in the status message.
+
+   3. Test case: `profile -f Alex Bernice`<br>
+      Expected: Profiles containing either the word `Alex` or `Bernice` or both are shown in the list. The number of profiles displayed is shown in the status message.
+
+   4. Test case: `profile -f`<br>
+      Expected: The profile list remains the same. Error details shown in the status message.
 
 ### Deleting a Profile
 
-1. Deleting a Profile while all Profiles are being shown
+1. Deleting a profile while all profiles are being shown
 
-   1. Prerequisites: List all Profiles using the `profile -v` command. Multiple Profiles in the list.
+   1. Prerequisites: List all profiles using the `profile -v` command. Multiple profiles in the list.
 
    2. Test case: `profile -d 1`<br>
-      Expected: First profile is deleted from the list. Details of the deleted profile shown in the status message. If first profile is attending any events, the profile will be removed from the event as well.
+      Expected: The first profile is deleted from the list. Details of the deleted profile shown in the status message. If the first profile is attending any events, the profile will be removed from the event as well.
 
-   4. Test case: `profile - d 0`<br>
-      Expected: No Profile is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `profile -d 0`<br>
+      Expected: No Profile is deleted. Error details shown in the status message.
 
-   5. Other incorrect delete commands to try: `profile -d`, `profile -d x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `profile -d`, `profile -d x`, `...` (where x is larger than the list size, or 1000)<br>
       Expected: Similar to previous.
+   
+### Adding an Event
 
+1. Adding a valid Event
 
+   1. Prerequisites: Event to be added does not exist in the current event list.
+   2. Test case: `event -a n/Presentation s/22/10/2022 e/23/10/2022 t/CS2103`<br>
+      Expected: Event is added to the list, ordered by start time, end time, then title. Details of the added event shown in the status message.
+2. Adding an invalid Event
+   1. Prerequisites: Event to be added exist in the current list.
+   2. Test case: `event -a n/Presentation s/22/10/2022 e/23/10/2022 t/CS2103`<br>
+      Expected: Event does not get added to the list of events. Error message indicating that event already exist shown in the status message.
+
+### Adding a Profile to an Event
+
+1. Prerequisites: Profile to be added to Event is currently shown on the Profiles list. Event for Profile to be added to exist in the current event list.
+
+2. Test case: `event -ap 1 pr/1`
+   Expected: Event has an attendee added with the name and number of the Profile. Details of the event shown in the status message.
+
+### Deleting an attendee from an Event
+
+1. Prerequisites: Event to remove attendee from exist. Attendee to be removed exist in the Event.
+
+2. Test case: `event -dp 1 pr/1`
+   Expected: Event no longer has attendee. Details of the event shown in the status message.
+
+### Viewing upcoming Events
+
+1. Test case: `event -u 5`
+   Expected: Event starting in the next 5 days will be displayed to the Events list.
+
+### Viewing all Events
+
+1. Test case: `event -v`
+   Expected: All Events are displayed to the Events list.
+
+### Editing an Event
+
+1. Prerequisites: Event to be edited exist in the current list. Start and end includes both date and time.
+
+2. Test case: `event -e 1 n/Formal Dinner t/RC4 s/22/10/2022 09:00`
+   Expected: Event on the current list is updated with the new title, with only one tag RC4, and the new start time. Event list is resorted. Details of the Event edited is displayed in the status message.
+
+### Finding an Event
+
+1. Test case: `event -f Presentation`
+   Expected: Event list will display all Events which contains "presentation", case-insensitive, within its title.
+
+### Deleting an Event
+
+1. Prerequisites: Event to be deleted exist in the current list.
+
+2. Test case: `event -d 1`
+   Expected: Event deleted is no longer visible in the list of events. Details of the Event deleted is displayed in the status message.
+
+### Accessing the Help Window
+
+1. Test case: `help`<br>
+   Expected: Help window appears.
+
+2. Incorrect help commands to try:: `help ...` (where ... contains any combination of characters)<br>
+   Expected: No help window appears. Error details shown in the status message.
+
+### Clearing all data
+
+1. Prerequisites: Some data has been added with the `profile -a` and `event -a` commands.
+
+2. Test case: `clear`<br>
+   Expected: All data is deleted from NUScheduler.
+
+3. Incorrect clear commands to try: `clear ...` (where ... contains any combination of characters)<br>
+Expected: No data is deleted. Error details shown in the status message.
+
+### Exiting NUScheduler
+
+1. Test case: `exit`<br>
+   Expected: NUScheduler closes.
+
+2. Incorrect exit commands to try: `exit ...` (where ... contains any combination of characters)<br>
+   Expected: NUScheduler does not close. Error details shown in the status message.
 
 ### Saving data
 
@@ -582,3 +724,15 @@ testers are expected to do more *exploratory* testing.
    2. Edit any email to a non-NUS email.
    3. Relaunch `NUScheduler.jar`.
    4. Expected: Data is invalid thus NUScheduler starts with an empty data file.
+
+## **Appendix: Effort**
+
+NUScheduler is not only developed to work with profile details, but simultaneously with events as well. As such, it was a challenging experience for us to implement both features in a cohesive way for our target users. The initial preparation of the codebase was tedious, as we had to rename the given `Person` class in our AB3 fork. This caused many test cases to break and it took us some time to fix this. This was a part of our experience in understanding the codebase, which also involved learning how the command pattern used by AB3 works.
+
+The implementation of our “flag” command syntax to make the pattern more CLI-like very rigorously tested our ability to pattern-match using regex. We needed to ensure that the flags were entered directly after the main command, while also trying not to hardcode the flag into the command. This pushed us to learn more about regex in detail, including using capturing groups and lookaheads to ensure incorrect command patterns are never allowed.
+
+After understanding the codebase, we moved to implementing the `Event` class as well, while simultaneously adding more commands for the `Profile` class. This tested our ability to manage code conflicts, and we took some time to ensure that the quality of our code was unaffected after every merge.
+
+One of our biggest changes in v1.3 was implementing the `AddProfilesToEventCommand`. It created dependencies between the `Profile` and `Event` classes, so it was very difficult to write unit tests for commands that involved both classes. The conversion of `JsonAdaptedEvent`s to the model’s `Event` object also had to be modified to check for the existence of the `Profile`s saved under the `Event` (to check for any illegal modifications to the data file and ensure that the same `Profile` is referenced in the `Event`). The implementation also caused issues with the updating of the UI as any changes made to the `Attendees` was not automatically reflected in the UI. Therefore, we had to make even more changes to the model to refresh the UI.
+
+All in all, despite the limited time window of development, we not only managed to create a cohesive product for our target users, but also managed to learn a lot about effective software development practices.

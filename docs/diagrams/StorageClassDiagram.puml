@@ -41,5 +41,7 @@ JsonNuSchedulerStorage ..> JsonSerializableNuScheduler
 JsonSerializableNuScheduler --> "*" JsonAdaptedProfile
 JsonSerializableNuScheduler --> "*" JsonAdaptedEvent
 JsonAdaptedProfile --> "*" JsonAdaptedTag
+JsonAdaptedEvent --> "*" JsonAdaptedTag
+JsonAdaptedEvent -left-> "*" JsonAdaptedProfile
 
 @enduml

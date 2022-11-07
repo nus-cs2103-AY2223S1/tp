@@ -39,11 +39,14 @@ return p
 logicManager -> AddProfilesToEventCommand ++: execute(model)
 AddProfilesToEventCommand -> model ++: addEventAttendees(event, profilesToAdd)
 return
+AddProfilesToEventCommand -> model ++: addEventToAttendees(event, profilesToAdd)
+return
 
 create commandResult
 AddProfilesToEventCommand -> commandResult++
 return
 return
+destroy AddProfilesToEventCommand
 return
 
 @enduml

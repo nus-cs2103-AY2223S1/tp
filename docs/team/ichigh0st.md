@@ -41,6 +41,7 @@ Given below are my contributions to the project.
     * Developer Guide:
         * Tweaked target user profile, added user stories and use cases for deleting a profile, adding an event and viewing upcoming events (Pull Request [#51](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/51))
         * Added implementation details of `event -ap` (Pull Request [#94](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/94))
+        * Added instructions for manual testing for Profile commands and general commands (Pull Request [#198](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/198))
 
 * **Contributions to team-based tasks**:
     * Updated site-wide settings using Jekyll (Pull Request [#35](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/35))

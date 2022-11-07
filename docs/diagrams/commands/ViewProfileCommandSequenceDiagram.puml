@@ -27,6 +27,7 @@ create commandResult
 viewProfileCommand -> commandResult ++:
 return r
 return r
+destroy viewProfileCommand
 return
 
 

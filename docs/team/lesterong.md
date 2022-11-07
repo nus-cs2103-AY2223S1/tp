@@ -52,7 +52,7 @@ Given below are my contributions to the project.
         * Added implementation details for edit commands. (Pull Request [#83](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/83))
 
 * **Reviewing and mentoring contributions**:
-  * Reviewed 37 Pull Requests on [GitHub](https://github.com/AY2223S1-CS2103T-T17-3/tp/pulls?q=is%3Apr+commenter%3Alesterong+is%3Aclosed+-author%3Alesterong).
+  * Reviewed 47 Pull Requests on [GitHub](https://github.com/AY2223S1-CS2103T-T17-3/tp/pulls?q=is%3Apr+commenter%3Alesterong+is%3Aclosed+-author%3Alesterong).
   * Helped to ensure issues and milestones are on schedule.
   * Pull Requests reviewed with non-trivial comments: [#57](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/57), [#71](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/71), [#119](https://github.com/AY2223S1-CS2103T-T17-3/tp/pull/119).
 
