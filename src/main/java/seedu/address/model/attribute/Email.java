@@ -65,9 +65,7 @@ public class Email extends AbstractAttribute<String> implements PrefixedAttribut
             return true; // short circuit if same object
         } else if (o instanceof Email) {
             Email email = (Email) o;
-            String currEmail = value.replaceAll("\\s+", "");
-            String otherEmail = email.value.replaceAll("\\s+", "");
-            return currEmail.equalsIgnoreCase(otherEmail);
+            return value.equalsIgnoreCase(email.value);
         }
         return false;
     }

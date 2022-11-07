@@ -1,6 +1,7 @@
 package seedu.address.model.attribute;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.StringUtil.properCase;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.logic.parser.Prefix;
@@ -31,7 +32,7 @@ public class Name extends AbstractAttribute<String> implements PrefixedAttribute
     public Name(String name) {
         super(TYPE, name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = name;
+        fullName = properCase(name);
     }
 
     /**
@@ -52,9 +53,7 @@ public class Name extends AbstractAttribute<String> implements PrefixedAttribute
             return true; // short circuit if same object
         } else if (o instanceof Name) {
             Name n = (Name) o;
-            String currName = fullName.replaceAll("\\s+", "");
-            String otherName = n.fullName.replaceAll("\\s+", "");
-            return currName.equalsIgnoreCase(otherName);
+            return fullName.equals(n.fullName);
         }
         return false;
     }
