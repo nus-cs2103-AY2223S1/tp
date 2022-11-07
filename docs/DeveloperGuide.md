@@ -15,8 +15,8 @@ title: Developer Guide
 
 ## **2. Introduction**
 
-Made for SOC (School of Computing) Professors, **ProfNUS** is the **easiest way to keep track of your teaching schedule and organize information regarding the students and modules you teach.** 
-It is optimized for users who prefer Command Line Interface (CLI) so that frequent tasks can be done faster by typing in commands while providing users with a simple and clean Graphical User Interface (GUI). 
+Made for SOC (School of Computing) Professors, **ProfNUS** is the **easiest way to keep track of your teaching schedule and organize information regarding the students and modules you teach.**
+It is optimized for users who prefer Command Line Interface (CLI) so that frequent tasks can be done faster by typing in commands while providing users with a simple and clean Graphical User Interface (GUI).
 The main interaction with **ProfNUS** will thus be done through commands.
 
 The features of ProfNUS include:
@@ -205,7 +205,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The class diagram below shows our current implementation of the `Student` class 
+The class diagram below shows our current implementation of the `Student` class
 which extends from the `Person` class.
 
 ![StudentClassDiagram](images/StudentClassDiagram.png)
@@ -225,12 +225,12 @@ Additionally, it will also contain these fields:
 * **Alternative 1 (current choice):** Make `Student` inherit from `Person`
     * Pros:
       * More OOP since `Student` is a `Person`, thus allowing more flexibility through polymorphism.
-      * Improves the extensibility of the project since we are not constrained to 
+      * Improves the extensibility of the project since we are not constrained to
       having a single class to represent all the people in the project. Can include different types
       of persons in the future such as other professors.
     * Cons:
       * Harder to implement, have to write more code and test cases.
-      * Have to consider Liskov Substitution Principle when writing code. 
+      * Have to consider Liskov Substitution Principle when writing code.
 
 * **Alternative 2:** Refactor `Person` into `Student` class
   * Pros:
@@ -245,8 +245,8 @@ Additionally, it will also contain these fields:
     * Convenient and easy to implement since all students have a unique studentId when they
     matriculate into NUS
   * Cons:
-    * The `StudentId` field is editable, and we cannot ensure that the `StudentId` that is added is 
-    a valid Id of a student in NUS. 
+    * The `StudentId` field is editable, and we cannot ensure that the `StudentId` that is added is
+    a valid Id of a student in NUS.
 
 * **Alternative 2:** Ensure that students do not have the same name/fields
   * Pros:
@@ -258,7 +258,7 @@ Additionally, it will also contain these fields:
 
 #### Implementation
 
-The edit student mechanism is facilitated by `EditStuCommand`, `EditStuCommandParser` and `EditStudentDescriptor` 
+The edit student mechanism is facilitated by `EditStuCommand`, `EditStuCommandParser` and `EditStudentDescriptor`
 classes. The `EditStuCommandParser` is in charge of parsing the user's input which then creates a
 `EditStudentDescriptor` and returns a `EditStuCommand`. When the `EditStuCommand` is executed, it modifies the student
 at the index provided by the user.
@@ -306,7 +306,7 @@ The class diagram below shows our current implementation of the `Module` class.
 
 Each `Module` in ProfNUS will contain the following fields:
 - `ModuleName`: The name of the module.
-- `ModuleCode`: The unique module code used to identify the module. 
+- `ModuleCode`: The unique module code used to identify the module.
 - `ModuleDescription`: The description of the module.
 - `tags`: A set of string tags that describes the module.
 - `schedules`: A set of Schedule's that represent the classes and lectures the user has for the module.
@@ -324,7 +324,7 @@ Each `Module` in ProfNUS will contain the following fields:
 
 * **Alternative 2:** Ensure that the `ModuleName` of each module is unique
   * Pros:
-      * `ModuleCode` would not be a necessary field, less information required. 
+      * `ModuleCode` would not be a necessary field, less information required.
   * Cons:
       * NUS modules can share the same name. For example, CS2103 and CS2103T have the module name Software Engineering. Thus, with this implementation, you would not be able to add two Software Engineering modules.
 
@@ -423,7 +423,7 @@ The following activity diagram summarizes what happens when a user executes a `v
 | **Option 2** <br/> View by making use of indexing in list | Allows convenience if module code is forgotten                                                       | Have to use `mlist` command to obtain the indexing                                                |
 
 Reason for choosing option 2:
-As shown below in our [Use Cases](#73-use-cases), the expected behaviour of a Professor is to run the command `mlist` to view 
+As shown below in our [Use Cases](#73-use-cases), the expected behaviour of a Professor is to run the command `mlist` to view
 the modules that he has added to ProfNUS first, then choosing to view more details about a module. Hence, the
 indexing would be clearly known to the Professor and thus, option 2 is preferred.
 
@@ -480,7 +480,7 @@ During the execution, the following validity checks will be conducted:
 | **Option 1** <br/> Edit by module code, class type, and class group | Allows convenience if he knows the schedule details | Too much information to type.                           |
 | **Option 2** <br/> Edit by making use of indexing in list    | Allows convenience if schedule detail is forgotten  | Have to use `view` command to obtain the schedule list. |
 
-Reason for choosing Option 2: 
+Reason for choosing Option 2:
 
 To locate a schedule uniquely with schedule, a user needs to know the module code, class type, and class group. For example, `CS2103T tut W11`. However, when there are too many groups, professors can easily forget which group he is looking for. Therefore, using the index is better in this case.
 
@@ -782,7 +782,7 @@ testers are expected to do more *exploratory* testing.
 
    2. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
-   
+
 ### 8.2. Add/Delete a module
 
 1. Adding a module to ProfNUS.
@@ -798,7 +798,7 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect delete commands to try: `madd`, `madd x` and `madd n/Programming Methodology I t/ModuleCooridnator`<br>
        Expected: Similar to previous.
 
-2. Deleting a module 
+2. Deleting a module
 
     1. Prerequisites: Arguments are valid and all compulsory parameters are provided. Module code provided exists.
 
@@ -813,10 +813,10 @@ testers are expected to do more *exploratory* testing.
 
 ### 8.3. Add/Delete a student
 
-1. Adding a student to ProfNUS. 
+1. Adding a student to ProfNUS.
 
     1. Prerequisites: Arguments are valid and all compulsory parameters are provided. No duplicate student is allowed in ProfNUS.
-      
+
     2. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/A0123456G h/@good_student c/CS2030S`<br>
        Expected: Adds a new student with the name `John Doe`, phone number `98765432`, email address `johnd@example.com`, address `311, Clementi Ave 2, #02-25`, student id `A0123456G`, telegram handle `@good_student`and module code `CS2030S`.
 
@@ -840,7 +840,7 @@ testers are expected to do more *exploratory* testing.
 
 ### 8.4 Add a schedule
 
-Adding a schedule to ProfNUS. 
+Adding a schedule to ProfNUS.
 
 1. Prerequisites: Arguments are valid and all compulsory parameters are provided.
 
@@ -860,4 +860,4 @@ Creating **ProfNUS** was a challenging but yet fulfilling journey for all of us.
 all team members equally. This can be substantiated by our **15,000** lines of code combined which was written in a span of
 less than 10 weeks, placing us within the top 10 in the cohort for total code contribution. Despite our busy schedules,
 we managed to maintain a healthy and consistent communication with at least one online Zoom meeting per week. The hard work
-and dedication from our team was what made this project a successful and memorable learning experience. 
+and dedication from our team was what made this project a successful and memorable learning experience.
