@@ -554,10 +554,10 @@ Format: `filter -c TAG [MORE_TAGS]`
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tips:**
-    
-* Arguments provided must be an exact string match for the tag i.e., 'best-friend' instead of 'friend'. 
-  * Recall that tags associated with each client are singular words. 
-* Arguments are case-insensitive.  
+
+* Arguments provided must be an exact string match for the tag i.e., 'best-friend' instead of 'friend'.
+  * Recall that tags associated with each client are singular words.
+* Arguments are case-insensitive.
 
 </div>
 
@@ -574,12 +574,12 @@ Format: `select -c INDEX`
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tips:**
-    
-* Selects the client at the specified `INDEX`. 
-* The `INDEX` refers to the index number shown in the currently displayed client directory. 
-* The `INDEX` **must be a positive integer** 1, 2, 3, … 
-* The GUI changes to display just the selected client in the client directory, while properties the client is interested in are shown in the property directory. 
-    
+
+* Selects the client at the specified `INDEX`.
+* The `INDEX` refers to the index number shown in the currently displayed client directory.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …
+* The GUI changes to display just the selected client in the client directory, while properties the client is interested in are shown in the property directory.
+
 </div>
 
 ### Clearing all entries : `clear -c`
