@@ -1005,13 +1005,16 @@ Format: `list`
 
 You can view all details of a specified patient using the `focus` command.
 
-Format: `focus -p PATIENT_INDEX`
+Format: **`focus`** `-p PATIENT_INDEX`
 
 Examples:
 * `list` followed by `focus -p 2` shows all details of the 2nd patient in the patient book.
-* `find Betsy` followed by `focus -p 1` shows all details of the 1st patient in the results of the `find` command.
+* `find Fiona` followed by `focus -p 1` shows all details of the 1st patient in the results of the `find` command.
 
-_Add screenshot here_
+{:refdef: style="text-align: center;"}
+![result for `focus -p 2`](images/focusBerniceResult.png)
+{: refdef}
+<div align="center"><i> Patient details displayed after running the </i><code>focus -p 2</code><i> command </i></div>
 
 [Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
 
