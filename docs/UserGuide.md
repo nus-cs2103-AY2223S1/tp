@@ -308,7 +308,7 @@ Examples:
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: TIP:**<br>
+**:bulb: TIP:**<br>
 
 * To add deadline to an already existing task, use the command `taskedit t/TEAM-INDEX task/TASK-INDEX d/NEW DD-MM-YYYY`
 
