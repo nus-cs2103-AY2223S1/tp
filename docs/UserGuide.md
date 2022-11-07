@@ -628,7 +628,7 @@ If you are trying to locate a debt by its description, consider using the [`find
 **Q**: PayMeLah is not letting me use the command I want! What can I do?<br>
 **A**: Oh no! Calm down - let's troubleshoot together. First, head to the [Command Summary](#command-summary) section to make sure you are using the command in the correct format. You can also click on the links there to read more about the specifics of each command. If PayMeLah continues to misbehave, do drop us an email at paymelah.app@gmail.com, and we will do our best to help you as soon as possible!
 
-**Q**: Why can't PayMeLah do _<this thing>_?
+**Q**: Why can't PayMeLah do _this_?
 **A**: We are so sorry that PayMeLah does not support this feature at the moment :( However, PayMeLah is a constant work in progress and we hope to deliver the features that you are looking for in the near future! In the meantime, feel free to drop us feedback at paymelah.app@gmail.com so that we can better understand and serve your needs :)
 
 [Return to Table of Contents](#table-of-contents)
