@@ -635,6 +635,9 @@ If your changes to the data file makes its format invalid, Swift+ will discard a
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install Swift+ in the other computer. Replace the default data file `addressbook.json` with the file that contains the data of your previous Swift+.
 
+**Q**: Why pressing Tab does not autocomplete the whole command?<br>
+**A**: If multiple commands are possible with the current input, autocomplete only completes up to the **longest matching prefix**. e.g. pressing `Tab` after `lis` will autocomplete the command to `list_`, since there are two commands (`list_contact` and `list_task`) that start with `lis`.
+
 ---
 
 ## **Command Summary**
