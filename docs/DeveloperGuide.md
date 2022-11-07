@@ -164,7 +164,7 @@ How the parsing works:
 
 Here are the other classes in Logic (omitted from the class diagram above) that are used to update the Calendar whenever the user interacts with the Calendar's UI:
 
-<img src="images/CalendarLogicClassDiagram.png" width="600"/>
+<img src="images/CalendarLogicClassDiagram.png" width="300"/>
 
 How the `Logic` component works during the user's interaction with the Calendar:
 1. `CalendarLogic` listens to any changes in `Model`'s `filteredCalendarEventList`, which contains different `CalendarEvents`, upon interaction with the Calendar Ui.
@@ -704,7 +704,7 @@ The following is a more detailed explanation on how `Calendar Display` is implem
 
 ![Calendar Display Activity](images/CalendarDisplayActivityDiagram.png)
 
-*Figure 19. Activity diagram showing what happens when a user selects the Calendar tab`*
+*Figure 19. Activity diagram showing what happens when a user selects the Calendar tab*
 
 **Calendar Navigation**
 
