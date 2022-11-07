@@ -104,17 +104,17 @@ Given below are my contributions to the project.
 
 ![InspectSequenceDiagram](../images/InspectSequenceDiagram.png)
 
-3\. Wrote the section involving (UI design)[https://ay2223s1-cs2103t-w12-2.github.io/tp/DeveloperGuide.html#ui-features]
+3\. Wrote the section involving [UI design](https://ay2223s1-cs2103t-w12-2.github.io/tp/DeveloperGuide.html#ui-features)
 
-4\. UI activity diagram that describes how a user would interact with the UI
+4\. Wrote the section involving implementation of [`inspect`](https://ay2223s1-cs2103t-w12-2.github.io/tp/DeveloperGuide.html#inspect-feature), [`showNotes` and `hideNotes`](https://ay2223s1-cs2103t-w12-2.github.io/tp/DeveloperGuide.html#showing-and-hiding-the-notes-panel-feature)
 
-![](../images/UIActivityDiagram.png)
+5\. UI activity diagram that describes how a user would interact with the UI
 
-5\. Updated the UI Class Diagram to reflect the current state of the UI organisation.
-![](../images/UiClassDiagram.png)
+![UIActivityDiagram](../images/UIActivityDiagram.png)
 
-6\. Updated the Person Class Diagram by adding the loans property to the Person Class Diagram
+6\. Updated the UI Class Diagram to reflect the current state of the UI organisation.
+![UIClassDiagram](img src="../images/UiClassDiagram.png")
+
+7\. Updated the Person Class Diagram by adding the loans property to the Person Class Diagram
 
 ![Person Class Diagram](../images/PersonClassDiagram.png)
-
-7\. Wrote the section involving implementation of [`inspect`](https://ay2223s1-cs2103t-w12-2.github.io/tp/DeveloperGuide.html#inspect-feature), [`showNotes` and `hideNotes`](https://ay2223s1-cs2103t-w12-2.github.io/tp/DeveloperGuide.html#showing-and-hiding-the-notes-panel-feature)
