@@ -374,6 +374,7 @@ This command will require two prefixes:
 Format: `add-task m/MODULE_CODE td/TASK_DESCRIPTION`
 * Each task must belong to a specific module.
 * Module code must correspond to a currently displayed module on screen (case-insensitive).
+<div style="page-break-after: always;"></div>
 
 Example:
 ```
