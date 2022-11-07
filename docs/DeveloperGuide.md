@@ -959,6 +959,18 @@ testers are expected to do more *exploratory* testing.
     2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+### Adding a Teammate
+
+1. Adding a teammate to the list
+
+    1. Test case: `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+       Expected: A new teammate is added to the teammate list with the following details
+        1. `Name`: James Ho
+        2. `Phone`: 22224444
+        3. `Email`: jamesho@example.com
+        4. `Address`: 123, Clementi Rd, 1234665
+        5. `Tags`: friend, colleague
+
 ### Deleting a Teammate
 
 1. Deleting a teammate while all teammates are being shown
@@ -972,4 +984,56 @@ testers are expected to do more *exploratory* testing.
        Expected: No teammate is deleted. Error details shown in the status message. Status bar remains the same.
 
     4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Adding a Task
+
+1. Adding a task to the list
+
+    1. Test case: `task add Finish DG`
+       Expected: A new task is added to the task list with the following details
+        1. `Title`: Finish DG
+
+
+### Marking a Task
+
+1. Mark a task in the list as complete
+
+    1. Prerequisites: List tasks using the `task list` command. Multiple tasks in the shown list.
+
+    2. Test case: `task mark 1`
+        1. If the task is already marked:
+           Expected: The task remains marked and a message is displayed.
+
+        2. If the task is unmarked:
+           Expected: The task is marked (tick in the white box) and a message is displayed.
+
+
+### Unmarking a Task
+
+1. Unmark a task in the list and set it as incomplete
+
+    1. Prerequisites: List tasks using the `task list` command. Multiple tasks in the shown list.
+
+    2. Test case: `task mark 1`
+        1. If the task is already unmarked:
+           Expected: The task remains unmarked and a message is displayed.
+
+        2. If the task is marked:
+           Expected: The task is unmarked (tick in the white box disappears) and a message is displayed.
+
+
+### Deleting a Task
+
+1. Deleting a task while all tasks are being shown
+
+    1. Prerequisites: List all tasks using the `task list -a` command. Multiple tasks in the list.
+
+    2. Test case: `task delete 1`<br>
+       Expected: First task is deleted from the list. Details of the deleted task shown in the status message.
+
+    3. Test case: `task delete 0`<br>
+       Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
+
+    4. Other incorrect delete commands to try: `task delete`, `task delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
