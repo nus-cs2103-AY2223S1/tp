@@ -43,9 +43,9 @@ Here is a quick overview of how to get our application started! Complete these f
 started!
 
 1. Ensure that you have Java `11` installed in your computer. You can check your java version using the `java -version` command.
-2. Download the latest EZLead.jar from [here](https://github.com/AY2223S1-CS2103T-W09-3/tp/releases/download/v1.3.2/EzLead.jar).
+2. Download the latest EZLead.jar from [here](https://github.com/AY2223S1-CS2103T-W09-3/tp/releases/download/v1.4/EzLead.jar).
 3. Create a home folder for your EZLead app wherever you wish to store it and copy the jar file to it.
-4. Double-click the file to start the app. The app will contain some sample data
+4. Double-click the file to start the app. The app will contain some sample data.
 5. Type the command in the command box and press Enter to execute it.<br>Some example commands you can try:
   * `userlist`: Shows the global list of all members and their details.
   * `add n/John Doe p/99853657 e/john@gmail.com a/414, North Bridge Ave 5, #09-86 t/friends t/owesMoney`: Adds a member named `John Doe` to the app.
@@ -54,7 +54,7 @@ started!
   * `exit`: Exits the app.
 6. Refer to the [Features](#features) section in this user guide for more details on commands
 
-[Back to Top ↑](#introduction)
+[Back to Top ↑](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -175,8 +175,9 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `find Pam` returns `Pamella` and `Pam Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/foundAlexDavidResult.png)
+* `find alex david` returns `Alex Yeoh` and `David Li`<br>
+
+![result for 'find alex david'](images/foundAlexDavidResult.png)
 
 ### 2. Team Features
 
@@ -196,8 +197,6 @@ Examples:
 Names should only contain alphanumerical characters and spaces, and it should not be blank
 
 </div>
-
-
 
 ![CreateTeamExample.png](images/CreateTeamExample.png)
 
@@ -229,7 +228,7 @@ Format: `assign m/MEMBER-INDEX t/TEAM-INDEX`
 
 **:information_source: Note:**<br>
 
-MEMBER-INDEX is the index from the User List (refer to `Viewing all members` section below).
+MEMBER-INDEX is the index from the User List (refer to [`Viewing all members`](#11-viewing-all-members-userlist) section above).
 
 </div>
 
@@ -248,7 +247,7 @@ Format: `unassign m/MEMBER-INDEX t/TEAM-INDEX`
 
 **:information_source: Note:**<br>
 
-MEMBER-INDEX is the index from the User List (refer to `Viewing all members` section below).
+MEMBER-INDEX is the index from the User List (refer to [`Viewing all members`](#11-viewing-all-members-userlist) section above).
 
 </div>
 
@@ -260,7 +259,7 @@ Examples:
 
 #### 3.1 Adding a task: `taskadd`
 
-Adds a new task to a team. Additionally, you may opt to set a deadline for the task (optional).
+Adds a new task to a team. Additionally, you may opt to provide a deadline for the task.
 
 Format: `taskadd t/TEAM-INDEX n/TASK-NAME [d/DEADLINE]`
 
@@ -342,7 +341,7 @@ to load in an EMPTY state.
 
 ![JSONSaveFile.png](images/JSONSaveFile.png)
 
-[Back to Top ↑](#introduction)
+[Back to Top ↑](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -374,4 +373,4 @@ to load in an EMPTY state.
 | **Task unMark**     | `taskunmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskunmark t/1 task/1`                                                                                    |
 | **Task Edit**       | `taskedit t/TEAM-INDEX task/TASK-INDEX [n/TASK-NAME] [d/DEADLINE]` <br> e.g. `taskedit t/1 task/1 n/Finish assignment d/12-12-2022`                            |
 
-[Back to Top ↑](#introduction)
+[Back to Top ↑](#table-of-contents)
