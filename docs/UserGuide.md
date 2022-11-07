@@ -52,6 +52,8 @@ The following is a short overview of the features and capabilities of NotionUS:
 
     ![Ui](images/user-guide/Ui.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Understanding the Graphical User Interface (GUI)
 
 Understanding the GUI is essential to making the most out of your experience in the app.
@@ -124,6 +126,8 @@ Here is an example of autocomplete in action:
 
 However, it is recommended to read through the [Features](#command-features) section to understand the syntax for commands that require additional input.
 
+<div style="page-break-after: always;"></div>
+
 #### Returning to a previous command : `Up`/`Down` keys
 
 Loads previous command into the _Command Box_.
@@ -132,7 +136,6 @@ While the _Command Box_ is in focus, use the `Up` and `Down` arrow keys on your 
 Click to return to: [GUI Features](#gui-features), [Back to Top](#)
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## Command Features
 
@@ -349,6 +352,8 @@ Format: `clear`
 **:information_source: Note:**<br>
 This command is irreversible!
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Viewing Specific Tasks
 
@@ -577,6 +582,7 @@ Format meanings:
 Click to return to: [Back to Top](#)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Glossary
 
