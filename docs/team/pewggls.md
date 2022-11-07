@@ -16,7 +16,7 @@ Given below are my contributions to the project.
 
 * **Enhancements implemented**
     * Created and was involved in implementing:
-      * The classes `UniqueItemList`, `ItineraryDuration`, `Budget`, `AddItemCommand`, `AddItemCommandParser`,
+      * The classes `UniqueItemList`, `ItineraryDuration`, `Budget`, `AddItemCommand`, and `AddItemCommandParser`
       * Storage functionality for Itinerary, and Item: `JsonAdaptedItinerary` and `JsonAdaptedItem`
     * Wrote tests for the classes `Budget`, `DeleteItemCommand`, `AddItemCommand`, `AddCommandParser`, 
       `JsonAdaptedItem`, and `JsonAdaptedItinerary`
