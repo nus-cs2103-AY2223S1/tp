@@ -365,7 +365,7 @@ Examples:
 
 **Description**
 
-Toggles the display between showing and hiding the students' parent details. If the current view displays the parent details, 'toggleView' will hide the parent details and vice versa.
+Toggles the display between showing and hiding the students' parent details. If the current view displays the parent details, `toggleView` will hide the parent details and vice versa.
 
 **Usage**
 
