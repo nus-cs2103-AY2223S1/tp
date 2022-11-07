@@ -32,7 +32,7 @@ public class Reminder {
 
     @Override
     public String toString() {
-        return this.task + " by: " + this.date;
+        return this.task + " (by: " + this.date.format(DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN)) + ")";
     }
 
     @Override
