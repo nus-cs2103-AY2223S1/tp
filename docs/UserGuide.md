@@ -373,6 +373,10 @@ Format: `editT INDEX [d/DESCRIPTION] [D/DEADLINE]`
 
 * Do not provide at least one of the optional fields.<br>
 
+* Edit the task such that it becomes a duplicate task to one already in the task list. Two tasks are the same if they have the same description, deadline and labels.<br>
+
+</div>
+
 Example:
 
 * `editT 1 d/sleep D/22-10-2022` edits the first task’s description to be "sleep" and deadline to be 22-10-2022.
