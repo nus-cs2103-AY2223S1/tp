@@ -65,7 +65,7 @@ public enum SortCriteria {
         case Interview:
             return InterviewDateTime.getComparator();
         default:
-            assert false; // Should not reach here.
+            assert false : "applied date should not be null";
             return null;
         }
     }

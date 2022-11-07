@@ -135,13 +135,8 @@ public class AppliedDate {
         return (i1, i2) -> {
             AppliedDate t1 = i1.getAppliedDate();
             AppliedDate t2 = i2.getAppliedDate();
-            if (t1 == null && t2 == null) {
-                return 0;
-            } else if (t1 == null) {
-                return 1;
-            } else if (t2 == null) {
-                return -1;
-            }
+            assert t1 != null : "applied date should not be null";
+            assert t2 != null : "applied date should not be null";
             return -t1.appliedDate.compareTo(t2.appliedDate);
         };
     }

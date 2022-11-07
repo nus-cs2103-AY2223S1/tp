@@ -1,8 +1,10 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalInternships.getNoInterviewFindMyIntern;
 import static seedu.address.testutil.TypicalInternships.getTypicalFindMyIntern;
 
 import org.junit.jupiter.api.Test;
@@ -14,19 +16,33 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.internship.SortCriteria;
 
 public class SortCommandTest {
-    private Model model = new ModelManager(getTypicalFindMyIntern(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalFindMyIntern(), new UserPrefs());
+    private Model appliedModel = new ModelManager(getTypicalFindMyIntern(), new UserPrefs());
+    private Model expectedAppliedModel = new ModelManager(getTypicalFindMyIntern(), new UserPrefs());
+    private Model interviewModel = new ModelManager(getNoInterviewFindMyIntern(), new UserPrefs());
+    private Model expectedInterviewModel = new ModelManager(getNoInterviewFindMyIntern(), new UserPrefs());
 
     @Test
-    public void execute_validFilter_success() {
+    public void execute_validSortApplied_success() {
         SortCriteria sortCriteria = SortCriteria.Applied;
         SortCommand sortCommand = new SortCommand(sortCriteria);
 
         String expectedMessage = String.format(Messages.MESSAGE_SORT_SUCCESS, "applied");
 
-        expectedModel.updateSortedInternshipList(SortCriteria.getComparator(sortCriteria));
+        expectedAppliedModel.updateSortedInternshipList(SortCriteria.getComparator(sortCriteria));
 
-        assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(sortCommand, appliedModel, expectedMessage, expectedAppliedModel);
+    }
+
+    @Test
+    public void execute_validSortInterview_success() {
+        SortCriteria sortCriteria = SortCriteria.Interview;
+        SortCommand sortCommand = new SortCommand(sortCriteria);
+
+        String expectedMessage = String.format(Messages.MESSAGE_SORT_SUCCESS, "interview");
+
+        expectedInterviewModel.updateSortedInternshipList(SortCriteria.getComparator(sortCriteria));
+
+        assertCommandSuccess(sortCommand, interviewModel, expectedMessage, expectedInterviewModel);
     }
 
     @Test
@@ -38,19 +54,21 @@ public class SortCommandTest {
         SortCommand secondSortCommand = new SortCommand(interviewSortCriteria);
 
         // same object -> returns true
-        assertEquals(firstSortCommand, firstSortCommand);
+        assertTrue(firstSortCommand.equals(firstSortCommand));
 
         // same values -> returns true
         SortCommand firstSortCommandCopy = new SortCommand(appliedSortCriteria);
-        assertEquals(firstSortCommand, firstSortCommandCopy);
+        assertTrue(firstSortCommand.equals(firstSortCommandCopy));
 
         // different values -> returns false
         assertNotEquals(1, firstSortCommand);
+        assertFalse(firstSortCommand.equals(1));
 
         // null -> returns false
-        assertNotEquals(null, firstSortCommand);
+        assertFalse(firstSortCommand.equals(null));
 
         // different filter -> returns false
-        assertNotEquals(firstSortCommand, secondSortCommand);
+        assertFalse(firstSortCommand.equals(secondSortCommand));
+
     }
 }

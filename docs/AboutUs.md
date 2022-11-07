@@ -46,7 +46,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/marcusgwj.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: `Sort` command, User guide, Developer Guide
 
 ### Tee Yi Teng
 
