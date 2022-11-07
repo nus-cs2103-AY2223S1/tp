@@ -5,8 +5,8 @@ title: Connor Lim's Project Portfolio Page
 
 # Project: Contactmation
 
-Contactmation is a powerful **desktop based project and task management solution** that **helps you efficiently and
-effectively manage many projects at once** through the a CLI.
+Contactmation is a powerful **desktop-based project and task management solution** that **helps you efficiently and
+effectively manage many projects at once** through the CLI.
 
 ## Summary of Contributions
 
@@ -36,8 +36,9 @@ effectively manage many projects at once** through the a CLI.
 ### Contributions to the UG
 
 - Wrote section about Tasks.
-- Added a Github Workflow to automatically export the UG to
-  PDF. ([\#154](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/154))
+- Added a GitHub Workflow to automatically export the UG to
+  PDF. ([#154](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/154))
+- Fixed the formatting and screenshots ([#177](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/177))
 
 ### Contributions to the DG
 
@@ -56,7 +57,7 @@ Added the following:
 - Note-taking during team meetings.
 - Writing of initial user stories.
 - Actively participated in weekly group discussions.
-- Created milestones for management of team progress towards early releasesxcc.
+- Created milestones for management of team progress towards early releases.
 
 ### Review/mentoring contributions
 
