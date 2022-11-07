@@ -215,6 +215,13 @@ Examples:
 * `editstudent 1 s/John Do` edits the name of the 1st student in your student list to be `John Do`. The matric number of the 1st student will remain the same.
 * `editstudent 2 s/Alex Li m/A1234567Z` edits the name of the 2nd student in your student list to be `Alex Li` and matric number to be `A1234567Z`.
 
+<div markdown="span" class="alert alert-primary">
+
+**:bulb:Tip:** 
+If you have two or more students with similar names, you can use the `editstudent` command to change the name(s) of the students so that you can differentiate them easily.
+
+</div>
+
 ### Locating students by name: `findstudent`
 
 Finds students whose names contain any of the given keywords.
