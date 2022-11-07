@@ -217,9 +217,11 @@ public class Property {
         if (!interestedClients.isEmpty()) {
             builder.append("; Interested client(s): ");
             interestedClients.forEach(interestedClient -> builder.append(interestedClient.getName().toString() + ", "));
+            String result = builder.toString();
+            return result.substring(0, result.length() - 2);
         }
-        String result = builder.toString();
-        return result.substring(0, result.length() - 2);
+
+        return builder.toString();
     }
 
 }
