@@ -36,6 +36,8 @@ If you can type fast, FRIDAY can get your student management tasks done faster t
    
 6. Refer to the [Features](#features) below for details of each command.
 
+[Table of Contents](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 ## A guide to using FRIDAY's CLI
 
@@ -71,6 +73,8 @@ If you can type fast, FRIDAY can get your student management tasks done faster t
   so it ` **must be a positive integer** 1, 2, 3, …​
 
 </div>
+
+[Table of Contents](#table-of-contents)
 
 
 ## Features
@@ -183,6 +187,8 @@ Outcome: The student at the 1st index (Alex Yap) will have the remark "Aspiring 
 
 ![RemarkCommandOutcome.png](images/RemarkCommandOutcome.png)
 
+[Table of Contents](#table-of-contents)
+
 ## Organizing students
 
 Overview: These features allow you to organize your students to suit your needs.
@@ -254,6 +260,8 @@ Outcome:
 Lists all students in FRIDAY. This command helps you to reset the sorting and finding done by the `sort` and `find` commands respectively.
 
 Format: `list`
+
+[Table of Contents](#table-of-contents)
 
 ## Grading students
 
@@ -337,6 +345,8 @@ Example after entering `unmark 1`:
 
 As you can see, the "(passed)" status has been removed from student 1's Mastery Check after the `unmark` command is run.
 
+[Table of Contents](#table-of-contents)
+
 ## Miscellaneous features
 
 Overview: Other features that aid you in using FRIDAY.
@@ -365,6 +375,8 @@ Format: `clear`
 Exits FRIDAY. See you again soon!
 
 Format: `exit`
+
+[Table of Contents](#table-of-contents)
 
 ## Features for advanced users
 
@@ -434,6 +446,8 @@ Advanced users are welcome to update data directly by editing the data file.
 If your changes to the data file makes its format invalid, FRIDAY will ignore all data and start with an empty file in the next run.<br>
 </div>
 
+[Table of Contents](#table-of-contents)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -463,6 +477,8 @@ If your changes to the data file makes its format invalid, FRIDAY will ignore al
 4. Easy import and export of data
 5. Undoing previous actions
 
+[Table of Contents](#table-of-contents)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -487,6 +503,7 @@ If your changes to the data file makes its format invalid, FRIDAY will ignore al
 | **Getting Help**                             | `help`                                                                                                   |
 | **Exiting FRIDAY**                           | `exit`                                                                                                   |
 
+[Table of Contents](#table-of-contents)
 ---------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
@@ -518,3 +535,5 @@ If your changes to the data file makes its format invalid, FRIDAY will ignore al
 13. **Mastery Check:** A pass/fail assessment on students to assess their understanding of the concepts taught. There are 2 Mastery checks per semester.
 
 14. **Alias:** A nickname or an alternate name that you can set for a command.
+
+[Table of Contents](#table-of-contents)
