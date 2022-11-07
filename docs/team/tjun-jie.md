@@ -11,7 +11,7 @@ Given below are my contributions to the project.
 
 * **New feature** Implemented userlist command which opens a new window to show all users in the company. ([Commit](https://github.com/AY2223S1-CS2103T-W09-3/tp/commit/a8959c6b74bebe8c3b1192f7b3125472921a71f1)).
 
-* **New feature** Created all new GUI components(TeamList, TaskList, Progress Bar, User list) ([\#117](`https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/117`)).
+* **New feature** Created all new GUI components(TeamList, TaskList, Progress Bar, User list) ([\#117](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/117)).
 * **Enhancements Done**:
   * Implemented task progress bar and integrated it to work with team task list(Pull request [\#148](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/148)).
       * What it does: Allows tech lead to see how many tasks are done and not done.
