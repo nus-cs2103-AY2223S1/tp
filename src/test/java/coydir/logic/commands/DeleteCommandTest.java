@@ -7,6 +7,7 @@ import static coydir.testutil.TypicalIndexes.ID_FIRST_EMPLOYEE;
 import static coydir.testutil.TypicalIndexes.ID_SECOND_EMPLOYEE;
 import static coydir.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static coydir.testutil.TypicalPersons.BENSON;
+import static coydir.testutil.TypicalPersons.CARL;
 import static coydir.testutil.TypicalPersons.getTypicalDatabase;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -71,12 +72,12 @@ public class DeleteCommandTest {
         // ensures that outOfBoundIndex is still in bounds of database list
         assertTrue(2 < model.getDatabase().getPersonList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(new EmployeeId("2"));
+        DeleteCommand deleteCommand = new DeleteCommand(new EmployeeId("3"));
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, BENSON);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, CARL);
         Model expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
         showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
-        expectedModel.deletePerson(BENSON);
+        expectedModel.deletePerson(CARL);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }

@@ -54,33 +54,44 @@ public class TestUtil {
         return model.getFilteredPersonList().get(index.getZeroBased());
     }
 
+    /**
+     * Returns the current value of the next employee ID.
+     */
     public static int getMaxEmployeeId() {
         return EmployeeId.getCount();
     }
 
+    /**
+     * Sets the next value of employee ID.
+     */
     public static void setMaxEmployeeId(int count) {
         EmployeeId.setCount(count);
     }
 
+    /**
+     * Resets the state of {@code EmployeeId} to what it should be if it had a given count.
+     */
     public static void restartEmployeeId(int count) {
         EmployeeId.restart(count);
-    }
-
-    public static String getNextEmployeeId() {
-        int count = EmployeeId.getCount();
-        setMaxEmployeeId(count + 1);
-        return String.valueOf(count);
+        for (int i = 0; i < count - 1; i++) {
+            new EmployeeId();
+        }
     }
 
     /**
      * Resets (@code EmployeeId) class to the state it should have after loading typical persons
      */
     public static void resetTypicalEmployeeId() {
-        restartEmployeeId(1);
-        //7 is the number of employees in the typical
-        for (int i = 0; i < 7; i++) {
-            new EmployeeId();
-        }
+        restartEmployeeId(7);
+    }
+
+    /**
+     * Returns the next value of the employee ID, and increments the count as well to accommodate.
+     */
+    public static String getNextEmployeeId() {
+        int count = EmployeeId.getCount();
+        setMaxEmployeeId(count + 1);
+        return String.valueOf(count);
     }
 
 }
