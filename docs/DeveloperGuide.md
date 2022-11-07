@@ -158,16 +158,36 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Edit Person Feature
+
+#### Implementation
+
+The edit person feature edits the information of a person in EZLead, this change is reflected within
+all teams containing the edited person. The editable information are name, phone number, email address, physical
+address and tag.
+
+Given below is an example usage scenario
+
+Step 1. The user wants to change the phone number of a person to 80779043. Said person is indexed number 1 in
+the global list. The user executes `edit 1 p/80779043`.
+
+Step 2. The parser will create an `edit` command. This `edit` command will call `Model#getFilteredList()`
+to get the `person` specified by the index in the command then create a new `person` with the modified info.
+`Model#updateFiltedPersonList` is called to update all teams with the edited members.
+
+The following sequence diagram shows how the edit task operation works:
+![EditPersonSequenceDiagram](images/EditPersonSequenceDiagram.png)
+
 ### Create Team Feature
 
 #### Implementation
 
 The Create Team Feature allows the user to create a team in EZLead. Team will be stored in a global team list
 
-Step 1. The user wants to create a team named Backend. The user executes `create t/backend`.
+Step 1. The user wants to create a team named Backend. The user executes `create n/Backend`.
 
-Step 2. The parser will create a team object and a `createTeam` command containing created team.
-The `createTeam` command will call `Model#addTeam` to add the team into EZLead.
+Step 2. The parser will create a team object and a `CreateTeam` command containing created team.
+The `CreateTeam` command will call `Model#addTeam` to add the team into EZLead.
 
 The following sequence diagram show how the create team operation works:
 ![CreateTeamSequenceDiagram](images/CreateTeamSequenceDiagram.png)
@@ -180,11 +200,11 @@ The Delete Team Feature allows the user to delete a team in EZLead. After deleti
 
 Given below is an example usage scenario
 
-Step 1. The user created a team using the `createteam` command.
+Step 1. The user created a team using the `create` command.
 
 Step 2. The user assigns some members into the newly created team using the `assign` command.
 
-Step 3. The user realises that the team has completed their work and is no longer needed, and proceeds to delete the team using the `deleteteam t/1` command (Given that the team created in Step 1 is the team in index 1).
+Step 3. The user realises that the team has completed their work and is no longer needed, and proceeds to delete the team using the `delteam 1` command (Given that the team created in Step 1 is the team in index 1).
 
 The following sequence diagram shows how the delete team operation works:
 ![DeleteTeamSequenceDiagram](images/DeleteTeamSequenceDiagram.png)
@@ -193,49 +213,29 @@ The following sequence diagram shows how the delete team operation works:
 
 #### Implementation
 
-The Edit Team Feature allows the user to edit the name of a pre-existing team in EZLead.
+The Edit Team Feature allows the user to edit the name of an existing team in EZLead.
 
 Given below is an example usage scenario and how the Edit Team mechanism behaves at each step.
 
 Step 1. The user executes `editteam t/1 n/Team1` to change the name of first team to Team1.
 
-Step 2. The `editTeam` command is created by the parser using the given team index and new name. It calls
+Step 2. The `EditTeam` command is created by the parser using the given team index and new name. It calls
 `Model#setTeamName`to change the name of the required team.
 
 The following sequence diagram shows how the edit team operation works:
 ![EditTeamSequenceDiagram](images/EditTeamSequenceDiagram.png)
 
-### Edit Person Feature
-
-#### Implementation
-
-The edit person feature edits the information of a person in the address book, this change is reflected within
-all teams containing the edited person. The editable information are phone number, email address, physical
-address and tag.
-
-Given below is an example usage scenario
-
-Step 1. The user wants to change the phone number of a person to 80779043. Said person is indexed number 4 in
-the global list. The user executes `edit 1 p/80779043`.
-
-Step 2. The parser will create an `edit` command. This `edit command` will call `Model#getFilteredList()`
-to get the `person` specified by the index in the command then create a new `person` with the modified info.
-`Model#updateFiltedPersonList` is called to update all teams with the edited members.
-
-The following sequence diagram shows how the edit task operation works:
-![EditPersonSequenceDiagram](images/EditPersonSequenceDiagram.png)
-
 ### Assign Member Feature
 
 #### Implementation
 
-The Assign Member Feature allows the user to assign a person to a pre-existing team in EZLead.
+The Assign Member Feature allows the user to assign a person to an existing team in EZLead.
 
 Given below is an example usage scenario and how the Assign Member mechanism behaves at each step.
 
 Step 1. The user executes `assign m/1 t/1` to assign the first person as a member in the first team.
 
-Step 2. The `assignMember` command is created by the parser using the given member's index (global person index) and
+Step 2. The `AssignMember` command is created by the parser using the given member's index (global person index) and
 team's index. It calls `Model#addPersonToTeam` to add the person to given team.
 
 The following sequence diagram shows how the assign member operation works:
@@ -245,16 +245,16 @@ The following sequence diagram shows how the assign member operation works:
 
 #### Implementation
 
-The unAssign Member Feature allows the user to assign a person to a pre-existing team in EZLead.
+The Unassign Member Feature allows the user to unassign a person from an existing team in EZLead.
 
-Given below is an example usage scenario and how the unAssign Member mechanism behaves at each step.
+Given below is an example usage scenario and how the Unassign Member mechanism behaves at each step.
 
-Step 1. The user executes `unassign m/1 (global person index) t/1` to unAssign the first person as a member from the first team.
+Step 1. The user executes `unassign m/1 t/1` to unassign the first person as a member from the first team.
 
-Step 2. The `unassignMember` command is created by the parser using the given member's index (global person index) and
+Step 2. The `UnAssignMember` command is created by the parser using the given member's index (global person index) and
 team's index. It calls `Model#removePersonFromTeam` to remove the person from given team.
 
-The following sequence diagram shows how the unassign team operation works:
+The following sequence diagram shows how the unassign member operation works:
 ![UnAssignMemberSequenceDiagram](images/UnAssignMemberSequenceDiagram.png)
 
 ### Add Task Feature
@@ -267,7 +267,7 @@ The deadline is implemented using `Optional<LocalDate>`. Thus, the deadline can 
 
 Given below is an example usage scenario.
 
-Step 1. The user creates the task using the `taskadd` command, executing `taskadd t/1 n/Create Feature A d/12-12-2022` to add the task "Create Feature A" to team 1, with 12th December 2022 as the deadline.
+Step 1. The user creates the task using the `taskadd` command, executing `taskadd t/1 n/study d/12-12-2022` to add the task "study" to team 1, with 12th December 2022 as the deadline.
 
 The following sequence diagram shows how the add task operation works:
 ![TaskAddSequenceDiagram](images/TaskAddSequenceDiagram.png)
@@ -282,10 +282,9 @@ Given below is an example usage scenario
 
 Step 1. The user creates the tasks and assign it to a team using the `taskadd` command. The new task created will be initialized with the property isDone to be false.
 
-Step 2. After the task is completed, the user want to mark the task as done. The user then executes `taskmark t/1 task/3` to mark the 3rd task in the 1st team as completed. The task which is contained in team 1 would be marked as completed and this would be reflected in the gui.
+Step 2. After the task is completed, the user want to mark the task as done. The user then executes `taskmark t/1 task/3` to mark the 3rd task in the 1st team as completed. This would be reflected in the GUI.
 
-Step 3. The user realised that there is some error in the task and wants to unmark it. The user then executes `taskummark t/1 task/3` to unmark the 3rd task in the 1st team.
-
+Step 3. The user realised that there is some error in the task and wants to unmark it. The user then executes `taskunmark t/1 task/3` to unmark the 3rd task in the 1st team.
 
 The following sequence diagram shows how the mark task operation works:
 ![TaskMarkSequenceDiagram](images/TaskMarkSequenceDiagram.png)
@@ -294,17 +293,16 @@ The following sequence diagram shows how the mark task operation works:
 
 #### Implementation
 
-The edit task feature updates the name of the task to the new name given by the user and this change is reflected in the Graphical User Interface.
+The edit task feature updates the details (can either be name, deadline, or both) of the task to the new details given by the user and this change is reflected in the Graphical User Interface.
 
 Given below is an example usage scenario:
 
 Step 1. The user creates the task and assign it to a team using `taskadd` command. The name of the task provided by the user is stored as Name in the Task class.
 
-Step 2. The user might want to update the name of the task in the future. The user then executes `taskedit t/1 task/1 n/update GUI` to update the name of the task from the previous name to the new name provided by the user. The `taskedit` command will call `Model#getFilteredTeamList()`, which then gets the specified task from the `UniqueTaskList`. The specified task in team 1 would be updated to the new name by keeping all the other task feature as same. `Model#updateFilterPersonList` is called to update the team with the new task name and this would be reflected in the gui.
+Step 2. The user might want to update the name of the task in the future. The user then executes `taskedit t/1 task/1 n/update GUI` to update the name of the task from the previous name to the new name provided by the user. The `taskedit` command will call `Model#getFilteredTeamList()`, which then gets the specified task from the `UniqueTaskList`. The specified task in team 1 would be updated to the new name by keeping all the other task details the same. `Model#updateFilterPersonList` is called to update the team with the new task name and this would be reflected in the gui.
 
 The following sequence diagram shows how the edit task operation works:
 ![TaskEditSequenceDiagram](images/TaskEditSequenceDiagram.png)
-
 
 ### Delete Task Feature
 
@@ -316,11 +314,10 @@ Given below is an example usage scenario:
 
 Step 1. The user creates the task and assign it to a team using `taskadd` command. The tasks are stored in the UniqueTaskList for each Team.
 
-Step 2. The user might want to delete the task to remove the unwanted task in the future. The user then executes `taskdelete t/1 task/1` to delete the task from the specified team. The `taskdelete` command will call `Model#getFilteredTeamList()`, which then gets the specified task from the `UniqueTaskList`. The specified task in team 1 would be deleted from the taskList. `Model#updateFilterPersonList` is called to update the team with the new deletions and this would be reflected in the gui.
+Step 2. The user might want to delete the task to remove the unwanted task in the future. The user then executes `taskdelete t/1 task/1` to delete the first task from the first team. The `taskdelete` command will call `Model#getFilteredTeamList()`, which then gets the specified task from the `UniqueTaskList`. The specified task in team 1 would be deleted from the taskList. `Model#updateFilterPersonList` is called to update the team with the deletion and this would be reflected in the GUI.
 
 The following sequence diagram shows how delete task operation works:
 ![TaskDeleteSequenceDiagram](images/TaskDeleteSequenceDiagram.png)
-
 
 --------------------------------------------------------------------------------------------------------------------
 
