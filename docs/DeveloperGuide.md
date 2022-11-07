@@ -1326,7 +1326,7 @@ testers are expected to do more *exploratory* testing.
     
 ### Exiting program
 
-1. Exitting the Sectresbook
+1. Exiting the Sectresbook
 
     1. Test case: `exit`<br>
        Expected: The program closes. 
