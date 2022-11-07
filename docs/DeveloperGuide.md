@@ -160,6 +160,9 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Adding a Task into the TaskList
 
+#### Motivation
+Allows insertion of new task into the tasklist. 
+
 #### Implementation
 
 The insertion mechanism allows a `Task` to be added into the tasklist. A task consists of attributes such as its **name**, **description**, **priority level**, **category**, **deadline** and **email** of person assigned. The command is executed using the `AddTaskCommand`class which extends the `Command` class and the respective attributes of a task is determined from the `AddTaskCommandParser` class which parses the user input.
@@ -170,7 +173,7 @@ Step 1. The user launches the application for the first time, with a tasklist po
 
 Step 2. The user executes `addTask n/Fix toggle d/Fix dark mode button pr/high c/frontend dl/2022-12-12 pe/charlotte@example.com` to add a task to the tasklist. The `AddTaskCommand` calls the `Model#hasTask()`, checking if the tasklist already contains the task. If the task already exist, an exception will be thrown and a **task already exist** error message will be returned to the user.
 
-Step 3. If the task does not exist in the tasklist, the `AddTaskCommand` calls the `Model#addTask` to add the task into the tasklist.
+Step 3. If the task does not exist in the tasklist and email of person assigned is valid, the `AddTaskCommand` calls the `Model#addTask` to add the task into the tasklist.
 
 Step 4. After making an insert into the tasklist, the `AddTaskCommand` calls the `Model#update`, which calls
 `AddressBook#setTasks` to update the tasklist in the model to the latest version.
@@ -181,7 +184,23 @@ The following sequence diagram shows how the AddTask operation works:
 The following activity diagram summarizes what happens when a user executes a AddTask command:
 ![AddTaskActivityDiagram](images/AddTaskCommandActivityDiagram.png)
 
+
+#### Design considerations:
+
+**Aspect: How addTask executes:**
+
+* **Alternative 1 (current choice):** Assigns a task based on person's email
+  * Pros: Person's email is unique. Avoid confusion of task being assigned to two different people with the same email.
+  * Cons: Not intuitive.
+
+* **Alternative 2:** Assigns a task based on person's name
+  * Pros: Much more intuitive for a task to be assigned to a person name than person email.
+  * Cons: This reduces the flexibility of having two person with the same full name.
+
 ### Deleting a Task from the TaskList
+
+#### Motivation
+Allows removal of task from tasklist based on the index of the task.
 
 #### Implementation
 
@@ -203,10 +222,24 @@ Step 5. After making a deletion from the tasklist, the `DeleteTaskCommand` calls
 `AddressBook#setTasks` to update the tasklist in the model to the latest version
 
 The following sequence diagram shows how the DeleteTask operation works:
-![AddTaskSequenceDiagram](images/DeleteTaskCommandUMLDiagram2.png)
+![DeleteTaskSequenceDiagram](images/DeleteTaskCommandUMLDiagram2.png)
 
 The following activity diagram summarizes what happens when a user executes a DeleteTask command:
-![AddTaskActivityDiagram](images/DeleteTaskCommandActivityDiagram.png)
+![DeleteTaskActivityDiagram](images/DeleteTaskCommandActivityDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How deleteTask executes:**
+
+* **Alternative 1 (current choice):** Deletes task based on index.
+  * Pros: O(1) time of deletion as we retrieve from the list based on index.
+  * Cons: None
+
+* **Alternative 2:** Deletes task based on taskName.
+  itself.
+  * Pros: Easier to delete task in the case where we have a lot of tasks, where we do not have to scroll to find the 
+  task index.
+  * Cons: O(n) time to deletion as we need to search the tasklist based on taskName.
 
 ### Edit Task Feature
 
@@ -287,7 +320,7 @@ Step 5. James is deleted as a Person. The task is changed to be not assigned to 
 
 ### Finding a Task by keywords
 
-#### Implmentation
+#### Implementation
 
 The find mechanism allows a `Task` to be identified based on its **name** and **description** attributes. The command is executed using the `FindTaskCommand`, and keyword(s) for the search criteria is determined from the `FindTaskCommandParser` class which parses the user input. A `Predicate<Task>`, an instance of `TaskContainsKeywordsPredicate`, is created and it goes through the tasklist to filter every `Task` based on their **name** and **description** attributes and whether it matches any of the input keyword(s). Keyword matching is case-insensitive. The filtered tasklist is then displayed on the application.
 
@@ -320,6 +353,7 @@ Step 3. Next, `Model#getFilteredTaskList()` is called to update the tasklist to 
 The following activity diagram summarizes what happens when a user executes a `filter` command:
 
 ![AddTaskActivityDiagram](images/FilterCommandActivityDiagram.png)
+
 
 ### Redisplay full task list after Finding or Filtering
 
