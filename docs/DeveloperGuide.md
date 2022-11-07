@@ -343,10 +343,10 @@ View income activity diagram: <br><br>
 
 ## Event Features
 
-### AddEvent Feature
+### AddEventCommand Feature
 
-#### Proposed Implementation
-The proposed `AddEvent` feature is facilitated by the `AddressBook` Model. The `AddressBook` contains information on the list of people and the current events available (i.e: `UniqueEventList` and `UniquePersonList`). The `AddEventParser`  serves as an additional <i>abstraction of logic</i> to determine the validity of an Event on the following conditions, and throws an appropriate exception based on the following conditions.
+#### Implementation
+The proposed `AddEventCommand` feature is facilitated by the `AddressBook` Model. The `AddressBook` contains information on the list of people and the current events available (i.e: `UniqueEventList` and `UniquePersonList`). The `AddEventParser`  serves as an additional <i>abstraction of logic</i> to determine the validity of an Event on the following conditions, and throws an appropriate exception based on the following conditions.
 
 * Valid Client Name : An event is tagged to a single Client. The Client’s name must already exist in the `UniqueEventList`. If said person specified does not exist, the `AddEventParser` throws an: `InvalidPersonException`
 
@@ -357,10 +357,12 @@ Given below is an example usage scenario and how the `AddEventCommand` behaves a
 <B>Step 1</B>. The user launches the application for the first time. The` AddressBook` model is initialized with both the appropriate `UniquePersonList` and `UniqueEventList`. The lists are empty, with a person named `John Williams`.
 
 
-<B>Step 2</B>. The user adds an event `newEvent desc Star Wars Soundtrack  pName John Williams, date/2020-01-01, start/12:00 end/13:00`. The event is added successfully.
+<B>Step 2</B>. The user adds an event `newEvent desc/ Star Wars Soundtrack n/ John Williams, date/2020-01-01, st/12:00 et/13:00`. The event is added successfully.
 
 
-<B>Step 3</B>. The user then adds a new event `newEvent desc JurassicWorld Soundtrack  pName John Williams, date/2020-01-01, start/12:30 end/13:00`. This time window of this event overlaps with the previously event, and the Event List is no longer updated. An `OverlapEventException` is thrown by the parser.
+<B>Step 3</B>. The user then adds a new event `newEvent desc JurassicWorld Soundtrack  n/ John Williams, date/2020-01-01, st/12:30 et/13:00`. 
+
+* This time window of this event overlaps with the previous event, and the Event List is no longer updated. An `OverlapEventException` is thrown by the parser.
 
 
 The following activity diagram summarizes how an `AddEventCommand` is parsed at each step.
@@ -377,6 +379,10 @@ The following activity diagram summarizes how an `AddEventCommand` is parsed at 
 * **Alternative 2:** An event becomes an attribute of Client 
     * Pros: Also an intuitive Object-Oriented Programming approach
     * Cons: Difficult and less efficient to implement Event features such as searching
+
+* Alternative 1 was preferred over Alternative 2 due to the following reasons:
+    * Easier for testing if it is a separate model 
+    * We could make use of a similar implementation for `UniqueEventList` to display events (chronologically) more efficiently
 
 ## General Features
 ### Find feature
