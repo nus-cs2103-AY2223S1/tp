@@ -116,7 +116,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W15-4/tp/blob/master/src/main/java/friday/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="500" />
 
 
 The `Model` component,
@@ -128,7 +128,7 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Friday`, which `Student` references. This allows `Friday` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" width="650" />
 
 </div>
 
@@ -137,7 +137,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W15-4/tp/blob/master/src/main/java/friday/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="600" />
 
 The `Storage` component,
 * can save both FRIDAY data and user preference data in json format, and read them back into corresponding objects.
@@ -216,33 +216,36 @@ The following Sequence Diagram summarises the aforementioned steps.
 
 #### Implementation
 
-The alias command will be executed by `AliasCommand`. Aliases added will be stored in a `UniqueAliasList`, while
-in-built command names (e.g. add, delete) will be stored in a constant `reservedCommandList`.
+The alias command will be executed by `AliasCommand`. Aliases added will be stored in a `AliasMap`, while
+in-built command names (e.g. add, delete) will be stored in a constant `LIST_RESERVED_KEYWORD` in the `ReservedKeyword` class.
+
+![Alias Command Activity Diagram](images/AliasCommandActivityDiagram.png)
 
 Given below is an example usage scenario and how the alias mechanism behaves at each step.
 
-1. The user launches the application for the first time. FRIDAY will initialise an `ALiasManager`
-with an empty `UniqueAliasList`.
+1. The user launches the application for the first time. FRIDAY will initialise a `Friday`
+with an empty `AliasMap`.
 
-2. The user executes `alias list ls` command to add an alias `ls` for the command `list`. The `alias` command
-will check that `list` is in the `reservedCommandList` and `ls` is not in the `UniqueAliasList`. After both conditions
-are fulfilled, an `Alias("list","ls")` object will be created and will be added to the `UniqueAliasList` with
-`Model#addAlias(Alias toadd)`.
+2. The user executes `alias a/ls k/list` command to add an alias `ls` for the command `list`. `FridayParser` will parse 
+`alias` and create a new `AliasCommandParser`.`AliasCommandParser` will parse `a/ls k/list` and create an `AlliasCommand` with `Alias("ls")` 
+and a `ReservedKeyword("list")`. When executing the `AliasCommand`, the command will check that `list` is in the `LIST_RESERVED_KEYWORD`,`ls` is not in the 
+`AliasMap` and `ls` is a valid alias. After all the conditions are fulfilled, `Model#addAlias(Alias("ls"), ReservedKeyword("list")))` will be called to add
+this alias-keyword mapping into `AliasMap`.
 
-3. The user executes `ls` using the alias of the `list` command. The `AliasManager` will check that
-the alias `ls` is assigned to a command (in this case it is `list`) in `FridayParser`. `commandWord` in
-`FridayParser` will then be assigned the name of the command in the `reservedCommandList` and the `ListCommand`
-is then executed.
-
-_{To add sequence diagram}_
-
-_{To add activity diagram}_
+3. The user executes `ls` using the alias of the `list` command. `Model#getKeyword("ls")` will check `AliasMap` in `Model` 
+for an alias-keyword mapping. As there is a mapping of `ls` to `list`, `Model#getKeyword("ls")` will return `list`. 
+`list` will then be assigned to `commandWord` in `FridayParser`. `commandWord` will then be used to get the command to be executed.
+![Using Alias Sequence Diagram](images/UsingAliasSequenceDiagram.png)
 
 #### Design considerations
 
-**Aspect: How alias command is implemented:**
+**Aspect: How `Alias` is stored in `AliasMap`:**
 
-_{To add other design considerations}_
+|                                                                                                                          | **Pros**                       | **Cons**                                                                                                                                                                                 |
+|--------------------------------------------------------------------------------------------------------------------------|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Option 1 (current choice)** <br> Stored as an Alias-ReservedKeyword mapping in a Map                                   | Fast with O(1) time complexity | At high capacity, there might be complications due to collision in Map                                                                                                                   |
+| **Option 2** <br> Alias and ReservedKeyword stored within an association class in a List | Can store more Aliases         | To get an Alias, iteration through the whole list must be done causing the time complexity to be at O(Number of Aliases) and this might cause performance issues when there are many aliases |
+_
 
 ### Grade Feature
 FRIDAY allows the user to record their students' grades for assessments and examinations in CS1101S. There are 5 
@@ -334,6 +337,7 @@ The following sequence diagram summarizes the aforementioned steps.
 ![Find command sequence diagram](images/FindSequenceDiagram.png)
 
 #### Design considerations
+
 **Aspect: Should we allow users to find block keywords:**
 * **Alternative 1 (current choice): Allow user to find by single keywords**
     * Pros: Provides more search results and the expected student is part of the list.
@@ -779,13 +783,78 @@ For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `us
     * 3b1. FRIDAY shows an error message.
 
       Use case resumes at step 2.
+  
+<br>
+
+**Use Case 11: Add an alias.**
+
+**MSS**
+
+1. User requests to add alias for a default command
+2. FRIDAY adds alias
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given alias is invalid.
+    
+    * 2a1. FRIDAY shows an error message showing what is an invalid alias.
+  
+      Use case resumes at step 1
+
+* 2b. The given default command is invalid.
+
+    * 2b1. FRIDAY shows an error message showing that default command is invalid.
+
+      Use case resumes at step 1
+
+* 2c. The given alias and default command is in the wrong format.
+
+    * 2c1. FRIDAY shows an error message showing the correct format.
+
+      Use case resumes at step 1
+
+* 2d. The given alias already exists in FRIDAY.
+
+    * 2d1. FRIDAY shows an error message showing that alias already exists in FRIDAY.
+
+      Use case resumes at step 1
+
+<br>
+
+**Use Case 12: Deleting an alias.**
+
+**MSS**
+
+1. User requests to delete an alias
+2. FRIDAY deletes alias
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given alias is not in FRIDAY.
+
+    * 2a1. FRIDAY shows an error message showing that alias is not in FRIDAY.
+
+      Use case resumes at step 1
+
+* 2b. The given alias is in the wrong format.
+
+    * 2b1. FRIDAY shows an error message showing the correct format.
+
+      Use case resumes at step 1
+
+<br>
 
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 100 students without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 100 students without a noticeable sluggishness in performance for typical usage.
+3. Should be able to hold up to 50 aliases without a noticeable sluggishness in performance for typical usage.
+4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ### Glossary
 
