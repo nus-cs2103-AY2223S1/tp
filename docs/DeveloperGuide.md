@@ -734,6 +734,27 @@ testers are expected to do more *exploratory* testing.
     7. Other incorrect sort commands to try: `sort`, `sort x p`, `...` (where x is any character other than `a` and `d`, and p is any prefix other than `r/` and `tn/`)<br>
        Expected: Similar to 4 and 5.
 
+### Mailing tutor(s)
+
+1. Mailing the tutor list while all tutors are being shown
+
+    1. Prerequisites: List all tutors using the `list` command. Multiple tutors in the list.
+
+    2. Test case: `mail 1`<br>
+       Expected: The user's default mail client should be launched with the "to" specified as the first tutor's email.
+
+    3. Test case: `mail all`<br>
+       Expected: The user's default mail client should be launched with the "to" specified as the all tutor emails in this list.
+
+    4. Test case: `mail 0`<br>
+       Expected: User's default mail client not displayed. Error details shown in the status message.
+
+    5. Test case: `mail a`<br>
+       Expected: User's default mail client not displayed. Error details shown in the status message. 
+   
+    6. Other incorrect sort commands to try: `mail`, `mail x`, `mail c` (where x is larger than the current list size, and c is any word excluding `all`)<br>
+       Expected: Similar to 4 and 5.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
