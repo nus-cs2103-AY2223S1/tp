@@ -3,6 +3,8 @@ package seedu.waddle.commons.core.index;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.waddle.logic.commands.DeleteItemCommand;
+
 /**
  * Represents a series of Index objects.
  */
@@ -91,5 +93,12 @@ public class MultiIndex {
             }
         }
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof MultiIndex // instanceof handles nulls
+                && indices.equals(((MultiIndex) other).indices));
     }
 }
