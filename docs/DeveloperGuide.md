@@ -336,8 +336,9 @@ Moreover, the more specific the find command is, the longer the execution could 
     * Cons: This will increase the memory usage of the program. The balance between runtime and space will have to be considered.
 
 * **Alternative 2:** Use a hashmap to store contact information.
-    * Pros: This may reduce the runtime of `FindCommand` for each field from O(nm) to O(n).
-    * Pros: Implementing this may not be very time-consuming, but testing may become complicated.
+    * Pros: This may reduce the runtime of `FindCommand` for each field from O(nm) to O(maximum(n, m)).
+    * Pros: Implementing this may not be very time-consuming.
+    * Cons: Testing may become complicated.
     * Cons: This may increase the runtime for other operations such as adding contacts.
     * Cons: Implementing the data structure may require restructuring the entire program. This may not be worth the payoff as of now.
     * Cons: This will increase the memory usage of the program. The balance between runtime and space will have to be considered.
