@@ -8,7 +8,27 @@
     <title>User Guide</title>
 
 </head>
-<body>
+<body><header class="site-header">
+
+    <div class="wrapper">
+        <a class="site-title" rel="author" href="/tp/">Condonery</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger">
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewbox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+            <a class="page-link" href="/tp/UserGuide.html">User Guide</a><a class="page-link" href="/tp/DeveloperGuide.html">Developer Guide</a><a class="page-link" href="/tp/AboutUs.html">About Us</a><a class="page-link no-hover" href="https://github.com/AY2223S1-CS2103-W14-1/tp">
+            <img src="/tp/images/github-icon.png" class="icon" alt="View on GitHub">
+        </a>
+        </div>
+    </nav>
+    </div>
+</header>
 <main class="page-content" aria-label="Content">
     <div class="wrapper">
         <article class="post">
@@ -18,17 +38,65 @@
             </header>
 
             <div class="post-content">
-                <p>Condonery is a desktop app made for property agents primarily used for managing client contacts and condo listings.
+                <p>Condonery is a desktop app made for property agents primarily used for managing client contacts and property listings.
                     It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
                     If you can type fast, Condonery can get your contact management tasks done faster than traditional GUI apps.</p>
 
-                <ul>
-                    <li>Table of Contents</li>
+                <ul id="markdown-toc">
+                    <li><a href="#quick-start" id="markdown-toc-quick-start"><strong>Quick start</strong></a></li>
+                    <li>
+                        <a href="#command-overview" id="markdown-toc-command-overview"><strong>Command Overview</strong></a>    <ul>
+                        <li><a href="#prefix-list" id="markdown-toc-prefix-list">Prefix list</a></li>
+                        <li><a href="#property-directory" id="markdown-toc-property-directory">Property directory</a></li>
+                        <li><a href="#client-directory" id="markdown-toc-client-directory">Client directory</a></li>
+                        <li><a href="#general-commands" id="markdown-toc-general-commands">General commands</a></li>
+                    </ul>
+                    </li>
+                    <li>
+                        <a href="#features-in-condonery" id="markdown-toc-features-in-condonery"><strong>Features in Condonery</strong></a>    <ul>
+                        <li><a href="#undoing-commands--undo" id="markdown-toc-undoing-commands--undo">Undoing commands : <code class="language-plaintext highlighter-rouge">undo</code></a></li>
+                        <li><a href="#viewing-help--help" id="markdown-toc-viewing-help--help">Viewing help : <code class="language-plaintext highlighter-rouge">help</code></a></li>
+                        <li><a href="#exiting-the-program--exit" id="markdown-toc-exiting-the-program--exit">Exiting the program : <code class="language-plaintext highlighter-rouge">exit</code></a></li>
+                        <li><a href="#retrieve-previous-command--" id="markdown-toc-retrieve-previous-command--">Retrieve previous command : ↑</a></li>
+                        <li><a href="#retrieve-following-command--" id="markdown-toc-retrieve-following-command--">Retrieve following command : ↓</a></li>
+                        <li><a href="#saving-the-data" id="markdown-toc-saving-the-data">Saving the data</a></li>
+                        <li><a href="#editing-the-data-file" id="markdown-toc-editing-the-data-file">Editing the data file</a></li>
+                    </ul>
+                    </li>
+                    <li>
+                        <a href="#property-directory-features" id="markdown-toc-property-directory-features"><strong>Property Directory Features</strong></a>    <ul>
+                        <li><a href="#adding-a-property-add--p" id="markdown-toc-adding-a-property-add--p">Adding a property: <code class="language-plaintext highlighter-rouge">add -p</code></a></li>
+                        <li><a href="#listing-all-properties--list--p" id="markdown-toc-listing-all-properties--list--p">Listing all properties : <code class="language-plaintext highlighter-rouge">list -p</code></a></li>
+                        <li><a href="#editing-a-property--edit--p" id="markdown-toc-editing-a-property--edit--p">Editing a property : <code class="language-plaintext highlighter-rouge">edit -p</code></a></li>
+                        <li><a href="#locating-properties-by-name-find--p" id="markdown-toc-locating-properties-by-name-find--p">Locating properties by name: <code class="language-plaintext highlighter-rouge">find -p</code></a></li>
+                        <li><a href="#deleting-a-property--delete--p" id="markdown-toc-deleting-a-property--delete--p">Deleting a property : <code class="language-plaintext highlighter-rouge">delete -p</code></a></li>
+                        <li><a href="#filtering-properties-by-tags-filter--p" id="markdown-toc-filtering-properties-by-tags-filter--p">Filtering properties by tags: <code class="language-plaintext highlighter-rouge">filter -p</code></a></li>
+                        <li><a href="#filtering-properties-within-price-range-range--p" id="markdown-toc-filtering-properties-within-price-range-range--p">Filtering properties within price range: <code class="language-plaintext highlighter-rouge">range -p</code></a></li>
+                        <li><a href="#filtering-properties-by-status-status--p" id="markdown-toc-filtering-properties-by-status-status--p">Filtering properties by status: <code class="language-plaintext highlighter-rouge">status -p</code></a></li>
+                        <li><a href="#filtering-properties-by-type-type--p" id="markdown-toc-filtering-properties-by-type-type--p">Filtering properties by type: <code class="language-plaintext highlighter-rouge">type -p</code></a></li>
+                        <li><a href="#selecting-a-property-select--p" id="markdown-toc-selecting-a-property-select--p">Selecting a property: <code class="language-plaintext highlighter-rouge">select -p</code></a></li>
+                        <li><a href="#clearing-all-entries--clear--p" id="markdown-toc-clearing-all-entries--clear--p">Clearing all entries : <code class="language-plaintext highlighter-rouge">clear -p</code></a></li>
+                    </ul>
+                    </li>
+                    <li>
+                        <a href="#client-directory-features" id="markdown-toc-client-directory-features"><strong>Client Directory Features</strong></a>    <ul>
+                        <li><a href="#adding-a-client-profile-add--c" id="markdown-toc-adding-a-client-profile-add--c">Adding a client profile: <code class="language-plaintext highlighter-rouge">add -c</code></a></li>
+                        <li><a href="#listing-all-client-profiles-list--c" id="markdown-toc-listing-all-client-profiles-list--c">Listing all client profiles: <code class="language-plaintext highlighter-rouge">list -c</code></a></li>
+                        <li><a href="#editing-a-client-profile-edit--c" id="markdown-toc-editing-a-client-profile-edit--c">Editing a client profile: <code class="language-plaintext highlighter-rouge">edit -c</code></a></li>
+                        <li><a href="#locating-client-profiles-by-name-find--c" id="markdown-toc-locating-client-profiles-by-name-find--c">Locating client profiles by name: <code class="language-plaintext highlighter-rouge">find -c</code></a></li>
+                        <li><a href="#deleting-a-client-profile-delete--c" id="markdown-toc-deleting-a-client-profile-delete--c">Deleting a client profile: <code class="language-plaintext highlighter-rouge">delete -c</code></a></li>
+                        <li><a href="#filtering-client-profiles-by-tags-filter--c" id="markdown-toc-filtering-client-profiles-by-tags-filter--c">Filtering client profiles by tags: <code class="language-plaintext highlighter-rouge">filter -c</code></a></li>
+                        <li><a href="#selecting-a-client-profile-select--c" id="markdown-toc-selecting-a-client-profile-select--c">Selecting a client profile: <code class="language-plaintext highlighter-rouge">select -c</code></a></li>
+                        <li><a href="#clearing-all-entries--clear--c" id="markdown-toc-clearing-all-entries--clear--c">Clearing all entries : <code class="language-plaintext highlighter-rouge">clear -c</code></a></li>
+                    </ul>
+                    </li>
+                    <li><a href="#faq" id="markdown-toc-faq"><strong>FAQ</strong></a></li>
+                    <li><a href="#command-summary" id="markdown-toc-command-summary"><strong>Command summary</strong></a></li>
                 </ul>
 
                 <hr>
 
-                <h2 id="quick-start">Quick start</h2>
+                <h2 id="quick-start"><strong>Quick start</strong></h2>
 
                 <ol>
                     <li>
@@ -45,7 +113,7 @@
                             <img src="/tp/images/Ui.png" alt="Ui"></p>
                     </li>
                     <li>
-                        <p>Type the command in the command box and press Enter to execute it. e.g. typing <strong><code class="language-plaintext highlighter-rouge">help</code></strong> and pressing Enter will open the help window.<br>
+                        <p>Type the command in the command box and press Enter to execute it. e.g. typing <strong><code class="language-plaintext highlighter-rouge">help</code></strong> and pressing Enter will open the help window.
                             Some example commands you can try:</p>
 
                         <ul>
@@ -53,10 +121,10 @@
                                 <p><strong><code class="language-plaintext highlighter-rouge">list -p</code></strong> : Lists all properties.</p>
                             </li>
                             <li>
-                                <p><strong><code class="language-plaintext highlighter-rouge">add -p</code></strong><code class="language-plaintext highlighter-rouge">n/Pinnacle@Duxton a/Cantonment Rd, #1G, 085301 p/100,000 t/luxury</code> : Adds a listing named <code class="language-plaintext highlighter-rouge">Pinnacle@Duxton</code> to the property directory.</p>
+                                <p><strong><code class="language-plaintext highlighter-rouge">add -p</code></strong><code class="language-plaintext highlighter-rouge">n/Pinnacle@Duxton a/Cantonment Rd, #1G, 085301 p/100,000 h/CONDO t/luxury</code> : Adds a listing named <code class="language-plaintext highlighter-rouge">Pinnacle@Duxton</code>, with the inputted details, to the property directory.</p>
                             </li>
                             <li>
-                                <p><strong><code class="language-plaintext highlighter-rouge">list -p delete</code></strong><code class="language-plaintext highlighter-rouge">3</code> : Deletes the 3rd property shown in the current list.</p>
+                                <p><strong><code class="language-plaintext highlighter-rouge">list -p</code></strong> followed by <strong><code class="language-plaintext highlighter-rouge">delete 3</code></strong> : Deletes the 3rd property shown in the current list.</p>
                             </li>
                             <li>
                                 <p><strong><code class="language-plaintext highlighter-rouge">exit</code></strong> : Exits the app.</p>
@@ -64,69 +132,400 @@
                         </ul>
                     </li>
                     <li>
-                        <p>Refer to the <a href="#features">Features</a> below for details of each command.</p>
+                        <p>Refer to the Features below for details of each command.</p>
                     </li>
                 </ol>
 
                 <hr>
 
-                <h2 id="features-syntax">Features syntax</h2>
+                <h2 id="command-overview"><strong>Command Overview</strong></h2>
 
                 <div class="alert alert-info">
 
                     <p><strong><img class="emoji" title=":information_source:" alt=":information_source:" src="https://github.githubassets.com/images/icons/emoji/unicode/2139.png" height="20" width="20"> Notes about the command format:</strong><br></p>
 
                     <ul>
-                        <li>
-                            <p>Demarcaters <code class="language-plaintext highlighter-rouge">-p</code> and <code class="language-plaintext highlighter-rouge">-c</code> after each command word represent interactions with the property and client directory respectively.<br>
-                                e.g. <code class="language-plaintext highlighter-rouge">add -p</code> is used to add properties in the property directory while <code class="language-plaintext highlighter-rouge">add -c</code> is used to add clients in the client directory.</p>
+                        <li>Flags <code class="language-plaintext highlighter-rouge">-p</code> and <code class="language-plaintext highlighter-rouge">-c</code> after each command word represent interactions with the property and client directory respectively.
+                            <ul>
+                                <li>
+                                    <code class="language-plaintext highlighter-rouge">add -p</code> adds a property in the property directory while <code class="language-plaintext highlighter-rouge">add -c</code> adds a client in the client directory.</li>
+                            </ul>
                         </li>
-                        <li>
-                            <p>Words in <code class="language-plaintext highlighter-rouge">UPPER_CASE</code> are the parameters to be supplied by the user.<br>
-                                e.g. in <code class="language-plaintext highlighter-rouge">add -p n/NAME</code>, <code class="language-plaintext highlighter-rouge">NAME</code> is a parameter which can be used as <code class="language-plaintext highlighter-rouge">add n/PINNACLE@DUXTON</code>.</p>
+                        <li>Words in <code class="language-plaintext highlighter-rouge">UPPER_CASE</code> are the arguments to be supplied by the user.<br>
+                            <ul>
+                                <li>In <code class="language-plaintext highlighter-rouge">add -p n/NAME</code>, <code class="language-plaintext highlighter-rouge">NAME</code> is an argument which can be used as <code class="language-plaintext highlighter-rouge">add -p n/PINNACLE@DUXTON</code>.</li>
+                            </ul>
                         </li>
-                        <li>
-                            <p>Items in square brackets are optional.<br>
-                                e.g <code class="language-plaintext highlighter-rouge">n/NAME [t/TAG]</code> can be used as <code class="language-plaintext highlighter-rouge">n/PINNACLE@DUXTON t/luxury</code> or as <code class="language-plaintext highlighter-rouge">n/PINNACLE@DUXTON</code>.</p>
+                        <li>Items in square brackets are optional.<br>
+                            <ul>
+                                <li>
+                                    <code class="language-plaintext highlighter-rouge">n/NAME [t/TAG]</code> can be used as <code class="language-plaintext highlighter-rouge">n/PINNACLE@DUXTON t/luxury</code> or as <code class="language-plaintext highlighter-rouge">n/PINNACLE@DUXTON</code>.</li>
+                            </ul>
                         </li>
-                        <li>
-                            <p>Items with <code class="language-plaintext highlighter-rouge">…</code>​ after them can be used multiple times including zero times.<br>
-                                e.g. <code class="language-plaintext highlighter-rouge">[t/TAG]…​</code> can be used as <code class="language-plaintext highlighter-rouge"> </code> (i.e. 0 times), <code class="language-plaintext highlighter-rouge">t/friend</code>, <code class="language-plaintext highlighter-rouge">t/friend t/family</code> etc.</p>
+                        <li>Items with <code class="language-plaintext highlighter-rouge">…</code> after them can be used multiple times including zero times.<br>
+                            <ul>
+                                <li>
+                                    <code class="language-plaintext highlighter-rouge">[t/TAG]…</code> can be used as many times as needed (including 0 times), <code class="language-plaintext highlighter-rouge">t/friend</code>, <code class="language-plaintext highlighter-rouge">t/friend t/family</code> etc.</li>
+                            </ul>
                         </li>
-                        <li>
-                            <p>Parameters can be in any order.<br>
-                                e.g. if the command specifies <code class="language-plaintext highlighter-rouge">n/NAME p/PRICE</code>, <code class="language-plaintext highlighter-rouge">p/PRICE n/NAME</code> is also acceptable.</p>
+                        <li>Parameters can be in any order.<br>
+                            <ul>
+                                <li>If the command specifies <code class="language-plaintext highlighter-rouge">n/NAME p/PRICE</code>, <code class="language-plaintext highlighter-rouge">p/PRICE n/NAME</code> is also acceptable.</li>
+                            </ul>
                         </li>
-                        <li>
-                            <p>If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-                                e.g. if you specify <code class="language-plaintext highlighter-rouge">p/1,000,000 p/2,000,000</code>, only <code class="language-plaintext highlighter-rouge">p/2,000,000</code> will be taken.</p>
+                        <li>If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+                            <ul>
+                                <li>If you specify <code class="language-plaintext highlighter-rouge">p/1,000,000 p/2,000,000</code>, only <code class="language-plaintext highlighter-rouge">p/2,000,000</code> will be taken.</li>
+                            </ul>
                         </li>
-                        <li>
-                            <p>Extraneous parameters for commands that do not take in parameters (such as <code class="language-plaintext highlighter-rouge">help</code>, <code class="language-plaintext highlighter-rouge">list</code>, <code class="language-plaintext highlighter-rouge">exit</code> and <code class="language-plaintext highlighter-rouge">clear</code>) will be ignored.<br>
-                                e.g. if the command specifies <code class="language-plaintext highlighter-rouge">help 123</code>, it will be interpreted as <code class="language-plaintext highlighter-rouge">help</code>.</p>
+                        <li>Extraneous arguments for commands that do not have any parameters (such as <code class="language-plaintext highlighter-rouge">help</code>, <code class="language-plaintext highlighter-rouge">exit</code>, <code class="language-plaintext highlighter-rouge">list -p</code>, <code class="language-plaintext highlighter-rouge">list -c</code>, <code class="language-plaintext highlighter-rouge">clear -p</code>  and <code class="language-plaintext highlighter-rouge">clear -c</code>) will be ignored.<br>
+                            <ul>
+                                <li>If the command specifies <code class="language-plaintext highlighter-rouge">help 123</code>, it will be interpreted as <code class="language-plaintext highlighter-rouge">help</code>.</li>
+                            </ul>
                         </li>
                     </ul>
 
                 </div>
 
+                <h3 id="prefix-list">Prefix list</h3>
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Prefix</th>
+                        <th>Associated Parameter</th>
+                        <th>Definition</th>
+                        <th>Examples</th>
+                        <th>Remarks</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">n/</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">NAME</code></td>
+                        <td>Refers to the name of a property or client.<br>
+                        </td>
+                        <td>
+                            <code class="language-plaintext highlighter-rouge">n/PINNACLE@DUXTON</code><br><code class="language-plaintext highlighter-rouge">n/Walter</code>
+                        </td>
+                        <td>Each property or client can only have one name.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">a/</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">ADDRESS</code></td>
+                        <td>Refers to the address of a property or client.</td>
+                        <td><code class="language-plaintext highlighter-rouge">a/Cantonment Rd, #1G, 085301</code></td>
+                        <td>Each property or client can only have one address.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">t/</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">TAG</code></td>
+                        <td>Refers to a tag of a property or client.<br> Can be used for labelling important details.</td>
+                        <td>
+                            <code class="language-plaintext highlighter-rouge">t/High-end</code>, <code class="language-plaintext highlighter-rouge">t/Friend</code>
+                        </td>
+                        <td>Tags must be alphanumerical<br> Each property or client can have multiple tags.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">-i</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">IMAGE</code></td>
+                        <td>Refers to the image for a property or client.<br> User will be prompted to select an image in a separate window upon invoking prefix.</td>
+                        <td>NIL</td>
+                        <td>Each property or client can only have one image.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">p/</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">PRICE</code></td>
+                        <td>Refers to property price.<br>
+                        </td>
+                        <td><code class="language-plaintext highlighter-rouge">p/1,000,000</code></td>
+                        <td>Each property can only have one price.<br> Accepts positive integers only.<br> Max input price is <code class="language-plaintext highlighter-rouge">2,147,483,647</code>.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">h/</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">PROPERTY_TYPE</code></td>
+                        <td>Refers to type of housing<br>Must be one of CONDO, HDB, or LANDED</td>
+                        <td>
+                            <code class="language-plaintext highlighter-rouge">h/HDB</code>, <code class="language-plaintext highlighter-rouge">h/Condo</code>, <code class="language-plaintext highlighter-rouge">h/landed</code>
+                        </td>
+                        <td>Each property can only have one property type.<br> Valid property types: <code class="language-plaintext highlighter-rouge">HDB</code>, <code class="language-plaintext highlighter-rouge">CONDO</code>, <code class="language-plaintext highlighter-rouge">LANDED</code><br> Arguments for this parameter are case-insensitive.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">s/</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">PROPERTY_STATUS</code></td>
+                        <td>Refers to availability of property<br>Must be one of AVAILABLE, SOLD, or PENDING</td>
+                        <td>
+                            <code class="language-plaintext highlighter-rouge">s/AVAILABLE</code>, <code class="language-plaintext highlighter-rouge">s/PENDING</code>
+                        </td>
+                        <td>Each property can only have one property status.<br> Valid property statuses: <code class="language-plaintext highlighter-rouge">AVAILABLE</code>, <code class="language-plaintext highlighter-rouge">SOLD</code>, <code class="language-plaintext highlighter-rouge">PENDING</code><br> Arguments for this parameter are case-insensitive.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">ic/</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">INTERESTED_CLIENTS</code></td>
+                        <td>Refers to list of clients who are considering to purchase a particular property.</td>
+                        <td><code class="language-plaintext highlighter-rouge">ic/Samuel</code></td>
+                        <td>Each property can have multiple clients interested in it.<br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">ip/</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">INTERESTED_PROPERTIES</code></td>
+                        <td>Refers to list of properties that a client is interested in.</td>
+                        <td><code class="language-plaintext highlighter-rouge">ip/duxton</code></td>
+                        <td>Each client can be interested in multiple properties.<br>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="property-directory">Property directory</h3>
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Command</th>
+                        <th>Definition</th>
+                        <th>Parameters</th>
+                        <th>Format</th>
+                        <th>Examples</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">add -p</code></td>
+                        <td>Adds a property to the property directory.</td>
+                        <td>Prefix required for all arguments<br><br>Mandatory arguments:<br>  <code class="language-plaintext highlighter-rouge">n/NAME</code><br> <code class="language-plaintext highlighter-rouge">a/ADDRESS</code><br> <code class="language-plaintext highlighter-rouge">p/PRICE</code><br> <code class="language-plaintext highlighter-rouge">h/PROPERTY_TYPE</code><br><br>Optional arguments:<br> <code class="language-plaintext highlighter-rouge">-i</code> [IMAGE]<br> <code class="language-plaintext highlighter-rouge">s/PROPERTY_STATUS</code><br> <code class="language-plaintext highlighter-rouge">t/TAG</code><br> <code class="language-plaintext highlighter-rouge">ic/INTERESTED_CLIENTS</code>
+                        </td>
+                        <td><code class="language-plaintext highlighter-rouge">add -p n/NAME a/ADDRESS p/PRICE h/PROPERTY\_TYPE [-i] [s/PROPERTY_STATUS] [ic/INTERESTED_CLIENTS]…​ [t/TAG]…​</code></td>
+                        <td>
+                            <code class="language-plaintext highlighter-rouge">add -p n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301 p/1,000,000 h/HDB t/luxury</code><br><br><code class="language-plaintext highlighter-rouge">add -p n/KAMPUNG@ADMIRALTY a/676 Woodlands Drive 71, Singapore 730676 p/800,000 h/HDB t/neighbourhood t/elderly ic/James Tan s/AVAILABLE</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">list -p</code></td>
+                        <td>Lists all properties currently stored in the property directory.</td>
+                        <td>No argument needed</td>
+                        <td><code class="language-plaintext highlighter-rouge">list -p</code></td>
+                        <td>NIL</td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">edit -p</code></td>
+                        <td>Edits an existing property in the property directory.</td>
+                        <td>Prefix required for all arguments except <code class="language-plaintext highlighter-rouge">INDEX</code><br><br>Mandatory arguments:<br> <code class="language-plaintext highlighter-rouge">INDEX</code><br><br>Optional arguments (at least one field):<br> <code class="language-plaintext highlighter-rouge">n/NAME</code><br> <code class="language-plaintext highlighter-rouge">a/ADDRESS</code><br> <code class="language-plaintext highlighter-rouge">p/PRICE</code><br> <code class="language-plaintext highlighter-rouge">h/PROPERTY_TYPE</code><br> <code class="language-plaintext highlighter-rouge">-i</code> [IMAGE]<br> <code class="language-plaintext highlighter-rouge">s/PROPERTY_STATUS</code><br> <code class="language-plaintext highlighter-rouge">t/TAG</code><br> <code class="language-plaintext highlighter-rouge">ic/INTERESTED_CLIENTS</code>
+                        </td>
+                        <td><code class="language-plaintext highlighter-rouge">edit -p INDEX [n/NAME] [a/ADDRESS] [-i] [p/PRICE] [h/PROPERTY_TYPE] [s/PROPERTY_STATUS] [ic/INTERESTED_CLIENTS]…​ [t/TAG]…​</code></td>
+                        <td>
+                            <code class="language-plaintext highlighter-rouge">edit -p 2 n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301</code><br><br><code class="language-plaintext highlighter-rouge">edit -p 1 t/high-end t/luxury</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">find -p</code></td>
+                        <td>Finds properties whose names contain any of the given keywords.</td>
+                        <td>No prefix needed<br><br><code class="language-plaintext highlighter-rouge">NAME</code>
+                        </td>
+                        <td><code class="language-plaintext highlighter-rouge">find -p NAME [MORE_NAMES]</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">find -p PINNACLE@DUXTON BISHAN</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">delete -p</code></td>
+                        <td>Deletes the property at the specified INDEX from the property directory.</td>
+                        <td>No prefix needed<br><br><code class="language-plaintext highlighter-rouge">INDEX</code>
+                        </td>
+                        <td><code class="language-plaintext highlighter-rouge">delete -p INDEX</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">delete -p 3</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">filter -p</code></td>
+                        <td>Returns a list of properties whose tags contain any of the given keywords.</td>
+                        <td>No prefix needed<br><br><code class="language-plaintext highlighter-rouge">TAG</code>
+                        </td>
+                        <td><code class="language-plaintext highlighter-rouge">filter -p TAG [MORE_TAGS]</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">filter -p high-end luxury</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">range -p</code></td>
+                        <td>Returns a list of properties within a specified price range.</td>
+                        <td>Prefix required for all arguments except <code class="language-plaintext highlighter-rouge">INDEX</code><br><br>Mandatory arguments:<br> <code class="language-plaintext highlighter-rouge">INDEX</code><br> <code class="language-plaintext highlighter-rouge">l/LOWER_BOUND</code><br> <code class="language-plaintext highlighter-rouge">u/UPPER_BOUND</code>
+                        </td>
+                        <td><code class="language-plaintext highlighter-rouge">range -p l/LOWER_BOUND u/UPPER_BOUND</code></td>
+                        <td>
+                            <code class="language-plaintext highlighter-rouge">range -p l/1,000,000 u/3,000,000</code><br><br><code class="language-plaintext highlighter-rouge">range -p l/1000000 u/3000000</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">clear -p</code></td>
+                        <td>Clears all properties from the property directory.</td>
+                        <td>No argument needed</td>
+                        <td><code class="language-plaintext highlighter-rouge">clear -p</code></td>
+                        <td>NIL</td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">select -p</code></td>
+                        <td>Returns the property at the specified index while displaying the list of interested clients in the client directory.</td>
+                        <td>No prefix needed<br><br><code class="language-plaintext highlighter-rouge">INDEX</code>
+                        </td>
+                        <td><code class="language-plaintext highlighter-rouge">select -p INDEX</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">select -p 2</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">status -p</code></td>
+                        <td>Returns all the properties with the specified status.</td>
+                        <td>No prefix needed<br><br><code class="language-plaintext highlighter-rouge">PROPERTY_STATUS</code>
+                        </td>
+                        <td><code class="language-plaintext highlighter-rouge">status -p</code></td>
+                        <td>
+                            <code class="language-plaintext highlighter-rouge">status -p AVAILABLE</code><br><br><code class="language-plaintext highlighter-rouge">status -p SOLD</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">type -p</code></td>
+                        <td>Returns all the properties with the specified type.</td>
+                        <td>No prefix needed<br><br><code class="language-plaintext highlighter-rouge">PROPERTY_TYPE</code>
+                        </td>
+                        <td><code class="language-plaintext highlighter-rouge">type -p</code></td>
+                        <td>
+                            <code class="language-plaintext highlighter-rouge">type -p HDB</code><br><br><code class="language-plaintext highlighter-rouge">type -p condo</code>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="client-directory">Client directory</h3>
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Command</th>
+                        <th>Definition</th>
+                        <th>Parameters</th>
+                        <th>Format</th>
+                        <th>Examples</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">add -c</code></td>
+                        <td>Adds a client profile to the client directory.</td>
+                        <td>Prefix required for all arguments<br><br>Mandatory arguments:<br> <code class="language-plaintext highlighter-rouge">n/NAME</code><br> <code class="language-plaintext highlighter-rouge">a/ADDRESS</code><br><br>Optional arguments:<br> <code class="language-plaintext highlighter-rouge">t/TAG</code><br> <code class="language-plaintext highlighter-rouge">-i</code>[IMAGE]<br> <code class="language-plaintext highlighter-rouge">ip/INTERESTED_PROPERTIES</code>
+                        </td>
+                        <td><code class="language-plaintext highlighter-rouge">add n/NAME a/ADDRESS [-i] [t/TAG]…​ [ip/INTERESTED_PROPERTIES]…​</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">add -c n/James a/123, Clementi Rd, 1234665 t/friend t/colleague ip/PINNACLE@DUXTON</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">clear -c</code></td>
+                        <td>Clears all clients from the client directory.</td>
+                        <td>No argument needed</td>
+                        <td><code class="language-plaintext highlighter-rouge">clear -c</code></td>
+                        <td>NIL</td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">delete -c</code></td>
+                        <td>Deletes the client profile at the specified INDEX from the client directory.</td>
+                        <td>No prefix needed<br><br><code class="language-plaintext highlighter-rouge">INDEX</code>
+                        </td>
+                        <td><code class="language-plaintext highlighter-rouge">delete -c INDEX</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">delete -c 3</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">edit -c</code></td>
+                        <td>Edits an existing client profile in the client directory.</td>
+                        <td>Prefix required for all arguments except <code class="language-plaintext highlighter-rouge">INDEX</code><br><br>Mandatory arguments:<br> <code class="language-plaintext highlighter-rouge">INDEX</code><br><br>Optional arguments (at least one field):<br> <code class="language-plaintext highlighter-rouge">n/NAME</code><br> <code class="language-plaintext highlighter-rouge">a/ADDRESS</code><br> <code class="language-plaintext highlighter-rouge">-i</code> [IMAGE]<br> <code class="language-plaintext highlighter-rouge">t/TAG</code><br> <code class="language-plaintext highlighter-rouge">ip/INTERESTED_PROPERTIES</code>
+                        </td>
+                        <td><code class="language-plaintext highlighter-rouge">edit -c INDEX [n/NAME] [a/ADDRESS] [-i] [ip/INTERESTED_PROPERTIES]…​ [t/TAG]…​</code></td>
+                        <td>
+                            <code class="language-plaintext highlighter-rouge">edit -c 2 n/James Lee a/SG, Cantonment Rd, #1G, 085301</code><br><br><code class="language-plaintext highlighter-rouge">edit -c 1 t/friend t/colleague</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">filter -c</code></td>
+                        <td>Returns a list of client profiles whose tags contain any of the given keywords.</td>
+                        <td>No prefix needed<br><br><code class="language-plaintext highlighter-rouge">TAG</code>
+                        </td>
+                        <td><code class="language-plaintext highlighter-rouge">filter -c TAG [MORE_TAGS]</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">filter -c friend colleague</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">find -c</code></td>
+                        <td>Finds clients whose names contain any of the given keywords.</td>
+                        <td>No prefix needed<br><br><code class="language-plaintext highlighter-rouge">NAME</code>
+                        </td>
+                        <td><code class="language-plaintext highlighter-rouge">find -c NAME [MORE_NAMES]</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">find -c James Jake</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">list -c</code></td>
+                        <td>Lists all client profiles currently stored in the client directory.</td>
+                        <td>No argument needed</td>
+                        <td><code class="language-plaintext highlighter-rouge">list -c</code></td>
+                        <td>NIL</td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">select -c</code></td>
+                        <td>Returns the client at the specified index while displaying the list of interested properties in the property directory.</td>
+                        <td>No prefix needed<br><br><code class="language-plaintext highlighter-rouge">INDEX</code>
+                        </td>
+                        <td><code class="language-plaintext highlighter-rouge">select -c INDEX</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">select -c 1</code></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3 id="general-commands">General commands</h3>
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Command</th>
+                        <th>Definition</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">exit</code></td>
+                        <td>Exits the program.</td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">help</code></td>
+                        <td>Shows the help guide</td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">undo</code></td>
+                        <td>Reverses the effect of the previous command. Only commands that affect the state of Property/Client Directory can be undone.<br><br>For example, <code class="language-plaintext highlighter-rouge">help</code> cannot be undone, whereas <code class="language-plaintext highlighter-rouge">add -p</code> can be undone.</td>
+                    </tr>
+                    <tr>
+                        <td>↑</td>
+                        <td>Show previous command in command line</td>
+                    </tr>
+                    <tr>
+                        <td>↓</td>
+                        <td>Show following command in command line</td>
+                    </tr>
+                    </tbody>
+                </table>
+
                 <hr>
 
-                <h2 id="features-in-condonery">Features in Condonery</h2>
+                <h2 id="features-in-condonery"><strong>Features in Condonery</strong></h2>
 
                 <h3 id="undoing-commands--undo">Undoing commands : <code class="language-plaintext highlighter-rouge">undo</code>
                 </h3>
 
                 <p>Reverses the effect of the previous command. Only commands that affect the state of Property/Client Directory can be
-                    undone.</p>
+                    undone. Commands that are executed before the application is launched cannot be undone.</p>
 
                 <p>For example, <code class="language-plaintext highlighter-rouge">help</code> cannot be undone, whereas <code class="language-plaintext highlighter-rouge">add -p</code> can be undone.</p>
+
+                <p>Note: The feature for undo-ing an image upload has yet to be implemented. User’s will have to change the image
+                    (eg. <code class="language-plaintext highlighter-rouge">edit -p 1 -i</code>) in order to ‘undo’ an image upload.</p>
 
                 <p>Format: <code class="language-plaintext highlighter-rouge">undo</code></p>
 
                 <h3 id="viewing-help--help">Viewing help : <code class="language-plaintext highlighter-rouge">help</code>
                 </h3>
 
-                <p>Shows a message explaning how to access the help page.</p>
+                <p>Shows the help guide.<br><br>
+                    Users can either read the User Guide from the Help Window, or choose to navigate to the URL in their browser to view
+                    the full User Guide.</p>
 
                 <p><img src="/tp/images/helpMessage.png" alt="help message"></p>
 
@@ -139,62 +538,167 @@
 
                 <p>Format: <code class="language-plaintext highlighter-rouge">exit</code></p>
 
-                <h2 id="property-directory-features">Property Directory Features</h2>
+                <h3 id="retrieve-previous-command--">Retrieve previous command : ↑</h3>
+
+                <p>Press the ↓ key while focused on the Command Line to retrieve previous command in the command line.<br><br>
+                    This feature is for convenience if you wish to re-enter previously entered commands.</p>
+
+                <h3 id="retrieve-following-command--">Retrieve following command : ↓</h3>
+
+                <p>Press the ↓ key while focused on the Command Line to retrieve the following command in the command line.<br><br>
+                    This will only work if you’ve previously navigated to a previous command and would wish to navigate back to a newer command.</p>
+
+                <h3 id="saving-the-data">Saving the data</h3>
+
+                <p>Property directory and Client directory data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.</p>
+
+                <h3 id="editing-the-data-file">Editing the data file</h3>
+
+                <ul>
+                    <li>Property directory data are saved as a JSON file <code class="language-plaintext highlighter-rouge">[JAR file location]/data/propertyDirectory.json</code>.</li>
+                    <li>Client directory data are saved as a JSON file <code class="language-plaintext highlighter-rouge">[JAR file location]/data/clientDirectory.json</code>.</li>
+                    <li>Uploaded images are saved in <code class="language-plaintext highlighter-rouge">[JAR file location]/data/images</code>. Images have to follow the naming convention of
+                        <code class="language-plaintext highlighter-rouge">[property/client]-[EXACT_NAME]</code>, with no file extension.</li>
+                </ul>
+
+                <p>Advanced users are welcome to update data directly by editing that data file.</p>
+
+                <div class="alert alert-warning">
+                    <img class="emoji" title=":exclamation:" alt=":exclamation:" src="https://github.githubassets.com/images/icons/emoji/unicode/2757.png" height="20" width="20">
+
+                    <strong>Caution:</strong>
+                    If your changes to the data file makes its format invalid, both the Property directory and Client directory will discard all data and start with an empty data file at the next run.
+
+                </div>
+
+                <h2 id="property-directory-features"><strong>Property Directory Features</strong></h2>
 
                 <h3 id="adding-a-property-add--p">Adding a property: <code class="language-plaintext highlighter-rouge">add -p</code>
                 </h3>
 
                 <p>Adds a property to the property directory.</p>
 
-                <p>Format: <code class="language-plaintext highlighter-rouge">add -p n/NAME a/ADDRESS p/PRICE [-i] [t/TAG]…​</code></p>
+                <p>Format: <code class="language-plaintext highlighter-rouge">add -p n/NAME a/ADDRESS p/PRICE h/PROPERTY_TYPE [-i] [s/PROPERTY_STATUS] [ic/INTERESTED_CLIENTS]…​ [t/TAG]…​</code></p>
+
+                <p>Prefix required for all arguments</p>
+
+                <p>Mandatory arguments:</p>
+                <ul>
+                    <li><code class="language-plaintext highlighter-rouge">n/NAME</code></li>
+                    <li><code class="language-plaintext highlighter-rouge">a/ADDRESS</code></li>
+                    <li><code class="language-plaintext highlighter-rouge">p/PRICE</code></li>
+                    <li><code class="language-plaintext highlighter-rouge">h/PROPERTY_TYPE</code></li>
+                </ul>
+
+                <p>Optional arguments:</p>
+                <ul>
+                    <li>
+                        <code class="language-plaintext highlighter-rouge">-i</code> [IMAGE]</li>
+                    <li><code class="language-plaintext highlighter-rouge">s/PROPERTY_STATUS</code></li>
+                    <li><code class="language-plaintext highlighter-rouge">t/TAG</code></li>
+                    <li><code class="language-plaintext highlighter-rouge">ic/INTERESTED_CLIENTS</code></li>
+                </ul>
 
                 <div class="alert alert-primary">
-                    <img class="emoji" title=":bulb:" alt=":bulb:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png" height="20" width="20"> <strong>Tip:</strong>
-                    A property can have any number of tags (including 0)
+
+                    <p><img class="emoji" title=":bulb:" alt=":bulb:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png" height="20" width="20"> <strong>Tips:</strong></p>
+
+                    <ul>
+                        <li>A property can have any number of tags (including 0)<br>
+                        </li>
+                        <li>A property can have any number of interested clients (including 0)<br>
+                            <ul>
+                                <li>Adding interested clients to a property does not add the new property as an interested property for those clients.</li>
+                                <li>User should manually add the new property as an interested property of those clients (using <code class="language-plaintext highlighter-rouge">ip/</code> prefix under <code class="language-plaintext highlighter-rouge">add -c</code> command).</li>
+                            </ul>
+                        </li>
+                        <li>The <code class="language-plaintext highlighter-rouge">h/PROPERTY_TYPE</code> flag specifies the type of property. It can only be either <code class="language-plaintext highlighter-rouge">HDB</code>, <code class="language-plaintext highlighter-rouge">CONDO</code>, or <code class="language-plaintext highlighter-rouge">LANDED</code> (arguments are case-insensitive).<br>
+                        </li>
+                        <li>The <code class="language-plaintext highlighter-rouge">s/PROPERTY_STATUS</code> is optional, if not specified, will default to <code class="language-plaintext highlighter-rouge">AVAILABLE</code> status.<br>
+                        </li>
+                        <li>The <code class="language-plaintext highlighter-rouge">ic/INTERESTED_CLIENT</code> flag allows users to specify clients who are interested in the property.
+                            <ul>
+                                <li>The <code class="language-plaintext highlighter-rouge">INTERESTED_CLIENT</code> argument should be a case-sensitive substring of the Client’s name.<br>
+                                </li>
+                                <li>If more than 1 client matches the substring, an error message will be shown. Users should then use a more specific search, or input the Client’s exact name (case-sensitive).</li>
+                                <li>If no clients matches the search, an error message will be shown.</li>
+                            </ul>
+                        </li>
+                        <li>The <code class="language-plaintext highlighter-rouge">-i</code> flag allows the user to upload images of the property. A file chooser dialog will appear after running the command.<br>
+                        </li>
+                    </ul>
+
+                    <p><img src="/tp/images/fileChooser.png" alt="file_chooser"></p>
+
                 </div>
 
                 <p>Examples:</p>
                 <ul>
-                    <li><code class="language-plaintext highlighter-rouge">add n/PINNACLE@DUXTON a/11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450 p/1,000,000 h/HDB t/cheap</code></li>
-                    <li><code class="language-plaintext highlighter-rouge">add n/SEMAKAU LANDFILL a/Straits Boulevard p/1,000 h/CONDO t/high-end</code></li>
+                    <li><code class="language-plaintext highlighter-rouge">add -p n/KAMPUNG@ADMIRALTY a/676 Woodlands Drive 71, Singapore 730676 p/800,000 h/HDB t/Neighbourhood t/Elderly ic/James s/AVAILABLE</code></li>
+                    <li><code class="language-plaintext highlighter-rouge">add -p n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301 p/1,000,000 h/HDB t/Luxury</code></li>
                 </ul>
-
-                <p>The <code class="language-plaintext highlighter-rouge">-i</code> flag allows the user to upload images of the property. A file chooser dialog will appear after running the
-                    command.</p>
-
-                <p>The <code class="language-plaintext highlighter-rouge">h/PROPERTY_TYPE</code> flag specifies the type of property. It can only be either HDB, CONDO, or LANDED.</p>
-
-                <p><img src="/tp/images/fileChooser.png" alt="file_chooser"></p>
 
                 <h3 id="listing-all-properties--list--p">Listing all properties : <code class="language-plaintext highlighter-rouge">list -p</code>
                 </h3>
 
-                <p>Shows a list of all properties in the address book.</p>
+                <p>Lists all properties currently stored in the property directory.</p>
 
                 <p>Format: <code class="language-plaintext highlighter-rouge">list -p</code></p>
 
                 <h3 id="editing-a-property--edit--p">Editing a property : <code class="language-plaintext highlighter-rouge">edit -p</code>
                 </h3>
 
-                <p>Edits an existing person in the address book.</p>
+                <p>Edits an existing property in the property directory.</p>
 
-                <p>Format: <code class="language-plaintext highlighter-rouge">edit -p INDEX [n/NAME] [a/ADDRESS] [p/PRICE] [h/PROPERTY_TYPE] [t/TAG]…​</code></p>
+                <p>Format: <code class="language-plaintext highlighter-rouge">edit -p INDEX [n/NAME] [a/ADDRESS] [p/PRICE] [h/PROPERTY_TYPE] [s/PROPERTY_STATUS] [ic/INTERESTED_CLIENTS]…​ [t/TAG]…​</code></p>
 
+                <p>Prefix required for all arguments except <code class="language-plaintext highlighter-rouge">INDEX</code>.</p>
+
+                <p>Mandatory arguments:</p>
                 <ul>
-                    <li>Edits the property at the specified <code class="language-plaintext highlighter-rouge">INDEX</code>. The index refers to the index number shown in the displayed property list. The index <strong>must be a positive integer</strong> 1, 2, 3, …​</li>
-                    <li>At least one of the optional fields must be provided.</li>
-                    <li>Existing values will be updated to the input values.</li>
-                    <li>When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.</li>
-                    <li>You can remove all the property’s tags by typing <code class="language-plaintext highlighter-rouge">t/</code> without
-                        specifying any tags after it.</li>
+                    <li><code class="language-plaintext highlighter-rouge">INDEX</code></li>
                 </ul>
+
+                <p>Optional arguments (at least one field):</p>
+                <ul>
+                    <li><code class="language-plaintext highlighter-rouge">n/NAME</code></li>
+                    <li><code class="language-plaintext highlighter-rouge">a/ADDRESS</code></li>
+                    <li><code class="language-plaintext highlighter-rouge">p/PRICE</code></li>
+                    <li><code class="language-plaintext highlighter-rouge">h/PROPERTY_TYPE</code></li>
+                    <li><code class="language-plaintext highlighter-rouge">-i</code></li>
+                    <li><code class="language-plaintext highlighter-rouge">s/PROPERTY_STATUS</code></li>
+                    <li><code class="language-plaintext highlighter-rouge">t/TAG</code></li>
+                    <li><code class="language-plaintext highlighter-rouge">ic/INTERESTED_CLIENTS</code></li>
+                </ul>
+
+                <div class="alert alert-primary">
+
+                    <p><img class="emoji" title=":bulb:" alt=":bulb:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png" height="20" width="20"> <strong>Tips:</strong></p>
+
+                    <ul>
+                        <li>Edits the property at the specified <code class="language-plaintext highlighter-rouge">INDEX</code>.
+                            <ul>
+                                <li>The <code class="language-plaintext highlighter-rouge">INDEX</code> refers to the index number shown in the currently displayed property list.</li>
+                                <li>The <code class="language-plaintext highlighter-rouge">INDEX</code> must be within the range of numbers in the currently displayed property list, or else an error message will show up.</li>
+                                <li>The <code class="language-plaintext highlighter-rouge">INDEX</code> <strong>must be a positive integer</strong> 1, 2, 3, …​, or else an error message will show up.</li>
+                            </ul>
+                        </li>
+                        <li>At least one of the optional fields must be provided, or else an error message will show up.</li>
+                        <li>Existing values will be updated according to the arguments provided.</li>
+                        <li>When editing tags, all the existing tags of the specified property will be replaced by your arguments with the <code class="language-plaintext highlighter-rouge">t/</code> prefix i.e., adding of tags is not cumulative.</li>
+                        <li>You can remove all the property’s tags by typing <code class="language-plaintext highlighter-rouge">t/</code> without specifying any tags after it.</li>
+                        <li>When editing interested clients, all the existing interested clients of the specified property will be replaced by your arguments with the <code class="language-plaintext highlighter-rouge">ic/</code> prefix i.e., adding of interested clients is not cumulative.</li>
+                        <li>You can remove all the property’s interested clients by typing <code class="language-plaintext highlighter-rouge">ic/</code> without specifying any tags after it.</li>
+                    </ul>
+
+                </div>
 
                 <p>Examples:</p>
                 <ul>
                     <li>
-                        <code class="language-plaintext highlighter-rouge">edit 1 p/1,000,000 a/11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450</code> Edits the price and address of the 1st person to be <code class="language-plaintext highlighter-rouge">1,000,000</code> and <code class="language-plaintext highlighter-rouge">11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450</code> respectively.</li>
+                        <code class="language-plaintext highlighter-rouge">edit -p 1 p/1,000,000 a/11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450</code> Edits the price and address of the property with index of 1 to be <code class="language-plaintext highlighter-rouge">1,000,000</code> and <code class="language-plaintext highlighter-rouge">11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450</code> respectively.</li>
                     <li>
-                        <code class="language-plaintext highlighter-rouge">edit 2 n/Cinammon College t/</code> Edits the name of the 2nd property to be <code class="language-plaintext highlighter-rouge">Cinammon College</code> and clears all existing tags.</li>
+                        <code class="language-plaintext highlighter-rouge">edit -p 2 n/Cinammon College t/</code> Edits the name of the 2nd property to be <code class="language-plaintext highlighter-rouge">Cinammon College</code> and clears all existing tags.</li>
                 </ul>
 
                 <h3 id="locating-properties-by-name-find--p">Locating properties by name: <code class="language-plaintext highlighter-rouge">find -p</code>
@@ -202,20 +706,21 @@
 
                 <p>Finds properties whose names contain any of the given keywords.</p>
 
-                <p>Format: <code class="language-plaintext highlighter-rouge">find KEYWORD [MORE_KEYWORDS]</code></p>
+                <p>Format: <code class="language-plaintext highlighter-rouge">find -p NAME [MORE_NAMES]</code></p>
 
-                <ul>
-                    <li>The search is case-insensitive. e.g <code class="language-plaintext highlighter-rouge">bishan</code> will match <code class="language-plaintext highlighter-rouge">Bishan</code>
-                    </li>
-                    <li>The order of the keywords does not matter. e.g. <code class="language-plaintext highlighter-rouge">PINNACLE@DUXTON Bishan</code> will match <code class="language-plaintext highlighter-rouge">Bishan PINNACLE@DUXTON</code>
-                    </li>
-                    <li>Only the name is searched.</li>
-                    <li>Only full words will be matched e.g. <code class="language-plaintext highlighter-rouge">PINNACLE</code> will not match <code class="language-plaintext highlighter-rouge">PINNACLE@DUXTON</code>
-                    </li>
-                    <li>Properties matching at least one keyword will be returned (i.e. <code class="language-plaintext highlighter-rouge">OR</code> search).
-                        e.g. <code class="language-plaintext highlighter-rouge">PINNACLE@DUXTON Bishan</code> will return <code class="language-plaintext highlighter-rouge">PINNACLE@DUXTON</code>, <code class="language-plaintext highlighter-rouge">Bishan 8</code>
-                    </li>
-                </ul>
+                <div class="alert alert-primary">
+
+                    <p><img class="emoji" title=":bulb:" alt=":bulb:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png" height="20" width="20"> <strong>Tips:</strong></p>
+
+                    <ul>
+                        <li>The search is case-insensitive. e.g., <code class="language-plaintext highlighter-rouge">bishan</code> will match <code class="language-plaintext highlighter-rouge">Bishan</code>.</li>
+                        <li>Only the name is searched.</li>
+                        <li>Only complete strings will be matched , <code class="language-plaintext highlighter-rouge">PINNACLE</code> will not match <code class="language-plaintext highlighter-rouge">PINNACLE@DUXTON</code>.</li>
+                        <li>The order of the keywords does not matter. e.g., <code class="language-plaintext highlighter-rouge">PINNACLE@DUXTON Bishan</code> will match <code class="language-plaintext highlighter-rouge">Bishan PINNACLE@DUXTON</code>.</li>
+                        <li>Properties matching at least one keyword will be returned (i.e., <code class="language-plaintext highlighter-rouge">OR</code> search). e.g., <code class="language-plaintext highlighter-rouge">PINNACLE@DUXTON Bishan</code> will return <code class="language-plaintext highlighter-rouge">PINNACLE@DUXTON</code>, <code class="language-plaintext highlighter-rouge">Bishan 8</code>.</li>
+                    </ul>
+
+                </div>
 
                 <p>Examples:</p>
                 <ul>
@@ -223,39 +728,59 @@
                         <code class="language-plaintext highlighter-rouge">find -p Wall Street</code> returns <code class="language-plaintext highlighter-rouge">Wall Street</code> and <code class="language-plaintext highlighter-rouge">Wall Street Prime</code>
                     </li>
                     <li>
-                        <code class="language-plaintext highlighter-rouge">find -p Pinnacle@Duxton Sesame Street</code> returns <code class="language-plaintext highlighter-rouge">Pinnacle@Duxton</code>, <code class="language-plaintext highlighter-rouge">Sesame Street</code><br>
+                        <code class="language-plaintext highlighter-rouge">find -p Pinnacle@Duxton Bishan</code> returns <code class="language-plaintext highlighter-rouge">Pinnacle@Duxton</code>, <code class="language-plaintext highlighter-rouge">Bishan 8</code><br>
                     </li>
                 </ul>
-
-                <p><a href="#%20(Image%20to%20be%20added%20later)">//</a>: # (  ![result for ‘find alex david’](images/findAlexDavidResult.png))</p>
 
                 <h3 id="deleting-a-property--delete--p">Deleting a property : <code class="language-plaintext highlighter-rouge">delete -p</code>
                 </h3>
 
-                <p>Deletes the specified property from the address book.</p>
+                <p>Deletes the property at the specified INDEX from the property directory.</p>
 
                 <p>Format: <code class="language-plaintext highlighter-rouge">delete -p INDEX</code></p>
 
-                <ul>
-                    <li>Deletes the property at the specified <code class="language-plaintext highlighter-rouge">INDEX</code>.</li>
-                    <li>The index refers to the index number shown in the displayed property list.</li>
-                    <li>The index <strong>must be a positive integer</strong> 1, 2, 3, …​</li>
-                </ul>
+                <div class="alert alert-primary">
+
+                    <p><img class="emoji" title=":bulb:" alt=":bulb:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png" height="20" width="20"> <strong>Tips:</strong></p>
+
+                    <ul>
+                        <li>The <code class="language-plaintext highlighter-rouge">INDEX</code> refers to the index number shown in the currently displayed property directory.</li>
+                        <li>The <code class="language-plaintext highlighter-rouge">INDEX</code> <strong>must be a positive integer</strong> 1, 2, 3, …​</li>
+                    </ul>
+
+                </div>
 
                 <p>Examples:</p>
                 <ul>
                     <li>
-                        <code class="language-plaintext highlighter-rouge">list -p</code> followed by <code class="language-plaintext highlighter-rouge">delete -p 2</code> deletes the 2nd property in the address book.</li>
+                        <code class="language-plaintext highlighter-rouge">list -p</code> followed by <code class="language-plaintext highlighter-rouge">delete -p 2</code> deletes the 2nd property in the property directory (if it exists).</li>
                     <li>
-                        <code class="language-plaintext highlighter-rouge">find -p Wall Street</code> followed by <code class="language-plaintext highlighter-rouge">delete -p 1</code> deletes the 1st property in the results of the <code class="language-plaintext highlighter-rouge">find -p</code> command.</li>
+                        <code class="language-plaintext highlighter-rouge">find -p Wall Street</code> followed by <code class="language-plaintext highlighter-rouge">delete -p 1</code> deletes the first property in the results of the <code class="language-plaintext highlighter-rouge">find -p</code> command (if it exists).</li>
                 </ul>
 
-                <h3 id="filtering-profiles-filter--p">Filtering profiles: <code class="language-plaintext highlighter-rouge">filter -p</code>
+                <h3 id="filtering-properties-by-tags-filter--p">Filtering properties by tags: <code class="language-plaintext highlighter-rouge">filter -p</code>
                 </h3>
 
-                <p>Returns a filtered list of properties that fulfil the filter conditions for tags only.
-                    Format: <code class="language-plaintext highlighter-rouge">filter -p TAG...</code>
-                    Examples:</p>
+                <p>Returns a list of properties whose tags contain any of the given keywords.</p>
+
+                <p>Format: <code class="language-plaintext highlighter-rouge">filter -p TAG [MORE_TAGS]</code></p>
+
+                <div class="alert alert-primary">
+
+                    <p><img class="emoji" title=":bulb:" alt=":bulb:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png" height="20" width="20"> <strong>Tips:</strong></p>
+
+                    <ul>
+                        <li>Arguments provided must be an exact string match for the tag i.e., <code class="language-plaintext highlighter-rouge">high-end</code> instead of <code class="language-plaintext highlighter-rouge">high</code>.
+                            <ul>
+                                <li>Recall that tags associated with each property are singular words.</li>
+                            </ul>
+                        </li>
+                        <li>Arguments are case-insensitive.</li>
+                    </ul>
+
+                </div>
+
+                <p>Examples:</p>
                 <ul>
                     <li>
                         <code class="language-plaintext highlighter-rouge">filter -p high-end</code> returns all properties with the <code class="language-plaintext highlighter-rouge">high-end</code> tag.</li>
@@ -266,167 +791,349 @@
                 <h3 id="filtering-properties-within-price-range-range--p">Filtering properties within price range: <code class="language-plaintext highlighter-rouge">range -p</code>
                 </h3>
 
-                <p>Returns a filtered list of clients that fulfil the filter conditions.
-                    Format: <code class="language-plaintext highlighter-rouge">range -p l/100,000 u/1,000,000</code>
-                    Examples:</p>
-                <ul>
-                    <li>
-                        <code class="language-plaintext highlighter-rouge">range -p l/100,000 u/1,000,000</code> returns all properties within the price range of 100,000 and 1,000,000 inclusive.
-                        Notes:</li>
-                    <li>lower and upper price boundaries only accept integer values (commas acceptable).</li>
-                </ul>
+                <p>Returns a list of properties within a specified price range.</p>
 
-                <h3 id="filter-properties-by-status-status--p">Filter properties by status: <code class="language-plaintext highlighter-rouge">status -p</code>
-                </h3>
+                <p>Format: <code class="language-plaintext highlighter-rouge">range -p l/100,000 u/1,000,000</code></p>
 
-                <p>Returns all the properties with the specified <code class="language-plaintext highlighter-rouge">PropertyStatusEnum</code>
-                    Format: <code class="language-plaintext highlighter-rouge">status -p STATUS</code></p>
+                <div class="alert alert-primary">
+
+                    <p><img class="emoji" title=":bulb:" alt=":bulb:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png" height="20" width="20"> <strong>Tips:</strong></p>
+
+                    <ul>
+                        <li>Lower and upper price boundaries only accept positive integer values (commas in between digits are acceptable).</li>
+                        <li>Lower price boundary (<code class="language-plaintext highlighter-rouge">l/LOWER_BOUND</code>) cannot be higher than upper price boundary (<code class="language-plaintext highlighter-rouge">u/UPPER_BOUND</code>).</li>
+                    </ul>
+
+                </div>
 
                 <p>Examples:</p>
                 <ul>
                     <li>
-                        <code class="language-plaintext highlighter-rouge">status -p AVAILABLE</code> returns all the properties with status of <code class="language-plaintext highlighter-rouge">AVAILABLE</code>
-                    </li>
+                        <code class="language-plaintext highlighter-rouge">range -p l/100,000 u/1,000,000</code> returns all properties within the price range of 100,000 and 1,000,000 inclusive.</li>
+                </ul>
+
+                <h3 id="filtering-properties-by-status-status--p">Filtering properties by status: <code class="language-plaintext highlighter-rouge">status -p</code>
+                </h3>
+
+                <p>Returns all the properties with the specified status.</p>
+
+                <p>Format: <code class="language-plaintext highlighter-rouge">status -p STATUS</code></p>
+
+                <div class="alert alert-primary">
+
+                    <p><img class="emoji" title=":bulb:" alt=":bulb:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png" height="20" width="20"> <strong>Tips:</strong></p>
+
+                    <ul>
+                        <li>Only valid arguments for <code class="language-plaintext highlighter-rouge">STATUS</code> are <code class="language-plaintext highlighter-rouge">AVAILABLE</code>, <code class="language-plaintext highlighter-rouge">PENDING</code> and <code class="language-plaintext highlighter-rouge">SOLD</code> (case-insensitive).</li>
+                        <li>Properties matching at least one keyword will be returned (i.e., <code class="language-plaintext highlighter-rouge">OR</code> search). e.g., <code class="language-plaintext highlighter-rouge">SOLD pending</code> will return properties with <code class="language-plaintext highlighter-rouge">PROPERTY_STATUS</code> of <code class="language-plaintext highlighter-rouge">SOLD</code> or <code class="language-plaintext highlighter-rouge">PENDING</code>.</li>
+                    </ul>
+
+                </div>
+
+                <p>Examples:</p>
+                <ul>
                     <li>
-                        <code class="language-plaintext highlighter-rouge">status -p PENDING</code> returns all the properties with status of <code class="language-plaintext highlighter-rouge">PENDING</code>
-                    </li>
+                        <code class="language-plaintext highlighter-rouge">status -p available</code> returns all the properties with status of <code class="language-plaintext highlighter-rouge">AVAILABLE</code>.</li>
                     <li>
-                        <code class="language-plaintext highlighter-rouge">status -p SOLD</code> returns all the properties with status of <code class="language-plaintext highlighter-rouge">SOLD</code>
-                    </li>
+                        <code class="language-plaintext highlighter-rouge">status -p PENDING</code> returns all the properties with status of <code class="language-plaintext highlighter-rouge">PENDING</code>.</li>
+                    <li>
+                        <code class="language-plaintext highlighter-rouge">status -p SOLD pending</code> returns all the properties with status of <code class="language-plaintext highlighter-rouge">SOLD</code> or <code class="language-plaintext highlighter-rouge">PENDING</code>.</li>
                 </ul>
 
                 <h3 id="filtering-properties-by-type-type--p">Filtering properties by type: <code class="language-plaintext highlighter-rouge">type -p</code>
                 </h3>
 
-                <p>Returns a filtered list of clients that fulfil the filter conditions.
-                    Format: <code class="language-plaintext highlighter-rouge">type -p HDB</code>
-                    Examples:</p>
+                <p>Returns all the properties with the specified type.</p>
+
+                <p>Format: <code class="language-plaintext highlighter-rouge">type -p TYPE</code></p>
+
+                <div class="alert alert-primary">
+
+                    <p><img class="emoji" title=":bulb:" alt=":bulb:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png" height="20" width="20"> <strong>Tips:</strong></p>
+
+                    <ul>
+                        <li>Only valid arguments for <code class="language-plaintext highlighter-rouge">TYPE</code> are <code class="language-plaintext highlighter-rouge">CONDO</code>, <code class="language-plaintext highlighter-rouge">HDB</code> and <code class="language-plaintext highlighter-rouge">LANDED</code> (case-insensitive).</li>
+                        <li>Properties matching at least one keyword will be returned (i.e., <code class="language-plaintext highlighter-rouge">OR</code> search). e.g., <code class="language-plaintext highlighter-rouge">HDB condo</code> will return properties with <code class="language-plaintext highlighter-rouge">PROPERTY_TYPE</code> of <code class="language-plaintext highlighter-rouge">HDB</code> or <code class="language-plaintext highlighter-rouge">CONDO</code>.</li>
+                    </ul>
+
+                </div>
+
+                <p>Examples:</p>
                 <ul>
                     <li>
-                        <code class="language-plaintext highlighter-rouge">type -p HDB condo</code> returns all properties that are HDBs or Condos</li>
+                        <code class="language-plaintext highlighter-rouge">type -p HDB condo</code> returns all properties that are HDBs or Condos.</li>
                 </ul>
 
-                <h3 id="selecing-a-property-select--p-index">Selecing a property: <code class="language-plaintext highlighter-rouge">select -p INDEX</code>
+                <h3 id="selecting-a-property-select--p">Selecting a property: <code class="language-plaintext highlighter-rouge">select -p</code>
                 </h3>
 
-                <p>Selects the specified property in the address book, for its details to be displayed.</p>
+                <p>Returns the property at the specified index while displaying the list of interested clients in the client directory.</p>
 
                 <p>Format: <code class="language-plaintext highlighter-rouge">select -p INDEX</code></p>
 
+                <div class="alert alert-primary">
+
+                    <p><img class="emoji" title=":bulb:" alt=":bulb:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png" height="20" width="20"> <strong>Tips:</strong></p>
+
+                    <ul>
+                        <li>Selects the property at the specified <code class="language-plaintext highlighter-rouge">INDEX</code>.</li>
+                        <li>The <code class="language-plaintext highlighter-rouge">INDEX</code> refers to the index number shown in the currently displayed property directory.</li>
+                        <li>The <code class="language-plaintext highlighter-rouge">INDEX</code> <strong>must be a positive integer</strong> 1, 2, 3, …</li>
+                        <li>The GUI changes to display only the selected property in the property directory, while clients interested in that property are shown in the client directory.</li>
+                    </ul>
+
+                </div>
+
+                <p>Examples:</p>
                 <ul>
-                    <li>Selects the property at the specified <code class="language-plaintext highlighter-rouge">INDEX</code>.</li>
-                    <li>The index refers to the index number shown in the displayed property list.</li>
-                    <li>The index <strong>must be a positive integer</strong> 1, 2, 3, …​</li>
-                    <li>The GUI changes to display just the selected property in the property directory,
-                        while clients interested in that property are shown in the client directory.</li>
+                    <li>
+                        <code class="language-plaintext highlighter-rouge">select -p 5</code> returns the fifth property in the property directory, alongside the list of interested clients in the client directory.</li>
                 </ul>
 
-                <h3 id="clearing-all-entries--clear">Clearing all entries : <code class="language-plaintext highlighter-rouge">clear</code>
+                <h3 id="clearing-all-entries--clear--p">Clearing all entries : <code class="language-plaintext highlighter-rouge">clear -p</code>
                 </h3>
 
                 <p>Clears all properties from the property directory.</p>
 
                 <p>Format: <code class="language-plaintext highlighter-rouge">clear -p</code></p>
 
-                <h3 id="saving-the-data">Saving the data</h3>
-
-                <p>Property directory and Client directory data are saved in the hard disk automatically after any command that changes
-                    the data. There is no need to save manually.</p>
-
-                <h3 id="editing-the-data-file">Editing the data file</h3>
-
-                <p>Property directory data are saved as a JSON file <code class="language-plaintext highlighter-rouge">[JAR file location]/data/propertyDirectory.json</code>.
-                    Client directory data are saved as a JSON file <code class="language-plaintext highlighter-rouge">[JAR file location]/data/clientDirectory.json</code>.
-                    Uploaded images are saved in <code class="language-plaintext highlighter-rouge">[JAR file location]/data/images</code>.
-                    Advanced users are welcome to update data directly by editing that data file.</p>
-
-                <div class="alert alert-warning">
-                    <img class="emoji" title=":exclamation:" alt=":exclamation:" src="https://github.githubassets.com/images/icons/emoji/unicode/2757.png" height="20" width="20"> <strong>Caution:</strong>
-                    If your changes to the data file makes its format invalid, both the Property directory and Client directory will discard all data and start with an empty data file at the next run.
-                </div>
-
-                <h2 id="client-directory-features">Client Directory Features</h2>
+                <h2 id="client-directory-features"><strong>Client Directory Features</strong></h2>
 
                 <h3 id="adding-a-client-profile-add--c">Adding a client profile: <code class="language-plaintext highlighter-rouge">add -c</code>
                 </h3>
 
-                <p>Adds a client profile to the client directory.
-                    Format: <code class="language-plaintext highlighter-rouge">add -c n/NAME a/ADDRESS [t/TAG]...</code>
-                    Tips:</p>
+                <p>Adds a client profile to the client directory.</p>
+
+                <p>Format: <code class="language-plaintext highlighter-rouge">add -c n/NAME a/ADDRESS [-i] [t/TAG]… [ip/INTERESTED_PROPERTIES]…​</code></p>
+
+                <p>Prefix required for all arguments</p>
+
+                <p>Mandatory arguments:</p>
                 <ul>
-                    <li>At least one of the optional fields must be provided.
-                        Examples:</li>
-                    <li><code class="language-plaintext highlighter-rouge">add -c n/Bob a/Cinammon College</code></li>
+                    <li><code class="language-plaintext highlighter-rouge">n/NAME</code></li>
+                    <li><code class="language-plaintext highlighter-rouge">a/ADDRESS</code></li>
                 </ul>
 
-                <h3 id="editing-a-client-profile-edit--c">Editing a client profile: <code class="language-plaintext highlighter-rouge">edit -c</code>
-                </h3>
-
-                <p>Edits a client profile already existing in the client directory.
-                    Format: <code class="language-plaintext highlighter-rouge">edit -c INDEX [n/NAME] [a/ADDRESS] [t/TAG]...</code>
-                    Tips:</p>
+                <p>Optional arguments:</p>
                 <ul>
-                    <li>Edits the client profile at the specified INDEX. The index refers to the index numebr shown
-                        in the displayed person list. The index must be a positive integer 1, 2, 3, …</li>
-                    <li>At least one of the optional fields must be provided.</li>
-                    <li>Existing values will be updated to the input values.</li>
-                    <li>When editing tags, the existing tags of the listing will be removed i.e. adding of tags is not cumulative.</li>
-                    <li>You can remove all the listing’s tags b
-                        Examples:</li>
-                    <li><code class="language-plaintext highlighter-rouge">edit -c 5 n/Bob a/RC4 t/thrifty</code></li>
+                    <li><code class="language-plaintext highlighter-rouge">t/TAG</code></li>
+                    <li>
+                        <code class="language-plaintext highlighter-rouge">-i</code> [IMAGE]</li>
+                    <li><code class="language-plaintext highlighter-rouge">ip/INTERESTED_PROPERTIES</code></li>
+                </ul>
+
+                <div class="alert alert-primary">
+
+                    <p><img class="emoji" title=":bulb:" alt=":bulb:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png" height="20" width="20"> <strong>Tips:</strong></p>
+
+                    <ul>
+                        <li>A client can have any number of tags (including 0)<br>
+                        </li>
+                        <li>A client can have any number of interested clients (including 0)<br>
+                            <ul>
+                                <li>Adding interested properties to a client does not add the new client as an interested client for those properties.</li>
+                                <li>User should manually add the new client as an interested client of those properties (using <code class="language-plaintext highlighter-rouge">ic/</code> prefix under <code class="language-plaintext highlighter-rouge">add -p</code> command).</li>
+                            </ul>
+                        </li>
+                        <li>The <code class="language-plaintext highlighter-rouge">ip/INTERESTED_PROPERTY</code> flag allows users to specify which properties the client is interested in.
+                            <ul>
+                                <li>The <code class="language-plaintext highlighter-rouge">INTERESTED_PROPERTY</code> argument should be a case-sensitive substring of the Properties’s name.<br>
+                                </li>
+                                <li>If more than 1 property matches the substring, an error message will be shown. Users should then use a more specific search, or input the Property’s exact name (case-sensitive).</li>
+                                <li>If no properties matches the search, an error message will be shown.</li>
+                            </ul>
+                        </li>
+                        <li>The <code class="language-plaintext highlighter-rouge">-i</code> flag allows the user to upload images of the client. A file chooser dialog will appear after running the command.<br>
+                        </li>
+                    </ul>
+
+                    <p><img src="/tp/images/fileChooser.png" alt="file_chooser"></p>
+
+                </div>
+
+                <p>Examples:</p>
+                <ul>
+                    <li><code class="language-plaintext highlighter-rouge">add -c n/James a/123, Clementi Rd, 1234665 t/Friend t/Colleague ip/PINNACLE@DUXTON</code></li>
                 </ul>
 
                 <h3 id="listing-all-client-profiles-list--c">Listing all client profiles: <code class="language-plaintext highlighter-rouge">list -c</code>
                 </h3>
 
-                <p>Lists all client profiles currently stored in the client directory.
-                    Format: <code class="language-plaintext highlighter-rouge">list -c</code></p>
+                <p>Lists all client profiles currently stored in the client directory.</p>
 
-                <h3 id="filtering-client-profiles-filter--c">Filtering client profiles: <code class="language-plaintext highlighter-rouge">filter -c</code>
+                <p>Format: <code class="language-plaintext highlighter-rouge">list -c</code></p>
+
+                <h3 id="editing-a-client-profile-edit--c">Editing a client profile: <code class="language-plaintext highlighter-rouge">edit -c</code>
                 </h3>
 
-                <p>Returns a filtered list of clients according to specified tags.
-                    Format: <code class="language-plaintext highlighter-rouge">filter -c TAG...</code>
-                    Examples:</p>
+                <p>Edits an existing client profile in the client directory.</p>
+
+                <p>Format: <code class="language-plaintext highlighter-rouge">edit -c INDEX [n/NAME] [a/ADDRESS] [-i] [ip/INTERESTED_PROPERTIES]…​ [t/TAG]…​</code></p>
+
+                <p>Prefix required for all arguments except <code class="language-plaintext highlighter-rouge">INDEX</code>.</p>
+
+                <p>Mandatory arguments:</p>
                 <ul>
-                    <li><code class="language-plaintext highlighter-rouge">filter -c high-end</code></li>
-                    <li><code class="language-plaintext highlighter-rouge">filter -c thrifty</code></li>
+                    <li><code class="language-plaintext highlighter-rouge">INDEX</code></li>
                 </ul>
 
-                <h3 id="deleting-a-client-profile-delete--c-index">Deleting a client profile: <code class="language-plaintext highlighter-rouge">delete -c INDEX</code>
-                </h3>
-
-                <p>Deletes the unique client profile at the specified INDEX.
-                    Format: <code class="language-plaintext highlighter-rouge">delete -c INDEX</code>
-                    Tips:</p>
+                <p>Optional arguments:</p>
                 <ul>
-                    <li>The INDEX must be a positive integer 1, 2, 3…
-                        Examples:</li>
+                    <li><code class="language-plaintext highlighter-rouge">n/NAME</code></li>
+                    <li><code class="language-plaintext highlighter-rouge">a/ADDRESS</code></li>
+                    <li><code class="language-plaintext highlighter-rouge">t/TAG</code></li>
                     <li>
-                        <code class="language-plaintext highlighter-rouge">list -c</code> followed by <code class="language-plaintext highlighter-rouge">delete 2</code> deletes the second client in the address book</li>
-                    <li>
-                        <code class="language-plaintext highlighter-rouge">filter -c high-end</code> followed by <code class="language-plaintext highlighter-rouge">delete 1</code> deletes the first client in the results of the
-                        <code class="language-plaintext highlighter-rouge">filter -c</code> command</li>
+                        <code class="language-plaintext highlighter-rouge">-i</code> [IMAGE]</li>
+                    <li><code class="language-plaintext highlighter-rouge">ip/INTERESTED_PROPERTIES</code></li>
                 </ul>
 
-                <h3 id="selecting-a-client-profile-select--pc-index">Selecting a client profile: <code class="language-plaintext highlighter-rouge">select -pc INDEX</code>
+                <div class="alert alert-primary">
+
+                    <p><img class="emoji" title=":bulb:" alt=":bulb:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png" height="20" width="20"> <strong>Tips:</strong></p>
+
+                    <ul>
+                        <li>Edits the client profile at the specified <code class="language-plaintext highlighter-rouge">INDEX</code>.
+                            <ul>
+                                <li>The <code class="language-plaintext highlighter-rouge">INDEX</code> refers to the index number shown in the currently displayed client directory.</li>
+                                <li>The <code class="language-plaintext highlighter-rouge">INDEX</code> must be within the range of numbers in the currently displayed client directory, or else an error message will show up.</li>
+                                <li>The <code class="language-plaintext highlighter-rouge">INDEX</code> <strong>must be a positive integer</strong> 1, 2, 3, …​, or else an error message will show up.</li>
+                            </ul>
+                        </li>
+                        <li>At least one of the optional fields must be provided, or else an error message will show up.</li>
+                        <li>Existing values will be updated according to the arguments provided.</li>
+                        <li>You can remove all the client’s tags by typing <code class="language-plaintext highlighter-rouge">t/</code> without specifying any tags after it.</li>
+                        <li>Properties the client is interested in will be added cumulatively, the <code class="language-plaintext highlighter-rouge">ip/INTERESTED_PROPERTY</code> flag will not remove previously added interested properties.
+                            <ul>
+                                <li>Users who wish to remove a client’s interest in a property can either <code class="language-plaintext highlighter-rouge">undo</code> the command, or remove the client from the property’s interested client list with the <code class="language-plaintext highlighter-rouge">edit -p</code> command.</li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+
+                <p>Examples:</p>
+                <ul>
+                    <li><code class="language-plaintext highlighter-rouge">edit -c 2 n/James a/SG, Cantonment Rd, #1G, 085301</code></li>
+                    <li><code class="language-plaintext highlighter-rouge">edit -c 1 t/Friend t/Colleague</code></li>
+                </ul>
+
+                <h3 id="locating-client-profiles-by-name-find--c">Locating client profiles by name: <code class="language-plaintext highlighter-rouge">find -c</code>
                 </h3>
 
-                <p>Selects the specified client in the address book, for its details to be displayed.</p>
+                <p>Finds clients whose names contain any of the given keywords.</p>
+
+                <p>Format: <code class="language-plaintext highlighter-rouge">find -c NAME [MORE_NAMES]</code></p>
+
+                <div class="alert alert-primary">
+
+                    <p><img class="emoji" title=":bulb:" alt=":bulb:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png" height="20" width="20"> <strong>Tips:</strong></p>
+
+                    <ul>
+                        <li>The search is case-insensitive. e.g., <code class="language-plaintext highlighter-rouge">janice</code> will match <code class="language-plaintext highlighter-rouge">Janice</code>.</li>
+                        <li>Only the name is searched.</li>
+                        <li>The order of the keywords does not matter. e.g., <code class="language-plaintext highlighter-rouge">Tan Sean</code> will match <code class="language-plaintext highlighter-rouge">Sean Tan</code>.</li>
+                        <li>Only complete strings will be matched e.g., <code class="language-plaintext highlighter-rouge">Sam</code> will not match <code class="language-plaintext highlighter-rouge">Samuel</code>.</li>
+                        <li>Client profiles matching at least one keyword will be returned (i.e., <code class="language-plaintext highlighter-rouge">OR</code> search). e.g., <code class="language-plaintext highlighter-rouge">Sean Lee</code> will return <code class="language-plaintext highlighter-rouge">Sean Tan</code>, <code class="language-plaintext highlighter-rouge">Bob Lee</code>.</li>
+                    </ul>
+
+                </div>
+
+                <p>Examples:</p>
+                <ul>
+                    <li>
+                        <code class="language-plaintext highlighter-rouge">find -c Janice</code> returns <code class="language-plaintext highlighter-rouge">Janice Tan</code> and <code class="language-plaintext highlighter-rouge">Janice Ong</code>
+                    </li>
+                    <li>
+                        <code class="language-plaintext highlighter-rouge">find -c Dustin Chan</code> returns <code class="language-plaintext highlighter-rouge">Dustin Ong</code>, <code class="language-plaintext highlighter-rouge">Jane Chan</code><br>
+                    </li>
+                </ul>
+
+                <h3 id="deleting-a-client-profile-delete--c">Deleting a client profile: <code class="language-plaintext highlighter-rouge">delete -c</code>
+                </h3>
+
+                <p>Deletes the client profile at the specified INDEX from the client directory.</p>
+
+                <p>Format: <code class="language-plaintext highlighter-rouge">delete -c INDEX</code></p>
+
+                <div class="alert alert-primary">
+
+                    <p><img class="emoji" title=":bulb:" alt=":bulb:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png" height="20" width="20"> <strong>Tips:</strong></p>
+
+                    <ul>
+                        <li>The <code class="language-plaintext highlighter-rouge">INDEX</code> refers to the index number shown in the currently displayed client directory.</li>
+                        <li>The <code class="language-plaintext highlighter-rouge">INDEX</code> must be a positive integer 1, 2, 3…</li>
+                    </ul>
+
+                </div>
+
+                <p>Examples:</p>
+                <ul>
+                    <li>
+                        <code class="language-plaintext highlighter-rouge">list -c</code> followed by <code class="language-plaintext highlighter-rouge">delete 2</code> deletes the second client in the client directory.</li>
+                    <li>
+                        <code class="language-plaintext highlighter-rouge">filter -c high-end</code> followed by <code class="language-plaintext highlighter-rouge">delete 1</code> deletes the first client in the results of the <code class="language-plaintext highlighter-rouge">filter -c</code> command</li>
+                </ul>
+
+                <h3 id="filtering-client-profiles-by-tags-filter--c">Filtering client profiles by tags: <code class="language-plaintext highlighter-rouge">filter -c</code>
+                </h3>
+
+                <p>Returns a list of client profiles whose tags contain any of the given keywords.</p>
+
+                <p>Format: <code class="language-plaintext highlighter-rouge">filter -c TAG [MORE_TAGS]</code></p>
+
+                <div class="alert alert-primary">
+
+                    <p><img class="emoji" title=":bulb:" alt=":bulb:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png" height="20" width="20"> <strong>Tips:</strong></p>
+
+                    <ul>
+                        <li>Arguments provided must be an exact string match for the tag i.e., ‘best-friend’ instead of ‘friend’.
+                            <ul>
+                                <li>Recall that tags associated with each client are singular words.</li>
+                            </ul>
+                        </li>
+                        <li>Arguments are case-insensitive.</li>
+                    </ul>
+
+                </div>
+
+                <p>Examples:</p>
+                <ul>
+                    <li>
+                        <code class="language-plaintext highlighter-rouge">filter -c best-friend</code> returns all client profiles with the <code class="language-plaintext highlighter-rouge">Best-friend</code> tag.</li>
+                    <li>
+                        <code class="language-plaintext highlighter-rouge">filter -c thrifty</code> returns all client profiles with the <code class="language-plaintext highlighter-rouge">Thrifty</code> tag.</li>
+                </ul>
+
+                <h3 id="selecting-a-client-profile-select--c">Selecting a client profile: <code class="language-plaintext highlighter-rouge">select -c</code>
+                </h3>
+
+                <p>Selects the specified client profile in the client directory for its details to be displayed.</p>
 
                 <p>Format: <code class="language-plaintext highlighter-rouge">select -c INDEX</code></p>
 
-                <ul>
-                    <li>Selects the client at the specified <code class="language-plaintext highlighter-rouge">INDEX</code>.</li>
-                    <li>The index refers to the index number shown in the displayed client list.</li>
-                    <li>The index <strong>must be a positive integer</strong> 1, 2, 3, …​</li>
-                    <li>The GUI changes to display just the selected client in the client directory,
-                        while properties the client is interested in are shown in the property directory.</li>
-                </ul>
+                <div class="alert alert-primary">
+
+                    <p><img class="emoji" title=":bulb:" alt=":bulb:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png" height="20" width="20"> <strong>Tips:</strong></p>
+
+                    <ul>
+                        <li>Selects the client at the specified <code class="language-plaintext highlighter-rouge">INDEX</code>.</li>
+                        <li>The <code class="language-plaintext highlighter-rouge">INDEX</code> refers to the index number shown in the currently displayed client directory.</li>
+                        <li>The <code class="language-plaintext highlighter-rouge">INDEX</code> <strong>must be a positive integer</strong> 1, 2, 3, …</li>
+                        <li>The GUI changes to display just the selected client in the client directory, while properties the client is interested in are shown in the property directory.</li>
+                    </ul>
+
+                </div>
+
+                <h3 id="clearing-all-entries--clear--c">Clearing all entries : <code class="language-plaintext highlighter-rouge">clear -c</code>
+                </h3>
+
+                <p>Clears all clients from the client directory.</p>
+
+                <p>Format: <code class="language-plaintext highlighter-rouge">clear -c</code></p>
 
                 <hr>
 
-                <h2 id="faq">FAQ</h2>
+                <h2 id="faq"><strong>FAQ</strong></h2>
 
                 <p><strong>Q</strong>: How do I transfer my data to another Computer?<br>
                     <strong>A</strong>: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
@@ -434,7 +1141,7 @@
 
                 <hr>
 
-                <h2 id="command-summary">Command summary</h2>
+                <h2 id="command-summary"><strong>Command summary</strong></h2>
 
                 <p><strong>Property Directory</strong></p>
 
@@ -442,67 +1149,75 @@
                     <thead>
                     <tr>
                         <th>Action</th>
-                        <th>Format, Examples</th>
+                        <th>Format</th>
+                        <th>Examples</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td><strong>Add -p</strong></td>
+                        <td><code class="language-plaintext highlighter-rouge">add -p</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">add -p n/NAME a/ADDRESS p/PRICE h/PROPERTY_TYPE [-i] [s/PROPERTY_STATUS] [ic/INTERESTED_CLIENTS]…​ [t/TAG]…​</code></td>
                         <td>
-                            <code class="language-plaintext highlighter-rouge">add -p n/NAME a/ADDRESS p/PRICE h/PROPERTY_TYPE [-i] [t/TAG]…​</code> <br> e.g., <code class="language-plaintext highlighter-rouge">add -p n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301 t/luxury</code>
+                            <code class="language-plaintext highlighter-rouge">add -p n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301 p/1,000,000 h/HDB t/Luxury</code><br> <code class="language-plaintext highlighter-rouge">add -p n/KAMPUNG@ADMIRALTY a/676 Woodlands Drive 71, Singapore 730676 p/800,000 h/HDB t/Neighbourhood t/Elderly ic/James s/AVAILABLE</code>
                         </td>
                     </tr>
                     <tr>
-                        <td><strong>Clear -p</strong></td>
-                        <td><code class="language-plaintext highlighter-rouge">clear -p</code></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Delete -p</strong></td>
-                        <td>
-                            <code class="language-plaintext highlighter-rouge">delete -p INDEX</code><br> e.g., <code class="language-plaintext highlighter-rouge">delete -p 3</code>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>Edit -p</strong></td>
-                        <td>
-                            <code class="language-plaintext highlighter-rouge">edit INDEX [n/NAME] [a/ADDRESS] [h/PROPERTY_TYPE] [t/TAG]…​</code><br> e.g.,<code class="language-plaintext highlighter-rouge">edit -p 2 n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301 t/luxury</code>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>Filter -p</strong></td>
-                        <td>
-                            <code class="language-plaintext highlighter-rouge">filter -p TAG [MORE_TAGS]</code><br> e.g., <code class="language-plaintext highlighter-rouge">filter -p high-end thrifty</code>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>Find -p</strong></td>
-                        <td>
-                            <code class="language-plaintext highlighter-rouge">find -p NAME [MORE_NAMES]</code><br> e.g., <code class="language-plaintext highlighter-rouge">find -p PINNACLE@DUXTON BISHAN</code>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>Range -p</strong></td>
-                        <td>
-                            <code class="language-plaintext highlighter-rouge">range -p l/LOWER_BOUND u/UPPER_BOUND</code><br> e.g., <code class="language-plaintext highlighter-rouge">range -p l/1,000,000 u/3,000,000</code>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>List -p</strong></td>
                         <td><code class="language-plaintext highlighter-rouge">list -p</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">list -p</code></td>
+                        <td>NIL</td>
                     </tr>
                     <tr>
-                        <td><strong>Select -p</strong></td>
+                        <td><code class="language-plaintext highlighter-rouge">edit -p</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">edit -p INDEX [n/NAME] [a/ADDRESS] [p/PRICE] [h/PROPERTY_TYPE] [s/PROPERTY_STATUS] [ic/INTERESTED_CLIENTS]…​ [t/TAG]…​</code></td>
                         <td>
-                            <code class="language-plaintext highlighter-rouge">select -p INDEX</code> <br> e.g., <code class="language-plaintext highlighter-rouge">select -p 2</code>
+                            <code class="language-plaintext highlighter-rouge">edit -p 2 n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301</code><br><code class="language-plaintext highlighter-rouge">edit -p 1 t/high-end t/luxury</code>
                         </td>
                     </tr>
                     <tr>
-                        <td><strong>Status -p</strong></td>
-                        <td><code class="language-plaintext highlighter-rouge">status -p</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">find -p</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">find -p NAME [MORE_NAMES]</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">find -p PINNACLE@DUXTON BISHAN</code></td>
                     </tr>
                     <tr>
-                        <td><strong>Type -p</strong></td>
+                        <td><code class="language-plaintext highlighter-rouge">delete -p</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">delete -p INDEX</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">delete -p 3</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">filter -p</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">filter -p TAG [MORE_TAGS]</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">filter -p high-end luxury </code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">range -p</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">range -p l/LOWER_BOUND u/UPPER_BOUND</code></td>
+                        <td>
+                            <code class="language-plaintext highlighter-rouge">range -p l/1,000,000 u/3,000,000</code><br><code class="language-plaintext highlighter-rouge">range -p l/1000000 u/3000000</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">clear -p</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">clear -p</code></td>
+                        <td>NIL</td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">select -p</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">select -p INDEX</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">select -p 2</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">status -p</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">status -p PROPERTY_STATUS</code></td>
+                        <td>
+                            <code class="language-plaintext highlighter-rouge">status -p AVAILABLE</code><br><code class="language-plaintext highlighter-rouge">status -p SOLD</code>
+                        </td>
+                    </tr>
+                    <tr>
                         <td><code class="language-plaintext highlighter-rouge">type -p</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">type -p PROPERTY_TYPE</code></td>
+                        <td>
+                            <code class="language-plaintext highlighter-rouge">type -p HDB</code><br><code class="language-plaintext highlighter-rouge">type -p condo</code>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
@@ -513,53 +1228,52 @@
                     <thead>
                     <tr>
                         <th>Action</th>
-                        <th>Format, Examples</th>
+                        <th>Format</th>
+                        <th>Examples</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td><strong>Add -c</strong></td>
-                        <td>
-                            <code class="language-plaintext highlighter-rouge">add n/NAME a/ADDRESS [-i] [t/TAG]…​</code> <br> e.g., <code class="language-plaintext highlighter-rouge">add n/James a/123, Clementi Rd, 1234665 t/friend t/colleague</code>
-                        </td>
+                        <td><code class="language-plaintext highlighter-rouge">add -c</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">add n/NAME a/ADDRESS [-i] [t/TAG]…​ [ip/INTERESTED_PROPERTIES]…​</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">add -c n/James a/123, Clementi Rd, 1234665 t/friend t/colleague ip/PINNACLE@DUXTON</code></td>
                     </tr>
                     <tr>
-                        <td><strong>Clear -c</strong></td>
                         <td><code class="language-plaintext highlighter-rouge">clear -c</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">clear -c</code></td>
+                        <td>NIL</td>
                     </tr>
                     <tr>
-                        <td><strong>Delete -c</strong></td>
+                        <td><code class="language-plaintext highlighter-rouge">delete -c</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">delete -c INDEX</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">delete -c 3</code></td>
+                    </tr>
+                    <tr>
+                        <td><code class="language-plaintext highlighter-rouge">edit -c</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">edit -c INDEX [n/NAME] [a/ADDRESS] [ip/INTERESTED_PROPERTIES]…​ [t/TAG]…​</code></td>
                         <td>
-                            <code class="language-plaintext highlighter-rouge">delete -c INDEX</code><br> e.g., <code class="language-plaintext highlighter-rouge">delete -c 3</code>
+                            <code class="language-plaintext highlighter-rouge">edit -c 2 n/James Lee a/SG, Cantonment Rd, #1G, 085301</code><br><code class="language-plaintext highlighter-rouge">edit -c 1 t/friend t/colleague</code>
                         </td>
                     </tr>
                     <tr>
-                        <td><strong>Edit -c</strong></td>
-                        <td>
-                            <code class="language-plaintext highlighter-rouge">edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​</code><br> e.g.,<code class="language-plaintext highlighter-rouge">edit 2 n/James Lee a/SG, Cantonment Rd, #1G, 085301</code>
-                        </td>
+                        <td><code class="language-plaintext highlighter-rouge">filter -c</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">filter -c TAG [MORE_TAGS]</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">filter -c friend colleague</code></td>
                     </tr>
                     <tr>
-                        <td><strong>Filter -c</strong></td>
-                        <td>
-                            <code class="language-plaintext highlighter-rouge">filter -c TAG [MORE_TAGS]</code><br> e.g., <code class="language-plaintext highlighter-rouge">filter -c friend colleague</code>
-                        </td>
+                        <td><code class="language-plaintext highlighter-rouge">find -c</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">find -c NAME [MORE_NAMES]</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">find -c James Jake</code></td>
                     </tr>
                     <tr>
-                        <td><strong>Find -c</strong></td>
-                        <td>
-                            <code class="language-plaintext highlighter-rouge">find -c NAME [MORE_NAMES]</code><br> e.g., <code class="language-plaintext highlighter-rouge">find -c James Jake</code>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td><strong>List -c</strong></td>
                         <td><code class="language-plaintext highlighter-rouge">list -c</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">list -c</code></td>
+                        <td>NIL</td>
                     </tr>
                     <tr>
-                        <td><strong>Select -c</strong></td>
-                        <td>
-                            <code class="language-plaintext highlighter-rouge">select -c INDEX</code> <br> e.g., <code class="language-plaintext highlighter-rouge">select -p 1</code>
-                        </td>
+                        <td><code class="language-plaintext highlighter-rouge">select -c</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">select -c INDEX</code></td>
+                        <td><code class="language-plaintext highlighter-rouge">select -c 1</code></td>
                     </tr>
                     </tbody>
                 </table>
@@ -580,9 +1294,16 @@
                         <td><strong>Undo</strong></td>
                         <td><code class="language-plaintext highlighter-rouge">undo</code></td>
                     </tr>
+                    <tr>
+                        <td><strong>Navigate previous command</strong></td>
+                        <td>↑</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Navigate following command</strong></td>
+                        <td>↓</td>
+                    </tr>
                     </tbody>
                 </table>
-
 
             </div>
 
