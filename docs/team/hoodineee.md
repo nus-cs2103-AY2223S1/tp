@@ -1,5 +1,6 @@
 ---
-layout: page title: Gregg's Project Portfolio Page
+layout: page
+title: Gregg's Project Portfolio Page
 ---
 
 ### Project: Watson, The Teacher's Companion
