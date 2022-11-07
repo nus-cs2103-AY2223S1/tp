@@ -16,7 +16,7 @@ easy comprehension of expenditure and savings.
 _Interested?_ Head over to [Quick Start](#quick-start) to get started. Enjoy!
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
-Already done with the set-up? Jump right straight to the [features](#features) section to see what features are available!
+Already done with the set-up? Jump straight to the [features](#features) section to see what features are available!
 </div>
 
 # Table of Contents
@@ -64,6 +64,8 @@ Already done with the set-up? Jump right straight to the [features](#features) s
 
 <!-- TOC -->
 
+---
+
 ## Purpose of Guide
 
 This guide aims to teach those new to PennyWise how to navigate and utilise the application. It also acts as 
@@ -99,6 +101,8 @@ Danger zone! Do pay attention to the information here carefully.
     <a href="#top">Back to Top </a>
 </p>
 
+---
+
 ## Quick Start
 
 If you are unfamiliar with using command prompt, head to
@@ -120,7 +124,7 @@ this [link](https://www.freecodecamp.org/news/command-line-for-beginners/) to le
 
    ![Ui](images/Ui.png)
 5. Type the command in the [command box](#familiarising-yourself-with-the-interface) and press Enter to execute it. e.g.
-   typing **`help`** and pressing Enter will open the help window.<br>
+   typing [**`help`**](#command-summary-table) and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     - **`add`**`t/i d/Tution Teaching a/45.00 da/13-10-2022 c/Salary`: Adds an income entry with the
@@ -215,6 +219,8 @@ you still see the most important information about your budgeting. If details of
 
 </div>
 
+---
+
 ## Understanding the command formats
 
 All commands follow this format except: [`delete`](#deleting-entries),
@@ -253,7 +259,8 @@ step-by-step!
 
 - PennyWise will **IGNORE** any extra words or characters present after the following commands:
 
- `summary` (except [`summary [mo/MONTH]`](#summary-of-entries)) `help`, `clear` and `exit`.
+ [`summary`](#summary-of-entries) (except [`summary [mo/MONTH]`](#summary-of-all-entries-in-the-specified-month)),
+ [`help`](#command-summary-table), [`clear`](#clearing-all-entries) and [`exit`](#exiting-the-program).
   e.g. `summary abcdefg` will be interpreted as `summary` and `help 123456` will also be interpreted as `help`.
 
 - Words in `UPPER_CASE` are the parameters that you must supply<br>
@@ -335,7 +342,7 @@ Descriptions are case-insensitive as well! PennyWise will interpret `Teh Beng` a
     <a href="#top">Back to Top </a>
 </p>
 
-
+---
 
 ## Features
 
