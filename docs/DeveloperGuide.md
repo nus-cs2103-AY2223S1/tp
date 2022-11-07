@@ -834,9 +834,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file [here]() and copy into an empty folder
 
-   1. Double-click the jar file. Expected: Shows the _GUI_ with a set of sample contacts. The window size may not be optimum.
+   1. For ***macOS*** system:
+       * Open terminal and navigate to the folder where the jar file is located at.
+       * Type in the command `java -jar TrackAScholar.jar` to launch TrackAScholar. <br>
+      
+      For ***windows*** system:
+       * Double-click the jar file and launch TrackAScholar.
+      
+      Expected: Shows the _GUI_ with a set of sample applicants. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -844,8 +851,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 [Return to top](#table-of-contents)
 
@@ -1007,7 +1012,7 @@ testers are expected to do more *exploratory* testing.
       Email: MuhammadAli@gmail.com
       Phone Number: 87788807
       ```
-      ,second applicant named `Muhammad Ali Jinnah` with the following characteristics:
+      second applicant named `Muhammad Ali Jinnah` with the following characteristics:
       ```
       Name: Muhammad Ali Jinnah
       Major(s): Geography
@@ -1194,8 +1199,8 @@ our commitment to improving the features and testability of TrackAScholar and im
   late or difficult to fix such bugs.
   * Moreover, we also took turns testing each other's features at various milestones, 
   thus allowing us to identify and amend bugs much earlier.
-  * After PED, my team start rectifying and filtering the respective bugs immediately,
-  thus mitigating the number of bugs in TrackAScholar.
+  * After PED, my team start rectifying and filtering the respective bugs into its respective severity immediately,
+  thus mitigating the number of bugs in TrackAScholar for future releases.
 
 * Maintaining high code quality and standards
   * By following the large amount of abstraction possessed by AB3, we aim to minimise duplicability of code in TrackAScholar 
