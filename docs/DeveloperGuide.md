@@ -259,7 +259,7 @@ Additionally, it will also contain these fields:
 #### Implementation
 
 The edit student mechanism is facilitated by `EditStuCommand`, `EditStuCommandParser` and `EditStudentDescriptor` 
-classes. The `EditStuCommandParser` is in charge of parsing the user's input which then creates a 
+classes. The `EditStuCommandParser` is in charge of parsing the user's input which then creates a
 `EditStudentDescriptor` and returns a `EditStuCommand`. When the `EditStuCommand` is executed, it modifies the student
 at the index provided by the user.
 
