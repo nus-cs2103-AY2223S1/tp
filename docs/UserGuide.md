@@ -386,7 +386,8 @@ You can view the constraints for each parameter in the [Parameter constraints](#
 
 :information_source: **Notes:**
 * You cannot add duplicate patients.
-* Patients with the exact same name, phone, email, and address are considered duplicates; otherwise, they are considered distinct.
+* Patients are considered duplicates only when they have the exact same `NAME`, `PHONE`, `EMAIL`, and `ADDRESS`.
+* Patients' details are case-sensitive e.g. `John` is distinct from `john`.
 
 </div>
 
@@ -614,14 +615,16 @@ Format: **`add`** `-p PATIENT_INDEX d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL
 :information_source: **Notes:**
 
 * `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in [Task parameters](#patient-parameter-constraints).
-* If `TIME` is omitted, the task will be created with a default time of `0000` hours.
-* `If `DATE TIME` is omitted, the task will be created with a date and time 24 hours from the moment of creation.
-* If the patient already contains tasks on `24-10-22` and `27-10-22`, the new task will be the 2nd task for the patient after the one on `24-10-22`.
-* If `INTERVAL TIME_PERIOD` is omitted, then the task created will be a non-recurring task, i.e. one off task.
+* If `DATE TIME` is omitted, the task will be created with a date and time 24 hours from the moment of creation.
+* If `DATE` is specified but `TIME` is omitted, the task will be created with a default time of `0000` hours.
+* If `INTERVAL TIME_PERIOD` is omitted, then the task created will be a non-recurring task, i.e. one-off task.
 * Note that tasks are automatically sorted in chronological order upon being added. <br> 
-  e.g. If the patient already contains tasks on `24-10-22` and `27-10-22`, the new task will be the 2nd task for the patient after the one on `24-10-22`.
-* If the day portion of the date exceeds the last day of that calendar month, it would default to the last day of the month. <br>
-  e.g. `31-4-22` will be automatically converted to `30-4-22` or `30-2-20` will be converted to `29-2-20` since 2020 is a leap year.
+  e.g. if the patient already has tasks on `24-10-22`, and a new task on `27-10-22` is created, then the new task will be the 2nd task for the patient after the one on `24-10-22`.
+* If the day portion of the date exceeded the last day of that calendar month, but is between 1 and 31, it would default to the last day of the month. <br>
+  e.g. `31-4-22` will be automatically converted to `30-4-22`, and `30-2-20` will be converted to `29-2-20` (since 2020 is a leap year).
+* Overdue recurring tasks will automatically add corresponding new recurring tasks based on their frequency.
+* Tasks are considered duplicates only when `TASK_DESCRIPTION`, `DATE TIME`, and `INTERVAL TIME_PERIOD` (if applicable) are the same e.g. `Take X-rays | 23-4-22 1345` is different from `Take X-rays | 23-4-22 1345 | 3 weeks`.
+* Tasks are case-sensitive e.g. `Take X-rays` is distinct from `Take x-rays`.
 
 </div>
 
@@ -671,7 +674,7 @@ Format: **`edit`** `-p PATIENT_INDEX -d TASK_INDEX d/<TASK_DESCRIPTION> | <DATE 
 * `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in [Task parameters](#patient-parameter-constraints).
 * If a `INTERVAL TIME_PERIOD` is provided for what was originally a non-recurring task, the edit will transform it into a recurring one based on the given frequency
 * Tasks are automatically sorted in chronological order upon modification, i.e. if a task on `25-10-22` is edited to be `30-10-22`, its new `TASK INDEX` would be based on the displayed order in the patient's task list.
-
+* If there are duplicate tasks after editing a task, it will not be edited.
 </div>
 
 Examples:
