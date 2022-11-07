@@ -207,10 +207,10 @@ The following Sequence Diagram summarises the aforementioned steps.
 
 **Aspect: How many criteria should the `sort` command accept**
 
-|              | **Pros**   | **Cons** |
-| -------------|------------|----------|
-| **Option 1 (current choice)** <br> Accept only one criterion | Easier to implement and also clearer for the user | Unable to further sort students with a secondary criteria should the first criteria of some students match |
-| **Option 2** <br> Accept multiple criteria and sort in the order they are given | More precise sorting when many students have matching details, e.g. same Mastery Check dates | Sorting becomes confusing for the user and difficult to implement if many criteria are given |
+|                                                                                 | **Pros**                                                                                     | **Cons**                                                                                                   |
+|---------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
+| **Option 1 (current choice)** <br> Accept only one criterion                    | Easier to implement and also clearer for the user                                            | Unable to further sort students with a secondary criteria should the first criteria of some students match |
+| **Option 2** <br> Accept multiple criteria and sort in the order they are given | More precise sorting when many students have matching details, e.g. same Mastery Check dates | Sorting becomes confusing for the user and difficult to implement if many criteria are given               |
 
 ### Alias feature
 
@@ -241,13 +241,14 @@ for an alias-keyword mapping. As there is a mapping of `ls` to `list`, `Model#ge
 
 **Aspect: How `Alias` is stored in `AliasMap`:**
 
-|                                                                                            | **Pros**                       | **Cons**                                                                                                                                                                                 |
-|--------------------------------------------------------------------------------------------|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Option 1 (current choice)** <br> Stored as an Alias-ReservedKeyword mapping in a Map     | Fast with O(1) time complexity | At high capacity, there might be complications due to collision in Map                                                                                                                   |
-| **Option 2** <br> Alias and ReservedKeyword stored within an association class in a List   | Can store more Aliases         | To get an Alias, iteration through the whole list must be done causing the time complexity to be at O(Number of Aliases) and this might cause performance issues when there are many aliases |
+|                                                                                          | **Pros**                       | **Cons**                                                                                                                                                                                     |
+|------------------------------------------------------------------------------------------|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Option 1 (current choice)** <br> Stored as an Alias-ReservedKeyword mapping in a Map   | Fast with O(1) time complexity | At high capacity, there might be complications due to collision in Map                                                                                                                       |
+| **Option 2** <br> Alias and ReservedKeyword stored within an association class in a List | Can store more Aliases         | To get an Alias, iteration through the whole list must be done causing the time complexity to be at O(Number of Aliases) and this might cause performance issues when there are many aliases |
 _
 
 ### Grade Feature
+#### Rationale
 FRIDAY allows the user to record their students' grades for assessments and examinations in CS1101S. There are 5 
 assessments in CS1101S, namely Reading Assessment 1 (RA1), Reading Assessment 2 (RA2), Practical Assessment, Midterm 
 exam, and the Final exam. Each student in FRIDAY will have a list of their grades for the 5 assessments, showing the 
@@ -338,10 +339,10 @@ The following sequence diagram summarizes the aforementioned steps.
 
 **Aspect: Should we allow users to find block keywords :**
 
-|                                                                                                                          | **Pros**                       | **Cons**                                                                                                                                                                                 |
-|--------------------------------------------------------------------------------------------------------------------------|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Option 1 (current choice)** <br> Allow user to find by single keywords                                   | Provides more search results and the expected student is part of the list.| The expected student may not appear at the top of the list due to lexicography.                                                                                                                  |
-| **Option 2** <br> Allow users to find by block keywords | Possibly more accurate searches.         | Higher possibly that search is unsuccessful due to error in keywords. |
+|                                                                          | **Pros**                                                                   | **Cons**                                                                        |
+|--------------------------------------------------------------------------|----------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| **Option 1 (current choice)** <br> Allow user to find by single keywords | Provides more search results and the expected student is part of the list. | The expected student may not appear at the top of the list due to lexicography. |
+| **Option 2** <br> Allow users to find by block keywords                  | Possibly more accurate searches.                                           | Higher possibly that search is unsuccessful due to error in keywords.           |
 
 ### Mark feature
 FRIDAY allows users to mark the Mastery Checks of certain students as passed.
@@ -375,10 +376,10 @@ The following Sequence Diagram summarises the aforementioned steps.
 
 **Aspect: Should we allow users to mark empty Mastery Checks as passed**
 
-|              | **Pros**   | **Cons**                                                                                                                                                                                                                |
-| -------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Option 1 (current choice)** <br> Do not allow marking of empty Mastery Checks | More intuitive and makes more sense | May be useful in certain cases                                                                                                                                                                                          |
-| **Option 2** <br> Allow marking of empty Mastery Checks | Could be useful in certain cases, for example when a student is exempted from having to complete the Mastery Check | These cases are rare. Also does not make sense to allow this as there is an empty Mastery Check means that the student has not scheduled or completed any Mastery Check. Hence, there is nothing to be marked as passed |
+|                                                                                 | **Pros**                                                                                                           | **Cons**                                                                                                                                                                                                                |
+|---------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Option 1 (current choice)** <br> Do not allow marking of empty Mastery Checks | More intuitive and makes more sense                                                                                | May be useful in certain cases                                                                                                                                                                                          |
+| **Option 2** <br> Allow marking of empty Mastery Checks                         | Could be useful in certain cases, for example when a student is exempted from having to complete the Mastery Check | These cases are rare. Also does not make sense to allow this as there is an empty Mastery Check means that the student has not scheduled or completed any Mastery Check. Hence, there is nothing to be marked as passed |
 
 
 ### Unmark feature
@@ -413,9 +414,9 @@ The following Sequence Diagram summarises steps 4 to 5.
 
 **Aspect: Should we allow users to unmark empty Mastery Checks as passed**
 
-|                                                                                   | **Pros**   | **Cons**                                                                                                                                                             |
-|-----------------------------------------------------------------------------------|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Option 1 (current choice)** <br> Do not allow unmarking of empty Mastery Checks | More intuitive and makes more sense | May be useful in certain cases                                                                                                                                       |
+|                                                                                   | **Pros**                                                                                                                       | **Cons**                                                                                                                                                             |
+|-----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Option 1 (current choice)** <br> Do not allow unmarking of empty Mastery Checks | More intuitive and makes more sense                                                                                            | May be useful in certain cases                                                                                                                                       |
 | **Option 2** <br> Allow marking of empty Mastery Checks                           | Could be useful in certain cases, for example when the user accidentally marks a student with an empty Mastery Check as passed | This would require the marking of empty Mastery Checks to be allowed. Refer to the design considerations in implementing the `mark` command for the cons of doing so |
 
 --------------------------------------------------------------------------------------------------------------------
