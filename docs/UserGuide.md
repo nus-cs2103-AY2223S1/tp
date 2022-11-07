@@ -321,7 +321,7 @@ Example:
 * `marktask 2` marks the 2nd task in your task list as done.
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** Tasks that have been marked as done will get shifted to the bottom of the task list.
+:bulb: **Tip:** Tasks that have been marked as done will get shifted below tasks that are not done.
 </div>
 
 ### Marking a task as not done : `unmarktask`
@@ -414,7 +414,7 @@ Example:
 * `marklesson 2` marks the 2nd lesson in your lesson list as completed.
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** Lessons that have been marked as completed will get shifted to the bottom of the lesson list.
+:bulb: **Tip:** Lessons that have been marked as completed will get shifted below lessons that are not completed.
 </div>
 
 ### Marking a lesson as not completed : `unmarklesson`

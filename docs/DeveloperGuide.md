@@ -300,7 +300,7 @@ In the case where `AddNoteCommand` is executed for adding to student specific no
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage students and tasks in an organised manner easily and quickly
+**Value proposition**: manage students, tasks and lessons in an organised manner easily and quickly
 
 
 ### User stories
