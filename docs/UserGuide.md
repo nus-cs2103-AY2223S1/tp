@@ -499,7 +499,7 @@ If your changes to the data file makes its format invalid, NUScheduler will disc
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## Useful Information
 
 ### Accepted date time formats
 
