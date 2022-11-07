@@ -10,25 +10,27 @@ title: YANG Mingyang's Project Portfolio Page
 
 * **New features implemented**:
 
-  * Implemented view schedule command that allows a user to add a new schedule.
-  * Implemented clear schedule command that allows a user to edit a new schedule.
-  * Implemented view timetable command that allows a user to view his schedule table.
+  * Implemented view schedule command `sview` that allows a user to view all schedules or view schedules of some modules and on some days.
+  * Implemented clear schedule command `sclear` that allows a user to clear all schedules or clear schedules of some modules.
+  * Implemented view timetable command `tview` that allows a user to view his schedule table vertically.
 
 * **Enhancements to existing features**:
 
-  * Added more test code that increased code coverage.
-  * Improve timetable GUI.
+  * Added more test code that increased code coverage. [#297](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/297).
+  * Improve GUI of vertical timetable.[#307](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/307).
 
 * **Documentation**:
 
   * User Guide:
-    * Add documentation for features `sclear`, `view`, `tview`
-    * Added ProfNUS introduction to the documentation.
+    * Add documentation for features `sclear`, `sview`, `tview`.[#317](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/317).
   * Developer Guide:
-    * Added documentation for features
+    * Added documentation for user stories.
+    * Added documentation for Glossary.
+    * Added documentation for features `sclear`, `tview` and `sview`.
+
 
 * **Community**:
 
-  * PRs reviewed:
+  * PRs reviewed: [#63](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/63), [#126](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/126), [#126](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/126).
 
 
