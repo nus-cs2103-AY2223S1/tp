@@ -5,68 +5,61 @@ skinparam arrowColor BLACK
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":ResidentBookParser" as ResidentBookParser LOGIC_COLOR
+participant ":Rc4hdbParser" as Rc4hdbParser LOGIC_COLOR
 participant ":FilterCommandParser" as FilterCommandParser LOGIC_COLOR
-participant "d:FilterCommand" as FilterCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "f:FilterCommand" as FilterCommand LOGIC_COLOR
+participant "res:CommandResult" as CommandResult LOGIC_COLOR
 participant ":AttributesMatchAllKeywordsPredicate" as AttributesMatchAllKeywordsPredicate LOGIC_COLOR
-participant ":FilterSpecifier" as FilterSpecifier LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("filter /all n/John")
 activate LogicManager
 
-LogicManager -> ResidentBookParser : parseCommand("delete 1")
-activate ResidentBookParser
+LogicManager -> Rc4hdbParser : parseCommand("filter /all n/John")
+activate Rc4hdbParser
 
 create FilterCommandParser
-ResidentBookParser -> FilterCommandParser
+Rc4hdbParser -> FilterCommandParser
 activate FilterCommandParser
 
-FilterCommandParser -> ResidentBookParser
+FilterCommandParser --> Rc4hdbParser
 deactivate FilterCommandParser
 
-ResidentBookParser -> FilterCommandParser : parse("1")
+Rc4hdbParser -> FilterCommandParser : parse("/all n/John")
 activate FilterCommandParser
-create FilterSpecifier
-FilterCommandParser -> FilterSpecifier
-activate FilterSpecifier
 create FilterCommand
 FilterCommandParser -> FilterCommand
 activate FilterCommand
 
-FilterCommand --> FilterCommandParser : d
+FilterCommand --> FilterCommandParser : f
 deactivate FilterCommand
 
-FilterCommandParser -> ResidentBookParser : d
+FilterCommandParser --> Rc4hdbParser : f
 deactivate FilterCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-FilterCommandParser -[hidden]-> ResidentBookParser
+FilterCommandParser -[hidden]-> Rc4hdbParser
 destroy FilterCommandParser
 
-ResidentBookParser --> LogicManager : d
-deactivate ResidentBookParser
-LogicManager -> FilterCommand : execute(model)
+Rc4hdbParser --> LogicManager : f
+deactivate Rc4hdbParser
+LogicManager -> FilterCommand : execute(f)
 activate FilterCommand
 
 create AttributesMatchAllKeywordsPredicate
 FilterCommand -> AttributesMatchAllKeywordsPredicate
 activate AttributesMatchAllKeywordsPredicate
 
+AttributesMatchAllKeywordsPredicate --> FilterCommand
+deactivate AttributesMatchAllKeywordsPredicate
 
-deactivate FilterSpecifier
-
-FilterCommand -> Model : FilterResident(residentToFilter)
+FilterCommand -> Model : filterResident(residentToFilter)
 activate Model
 Model --> FilterCommand
 deactivate Model
-
-AttributesMatchAllKeywordsPredicate --> FilterCommand
-deactivate AttributesMatchAllKeywordsPredicate
 
 create CommandResult
 FilterCommand -> CommandResult
@@ -75,8 +68,11 @@ activate CommandResult
 CommandResult --> FilterCommand
 deactivate CommandResult
 
-FilterCommand --> LogicManager
+FilterCommand --> LogicManager : res
 deactivate FilterCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FilterCommand -[hidden]-> LogicManager
+destroy FilterCommand
 
 [<--LogicManager
 deactivate LogicManager

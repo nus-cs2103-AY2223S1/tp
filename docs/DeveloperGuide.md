@@ -476,10 +476,10 @@ is a new field added for the ```Resident```.
 
 <br>
 
-#### Creating a new ```FilterSpecifier``` class
+#### Creating a new ```Specifier``` class
 
 There is a specifier after the filter keyword in the command that is used to select whether all or any of
-the fields should match the residents' information in the database. A ```FilterSpecifier``` class is used to
+the fields should match the residents' information in the database. A ```Specifier``` class is used to
 represent the specifier as a wrapper to make the transferring of the specifier across classes easier and less
 prone to errors.
 
@@ -501,13 +501,9 @@ of this project if required without any major restructuring of the initial class
 
 There was a choice to make the filter feature accept either only the exact string entered by the user or also
 accept a field that contains the filter attribute given by the user. It is clear that the filter command would be more
-flexible id the contains option is implemented as the user can use a prefix or a suffix of the actual field to filter
+flexible if the contains option is implemented as the user can use a substring of the actual field to filter
 out residents. Thus, while keeping this advantage in mind, we have decided to make the filter feature accept fields
-that contain the attributes instead of having it exactly equal.
-
-However, implementing contains for the tags feature may make the application a lot slower. It is not worth the cost
-considering that this additional benefit does not give our application a boost in usability. Thus, the substring
-filtering has been omitted for the tags to accommodate for a faster filtering process.
+that contain the attributes instead of having it to be exactly equal.
 
 <br>
 
@@ -1499,7 +1495,6 @@ testers are expected to do more *exploratory* testing.
        Expected: First resident is edited from the list. Details of the deleted resident shown in the status message.
     1. Test case: `edit r/02-02 g/L h/D t/friend` <br>
        Expected: No resident is edited. Error details shown in the status message. Status bar remains the same.
-
     1. Other incorrect delete commands to try: `edit`, `edit l/`, `...` <br>
        Expected: Similar to previous.
 
