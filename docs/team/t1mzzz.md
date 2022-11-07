@@ -10,7 +10,7 @@ Tuthub is a desktop app for NUS professors who wish to track and choose their ne
 [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=t1mzzz&breakdown=true)
 
 ### Project Management
-- Set up the Github team org, repo.
+- Set up the Github team [org](https://github.com/AY2223S1-CS2103T-T15-3/), team [repo](https://github.com/AY2223S1-CS2103T-T15-3/tp/).
 - Set up Tuthub's external tools, Codecov and Gradle.
 - Managed and delegated work and issues in the issue tracker (authored 96 issues).
 - Managed Tuthub's Github releases `v1.2`, `v1.2.1`, and `v1.3`. This can be viewed [here](https://github.com/AY2223S1-CS2103T-T15-3/tp/releases).
@@ -35,7 +35,7 @@ Tuthub is a desktop app for NUS professors who wish to track and choose their ne
   - This enhancement involves the logic and model part of Tuthub. The command and parser of `mail` lies in the logic part. Model is used in accessing the currently displayed tutor list. This feature utilizes the Java classes `java.awt.Desktop` and `java.net.URI` to open the user's default mail client.
 
 **Enhancements**
-- Modified and fixed bugs in `Comment`, `CommentCommand`, and `DeleteCommentCommand` ([#185](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/185)).
+- Modified and fixed bugs in `Comment`, `CommentCommand`, and `DeleteCommentCommand` and their parsers ([#185](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/185)).
   - Fixed bugs found in:
     - [#178](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/178)
     - [#182](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/182)
@@ -48,6 +48,7 @@ Tuthub is a desktop app for NUS professors who wish to track and choose their ne
 ### Contributions to the UG
 - Added documentation for the features `sort` ([#127](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/127)) and `mail` ([#162](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/162)).
 - Added documentation to additional model details `StudentId` and `Rating` ([#259](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/259))
+- Added some parts in the [FAQ](https://ay2223s1-cs2103t-t15-3.github.io/tp/UserGuide.html#faq) section ([#184](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/184)).
 
 ### Contributions to the DG
 - Added implementation details, use case, and manual testing instructions for the `sort` command ([#156](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/156)).
