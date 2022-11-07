@@ -11,7 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Buyer;
 
 /**
- * Parses input arguments and creates a new FindBuyerCommand object.
+ * Parses input arguments and creates a {@code FindBuyerCommand}.
  */
 public class FindBuyerCommandParser extends FindCommandParser {
     public static final String PARSE_WORD = "find-b";

@@ -37,7 +37,7 @@ public class FilterOrderCommand extends FilterCommand {
     private final Predicate<Order> priceRangePredicate;
 
     /**
-     * Creates a FilterLocCommand to filter the specified {@code Location}.
+     * Creates a FilterOrderCommand to filter the specified {@code Order}.
      */
     public FilterOrderCommand(Predicate<Order> additionalRequestPredicate, Predicate<Order> orderStatusPredicate,
                               Predicate<Order> priceRangePredicate) {
@@ -47,7 +47,7 @@ public class FilterOrderCommand extends FilterCommand {
     }
 
     /**
-     * Creates a Predicate to filter the specified {@code Pet}.
+     * Creates a Predicate to filter the specified {@code Order}.
      */
     public Predicate<Order> generatePredicate() {
         return order -> additionalRequestPredicate.test(order) && orderStatusPredicate.test(order)

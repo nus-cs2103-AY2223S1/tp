@@ -1,7 +1,7 @@
 package seedu.address.model.pet;
 
 /**
- * Represents the certificates that a pet has. For example, noble blood certificate.
+ * Represents the certificates that a pet has. For example, purebred certificate.
  */
 public class PetCertificate {
     public static final String MESSAGE_CONSTRAINTS =

@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 
 /**
- * Sorts the order list.
+ * Sorts the Orders' list according to the specified / default attribute.
  */
 public class SortOrderCommand extends SortCommand {
 
@@ -23,7 +23,7 @@ public class SortOrderCommand extends SortCommand {
     private final Comparator<Order> comparator;
 
     /**
-     * Constructs a sortOrderCommand with specified comparator.
+     * Constructs a SortOrderCommand with specified comparator.
      * @param comparator The specified comparator.
      */
     public SortOrderCommand(Comparator<Order> comparator) {

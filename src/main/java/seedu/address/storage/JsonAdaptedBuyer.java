@@ -33,7 +33,7 @@ class JsonAdaptedBuyer {
     private final List<String> ids = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedBuyer} with the given buyer details.
+     * Constructs a {@code JsonAdaptedBuyer} with the given Buyer details.
      */
     @JsonCreator
     public JsonAdaptedBuyer(@JsonProperty("personCategory") String personCategory, @JsonProperty("name") String name,

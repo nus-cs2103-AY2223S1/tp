@@ -4,7 +4,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
- * Lists all orders to the user.
+ * Lists all Orders to the user.
  */
 public class ListOrderCommand extends ListCommand {
     public static final String MESSAGE_SUCCESS = "Listed all orders";

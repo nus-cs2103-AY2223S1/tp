@@ -33,8 +33,7 @@ public abstract class FilterCommand extends Command {
     /**
      * Returns the command result to display.
      * This is an abstract method that requires its subclasses,
-     * such as {@code DeleteBuyerCommand, DeleteDelivererCommand, DeleteSupplierCommand, DeleteOrderCommand,
-     * DeletePetCommand}, to implement.
+     * such as {@code FilterOrderCommand, FilterPetCommand}, to implement.
      *
      * @param model {@code Model} which the command should operate on.
      * @return CommandResult the result to be displayed.

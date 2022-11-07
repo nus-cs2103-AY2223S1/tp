@@ -38,7 +38,7 @@ class JsonAdaptedOrder {
     private final String uniqueId;
 
     /**
-     * Constructs a {@code JsonAdaptedOrder} with the given {@code order detail}.
+     * Constructs a {@code JsonAdaptedOrder} with the given Order details.
      */
     @JsonCreator
     public JsonAdaptedOrder(@JsonProperty("buyer") JsonAdaptedBuyer buyer,
@@ -62,7 +62,7 @@ class JsonAdaptedOrder {
     }
 
     /**
-     * Converts a given {@code Tag} into this class for Jackson use.
+     * Converts a given {@code Order} into this class for Jackson use.
      */
     public JsonAdaptedOrder(Order order) {
         this.buyer = new JsonAdaptedBuyer(order.getBuyer());
@@ -76,7 +76,7 @@ class JsonAdaptedOrder {
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Order} object.
+     * Converts this Jackson-friendly adapted order object into the model's {@code Order} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted order.
      */
