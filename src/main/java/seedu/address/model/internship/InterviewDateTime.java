@@ -119,6 +119,14 @@ public class InterviewDateTime {
         }
     }
 
+    /**
+     * Returns the LocalDate representation of this InterviewDateTime object.
+     * @return LocalDate representation.
+     */
+    public LocalDate getLocalDate() {
+        return this.interviewDateTime.toLocalDate();
+    }
+
     @Override
     public String toString() {
         return value;
