@@ -10,13 +10,6 @@ for managing the students, tutors and tuition classes of a tuition center**.
 It is optimized for use via a Command Line Interface (CLI)
 while still having the benefits of a Graphical User Interface (GUI).
 
-As a tuition center admin, managing vast amounts of information can be daunting and prone to error using existing solutions
-such as Microsoft Excel, or traditional pen and paper. That is why we have developed myStudent as the one-stop solutions for effective data management,
-in tuition centers.
-
-MyStudent is a brown-field project evolved based on [AB3](https://github.com/nus-cs2103-AY2223S1/tp). Compared to AB3 that only manipulates one type of entity `Person`, myStudent needs to manipulate three
-types of entities: `Student`, `Tutor` and `TuitionClass`. To adapt to the three different entities, myStudent has made enhancements to the existing structure and commands of AB3. Additionally, myStudent has also implemented some new commands and new GUI features.
-
 Given below are my contributions to the project.
 
 * **New Feature**: Implemented the logic to update students' next of kin details or `NextOfKin` command. (Pull request [#105](https://github.com/AY2223S1-CS2103T-F12-4/tp/pull/105))
