@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_APPOINTMENT_DELETION_SUCCESS;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_APPOINTMENT_DELETION;
 
 import java.util.List;
 
@@ -14,13 +16,14 @@ import seedu.address.model.person.Person;
  * Deletes a patient's most recent past appointment.
  */
 public class DeletePastAppointmentCommand extends Command {
+
     public static final String COMMAND_WORD = "delappt";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the patient's most recent past appointment.\n"
             + "Parameters: INDEX (Must be a positive integer) "
             + "Example: " + COMMAND_WORD + " 1 ";
-    public static final String MESSAGE_SUCCESS = "Past appointment deleted for %1$s.\n";
-    public static final String INVALID_DELETE_MESSAGE = "No past appointments to delete.";
+
     private final Index index;
 
     /**
@@ -41,10 +44,10 @@ public class DeletePastAppointmentCommand extends Command {
         }
         Person patient = lastShownList.get(index.getZeroBased());
         if (patient.getPastAppointmentCount() <= 0) {
-            throw new CommandException(INVALID_DELETE_MESSAGE);
+            throw new CommandException(MESSAGE_INVALID_APPOINTMENT_DELETION);
         }
         patient.deleteMostRecentPastAppointment();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getName()));
+        return new CommandResult(String.format(MESSAGE_APPOINTMENT_DELETION_SUCCESS, patient.getName()));
     }
 
     @Override

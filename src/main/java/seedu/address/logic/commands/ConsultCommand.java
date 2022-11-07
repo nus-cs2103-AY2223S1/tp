@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_CONSULT_SUCCESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DIAGNOSIS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 
@@ -30,8 +31,6 @@ public class ConsultCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_MEDICATION + "ibuprofen "
             + PREFIX_DIAGNOSIS + "headache, medicine given for 3 days ";
-
-    public static final String MESSAGE_SUCCESS = "Consulted Patient: %1$s";
 
     private final Index index;
     private final PastAppointment appt;
@@ -65,7 +64,7 @@ public class ConsultCommand extends Command {
             CommandResult editResult = new EditCommand(index, editPersonDescriptor).execute(model);
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, person.getName()));
+        return new CommandResult(String.format(MESSAGE_CONSULT_SUCCESS, person.getName()));
     }
 
     private boolean isPresentUpcomingAppointment(Person person) {

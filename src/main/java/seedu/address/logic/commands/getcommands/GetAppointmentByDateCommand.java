@@ -16,7 +16,7 @@ public class GetAppointmentByDateCommand extends GetCommand {
 
     public static final String APPOINTMENT_BY_DATE_PREFIX = "/appton";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Gets all patients who are on the same appointment"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Gets all patients who are on the same appointment "
             + "date "
             + "and displays them as a list with index numbers. \n"
             + "Parameters: "
