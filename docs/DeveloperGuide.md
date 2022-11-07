@@ -3,20 +3,35 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents
+#Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+### **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+This application is based on addressbook-level3 by se-edu.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+### **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Refer to the guide 
+[_Setting up and getting started_](https://github.com/AY2223S1-CS2103T-W11-1/tp/blob/master/docs/SettingUp.md).
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Introduction**
+
+NUSEatWhere is a Command Line (CLI) application which helps you search for the available food options in NUS and 
+make an informed decision on where to eat. It does this via a preloaded set of data paired with commands that helps the
+user navigate the list of eateries in the National University of Singapore (NUS).
+
+This Developer Guide aims to outline how the NUSEatWhere application was implemented to ensure
+ease of modifications for any future changes/developments you might have in mind for our application.
+
+_For details on commands or how a user would use the application, 
+you can refer to our [User Guide](https://ay2223s1-cs2103t-w11-1.github.io/tp/UserGuide.html)._
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -24,24 +39,31 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-W11-1/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the 
+[diagrams](https://github.com/AY2223S1-CS2103T-W11-1/tp/tree/master/docs/diagrams/) folder. Refer to the 
+[_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create 
+and edit diagrams.
 </div>
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
-
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+<p align="center">
+<img src="images/ArchitectureDiagram.png" width="280" /> <br>
+*The* ***Architecture Diagram*** *explains the high-level design of the App.*
+</p>
 
 Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-W11-1/tp/blob/master/src/main/java/eatwhere/foodguide/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-W11-1/tp/blob/master/src/main/java/eatwhere/foodguide/MainApp.java). It is responsible for,
+**`Main`** has two classes called 
+[`Main`](https://github.com/AY2223S1-CS2103T-W11-1/tp/blob/master/src/main/java/eatwhere/foodguide/Main.java) and 
+[`MainApp`](https://github.com/AY2223S1-CS2103T-W11-1/tp/blob/master/src/main/java/eatwhere/foodguide/MainApp.java). 
+It is responsible for,
 
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* **At app launch**: Initializes the components in the correct sequence, and connects them up with each other.
 
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+* **At shut down**: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
@@ -55,37 +77,56 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
-
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<p align="center">
+<img src="images/ArchitectureSequenceDiagram.png" width="574" /> <br>
+*The* ***Sequence Diagram*** *shows how the components interact with each other for the 
+scenario where the user issues the command `delete 1`.*
+</p>
 
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+<br>
 
-<img src="images/ComponentManagers.png" width="300" />
+<p align="center">
+<img src="images/ComponentManagers.png" width="300" /> <br>
+*The (partial)* ***class diagram*** *shows how the Logic class interacts with the Model and Storage classes.*
+</p>
+
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality 
+using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given 
+component through its interface rather than the concrete class (reason: to prevent outside component's being 
+coupled to the implementation of a component), as illustrated in the (partial) class diagram above.
 
 The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W11-1/tp/blob/master/src/main/java/eatwhere/foodguide/ui/Ui.java)
+The **API** of this component is specified in 
+[`Ui.java`](https://github.com/AY2223S1-CS2103T-W11-1/tp/blob/master/src/main/java/eatwhere/foodguide/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<p align="center">
+<img src="images/UiClassDiagram.png"  /> <br>
+*The (partial)* ***class diagram*** *shows how the Logic class interacts with the Model and Storage classes.*
+</p>
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EateryListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EateryListPanel`, 
+`StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures 
+the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W11-1/tp/blob/master/src/main/java/eatwhere/foodguide/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W11-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files 
+that are in the `src/main/resources/view` folder. For example, the layout of the 
+[`MainWindow`](https://github.com/AY2223S1-CS2103T-W11-1/tp/blob/master/src/main/java/eatwhere/foodguide/ui/MainWindow.java) 
+is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W11-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Eatery` object residing in the `Model`.
+* __executes user commands__ using the `Logic` component.
+* __listens for changes to `Model` data__ so that the UI can be updated with the modified data.
+* __keeps a reference to the `Logic` component__, because the `UI` relies on the `Logic` to execute commands.
+* depends on some classes in the `Model` component, as it __displays the `Eatery` object__ residing in the `Model`.
 
 ### Logic component
 
@@ -109,9 +150,10 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
-
-<img src="images/ParserClasses.png" width="600"/>
+<p align="center">
+<img src="images/ParserClasses.png" width="600"/> <br>
+*The diagram shows the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command.*
+</p>
 
 How the parsing works:
 * When called upon to parse a user command, the `FoodGuideParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `FoodGuideParser` returns back as a `Command` object.
@@ -124,10 +166,10 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Eatery` objects (which are contained in a `UniqueEateryList` object).
-* stores the currently 'selected' `Eatery` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Eatery>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* __Stores the address book data__ i.e., all `Eatery` objects (which are contained in a `UniqueEateryList` object).
+* __Stores the currently 'selected' `Eatery` objects__ (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Eatery>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* __Stores a `UserPref` object__ that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* Does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `FoodGuide`, which `Eatery` references. This allows `FoodGuide` to only require one `Tag` object per unique tag, instead of each `Eatery` needing their own `Tag` objects.<br>
 
@@ -143,9 +185,9 @@ The `Model` component,
 
 The `Storage` component,
 
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `FoodGuideStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* Can __save both food guide data and user preference data__ in json format, and read them back into corresponding objects.
+* Inherits from both `FoodGuideStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* Depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
@@ -157,6 +199,9 @@ Classes used by multiple components are in the `eatwhere.foodguide.commons` pack
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Find (Find, FindCuisine, FindLocation, FindPrice, FindTag)
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -164,9 +209,9 @@ This section describes some noteworthy details on how certain features are imple
 The proposed undo/redo mechanism is facilitated by `VersionedFoodGuide`. It extends `FoodGuide` with an undo/redo history, stored internally as an `addressBookfoodGuideStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
 
-* `VersionedFoodGuide#commit()` — Saves the current address book state in its history.
-* `VersionedFoodGuide#undo()` — Restores the previous address book state from its history.
-* `VersionedFoodGuide#redo()` — Restores a previously undone address book state from its history.
+* `VersionedFoodGuide#commit()` — Saves the current food guide state in its history.
+* `VersionedFoodGuide#undo()` — Restores the previous food guide state from its history.
+* `VersionedFoodGuide#redo()` — Restores a previously undone food guide state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitFoodGuide()`, `Model#undoFoodGuide()` and `Model#redoFoodGuide()` respectively.
 
@@ -271,18 +316,18 @@ _{more aspects and alternatives to be added}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …  | I want to …  | So that I can…  |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | user                                 | see usage instructions       | easily figure out and remember how to use the app               |
-| `* * *`  | user                                   | see what stalls there are in NUS             |  know what food is available                                                                  |
-| `* * *` | user | search for stalls by name |
-| `* * *` | user | search for stalls by tags |
-| `* * *` | user | search for stalls by location |
-| `* * *` | user | search for stalls by cuisine |
-| `* * *`  | user                                     | tag stalls   | organize stalls by tags             |
-| `* * *`   | user  | untag a stall       | remove a stall from a tag group
-| `* *`   | user | add new food stalls              | customize the list                                 |
-| `* *`  | user | remove food stalls        | customize the list |
+| Priority | As a … | I want to …                      | So that I can…                                    |
+|----------|--------|----------------------------------|---------------------------------------------------|
+| `* * *`  | user   | see usage instructions           | easily figure out and remember how to use the app |
+| `* * *`  | user   | see what stalls there are in NUS | know what food is available                       |
+| `* * *`  | user   | search for stalls by name        |                                                   |
+| `* * *`  | user   | search for stalls by tags        |                                                   |
+| `* * *`  | user   | search for stalls by location    |                                                   |
+| `* * *`  | user   | search for stalls by cuisine     |                                                   |
+| `* * *`  | user   | tag stalls                       | organize stalls by tags                           |
+| `* * *`  | user   | untag a stall                    | remove a stall from a tag group                   |
+| `* *`    | user   | add new food stalls              | customize the list                                |
+| `* *`    | user   | remove food stalls               | customize the list                                |
 
 *{More to be added}*
 
