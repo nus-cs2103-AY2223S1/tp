@@ -132,7 +132,7 @@ public class AttributeList {
     public void editAttribute(String attributeName, String attributeValue) throws AttributeException {
         Attribute<?> oldAttribute = findAttribute(attributeName);
         if (oldAttribute == null) {
-            throw new AttributeNotFoundException(attributeName);
+            throw new AttributeException("No attribute found: " + attributeName);
         }
         Attribute<?> newAttribute = createAttributeInstance(attributeName, attributeValue);
         updateAttribute(oldAttribute, newAttribute);
@@ -179,8 +179,11 @@ public class AttributeList {
      * @param oldAttribute The old Field object from the Person.
      * @param newAttribute The new Field object to be updated.
      */
-    public void updateAttribute(Attribute<?> oldAttribute, Attribute<?> newAttribute) {
+    public void updateAttribute(Attribute<?> oldAttribute, Attribute<?> newAttribute) throws AttributeException {
         int index = attributeList.indexOf(oldAttribute);
+        if (index < 0) {
+            throw new AttributeException("Attribute not found");
+        }
         attributeList.set(index, newAttribute);
     }
 
@@ -245,4 +248,14 @@ public class AttributeList {
         return builder.toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        } else if (o instanceof AttributeList) {
+            AttributeList obj = (AttributeList) o;
+            return attributeList.equals(obj.attributeList);
+        }
+        return false;
+    }
 }

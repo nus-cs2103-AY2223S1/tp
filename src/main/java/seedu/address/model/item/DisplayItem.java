@@ -50,11 +50,6 @@ public interface DisplayItem {
     String getFullPath();
 
     /**
-     * Returns relative path of the current object
-     */
-    String getRelativePath(DisplayItem parent);
-
-    /**
      * Gets a list of attributes applied to DisplayItem
      */
     List<Attribute<?>> getAttributes();
