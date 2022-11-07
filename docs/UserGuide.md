@@ -4,19 +4,12 @@ title: User Guide
 subtitle: Explore our guide to use Arrow
 ---
 
-Welcome to **Arrow** User Guide! This user guide will give a descriptive instruction on how to use **Arrow**.
-The _words_ _in_ _italic_ are terms you may be unfamiliar with. And if that is the case, 
-do not hesitate checking them out in [Glossary](#glossary).
+Welcome to **Arrow** User Guide! This user guide will give you a descriptive instruction on how to use **Arrow**.
+The _words_ _in_ _italic_ are terms you may be unfamiliar with. And if that is the case, do not hesitate to check them out in [Glossary](#glossary).
 
-**Arrow** is a **desktop app** that **help software project managers keep track of their members’ tasks and deliverables**. 
-By associating tasks to specific team members, users can **keep track of what needs to be done and have quick access to 
-contact information should they wish to reach out to the member**. More specifically, apart from the _command box_, 
-there are two main lists which store the tasks list and the contact list. In this way, our target users (software project manager)
-can use two lists to organize the team project easily.
+**Arrow** is a **desktop app** that **help software project managers keep track of their members’ tasks and deliverables**. By associating tasks to specific teammates, users can **keep track of what needs to be done and have quick access to contact information should they wish to reach out to the teammate**. More specifically, apart from the _command box_, there are two main lists which store the tasks list and the teammates list. In this way, our users can use two lists to organize the team project easily.
 
-**Arrow** uses a _Command Line Interface_ (CLI)at the same time possessing convenience of a _Graphical User Interface_ (GUI). The main target audiences are software
-project managers, who should be equipped with _Command Line Interface_ (CLI) skills. And if you can type fast,
-**Arrow** can help you manage your teammates in an exceptionally quick way.
+**Arrow** uses a _Command Line Interface_ (CLI) and at the same time possesses the convenience of a _Graphical User Interface_ (GUI). The main target users are software project managers, who should be equipped with _Command Line Interface_ (CLI) skills. And if you can type fast, **Arrow** can help you manage your tasks in an exceptionally quick way.
 
 ### Note
 
@@ -24,8 +17,8 @@ project managers, who should be equipped with _Command Line Interface_ (CLI) ski
 
 **:information_source: If you are unfamiliar with Command Line Interface (CLI):**<br>
 
-**Arrow** has the target audiences of software project team leads. 
-In this circumstance, we assume users having some experience of using command line tools.<br>
+**Arrow** has the target audiences of software project managers.
+In this circumstance, we assume users having some experience of using the command line.<br>
 However, it's perfectly fine if you do not know how to use CLI.<br>
 Click [here](#tutorial-for-cli) to learn more about what is CLI.
 
@@ -103,9 +96,6 @@ understanding of basic functionalities of `Arrow`, before diving into specific c
 
 </div>
 
-Task Details
-![Task](images/TaskDetails.png)
-
 1. **Basic functionality**
     1. Clear all Teammates' records
     2. Clear all Task records
@@ -135,6 +125,7 @@ Task Details
     10. Editing a Task
     11. Listing all project title
 
+
 ## Features
 
 If you are new to **Arrow**, here provides some tips for you to enter commands efficiently.
@@ -144,7 +135,7 @@ If you are new to **Arrow**, here provides some tips for you to enter commands e
 **:information_source: Notes about the command format:**<br>
 
 * The task list shows only **INCOMPLETE** tasks. 
-Once a task has been marked (either by the command or the by ticking the white box), 
+Once a task has been marked (either by the command or by ticking the white box), 
 it will be completed and disappears from the task panel as it is NOT incomplete.
 
 * To view the task list with both complete and incomplete ones, using `task list -a`.
@@ -171,10 +162,12 @@ it will be completed and disappears from the task panel as it is NOT incomplete.
 
 </div>
 
----
 
+---
 ## Basic Commands
+
 This section covers basic application-related commands.
+
 
 ### Clearing all Teammates : `clear`
 
@@ -211,7 +204,8 @@ Format: `exit`
 ---
 ## Teammate Commands
 
-Teammate entails all the members that you can assign tasks to in the future. This section documents how to add, delete, edit and list operations on teammate records.
+Teammate entails all the members that you can assign tasks to in the future. This section documents how to use add, delete, edit and list operations on teammate records.
+
 
 ### Adding a new Teammate: `add`
 
@@ -228,12 +222,14 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
+
 ---
 ### Listing all Teammates : `list`
 
 Shows a list of all teammates in the address book.
 
 Format: `list`
+
 
 ---
 ### Deleting a Teammate : `delete`
@@ -253,6 +249,7 @@ Examples:
 Note:
 * This teammate will also be deleted from all tasks he is assigned to. Task panel will be filtered to show you the affected tasks!
 * Enter `task list` to view all tasks again.
+
 
 ---
 ### Editing a Teammate's information : `edit`
@@ -277,6 +274,7 @@ Note:
 * This teammate's details will also be edited under all tasks he is assigned to. Task panel will be filtered to show you the affected tasks!
 * Enter `task list` to view all tasks again.
 
+
 ---
 ### Finding Teammate(s) based on name/keyword/tags: `find`
 
@@ -300,6 +298,7 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+
 ---
 ## Task Management Commands
 
@@ -307,15 +306,18 @@ A team Leader in `Arrow` may have tasks to complete or assign to Teammates.
 
 In the Task panel, all tasks are shown coupled with who it has been assigned to.
 
+![Task](images/TaskDetails.png)
+
 A Task has the ability to store these details:
-* Index of Task: The index of an existing Task in the Tasks panel
-* Deadline: The deadline given to the Task
-* Project Title: The Project Title the Task is under
-* Description: Description given to the Task
-* Assigned Teammates: Teammates that the Task has been assigned to
+* `Index`: The index of the task in the Tasks panel
+* `Title`: Description of the task
+* `Deadline`: Deadline given to the Task
+* `Project`: Project of the task
+* `Assigned Teammates`: Teammates who have been assigned
 
 >:information_source: All task-related commands have the keyword `task` in front of them.
 These commands modify the Task panel of `Arrow`.
+
 
 ### Adding a new Task: `task add`
 
@@ -327,12 +329,13 @@ Format: `task add TITLE`
 * Tasks with the same `TITLE` cannot be added and will result in an error message.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If the current task list only shows completed task (via `task list -c`), the newly added will not show up in the list. You can view it by running the command `task list` to show incomplete tasks or `task list -a` to show all tasks.
+If the current task list only shows completed task (via `task list -c`), the newly added task will not show up in the list. You can view it by running the command `task list` to show incomplete tasks or `task list -a` to show all tasks.
 </div>
 
 Examples:
 * `task add Task 1`
 * `task add Finish GUI`
+
 
 ---
 ### Assigning a Task to a Teammate: `task assign`
@@ -350,8 +353,9 @@ A task can have 0 or more assigned teammates.
 Examples:
 * `task assign 1 +@1 +@Alex Yeoh -@Bernice Yu` assigns the 1st teammate and "Alex Yeoh" from the address book to the 1st task from task list, and unassigns "Bernice Yu" from the same task.
 
+
 ---
-### Marking completed Tasks: `task mark`
+### Marking a Task: `task mark`
 
 Marks a task as complete.
 
@@ -363,8 +367,13 @@ Format: `task mark TASK_INDEX`
 Examples:
 * `task list` followed by `task mark 1` marks the 1st task in the task list as complete.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Marking a complete task will not unmark the task.
+</div>
+
+
 ---
-### Unmarking incomplete Tasks: `task unmark`
+### Unmarking a Task: `task unmark`
 
 Unmarks a task and sets it as incomplete.
 
@@ -382,6 +391,7 @@ Format: `task unmark TASK_INDEX`
 Examples:
 * `task list -a` followed by `task unmark 1` unmarks the 1st task in the task list and sets it as incomplete.
 
+
 ---
 ### Deleting a Task: `task delete`
 
@@ -396,8 +406,9 @@ Format: `task delete TASK_INDEX`
 Examples:
 * `task list` followed by `task delete 2` deletes the 2nd task in the task panel.
 
+
 ---
-### Setting deadlines to a task: `task do ... by/`
+### Setting deadlines to a Task: `task do ... by/`
 
 You can use the `task do ... by/` command to set (or remove) a deadline for some task.
 
@@ -422,6 +433,7 @@ Format: `task do TASK_INDEX by/DATE...`
 ![Task Deadline](images/deadline-ui.png)
 
 
+---
 ### Sorting tasks by deadline: `task sort`
 
 Sorts the task list by deadline. Tasks with earlier deadlines will be put at the top, while tasks without any deadlines will be at the bottom.
@@ -435,6 +447,7 @@ Sorts the task list by deadline. Tasks with earlier deadlines will be put at the
 Format: `task sort`
 
 
+---
 ### Filtering the Tasks List: `task list`
 
 The `task list` command is a powerful command that allows you to focus only on the tasks that matter to you.
@@ -504,6 +517,7 @@ Format: `task list before/DATE after/DATE`
 * Do note that the `KEYWORD` parameter **must** come first, if any other parameters are used.<br>
 </div>
 
+
 ---
 ### Editing a task: `task edit`
 
@@ -511,9 +525,10 @@ Edits an existing task in the task list.
 
 Format: `task edit TASK_INDEX [ti/TITLE] [by/DEADLINE] [#/PROJECT]`
 
-* Edits the teammate at the specified `TASK_INDEX`. The index refers to the index number shown in the displayed teammate list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields (TITLE, DEADLINE, PROJECT) must be provided. If none are provided, the application will give an error.
+* Edits the task at the specified `TASK_INDEX`. The index refers to the index number shown in the displayed task list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields (`TITLE`, `DEADLINE`, `PROJECT`) must be provided. If none are provided, the application will give an error.
 * Existing values will be updated to the input values.
+
 
 ---
 ### Listing all projects: `task project`
@@ -521,17 +536,19 @@ Format: `task edit TASK_INDEX [ti/TITLE] [by/DEADLINE] [#/PROJECT]`
 Lists all the projects present in the task panel.<br>
 Projects of hidden tasks will also be shown.
 
->:information_source: The task panel will not be changed to show only tasks with project.
+>:information_source: The only way to add a project is to use the `task edit` command.
+> The task panel will not be changed to show only tasks with project.
 
 Format: `task project`
+
 
 ---
 ### Saving the data
 
 Arrow data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-Arrow data are saved as JSON files, one for Teammates and one for Task Panel.
-* Teammates: `[JAR file location]/data/addressbook.json`
+Arrow data are saved as JSON files, one for AddressBook (Teammates) and one for TaskPanel (Tasks).
+* AddressBook: `[JAR file location]/data/addressbook.json`
 * TaskPanel: `[JAR file location]/data/taskpanel.json`
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -645,12 +662,12 @@ To improve the speed of your actions and quality of your life while using the ap
 
 * **Task Panel List**
 
-    As software project team leaders, it is important to have a clear vision of tasks to be implemented,
+As software project team leaders, it is important to have a clear vision of tasks to be implemented,
 since there could be many projects and each project may have so many items to keep in track.
 Thus, **Arrow** has a task panel list to keep every task organized. 
 Details of each task can be added, which helps the team managers no fear of leaving out any progress.
 
-    Also the task panel list only shows the incomplete tasks.
+    Also, the task panel list only shows the incomplete tasks.
 
 
 * **Teammate List**
@@ -668,10 +685,10 @@ Details of each task can be added, which helps the team managers no fear of leav
 | User Interface        | The point at which human users interact with a computer, website or application.                                                                                                                                                                                  |
 | GUI                   | [Graphical User Interface](https://en.wikipedia.org/wiki/Graphical_user_interface) is a type of user interface                                                                                                                                                    |
 | Home Folder           | The folder/directory where Arrow stores all information.                                                                                                                                                                                                          |
-| Main Window           | The main window of the application that shows the list of students.                                                                                                                                                                                               |
+| Main Window           | The main window of the application that shows the list of teammates and tasks.                                                                                                                                                                                    |
 | Command Box           | The text box where you can enter commands.                                                                                                                                                                                                                        |
-| Extraneous Parameters | The specified  command contains more positional parameters than is allowed.                                                                                                                                                                                       |
+| Extraneous Parameters | The specified command contains more positional parameters than is allowed.                                                                                                                                                                                        |
 
 --------------------------------------------------------------------------------------------------------------------
 
-This is the end of Arrow User Guide. If you have reached this far, thank you for reading and hope you enjoy using our app :)
+This is the end of Arrow User Guide. If you have reached this far, thank you for reading and hope you have enjoyed using our app :)
