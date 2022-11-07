@@ -17,7 +17,7 @@ You can reach us at the consultation `seer[at]comp.nus.edu.sg`
 [[portfolio](team/yuvaraj0702.md)]
 
 * Role: Team Lead
-* Responsibilities: Ensure adherence to deadlines and implement core features
+* Responsibilities: Ensure adherence to deadlines and implement core features.
 
 ### Darren Teo Zhi Jie
 
@@ -27,7 +27,7 @@ You can reach us at the consultation `seer[at]comp.nus.edu.sg`
 [[portfolio](team/darrtzj.md)]
 
 * Role: Project advisor
-* Responsibilities: Advise team on progress and suggest changes to implementation
+* Responsibilities: Advise team on progress and suggest changes to implementation.
 
 ### Tan How Suen
 
@@ -47,7 +47,7 @@ You can reach us at the consultation `seer[at]comp.nus.edu.sg`
 [[portfolio](team/jorrdansoh.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Data and Parsing
 
 ### Yeo Kai Jiun
 
@@ -57,4 +57,4 @@ You can reach us at the consultation `seer[at]comp.nus.edu.sg`
 [[portfolio](team/kaijiun.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Testing and Dev Ops
