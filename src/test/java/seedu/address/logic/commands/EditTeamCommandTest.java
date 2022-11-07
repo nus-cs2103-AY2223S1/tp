@@ -29,7 +29,7 @@ public class EditTeamCommandTest {
     private Model model = new ModelManager(getTypicalAddressBookWithTeams(), new UserPrefs());
 
     @Test
-    public void execute_FieldsSpecifiedUnfilteredList_success() {
+    public void execute_fieldsSpecifiedUnfilteredList_success() {
         Team editedTeam = new TeamBuilder().build();
         EditTeamCommand editTeamCommand = new EditTeamCommand(INDEX_FIRST_TEAM, editedTeam.getName());
 
