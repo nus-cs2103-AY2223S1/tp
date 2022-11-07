@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.calendar;
 
 import static javafx.scene.paint.Color.WHITE;
 
@@ -9,6 +9,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.model.calendar.CalendarEvent;
+import seedu.address.ui.UiPart;
 
 /**
  * Panel containing the list of CalendarEvents.

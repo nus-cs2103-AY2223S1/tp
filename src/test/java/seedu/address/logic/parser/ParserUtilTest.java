@@ -350,16 +350,16 @@ public class ParserUtilTest {
 
     @Test
     public void parsePlanTag_validValueWithWhitespace_returnsTrimmedPlanTag() throws Exception {
-        String PlanTagWithWhitespace = WHITESPACE + VALID_PLANTAG_SAVINGS + WHITESPACE;
+        String planTagWithWhitespace = WHITESPACE + VALID_PLANTAG_SAVINGS + WHITESPACE;
         PlanTag expectedPlanTag = new PlanTag(VALID_PLANTAG_SAVINGS);
-        assertEquals(expectedPlanTag, ParserUtil.parsePlanTag(PlanTagWithWhitespace));
+        assertEquals(expectedPlanTag, ParserUtil.parsePlanTag(planTagWithWhitespace));
     }
 
     @Test
     public void parsePlanTag_validValueWithWhitespaceBetween_returnsTrimmedPlanTag() throws Exception {
-        String PlanTagWithWhitespace = VALID_PLANTAG_WITH_WHITESPACE;
+        String planTagWithWhitespace = VALID_PLANTAG_WITH_WHITESPACE;
         PlanTag expectedPlanTag = new PlanTag(VALID_PLANTAG_WITH_WHITESPACE);
-        assertEquals(expectedPlanTag, ParserUtil.parsePlanTag(PlanTagWithWhitespace));
+        assertEquals(expectedPlanTag, ParserUtil.parsePlanTag(planTagWithWhitespace));
     }
 
     @Test

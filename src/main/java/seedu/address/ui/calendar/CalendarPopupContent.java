@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.calendar;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -7,6 +7,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.calendar.CalendarEvent;
+import seedu.address.ui.UiPart;
 
 /**
  * The content that is displayed within the {@code CalendarPopup}

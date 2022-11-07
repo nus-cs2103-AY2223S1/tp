@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.calendar;
 
 
 import javafx.beans.Observable;
@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import seedu.address.logic.CalendarLogic;
+import seedu.address.ui.UiPart;
 
 /**
  * A textField that reads user input for the new month

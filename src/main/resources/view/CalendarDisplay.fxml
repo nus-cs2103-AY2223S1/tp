@@ -1,50 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.layout.FlowPane?>
-<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="calendarDisplay" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <FlowPane fx:id="topCalendar" />
-      <ScrollPane fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
+      <ScrollPane fx:id="calendarScrollPane" fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS">
          <content>
-            <AnchorPane>
-               <children>
-                  <GridPane fx:id="calendarGrid" alignment="TOP_CENTER" gridLinesVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                      <columnConstraints>
-                          <ColumnConstraints hgrow="ALWAYS" />
-                          <ColumnConstraints hgrow="ALWAYS" />
-                          <ColumnConstraints hgrow="ALWAYS" />
-                          <ColumnConstraints hgrow="ALWAYS" />
-                          <ColumnConstraints hgrow="ALWAYS" />
-                          <ColumnConstraints hgrow="ALWAYS" />
-                          <ColumnConstraints hgrow="ALWAYS" />
-                      </columnConstraints>
-                      <rowConstraints>
-                          <RowConstraints vgrow="ALWAYS" />
-                          <RowConstraints vgrow="ALWAYS" />
-                          <RowConstraints vgrow="ALWAYS" />
-                          <RowConstraints vgrow="ALWAYS" />
-                          <RowConstraints vgrow="ALWAYS" />
-                          <RowConstraints vgrow="ALWAYS" />
-                      </rowConstraints>
-                      <opaqueInsets>
-                          <Insets />
-                      </opaqueInsets>
-                     <styleClass>
-                        <String fx:value="gridStyle" />
-                        <String fx:value="pane-with-border" />
-                     </styleClass>
-                  </GridPane>
-               </children>
+            <AnchorPane fx:id="calendarAnchorPane">
             </AnchorPane>
          </content>
       </ScrollPane>

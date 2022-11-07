@@ -17,7 +17,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":UniquePersonList" as UniquePersonList MODEL_COLOR
-participant ":Model" as Model MODEL_COLOR
+participant ":Person" as Person MODEL_COLOR
 end box
 
 [-> LogicManager : execute(command_details)
@@ -30,6 +30,11 @@ create AddCommandParser
 AddressBookParser -> AddCommandParser
 activate AddCommandParser
 
+note right of AddCommandParser
+  person_details refers to the fields of the Person object, such as
+  name, phone, email, address, income, monthly, risk, plan, client, [tag]...
+end note
+
 AddCommandParser  --> AddressBookParser
 deactivate AddCommandParser
 
@@ -37,7 +42,7 @@ AddressBookParser -> AddCommandParser  : parse(command_values)
 activate AddCommandParser
 
 create Person
-AddCommandParser -> Person : Person(name, phone, email, address, income, monthly, risk, plan, client, [tag]...)
+AddCommandParser -> Person : Person(person_details)
 activate Person
 
 Person --> AddCommandParser :
@@ -46,6 +51,8 @@ deactivate Person
 create AddCommand
 AddCommandParser  -> AddCommand
 activate AddCommand
+
+
 
 AddCommand --> AddCommandParser  : a
 deactivate AddCommand
@@ -81,4 +88,5 @@ deactivate AddCommand
 
 [<--LogicManager
 deactivate LogicManager
+
 @enduml

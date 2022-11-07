@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_LOCATION;
 import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;
@@ -43,8 +44,7 @@ public class AddAppointmentCommand extends Command {
      * Creates an AddCommand to add the specified {@code Person}
      */
     public AddAppointmentCommand(Index index, Appointment appointment) {
-        requireNonNull(index);
-        requireNonNull(appointment);
+        requireAllNonNull(index, appointment);
         this.index = index;
         this.appointment = appointment;
     }
