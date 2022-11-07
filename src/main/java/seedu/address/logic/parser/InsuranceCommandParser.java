@@ -41,16 +41,29 @@ public class InsuranceCommandParser implements Parser<InsuranceCommand> {
         }
 
         EditInsuranceDescriptor editInsuranceDescriptor = new EditInsuranceDescriptor();
+
         if (argMultimap.getValue(PREFIX_HEALTH_INSURANCE).isPresent()) {
+            if (!argMultimap.getValue(PREFIX_HEALTH_INSURANCE).get().trim().equals("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, InsuranceCommand.MESSAGE_USAGE));
+            }
             editInsuranceDescriptor.setHealthInsurance(new HealthInsurance(true));
         }
         if (argMultimap.getValue(PREFIX_DISABILITY_INSURANCE).isPresent()) {
+            if (!argMultimap.getValue(PREFIX_DISABILITY_INSURANCE).get().trim().equals("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, InsuranceCommand.MESSAGE_USAGE));
+            }
             editInsuranceDescriptor.setDisabilityInsurance(new DisabilityInsurance(true));
         }
         if (argMultimap.getValue(PREFIX_CRITICAL_ILLNESS_INSURANCE).isPresent()) {
+            if (!argMultimap.getValue(PREFIX_CRITICAL_ILLNESS_INSURANCE).get().trim().equals("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, InsuranceCommand.MESSAGE_USAGE));
+            }
             editInsuranceDescriptor.setCriticalIllnessInsurance(new CriticalIllnessInsurance(true));
         }
         if (argMultimap.getValue(PREFIX_LIFE_INSURANCE).isPresent()) {
+            if (!argMultimap.getValue(PREFIX_LIFE_INSURANCE).get().trim().equals("")) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, InsuranceCommand.MESSAGE_USAGE));
+            }
             editInsuranceDescriptor.setLifeInsurance(new LifeInsurance(true));
         }
 
