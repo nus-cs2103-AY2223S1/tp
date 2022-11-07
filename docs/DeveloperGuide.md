@@ -323,20 +323,20 @@ Step 1. The user launches the application. The `Travelr` will be initialized wit
 
 Step 2. The user executes `add n/Trip Name ...` to add a new trip. Throughout the usage of the app, the user adds 
         multiple trips to Travelr. Each time the `add` command is called, the trips are sorted by completion and the
-        uncompleted new trips are shifted before the completed trips.
+        uncompleted new trips are ordered before the completed trips.
 
 Step 3. The user now completes a `Trip` and marks it as completed using the `mark` command. Throughout the usage of the 
         app, the user `mark` multiple trips as he carries out his trips. Each time the `mark` command is called, the
-        trips are sorted by completion and the indexes of completed trips are shifted after the uncompleted trips.
+        trips are sorted by completion and the completed trips are ordered after the uncompleted trips.
 
 Step 4. The user now un-mark a `Trip` and make it incomplete using the `unmark` command. Through the usage of the app,
         the user `unmark` multiple trips as he cancels some of his trips. Each time the `unmark` command is called, the
-        trips are sorted by completion and the indexes of uncompleted trips are shifted before the completed trips.
+        trips are sorted by completion and the uncompleted trips are ordered before the completed trips.
 
 Step 5. The user now decides that he wants to sort his list of trips, and he does so using the `sort` command. 
         The `SortTripsCommandParser` firstly parses the command for optional parameters, which may contain the factor 
         to sort by and whether to sort in reverse order. Subsequently, the trips are sorted based on the parameters the 
-        user supplied.
+        user supplied while keeping uncompleted trips ordered before completed trips.
 
 --------------------------------------------------------------------------------------------------------------------
 
