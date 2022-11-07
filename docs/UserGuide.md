@@ -236,7 +236,7 @@ Edits an existing student in the list.
     - Examples: `2022-10-09 1100-1230`, `MON 1100-1230`, `Mon 1100-1230`
     - Invalid inputs: `2022-10-9 1100-1230`, `2022-10-09 1100-1000`
 
-<div markdown="span" class="alert alert-danger">❗ **Caution:** If the end time is 12AM, it is referring to 12AM of the next day.
+<div markdown="span" class="alert alert-info">ℹ **Note:** If the end time is 12AM, it is referring to 12AM of the next day.
 </div>
 
 <div markdown="span" class="alert alert-danger">❗ **Caution:** If a chosen date is occupied by another student, a class conflict error will arise.
