@@ -922,7 +922,7 @@ Advanced users are welcome to update the data directly by editing that data file
 <div markdown="span" class="alert alert-warning">
 
 :exclamation: **Caution:** If your changes to the data file makes its format invalid, PetCode will discard all data and
-start with an empty data file at the next run. For certain data changes, PetCode will discard the change and initiate the respective data value to default value.
+start with an empty data file at the next run. For certain data changes, PetCode will discard the change and initiate the respective data value to its default value.
 
 </div>
 
