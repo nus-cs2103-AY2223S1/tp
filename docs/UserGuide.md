@@ -59,6 +59,8 @@ Here are certain indicators explained so that the user may better comprehend the
 
 :exclamation: **Caution:** Cautions are placed in this guide as warnings for certain erroneous actions.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Glossary**
