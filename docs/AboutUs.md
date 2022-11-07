@@ -16,8 +16,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[github](http://github.com/seanmanik)] [[portfolio](team/seanmanik.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: UI, Backend, Frontend, DevOps
 
 ### Su Peigeng
 
@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/bacon-strips)] [[portfolio](team/bacon-strips.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: UI, Backend, Frontend, DevOps
 
 ### Stevan Gerard Gunawan
 
@@ -36,7 +36,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/gerardstevan.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: UI, Backend, Frontend, DevOps
 
 ### Ling Guan Ming
 
@@ -46,7 +46,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/ceereec.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: UI, Backend, Frontend, DevOps
 
 ### Cheng Jun Tey
 
@@ -56,4 +56,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/cjun1039.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops
+* Responsibilities: UI, Backend, Frontend, DevOps
