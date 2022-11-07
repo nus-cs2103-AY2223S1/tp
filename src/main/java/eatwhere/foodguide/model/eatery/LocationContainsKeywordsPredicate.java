@@ -3,8 +3,6 @@ package eatwhere.foodguide.model.eatery;
 import java.util.List;
 import java.util.function.Predicate;
 
-import eatwhere.foodguide.commons.util.StringUtil;
-
 /**
  * Tests that a {@code Eatery}'s {@code Location} matches any of the keywords given.
  */
@@ -18,7 +16,8 @@ public class LocationContainsKeywordsPredicate implements Predicate<Eatery> {
     @Override
     public boolean test(Eatery eatery) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(eatery.getLocation().value, keyword));
+                .anyMatch(keyword -> eatery.getLocation().value
+                        .toLowerCase().contains(keyword.toLowerCase()));
     }
 
     @Override
