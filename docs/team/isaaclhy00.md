@@ -13,23 +13,25 @@ and pushed 56 commits. For most recent update,
 refer to this [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=isaaclhy00&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 **Enhancements implemented:** 
-* Add, Edit, Delete, and Find features for listings.
-* Add and View offers and clients tagged to the listings. 
+* Added `Add`, `Edit`, `Delete`, and `Find` features for listings.
+* Added `Add` and `View` offers and clients tagged to the listings. 
 
 **Contributions to the UG:**
-* addL feature description
-* editL feature description
-* deleteL feature description
-* links for navigation
+* Added `addL` feature description.
+* Added `editL` feature description.
+* Added `delL` feature description.
+* Added links for navigation.
 
 **Contributions to the DG:**
-* rationale for features
+* Added rationale for features.
+* Added user stories for `Listing` related features.
 
 **Contributions to team based tasks:** 
-* Listing class and its features
-* Product demonstration
+* Added `Listing` class and its features
+* Added product demonstration
 
 **Review/mentoring contributions:** 
-* weekly review and merging of peer PRs
+* weekly review and merging of peer PRs (with simple review comments)
 
 **Contributions beyond the project team:** 
+* Reported 9 bugs and suggestions for other teams.
