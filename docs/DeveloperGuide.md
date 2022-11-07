@@ -135,7 +135,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W17-3/tp/blob/master/src/main/java/seedu/modquik/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="1000" />
 
@@ -159,13 +159,11 @@ This section describes some noteworthy details on how certain features are imple
 #### Implementation
 
 
-The following activity diagram illustrates what happens when the `addStudent` command is called to add a student into ModQuik. There is a need to check that the given student id does not already exist in ModQuik.
+The following activity diagram illustrates what happens when the `add Student` command is called to add a student into ModQuik. There is a need to check that the given student id does not already exist in ModQuik.
 
 ![AddStudentActivityDiagram](images/AddStudentActivityDiagram.png)
 
-Referencing the above activity diagram, ModQuik will first check that all prefixes are present and formatted correctly, and that no multiple of the same prefix exists. It will then proceed to check if the name, student id, ,phone, email, telegram handle, module, tutorial, and
-grade(if any), attendance(if any), participation (if any), tags (if any) are formatted correctly. It will then create a Student object using the provided name, student id, ,phone, email, telegram handle, module, tutorial, and
-grade(if any), attendance(if any), participation (if any), tags (if any) and then check if there is a duplicate student inside ModQuik. If there are no duplicate student inside ModQuik, it will check across every student in ModQuik to see if the provided student id already exists inside ModQuik. If the provided student id does not belong to any student inside ModQuik already, the created student is then added into ModQuik and a message is returned indicating success. The new student will appear in the ModQuik.
+Referencing the above activity diagram, ModQuik will first check that all prefixes are present and formatted correctly, and that no multiple of the same prefix exists. It will then proceed to check if all fields provided are formatted correctly. It will then create a Student object using the provided fields and then check if there is a duplicate student inside ModQuik. If there are no duplicate student inside ModQuik, it will check across every student in ModQuik to see if the provided student id already exists inside ModQuik. If the provided student id does not belong to any student inside ModQuik already, the created student is then added into ModQuik and a message is returned indicating success. The new student will appear in the ModQuik.
 
 
 ### Show grade chart feature
