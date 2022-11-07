@@ -1,5 +1,6 @@
 ---
-layout: page title: SETA
+layout: page 
+title: SETA
 ---
 
 User Guide
