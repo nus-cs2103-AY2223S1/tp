@@ -207,7 +207,7 @@ The following activity diagram summarizes the flow of when a user enters an add 
   | Pros      | Customers can choose not to disclose private details such as phone number and email address. | The user just needs to `add n/Bob` without asking for phone number or email address.                           |
   | Cons      | User cannot add customers that have same names.                                              | The user cannot `add n/Alex` if there already exists an `Alex` in the database, since `Alex` is a common name. |
 
-* **Future Extension:** bobaBot can support adding more customer details such as birthday month to provide more timely deals for customers.
+* **Future Extension:** bobaBot can support autocompletion of prefixes to reduce keystrokes for the user.
 
 
 ### Edit feature
