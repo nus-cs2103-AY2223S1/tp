@@ -11,7 +11,6 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":"
 end box
 
 [-> LogicManager : execute("mail all")
@@ -49,7 +48,7 @@ deactivate TuthubParser
 LogicManager --> MailCommand : execute()
 activate MailCommand
 
-MailCommand -> Model : getFilteredTutorList()
+MailCommand -> Model : getTutorList()
 activate Model
 
 Model --> MailCommand
