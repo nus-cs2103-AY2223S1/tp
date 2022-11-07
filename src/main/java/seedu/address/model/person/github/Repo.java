@@ -3,6 +3,7 @@ package seedu.address.model.person.github;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Optional;
 
 //@@author Vshnv2001
@@ -48,4 +49,19 @@ public class Repo {
         return this.repoName;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Repo repo = (Repo) o;
+        return repoName.equals(repo.repoName)
+                && repoUrl.equals(repo.repoUrl)
+                && getDescription().equals(repo.getDescription())
+                && lastUpdated.equals(repo.lastUpdated);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(repoName, repoUrl, description, lastUpdated);
+    }
 }
