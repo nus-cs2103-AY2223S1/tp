@@ -100,6 +100,14 @@ public class AppliedDate {
         return isValidFormat(appliedDate) && isValidDate(appliedDate);
     }
 
+    /**
+     * Returns the LocalDate representation of this AppliedDate object.
+     * @return LocalDate representation.
+     */
+    public LocalDate getLocalDate() {
+        return this.appliedDate;
+    }
+
     @Override
     public String toString() {
         return value;

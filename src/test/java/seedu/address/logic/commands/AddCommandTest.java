@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalDateTimes.EARLIER_VALID_DATE;
+import static seedu.address.testutil.TypicalDateTimes.FIRST_VALID_TIME;
+import static seedu.address.testutil.TypicalDateTimes.LATER_VALID_DATE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -41,6 +44,17 @@ public class AddCommandTest {
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validInternship), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validInternship), modelStub.internshipsAdded);
+    }
+
+    @Test
+    public void execute_interviewDateTimeBeforeAppliedDate_throwsCommandException() {
+        Internship invalidInternship = new InternshipBuilder().withAppliedDate(LATER_VALID_DATE)
+                .withInterviewDateTime(EARLIER_VALID_DATE + " " + FIRST_VALID_TIME).build();
+        AddCommand addCommand = new AddCommand(invalidInternship);
+        ModelStub modelStub = new ModelStubWithInternship(invalidInternship);
+
+        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_INTERVIEW_DATE, ()
+                -> addCommand.execute(modelStub));
     }
 
     @Test
