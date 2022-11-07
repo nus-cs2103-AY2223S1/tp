@@ -64,6 +64,35 @@ public class EditTaskCommandTest {
     }
 
     @Test
+    public void execute_taskNameDuplicated_failure() {
+        Index targetIndex = Index.fromOneBased(1);
+        Task editedTask = new TaskBuilder().withTitle("Assign contacts to task").build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
+        EditTaskCommand editTaskCommand = new EditTaskCommand(targetIndex, descriptor);
+
+        assertCommandFailure(editTaskCommand, model, EditTaskCommand.MESSAGE_DUPLICATE_TASK);
+    }
+
+    @Test
+    public void execute_taskNameUnchanged_success() {
+        Index targetIndex = Index.fromOneBased(1);
+        Task taskToEdit = model.getFilteredTaskList().get(targetIndex.getZeroBased());
+        Task editedTask = new TaskBuilder()
+                .withTitle(taskToEdit.getTitle().toString())
+                .withContacts("Alice Pauline")
+                .build();
+        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(editedTask).build();
+        EditTaskCommand editTaskCommand = new EditTaskCommand(targetIndex, descriptor);
+        String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedTask);
+
+        Model expectedModel = new ModelManager(
+                new AddressBook(model.getAddressBook()), new TaskPanel(model.getTaskPanel()), new UserPrefs());
+        expectedModel.setTask(taskToEdit, editedTask);
+
+        assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void equals() {
         final EditTaskCommand standardCommand = new EditTaskCommand(INDEX_FIRST_TASK, DESC_HOMEWORK);
 

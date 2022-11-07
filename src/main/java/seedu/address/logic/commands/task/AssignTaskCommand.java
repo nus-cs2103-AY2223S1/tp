@@ -41,11 +41,9 @@ public class AssignTaskCommand extends TaskCommand {
 
     public static final String MESSAGE_SUCCESS = "Assigned teammates updated for task: %1$s";
 
-    public static final String MESSAGE_REPEATED_CONTACT = "Add: %1$s has already been added.";
+    public static final String MESSAGE_REPEATED_CONTACT = "Note: %1$s has already been added.";
 
-    public static final String MESSAGE_CONTACT_DOES_NOT_EXIT = "Delete: %1$s has not been previously assigned.";
-
-    public static final String MESSAGE_PARTIAL_SUCCESS = "All other teammates updated accordingly";
+    public static final String MESSAGE_CONTACT_DOES_NOT_EXIT = "Note: %1$s has not been previously assigned.";
 
     private final Index taskIndex;
     private final Set<Index> teammateAddIndexes = new HashSet<>();
@@ -93,6 +91,10 @@ public class AssignTaskCommand extends TaskCommand {
         Set<Contact> contactsToDelete =
                 getAllContacts(teammateDeleteIndexes, teammateDeleteNames, lastShownTeammatesList);
 
+        if (!invalidIndexes.isEmpty() || !invalidNames.isEmpty()) {
+            throw new CommandException(buildErrorMessage());
+        }
+
         Set<Contact> contactSetToModify = new HashSet<>(taskToModify.getAssignedContacts());
         for (Contact contactToAdd : contactsToAdd) {
             if (contactSetToModify.contains(contactToAdd)) {
@@ -117,9 +119,9 @@ public class AssignTaskCommand extends TaskCommand {
 
         model.setTask(taskToModify, editedTask);
 
-        if (!invalidIndexes.isEmpty() || !invalidNames.isEmpty()
-                || !alreadyAddedContacts.isEmpty() || !notAddedContacts.isEmpty()) {
-            throw new CommandException(buildErrorMessage() + MESSAGE_PARTIAL_SUCCESS);
+        if (!alreadyAddedContacts.isEmpty() || !notAddedContacts.isEmpty()) {
+            return new CommandResult(buildInfoMessage()
+                    + String.format(MESSAGE_SUCCESS, taskIndex.getOneBased()));
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, taskIndex.getOneBased()));
@@ -174,17 +176,22 @@ public class AssignTaskCommand extends TaskCommand {
             errorMessage.append(currMessage);
             errorMessage.append("\n");
         }
+        return errorMessage.toString();
+    }
+
+    private String buildInfoMessage() {
+        StringBuilder infoMessage = new StringBuilder();
         for (Contact contact : alreadyAddedContacts) {
             String currMessage = String.format(MESSAGE_REPEATED_CONTACT, contact.toString());
-            errorMessage.append(currMessage);
-            errorMessage.append("\n");
+            infoMessage.append(currMessage);
+            infoMessage.append("\n");
         }
         for (Contact contact : notAddedContacts) {
             String currMessage = String.format(MESSAGE_CONTACT_DOES_NOT_EXIT, contact.toString());
-            errorMessage.append(currMessage);
-            errorMessage.append("\n");
+            infoMessage.append(currMessage);
+            infoMessage.append("\n");
         }
-        return errorMessage.toString();
+        return infoMessage.toString();
     }
 
     @Override
