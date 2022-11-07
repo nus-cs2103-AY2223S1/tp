@@ -18,7 +18,7 @@ public class PlanTag extends Tag {
      * @param tagName A valid tag name.
      */
     public PlanTag(String tagName) {
-        super(tagName);
+        super(tagName.trim().replaceAll(" +", " "));
         checkArgument(isValidPlanTagName(tagName), MESSAGE_CONSTRAINTS);
     }
 
