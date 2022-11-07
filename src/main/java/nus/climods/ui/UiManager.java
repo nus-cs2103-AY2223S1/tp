@@ -75,7 +75,7 @@ public class UiManager implements Ui {
             showAlertDialogAndWait(AlertType.ERROR, "Failed to load modules!",
                 "Check your network connection or the academic year specified in preferences.json",
                 "Academic year should be specified in the following format: YYYY-YYYY"
-                    + "\nDo check out user guide for more details if needed!");
+                + "\nMore details on can be found at https://ay2223s1-cs2103-f14-1.github.io/tp/UserGuide.html#faqs");
         }
     }
 

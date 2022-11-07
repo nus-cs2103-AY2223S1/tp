@@ -39,6 +39,8 @@ Linus, Cheng Yi, Yi Hong, Huzaifa, Hong Jin
 
 6. Refer to the [Features](#features) below for details of each command.
 
+> If no academic year is specified in `preferences.json`, the current academic year (e.g. 2022-2023) will be used.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features syntax
@@ -232,28 +234,41 @@ Traverse/Scroll **down**: `<Down>`
 
 
 ## FAQs
-1. What is a `regex` expression?
 
-Ans: It stands for `regular expression` and is a sequence of characters that specifies a search pattern in text.
-To learn more about regex, you can refer to [this tutorial](https://regexone.com).
+1. **What is a `regex` expression?**
 
-2. Why can't I visit external links?
+    It stands for `regular expression` and is a sequence of characters that specifies a search pattern in text. To learn more about regex, you can refer to [this tutorial](https://regexone.com).
 
-Ans: You are likely coming from our application via the `help` command.  It is intended for the user
-to only view our website (including the user guide) via the command.  If you wish to visit any external links,
-you can copy the link and paste it into your favourite browser!
+2. **Why can't I visit external links?**
 
-3. Can I update the json file?
+    You are likely coming from our application via the `help` command. It is intended for the user
+    to only view our website (including the user guide) via the command. If you wish to visit any external links,
+    you can copy the link and paste it into your favourite browser!
 
-Ans: No! Do not edit the json files on your own! Instead, you should use the command line interface provided by
-CLIMods. We do not take any responsibility for any unexpected behaviour if you insist on editing the json files.
+3. **Can I update the json file?**
 
-<div markdown="block" class="alert alert-danger">
-:warning: If the file is corrupted, please manually delete the file from the directory. 
-Automatic deletion of files is not a feature due to security concerns (e.g. malicious hackers can set the file preference to local files that are not json compatible. Enabling auto-deletion of corrupted files will enable hackers to delete these files.)
-</div>
+    No! Do not edit the json files on your own! Instead, you should use the command line interface provided by
+    CLIMods. We do not take any responsibility for any unexpected behaviour if you insist on editing the json files.
 
-4. Why is the application not displaying any modules?
+    <div markdown="block" class="alert alert-danger">
+    :warning: If the file is corrupted, please manually delete the file from the directory. 
+    Automatic deletion of files is not a feature due to security concerns (e.g. malicious hackers can set the file preference to local files that are not json compatible. Enabling auto-deletion of corrupted files will enable hackers to delete these files.)
+    </div>
 
-Ans: CLIMods requires internet access because we fetch module data from NUSMods API.  Please ensure that you have
-internet access before launching CLIMods.
+4. **Why is the application not displaying any modules?**
+
+    CLIMods requires internet access because we fetch module data from NUSMods API.  Please ensure that you have
+    internet access before launching CLIMods.
+
+5. **How should I specify the academic year?**
+
+    An academic year is specified in the `YYYY-YYYY` format. Note that specifying identical years (`2022-2022`) will be treated as an invalid academic year.
+
+    Since, `CLIMods` relies on the [`nusmods` API](https://api.nusmods.com/v2) for module data, do note that legacy module data may not be available. For example, since `nusmods` no longer provide module data before `2018`, specifying `2017-2018` or any previous academic years will be treated as an invalid academic year.
+
+    <div markdown="span" class="alert alert-primary">
+    :bulb: **Tip**
+    
+    - Valid academic year examples: `2022-2023`, `2018-2019`
+    - Invalid academic year examples: `2022-2022`, `2023-2022`, `22-23`
+    </div>
