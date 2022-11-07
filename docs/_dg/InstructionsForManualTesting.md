@@ -5,7 +5,7 @@ This section provides you with instructions to test the app manually. It also co
 These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing.
 ```
 
-### Launch and Shutdown
+### Launch
 
 #### Initial launch
 
@@ -113,6 +113,12 @@ Prerequisite: Original tag to be renamed exists.
 Prerequisite: Tag currently exists in FoodRem
 
 1. Test case: `deletetag n/Food`<br> Expected Output in Item List Box: Specified tag if shown, is deleted. <br> Expected Output in Command Output Box: Tag deleted details.
+
+#### Filter by a Tag
+
+Prerequisite: Suppose a tag with name of `fruits` currently exists in FoodRem and is tagged to a few items.
+
+1. Test case: `filtertag n/fruits`<br> Expected Output in Item List Box: Items with specified tags shown. <br> Expected Output in Command Output Box: Details of tag and number of items filtered.
 
 ### Statistics
 

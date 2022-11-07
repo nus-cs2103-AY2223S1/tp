@@ -14,7 +14,7 @@ The Developer Guide has six main components:
 1. [Instructions for manual testing](#instructions-for-manual-testing)
 1. [Effort](#effort)
 
-As a **developer**, the first three sections would be most applicable to you. The section on [Design](#design) gives you a high-level overview of how the application is structured and what the key components of FoodRem. After reading the section on design, the section on [Implementation](#implementation) covers how items, tags, statistics, and general features are implemented. Lastly, the section on [Documentation, Configuration, and Other Guides](#documentation-configuration-and-other-guides)
+As a **developer**, the first three sections would be most applicable to you. The section on [Design](#design) gives you a high-level overview of how the application is structured and what the key components of FoodRem are. After reading the section on design, the section on [Implementation](#implementation) covers how [[ item:items ]], [[ tag:tags ]], statistics and general features are implemented. Lastly, the section on [Documentation, Configuration and Other Guides](#documentation-configuration-and-other-guides)
 
 If you are in the **marketing** or **product** team or want to know why FoodRem was created, the section on [Requirements](#requirements) covers the [Product Scope](#product-scope), [User Stories](#user-stories), [Use Cases](#use-cases), and [Non-Functional Requirements](#non-functional-requirements).
 

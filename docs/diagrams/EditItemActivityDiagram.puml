@@ -1,0 +1,24 @@
+@startuml
+!pragma useVerticalIf on
+start
+:User enters edit command;
+if () then ([else])
+  :Error: Invalid index provided;
+  stop
+([Positive index provided]) elseif () then ([else])
+  :Error: Invalid command format;
+  stop
+([at least one field to be edited is provided]) elseif () then ([else])
+  :Error: Invalid index provided;
+  stop
+([Item index is in valid range of Item List])elseif () then ([else])
+  :Error: Item already exists in the Item List;
+   stop
+ else ([Edited item does not share a name with any other Items])
+endif
+  :edit command successfully executes.
+Item is edited.;
+stop
+
+@enduml
+

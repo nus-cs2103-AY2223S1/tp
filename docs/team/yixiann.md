@@ -10,13 +10,6 @@ title: Tan Yi Xian's Project Portfolio Page
 <!-- markdownlint-disable-next-line proper-names -->
 {{ site.data.foodrem.about.summary }}
 
-FoodRem is an inventory management system that empowers small food and beverage (F&B) restaurant managers to manage inventory and obtain insights from inventory data.
-
-FoodRem stores information such as name, quantity, unit, bought date, expiry date, price, and remarks.
-The two main functionalities of FoodRem are the inventory management system and inventory analysis.
-The inventory management system uses an efficient tagging system where you can create, rename, and delete existing tags. We are also able to sort and filter items by different attributes.
-The Inventory Analysis System tracks data that helps restaurants streamline their business decisions through statistics.
-
 Given below are my contributions to the project.
 
 * **Major Refactoring**: Refactor AB3 into FoodRem
@@ -35,31 +28,31 @@ Given below are my contributions to the project.
       * A class has to be created for each of the following fields: name, quantity, unit, bought date, expiry date, price, and remarks.
       * A validation class was created for each individual field to ensure easy extension.
     * Commands such as the help, exit and reset, commands required minimal changes.
-  * Pull requests : [Refactoring Person to Item PR\#157](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/157))
+  * Pull requests : Refactoring Person to Item [[PR\#157]]
 
 * **New Feature**: Added the ability to add a remark
 
   * What it does: Allows the user to add a remark to an item.
   * Justification: This feature improves the user's experience as they are now able to include notes specific to an item.
-  * Pull requests : [Add remarks fields and remarks command PR#254](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/254))
+  * Pull requests : Add remarks fields and remarks command [[PR#254]]
 
 * **New Feature**: Add the user interface for tags
   * What it does: Allows the user to view results of tag commands in a beautiful format rather than plain text.
   * Justification: This feature standardises the UI of Items and Tags.
   * The implementation was extended from the current UI of Items which was created by Richard Dominick.
-  * Pull requests : [Add UI for tags PR#340](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/340)
+  * Pull requests : Add UI for tags [[PR#340]]
 
 * **Enhancements to the `help` command**:
 
   * Enhanced `help` command to provide help for individual commands rather than a generic message.
   * Enumeration of CommandWords was done.
-  * Pull requests : [Modify help command to provide help for each individual command PR#201](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/201))
+  * Pull requests : Modify help command to provide help for each individual command [[PR#201]]
 
 * **Enhancements to the `inc` and `dec` command**:
 
   * Enhanced `inc` command and `dec` command to have optional qty prefix.
   * This was done to make it easier to increment and decrement the quantity of an item.
-  * Pull requests : [Modify increment and decrement command to have optional qty prefix PR#183](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/183))
+  * Pull requests : Modify increment and decrement command to have optional qty prefix [[PR#183]]
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=yixiann&tabRepo=AY2223S1-CS2103T-W16-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
@@ -71,10 +64,10 @@ Given below are my contributions to the project.
 * **Documentation**:
 
   * User Guide:
-    * Add skeleton for the User Guide [PR#35](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/35)
-    * Add value preposition of FoodRem in the User Guide [PR#147](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/147)
-    * Update Quick Start of User Guide, and reorganise content page [PR#141](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/141)
-    * Add documentation for the `help` feature [PR#90](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/90)
+    * Add skeleton for the User Guide [[PR#35]]
+    * Add value preposition of FoodRem in the User Guide [[PR#147]]
+    * Update Quick Start of User Guide, and reorganise content page [[PR#141]]
+    * Add documentation for the `help` feature [[PR#90]]
 
   * Developer Guide:
     * Added about us section for the Developer Guide.
@@ -82,11 +75,11 @@ Given below are my contributions to the project.
 * **Community**:
 
   * Reported bugs and suggestions for other teams in the class:
-    * Stats command do not calculate amount wasted by performing qty * price [Issue#449](https://github.com/AY2223S1-CS2103T-W16-2/tp/issues/449)
-    * Stats command expiry date do not count items that expire today [Issue#448](https://github.com/AY2223S1-CS2103T-W16-2/tp/issues/448)
-    * Stats command fail on FoodRem having less than 3 items [Issue#447](https://github.com/AY2223S1-CS2103T-W16-2/tp/issues/447)
-    * Rename tag does not modify tags in items [Issue#293](https://github.com/AY2223S1-CS2103T-W16-2/tp/issues/293)
-    * Rename tag to same name is possible [Issue#273](https://github.com/AY2223S1-CS2103T-W16-2/tp/issues/273)
+    * Stats command do not calculate amount wasted by performing qty * price [[Issue#449]]
+    * Stats command expiry date do not count items that expire today [[Issue#448]]
+    * Stats command fail on FoodRem having less than 3 items [[Issue#447]]
+    * Rename tag does not modify tags in items [[Issue#293]]
+    * Rename tag to same name is possible [[Issue#273]]
 
 Other PRs:
 
