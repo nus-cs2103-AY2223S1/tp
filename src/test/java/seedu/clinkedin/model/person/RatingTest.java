@@ -84,7 +84,7 @@ public class RatingTest {
         Rating largerRating = new Rating("9");
 
         assertEquals(rating.compare(equalRating), 0);
-        assertEquals(rating.compare(smallerRating), -1);
-        assertEquals(rating.compare(largerRating), 1);
+        assertEquals(rating.compare(smallerRating), 1);
+        assertEquals(rating.compare(largerRating), -1);
     }
 }
