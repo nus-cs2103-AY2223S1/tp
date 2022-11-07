@@ -226,7 +226,7 @@ E.g. `Name`, `Phone`, `Email`. When the user wants to find a tutor, the user spe
 to the specific attribute of the tutor followed by the keywords to be searched. `Tutor` objects that are matched the
 keywords being searched are added to the `FilteredList` to be displayed in the program to the user.
 
-The following methods in `tuthub` manage the finding of tutors:
+The following methods in `Tuthub` manage the finding of tutors:
 * `Tuthub#FindByNameCommand(NameContainsKeywordsPredicate predicate)` - Finds and adds tutors with names matching keywords to list of tutors displayed
 * `Tuthub#FindByPhoneCommand(PhoneContainsKeywordsPredicate predicate)` - Finds and adds tutors with phone number matching keywords to list of tutors displayed
 * `Tuthub#FindByEmailCommand(EmailContainsKeywordsPredicate predicate)` - Finds and adds tutors with emails matching keywords to list of tutors displayed
