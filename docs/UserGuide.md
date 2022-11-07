@@ -109,7 +109,7 @@ which contains `workday-nus`, `edu`, and `sg` as `DOMAIN_LABEL` separated by `.`
 | **Major**           | `m`       | 50           | Can only contain alphanumeric characters and spaces                                    |
 | **Job Title**       | `jt`      | 100          | Can only contain alphanumeric characters, `SPECIAL_PUNCTUATIONS` and spaces            |
 
-* `CURRENT_CAP` must be a positive value (more than `0.0`)
+* `CURRENT_CAP` and `MAX_CAP` must be a positive value (more than `0.0`)
 * `CURRENT_CAP` value must be smaller than or equal to `MAX_CAP`
 * `MAX_CAP` and `CURRENT_CAP` values should not exceed `100.0`
 * `MAX_CAP` and `CURRENT_CAP` will be rounded to 2 decimal places, e.g. `3.99999` will be rounded to `4.00`
@@ -137,7 +137,7 @@ which contains `workday-nus`, `edu`, and `sg` as `DOMAIN_LABEL` separated by `.`
   e.g., in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Bobby Doe`.
 
 * Items with `...` after them can be used multiple times including zero times.
-  e.g. `[t/TAG]...` can be used as ` ` (i.e. 0 times), `t/KIV`, `t/KIV t/offered` etc.
+  e.g. `[t/TAG]...` can be used as `` (i.e. 0 times), `t/KIV`, `t/KIV t/offered` etc.
 
 * Curly brackets represent a set of at least 1 parameter, and each of them is mandatory.
   e.g., `{mandatory_field_parameter/FIELD_DETAIL}`, all fields that belong to mandatory fields must be listed.
