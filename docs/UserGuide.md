@@ -183,6 +183,8 @@ Adds a client to the LTNS.
 
 Format: `addClient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ b/BIRTHDAY i/INCOME ra/RISK_APPETITE`
 
+Find a detailed explanation of different input restrictions [here](#Command-format-table).
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A client can have any number of tags (including 0)
 </div>
@@ -372,6 +374,8 @@ Adds a policy to the LTNS.
 
 Format: `addPolicy ti/TITLE cmp/COMPANY_CODE cms/Y1COMMISION% Y2COMISSION% Y3ONWARDS% cov/COVERAGE...`
 
+Find a detailed explanation of different input restrictions [here](#Command-format-table).
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A policy must have one or more coverages.
 </div>  
@@ -487,6 +491,8 @@ If you have yet to add either your Client or Policy to the Application, you can 
 
 Format: `assign CLIENT_INDEX POLICY_INDEX pr/PREMIUM sd/STARTDATE ed/ENDDATE`
 
+Find a detailed explanation of different input restrictions [here](#Command-format-table).
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The start and end dates should be of the format "YYYY-MM-DD", and within the years 1900 - 2100.
 </div>
@@ -549,6 +555,8 @@ Example Usage:
 ## Event Features
 
 ### Adding an Event: `addEvent`
+
+Find a detailed explanation of different input restrictions [here](#Command-format-table).
 
 An `Event` represents an appointment with an existing Client. It has the duration (represented by the start and end time) and
 the date of the appointment. It also has a handy description to briefly describe the contents of the meeting.
@@ -692,7 +700,7 @@ A: Fret not! Simply drop us an email at e0725346@u.nus.edu, and we will reply wi
 | Title               | ti/    | - Only alphanumeric characters and spaces can be specified, and it should not be blank<br/> - Only a maximum of 40 characters is allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | Coverage            | cov/   | - Only inputs of the valid coverage type options are allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | Company Code        | cmp/   | - Only one of the valid company codes is allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| Commission          | cms/   | - Has to be in the format of (Y1COMMISSION)% (Y2COMMISSION)% (Y3ONWARDS)%, where the commission values in the brackets are to be replaced with decimal values between 0 and 100 inclusive                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Commission          | cms/   | - Has to be in the format of (Y1COMMISSION)% (Y2COMMISSION)% (Y3ONWARDS)%, where the commission values and the brackets are to be replaced with numeric values between 0 and 100 inclusive, with up to 5 decimals.                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
 | Premium             | pr/    | - Only positive numbers below 1000000000, with or without 2 decimal places are allowed                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | Start date          | sd/    | - Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`<br/> - Only dates that fall between the 20th and 21th century are allowed (i.e between the years 1900 and 2100)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | End date            | ed/    | - Only valid date inputs of the YYYY-MM-DD format are allowed. e.g `2020-12-30`<br/> - Only dates that fall between the 20th and 21th century are allowed (i.e between the years 1900 and 2100) <br/> - Should be later than the associated start date                                                                                                                                                                                                                                                                                                                                                                                                                                         |
