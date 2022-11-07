@@ -12,7 +12,7 @@ Class MainWindow
 Class HelpWindow
 Class ResultDisplay
 Class PersonListPanel
-Class TruncatedPersonListCard
+Class TruncatedPatientListCard
 Class StatusBarFooter
 Class CommandBox
 Class OutputPanel
@@ -39,7 +39,7 @@ MainWindow *-left-> "1" OutputPanel
 
 MainWindow --> "0..1" HelpWindow
 
-PersonListPanel -down-> "*" TruncatedPersonListCard
+PersonListPanel -down-> "*" TruncatedPatientListCard
 
 
 MainWindow -left-|> UiPart
@@ -47,12 +47,12 @@ MainWindow -left-|> UiPart
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 PersonListPanel --|> UiPart
-TruncatedPersonListCard --|> UiPart
+TruncatedPatientListCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 OutputPanel --|> UiPart
 
-TruncatedPersonListCard ..> Model
+TruncatedPatientListCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 

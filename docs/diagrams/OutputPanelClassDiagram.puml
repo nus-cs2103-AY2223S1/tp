@@ -9,7 +9,7 @@ Class "{abstract}\nUiPart" as UiPart
 Class OutputPanel
 Class TaskListPanel
 Class TaskListCard
-Class UpdatedPersonCard
+Class UpdatedPatientCard
 Class UndoCard
 Class RedoCard
 Class ModifiedPatientCard
@@ -28,12 +28,12 @@ OutputPanel --> "0..1" RedoCard
 OutputPanel --> "0..1" ModifiedPatientCard
 OutputPanel --> "0..1" ScheduleListPanel
 OutputPanel -->  UpdatedPersonListPanel
-OutputPanel --> "0..1" UpdatedPersonCard
+OutputPanel --> "0..1" UpdatedPatientCard
 OutputPanel --> "0..1" TruncatedTaskListPanel
 
 UndoCard -->  UpdatedPersonListPanel
 RedoCard -->  UpdatedPersonListPanel
-UpdatedPersonListPanel --> "*" UpdatedPersonCard
+UpdatedPersonListPanel --> "*" UpdatedPatientCard
 
 ScheduleListPanel --> "*" ScheduleListCard
 
@@ -46,7 +46,7 @@ TaskListPanel --> "*" TaskListCard
 OutputPanel --|> UiPart
 TaskListPanel --|> UiPart
 TaskListCard --|> UiPart
-UpdatedPersonCard --|> UiPart
+UpdatedPatientCard --|> UiPart
 ScheduleListCard --|> UiPart
 TruncatedTaskListCard --|> UiPart
 UndoCard --|> UiPart
