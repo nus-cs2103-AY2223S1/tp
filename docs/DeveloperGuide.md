@@ -387,13 +387,7 @@ Usage Scenario of `viewMeeting`:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If `INDEX` is larger than the current meeting list's size or `INDEX` is negative, then it will not show any meeting details. It will return an error to the user.
 </div>
 
-Below is a sequence diagram that illustrates the execution of `viewMeeting` command and the interaction with `Model`.
-
-![ViewMeetingSequenceDiagram](images/ViewMeetingSequenceDiagram.png)
-
-Below is an activity diagram that summarises the execution of `viewMeeting`.
-
-![ViewMeetingActivityDiagram](images/ViewMeetingActivityDiagram.png)
+_The sequence diagram and activity diagram of `viewMeeting` is similar to the diagrams shown in [`viewClient`](#413-view-client) feature by replacing all occurrence of `client` with `meeting`._
 
 #### 4.2.5 List meeting
 
