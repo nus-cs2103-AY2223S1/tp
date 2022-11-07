@@ -128,18 +128,18 @@ public class EditCommand extends Command {
 
         Person confirmedPersonToEdit = personToEdit.get();
 
-        boolean haveDatesSlots = editPersonDescriptor.getDatesSlots().isPresent();
-        boolean haveDateSlotIndexes = editPersonDescriptor.getDateSlotIndexes().isPresent();
-        boolean haveUnavailableDates = editPersonDescriptor.getUnavailableDates().isPresent();
-        boolean haveUnavailableDateIndexes = editPersonDescriptor.getDateIndexes().isPresent();
+        boolean hasDatesSlots = editPersonDescriptor.getDatesSlots().isPresent();
+        boolean hasDateSlotIndexes = editPersonDescriptor.getDateSlotIndexes().isPresent();
+        boolean hasUnavailableDates = editPersonDescriptor.getUnavailableDates().isPresent();
+        boolean hasUnavailableDateIndexes = editPersonDescriptor.getDateIndexes().isPresent();
         boolean isNurse = editPersonDescriptor.getCategory().equals("N") || confirmedPersonToEdit.isNurse();
 
         if (isNurse) {
-            if (haveDateSlotIndexes || haveDatesSlots) {
+            if (hasDateSlotIndexes || hasDatesSlots) {
                 throw new CommandException(MESSAGE_NURSE_INVALID_DATESLOT_EDIT);
             }
         } else {
-            if (haveUnavailableDates || haveUnavailableDateIndexes) {
+            if (hasUnavailableDates || hasUnavailableDateIndexes) {
                 throw new CommandException(MESSAGE_PATIENT_INVALID_UNAVAILABLE_DATE_EDIT);
             }
         }
