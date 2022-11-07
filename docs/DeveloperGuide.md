@@ -74,7 +74,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete -m 1` to remove the module with index `1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete task 1` to remove the task with index `1`.
 
 Note that while our program has both tasks and modules, the flow of logic for doing operations (i.e. delete, add etc.) on them are similar. Therefore, although the following sections only illustrate the components in the context of modules, they are similar when applied in the context of tasks as well.
 
@@ -90,6 +90,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 <img src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component. As stated above, tasks are omitted in place of modules in the following sections due to the similarity between them.
+
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -114,6 +116,8 @@ The `UI` component,
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 * Keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * Depends on some classes in the `Model` component, as it displays `Module` object residing in the `Model`.
+
+<div style="page-break-after: always;"></div>
 
 #### MainWindow
 
@@ -183,6 +187,8 @@ Here is how the `ProfileSidePanel` works:
 6. `ProfileSidePanel` shows visible change on the interface.
 7. `refresh` ends execution.
 
+<div style="page-break-after: always;"></div>
+
 #### Other Components
 In addition to the main UI components in the `MainWindow` class, these are other UI Components:
 * `ModuleCard` - Individual card containing the relevant information of the module.
@@ -207,12 +213,10 @@ How the `Logic` component works:
 
 The Sequence Diagram in the sections below will illustrate the interactions within the `Logic` component.
 
-Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
-
-<img src="images/ParserClasses.png" width="600"/>
-
 How the parsing works:
 * When called upon to parse a user command, the `ModtrektParser` class creates an `XYZCommand` (`XYZ` is a placeholder for the specific command name e.g., `AddCommand`) which is returned to `ModtrektParser` as a `Command` object.
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W10-4/tp/blob/master/src/main/java/modtrekt/model/Model.java)
@@ -226,6 +230,8 @@ The `Model` component,
 * stores the currently 'selected' `Module` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Module>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the userâ€™s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -241,6 +247,8 @@ The `Storage` component,
 ### Common classes
 
 Classes used by multiple components are in the `modtrekt.commons` package.
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -321,6 +329,8 @@ the module data obtained may be out of date.
 To further mitigate this, we also have our verbose module adding command, where users can specify the module name, code
 and credits, without any reliance on NUSMods.
 
+<div style="page-break-after: always;"></div>
+
 ### Remove Module
 
 In this section, the functionality of `remove module` feature, expected execution path, and the interactions between the
@@ -364,6 +374,8 @@ The arguments are first parsed through `ModtrektParser` to identify the command 
 help us parse the command and return the appropriate command. In this case it is `RemoveModuleCommand`.When the 
 `RemoveModuleCommand` is executed, it would first remove the `Module` from the `ModuleList`. Then it would remove all 
 `Task` in the `TaskBook` with the `Module`.
+
+<div style="page-break-after: always;"></div>
 
 ### Navigation
 
@@ -412,6 +424,8 @@ The sequence diagram below shows the flow of the interactions between the differ
 In the diagram, the predicates `modulePredicate` and `taskPredicate` are the custom predicates used to filter the module and task lists, respectively. They are within the `setCurrentModule` method in `Model`.
 
 <img src="images/CdSequenceDiagram.png" width="1000" />
+
+<div style="page-break-after: always;"></div>
 
 ### Marking modules as done
 
@@ -479,6 +493,8 @@ For brevity, we omit the diagrams and explanations for marking modules as undone
 such that the control flow is exactly the same: just replace "done" and its derivatives
 with "undone", and vice versa.
 
+<div style="page-break-after: always;"></div>
+
 ### Module listing
 
 Section by : [Marciano](https://github.com/midnightfeverrr)
@@ -507,6 +523,8 @@ The predicates defined by `Model.PREDICATE_SHOW_ALL_MODULES` and `PREDICATE_HIDE
 the tasks displayed in the UI via the `updateFilteredModuleList` method in the `Model` interface.
 
 _Side note: We delegate parsing to JCommander which already has the command object registered_
+
+<div style="page-break-after: always;"></div>
 
 ### Edit Module
 
@@ -557,6 +575,8 @@ are then able to parse through the commands and automatically generate the corre
 Then it would create a new module replacing with the appropriate new/old inputs. It would then delete the old module and
 replace it with the new module. If module code is edited, it would replace all the old tasks with old module code with
 new tasks with new module code.
+
+<div style="page-break-after: always;"></div>
 
 ### Tasks
 
@@ -643,6 +663,8 @@ objected would be used to instantiated by the created `AddTaskCommand`. When the
 to the `TaskList`. After adding the task, the `Model` invokes its own method to update the task count of the module
 whose code is associated with the task.
 
+<div style="page-break-after: always;"></div>
+
 ### Remove Task
 
 In this section, the functionality of `remove` task feature, expected execution path, and the interactions between the
@@ -673,6 +695,8 @@ and tags specified. A `RemoveTaskCommand` would then be instantiated, and the `1
 as the parameter within the command to locate the task in the stored list. When the `RemoveTaskCommand` is executed, it would
 first obtain the `Task` using the index. Then it would remove the `Task` from the `TaskList`. Using the saved
 `Task` it would then reduce the task count of the `Module` whose code is equal to that of the removed `Task`.
+
+<div style="page-break-after: always;"></div>
 
 ### Edit Task
 
@@ -719,6 +743,8 @@ obtaining the index, it would be used to instantiate a `EditTaskCommand`. When t
 first obtain the `Task` using the index. Then it would remove the `Task` from the `TaskList`. It would also create a new Task
 with the information specified by the user.  The `TaskList` is subsequently updated and the user can now see the updated
 task details in the list.
+
+<div style="page-break-after: always;"></div>
 
 ### Marking tasks as done
 
@@ -779,6 +805,8 @@ For brevity, we omit the diagrams and explanations for marking tasks as undoneâ€
 such that the control flow is exactly the same: just replace "done" and its derivatives
 with "undone", and vice versa.
 
+<div style="page-break-after: always;"></div>
+
 ### Task listing
 
 Section by : [Jonathan](https://github.com/jontmy)
@@ -831,6 +859,7 @@ This boolean variable is used to determine the presence of the `-a` flag in the 
 
 **Value proposition**: manage modules and tasks/deadlines for each module faster than a typical GUI driven app
 
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -858,6 +887,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Tasks / Deadline | `***`    | clumsy user                        | delete tasks and deadlines                                                                | ensure my homepage is not cluttered with unused items             |
 | Tasks / Deadline | `**`     | novice user                        | mark tasks and deadlines that are completed as done                                       | refer to them in future                                           |
 | Tasks / Deadline | `***`    | novice user                        | change a deadline that I had created                                                      | adjust the due date accordingly in the event the deadline changes |
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -1221,15 +1252,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 11. The DG and UG should be PDF-Friendly.
 12. The data should be saved every time a command alters the data.
 
+<div style="page-break-after: always;"></div>
+
 ### Glossary
 
 _**Mainstream OS**_
 
 Windows, Linux, Unix, OS-X
-
-_**Private contact detail**_
-
-A contact detail that is not meant to be shared with others
 
 ## **Appendix: Instructions for manual testing**
 

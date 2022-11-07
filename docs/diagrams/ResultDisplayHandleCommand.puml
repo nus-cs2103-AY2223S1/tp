@@ -7,7 +7,7 @@ participant ":MainWindow" as MainWindow UI_COLOR
 participant ":ResultDisplay" as ResultDisplay UI_COLOR
 end box
 
-[-> MainWindow : executeCommand("add -m -c CS2103T")
+[-> MainWindow : executeCommand("add mod CS2103T")
 activate MainWindow
 
 

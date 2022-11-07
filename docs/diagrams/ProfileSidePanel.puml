@@ -15,7 +15,7 @@ box MODEL MODEL_COLOR_T1
 participant ":Model" as ModelManager MODEL_COLOR
 end box
 
-[-> MainWindow : executeCommand("module done CS1101S")
+[-> MainWindow : executeCommand("done module CS1101S")
 activate MainWindow
 
 MainWindow -> ModelManager : update model
