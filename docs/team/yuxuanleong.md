@@ -31,7 +31,7 @@ Given below are my contributions to the project.
   * What it does: Allows the user to indicate which student, that needed help, does not need help anymore.
   * Justification: This feature improves the product significantly because a user can remove a help tag from a student without the need to
     delete the student and add the student back with the same details but just without the help tag.
-  * Highlights: This enhancement requires me to make changes to existing classes.
+  * Highlights: This enhancement requires me to make create new classes.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=yuxuanleong&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=functional-code~test-code~other~docs&tabOpen=true&tabType=authorship&tabAuthor=yuxuanleong&tabRepo=AY2223S1-CS2103T-T08-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=functional-code~test-code~other~docs&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 <div style="page-break-after: always;"></div>
