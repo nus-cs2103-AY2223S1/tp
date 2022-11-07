@@ -228,17 +228,17 @@ E.g. `Name`, `Phone`, `Email`. When the user wants to find a tutor, the user spe
 to the specific attribute of the tutor followed by the keywords to be searched. `Tutor` objects that are matched the
 keywords being searched are added to the `FilteredList` to be displayed in the program to the user.
 
-The following methods in `tuthub` manage the finding of tutors:
-* `tuthub#FindByNameCommand(NameContainsKeywordsPredicate predicate)` - Finds and adds tutors with names matching keywords to list of tutors displayed
-* `tuthub#FindByPhoneCommand(PhoneContainsKeywordsPredicate predicate)` - Finds and adds tutors with phone number matching keywords to list of tutors displayed
-* `tuthub#FindByEmailCommand(EmailContainsKeywordsPredicate predicate)` - Finds and adds tutors with emails matching keywords to list of tutors displayed
-* `tuthub#FindByModuleCommand(ModuleContainsKeywordsPredicate predicate)` - Finds and adds tutors with modules matching keywords to list of tutors displayed
-* `tuthub#FindByYearCommand(YearContainsKeywordsPredicate predicate)` - Finds and adds tutors with year matching keywords to list of tutors displayed
-* `tuthub#FindByStudentIdCommand(StudenIdContainsKeywordsPredicate predicate)` - Finds and adds tutors with student IDs matching keywords to list of tutors displayed
-* `tuthub#FindByTeachingNominationCommand(TeachingNominationContainsKeywordsPredicate predicate)` - Finds and adds tutors with teaching nominations matching keywords to list of tutors displayed
-* `tuthub#FindByRatingCommand(RatingContainsKeywordsPredicate predicate)` - Finds and adds tutors with rating matching keywords to list of tutors displayed
-* `tuthub#FindByTagCommand(TagContainsKeywordsPredicate predicate)` - Finds and adds tutors with tags matching keywords to list of tutors displayed
-* `tuthub#FindByPrefixParser(String args)` - Parses the `find` command and determines the `prefix` corresponding to the attribute to search through to find matching tutors
+The following methods in `Tuthub` manage the finding of tutors:
+* `Tuthub#FindByNameCommand(NameContainsKeywordsPredicate predicate)` - Finds and adds tutors with names matching keywords to list of tutors displayed
+* `Tuthub#FindByPhoneCommand(PhoneContainsKeywordsPredicate predicate)` - Finds and adds tutors with phone number matching keywords to list of tutors displayed
+* `Tuthub#FindByEmailCommand(EmailContainsKeywordsPredicate predicate)` - Finds and adds tutors with emails matching keywords to list of tutors displayed
+* `Tuthub#FindByModuleCommand(ModuleContainsKeywordsPredicate predicate)` - Finds and adds tutors with modules matching keywords to list of tutors displayed
+* `Tuthub#FindByYearCommand(YearContainsKeywordsPredicate predicate)` - Finds and adds tutors with year matching keywords to list of tutors displayed
+* `Tuthub#FindByStudentIdCommand(StudenIdContainsKeywordsPredicate predicate)` - Finds and adds tutors with student ids matching keywords to list of tutors displayed
+* `Tuthub#FindByTeachingNominationCommand(TeachingNominationContainsKeywordsPredicate predicate)` - Finds and adds tutors with teaching nominations matching keywords to list of tutors displayed
+* `Tuthub#FindByRatingCommand(RatingContainsKeywordsPredicate predicate)` - Finds and adds tutors with rating matching keywords to list of tutors displayed
+* `Tuthub#FindByTagCommand(TagContainsKeywordsPredicate predicate)` - Finds and adds tutors with tags matching keywords to list of tutors displayed
+* `Tuthub#FindByPrefixParser(String args)` - Parses the `find` command and determines the `prefix` corresponding to the attribute to search through to find matching tutors
 * `ModelManager#filteredTutors` - A `javafx.collections.transformation.FilteredList` that contains a list of filtered tutors according to a predicate
 * `ModelManager#getSortedFilteredTutorList()` - Returns the `sortedFilteredTutors` list
 * `ModelManager#updateFilteredTutorList(Predicate<Tutor> predicate)` - Updates filtered list based on predicate
@@ -415,7 +415,7 @@ The following sequence diagram demonstrates the above operations (excluding [`ja
 
 ![MailSequenceDiagram](./images/MailSequenceDiagram.png)
 
-### Comment feature
+### Comment Feature
 
 This command adds a comment to a tutor in `Tuthub`'s displayed list.
 
@@ -435,7 +435,7 @@ The `CommentCommandParser` verifies the appropriateness of the user input (`inde
 Step 3: Upon parsing, a new `CommentCommand` is created based on the `index` and the `comment`.
 A new `Comment` is created based on the `comment` parsed. 
 
-Step 4: In the `CommentCommand` execution, the `model#getFilteredTutorList` is called upon to retrieve the list of displayed tutors.
+Step 4: In the `CommentCommand` execution, the `ModelManager#getSortedFilteredTutorList()` is called upon to retrieve the list of displayed tutors.
 The `Tutor` whose index matches the `index` is then stored (after accounting for 0 based indexing).
 In this case, the first `Tutor` is selected.
 
@@ -456,7 +456,7 @@ Step 6: The `Comment` stored in the `CommentCommand` is then added to the `Comme
     - Pros: Easier to implement.
     - Cons: It is harder to add and remove comments from each tutor, as the previous comments need to be copied and then added manually by the user.
 
-### Delete Comment feature
+### Delete Comment Feature
 
 This command deletes a comment from a tutor in `Tuthub`'s displayed list.
 
@@ -477,7 +477,7 @@ Step 3: Upon parsing, a new `DeleteCommentCommand` is created based on the `tuto
 Both indexes are converted to 0 based indexing.
 In this case, the `tutorIndex` and `commentIndex` are both set to `0`.
 
-Step 4: In the `DeleteCommentCommand` execution, the `model#getFilteredTutorList` is called upon to retrieve the list of displayed tutors.
+Step 4: In the `DeleteCommentCommand` execution, the `ModelManager#getSortedFilteredTutorList()` is called upon to retrieve the list of displayed tutors.
 The `Tutor` whose index matches the `tutorIndex` is then stored. 
 In this case, the first `Tutor` is selected.
 
@@ -825,6 +825,40 @@ testers are expected to do more *exploratory* testing.
 
    4. Incorrect sort commands from first case.
       Expected: Same expected results as the first case.
+
+### Adding comments
+1. Adding a comment to a tutor while all tutors are being shown
+
+    1. Prerequisites: List all tutors using the `list` command. At least one tutor in the list.
+
+    2. Test case: `comment 1 c/Test comment`<br>
+       Expected: "Test comment" should be added to the first tutor. This can be seen by viewing the first tutor profile.
+
+    3. Test case: `comment 1 Test comment`<br>
+       Expected: No comment is added. Error details shown in status message (Wrong command format).
+
+    4. Test case: `comment 1`<br>
+       Expected: No comment is added. Error details shown in status message (Empty comment).
+
+    5. Other incorrect comment commands to try: `comment`, `comment x p/Test comment 1`, `...` (where x is any number greater than the size of the tutor list, and p is any prefix other than `c/`)<br>
+       Expected: Similar to 3.
+
+### Deleting comments
+1. Deleting a comment from a tutor while all tutors are being shown
+
+    1. Prerequisites: List all tutors using the `list` command. At least one tutor in the list. At least one comment for said tutor.
+
+    2. Test case: `deletecomment 1 1`<br>
+       Expected: First comment deleted from first tutor in the list. This can be seen by viewing the first tutor profile.
+
+    3. Test case: `deletecomment 1`<br>
+       Expected: No comment is deleted. Error details shown in status message (Wrong command format).
+
+    4. Test case: `deletecomment 1 0`<br>
+       Expected: No comment is added. Error details shown in status message (Index out of range).
+
+    5. Other incorrect comment commands to try: `deletecomment`, `deletecomment x y`, `...` (where x is any number greater than the tutor list and y is any number greater than the comment list of the tutor)<br>
+       Expected: Similar to 3.
 
 ### Mailing tutor(s)
 
