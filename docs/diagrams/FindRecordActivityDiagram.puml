@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User inputs Find Record Command;
+
+if () then ([else])
+  :Display error message;
+else ([Valid command format])
+  if () then ([else])
+    :Display error message;
+  else ([Record List View is displayed])
+    :Display record list matching
+    specified search parameters;
+  endif
+endif
+
+stop
+
+@enduml

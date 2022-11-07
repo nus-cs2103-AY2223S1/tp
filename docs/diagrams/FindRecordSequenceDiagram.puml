@@ -1,0 +1,61 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":FindRecordCommandParser" as FindRecordCommandParser LOGIC_COLOR
+participant "predicate:RecordContainsKeywordsPredicate" as RecordContainsKeywordsPredicate LOGIC_COLOR
+participant ":FindRecordCommand" as FindRecordCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> FindRecordCommandParser : parse("m/Paracetamol d/10-2022")
+activate FindRecordCommandParser
+
+create RecordContainsKeywordsPredicate
+FindRecordCommandParser -> RecordContainsKeywordsPredicate :
+activate RecordContainsKeywordsPredicate
+
+RecordContainsKeywordsPredicate --> FindRecordCommandParser : predicate
+deactivate RecordContainsKeywordsPredicate
+
+FindRecordCommandParser -[hidden]-> :FindRecordCommand
+
+create FindRecordCommand
+FindRecordCommandParser -> FindRecordCommand : FindRecordCommand(predicate)
+activate FindRecordCommand
+
+FindRecordCommand --> FindRecordCommandParser : r
+deactivate FindRecordCommand
+
+[<--FindRecordCommandParser : r
+deactivate FindRecordCommandParser
+
+FindRecordCommandParser -[hidden]-> FindRecordCommand
+destroy FindRecordCommandParser
+
+[-> FindRecordCommand : execute()
+activate FindRecordCommand
+
+FindRecordCommand -> Model : updateFilteredRecordList(predicate)
+activate Model
+
+Model -[hidden]-> FindRecordCommand
+Model --> FindRecordCommand
+deactivate Model
+
+FindRecordCommand -[hidden]-> Model
+create CommandResult
+FindRecordCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindRecordCommand
+deactivate CommandResult
+
+[<--FindRecordCommand : result
+deactivate FindRecordCommand
+
+@enduml
