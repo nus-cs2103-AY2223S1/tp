@@ -42,6 +42,16 @@ public class AddressBookParser {
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
+    private static String publicReadableUserInput = null;
+
+    /**
+     * Returns the user input for commands that need to directly reference it. Only to be used as is (i.e. not parsed).
+     * @return The user input string.
+     */
+    public static String getUserInput() {
+        return publicReadableUserInput;
+    }
+
     /**
      * Parses user input into command for execution.
      *
@@ -51,6 +61,7 @@ public class AddressBookParser {
      */
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+        publicReadableUserInput = userInput;
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }

@@ -7,7 +7,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.storage.HistoryList;
 
 /**
  * Undoes the last modifying operator. An undo can be undone, effectively
@@ -48,7 +47,7 @@ public class UndoCommand extends Command {
      * @param model The model itself.
      */
     public static void prepareSaveModelBefore(Model model) {
-        prepareLastCommand = HistoryList.getList().getLast();
+        prepareLastCommand = AddressBookParser.getUserInput();
         prepareAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
     }
     /**
