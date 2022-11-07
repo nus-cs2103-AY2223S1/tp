@@ -67,16 +67,26 @@ Given below are my contributions to the project.
   * Added complete documentation for the following features: `addtask`, `sort`, `mail`, `deltask`
   * Updated documentation for other features.
   * Updated the missing features in the command summary
+  * Update FAQ in UG
 * **Contributions to the DG**:
   * Added explanation, implementation, diagrams and design considerations for the following feature: `addtask`.
   * Added explanation, implementation, diagrams and design considerations for the following feature: `sort`.
+  * Updated mentions of AddressBook to InTrack
 * **Contributions to team-based tasks**:
+  * Provided idea on evolving AB3 to become an internship tracker
+  * Setting up team meetings
   * Maintained the issue tracker and milestones for the team
-  * Created the feature demo for v1.4
+  * Created the feature demo for v1.3
   * Managed release: [v1.1](https://github.com/AY2223S1-CS2103T-T11-2/tp/releases/tag/v1.1)
+  * Added hyperlink functionality
+  * Update mentions of AddressBook to InTrack
+  * Added FAQ in user guide
+  * Rename addressbook to InTrack in `index.md`
+  * Add NFR and Glossary to DG
 * **Review/mentoring contributions:**:
   * Reviewed team members' PRs
   * Helped in debugging others code
+  * Helped in testing
 * **Contributions beyond the project team**:
   * Contributed in forum discussion (Examples: [1](https://github.com/nus-cs2103-AY2223S1/forum/issues/374)
 , [2](https://github.com/nus-cs2103-AY2223S1/forum/issues/352))
