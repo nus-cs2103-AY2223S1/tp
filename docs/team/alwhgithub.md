@@ -13,12 +13,6 @@ Given below are my contributions to the project.
   * What it does: For each task, displays the person that the task is assigned to. For each person, displays the list of all tasks that is assigned to that person
   * Justification: Displaying the link between tasks and people assigned is one of our core features.
   * Highlights: The name and email of people assigned in tasks are edited when that person's name or email is edited (vice versa with task's name with the person)
- 
-* **New Feature**: Created classes Deadline and Category
-  * What it does: Allows Tasks to contain Deadline and Category classes, as opposed to LocalDate and String classes
-  * Justification: Attributes of Tasks should be well encapsulated with their internal functions
-  * Highlights: Simplifies the implementation of Sort and Filter command
-
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=totalCommits%20dsc&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=ALWHgithub&tabRepo=AY2223S1-CS2103T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
@@ -27,6 +21,7 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Created test cases, increasing Code Coverage from  52.13% to 65.87% [\#59]()
+  * Created classes for Deadline and Category for the Task class [\#42]()
   * Made parameters for commands case insensitive [\#162]()
   * Edited errors for incorrect category when adding/editing task [\#162]()
   
