@@ -414,9 +414,6 @@ object to display that the exam was successfully added.
 
 
 
-
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
