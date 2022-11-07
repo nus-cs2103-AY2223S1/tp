@@ -863,7 +863,7 @@ testers are expected to do more *exploratory* testing.
 ### Clearing all lists
 1. Clear all module, task and exam lists.
    1. Test case: `clearall`<br>
-      Expected: Module, task and exam lists clared.
+      Expected: Module, task and exam lists cleared.
 
 ### Saving data
 
