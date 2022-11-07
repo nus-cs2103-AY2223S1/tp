@@ -5,17 +5,15 @@ title: Jun Wei's Project Portfolio Page
 
 ### Project: YellowBook
 
-YellowBook a desktop address book and task tracker for university students to organise project tasks.
-The user interacts with it using a CLI, and it has a GUI created with JavaFX.
-It is written in Java, and has about XXX kLoC.
+YellowBook is a desktop application for university students who are involved in many projects to organize their project contacts and tasks. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
-* **New feature**: Added ability to archive/unarchive tasks
+* **New feature**: Archive / Unarchive command for tasks
   * What it does:  allows users to mark a task as archived
   * Justification: users may wish to remove a task from their task list but be able to access it at a later time
 
-* **New feature**: Undo / Redo Command
+* **New feature**: Undo / Redo command
   * What it does:  allows users to undo and redo commands
   * Justification: users may wish to undo and redo their previous commands
   * Credits: The general idea was referenced from proposed feature in Addressbook level 3 [developer's guide](https://se-education.org/addressbook-level3/DeveloperGuide.html#proposed-undoredo-feature)
@@ -50,11 +48,12 @@ Given below are my contributions to the project.
         * Added description for fields of Person, Task, and Tag [\#165](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/165)
         * Added implementation details for `findC` feature [\#159](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/159)
         * Added implementation details for `undo` and `redo` feature [\#165](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/165)
+        * Updated instructions for manual testing [\#287](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/287)
         * Added Non-function requirements (NFRs) [\#80](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/80)
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#123](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/123) [\#175](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/175)
-    * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/junwei-tan/ped/issues/9), [2](https://github.com/AY2223S1-CS2103T-T12-2/tp/issues/179), [3](https://github.com/AY2223S1-CS2103T-T12-2/tp/issues/170))
+    * Reported bugs and suggestions for another team in the class (examples: [1](https://github.com/junwei-tan/ped/issues/9), [2](https://github.com/junwei-tan/ped/issues/7), [3](https://github.com/junwei-tan/ped/issues/5))
 
 * **Tools**:
     * Added `mockito` dependency for testing
