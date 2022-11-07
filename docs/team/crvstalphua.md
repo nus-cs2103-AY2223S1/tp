@@ -29,7 +29,7 @@ Given below are my contributions to the project.
     * Highlights: Similar to the `Project` and `Client` classes, issues can be sorted based on various keys or filtered
       based on specific search terms, as well as pinned.
 
-  * **New Feature**: `mark` and `unmark` commands in `Issue` class
+  * **New Feature**: `mark` and `unmark` commands in `Issue` class [\#105](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/105)
     * What it does: When an issue is create, the default status is `incomplete`. The `mark` command changes the status
       of an issue to `completed` while the `unmark` command changes the status of an issue to `incomplete`.
     * Justification: Upon completing an issue, the developer can mark it as completed, making it easier to see 
@@ -39,17 +39,23 @@ Given below are my contributions to the project.
       developer can see which project has more issues that require attention.
 
 * **Enhancements to existing features**: 
-  * E.g. changes to GUI, wrote additional tests, etc.
+  * Added tests for add commands [\#249](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/249)
+  * Added parser tests for add issue and delete issue [\#249](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/249)
+  * Refactored all Status to Urgency, Description to Title, and Phone to Mobile [\#134](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/134)
 
 * **Documentation**:
   * Contributions to the UG
-    * Added documentation and images for project command features: `add`, `delete`, `edit`, `list`, `sort`and `set default view`
-    * Added documentation and images for issue command features: `add`, `delete`, `edit`, `list`, `sort`, `mark`, `unmark`, and 
-      `set default view`
-    * Added documentation and images for client command features: `list` and `sort` 
-  * Contrbution to the DG
-    * Write-up for Edit Command Feature consisting of Edit Project Command, Edit Issue Command and Edit Client Command
-    * Design considerations for Edit Command Feature
+    * Added documentation and images for project command features: `add`, `delete`, `edit`, `list`, `sort`and 
+      `set default view` [\#134](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/134)
+    * Added documentation and images for issue command features: `add`, `delete`, `edit`, `list`, `sort`, `mark`, 
+      `unmark`, and `set default view` [\#134](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/134)
+    * Added documentation and images for client command features: `list` and `sort` [\#134](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/134)
+    * Reformatted entire UG, from arranging by entity types to arranging by command type [\#245](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/245)
+  * Contributions to the DG
+    * Write-up for Edit Command Feature consisting of Edit Project Command, Edit Issue Command and Edit Client Command [\#116](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/116)
+    * Design considerations for Edit Command Feature [\#116](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/116)
+    * Write-up and UML Diagram for Mark Issue Command Feature and Unmark Issue Command Feature [\#242](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/242), [\#245](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/245)
+    * Design considerations for Mark Issue Command Feature [\#242](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/242)
 
 * **Contributions to the team-based tasks**: 
-  * Reviewed some team pull requests
+  * Reviewed some team pull requests [\#83](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/83), [\#132](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/132) 
