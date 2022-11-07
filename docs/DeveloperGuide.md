@@ -17,6 +17,7 @@ Third-party software used in this project:
 * [Gradle](https://gradle.org/)
 * [CheckStyle](https://checkstyle.sourceforge.io/)
 * [Codecov](https://codecov.io/)
+* [Flaticon](https://www.flaticon.com/packs/health-care-39)
 
 --------------------------------------------------------------------------------------------------------------------
 
