@@ -122,7 +122,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        studentListPanel = new StudentListPanel(logic.getFilteredPersonList());
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         tutorialListPanel = new TutorialListPanel(logic.getFilteredTutorialList());
         consultationListPanel = new ConsultationListPanel(logic.getFilteredConsultationList());
 
@@ -163,6 +163,7 @@ public class MainWindow extends UiPart<Stage> {
         modelListPanelPlaceholder.getChildren().clear();
         modelListPanelPlaceholder.getChildren().add(gradeChart.getRoot());
         listHeader.setText("Grade chart");
+        logger.info("Show grade chart");
     }
 
     /**
@@ -185,6 +186,7 @@ public class MainWindow extends UiPart<Stage> {
         modelListPanelPlaceholder.getChildren().clear();
         modelListPanelPlaceholder.getChildren().add(tutorialListPanel.getRoot());
         listHeader.setText("Tutorial");
+        logger.info("Show tutorial lists");
     }
 
     /**

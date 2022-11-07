@@ -4,7 +4,7 @@ title: Yeo Yu Jie's Project Portfolio Page
 ---
 
 # Overview
-ModQuik is a desktop app that allows Teaching Assistants to keep track of their responsibilities, students’ progress and schedules for the ongoing semester.
+ModQuik is a convenient tool that allows you to keep track of your classes, monitor your students' grades and set up reminders for your tasks.
 
 ## Summary of contributions
 Given below are my contributions to the project.
@@ -21,6 +21,7 @@ Given below are my contributions to the project.
     * What it does: Allows the user to sort the reminders based on either priority or deadline.
     * Justification: This feature makes our product more user-friendly as users could know at a glance which tasks should be prioritised.
     * Highlights: This enhancement was challenging as it required implementing a complex comparator which takes in 2 different comparators as there are other tiebreakers taken into consideration if 2 reminders were to have the same condition (priority/deadline).
+  * Wrote test cases to increase coverage from 52.62% to 57.47% (Pull requests #196, #202)
 * **Project management**:
   * Managed releases `v1.3.1` - `v1.3.3` (3 releases) on GitHub
 
@@ -32,9 +33,16 @@ Given below are my contributions to the project.
       * `delete reminder`
       * `sort reminder`
     * Implemented the initial skeleton of the command summary
+    * Added the glossary  
     * Improve the prefix summary by specifying which commands uses which prefixes
   * Developer Guide:
-    * to be added soon
+    * Added the Use Cases section
+    * Added manual testing for the following features:
+      * `add reminder`
+      * `edit reminder`
+      * `delete reminder`
+      * `sort reminder`
+    * Added the glossary
 
 * **Contributions to team-based tasks**:
   * Setting up GitHub team org and repo

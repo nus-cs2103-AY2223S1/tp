@@ -1,0 +1,81 @@
+@startuml
+!include style.puml
+
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ModQuikParser" as ModQuikParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant "f:FindCommand" as FindCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":NamePredicate" as NamePredicate MODEL_COLOR
+participant ":ModulePredicate" as ModulePredicate MODEL_COLOR
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+
+[-> LogicManager: execute("...")
+activate LogicManager
+
+LogicManager -> ModQuikParser : parseCommand("...")
+activate ModQuikParser
+
+create FindCommandParser
+ModQuikParser -> FindCommandParser
+activate FindCommandParser
+
+create NamePredicate
+FindCommandParser -> NamePredicate
+activate NamePredicate
+NamePredicate --> FindCommandParser
+deactivate NamePredicate
+
+create ModulePredicate
+FindCommandParser -> ModulePredicate
+activate ModulePredicate
+ModulePredicate --> FindCommandParser
+deactivate ModulePredicate
+
+FindCommandParser -> FindCommandParser : createChainedPredicates(predicates)
+activate FindCommandParser
+FindCommandParser --> FindCommandParser : predC
+deactivate FindCommandParser
+
+create FindCommand
+FindCommandParser -> FindCommand
+activate FindCommand
+
+FindCommand --> FindCommandParser
+deactivate FindCommand
+
+FindCommandParser --> ModQuikParser : f
+deactivate FindCommandParser
+
+ModQuikParser --> LogicManager : f
+deactivate ModQuikParser
+
+LogicManager -> FindCommand : execute()
+activate FindCommand
+
+FindCommand -> ModelManager : updateFilteredPersonList(predC)
+activate ModelManager
+
+ModelManager --> FindCommand
+deactivate ModelManager
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand
+deactivate CommandResult
+
+FindCommand --> LogicManager : r
+deactivate FindCommand
+
+[<-- LogicManager : r
+deactivate LogicManager
+
+@enduml

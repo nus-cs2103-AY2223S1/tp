@@ -1,7 +1,7 @@
 package seedu.modquik.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.modquik.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.modquik.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.modquik.model.ModelType.STUDENT;
 
 import seedu.modquik.model.Model;
@@ -19,7 +19,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(MESSAGE_SUCCESS, STUDENT);
     }
 }

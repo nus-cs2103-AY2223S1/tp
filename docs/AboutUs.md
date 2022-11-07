@@ -44,7 +44,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/lilythchu)]
 [[portfolio](team/lilythchu.md)]
 
-* Role: Code quality
+* Role: Code quality, UI
 
 ### Lim Ai Lin
 

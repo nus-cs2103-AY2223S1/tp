@@ -34,13 +34,13 @@ public interface Logic {
      */
     ReadOnlyModQuik getModQuik();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Student> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of students */
+    ObservableList<Student> getFilteredStudentList();
 
     /** Returns an unmodifiable view of the filtered list of reminders */
     ObservableList<Reminder> getFilteredReminderList();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the filtered list of tutorials */
     ObservableList<Tutorial> getFilteredTutorialList();
 
     /** Returns an unmodifiable view of the filtered list of consultations */

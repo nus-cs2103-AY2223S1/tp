@@ -44,7 +44,6 @@ public class TutorialBuilder {
         tutorialName = tutorialToCopy.getName();
         moduleCode = tutorialToCopy.getModule();
         venue = tutorialToCopy.getVenue();
-        //        tutorialTimeslot = tutorialToCopy.getTimeslot();
     }
 
     /**

@@ -14,7 +14,7 @@ public class Messages {
             "This command requires at least one of the following prefixes: %s\n%s";
     public static final String MESSAGE_EMPTY_PREFIXES =
             "This command's prefixes should not be empty: %s\n%s";
-    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
+    public static final String MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_INVALID_TUTORIAL_DISPLAYED_INDEX = "The tutorial index provided is invalid";
     public static final String MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX = "The reminder index provided is invalid";
     public static final String MESSAGE_INVALID_CONSULTATION_DISPLAYED_INDEX =
@@ -24,6 +24,5 @@ public class Messages {
     public static final String MESSAGE_UNCHANGED_FIELD = "New fields provided are exactly the same as current fields.";
 
     /* Success messages */
-    public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
-
+    public static final String MESSAGE_STUDENTS_LISTED_OVERVIEW = "%1$d persons listed!";
 }

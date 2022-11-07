@@ -3,7 +3,7 @@ package seedu.modquik.logic.commands;
 import static seedu.modquik.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.modquik.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.modquik.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.modquik.testutil.TypicalPersons.getTypicalModQuik;
+import static seedu.modquik.testutil.TypicalStudents.getTypicalModQuik;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

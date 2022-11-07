@@ -34,7 +34,7 @@ import static seedu.modquik.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.modquik.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 import static seedu.modquik.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.modquik.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.modquik.testutil.TypicalPersons.BOB;
+import static seedu.modquik.testutil.TypicalStudents.BOB;
 
 import java.util.Arrays;
 
@@ -49,7 +49,7 @@ import seedu.modquik.model.student.Phone;
 import seedu.modquik.model.student.Student;
 import seedu.modquik.model.student.StudentId;
 import seedu.modquik.model.tag.Tag;
-import seedu.modquik.testutil.PersonBuilder;
+import seedu.modquik.testutil.StudentBuilder;
 
 
 public class AddStudentCommandParserTest {
@@ -57,7 +57,7 @@ public class AddStudentCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Student expectedStudent = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Student expectedStudent = new StudentBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + ID_DESC_BOB
@@ -86,7 +86,7 @@ public class AddStudentCommandParserTest {
                 + TAG_DESC_FRIEND, new AddStudentCommand(expectedStudent));
 
         // multiple tags - all accepted
-        Student expectedStudentMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Student expectedStudentMultipleTags = new StudentBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + ID_DESC_BOB
                 + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB + MODULE_DESC_BOB + TUTORIAL_DESC_BOB
@@ -98,7 +98,7 @@ public class AddStudentCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Student expectedStudent = new PersonBuilder(BOB).withTags().build();
+        Student expectedStudent = new StudentBuilder(BOB).withTags().build();
         assertParseSuccess(parser, NAME_DESC_BOB + ID_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + TELEGRAM_DESC_BOB + MODULE_DESC_BOB + TUTORIAL_DESC_BOB,
                 new AddStudentCommand(expectedStudent));

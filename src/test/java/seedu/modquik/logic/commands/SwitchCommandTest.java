@@ -1,5 +1,7 @@
 package seedu.modquik.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.modquik.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.modquik.model.ModelType.CONSULTATION;
 import static seedu.modquik.model.ModelType.GRADE_CHART;
@@ -11,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import seedu.modquik.model.Model;
 import seedu.modquik.model.ModelManager;
 import seedu.modquik.model.ModelType;
-
 
 public class SwitchCommandTest {
 
@@ -47,5 +48,26 @@ public class SwitchCommandTest {
 
         assertCommandSuccess(new SwitchCommand(GRADE_CHART), model, SwitchCommand.MESSAGE_SUCCESS_GRADE,
                 ModelType.GRADE_CHART, expectedModel);
+    }
+
+    @Test
+    public void equals() {
+        SwitchCommand toGradeCommand = new SwitchCommand(GRADE_CHART);
+        SwitchCommand toStudentCommand = new SwitchCommand(STUDENT);
+
+        // same object -> returns true
+        assertTrue(toStudentCommand.equals(toStudentCommand));
+
+        // same model type -> returns true
+        assertTrue(toGradeCommand.equals(new SwitchCommand(GRADE_CHART)));
+
+        // different types -> returns false
+        assertFalse(toGradeCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(toStudentCommand.equals(null));
+
+        // different model type -> returns false
+        assertFalse(toGradeCommand.equals(toStudentCommand));
     }
 }

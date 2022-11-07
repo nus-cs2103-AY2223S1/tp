@@ -16,7 +16,7 @@ import seedu.modquik.model.tutorial.Tutorial;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Student> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
     Predicate<Reminder> PREDICATE_SHOW_ALL_REMINDERS = unused -> true;
     Predicate<Tutorial> PREDICATE_SHOW_ALL_TUTORIALS = unused -> true;
     Predicate<Consultation> PREDICATE_SHOW_ALL_CONSULTATIONS = unused -> true;
@@ -60,40 +60,40 @@ public interface Model {
     ReadOnlyModQuik getModQuik();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in ModQuik.
+     * Returns true if a student with the same identity as {@code student} exists in ModQuik.
      */
-    boolean hasPerson(Student student);
+    boolean hasStudent(Student student);
 
     /**
-     * Deletes the given person.
-     * The person must exist in ModQuik.
+     * Deletes the given student.
+     * The student must exist in ModQuik.
      */
-    void deletePerson(Student target);
+    void deleteStudent(Student target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in ModQuik.
+     * Adds the given student.
+     * {@code student} must not already exist in ModQuik.
      */
-    void addPerson(Student student);
+    void addStudent(Student student);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given student {@code target} with {@code editedStudent}.
      * {@code target} must exist in ModQuik.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in ModQuik.
+     * The person identity of {@code editedStudent} must not be the same as another existing student in ModQuik.
      */
-    void setPerson(Student target, Student editedStudent);
+    void setStudent(Student target, Student editedStudent);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Student> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered student list */
+    ObservableList<Student> getFilteredStudentList();
 
-    /** Returns an unmodifiable view of the student'grade */
+    /** Returns an unmodifiable view of the student's grade */
     ObservableList<PieChart.Data> getStudentGradeChartData();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Student> predicate);
+    void updateFilteredStudentList(Predicate<Student> predicate);
 
     /**
      * Returns true if a reminder with the same identity as {@code reminder} exists in ModQuik.

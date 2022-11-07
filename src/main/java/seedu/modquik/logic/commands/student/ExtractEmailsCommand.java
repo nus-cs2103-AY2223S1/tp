@@ -33,7 +33,7 @@ public class ExtractEmailsCommand extends Command {
     }
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        ObservableList<Student> students = model.getFilteredPersonList();
+        ObservableList<Student> students = model.getFilteredStudentList();
         if (students.size() == 0) {
             throw new CommandException("There are no students to copy emails from!");
         }
