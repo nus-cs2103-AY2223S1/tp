@@ -774,7 +774,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a grade to a student
 
-1. Adding a grade to a student while student list is being shown
+1. Adding a grade to a student while the expanded student list is being shown
 
     1. Prerequisites: List all students using the `liststudent` command. There must be at least one student in the list.
 
