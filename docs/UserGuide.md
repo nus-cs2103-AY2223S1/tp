@@ -3,8 +3,8 @@ layout: page
 title: User Guide
 ---
 
-FRIDAY is a **desktop app for CS1101S Teaching Assistants to organize and track their students’ information and progress, 
-optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
+FRIDAY is a **desktop app for CS1101S Teaching Assistants to organize and track their students’ information and progress,
+optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, FRIDAY can get your student management tasks done faster than traditional GUI apps.
 
 * Table of Contents
@@ -27,13 +27,13 @@ If you can type fast, FRIDAY can get your student management tasks done faster t
     * **`add n/Alex Yeoh t/al3xx c/2022-10-25`** : Adds a student named `Alex Yeoh` to FRIDAY.
 
     * **`list`** : Lists all students.
-    
+
     * **`delete 2`** : Deletes the 2nd student shown in the current list.
 
     * **`clear`** : Deletes all students.
 
     * **`exit`** : Exits FRIDAY.
-   
+
 6. Refer to the [Features](#features) below for details of each command.
 
 [Table of Contents](#table-of-contents)
@@ -141,7 +141,7 @@ Format: `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHE
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** <br>
 * The index of the student must be specified and there should be exactly one INDEX parameter.
-* You can choose which field to edit for the student. Name, Telegram handle, consultation, Mastery Check, and tag(s) are 
+* You can choose which field to edit for the student. Name, Telegram handle, consultation, Mastery Check, and tag(s) are
 optional fields, but there should be at least one field specified for the `edit` command to be valid.<br>
 </div>
 
@@ -177,7 +177,7 @@ Format: `remark INDEX [r/REMARK]`
 <div markdown="block" class="alert alert-primary">
 **:bulb: Tip:** <br>
 * The index of the student can be seen from the student list.<br>
-* The remark is optional. If you do not include the remark (i.e. input `remark INDEX` as your command), FRIDAY will 
+* The remark is optional. If you do not include the remark (i.e. input `remark INDEX` as your command), FRIDAY will
 remove any existing remark for the specified student.<br>
 </div>
 
@@ -464,7 +464,7 @@ If your changes to the data file makes its format invalid, FRIDAY will ignore al
        minimally must be of version 7. All versions above Windows 7 should be compatible. All MacOS versions above Version 10.10 (Yosemite) will be compatible with FRIDAY.
 
 **Q**: What if I am not good at typing. Is FRIDAY for me?<br>
-**A**: Yes Friday is still for you. Why you may ask? The commands are still very short and even if you are a slow typist, 
+**A**: Yes Friday is still for you. Why you may ask? The commands are still very short and even if you are a slow typist,
        you will be saving time as compared to pen and paper or an Excel sheet. <br>
        Furthermore, FRIDAY is more aesthetically pleasing and has all the necessary features easily accessible at your fingertips.
 
