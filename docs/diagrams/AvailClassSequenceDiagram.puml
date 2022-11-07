@@ -33,19 +33,19 @@ create AvailCommand
 AvailCommandParser -> AvailCommand
 activate AvailCommand
 
-AvailCommand --> AvailCommandParser
+AvailCommand --> AvailCommandParser : command
 deactivate AvailCommand
 
-AvailCommandParser --> TeachersPetParser : e
+AvailCommandParser --> TeachersPetParser : command
 deactivate AvailCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 AvailCommandParser -[hidden]-> TeachersPetParser
 destroy AvailCommandParser
 
-TeachersPetParser --> LogicManager : e
+TeachersPetParser --> LogicManager : command
 deactivate TeachersPetParser
 
-LogicManager -> AvailCommand : execute()
+LogicManager -> AvailCommand : execute(model)
 activate AvailCommand
 
 AvailCommand -> Model : getAvailableClass
