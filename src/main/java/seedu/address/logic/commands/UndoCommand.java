@@ -2,9 +2,14 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.person.Person;
 
 /**
  * Undoes the last modifying operator. An undo can be undone, effectively
@@ -23,34 +28,58 @@ public class UndoCommand extends Command {
 
     public static final String NO_ACTION_TO_UNDO = "No action to undo.";
 
+
+    private static Command prepareLastCommand = null;
+    private static ReadOnlyAddressBook prepareAddressBook = null;
+    private static ObservableList<Person> prepareFilteredPersons = null;
+    private static SortedList<Person> prepareSortedPersons = null;
+    private static ObservableList<Person> prepareGroupedPersons = null;
+
     private static Command lastCommand = null;
 
     private static ReadOnlyAddressBook undoAddressBook = null;
+    private static ObservableList<Person> undoFilteredPersons = null;
+    private static SortedList<Person> undoSortedPersons = null;
+    private static ObservableList<Person> undoGroupedPersons = null;
 
     /*
      * For every possibly modifying command, add this just before model is
      * modified:
-     * ReadOnlyAddressBook pastAddressBook =
-     *         (ReadOnlyAddressBook) model.getAddressBook().clone();
+     * UndoCommand.prepareSaveModelBefore(this, model);
      * and this just before the method returns:
-     * UndoCommand.saveBeforeMod(this, pastAddressBook,
-     *         model.getAddressBook());
+     * UndoCommand.saveBeforeMod(model);
      * of their execute functions.
      */
+
+    /**
+     * Saves the previous state of the model before it changes.
+     * @param lastCommand The command that potentially modifies the model.
+     * @param model The model itself.
+     */
+    public static void prepareSaveModelBefore(Command lastCommand, Model model) {
+        prepareLastCommand = lastCommand;
+        prepareAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
+        prepareFilteredPersons = FXCollections.observableArrayList(model.getFilteredPersonList());
+        prepareSortedPersons = new SortedList<>(model.getSortedPersonList());
+        prepareGroupedPersons = FXCollections.observableArrayList(model.getGroupedPersonList());
+    }
     /**
      * Checks if a command modifies the {@code AddressBook} and saves it if
      * it did.
-     * @param lastCommand that possibly modifies the {@code AddressBook}.
-     * @param pastAddressBook {@code AddressBook} before the command.
-     * @param newAddressBook {@code AddressBook} after the command.
+     * @param model The model after modification.
      */
-    public static void saveBeforeMod(Command lastCommand, ReadOnlyAddressBook
-            pastAddressBook, ReadOnlyAddressBook newAddressBook) {
-        if (pastAddressBook.equals(newAddressBook)) {
+    public static void saveBeforeMod(Model model) {
+        if (prepareAddressBook.equals(model.getAddressBook()) &&
+            prepareFilteredPersons.equals(model.getFilteredPersonList()) &&
+            prepareSortedPersons.equals(model.getSortedPersonList()) &&
+            prepareGroupedPersons.equals(model.getGroupedPersonList())) {
             return;
         }
-        UndoCommand.lastCommand = lastCommand;
-        undoAddressBook = pastAddressBook;
+        lastCommand = prepareLastCommand;
+        undoAddressBook = prepareAddressBook;
+        undoFilteredPersons = prepareFilteredPersons;
+        undoSortedPersons = prepareSortedPersons;
+        undoGroupedPersons = prepareGroupedPersons;
     }
 
     @Override
@@ -59,11 +88,9 @@ public class UndoCommand extends Command {
         if (undoAddressBook == null) {
             throw new CommandException(NO_ACTION_TO_UNDO);
         }
-        ReadOnlyAddressBook pastAddressBook = (ReadOnlyAddressBook)
-                model.getAddressBook().clone();
+        prepareSaveModelBefore(this, model);
         model.setAddressBook(undoAddressBook);
-        UndoCommand.saveBeforeMod(this, pastAddressBook,
-                model.getAddressBook());
+        saveBeforeMod(model);
         return new CommandResult(String.format(SHOWING_UNDO_MESSAGE,
                 lastCommand));
     }

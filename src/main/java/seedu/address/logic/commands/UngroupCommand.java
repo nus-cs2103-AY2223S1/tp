@@ -69,11 +69,10 @@ public class UngroupCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        ReadOnlyAddressBook pastAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
+        UndoCommand.prepareSaveModelBefore(this, model);
         model.setPerson(personToUngroup, removedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        UndoCommand.saveBeforeMod(this, pastAddressBook, model.getAddressBook());
-
+        UndoCommand.saveBeforeMod(model);
         return new CommandResult(String.format(MESSAGE_UNGROUP_PERSON_SUCCESS, removedPerson));
     }
 

@@ -18,9 +18,9 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        ReadOnlyAddressBook pastAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
+        UndoCommand.prepareSaveModelBefore(this, model);
         model.setAddressBook(new AddressBook());
-        UndoCommand.saveBeforeMod(this, pastAddressBook, model.getAddressBook());
+        UndoCommand.saveBeforeMod(model);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

@@ -90,9 +90,10 @@ public class PreferCommand extends Command {
         Socials socialToEdit = findSocial(social);
         prefer(personToEdit, socialToEdit); //Includes the new social to the person to edit.
 
-        ReadOnlyAddressBook pastAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
+        UndoCommand.prepareSaveModelBefore(this, model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.setPerson(personToEdit, personToEdit);
+        UndoCommand.saveBeforeMod(model);
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 }

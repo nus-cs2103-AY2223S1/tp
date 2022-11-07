@@ -70,10 +70,10 @@ public class AddToGroupCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        ReadOnlyAddressBook pastAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
+        UndoCommand.prepareSaveModelBefore(this, model);
         model.setPerson(personToGroup, groupedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        UndoCommand.saveBeforeMod(this, pastAddressBook, model.getAddressBook());
+        UndoCommand.saveBeforeMod(model);
 
         return new CommandResult(String.format(MESSAGE_GROUP_PERSON_SUCCESS, groupedPerson));
     }

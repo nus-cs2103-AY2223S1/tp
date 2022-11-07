@@ -60,9 +60,9 @@ public class AddCommand extends Command {
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-        ReadOnlyAddressBook pastAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
+        UndoCommand.prepareSaveModelBefore(this, model);
         model.addPerson(toAdd);
-        UndoCommand.saveBeforeMod(this, pastAddressBook, model.getAddressBook());
+        UndoCommand.saveBeforeMod(model);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

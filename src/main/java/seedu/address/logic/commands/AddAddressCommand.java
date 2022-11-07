@@ -73,10 +73,10 @@ public class AddAddressCommand extends Command {
         if (!personToAddAddress.isSamePerson(addressedPerson) && model.hasPerson(addressedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-        ReadOnlyAddressBook pastAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
+        UndoCommand.prepareSaveModelBefore(this, model);
         model.setPerson(personToAddAddress, addressedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        UndoCommand.saveBeforeMod(this, pastAddressBook, model.getAddressBook());
+        UndoCommand.saveBeforeMod(model);
         return new CommandResult(String.format(MESSAGE_ADD_ADDRESS_SUCCESS, addressedPerson));
     }
 
