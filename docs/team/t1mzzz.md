@@ -30,7 +30,7 @@ About 2.4k lines contributed.
     - [#182](https://github.com/AY2223S1-CS2103T-T15-3/tp/issues/182)
     - [#183](https://github.com/AY2223S1-CS2103T-T15-3/tp/issues/183)
   - Added test cases for these logic classes.
-- Updated the `Tutor` class (was `Person`) to store additional fields `StudentId` ([#76](https://github.com/AY2223S1-CS2103T-T15-3/tp/issues/76)) and `Rating` ([#114](https://github.com/AY2223S1-CS2103T-T15-3/tp/issues/114)). 
+- Updated the `Tutor` class (was `Person`) to store additional fields `StudentId` ([#76](https://github.com/AY2223S1-CS2103T-T15-3/tp/issues/76)) and `Rating` ([#114](https://github.com/AY2223S1-CS2103T-T15-3/tp/issues/114)).
   - Implemented the fields into the add command and `Tutor` class.
   - Added test cases for `StudentId` and `Rating` models.
 

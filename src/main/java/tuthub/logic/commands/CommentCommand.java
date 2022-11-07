@@ -32,8 +32,6 @@ public class CommentCommand extends Command {
     public static final String MESSAGE_ADD_COMMENT_SUCCESS = "Added comment to Tutor: %1$s";
     public static final String MESSAGE_ADD_COMMENT_FAILURE = "There is no comment!";
 
-    public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Comment: %2$s";
-
     private final Index index;
     private final Comment comment;
 
@@ -99,7 +97,6 @@ public class CommentCommand extends Command {
      * {@code tutorToEdit}.
      */
     private String generateSuccessMessage(Tutor tutorToEdit) {
-        String message = MESSAGE_ADD_COMMENT_SUCCESS;
-        return String.format(message, tutorToEdit);
+        return String.format(MESSAGE_ADD_COMMENT_SUCCESS, tutorToEdit);
     }
 }

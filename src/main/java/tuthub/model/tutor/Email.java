@@ -10,7 +10,7 @@ import static tuthub.commons.util.AppUtil.checkArgument;
 public class Email {
 
     public static final String MESSAGE_CONSTRAINTS = "Emails should be of the form E1234567 "
-        + "or E1234567@u.nus.edu (case insenstive)";
+        + "or E1234567@u.nus.edu (case insensitive).";
     public static final String VALIDATION_REGEX = "[e|E][0-9]{7}(@u.nus.edu)?";
 
     public final String value;
