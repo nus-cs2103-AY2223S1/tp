@@ -8,7 +8,7 @@ participant ":EditModuleCommandParser" as EditModuleCommandParser LOGIC_COLOR
 participant "c:ModuleCode" as ModuleCode LOGIC_COLOR
 participant "d:EditModuleDescriptor" as EditModuleDescriptor LOGIC_COLOR
 participant "e:EditModuleCommand" as EditModuleCommand LOGIC_COLOR
-participant "CommandResult" as CommandResult LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -16,10 +16,17 @@ participant ":Model" as Model MODEL_COLOR
 participant "m:Module" as Module MODEL_COLOR
 end box
 
-[-> LogicManager : execute("medit CS2107 n/Cybersecurity")
+[-> LogicManager : execute("command_details")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("medit CS2107 n/Cybersecurity")
+LogicManager -> AddressBookParser : parseCommand("command_details")
+note left
+"command_details" serves
+to substitute
+the actual command
+"medit CS2107 n/Cybersecurity"
+for readability purposes
+end note
 activate AddressBookParser
 
 create EditModuleCommandParser
@@ -29,7 +36,14 @@ activate EditModuleCommandParser
 EditModuleCommandParser --> AddressBookParser
 deactivate EditModuleCommandParser
 
-AddressBookParser -> EditModuleCommandParser : parse("CS2107 n/Cybersecurity")
+AddressBookParser -> EditModuleCommandParser : parse("details")
+note left
+"details" serves
+to substitute
+the actual details
+"CS2107 n/Cybersecurity"
+for readability purposes
+end note
 activate EditModuleCommandParser
 
 create ModuleCode
@@ -38,7 +52,6 @@ activate ModuleCode
 
 ModuleCode --> EditModuleCommandParser : c
 deactivate ModuleCode
-destroy ModuleCode
 
 create EditModuleDescriptor
 EditModuleCommandParser -> EditModuleDescriptor : "n/Cybersecurity"
@@ -46,7 +59,6 @@ activate EditModuleDescriptor
 
 EditModuleDescriptor -> EditModuleCommandParser : d
 deactivate EditModuleDescriptor
-destroy EditModuleDescriptor
 
 create EditModuleCommand
 EditModuleCommandParser -> EditModuleCommand : EditModuleCommand(c, d)
@@ -65,38 +77,32 @@ deactivate AddressBookParser
 LogicManager -> EditModuleCommand : execute()
 activate EditModuleCommand
 
-EditModuleCommand -> Model : getFilteredModuleList()
-activate Model
-
-Model --> EditModuleCommand
-
 create Module
 EditModuleCommand -> Module : createEditedModule()
 activate Module
 
-Module --> EditModuleCommand
+Module --> EditModuleCommand : m
 deactivate Module
 
 EditModuleCommand -> Model : setModule()
+activate Model
 
 Model --> EditModuleCommand
-
-EditModuleCommand -> Model : updatedFilteredModuleList(predicate)
-Model --> EditModuleCommand
-
-
+deactivate Model
+destroy Model
 
 create CommandResult
 EditModuleCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> EditModuleCommand
+CommandResult --> EditModuleCommand : result
 deactivate CommandResult
 
 EditModuleCommand --> LogicManager : result
 deactivate EditModuleCommand
-EditModuleCommand -[hidden]-> LogicManager : result
 destroy EditModuleCommand
+EditModuleCommand -[hidden]-> LogicManager : result
+
 
 [<--LogicManager
 deactivate LogicManager

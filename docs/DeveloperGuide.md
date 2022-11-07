@@ -157,8 +157,17 @@ The `Student` component
 
 - represents a student in ProfNUS
 
+#### 4.4.2. Module
 
-#### 4.4.2. Schedule
+**API** : [Module.java](https://github.com/AY2223S1-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/address/model/module/Module.java)
+
+<img src="images/ModuleClassDiagram.png"  width="450" />
+
+The `Module` component
+
+- represents a module in ProfNUS
+
+#### 4.4.3. Schedule
 
 **API** : [Schedule.java](https://github.com/AY2223S1-CS2103T-W11-2/tp/tree/master/src/main/java/seedu/address/model/module/schedule)
 
@@ -292,7 +301,7 @@ Reason for choosing option 1:
 Modules like CS2103T, CS2103R and CS2103 have the same module name "Software Engineering". If we allow searching by module name, the program would not know which "Software Engineering" module to display.
 This would mean that we would need to have unique module names. However, this is not possible if the professor is teaching modules that have the same name but different code.
 
-### 5.4. Edit a module feature
+### 5.4. The edit a module feature
 
 #### Implementation
 
@@ -744,13 +753,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   2. Test case: `deletestu 1`<br>
+   2. Test case: `delstu 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   3. Test case: `deletestu 0`<br>
+   3. Test case: `delstu 0`<br>
       Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
-   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `del`, `del x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ## **9. Appendix C: Effort**
