@@ -16,7 +16,6 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.appointment.UpcomingAppointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.FloorNumber;
 import seedu.address.model.person.HospitalWing;

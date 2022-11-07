@@ -41,6 +41,9 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -57,9 +60,6 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.WardNumber;
 import seedu.address.model.tag.Medication;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class EditCommandParserTest {
 
