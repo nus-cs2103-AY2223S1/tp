@@ -68,11 +68,17 @@ The sections below give more details of each component.
 
 The API of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/ui/Ui.java). 
 
-Here's a partial class diagram of the `UI` component.
+Here's a partial class diagram of the `UI` component without any of the task/contact management panels.
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component without Panels](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts, e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, and etc. All these parts, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+Here's another partial class diagram of the `UI` component with the task and contact management panels.
+
+![Structure of the UI Component with Panels](images/UiPanelsClassDiagram.png)
+
+The UI keeps track of which tab the user is currently viewing with the `isContactTabShown` boolean. If the contacts tab is currently in view, `MainWindow` contains `PersonListPanel` and `PersonTaskListPanel`, and it contains `TaskListPanel` and `TaskPersonListPanel` if otherwise. 
 
 The `UI` component uses the [JavaFx](https://openjfx.io/) UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
