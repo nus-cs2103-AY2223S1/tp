@@ -153,6 +153,9 @@ Format: `listall`
 
 * The three lists will be arranged in the order: students, tasks, lessons.
 * Additional information will be hidden to provide an overview of all three lists.
+* Students in the student list are sorted in ascending order according to the lexicographical order of their names. Students with the same name are sorted similarly according to their matric number.
+* Tasks that are not done are grouped at the top of the list while tasks that are done are grouped at the bottom. In the group of tasks that are not done, the tasks are sorted with the earliest deadline tasks at the top. In the group of tasks that are done, the tasks are sorted with the latest deadline tasks at the top. Tasks without deadlines are placed below tasks with deadlines.
+* Lessons that are not completed are grouped at the top of the list while lessons that are completed are grouped at the bottom. In the group of lessons that are not completed, the lessons are sorted with the earliest lessons at the top. In the group of lessons that are completed, the lessons are sorted with the latest lessons at the top.
 
 ### Clearing all entries : `clear`
 
