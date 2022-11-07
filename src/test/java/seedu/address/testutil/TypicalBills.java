@@ -24,13 +24,13 @@ import seedu.address.model.bill.Bill;
  */
 public class TypicalBills {
 
-    public static final Bill BILL_1 = new BillBuilder().withAppointment(APPOINTMENT_1).withBillDate("2019-01-23")
+    public static final Bill BILL_1 = new BillBuilder().withAppointment(APPOINTMENT_1).withBillDate("2022-11-02")
             .withAmount("1000.23").withPaymentStatus("paid").build();
-    public static final Bill BILL_2 = new BillBuilder().withAppointment(APPOINTMENT_2).withBillDate("2020-12-22")
+    public static final Bill BILL_2 = new BillBuilder().withAppointment(APPOINTMENT_2).withBillDate("2024-12-22")
             .withAmount("1001.23").withPaymentStatus("unpaid").build();
-    public static final Bill BILL_3 = new BillBuilder().withAppointment(APPOINTMENT_3).withBillDate("2021-11-24")
+    public static final Bill BILL_3 = new BillBuilder().withAppointment(APPOINTMENT_3).withBillDate("2023-11-24")
             .withAmount("1010.23").withPaymentStatus("paid").build();
-    public static final Bill BILL_4 = new BillBuilder().withAppointment(APPOINTMENT_4).withBillDate("2022-10-21")
+    public static final Bill BILL_4 = new BillBuilder().withAppointment(APPOINTMENT_4).withBillDate("2022-12-21")
             .withAmount("1011.23").withPaymentStatus("unpaid").build();
     public static final Bill BILL_5 = new BillBuilder().withAppointment(APPOINTMENT_5).withBillDate("2023-09-25")
             .withAmount("1100.23").withPaymentStatus("paid").build();

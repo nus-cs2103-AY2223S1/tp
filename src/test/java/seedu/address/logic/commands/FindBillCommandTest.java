@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalBills.BILL_1;
 import static seedu.address.testutil.TypicalBills.BILL_2;
 //import static seedu.address.testutil.TypicalBills.BILL_3;
 //import static seedu.address.testutil.TypicalBills.BILL_4;
+import static seedu.address.testutil.TypicalBills.BILL_3;
 import static seedu.address.testutil.TypicalBills.BILL_5;
 import static seedu.address.testutil.TypicalBills.BILL_6;
 import static seedu.address.testutil.TypicalBills.getTypicalBillsHealthContact;
@@ -96,14 +97,14 @@ public class FindBillCommandTest {
 
     @Test
     public void execute_findByBillDate_found() {
-        String expectedMessage = String.format(MESSAGE_BILL_LISTED_OVERVIEW, 2);
+        String expectedMessage = String.format(MESSAGE_BILL_LISTED_OVERVIEW, 3);
         Optional<Predicate<BillDate>> billDatePredicate = Optional.of(billDate -> billDate.toString()
                 .contains("2023-"));
         FindBillCommand command = new FindBillCommand(Optional.empty(), Optional.empty(), billDatePredicate,
                 Optional.empty());
         expectedModel.updateFilteredBillList(command.getPredicate());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(BILL_5, BILL_6),
+        assertEquals(Arrays.asList(BILL_3, BILL_5, BILL_6),
                 model.getFilteredBillList());
     }
 
@@ -124,17 +125,17 @@ public class FindBillCommandTest {
     public void execute_multipleFields_found() {
         String expectedMessage = String.format(MESSAGE_BILL_LISTED_OVERVIEW, 1);
         Optional<Predicate<Name>> namePredicate = Optional.of(name -> name.fullName.toLowerCase()
-                .contains("MEIER".toLowerCase()));
+                .contains("FIONA".toLowerCase()));
         Optional<Predicate<PaymentStatus>> testPredicate = Optional.of(paymentStatus -> paymentStatus
                 .toString().toLowerCase().contains("PAID".toLowerCase()));
         Optional<Predicate<BillDate>> slotPredicate = Optional.of(billDate -> billDate.toString()
-                .contains("2020-"));
-        Optional<Predicate<Amount>> doctorPredicate = Optional.of(amount -> amount.toString().toLowerCase()
-                .contains("1001.23"));
+                .contains("2023-"));
+        Optional<Predicate<Amount>> amountPredicate = Optional.of(amount -> amount.toString().toLowerCase()
+                .contains("1101.23"));
         FindBillCommand command = new FindBillCommand(namePredicate, testPredicate, slotPredicate,
-                doctorPredicate);
+                amountPredicate);
         expectedModel.updateFilteredBillList(command.getPredicate());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(BILL_2), model.getFilteredBillList());
+        assertEquals(Arrays.asList(BILL_6), model.getFilteredBillList());
     }
 }
