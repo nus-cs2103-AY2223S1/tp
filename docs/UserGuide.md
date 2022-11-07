@@ -132,39 +132,47 @@ e.g. `n/NAME`
 
 ### 6.3. Command Format
 
-In the command box, you need to type the [command word](#621-command) along with the required [parameters](#622-parameter). You can leave the parameter field empty if it is optional, which is indicated by wrapped square brackets in the command format, e.g. `search [e/EMAIL]` <br>
-The [parameters](#622-parameter) required for each command can be found in [Command Summary](#9-command-summary) and [Commands](#7-commands).
+In the command box, you need to type the [command](#621-command) along with the required [parameters](#622-parameter). You can leave the parameter field empty if it is optional, which is indicated by wrapped square brackets in the command format, e.g. `search [e/EMAIL]` <br>
+The parameters required for each command can be found in [Command Summary](#9-command-summary) and [Commands](#7-commands).
 
 <div markdown="block" class="alert alert-primary"> 
 
 **:memo: Note**<br>
 
-* Words in `UPPER_CASE` are the information to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the information to be supplied by the user. <br>
   e.g. if the format is `add n/NAME`, you can type `add n/John Doe` to use the command.
 
 * Items with `…`​ after them can be used multiple times, including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family`, etc.
 
-* [Parameters](#622-parameter) can be in any order unless explicitly stated otherwise.<br>
+* Parameters can be in any order unless explicitly stated otherwise.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a [parameter](#622-parameter) is expected only once in the [command](#621-command), but you specify it multiple times, only the last occurrence of the [parameter](#622-parameter) will be taken.<br>
+* If a parameter is expected only once in the command, but you specify it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Irrelevant [parameters](#622-parameter) for [commands](#621-command) that do not take in [parameters](#622-parameter) (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Irrelevant parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if you type `help 123`, it will be interpreted as `help`.
 
-* `INDEX` is used in [commands](#621-command) to refer to a specific contact or todo by their index number on the currently displayed list. The `INDEX` **must be a positive non-zero integer** 1, 2, 3, …​ <a id="command-format-index"></a>
+* `INDEX` is used in commands to refer to a specific contact or todo by their index number on the currently displayed list. The `INDEX` **must be a positive non-zero integer** 1, 2, 3, …​ <a id="command-format-index"></a>
 
 ### 6.4. How to Use the CLI
 
 If you already know about [Command Line Interface (CLI)](#CLI), you can skip this part and read the [Commands](#7-commands).
 
-1. To use the [Command Line Interface (CLI)](#CLI), you can type a [command](#621-command), which is supposed to be typed in a certain [format](#63-command-format), in the command box and press Enter. SoConnect will perform a specific action. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+To use the CLI, you can type a command, which is supposed to be typed in a certain [format](#63-command-format), in the command box and press Enter. SoConnect will perform a specific action. You could try using the CLI using some examples provided below. <br>
 
-2. You can refer to the [Command Summary](#9-command-summary) for the full list of commands.
+The command format for `help` is just `help`. You can just type **`help`** into the CLI and press Enter, SoConnect will open the help window.
 
-3. You can also refer to the [Commands](#7-commands) below for details of each command.
+The command format for `add` is `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`. As mentioned [here](#63-command-format), since `t/TAG` is wrapped with square brackets and has the `…`​ at the back, you can choose whether to provide this parameter and even choose to provide this multiple times. The parameters can be provided in any order as long as they are after the command.<br>
+Valid usage e.g.: `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567` <br>
+Invalid usage e.g: `add n/Joe Tan` (Other parameters such as `p/PHONE_NUMBER e/EMAIL a/ADDRESS` must be provided as they are not wrapped in square brackets)
+
+Do not worry about typing commands wrongly as SoConnect will guide you if and when you do so.
+
+You can refer to the [Command Summary](#9-command-summary) for the full list of commands.
+
+You can also refer to the [Commands](#7-commands) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
