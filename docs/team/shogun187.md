@@ -48,6 +48,7 @@ Added the ability to track patients added and deleted during an undo/redo comman
 * Added implementation details for displaying added/edited/deleted patients
 * Added instructions for manual testing
 * Added the following use cases: UC04, UC05
+* Added acknowledgement for font usage
 
 ### Contributions to team-based tasks
 
