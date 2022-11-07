@@ -1,10 +1,10 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.property;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.PropertyCommandTestUtil.assertPropertyCommandFailure;
-import static seedu.address.logic.commands.PropertyCommandTestUtil.showPropertyAtIndex;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.property.PropertyCommandTestUtil.assertPropertyCommandFailure;
+import static seedu.address.logic.commands.property.PropertyCommandTestUtil.showPropertyAtIndex;
 import static seedu.address.testutil.TypicalBuyers.getTypicalBuyersBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.property.DeletePropertyCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;

@@ -1,19 +1,19 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_ADDRESS_HOME;
-import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_ADDRESS_PROPERTY1;
-import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_CHARACTERISTICS_HOME;
-import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_CHARACTERISTICS_PROPERTY1;
-import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_DESCRIPTION_HOME;
-import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_DESCRIPTION_PROPERTY1;
-import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_NAME_HOME;
-import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_NAME_PROPERTY1;
-import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_OWNER_NAME_HOME;
-import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_OWNER_NAME_PROPERTY1;
-import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_OWNER_PHONE_HOME;
-import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_OWNER_PHONE_PROPERTY1;
-import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_PRICE_HOME;
-import static seedu.address.logic.commands.PropertyCommandTestUtil.VALID_PRICE_PROPERTY1;
+import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_ADDRESS_HOME;
+import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_ADDRESS_PROPERTY1;
+import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_CHARACTERISTICS_HOME;
+import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_CHARACTERISTICS_PROPERTY1;
+import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_DESCRIPTION_HOME;
+import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_DESCRIPTION_PROPERTY1;
+import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_NAME_HOME;
+import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_NAME_PROPERTY1;
+import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_OWNER_NAME_HOME;
+import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_OWNER_NAME_PROPERTY1;
+import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_OWNER_PHONE_HOME;
+import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_OWNER_PHONE_PROPERTY1;
+import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_PRICE_HOME;
+import static seedu.address.logic.commands.property.PropertyCommandTestUtil.VALID_PRICE_PROPERTY1;
 
 import java.util.ArrayList;
 import java.util.Arrays;
