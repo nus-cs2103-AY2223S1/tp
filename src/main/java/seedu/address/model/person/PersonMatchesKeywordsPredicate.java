@@ -36,6 +36,11 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
      * @param str2 string2 to be compared
      * @return the Levenshtein distance between the 2 strings
      */
+//@@author sh4nH-reused
+//This algorithm to find the Levenshtein distance between 2 strings was adapted with minor modifications
+// from the GeeksForGeeks page:
+// bit.ly/3DSiDPA .
+// It is a dynamic programming based approach.
     private int getLevenshteinDist(String str1, String str2) {
 
         // A 2-D matrix to store previously calculated answers of subproblems
@@ -67,7 +72,7 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
         }
         return arr[str1.length()][str2.length()];
     }
-
+//@@author
     /**
      * This method uses the levenshtein distance to calculate the similarity
      * between two strings in the range [0, 1].
