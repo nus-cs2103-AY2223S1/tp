@@ -732,6 +732,15 @@ While AB-3 only deals with a single `Person` entity, TaskBook introduced the `Ta
 Although effort was saved through reusing and adapting components from AB-3, a substantial effort was still required to incorporate `Task`-specific methods into the program.
 Furthermore, `Task` was made extensible to 3 specific entities, `Todo`, `Event` and `Deadline`, which each required their respective models and commands.
 
+Trying to refactor parser was a challenge due to unfamiliarity with the AB-3 codebase. 
+There were crucial details in the implementation such as the required whitespace before each prefix. 
+Hence, we needed to adapt our idea to incorporate new features into this brownfield project. 
+For example, we changed all index fields to require a `i/` prefix instead of the no prefix implementation from AB-3.
+
+Mark and unmark command was a challenge because the models were implemented with immutable fields.
+hHaving a mutable boolean field in a task model resulted in misbehavior with the GUI and storage.
+We opted to create a new task entirely when a mark or unmark command is executed as a workaround to this problem.
+
 Trying to parse the arguments for `task find` was also a big challenge, because there was a lot of possible combinations of fields we could use, but we managed to break up the command's execute method into several smaller methods that could be reused, thus not only saving lines of code and increasing code readability, but also applying SLAP.
 Adding the SortedList components to the task list and contact list in `ModelManager` was also a challenge due to lack of information on the existence of such a class. Until that point, we did not know how to implement a sorting feature to our contact and task lists. However, upon learning of Observer design patterns, we found another project that used SortedList and understood what to do from there.
 
