@@ -21,6 +21,9 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Uid;
 import seedu.address.model.tag.Tag;
 
+/**
+ * A class to internally edit a patient / nurse.
+ */
 public class InternalEditor {
 
     public final Model model;
@@ -29,6 +32,11 @@ public class InternalEditor {
         this.model = model;
     }
 
+    /**
+     * Edit the patient to update the dateSlotList.
+     * @param patient
+     * @param dateSlotList
+     */
     public void editPatient(Person patient, List<DateSlot> dateSlotList) {
         Uid patientUid = patient.getUid();
         List<Person> lastShownList = model.getFilteredPersonList();
@@ -46,6 +54,12 @@ public class InternalEditor {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
+    /**
+     * Edit the nurse to update homeVisitList and fullyScheduledDateList.
+     * @param nurse
+     * @param homeVisitList
+     * @param fullyScheduledDateList
+     */
     public void editNurse(Person nurse, List<HomeVisit> homeVisitList, List<Date> fullyScheduledDateList) {
         Uid nurseUid = nurse.getUid();
         List<Person> lastShownList = model.getFilteredPersonList();

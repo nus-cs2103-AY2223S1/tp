@@ -12,6 +12,9 @@ import seedu.address.model.person.HomeVisit;
 import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 
+/**
+ * A class to do the internal unmarking of date slot when required.
+ */
 public class InternalUnmarkerFromHomeVisit {
 
     public final Model model;
@@ -19,6 +22,13 @@ public class InternalUnmarkerFromHomeVisit {
     private final List<HomeVisit> nurseHomeVisitList;
     private final List<Index> nurseHomeVisitIndex;
 
+    /**
+     * Construct an InternalUnmarkerFromHomeVisit.
+     * @param model
+     * @param personList
+     * @param nurseHomeVisitList
+     * @param nurseHomeVisitIndex
+     */
     InternalUnmarkerFromHomeVisit(Model model, List<Person> personList, List<HomeVisit> nurseHomeVisitList,
                                   List<Index> nurseHomeVisitIndex) {
         this.model = model;
@@ -27,6 +37,12 @@ public class InternalUnmarkerFromHomeVisit {
         this.nurseHomeVisitIndex = nurseHomeVisitIndex;
     }
 
+    /**
+     * Construct an InternalUnmarkerFromHomeVisit with empty home visit index list.
+     * @param model
+     * @param personList
+     * @param nurseHomeVisitList
+     */
     InternalUnmarkerFromHomeVisit(Model model, List<Person> personList, List<HomeVisit> nurseHomeVisitList) {
         this.model = model;
         this.personList = personList;
@@ -34,6 +50,9 @@ public class InternalUnmarkerFromHomeVisit {
         this.nurseHomeVisitIndex = new ArrayList<>();
     }
 
+    /**
+     * Unmark the respective date slots.
+     */
     public void unmarkDateSlotForHomeVisit() {
         if (nurseHomeVisitIndex.isEmpty()) {
             unmarkDateSlotFromAllHomeVisit();
@@ -69,6 +88,10 @@ public class InternalUnmarkerFromHomeVisit {
         editor.editPatient(patient, updatedDateSlotList);
     }
 
+    /**
+     * Unmark the respective date slots.
+     * @param unavailableDateList
+     */
     public void unmarkDateSlotForUnavailableDates(List<Date> unavailableDateList) {
         for (Date date : unavailableDateList) {
             unmarkDateSlotForUnavailableDate(date);
@@ -79,7 +102,7 @@ public class InternalUnmarkerFromHomeVisit {
         for (HomeVisit homeVisit : nurseHomeVisitList) {
             Boolean isSameDate = checkSameDate(homeVisit, date);
             if (isSameDate) {
-               unmarkDateSlotFromHomeVisit(model, personList, homeVisit);
+                unmarkDateSlotFromHomeVisit(model, personList, homeVisit);
             }
         }
     }

@@ -79,7 +79,7 @@
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
-    "dateSlots" : [ " : :2022-10-15,1:-1" ],
+    "dateSlots" : [ " : :2022-10-15,1:5" ],
     "tagged" : [ ],
     "homeVisits" : [ ],
     "unavailableDates" : [ ],

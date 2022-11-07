@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.index.ReverseIndexComparator;
@@ -11,12 +10,20 @@ import seedu.address.model.person.Date;
 import seedu.address.model.person.DateSlot;
 import seedu.address.model.person.HomeVisit;
 
+/**
+ * A class that manage all date slot related task.
+ */
 public class DateSlotManager {
 
     public static final String MESSAGE_OUTOFBOUND_DATESLOT_INDEX = "The date slot index given is out of bounds.";
     public final List<DateSlot> dateSlotList;
     public final List<Index> dateSlotIndexList;
 
+    /**
+     * Construct a DateSlotManager.
+     * @param dateSlotList
+     * @param dateSlotIndex
+     */
     public DateSlotManager(List<DateSlot> dateSlotList, List<Index> dateSlotIndex) {
         this.dateSlotList = new ArrayList<>();
         for (DateSlot dateSlot : dateSlotList) {
@@ -25,6 +32,10 @@ public class DateSlotManager {
         this.dateSlotIndexList = new ArrayList<>(dateSlotIndex);
     }
 
+    /**
+     * Construct a DateSlotManger with empty date slot index list.
+     * @param dateSlotList
+     */
     public DateSlotManager(List<DateSlot> dateSlotList) {
         this.dateSlotList = new ArrayList<>();
         for (DateSlot dateSlot : dateSlotList) {
@@ -33,6 +44,11 @@ public class DateSlotManager {
         this.dateSlotIndexList = new ArrayList<>();
     }
 
+    /**
+     * Construct a DateSlotManger with only one index.
+     * @param dateSlotList
+     * @param index
+     */
     public DateSlotManager(List<DateSlot> dateSlotList, Index index) {
         this.dateSlotList = new ArrayList<>();
         for (DateSlot dateSlot : dateSlotList) {
@@ -42,6 +58,14 @@ public class DateSlotManager {
         this.dateSlotIndexList.add(index);
     }
 
+    /**
+     * Mark the respective date slot as assigned if there is no time clashes
+     * @param homeVisitList
+     * @param unavailableDateList
+     * @param nurseUidNo
+     * @return updated dateSlot list
+     * @throws CommandException
+     */
     public List<DateSlot> markAssigned(List<HomeVisit> homeVisitList, List<Date> unavailableDateList,
                                        Long nurseUidNo) throws CommandException {
         if (dateSlotIndexList.isEmpty()) {
@@ -85,12 +109,20 @@ public class DateSlotManager {
         this.dateSlotIndexList.sort(comp);
     }
 
+    /**
+     * Check whether the index given is out of bound.
+     */
     public void checkIndexOutOfBound() throws CommandException {
         if (dateSlotIndexList.get(0).getZeroBased() >= dateSlotList.size()) {
             throw new CommandException(MESSAGE_OUTOFBOUND_DATESLOT_INDEX);
         }
     }
 
+    /**
+     * Unmark the respective date slot as unassigned.
+     * @return updated dateSlot list
+     * @throws CommandException
+     */
     public List<DateSlot> unmarkAssigned() throws CommandException {
         if (dateSlotIndexList.isEmpty()) {
             unmarkAllAssigned();
@@ -117,6 +149,11 @@ public class DateSlotManager {
         }
     }
 
+    /**
+     * Unmark the specific date slot that has the same dateTime with the dateSlot given.
+     * @param dateSlot
+     * @return updated dateSlot list
+     */
     public List<DateSlot> unmarkSpecificAssignedFromHomeVisit(DateSlot dateSlot) {
         DateSlot dateSlotToBeUnmarked = dateSlotList.stream().filter(
                 d -> d.getDateTime().equals(dateSlot.getDateTime())).findFirst().get();
@@ -130,6 +167,11 @@ public class DateSlotManager {
         checker.checkNotAssigned();
     }
 
+    /**
+     * Unmark the specified dateslot as fail visited.
+     * @return updated dateSlot list
+     * @throws CommandException
+     */
     public List<DateSlot> unmarkSuccessVisited() throws CommandException {
         checkIndexOutOfBound();
         DateSlot dateToBeUnmark = dateSlotList.get(dateSlotIndexList.get(0).getZeroBased());
@@ -143,6 +185,11 @@ public class DateSlotManager {
         checker.checkNotVisited();
     }
 
+    /**
+     * Undo the unmark of specified date slot as success visit.
+     * @return updated dateSlot list
+     * @throws CommandException
+     */
     public List<DateSlot> undoUnmarkFailVisited() throws CommandException {
         checkIndexOutOfBound();
         DateSlot dateToBeUndoUnmark = dateSlotList.get(dateSlotIndexList.get(0).getZeroBased());
@@ -157,6 +204,11 @@ public class DateSlotManager {
         checker.checkSuccessVisited();
     }
 
+    /**
+     * Remove the respective date slot from the date slot list.
+     * @return updated dateSlot list
+     * @throws CommandException
+     */
     public List<DateSlot> removeDateSlot() throws CommandException {
         if (dateSlotIndexList.isEmpty()) {
             removeAllDateSlot();
@@ -179,11 +231,19 @@ public class DateSlotManager {
         }
     }
 
+    /**
+     * Add the dateSlotToBeAdded given by user to the existing date slot list.
+     * @param dateSlotToBeAdded
+     * @return updated dateSlot list
+     */
     public List<DateSlot> addDateSlot(List<DateSlot> dateSlotToBeAdded) {
         dateSlotList.addAll(dateSlotToBeAdded);
         return dateSlotList;
     }
 
+    /**
+     * Get the date slot list.
+     */
     public List<DateSlot> getDateSlot() {
         return this.dateSlotList;
     }

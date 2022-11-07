@@ -12,6 +12,9 @@ import seedu.address.model.person.HomeVisit;
 import seedu.address.model.person.Nurse;
 import seedu.address.model.person.Person;
 
+/**
+ * A class to do the internal removal of home visits when required.
+ */
 public class InternalHomeVisitRemoverFromDateSlot {
 
     public final Model model;
@@ -19,6 +22,13 @@ public class InternalHomeVisitRemoverFromDateSlot {
     private final List<DateSlot> patientDateSlotList;
     private final List<Index> patientDateSlotIndex;
 
+    /**
+     * Construct an InternalHomeVisitRemoverFromDateSlot.
+     * @param model
+     * @param personList
+     * @param patientDateSlotList
+     * @param patientDateSlotIndex
+     */
     InternalHomeVisitRemoverFromDateSlot(Model model, List<Person> personList, List<DateSlot> patientDateSlotList,
                                          List<Index> patientDateSlotIndex) {
         this.model = model;
@@ -27,6 +37,12 @@ public class InternalHomeVisitRemoverFromDateSlot {
         this.patientDateSlotIndex = patientDateSlotIndex;
     }
 
+    /**
+     * Construct an InternalHomeVisitRemoverFromDateSlot with empty date slot index list.
+     * @param model
+     * @param personList
+     * @param patientDateSlotList
+     */
     InternalHomeVisitRemoverFromDateSlot(Model model, List<Person> personList, List<DateSlot> patientDateSlotList) {
         this.model = model;
         this.personList = personList;
@@ -34,6 +50,10 @@ public class InternalHomeVisitRemoverFromDateSlot {
         this.patientDateSlotIndex = new ArrayList<>();
     }
 
+    /**
+     * Remove the respective home visits.
+     * @return updated homeVisit list
+     */
     public Boolean removeHomeVisitsForDateSlot() {
         Boolean hasRemoveHomeVisits = false;
         if (patientDateSlotIndex.isEmpty()) {

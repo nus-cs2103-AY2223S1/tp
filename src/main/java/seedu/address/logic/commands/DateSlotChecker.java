@@ -29,10 +29,18 @@ public class DateSlotChecker {
 
     private final DateSlot dateSlot;
 
+    /**
+     * Create DateSlotChecker.
+     * @param dateSlot
+     */
     public DateSlotChecker(DateSlot dateSlot) {
         this.dateSlot = dateSlot;
     }
 
+    /**
+     * Check whether the date slot has been visited.
+     * @throws CommandException if visited
+     */
     public void checkVisited() throws CommandException {
         if (dateSlot.getHasVisited()) {
             throw new CommandException(String.format(MESSAGE_VISITED_DATESLOT,
@@ -40,24 +48,40 @@ public class DateSlotChecker {
         }
     }
 
+    /**
+     * Check whether the date slot has not been visited.
+     * @throws CommandException if not visited
+     */
     public void checkNotVisited() throws CommandException {
         if (!dateSlot.getHasVisited()) {
             throw new CommandException(MESSAGE_NOT_VISITED_DATESLOT);
         }
     }
 
+    /**
+     * Check whether the date slot has not been visited.
+     * @throws CommandException if not visited
+     */
     public void checkNotVisitedForUndoUnmark() throws CommandException {
         if (!dateSlot.getHasVisited()) {
             throw new CommandException(MESSAGE_NOT_VISITED_DATESLOT_TWO);
         }
     }
 
+    /**
+     * Check whether the date slot is a success visit
+     * @throws CommandException if it is a success visit
+     */
     public void checkSuccessVisited() throws CommandException {
         if (dateSlot.getIsSuccessVisit()) {
             throw new CommandException(MESSAGE_SUCCESS_VISIT_DATESLOT);
         }
     }
 
+    /**
+     * Check whether the date slot has not been assigned
+     * @throws CommandException if date slot not assigned
+     */
     public void checkNotAssigned() throws CommandException {
         if (!dateSlot.getHasAssigned()) {
             throw new CommandException(String.format(MESSAGE_NOT_ASSIGNED_DATESLOT,
@@ -65,12 +89,21 @@ public class DateSlotChecker {
         }
     }
 
+    /**
+     * Check whether the date slot has been assigned
+     * @throws CommandException if date slot is assigned
+     */
     public void checkAssigned() throws CommandException {
         if (dateSlot.getHasAssigned()) {
             throw new CommandException(String.format(MESSAGE_ASSIGNED_DATESLOT, dateSlot.getDateSlotFormatted()));
         }
     }
 
+    /**
+     * Check whether the date slot has time clash with the homeVisitList.
+     * @param homeVisitList
+     * @throws CommandException if there is time clash
+     */
     public void checkCrashes(List<HomeVisit> homeVisitList) throws CommandException {
         Optional<HomeVisit> homeVisit = homeVisitList.stream().filter(
                 h -> h.getDateSlot().getDateTime().equals(dateSlot.getDateTime())).findFirst();
@@ -79,6 +112,11 @@ public class DateSlotChecker {
         }
     }
 
+    /**
+     * Check whether the date slot has time clash with the unavailabilityDateList.
+     * @param unavailabilityDateList
+     * @throws CommandException if there is time clash
+     */
     public void checkUnavailability(List<Date> unavailabilityDateList) throws CommandException {
         Optional<Date> date = unavailabilityDateList.stream().filter(
                 d -> d.getDate().equals(dateSlot.getDate())).findFirst();

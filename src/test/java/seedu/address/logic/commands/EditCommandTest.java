@@ -280,7 +280,7 @@ public class EditCommandTest {
 
         EditCommand editCommand = new EditCommand(firstPerson.getUid(), descriptor);
 
-        String expectedMessage = EditCommand.MESSAGE_OUT_OF_BOUND_DATESLOTINDEX;
+        String expectedMessage = DateSlotManager.MESSAGE_OUTOFBOUND_DATESLOT_INDEX;
 
         assertCommandFailure(editCommand, model, expectedMessage);
 
@@ -291,7 +291,7 @@ public class EditCommandTest {
 
         editCommand = new EditCommand(new Uid("3"), descriptor); // the uid 3 is from TypicalPersons.java [Carl]
 
-        expectedMessage = EditCommand.MESSAGE_INVALID_NUMBERS_OF_DATESLOT_AND_DATESLOTINDEX;
+        expectedMessage = EditCommand.EditedDateSlotCreator.MESSAGE_INVALID_NUMBERS_OF_DATESLOT_AND_DATESLOTINDEX;
 
         assertCommandFailure(editCommand, model, expectedMessage);
 

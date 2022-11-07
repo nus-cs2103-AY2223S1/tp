@@ -2,20 +2,19 @@ package seedu.address.logic.commands;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.core.index.ReverseIndexComparator;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
 import seedu.address.model.person.Date;
 import seedu.address.model.person.DateSlot;
 import seedu.address.model.person.HomeVisit;
-import seedu.address.model.person.Nurse;
-import seedu.address.model.person.Person;
 
+/**
+ * A class to manage all home visit related task.
+ */
 public class HomeVisitManager {
 
     public static final String MESSAGE_OUTOFBOUND_HOMEVISIT_INDEX = "The home visit index given is out of bounds.";
@@ -24,6 +23,12 @@ public class HomeVisitManager {
     public final List<Index> homeVisitIndex;
     public final List<Date> fullyScheduledDateList;
 
+    /**
+     * Construct a HomeVisitManager.
+     * @param homeVisitList
+     * @param homeVisitIndex
+     * @param fullyScheduledDateList
+     */
     public HomeVisitManager(List<HomeVisit> homeVisitList, List<Index> homeVisitIndex,
                             List<Date> fullyScheduledDateList) {
         this.homeVisitList = new ArrayList<>();
@@ -34,6 +39,11 @@ public class HomeVisitManager {
         this.fullyScheduledDateList = new ArrayList<>(fullyScheduledDateList);
     }
 
+    /**
+     * Construct a HomeVisitManager with empty home visit index list.
+     * @param homeVisitList
+     * @param fullyScheduledDateList
+     */
     public HomeVisitManager(List<HomeVisit> homeVisitList, List<Date> fullyScheduledDateList) {
         this.homeVisitList = new ArrayList<>();
         for (HomeVisit homeVisit : homeVisitList) {
@@ -43,19 +53,19 @@ public class HomeVisitManager {
         this.fullyScheduledDateList = new ArrayList<>(fullyScheduledDateList);
     }
 
-    public HomeVisitManager(HomeVisit homeVisit, List<Date> fullyScheduledDateList) {
-        this.homeVisitList = new ArrayList<>();
-        this.homeVisitList.add(homeVisit.clone());
-        this.homeVisitIndex = new ArrayList<>();
-        this.fullyScheduledDateList = new ArrayList<>(fullyScheduledDateList);
-    }
-
+    /**
+     * Create a homevisit list for a nurse.
+     * @param dateSlotList
+     * @param dateSlotIndexList
+     * @param patientUidNo
+     * @return homevisit list
+     */
     public List<HomeVisit> createHomeVisitList(List<DateSlot> dateSlotList,
                                                List<Index> dateSlotIndexList, Long patientUidNo) {
         if (dateSlotIndexList.isEmpty()) {
             createAllHomeVisit(dateSlotList, patientUidNo);
         } else {
-           createSpecificHomeVisit(dateSlotList, dateSlotIndexList, patientUidNo);
+            createSpecificHomeVisit(dateSlotList, dateSlotIndexList, patientUidNo);
         }
         return homeVisitList;
     }
@@ -66,7 +76,8 @@ public class HomeVisitManager {
         }
     }
 
-    private void createSpecificHomeVisit(List<DateSlot> dateSlotList, List<Index> dateSlotIndexList, Long patientUidNo) {
+    private void createSpecificHomeVisit(List<DateSlot> dateSlotList, List<Index> dateSlotIndexList,
+                                         Long patientUidNo) {
         List<Index> sortedDateSlotIndexList = sortIndex(dateSlotIndexList);
         for (Index index : sortedDateSlotIndexList) {
             DateSlot dateSlot = dateSlotList.get(index.getZeroBased());
@@ -100,6 +111,11 @@ public class HomeVisitManager {
         return indexList;
     }
 
+    /**
+     * Remove homevisit from a nurse's homevisit list.
+     * @return updated homevisit list
+     * @throws CommandException
+     */
     public List<HomeVisit> removeHomeVisits() throws CommandException {
         if (homeVisitIndex.isEmpty()) {
             removeAllHomeVisit();
@@ -136,12 +152,17 @@ public class HomeVisitManager {
         checker.checkVisited();
     }
 
-    public void checkIndexOutOfBound() throws CommandException {
+    private void checkIndexOutOfBound() throws CommandException {
         if (homeVisitIndex.get(0).getZeroBased() >= homeVisitList.size()) {
             throw new CommandException(MESSAGE_OUTOFBOUND_HOMEVISIT_INDEX);
         }
     }
 
+    /**
+     * Remove corresponding home visit of the given dateSlot from the homevisit list.
+     * @param dateSlot
+     * @return updated home visit list
+     */
     public List<HomeVisit> removeHomeVisitFromDateSlot(DateSlot dateSlot) {
         HomeVisit homeVisitToBeDeleted = homeVisitList.stream().filter(
                 h -> h.getDateSlot().getDateTime().equals(dateSlot.getDateTime())).findFirst().get();
@@ -161,10 +182,19 @@ public class HomeVisitManager {
         }
     }
 
+    /**
+     * To get the fully scheduled date list.
+     * @return fullyScheduledDateList
+     */
     public List<Date> getFullyScheduledDateList() {
         return this.fullyScheduledDateList;
     }
 
+    /**
+     * Remove corresponding home visit that have time clash with the unavailable date.
+     * @param unavailableDateList
+     * @return updated home visit list
+     */
     public List<HomeVisit> removeHomeVisitFromUnavailableDates(List<Date> unavailableDateList) {
         for (Date date : unavailableDateList) {
             removeHomeVisitFromUnavailableDate(date);

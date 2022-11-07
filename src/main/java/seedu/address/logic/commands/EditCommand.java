@@ -86,7 +86,7 @@ public class EditCommand extends Command {
             + "and there are no unavailable dates (and their indexes) for patient. "
             + "Please remove the unavailable dates field and its index field.";
 
-    public static final String MESSAGE_INVALID_NUMBERS_OF_DATESLOT_AND_DATESLOTINDEX = "The dateSlot index "
+    /*public static final String MESSAGE_INVALID_NUMBERS_OF_DATESLOT_AND_DATESLOTINDEX = "The dateSlot index "
             + "provided is more than the dateSlot provided." + "Please remove the dateSlot index or add more dateSlot.";
 
     public static final String MESSAGE_OUT_OF_BOUND_DATESLOTINDEX = "The dateSlot index given is out of bounds "
@@ -98,7 +98,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_OUT_OF_BOUND_UNAVAILABLEDATESINDEX = "The unavailable date index "
             + "given is out of bounds of the existing list."
-            + "Please retype another index that is within the range or left it empty.";
+            + "Please retype another index that is within the range or left it empty.";*/
 
     private final Uid targetUid;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -586,6 +586,10 @@ public class EditCommand extends Command {
         }
     }
 
+    /**
+     * To create the edited date slot list
+     * If delete date slot occur, the respective home visit will also be deleted
+     */
     public static class EditedDateSlotCreator {
 
         public static final String MESSAGE_INVALID_NUMBERS_OF_DATESLOT_AND_DATESLOTINDEX = "The dateSlot index "
@@ -668,10 +672,11 @@ public class EditCommand extends Command {
         }
 
         private Boolean isDelete() {
-            Boolean isAllDeleted =  (isDateSlotsGivenNull && isDateSlotIndexesGivenEmpty) ||
-                    (isDateSlotIndexesGivenNull && isDateSlotsGivenEmpty) ||
-                    (isDateSlotsGivenEmpty && isDateSlotIndexesGivenEmpty);
-            Boolean isSpecificDeleted = !isDateSlotIndexesGivenEmpty && (isDateSlotsGivenNull || isDateSlotsGivenEmpty);
+            Boolean isAllDeleted = (isDateSlotsGivenNull && isDateSlotIndexesGivenEmpty)
+                    || (isDateSlotIndexesGivenNull && isDateSlotsGivenEmpty)
+                    || (isDateSlotsGivenEmpty && isDateSlotIndexesGivenEmpty);
+            Boolean isSpecificDeleted = !isDateSlotIndexesGivenEmpty && (isDateSlotsGivenNull || isDateSlotsGivenEmpty)
+                    && !isDateSlotIndexesGivenNull;
             return isAllDeleted || isSpecificDeleted;
         }
 
@@ -685,8 +690,11 @@ public class EditCommand extends Command {
 
         private List<DateSlot> removeActionForDateSlot() throws CommandException {
             DateSlotManager remover = new DateSlotManager(originalDateSlotList, toBeUpdateDateSlotsIndexes);
-            InternalHomeVisitRemoverFromDateSlot homeVisitRemover = new InternalHomeVisitRemoverFromDateSlot(model, personList,
-                    originalDateSlotList, toBeUpdateDateSlotsIndexes);
+            if (!toBeUpdateDateSlotsIndexes.isEmpty()) {
+                remover.checkIndexOutOfBound();
+            }
+            InternalHomeVisitRemoverFromDateSlot homeVisitRemover = new InternalHomeVisitRemoverFromDateSlot(model,
+                    personList, originalDateSlotList, toBeUpdateDateSlotsIndexes);
             homeVisitRemover.removeHomeVisitsForDateSlot();
             return remover.removeDateSlot();
         }
@@ -699,8 +707,11 @@ public class EditCommand extends Command {
         private List<DateSlot> editActionForDateSlot() throws CommandException {
             checkDateSlotAndIndex();
             DateSlotManager editor = new DateSlotManager(originalDateSlotList, toBeUpdateDateSlotsIndexes);
-            InternalHomeVisitRemoverFromDateSlot homeVisitRemover = new InternalHomeVisitRemoverFromDateSlot(model, personList,
-                    originalDateSlotList, toBeUpdateDateSlotsIndexes);
+            if (!toBeUpdateDateSlotsIndexes.isEmpty()) {
+                editor.checkIndexOutOfBound();
+            }
+            InternalHomeVisitRemoverFromDateSlot homeVisitRemover = new InternalHomeVisitRemoverFromDateSlot(model,
+                    personList, originalDateSlotList, toBeUpdateDateSlotsIndexes);
             homeVisitRemover.removeHomeVisitsForDateSlot();
             editor.removeDateSlot();
             return editor.addDateSlot(toBeUpdateDateSlots);
@@ -713,6 +724,10 @@ public class EditCommand extends Command {
         }
     }
 
+    /**
+     * To create the edited unavailable date list.
+     * If adding a new unavailable date occurs, then the respective home visit will be checked and removed if clash
+     */
     public static class EditedUnavailableDateCreator {
 
         public static final String MESSAGE_OUT_OF_BOUND_UNAVAILABLE_DATE_INDEX = "The unavailable date index "
@@ -809,19 +824,19 @@ public class EditCommand extends Command {
         }
 
         private Boolean isAllDelete() {
-            return (isUnavailableDatesGivenNull && isUnavailableDateIndexesGivenEmpty) ||
-                    (isUnavailableDateIndexesGivenNull && isUnavailableDatesGivenEmpty) ||
-                    (isUnavailableDatesGivenEmpty && isUnavailableDateIndexesGivenEmpty);
+            return (isUnavailableDatesGivenNull && isUnavailableDateIndexesGivenEmpty)
+                    || (isUnavailableDateIndexesGivenNull && isUnavailableDatesGivenEmpty)
+                    || (isUnavailableDatesGivenEmpty && isUnavailableDateIndexesGivenEmpty);
         }
 
         private Boolean isSpecificDelete() {
-            return !isUnavailableDateIndexesGivenEmpty && (isUnavailableDatesGivenNull ||
-                    isUnavailableDatesGivenEmpty);
+            return !isUnavailableDateIndexesGivenEmpty && (isUnavailableDatesGivenNull
+                    || isUnavailableDatesGivenEmpty) && !isUnavailableDateIndexesGivenNull;
         }
 
         private Boolean isAdd() {
-            return !isUnavailableDatesGivenEmpty && (isUnavailableDateIndexesGivenNull ||
-                    isUnavailableDateIndexesGivenEmpty);
+            return !isUnavailableDatesGivenEmpty && (isUnavailableDateIndexesGivenNull
+                    || isUnavailableDateIndexesGivenEmpty);
         }
 
         private Boolean isEdit() {
@@ -835,7 +850,7 @@ public class EditCommand extends Command {
         private List<Date> removeSpecificActionForUnavailableDate() throws CommandException {
             sortIndex();
             checkIndexOutOfBound();
-            for(Index index : toBeUpdateUnavailableDateIndexes) {
+            for (Index index : toBeUpdateUnavailableDateIndexes) {
                 Date unavailableDate = originalUnavailableDateList.get(index.getZeroBased());
                 originalUnavailableDateList.remove(unavailableDate);
             }
@@ -847,7 +862,7 @@ public class EditCommand extends Command {
             this.toBeUpdateUnavailableDateIndexes.sort(comp);
         }
 
-        public void checkIndexOutOfBound() throws CommandException {
+        private void checkIndexOutOfBound() throws CommandException {
             if (toBeUpdateUnavailableDateIndexes.get(0).getZeroBased() >= originalUnavailableDateList.size()) {
                 throw new CommandException(MESSAGE_OUT_OF_BOUND_UNAVAILABLE_DATE_INDEX);
             }

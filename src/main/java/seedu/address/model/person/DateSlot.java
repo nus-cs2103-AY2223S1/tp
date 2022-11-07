@@ -230,6 +230,10 @@ public class DateSlot {
                         && dateSlotTime.equals(((DateSlot) other).dateSlotTime)); // state check
     }
 
+    /**
+     * Clone a dateslot.
+     * @return a new dateSlot
+     */
     public DateSlot clone() {
         String dateSlotInString = this.getDateSlotInString();
         Boolean hasVisited = this.getHasVisited();
