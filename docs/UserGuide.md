@@ -27,6 +27,8 @@ UniNurse offers the following features:
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Using this guide**
 
 This guide walks you through all the features of UniNurse, as well as tips, so you can reap all the benefits of
@@ -46,6 +48,8 @@ Here are some symbols used throughout this user guide:
 | :exclamation:        | Warning                                  |
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Table of Contents**
 
@@ -104,6 +108,8 @@ Here are some symbols used throughout this user guide:
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Quick start**
 
 1. Ensure you have [Java 11](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) or above
@@ -148,6 +154,8 @@ The app comes with some sample patients by default. Type `clear` in the command 
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Glossary**
 
 **Here are some of the technical terminologies used:**
@@ -166,6 +174,8 @@ The app comes with some sample patients by default. Type `clear` in the command 
 [Back to Table of Contents ↑](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Command format**
 
@@ -215,6 +225,8 @@ The app comes with some sample patients by default. Type `clear` in the command 
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Patient parameter constraints**
 
 A patient's attributes can be categorized into two: *single-valued attributes* and *multi-valued attributes*. A patient's single-valued attributes consist of their name, phone, email, and address, and their multi-valued attributes consist of their tags, tasks, conditions, medications, and remarks.
@@ -239,6 +251,8 @@ Example: `n/John Doe`
 
 Example: `p/91234567`
 
+<div style="page-break-after: always;"></div>
+
 #### `e/EMAIL`
 
 `EMAIL` should be in the form of `local-part@domain`, where:
@@ -259,6 +273,8 @@ Example: `johndoe@gmail.com`
 `ADDRESS` is specified by the prefix `a/`.
 
 Example:`a/John street, block 123, #01-01`
+
+<div style="page-break-after: always;"></div>
 
 ### Multi-valued attributes
 
@@ -308,6 +324,8 @@ Example:`m/Amoxicillin | 0.5g every 8 hours`
 
 Example:`r/Allergic to peanuts`
 
+<div style="page-break-after: always;"></div>
+
 ### Patient parameter summary
 
 | Parameter    | Type                    | Flag | Prefix |
@@ -337,6 +355,8 @@ Example:`r/Allergic to peanuts`
 [Back to Table of Contents ↑](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Features**
 
@@ -370,6 +390,8 @@ Format: **`help`**
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Adding a patient: `add`
 
 You can add a patient to the patient list with the `add` command.
@@ -380,7 +402,7 @@ Format: **`add`** `n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]… [d/TASK_DESCRIPTI
 
 :bulb: **Tip:**
 
-You can view the constraints for each parameter in the [Parameter constraints](#patient-parameter-constraints) section.
+You can view the constraints for each parameter in the [Patient parameter constraints](#patient-parameter-constraints) section.
 
 </div>
 
@@ -421,6 +443,8 @@ Examples:
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Editing a patient’s contact details: `edit` `-p`
 
@@ -463,6 +487,8 @@ Example:
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a patient: `delete` `-p`
 
 You can delete a patient from the patient list with the `delete` command.
@@ -481,11 +507,11 @@ You can use the `undo` command to undo an accidental `delete` command.
 
 </div>
 
-<br>
-
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a tag: `add` `-p`
 
@@ -518,6 +544,10 @@ You can add multiple tags at once when you first [add a patient](#adding-a-patie
 
 <a name="edit-multi-valued-attributes"></a>
 <div markdown="block" class="alert alert-success">
+
+[Back to Table of Contents ↑](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 :bulb: **Tip:**
 
@@ -552,6 +582,8 @@ Example:
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Editing a tag: `edit` `-p` `-t`
 
@@ -616,7 +648,7 @@ Format: **`add`** `-p PATIENT_INDEX d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL
 
 :information_source: **Notes:**
 
-* `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in [Task parameters](#patient-parameter-constraints).
+* `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in [Task parameters](#dtask_description--date-time--interval-time_period).
 * If `DATE TIME` is omitted, the task will be created with a date and time 24 hours from the moment of creation.
 * If `DATE` is specified but `TIME` is omitted, the task will be created with a default time of `0000` hours.
 * If `INTERVAL TIME_PERIOD` is omitted, then the task created will be a non-recurring task, i.e. a one-off task.
@@ -1256,8 +1288,6 @@ Examples:
 You can use the `undo` command to undo an accidental `clear` command.
 
 </div>
-
-<br>
 
 [Back to Table of Contents ↑](#table-of-contents)
 
