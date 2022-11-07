@@ -24,7 +24,6 @@ Given below are my contributions to the project.
   3. **_Delete Note command_** [(Link to own PR)](https://github.com/AY2223S1-CS2103T-W12-2/tp/pull/54)
      * **What it does**: Allows the deleting of notes in SectresBook by specifying an index in the notes listed.
      * **Justification**: A delete command is needed to allow users to delete notes that are no longer relevant or needed to be kept track of.
-     * **Highlights**:  Making sure the correct note was being deleted (matches specified index) was tricky as it needed good understanding of `Index` class (One-based compared to zero-based)
 
   4. **_List Note command_** [(Link to own PR)](https://github.com/AY2223S1-CS2103T-W12-2/tp/pull/54)
      * **What it does**: Lists all the notes that is being kept track of.
