@@ -98,18 +98,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String date} into a {@code Date}.
+     * Parses a {@code String date} into a {@code DateTime}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code date} is invalid.
+     * @throws ParseException if the given {@code dateTime} is invalid.
      */
-    public static DateTime parseDate(String date) throws ParseException {
-        requireNonNull(date);
-        String trimmedDate = date.trim();
-        if (!DateTime.isValidDate(trimmedDate)) {
+    public static DateTime parseDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
+        if (!DateTime.isValidDateTime(trimmedDateTime)) {
             throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
         }
-        return new DateTime(trimmedDate);
+        return new DateTime(trimmedDateTime);
     }
 
     /**

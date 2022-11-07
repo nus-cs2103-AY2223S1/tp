@@ -127,7 +127,7 @@ class JsonAdaptedInternship {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, DateTime.class.getSimpleName()));
         }
-        if (!DateTime.isValidDate(dateTime)) {
+        if (!DateTime.isValidDateTime(dateTime)) {
             throw new IllegalValueException(DateTime.MESSAGE_CONSTRAINTS);
         }
         final DateTime modelDateTime = new DateTime(dateTime);

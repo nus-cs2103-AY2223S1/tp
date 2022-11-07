@@ -11,7 +11,7 @@ import java.time.format.ResolverStyle;
 
 /**
  * Represents a Date in WorkBook.
- * Guarantees: immutable; name is valid as declared in {@link #isValidDate(String)}
+ * Guarantees: immutable; name is valid as declared in {@link #isValidDateTime(String)}
  */
 public class DateTime {
     public static final DateTime EMPTY_DATETIME = new DateTime("");
@@ -29,15 +29,15 @@ public class DateTime {
     public final String value;
 
     /**
-     * Constructs a {@code Date}.
+     * Constructs a {@code DateTime}.
      *
-     * @param date A valid date.
+     * @param dateTime A valid dateTime.
      */
-    public DateTime(String date) {
-        requireNonNull(date);
-        if (!date.isEmpty()) {
-            checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-            String str = String.join(" ", date.split("\\s+", 2));
+    public DateTime(String dateTime) {
+        requireNonNull(dateTime);
+        if (!dateTime.isEmpty()) {
+            checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
+            String str = String.join(" ", dateTime.split("\\s+", 2));
             this.value = LocalDateTime.parse(str, dateFormatter).format(dateFormatter);
         } else {
             this.value = "";
@@ -45,9 +45,9 @@ public class DateTime {
     }
 
     /**
-     * Returns true if a given string is a valid date.
+     * Returns true if a given string is a valid {@code DateTime}.
      */
-    public static boolean isValidDate(String test) {
+    public static boolean isValidDateTime(String test) {
         try {
             if (test.isEmpty()) {
                 return true;
