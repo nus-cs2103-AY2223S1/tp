@@ -31,7 +31,6 @@ create ViewCommand
 ViewCommandParser -> ViewCommand : ViewCommand("1")
 activate ViewCommand
 
-
 ViewCommand --> ViewCommandParser
 deactivate ViewCommand
 
@@ -54,6 +53,6 @@ deactivate CommandResult
 ViewCommand --> LogicManager
 deactivate ViewCommand
 
-LogicManager ->[
+LogicManager -->[
 
 @enduml

@@ -54,6 +54,6 @@ deactivate CommandResult
 ViewDepartmentCommand --> LogicManager
 deactivate ViewDepartmentCommand
 
-LogicManager ->[
+LogicManager -->[
 
 @enduml
