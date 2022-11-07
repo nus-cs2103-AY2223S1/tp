@@ -120,6 +120,7 @@ Adds a project, client, or issue to the project book. A unique ID will be automa
 
 <img src="images/AddIssueCommand2.png" width="500" />
 
+
 Format: 
 * Project: `project -a n/PROJECT_NAME [r/REPOSITORY] [c/CLIENT_ID] [d/DEADLINE]`
   * Adds the project to the list of projects.
@@ -143,6 +144,7 @@ Edits the specified existing project, client or issue.
 <img src="images/EditProjectCommand1.png" width="500" />
 
 <img src="images/EditProjectCommand2.png" width="500" />
+
 
 Format: 
 * Project: `project -e p/PROJECT_ID [n/PROJECT_NAME] [r/REPOSITORY] [c/CLIENT_ID] [d/DEADLINE]`
@@ -171,6 +173,7 @@ Removes the specified existing project, client or issue.
 <img src="images/DeleteClientCommand1.png" width="500" />
 
 <img src="images/DeleteClientCommand2.png" width="500" />
+
 
 Format: 
 * Project: `project -d PROJECT_ID`
@@ -206,6 +209,7 @@ Finds and lists all the projects, clients or issues matching the search criteria
 <img src="images/FindProjectCommand1.png" width="500" />
 
 <img src="images/FindProjectCommand2.png" width="500" />
+
 
 Format: 
 * Project: `project -f [n/PROJECT_NAME] [p/PROJECT_ID] [r/REPOSITORY] [l/CLIENT_LABEL] [c/CLIENT_ID]`
@@ -247,6 +251,7 @@ Pins a project, client, or issue to the top of the project list, client list or 
 <img src="images/PinIssueCommand1.png" width="500" />
 
 <img src="images/PinIssueCommand2.png" width="500" />
+
 
 Format: 
 * Project: `project -p PROJECT_ID`
@@ -322,6 +327,7 @@ Marks specified existing issue as completed or incomplete
 <img src="images/MarkIssueCommand1.png" width="500" />
 
 <img src="images/MarkIssueCommand2.png" width="500" />
+
 
 Format: 
 * Mark: `issue -m ISSUE_ID`
