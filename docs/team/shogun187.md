@@ -13,9 +13,8 @@ a CLI, and it has a GUI created with JavaFX. It is written in Java, and has abou
 ### Code contributed
 [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=shogun187&breakdown=true)
 
-### New features
+### New feature: Output Panel  
 
-Added an output panel to the UI
 * What it does: Displays important information about patient details, tasks, and schedules for the day
 * Justification: Provides more specific information for nurses when needed
 
