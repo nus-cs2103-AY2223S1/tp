@@ -99,6 +99,10 @@ Here are some of the symbols and text formatting to look out for as you make use
 
 <img src="images/DebtList.png" width="800" /> <br>
 
+<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
+If your provided inputs are too long, PayMeLah may not be able to fully display them and cut them off! While this is rare, do try to avoid entering unnecessarily long inputs to PayMeLah (e.g., save a person's nickname rather than their full name).
+</div>
+
 <div style="page-break-after: always;"></div>
 
 <div id="advanced-keyboard-shortcuts" markdown="block" class="alert alert-secondary">
@@ -343,7 +347,7 @@ You can tell PayMeLah to add Service Charge and GST to the amount of money speci
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-fields-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the index of the person that you are looking for.
+You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the index of the person that you are looking for.
 </div>
 
 * If you specify **neither date nor time**, the date and time will conveniently default to the current date and time.
@@ -356,8 +360,13 @@ Be very careful! The default behaviour is slightly different across the differen
 
 * One person **cannot** have 2 debts with the same description, money, date and time. However, they **can** have 2 debts with 3 out of 4 of description, money, date and time being the same.
 
+<div markdown="block" class="alert alert-secondary"> **:star: Advanced Tip:**
+Description is case-sensitive! In case you need to store 2 separate debts with the same description, money, date and time for a single person, you can consider storing the first with capital letters and the second without.<br>
+For example, you can have a `Lunch` debt and a `lunch` debt. However, you are recommended to store the debts with more specific descriptions to make it easier to figure out what they really are in the future! You can still find both `lunch drink` and `lunch meal` debts by making use of the [`finddebt` command](#locating-persons-by-debt-description-finddebt).
+</div>
+
 Example:
-* `adddebt 3 d/McDonalds m/8.9` will add a debt with the current date and time to the 3rd person in the person list. This debt is worth `$8.90` and has the description`McDonalds`
+* `adddebt 3 d/McDonalds m/8.9` will add a debt with the current date and time to the 3rd person in the person list. This debt is worth `$8.90` and has the description `McDonalds`.
 * `adddebt 1 4 d/chicken rice m/10++ date/2022-10-12 time/13:00` will add debts with `2022-10-12` and `13:00` as the date and time respectively to **both** the 1st person and 4th person. These debts require Service Charge and GST to be added to an initial price of `$10`, and will be recorded with the description `chicken rice`. Note that PayMeLah will automatically calculate the money for both debts and display the amounts as `$11.77`.
 
 #### Splitting a debt: `splitdebt`
@@ -372,7 +381,7 @@ You can split a debt among as many people as you want. You can even include your
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-fields-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the index of the person that you are looking for.
+You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the index of the person that you are looking for.
 </div>
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -412,7 +421,7 @@ You can use this command to delete all of a person’s debts and your relationsh
 Format: `cleardebts <person index>`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-fields-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the index of the person that you are looking for.
+You might find it difficult to find the index of a specific person when your list gets long. In this situation, you may want to make use of the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt) to shorten the list and make it easier to find and figure out the index of the person that you are looking for.
 </div>
 
 
@@ -450,7 +459,7 @@ Format: `statement`
 
 **:information_source: Note:**
 
-The statement will only sum up the debts that are not marked as paid from the list that is currently displayed. This means that if you have shortened the list using the [`find` command](#locating-persons-by-fields-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt), the statement will only sum up the debts that are not marked as paid from the shortened list.
+The statement will only sum up the debts that are not marked as paid from the list that is currently displayed. This means that if you have shortened the list using the [`find` command](#locating-persons-by-inputs-find) or [`finddebt` command](#locating-persons-by-debt-description-finddebt), the statement will only sum up the debts that are not marked as paid from the shortened list.
 
 </div>
 
@@ -463,7 +472,7 @@ Example: `statement` returns `You are owed $583.90 in total.`
 
 ### Features for Searching
 
-#### Finding persons by fields: `find`
+#### Locating persons by inputs: `find`
 
 Finds persons who match all the given conditions.<br>
 This is one of the most powerful tools available to look through your person list, as you can search by almost anything.
@@ -513,7 +522,7 @@ Examples:
 * `find before/2022-11-30 after/2022-11-01 time/11:00` will match anyone who both owes money for something between `2022-11-01` and `2022-11-30` inclusive (the month of November 2022) and owes money for something at `11:00` (or someone who owes money for something at `11:00` during the month of November 2022).
 * `find tele/janesmith above/10 below/20 before/2022-11-30 after/2022-11-01` will match anyone with the Telegram handle `@janesmith` who both owes between `$10.00` and `$20.00` inclusive for something and owes money for something during the month of November 2022 (or someone who owes between `$10.00` and `$20.00` inclusive for something during the month of November 2022). 
 
-#### Finding persons by debt description: `finddebt`
+#### Locating persons by debt description: `finddebt`
 
 Finds persons who are associated with any debts that match any of the given keywords.<br>
 This is useful if you do not remember the exact description of a debt you want to look for (e.g. was it `KFC` or `kfc`?).
@@ -591,10 +600,36 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
+### Planned Features
+
+#### Editing debts: `editdebt` (Not yet implemented)
+
+This command would allow you to edit the details of a specific debt, such as its description, amount, etc. Do look forward to it in a future update!
+As a workaround for now, you may delete the old debt using [`deletedebt`](#deleting-a-debt-deletedebt), and add a new debt with the edited details using [`adddebt`](#adding-a-debt-adddebt).
+
+[Return to Table of Contents](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: How do I transfer my data to PayMeLah on another Computer?<br>
+**A**: You can install PayMeLah in the other computer and replace the data file in the other computer with the data file in your current computer's PayMeLah home folder.
+
+**Q**: I can't find something that I **know** I have added to PayMeLah. Where did it go?<br>
+**A**: If you are trying to locate a person, try using the [`find` command](#locating-persons-by-inputs-find)! When searching for names, the `find` command is case-insensitive and returns partial matches, so it will find `Bobby` even if you search for `bob`.<br>
+If you are trying to locate a debt by its description, consider using the [`finddebt` command](#locating-persons-by-debt-description-finddebt) instead to make use of case-insensitive search for debt descriptions.<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Other Tips:**
+1. You can try [combining inputs](#combining-inputs-to-find) to narrow your search scope, but sometimes, you cannot find something because you may have misremembered a detail like the date, or keyed it into PayMeLah wrongly by accident. In this situation, you may want to consider not making your search scope too specific.
+2. As a last resort, the [`list` command](#listing-all-persons-list) will list every person in PayMeLah. You can then [sort the list](#sorting-list-of-persons-sort) to make it easier to manually check through the list. If you still cannot find the person or debt you are looking for in the full person list displayed by `list`, then unfortunately it means the item you are looking for is not in PayMeLah :(
+</div>
+
+**Q**: PayMeLah is not letting me use the command I want! What can I do?<br>
+**A**: Oh no! Calm down - let's troubleshoot together. First, head to the [Command Summary](#command-summary) section to make sure you are using the command in the correct format. You can also click on the links there to read more about the specifics of each command. If PayMeLah continues to misbehave, do drop us an email at paymelah.app@gmail.com, and we will do our best to help you as soon as possible!
+
+**Q**: Why can't PayMeLah do _this_?
+**A**: We are so sorry that PayMeLah does not support this feature at the moment :( However, PayMeLah is a constant work in progress and we hope to deliver the features that you are looking for in the near future! In the meantime, feel free to drop us feedback at paymelah.app@gmail.com so that we can better understand and serve your needs :)
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -655,13 +690,13 @@ If your changes to the data file makes its format invalid, PayMeLah will discard
 | [**Get statement**](#getting-the-statement-statement)                 | `statement`                                                                                                                                             |
 
 
-| *Actions for* <br> [**Searching**](#features-for-searching)     | Format, Examples                                                                                                                                                                                                                                        |
-|-----------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [**Find person**](#finding-persons-by-fields-find)              | `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]… [d/<description>]… [m/<money>]…`<br> `[above/<money>] [below/<money>] [date/<date>]… [before/<date>] [after/<date>] [time/<time>]…`<br> e.g., `find d/burger above/10.0` |
-| [**Find debts**](#finding-persons-by-debt-description-finddebt) | `finddebt <keyword>…`<br> e.g., `finddebt burger bowling`                                                                                                                                                                                               |
-| [**List persons**](#listing-all-persons-list)                   | `list`                                                                                                                                                                                                                                                  |
-| [**List debtors**](#listing-all-debtors-listdebtors)            | `listdebtors [m/<money>]`<br> e.g., `listdebtors m/10`                                                                                                                                                                                                  |
-| [**Sort**](#sorting-list-of-persons-sort)                       | `sort <criterion prefix><order>`<br> e.g., `sort n/+`, `sort m/-`, `sort date/+`                                                                                                                                                                        |
+| *Actions for* <br> [**Searching**](#features-for-searching)      | Format, Examples                                                                                                                                                                                                                                        |
+|------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [**Find person**](#locating-persons-by-inputs-find)              | `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]… [d/<description>]… [m/<money>]…`<br> `[above/<money>] [below/<money>] [date/<date>]… [before/<date>] [after/<date>] [time/<time>]…`<br> e.g., `find d/burger above/10.0` |
+| [**Find debts**](#locating-persons-by-debt-description-finddebt) | `finddebt <keyword>…`<br> e.g., `finddebt burger bowling`                                                                                                                                                                                               |
+| [**List persons**](#listing-all-persons-list)                    | `list`                                                                                                                                                                                                                                                  |
+| [**List debtors**](#listing-all-debtors-listdebtors)             | `listdebtors [m/<money>]`<br> e.g., `listdebtors m/10`                                                                                                                                                                                                  |
+| [**Sort**](#sorting-list-of-persons-sort)                        | `sort <criterion prefix><order>`<br> e.g., `sort n/+`, `sort m/-`, `sort date/+`                                                                                                                                                                        |
 
 [Return to Table of Contents](#table-of-contents)
 

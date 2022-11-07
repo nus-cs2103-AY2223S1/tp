@@ -7,6 +7,15 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Introduction**
+
+PayMeLah is a desktop application that helps users track the debts that they are owed. It uses a Command Line Interface (CLI), and executes commands input by the user accordingly to perform actions such as adding a person/debt to track, sorting the data etc.
+
+This Developer Guide documents the architecture, design choices, and implementations of key features of PayMeLah.
+
+If you are a developer that recently joined the PayMeLah development team, or a developer who is simply interested in the inner workings of PayMeLah, this guide would be able to provide you with the relevant technical details.
+
+--------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
@@ -175,8 +184,26 @@ The activity diagrams below detail the behaviour of PayMeLah when a user inputs 
 <img src="images/AddDebtActivityDiagram.png" width="450" />
 <img src="images/AddDebtActivityDiagramRake.png" width="450" />
 
+### Split debt feature: `splitdebt`
 
-### Clear debts feature - `cleardebts`
+#### Implementation
+
+This feature is facilitated by `SplitDebtCommand` and `SplitDebtCommandParser` in the `Logic` component, and work as per [described above](#logic-component).
+
+When given a valid user input, the `SplitDebtCommandParser` will create a new `Debt` object to add to the `DebtList` of the multiple specified `Person` objects.
+The following implementation is highly similar to the above implementation of [add debt](#add-debt-feature-adddebt), however, it differs in that '0' is a valid position in representing a `Person` to the `SplitDebtCommandParser`, and
+the value of the `Money` of the `Debt` added to each `Person` is the amount the command specified divided by the number of specified `Person` objects.
+However, '0' is not a valid `Index` internally and is only a placeholder to indicate that the user is included in the number of specified `Person` objects. Thus, no `Debt` is actually added to the `Person` whose position in the
+displayed list is '0'. It should also be noted that there is also never such a `Person`. The non-zero `Index` objects of the `Person` objects splitting the `Debt` are contained in a set that `DeleteDebtCommandParser` creates.
+The `SplitDebtCommandParser` will construct a `SplitDebtCommand` object with this set of `Index` objects and the `Debt` object created. 
+The remaining functionality and behaviour of `SplitDebtCommand` and `SplitDebtCommandParser` are identical to that of [add debt](#add-debt-feature-adddebt).
+
+Consider an example of a valid `splitdebt` command, `splitdebt 0 1 2 d/pizza m/30`. The new objects in the final internal state after this example has been parsed is given by the object diagram below. Note that new `DebtDate` and `DebtTime` objects are created even though the user did not specify date and time parameters in their input command.
+
+<img src="images/SplitDebtObjectDiagram.png" width="450" />
+
+
+### Clear debts feature: `cleardebts`
 
 #### Implementation
 This feature is facilitated by `ClearDebtsCommand` and `ClearDebtsCommandParser` in the `Logic` component, and work as per described above.
@@ -188,7 +215,7 @@ The `ClearDebtsCommand` object will create a new `Person` object with identical 
 This new `Person` object replaces the original `Person` object in the `Model` component.
 
 
-### Delete debt feature - `deletedebt`
+### Delete debt feature: `deletedebt`
 
 #### Implementation
 This feature is facilitated by `DeleteDebtCommand` and `DeleteDebtCommandParser` in the `Logic` component, and work as per described above.
@@ -283,6 +310,7 @@ When the user gives an `undo` command, the most recent AddressBook will be poppe
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
