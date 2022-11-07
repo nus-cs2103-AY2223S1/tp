@@ -19,22 +19,22 @@ Team lead: Overall in charge of the project, setting direction, keeping to deadl
 This displays my code contributions for the project: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=rylzxc&breakdown=true)
 
 #### Enhancements implemented
-- New Feature: Adding Date and Time field for each internship application
-- New Feature: Adding Stage field to track internship application progress
+- New Feature: Adding [Date and Time field](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/65) for each internship application
+- New Feature: Adding [Stage field](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/58) to track internship application progress
 
 #### Contributions to User Guide
 - Overall tone, language and structure coordination
-- Introduce numbering to table of contents
+- Introduce [numbering to table of contents](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/151)
 - Contribute to documenting:
-  - 'Introducing WorkBook'
-  - 'Getting started'
-  - 'Managing your data'
-  - 'Frequently Asked Questions'
+  - ['Introducing WorkBook' & 'Getting Started'](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/153)
+  - ['Parameter-specific behaviour' & 'Behaviour of sorted internship applications'](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/145)
+  - ['Add' & 'Edit' commands](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/165)
+  - ['Managing your data' & 'Frequently Asked Questions'](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/145)
 
 #### Contributions to Developer Guide
-- `Add` command feature description, design considerations and class diagram (to be included)
-- Update user stories
-- Use-case documentation contributions to:
+- [`Add` command feature description, design considerations and class diagram](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/162)
+- [Update user stories](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/76)
+- [Use-case documentation](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/32/files) contributions to:
   - Add an internship application
   - Delete an internship application
   - Edit an internship application
@@ -55,6 +55,8 @@ This displays my code contributions for the project: [RepoSense link](https://nu
 
 #### Contributions beyond the project team
 
-* Aided in the CATcher forums on Markdown styling
-* Aided in solving IntelliJ configuration errors for iP in 2103 forums (issues)
-
+* Aided in the [CATcher forums on Markdown styling](https://github.com/CATcher-org/CATcher/issues/1023)
+* Aided in solving  [JUnit with Gradle](https://github.com/nus-cs2103-AY2223S1/forum/issues/79) issue in IntelliJ configuration error for iP
+* Aided in [answering quiz related question](https://github.com/nus-cs2103-AY2223S1/forum/issues/6)
+* Aided in [answering iP related issues](https://github.com/nus-cs2103-AY2223S1/forum/issues/82)
+* Aided in [OOP suggestion](https://github.com/nus-cs2103-AY2223S1/forum/issues/180)
