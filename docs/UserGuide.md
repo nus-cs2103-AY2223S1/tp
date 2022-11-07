@@ -366,7 +366,7 @@ Examples:
 | `location` | Sort by trips' location in alphabetical order |
 | `eventcount` | Sort by trips' number of events in ascending order |
 
-#### Sorting events within bucketlist: `sort-e`
+#### Sorting all events in app: `sort-e`
 Sorts all events according to alphabetical order.
 
 Format: `sort-e [r/]`
