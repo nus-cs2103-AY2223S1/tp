@@ -46,7 +46,7 @@ In order to be a successful SoCompiler Developer, you need a general understandi
    2. [Deleting a Person](#72-deleting-a-person)
    3. [Saving Data](#73-saving-data)
 
-   
+<div style="page-break-after: always;"></div>   
 
 ---------------------------------------------------------------------------------------------------------------------
 ## 1. **Getting started**
@@ -83,6 +83,8 @@ the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/dia
 Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
 diagrams.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### 2.1. Architecture
 
@@ -135,6 +137,8 @@ The sections below give more details of each component.
 
 [Back to Top](#socompiler-developer-guide)
 
+<div style="page-break-after: always;"></div>
+
 ### 2.2. UI component
 
 **API** : [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -159,6 +163,8 @@ The `UI` component,
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 [Back to Top](#socompiler-developer-guide)
+
+<div style="page-break-after: always;"></div>
 
 ### 2.3. Logic component
 
@@ -199,6 +205,8 @@ How the parsing works:
 
 [Back to Top](#socompiler-developer-guide)
 
+<div style="page-break-after: always;"></div>
+
 ### 2.4. Model component
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -220,6 +228,8 @@ The `Model` component,
   should make sense on their own without depending on other components)
 
 [Back to Top](#socompiler-developer-guide)
+
+<div style="page-break-after: always;"></div>
 
 ### 2.5. Storage component
 
@@ -244,6 +254,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 [Back to Top](#socompiler-developer-guide)
 
+<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. **Implementation**
