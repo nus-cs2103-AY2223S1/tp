@@ -1005,7 +1005,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding person by partial names
 
-   1. Prerequisite: Use the `create` command to add to list a person named `Jack` and another person named `Jackson`.
+   1. Use the `create` command to add to list a person named `Jack` and another person named `Jackson`.
    
    2. Test case: `find n/jack`<br>
       Expected: Both `Jack` and `Jackson` are on the shown list.
@@ -1015,13 +1015,65 @@ testers are expected to do more *exploratory* testing.
 
 1. Finding person using multiple names
    
-   1. Prerequisite: Use the `create` command to add to list a person named `Amy Lin`, a person named `Bob Wang`, and another person named `Carol Chen`.
+   1. Use the `create` command to add to list a person named `Amy Lin`, a person named `Bob Wang`, and another person named `Carol Chen`.
    
    2. Test case: `find n/amy bob`<br>
       Expected: Both `Amy Lin` and `Bob Wang` are on the shown list. `Carol Chen` is not shown on the list.
    
    2. Test case: `find n/dave lin`<br>
       Expected: `Amy Lin` is on the shown list. `Bob Wang` and `Carol Chen` are not shown on the list.
+
+### Finding a person by number
+
+1. Finding person using multiple numbers
+
+   1. Use the `create` command to add to list a person named `Alice` with phone `12345678` and another person named `Bob` with phone `87654321`.
+   
+   2. Test case: `find p/87654321 12345678`<br>
+      Expected: Both `Alice` and `Bob` are on the shown list.
+   
+   3. Test case: `find p/12345678 11111111`<br>
+      Expected: `Alice` is on the shown list. `Bob` is not.
+
+1. Finding multiple persons with the same number
+   
+   1. Use the `create` command to add to list a person named `Alice Tan` with phone `12345678` and another person named `Peter Tan` with phone `12345678`.
+   
+   2. Test case: `find p/12345678`<br>
+      Expected: Both `Alice Tan` and `Peter Tan` are on the shown list. 
+      
+### Finding a person by address
+
+1. Finding person by address with shortcuts
+   
+   1. Use the `create` command to add to list a person named `Alice Tan` with address `21 Lower Kent Ridge Rd, Singapore`.
+   
+   2. Test case: `f a/Kent Ridge`<br>
+      Expected: `Alice Tan` is on the shown list in `results display`.
+
+
+### Finding persons by tag
+
+1. Prerequisites: Multiple clients on the list. Some clients have the tag `POTENTIAL`. Some clients have the tag `SECURED`.
+
+1. Finding persons using one tag
+   
+   2. Test case: `find t/SECURED`<br>
+      Expected: All clients with the tag `SECURED` are shown in `results display`. No other clients are shown.
+   
+   2. Test case: `find t/secured`<br>
+      Expected: Success. Same as previous.
+   
+   3. Test case: `find t/signed`<br>
+      Expected: No change in `results display`. Error details shown in the command display.
+
+1. Finding persons using multiple tags
+   
+   2. Test case: `find t/SECURED POTENTIAL`<br>
+      Expected: All clients with the tag `POTENTIAL` are shown in `results display`. No other clients are shown.
+   
+   2. Test case: `find t/potential secured`<br>
+      Expected: All clients with the tag `SECURED` are shown in `results display`. No other clients are shown.
 
 ### Opening PDF file
 
@@ -1102,6 +1154,35 @@ testers are expected to do more *exploratory* testing.
    
    3. Press `F2` or click on `Meetings` button then the `Upcoming Meetings F2` button that appears.<br>
       Expected: A `Upcoming Meetings` window appear. The meeting added in step 3 is displayed on the list.
+
+### Update client information:
+
+1. Updating client information though input shortcut:
+   
+   1. Test case: `u 1 nw/$22000`<br>
+      Expected: Networth of first client change to `$22000`. New client detail shown in command display.
+
+### Update descriptions:
+
+1. Adding a description
+
+   2. Test case: `description 2 d/Eager to invest`<br>
+      Expected: Description of the second client changed to `Eager to invest`. 
+   
+   3. Test case: `description d/Eager to invest`<br>
+      Expected: No change in descriptions made. Error details shown in command display.
+  
+   3. Other test cases: `description`, `description 0 d/Eager to invest`<br>
+      Expected: No change in descriptions made. Error details shown in command display.
+   
+
+2. Removing a description
+
+   2. Test case: `description 2 d/`<br>
+      Expected: Description of the second client removed. "Removed Description: " message shown in command display. 
+   
+   3. Other test cases: `description`, `description 0 d/`<br>
+      Expected: No change in descriptions made. Error details shown in command display.
 
 
 ### Update meetings:
