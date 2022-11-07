@@ -26,6 +26,8 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
     private static SortCategory sortCategory = SortCategory.ID;
     private static int sortOrder = 0;
 
+    //@@author Aishwarya-Hariharan-Iyer
+
     //Represents the Client's name
     private Name name;
 
@@ -38,9 +40,15 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
     //Represents a Collection of projects that the client is responsible for
     private List<Project> projects;
 
+    //Represents the Client's id
     private ClientId clientId;
+
+    //@@author
+
+    //Represents whether the client is pinned
     private Pin pin;
 
+    //@@author Aishwarya-Hariharan-Iyer
     /**
      * Constructs a client with inputs given by the user.
      * @param name String representing name of the client
@@ -96,26 +104,43 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
         this.mobile = mobile;
     }
 
+    /**
+     * Returns the id of the client.
+     * @return ClientId the id of the client
+     */
     public ClientId getClientId() {
         return this.clientId;
     }
+    //@@author
 
+    /**
+     * Returns the id of the client as an integer.
+     * @return int representing the client id.
+     */
     public int getClientIdInInt() {
         return getClientId().getIdInt();
     }
 
     /**
      * Checks if this Client is empty.
-     * @return true if the Client is empty.
+     * @return boolean true if the Client is empty.
      */
     public boolean isEmpty() {
         return false;
     }
 
+    /**
+     * Returns the size of the project list.
+     * @return int representing the project list size.
+     */
     public int getProjectListSize() {
         return this.projects.size();
     }
 
+    /**
+     * Returns the id of the client as an integer.
+     * @return int representing the client id.
+     */
     @Override
     public int getId() {
         return this.getClientId().getIdInt();
@@ -123,6 +148,7 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
 
     /**
      * Checks if this client has a valid id.
+     * @return boolean true if the client id is valid
      */
     public boolean hasValidId() {
         return this.clientId.isValid();
@@ -133,24 +159,36 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
      */
     public static class EmptyClient extends Client {
         public static final Client EMPTY_CLIENT = new EmptyClient();
+
+        /**
+         * Constructs an empty client.
+         */
         private EmptyClient() {
             super(Name.EmptyName.EMPTY_NAME);
         }
 
         /**
          * Checks if this Client is empty.
-         * @return true if the Client is empty.
+         * @return boolean true if the Client is empty.
          */
         @Override
         public boolean isEmpty() {
             return true;
         }
 
+        /**
+         * Returns the String representation of the empty client.
+         * @return String representing the empty client.
+         */
         @Override
         public String toString() {
             return "";
         }
 
+        /**
+         * Returns the UI representation of the client.
+         * @return String representing the UI state of the client.
+         */
         @Override
         public String uiRepresentation() {
             return "No Client Set";
@@ -165,7 +203,7 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
      * 0 for ascending and 1 for descending order
      *
      * @param num input param to validate
-     * @return true if input is a 0 or 1
+     * @return boolean true if input is a 0 or 1
      */
     public static boolean isValidClientIdSortKey(String num) {
         try {
@@ -182,7 +220,7 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
      * 0 for alphabetical order and 1 for reverse alphabetical order
      *
      * @param num input param to validate
-     * @return true if input is a 0 or 1
+     * @return boolean true if input is a 0 or 1
      */
     public static boolean isValidNameSortKey(String num) {
         try {
@@ -193,6 +231,7 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
         }
     }
 
+    //@@author Aishwarya-Hariharan-Iyer
     /**
      * Returns the client name as is represented in the Name object.
      * @return String representing client's name.
@@ -224,6 +263,7 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
     public List<Project> getProjects() {
         return this.projects;
     }
+    //@@author
 
     /**
      * Add A project to the client's project list.
@@ -245,14 +285,27 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
         return this.mobile.isEmpty() ? this.mobile.toString() : " (" + this.mobile.toString() + ")";
     }
 
+    //@@author Aishwarya-Hariharan-Iyer
+    /**
+     * Removes a project from the project list of the client.
+     * @param p Project to be removed
+     */
     public void removeProject(Project p) {
         this.projects.remove(p);
     }
+    //@@author
 
+    /**
+     * Toggles the pin status of the client.
+     */
     public void togglePin() {
         this.pin.togglePinned();
     }
 
+    /**
+     * Checks if the client is pinned.
+     * @return boolean true if the client is pinned
+     */
     public boolean isPinned() {
         return this.pin.isPinned();
     }
@@ -277,6 +330,7 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
     /**
      * Returns true if both clients have the same name.
      * This defines a weaker notion of equality between two clients.
+     * @return boolean true if the clients have the same name
      */
     @Override
     public boolean hasSameName(Client otherClient) {
@@ -290,6 +344,7 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
 
     /**
      * Returns true if client is valid and exists.
+     * @retun boolean true if the client is valid
      */
     public static boolean isValidClient(Client client) {
         if (client == EmptyClient.EMPTY_CLIENT) {
@@ -300,8 +355,8 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
 
     /**
      * Returns true if all other attributes besides project list are the same.
-     * @param otherClient
-     * @return Boolean value representing whether the basic client details are equal.
+     * @param otherClient Client to be compared with
+     * @return Boolean value representing whether the basic client details are equal
      */
     public boolean hasSameDetails(Client otherClient) {
         return this.getClientId().equals(otherClient.getClientId())
@@ -311,11 +366,16 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
                 && this.getPin().equals(otherClient.getPin());
     }
 
+    /**
+     * Returns the String representation of the client name.
+     * @return String representing the client
+     */
     @Override
     public String toString() {
         return this.name.getFullNameRepresentation();
     }
 
+    //@@author Aishwarya-Hariharan-Iyer
     /**
      * Checks if an object equals this.
      * @param other Object to be checked
@@ -337,6 +397,7 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
             return false;
         }
     }
+    //@@author
 
     private Pin getPin() {
         return this.pin;

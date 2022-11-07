@@ -12,13 +12,22 @@ Class AddressBook
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
+Class UniqueEntityList <T extends ComparableByName<T>>
+Class Client
+Class ClientEmail
 Class Name
-Class Mobile
-Class Tag
+Class ClientMobile
+Class ClientId
+Class ClientProjectList
+Class Project
+Class ProjectId
+Class Repository
+Class Deadline
+Class Issue
+Class IssueId
+Class Status
+Class Title
+Class Urgency
 
 }
 
@@ -34,17 +43,29 @@ ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Mobile
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+AddressBook *--> "1" UniqueEntityList
+UniqueEntityList --> "~* all" Client
+UniqueEntityList --> "~* all" Project
+UniqueEntityList --> "~* all" Issue
 
-Name -[hidden]right-> Mobile
-Mobile -[hidden]right-> Address
-Address -[hidden]right-> Email
+Client *--> Name
+Client *--> ClientMobile
+Client *--> ClientEmail
+Client *--> ClientId
+Client *--> ClientProjectList
 
-ModelManager -->"~* filtered" Person
+Project *--> Name
+Project *--> ProjectId
+Project *--> Repository
+Project *--> Deadline
+
+Issue *--> IssueId
+Issue *--> Status
+Issue *--> Title
+Issue *--> Deadline
+Issue *--> Urgency
+
+ModelManager -->"~* filtered" Client
+ModelManager -->"~* filtered" Project
+ModelManager -->"~* filtered" Issue
 @enduml

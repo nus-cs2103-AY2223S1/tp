@@ -249,6 +249,14 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         return new SortProjectCommand(sortPrefix, key);
     }
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the FindCommand
+     * and returns FindCommand object for execution.
+     *
+     * @param arguments String representing arguments
+     * @return an FindProjectCommand object
+     * @throws ParseException if the user input does not conform the expected format
+     */
     private FindProjectCommand parseFindProjectCommand(String arguments) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_REPOSITORY, PREFIX_CLIENT_ID,
@@ -293,6 +301,15 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
         return new FindProjectCommand(predicate);
     }
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the FindCommand
+     * and returns FindCommand object for execution.
+     *
+     * @param flag String representing command flag
+     * @param arguments String representing arguments
+     * @return an FindProjectCommand object
+     * @throws ParseException if the user input does not conform the expected format
+     */
     private FindProjectCommand parseFindIssueCommand(String flag, String arguments) throws ParseException {
         return parseFindProjectCommand(arguments);
     }

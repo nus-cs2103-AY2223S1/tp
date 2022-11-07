@@ -27,34 +27,42 @@ Given below are my contributions to the project.
           attributes, sorted, pinned and much more.
         * Credits: The `Client` class is based on the AB3's `Person` class and replaces it in DevEnable. However,
           unlike the `Person` class in AB3, the `Client` has mutable fields and do not have `Address`
-          and `Set<Tag>`
+          and `Set<Tag>`. Initially, the `Client` package PR contained other `Client` attributes but we chose to
+          keep that for a future iterations in interest of UI/UX considerations.
 
     * **New Feature**: `find` command
         * What it does: Finds items on the list that match the user's search criteria on various attributes and
-          displays the corresponding filtered list.
+          displays the corresponding filtered list. It matches keywords with targets on an exact-word basis such
+          that at least one word form the target must match exactly with at least one word from the keyword. 
         * Justification: The developer may want to filter and find items on the list based on various parameters.
-        * Highlights: The intersection of the search criteria for different attributes are taken. For multiple
-          arguments given to each parameter, the union of all arguments provided, with each argument taken for a
-          tight-match, is taken.
+        * Highlights: The find command takes the intersection of all keywords from different prefixes to increase 
+          the specificity of the search. It takes the union of all such keywords of the same (repeated) prefix so as 
+          increase the flexibility of use in being able to search for multiple keywords at once under the same field.
+          It also validates the inputs entered for each prefix to prevent users from getting confused between no 
+          items being listed because of an incorrect input (i.e. such an item can never exist) and because of no 
+          such item existing on the list at the time of search.
         * Credits: The `find` command builds on the AB3 `find` functionality.
 
 * **Enhancements to existing features**:
-    * E.g. changes to GUI, wrote additional tests, etc.
+    * Wrote parser tests all the edit and find commands and for the add client command
 
 * **Documentation**:
     * Contributions to the UG
-        * Which sections did you contribute to the UG? (to be added soon)
+        + Help set up the initial UG with all content planned in first iteration
+        + Added documentation and images for client command features: `add`, `delete`, `edit`
+        + Added documentation and images for find command features under `Client`, `Project` and `Issue`
     * Contributions to the DG
-        * Which sections did you contribute to the DG? Which UML diagrams did you add/updated? (to be added soon)
+        * Write-up for Delete Command Feature consisting of Delete Project Command, Delete Issue Command, and Delete
+          Client Command
+        * Write-up for Find Command Feature consisting of Find Project Command, Find Issue Command, and Find Client 
+          Command
+        * UML Sequence Diagram for deleting a client from the app
+        * UML Sequence Diagram for finding a client in the app
+        * Design considerations for Delete Command Feature
+        * Design considerations for Find Command Feature
 
 * **Contributions to team-based tasks**:
-    * (to be added soon)
-
-* **Community**:
-    * Review/mentoring contributions
-        * Links to PRs reviewed, instances of helping team members in other ways
-          (to be added soon)
-    * Contributions beyond the project team
-        * Evidence of helping others (e.g. responses on forums, bugs reported in other team's products)
-        * Evidence of technical leadership (e.g. sharing useful info on forum)
-          (to be added soon)
+    * Reviewed some team pull requests and offered suggestions on potential modifications
+    * Created some issues for the weekly deliverables
+    * Completed the assigned issues each week, including bug-fixing from the dry-run 
+    * Helped manage weekly meetings by setting Zoom links and taking notes

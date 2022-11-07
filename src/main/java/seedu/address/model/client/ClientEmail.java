@@ -92,6 +92,11 @@ public class ClientEmail {
         return this.email.hashCode();
     }
 
+    /**
+     * Checks if the client email is valid.
+     * @param test String representing the email to be tested
+     * @return boolean true if this is a valid client email
+     */
     public static boolean isValidClientEmail(String test) {
         return test.matches(VALIDATION_REGEX);
     }
