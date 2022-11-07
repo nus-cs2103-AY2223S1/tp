@@ -3,25 +3,58 @@ layout: page
 title: Developer Guide
 ---
 ## **Table of Contents**
-* Acknowledgements
-* Setting up
-* Design
-  * Architecture
-  * UI component
-  * Logic component
-  * Model component
-  * Storage component
-  * Common classes
-* Implementation
-* Documentation, logging, testing, configuration, dev-ops
-* Appendix: Requirements
-  * Product scope
-  * User stories
-  * Use cases
-  * Non-Functional Requirements
-  * Glossary
-* Appendix: Instructions for manual testing
-  * 
+* [Acknowledgements](#acknowledgements)
+* [Setting up](#setting-up-getting-started)
+* [Design](#design)
+  * [Architecture](#architecture)
+  * [UI component](#ui-component)
+  * [Logic component](#logic-component)
+  * [Model component](#model-component)
+  * [Storage component](#storage-component)
+  * [Common classes](#common-classes)
+* [Implementation](#implementation)
+  * [Sort Task Command](#sort-task-command)
+  * [Filter Tasks Command](#filter-tasks-command)
+  * [Mark Task Command](#mark-task-command)
+  * [Edit Task Command](#edit-task-command)
+  * [Delete Task Command](#delete-task-command)
+  * [Link Exam Feature](#link-exam-feature)
+  * [Add Exam Feature](#add-exam-feature)
+  * [Unink Exam Command](#unlink-exam-command)
+  * [Find Tasks Feature](#find-tasks-feature)
+* [Documentation, logging, testing, configuration, dev-ops](#documentation)
+* [Appendix: Requirements](#ui-component)
+  * [Product scope](#product-scope)
+  * [User stories](#user-stories)
+  * [Use cases](#use-cases)
+  * [Non-Functional Requirements](#non-functional-requirements)
+  * [Glossary](#glossary)
+* [Appendix: Instructions for manual testing]()
+  * [Launch and Shutdown](#launch-and-shutdown)
+  * [Adding a module](#adding-a-module)
+  * [Adding a tag to a task](#adding-a-tag-to-a-task)
+  * [Editing a tag of a task](#editing-a-tag-of-a-task)
+  * [Deleting a tag of a task](#deleting-a-tag-of-a-task)
+  * [Sorting the task list](#sorting-the-task-list)
+  * [Linking the exam to a task](#linking-the-exam-to-a-task)
+  * [Viewing the help window](#viewing-the-help-window)
+  * [Adding an exam](#adding-an-exam)
+  * [Editing an exam](#editing-an-exam)
+  * [Finding a task](#finding-a-task)
+  * [Find a module](#find-a-module)
+  * [Listing modules](#listing-modules)
+  * [Listing tasks](#listing tasks)
+  * [Marking a task](#marking-a-task)
+  * [Editing a task](#editing-a-task)
+  * [Adding a task](#adding-a-task)
+  * [Filtering the task list](#filtering-the-task-list)
+  * [Clearing the task list](#clearing-the-task-list)
+  * [Deleting an exam](#deleting-an-exam)
+  * [Unlinking an exam](#unlinking-an-exam)
+  * [Showing tasks of an exam](#showing-tasks-of-an-exam)
+  * [Clearing all lists](#clearing-all-lists)
+  * [Saving data](#saving-data)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
