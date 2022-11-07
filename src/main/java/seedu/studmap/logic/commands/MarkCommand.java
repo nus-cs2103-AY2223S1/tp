@@ -24,7 +24,7 @@ public class MarkCommand extends EditStudentCommand<MarkCommand.MarkCommandStude
             + " student list.\n"
             + "Marks attendance for the class or tutorial specified in the parameter.\n"
             + "Parameters: INDEX (must be positive integer or use \"all\" to mark everyone currently displayed)"
-            + " OPTION (must be absent/present) " + PREFIX_CLASS + "CLASS\n"
+            + " STATUS (must be absent/present) " + PREFIX_CLASS + "CLASS\n"
             + "Example: " + COMMAND_WORD + " 1 present " + PREFIX_CLASS + "T01\n"
             + "Example: " + COMMAND_WORD + " all present " + PREFIX_CLASS + "T07";
 
