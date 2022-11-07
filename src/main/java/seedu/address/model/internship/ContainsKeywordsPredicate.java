@@ -11,6 +11,11 @@ import seedu.address.commons.util.StringUtil;
 public class ContainsKeywordsPredicate implements Predicate<Internship> {
     private final List<String> keywords;
 
+    /**
+     * Constructs a new ContainsKeywordsPredicate.
+     *
+     * @param keywords List of keywords.
+     */
     public ContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }

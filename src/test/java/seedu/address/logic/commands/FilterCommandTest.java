@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalInternships.getTypicalFindMyIntern;
 
@@ -43,19 +43,19 @@ public class FilterCommandTest {
         FilterCommand secondFilterCommand = new FilterCommand(rejectedPredicate);
 
         // same object -> returns true
-        assertEquals(firstFilterCommand, firstFilterCommand);
+        assertTrue(firstFilterCommand.equals(firstFilterCommand));
 
         // same values -> returns true
         FilterCommand firstFilterCommandCopy = new FilterCommand(appliedPredicate);
-        assertEquals(firstFilterCommand, firstFilterCommandCopy);
+        assertTrue(firstFilterCommand.equals(firstFilterCommandCopy));
 
         // different values -> returns false
-        assertNotEquals(1, firstFilterCommand);
+        assertFalse(firstFilterCommand.equals(1));
 
         // null -> returns false
-        assertNotEquals(null, firstFilterCommand);
+        assertFalse(firstFilterCommand.equals(null));
 
         // different filter -> returns false
-        assertNotEquals(firstFilterCommand, secondFilterCommand);
+        assertFalse(firstFilterCommand.equals(secondFilterCommand));
     }
 }

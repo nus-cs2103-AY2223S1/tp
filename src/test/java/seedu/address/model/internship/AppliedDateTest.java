@@ -34,6 +34,9 @@ public class AppliedDateTest {
         assertFalse(AppliedDate.isValidAppliedDate(TypicalDateTimes.SECOND_NONSTANDARD_DATE)); // does not exist
 
         // empty applied date
+        assertFalse(AppliedDate.isValidAppliedDate(""));
+
+        // spaced applied date
         assertFalse(AppliedDate.isValidAppliedDate(" "));
 
         // valid applied dates

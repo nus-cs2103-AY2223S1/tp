@@ -44,6 +44,9 @@ public enum ApplicationStatus {
 
     /**
      * Returns true if a given string is a valid application status.
+     *
+     * @param test The given string.
+     * @return true if valid.
      */
     public static boolean isValidApplicationStatus(String test) {
         for (ApplicationStatus applicationStatus : ApplicationStatus.values()) {
