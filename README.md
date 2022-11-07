@@ -22,7 +22,7 @@ Then, **TruthTable** is _perfect_ for you.
 
 1. collate different project-related information (e.g. GitHub project PRs, issues, links to Zoom meetings, and Google
    Docs)
-2. visualise your teams’ progress easily
+2. visualize your teams’ progress easily
 3. delegate tasks to your team members conveniently
 4. use CLI interface to manage your project tasks _blazingly_ fast.
 
