@@ -192,9 +192,11 @@ Given below is an example usage scenario and how the add deadline mechanism beha
 2. `FypManagerParser` creates a new `AddDeadlineCommandParser` after preliminary processing of user input.
 3. `AddDeadlineCommandParser` then processes the input again and creates an `AddDeadlineCommand`.
 4. `LogicManager` executes the `AddDeadlineCommand` using the `LogicManager#execute()` method.
-5. `AddDeadlineCommand` checks if the deadline has existed before using `Model#hasDeadline()`.
-6. If the deadline is not inside the student deadline list yet, `AddDeadlineCommand` calls `Model#addDeadline()` and passes the student and deadline as the parameter.
-7. Finally, `AddDeadlineCommand` creates a `CommandResult` and returns it to `LogicManager` to complete the command.
+5. `AddDeadlineCommand` gets student using StudentID via `Model#getStudentByStudentId(studentId)`.
+6. `AddDeadlineCommand` checks if the deadline has existed before using `Model#hasDeadline()`.
+7. `AddDeadlineCommand` checks if the project is done using `Student#getProjectStatus().equals(new ProjectStatus("DONE"))`.
+8. If the deadline is not inside the student deadline list yet, `AddDeadlineCommand` calls `Model#addDeadline()` and passes the student and deadline as the parameter.
+9. Finally, `AddDeadlineCommand` creates a `CommandResult` and returns it to `LogicManager` to complete the command.
 
 The following sequence diagram shows how the add deadline command works:
 
@@ -261,9 +263,10 @@ Given below is an example usage scenario and how the delete deadline mechanism b
 2. `FYPManagerParser` creates a new `DeleteDeadlineCommandParser` after preliminary processing of user input.
 3. `DeleteDeadlineCommandParser` creates a new `DeleteDeadlineCommand` based on the processed input.
 4. `LogicManager` executes the `DeleteDeadlineCommand`.
-5. `DeleteDeadlineCommand` calls `Model#getFilteredStudentList()` to get the list of student with FYP, and then gets the student at the specified index using the unique studentId.
-6. `DeleteDeadlineCommand` calls `Model#DeleteDeadline()` and passes the studentID, and rank of deadline and return deadline deleted as parameters.
-7. Finally, `DeleteStudentCommand` creates a `CommandResult` and returns it to `LogicManager` to complete the command.
+5. `DeleteCommand` calls `Model#getIndexByStudentId(index)` and passes the studentId, and gets the desired student.
+6. `DeleteCommand` calls `Student#getDeadlineList().getDeadlineByRank(rank - 1)` and passes the rank, and gets the deadline.
+7. `DeleteDeadlineCommand` calls `Model#deleteDeadline()` and passes the student, and deadline to be deleted.
+8. Finally, `DeleteDeadlineCommand` creates a `CommandResult` and returns it to `LogicManager` to complete the command.
 
 
 The following sequence diagram shows how delete deadline command works:

@@ -9,7 +9,11 @@ if () then ([valid format])
     :Parser parses student and deadline details;
     :Logic executes command;
     if () then ([not a duplicate deadline])
-        :Model executes addDeadline();
+                    if () then ([new project status != "DONE"])
+                        :Model executes addDeadline();
+                    else ([else])
+                        :UI shows error message;
+                       endif
     else ([else])
         :UI shows error message;
        endif

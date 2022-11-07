@@ -9,7 +9,7 @@ if () then ([valid format])
     :Parser parses studentId, rank;
     :Logic executes command;
     if () then ([Student exist in FYP Manager])
-        :Model executes deleteStudent();
+        :Model executes deleteDeadline();
             if () then ([rank >= 1 and rank < size of DeadlineList])
                 :Model executes deleteDeadline();
             else ([else])
