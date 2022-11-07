@@ -607,7 +607,7 @@ should **not** use both `-n` and `-e` in the `find member` command.
 | `-n`, `--name`  | :hash:   | Keywords to filter by name          |
 | `-e`, `--email` | :hash:   | Keywords to filter by email         |
 
-:hash: - exactly one of the flags for name and email must be specified
+:hash: - exactly one of the flags for name or email must be specified
 
 * Only the name or email is searched.
 * The search is case-insensitive, e.g. `hans` will match `Hans`.
