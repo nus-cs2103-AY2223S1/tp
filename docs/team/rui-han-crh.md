@@ -13,32 +13,27 @@ Given below are my contributions to the project.
 
 **New Features Implemented**
 
-1. _Loan Property of a Person_
-   * **What it does**: Implements the ability to track monetary amounts that are represented as loaned amounts. This property is used to keep track of a history of transactions.
-   * **Justification**: A treasurer requires the need to keep track of details of monetary transactions.
-   * **Highlights**: If the amount is positive, the amount is to be paid _by_ the person. If the amount is negative, the amount is to be paid _to_ the person.
+1. **_Loan Property of a Person_**
+   * **What it does**: Implements the ability to track monetary amounts that are represented as loaned amounts. The loan amounts must be between -1 trillion to 1 trillion inclusive.
+   * **Justification**: A treasurer requires the need to keep track of monetary transactions. A loan is a data type created to serve this purpose.
+   * **Highlights**: If the amount is positive, the amount is to be paid _by_ the person. If the amount is negative, the amount is to be paid _to_ the person. 
 
-2. _User Interface Design_
+2. **_User Interface Design_**
    * **What it does**: Remodel and redesigned the user interface as shown in the landing page. Various small icons, images, alignment details and transitions are also applied for visual enhancement.
-   * **Justification**: The previous UI design did not look appealing, so a more visually appealing design was created
+   * **Justification**: The previous UI design did not look appealing, so a more visually appealing design was created. This will help the product's publicity and attractiveness to clients.
    * **Highlights**: Event based triggers (space to start typing, esc to exit typing), transition effects and embellishments.
 
-3. _Inspect command_
-   * **What it does**: Inspects a person in the person's list. Inspection is a UI-centric command that updates the UI values shown. It does not mutate any data in the model. This is also equivalent to just click on the person card, which does exactly the same thing. Inspection can be performed using NAME or INDEX.
+3. **_Inspect command_**
+   * **What it does**: Inspects a person in the person's list. Inspection is a UI-centric command that updates UI values. It does not mutate any data in the model. This is also equivalent to just click on the person card.
    * **Justification**: The UI requires more flexibility when coupled with the CLI, there shouldn't be things that the GUI can do that the CLI cannot, so the `inspect` command was created.
    * **Highlights**: `inspect Alex` or `inspect 1` where Alex is at the first index will populate the Inspection Panel with data of the person, such as name, phone number, birthday, etc.
 
-4. _Hide Notes Panel Command_
-   * **What it does**: Hides the notes panel by applying a translational transition with a fade transition to the StackPane containing the notes panel. 
+4. **_Show and Hide Notes Panel Command_**
+   * **What it does**: Shows/hides the notes panel by applying a translational transition with a fade transition to the StackPane containing the notes panel with anchor points on an AnchorPane. 
    * **Justification**: It is difficult to view more than 6 people in the list at the same time especially if working on a monitor with a smaller resolution. By hiding the notes panel, more screen real estate can be given to the person list and inspect panel.
-   * **Highlights**: All other elements maintain its aspect through ratio instead of absolute values. The inspect panel is also maintains equal division between the basic information and the loan history by a ratio.
+   * **Highlights**: All other elements maintain its aspect through ratio instead of absolute values. The inspect panel is also maintains equal division between the basic information and the loan history by a ratio. The notes panel will look like it's sliding into or out of the program window smoothly.
 
-5. _Show Notes Panel Command_
-   * **What it does**: The opposite of hiding the notes panel. Fades the notes panel in while translating the vertical anchor to the left from 1.0 to 0.6 to slide the notes panel in.
-   * **Justification**: If this did not exist, short of restarting the program, there is no way to bring the notes panel back. This provides the inverse functionality of hiding the notes panel.
-   * **Highlights**: `showNotes` is just the inverted transition of `hideNotes`.
-
-6. _Edit By Name_
+5. **_Edit By Name_**
    * **What it does**: Adding onto the ability to edit by index, I implemented an ability to edit by any keyword of the person's name. This makes it more convenient to specify edit operations without checking for name
    * **Justificaton**: It is easier to recall a person's name than to read the index from the list.
    * **Highlights**: A method was added to the `Model` class to create this ability using the `FindCommandParser`. Other operations that act on names also use the same function in Model, so it potentially supports any command requiring a NAME-based operations.
@@ -56,7 +51,7 @@ Given below are my contributions to the project.
 
 * Setting up the GitHub team org/repo
 * Changed the product icon to the current version (ledger with pen) using GIMP
-* Maintaining the issue tracker, marked duplicate bugs after the PE-D, separated true bugs from feature flaws, and trimmed the bug count to related to unique issues only.
+* Maintaining the issue tracker, organised bug issues after PE-D
 * Released version v1.3.1 for PE-D and fixed 16 bugs after PE-D
 
 **Review/mentoring contributions**:
