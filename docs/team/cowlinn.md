@@ -13,16 +13,16 @@ Given below are my contributions to the project.
   * Justification: This feature allows the user to store information specific to financial advisors.
   * Highlights:  It encapsulates extensions from the original AB3's person model. You can store birthdays, add income, RiskAppetite levels etc.
       * Updated Commands to add/edit/delete a new client
-  * Credits: `LocalDate` Library of Java: https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html
+  * Credits: NIL
 
 
 * **New Feature**: Added the main representation of a meeting with the user and his `Client` i.e: The `Event` class.
   * Justification: This feature allows the user to keep track of his meetings with his clients.
   * Highlights: Meetings with a client are recording as an `Event`. Includes a `Description` and `Date` with start and end times.
     * Used by Reuben to make the `calendar` feature of the app.
-  * Credits: `LocalTime` library of Java: https://docs.oracle.com/javase/8/docs/api/java/time/LocalTime.html
+  * Credits: Similar model implementation to AB3's `Person` class
 
-* **Code contributed**: [https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=cowlinn&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other]()
+* **Code contributed**: [Link here!](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=cowlinn&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 <div style="page-break-after: always;"></div>
 
@@ -35,7 +35,7 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * `Add/Delete/Edit` a Client
   * `Add/Delete` an Event
-  * Save functionality for both `Person` and `Event` 
+  * Updated save functionality for  `Event` 
   * Updates to Parser to parse inputs for both
 
 * **Documentation**:
@@ -55,7 +55,7 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): 6
-    * Specific PR examples: #193, #81, #203, #172
+    * Specific PR examples: #193[, #81, #203, #172
   * Bugs reported: Mainly for UserGuide / Developer Guide / Testing SUTs
   * Gave more than average comments for all peer-review related activites: E.g: PE-D, iP feedback etc.
 
