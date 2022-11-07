@@ -5,9 +5,8 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":FoodRemParser" as FoodRemParser LOGIC_COLOR
 participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
-participant "s:SortCommand" as SortCommand LOGIC_COLOR
-participant ":ItemNameComparator" as ItemNameComparator LOGIC_COLOR
-participant "c:ChainComparator" as ChainComparator LOGIC_COLOR
+participant ":SortCommand" as SortCommand LOGIC_COLOR
+participant "c:ItemNameComparator" as ItemNameComparator LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -38,13 +37,6 @@ activate ItemNameComparator
 ItemNameComparator --> SortCommandParser
 deactivate ItemNameComparator
 
-create ChainComparator
-SortCommandParser -> ChainComparator
-activate ChainComparator
-
-ChainComparator --> SortCommandParser
-deactivate ChainComparator
-
 create SortCommand
 SortCommandParser -> SortCommand
 activate SortCommand
@@ -64,13 +56,13 @@ deactivate FoodRemParser
 LogicManager -> SortCommand : execute(model)
 activate SortCommand
 
-SortCommand -> Model : updateSortedItemList()
+SortCommand -> Model : updateSortedItemList(c)
 activate Model
 
 Model --> SortCommand
 deactivate Model
 
-SortCommand -> Model : getSortedItemList()
+SortCommand -> Model : getCurrentList()
 activate Model
 
 Model --> SortCommand
@@ -83,7 +75,7 @@ activate CommandResult
 CommandResult --> SortCommand
 deactivate CommandResult
 
-SortCommand --> LogicManager : result
+SortCommand --> LogicManager
 deactivate SortCommand
 
 [<--LogicManager
