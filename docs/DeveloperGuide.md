@@ -645,14 +645,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 **Extensions**
-
-* 1a. Input format is wrong.
-
-  * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
-    Use case resumes at step 1.
   
-* 1b. Input format has extra parameters.
-  * 1b1. TrackAScholar ignores the extra parameters. <br>
+* 1a. Input format has extra parameters.
+  * 1a1. TrackAScholar ignores the extra parameters. <br>
     Use case resumes at step 2.
 
 
@@ -697,19 +692,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
 
 **Extensions**
-
-* 1a. Input format is wrong.
-
-    * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
-      Use case resumes at step 1.
   
-* 1b. Input format has extra parameters.
-    * 1b1. TrackAScholar ignores the extra parameters. <br>
+* 1a. Input format has extra parameters.
+    * 1a1. TrackAScholar ignores the extra parameters. <br>
       Use case resumes at step 2.
 
-* 1c. TrackAScholar has no applicants stored.
-
-    * 1c1. TrackAScholar shows an empty applicant list.
+* 1b. TrackAScholar has no applicants stored.
+    * 1b1. TrackAScholar shows an empty applicant list. <br>
+      Use case ends.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -804,14 +794,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. Input format is wrong.
+* 1a. Input format has extra parameters.
 
-    * 1a1. TrackAScholar displays an error message prompting correct input format. <br>
-      Use case resumes at step 1.
-
-* 1b. Input format has extra parameters.
-
-    * 1b1. TrackAScholar ignores the extra parameters. <br>
+    * 1a1. TrackAScholar ignores the extra parameters. <br>
       Use case resumes at step 2.
 
 * 2a. User cancels request during confirmation. <br>
@@ -889,7 +874,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: UC11 - Imports a json file into TrackAScholar**
 
 **Guarantees:**
-* After merging, no two applicants will have the same name.
+* After merging, no two applicants in TrackAScholar will have the same name.
 
 **MSS**
 
@@ -1002,6 +987,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1c. User closes the application window. <br>
     Use case resumes at step 2.
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
