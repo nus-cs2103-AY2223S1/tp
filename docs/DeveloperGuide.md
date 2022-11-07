@@ -22,7 +22,7 @@ title: Developer Guide
 * [Appendix: Requirements](#appendix-requirements)
   * [Product Scope](#product-scope)
   * [User Stories](#user-stories)
-  * [User Cases](#use-cases)
+  * [Use Cases](#use-cases)
   * [Glossary](#glossary)
 * [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
   * [Launch and Shutdown](#launch-and-shutdown)
