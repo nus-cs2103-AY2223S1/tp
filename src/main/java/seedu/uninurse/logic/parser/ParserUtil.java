@@ -216,7 +216,7 @@ public class ParserUtil {
         requireAllNonNull(medication);
         String[] medicationTypeAndDosage = medication.split("\\|");
 
-        if (medicationTypeAndDosage.length > 2) {
+        if (medicationTypeAndDosage.length > 2 || medicationTypeAndDosage.length == 0) {
             throw new ParseException(Medication.MESSAGE_CONSTRAINTS);
         }
 
@@ -263,9 +263,8 @@ public class ParserUtil {
             return parseRecurringTask(descriptionAndTime[0], descriptionAndTime[1], descriptionAndTime[2]);
         }
 
-        if (descriptionAndTime.length > 3) {
-            // TODO proper parseexception
-            throw new ParseException("Invalid format");
+        if (descriptionAndTime.length > 3 || descriptionAndTime.length == 0) {
+            throw new ParseException(Task.MESSAGE_CONSTRAINTS);
         }
 
         return parseTaskWithDateTime(descriptionAndTime[0], descriptionAndTime[1]);
@@ -346,7 +345,7 @@ public class ParserUtil {
         requireAllNonNull(task);
         String[] taskArguments = task.split("\\|");
 
-        if (taskArguments.length > 3) {
+        if (taskArguments.length > 3 || taskArguments.length == 0) {
             throw new ParseException(Task.MESSAGE_CONSTRAINTS);
         }
 

@@ -13,7 +13,7 @@ title: User Guide
 **Fastest fingers first!**
 
 If your fingers are as quick as your wit, UniNurse helps you to get your patient management tasks done in no time!
-It leverages on a no-frills _Command Line Interface (CLI)_ to give fast typists such as yourself a painless user
+It leverages a no-frills _Command Line Interface (CLI)_ to give fast typists such as yourself a painless user
 experience.
 
 </div>
@@ -49,14 +49,14 @@ Here are some symbols used throughout this user guide:
 
 ### Table of Contents
 
-1. [Quick start](#quick-start)
-2. [Glossary](#glossary)
-3. [Command format](#command-format)
-4. [Patient parameter constraints](#patient-parameter-constraints)
+1. [**Quick start**](#quick-start)
+2. [**Glossary**](#glossary)
+3. [**Command format**](#command-format)
+4. [**Patient parameter constraints**](#patient-parameter-constraints)
    1. [Single-valued attributes](#single-valued-attributes)
    2. [Multi-valued attributes](#multi-valued-attributes)
    3. [Patient parameter summary](#patient-parameter-summary)
-5. [Features](#features)
+5. [**Features**](#features)
    1. [Getting help: `help`](#getting-help-help)
    2. [Modifying patient contact details](#adding-a-patient-add)
       1. [Adding a patient: `add`](#adding-a-patient-add)
@@ -90,15 +90,15 @@ Here are some symbols used throughout this user guide:
       1. [Viewing all tasks for a particular day: `view`](#viewing-all-tasks-for-a-particular-day-view) 
       2. [Viewing all tasks for today: `view` `--today`](#viewing-all-tasks-for-today-view---today)
       3. [Viewing all tasks of a patient: `view` `-p`](#viewing-all-tasks-of-a-patient-view--p)
-      4. [Viewing all tasks of all patients](#viewing-all-tasks-of-all-patients-view--p---all)
-   10. [Undoing last command: `undo`](#undoing-previous-command-undo)
+      4. [Viewing all tasks of all patients: `view` `-p` `--all`](#viewing-all-tasks-of-all-patients-view--p---all)
+   10. [Undoing previous command: `undo`](#undoing-previous-command-undo)
    11. [Reversing undo command: `redo`](#reversing-undo-command-redo)
    12. [Clearing all entries: `clear`](#clearing-all-entries-clear)
-   13. [Exiting UniNurse](#exiting-uninurse-exit)
+   13. [Exiting UniNurse: `exit`](#exiting-uninurse-exit)
    14. [Saving the data](#saving-the-data)
    15. [Editing the data file](#editing-the-data-file)
-6. [FAQ](#faq)
-7. [Command summary](#command-summary)
+6. [**FAQ**](#faq)
+7. [**Command summary**](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -133,16 +133,16 @@ The app comes with some sample patients by default. Type `clear` in the command 
 5. Type your command in the command box and hit `Enter` to execute the command. Here are some example commands
    you can try:
     * **`help`**: Opens the help window.
-    * **`add`**`n/Jane Doe p/91234567 e/janed@example.com a/20 Anderson Road, block 123, #01-01`: Adds a
+    * **`add`** `n/Jane Doe p/91234567 e/janed@example.com a/20 Anderson Road, block 123, #01-01`: Adds a
       patient named `Jane Doe` to your patient list.
-    * **`delete`**`-p 3`: Deletes the 3rd patient shown in the current list.
+    * **`delete`** `-p 3`: Deletes the 3rd patient shown in the current list.
     * **`list`**: Lists all patients.
     * **`clear`**: Deletes all patients shown in the current list.
     * **`exit`**: Exits from UniNurse.
 6. Refer to the [Features](#features) below for details of each command. Alternatively, you may refer to the
    [Command Summary](#command-summary) at the end of this guide.
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -158,10 +158,10 @@ The app comes with some sample patients by default. Type `clear` in the command 
 | Flag                    | Part of the user input that allows the user to specify the specific options for a command, consisting of a letter preceded by a hyphen. <br> Type of flags: `-p`, `-t`, `-d`, `-c`, `-m`, `-r`.             |
 | Parameter               | Part of the user input consisting of information supplied by the user to UniNurse, which is preceded by a prefix.                                                                                           |
 | Prefix                  | Part of the user input that allows the user to specify information for a patient, consisting of a letter preceded by a hyphen. <br> Type of prefixes: `n/`, `p/`, `e/`, `a/`, `t/`, `d/`, `c/`, `m/`, `r/`. |
-| Single-valued attribute | A patient's detail that consist of a single value. A patient's single-valued attributes are also called the patient's contact details. <br> Single-valued attributes: `NAME`, `PHONE`, `EMAIL`, `ADDRESS`.  |
-| Multi-valued attribute  | A patient's detail that consist of a list of values. <br> Multi-valued attributes: `TAG`, `TASK`, `CONDITION`, `MEDICATION`, `REMARK`.                                                                      |
+| Single-valued attribute | A patient's detail that consists of a single value. A patient's single-valued attributes are also called the patient's contact details. <br> Single-valued attributes: `NAME`, `PHONE`, `EMAIL`, `ADDRESS`. |
+| Multi-valued attribute  | A patient's detail that consists of a list of values. <br> Multi-valued attributes: `TAG`, `TASK`, `CONDITION`, `MEDICATION`, `REMARK`.                                                                     |
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -185,11 +185,14 @@ The app comes with some sample patients by default. Type `clear` in the command 
 
 * `PATIENT_INDEX` refers to the index number shown in the displayed patient list.
 
-* Indices for patient attributes (e.g. `TASK_INDEX`, `CONDITION_INDEX`, `TAG_INDEX`, etc.) refers to the index number shown in the attribute list of a patient.<br>
-  e.g. `TASK_INDEX` refers to the index number show in the task list of a patient.
+* Indices for patient attributes (e.g. `TASK_INDEX`, `CONDITION_INDEX`, `TAG_INDEX`, etc.) refer to the index number shown in the attribute list of a patient.<br>
+  e.g. `TASK_INDEX` refers to the index number shown in the task list of a patient.
+
+* The `|` character is used as a parameter separator in an attribute.
+  e.g. in `m/MEDICATION_TYPE | DOSAGE`, the `|` character is used to separate `MEDICATION_TYPE` and `DOSAGE`.
 
 * Parameters in square brackets and angle brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g. `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
   e.g. `d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL TIME_PERIOD>` can be used as `d/task 1` or `d/task 1 | 22-3-22 1800`.
 
 * Parameters with `…` after them can be used multiple times, including zero times.<br>
@@ -201,12 +204,12 @@ The app comes with some sample patients by default. Type `clear` in the command 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -222,7 +225,7 @@ A patient's single-valued attributes are also referred to as the patient's conta
 
 `NAME` should only contain alphanumeric characters and spaces. 
 
-`NAME` is specified by a prefix `n/`.
+`NAME` is specified by the prefix `n/`.
 
 Example: `n/John Doe`
 
@@ -230,7 +233,7 @@ Example: `n/John Doe`
 
 `PHONE` should only contain numbers, and it should be at least 3 digits long. 
 
-`PHONE` is specified by a prefix `p/`.
+`PHONE` is specified by the prefix `p/`.
 
 Example: `p/91234567`
 
@@ -238,20 +241,20 @@ Example: `p/91234567`
 
 `EMAIL` should be in the form of `local-part@domain`, where:
 * `local-part` contains only alphanumeric characters and the special characters `+`, `_`, `.`, `-`, and may not start or end with any special characters.
-* `domain` is made up domain labels separated by periods, where `domain` must:
+* `domain` is made up of domain labels separated by periods, where `domain` must:
   - end with a domain label at least 2 characters long.
   - have each domain label start and end with alphanumeric characters.
   - have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
 
-`EMAIL` is specified by a prefix `e/`.
+`EMAIL` is specified by the prefix `e/`.
 
 Example: `johndoe@gmail.com`
 
 #### `a/ADDRESS`
 
-`ADDRESS` accepts any values.
+`ADDRESS` accepts any values, excluding prefixes.
 
-`ADDRESS` is specified by a prefix `a/`.
+`ADDRESS` is specified by the prefix `a/`.
 
 Example:`a/John street, block 123, #01-01`
 
@@ -259,9 +262,9 @@ Example:`a/John street, block 123, #01-01`
 
 #### `t/TAG`
 
-`TAG` accepts any values.
+`TAG` accepts any values, excluding prefixes.
 
-`TAG` is specified by a prefix `t/`, and its index by a flag `-t`.
+`TAG` is specified by the prefix `t/`, and its index by the flag `-t`.
 
 Example:`t/12-A nursing home`
 
@@ -269,37 +272,37 @@ Example:`t/12-A nursing home`
 
 The task parameter has the following constraints:
 
-* `TASK_DESCRIPTION` accepts any values.
+* `TASK_DESCRIPTION` accepts any values, excluding prefixes and `|` separators.
 * `DATE TIME` should be in the format of `DD-MM-YY` or `DD-MM-YY HHMM`. <br>
    e.g. `2-7-22 1345`, `09-4-22`, `08-06-22 0900`, `7-06-22 2130` and `28-10-22` are all valid `DATE TIME`.
 * `INTERVAL TIME_PERIOD` should be in the format of `X day(s)/week(s)/month(s)/year(s)` where `X` is a positive integer.
 
-`TASK` is specified by a prefix `d/`, and its index by a flag `-d`.
+`TASK` is specified by the prefix `d/`, and its index by the flag `-d`.
 
 Example: `d/Take CT scan | 23-11-22 1530 | 2 months`
 
 #### `c/CONDITION`
 
-`CONDITION` accepts any values.
+`CONDITION` accepts any values, excluding prefixes.
 
-`CONDITION` is specified by a prefix `c/`, and its index by a flag `-c`.
+`CONDITION` is specified by the prefix `c/`, and its index by the flag `-c`.
 
 Example:`c/Parkinson's disease`
 
 #### `m/MEDICATION_TYPE | DOSAGE`
 
-`MEDICATION_TYPE` accepts any values.
-`DOSAGE` should only contain alphanumeric characters, decimal points and spaces.
+`MEDICATION_TYPE` accepts any values, excluding prefixes and `|` separators.
+`DOSAGE` should only contain alphanumeric characters, decimal points, and spaces.
 
-`MEDICATION` is specified by a prefix `m/`, and its index by a flag `-m`.
+`MEDICATION` is specified by the prefix `m/`, and its index by the flag `-m`.
 
 Example:`m/Amoxicillin | 0.5g every 8 hours`
 
 #### `r/REMARK`
 
-`REMARK` accepts any values.
+`REMARK` accepts any values, excluding prefixes.
 
-`REMARK` is specified by a prefix `r/`, and its index by a flag `-r`.
+`REMARK` is specified by the prefix `r/`, and its index by the flag `-r`.
 
 Example:`r/Allergic to peanuts`
 
@@ -307,15 +310,15 @@ Example:`r/Allergic to peanuts`
 
 | Parameter    | Type                    | Flag | Prefix |
 |--------------|-------------------------|------|--------|
-| `NAME`       | Single-Valued Attribute | -    | `n/`   |
-| `PHONE`      | Single-Valued Attribute | -    | `p/`   |
-| `EMAIL`      | Single-Valued Attribute | -    | `e/`   |
-| `ADDRESS`    | Single-Valued Attribute | -    | `a/`   |
-| `TAG`        | Multi-Valued Attribute  | `-t` | `t/`   |
-| `TASK`       | Multi-Valued Attribute  | `-d` | `d/`   |
-| `CONDITION`  | Multi-Valued Attribute  | `-c` | `c/`   |
-| `MEDICATION` | Multi-Valued Attribute  | `-m` | `m/`   |
-| `REMARK`     | Multi-Valued Attribute  | `-r` | `r/`   |
+| `NAME`       | Single-valued attribute | -    | `n/`   |
+| `PHONE`      | Single-valued attribute | -    | `p/`   |
+| `EMAIL`      | Single-valued attribute | -    | `e/`   |
+| `ADDRESS`    | Single-valued attribute | -    | `a/`   |
+| `TAG`        | Multi-valued attribute  | `-t` | `t/`   |
+| `TASK`       | Multi-valued attribute  | `-d` | `d/`   |
+| `CONDITION`  | Multi-valued attribute  | `-c` | `c/`   |
+| `MEDICATION` | Multi-valued attribute  | `-m` | `m/`   |
+| `REMARK`     | Multi-valued attribute  | `-r` | `r/`   |
 | `PATIENT`    | -                       | `-p` | -      |
 
 <div markdown="block" class="alert alert-info">
@@ -329,7 +332,7 @@ Example:`r/Allergic to peanuts`
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -361,7 +364,7 @@ Format: **`help`**
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -369,7 +372,7 @@ Format: **`help`**
 
 You can add a patient to the patient list with the `add` command.
 
-Format: **`add`**`n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]… [d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL TIME_PERIOD>]… [c/CONDITION]… [m/MEDICATION | DOSAGE]… [r/REMARK]…`
+Format: **`add`** `n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]… [d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL TIME_PERIOD>]… [c/CONDITION]… [m/MEDICATION | DOSAGE]… [r/REMARK]…`
 
 <div markdown="block" class="alert alert-success">
 
@@ -383,7 +386,8 @@ You can view the constraints for each parameter in the [Parameter constraints](#
 
 :information_source: **Notes:**
 * You cannot add duplicate patients.
-* Patients with the exact same name, phone, email, and address are considered duplicates; otherwise, they are considered to be distinct.
+* Patients are considered duplicates only when they have the same `NAME`, `PHONE`, `EMAIL`, and `ADDRESS`.
+* Patients' details are case-sensitive e.g. `John` is distinct from `john`.
 
 </div>
 
@@ -391,7 +395,7 @@ You can view the constraints for each parameter in the [Parameter constraints](#
 
 :bulb: **Tip:**
 
-You can add any number of tags, tasks, medical conditions, medications and remarks to a patient.
+You can add any number of tags, tasks, medical conditions, medications, and remarks to a patient.
 
 </div>
 
@@ -412,7 +416,7 @@ Examples:
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -434,7 +438,7 @@ You can view the constraints for each parameter in the [Patient parameter constr
 
 :information_source: **Notes:**
 
-* You cannot edit tags, tasks, medical conditions, medications and remarks with this command.
+* You cannot edit tags, tasks, medical conditions, medications, and remarks with this command.
 * If there are duplicate patients after editing a patient, it will not be edited.
 
 </div>
@@ -453,7 +457,7 @@ Example:
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -477,7 +481,7 @@ You can use the `undo` command to undo an accidental `delete` command.
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -521,14 +525,14 @@ You can understand the commands about multi-valued attributes as follows.
 
 You can add a value to a patient's attribute with the `add` command.
 
-Format: **`add`**`-p PATIENT_INDEX xyz/XYZ_VALUE`
+Format: **`add`** `-p PATIENT_INDEX xyz/XYZ_VALUE`
 
 Example:
 * `list` followed by `add -p 1 t/high-risk` adds the `high-risk` tag (attribute `t`) to the 1st patient in the patient list.
 
 #### Editing a value of an attribute: `edit` `-p` `-xyz`
 
-Format: **`edit`**`-p PATIENT_INDEX -xyz XYZ_INDEX xyz/XYZ_VALUE`
+Format: **`edit`** `-p PATIENT_INDEX -xyz XYZ_INDEX xyz/XYZ_VALUE`
 
 Example:
 * `list` followed by `edit -p 2 -t 3 t/high-risk` edits the 3rd tag (attribute `t`) of the 2nd patient in the patient list to `high-risk`.
@@ -536,14 +540,14 @@ Example:
 
 #### Deleting a value from an attribute: `edit` `-p` `-xyz`
 
-Format: **`delete`**`-p PATIENT_INDEX -xyz XYZ_INDEX`
+Format: **`delete`** `-p PATIENT_INDEX -xyz XYZ_INDEX`
 
 Example:
 * `list` followed by `delete -p 2 -t 3` deletes the 3rd tag (attribute `t`) of the 2nd patient in the patient list.
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -574,7 +578,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -596,7 +600,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -611,14 +615,16 @@ Format: **`add`** `-p PATIENT_INDEX d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL
 :information_source: **Notes:**
 
 * `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in [Task parameters](#patient-parameter-constraints).
-* If `TIME` is omitted, the task will be created with a default time of `0000` hours.
-* `If `DATE TIME` is omitted, the task will be created with a date and time 24 hours from the moment of creation.
-* If the patient already contains tasks on `24-10-22` and `27-10-22`, the new task will be the 2nd task for the patient after the one on `24-10-22`.
-* If `INTERVAL TIME_PERIOD` is omitted, then the task created will be a non-recurring task, i.e. one off task.
+* If `DATE TIME` is omitted, the task will be created with a date and time 24 hours from the moment of creation.
+* If `DATE` is specified but `TIME` is omitted, the task will be created with a default time of `0000` hours.
+* If `INTERVAL TIME_PERIOD` is omitted, then the task created will be a non-recurring task, i.e. a one-off task.
 * Note that tasks are automatically sorted in chronological order upon being added. <br> 
-  e.g. If the patient already contains tasks on `24-10-22` and `27-10-22`, the new task will be the 2nd task for the patient after the one on `24-10-22`.
-* If the day portion of the date exceeds the last day of that calendar month, it would default to the last day of the month. <br>
-  e.g `31-4-22` will be automatically converted to `30-4-22` or `30-2-20` will be converted to `29-2-20` since 2020 is a leap year.
+  e.g. if the patient already has tasks on `24-10-22`, and a new task on `27-10-22` is created, then the new task will be the 2nd task for the patient after the one on `24-10-22`.
+* If the day portion of the date exceeded the last day of that calendar month, but is between 1 and 31, it would default to the last day of the month. <br>
+  e.g. `31-4-22` will be automatically converted to `30-4-22`, and `30-2-20` will be converted to `29-2-20` (since 2020 is a leap year).
+* Overdue recurring tasks will automatically add corresponding new recurring tasks based on their frequency.
+* Tasks are considered duplicates only when `TASK_DESCRIPTION`, `DATE TIME`, and `INTERVAL TIME_PERIOD` (if applicable) are the same e.g. `Take X-rays | 23-4-22 1345` is different from `Take X-rays | 23-4-22 1345 | 3 weeks`.
+* Tasks are case-sensitive e.g. `Take X-rays` is distinct from `Take x-rays`.
 
 </div>
 
@@ -632,7 +638,7 @@ If you enter a `TIME` of `2400`, then the date and time will be set to `0000` ho
 
 Examples:
 * `list` followed by `add -p 1 d/Administer 3ml of example medicine` adds a task to the 1st patient in the patient list.
-* `find Betsy` followed by `add -p 2 d/Change dressing on left arm | 12-7-22` adds a task to the 2nd patient in results of the `find` command, on 12th July 2022 0000 hours.
+* `find Betsy` followed by `add -p 2 d/Change dressing on left arm | 12-7-22` adds a task to the 2nd patient in the results of the `find` command, on 12th July 2022 0000 hours.
 * `add -p 3 d/Take X-rays | 23-4-22 1345 | 3 weeks` adds a recurring task to the 3rd patient for every 3 weeks starting from 23rd April 2022 1345 hours.
 
 <div markdown="block" class="alert alert-success">
@@ -651,7 +657,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -668,14 +674,14 @@ Format: **`edit`** `-p PATIENT_INDEX -d TASK_INDEX d/<TASK_DESCRIPTION> | <DATE 
 * `DATE TIME` and `INTERVAL TIME_PERIOD` must follow the criteria defined in [Task parameters](#patient-parameter-constraints).
 * If a `INTERVAL TIME_PERIOD` is provided for what was originally a non-recurring task, the edit will transform it into a recurring one based on the given frequency
 * Tasks are automatically sorted in chronological order upon modification, i.e. if a task on `25-10-22` is edited to be `30-10-22`, its new `TASK INDEX` would be based on the displayed order in the patient's task list.
-
+* If there are duplicate tasks after editing a task, it will not be edited.
 </div>
 
 Examples:
 * `list` followed by `edit -p 1 -d 1 d/Administer 3ml of example medicine` edits the description of the 1st task of the 1st patient in the patient list to `Administer 3ml of example medicine`, while retaining the original date and time for the task.
-* `find Betsy` followed by `edit -p 2 -d 3 d/| 23-10-22 0800` edits the date and time of the 3rd task of the 2nd patient in results of the `find` command to 23rd October 2022 0800 hours, while retaining the original description for the task.
-* `list` followed by `edit -p 1 -d 1 d/| | 3 days` edits the recurrence of the 1st task of the 1st patient if the task was a recurring task to every 3 days, while keeping the original description, date and time. If the task was a non-recurring task, then this edit transforms the task into a recurring task with a recurrence of every 3 days.
-* `list` followed by `edit -p 2 -d 3 d/| 25-10-22 | 2 weeks` edits the date and recurrence of the 3rd task fo the 2nd patient in the patient list to 25th october 2022 and every 2 weeks, while keeping the original description and time. If the task was a non-recurring task, then this edit transforms the task into a recurring task with a recurrence of every 2 weeks.
+* `find Betsy` followed by `edit -p 2 -d 3 d/| 23-10-22 0800` edits the date and time of the 3rd task of the 2nd patient in the results of the `find` command to 23rd October 2022 0800 hours, while retaining the original description for the task.
+* `list` followed by `edit -p 1 -d 1 d/| | 3 days` edits the recurrence of the 1st task of the 1st patient if the task was a recurring task to every 3 days, while keeping the original description, date, and time. If the task was a non-recurring task, then this edit transforms the task into a recurring task with a recurrence of every 3 days.
+* `list` followed by `edit -p 2 -d 3 d/| 25-10-22 | 2 weeks` edits the date and recurrence of the 3rd task for the 2nd patient in the patient list to 25th October 2022 and every 2 weeks, while keeping the original description and time. If the task was a non-recurring task, then this edit transforms the task into a recurring task with a recurrence of every 2 weeks.
 * `find David` followed by `edit -p 1 -d 2 d/Change bandage | | 4 days` edits the description and recurrence of the 2nd task of the 1st patient in the results of `find` command to `Change bandage` and every 4 days, while keeping the original date and time. If the task was a non-recurring task, then this edit transforms the task into a recurring task with a recurrence of every 4 days.
 
 <div markdown="block" class="alert alert-info">
@@ -695,7 +701,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -707,7 +713,7 @@ Format: **`delete`** `-p PATIENT_INDEX -d TASK_INDEX`
 
 Examples:
 * `list` followed by `delete -p 2 -d 3` deletes the 3rd task of the 2nd patient in the patient list.
-* `find Betsy` followed by `delete -p 1 -d 2` deletes the 2nd task of the 1st patient in results of the `find` command.
+* `find Betsy` followed by `delete -p 1 -d 2` deletes the 2nd task of the 1st patient in the results of the `find` command.
 
 <div markdown="block" class="alert alert-success">
 
@@ -717,7 +723,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -757,7 +763,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -788,7 +794,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -810,7 +816,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -851,7 +857,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -874,7 +880,7 @@ Format: **`edit`** `-p PATIENT_INDEX -m MEDICATION_INDEX m/<MEDICATION_TYPE> | <
 
 Examples:
 * `list` followed by `edit -p 1 -m 1 d/Amoxicillin` edits the medication type of the 1st medication of the 1st patient in the patient list to `Amoxicillin`, while retaining the original dosage.
-* `find Alice` followed by `edit -p 2 -m 3 d/| 2 tabs every 6 hours` edits the dosage of the 3rd medication of the 2nd patient in results of the `find Alice` command, while retaining the original medication type.
+* `find Alice` followed by `edit -p 2 -m 3 d/| 2 tabs every 6 hours` edits the dosage of the 3rd medication of the 2nd patient in the results of the `find Alice` command, while retaining the original medication type.
 
 <div markdown="block" class="alert alert-success">
 
@@ -884,7 +890,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -906,7 +912,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -945,7 +951,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -975,7 +981,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -997,7 +1003,7 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1009,7 +1015,7 @@ Format: `list`
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1030,7 +1036,7 @@ Examples:
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1038,20 +1044,20 @@ Examples:
 
 You can find specific patients using the `find` command.
 
-Format: **`find`**`[KEYWORD]… [xyz/XYZ_KEYWORD]…`
+Format: **`find`** `[KEYWORD]… [xyz/XYZ_KEYWORD]…`
 
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Notes:**
 
-* `xyz/XYZ_KEYWORD` refers to a keyword for a specific attribute with prefix `xyz`.
+* `xyz/XYZ_KEYWORD` refers to a keyword for a specific attribute with the prefix `xyz`.
 * There should be at least one parameter for the command.
-* The search is case-insensitive. e.g `hans` will match `Hans`.
+* The search is case-insensitive. e.g. `hans` will match `Hans`.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Partial words can be matched e.g. `Han` will match `Hans`.
-* Patients matching at least one keyword in every attribute will be returned (i.e. AND search for different attributes, OR search for same attribute). In more details,
+* Patients matching at least one keyword in every attribute will be returned (i.e. AND search for different attributes, OR search for the same attribute). In more detail,
     * At least one of the patient's attributes (name, phone, email, address, tag, task description, condition, medication, or remark) must match with at least one `KEYWORD` (unless it is empty).
-    * For every different attribute with prefix `xyz`, it must match at least one `XYZ_KEYWORD` (unless it is empty).
+    * For every different attribute with the prefix `xyz`, it must match at least one `XYZ_KEYWORD` (unless it is empty).
 
 </div>
 
@@ -1070,7 +1076,7 @@ Examples:
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1084,7 +1090,7 @@ Format: **`view`** `DATE`
 
 :information_source: **Note:**
 
-The DATE **must be of the specified format** dd-MM-yy
+The DATE **must be of the specified format** `DD-MM-YY`
 
 </div>
 
@@ -1099,7 +1105,7 @@ Examples:
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1132,7 +1138,7 @@ This command replaces `DATE` in the [previous command](#viewing-all-tasks-for-a-
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1153,7 +1159,7 @@ Examples:
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1183,7 +1189,7 @@ This command replaces `PATIENT_INDEX` in the [previous command](#viewing-all-tas
 
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1197,7 +1203,7 @@ Format: `undo`
 
 :information_source: **Note:** 
 
-Commands which modifies the application data are the `add`, `edit`, `delete`, and `clear` commands.
+Commands which modify the application data are the `add`, `edit`, `delete`, and `clear` commands.
 
 </div>
 
@@ -1207,11 +1213,11 @@ Examples:
 
 <div markdown="span" class="alert alert-warning">
 :exclamation: **Caution:**
-Only the last 100 commands which modifies the application data can be undone.
+Only the last 100 commands which modify the application data can be undone.
 data file at the next run.
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1227,7 +1233,7 @@ Example:
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1251,7 +1257,7 @@ You can use the `undo` command to undo an accidental `clear` command.
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1263,18 +1269,18 @@ Format: **`exit`**
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
 ### Saving the data
 
-UniNurse automatically saves its data in the hard disk after any command that changes the data.
+UniNurse automatically saves its data on the hard disk after any command that changes the data.
 You do not need to save manually.
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 <br>
 
@@ -1285,23 +1291,23 @@ If you are an advanced user, feel free to update data directly by editing that d
 
 <div markdown="span" class="alert alert-warning">
 :exclamation: **Caution:**
-If your changes to the data file makes its format invalid, UniNurse will discard all data and start with an empty
+If your changes to the data file make its format invalid, UniNurse will discard all data and start with an empty
 data file at the next run.
 </div>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
+**Q**: How do I transfer my data to another computer?<br>
+**A**: Install the app on the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous UniNurse home folder.
 
 <br>
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1340,4 +1346,4 @@ the data of your previous UniNurse home folder.
 | **Clear all entries**                   | `clear`                                                                                                     |
 | **Exit**                                | `exit`                                                                                                      |
 
-[Back to Table of Contents ↑](https://ay2223s1-cs2103t-t12-4.github.io/tp/UserGuide.html#table-of-contents)
+[Back to Table of Contents ↑](#table-of-contents)
