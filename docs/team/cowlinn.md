@@ -9,11 +9,10 @@ Long Time No See (LTNS) is a desktop task tracking app made for financial adviso
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the main representation of our user's patrons, i.e: The `Client` class.
+* **New Feature**: Added the main representation of our user's patrons, i.e: The `Client` class. This is an extension from `Person`.
   * Justification: This feature allows the user to store information specific to financial advisors.
   * Highlights:  It encapsulates extensions from the original AB3's person model. You can store birthdays, add income, RiskAppetite levels etc.
       * Updated Commands to add/edit/delete a new client
-  * Credits: NIL
 
 
 * **New Feature**: Added the main representation of a meeting with the user and his `Client` i.e: The `Event` class.
@@ -35,8 +34,8 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * `Add/Delete/Edit` a Client
   * `Add/Delete` an Event
-  * Updated save functionality for  `Event` 
-  * Updates to Parser to parse inputs for both
+  * Updated save functionality for `Event` 
+  * Updates to Parser to parse inputs for both the updated `Person` and `Event` classes.
 
 * **Documentation**:
   * User Guide:
@@ -45,19 +44,19 @@ Given below are my contributions to the project.
     * Added segments on adding/deleting events
     * Updated segments on viewing a complete list/filtered list for both event and client
     * Edited command summary
-    * Added FAQs for issues regarding save
+    * Updated FAQs for exceptions / conditions when adding an `Event`.
     
   * Developer Guide:
     * Added Activity diagrams for an execution of adding an event 
-    * Added Extensions for existing class diagram of a person.
+    * Added Extensions for existing class diagram of a person to include new attributes.
     * Added Use Cases for Person/Event
     * Updated Feature Summary for `Add/Delete` for Client / Event
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): 6
-    * Specific PR examples: #193[, #81, #203, #172
+    * Specific PR examples: #193, #81, #203, #172
   * Bugs reported: Mainly for UserGuide / Developer Guide / Testing SUTs
-  * Gave more than average comments for all peer-review related activites: E.g: PE-D, iP feedback etc.
+  * Gave more than average comments for all peer-review related activities: E.g: PE-D, iP feedback etc.
 
 * **Tools**:
   * Git / Github
