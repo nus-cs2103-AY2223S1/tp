@@ -635,14 +635,14 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-    1. Test case: delete a name field in the save file.
+    1. Test case: delete a name field in the save file.<br>
        Expected: Save file gets wiped.
 
-    2. Test case: set an activity's date to `test`.
+    2. Test case: set an activity's date to `test`.<br>
        Expected: Save file gets wiped.
 
-    3. Test case: set an activity's status to `test`.
+    3. Test case: set an activity's status to `test`.<br>
         Expected: Save file gets wiped.
 
-    4. Test case: set an activity's rating to `test`.
+    4. Test case: set an activity's rating to `test`.<br>
        Expected: Save file gets wiped.
