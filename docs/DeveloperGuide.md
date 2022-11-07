@@ -154,30 +154,41 @@ Classes used by multiple components are in the `seedu.modquik.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Show grade feature
+### Show grade chart feature
 
-#### Proposed Implementation
+This feature allows user to navigate to view grade chart of students without mouse which is crucial as target users are who can type fast and prefer typing over other means of input.
 
-The proposed show grade mechanism is implemented mainly using the help of `AddressBook#getGradeData`. It extends the `Command` class and implements `ShowGradeCommand#excute`. The `show grade` command can be used to show a student's grade pie chart and the value of each categorical data.
+#### Implementation
 
 The following sequence diagram shows how the show grade command works.
 
 ![ShowGradeSequenceDiagram](images/ShowGradeSequenceDiagram.png)
 
-Given below is an example usage scenario and how the show grade mechanism behaves at each step.
+The `SwitchCommand#execute()` returns the `CommandResult(MESSAGE_SUCCESS_GRADE, GRADE_CHART)` that is returned to `LogicManager` and passed to `MainWindow`. The `MainWindow` then calls `handleShowChart()` which calls `ModelManager#getStudentChartData()` to get the data and then update the main display to grade chart.
+
+`GRADE_CHART` is an element in enumeration `ModelType` which determines what content is displayed in main screen.
 
 ### Extract emails
 
 This feature allows a TA to easily mass email a selected group of students. A typical workflow is as such:
 1. Use the `find` command to show a selected group of students of interest.
-2. Use the `extract emails` command to generate a [mailto:](https://en.wikipedia.org/wiki/Mailto) link, which is copied to the clipboard
-3. Open mailto: link using a mail app, typically on the browser.
+2. Use the `extract emails` command to generate a [deep link](https://en.wikipedia.org/wiki/Deep_linking), which is copied to the clipboard
+3. When the deep link is opened in the browser, the user is redirected to NUS WebMail with a draft email and selected recipients.
 
 #### Current Implementation
-The following sequence diagram shows how the extract emails command works.
-
+The following sequence diagram shows how the extract emails command works. As it is a high-level diagram, `Ui`, `Logic` and `Model` refer to
+components in ModQuik, rather than classes. `Clipboard` refers to the Java 11 Clipboard class.
 
 ![ExtractEmailsSequenceDiagram](images/ExtractEmailsSequenceDiagram.png)
+
+Upon the user issuing the `extract emails` command, an `ExtractEmailCommand` is created. This step is not shown in the sequence diagram for breivity.
+
+When the command is executed, the current list of students shown is retrieved from Model as an ObservableList of students.
+This list is passed to the helper method `generateUrl`, which creates the deeplink required. This link is then pasted to the system clipboard via
+an instance of Clipboard's method `setContent`.
+
+An alternative is to generate a [mailto:](https://en.wikipedia.org/wiki/Mailto) link instead of deep links. However, it seems that Outlook Online
+does not attach itself as a mailto: handler.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -316,7 +327,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | teaching assistant | unmark a reminder as not done                   | reverse any task I accidentally marked as done                                           |
 | `* * *`  | teaching assistant | delete a reminder                               | delete any reminders that are not needed anymore                                         |
 | `* *`    | teaching assistant | clear all reminders                             | clear all reminder slots at once after a semester                                        |
-| `* * *`  | teaching assistant | sort all reminders by deadline or priority      | have an overview of all tasks that I have and plan my time wisely                        |
+| `* * *`  | teaching assistant | sort all reminders by deadline                  | have an overview of all my tasks and see which tasks are most urgent                     |
+| `* * *`  | teaching assistant | sort all reminders by priority                  | have an overview of all my tasks from what I deemed most important to least important    |
 | `* *`    | teaching assistant | clear all data                                  | restart my Modquik after a semester                                                      |
 | `* * *`  | user               | save and load my data                           | do not need to enter all my data each time I launch ModQuik                              |
 | `* * `   | fast-typing user   | type a command to switch between different tabs | do not need to use my mouse                                                              |
@@ -324,16 +336,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `ModQuik` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ModQuik`, the **Actor** is the `user`, and **entries** can be either of type `student`, `tutorial`, `consultation` or `reminder`, unless specified otherwise)
 
-**Use case: Add a reminder**
+**Use case: Add an entry**
 
 **MSS**
 
-1. User requests to add a reminder
-2. System adds the reminder
-3. System displays the success message
+1. User requests to add an entry.
+2. System adds the entry.
+3. System displays the success message. 
+   
+    Use case ends.
 
+**Extensions**
+
+* 1a. The input does not follow the format.
+
+    * 1a1. System shows an error message.
+      
+        Use case ends.
+
+* 1b. The input does not include all required parameters.
+
+    * 1b1. System shows an error message.
+      
+        Use case ends.
+
+**Use case: Edit an entry**
+
+**MSS**
+
+1. User requests to edit a specific entry in the list.
+2. System edits the entry.
+3. System shows the updated entry. 
+   
     Use case ends.
 
 **Extensions**
@@ -342,39 +378,179 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. System shows an error message.
 
+      Use case ends.
+
+* 1b. The given index is invalid.
+
+    * 1b1. System shows an error message that the index of the entry is invalid. 
+      
         Use case ends.
 
-* 1b. The input does not include all required parameters.
+* 1c. The input did not include any parameter.
 
-    * 1b1. System shows an error message.
-
+    * 1c1. System shows an error message that at least one field to edit must be provided. 
+      
         Use case ends.
 
-**Use case: Delete a tutorial slot**
+**Use case: Delete an entry**
 
 **MSS**
 
-1. User requests the list of tutorial slot
-2. System shows the list of tutorial slot
-3. User requests to delete a certain tutorial slot
-4. System deletes the specified tutorial slot 
-5. System displays the success message
-
+1. User requests to delete a specific entry in the list.
+2. System deletes the entry.
+3. System shows updated list. 
+   
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty
+* 1a. The given index is invalid.
 
+    * 1a1. System shows an error message that the index of the entry is invalid. 
+      
+        Use case ends.
+
+**Use case: List all students**
+
+**MSS**
+
+1. User requests to list all existing students.
+2. System shows the list of all students. 
+   
     Use case ends.
 
-* 3a. The given index is invalid.
+**Extensions**
 
-    * 3a1. System shows an error message.
+* 1a. The list is empty. 
+  
+    Use case ends.
 
-      Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Find students**
+
+**MSS**
+
+1. User requests to find all students matching fields of interest.
+2. System shows list of students matching inputted fields of interest.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The user enters an invalid command format.
+
+    * 1a1. System shows an error message that command is invalid.
+      
+        Use case ends.
+
+* 1b. The input did not include any parameter.
+
+    * 1b1. System shows an error message that at least one field must be provided.
+
+      Use case ends.
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: Mark a reminder**
+
+**MSS**
+
+1. User requests to mark a reminder.
+2. System updates the completion status of the reminder as complete. 
+   
+    Use case ends.
+
+**Extensions**
+
+* 1a. The reminder is already marked as done.
+
+    * 1a1. System shows an error message that the reminder is already completed. 
+      
+        Use case ends.
+
+* 1b. The reminder does not exist.
+
+    * 1b1. System shows an error message that the reminder does not exist. 
+      
+        Use case ends.
+
+**Use case: Unmark a reminder**
+
+**MSS**
+
+1. User requests to unmark a reminder.
+2. System updates the completion status of the reminder as incomplete. 
+   
+    Use case ends.
+
+**Extensions**
+
+* 1a. The reminder is not yet done.
+
+    * 1a1. System shows an error message that the reminder is already incomplete. 
+      
+        Use case ends.
+
+* 1b. The reminder does not exist.
+
+    * 1b1. System shows an error message that the reminder does not exist. 
+      
+        Use case ends.
+
+**Use case: Sort reminder**
+
+**MSS**
+
+1. User requests to sort the reminder.
+2. User chooses the sorting criteria.
+3. System sort the reminders by the given criteria.
+   
+   Use case ends.
+
+**Extensions**
+
+* 2a. The sorting criteria is invalid.
+
+    * 2a1. System shows an error message. 
+      
+        Use case ends.
+
+**Use case: Clear entries**
+
+**MSS**
+
+1. User requests to clear specified entries.
+2. The specified entries are cleared from the system.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The sorting criteria is invalid.
+
+    * 2a1. System shows an error message.
+
+      Use case ends.
+
+**Use case: View help**
+
+**MSS**
+
+1. User requests to view help.
+2. System displays a pop-up window with a link to the User Guide.
+
+   Use case ends.
+
+**Use case: Exiting the application**
+
+**MSS**
+
+1. User requests to exit the application.
+2. System exist. 
+   
+    Use case ends.
 
 ### Non-Functional Requirements
 
@@ -386,9 +562,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6. The source code should be open source.
 
 ### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **TAs**: Teaching Assistants
+| Term                               | Description                                                                                                                                                                                    |
+|------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Teaching Assistant (TA)**        | Tutors who support module coordinators in content creation, preparation of educational resources and course materials.                                                                         |
+| **Command Line Interface (CLI)**   | User interface that allows users to use text as commands to be executed by an application.                                                                                                     |
+| **Graphical User Interface (GUI)** | User interface that allows users to interact with an application through graphics and visuals                                                                                                  |
+| **Command**                        | User-specified instruction that ModQuik will execute.<br> e.g., `add student` and `find`                                                                                                       |
+| **Parameter**                      | A component of the command that the user will need to input.<br> e.g., `sort reminder by/deadline` where deadline is the parameter.                                                            |
+| **Prefix**                         | Abbreviation of the name of the parameter followed by a `/`. User will need to type the prefix before the parameter in ModQuik.<br> e.g., `sort reminder by/deadline` where by/ is the prefix. |
+| **Lexicographically**              | Generalization of the alphabetical order of the dictionaries                                                                                                                                   |
+| **Mainstream OS**                  | Windows, Linux, Unix, OS-X                                                                                                                                                                     |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -424,7 +607,7 @@ testers are expected to do more *exploratory* testing.
 
 Do the test cases sequentially to ensure correct expectation.
 
-1. Adding a tutorial while tutorial tab is being shown. 
+1. Adding a tutorial while tutorial tab is being shown.
 
    1. Prerequisites: Switch to tutorial tab using the `switch f/tutorial` command. Ensure tutorials data are empty by using `clear f/tutorial` (you may skip this if you do not have any tutorials).
 
@@ -435,23 +618,24 @@ Do the test cases sequentially to ensure correct expectation.
       Expected: Conflicting tutorial error message is shown.
 
    4. Test case: `add tutorial n/G02 m/CS2101 v/COM2-0209 T/19:00-17:00 D/2`<br>
-      Expected: Error message is shown as time range is invalid. No tutorial is added. 
+      Expected: Error message is shown as time range is invalid. No tutorial is added.
 
    5. Test case: `add tutorial n/G02 m/CS2101`<br>
       Expected: Error message is shown as missing prefix. No tutorial is added.
-   
+
    6. Other incorrect add tutorial commands to try: `add tutorials`, `add tutorial n/G01 m/sususu v/ T/ D/`, `...` <br>
       Expected: Error message is shown in the result display box.
 
 2. Adding a tutorial while tutorial tab is not being shown.
 
-   1. Prerequisites: Switch to another tab that is not tutorial, for example, using the `switch f/student` command. 
-    
+   1. Prerequisites: Switch to another tab that is not tutorial, for example, using the `switch f/student` command.
+
    2. Test case: `add tutorial n/TW08 m/GEC1027 v/AS1-0203 T/10:00-11:00 D/10`<br>
       Expected:  Error message is shown as day is invalid. Main display remains the same.
 
    3. Test case: `add tutorial n/TW08 m/GEC1027 v/AS1-0203 T/10:00-11:00 D/1`<br>
       Expected:  A success message containing details of the added tutorial is shown. Main display changes to tutorial and tutorial list is updated.
+<<<<<<< HEAD
     
    
 #### Deleting a tutorial
@@ -468,6 +652,8 @@ Do the test cases sequentially to ensure correct expectation.
 
     4. Other incorrect delete tutorial commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
+=======
+>>>>>>> 082f7917115367ab5ca9662f5af0abb286f52f2a
 
 #### Editing a tutorial
 
@@ -480,6 +666,21 @@ Do the test cases sequentially to ensure correct expectation.
 
     3. Test case: `edit tutorial 0`<br>
        Expected: No tutorial is edited. Error message shown in result display box.
+       
+#### Deleting a tutorial
+
+1. Deleting a tutorial while tutorial tab is being shown
+
+    1. Prerequisites: Switch to tutorial tab using `switch f/tutorial` command (you can skip this if the main display is already tutorial). Multiple tutorials in the list.
+
+    2. Test case: `delete tutorial 1`<br>
+       Expected: First tutorial is deleted from the list. Details of the deleted tutorial shown in the status message. Tutorial list is updated.
+
+    3. Test case: `delete tutorial 0`<br>
+       Expected: No tutorial is deleted. Error details shown in the status message. Tutorial list remains the same.
+
+    4. Other incorrect delete tutorial commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 ### Consultation
 
@@ -559,7 +760,97 @@ Do the test cases sequentially to ensure correct expectation.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Reminder
+
+#### Adding a reminder
+
+Do the test cases sequentially to ensure correct expectation.
+
+1. Adding a reminder while all reminders are being shown.
+
+    1. Prerequisites: Ensure reminder data are empty by using `clear f/reminder` (you may skip this if you do not have any reminders).
+
+    2. Test case: `add reminder n/Mark HW 1 D/2023-03-22 T/14:00 d/10 papers p/HIGH`<br>
+       Expected:  A new reminder is added to the reminder list. A success message containing details of the added reminder is shown in result display box and the reminder list on the right is updated.
+
+    3. Test case: `add reminder n/Mark HW1 D/2023-03-22 T/14:00 d/10 papers p/HIGH`<br>
+       Expected: Error message is shown as reminder already exists. No reminder is added.
+
+    4. Test case: `add reminder n/Mark HW2 D/2023-03-22 T/14:00 d/10 papers p/HIGH`<br>
+       Expected:  A new reminder is added to the bottom of the reminder list. A success message containing details of the added reminder is shown in result display box and the reminder list on the right is updated.
+
+    5. Test case: `add reminder n/Create tutorial slides D/2023-01-22 T/14:00 d/10 papers p/HIGH`<br>
+       Expected:  A new reminder is added to the top of the reminder list. A success message containing details of the added reminder is shown in result display box and the reminder list on the right is updated.
+
+    6. Other incorrect add reminder commands to try: `add reminders`, `add remind`, `add reminder n/Create D/2023-01-22 T/14:00 d/10 papers p/`, `...` <br>
+       Expected: Error message is shown in the result display box.
+
+
+#### Editing a reminder
+
+1. Editing a reminder while all reminders are being shown.
+
+    1. Prerequisites: There exists at least 1 reminder in the reminder list.
+
+    2. Test case: `edit reminder 1 n/Mark papers`<br>
+       Expected: Name of first reminder is edited. Details of the edited reminder shown in the result display box.
+
+    3. Test case: `edit reminder 0`<br>
+       Expected: No reminder is edited. Error message shown in result display box.
+
+#### Deleting a reminder
+
+1. Deleting a reminder while all reminders are being shown.
+
+    1. Prerequisites: There exists at least 1 reminder in the reminder list.
+
+    2. Test case: `delete reminder 1`<br>
+       Expected: First reminder is deleted from the list. Details of the deleted reminder shown in the result display box. Reminder list is updated.
+
+    3. Test case: `delete reminder 0`<br>
+       Expected: No reminder is deleted. Error details shown in the result display box. Reminder list remains the same.
+
+    4. Other incorrect delete reminder commands to try: `delete`, `delete reminders`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+#### Sorting reminders
+
+1. Sorting all reminders while all reminders are being shown.
+
+    1. Prerequisites: At least 2 reminders in the reminder list.
+
+    1. Test case: `sort reminder by/priority`<br>
+       Expected: Reminders are first sorted by priority. If the reminders have the same priority, it will be sorted by deadline. If the reminders have the same priority and deadline, it will be sorted lexicographically.
+
+    1. Test case: `sort reminder by/deadline`<br>
+       Expected: Reminders are first sorted by deadline. If the reminders have the same deadline, it will be sorted by priority. If the reminders have the same priority and deadline, it will be sorted lexicographically.
+
+    1. Other incorrect sort reminder commands to try: `sort`, `sort reminders`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Switch tabs
+
+1. View different content.
+
+    1. Test case: `switch f/student`<br>
+        Expected: A success message shown and the main display shows student's content.
+
+    2. Test case: `switch f/tutorial`<br>
+       Expected: A success message shown and the main display shows tutorial's content.
+
+    3. Test case: `switch f/consultation`<br>
+       Expected: A success message shown and the main display shows consultation's content.
+
+    4. Test case: `switch f/grade`<br>
+       Expected: A success message shown and the main display shows grade chart.
+
+2. View different content, but command has a typo error.
+
+    1. Test case: `switch f/students`<br>
+       Expected: Error message shown as the command has a typo error.
+
+    2. Test case: `switchs f/tutorial`<br>
+       Expected: Error message shown as the command has a typo error.
 
 ### Saving data
 

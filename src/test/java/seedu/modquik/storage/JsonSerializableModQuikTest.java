@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.modquik.commons.exceptions.IllegalValueException;
 import seedu.modquik.commons.util.JsonUtil;
 import seedu.modquik.model.ModQuik;
-import seedu.modquik.testutil.TypicalPersons;
+import seedu.modquik.testutil.TypicalStudents;
 
 public class JsonSerializableModQuikTest {
 
@@ -25,7 +25,7 @@ public class JsonSerializableModQuikTest {
         JsonSerializableModQuik dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableModQuik.class).get();
         ModQuik modQuikFromFile = dataFromFile.toModelType();
-        ModQuik typicalPersonsModQuik = TypicalPersons.getTypicalModQuik();
+        ModQuik typicalPersonsModQuik = TypicalStudents.getTypicalModQuik();
         assertEquals(modQuikFromFile, typicalPersonsModQuik);
     }
 

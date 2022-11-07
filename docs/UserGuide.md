@@ -270,7 +270,7 @@ Examples:
 Copies all emails in the displayed student list onto the clipboard.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You may want to use this command to email a student or groups of students who are performing poorly.
+You may want to use this command to email a student or a selected group of students (e.g. those with grade C).
 </div>
 
 Format: `extract emails`
@@ -603,7 +603,7 @@ Examples:
 <a name="switch"></a>
 ### 5.5 Switch tabs: `switch`
 
-Switch the tabs displayed.
+Switch command allows users to navigate between different tabs without the mouse which is crucial for our application as the target user are fast-typists who prefer typing over other means of input.
 
 Format: `switch f/FIELD`
 

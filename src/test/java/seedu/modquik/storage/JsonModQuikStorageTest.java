@@ -3,10 +3,10 @@ package seedu.modquik.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.modquik.testutil.Assert.assertThrows;
-import static seedu.modquik.testutil.TypicalPersons.ALICE;
-import static seedu.modquik.testutil.TypicalPersons.HOON;
-import static seedu.modquik.testutil.TypicalPersons.IDA;
-import static seedu.modquik.testutil.TypicalPersons.getTypicalModQuik;
+import static seedu.modquik.testutil.TypicalStudents.ALICE;
+import static seedu.modquik.testutil.TypicalStudents.HOON;
+import static seedu.modquik.testutil.TypicalStudents.IDA;
+import static seedu.modquik.testutil.TypicalStudents.getTypicalModQuik;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -72,14 +72,14 @@ public class JsonModQuikStorageTest {
         assertEquals(original, new ModQuik(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
+        original.addStudent(HOON);
+        original.removeStudent(ALICE);
         jsonModQuikStorage.saveModQuik(original, filePath);
         readBack = jsonModQuikStorage.readModQuik(filePath).get();
         assertEquals(original, new ModQuik(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addStudent(IDA);
         jsonModQuikStorage.saveModQuik(original); // file path not specified
         readBack = jsonModQuikStorage.readModQuik().get(); // file path not specified
         assertEquals(original, new ModQuik(readBack));

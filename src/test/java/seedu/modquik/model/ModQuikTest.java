@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.modquik.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.modquik.testutil.Assert.assertThrows;
-import static seedu.modquik.testutil.TypicalPersons.ALICE;
-import static seedu.modquik.testutil.TypicalPersons.getTypicalModQuik;
+import static seedu.modquik.testutil.TypicalStudents.ALICE;
+import static seedu.modquik.testutil.TypicalStudents.getTypicalModQuik;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -20,9 +20,9 @@ import javafx.collections.ObservableList;
 import seedu.modquik.model.consultation.Consultation;
 import seedu.modquik.model.reminder.Reminder;
 import seedu.modquik.model.student.Student;
-import seedu.modquik.model.student.exceptions.DuplicatePersonException;
+import seedu.modquik.model.student.exceptions.DuplicateStudentException;
 import seedu.modquik.model.tutorial.Tutorial;
-import seedu.modquik.testutil.PersonBuilder;
+import seedu.modquik.testutil.StudentBuilder;
 
 public class ModQuikTest {
 
@@ -46,38 +46,38 @@ public class ModQuikTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+    public void resetData_withDuplicateStudents_throwsDuplicateStudentException() {
         // Two persons with the same identity fields
-        Student editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+        Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
         ModQuikStub newData = new ModQuikStub(newStudents);
 
-        assertThrows(DuplicatePersonException.class, () -> modQuik.resetData(newData));
+        assertThrows(DuplicateStudentException.class, () -> modQuik.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modQuik.hasPerson(null));
+    public void hasStudent_nullStudent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modQuik.hasStudent(null));
     }
 
     @Test
-    public void hasPerson_personNotInModQuik_returnsFalse() {
-        assertFalse(modQuik.hasPerson(ALICE));
+    public void hasStudent_studentNotInModQuik_returnsFalse() {
+        assertFalse(modQuik.hasStudent(ALICE));
     }
 
     @Test
-    public void hasPerson_personInModQuik_returnsTrue() {
-        modQuik.addPerson(ALICE);
-        assertTrue(modQuik.hasPerson(ALICE));
+    public void hasStudent_studentInModQuik_returnsTrue() {
+        modQuik.addStudent(ALICE);
+        assertTrue(modQuik.hasStudent(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInModQuik_returnsTrue() {
-        modQuik.addPerson(ALICE);
-        Student editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
+    public void hasStudent_studentWithSameIdentityFieldsInModQuik_returnsTrue() {
+        modQuik.addStudent(ALICE);
+        Student editedAlice = new StudentBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(modQuik.hasPerson(editedAlice));
+        assertTrue(modQuik.hasStudent(editedAlice));
     }
 
     @Test
