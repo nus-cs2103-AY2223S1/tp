@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -16,6 +17,7 @@ public class BillDate {
             "Bill date should be like 'yyyy-MM-dd'";
 
     public final LocalDate localDate;
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     /**
      * Constructs a {@code Slot}.
@@ -25,16 +27,16 @@ public class BillDate {
     public BillDate(String date) {
         requireNonNull(date);
         checkArgument(isValidBillDate(date), MESSAGE_CONSTRAINTS);
-        this.localDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        this.localDate = LocalDate.parse(date, FORMATTER);
     }
 
     /**
      * Returns true if a given string is a valid date.
      */
-    public static boolean isValidBillDate(String test) {
+    public static boolean isValidBillDate(String input) {
         try {
-            LocalDate.parse(test, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            return true;
+            LocalDate test = LocalDate.parse(input, FORMATTER);
+            return test.format(FORMATTER).equals(input);
         } catch (DateTimeParseException e) {
             return false;
         }
@@ -42,7 +44,7 @@ public class BillDate {
 
     @Override
     public String toString() {
-        return localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        return localDate.format(FORMATTER);
     }
 
     @Override
