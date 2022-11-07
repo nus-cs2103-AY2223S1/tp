@@ -746,7 +746,7 @@ testers are expected to do more *exploratory* testing.
    a. Prerequisites: List all students using the `list` command. Multiple students in the list.<br><br>
 
    b. Test case: `delete 1`<br>
-   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+   Expected: First student is deleted from the list. Details of the deleted student shown in the status message.
    Timestamp in the status bar is updated.<br><br>
 
    c. Test case: `delete 0`<br>
@@ -754,6 +754,61 @@ testers are expected to do more *exploratory* testing.
 
    d. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
    Expected: Similar to previous.<br><br>
+
+## Marking Attendance
+
+1. Marking a student's attendance
+
+   a. Prerequisites: List all students using the `list` command. Multiple students in the list.<br><br>
+
+   b. Test case: `mark 1 present c/T05`<br>
+   Expected: First student has attendance marked as present. Details of the updated student shown in the status message.
+   Student Card of the first student is updated with new green label containing "T05" in the attendances list.<br><br>
+
+   c. Test case: `mark 2 absent c/T03`<br>
+   Suppose there are at least two students in the list. <br/>
+   Expected: Second student has attendance marked as absent. Details of the updated student shown in the status message.
+   Student Card of the second student is updated with new red label containing "T03" in the attendances list.<br><br>
+
+   d. Test case: `mark all present c/T01`<br>
+   Expected: All students have attendance marked as present. Details of the updated students shown in the status message.
+   Student Cards of all students are updated with new green label containing "T01" in the attendances list.<br><br>
+
+## Unmarking Attendance
+
+1. Unmarking a student's attendance
+
+   a. Prerequisites: List all students using the `list` command. Multiple students in the list.<br><br>
+
+   b. Test case: `unmark 1 c/T05`<br>
+   Suppose the first student has class `T05` recorded. <br/>
+   Expected: First student has attendance record for class `T05` removed. Details of the updated student shown in the status message.
+   Student Card of the first student is updated.<br><br>
+
+   b. Test case: `unmark 2 c/T05`<br>
+   Suppose the second student does not have class `T05` recorded. <br/>
+   Expected: Nothing is changed. Message that second student does not have class `T05` is displayed.<br><br>
+
+## Importing File
+
+1. Importing a student's attendance
+
+   a. Prerequisites: A valid CSV file is available [here](files/example_template.csv), an invalid CSV 
+   file is available [here](files/header_size_6.csv), and a partially working CSV file is available [here](files/example_template_errors.csv)
+
+   b. Test case: `import`<br>
+   Suppose a valid CSV file with properly formatted users is selected. <br/>
+   Expected: All students are successfully imported into StudMap, and displayed in the student list, 
+   barring duplicates.<br><br>
+
+   c. Test case: `import`<br>
+   Suppose a CSV file with improperly formatted users is selected. <br/>
+   Expected: Students with proper data are successfully imported into StudMap, and displayed in the student list.
+   Students with invalid data are not imported, with details about the specific issues displayed in the status message.<br><br>
+
+   d. Test case: `import`<br>
+   Suppose a CSV file with improper format is selected. <br/>
+   Expected: Nothing happens. StudMap displays an error in the status message.<br><br>
 
 ---
 
