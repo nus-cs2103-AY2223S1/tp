@@ -94,7 +94,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/diagrams/ArchitectureDiagram.png" width="280" />
+<img src="images/diagrams/ArchitectureDiagram.png" class="centerImage" width="280" /><br>
 
 The **_Architecture Diagram_** given above explains the high-level design of the App.
 
@@ -120,7 +120,7 @@ The rest of the App consists of four components.
 
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/diagrams/DeleteCommandUML.png" width="574" />
+<img class="centerImage" src="images/diagrams/DeleteCommandUML.png" width="574" /><br>
 
 Each of the four main components (also shown in the diagram above),
 
@@ -129,7 +129,7 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/diagrams/ComponentManagers.png" width="300" />
+<img class="centerImage" src="images/diagrams/ComponentManagers.png" width="300" /><br>
 
 The sections below give more details of each component.
 
@@ -156,7 +156,7 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/diagrams/LogicClassDiagram.png" width="550"/>
+<img class="centerImage" src="images/diagrams/LogicClassDiagram.png" width="550"/><br>
 
 How the `Logic` component works:
 
@@ -174,7 +174,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/diagrams/ParserClasses.png" width="600"/>
+<img class="centerImage" src="images/diagrams/ParserClasses.png" width="600"/><br>
 
 How the parsing works:
 
@@ -185,7 +185,7 @@ How the parsing works:
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/coydir/model/Model.java)
 
-<img src="images/diagrams/ModelClassDiagram.png" width="850" />
+<img class="centerImage" src="images/diagrams/ModelClassDiagram.png" width="850" /><br>
 
 The `Model` component,
 
@@ -198,7 +198,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/coydir/storage/Storage.java)
 
-<img src="images/diagrams/StorageClassDiagram.png" width="450"/>
+<img class="centerImage" src="images/diagrams/StorageClassDiagram.png" width="450"/><br>
 
 The `Storage` component,
 
@@ -224,7 +224,7 @@ This section explains the implementation of the `add` feature. The command takes
 
 Below is a sequence diagram and explanation of how `add` is executed.
 
-<img src="images/diagrams/AddCommandUML.png" />
+<img class="centerImage" src="images/diagrams/AddCommandUML.png" /><br>
 
 Step 1. The user enters the command `add n/Jon j/janitor`.
 
@@ -244,7 +244,7 @@ This section explains the implementation of the `delete` feature. The command ta
 
 Below is a sequence diagram and explanation of how `delete` is executed.
 
-<img src="images/diagrams/DeleteCommandUML.png" width="550" />
+<img class="centerImage" src="images/diagrams/DeleteCommandUML.png" width="550" /><br>
 
 Step 1. The user enters the command `delete 1`.
 
@@ -273,7 +273,7 @@ The `find` command updates the model's filtered persons list based on the search
 
 Below is a sequence diagram and explanation of how `find` is executed. In this simple example, we will look at the command `find n/Alex`.
 
-<img src="images/diagrams/FindCommandUML.png" />
+<img class="centerImage" src="images/diagrams/FindCommandUML.png" /><br>
 
 Step 1. The user enters the command `find n/Alex`.
 
@@ -291,7 +291,7 @@ This section explains the implementation of the `view` feature. The command take
 
 Below is a sequence diagram and explanation of how `view` is executed.
 
-<img src="images/diagrams/ViewCommandUML.png" width="550" />
+<img class="centerImage" src="images/diagrams/ViewCommandUML.png" width="550" /><br>
 
 Step 1. The use enters the command `view 1`.
 
@@ -315,7 +315,7 @@ When a valid input is given, the `rate` command will add the given rating to the
 
 Below is a sequence diagram and explanation of how `rate` is executed. In this example, we will look at the command `rate id/1 r/3`.
 
-<img src="images/diagrams/RateCommandUML.png" />
+<img class="centerImage" src="images/diagrams/RateCommandUML.png" /><br>
 
 Step 1. The user enters the command "rate id/1 r/3".
 
@@ -340,12 +340,12 @@ The command takes in 3 parameters: employee ID, start date of leave, and end dat
 
 When a valid input is given, the `add-leave` command will add the given leave period to the employee of the given ID.
 
-- On the UI, the leave period will be added to the leave table shown in the employee profile at the side panel. 
+- On the UI, the leave period will be added to the leave table shown in the employee profile at the side panel.
 - The "Leaves-Left" field will also be updated accordingly, which is the deduction of the number of days which the new leave spans, from its previous value.
 
 Below is a sequence diagram and explanation of how `add-leave` is executed. In this example, we will look at the command `add-leave id/1 sd/01-01-2022 ed/01-01-2022`.
 
-<img src="images/diagrams/AddLeaveCommandUML.png" />
+<img class="centerImage" src="images/diagrams/AddLeaveCommandUML.png" /><br>
 
 Step 1. The user enters the command "add-leave id/1 sd/01-01-2022 ed/01-01-2022".
 
@@ -370,12 +370,12 @@ The command takes in 2 parameters: employee ID, and the one-based index of leave
 
 When a valid input is given, the `delete-leave` command will delete the given leave period of the employee of the given ID.
 
-- On the UI, the leave period will be removed from the leave table shown in the employee profile at the side panel. 
+- On the UI, the leave period will be removed from the leave table shown in the employee profile at the side panel.
 - The "Leaves-Left" field will also be updated accordingly, which is the addition of its previous value and the number of days which the deleted leave spans.
 
 Below is a sequence diagram and explanation of how `delete-leave` is executed. In this example, we will look at the command `delete-leave id/1 i/1`.
 
-<img src="images/diagrams/DeleteLeaveCommandUML.png" />
+<img class="centerImage" src="images/diagrams/DeleteLeaveCommandUML.png" /><br>
 
 Step 1. The user enters the command "delete-leave id/1 i/1".
 
@@ -420,14 +420,14 @@ UML Diagram:
 
 **Step 2**: User executes `batch-add filename` command. In the `LogicManager` class, the `DatabaseParser` method is called.
 This will return a new `BatchAddCommandParser` object and `parse` function is then called.
-A helper function in `ParserUtil` helps to trim the filename and check if it is valid. 
+A helper function in `ParserUtil` helps to trim the filename and check if it is valid.
 
 Note: If no argument is provided or file not in CSV format, a`ParseException` will be thrown.
 
 **Step 3**: The `parse` function returns a `BatchAddCommand` which is then executed. In this `execute` function, the first
-step would be to read the information in the CSV file (`getInfo` function). A `BufferedReader` object is used to read the CSV file and converts 
-each row to a string of arguments (following the add command requirements) and creates a new `AddCommand`. These new `AddCommands` will be added 
-into a `List<AddCommand>`. 
+step would be to read the information in the CSV file (`getInfo` function). A `BufferedReader` object is used to read the CSV file and converts
+each row to a string of arguments (following the add command requirements) and creates a new `AddCommand`. These new `AddCommands` will be added
+into a `List<AddCommand>`.
 
 Note: If file does not exist in the folder, a `FileNotFound` exception is thrown too.
 
@@ -454,7 +454,7 @@ If there is any duplicate Person found, the function call will be aborted and th
   - Cons: If the user orders it wrongly, it will not work.
 - Alternative 2: Use the Header row to determine the data used.
   - Pros: No need to follow a specific ordering.
-  - Cons: Name of headers need to be the exact name used. 
+  - Cons: Name of headers need to be the exact name used.
 
 ---
 
@@ -490,45 +490,44 @@ Coydir enables the Company’s HR executive to quickly access the list of all em
 _Currently for Coydir v1.4_
 
 _Note_:
- **User** will refer to both HRE and HOD
+**User** will refer to both HRE and HOD
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                                            | So that I can…​                                                                                   |
-| ------ |--------------------------------------------|-------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
-| `* * *` | user                                       | add a new employee                                                      | keep the database updated with the employee list.                                                 |
-| `* * *` | user                                       | delete a employee                                                       | remove entries that I no longer need.                                                             |
-| `* * *` | user                                       | list people in the database                                             | keep track of who is in the company.                                                              |
-| `* * *` | user                                       | edit details of employees                                               | correct the details of the employees.                                                             |
-| `* * *` | user                                       | view the employee's email address                                       | contact them via email for work related updates.                                                  |
-| `* * *` | user                                       | view the employee's phone number                                        | contact them via phone for work related updates.                                                  |
-| `* * *` | user                                       | view the employee's address                                             | mail them relevant documents if need be.                                                          |
-| `* * *` | user                                       | view the employee's department                                          |                                                                                                   |
-| `* * *` | user                                       | view the employee's total number of leaves and number of leaves left    | track to make sure the leave requests from the employees are valid.                               |
-| `* * *` | user                                       | view details of employees                                               | contact them if necessary.                                                                        |
-| `* * *` | user                                       | save my data                                                            | load the data I input previously.                                                                 |
-| `* * *` | user with many employees                   | find an employee                                                        | get all relevant information about a particular employee.                                         |
-| `* * *` | user                                       | find all employees in a specific department                             | see how many and who are in the specified department.                                             |
-| `* * *` | user                                       | find all employees in a specific position                               | see how many and who are in the specified position.                                               |
-| `* * *` | new user                                   | know what commands I can do                                             | fully maximise the application and use all of the features provided.                              |
-| `* * *` | user                                       | add multiple employees at once                                          | avoid wasting time adding employees one by one when multiple new employees have joined the company. |
-| `* * *` | user                                       | keep track of leaves taken so far                                       | track which days the employee has taken leave over the year for accountability purposes.          |
-| `* * *` | user                                       | see if an employee is on leave today                                    | choose whether to allocate work to him based on his availability.                                 |
-| `* * *` | user                                       | rate my employee based on their performance                             |                                                                                                   |
-| `* * *` | user                                       | view the previous ratings of an employee                                | observe the performance trend and make managerial level decisions.                                |
-| `* * *` | HOD                                        | have an overview of how many people in the department are on leave      | allocate manpower accordingly.                                                                    |
-| `* * *` | HOD                                        | have an overview of the ratings of my employees                         | reward high performers and identify poor performers.                                              |
-| `* * *` | user                                       | add leave amount to my employee                                         | carry over leave from last year.                                                                  |
-| `* *`  | user                                       | change colour and theme of the app                                      | use the app with my preferred mode (Dark or Light Mode).                                          |
-| `* *`  | HRE                                        | build an organisation chart                                             | view a high level overview of the company's organisation structure.                               |
-| `* *`  | HRE                                        | archive past employees                                                  | keep a copy of past data while keeping current interface clean and fast.                          |
-| `* *`  | user                                       | to undo my previous command                                             | revert mistakes if necessary.                                                                     |
-| `* * `  | user dealing with confidential information | have some form of authentication                                        | prevent confidential data from being leaked out.                                                  |
-| `* * `  | HRE                                        | keep track of monthly salary of my employees                            | know how much to pay them every month.                                                            |
-| `* * `  | HRE                                        | keep track what time the employees starts and end work                  | factor in overtime into their pay.                                                                |
-| `* * `  | HRE                                        | view the claims (transport claims, food claims etc) that employees make | compensate them back.                                                                             |
-| `* * `  | expert user                                | customizable shortcuts                                                  | run frequently used commands faster.                                                              |
-
+| Priority | As a …​                                    | I want to …​                                                            | So that I can…​                                                                                     |
+| -------- | ------------------------------------------ | ----------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `* * *`  | user                                       | add a new employee                                                      | keep the database updated with the employee list.                                                   |
+| `* * *`  | user                                       | delete a employee                                                       | remove entries that I no longer need.                                                               |
+| `* * *`  | user                                       | list people in the database                                             | keep track of who is in the company.                                                                |
+| `* * *`  | user                                       | edit details of employees                                               | correct the details of the employees.                                                               |
+| `* * *`  | user                                       | view the employee's email address                                       | contact them via email for work related updates.                                                    |
+| `* * *`  | user                                       | view the employee's phone number                                        | contact them via phone for work related updates.                                                    |
+| `* * *`  | user                                       | view the employee's address                                             | mail them relevant documents if need be.                                                            |
+| `* * *`  | user                                       | view the employee's department                                          |                                                                                                     |
+| `* * *`  | user                                       | view the employee's total number of leaves and number of leaves left    | track to make sure the leave requests from the employees are valid.                                 |
+| `* * *`  | user                                       | view details of employees                                               | contact them if necessary.                                                                          |
+| `* * *`  | user                                       | save my data                                                            | load the data I input previously.                                                                   |
+| `* * *`  | user with many employees                   | find an employee                                                        | get all relevant information about a particular employee.                                           |
+| `* * *`  | user                                       | find all employees in a specific department                             | see how many and who are in the specified department.                                               |
+| `* * *`  | user                                       | find all employees in a specific position                               | see how many and who are in the specified position.                                                 |
+| `* * *`  | new user                                   | know what commands I can do                                             | fully maximise the application and use all of the features provided.                                |
+| `* * *`  | user                                       | add multiple employees at once                                          | avoid wasting time adding employees one by one when multiple new employees have joined the company. |
+| `* * *`  | user                                       | keep track of leaves taken so far                                       | track which days the employee has taken leave over the year for accountability purposes.            |
+| `* * *`  | user                                       | see if an employee is on leave today                                    | choose whether to allocate work to him based on his availability.                                   |
+| `* * *`  | user                                       | rate my employee based on their performance                             |                                                                                                     |
+| `* * *`  | user                                       | view the previous ratings of an employee                                | observe the performance trend and make managerial level decisions.                                  |
+| `* * *`  | HOD                                        | have an overview of how many people in the department are on leave      | allocate manpower accordingly.                                                                      |
+| `* * *`  | HOD                                        | have an overview of the ratings of my employees                         | reward high performers and identify poor performers.                                                |
+| `* * *`  | user                                       | add leave amount to my employee                                         | carry over leave from last year.                                                                    |
+| `* *`    | user                                       | change colour and theme of the app                                      | use the app with my preferred mode (Dark or Light Mode).                                            |
+| `* *`    | HRE                                        | build an organisation chart                                             | view a high level overview of the company's organisation structure.                                 |
+| `* *`    | HRE                                        | archive past employees                                                  | keep a copy of past data while keeping current interface clean and fast.                            |
+| `* *`    | user                                       | to undo my previous command                                             | revert mistakes if necessary.                                                                       |
+| `* * `   | user dealing with confidential information | have some form of authentication                                        | prevent confidential data from being leaked out.                                                    |
+| `* * `   | HRE                                        | keep track of monthly salary of my employees                            | know how much to pay them every month.                                                              |
+| `* * `   | HRE                                        | keep track what time the employees starts and end work                  | factor in overtime into their pay.                                                                  |
+| `* * `   | HRE                                        | view the claims (transport claims, food claims etc) that employees make | compensate them back.                                                                               |
+| `* * `   | expert user                                | customizable shortcuts                                                  | run frequently used commands faster.                                                                |
 
 ### Use cases
 
@@ -581,7 +580,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 3a. The given index is invalid.
 
   - 3a1. Coydir shows an error message.
-  
+
     Use case resumes at step 2.
 
 - 3b. The edited fields from the user is not in the correct format.
@@ -589,13 +588,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   - 3b1. Coydir shows an error message informing user which field has invalid input and why it is invalid.
 
     Use case resumes at step 2.
-  
+
 - 3c. Fields are empty.
 
   - 3c1. Coydir shows an error message .
 
     Use case resumes at step 2.
-
 
 **Use case: UC03 - Find details of an employee**
 
@@ -617,7 +615,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 - 2b. The fields in the query are not in the correct format.
 
   - 2b1. Coydir shows error message informing user which field has invalid input and why it is invalid.
-  
+
   Use case ends.
 
 **Use case: UC04 - View details of an employee**
@@ -635,16 +633,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - 2a. The list is empty.
 
-    - 2a1. Coydir shows an error message.
+  - 2a1. Coydir shows an error message.
 
-      Use case ends.
+    Use case ends.
 
 - 4a. The given index is invalid.
 
   - 4a1. Coydir shows an error message.
 
     Use case ends.
-  
+
 **Use case: UC05 - Batch-Add multiple employees**
 
 Preconditions: `.csv` file with the data you want to import needs to be in `/data` folder.
@@ -661,30 +659,31 @@ Use case ends.
 - 2a. No file found.
 
   - 2a1. Coydir shows an error message stating that no file is found.
-  
+
     Use case ends.
 
 - 2b. File found but not CSV format.
 
   - 2b1. Coydir shows an error message.
 
-      Use case ends.
+    Use case ends.
 
 - 2c. Compulsory fields (Name, Department, Position) in the `.csv` are missing.
 
   - 2c1. Coydir shows an error message.
-    
+
     Use case ends.
 
 - 2d. Fields in the `.csv` are not in the correct format.
 
-    - 2d1. Coydir shows an error message.
+  - 2d1. Coydir shows an error message.
 
-      Use case ends.
+    Use case ends.
 
 **Use case: UC06 - Allocate leave to employee**
 
 **MSS**
+
 1. User requests to list employees.
 2. Coydir shows a list of employees.
 3. User requests to add leave to specified employee and includes duration.
@@ -692,74 +691,78 @@ Use case ends.
 5. Coydir shows the updated details of the employee.
 
 **Extensions**
+
 - 2a. The list is empty.
 
-    - 2a1. Coydir shows an error message.
+  - 2a1. Coydir shows an error message.
 
-      Use case ends.
+    Use case ends.
 
 - 3a. The given ID of employee is invalid.
 
-    - 3a1. Coydir shows an error message.
+  - 3a1. Coydir shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
 
 - 3b. Date provided by user is invalid.
 
-    - 3b1. Coydir shows an error message.
+  - 3b1. Coydir shows an error message.
 
-      Use case resumes at step 2.
-  
+    Use case resumes at step 2.
+
 - 3c. Date provided by user is overlaps with leave that the employee already has.
 
-    - 3c1. Coydir shows an error message.
+  - 3c1. Coydir shows an error message.
 
-      Use case resumes at step 2.
-  
+    Use case resumes at step 2.
+
 - 3d. Start Date provided by user after End Date provided by user.
 
-    - 3d1. Coydir shows an error message.
+  - 3d1. Coydir shows an error message.
 
-      Use case resumes at step 2.
-  
+    Use case resumes at step 2.
+
 - 3e. Date provided by user in the wrong format
 
-    - 3e1. Coydir shows an error message.
+  - 3e1. Coydir shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
 
 **Use case: UC07 - Delete leave from employee**
 
 **MSS**
+
 1. User requests to list employees.
 2. Coydir shows a list of employees.
-3. User requests to view details of specified employee (UC04). 
+3. User requests to view details of specified employee (UC04).
 4. Coydir shows details of specified employee.
 5. User requests to delete leave from employee indicating index of leave to delete.
 6. Coydir shows updated leave of employee.
 
 **Extensions**
+
 - 2a. The list is empty.
 
-    - 2a1. Coydir shows an error message.
+  - 2a1. Coydir shows an error message.
 
-      Use case ends.
+    Use case ends.
 
 - 4a. Index to view employee is invalid.
 
   - 4a1. Coydir shows an error message.
-  
+
     Use case ends.
-  
+
 - 6a. Index to delete leave is invalid.
 
   - 6a1. Coydir shows an error message.
-  
+
     Use case ends.
 
 **Use case: UC08 - Add/Delete leave amount to employee**
 
 **MSS**
+
 1. User requests to list employees.
 2. Coydir shows a list of employees.
 3. User requests to edit details of specified employee to the updated leave (UC02).
@@ -767,34 +770,38 @@ Use case ends.
 5. Coydir shows updated leave amount of employee
 
 **Extensions**
+
 - 2a. The list is empty.
 
-    - 2a1. Coydir shows an error message.
+  - 2a1. Coydir shows an error message.
 
-      Use case ends.
+    Use case ends.
 
 - 3a. The given index to edit employee is invalid.
 
   - 3a1. Coydir shows an error message.
 
     Use case resumes at step 2.
-  
+
 - 3b. Leave inputted by User is in the wrong format.
 
-    - 3b1. Coydir shows an error message.
+  - 3b1. Coydir shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
 
 **Use case: UC09 - View details of department**
 
 **MSS**
+
 1. User requests to view details of department.
 2. Coydir shows details of requested department.
 
 **Extensions**
+
 - 2a. Department does not exist.
+
   - 2a1. Coydir shows an error message.
-  
+
   Use case ends.
 
 **Use case: UC10 - Rate the performance of an employee**
@@ -809,12 +816,13 @@ Use case ends.
 6. Coydir shows updated performance of employee.
 
 **Extensions**
+
 - 2a. The list is empty.
 
   - 2a1. Coydir shows an error message.
 
     Use case ends.
-  
+
 - 4a. Index to view employee is invalid.
 
   - 4a1. Coydir shows an error message.
@@ -824,7 +832,7 @@ Use case ends.
 - 6a. Index to rate is invalid.
 
   - 6a1. Coydir shows an error message.
-   
+
     Use case ends.
 
 - 6b. Rating input is invalid.
@@ -1140,7 +1148,7 @@ You can do this by exiting the app, deleting whatever data file you currently ha
    2. **Follow-up Test Case**: `edit 1 d/Technology`<br>
       **Expected Outcome**: The right panel updates to show that Roy is now in the "Technology" department.
 
-   2. **Follow-up Test Case**: `edit 1 d/Sales`<br>
+   3. **Follow-up Test Case**: `edit 1 d/Sales`<br>
       **Expected Outcome**: The left panel now displays nobody. The right panel shows the home panel. Upon entering `list` followed by `view 6`, observe that Roy's department is now "Sales".
 
 ### Adding employee leaves
@@ -1231,7 +1239,7 @@ For the following tests, ensure that there is at least 1 employee (who will be i
 Any department (that has at least 1 person) can be used, but for ease and simplicity, we will be using "Sales" in our examples, as it is has the fewest letters.
 
 1. Viewing the department overview
-   
+
    1. **Test Case**: `view-department Sales`<br>
       **Expected Outcome**: On the right panel, the department name ("Sales") is shown.
       Other information includes number of employees (available, on leave), and ratings of all employees.
