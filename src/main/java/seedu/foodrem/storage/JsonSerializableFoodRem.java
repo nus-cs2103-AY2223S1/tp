@@ -19,7 +19,6 @@ import seedu.foodrem.model.tag.Tag;
 @JsonRootName(value = "foodrem")
 class JsonSerializableFoodRem {
     public static final String MESSAGE_DUPLICATE_ITEMS = "Items list contains duplicate item(s).";
-    public static final String MESSAGE_DUPLICATE_TAGS = "Tag list contains duplicate tag(s).";
 
     private final List<JsonAdaptedItem> items = new ArrayList<>();
     private final List<JsonAdaptedTag> tagList = new ArrayList<>();
