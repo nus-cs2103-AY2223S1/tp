@@ -156,6 +156,8 @@ The parameters required for each command can be found in [Command Summary](#9-co
 
 * `INDEX` is used in commands to refer to a specific contact or todo by their index number on the currently displayed list. The `INDEX` **must be a positive non-zero integer** 1, 2, 3, …​ <a id="command-format-index"></a>
 
+</div>
+
 ### 6.4. How to Use the CLI
 
 If you already know about [Command Line Interface (CLI)](#CLI), you can skip this part and read the [Commands](#7-commands).
