@@ -38,7 +38,7 @@ management tasks done faster than traditional GUI apps. Given below are my contr
     * Justification: To allow user to easily access more details about the internship, if there is any.
     * Highlights: This addition affects existing commands and many test cases needed to be changed.
 * **New Feature**: Added keyboard shortcuts for the help window
-    * What it does: allow user to close the help window and copy the user guide url link without any mouse usage
+    * What it does: allows the user to close the help window and copy the user guide url link without any mouse usage
     (Pull request [\#141](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/141)).
     * Justification: As an app that is optimized for use via CLI, we strive to minimize the need of a mouse to reduce the 
   number of switches between keyboard and mouse.

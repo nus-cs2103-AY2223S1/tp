@@ -127,7 +127,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `InternshipListPanel`, `ReminderBarFooter`, `ViewCommandPanel`, `StackedBarPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W17-4/tp/tree/master/src/main/java/seedu/phu/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W17-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W17-4/tp/tree/master/src/main/java/seedu/phu/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W17-4/tp/tree/master/src/main/resources/view/MainWindow.fxml).
 
 The `UI` component,
 
@@ -180,7 +180,7 @@ The `Model` component,
 * stores the internship book data i.e., all `Internship` objects (which are contained in a `UniqueInternshipList` object).
 * stores the currently 'selected' `Internship` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Internship>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `InternshipBook`, which `Internship` references. This allows `InternshipBook` to only require one `Tag` object per unique tag, instead of each `Internship` needing their own `Tag` objects.<br>
 
@@ -199,7 +199,7 @@ The `Model` component,
 The `Storage` component,
 * can save both internship book data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `InternshipBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Common classes
 
@@ -605,7 +605,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Basic user      | Know the contact of the HR                                                | Discuss the next step needed to be done          |
 | `* * *`  | Basic user      | Sort my internship list by date                                           | View the upcoming internship matters to prepare  |
 | `* *  `  | First-time user | Have a link to the demo video                                             | Learn how to use the app                         |
-| `* *  `  | First-time user | See a help message explaining which features I should try first           | Learn the basic features of the application      |
+| `* *  `  | First-time user | See a help message with command summary and link to the user guide        | Learn the basic features of the application      |
 | `* * *`  | First-time user | See some sample internships when I open the app                           | Understand how the app works                     |
 | `*  `    | Forgetful user  | Get reminder                                                              |                                                  |
 | `*   `   | Advanced user   | Use a shortcut to do commands                                             | Work more efficiently                            |
@@ -651,15 +651,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list internships
-2. System shows a list of internships
+1. User requests to list internships.
+2. System shows a list of internships.
 
    Use case ends.
 
 **Extensions**
-* 1a. No category is given
+* 1a. No category is given.
 
-    * 1a1. System shows the full list of internships
+    * 1a1. System shows the full list of internships.
 
   Use case ends.
 
@@ -675,8 +675,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to delete specific internship(s) in the list
-2. PleaseHireUs deletes the internship(s)
+1. User requests to delete specific internship(s) in the list.
+2. PleaseHireUs deletes the internship(s).
 
    Use case ends.
 
@@ -708,24 +708,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to filter internships by category and keywords(s)
-2. PleaseHireUs shows a list of internships filtered by corresponding categories and keywords
+1. User requests to filter internships by category and keywords(s).
+2. PleaseHireUs shows a list of internships filtered by corresponding categories and keywords.
 
     Use case ends.
 
 **Extensions**
-* 1a. No keywords are given
+* 1a. No keywords are given.
     * 1a1. PleaseHireUs shows an error message.
     
   Use case ends.
 
 
-* 1c. No category is given
-  * 1c1. The category is set to default category
-  * 1c2. Continue from 2
+* 1c. No category is given.
+  * 1c1. The category is set to default category.
+  * 1c2. Continue from 2.
 
 
-* 1d. category is date with one of the keywords being an invalid date
+* 1d. category is date with one of the keywords being an invalid date.
   * 1d1. PleaseHireUse shows an error message. 
 
 
@@ -738,20 +738,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Update internship**
 
 **MSS**
-1. User requests to edit the internship at specified index and parameters 
+1. User requests to edit the internship at specified index and parameters.
 2. System updates the selected internship application details.
-3. System displays the success message
+3. System displays the success message.
 
-   Use case ends
+   Use case ends.
 
 **Extensions**
-* 1a. No index is given
+* 1a. No index is given.
     * 1a1. PleaseHireUs shows an error message. 
 
   Use case ends.
 
 
-* 1b. The given index is invalid
+* 1b. The given index is invalid.
   * 1b1. PleaseHireUs shows an error message.
   
   Use case ends.
@@ -784,14 +784,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Undo command**
 
 **MSS**
-1. User requests to undo
-2. System updates the internship book to the previous state
-3. System displays the success message
+1. User requests to undo.
+2. System updates the internship book to the previous state.
+3. System displays the success message.
 
-   Use case ends
+   Use case ends.
 
 **Extensions**
-* 1a. No command to be undone 
+* 1a. No command to be undone. 
     * 1a1. PleaseHireUs shows an error message.
 
   Use case ends.
@@ -801,14 +801,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Redo command**
 
 **MSS**
-1. User requests to redo
-2. System updates the internship book to the next state
-3. System displays the success message
+1. User requests to redo.
+2. System updates the internship book to the next state.
+3. System displays the success message.
 
-   Use case ends
+   Use case ends.
 
 **Extensions**
-* 1a. No command to be redone
+* 1a. No command to be redone.
     * 1a1. PleaseHireUs shows an error message.
 
   Use case ends.
