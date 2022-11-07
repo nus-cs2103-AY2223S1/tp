@@ -1,0 +1,20 @@
+{
+  "students": [ {
+    "name" : "Alex Yeoh",
+    "telegram" : "@AlexYeoh",
+    "email" : "alexexamplecom",
+    "response" : "2",
+    "attendance" : "2",
+    "toHelp" : "true"
+  } ],
+  "questions" : [ {
+    "description" : "",
+    "isImportant" : "false"
+  } ],
+  "tutorials" : [ {
+    "group" : "T08",
+    "content" : "UML Diagrams",
+    "time" : "2022-10-01 0800",
+    "status" : false
+  } ]
+}

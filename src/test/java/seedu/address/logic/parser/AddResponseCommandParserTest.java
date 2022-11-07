@@ -26,4 +26,15 @@ public class AddResponseCommandParserTest {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AddResponseCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_missingPrefix_throwsParseException() {
+        assertParseFailure(parser, "1", AddResponseCommand.MESSAGE_MISSING_PREFIX);
+    }
+
+    @Test
+    public void parse_invalidIndexAndMissingPrefix_throwsParseException() {
+        assertParseFailure(parser, "-1", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            AddResponseCommand.MESSAGE_USAGE));
+    }
 }

@@ -1,0 +1,32 @@
+{
+  "students": [ {
+    "name": "Alice Pauline",
+    "telegram": "@AlicePauline",
+    "email": "alice@example.com",
+    "response": "2",
+    "attendance": "1",
+    "toHelp": "false"
+  }, {
+    "name": "Alice Pauline",
+    "telegram": "@AlicePauline",
+    "email": "alice@example.com",
+    "response": "2",
+    "attendance": "1",
+    "toHelp": "false"
+  } ],
+  "questions" : [ {
+    "description" : "What's the difference between composition and aggregation?",
+    "isImportant" : "false"
+  } ],
+  "tutorials" : [ {
+    "group" : "T08",
+    "content" : "UML Diagrams",
+    "time" : "2022-10-01 0800",
+    "status" : false
+  }, {
+    "group" : "T08",
+    "content" : "UML Diagrams",
+    "time" : "2022-10-01 0800",
+    "status" : false
+  } ]
+}

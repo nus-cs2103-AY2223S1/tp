@@ -22,4 +22,10 @@ public class UnmarkTutorialCommandParserTest {
         assertParseFailure(parser, "abc", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 UnmarkTutorialCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_invalidArgs2_throwsParseException() {
+        assertParseFailure(parser, "abc1", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            UnmarkTutorialCommand.MESSAGE_USAGE));
+    }
 }

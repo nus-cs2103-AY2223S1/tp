@@ -30,7 +30,7 @@ public class AttendanceCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "Example: " + COMMAND_WORD + " 2";
 
-    public static final String MESSAGE_ATTENDANCE_SUCCESS = "%1$s's attendance is marked!";
+    public static final String MESSAGE_ATTENDANCE_SUCCESS = "Attendance marked for:\n%1$s";
 
     private final Index index;
 

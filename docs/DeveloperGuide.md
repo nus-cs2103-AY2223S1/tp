@@ -2,13 +2,13 @@
 layout: page title: Developer Guide
 ---
 
-* Table of Contents
-    * **[Acknowledgements](#acknowledgements)**
-    * **[Setting up, getting started](#setting-up-getting-started)**
-    * **[Design](#design)**
-    * **[Implementation](#implementation)**
-    * **[Appendix: Requirements](#appendix-requirements)**
-    * **[Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)**
+* Table of Contents 
+  * **[Acknowledgements](#acknowledgements)**
+  * **[Setting up, getting started](#setting-up-getting-started)**
+  * **[Design](#design)** 
+  * **[Implementation](#implementation)**
+  * **[Appendix: Requirements](#appendix-requirements)**
+  * **[Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)**
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -491,10 +491,10 @@ otherwise)
 
 * 1a. SETA detects an error in the entered data.
     * 1a1. SETA requests for the correct data.
-    * 1a2. User enters new data.
-
+    * 1a2. User enters new data. 
+    
       Steps 1a1-1a2 are repeated until the data entered are correct.
-
+  
       Use case resumes from step 2.
 
 ****
@@ -623,9 +623,9 @@ otherwise)
 **Extensions**
 
 * 1a. Student does not exist.
-    * 1a1. SETA shows an error message.
+  * 1a1. SETA shows an error message.
 
-      Use case ends.
+    Use case ends.
 
 ****
 
@@ -842,35 +842,34 @@ exploratory* testing.
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
     2. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
+        Expected: The most recent window size and location is retained.
 
 ## Student class tests
 
 ### Adding a student
 1. Adding a student while all students are being shown.
 
-    1. Prerequisites: List all students using the `liststu` command. Multiple students in the
-       list.
-    2. Test case: `addstu n/John Lim Jun Jie h/@johnlimjj e/johnlim@example.com` <br>
-       Expected: Student with the relevant details added into the list. Details of the added student shown in the status
-       message.
-    3. Test case: `addstu` <br>
-       Expected: No student added. Error details shown in the status message. Status bar remains the same.
-    4. Other incorrect addstu commands to try: `addstu n/John Lim Jun Jie`,
-       `addstu n/John Lim Jun Jie h/@johnlimjj e/johnlimexample.com`
-
+   1. Prerequisites: List all students using the `liststu` command. Multiple students in the
+      list.
+   2. Test case: `addstu n/John Lim Jun Jie h/@johnlimjj e/johnlim@example.com` <br>
+      Expected: Student with the relevant details added into the list. Details of the added student shown in the status
+      message.
+   3. Test case: `addstu` <br>
+      Expected: No student added. Error details shown in the status message. Status bar remains the same.
+   4. Other incorrect addstu commands to try: `addstu n/John Lim Jun Jie`, 
+      `addstu n/John Lim Jun Jie h/@johnlimjj e/johnlimexample.com`
+      
 ### Editing a student
 1. Editing a student while all students are being shown.
 
-    1. Prerequisites: List all students using the `liststu` command. Multiple students in the
-       list.
-    2. Test case: `editstu 1 n/Mary Doe` <br>
-       Expected: First student's name is edited to Mary Doe, rest of the details remain unedited. Details of edited student shown in the status message.
-    3. Test case: `editstu 1` <br>
-       Expected: No student is edited. Error details shown in the status message. Status bar remains the same.
-    4. Other incorrect editstu commands to try: `editstu`, `editstu -1` <br>
-       Expected: Similar to previous
+   1. Prerequisites: List all students using the `liststu` command. Multiple students in the
+      list.
+   2. Test case: `editstu 1 n/Mary Doe` <br>
+      Expected: First student's name is edited to Mary Doe, rest of the details remain unedited. Details of edited student shown in the status message. 
+   3. Test case: `editstu 1` <br>
+      Expected: No student is edited. Error details shown in the status message. Status bar remains the same.
+   4. Other incorrect editstu commands to try: `editstu`, `editstu -1` <br>
+      Expected: Similar to previous
 
 ### Deleting a student
 
@@ -889,15 +888,15 @@ exploratory* testing.
 
 1. Add on the attendance count for a student while all students are being shown.
 
-    1. Prerequisites: List all students using the `liststu` command. Multiple students in the list.
-    2. Test case: `attendance 1` <br>
-       Expected: First student's attendance count increases by 1. Details of the first student shown in the status message.
-    3. Test case: `attendance 0` <br>
-       Expected: No student's attendance increased. Error details shown in the status message. Status bar remains the same.
-    4. Other incorrect attendance commands to try: `attendance`, `attendance x` (where x is larger than list size) <br>
-       Expected: Similar to previous.
+   1. Prerequisites: List all students using the `liststu` command. Multiple students in the list.
+   2. Test case: `attendance 1` <br>
+      Expected: First student's attendance count increases by 1. Details of the first student shown in the status message.
+   3. Test case: `attendance 0` <br>
+      Expected: No student's attendance increased. Error details shown in the status message. Status bar remains the same.
+   4. Other incorrect attendance commands to try: `attendance`, `attendance x` (where x is larger than list size) <br>
+      Expected: Similar to previous.
 
-### Edit response count for a student
+### Edit response count for a student 
 
 1. Edit a response count for a student while all students are being shown.
 
@@ -927,19 +926,19 @@ exploratory* testing.
 ### Find a student
 1. Find a student while all students are being shown.
 
-    1. Prerequisites: List all students using the `liststu` command. Multiple students in list.
-    2. Test case: `findstu Bob` <br>
-       Expected: Students with names containing `Bob` will be listed. `findstu` is case-insensitive, so
-       students with the name `bob` or `bOB` will also be listed.
-    3. Test case: `findstu` <br>
-       Expected: No students shown on the list. Error details shown in status message. Status bar remains the same.
+   1. Prerequisites: List all students using the `liststu` command. Multiple students in list.
+   2. Test case: `findstu Bob` <br>
+      Expected: Students with names containing `Bob` will be listed. `findstu` is case-insensitive, so
+      students with the name `bob` or `bOB` will also be listed.
+   3. Test case: `findstu` <br>
+      Expected: No students shown on the list. Error details shown in status message. Status bar remains the same.
 
 ### Listing all students
 1. List all students in SETA.
 
-    1. Prerequisites: At least one or more students added into SETA.
-    2. Test case: `liststu` <br>
-       Expected: All students in SETA listed.
+   1. Prerequisites: At least one or more students added into SETA.
+   2. Test case: `liststu` <br>
+      Expected: All students in SETA listed.
 
 
 ## Question class tests
@@ -947,21 +946,21 @@ exploratory* testing.
 ### Adding a question
 1. Adding a Question while all questions are being shown.
 
-    1. Test case: `addq What are UML Diagrams?` <br>
+   1. Test case: `addq What are UML Diagrams?` <br>
        Expected: Question with the relevant details added into the list. Details of the added question shown in the status
        message.
-    2. Test case: `addq` <br>
-       Expected: No question added. Error details shown in the status message. Status bar remains the same.
+   2. Test case: `addq` <br>
+      Expected: No question added. Error details shown in the status message. Status bar remains the same.
 
 ### Deleting a question
 1. Deleting a question while all question are being shown.
 
-    1. Test case: `deleteq 1`<br>
+   1. Test case: `deleteq 1`<br>
        Expected: First question is deleted from the list. Details of the deleted question shown in the status message.
-    2. Test case: `deleteq 0`<br>
-       Expected: No question is deleted. Error details shown in the status message. Status bar remains the same.
-    3. Other incorrect deleteq commands to try: `deleteq`, `deleteq x` (where x is larger than the list size) <br>
-       Expected: Similar to previous.
+   2. Test case: `deleteq 0`<br>
+      Expected: No question is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Other incorrect deleteq commands to try: `deleteq`, `deleteq x` (where x is larger than the list size) <br>
+      Expected: Similar to previous.
 
 ### Marking a question as important
 1. Marking a question as important while all questions are being shown.
@@ -984,20 +983,20 @@ exploratory* testing.
        Expected: No question unmarked. Error details shown in status message. Status bar remains the same.
     4. Other incorrect unmarkq commands to try: `unmarkq`, `unmarkq x` (where x is larger than list size), `unmarkq -1` <br>
        Expected: Similar to previous
-
+      
 
 ## Tutorial class tests
 
 ### Adding a tutorial
 1. Adding a tutorial while all tutorials are shown.
 
-    1. Test case: `addtut g/T08 c/UML Diagram t/2022-10-01 0800` <br>
-       Expected: Tutorial with the relevant details added into the list. Details of the added tutorial shown in the status
-       message.
-    2. Test case: `addtut` <br>
-       Expected: No tutorial added. Error details shown in the status message. Status bar remains the same.
-    3. Other incorrect addtut commands to try: `addtut g/T08`,
-       `addtut g/T08 c/ t/2022-10-01 0800`
+   1. Test case: `addtut g/T08 c/UML Diagram t/2022-10-01 0800` <br>
+      Expected: Tutorial with the relevant details added into the list. Details of the added tutorial shown in the status
+      message.
+   2. Test case: `addtut` <br>
+      Expected: No tutorial added. Error details shown in the status message. Status bar remains the same.
+   3. Other incorrect addtut commands to try: `addtut g/T08`,
+      `addtut g/T08 c/ t/2022-10-01 0800`
 
 ### Deleting a tutorial
 1. Deleting a tutorial while all tutorials are shown.
@@ -1012,13 +1011,13 @@ exploratory* testing.
 ### Marking a tutorial as complete
 1. Marking a tutorial as complete while all tutorials are being shown.
 
-    1. Prerequisites: At least one tutorial in the tutorial list.
-    2. Test case: `marktut 1`<br>
-       Expected: First tutorial is marked on the list. Details of marked tutorial shown in the status message.
-    3. Test case: `marktut 0`<br>
-       Expected: No tutorial marked. Error details shown in status message. Status bar remains the same.
-    4. Other incorrect marktut commands to try: `marktut`, `marktut x` (where x is larger than list size), `marktut -1` <br>
-       Expected: Similar to previous
+   1. Prerequisites: At least one tutorial in the tutorial list.
+   2. Test case: `marktut 1`<br>
+      Expected: First tutorial is marked on the list. Details of marked tutorial shown in the status message.
+   3. Test case: `marktut 0`<br>
+      Expected: No tutorial marked. Error details shown in status message. Status bar remains the same.
+   4. Other incorrect marktut commands to try: `marktut`, `marktut x` (where x is larger than list size), `marktut -1` <br>
+      Expected: Similar to previous 
 
 
 ### Unmarking a tutorial as complete
@@ -1031,4 +1030,5 @@ exploratory* testing.
        Expected: No tutorial unmarked. Error details shown in status message. Status bar remains the same.
     4. Other incorrect unmarktut commands to try: `unmarktut`, `unmarktut x` (where x is larger than list size), `unmarktut -1` <br>
        Expected: Similar to previous 
+
 
