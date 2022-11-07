@@ -7,7 +7,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 This one-stop, convenient, and efficient platform empowers Internship Campus Recruiters to work with their applicants’ data. Say goodbye to opening multiple windows to retrieve the information you need and focus on what matters more: matching the right people for the right job.
 
-# Table of Contents
+## Table of Contents
 
 1. [Quick Start](#1-quick-start)
 2. [Fields](#2-fields)
@@ -31,7 +31,7 @@ This one-stop, convenient, and efficient platform empowers Internship Campus Rec
    14. [Editing the data file](#314-editing-the-data-file)
 4. [Command Summary](#4-command-summary)
 
---------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ## 1. Quick start
@@ -271,13 +271,13 @@ Search Types:
 | **Job ID**          | Substring                 |
 | **Job Title**       | Matching word             |
 | **Tag**             | Matching word             |
+
 Examples:
 * `find n/Bobby` Returns applicants with names matching `bobby` and `Bobby Cortez`
 * `find g/Female c/3.5 2` returns female applicants with a CAP value of `3.5` or `2.0`
 * `find g/Male t/offered KIV` returns male applicants who have an `offered` or `KIV` tag attached to them
 * `find g/Male e/gmail` returns male applicants who have a `gmail` substring in their email address
 
-<div style="page-break-after: always;"></div>
 
 ### 3.8 Importing applicants from an external JSON file: `import`
 
@@ -293,6 +293,8 @@ Format: `import FILE_PATH`
 Examples:
 * `import nus_students.json` Imports applicants listed in the `nus_students.json` file
 
+
+<div style="page-break-after: always;"></div>
 
 ### 3.9 Exporting displayed list: `export`
 
@@ -331,15 +333,20 @@ Clears all entries from the address book.
 Format: `clear`
 
 
+<div style="page-break-after: always;"></div>
+
+
 ### 3.12 Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
+
 ### 3.13 Saving the data
 
 InternConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
 
 ### 3.14 Editing the data file
 
@@ -350,8 +357,9 @@ InternConnect data are saved in the hard disk automatically after any command th
 If your changes to the data file makes its format invalid, InternConnect will discard all data and start with an empty data file at the next run.
 </div>
 
------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
+
 
 ## 4. Command summary
 

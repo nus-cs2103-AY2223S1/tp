@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 
-# Table of Contents
+## Table of Contents
 1. [Acknowledgements](#1-acknowledgements)
 2. [Setting up, getting started](#2-setting-up-getting-started)
 3. [Design](#3-design)
@@ -36,22 +36,23 @@ title: Developer Guide
    7. [Importing applicants from an external text file](#77-importing-applicants-from-an-external-json-file)
    8. [Exporting displayed list](#78-exporting-displayed-list-to-a-json-file)
    9. [Checkout a new or existing list](#79-checkout-a-new-or-existing-list)
-   10. [Saving data](#710-saving-data)
 
---------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 
 ## 1. Acknowledgements
 
 * Code base: [addressbook-level3](https://github.com/se-edu/addressbook-level3)
 
---------------------------------------------------------------------------------------------------------------------
 
 ## 2. Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
+
 
 ## 3. Design
 
@@ -151,6 +152,8 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
@@ -226,6 +229,10 @@ default list.
 
 ![CheckoutState0](images/CheckoutState0.png)
 
+
+<div style="page-break-after: always;"></div>
+
+
 Step 2. The user executes `checkout june-2022` command to load the JSON `june-2022.json` to the storage.
 The `checkout` command calls `CheckoutCommandParser#parse()`, which checks if the user input is valid, which in turn
 calls `CheckoutCommand#execute()` if it is valid. If the list does not exist in the `data` folder, the list be created
@@ -241,6 +248,10 @@ and populated with sample data. `Model` and `Storage` are then loaded with the s
 `CommandResult` to `Logic`.
 
 ![CheckoutState2](images/CheckoutState2.png)
+
+
+<div style="page-break-after: always;"></div>
+
 
 The following sequence diagram shows how the checkout operation works:
 
@@ -440,6 +451,10 @@ Given below is an example success scenario and how the `find` mechanism behaves 
 6. `FindCommand` combines the list of predicates into a single predicate, and calls `Model#updateFilteredPersonList(predicate)`.
 7. `FindCommand` updates the `displayedList` from `model` to display only the Applicants that match the predicate.
 
+
+<div style="page-break-after: always;"></div>
+
+
 The following sequence diagram shows how the `find` command works:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
@@ -490,7 +505,9 @@ The following sequence diagram shows how the `find` command works:
         * Limits User's freedom in how they want to search
         * Search type for the field may not be how the User wants to search
 
---------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 
 ## 5. Documentation, logging, testing, configuration, dev-ops
 
@@ -500,7 +517,9 @@ The following sequence diagram shows how the `find` command works:
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 
 ## 6. Appendix A: Requirements
 
@@ -521,8 +540,6 @@ a one-stop, convenient, and efficient platform to manage and empower
 how internship campus recruiters work with their applicants’ data.
 Say goodbye to opening multiple windows to retrieve the information you need and
 focus on what matters more: matching the right people for the right job.
-
-<div style="page-break-after: always;"></div>
 
 ### 6.2 User stories
 
@@ -545,6 +562,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                              | have multiple lists of applicant and checkout between them                     | work with different sets of data                                                                             |
 | `*`      | user                              | give customised tag to applicants                                              | label them accordingly                                                                                       |
 | `*`      | user                              | close the app                                                                  |                                                                                                              |
+
+
+<div style="page-break-after: always;"></div>
 
 
 ### 6.3 Use cases
@@ -590,6 +610,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. InternConnect shows an error message.
 
       Use case ends.
+
+
+<div style="page-break-after: always;"></div>
 
 
 **Use case: UC03 - Edit an applicant**
@@ -638,6 +661,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2e1. InternConnect shows an error message.
 
       Use case ends.
+
+
+<div style="page-break-after: always;"></div>
 
 
 **Use case: UC04 - Delete an applicant**
@@ -691,6 +717,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. InternConnect shows an error message.
 
       Use case ends.
+  
+
+<div style="page-break-after: always;"></div>
 
 * 2b. The given index is not a positive integer or is out of bounds.
 
@@ -746,6 +775,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 * 1b. The given file name does not exist, is invalid or is not a file in JSON format.
 
     * 1b1. InternConnect shows an error message.
@@ -795,6 +826,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 2.
 
+<div style="page-break-after: always;"></div>
+
+
 * 1c. The given file has invalid value, incorrect format, and/or duplicate applicants.
 
     * 1c1. InternConnect wipes all data from the file.
@@ -838,8 +872,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 10. The data should be stored locally and should be in a human editable text file.
 11. The GUI should work well (i.e., should not cause any resolution-related inconveniences to the user) for
     standard screen resolutions 1920x1080 and higher, and for screen scales 100% and 125%. 
-
-    In addition, the GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for
+12. In addition, the GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for
     resolutions 1280x720 and higher, and for screen scales 150%.
 
 ### 6.5 Glossary
@@ -852,7 +885,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Main Success Scenario (MSS)**: Describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong
 
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 
 ## 7. Appendix B: Instructions for manual testing
 
@@ -936,6 +970,9 @@ point for testers to work on; testers are expected to do more exploratory testin
    Expected: No applicant is viewed. Error details shown in the status message.
 
 
+<div style="page-break-after: always;"></div>
+
+
 ### 7.4 Editing an applicant
 
 1. Editing at least one parameter of an applicant on InternConnect
@@ -972,6 +1009,7 @@ point for testers to work on; testers are expected to do more exploratory testin
 3. Other incorrect `delete` commands to try: `delete`, `delete john`, `delete x`(where `x` is larger than the list size)<br>
    Expected: No applicant is deleted. Error details shown in the status message.
 
+<div style="page-break-after: always;"></div>
 
 ### 7.6 Locating applicants by field
 
@@ -1051,6 +1089,9 @@ point for testers to work on; testers are expected to do more exploratory testin
       **"persons"** and value is a non-empty array. Success message shown in the status message.
 
 
+<div style="page-break-after: always;"></div>
+
+
 ### 7.9 Checkout a new or existing list
 
 1. Checkout to an existing file with valid data and valid format.
@@ -1076,11 +1117,3 @@ point for testers to work on; testers are expected to do more exploratory testin
    2. Test case: `checkout FILE_NAME`
       Expected: The data in the file `FILE_NAME.json` located at `data/` folder is wiped. The application will not 
       contain any applicants. Success message shown in the status message.
-
-
-### 7.10 Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. If the data is missing/corrupted, InternConnect will start with an empty data file, replacing the corrupted data
-      with an empty one.
