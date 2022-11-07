@@ -110,7 +110,6 @@ Given below are my contributions to the project.
   * Suggestions were also made to strive and improve quality of product.
 
 -------------------
-[Link to section]()
 
 ## Contributions to the UG:
 1. Added section on `Introduction to SectresBook` (***not specific to feature***)
