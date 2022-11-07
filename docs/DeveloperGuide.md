@@ -283,9 +283,9 @@ For each of the student's previous assessments, perform the following procedure:
 
 1.1. Take the difficulty of the assessment, then apply the following formula:
 
-<div class="img-caption">
-1/(difficulty x learning rating)
-</div>
+
+`(difficulty x learning rating)`
+
 
 Let's call this number the **difficulty bonus**.
 
@@ -304,7 +304,7 @@ The GradePrediction command consists of these following classes:
 As with all other commands, the `PredictionCommand` command has a `Parser` subclass that goes through the `AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object. It opens a new GUI window to start the grading process
 
 The command will be used as such:
-- `predict n/NAME s/SUBJECT diff/DIFFICULTY`
+-`predict n/NAME s/SUBJECT diff/DIFFICULTY`
 - Words in `UPPER_CASE` are the inputs to be supplied by the user.
 
 The command works in the following steps:
@@ -324,13 +324,13 @@ The Attendance command consists of these following classes:
 As with all other commands, the `AttendanceCommand` command has a `Parser` subclass that goes through the `AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object. It marks the attendance of students from a specified `studentClass` on a given `Date`
 
 The command will be used as such:
-- `markAtt d/DATE c/STUDENTCLASS ind/INDEXES` eg. markAtt d/12-02-2023 c/1.2 ind/ 1 2 3 4
+- `markAtt d/DATE c/STUDENTCLASS ind/INDEXES` eg. markAtt d/12-02-2023 c/1.2 ind/1 2 3
 - Words in `UPPER_CASE` are the inputs to be supplied by the user.
 
 The command works in the following steps:
 1) Users enter the `AttendanceCommand` following the above specified format in the `CommandBox`, providing the `Date`, `StudentClass` and `Indexes` of students present
 2) `AttendanceCommandParser` will parse the `AttendanceCommand` to check whether the provided arguments are valid 
-3) For each `Student` in the specified `StudentClass`, the `updateAttendance` method is called to indicate whether the `Student` is present.
+3) For each `Student` in the specified `StudentClass`, the `updateAttendance` method in the `Attendance` class is called to update the model to indicate whether the `Student` is present.
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -736,6 +736,16 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect sort commands to try: `sort`, `sort asc`
        Expected: Similar to previous.
 
+### Marking attendace of students
+1. Marking attendance while all students are being shown
+
+    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+    2. Test case: `markAtt d/30-02-2023 c/1.2 ind/1 `<br>
+       Expected: Attendance of the first student provided in the example, Alex Yeoh will be marked
+    3. Test case: `markAtt d/30-02-2023 `<br>
+       Expected: No update in list.  Error details shown in the status message. Status bar remains the same.
+    4. Other incorrect sort commands to try: `markAtt`, `markAtt c/1.2`, `markAtt d/30-02-2023 c/1.2`
+       Expected: Similar to previous.
 ### Saving data
 
 1. Dealing with missing/corrupted data files
