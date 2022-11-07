@@ -28,6 +28,7 @@ Given below are my contributions to the project.
       bill amount, bill date and the payment status of the bill.
 
   * **Commands**
+    * Implemented class `CommandWord` to enable shortcuts for the long command words.
     * Added `AddAppointmentCommand` to add `Appointment` to the application.
     * Added `AddBillCommand` to add `Bill` to the application.
     * Added `EditAppointmentCommand` to modify the existing `Appointment` in the application.
