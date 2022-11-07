@@ -76,7 +76,7 @@ Commands have to be written in the correct format to be used. The format for eac
 
 3. Copy the file to the folder you want to use as the _home folder_ for JARVIS.
 
-4. Double-click the file to start the app. The GUI should appear in a few seconds. Notice how the app contains some sample data.
+4. Double-click the file to start the app. The GUI should appear in a few seconds. Set the app to fullscreen for a better view of the sample data.
 
    ![Ui](images/Ui.png)
 
