@@ -739,12 +739,12 @@ To check that your system has the correct Java version (Java 11 and above) to ru
 Open your terminal.
 * Windows
     * Use Win + S to open search.
-    * Type in 'Terminal' to open the terminal.
+    * Type in `Terminal` to open the terminal.
     * In your terminal, type in `java --version` and click enter.
 
 * macOS
     * Use Cmd + Space to open Spotlight search.
-    * Type in 'Terminal' to open the terminal.
+    * Type in `Terminal` to open the terminal.
     * In your terminal, type in `java --version` and click enter.
 
 * Linux
