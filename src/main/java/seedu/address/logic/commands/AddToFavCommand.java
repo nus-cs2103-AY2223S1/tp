@@ -7,7 +7,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Person;
 
@@ -47,10 +46,10 @@ public class AddToFavCommand extends Command {
         Person personToGroup = model.getFilteredPersonList().get(index.getZeroBased());
         Person groupedPerson = addToGroupCommand.getGroupedPerson(personToGroup, favorite);
 
-        ReadOnlyAddressBook pastAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
+        UndoCommand.prepareSaveModelBefore(model);
         model.setPerson(personToGroup, groupedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        UndoCommand.saveBeforeMod(this, pastAddressBook, model.getAddressBook());
+        UndoCommand.saveBeforeMod(model);
 
         return new CommandResult(String.format(MESSAGE_FAV_PERSON_SUCCESS, groupedPerson));
 

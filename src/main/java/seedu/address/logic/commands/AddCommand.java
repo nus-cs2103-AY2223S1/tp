@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 
 /**
@@ -60,9 +59,9 @@ public class AddCommand extends Command {
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-        ReadOnlyAddressBook pastAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
+        UndoCommand.prepareSaveModelBefore(model);
         model.addPerson(toAdd);
-        UndoCommand.saveBeforeMod(this, pastAddressBook, model.getAddressBook());
+        UndoCommand.saveBeforeMod(model);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
