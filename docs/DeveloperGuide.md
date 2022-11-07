@@ -579,6 +579,9 @@ the command.
 
 ## **Appendix: Requirements**
 
+**Target user**: <br>
+The receptionist of a family clinic who arranges telemedicine services.
+
 **Product scope**
 * Only helps the user to store data and keep track of patients involved in online consultations
 * Does not perform any of the real-world tasks such as starting an online consultation with patients or allowing payment through QR codes
@@ -623,155 +626,204 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `HealthContact` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC-01 - Adding a patient**
+**Use case**: UC-01 - A new patient makes an appointment
 
 **MSS**
-1. Patient calls the clinic and provides his/her personal information.
-2. User enters the add command with the patient's details to be added.
-3. HealthContact adds the patient and displays the new patient added with his/her details.
+1. Patient calls the clinic to make an appointment.
+2. User asks for the patient's personal details first.
+3. Patient provides his/her personal details to the user.
+4. User enters the add patient command with the patient's details to be added.
+5. HealthContact adds the patient and displays the new patient added with his/her details.
+6. User asks the patient for his/her appointment information. 
+7. Patient provides the appointment information. 
+8. User enters the add appointment command with the appointment details to be added.
+9. HealthContact adds the appointment and displays the new appointment added with its details. <br>
 Use case ends.
 
 **Extensions**
 
-
-
 * 2a. HealthContact detects an error in the format of the command entered.
     * 2a1. HealthContact shows an error message.
     * 2a2. User enters the command again.
     * Steps 2a1-2a2 are repeated until the data entered are correct.
     * Use case resumes from step 3.
-* 2b. HealthContact detects that the patient already exists in the database.
-    * 2b1. HealthContact shows an error message.
-    * 2b2. User enters the command again.
-    * Steps 2b1-2b2 are repeated until the patient does not exist in the database.
-    * Use case resumes from step 3.
+* 8a. HealthContact detects an error in the format of the command entered.
+    * 8a1. HealthContact shows an error message.
+    * 8a2. User enters the command again.
+    * Steps 8a1-8a2 are repeated until the data entered are correct.
+    * Use case resumes from step 9.
 
-**Use case: Adding an appointment**
+**Use case**: UC-02 - An existing patient's details are outdated<br>
 
 **MSS**
-
 1. Patient calls the clinic to make an appointment.
-2. User enters add command with the detailed information of appointment to be added.
-3. HealthContact adds the appointment
-
-    Use case ends.
+2. User uses the find patient command to find the patient's details by name.
+3. HealthContact displays the patient on the patient list.
+4. User selects the patient to view his/her details. 
+5. User asks the patient for his/her updated personal details. 
+6. Patient provides his/her updated personal details to the user. 
+7. User enters the edit patient command with the updated patient details. 
+8. HealthContact edits the patient and displays the updated patient details. 
+9. Patient provides the appointment information. 
+10. User enters the add appointment command with the appointment details to be added. 
+11. HealthContact adds the appointment and displays the new appointment added with its details. <br>
+Use case ends.
 
 **Extensions**
-
-
 * 2a. HealthContact detects an error in the format of the command entered.
     * 2a1. HealthContact shows an error message.
     * 2a2. User enters the command again.
     * Steps 2a1-2a2 are repeated until the data entered are correct.
     * Use case resumes from step 3.
-* 2b. HealthContact detects that the appointment already exists in the database.
-    * 2b1. HealthContact shows an error message.
+* 2b. No patient is found because user entered the wrong name.
+    * 2b1. HealthContact shows an empty patient list.
     * 2b2. User enters the command again.
-    * Steps 2b1-2b2 are repeated until the appointment does not exist in the database.
+    * Steps 2b1-2b2 are repeated until the data entered are correct.
     * Use case resumes from step 3.
+* 4a. HealthContact detects that an invalid index is entered.
+    * 4a1. HealthContact shows an error message.
+    * 4a2. User enters the command again.
+    * Steps 4a1-4a2 are repeated until the data entered are correct.
+    * Use case resumes from step 5.
+* 7a. HealthContact detects an error in the format of the command entered.
+    * 7a1. HealthContact shows an error message.
+    * 7a2. User enters the command again.
+    * Steps 7a1-7a2 are repeated until the data entered are correct.
+    * Use case resumes from step 8.
+* 10a. HealthContact detects an error in the format of the command entered.
+    * 10a1. HealthContact shows an error message.
+    * 10a2. User enters the command again.
+    * Steps 10a1-10a2 are repeated until the data entered are correct.
+    * Use case resumes from step 11.
     
-**Use case: Adding a bill to an appointment**
+**Use case**: UC-03 - A patient changes appointment details
 
 **MSS**
-
-1. Doctor finishes the consultation and calls the clinic to enter the bill details.
-2. User enters add command with the detailed information of bill to be added.
-3. HealthContact adds the bill
-
-    Use case ends.
+1. Patient calls the clinic to change the appointment time.
+2. User uses the find appointment command to find the appointment by name.
+3. HealthContact displays the appointment on the appointment list.
+4. User selects the appointment to view its details.
+5. HealthContact displays the appointment details.
+6. User updates the appointment details using the edit appointment command.
+7. HealthContact updates the appointment and displays the updated appointment details. <br>
+Use case ends.
 
 **Extensions**
-
 * 2a. HealthContact detects an error in the format of the command entered.
     * 2a1. HealthContact shows an error message.
     * 2a2. User enters the command again.
     * Steps 2a1-2a2 are repeated until the data entered are correct.
     * Use case resumes from step 3.
-* 2b. HealthContact detects that the bill already exists in the database.
-    * 2b1. HealthContact shows an error message.
-    * 2b2. User enters the command again.
-    * Steps 2b1-2b2 are repeated until the bill does not exist in the database.
-    * Use case resumes from step 3.
+* 4a. HealthContact detects that an invalid index is entered.
+    * 4a1. HealthContact shows an error message.
+    * 4a2. User enters the command again.
+    * Steps 4a1-4a2 are repeated until the data entered are correct.
+    * Use case resumes from step 5.
+* 6a. HealthContact detects an error in the format of the command entered.
+    * 6a1. HealthContact shows an error message.
+    * 6a2. User enters the command again.
+    * Steps 6a1-6a2 are repeated until the data entered are correct.
+    * Use case resumes from step 7.
 
-**Use case: Editing a patient**
+**Use case**: UC-04 - A patient cancels an appointment
 
 **MSS**
-
-1. Patient calls the clinic and provides his/her updated personal information.
-2. User enters edit command with the detailed information of patient to be edited.
-3. HealthContact edits the patient
-
-    Use case ends.
+1. Patient calls the clinic to cancel the appointment.
+2. User uses the find appointment command to find the appointment by name and slot.
+3. HealthContact displays the appointment on the appointment list.
+4. User selects the appointment to view its details.
+5. HealthContact displays the appointment details.
+6. After confirming with the patient, user enters the delete appointment command.
+7. HealthContact deletes the appointment displays the new appointment list. <br>
+Use case ends.
 
 **Extensions**
-
 * 2a. HealthContact detects an error in the format of the command entered.
     * 2a1. HealthContact shows an error message.
     * 2a2. User enters the command again.
     * Steps 2a1-2a2 are repeated until the data entered are correct.
     * Use case resumes from step 3.
-* 2b. HealthContact detects that the patient already exists in the database.
-    * 2b1. HealthContact shows an error message.
-    * 2b2. User enters the command again.
-    * Steps 2b1-2b2 are repeated until the patient exists in the database.
-    * Use case resumes from step 3.
+* 4a. HealthContact detects that an invalid index is entered.
+    * 4a1. HealthContact shows an error message.
+    * 4a2. User enters the command again.
+    * Steps 4a1-4a2 are repeated until the data entered are correct.
+    * Use case resumes from step 5.
+* 6a. User deletes the wrong appointment.
+    * 6a1. User enters the undo command.
+    * 6a2. HealthContact undoes the delete appointment command and displays the appointment list before the delete command.
+    * 6a3. User enters the correct index of the appointment to be deleted.
+    * Steps 6a1-6a3 are repeated until the correct appointment is deleted.
+    * Use case resumes from step 7.
 
-**Use case: Editing an appointment**
+**Use case: UC-05 - Adding a new bill to an appointment**
 
 **MSS**
 
-1. Patient calls the clinic to change the appointment details.
-2. User enters edit command with the detailed information of appointment to be edited.
-3. HealthContact edits the appointment
-
-    Use case ends.
+1. Doctor finishes teleconsultation and generates bill.
+2. User finds the appointment using the find appointment command. 
+3. HealthContact displays the appointment on the appointment list.
+4. User selects the appointment to view its details.
+5. HealthContact displays the appointment details. 
+6. User enters the add bill command with the bill details. 
+7. HealthContact adds the bill and displays the new bill added with its details. <br>
+Use case ends.
 
 **Extensions**
-
 * 2a. HealthContact detects an error in the format of the command entered.
     * 2a1. HealthContact shows an error message.
     * 2a2. User enters the command again.
     * Steps 2a1-2a2 are repeated until the data entered are correct.
     * Use case resumes from step 3.
-* 2b. HealthContact detects that the appointment index is invalid.
-    * 2b1. HealthContact shows an error message.
-    * 2b2. User enters the command again.
-    * Steps 2b1-2b2 are repeated until the appointment index is valid.
-    * Use case resumes from step 3.
-    
-**Use case: Editing a bill of an appointment**
+* 4a. HealthContact detects that an invalid index is entered.
+    * 4a1. HealthContact shows an error message.
+    * 4a2. User enters the command again.
+    * Steps 4a1-4a2 are repeated until the data entered are correct.
+    * Use case resumes from step 5.
+* 6a. HealthContact detects an error in the format of the command entered.
+    * 6a1. HealthContact shows an error message.
+    * 6a2. User enters the command again.
+    * Steps 6a1-6a2 are repeated until the data entered are correct.
+    * Use case resumes from step 7.
+
+**Use case: UC-06 - A patient pays a bill**
 
 **MSS**
 
-1. Doctor calls the clinic to change the bill details.
-2. User enters edit command with the detailed information of bill to be edited.
-3. HealthContact edits the bill
-
-    Use case ends.
+1. Patient pays the bill for an appointment.
+2. User finds the appointment using the find appointment command.
+3. HealthContact displays the appointment on the appointment list.
+4. User selects the appointment to view its details.
+5. HealthContact displays the appointment details as well as the tagged bill on the bill list.
+6. User uses the SetPaid command to set the bill as paid.
+7. HealthContact sets the bill as paid and displays the updated bill list. <br>
+Use case ends.
 
 **Extensions**
-
 * 2a. HealthContact detects an error in the format of the command entered.
     * 2a1. HealthContact shows an error message.
     * 2a2. User enters the command again.
     * Steps 2a1-2a2 are repeated until the data entered are correct.
     * Use case resumes from step 3.
-* 2b. HealthContact detects that the bill index is invalid.
-    * 2b1. HealthContact shows an error message.
-    * 2b2. User enters the command again.
-    * Steps 2b1-2b2 are repeated until the bill index is valid.
-    * Use case resumes from step 3.
+* 4a. HealthContact detects that an invalid index is entered.
+    * 4a1. HealthContact shows an error message.
+    * 4a2. User enters the command again.
+    * Steps 4a1-4a2 are repeated until the data entered are correct.
+    * Use case resumes from step 5.
+* 6a. HealthContact detects that an invalid index is entered.
+    * 6a1. HealthContact shows an error message.
+    * 6a2. User enters the command again.
+    * Steps 6a1-6a2 are repeated until the data entered are correct.
+    * Use case resumes from step 7.
 
-
-**Use case: Deleting a patient**
+**Use case: UC-07 - Patient requests for the clinic to delete his/her data**
+**Precondition**: All bills for all appointments have been paid.
 
 **MSS**
 
 1. Patient calls the clinic to delete his/her personal information.
 2. User enters delete command with the index of the patient to be deleted.
-3. HealthContact deletes the patient
-
-    Use case ends.
+3. HealthContact deletes the patient, all his/her appointments and bills and displays the updated patient list. <br>
+Use case ends.
 
 **Extensions**
 
@@ -780,194 +832,49 @@ Use case ends.
     * 2a2. User enters the command again.
     * Steps 2a1-2a2 are repeated until the patient index entered is valid.
     * Use case resumes from step 3.
-
-
-**Use case: Deleting an appointment**
-
-**MSS**
-
-1. Patient calls the clinic to delete his/her appointment.
-2. User enters delete command with the index of the appointment to be deleted.
-3. HealthContact deletes the appointment
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. HealthContact detects that the appointment index is invalid.
-    * 2a1. HealthContact shows an error message.
-    * 2a2. User enters the command again.
-    * Steps 2a1-2a2 are repeated until the appointment index entered is valid.
-    * Use case resumes from step 3.
-
-**Use case: Deleting a bill of an appointment**
+* 2b. The wrong patient is deleted.
+    * 2b1. User enters the undo command.
+    * 2b2. HealthContact undoes the delete patient command and displays the patient list before the delete command.
+    * 2b3. User enters the correct index of the patient to be deleted.
+    * Steps 2b1-2b3 are repeated until the correct patient is deleted.
+    
+**Use case: UC-08 - User wants to check the upcoming appointments**
 
 **MSS**
-
-1. Doctor calls the clinic to delete the bill of an appointment.
-2. User enters delete command with the index of the bill to be deleted.
-3. HealthContact deletes the bill
-
-    Use case ends.
+1. User enters the sort appointments command to sort appointments by ascending order.
+2. HealthContact displays the sorted appointment list with the earliest appointment at the top. <br>
+Use case ends.
 
 **Extensions**
+* 1a. HealthContact detects an error in the format of the command entered.
+    * 1a1. HealthContact shows an error message.
+    * 1a2. User enters the command again.
+    * Steps 1a1-1a2 are repeated until the data entered are correct.
+    * Use case resumes from step 2.
 
-* 2a. HealthContact detects that the bill index is invalid.
-    * 2a1. HealthContact shows an error message.
-    * 2a2. User enters the command again.
-    * Steps 2a1-2a2 are repeated until the bill index entered is valid.
-    * Use case resumes from step 3.
-
-**Use case: Sorting patients**
+**Use case: UC-09 - User wants to find out the most expensive bills that are unpaid**
 
 **MSS**
+1. User enters the sort bills command to sort bills by descending order.
+2. HealthContact displays the sorted bill list with the most expensive bill at the top.
+3. User enters the find bill command to find all unpaid bills.
+4. HealthContact displays the unpaid bills in sorted order with the most expensive bill at the top. <br>
+Use case ends.
 
-1. Doctor calls the clinic to sort the patients.
-2. User enters sort patient command with the field to be sorted by.
-3. HealthContact sorts the patients
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. HealthContact detects that the field is invalid.
-    * 2a1. HealthContact shows an error message.
-    * 2a2. User enters the command again.
-    * Steps 2a1-2a2 are repeated until the field entered is valid.
-    * Use case resumes from step 3.
-
-**Use case: Sorting appointments**
-
-**MSS**
-
-1. Doctor calls the clinic to sort the appointments.
-2. User enters sort appointment command with the field to be sorted by.
-3. HealthContact sorts the appointments
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. HealthContact detects that the field is invalid.
-    * 2a1. HealthContact shows an error message.
-    * 2a2. User enters the command again.
-    * Steps 2a1-2a2 are repeated until the field entered is valid.
-    * Use case resumes from step 3.
-
-**Use case: Sorting bills**
-
-**MSS**
-
-1. Doctor calls the clinic to sort the bills.
-2. User enters sort bill command with the field to be sorted by.
-3. HealthContact sorts the bills
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. HealthContact detects that the field is invalid.
-    * 2a1. HealthContact shows an error message.
-    * 2a2. User enters the command again.
-    * Steps 2a1-2a2 are repeated until the field entered is valid.
-    * Use case resumes from step 3.
-
-**Use case: Finding a patient**
-
-**MSS**
-
-1. Doctor calls the clinic to find a patient.
-2. User enters find patient command with the keyword to be searched.
-3. HealthContact shows a list of patients with the keyword
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. HealthContact detects that the keyword is invalid.
-    * 2a1. HealthContact shows an error message.
-    * 2a2. User enters the command again.
-    * Steps 2a1-2a2 are repeated until the keyword entered is valid.
-    * Use case resumes from step 3.
-
-
-**Use case: Finding an appointment**
-
-**MSS**
-
-1. Doctor calls the clinic to find an appointment.
-2. User enters find appointment command with the keyword to be searched.
-3. HealthContact shows a list of appointments with the keyword
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. HealthContact detects that the keyword is invalid.
-    * 2a1. HealthContact shows an error message.
-    * 2a2. User enters the command again.
-    * Steps 2a1-2a2 are repeated until the keyword entered is valid.
-    * Use case resumes from step 3.
-
-**Use case: Finding a bill**
-
-**MSS**
-
-1. Doctor calls the clinic to find a bill.
-2. User enters find bill command with the keyword to be searched.
-3. HealthContact shows a list of bills with the keyword
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. HealthContact detects that the keyword is invalid.
-    * 2a1. HealthContact shows an error message.
-    * 2a2. User enters the command again.
-    * Steps 2a1-2a2 are repeated until the keyword entered is valid.
-    * Use case resumes from step 3.
-
-**Use case: Undoing a command**
-
-**MSS**
-
-1. User makes a mistake in entering a command and wants to undo it.
-2. User enters undo command to undo a command
-3. HealthContact undoes the command
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. HealthContact detects that there is no command to undo.
-    * 2a1. HealthContact shows an error message.
-    * Use case ends.
-
-**Use case: Redoing a command**
+**Use case: UC-10 - Redoing a command**
 
 **MSS**
 
 1. User wants to redo a command that was undone.
-2. User enters redo command to redo a command
-3. HealthContact redoes the command
-
-    Use case ends.
+2. User enters redo command to redo a command.
+3. HealthContact redoes the previous command.
+Use case ends.
 
 **Extensions**
 
 * 2a. HealthContact detects that there is no command to redo.
     * 2a1. HealthContact shows an error message.
     * Use case ends.
-
-**Use case: Listing**
-
-**MSS**
-
-1. User wants to list all patients, appointments or bills.
-2. User enters list command to list all patients, appointments and bills
-3. HealthContact lists all patients, appointments and bills
-
-    Use case ends.
 
 
 ### Non-Functional Requirements
@@ -1326,15 +1233,14 @@ testers are expected to do more *exploratory* testing.
 
 ## Appendix: Effort
 
-
 * Edit feature
   * EditCommand is AB3 versus EditPatientCommand, EditAppointmentCommand and EditBillCommand in HealthContact
 
-| AB3 (FindCommand)                                                          | HealthContact                                                                                                    |
-|----------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
-| Edits persons only                                                         | Edits patients, appointments and bills separately                                                                |
-| Edits name, phone, email, address, tag                                     | Edits by respective fields of patients, appointments and bills                                                   |
-| Can only edit using full words                                             | Can edit using partial and full words, and special characters depending on respective field constraints          |
+| AB3 (EditCommand)                      | HealthContact                                                                                                    |
+|----------------------------------------|------------------------------------------------------------------------------------------------------------------|
+| Edits persons only                     | Edits patients, appointments and bills separately                                                                |
+| Edits name, phone, email, address, tag | Edits by respective fields of patients, appointments and bills                                                   |
+| Can only edit using full words         | Can edit using partial and full words, and special characters depending on respective field constraints          |
 
 
 

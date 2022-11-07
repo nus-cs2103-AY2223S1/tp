@@ -211,7 +211,23 @@ Edits a patient's information, such as name, phone number, address, email, remar
 #### Format:
 `Command word <index of patient> <prefix><input> ...`
 
+
+#### Parameter List
+
+
+|       | Prefix | Meaning          | Input Constraint                                                                            |
+|-------|--------|------------------|---------------------------------------------------------------------------------------------|
+| `**`  | NA     | Index of patient | 1. Positive integer <br/> 2. Appears in the patient list                                    |
+| `*`   | `n/`   | Name             | 1. Non-empty alphanumeric characters and spaces<br/> 2. Must not be existing patient's name |
+| `*`   | `p/`   | Phone            | Numbers with at least 3 digits                                                              |
+| `*`   | `e/`   | Email address    | `local-part@domain`                                                                         |
+| `*`   | `a/`   | Home address     | Non-empty characters                                                                        |
+|       | `r/`   | Remark           | Any characters                                                                              |
+| `+`   | `t/`   | Tag              | One alphanumeric word                                                                       |
+
+
 * Edits the patient at the specified index. The index of patient refers to the index number shown in the displayed patient list.
+
   The index **must be a positive integer** 1, 2, 3, …​
 * <input> refers to the new value of the field to be edited.
 * User input should be different from the previous information that the patient has.
@@ -252,7 +268,20 @@ Edits an appointment of a patient, such as name, medical test, slot, and doctor.
 #### Format:
 `Command word <index of appointment> <prefix><input> ...`
 
+#### Parameter List
+
+
+|       | Prefix | Meaning              | Input Constraint                                                                        |
+|-------|--------|----------------------|-----------------------------------------------------------------------------------------|
+| `**`  | NA     | Index of appointment | 1. Positive integer <br/> 2. Appears in the appointment list                            |
+| `*`   | `n/`   | Name                 | 1. Non-empty alphanumeric characters and spaces<br/> 2. must be existing patient's name |
+| `*`   | `s/`   | Slot                 | Valid date and time in format `yyyy-MM-dd HH:mm`                                        |
+| `*`   | `d/`   | Doctor name          | Non-empty alphanumeric characters and spaces                                            |
+| `*`   | `t/`   | Medical test         | Non-empty characters                                                                    |
+
+
 * Edits the appointment at the specified index. The index of appointment refers to the index number shown in the displayed appointment list.
+
 * The index **must be a positive integer** 1, 2, 3, …​
 * The <input> refers to the new value of the field to be edited.
 * User input should be different from the previous information that the appointment has.
@@ -287,9 +316,17 @@ Edits the bill of an appointment.
 
 `Command word <index of bill> <prefix><input> ...`
 
+#### Parameter List
+
+|        | Prefix  | Meaning       | Input Constraint                                           |
+|--------|---------|---------------|------------------------------------------------------------|
+| `**`   | NA      | Index of bill | 1. Positive integer <br/> 2. Appears in the bill list<br/> |
+| `*`    | `a/`    | Amount        | Positive number with at most 2 decimal place               |
+| `*`    | `d/`    | Bill Date     | Valid date in format `yyyy-MM-dd`                          |
+
 * Edits the bill at the specified index. The index of bill refers to the index number shown in the displayed bill list.
+
   The index **must be a positive integer** 1, 2, 3, …​
-* User input should be different from the previous information that the bill has.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -430,7 +467,8 @@ Sorts patients by a single field.
 #### Format:
 
 ```Command word c/<input> o/<input>```
-* The command word is `sortpatient`.
+
+* The command word is `sortpatient` or `sop`.
 * The prefixes are `c/` for Criteria and `o/` for Order.
 * The criteria can be Name of patient (`name`), Phone number of patient (`phone`), Email address of patient (`email`), Address of patient (`address`).
 * The order can be Ascending (`asc`) or Descending (`desc`).
@@ -458,7 +496,7 @@ Sorts appointments by a single field.
 ```Command word c/<input> o/<input> ...```
 
 
-* The command word is `sortappointment`.
+* The command word is `sortappointment` or `soa`.
 * The prefixes are `c/` for Criteria and `o/` for Order.
 * The criteria can be Name of patient (`name`), Medical Test of appointment (`test`), Slot of appointment (`slot`) and Doctor of appointment (`doctor`).
 * The order can be Ascending (`asc`) or Descending (`desc`).
@@ -486,7 +524,7 @@ Sorts bills by a single field.
 ```Command word c/<input> o/<input> ...```
 
 
-* The command word is `sortbill`.
+* The command word is `sortbill` or `sob`.
 * The prefixes are `c/` for Criteria and `o/` for Order.
 * The criteria can be Name of patient (`name`), Amount (`amount`), Bill date (`date`), Payment status (`status`).
 * The order can be Ascending (`asc`) or Descending (`desc`).
