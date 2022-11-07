@@ -58,7 +58,7 @@ Given below are my contributions to the project.
     * Added implementation details of the `filter`, `addTask`, `deleteTask` feature (Pull requests [\#110](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/110), [\#196](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/196))
     * Added sequence and activity diagrams for addTask and deleteTask.
 
-* **Community**:
+**Community**:
   * PRs reviewed (with non-trivial review comments): (Pull requests [\#55](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/55), [\#63](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/63), [\#72](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/72), [\#75](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/75), [\#84](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/84), [\#98](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/98)).
 
 
