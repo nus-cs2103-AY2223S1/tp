@@ -36,7 +36,7 @@ Given below are my contributions to the project.
   * Justification: This helps to eliminate bugs for task commands.
   * Highlights: Increased code coverage by 6%.
 
-* **Sort Test**: Writes test for SortByCategory, SortByDeadline, SortByPriority, SortByStatus (Pull requests [\#159](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/159))
+* **Sort Test**: Writes test for SortByCategory, SortByDeadline, SortByPriority, SortByStatus (Pull requests [\#159](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/159)).
   * What it does: Performs automated testing to check if the sorting predicate is accurate.
   * Justification: This helps to eliminate bugs for commands that uses this predicates.
   * Highlights: Increased code coverage by 6%.
