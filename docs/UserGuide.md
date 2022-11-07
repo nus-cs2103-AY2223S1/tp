@@ -98,7 +98,7 @@ This document is to assist you in using MODPRO smoothly and effectively to track
     - [Clearing all the lists](#clearing-all-the-lists)
     - [Opening the help window](#help)
     - [Exiting the program](#exiting-the-program)
-- [Future Features to be added](#future-features-to-be-added)
+- [Future Features](#1.1)
 - [General](#general)
   - [Saving data to the data file](#saving-data-to-the-data-file)
   - [Editing the data file](#editing-the-data-file)
@@ -815,7 +815,7 @@ Exits the program.
 Format: `exit`
 
 --------------------------------------------------------------
-## Future Features to be added (Coming Soon!)
+## Future Features to be added (Coming Soon!)<a id='1.1'></a>
 
 * Add the ability to edit the case sensitivity of module code in task, modules and exams.
 * Add the ability to add exam time and exam venue.
