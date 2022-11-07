@@ -853,27 +853,40 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing/corrupted data files
 
    * Missing data file:
-    1. Prerequisite: Missing `data/contacts.json` and/or `data/tasks.json`
+   
+    1. Prerequisite: Missing `data/contacts.json` and/or `data/tasks.json
+   
     2. Test case: Delete `data/contacts.json` and relaunch CodeConnect.
+   
        Expected: CodeConnect will launch with some sample contacts.
+   
     3. Test case: Delete `data/tasks.json` and relaunch CodeConnect.
+   
        Expected: CodeConnect will launch with some sample tasks.
+   
     4. Test case: Delete both `data/contatcs.json` and `data/tasks.json`. Relaunch CodeConnect.
+   
        Expected: CodeConnect will launch with some sample contacts and tasks.
 
     * Corrupted data file:
+   
     1. Prerequisite: Corrupted `data/contacts.json` and/or `data/tasks.json`
+   
     2. Test case 1: Modify any contact's email to an invalid email in `data/contacts.json` and relaunch CodeConnect.
+   
        Expected: CodeConnect will launch with no contacts.
+   
     3. Test case 2: Modify any task's deadline to an invalid format (not in YYYY-MM-DD HH:MM format) in `data/tasks.json` 
        and relaunch CodeConnect.
+   
        Expected: CodeConnect will launch with some sample tasks.
+   
     4. Test case: Perform both the modifications in the above test cases and relaunch CodeConnect.
+   
        Expected: CodeConnect will launch with some sample contacts and tasks.
-
-
 
 2. Saving of data after running a valid command that modified it
 
     1. Test case: Run any command that modifies data such as `add`, `addc`, `edit`. Exit CodeConnect and relaunch it.
+
        Expected: Any modification made to the data is preserved.
