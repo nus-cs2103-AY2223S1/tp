@@ -20,6 +20,8 @@ import seedu.address.model.tag.Tag;
  */
 public class ListCommandParser implements Parser<ListCommand> {
 
+    boolean parametersAreValid = true;
+
     /**
      * Parses user input for the list command.
      *
@@ -30,6 +32,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         if (args.length() == 0) {
             return new ListCommand(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
         }
+        parametersAreValid = true;
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_ADDRESS,
                 PREFIX_CATEGORY,
@@ -38,33 +41,41 @@ public class ListCommandParser implements Parser<ListCommand> {
 
         Optional<Address> address = argMultimap.getValue(PREFIX_ADDRESS).map(Address::new);
         Optional<Tag> tag = argMultimap.getValue(PREFIX_TAG).map(Tag::new);
+        Optional<Category> category = getFilteredCategory(argMultimap);
+        Optional<Gender> gender = getFilteredGender(argMultimap);
 
-        boolean[] parametersAreValid = new boolean[]{true};
+        return new ListCommand(address, category, gender, tag, parametersAreValid);
+    }
+    
+    private Optional<Category> getFilteredCategory(ArgumentMultimap argumentMultimap) {
         List<Optional<Category>> category = new ArrayList<>();
-        argMultimap.getValue(PREFIX_CATEGORY).ifPresentOrElse(
+        argumentMultimap.getValue(PREFIX_CATEGORY).ifPresentOrElse(
                 x -> {
                     if (Category.isValidCategoryName(x.toUpperCase())) {
                         category.add(Optional.of(new Category(x.toUpperCase())));
                     } else {
                         category.add(Optional.empty());
-                        parametersAreValid[0] = false;
+                        parametersAreValid = false;
                     }
                 }, () -> category.add(Optional.empty()));
         assert (category.size() == 1);
+        return category.get(0);
+    }
+
+    private Optional<Gender> getFilteredGender(ArgumentMultimap argumentMultimap) {
 
         List<Optional<Gender>> gender = new ArrayList<>();
-        argMultimap.getValue(PREFIX_GENDER).ifPresentOrElse(
+        argumentMultimap.getValue(PREFIX_GENDER).ifPresentOrElse(
                 x -> {
                     if (Gender.isValidGender(x.toUpperCase())) {
                         gender.add(Optional.of(new Gender(x.toUpperCase())));
                     } else {
                         gender.add(Optional.empty());
-                        parametersAreValid[0] = false;
+                        parametersAreValid = false;
                     }
                 }, () -> gender.add(Optional.empty()));
         assert (gender.size() == 1);
-        assert (parametersAreValid.length == 1);
-        return new ListCommand(address, category.get(0), gender.get(0), tag, parametersAreValid[0]);
+        return gender.get(0);
     }
 
 }
