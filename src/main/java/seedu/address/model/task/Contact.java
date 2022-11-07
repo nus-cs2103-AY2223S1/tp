@@ -2,12 +2,6 @@ package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-import java.util.Locale;
-
-import seedu.address.model.teammate.Teammate;
-
-
 /**
  * Contact is a Teammate who is related to a task and is present in the address book.
  * Guarantees: immutable; contact is valid as declared in {@link #isValidContactName(String)}
@@ -25,9 +19,12 @@ public class Contact {
      * @param contactName A valid contact name.
      */
     public Contact(String contactName) {
-        // TODO: Contact must be in address book
         requireNonNull(contactName);
         this.contactName = contactName;
+    }
+
+    public String getContactName() {
+        return contactName;
     }
 
     /**
@@ -37,28 +34,11 @@ public class Contact {
         return test.matches(VALIDATION_REGEX);
     }
 
-    /**
-     * Returns teammate's name (with proper capitalisation) if a given string is a name that belongs to one of the
-     * teammates in the list of teammates. Otherwise returns an empty string.
-     */
-    public static String corrNameInTeammatesList(List<Teammate> teammateList, String test) {
-        for (Teammate teammate : teammateList) {
-            if (teammate.getName().fullName.toLowerCase(Locale.ROOT).equals(test.toLowerCase(Locale.ROOT))) {
-                return teammate.getName().fullName;
-            }
-        }
-        return "";
-    }
-
-    public String getContactName() {
-        return contactName;
-    }
-
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof Contact) // instanceof handles nulls
-            && contactName.equals(((Contact) other).getContactName()); // state check
+            && contactName.equals(((Contact) other).contactName); // state check
     }
 
     @Override

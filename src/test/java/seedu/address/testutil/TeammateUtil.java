@@ -34,7 +34,7 @@ public class TeammateUtil {
         sb.append(PREFIX_PHONE + teammate.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + teammate.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + teammate.getAddress().value + " ");
-        teammate.getTags().stream().forEach(
+        teammate.getTags().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();

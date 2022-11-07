@@ -141,10 +141,22 @@ public class AssignTaskCommand extends TaskCommand {
         return assignedContacts;
     }
 
+    /**
+     * Returns teammate's name (with proper capitalisation) if a given string is a name that belongs to one of the
+     * teammates in the list of teammates. Otherwise, returns an empty string.
+     */
+    public static String contactNameInTeammatesList(List<Teammate> teammateList, String test) {
+        return teammateList.stream()
+                .map(t -> t.getName().fullName)
+                .filter(t -> t.equalsIgnoreCase(test))
+                .findFirst()
+                .orElse("");
+    }
+
     private Set<Contact> teammateNamesToContacts(Set<String> teammateNames, List<Teammate> teammateList) {
         Set<Contact> assignedContacts = new HashSet<>();
         for (String teammateName : teammateNames) {
-            String matchingTeammatesName = Contact.corrNameInTeammatesList(teammateList, teammateName);
+            String matchingTeammatesName = contactNameInTeammatesList(teammateList, teammateName);
             if (matchingTeammatesName.isEmpty()) {
                 invalidNames.add(teammateName);
                 continue;

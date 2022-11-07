@@ -2,7 +2,6 @@ package seedu.address.logic.commands.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAMMATE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TEAMMATE;
@@ -51,14 +50,5 @@ public class UnmarkTaskCommandTest {
 
         // different teammate -> returns false
         assertNotEquals(firstCommand, secondCommand);
-    }
-
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoTeammate(Model model) {
-        model.updateFilteredTeammateList(p -> false);
-
-        assertTrue(model.getFilteredTeammateList().isEmpty());
     }
 }

@@ -51,10 +51,6 @@ public class AssignedToContactsPredicate implements Predicate<Task> {
         }
     }
 
-    public Set<Contact> getContacts() {
-        return contacts;
-    }
-
     @Override
     public boolean test(Task task) {
         return task.getAssignedContacts().containsAll(contacts);

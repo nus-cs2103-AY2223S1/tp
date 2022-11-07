@@ -31,8 +31,8 @@ activate AddTaskCommandParser
 
 create AddTaskCommand
 AddTaskCommandParser -> AddTaskCommand
-activate AddTaskCommandParser
 
+activate AddTaskCommand
 AddTaskCommand --> AddTaskCommandParser : a
 deactivate AddTaskCommand
 

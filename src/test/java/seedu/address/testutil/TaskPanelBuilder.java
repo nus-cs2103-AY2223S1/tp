@@ -10,14 +10,10 @@ import seedu.address.model.task.Task;
  */
 public class TaskPanelBuilder {
 
-    private TaskPanel taskPanel;
+    private final TaskPanel taskPanel;
 
     public TaskPanelBuilder() {
         taskPanel = new TaskPanel();
-    }
-
-    public TaskPanelBuilder(TaskPanel taskPanel) {
-        this.taskPanel = taskPanel;
     }
 
     /**

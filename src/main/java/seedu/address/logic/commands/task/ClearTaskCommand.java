@@ -15,11 +15,6 @@ public class ClearTaskCommand extends TaskCommand {
     public static final String COMMAND_WORD = "clear";
     public static final String COMMAND_WORD_FULL = TaskCommand.COMMAND_WORD + " " + COMMAND_WORD;
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD_FULL
-            + ": Clears the task panel.\n"
-            + "Parameters: \n"
-            + "Example: " + COMMAND_WORD_FULL;
-
     public static final String MESSAGE_SUCCESS = "Task Panel has been cleared!";
 
 
