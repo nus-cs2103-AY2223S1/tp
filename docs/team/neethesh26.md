@@ -3,7 +3,7 @@ layout: page
 title: T Neethesh's Project Portfolio Page
 ---
 
-###Project: SectresBook
+### Project: SectresBook
 
 Sectresbook helps secretaries to maintain all the information of the members of their club by collating a list
 of identifiable information, past records and future tasks.
@@ -56,16 +56,18 @@ Given below are my contributions to the project.
 * Added `editLoan` command description.
 * Compiled and formatted the Summary portion for the commands.
 
+<div style="page-break-after: always;"></div>
+
 ### Contributions to the DG
 
 -----------------------------------
 
 * Added the sequence diagram for `Delete` command, updating the description to include delete by name.
- <img src="C:\Users\neeth\IdeaProjects\tp\docs\images\DeleteSequenceWithNameDiagram.png" width="740"/>
+![DeleteSequenceWithNameDiagram](../images/DeleteSequenceWithNameDiagram.png)
+
 
 * Added the section, description and sequence diagram for the editLoan command.
-
-  <img src="C:\Users\neeth\IdeaProjects\tp\docs\images\EditLoanSequenceDiagram.png" width="740"/>
+   ![EditLoanSequenceDiagram](../images/EditLoanSequenceDiagram.png)
 
 * Compiled and added the use cases.
 
