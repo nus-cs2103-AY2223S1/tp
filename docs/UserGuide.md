@@ -335,7 +335,7 @@ Format: `listT`
 
 * Newly added tasks are marked as unarchived by default.
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 :bulb:<br>
 
@@ -351,7 +351,7 @@ Shows all archived tasks stored in the task list.
 
 Format: `listAT`
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 :bulb:<br>
 
@@ -784,7 +784,7 @@ Advanced users who wish to edit the data file should note the following:
 - The id field of a contact is unique and should comply with the string representation of [Java UUID](https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html#toString--)
 - The id field of a task is unique and should be an number greater than zero
 
-<div markdown="span" class="alert alert-warning">:exclamation:
+<div markdown="block" class="alert alert-warning">:exclamation:
 If your changes to the data file makes its format invalid, YellowBook will discard all data and start with an empty data file at the next run.
 </div>
 

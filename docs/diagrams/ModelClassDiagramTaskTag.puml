@@ -28,7 +28,6 @@ HiddenOutside .down.> Model
 AddressBook .up.|> ReadOnlyAddressBook
 VersionedAddressBook -left-|> AddressBook
 
-
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyAddressBook
