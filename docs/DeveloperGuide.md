@@ -230,6 +230,10 @@ The following sequence diagram shows how the `IncludeCommand(1, TELEGRAM, JohnDo
 
 ![CreateGroupSequenceDiagram](images/SocialMediaAddSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `IncludeCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
 ### History feature
 
 #### Implementation
@@ -457,7 +461,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>
 </br>
 
-**Use case: Get Help**
+**Use case: UC01 - Get Help**
 
 **MSS**
 
@@ -467,7 +471,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
    <br>
 
-**Use case: Edit a person**
+**Use case: UC02 - Edit a person**
 
 **MSS**
 
@@ -481,7 +485,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    <br>
 
 
-**Use case: List people in uNivUSal**
+**Use case: UC03 - List people in uNivUSal**
 
 **MSS**
 
@@ -491,7 +495,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
    <br>
 
-**Use case: Sort people in uNivUSal**
+**Use case: UC04 - Sort people in uNivUSal**
 
 **MSS**
 
@@ -514,7 +518,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Delete a person**
+**Use case: UC05 - Delete a person**
 
 **MSS**
 
@@ -527,7 +531,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
    <br>
 
-**Use case: Delete a person's specified field**
+**Use case: UC06 - Delete a person's specified field**
 
 **MSS**
 
@@ -557,7 +561,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Find a person**
+**Use case: UC07 - Find a person**
 
 **MSS**
 
@@ -586,7 +590,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Clear uNivUSal**
+**Use case: UC08 - Clear uNivUSal**
 
 **MSS**
 
@@ -596,7 +600,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends.
    <br>
 
-**Use case: Add a person**
+**Use case: UC08 - Add a person**
 
 **MSS**
 
@@ -618,7 +622,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Add a social media account to an existing person in the contacts**
+**Use case: UC09 - Add a social media account to an existing person in the contacts**
 
 **MSS**
 
@@ -646,7 +650,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Delete a social media account of an existing person in the contacts**
+**Use case: UC10 - Delete a social media account of an existing person in the contacts**
 
 **MSS**
 
@@ -675,7 +679,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Setting a preferred social media account of an existing person in the contacts**
+**Use case: UC11 - Setting a preferred social media account of an existing person in the contacts**
 
 **MSS**
 
@@ -703,8 +707,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b1. uNivUSal shows an error message.
 
       Use case resumes at step 2.
-
-**Use case: Filtering contacts based on preferred social media account of an existing person**
+    
+**Use case: UC12 - Filtering contacts based on preferred social media account of an existing person**
 
 **MSS**
 
@@ -727,7 +731,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Open a social media account of an existing person in the contacts**
+**Use case: UC13 - Open a social media account of an existing person in the contacts**
 
 **MSS**
 
@@ -756,7 +760,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Add an existing person in the contacts to a group**
+**Use case: UC14 - Add an existing person in the contacts to a group**
 
 **MSS**
 
@@ -785,7 +789,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Ungroup a person from a group**
+**Use case: UC15 - Ungroup a person from a group**
 
 **MSS**
 
@@ -938,7 +942,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Invalid command will be shown as `watsap` is an invalid SOCIAL
 
 ### Opening a social account using CLI
-1. Deleting a social account to an existing contact.
+1. Opening a social account of an existing contact.
     1. Prerequisites: List all contacts using the list command. First contact has social accounts filled out.
     2. Testcase:`open 1 s/WHATSAPP` <br>
        Expected: Default web browser opens link to the Whatsapp chat of the first contact. Details of success command shown in status message.
@@ -947,7 +951,7 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect open commands to try: `prefer 0 s/TELEGRAM`
 
 ### Opening a social account by clicking GUI
-1. Deleting a social account to an existing contact.
+1. Opening a social account of an existing contact.
     1. Prerequisites: List all contacts using the list command. First contact has social accounts filled out. Second contact has no social accounts filled out.
     2. Testcase: Click on the Whatsapp social box of the first person in the contact list.
        Expected: Default web browser opens link to the Whatsapp chat of the first contact. Details of success command shown in status message.
