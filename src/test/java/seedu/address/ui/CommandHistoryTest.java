@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 
 class CommandHistoryTest {
 
-    CommandHistory commandHistory = new CommandHistory();
-    String[] commands = {"view 1", "delappt 2", "consult 1", "edit 4 n/Charles", "view 1"};
+    private CommandHistory commandHistory = new CommandHistory();
+    private final String[] commands = {"view 1", "delappt 2", "consult 1", "edit 4 n/Charles", "view 1"};
 
     @Test
     void addCommand_addFirstCommand_success() {
@@ -39,7 +39,7 @@ class CommandHistoryTest {
     }
 
     @Test
-    void getCommand_WithoutPreviousGivesEmptyOptional_success() {
+    void getCommand_withoutPreviousGivesEmptyOptional_success() {
         commandHistory.addCommand(commands[0]);
         assertTrue(commandHistory.getCommand().isEmpty());
 
@@ -48,7 +48,7 @@ class CommandHistoryTest {
     }
 
     @Test
-    void previousCommand_CapsAtPointerZero() {
+    void previousCommand_capsAtPointerZero_success() {
         commandHistory.addCommand(commands[0]);
         commandHistory.previousCommand();
         commandHistory.previousCommand();
