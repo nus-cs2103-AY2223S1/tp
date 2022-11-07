@@ -138,6 +138,17 @@ How the parsing works:
 
 ![ModelClassDiagram](images/ModelClassDiagram.png)
 
+**Student component:**
+
+![StudentClassDiagram](images/StudentClassDiagram.png)
+
+**Consultation component:**
+
+![ConsultationClassDiagram](images/ConsultationClassDiagram.png)
+
+**Reminder component:**
+
+![ReminderClassDiagram](images/ReminderClassDiagram.png)
 
 The `Model` component,
 
@@ -145,12 +156,6 @@ The `Model` component,
 * stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
 
 ### 4.5 Storage component
 
