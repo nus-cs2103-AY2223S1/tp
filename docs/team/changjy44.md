@@ -10,34 +10,44 @@ software engineering modules to build projects. It helps track the team's progre
 
 Given below are my contributions to the project.
 
-* **New Feature**: Add, delete, edit and set teams.
+* **New Feature**: Add, delete, edit and set teams. ([PR #28](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/28))
+   * **What it does**: Add, delete, edit team objects. Set current team that user is working on. 
+   * **Justification**: A user may belong in multiple teams, and the implementation of team classes allow users to manage multiple teams.
+   * **Highlights**: Implementing this feature required an in-depth understanding of the execution pipeline for commands and making the right design decisions for associating teams with a team. It also required knowledge on how the `Storage` component works.
 
-* **New Feature**: Add, delete edit link in teams.
 
-* **New Feature**: Find members and tasks in teams.
+* **New Feature**: Add, delete edit link in teams. ([PR #76](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/76)) 
+  * **What it does**: Add, delete, edit link objects.
+  * **Justification**: A student team leader needs to keep track of the all the links related to the project.
+  * **Highlights**: Implementing this feature required an in-depth understanding of the execution pipeline for commands and making the right design decisions for associating teams with a team. It also required knowledge on how the `Storage` component works. Regex was also used and designed to ensure that the url being entered by the user is a valid link.
 
-* **New Feature**: Sort members and tasks in teams. 
+
+* **New Feature**: Find members and tasks in teams. ([PR #100](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/100))
+  * **What it does**: Find members and tasks in teams.
+  * **Justification**: A student team leader needs to locate his team members and tasks easily.
+  * **Highlights**: Implementing this feature required an in-depth understanding of how lists are displayed in the JavaFX. New classes were implemented based on the NameContainsKeywordsPredicate class exisitng in AB3.
+
+
+* **New Feature**: Sort members and tasks in teams. ([PR #116](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/116))
+  * **What it does**: Sort members and tasks in teams
+  * **Justification**: A student team leader needs to view his team members in a more organised way.
+  * **Highlights**: Implementing this feature required an in-depth understanding of how lists are displayed in JavaFX. As the original AB3 did not allow for sorting, a new `DisplayList` class was implemented which leveraged the SortedList class from JavaFX.
+
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=changjy44&tabRepo=AY2223S1-CS2103T-W13-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
-* **Project management**:
-    * Set up team repo for group
-    * Set up codecov for group
 
+* **Testing**:
+  * Add extensive unit tests for commands, parser and model classes. ([PR #206](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/206))
+    * **Highlights**: As picocli was used for our parsing, all existing tests for commands and parsers were removed and have to be reimplemented from scratch. New testing infrastructure was also added to faciliate the tests.
 
-* **Enhancements to existing features**:
-    * To be added soon.
 
 * **Documentation**:
     * User Guide:
         * Documented commands for teams, links, find and sort functions. 
     * Developer Guide:
-        * Documented implementation of teams functions.
+        * Documented implementation of add and set teams.
+
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): Reviewed 12 PRS.
-    * Contributed to forum discussions (examples: To be added soon).
-    * Reported bugs and suggestions for other teams in the class (examples: To be added soon).
-
-* **Tools**:
-  To be added soon.
+    * PRs reviewed (with non-trivial review comments): Reviewed 18 PRS.
