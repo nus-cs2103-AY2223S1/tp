@@ -11,23 +11,32 @@ Code contributed: Here is a link to [my code](https://nus-cs2103-ay2223s1.github
 
 Enhancements implemented: 
 
+- New Feature: Add **PropertyStatusEnum** as a Property Field
+  - What it does: allows Properties to have PropertyStatus of `AVAILABLE`, `PENDING`, and `SOLD`
+  - Justification: This allows the user to know a property's status which is important when doing recommendations to clients
+  - Highlights: 
+
 - New Feature: Added the ability to filter by PropertyStatusEnum (Pull Request [#115](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/115))
   - What it does: allows the user to filter properties by their respective status (`AVAILABLE`, `PENDING`, `SOLD`). 
   - Justification: This feature improves the user experience of Condonery because it allows the user to 
   know which properties are `AVAILABLE`, `PENDING` or `SOLD` without scrolling through all the properties listed
   - Highlights: This enhancement affects the existing UI and required an in-depth analysis of design alternatives. 
-  This implementation was challenging as it 
 
-- Added the ability to filter properties by status
+- New Feature: Added 
+
 - Create `Add`, `Delete` and `Edit` commands for `Property` and `Client` classes
 - Edit Property Details (Pull Request [#71](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/71))
 - Edit Client Details (Pull Request [#84](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/84))
 - Delete Property (Pull Request [#62](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/62))
 - Delete Client (Pull Request [#86](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/86))
+- Consistently increased test coverage (Pull Requests [#238](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/238), 
+[#200](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/200), [#70](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/70),
+[#50](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/50))
 
 Contributions to the UG: `to be added soon`
 
-Contributions to the DG: `to be added soon`
+Contributions to the DG:
+- Added documentation for Filter by `PropertyStatusEnum` feature
 
 ### Contributions to team-based tasks
 
