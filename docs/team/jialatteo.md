@@ -9,10 +9,11 @@ Financial Advisor Planner is a desktop client management application used for fi
 
 Given below are my contributions to the project.
 
-- ### Code contributed: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jialatteo&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16)
+- ### Code contributed: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jialatteo&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=jialatteo&tabRepo=AY2223S1-CS2103T-W09-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 - ### Enhancement: Added `Parameter hints`
 - What it does: After typing a command word, the result display will automatically show the correct command format
 - Justification: New users might not remember all the parameters, prefixes and the correct command format. Hence, the parameter hints can guide them to fill up the command correctly without constantly referring to the user guide.
+<br> 
 - ### Feature: Implemented `ea`
 - What it does: Allows the user to edit an appointment's location and datetime field
 - Justification: FAs might want to modify the appointment details, hence editing an appointment is necessary.
