@@ -61,7 +61,34 @@ SectresBook helps secretaries to maintain all the information of the members of 
   3. Added description of properties for both people and notes, found [here](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#properties) and description of commands [`inspect`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#inspecting-a-person--inspect), [`hideNotes`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#hiding-notes-panel--hidenotes) and [`showNotes`](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#showing-notes-panel--shownotes).
   4. Added [Glossary](https://ay2223s1-cs2103t-w12-2.github.io/tp/UserGuide.html#glossary) terms.
 - DG
-  1. Added Edit _Sequence Diagram_ involving either searching by index or by name and _Sequence Diagram_ for the `inspect` command
+  1. Added Edit _Sequence Diagram_ involving either searching by index or by name and Inspect _Sequence Diagram_ for the `inspect` command
   2. Updated the UI _Class Diagram_ to reflect the current state of the UI organisation and the Person _Class Diagram_ by adding the loans property to the Person _Class Diagram_
   3. Wrote the sections involving [UI design](https://ay2223s1-cs2103t-w12-2.github.io/tp/DeveloperGuide.html#ui-features) and the implementation details of [`inspect`](https://ay2223s1-cs2103t-w12-2.github.io/tp/DeveloperGuide.html#inspect-feature), and `showNotes` and `hideNotes`, found [here](https://ay2223s1-cs2103t-w12-2.github.io/tp/DeveloperGuide.html#showing-and-hiding-the-notes-panel-feature).
-  4. UI activity diagram that describes how a user would interact with the UI
+  4. Added UI _Activity Diagram_ that describes how a user would interact with the UI
+
+-----------------------------
+
+### Diagram Extracts for DG
+
+**Edit _Sequence Diagram_**
+
+![](../images/EditSequenceDiagram.png)
+
+**Inspect _Sequence Diagram_**
+
+![](../images/InspectSequenceDiagram.png)
+
+**UI _Class Diagram_**
+
+![](../images/UiClassDiagram.png)
+
+**Person _Class Diagram_**
+
+![](../images/PersonClassDiagram.png)
+
+**UI _Activity Diagram_**
+
+![](../images/UIActivityDiagram.png)
+
+Text extracts to UG and DG are linked in the text above.
+
