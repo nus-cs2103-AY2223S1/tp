@@ -2,8 +2,11 @@
 layout: page
 title: Developer Guide
 ---
+
+## Table of Contents
+
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -23,7 +26,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-W09-3/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +39,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-W09-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-W09-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,13 +72,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W09-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` `TeamListPanel`, `TaskListPanel` , `DisplayUserWindow` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W09-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W09-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -86,7 +89,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W09-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -114,18 +117,16 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W09-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
-
+<img src="images/ModelClassDiagram.png" width="700" />
 
 The `Model` component,
 
 * stores the address book data. This address book data consists of:
   * all `Person` objects (which are contained in a `UniquePersonList` object),
   * all `Team` objects (which are contained in a `UniqueTeamList` object),
-  * and all 'Task' objects (which are contained in a `UniqueTaskList` object).
-* stores the currently 'selected' `Person`, `Team`, and `Task` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>`, `ObservableList<Team>`, and `ObservableList<Task>` respectively, that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Person`, and `Team` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` and `ObservableList<Team>` respectively, that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -138,9 +139,9 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W09-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="650" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -149,91 +150,13 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
 
 ### Add Task Feature
 
@@ -397,14 +320,6 @@ team's index. It calls `Model#removePersonFromTeam` to remove the person from gi
 The following sequence diagram shows how the unassign team operation works:
 ![UnAssignMemberSequenceDiagram](images/UnAssignMemberSequenceDiagram.png)
 
-_{more aspects and alternatives to be added}
-
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -428,7 +343,6 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefer desktop apps over other types
 * can type fast
 * has a need to distribute and track a significant number of tasks
-
 
 **Value proposition**: Create teams and distribute members amongst teams. Assign and track tasks to teams.
 
@@ -454,20 +368,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *  `  | tech lead | set a deadline for the task                | know when the task should be completed             |
 | `* *  `  | tech lead | see the progress of the team               | know the actively performing teams                 |
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `EZLead` and the **Actor** is the `Tech Lead`, unless specified otherwise)
 
 **Use case: UC1 - Create a new team**
 
-**Actor: Team Lead**
+**Actor: Tech Lead**
 
 **MSS**
 
-1. Team Lead specifies the name of the team
-2. EZLead create a new team object with the specified team
+1. Tech Lead specifies the name of the team.
+2. EZLead create a new team object with the specified team.
 
 **Extensions**
 
@@ -479,35 +391,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC2 - Assigning members into a team**
 
-**Actor: Team Lead**
+**Actor: Tech Lead**
 
 **Prerequisites: A team exist**
 
 **MSS**
 
-1. Team Lead specified the name of the member to add into the team and name of team
+1. Tech Lead specifies the member to add into which team.
 2. EZLead add that member to the team.
 
 Step 1 and 2 is repeated until all members have been added
 
 **Extensions:**
 
-* 1a. Member with the same name already exists
+* 1a. Member already assigned to the team
 
-    * 1a1. EZLead throws an error signifying duplicate name
+    * 1a1. EZLead throws an error signifying duplicate member
 
       Use case continues at step 1.
 
-* 1b. Member with specified name does not exist
+* 1b. Member does not exist in the app
 
-    * 1b1. EZLead throws an error signifying name does not exist
+    * 1b1. EZLead throws an error signifying member does not exist
 
       Use case continues at step 1
 
 
 **Use case: UC3 - Deleting Team**
 
-**Actor: Team Lead**
+**Actor: Tech Lead**
 
 **Prerequisites: A team exist**
 
@@ -515,13 +427,12 @@ Step 1 and 2 is repeated until all members have been added
 
 **MSS**
 
-1. Team Lead specify the name of the team being deleted.
-2. Team Deleted from EZLead’s database.
-
+1. Tech Lead specifies the team being deleted.
+2. Team deleted from EZLead’s database.
 
 **Extensions:**
 
-* 1a. Team Lead enter wrong command
+* 1a. Tech Lead enter wrong command
 
     * 1a1. EZLead display error message
 
@@ -529,14 +440,14 @@ Step 1 and 2 is repeated until all members have been added
 
 * 1b. Team does not exist in EZLead’s Database
 
-    * 1b1. EZLead informs Team Lead that the team does not exist
+    * 1b1. EZLead informs Tech Lead that the team does not exist
 
       Use case ends
 
 
 **Use case: UC4 - Renaming a team's name**
 
-**Actor: Team Lead**
+**Actor: Tech Lead**
 
 **Prerequisites: A team exists**
 
@@ -544,18 +455,18 @@ Step 1 and 2 is repeated until all members have been added
 
 **MSS**
 
-1. Team Lead specifies the old team and the new team name.
+1. Tech Lead specifies the old team and the new team name.
 2. EZLead updates the name of the team.
 
 **Extensions:**
 
-* 1a. Team Lead enters the wrong command.
+* 1a. Tech Lead enters the wrong command.
 
     * 1a1. EZLead displays an error message.
 
       Use case ends.
 
-* 1b. Old team name does not exist in EZLead's database.
+* 1b. Old team does not exist in EZLead's database.
 
     * 1b1. EZLead displays an error message.
 
@@ -570,7 +481,7 @@ Step 1 and 2 is repeated until all members have been added
 
 **Use case: UC5 - Removing team members from a team**
 
-**Actor: Team Lead**
+**Actor: Tech Lead**
 
 **Prerequisites: A team with existing members exists**
 
@@ -578,7 +489,7 @@ Step 1 and 2 is repeated until all members have been added
 
 **MSS**
 
-1. Team Lead specifies the name of the team and name of the team member to be removed.
+1. Tech Lead specifies the team and the team member to be removed.
 2. EZLead removes the team member from the team.
 
 **Extensions:**
@@ -597,18 +508,18 @@ Step 1 and 2 is repeated until all members have been added
 
 **Use case: UC6 - Creating a task item**
 
-**Actor: Team Lead**
+**Actor: Tech Lead**
 
 **Prerequisites: A team exists**
 
 **MSS**
 
-1. Team Lead specifies the team and the task.
+1. Tech Lead specifies the team and the task.
 2. EZLead creates a new task object associated to the specified team.
 
 **Extensions:**
 
-* 1a. Specified team index is invalid.
+* 1a. Specified team does not exist.
 
     * 1a1. EZLead displays an error message.
 
@@ -617,18 +528,18 @@ Step 1 and 2 is repeated until all members have been added
 
 **Use case: UC7 - Deleting a task item**
 
-**Actor: Team Lead**
+**Actor: Tech Lead**
 
 **Prerequisites: A team exists**
 
 **MSS**
 
-1. Team Lead specifies the team and the task.
+1. Tech Lead specifies the team and the task.
 2. EZLead removes the task associated to the specified team.
 
 **Extensions:**
 
-* 1a. Specified team index is invalid.
+* 1a. Specified team does not exist.
 
     * 1a1. EZLead displays an error message.
 
@@ -643,18 +554,18 @@ Step 1 and 2 is repeated until all members have been added
 
 **Use case: UC8 - Editing a task name**
 
-**Actor: Team Lead**
+**Actor: Tech Lead**
 
 **Prerequisites: A team exists**
 
 **MSS**
 
-1. Team Lead specifies the team, the task and the new task name.
+1. Tech Lead specifies the team, the task and the new task name.
 2. EZLead updates task name associated to specified task of the team.
 
 **Extensions:**
 
-* 1a. Specified team index is invalid.
+* 1a. Specified team does not exist.
 
     * 1a1. EZLead displays an error message.
 
@@ -669,18 +580,18 @@ Step 1 and 2 is repeated until all members have been added
 
 **Use case: UC9 - Marking a task item as done**
 
-**Actor: Team Lead**
+**Actor: Tech Lead**
 
 **Prerequisites: A team exists**
 
 **MSS**
 
-1. Team Lead specifies the team and the task to be marked as done.
+1. Tech Lead specifies the team and the task to be marked as done.
 2. EZLead marks the task associated to specified team as done.
 
 **Extensions:**
 
-* 1a. Specified team index is invalid.
+* 1a. Specified team does not exist.
 
     * 1a1. EZLead displays an error message.
 
@@ -695,18 +606,18 @@ Step 1 and 2 is repeated until all members have been added
 
 **Use case: UC10 - Marking a task item as not done**
 
-**Actor: Team Lead**
+**Actor: Tech Lead**
 
 **Prerequisites: A team exists**
 
 **MSS**
 
-1. Team Lead specifies  the team and the task to be marked as not done.
+1. Tech Lead specifies the team and the task to be marked as not done.
 2. EZLead marks the task associated to specified team as not done.
 
 **Extensions:**
 
-* 1a. Specified team index is invalid.
+* 1a. Specified team does not exist.
 
     * 1a1. EZLead displays an error message.
 
@@ -724,9 +635,7 @@ Step 1 and 2 is repeated until all members have been added
 2. Should be able to hold up to 500 team members without a noticeable sluggishness in performance for typical usage.
 3. Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
 4. Should be able to hold up to 100 teams without a noticeable sluggishness in performance for typical usage.
-5. Each operation should be completed within 0.5second so that the team lead can add tasks quickly
-
-*{More to be added}*
+5. Each operation should be completed within 0.5 second so that the tech lead can add tasks quickly
 
 ### Glossary
 
@@ -748,40 +657,143 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+    1.1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1.2. Double-click the jar file <br>
+         Expected: Shows the GUI with a set of sample contacts, teams and tasks. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
-    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    2.1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+    2.2. Re-launch the app by double-clicking the jar file.<br>
+         Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. Closing the application
 
-### Deleting a person
+    3.1.  Type in `exit` in the command input, or simply close the application by pressing the X button on the top right of the main window.
+         Expected: The application closes.
 
-1. Deleting a person while all persons are being shown
+### Members
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+1. Listing all members
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    Prerequisites: Open the User List Window using the `userlist` command.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1.1. Test case: `list`<br>
+        Expected output in the **Main Window**: No change.<br>
+        Expected output in the **User List Window**: The list shows all members.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+2. Adding a new member into EZLead
 
-1. _{ more test cases …​ }_
+    Prerequisites: Open the User List Window using the `userlist` command. Then listing all members using the `list` command.
 
-### Saving data
+    2.1. Test case: `add n/John Doe p/99853657 e/john@gmail.com a/414, North Bridge Ave 5, #09-86 t/friends t/owesMoney`<br>
+        Expected output in the **Main Window**: New person added message and the person's details.<br>
+        Expected output in the **User List Window**: New person added into the bottom of the list.
 
-1. Dealing with missing/corrupted data files
+    2.2. Test case: `add n/John Doe`<br>
+        Expected output in the **Main Window**: Error message for invalid command format.
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+3. Editing a member's details
 
-1. _{ more test cases …​ }_
+    Prerequisites: Open the User List Window using the `userlist` command. Then listing all members using the `list` command. There should also be at least 1 person in the User List window.
+
+    3.1. Test case: `edit 1 n/Johny p/91234567 e/johndoe@example.com`<br>
+        Expected output in the **Main Window**: Person edited message and the person's current details after the editing. Also updates the person's details wherever the person appears in any team.<br>
+        Expected output in the **User List Window**: The person's details are updated.
+
+    3.2. Test case: `edit 1`<br>
+        Expected output in the **Main Window**: Error message for no editable field provided.
+
+4. Deleting a member
+
+    Prerequisites: Open the User List Window using the `userlist` command. Then listing all members using the `list` command. There should also be at least 1 person in the User List window.
+
+    4.1. Test case: `delete p/1`<br>
+        Expected output in the **Main Window**: Person deleted message and the person's details. Also deletes the person wherever the person appears in any team.<br>
+        Expected output in the **User List Window**: The person is deleted.
+
+    4.2. Test case: `delete p/2`<br>
+        Expected output in the **Main Window**: Error message for invalid index.
+
+5. Finding a member
+
+    Prerequisites: Open the User List Window using the `userlist` command. Then listing all members using the `list` command. There should also be at least 1 person in the User List window.
+
+    5.1. Test case: `find Alex`<br>
+        Expected output in the **Main Window**: No change.<br>
+        Expected output in the **User List Window**: The list only shows people that has Alex in any of its fields.
+
+### Teams
+
+1. Adding a new team into EZLead
+
+    1.1. Test case: `create n/Frontend`<br>
+        Expected output in the **Main Window**: New team added message and a new team is added into the Main Window.
+
+2. Editing a team's name
+
+    Prerequisites: There should be at least 1 team in the Main window.
+
+    2.1. Test case: `editteam t/1 n/Backend`<br>
+        Expected output in the **Main Window**: Team edited message and the new team name is reflected in the Main Window.
+
+3. Deleting a team
+
+    Prerequisites: There should be at least 1 team in the Main window.
+
+    3.1. Test case: `delteam 1`<br>
+        Expected output in the **Main Window**: Team deleted message and the team is deleted from the Main Window.
+
+4. Assigning a member to a team
+
+    Prerequisites: There should be at least 1 team in the Main window, and 1 person in the User List window.
+
+    4.1. Test case: `assign m/1 t/1`<br>
+        Expected output in the **Main Window**: New person X added to team Y message. The details of that person is reflected in the member list of team.
+
+5. Unassigning a member from a team
+
+    Prerequisites: There should be at least 1 team in the Main window, and 1 person is already assigned to the team.
+
+    5.1. Test case: `unassign m/1 t/1`<br>
+        Expected output in the **Main Window**: Person X removed from team Y message. The details of that person is removed from the member list of the team.
+
+### Tasks
+
+1. Adding a new task to a team
+
+    1.1. Test case: `taskadd t/1 n/Create GUI d/12-12-2022`<br>
+        Expected output in the **Main Window**: New task added message and a new task is added into the Main Window with the specified deadline.
+
+    1.2. Test case: `taskadd t/1 n/Review PR`<br>
+        Expected output in the **Main Window**: New task added message and a new task is added into the Main Window with a blank deadline.
+
+2. Editing a task's details
+
+    Prerequisites: There should be at least 1 team with at least 1 assigned task in the Main window.
+
+    2.1. Test case: `taskedit t/1 task/1 n/Update PR d/01-01-2023`<br>
+        Expected output in the **Main Window**: Task edited message and the new task details is reflected in place of the old details.
+
+3. Deleting a task
+
+    Prerequisites: There should be at least 1 team with at least 1 assigned task in the Main window.
+
+    3.1. Test case: `taskdelete t/1 task/1`<br>
+        Expected output in the **Main Window**: Task deleted message and the task is deleted from the team's task list.
+
+4. Marking a task as done
+
+   Prerequisites: There should be at least 1 team with at least 1 assigned task in the Main window.
+
+   4.1. Test case: `taskmark t/1 task/1`<br>
+   Expected output in the **Main Window**: Task marked as done message. The task now has a tick mark besides its name.
+
+5. Marking a task as not done
+
+   Prerequisites: There should be at least 1 team with at least 1 assigned task in the Main window.
+
+   5.1. Test case: `taskunmark t/1 task/1`<br>
+   Expected output in the **Main Window**: Task marked as not done message. The box next to the name of the task is now blank.
