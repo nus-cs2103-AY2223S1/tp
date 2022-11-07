@@ -29,7 +29,7 @@ public class CommandUtil {
 
     public static final String[] ACCEPTABLE_SORT_LOCATION_PARAMETER = new String[]{"LOCATION", "LOC", "L"};
 
-    public static final String[] ACCEPTABLE_SORT_PHONE_PARAMETER = new String[]{"PHONE", "PH", "P"};
+    public static final String[] ACCEPTABLE_SORT_PHONE_PARAMETER = new String[]{"PHONE", "PH"};
 
     public static final String[] ACCEPTABLE_SORT_PRICE_RANGE_PARAMETER = new String[]{"PRICERANGE", "PRANGE", "PRICER",
         "PR"};
