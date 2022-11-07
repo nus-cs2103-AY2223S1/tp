@@ -281,6 +281,13 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the internship being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+### Help window feature
+
+The help window has been redesigned to show all the commands supported by WB as well as examples of how to use the commands. This is to enable ease of use as users can quickly reference commands from the help window instead of having to open and refer to the UG.
+
+#### Implementation
+
+The help window is implemented in the `HelpWindow` class. The `HelpUtil` class stores all the headers and examples `String`s for the commands in a two `HashMap`s. The help window will retrieve the list of `Command`s and then builds a `HelpCard` for each command and adds it into the `GridPane` to display in the `HelpWindow`. The `HelpCard` retrieves the respective header and example `String`s using the `getCommandHeader` and `getCommandExample` methods from `HelpUtil` and shows it using two `Label`s.
 
 ### Tips feature
 
