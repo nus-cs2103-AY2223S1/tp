@@ -16,7 +16,7 @@ public class ProjectName {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String fullName;
+    private final String fullName;
 
     /**
      * Constructs a {@code ProjectName}.
@@ -52,5 +52,9 @@ public class ProjectName {
     @Override
     public int hashCode() {
         return fullName.hashCode();
+    }
+
+    public String getFullName() {
+        return fullName;
     }
 }

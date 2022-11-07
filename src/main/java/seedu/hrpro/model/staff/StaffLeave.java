@@ -16,7 +16,7 @@ public class StaffLeave {
      */
     public static final String VALIDATION_REGEX = "(true|false)";
 
-    public final String staffLeave;
+    private final String staffLeave;
 
     /**
      * Constructs a {@code StaffLeave}.
@@ -52,5 +52,9 @@ public class StaffLeave {
     @Override
     public int hashCode() {
         return staffLeave.hashCode();
+    }
+
+    public String getStaffLeave() {
+        return staffLeave;
     }
 }

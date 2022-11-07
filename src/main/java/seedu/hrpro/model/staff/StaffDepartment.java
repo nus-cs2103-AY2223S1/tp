@@ -17,7 +17,7 @@ public class StaffDepartment {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String staffDepartment;
+    private final String staffDepartment;
 
     /**
      * Constructs a {@code StaffDepartment}.
@@ -52,5 +52,9 @@ public class StaffDepartment {
     @Override
     public int hashCode() {
         return staffDepartment.hashCode();
+    }
+
+    public String getStaffDepartment() {
+        return staffDepartment;
     }
 }

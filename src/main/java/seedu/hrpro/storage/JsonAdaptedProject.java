@@ -51,9 +51,9 @@ class JsonAdaptedProject {
      * Converts a given {@code Project} into this class for Jackson use.
      */
     public JsonAdaptedProject(Project source) {
-        projectName = source.getProjectName().fullName;
-        budget = source.getBudget().value;
-        deadline = source.getDeadline().deadline;
+        projectName = source.getProjectName().getFullName();
+        budget = source.getBudget().getBudget();
+        deadline = source.getDeadline().getDeadline();
         staffList.addAll(source.getStaffList().asUnmodifiableObservableList().stream()
                 .map(JsonAdaptedStaff::new)
                 .collect(Collectors.toList()));

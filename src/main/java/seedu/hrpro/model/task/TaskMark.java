@@ -15,7 +15,7 @@ public class TaskMark {
      */
     public static final String VALIDATION_REGEX = "(true|false)";
 
-    public final String taskMark;
+    private final String taskMark;
 
     /**
      * Constructs a {@code TaskMark}.
@@ -52,5 +52,9 @@ public class TaskMark {
     @Override
     public int hashCode() {
         return taskMark.hashCode();
+    }
+
+    public String getTaskMark() {
+        return taskMark;
     }
 }

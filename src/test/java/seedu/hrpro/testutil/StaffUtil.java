@@ -36,7 +36,7 @@ public class StaffUtil {
         sb.append(PREFIX_STAFF_DEPARTMENT + staff.getStaffDepartment().toString() + " ");
         sb.append(PREFIX_STAFF_LEAVE + staff.getStaffLeave().toString() + " ");
         staff.getTags().stream().forEach(
-                s -> sb.append(PREFIX_TAG + s.tagName + " ")
+                s -> sb.append(PREFIX_TAG + s.getTagName() + " ")
         );
         return sb.toString();
     }
@@ -67,7 +67,7 @@ public class StaffUtil {
             if (tags.isEmpty()) {
                 sb.append(PREFIX_TAG);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.getTagName()).append(" "));
             }
         }
 

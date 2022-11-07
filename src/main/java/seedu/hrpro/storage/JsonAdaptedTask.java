@@ -35,9 +35,9 @@ public class JsonAdaptedTask {
      * Converts a given {@code Task} into this class for Jackson use.
      */
     public JsonAdaptedTask(Task source) {
-        taskDeadline = source.getTaskDeadline().deadline;
-        taskDescription = source.getTaskDescription().taskDescription;
-        taskMark = source.getTaskMark().taskMark;
+        taskDeadline = source.getTaskDeadline().getDeadline();
+        taskDescription = source.getTaskDescription().getTaskDescription();
+        taskMark = source.getTaskMark().getTaskMark();
     }
 
     /**

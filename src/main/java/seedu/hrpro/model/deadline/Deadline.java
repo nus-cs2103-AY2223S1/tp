@@ -14,7 +14,7 @@ public class Deadline implements Comparable<Deadline> {
     public static final String MESSAGE_CONSTRAINTS =
             "Date should be in the format YYYY-MM-DD and must be a valid date. Also it should not be blank.";
 
-    public final String deadline;
+    private final String deadline;
 
     /**
      * Constructs an {@code Deadline}.
@@ -61,5 +61,9 @@ public class Deadline implements Comparable<Deadline> {
         //will not throw error because format is ensured by regex.
         return LocalDate.parse(this.deadline)
                 .compareTo(LocalDate.parse(other.deadline));
+    }
+
+    public String getDeadline() {
+        return deadline;
     }
 }

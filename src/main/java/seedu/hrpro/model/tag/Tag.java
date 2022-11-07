@@ -18,7 +18,7 @@ public class Tag {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum} ]{1,50}";
 
-    public final String tagName;
+    private final String tagName;
 
     /**
      * Constructs a {@code Tag}.
@@ -57,4 +57,7 @@ public class Tag {
         return '[' + tagName + ']';
     }
 
+    public String getTagName() {
+        return tagName;
+    }
 }
