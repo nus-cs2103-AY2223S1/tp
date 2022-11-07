@@ -66,9 +66,9 @@ public class EditCommand extends Command {
             + "Date and Slot are only applicable to patient and Date and Slot Index is used to indicate"
             + "the specific date and slot to be edited. \n"
             + "[" + PREFIX_DATE_AND_SLOT + "DATE_AND_SLOT] \n"
-            + "[" + PREFIX_DATE_AND_SLOT_INDEX + "DATE_AND_SLOT_INDEX \n"
+            + "[" + PREFIX_DATE_AND_SLOT_INDEX + "DATE_AND_SLOT_INDEX] \n"
             + "Unavailable Date are only applicable to nurse and Unavailable Date Index is used to indicate"
-            + "the specific unavailable date to be edited. \n"
+            + " the specific unavailable date to be edited. \n"
             + "[" + PREFIX_UNAVAILABLE_DATE + "UNAVAILABLE_DATE] \n"
             + "[" + PREFIX_UNAVAILABLE_DATE_INDEX + "UNAVAILABLE_DATE_INDEX] \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_UID + " 1 "
@@ -94,7 +94,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_INVALID_NUMBERS_OF_UNAVAILABLEDATES_AND_UNAVAILABLEDATESINDEX =
             "The unavailable date index " + "provided is more than the unavailable date provided."
-                    + "Please remove the unavailable date index or add more unavailable date.";
+                + "Please remove the unavailable date index or add more unavailable date.";
 
     public static final String MESSAGE_OUT_OF_BOUND_UNAVAILABLEDATESINDEX = "The unavailable date index "
             + "given is out of bounds of the existing list."
@@ -200,6 +200,7 @@ public class EditCommand extends Command {
         }
     }
 
+
     private Patient createUpdatedPatient(Uid uid, Name updatedName, Gender updatedGender, Phone updatedPhone,
                                          Email updatedEmail, Address updatedAddress, Set<Tag> updatedTags,
                                          EditPersonDescriptor editPersonDescriptor, Person personToEdit,
@@ -254,6 +255,7 @@ public class EditCommand extends Command {
 
         return new Nurse(uid, updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress, updatedTags,
                 updatedUnavailableDate, updatedHomeVisitList, updatedFullyScheduledDateList);
+
     }
 
     private Nurse createNewNurse(Uid uid, Name updatedName, Gender updatedGender, Phone updatedPhone,
@@ -341,7 +343,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(category, name, gender, phone, email, address,
+            return CollectionUtil.isAnyNonNull(name, gender, phone, email, address,
                     tags, datesSlots, dateSlotIndexes, unavailableDates, dateIndexes);
         }
 

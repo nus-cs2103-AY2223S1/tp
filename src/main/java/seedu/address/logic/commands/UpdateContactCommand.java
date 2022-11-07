@@ -9,6 +9,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.category.Category;
+import seedu.address.model.person.BasePerson;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NextOfKin;
@@ -19,8 +20,7 @@ import seedu.address.model.person.Physician;
 import seedu.address.model.person.Uid;
 
 /**
- * Represents the command to add contact details of attending physician or next
- * of kin to a patient.
+ * Updates contact details of attending physician or next of kin to a patient.
  */
 public class UpdateContactCommand extends Command {
     public static final String COMMAND_WORD = "updatecontact";
@@ -32,12 +32,12 @@ public class UpdateContactCommand extends Command {
             + "n/ [CONTACT NAME]\n"
             + "p/ [CONTACT PHONE]\n"
             + "e/ [CONTACT EMAIL]\n"
-            + "c/ [CONTACT CATEGORY]: either D for Physician or N for Next of Kin\n"
+            + "c/ [CONTACT CATEGORY]: either D for Physician or K for Next of Kin\n"
             + "Example: " + COMMAND_WORD + " id/3 "
             + "n/ John Doe p/ 81234567 e/ johndoe@example.com c/ D";
 
     public static final String MESSAGE_UPDATE_CONTACT_SUCCESS = "Added contact details to patient with UID: %s, "
-            + "Physician Name: %s, Phone: %s, Email: %s, Category: %s";
+            + "Contact Name: %s, Phone: %s, Email: %s, Category: %s";
 
     private final Uid uid;
 
@@ -68,35 +68,45 @@ public class UpdateContactCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Person> lastShownList = model.getFilteredPersonList();
+        Patient patientToEdit = getPersonToEdit(model);
 
-        Person personToEdit = lastShownList.stream().filter(x -> x.getUid().equals(uid)).findAny()
+        Patient editedPatient = updateContact(patientToEdit);
+
+        model.setPerson(patientToEdit, editedPatient);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+        return new CommandResult(String.format(MESSAGE_UPDATE_CONTACT_SUCCESS, uid, name, phone, email, category));
+    }
+
+    private Patient getPersonToEdit(Model model) throws CommandException {
+        List<Person> lastShownList = model.getFilteredPersonList();
+        Person personToEdit = lastShownList.stream()
+                .filter(x -> x.getUid().equals(uid))
+                .findAny()
                 .orElseThrow(() -> new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_UID));
         if (!personToEdit.getCategory().equals(new Category(Category.PATIENT_SYMBOL))) {
             throw new CommandException(Messages.MESSAGE_UPDATECONTACT_INVALID_CATEGORY);
         }
-        Patient patientToEdit = (Patient) personToEdit;
+        return (Patient) personToEdit;
+    }
 
-        Patient editedPatient;
+    private Patient updateContact(Patient patientToEdit) throws CommandException {
+        BasePerson updatedContact;
         if (category.equals(new Category(Category.PHYSICIAN_SYMBOL))) {
-            Physician physician = new Physician(name, phone, email);
-            editedPatient = new Patient(personToEdit.getUid(),
-                    personToEdit.getName(), personToEdit.getGender(), personToEdit.getPhone(), personToEdit.getEmail(),
-                    personToEdit.getAddress(), personToEdit.getTags(), patientToEdit.getDatesSlots(),
-                    Optional.of(physician), patientToEdit.getNextOfKin());
+            updatedContact = new Physician(name, phone, email);
+            return new Patient(patientToEdit.getUid(), patientToEdit.getName(), patientToEdit.getGender(),
+                    patientToEdit.getPhone(), patientToEdit.getEmail(), patientToEdit.getAddress(),
+                    patientToEdit.getTags(), patientToEdit.getDatesSlots(),
+                    Optional.of((Physician) updatedContact), patientToEdit.getNextOfKin());
         } else if (category.equals(new Category(Category.NEXTOFKIN_SYMBOL))) {
-            NextOfKin nextOfKin = new NextOfKin(name, phone, email);
-            editedPatient = new Patient(personToEdit.getUid(),
-                    personToEdit.getName(), personToEdit.getGender(), personToEdit.getPhone(), personToEdit.getEmail(),
-                    personToEdit.getAddress(), personToEdit.getTags(), patientToEdit.getDatesSlots(),
-                    patientToEdit.getAttendingPhysician(), Optional.of(nextOfKin));
+            updatedContact = new NextOfKin(name, phone, email);
+            return new Patient(patientToEdit.getUid(), patientToEdit.getName(), patientToEdit.getGender(),
+                    patientToEdit.getPhone(), patientToEdit.getEmail(), patientToEdit.getAddress(),
+                    patientToEdit.getTags(), patientToEdit.getDatesSlots(),
+                    patientToEdit.getAttendingPhysician(), Optional.of((NextOfKin) updatedContact));
         } else {
             throw new CommandException(Messages.MESSAGE_UPDATECONTACT_INVALID_CONTACT_CATEGORY);
         }
-        model.setPerson(personToEdit, editedPatient);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-
-        return new CommandResult(String.format(MESSAGE_UPDATE_CONTACT_SUCCESS, uid, name, phone, email, category));
     }
 
     @Override
