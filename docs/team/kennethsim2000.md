@@ -5,9 +5,7 @@ title: Kenneth's Project Portfolio Page (@Kennethsim2000)
 
 ### Project: HackAssist
 
-HackAssist is a task management application used to better manage tasks allocation in Hackathons. HackAssist provides allocation, sorting and filtering of tasks features to allow users to better manage the task allocation and progress tracking in a hackathon team.
-
-The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is optimized for use via a Command Line Interface(CLI) while still having the benefits of a Graphical User Interface(GUI). If you can type fast, HackAssist can get your task management done faster than traditional GUI apps.
+HackAssist is a task management application used to better manage tasks allocation in Hackathons. HackAssist provides allocation, sorting and filtering of tasks features to allow users to better manage the task allocation and progress tracking in a hackathon team. It is optimized for use via a Command Line Interface(CLI) while still having the benefits of a Graphical User Interface(GUI). 
 
 Given below are my contributions to the project.
 
