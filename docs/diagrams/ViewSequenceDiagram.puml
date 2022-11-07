@@ -3,7 +3,6 @@
 
 box Ui UI_COLOR_T1
 participant ":MainWindow" as MainWindow LOGIC_COLOR
-participant ":TutorDetailsPanel" as TutorDetailsPanel LOGIC_COLOR
 end box
 
 box Logic LOGIC_COLOR_T1
@@ -74,36 +73,5 @@ deactivate ViewCommand
 
 LogicManager --> MainWindow : result
 deactivate LogicManager
-
-MainWindow --> CommandResult : isView()
-activate CommandResult
-
-CommandResult --> MainWindow : true
-deactivate CommandResult
-
-MainWindow -> LogicManager : getTutorToView()
-activate LogicManager
-
-LogicManager -> Model : getTutorToView()
-activate Model
-
-Model --> LogicManager : tutorToView
-deactivate Model
-
-LogicManager -> MainWindow : tutorToView
-deactivate LogicManager
-
-MainWindow --> MainWindow : handleView(tutorToView)
-activate MainWindow
-
-create TutorDetailsPanel
-MainWindow --> TutorDetailsPanel : tutorToView
-activate TutorDetailsPanel
-
-TutorDetailsPanel --> MainWindow
-deactivate TutorDetailsPanel
-
-MainWindow --> MainWindow
-deactivate MainWindow
 [<- MainWindow
 @enduml

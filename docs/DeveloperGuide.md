@@ -175,23 +175,25 @@ This section describes some noteworthy details on how certain features are imple
 
 Tutor information is stored as `Tutor` objects, which captures all the information that the tutor represents. When the user adds a tutor, the program creates a new `Tutor` object with the given information and adds it to the `ObservableList` to be displayed in the program. The `Model` class handles the checking of uniqueness while the `Storage` class handles the conversion of the `Tutor` object to a [JSON](https://www.json.org/) format and updating of the storage file in `{source_root}/data/Tuthub.json`.
 
+<ins>Implementation</ins>
+
 The following methods in `Tuthub` manage the addition of tutors:
 * `Tuthub#AddCommand(Tutor tutor)` - Adds the provided tutor to the list of tutors created
 * `Tuthub#AddCommandParser(String args)` - Parses the command `add` and determines the attributes of the `Tutor` object created based on the given prefixes
 
 Given below are the different steps taken when the user adds tutors.
 
-Step 1: The user enters the command word add, followed by the prefixes and information that they want to store. Example: `add n/John Doe p/98765432 e/johnd@example.com m/CS2100 y/3 s/A0123456X tn/1 r/5.0 t/senior`.
+Step 1: The user enters the command word `edit`, followed by the prefixes and information that they want to store. Example: `add n/John Doe p/98765432 e/johnd@example.com m/CS2100 y/3 s/A0123456X tn/1 r/5.0 t/senior`.
 
 Step 2: The program makes use of `TuthubParser` to make sense of the keyword and determine which parser to use to parse the arguments. In this case, the `AddCommandParser` is used.
 
-Step 3: The `AddCommandParser` makes sense of the arguments through the use of the prefixes, with the help of `ParserUtil`, and creates an `AddCommand` object with the provided information in the form a `Tutor` object.
+Step 3: The `AddCommandParser` makes sense of the arguments through the use of the prefixes, with the help of `ParserUtil`, and creates an `AddCommand` object with the provided information in the form of a `Tutor` object.
 
 Step 4: The `AddCommand` object is executed. The `Tutor` object created in step 3 is added to the list of tutors captured in the `ModelManager` class, which then utilises the `UI` class to display the created `Tutor` object.
 
 Step 5: The execution ends and returns a `CommandResult` object contained the success message to be displayed to the GUI to the user.
 
-The following sequence diagram demonstrates the above operations (excluding the parsing details):
+The following sequence diagram demonstrates the above operations:
 
 ![AddSequenceDiagram](./images/AddSequenceDiagram.png)
 
@@ -269,9 +271,12 @@ The following sequence diagram demonstrates the above operations (excluding the 
     - Cons: Poor OOP practice the individual commands are all `find` commands and should not be a different class on its own. User also have more commands to remember.
 
 ### View Feature
+
+The `view` command involves operations within the UI to display/hide the tutor details panel. 
+
 <ins>Implementation</ins>
 
-The `view` command involves operations within the UI to display/hide the tutor details panel. The communication between the logic and UI classes is facilitated by the `CommandResult` class, where the following field has been added:
+The communication between the logic and UI classes is facilitated by the `CommandResult` class, where the following field has been added:
 - `CommandResult#isView` - Indicates if the current command is a `view` command.
 
 Given below is an example usage scenario when the user enters a `view` command in the command box and how the view mechanism behaves at each step.
@@ -282,15 +287,15 @@ Step 2: The `TuthubParser` verifies the `ViewCommand#COMMAND_WORD`, and requests
 
 Step 3: Upon parsing, a new `ViewCommand` is created based on the valid index.
 
-Step 4: When the `ViewCommand` is executed, a new `CommandResult` with `isView` set to `true` is created and `ModelManager#tutorToView` is updated with the selected tutor.
+Step 4: When the `ViewCommand` is executed, a new `CommandResult` of type `isView` is created and `ModelManager#tutorToView` is updated with the selected tutor. The following sequence diagram demonstrates the main operations carried out between `Logic` and `Model` (with UI details omitted):
+
+<img src="images/ViewSequenceDiagram.png"/>
 
 Step 5: Upon recognising the `CommandResult` is of `isView` type, `MainWindow` calls `logic#getTutorToView()` to get the tutor to be displayed from `Model`, which is then passed into `MainWindow#handleView(Tutor tutor)`.
 
-Step 6: This causes the `TutorDetailsPanel` of the `tutor` to be set as visible, resulting in the side panel being displayed.
+Step 6: This causes the `TutorDetailsPanel` of the `tutor` to be set as visible, resulting in the side panel being displayed. The following sequence diagram demonstrates the detailed operations carried out between `UI`, `Logic` and `Model`:
 
-The following sequence diagram demonstrates the above operations:
-
-<img src="images/ViewSequenceDiagram.png"/>
+<img src="images/ViewSequenceUiDiagram.png"/>
 
 <ins>Design Considerations</ins>
 
@@ -304,6 +309,35 @@ The following sequence diagram demonstrates the above operations:
   the `MainWindow` directly through `CommandResult`.
   - Cons: Poor OOP practice as it does not make sense for `CommandResult` to store a `Tutor`, and other commands do not
   require a `Tutor` object to be stored.
+
+### Edit Feature
+
+This command allows users to edit a specific tutor (by `INDEX`) in `Tuthub`'s displayed list.
+
+<ins>Implementation</ins>
+Similar to [`add` command](#add-feature), the `edit` command involves the logic and model components of Tuthub, where the `Model` class handles the checking of uniqueness.
+
+The following methods in particular facilitate the editing of tutors:
+* `EditCommand#createEditedTutor(Tutor tutor, EditTutorDescriptor descriptor)` - Creates a new `Tutor` object with updated fields to replace the existing one.
+* `Model#setTutor(Tutor target, Tutor editedTutor)` - Replaces the current `target` tutor with the new `editedTutor`
+
+Given below is an example usage scenario when the user edits a tutor.
+
+Step 1: The user enters the command word `edit`, followed by an index and the prefixes and corresponding descriptions that they want to change. Example: `edit 1 n/John Doe`.
+
+Step 2: The `TuthubParser` verifies the `EditCommand#COMMAND_WORD`, and requests `EditCommandParser` to parse.
+
+Step 3: The `EditCommandParser` makes sense of the arguments through the use of the prefixes, with the help of `ParserUtil`, and creates an `EditCommand` object with the target index and the provided information in the form of a `editTutorDescriptor` object.
+
+Step 4: When the `EditCommand` is executed, `EditCommand#createEditedTutor(Tutor tutor, EditTutorDescriptor descriptor)` creates a new `Tutor` object with the updated field.
+
+Step 5: The new `Tutor` is then passed into `Model#setTutor(Tutor target, Tutor editedTutor)`, which replaces the original `target` tutor with the `editedTutor` in the `UniqueTutorList` in Tuthub after checking for duplicates.
+
+Step 5: The execution ends and returns a `CommandResult` object contained the success message to be displayed to the GUI to the user.
+
+The following sequence diagram demonstrates the above operations (excluding details of how the current tutor was obtained from `Model`):
+
+<img src="images/EditSequenceDiagram.png"/>
 
 ### Sort Feature
 
