@@ -49,13 +49,13 @@ management tasks done faster than traditional GUI apps. Given below are my contr
 * **Enhancements to existing features**: 
   * Wrote additional tests to increase coverage (Pull request [\#64](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/64))
   * Updated `help` command to display the command summary and execute automatically when user run the app for the first time (Pull request [\#77](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/77))
-  * Made small changes to GUI to make it more user-friendly (Pull requests [\#102](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/102), [\#130](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/130))
+  * Made small changes to the GUI to make it more user-friendly (Pull requests [\#102](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/102), [\#130](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/130))
   * Fixed bugs from Practical Examination Dry Run (Pull requests [\#176](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/176), [\#214](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/214), [\#215](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/215), [\#217](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/217), [\#224](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/224))
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `add` (Pull requests [\#29](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/29), [\#68](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/68))
-        * Added documentation for the features `help` (Pull request [\#141](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/141))
+        * Added documentation for `add` (Pull requests [\#29](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/29), [\#68](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/68))
+        * Added documentation for `help` (Pull request [\#141](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/141))
         * Added the glossary section (Pull request [\#138](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/138))
     * Developer Guide:
         * Added use case for add internship (Pull request [\#29](https://github.com/AY2223S1-CS2103T-W17-4/tp/pull/29))
