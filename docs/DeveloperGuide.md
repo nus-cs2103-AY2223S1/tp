@@ -338,6 +338,94 @@ in previous list.
   * Pros: Harder to implement.
   * Cons: Efficient especially when command list is large.
 
+### 5.5 [Proposed] Acceptance of Multiple Date Formats
+
+#### 5.5.1 Current Implementation
+
+Currently, the `Deadline` class only accepts dates in the ISO 8601 format (e.g. 2022-11-07), which is unnatural for new
+users to type. Accepting multiple date formats will be much appreciated by the user base.
+
+#### 5.5.2 Proposed Implementation
+
+A list of accepted formats generated using `DateTimeFormatter::ofPattern` needs to be stored as a static field in 
+`Deadline`. 
+
+Assuming the input is not null, we first do what we are doing currently and parse using `LocalDate::parse`, checking
+for an exception. This will check for the ISO 8601 format. Next, for each accepted format `format`, we try parsing the
+input again using `LocalDate.parse(input, format)`. If all of them fail, then we know that the input is invalid.
+
+One can go further as to allow keying in of dates without the year. In such a case, we will have to use 
+`java.time.MonthDay::parse` instead of `LocalDate::parse`. This, however, presents an issue for our `Deadline` class as 
+we are using a `LocalDate` internally, which requires a year. A solution to this is to assume that the provided 
+`MonthDay` refers to a day in the current year. For example, say the current year is 2022, if the user 
+provides 20/11, the date should be parsed as 20 November 2022.
+
+The following sequence diagram shows what will happen with the proposed implementation of multiple date formats:
+
+![ProposedDeadlineSequenceDiagram](images/ProposedDeadlineSequenceDiagram.png)
+
+#### 5.5.3 Alternative Implementations
+
+**Aspect: Providing a year for Month and Day only inputs**
+
+* Alternative 1 (mentioned above): The current year is taken
+  * Pros: Easy to implement
+  * Cons: The feature may become frustrating to use in December when planning for tasks in Janurary
+* Alternative 2: Provide a year such that the resultant date is after the current date.
+  * For example, if the current date is 20 Nov 2022 and the user provides 10 Nov, the result will be 10 Nov 2023.
+  * Pros: Resolves the December problem of alternative 1
+  * Cons: The edge case of 29 February needs to be considered, and putting deadlines before the current date may be more difficult
+* Alternative 3: Provide a year such that the resultant date is either three months before or nine months after the current date
+  * Pros: 
+  * Cons: More complicated implementation
+
+
+### 5.6 [Proposed] Aliasing of Commands
+
+#### 5.6.1 Rationale for Feature
+
+As users become more familiar with the command line, some may prefer to have aliases for commonly used commands to
+improve their efficiency. For example, instead of typing `add -n Project ...` every time, a user may prefer to just type 
+`a Project ...` to quickly add in a task, where `a` is an alias for `add -n`. Other potential uses are aliases for 
+commonly used list filters, instead of typing the whole command out.
+
+#### 5.6.2 Proposed Implementation
+
+The addition of the alias feature will require the following commands:
+
+* View all current aliases: `alias`
+* Add alias: `alias ALIAS_NAME -c COMMAND_TO_RUN`, with a limitation that ALIAS_NAME has no spaces
+* Delete alias: `unalias ALIAS_NAME`
+
+The proposed aliasing mechanism will be facilitated by a `AliasList` class that encapsulates a `HashMap`, which
+stores the alias name and the command to replace the alias. The `AliasList` class will be part of the Model component
+amd will contain the following methods:
+
+* `AliasList#addAlias(String alias, String command)` - Adds an alias
+* `AliasList#deleteAlias(String alias)` - Delete an alias
+* `AliasList#getCommand(String alias)` - Returns the actual command to be run if the provided input is an alias, else it
+  simply returns the input.
+* `AliasList#listAliases()` - Returns a list of aliases
+
+These operations will be exposed in the `Model` interface as `Model::addAlias`, `Model::deleteAlias`, 
+`Model::getCommand` and `Model::listAliases` respectively.
+
+`LogicManager` will work to ensure that the contents of `AliasList` is stored persistently on disk.
+
+Since aliases can only be one word (by our restriction in the add alias command), we only need the first word of a 
+command to check whether it is an alias. If it is, the alias will be replaced with the actual command to be run. 
+
+Below is the sequence diagram for an execution of `a Project -m CS2103T`, with `a` being an alias for `add -n`.
+
+![ProposedAliasSequenceDiagram](images/ProposedAliasSequenceDiagram.png)
+
+To prevent the `alias` and `unalias` commands from being inaccessible due to a bad alias, eg `alias alias -c bad`, those
+two commands cannot be aliased.
+
+The following activity diagram summarizes what happens when a user executes an alias command:
+
+![ProposedAliasActivityDiagram](images/ProposedAliasActivityDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **6. Documentation, logging, testing, configuration, dev-ops**
