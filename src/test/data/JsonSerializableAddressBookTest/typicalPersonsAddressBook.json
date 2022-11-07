@@ -1,46 +1,89 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
+    "type" : "s",
     "name" : "Alice Pauline",
+    "moduleCode" : "",
+    "moduleCodes" : [ "CS1101S" ],
     "phone" : "94351253",
     "email" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "gender" : "F",
+    "tagged" : [ "friends" ],
+    "location" : "NUS",
+    "username" : "",
+    "year" : "1"
   }, {
+    "type" : "s",
     "name" : "Benson Meier",
+    "moduleCode" : "",
+    "moduleCodes" : [ "CS1101S" ],
     "phone" : "98765432",
     "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "gender" : "M",
+    "tagged" : [ "owesMoney", "friends" ],
+    "location" : "NUS",
+    "username" : "ben10",
+    "year" :  "1"
   }, {
+    "type" : "s",
     "name" : "Carl Kurz",
+    "moduleCode" : "",
+    "moduleCodes" : [ "CS1101S" ],
     "phone" : "95352563",
     "email" : "heinz@example.com",
-    "address" : "wall street",
-    "tagged" : [ ]
+    "gender" : "M",
+    "tagged" : [ ],
+    "location" : "NUS",
+    "username" : "",
+    "year" :  "1"
   }, {
+    "type" : "s",
     "name" : "Daniel Meier",
+    "moduleCode" : "",
+    "moduleCodes" : [ "CS1101S" ],
     "phone" : "87652533",
     "email" : "cornelia@example.com",
-    "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "gender" : "M",
+    "tagged" : [ "friends" ],
+    "location" : "NUS",
+    "username" : "",
+    "year" :  "1"
   }, {
+    "type": "p",
     "name" : "Elle Meyer",
+    "moduleCode": "CS1231S",
     "phone" : "9482224",
     "email" : "werner@example.com",
-    "address" : "michegan ave",
-    "tagged" : [ ]
+    "gender": "F",
+    "tagged" : [ ],
+    "location" : "NUS",
+    "username" : "",
+    "rating" : "5",
+    "specialisation" : "Computer Graphics",
+    "officeHour" : "TUESDAY: 6:00 PM to 9:00 PM"
   }, {
+    "type": "t",
     "name" : "Fiona Kunz",
+    "moduleCode": "CS1231S",
     "phone" : "9482427",
     "email" : "lydia@example.com",
-    "address" : "little tokyo",
-    "tagged" : [ ]
+    "gender": "F",
+    "tagged" : [ ],
+    "location" : "NUS",
+    "username" : "",
+    "rating" : "5",
+    "specialisation" : "Computer Graphics"
   }, {
+    "type" : "s",
     "name" : "George Best",
+    "moduleCode" : "",
+    "moduleCodes" : [ "CS1101S" ],
     "phone" : "9482442",
     "email" : "anna@example.com",
-    "address" : "4th street",
-    "tagged" : [ ]
+    "gender" : "M",
+    "tagged" : [ ],
+    "location" : "NUS",
+    "username" : "",
+    "year" :  "1"
   } ]
 }

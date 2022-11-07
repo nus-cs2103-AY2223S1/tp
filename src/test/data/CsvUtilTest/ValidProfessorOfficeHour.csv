@@ -1,0 +1,2 @@
+type,moduleCodes,moduleCode,name,phone,email,gender,tagged,location,username,rating,year,specialisation,officeHour
+p,,CS1231S,"Ben Ten",22222222,ben@example.com,M,friend;husband,RUT,ben10,,,,"MONDAY, 11:00 AM - 01:00 PM"

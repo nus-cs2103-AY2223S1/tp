@@ -6,14 +6,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import static seedu.address.testutil.TypicalSetsOfIndex.SET_OF_ONE_INDEX;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -22,22 +19,47 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ProfCommand;
+import seedu.address.logic.commands.StudentCommand;
+import seedu.address.logic.commands.TaCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonMatchesPredicate;
+import seedu.address.model.person.Professor;
+import seedu.address.model.person.Student;
+import seedu.address.model.person.TeachingAssistant;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PersonMatchesPredicateBuilder;
 import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.ProfessorBuilder;
+import seedu.address.testutil.StudentBuilder;
+import seedu.address.testutil.TeachingAssistantBuilder;
 
 public class AddressBookParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        assertEquals(new AddCommand(person), command);
+    public void parseCommand_addStudent() throws Exception {
+        Student person = new StudentBuilder().withModuleCodes("CS1101S", "CS1231S").build();
+        StudentCommand command = (StudentCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+
+        assertEquals(new StudentCommand(person), command);
+    }
+
+
+    @Test
+    public void parseCommand_addProfessor() throws Exception {
+        Professor person = new ProfessorBuilder().build();
+        ProfCommand command = (ProfCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        assertEquals(new ProfCommand(person), command);
+    }
+
+
+    @Test
+    public void parseCommand_addTeachingAssistant() throws Exception {
+        TeachingAssistant person = new TeachingAssistantBuilder().build();
+        TaCommand command = (TaCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        assertEquals(new TaCommand(person), command);
     }
 
     @Test
@@ -49,14 +71,34 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+            DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteCommand(SET_OF_ONE_INDEX).targetIndexSet, command.targetIndexSet);
+        Index test = Index.fromOneBased(1);
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
-        Person person = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
+    public void parseCommand_editStudent() throws Exception {
+        Student student = new StudentBuilder().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(student)
+                .withModuleCode("CS1101S").build(); //student has no module code
+        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+            + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_editProfessor() throws Exception {
+        Professor prof = new ProfessorBuilder().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(prof).build();
+        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_editTeachingAssistant() throws Exception {
+        TeachingAssistant ta = new TeachingAssistantBuilder().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(ta).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
@@ -69,11 +111,11 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+    public void parseCommand_findStudent() throws Exception {
+        PersonMatchesPredicate predicate = PersonMatchesPredicateBuilder.buildStudentPredicate();
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+            FindCommand.COMMAND_WORD + " " + PersonUtil.getFindCommandDetails(predicate));
+        assertEquals(new FindCommand(predicate), command);
     }
 
     @Test

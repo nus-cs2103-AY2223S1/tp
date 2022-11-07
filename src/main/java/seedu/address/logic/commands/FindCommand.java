@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.PersonMatchesPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -14,14 +14,25 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons who match the provided fields "
+            + "and displays them as a list with index numbers.\n"
+            + "Parameters: find [n/NAME] [m/MODULE_CODE] [s/SPECIALISATION] [p/PHONE] [e/EMAIL]"
+            + " [g/GENDER] [g/GITHUB_USERNAME] [y/YEAR] [t/TAG] [l/LOCATION] [r/RATING] [o/OFFICE_HOUR]\n"
+            + " Example: " + COMMAND_WORD
+            + " n/alice m/cs2100 p/1234567 t/friends y/1 l/NUS git/alice123 g/F e/alice@example.com";
 
-    private final NameContainsKeywordsPredicate predicate;
+    public static final String EMPTY_FIELDS_MESSAGE = "One or more fields are empty!";
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public static final String INVALID_TYPES_MESSAGE = "Invalid types provided!";
+
+    public static final String INVALID_MODULES_MESSAGE = "Incorrect or empty module field format! "
+            + "OR search is m/[MODULE_LIST] ALL search is m/all/[MODULE_LIST]";
+
+    public static final String INVALID_TAGS_MESSAGE = "Incorrect or empty tags field format! "
+            + "OR search is t/[TAG_LIST] ALL search is t/all/[TAG_LIST]";
+    private final PersonMatchesPredicate predicate;
+
+    public FindCommand(PersonMatchesPredicate predicate) {
         this.predicate = predicate;
     }
 

@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.order.Order;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 
@@ -15,6 +16,9 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
+    private int studentCount;
+    private int profCount;
+    private int taCount;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -35,6 +39,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this();
         resetData(toBeCopied);
+    }
+
+    /**
+     * Returns number of contacts in AddressBook
+     */
+    public int size() {
+        return getPersonList().size();
     }
 
     //// list overwrite operations
@@ -94,7 +105,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     //// util methods
-
+    /**
+     * Sorts {@code persons} according to the {@code order} specified.
+     * {@code hasName} and {@code hasModuleCode} determines the order it is being sort by.
+     */
+    public void sort(Order order, boolean hasName, boolean hasModuleCode) {
+        if (hasName) {
+            persons.sortName(order);
+        }
+        if (hasModuleCode) {
+            persons.sortModuleCode(order);
+        }
+    }
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons";

@@ -9,51 +9,55 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Nitant Panicker
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nitant-p.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/nitant-p)]
 
-* Role: Project Advisor
+[[portfolio](team/nitant-p.md)]
 
-### Jane Doe
+* Role: Developer
 
-<img src="images/johndoe.png" width="200px">
+### Png Yi Wei Jonas
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+<img src="images/jonaspng.png" width="200px">
+
+[[github](http://github.com/jonaspng)]
+
+[[portfolio](team/jonaspng.md)]
 
 * Role: Team Lead
+* Responsibility: DevOps
+
+### Joe Yi
+
+<img src="images/jjoeyi.png" width="200px">
+
+[[github](http://github.com/jjoeyi)]
+
+[[portfolio](team/jjoeyi.md)]
+
+* Role: Developer
+
+### Norman Koh
+
+<img src="images/normkoh.png" width="200px">
+
+[[github](http://github.com/normkoh)]
+
+[[portfolio](team/normkoh.md)]
+
+* Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
+### Gareth Ong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/garethong.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/GarethOng)]
+
+[[portfolio](team/garethong.md)]
 
 * Role: Developer
 * Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI

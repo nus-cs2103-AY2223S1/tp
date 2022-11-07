@@ -2,35 +2,88 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <VBox fx:id="cardPaneLeft" alignment="CENTER" maxWidth="-Infinity" prefHeight="105.0" prefWidth="105.0" stylesheets="@DarkTheme.css">
+      <children>
+         <HBox prefHeight="0.0" prefWidth="100.0" />
+         <VBox alignment="CENTER">
+            <children>
+               <Label fx:id="title" text="Label" />
+               <Label fx:id="year" text="Label" />
+               <Label fx:id="specialisation" text="Label" wrapText="true" />
+               <HBox id="stars" fx:id="stars" prefHeight="30.0" prefWidth="100.0" />
+            </children>
+            <padding>
+               <Insets top="10.0" />
+            </padding>
+         </VBox>
+      </children>
+   </VBox>
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
     <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
       <padding>
-        <Insets top="5" right="5" bottom="5" left="15" />
+        <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-      <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
+      <HBox alignment="CENTER_LEFT" spacing="5">
+         <Label fx:id="id" styleClass="cell_big_label">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
-        </Label>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+         </Label>
+        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+            <ImageView fx:id="gender" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
       </HBox>
       <FlowPane fx:id="tags" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+      <FlowPane fx:id="moduleCodes" />
+         <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="15.0" spacing="5">
+            <children>
+               <ImageView fx:id="phoneImage" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+            </children>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="35.0" spacing="5">
+            <children>
+               <ImageView fx:id="emailImage" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+            </children>
+         </HBox>
+         <HBox fx:id="gitHubPanel" alignment="CENTER_LEFT" layoutX="25.0" layoutY="55.0" spacing="5">
+            <children>
+               <ImageView fx:id="githubImage" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="githubUsername" styleClass="cell_small_label" />
+            </children>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="75.0" spacing="5">
+            <children>
+               <ImageView fx:id="locationImage" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="locationAt" styleClass="cell_small_label" text="\$location" />
+            </children>
+         </HBox>
+         <HBox fx:id="officeHourPanel" alignment="CENTER_LEFT" layoutX="25.0" layoutY="146.0" spacing="5">
+            <children>
+               <ImageView fx:id="officeHourImage" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+              <Label fx:id="officeHour" styleClass="cell_small_label" />
+            </children>
+            <padding>
+               <Insets top="5.0" />
+            </padding>
+         </HBox>
     </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
   </GridPane>
 </HBox>

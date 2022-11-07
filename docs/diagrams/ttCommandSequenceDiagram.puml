@@ -1,0 +1,89 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T2
+activate UI UI_COLOR_T1
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":TemplateCommandParser" as TemplateCommandParser LOGIC_COLOR
+participant ":ParserUtil" as ParserUtil LOGIC_COLOR
+participant "TemplateCommand" as TemplateCommandClass LOGIC_COLOR
+participant "tc:TemplateCommand" as TemplateCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+
+
+UI -> LogicManager : execute("tt prof")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("tt prof")
+activate AddressBookParser
+
+create TemplateCommandParser
+AddressBookParser -> TemplateCommandParser
+activate TemplateCommandParser
+
+TemplateCommandParser --> AddressBookParser
+deactivate TemplateCommandParser
+
+AddressBookParser -> TemplateCommandParser : parse("prof")
+activate TemplateCommandParser
+
+TemplateCommandParser -> ParserUtil : parseTemplate("prof")
+activate ParserUtil
+
+ParserUtil -> TemplateCommandClass : isValidPerson("prof")
+activate TemplateCommandClass
+
+TemplateCommandClass --> ParserUtil : true
+deactivate TemplateCommandClass
+
+ParserUtil --> TemplateCommandParser : String "prof"
+
+deactivate ParserUtil
+
+create TemplateCommand
+TemplateCommandParser -> TemplateCommand
+activate TemplateCommand
+
+TemplateCommand --> TemplateCommandParser : tc
+deactivate TemplateCommand
+
+TemplateCommandParser --> AddressBookParser : tc
+deactivate TemplateCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+TemplateCommandParser -[hidden]-> AddressBookParser
+destroy TemplateCommandParser
+
+AddressBookParser --> LogicManager : tc
+deactivate AddressBookParser
+
+LogicManager -> TemplateCommand : execute()
+activate TemplateCommand
+
+alt person string is "prof"
+create CommandResult
+
+    TemplateCommand -> CommandResult : personTemplateString "prof"
+    activate CommandResult
+
+else person string is "student"
+else person string is "ta"
+end
+
+CommandResult --> TemplateCommand
+
+TemplateCommand --> LogicManager : result
+
+deactivate TemplateCommand
+UI <--LogicManager : result
+deactivate LogicManager
+
+UI -> CommandResult : hasPersonTemplate()
+UI <-- CommandResult  : true
+deactivate CommandResult
+
+UI -> UI : handleTemplate()
+@enduml

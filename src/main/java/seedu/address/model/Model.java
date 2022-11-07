@@ -5,7 +5,10 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.order.Order;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
+import seedu.address.ui.PersonPieChart;
 
 /**
  * The API of the Model component.
@@ -52,6 +55,24 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
+    /** Returns the size of AddressBook */
+    int getAddressBookSize();
+
+    /**
+     * Returns the pieChart stored in the model
+     */
+    PersonPieChart getPieChart();
+
+    /**
+     * Sets the pieChart stored in the model
+     */
+    void setPieChart(PersonPieChart personPieChart);
+
+    /**
+     * Updates pieChart based on addressBook.
+     */
+    void updatePieChart();
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
@@ -84,4 +105,14 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Sort the contact list by name in a lexicographical manner.
+     */
+    void sort(Order order, boolean hasName, boolean hasModuleCode);
+
+    /**
+     * Opens default browser to target's github profile page.
+     */
+    public void openGithub(Person target) throws CommandException;
 }
