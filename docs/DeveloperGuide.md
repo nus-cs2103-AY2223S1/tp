@@ -19,7 +19,7 @@ title: Developer Guide
    4.2. [View command](#42-view-command)<br>
    4.3. [Sort command](#43-sort-command)<br>
    4.4. [Copy command](#44-copy-command)<br>
-   4.5. [Lock feature](#45-lock-feature)<br>
+   4.5. [Password lock feature](#45-password-lock-feature)<br>
 5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)<br>
 6. [Appendix: Requirements](#6-appendix-requirements)<br>
    6.1. [Product scope](#61-product-scope)<br>
@@ -360,17 +360,19 @@ The copy command mainly relies on the following classes:
 
 Java `Clipboard` API is used as it implements a mechanism to transfer data using cut/copy/paste operations.
 
-### 4.5. Lock feature
+### 4.5. Password lock feature
 
 #### Current Implementation
 
-The lock feature mainly relies on the following classes:
+The password lock feature mainly relies on the following classes:
 
 * `CommandResult`
 * `LockCommand`
 * `AddressBookParser`
 * `LockWindow`
 * `MainWindow`
+
+Password verification is handled by the Password4j library.
 
 1. The user opens FinBook.
 2. `MainWindow` checks if a password is set. If not, go to step 6.
@@ -382,15 +384,15 @@ The lock feature mainly relies on the following classes:
 8. `AddressBookParser` creates and returns a new `LockCommand`.
 9. `LockCommand` is executed and returns a `CommandResult` that tells `MainWindow` to display the password dialog box. Go to step 3.
 
-Password verification is handled by the Password4j library.
+The password is set using the `password` command, which uses Password4j to hash and salt the password before storing it in `preferences.json`. zxcvbn4j is used to estimate the strength of the password, and to provide warnings and suggestions.
 
-The following activity diagram shows how the lock feature works:
+The following activity diagram shows how the password lock feature works:
 
 ![LockActivityDiagram](images/LockActivityDiagram.png)
 
 #### Design considerations:
 
-Chose to use battle-tested Password4j to verify passwords to avoid implementing an insecure password system.
+Chose to use battle-tested Password4j for handling passwords to avoid implementing an insecure password system.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -647,8 +649,6 @@ Use case ends.
 
 ---
 
-*{More to be added}*
-
 ### 6.4. Non-Functional Requirements
 
 * Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -657,8 +657,6 @@ Use case ends.
 * A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
   able to accomplish most of the tasks faster using commands than using the mouse.
 * Capacity / scalability: Able to store 1000 clients in 100 milliseconds.
-
-*{More to be added}*
 
 Notes about project scope:
 FinBook is not required to handle interaction between client and FA.
@@ -705,8 +703,6 @@ testers are expected to do more *exploratory* testing.
     2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-3. _{ more test cases …​ }_
-
 ### 7.2. Deleting a client
 
 1. Deleting a client while all client are being shown
@@ -732,8 +728,6 @@ testers are expected to do more *exploratory* testing.
        than the list size)<br>
        Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
-
 ### 7.3. Saving data
 
 1. Dealing with missing/corrupted data files
@@ -752,8 +746,6 @@ testers are expected to do more *exploratory* testing.
 
     5. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
-2. _{ more test cases …​ }_
-
 ### 7.4. Sorting Clients
 
 1. Sorting clients when client list has multiple clients in the list
@@ -769,5 +761,3 @@ testers are expected to do more *exploratory* testing.
 
     4. Test case: `sort m/` with client meeting dates saved as `TBC`<br>
        Expected: list of clients will be sorted in chronological order, with `TBC` entries at the bottom of the list
-
-2. _{ more test cases …​ }_
