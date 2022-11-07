@@ -46,7 +46,7 @@ The design of Items models very closely to the implementation of a `Person` clas
 * Addition of new helper and getter methods
 * Addition of [Tags](#tag-related-features), where Items stores its own sets of associated `Tag` objects in an internal `Set<Tag>`.
 
-It should be noted that the `UniqueItemList` referenced in `ModelManager` is immutable. To interact with Items, `ObservableList` instances and its child classes, `FilteredList` and `SortedList`, are used in the Commands. For example, (filtering an item by its tag name)[#filtering-items-by-tag-name] would modify the `filteredItems` list (which is a `FilteredList`).
+It should be noted that the `UniqueItemList` referenced in `ModelManager` is immutable. To interact with Items, `ObservableList` instances and its child classes, `FilteredList` and `SortedList`, are used in the Commands. For example, [filtering an item by its tag name](#filtering-items-by-tag-name) would modify the `filteredItems` list (which is a `FilteredList`).
 
 #### Creating an Item
 
