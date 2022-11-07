@@ -42,6 +42,7 @@ title: Developer Guide
     * [Glossary](#glossary)
 * [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
   * [Launch and shutdown](#launch-and-shutdown)
+  * [Viewing a client](#viewing-a-client)
   * [Delete a client](#deleting-a-client)
   * [Delete a transaction](#deleting-a-transaction)
   * [Delete a remark](#deleting-a-remark)
