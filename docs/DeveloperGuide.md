@@ -830,15 +830,15 @@ testers are expected to do more *exploratory* testing.
       3. Email (prefix e/)
       4. Rewards (prefix r/)
       5. Birthday Month (prefix m/)
-      6. Tags (prefix t/)(optional)
+      6. Tags (prefix t/)(optional)<br>
 
    2. Test case: `add n/John Doe p/98765432 e/johnd@example.com m/1 r/0`<br>
       Expected: A successful message will be shown in the status message indicating that a new customer is added into bobaBot with the corresponding particulars.
 
-   3. Test case: `add n/Charlie Puth p/81234567 e/charlie@puth.com r/3000 t/silver m/12`
+   3. Test case: `add n/Charlie Puth p/81234567 e/charlie@puth.com r/3000 t/silver m/12`<br>
       Expected: A successful message will be shown in the status message indicating that a new customer is added into bobaBot with the corresponding particulars.
 
-   4. Test case: `add n/Charlie Puth p/81234567`
+   4. Test case: `add n/Charlie Puth p/81234567`<br>
       Expected: An error message for invalid format will be shown in the status message as it is missing the required particulars.
 
    5. Other incorrect add commands to try: `add`, `add p/`, `add hello`, `...`<br>
