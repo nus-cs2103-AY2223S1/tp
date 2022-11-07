@@ -60,7 +60,7 @@ public class TaskEditCommandParser implements Parser<TaskEditCommand> {
 
 
         if (newTaskName == null && newDeadline == null) {
-            throw new ParseException(String.format(MESSAGE_NOT_EDITED, TaskEditCommand.MESSAGE_USAGE));
+            throw new ParseException(MESSAGE_NOT_EDITED);
         }
 
         return new TaskEditCommand(teamIndex, taskIndex, newTaskName, newDeadline);

@@ -128,21 +128,6 @@ public class TaskEditCommand extends Command {
 
         public EditTaskDescriptor() {}
 
-        /**
-         * Copy constructor.
-         */
-        public EditTaskDescriptor(EditTaskDescriptor toCopy) {
-            setName(toCopy.taskName);
-            setDeadline(toCopy.deadline);
-        }
-
-        /**
-         * Returns true if at least one field is edited.
-         */
-        public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(taskName, deadline);
-        }
-
         public void setName(TaskName taskName) {
             this.taskName = taskName;
         }
@@ -152,11 +137,11 @@ public class TaskEditCommand extends Command {
         }
 
         public void setDeadline(Optional<LocalDate> deadline) {
-            this.deadline = Optional.ofNullable(deadline.orElse(null));
+            this.deadline = deadline;
         }
 
         public Optional<LocalDate> getDeadline() {
-            return Optional.ofNullable(deadline.orElse(null));
+            return deadline;
         }
 
         @Override
