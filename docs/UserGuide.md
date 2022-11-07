@@ -94,7 +94,7 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
   e.g. if your user list has 5 users, and you enter `find user Alex` and get 1 user displayed under the user list, `delete user 1` will always
 delete the user that is currently displayed.
 
-* Any whitespace between the start of a parameter prefix such as `n/` and the end of the preceding parameter will be ignored.<br>e.g. the parameter `p/` in `p/999999&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n/John` will be interpreted as `999999` and not `999999&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`.
+* Any whitespace between the start of a parameter prefix such as `n/` and the end of the preceding parameter will be ignored.<br>e.g. the parameter `p/` in `p/999999 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; n/John` will be interpreted as `999999` and not `999999 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;`.
 </div>
 
 <div style="page-break-after: always;"></div>

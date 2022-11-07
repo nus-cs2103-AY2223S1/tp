@@ -69,14 +69,13 @@ title: Developer Guide
 <tr>
 <td markdown="span"><a href="https://stackoverflow.com/a/4217164/13742805">https://stackoverflow.com/a/4217164/13742805</a>
 </td>
-<td markdown="span"><a href="https://github.com/AY2223S1-CS2103-F14-4/tp/tree/master/src/main/java/bookface/logic
-/parser/CommandParser.java">CommandParser.java</a></td>
+<td markdown="span"><a href="https://github.com/AY2223S1-CS2103-F14-4/tp/tree/master/src/main/java/bookface/logic/parser/CommandParser.java">CommandParser.java</a></td>
 <td markdown="span">Force subclasses to have the same initial method calls</td>
 </tr>
 <tr>
 <td markdown="span"><a href="https://stackoverflow.com/a/30974991/13742805">https://stackoverflow.com/a/30974991/13742805</a>
 </td>
-<td markdown="span"><a href="https://github.com/AY2223S1-CS2103-F14-4/tp/tree/master/src/main/java/bookface/commons/util/LambdaUtil.java">CommandParser.java</a></td>
+<td markdown="span"><a href="https://github.com/AY2223S1-CS2103-F14-4/tp/tree/master/src/main/java/bookface/commons/util/LambdaUtil.java">LambdaUtil.java</a></td>
 <td markdown="span">A lambda function that throws a checked Exception</td>
 </tr>
 <tr>
@@ -466,6 +465,8 @@ The following activity diagram summarizes what happens when the librarian execut
 
 ![LoanActivityDiagram](images/LoanActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Design considerations:
 The loan command is designed such that the `BookList` and `UniquePersonList`
 are updated sequentially rather than concurrently, such that there are
@@ -523,6 +524,8 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 The following activity diagram summarizes what happens when a user executes a return command:
 
 ![ReturnActivityDiagram](images/ReturnActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Design considerations:
 Similar to Design considerations for the loan command.
@@ -655,11 +658,9 @@ Use case ends.
 9. The data stored in a BookFace instance should be recoverable even if the instance crashes.
 10. BookFace will need at least 50 MB of disk space to work.
 11. BookFace does not plan to improve its accessibility for blind, deaf, or otherwise disabled users according to
-    the Web Content Accessibility Guidelines (WCAG 2.1)
-12. BookFace should be able to handle basic human mistakes, such as incorrect syntax for commands and prompt the
-    user to retry
-13. BookFace should be extensible and sufficiently decoupled such that a separate GUI can be attached to the
-    existing backend services and database
+    the Web Content Accessibility Guidelines (WCAG 2.1).
+12. BookFace should be extensible and sufficiently decoupled such that a separate GUI can be attached to the
+    existing backend services and database.
 
 ### Glossary
 
@@ -713,19 +714,19 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Open command prompt/terminal within the folder and enter <br>`java -jar BookFace.jar`<br>
+   2. Open command prompt/terminal within the folder and enter <br>`java -jar BookFace.jar`<br>
    Expected: Shows the GUI with a set of sample user records. The window size may not be optimum.
 
 2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   2. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+   2. Re-launch the app by opening command prompt/terminal within the folder of where the JAR file is located and enter <br>`java -jar BookFace.jar`<br>
+    Expected: The most recent window size and location is retained.
 
 ### Adding a book
 1. Adding a book while all books are being shown
-   1. Prequisites: List all books using the `list books` or `list all` command.
+   1. Prerequisites: List all books using the `list books` or `list all` command.
 
    2. Test case: `add book t/Moby Dick a/Herman Melville`<br>
       Expected: Successful addition of the book to the bottom of the book list. 
@@ -753,7 +754,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a book
 1. Deleting a book 
-   1. Prequisites: List all books using the `list books` or `list all` command, and there is at least one or more books in the book list. 
+   1. Prerequisites: List all books using the `list books` or `list all` command, and there is at least one or more books in the book list. 
 
    2. Test case: `delete book 1`<br>
       Expected: First book is deleted from the book list. Details of the deleted book are shown in the status message.
@@ -890,7 +891,7 @@ testers are expected to do more *exploratory* testing.
 ### Listing all overdue loans
 1. Listing all overdue loans when all loans are being shown
 
-   1. Prequisites: List all loans using the `list loans` command.
+   1. Prerequisites: List all loans using the `list loans` command.
    
    2. Test case: `list overdue`<br>
       Expected: All books that are overdue and users who owe overdue books are shown.
@@ -906,7 +907,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Upon launching the application, the application will log an error message and will load without any data at all.
 2. Dealing with missing data files
    1. Prerequisite: the data file `bookface.json` is missing.<br>
-      Expected: Upon launching the application, the applicaton will be loaded with sample data.
+      Expected: Upon launching the application, the application will be loaded with sample data.
 
 ## **Appendix: Effort**
 
