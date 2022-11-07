@@ -18,7 +18,7 @@ public class AddFieldCommand extends FieldCommand {
 
     public static final String MESSAGE_USAGE = getFullCommand(SUBCOMMAND_WORD)
         + " :Assigns an attribute to a given item.\n"
-        + getFullCommand(SUBCOMMAND_WORD) + "[t|u|g]/id [type] [value]\n"
+        + getFullCommand(SUBCOMMAND_WORD) + " [t|u|g]/id [type] [value]\n"
         + "e.g. field add t/1 bug low severity\n"
         + " OR task select 1 field add bug low severity\n"
         + "Adds a new custom field called bug to attribute";

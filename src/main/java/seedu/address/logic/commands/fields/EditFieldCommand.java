@@ -17,7 +17,7 @@ public class EditFieldCommand extends FieldCommand {
 
     public static final String MESSAGE_USAGE = getFullCommand(SUBCOMMAND_WORD)
         + " :Edits an existing attribute of a given item.\n"
-        + getFullCommand(SUBCOMMAND_WORD) + "[t|u|g]/id [type] [value]\n"
+        + getFullCommand(SUBCOMMAND_WORD) + " [t|u|g]/id [type] [value]\n"
         + "e.g. field edit t/1 bug low severity"
         + " OR task select 1 field edit bug low severity\n"
         + "Edit bug attribute of task to low severity";

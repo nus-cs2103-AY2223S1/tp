@@ -17,10 +17,10 @@ public class DeleteFieldCommand extends FieldCommand {
 
     public static final String MESSAGE_USAGE = getFullCommand(SUBCOMMAND_WORD)
         + " :Deletes an custom attribute to a given item.\n"
-        + getFullCommand(SUBCOMMAND_WORD) + "[t|u|g]/id [type]"
+        + getFullCommand(SUBCOMMAND_WORD) + " [t|u|g]/id [type]"
         + "e.g. field delete t/1 bug"
         + " OR task select 1 field delete bug\n"
-        + "Delete bug attribute of task to low severity";
+        + "Delete bug attribute of task 1";
 
     public static final String NO_INPUT = "No input item is chosen!";
     public static final String MESSAGE_DUPLICATE = "An item with the same name already exist!";
