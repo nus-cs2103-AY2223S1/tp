@@ -1,0 +1,33 @@
+@startuml
+title: Activity: Execution of <plain><font:monospaced><back:lightgray>mark</back></font></plain> command
+start
+:User requests to mark debt(s);
+:Parser parses command;
+
+:Person index matched to person in filtered list;
+if () then ([invalid person index])
+:User informed of invalid person index;
+stop
+else ([valid person index])
+endif
+
+:Model saves current AddressBook;
+:PayMeLah generates debts-to-mark DebtList from debt indices and person-to-edit ⋔;
+
+repeat
+  :PayMeLah attempts marking debt as paid;
+  if () then ([debt is already
+  marked as paid])
+  else ([debt is not
+  marked
+  as paid]
+  )
+  :Model is updated;
+  endif
+repeat while () is ([debts-to-mark has
+more debts])
+->[debts-to-mark has no more debts];
+
+:User informed that each debt-to-mark of the person-to-edit is marked;
+stop
+@enduml

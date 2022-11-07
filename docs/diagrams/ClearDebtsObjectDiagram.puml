@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+skinparam linetype ortho
+hide empty methods
+hide empty members
+
+
+title State after parsing the <plain><font:monospaced><back:lightgray>cleardebts</back></font></plain> example
+
+class ClearDebtsCommand as "__:ClearDebtsCommand__"
+together {
+class PersonIndex1 as "__1:Index__"
+}
+
+package Model {
+class OldPerson as "__initialPerson1:Person__"
+    class OldDebtList as "__initialList:DebtList__"
+    class Debt1 as "__1:Debt__"
+    class Debt2 as "__2:Debt__"
+    class Debt3 as "__3:Debt__"
+}
+
+
+
+ClearDebtsCommand --> "person index" PersonIndex1
+
+
+
+ClearDebtsCommand --right[hidden]--> "to update" OldPerson
+ClearDebtsCommand -[hidden]-> "to delete" Debt2
+ClearDebtsCommand -[hidden]-> "to delete" Debt3
+Debt2 -d[hidden]-> Debt3
+
+OldPerson --> OldDebtList
+OldDebtList --> Debt1
+OldDebtList --> Debt2
+OldDebtList --> Debt3
+
+
+
+
+@end
