@@ -2,6 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,9 +14,11 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Birthday;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Reminder;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,6 +27,8 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    public static final String DATE_FORMAT_PATTERN = "dd-MM-uuuu";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -96,6 +104,34 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String Birthday} into an {@code Birthday}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static Birthday parseBirthday(String birthday) throws ParseException {
+        requireNonNull(birthday);
+        String trimmedBirthday = birthday.trim();
+        LocalDate temp;
+
+        try {
+            temp = LocalDate.parse(trimmedBirthday, DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN)
+                    .withResolverStyle(ResolverStyle.STRICT));
+        } catch (DateTimeParseException e) {
+            if (e.getMessage().contains("Invalid")) {
+                throw new ParseException(Birthday.MESSAGE_INVALID_DATE);
+            } else {
+                throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
+            }
+        }
+
+        if (temp.isAfter(LocalDate.now())) {
+            throw new ParseException(Birthday.MESSAGE_INVALID_BIRTHDAY);
+        }
+
+        return new Birthday(trimmedBirthday);
+    }
+
+    /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -117,8 +153,33 @@ public class ParserUtil {
         requireNonNull(tags);
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
+            if (tagSet.stream().map(t -> t.tagName).anyMatch(t ->
+                    t.equalsIgnoreCase(tagName) && !t.equals(tagName))) {
+                throw new ParseException(Tag.MESSAGE_CONSTRAINTS_DUPLICATE);
+            }
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String reminder} into an {@code Set<Reminder>}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static Set<Reminder> parseReminders(String reminder, String date) throws ParseException {
+        requireNonNull(reminder);
+        String trimmedReminder = reminder.trim();
+        Set<Reminder> reminderArrayList = new HashSet<>();
+        LocalDate birthday = LocalDate.parse(date, DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN)
+                .withResolverStyle(ResolverStyle.STRICT));
+        birthday = birthday.withYear(LocalDate.now().getYear());
+        if (birthday.isBefore(LocalDate.now())) {
+            birthday = birthday.plusYears(1);
+        }
+        reminderArrayList.add(new Reminder(trimmedReminder, birthday.format(
+                DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN))));
+        return reminderArrayList;
     }
 }

@@ -34,6 +34,8 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ReminderListPanel reminderListPanel;
+    private CenterPanel centerPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -42,7 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private StackPane centerPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -111,7 +113,9 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        reminderListPanel = new ReminderListPanel(logic.getSortedReminderPairs());
+        centerPanel = new CenterPanel(personListPanel, reminderListPanel);
+        centerPanelPlaceholder.getChildren().add(centerPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -161,10 +165,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
     }
 
     /**

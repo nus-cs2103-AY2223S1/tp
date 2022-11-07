@@ -15,6 +15,7 @@ public class CommandResultTest {
         // same values -> returns true
         assertTrue(commandResult.equals(new CommandResult("feedback")));
         assertTrue(commandResult.equals(new CommandResult("feedback", false, false)));
+        assertTrue(commandResult.equals(new CommandResult("feedback", false)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -33,6 +34,9 @@ public class CommandResultTest {
 
         // different exit value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", false, true)));
+
+        // different showReminder value -> return false
+        assertFalse(commandResult.equals(new CommandResult("feedback", true)));
     }
 
     @Test
@@ -50,5 +54,8 @@ public class CommandResultTest {
 
         // different exit value -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", false, true).hashCode());
+
+        // different showReminder value -> returns different hashcode
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", true).hashCode());
     }
 }

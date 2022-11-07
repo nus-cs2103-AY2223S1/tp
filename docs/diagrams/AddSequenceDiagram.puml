@@ -1,0 +1,91 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "person:Person" as Person MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add \n n/John Doe p/98765432 \n e/johnd@example.com \n a/John street, block 123, #01-01 \n b/18-08-2000")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("add \n n/John Doe p/98765432 \n e/johnd@example.com \n a/John street, block 123, #01-01 \n b/18-08-2000")
+activate AddressBookParser
+
+create AddCommandParser
+AddressBookParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser --> AddressBookParser
+deactivate AddCommandParser
+
+AddressBookParser -> AddCommandParser : parse("add \n n/John Doe p/98765432 \n e/johnd@example.com \n a/John street, block 123, #01-01 \n b/18-08-2000")
+activate AddCommandParser
+
+AddCommandParser -> AddCommandParser : arePrefixesPresent()
+activate AddCommandParser
+
+AddCommandParser --> AddCommandParser
+deactivate AddCommandParser
+
+create Person
+AddCommandParser -> Person : Person()
+activate Person
+
+Person --> AddCommandParser : person
+deactivate Person
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand --> AddCommandParser : a
+deactivate AddCommand
+
+AddCommandParser --> AddressBookParser : a
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> AddressBookParser
+destroy AddCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddCommand : execute()
+activate AddCommand
+
+AddCommand -> Model : hasPerson(person)
+activate Model
+
+Model --> AddCommand
+deactivate
+
+AddCommand -> Model : addPerson(Person)
+activate Model
+
+Model --> AddCommand
+deactivate Model
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager : result
+deactivate AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
+
+

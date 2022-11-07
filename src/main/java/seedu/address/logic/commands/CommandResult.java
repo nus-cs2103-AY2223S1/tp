@@ -17,6 +17,9 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** Reminder information should be shown to the user. */
+    private final boolean showReminder;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -24,6 +27,19 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.showReminder = false;
+    }
+
+    /**
+     * Construcsts a {@code CommandResult} with the specified fields.
+     * @param feedbackToUser
+     * @param showReminder
+     */
+    public CommandResult(String feedbackToUser, boolean showReminder) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.exit = false;
+        this.showReminder = showReminder;
     }
 
     /**
@@ -46,6 +62,10 @@ public class CommandResult {
         return exit;
     }
 
+    public boolean isShowReminder() {
+        return showReminder;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -60,12 +80,13 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && showReminder == otherCommandResult.showReminder;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, showReminder);
     }
 
 }

@@ -1,17 +1,33 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.ParserUtil.DATE_FORMAT_PATTERN;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.DeleteReminderCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Reminder;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +38,8 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final ObservableList<Pair<Person, Reminder>> unsortedReminders;
+    private final SortedList<Pair<Person, Reminder>> reminders;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -33,6 +51,12 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+
+        this.unsortedReminders = convert(this.addressBook.getPersonList());
+        this.reminders = new SortedList<>(unsortedReminders);
+        this.reminders.setComparator(Comparator.comparing(x -> x.getKey().getName().fullName));
+        this.reminders.setComparator(Comparator.comparing(x -> x.getValue().date));
+
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
 
@@ -80,6 +104,7 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
+        this.unsortedReminders.setAll(convert(addressBook.getPersonList()));
     }
 
     @Override
@@ -109,6 +134,8 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+        deletePersonReminders(target);
+        addPersonReminders(editedPerson);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -126,6 +153,82 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Sorted Reminder List Accessors =============================================================
+
+    /**
+     * Converts the {@code ObservableList} into an {@code ObservableList} with a Pair of Person and Reminder
+     * returns the new {@code ObservableList}
+     * @param personList The {@code ObservableList} to be converted
+     * @return The converted {@code ObservableList}
+     */
+    private ObservableList<Pair<Person, Reminder>> convert(ObservableList<Person> personList) {
+        ArrayList<Pair<Person, Reminder>> total = new ArrayList<>();
+        for (Person person : personList) {
+            total.addAll(person.getReminders().stream().map(reminder -> new Pair<Person, Reminder>(
+                    person, reminder
+            )).collect(Collectors.toList()));
+        }
+        return FXCollections.observableList(total);
+    }
+
+    /**
+     * Returns the sorted list of pairs containing a {@code Person} and a {@code Reminder}
+     */
+    @Override
+    public SortedList<Pair<Person, Reminder>> getSortedReminderPairs() {
+        return reminders;
+    }
+
+    @Override
+    public void addReminder(Person person, Reminder reminder) {
+        person.getReminders().add(reminder);
+        unsortedReminders.add(new Pair<>(person, reminder));
+    }
+
+    @Override
+    public Reminder deleteReminder(Index targetIndex) throws CommandException {
+        SortedList<Pair<Person, Reminder>> reminderPairs = getSortedReminderPairs();
+        if (targetIndex.getZeroBased() >= reminderPairs.size()) {
+            throw new CommandException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                            DeleteReminderCommand.MESSAGE_USAGE));
+        }
+        Pair<Person, Reminder> reminderPairToDelete = reminderPairs.get(targetIndex.getZeroBased());
+
+        unsortedReminders.remove(reminderPairToDelete);
+        reminderPairToDelete.getKey().deleteReminder(reminderPairToDelete.getValue());
+        return reminderPairToDelete.getValue();
+    }
+
+    @Override
+    public void deletePersonReminders(Person personToDelete) {
+        unsortedReminders.removeIf(pair -> pair.getKey().equals(personToDelete));
+    }
+
+    private void addPersonReminders(Person personToAdd) {
+        Reminder toRemove = null;
+        Reminder toAdd = null;
+        Iterator<Reminder> i = personToAdd.getReminders().iterator();
+        while (i.hasNext()) {
+            Reminder r = i.next();
+            if (r.task.contains("Happy Birthday")) {
+                toRemove = r;
+                LocalDate birthday = personToAdd.getBirthday().value.withYear(LocalDate.now().getYear());
+                if (birthday.isBefore(LocalDate.now())) {
+                    birthday = birthday.plusYears(1);
+                }
+                r = new Reminder(Messages.generateHappyBirthdayMessage(personToAdd.getName()),
+                        birthday.format(DateTimeFormatter.ofPattern(DATE_FORMAT_PATTERN)));
+                toAdd = r;
+            }
+            unsortedReminders.add(new Pair<>(personToAdd, r));
+        }
+        if (toRemove != null) {
+            personToAdd.deleteReminder(toRemove);
+            personToAdd.getReminders().add(toAdd);
+        }
     }
 
     @Override

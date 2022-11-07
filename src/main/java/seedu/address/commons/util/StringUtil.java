@@ -39,6 +39,33 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if the {@code sentence} contains the {@code word}.
+     *   Ignores case, and non-alphanumeric characters but a full word match is required.
+     *   <br>examples:<pre>
+     *       containsAlphanumericWordIgnoreCase("ABc def", "abc") == true
+     *       containsAlphanumericWordIgnoreCase("ABc def,", "DEF") == true
+     *       containsAlphanumericWordIgnoreCase("ABc def", "AB") == false //not a full word match
+     *       </pre>
+     * @param sentence cannot be null
+     * @param word cannot be null, cannot be empty, must be a single word
+     */
+    public static boolean containsAlphanumericWordIgnoreCase(String sentence, String word) {
+        requireNonNull(sentence);
+        requireNonNull(word);
+
+        String preppedWord = word.replaceAll("[^a-zA-Z0-9-#]", "").trim();
+        checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty "
+                + "and should contain alphanumeric characters");
+        checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
+
+        String preppedSentence = sentence;
+        String[] wordsInPreppedSentence = preppedSentence.split("[^a-zA-Z0-9-#]");
+
+        return Arrays.stream(wordsInPreppedSentence)
+                .anyMatch(preppedWord::equalsIgnoreCase);
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {

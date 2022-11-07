@@ -14,13 +14,17 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
+import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Reminder;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -147,6 +151,27 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public SortedList<Pair<Person, Reminder>> getSortedReminderPairs() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addReminder(Person person, Reminder reminder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Reminder deleteReminder(Index targetIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
+        @Override
+        public void deletePersonReminders(Person personToDelete) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -183,6 +208,11 @@ public class AddCommandTest {
         public void addPerson(Person person) {
             requireNonNull(person);
             personsAdded.add(person);
+        }
+
+        @Override
+        public void addReminder(Person person, Reminder reminder) {
+            // Adds the reminder linked to the person.
         }
 
         @Override

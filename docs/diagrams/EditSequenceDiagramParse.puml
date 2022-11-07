@@ -1,0 +1,58 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "r:EditCommand" as EditCommand LOGIC_COLOR
+participant ":EditPersonDescriptor" as EditPersonDescriptor LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("edit 1 n/john doe p/91112222")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("edit 1 n/john doe p/91112222")
+activate AddressBookParser
+
+create EditCommandParser
+AddressBookParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> AddressBookParser
+deactivate EditCommandParser
+
+AddressBookParser -> EditCommandParser : parse("edit 1 n/john doe p/91112222")
+activate EditCommandParser
+
+create EditPersonDescriptor
+EditCommandParser -> EditPersonDescriptor
+activate EditPersonDescriptor
+
+EditPersonDescriptor --> EditCommandParser : descriptor
+deactivate EditPersonDescriptor
+
+create EditCommand
+EditCommandParser -> EditCommand :
+activate EditCommand
+
+EditCommand --> EditCommandParser : r
+deactivate EditCommand
+
+EditCommandParser --> AddressBookParser : r
+deactivate EditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> AddressBookParser
+destroy EditCommandParser
+
+AddressBookParser --> LogicManager : r
+deactivate AddressBookParser
+
+LogicManager -> EditCommand : execute()
+ref over EditCommand: execute edit command
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+[<--LogicManager
+deactivate LogicManager
+@enduml
