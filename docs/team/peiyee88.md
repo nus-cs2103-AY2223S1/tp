@@ -64,6 +64,7 @@ next-of-kin data is abstracted away.
 
 * Actively reviewed [PRs](https://github.com/AY2223S1-CS2103T-W16-3/tp/pulls?page=1&q=is%3Apr+reviewed-by%3Apeiyee88) from other team members.
 * Provided insightful comments and suggestions to improve the quality of the code:
+  * PR [#215](https://github.com/AY2223S1-CS2103T-W16-3/tp/pull/215)
   * PR [#210](https://github.com/AY2223S1-CS2103T-W16-3/tp/pull/210)
   * PR [#194](https://github.com/AY2223S1-CS2103T-W16-3/tp/pull/194)
   * PR [#129](https://github.com/AY2223S1-CS2103T-W16-3/tp/pull/129)
