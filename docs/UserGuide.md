@@ -166,7 +166,7 @@ Format: `delete INDEX [END_INDEX]`
 
 Examples:
 * `list patients` followed by `delete 2` deletes the 2nd patient in idENTify.
-* `delete 1 3` deletes the first 3 patients (index 1 to 3 inclusive) in idENTify
+* `delete 1 3` deletes the first 3 patients (index 1 to 3 inclusive) in idENTify.
 * `find n/Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 
 #### Book an appointment:  `book`
@@ -581,5 +581,5 @@ If your changes to the data file makes its format invalid, idENTify will discard
 | **Hide Appointments**     | `hide appts CONDITION` <br> e.g. `hide appts s/marked`                                                                                                                                   |
 | **Unhide Appointments**   | `unhide appts CONDITION` <br> e.g. `unhide appts r/pain`                                                                                                                                 |
 | **Find**                  | `find [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/PATIENT_TAG]…​ [r/REASON] [ds/DATE_START] [de/DATE_END] [ta/APPOINTMENT_TAG]…​`<br> e.g. `find n/Joshua e/Josh@example.com r/Tinnitus` |
-| **History**               | Control key <br> Arrow keys <br> e.g. `Up Arrow` key on keyboard                                                                                                                         |
+| **History**               | `Control key` <br> `Arrow keys` <br> e.g. `Up Arrow` key on keyboard                                                                                                                         |
 | **Exit**                  | `exit`                                                                                                                                                                                   |
