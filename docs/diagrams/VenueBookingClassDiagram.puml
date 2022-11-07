@@ -1,0 +1,37 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor BLACK
+skinparam classBackgroundColor MODEL_COLOR
+
+package Model {
+package Venue {
+class Venue
+class VenueName
+class DailySchedule
+}
+
+package Booking {
+class Booking
+class RecurrentBooking
+class HourPeriod
+class Day
+}
+
+class Resident
+}
+
+Venue -> Booking
+Venue -left-> VenueName : has a >
+
+DailySchedule -> Resident
+DailySchedule --> Day
+DailySchedule .> Booking
+
+Booking -up-> VenueName
+Booking -down-> HourPeriod
+Booking -down-> Day
+Booking -> Resident : booked by >
+RecurrentBooking .right.|> Booking
+
+@enduml
