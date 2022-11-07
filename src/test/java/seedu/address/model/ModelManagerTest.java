@@ -1,3 +1,4 @@
+//@@author
 package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -145,8 +146,10 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
+        //@@author sh4nH
         PersonMatchesKeywordsPredicate predicate = new PersonMatchesKeywordsPredicate();
         predicate.setKeywords(keywords.toString());
+        //@@author
         modelManager.filterPersonList(predicate);
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
