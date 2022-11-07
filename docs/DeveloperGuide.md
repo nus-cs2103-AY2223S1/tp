@@ -306,7 +306,7 @@ This integration between delete deadline command with find student command is im
 By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student ID, users can delete the deadline from the FypManager once he/she drops the deadline task.
 
 ### Marking a project status
-#### Proposed Implementation
+#### Implementation details
 The MarkCommand feature marks the Project Status of an FYP project as one of 3 possible statuses
 {***YTS***, ***IP***, ***DONE***}. Currently these are the only 3 statuses supported, although more may be implemented
 later on if there are other meaningful statuses.
@@ -409,8 +409,8 @@ By utilizing find student, users can find the student with only partial informat
 <div style="page-break-after: always;"></div>
 
 ### Showing help
-#### Proposed Implementation
-The proposed `Help` Feature provides the professor or students with useful information on how to optimally make use of this Jeryl app.
+#### Implementation
+The `Help` Feature provides the professor or students with useful information on how to optimally make use of this Jeryl app.
 The `Help` feature mechanism is facilitated by `HelpCommand` and `HelpCommandParser`. `HelpCommand` extends from the abstract class `Command`
 while `HelpCommandParser` extends from the interface `Parser`.
 More specific features like `HelpAddCommand` and `HelpDeleteCommand` extend from `HelpCommand` to serve for certain specific help requests.
@@ -447,8 +447,8 @@ The following activity diagram summarizes what happens when a user executes am h
 
 
 ### Listing the students and their FYPs
-#### Proposed Implementation
-The proposed `List` Feature allows the professor to list all FYP students in the FYP Manager.
+#### Implementation details
+The `List` Feature allows the professor to list all FYP students in the FYP Manager.
 The `List` feature mechanism is facilitated by `ListCommand`. It extends from the abstract class `Command`.
 To summarize, it implements the following operation:
 * `ListCommand#execute()` — oversees the execution process for `ListCommand`.
@@ -470,9 +470,9 @@ The following activity diagram summarizes what happens when a user executes a li
 <div style="page-break-after: always;"></div>
 
 ### Finding students based on criterias
-#### Proposed Implementation
+#### Implementation details
 
-The proposed FindCommand Feature allows the user to find for specific keywords in certain fields. The current
+The `FindCommand` Feature allows the user to find for specific keywords in certain fields. The current
 implementation supports finding keywords in four fields:
 1) `StudentId`
 2) `StudentName`
