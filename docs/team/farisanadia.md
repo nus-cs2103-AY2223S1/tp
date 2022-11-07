@@ -31,8 +31,8 @@ Given below are my contributions to the project.
     * Added documentation for features `remove`, `hw`, `grade`, `attendance`, `session`, `lessonplan`, `show`: [#30](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/30), [#66](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/66)
     * Did cosmetic tweaks to existing documentation of features `add`, `list`, `find`, `edit`: [#30](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/30)
   * Developer Guide:
-    * Added implementation details for `remove` feature
+    * Added implementation details for `remove` feature, including sequence diagram [#202](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/202)
     
 * **Community**:
   * PRs reviewed (trivial comments with little to no issues with code): Pull requests [#44](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/44) [#77](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/77) [#86](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/86) [#87](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/87) [#92](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/92) [#182](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/182) [#186](https://github.com/AY2223S1-CS2103T-W09-4/tp/pull/186)
-  * [Bugs reported](https://github.com/farisanadia/ped)
+  * [Bugs reported](https://github.com/farisanadia/ped/issues)
