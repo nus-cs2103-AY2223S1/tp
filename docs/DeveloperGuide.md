@@ -583,7 +583,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Listing tasks
 
-   1. `add Math assignment m/MA4321 by/2022-01-02 2pm` (so that a sort order can be derived)
+   1. Run `add Math assignment m/MA4321 by/2022-01-02 2pm`, so that a sort order can be verified.
 
    1. Test case: `list`
 
@@ -645,7 +645,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: A task with the name "Get groceries" exists. (if you're following this guide, there will be one)
 
-   1. Run `find n/Get groceries`
+   1. Run `find n/Get groceries`.
 
    1. Test case: `edit 1 m/CS1234`
 
@@ -719,11 +719,11 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: The task and contact to be added do not already exist.
 
-   1. Enter `add Learn Racket programming by/next week`. Close and reopen the app.
+   1. Run `add Learn Racket programming by/next week`. Close and reopen the app.
 
       Expected: The added task is still there.
 
-   1. Enter `addc Ethan Wong p/81234567`. Close and reopen the app.
+   1. Run `addc Ethan Wong p/81234567`. Close and reopen the app.
 
       Expected: The added contact is still there.
 
