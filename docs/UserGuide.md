@@ -469,6 +469,8 @@ ENGINEERING` (module number 1).
   <img src="images/home-page-with-cs2103-circled.png" width="300"/>
 </p>
 
+<div style="page-break-after: always;"></div>
+
 **Step 2**: You will notice a blue glow when hovering your mouse over the 
 module.
 <p align="center">
