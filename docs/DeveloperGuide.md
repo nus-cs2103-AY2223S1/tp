@@ -135,11 +135,7 @@ The `Model` component,
 
 ### Storage component
 
-<<<<<<< HEAD
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W17-3/tp/blob/master/src/main/java/seedu/modquik/storage/Storage.java)
-=======
-**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W17-3/tp/tree/master/src/main/java/seedu/modquik/storage/Storage.java)
->>>>>>> 154c7fed397949ddbcfe823331e77e7983e9bd85
 
 <img src="images/StorageClassDiagram.png" width="1000" />
 
