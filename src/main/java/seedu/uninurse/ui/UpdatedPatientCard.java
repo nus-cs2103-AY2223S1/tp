@@ -11,6 +11,7 @@ import static seedu.uninurse.ui.UiUtil.getTaskBox;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -71,6 +72,16 @@ public class UpdatedPatientCard extends UiPart<Region> {
     @FXML
     private VBox remarkHeaderPane;
 
+    // ScrollPanes
+    @FXML
+    private VBox taskScrollPaneContainer;
+    @FXML
+    private VBox remarkScrollPaneContainer;
+    @FXML
+    private ScrollPane taskScrollPane;
+    @FXML
+    private ScrollPane remarkScrollPane;
+
     /**
      * Creates a UpdatedPatientCard with the given Patient and headerString.
      */
@@ -123,6 +134,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
                 this.taskContainer.getChildren().add(getTaskBox(i + 1, task));
             }
         }
+        this.taskScrollPane.prefViewportHeightProperty().bind(this.taskScrollPaneContainer.heightProperty());
 
         /* Remarks */
         this.remarkHeader.setText("Remarks");
@@ -133,6 +145,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
                 this.remarkContainer.getChildren().add(getRemarkBox(remark));
             }
         }
+        this.remarkScrollPane.prefViewportHeightProperty().bind(this.remarkScrollPaneContainer.heightProperty());
     }
 
     @Override

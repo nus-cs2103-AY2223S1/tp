@@ -13,6 +13,7 @@ import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -75,6 +76,16 @@ public class ModifiedPatientCard extends UiPart<Region> {
     private VBox taskHeaderPane;
     @FXML
     private VBox remarkHeaderPane;
+
+    // ScrollPanes
+    @FXML
+    private VBox taskScrollPaneContainer;
+    @FXML
+    private VBox remarkScrollPaneContainer;
+    @FXML
+    private ScrollPane taskScrollPane;
+    @FXML
+    private ScrollPane remarkScrollPane;
 
     /**
      * Creates a {@code UpdatedPatientCard} with the given {@code Patient}.
@@ -220,6 +231,7 @@ public class ModifiedPatientCard extends UiPart<Region> {
                 this.taskContainer.getChildren().add(getTaskBox(i + 1, taskList.get(i)));
             }
         }
+        this.taskScrollPane.prefViewportHeightProperty().bind(this.taskScrollPaneContainer.heightProperty());
 
         /* Remarks */
         this.remarkHeader.setText("Remarks");
@@ -257,6 +269,7 @@ public class ModifiedPatientCard extends UiPart<Region> {
                 this.remarkContainer.getChildren().add(previousEditedRemarkBox);
             }
         }
+        this.remarkScrollPane.prefViewportHeightProperty().bind(this.remarkScrollPaneContainer.heightProperty());
     }
 
     @Override

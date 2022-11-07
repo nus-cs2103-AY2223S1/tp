@@ -6,7 +6,6 @@ import javafx.scene.layout.HBox;
 import seedu.uninurse.model.condition.Condition;
 import seedu.uninurse.model.medication.Medication;
 import seedu.uninurse.model.remark.Remark;
-import seedu.uninurse.model.task.RecurringTask;
 import seedu.uninurse.model.task.Task;
 
 /**
@@ -33,18 +32,19 @@ public class UiUtil {
 
     public static HBox getEmptyConditionBox() {
         HBox conditionBox = new HBox();
+        conditionBox.setMinHeight(HBox.USE_PREF_SIZE);
 
         Label emptyConditionLabel = new Label("No conditions");
         emptyConditionLabel.setWrapText(true);
         emptyConditionLabel.setId("attribute_box_label");
 
         conditionBox.getChildren().add(emptyConditionLabel);
-        conditionBox.setMinHeight(HBox.USE_PREF_SIZE);
         return conditionBox;
     }
 
     public static HBox getConditionBox(int conditionIndex, Condition condition) {
         HBox conditionBox = new HBox();
+        conditionBox.setMinHeight(HBox.USE_PREF_SIZE);
         conditionBox.setSpacing(2.5);
 
         Label conditionLabel = new Label(condition.toString());
@@ -52,12 +52,12 @@ public class UiUtil {
         conditionLabel.setId("attribute_box_label");
 
         conditionBox.getChildren().addAll(getIndexBox(conditionIndex), conditionLabel);
-        conditionBox.setMinHeight(HBox.USE_PREF_SIZE);
         return conditionBox;
     }
 
     public static HBox getEmptyMedicationBox() {
         HBox medicationBox = new HBox();
+        medicationBox.setMinHeight(HBox.USE_PREF_SIZE);
 
         Label emptyMedicationLabel = new Label("No medications");
         emptyMedicationLabel.setWrapText(true);
@@ -70,6 +70,7 @@ public class UiUtil {
 
     public static HBox getMedicationBox(int medicationIndex, Medication medication) {
         HBox medicationBox = new HBox();
+        medicationBox.setMinHeight(HBox.USE_PREF_SIZE);
         medicationBox.setSpacing(2.5);
 
         HBox medicationTypeBox = new HBox();
@@ -82,27 +83,28 @@ public class UiUtil {
 
         Label medicationDosageLabel = new Label(medication.getDosage());
         medicationDosageLabel.setWrapText(true);
+        medicationDosageLabel.setMinWidth(50.0);
         medicationDosageLabel.setId("attribute_box_label");
 
         medicationBox.getChildren().addAll(getIndexBox(medicationIndex), medicationTypeBox, medicationDosageLabel);
-        medicationBox.setMinHeight(HBox.USE_PREF_SIZE);
         return medicationBox;
     }
 
     public static HBox getEmptyTaskBox() {
         HBox taskBox = new HBox();
+        taskBox.setMinHeight(HBox.USE_PREF_SIZE);
 
         Label emptyTaskLabel = new Label("No tasks");
         emptyTaskLabel.setWrapText(true);
         emptyTaskLabel.setId("attribute_box_label");
 
         taskBox.getChildren().add(emptyTaskLabel);
-        taskBox.setMinHeight(HBox.USE_PREF_SIZE);
         return taskBox;
     }
 
     public static HBox getTaskBox(int taskIndex, Task task) {
         HBox taskBox = new HBox();
+        taskBox.setMinHeight(HBox.USE_PREF_SIZE);
         taskBox.setSpacing(2.5);
 
         Label taskNameLabel = new Label(task.getTaskDescription());
@@ -128,14 +130,12 @@ public class UiUtil {
             taskTimeBox.setId("task_date_time_box_overdue");
         }
 
-        // shit code quality be like
-        /* TODO: improve shit */
-        if (task instanceof RecurringTask) {
-            task = (RecurringTask) task;
+        if (!(task.getRecurrenceString().equals("One-Time"))) {
             HBox taskRecurrenceBox = new HBox();
-            taskRecurrenceBox.setMinWidth(62.5);
+            taskRecurrenceBox.setMinWidth(65.0);
             taskRecurrenceBox.setId("task_date_time_box");
             Label taskRecurrenceLabel = new Label(task.getRecurrenceString());
+            taskRecurrenceLabel.setWrapText(true);
             taskRecurrenceLabel.setId("attribute_box_label");
             taskRecurrenceBox.getChildren().add(taskRecurrenceLabel);
 
@@ -146,15 +146,14 @@ public class UiUtil {
                     getIndexBox(taskIndex), taskDateBox, taskTimeBox, taskRecurrenceBox, taskNameLabel);
             return taskBox;
         }
-        /* */
 
         taskBox.getChildren().addAll(getIndexBox(taskIndex), taskDateBox, taskTimeBox, taskNameLabel);
-        taskBox.setMinHeight(HBox.USE_PREF_SIZE);
         return taskBox;
     }
 
     public static HBox getEmptyRemarkBox() {
         HBox remarkBox = new HBox();
+        remarkBox.setMinHeight(HBox.USE_PREF_SIZE);
         remarkBox.setId("remark_box");
 
         Label remarkLabel = new Label("No remarks");
@@ -162,12 +161,12 @@ public class UiUtil {
         remarkLabel.setId("attribute_box_label");
 
         remarkBox.getChildren().add(remarkLabel);
-        remarkBox.setMinHeight(HBox.USE_PREF_SIZE);
         return remarkBox;
     }
 
     public static HBox getRemarkBox(Remark remark) {
         HBox remarkBox = new HBox();
+        remarkBox.setMinHeight(HBox.USE_PREF_SIZE);
         remarkBox.setId("remark_box");
 
         Label remarkLabel = new Label(remark.getValue());
@@ -175,7 +174,6 @@ public class UiUtil {
         remarkLabel.setId("attribute_box_label");
 
         remarkBox.getChildren().add(remarkLabel);
-        remarkBox.setMinHeight(HBox.USE_PREF_SIZE);
         return remarkBox;
     }
 }
