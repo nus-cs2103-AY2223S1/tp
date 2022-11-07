@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
@@ -56,6 +58,21 @@ public class TaskDeleteCommandTest {
         TaskDeleteCommand taskDeleteCommand = new TaskDeleteCommand(INDEX_FIRST_TEAM, outOfBoundIndex);
 
         assertCommandFailure(taskDeleteCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_nullInputUnfilteredList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new TaskDeleteCommand(null, null));
+    }
+
+    @Test
+    public void execute_nullTeamIndexUnfilteredList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new TaskDeleteCommand(null, INDEX_FIRST_PERSON));
+    }
+
+    @Test
+    public void execute_nullTaskIndexUnfilteredList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new TaskDeleteCommand(INDEX_FIRST_TEAM, null));
     }
 
     @Test
