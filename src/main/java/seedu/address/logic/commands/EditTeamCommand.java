@@ -16,6 +16,7 @@ import static seedu.address.logic.parser.CliSyntax.LABEL_TEAM_NAME;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import picocli.CommandLine;
 import seedu.address.commons.util.CollectionUtil;
@@ -94,7 +95,10 @@ public class EditTeamCommand extends Command {
         List<Team> teamList = model.getTeamList();
         List<Team> teamListCopy = new ArrayList<>(teamList);
 
-        if ((!editedTeam.isSameTeam(currentTeam)) && (teamListCopy.contains(editedTeam))) {
+        List<Team> filteredListWithTargetTeam = teamList.stream()
+                .filter(editedTeam::isSameTeam).collect(Collectors.toList());
+
+        if ((!editedTeam.isSameTeam(currentTeam)) && (filteredListWithTargetTeam.size() != 0)) {
             throw new CommandException(MESSAGE_DUPLICATE_TEAM);
         }
 

@@ -82,17 +82,12 @@ public class AddTaskCommand extends Command {
 
         Team team = model.getTeam();
         Task task = new Task(taskName, List.of(), false, deadline);
-        if (team.hasTask(task)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TASK);
-        }
-
         List<Person> memberList = team.getTeamMembers();
         for (Index index : assignees) {
             if (index.getZeroBased() >= memberList.size()) {
                 throw new CommandException(MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS);
             }
         }
-
         // convert list of assignee index to list of persons
         List<Person> assigneePersonsList = assignees.stream()
                 .map(index -> memberList.get(index.getZeroBased()))
@@ -100,6 +95,10 @@ public class AddTaskCommand extends Command {
 
         for (Person assignee : assigneePersonsList) {
             task.addAssignee(assignee);
+        }
+
+        if (team.hasTask(task)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
         team.addTask(task);
 
