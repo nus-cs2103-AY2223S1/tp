@@ -307,7 +307,7 @@ Example: `findTag restaurant`
 
 <br>
 
-### Commands for Adding, Editing and Removing
+### Commands for Adding, Editing and Removing Eateries
 These commands modify the list of eateries in `Food Guide`, or change existing eateries.
 
 #### Add tag to eatery : `tag`
@@ -342,7 +342,7 @@ Note how the blue "cafe" tag on store 50 disappears after the untag command.
 ![Ui](images/user-guide/UgTagUntagComparison.png)
 <br><br>
 
-### Favourite Eatery : `fav`
+#### Favourite Eatery : `fav`
 
 _Favourites an eatery in the `Food Guide`. <br>
 The favourite tag is standardized to be "<3" when using this command._
