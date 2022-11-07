@@ -765,7 +765,7 @@ Format: `filterplanmod PLANNED_MODULE [PLANNED_MODULE]…`
 
 Examples:
 
-* `filterplanmod CS23333` lists all contacts with module code CS3333 in their planned modules list.
+* `filterplanmod CS3333` lists all contacts with module code CS3333 in their planned modules list.
 
 * <img src="images/FilterPlanModCS3333.png" width="350">
 
