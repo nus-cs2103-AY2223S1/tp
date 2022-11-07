@@ -194,8 +194,9 @@ Adds a student to the Teacher’s Pet.
 - Tags are optional.
 - A student can have any number of tags (including 0).
 - Tags must only contain alphanumeric characters.
+- Tags cannot be blank or contain spacings.
     
-<div markdown="span" class="alert alert-info">ℹ **Note:** Tags must contain at least 1 alphanumeric character, cannot contain spacings and limited to `40` characters long.
+<div markdown="span" class="alert alert-info">ℹ **Note:** One tag is limited to `40` characters long.
 </div>
 
 Format: `add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
@@ -402,7 +403,7 @@ Finds all students with names matching the keywords.
 Format: `find n/KEYWORD [MORE_KEYWORDS]`
 
 - The search is case-insensitive. e.g., `alex` will match `Alex`.
-- The order of the keywords does not matter. e.g. `Yeoh Alex` will match `Alex Yeoh`.
+- The order of the keywords does not matter. e.g., `Yeoh Alex` will match `Alex Yeoh`.
 - Only full words will be matched e.g., `Han` will not match `Hans`.
 - Students matching at least one keyword will be returned. e.g., `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
@@ -515,7 +516,7 @@ Examples:
 * `find t/python` returns all students who have a python tag, including students who have other tags on top of the
 python tag.
 * `find t/javascript` returns all students who have a javascript tag, including students who have other tags on top
-of javascript tag 
+of javascript tag.
 * `find t/python t/javascript` returns all students who have javascript and python tags, includings students who have 
 other tags on top of the two tags.
 
@@ -566,7 +567,7 @@ Examples:
 - `list` followed by `sort name asc` will list all the students according to their names in ascending order.
 - `list` followed by `sort name desc` will list all the students according to their names in descending order.
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 #### Sort by Class Date
 
@@ -580,7 +581,7 @@ Examples:
 - `list` followed by `sort class asc` will list all the students according to their upcoming classes in ascending order.
 - `list` followed by `sort class desc` will list all the students according to their upcoming classes in descending order.
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 #### Sort by Money Owed
 
@@ -594,7 +595,7 @@ Examples:
 - `list` followed by `sort owed asc` will list all the students according to how much money they owe in ascending order.
 - `list` followed by `sort owed desc` will list all the students according to how much money they owe in descending order.
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 ---
 

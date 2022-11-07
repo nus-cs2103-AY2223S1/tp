@@ -10,9 +10,9 @@ if () then ([valid find command])
                 format message;
 
         else ([else])
-          :Find tasks with matching keywords;
-            :Update model with new filtered task list;
-            :Display list of matching task(s) if any;
+          :Find students with matching keywords;
+            :Update model with new filtered student list;
+            :Display list of matching student(s) if any;
         endif
 
 else ([else])
