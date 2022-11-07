@@ -932,23 +932,33 @@ Examples:
 
 **A**: You do not have to be fast at typing for RC4HDB to improve your workflow!
 
+<br>
+
 **Q: I have accidentally deleted an entry, is there any way for me to undo it?**
 
 **A**: Currently, we do not offer such an option, but you can look forward to RC4HDB v1.5, as we will be implementing that
 in the near future!
+
+<br>
 
 **Q: The text on the screen is too small, is there any way for me to resize it?**
 
 **A**: RC4HDB does not allow the text size to be changed, however, you can enlarge the text by changing your screen resolution. You may
 refer to this [link](https://support.microsoft.com/en-us/windows/change-your-screen-resolution-in-windows-5effefe3-2eac-e306-0b5d-2073b765876b) for Windows, and this [link](https://www.wikihow.com/Change-the-Screen-Resolution-on-a-Mac) for Mac.
 
+<br>
+
 **Q: Do I need an internet connection to be able to use RC4HDB?**
 
 **A**: You do not need an internet connection to use RC4HDB as everything is done on your device.
 
+<br>
+
 **Q: Can I search using fields other than the name?**
 
 **A**: You can use the `filter` command to search for people using the other fields.
+
+<br>
 
 **Q: Why is there a need to use `hideonly` if we can already use `showonly`?**
 
@@ -956,10 +966,14 @@ refer to this [link](https://support.microsoft.com/en-us/windows/change-your-scr
 `hideonly i` has the same effect as `showonly n p e r g h m t` on a full table. Using `hideonly` helps to save 
 time on typing!
 
+<br>
+
 **Q: How do I remember which commands use letters (as compared to other commands which use key/value) as inputs?**
 
 **A**: Only the column hiding features, i.e. `showonly` and `hideonly`, use letters. You can remember this by 
 associating the "only" in these commands to the convenience of typing *only* letters!
+
+<br>
 
 **Q: The section for `showonly` and `hideonly` says that `i n p e r g h m t` are valid letters. However, I am getting an error message that says "Please enter columns to show or hide that are currently in the table view." when using these valid letters.** 
 
@@ -969,11 +983,15 @@ be present* in the current table. The error message mentioned above means that t
 *not fully present* in the table. Please make sure to *only* enter letters corresponding to the columns you see on your 
 screen when typing these commands. 
 
+<br>
+
 **Q: How can I resize the columns in the table?**
 
 **A:** Column resizing can be done the same way as they do in Excel. However, we only allow the resizing of the `Name` and `Email` columns.
 They other have a fixed size to allow for your ease of viewing. Alternatively, you could also use the `showonly` and `hideonly` commands if you
 do not wish to see them.
+
+<br>
 
 **Q: I can not find the information that I need in the User Guide, who can I contact?**
 
