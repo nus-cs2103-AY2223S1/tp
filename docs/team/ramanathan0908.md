@@ -34,3 +34,4 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 * **Contributions to Developer Guide**
   * Added the implementation details along with the sequence diagram viewing tasks on a particular day feature
   * Added implementation details and class diagram Tasks component under model
+
