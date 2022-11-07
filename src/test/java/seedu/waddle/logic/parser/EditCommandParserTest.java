@@ -1,32 +1,7 @@
 package seedu.waddle.logic.parser;
 
 import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.waddle.logic.commands.CommandTestUtil.BUDGET_DESC_SUMMER;
-import static seedu.waddle.logic.commands.CommandTestUtil.COUNTRY_DESC_SUMMER;
-import static seedu.waddle.logic.commands.CommandTestUtil.COUNTRY_DESC_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.DURATION_DESC_SUMMER;
-import static seedu.waddle.logic.commands.CommandTestUtil.DURATION_DESC_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_BUDGET_DESC;
-import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_COUNTRY_DESC;
-import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_DURATION_DESC;
-import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_PEOPLE_DESC;
-import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_START_DATE_DESC;
-import static seedu.waddle.logic.commands.CommandTestUtil.ITINERARY_DESC_DESC_SUMMER;
-import static seedu.waddle.logic.commands.CommandTestUtil.PEOPLE_DESC_SUMMER;
-import static seedu.waddle.logic.commands.CommandTestUtil.PEOPLE_DESC_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.START_DATE_DESC_SUMMER;
-import static seedu.waddle.logic.commands.CommandTestUtil.START_DATE_DESC_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_BUDGET_SUMMER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COUNTRY_SUMMER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COUNTRY_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_SUMMER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_ITINERARY_DESC_SUMMER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PEOPLE_SUMMER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PEOPLE_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_DATE_SUMMER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_DATE_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.*;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PEOPLE;
 import static seedu.waddle.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.waddle.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -85,7 +60,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Description.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, "1" + INVALID_DESC_DESC, Description.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_COUNTRY_DESC, Country.MESSAGE_CONSTRAINTS); // invalid country
         assertParseFailure(parser, "1" + INVALID_START_DATE_DESC, Date.MESSAGE_CONSTRAINTS); // invalid start date
         //invalid duration
@@ -112,7 +87,7 @@ public class EditCommandParserTest {
          */
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_START_DATE_DESC
+        assertParseFailure(parser, "1" + INVALID_DESC_DESC + INVALID_START_DATE_DESC
                 + VALID_DURATION_SUMMER + VALID_COUNTRY_SUMMER + VALID_BUDGET_SUMMER, Description.MESSAGE_CONSTRAINTS);
     }
 
