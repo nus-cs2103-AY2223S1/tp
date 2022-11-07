@@ -560,6 +560,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                    | view contacts related to my search query               | find contacts even when I mistype their name                               |
 | `* *`    | user                    | hide contact details                                   | focus on certain information of each contact                               |
 | `* *`    | user                    | show contact details                                   | view certain information of each contact                                   |
+| `*`      | user                    | customise the order of information for contacts        | view more important information before others                              |
 | `* *`    | user                    | have an autocomplete for my current search query       | search faster by names and minimize the chance of an unsuccessful search   |
 | `* *`    | user with many contacts | specify the default order of my contacts               | avoid re-sorting the list everytime                                        |
 | `* *`    | user with many contacts | sort contacts by name, email, phone number, or address | organise my contacts list                                                  |
@@ -570,7 +571,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                    | edit a todo                                            | update it or correct my mistakes                                           |
 | `* *`    | user                    | clear all my todos                                     | save time on deleting them one by one                                      |
 | `* *`    | user                    | filter the list of todos shown                         | only view the portion of list I need at the moment                         |
-| `*`      | user                    | customise the order of information for contacts        | view more important information before others                              |
 
 ### Use cases
 
@@ -700,14 +700,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Hide all contact's phone number**
+**Use case: Hide phone number of all contacts**
 
 **MSS**
 
-1.  User requests phone number to be hidden.
-2.  SoConnect removes phone number from displaying in the contact.
+1. User requests phone number to be hidden.
+2. SoConnect no longer displays phone number of each contact.
 
-    Use case ends.
+   Use case ends.
+
+**Use case: Show phone number of all contacts**
+
+**MSS**
+
+1. User requests phone number to be shown.
+2. SoConnect now displays phone number of all contacts.
+
+   Use case ends.
+
+**Use case: Order contact details**
+
+**MSS**
+
+1. User requests details to be shown in the following order: address, email, phone number, tags.
+2. SoConnect now displays in the following order: address, email, phone number, tags.
+
+   Use case ends.
 
 ### Non-Functional Requirements
 
