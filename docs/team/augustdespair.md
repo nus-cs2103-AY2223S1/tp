@@ -40,6 +40,10 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * `containsNameIgnoreCase` in `StringUtil` to handle the checking of the instance of a substring being present inside a String.
     * Credits: Took inspiration from `Dave L.`'s response in https://stackoverflow.com/questions/86780/how-to-check-if-a-string-contains-another-string-in-a-case-insensitive-manner-in
+  * Added methods to `Model` to support adding, deleting and editing staff, such as `Model.getStaffFromProjectAtIndex()` and 
+  `Model.addStaffToProject()`. These methods were added to improve code quality and better adherence to SOLID principles, since it 
+  ensured that all commands involving the manipulation of `StaffList` communicated via the `Model` interface, instead of allowing 
+  commands to directly call methods from the `Model` package. 
 
 * **Documentation**:
 
