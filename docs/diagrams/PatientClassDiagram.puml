@@ -5,6 +5,9 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>> {
+Class BasePerson
+Class Physician
+Class NextOfKin
 Class Person
 Class Address
 Class DateTime
@@ -17,18 +20,21 @@ Class Tag
 Class Uid
 }
 
-Class HiddenOutside #FFFFFF
-HiddenOutside ..> Person
+Physician .up.|> BasePerson
+NextOfKin .up.|> BasePerson
+Person .up.|> BasePerson
+BasePerson *--> "1" Name
+BasePerson *--> "1" Phone
+BasePerson *--> "1" Email
 
 Person *--> "1" Uid
-Person *--> "1" Name
 Person *--> "1" Gender
-Person *--> "1" Phone
-Person *--> "1" Email
 Person *--> "1" Address
 Person *--> "*" Tag
-Patient -left-|> Person
+Patient .up.|> Person
 Patient *--> "*" DateTime
+Patient *--> "0..1" Physician
+Patient *--> "0..1" NextOfKin
 
 Uid -[hidden]right-> Name
 Name -[hidden]right-> Gender
