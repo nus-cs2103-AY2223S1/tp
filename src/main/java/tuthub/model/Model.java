@@ -89,7 +89,7 @@ public interface Model {
     void setTutor(Tutor target, Tutor editedTutor);
 
     /** Returns an unmodifiable view of the filtered tutor list */
-    ObservableList<Tutor> getFilteredTutorList();
+    ObservableList<Tutor> getSortedFilteredTutorList();
 
     /**
      * Updates the filter of the filtered tutor list to filter by the given {@code predicate}.

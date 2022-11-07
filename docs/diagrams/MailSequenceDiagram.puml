@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TuthubParser" as TuthubParser LOGIC_COLOR
+participant ":MailCommandParser" as MailCommandParser LOGIC_COLOR
+participant "m:MailCommand" as MailCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("mail all")
+activate LogicManager
+
+LogicManager -> TuthubParser : parseCommand("mail all")
+activate TuthubParser
+
+create MailCommandParser
+TuthubParser -> MailCommandParser
+activate MailCommandParser
+
+MailCommandParser --> TuthubParser
+deactivate MailCommandParser
+
+TuthubParser -> MailCommandParser : parse("all")
+activate MailCommandParser
+
+create MailCommand
+MailCommandParser -> MailCommand
+activate MailCommand
+
+MailCommand --> MailCommandParser : m
+deactivate MailCommand
+
+MailCommandParser --> TuthubParser : m
+deactivate MailCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+MailCommandParser -[hidden]-> TuthubParser
+destroy MailCommandParser
+
+TuthubParser --> LogicManager : m
+deactivate TuthubParser
+
+LogicManager --> MailCommand : execute()
+activate MailCommand
+
+MailCommand -> Model : getTutorList()
+activate Model
+
+Model --> MailCommand
+deactivate Model
+
+create CommandResult
+MailCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> MailCommand
+deactivate CommandResult
+
+MailCommand --> LogicManager : result
+deactivate MailCommand
+
+[<- LogicManager
+deactivate LogicManager
+@enduml

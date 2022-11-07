@@ -43,15 +43,15 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TUTOR_SUCCESS, editedTutor);
 
         Model expectedModel = new ModelManager(new Tuthub(model.getTuthub()), new UserPrefs());
-        expectedModel.setTutor(model.getFilteredTutorList().get(1), editedTutor);
+        expectedModel.setTutor(model.getSortedFilteredTutorList().get(1), editedTutor);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastTutor = Index.fromOneBased(model.getFilteredTutorList().size());
-        Tutor lastTutor = model.getFilteredTutorList().get(indexLastTutor.getZeroBased());
+        Index indexLastTutor = Index.fromOneBased(model.getSortedFilteredTutorList().size());
+        Tutor lastTutor = model.getSortedFilteredTutorList().get(indexLastTutor.getZeroBased());
 
         TutorBuilder tutorInList = new TutorBuilder(lastTutor);
         Tutor editedTutor = tutorInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
@@ -72,7 +72,7 @@ public class EditCommandTest {
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TUTOR, new EditTutorDescriptor());
-        Tutor editedTutor = model.getFilteredTutorList().get(INDEX_FIRST_TUTOR.getZeroBased());
+        Tutor editedTutor = model.getSortedFilteredTutorList().get(INDEX_FIRST_TUTOR.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TUTOR_SUCCESS, editedTutor);
 
@@ -85,7 +85,7 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showTutorAtIndex(model, INDEX_FIRST_TUTOR);
 
-        Tutor tutorInFilteredList = model.getFilteredTutorList().get(INDEX_FIRST_TUTOR.getZeroBased());
+        Tutor tutorInFilteredList = model.getSortedFilteredTutorList().get(INDEX_FIRST_TUTOR.getZeroBased());
         Tutor editedTutor = new TutorBuilder(tutorInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_TUTOR,
                 new EditTutorDescriptorBuilder().withName(VALID_NAME_BOB).build());
@@ -93,14 +93,14 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_TUTOR_SUCCESS, editedTutor);
 
         Model expectedModel = new ModelManager(new Tuthub(model.getTuthub()), new UserPrefs());
-        expectedModel.setTutor(model.getFilteredTutorList().get(0), editedTutor);
+        expectedModel.setTutor(model.getSortedFilteredTutorList().get(0), editedTutor);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_duplicateTutorUnfilteredList_failure() {
-        Tutor firstTutor = model.getFilteredTutorList().get(INDEX_FIRST_TUTOR.getZeroBased());
+        Tutor firstTutor = model.getSortedFilteredTutorList().get(INDEX_FIRST_TUTOR.getZeroBased());
         EditTutorDescriptor descriptor = new EditTutorDescriptorBuilder(firstTutor).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_TUTOR, descriptor);
 
@@ -121,7 +121,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_invalidTutorIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTutorList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getSortedFilteredTutorList().size() + 1);
         EditTutorDescriptor descriptor = new EditTutorDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 

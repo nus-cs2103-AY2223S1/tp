@@ -63,7 +63,7 @@ public class FindByTeachingNominationCommandTest {
         FindByTeachingNominationCommand command = new FindByTeachingNominationCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredTutorList());
+        assertEquals(Collections.emptyList(), model.getSortedFilteredTutorList());
     }
 
     @Test
@@ -73,7 +73,7 @@ public class FindByTeachingNominationCommandTest {
         FindByTeachingNominationCommand command = new FindByTeachingNominationCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(JACKSON, KEN), model.getFilteredTutorList());
+        assertEquals(Arrays.asList(JACKSON, KEN), model.getSortedFilteredTutorList());
     }
 
     private Tuthub getTestTaTuthub() {
