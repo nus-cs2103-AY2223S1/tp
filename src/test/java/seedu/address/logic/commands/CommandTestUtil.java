@@ -25,7 +25,6 @@ import seedu.address.model.student.StuNameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
 import seedu.address.model.tutorial.TutNameContainsKeywordsPredicate;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 
 /**
@@ -76,10 +75,6 @@ public class CommandTestUtil {
 
     public static final String ATTENDANCE_DESC_AMY = " " + PREFIX_ATTENDANCE + VALID_ATTENDANCE_AMY;
     public static final String ATTENDANCE_DESC_BOB = " " + PREFIX_ATTENDANCE + VALID_ATTENDANCE_BOB;
-    public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
-    public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
     public static final String GROUP_DESC_TUTORIAL1 = " " + PREFIX_GROUP + VALID_GROUP_TUTORIAL1;
     public static final String GROUP_DESC_TUTORIAL2 = " " + PREFIX_GROUP + VALID_GROUP_TUTURIAL2;
     public static final String CONTENT_DESC_TUTORIAL1 = " " + PREFIX_CONTENT + VALID_CONTENT_TUTORIAL1;
@@ -92,8 +87,6 @@ public class CommandTestUtil {
     public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM + "James&"; // Missing '@' before handle
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ATTENDANCE_DESC = " " + PREFIX_ATTENDANCE + "a"; // 'a' not allowed in attendance
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_TIME_DESC = " " + PREFIX_TIME + "2022"; // the time format is not correct
     public static final String INVALID_GROUP_DESC = " " + PREFIX_GROUP + "T08*"; // contains non-alphanumeric characters
     public static final String INVALID_CONTENT_DESC = " " + PREFIX_CONTENT + "uml*";
@@ -157,20 +150,6 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
-     */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
-
-        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
-
-        assertEquals(1, model.getFilteredPersonList().size());
-    }
-
-    /**
      * Updates {@code model}'s filtered list to show only the student at the given {@code targetIndex} in the
      * {@code model}'s student list.
      */
@@ -197,7 +176,7 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredTutorialList().size());
     }
-    
+
     /**
      * Updates {@code model}'s filtered list to show only the question at the given {@code targetIndex} in the
      * {@code model}'s question list.
