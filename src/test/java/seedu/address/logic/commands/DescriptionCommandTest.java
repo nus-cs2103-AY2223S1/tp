@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
@@ -22,6 +23,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Description;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for DescriptionCommand.
@@ -68,7 +70,7 @@ public class DescriptionCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person editedPerson = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
@@ -113,6 +115,23 @@ public class DescriptionCommandTest {
     }
 
     @Test
+    public void undo_commandExecuted_undoSuccessful() throws Exception {
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+
+        DescriptionCommand descriptionCommand =
+                new DescriptionCommand(INDEX_FIRST_PERSON, new Description(DESCRIPTION_STUB));
+
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        descriptionCommand.execute(expectedModel);
+        CommandResult result = descriptionCommand.undo(expectedModel);
+
+        assertEquals(String.format(descriptionCommand.MESSAGE_UNDO_RESET, firstPerson.getDescription(), firstPerson),
+                result.getFeedbackToUser());
+        assertEquals(expectedModel, model);
+    }
+
+
+    @Test
     public void equals() {
         final DescriptionCommand standardCommand = new DescriptionCommand(INDEX_FIRST_PERSON,
                 new Description(VALID_DESCRIPTION_AMY));
@@ -129,7 +148,7 @@ public class DescriptionCommandTest {
         // different index -> returns false
         assertFalse(standardCommand.equals(new DescriptionCommand(INDEX_SECOND_PERSON,
                 new Description(VALID_DESCRIPTION_AMY))));
-        // different remark -> returns false
+        // different description -> returns false
         assertFalse(standardCommand.equals(new DescriptionCommand(INDEX_FIRST_PERSON,
                 new Description(VALID_DESCRIPTION_BOB))));
     }

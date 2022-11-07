@@ -44,19 +44,19 @@ Afterwards, it talks about notable implementations within the components. Detail
 You may refer to the [table of contents](#table-of-contents) below to quick jump to any particular section.
 
 #### Legend
-1. Text in [blue](#legend) are hyperlinks that direct you to the relevant section of the page or to other websites
-2. Text in **bold** are used to emphasize important details to look out for or to distinguish headers from the rest of the text
-3. Text in `code snippets such as this` are used to show program or code related or used in FABook
+* Text in [blue](#legend) are hyperlinks that direct you to the relevant section of the page or to other websites
+* Text in **bold** are used to emphasize important details to look out for or to distinguish headers from the rest of the text
+* Text in `code snippets such as this` are used to show program or code related or used in FABook
 
 <div markdown="span" class="alert alert-primary">
 
-4. :bulb: **Tips**
+* :bulb: **Tips**
 
 </div>
 
 <div markdown="span" class="alert alert-info">
 
-5. :information_source: **Notes**
+* :information_source: **Notes**
 
 </div>
 
@@ -922,6 +922,213 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+
+### Creating a person
+
+1. Creating a person with a duplicate already present
+
+   1. Prerequisite: A person with name `Alice Tan` and phone number `12345678` on the list. Other fields may be present with any value.
+
+   1. Test case: `create n/Alice Tan p/12345678`<br>
+      Expected: No new person created. Error details shown in the command display.
+
+   1. Test case: `create n/Alice Tan p/87654321`<br>
+      Expected: A new person is added to the list. Details of the new person shown in the command display.
+      
+   1. Other viable create commands to try: `create n/Bob Wang p/12345678`, `create n/alice tan p/12345678`, `create n/alice tan p/12345678`<br>
+      Expected: Success. Similar to previous.
+      
+### Assigning a PDF file to a person
+
+1. Assigning a PDF file to a person without PDF file assigned.
+   
+   1. Create a PDF file on your computer.
+   
+   2. Test case: `filepath INDEX f/FILEPATH` where `FILEPATH` is the absolute file path of the PDF file from step 1.<br>
+      Expected: PDF file assigned. Client details shown in the command display.
+      
+      1. Click on the client in the result display.
+      
+      2. Scroll down the contact information window.<br>
+         Expected: `Client Information` button in high-contrast white borders and is clickable.
+         
+      3. Click on the `Client Information` button<br>
+         Expected: The PDF file is opened.
+   
+   3. Test case: `filepath INDEX f/RELATIVE FILEPATH` where `RELATIVE FILEPATH` is the file path of the PDF relative to the directory of FABook.
+      Expected: PDF File is assigned. Client details shown in the command display.
+      
+      1. Click on the client in the result display.
+      
+      2. Scroll down the contact information window.<br>
+         Expected: `Client Information` button in high-contrast white borders and is clickable.
+
+   4. Other incorrect inputs to try: Incorrect filepaths, filepaths for other file types (e.g. .doc)<br>
+      Expected: PDF file not assigned. Error details shown in the command display. See previous.
+   
+   5. See [Opening PDF file](#opening-pdf-file) below for more related testing.
+
+1. Assigning a PDF file to a person already with PDF file assigned.
+   
+   1. Assign a PDF file to a person as instructed in the previous tests.
+   
+   2. Create a new PDF file on your computer.
+   
+   2. Test case: `filepath INDEX f/NEWFILEPATH` where `NEWFILEPATH` is the absolute file path of the new PDF file from step 2.<br>
+      Expected: PDF file assigned. Client details shown in the command display.
+      
+      1. Click on the client in the result display.
+      
+      2. Scroll down the contact information window.<br>
+         Expected: `Client Information` button in high-contrast white borders and is clickable.
+         
+      3. Click on the `Client Information` button<br>
+         Expected: The new PDF file is opened.
+   
+   3. Test case: `filepath INDEX f/RELATIVE FILEPATH` where `RELATIVE FILEPATH` is the file path of the PDF relative to the directory of FABook.
+      Expected: PDF file assigned. Client details shown in the command display.
+      
+      1. Click on the client in the result display.
+      
+      2. Scroll down the contact information window.<br>
+         Expected: `Client Information` button in high-contrast white borders and is clickable.
+      
+      3. Click on the `Client Information` button<br>
+         Expected: The new PDF file is opened.
+
+   4. Other incorrect inputs to try: Incorrect filepaths, filepaths for other file types (e.g. .doc)<br>
+      Expected: new PDF file not assigned. Error details shown in the command display. See previous.
+      
+   5. See `Opening PDF file` below for more related testing.
+
+### Finding a person by name
+
+1. Finding person by partial names
+
+   1. Prerequisite: Use the `create` command to add to list a person named `Jack` and another person named `Jackson`.
+   
+   2. Test case: `find n/jack`<br>
+      Expected: Both `Jack` and `Jackson` are on the shown list.
+   
+   3. Test case: `find n/jackson`<br>
+      Expected: `Jackson` is on the shown list. `Jack` is not.
+
+1. Finding person using multiple names
+   
+   1. Prerequisite: Use the `create` command to add to list a person named `Amy Lin`, a person named `Bob Wang`, and another person named `Carol Chen`.
+   
+   2. Test case: `find n/amy bob`<br>
+      Expected: Both `Amy Lin` and `Bob Wang` are on the shown list. `Carol Chen` is not shown on the list.
+   
+   2. Test case: `find n/dave lin`<br>
+      Expected: `Amy Lin` is on the shown list. `Bob Wang` and `Carol Chen` are not shown on the list.
+
+### Opening PDF file
+
+1. Filepath not assigned
+
+   1. Add a new client using `create` command.
+   
+   2. Click on the newly added client.
+   
+   3. Scroll down the `Contact Information` window.<br>
+      Expected: A greyed out `No Client Information` button is visible.
+   
+   4. Try to click on the `No Client Information` button.<br>
+      Expected: No file opened. No message shown.
+   
+   5. Test case: `file INDEX` where INDEX is the index of the new client on the list.<br>
+      Expected: No file opened. Error details shown in the command display.
+
+2. Filepath is assigned
+
+   1. Add a new client using `create` command.
+
+   2. Assign a PDF file to a person - See [Assigning a PDF file to a person](#assigning-a-pdf-file-to-a-person) for examples on how to assign PDFs.
+
+   3. Test case: `file INDEX` where INDEX is the index of the new client on the list.<br>
+      Expected: The PDF file is opened. 
+
+   4. Test case; Click on the `Client Information` button<br>
+      Expected: The PDF file is opened.
+
+1. Dealing with invalid filepaths
+   
+   1. Create a PDF file on your computer.
+   
+   2. Use `filepath` command to assign the PDF file to a client in the FABook.
+   
+   3. Rename or delete the PDF file on your computer.
+   
+   4. Try to open the file from within FABook using `file` command or `Client Information` button.<br>
+      Expected: No file is opened. Error details shown in the command display or below the `Client Information` button.
+      
+   5. Exit the app.
+   
+   6. Re-launch the app.<br>
+      Expected: The app re-launches with previously stored data intact.
+
+### Get upcoming meetings
+
+1. Getting upcoming meetings
+
+   1. Add multiple meeting to multiple clients in FABook with meeting times within the next 7 days.
+
+   1. Add multiple meeting to multiple clients in FABook with meeting times before the present time.
+   
+   2. Add multiple meeting to multiple clients in FABook with meeting times later than 7 days from the present time.
+
+   3. Press `F2` or click on `Meetings` button then the `Upcoming Meetings F2` button that appears.<br>
+      Expected: A new window with title `Upcoming Meetings` appear. Only the meetings added in step 1 are displayed.
+
+2. Getting upcoming meetings with Upcoming Meetings window open
+
+   1. Perform step 1~4 in `Getting upcoming meetings` above.
+   
+   2. Switch the current window to one different from the `Upcoming meetings` window without closing the `Upcoming meetings` window.
+   
+   3. Press `F2` or click on `Meetings` button then the `Upcoming Meetings F2` button that appears.<br>
+      Expected: The `Upcoming meetings` window re-appears to the front.
+
+3. Getting upcoming meetings after updating with Upcoming Meetings window open
+
+   1. Perform step 1~4 in `Getting upcoming meetings` above.
+   
+   2. Swtich back to the main FABook window.
+   
+   3. Add one meeting to any client with meeting time within the next 7 days.
+   
+   4. Close the `Upcoming Meetings` window.
+   
+   3. Press `F2` or click on `Meetings` button then the `Upcoming Meetings F2` button that appears.<br>
+      Expected: A `Upcoming Meetings` window appear. The meeting added in step 3 is displayed on the list.
+
+
+### Update meetings:
+
+1. Adding multiple meetings to the same person
+
+   1. Test case: `meeting 2 mt/19-10-2022-10:34 mt/23-11-2022-22:22`<br>
+      Expected: Two meetings are successfully added. Details of the updated person shown in the command display.
+      
+      1. Click on the second client on the `result display`.<br>
+         Expected: Two new meeting times are visible with a green background.
+   
+   2. Test case: `meeting 2 mt/19-10-2022-10:34 23-11-2022-22:22`<br>
+      Expected: No meetings added. Error details shown in the command display.
+   
+   3. Other incorrect inputs: `meeting 0 mt/19-10-2022-10:34`, `meeting 2 mt/31-09-2022-10:34`, `meeting 2 mt/19-10-2022-10:60`
+
+2. Re-adding the same meeting to the same person
+
+   1. Use `meeting 2 mt/19-10-2022-10:34` to add a meeting.
+   
+   2. Re-enter `meeting 2 mt/19-10-2022-10:34`<br>
+      Expected: Success message shown in command display.
+      
+      1. Click on the second client on the `result display`.<br>
+         Expected: Only one `19 October 2022 10:34`. No duplicate meetings.
+      
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -929,23 +1136,170 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the command display.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No person is deleted. Error details shown in the command display.
+      
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+      
+1. Deleting a person while a filtered list of persons is being shown
+
+   1. Prerequisites: Find certain persons using the `find` command. Multiple persons in the list.
+
+   1. Test case: `delete 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the command display.
+      
+      1. Use the `list` command to show all persons.
+         Expected: The same contact is deleted from the main list.
+
+   1. Test case: `delete 0`<br>
+      Expected: No person is deleted. Error details shown in the command display.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Delete Meetings
+
+1. Deleting assigned meeting
+
+   1. `Meeting 2 mt/20-12-2012-20:12` to assign meeting time `20-12-2012-20:12` to the second client.
+   
+   2. Test case `deletemeeting 2 mt/20-12-2012-20:12`<br>
+      Expected: Meeting time `20-12-2012-20:12` removed from second client. `Results display` updated.
+      
+   3. Test case `deletemeeting 2 mt/11-11-2011-11:11`<br>
+      Expected: No meeting removed. Error message `Couldn't find meeting time` and details shown in the command display.
+      
+   4. Other incorrected deletemeeting commands to try: `deletemeeting 2`, `deletemeeting 0 mt/20-12-2012-20:12`
+      Expected: No meeting removed. Error details shown in the command display.
+
+### Remove past meetings
+
+1. Remove past meetings
+
+   1. Add multiple meeting to multiple clients in FABook with meeting times after the present time.
+
+   1. Add multiple meeting to multiple clients in FABook with meeting times before the present time.
+   
+   3. Enter `sync`.<br>
+      Expected: Meetings added in step 2 are removed. Success message displayed shown in the command display.
+      
+      
+### Undoing a previous command
+
+1. Undoing create
+   
+   1. Enter `create n/Amy p/11111111`<br>
+      Expected: New person created with `Name`: Amy and `Phone`: 11111111.
+      
+   2. Enter `undo`<br>
+      Expected: Person removed. Removed person detail shown in the command display.
+      
+2. Undoing clear
+   
+   1. Use `create` command to add multiple clients to FABook.
+
+   2. Use `clear` command<br>
+      Expected: All clients removed from `results display` list.
+      
+   3. Enter `undo`<br>
+      Expected: All clients restored. Success message shown in the command display.
+
+3. Undoing delete
+
+   1. Prerequisite: At least one client on displayed list.
+   
+   2. Use `delete` command to remove a client.
+   
+   3. Enter `undo`<br>
+      Expected: Removed client restored. Success message shown in the command display.
+      
+4. Undoing list (non-undoable)
+
+   1. Prerequisite: No previous commands this session. Re-laund the app if there were previous inputs.
+   
+   2. Use `list` command to view entire list.
+   
+   3. Enter `undo`<br>
+      Expected: No changes made to FABook. Error details shown in the command display.
+      
+4. Undoing with non-undoable commands in between
+
+   1. Similar to test 1, use `create` command to add a client to list.
+      
+   2. Use `list` command to view entire list.
+   
+   3. Use `help` command to view help window.
+   
+   4. Enter `undo`<br>
+      Expected: Successfully removed the client created in step 1.
+      
+5. Undoing multiple commands
+   
+   1. Prerequisite: Multiple clients on displayed list.
+   
+   2. Use `delete` command to remove a client.
+   
+   3. Repeat step 2 five times.
+   
+   4. Enter `undo`<br>
+      Expected: Most recently removed client is restored.
+   
+   5. Re-enter `undo` with same number of repetition as step 3<br>
+      Expected: All removed clients restored. Clients restored in reverse order of removal.
+   
+6. Undoing redo
+
+   1. Use `create` command to add a client to list.
+   
+   2. Enter `undo`<br>
+      Expected: Recently added client removed.
+   
+   3. Enter `redo`<br>
+      Expected: Client re-added.
+      
+   4. Enter `undo`<br>
+      Expected: Client re-removed.
+   
+   5. Enter `redo`<br>
+      Expected: Client re-added.
+      
+   6. Enter `undo`<br>
+      Expected: Client re-removed.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Launch the app and exit after any number of actions.
+   
+   3. In the same directory as the app, find folder `data`.
+   
+   4. Delete the `data` folder along with the file `FABook.json` inside.
+   
+   5. Re-launch the app.<br>
+      Expected: The app launches with a auto-generated list of sample data containing six sample clients. The first sample client is `Alex Yeoh`.
+   
+   6. Re-exit the app after any number of actions.<br>
+      Expected: The `data` folder is re-created with the file `FABook.json` inside.
 
-2. _{ more test cases …​ }_
+1. Dealing with corrupted data files
+
+   1. Launch the app and exit after any number of actions.
+   
+   3. In the same directory as the app, find folder `data`.
+   
+   4. Open the file `FABook.json` inside the `data` folder.
+  
+   5. Edit `FABook.json` so that it no longer follews the usual saved format. Save the changes made.
+   
+   6. Re-launch the app.<br>
+      Expected: The app launches with an empty list.
+   
+   6. Re-exit the app after any number of actions.<br>
+      Expected: The file `FABook.json` is replaced with new data in correct format.
 
 ## **Appendix: Effort**
 
