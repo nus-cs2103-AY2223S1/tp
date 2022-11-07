@@ -1,0 +1,80 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ModQuikParser" as ModQuikParser LOGIC_COLOR
+participant ":EditStudentCommandParser" as EditStudentCommandParser LOGIC_COLOR
+participant ":EditStudentCommand" as EditStudentCommand LOGIC_COLOR
+participant ":EditStudentDescriptor" as Descriptor LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ModQuikBook" as ModQuikBook MODEL_COLOR
+end box
+[-> LogicManager : execute("edit 2 g/A")
+activate LogicManager
+
+LogicManager -> ModQuikParser : parseCommand("edit 2 g/A")
+activate ModQuikParser
+
+create EditStudentCommandParser
+ModQuikParser -> EditStudentCommandParser
+activate EditStudentCommandParser
+
+EditStudentCommandParser --> ModQuikParser
+deactivate EditStudentCommandParser
+
+ModQuikParser -> EditStudentCommandParser : parse("2 g/A")
+activate EditStudentCommandParser
+
+create EditStudentCommand
+EditStudentCommandParser -> EditStudentCommand
+activate EditStudentCommand
+create Descriptor
+EditStudentCommand -> Descriptor
+activate Descriptor
+Descriptor --> EditStudentCommand
+deactivate Descriptor
+EditStudentCommand --> EditStudentCommandParser
+deactivate EditStudentCommand
+
+EditStudentCommandParser --> ModQuikParser
+deactivate EditStudentCommandParser
+
+EditStudentCommandParser -[hidden]-> ModQuikParser
+destroy EditStudentCommandParser
+
+ModQuikParser --> LogicManager
+deactivate ModQuikParser
+
+LogicManager -> EditStudentCommand : execute()
+activate EditStudentCommand
+
+EditStudentCommand -> Descriptor
+activate Descriptor
+Descriptor --> EditStudentCommand : edited
+deactivate Descriptor
+Descriptor -[hidden]-> EditStudentCommand
+destroy Descriptor
+EditStudentCommand -> Model : setStudent(toEdit, edited)
+activate Model
+
+'ADD MORE HERE
+Model -> ModQuikBook : setStudent(toEdit, edited)
+activate ModQuikBook
+ModQuikBook --> Model
+deactivate ModQuikBook
+
+Model --> EditStudentCommand
+deactivate Model
+
+EditStudentCommand --> LogicManager : result
+deactivate EditStudentCommand
+
+EditStudentCommand -[hidden]-> LogicManager
+destroy EditStudentCommand
+
+[<--LogicManager
+@enduml

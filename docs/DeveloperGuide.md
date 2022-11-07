@@ -154,6 +154,80 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Student Feature
+
+#### Proposed Implementation
+
+The implementation of the `add student` command involves creating new Student objects and storing them in the modquik.json using the JsonAdaptedStudent class.
+
+The add student command has the following fields:
+
+* n/ prefix followed by the name of the student
+* i/ prefix followed by the student id
+* ph/ prefix followed by the student's phone number
+* e/ prefix followed by the student's email
+* tele/ prefix followed by the student's telegram handle
+* m/ prefix followed by the module code
+* tut/ prefix followed by the tutorial name
+* g/ prefix followed by the student's grade (Optional)
+* att/ prefix followed by the student's attendance score (Optional)
+* part/ prefix followed by the student's participation score (Optional)
+* t/ prefix followed by relevant tags (Optional)
+
+The system will validate the parameters supplied by the user. When input validation fails, error message specifying the first identified error will be shown to the user.
+
+The following sequence diagram shows how the `add student` command works:
+
+![AddStudentSequenceDiagram](images/AddStudentSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+`add tutorial`, `add consultation` and `add reminder` commands work similar to the above but have different fields.
+</div>
+
+### Edit Student Feature
+
+#### Proposed Implementation
+
+The implementation of the `edit student` command involves creating new Student objects and replacing the previous Student object to be edited as identified by the user.
+
+The edit student command has the following fields. All fields are optional but at least one must be provided:
+
+* n/ prefix followed by the name of the student
+* i/ prefix followed by the student id
+* ph/ prefix followed by the student's phone number
+* e/ prefix followed by the student's email
+* tele/ prefix followed by the student's telegram handle
+* m/ prefix followed by the module code
+* tut/ prefix followed by the tutorial name
+* g/ prefix followed by the student's grade
+* att/ prefix followed by the student's attendance score
+* part/ prefix followed by the student's participation score
+* t/ prefix followed by relevant tags
+
+The system will validate the parameters supplied by the user. When input validation fails, error message specifying the first identified error will be shown to the user.
+
+The following sequence diagram shows how the `edit student` command works:
+
+![EditStudentSequenceDiagram](images/EditStudentSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+`edit tutorial`, `edit consultation` and `edit reminder` commands work similar to the above but have different fields.
+</div>
+
+### Delete Student Feature
+
+#### Proposed Implementation
+
+The implementation of the `delete student` command involves deleting the Student object identified by the user.
+
+The following sequence diagram shows how the `delete student` command works:
+
+![DeleteStudentSequenceDiagram](images/DeleteStudentSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**
+`delete tutorial`, `delete consultation` and `delete reminder` commands work similar to the above.
+</div>
+
 ### Show grade chart feature
 
 This feature allows user to navigate to view grade chart of students without mouse which is crucial as target users are who can type fast and prefer typing over other means of input.
