@@ -28,13 +28,11 @@ Given below are my contributions to the project.
     * Justification: Since the target users are doctors, this is a key feature that allows users to plan out their
       schedule of when next to see a patient. Due to the nature of different illnesses and medication requirements, the
       ability to forward plan appointments for the user's patients would greatly benefit their workflow.
-    * Highlights: This feature entailed adding code to most of the areas of OmniHealth, including its model, UI and test
-      cases, as well as requiring changes to existing commands.
+
+<div style="page-break-after: always;"></div>
 
 * **Code
   contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=marclzh&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&zFR=false&tabAuthor=marclzh&tabRepo=AY2223S1-CS2103T-T14-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
-
-<div style="page-break-after: always;"></div>
 
 * **Project management**:
     * Created team's organisation and repository.
