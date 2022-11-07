@@ -1,0 +1,20 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor BLACK
+skinparam classBackgroundColor UI_COLOR
+
+package UI {
+class MainWindow
+class VenueTabView
+class BookingTableView
+class VenueListView
+class VenueListCard
+}
+
+MainWindow --> VenueTabView
+VenueTabView --> BookingTableView
+VenueTabView --> VenueListView
+VenueListView --> "*" VenueListCard
+
+@enduml

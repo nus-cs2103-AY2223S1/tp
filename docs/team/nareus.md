@@ -34,6 +34,7 @@ In particular, I added/updated the following UML diagrams:
 [FilterCommandSequenceDiagram](../images/FilterCommandSequenceDiagram.png),
 [StorageClassDiagram](../images/StorageClassDiagram.png), [LogicClassDiagram](../images/LogicClassDiagram.png),
 [CommandDiagram](../images/CommandDiagram.png), [DeleteSequenceDiagram](../images/DeleteSequenceDiagram.png)
+
 #### Community and Project Management:
 - Reviewed 22 pull requests including major changes such as [#57](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/57), [#124](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/124) and [#55](https://github.com/AY2223S1-CS2103T-W12-3/tp/pull/55).
 - Surfaced [8 potential bugs & suggestions](https://github.com/nareus/ped/issues) for other teams during PE-D.
