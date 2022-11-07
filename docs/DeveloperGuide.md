@@ -82,7 +82,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Property` and 'Client' objects residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Property` and `Client` objects residing in the `Model`.
 * The UI also depends on UserPrefs to determine where to store images uploaded by the user.
 
 ### Logic component
@@ -149,23 +149,48 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.condonery.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Select property/client feature
+#### High-level details
+* The select feature is meant to expand on either a `Property` or a `Client` to display its details in the GUI.
+* Importantly, a `Property` can hold a list of interested clients and a `Client` can hold a list of properties that the client is interested in.
+* Depending on if a `Property` or `Client` is selected, the GUI changes to show just the selected `Property` or `Client` in its respective tab, and its interested clients or intersted properties - respectively - in the other tab.
+* The select command is as follows, where `select -p [INDEX]` is used to select a property under the property directory, and `select -c [INDEX]` is used to select a client under the client directory:
 
-The select feature is meant to expand on either a `Property` or a `Client` to display its details in the GUI. Importantly, a `Property` can hold a list of interested clients and a `Client` can hold a list of properties that the client is interested in. Depending on if a `Property` or `Client` is selected, the GUI changes to show just the selected `Property`/`Client` in its respective tab, and its interested clients/intersted properties in the other tab. The select command is as follows:
-```
-select -[pc] [INDEX]
-```
-The compulsory input `INDEX` would correspond to the current displayed list in the GUi.
-Examples of usage:
-* `select -p 2`
-* `select -c 10`
+  ```
+  select -[pc] [INDEX]
+  ```
 
+  * The compulsory input `INDEX` would correspond to the current displayed list in the GUi.
+* Examples of usage:
+  * `select -p 2`
+  * `select -c 10`
+
+#### Technical details
+* The implementation of the select feature mainly revolves around two classes each for a `Property` and a `Client`: `SelectPropertyCommand`, `SelectPropertyCommandParser`, `SelectClientCommand` and `SelectClientCommandParser`.
+  * The `SelectPropertyCommand` and `SelectClientCommand` classes handle the backend execution of the command, such as changing the list of Properties or Clients to be displayed on the GUI (See the UML diagrams below for a detailed breakdown).
+  * The `SelectPropertyCommandParser` and `SelectClientCommandParser` classes handle the parsing of the arguments that have been supplied with the `select -[pc]` command (See the UML diagrams below for a detailed breakdown).
+    * The user is supposed to only provide a valid `[INDEX]` as an argument. If invalid arguments have been provided, the parser classes throw a `ParseException` and display a message on the GUI to inform the user of the error.
+
+#### UML Diagrams
+The diagrams below are for `SelectPropertyCommand` and `SelectPropertyCommandParser`.
+
+This activity diagram models the workflow when a `select -p 1` input is given by the user.
+
+Importantly, errors that might be thrown are modeled in this diagram.
+
+![SelectPropertyActivityDiagram](images/SelectPropertyActivityDiagram.png)
+
+This sequence diagram shows the interactions between the `Logic`, `Model`, and `Ui` classes when a `select -p 1` input is given by the user.
+
+![SelectPropertySequenceDiagram](images/SelectPropertySequenceDiagram.png)
+
+The logic for `SelectClientCommand` and `SelectClientCommandParser` are similar and derivable from the diagrams too.
 
 ### Range feature
 
@@ -231,7 +256,7 @@ Aspect: How to filter properties by prices
 
 Alternative 1 was chosen to enable more efficient parsing of commands.
 
-### Filter feature
+### Filter by Tag feature
 
 The filter feature returns a list of properties whose tags contain any of the given keywords.
 
@@ -274,8 +299,8 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 ![RangeActivityDiagram](images/RangeActivityDiagram.png)
 
-### Filter by Property Status Feature [Yue Hern]
-This feature allows users to filter properties by `PropertyStatusEnum`. 
+### Filter by Property Status Feature
+This feature allows users to filter properties by `PropertyStatusEnum`.
 
 The feature is activated by the command patter `status -p [property_status]`
 
@@ -309,7 +334,7 @@ Aspect: Input format for `StatusPropertyCommand`
 
 - **Alternative 1** (current choice): Accept both lower and upper case for `StatusPropertyCommand` argument
 (e.g. accept both `status -p available` and `status -p AVAILABLE` inputs)
-  - Pros: 
+  - Pros:
     - Less prone to error for the user
     - More intuitive for the user
   - Cons:
@@ -324,19 +349,6 @@ Aspect: Input format for `StatusPropertyCommand`
 
 ### Commands
 
-#### \[Proposed\] Search Command
-
-#### Proposed Implementation
-
-The proposed search command allows the user to search for a particular `Property`. It is facilitated by `SearchCommand`.
-It extends the `Command` class.
-
-Users can specify if they want to perform the search for a `Property` or `Client` with the following
-options
-
-1. `-p` Search for a particular property with matching keywords
-2. `-c` Search for a particular client with matching keywords
-
 #### Parsing of commands within the `Logic` component
 
 The parsing of commands begins once the `LogicManager` receives and tries to execute the user input.
@@ -344,73 +356,67 @@ The parsing of commands begins once the `LogicManager` receives and tries to exe
 To parse the different commands in our application, we have individual command parsers for the different commands
 (e.g. `EditCommandParser`).
 
-The steps taken when parsing a search command are as follows:
 
-1. The `SearchCommandParser` will check what type (`Property` or `Client`) the search is for
-and create the corresponding parser
-   1. `search -p` will create the command: `SearchPropertyCommand`
-   2. `search -c` will create the command: `SearchClientCommand`
-3. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
-
-#### Design Considerations:
-
-- Create a `SearchCommand` class
-
-### User Uploaded Images [Haoren]
+### User Uploaded Images
 
 The application allows users to upload their own images for Property and Client models. By default, the images are stored
-in `data/images`, but users can specify their custom directory in `preferences.json`.
+in `data/images`, or users can specify their custom directory in `preferences.json`.
+
+The feature is activated by the command pattern `add -p -i [OTHER_ARGUMENTS]...`
+
+Here is an activity diagram showing the process and error handling when the user tries to add a property with an image.
+![UploadImageActivityDiagram](images/UploadImageActivityDiagram.png)
+
+* The File Chooser ensures that Users can only upload `.png` or `.jpg` files, so we need not handle the case where the image is of the
+wrong format.
+* By default, the image is saved in `data/images` and renamed with default name `[property/client]-[EXACT_NAME]`. This is to prevent users from uploading images with conflicting names.
 
 The Image object is not initialized until the PropertyCard/ClientCard of the UI is rendered. This is to save memory
 consumption and rely on the Lazy Loading of Observable List. We need to inject the UserPrefs into the Property/Client
 models in order to determine the location to source for the uploaded images.
 
-### \[Proposed\] Undo/redo feature
+### Undo feature
 
-#### Proposed Implementation
+The undo mechanism is facilitated by `CommandQueue`.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`.
-It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`.
-Additionally, it implements the following operations:
+`CommandQueue` stores a List of Commands which had been executed during the application lifecycle, and is stored as a field in the `Model` class.
+Everytime the `LogicManager` executes a command, it will call `Model#addCommand()`, which adds the `Command` to the `CommandQueue`.
+In addition, the initial state of the `PropertyDirectory` and `ClientDirectory` is saved on initialization.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+The undo functionality is exposed in the `Model` interface as `Model#undoCommand()`.
+This method handles the resetting of `PropertyDirectory` and `ClientDirectory` to its initial states, and then executing all the commands except for the most recent one.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Here is the sequence diagram for when `undo` command is executed.
+![UndoSequenceDiagram.png](images/UndoSequenceDiagram.png)
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+</div>
+
+Given below is an example usage scenario and how the undo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `ModelManager` will be initialized with the initial `PropertyDirectory` and `ClientDirectory` state, and the `CommandQueue` will be empty.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete -p 5` command to delete the 5th property in the address book. The `LogicManager` calls `Model#addCommand(deleteCommand)`, causing the exact same `DeletePropertyCommand` to be saved in the `CommandQueue`.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add -p n/Oasis …` to add a new person. The `add -p` command also calls `Model#addCommand(addCommand)`, causing another command to be saved into the `CommandQueue`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#addCommand()`, so the command will not be saved into the `CommandQueue`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoCommand()`, which will pop the most recent `Command`(ie. addCommand), and restores the `PropertyDirectory` and `ClientDirectory` to its initial state. It will then proceed to execute all commands in the `CommandQueue`. Since all commands are deterministic, the resultant state of `PropertyDirectory` and `ClientDirectory` will be as though the last command was 'undone'.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `CommandQueue` is empty, then there are no commands to execute. The `CommandQueue` will throw `EmptyQueueException`, which will be handled by `UndoCommand` by returning an error to the user rather
 than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
@@ -420,17 +426,13 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list -p`. Commands that do not modify the `PropertyDirectory` or `ClientDirectory`, such as `list -p`, will not call `Model#addCommand()`. Thus, the `CommandQueue` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear -p`, which calls `Model#addCommand()`. We notice that `addCommand` is no longer in the `CommandQueue`, and is now replaced by `clearCommand`
 
 ![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
@@ -439,22 +441,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 1:** Saves the initial PropertyDirectory and ClientDirectory on initialization. Store all commands in
 CommandQueue and re-executes _n - 1_ commands on undo.
     * Pros: Easy to implement. Less memory usage
-    * Cons: Might make undo command less responsive, depending on complexity of commands.
-* **Alternative 2:** Saves the entire address book.
+    * Cons: Might make undo command less responsive, depending on time taken to execute commands.
+* **Alternative 2:** Saves the entire address book after each Command.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
-
 * **Alternative 3:** Individual command knows how to undo/redo by
   itself.
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -472,7 +466,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-***Target user profile**:
+**Target user profile**:
 
 * middle-aged property agent selling new condos to prospective clients
 * has a need to manage a significant number of property listings and clients
@@ -501,32 +495,232 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `Condonery` and the **Actor** is the `use
+(For all use cases below, the **System** is the `Condonery` and the **Actor** is the `user`
 
-**Use case: Delete a listing**
+#### Use Case 1: Listing all Properties
 
 **MSS**
 
-1.  User requests to list property
-2.  Condonery shows a list of properties
-3.  User requests to delete a specific property in the list
-4.  Condonery deletes the person
+1. User requests to list all properties
+2. Condonery shows a list of all the properties
 
-    Use case ends.
+Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+2a. The Property List is empty
 
-  Use case ends.
+Use case ends.
 
-* 3a. The given index is invalid.
+#### Use Case 2: Adding a Property
 
-    * 3a1. Condonery shows an error message.
+**MSS**
 
-      Use case resumes at step 2.
+1. User requests to add a property
+2. Condonery adds the property into the Property Directory
 
-*{More to be added}*
+Use case ends.
+
+**Extensions**
+
+1a. The given input is missing a required argument
+
+- 1a1. Condonery shows an error message with an example of correct input with all the required arguments
+Use case resumes at step 1.
+
+1b. The given input is missing a required prefix
+
+- 1b1. Condonery shows an error message with an example of correct input with all the required arguments
+Use case resumes at step 1.
+
+1c. The given Property Name already exists in the Property Directory
+
+- 1c1. Condonery shows an error message stating that the property already exists in the Property Directory.
+Use case resumes at step 1.
+
+1d. The given Property Price parameter exceeds the MAX_INT
+
+- 1d1. Condonery shows an error message stating that the price is invalid.
+Use case resumes at step 1.
+
+
+#### Use Case 3: Deleting a property
+
+**MSS**
+
+1. User requests to list all properties
+2. Condonery shows a list of properties
+3. User request to delete a property in the list with a specified index
+4. Condonery deletes the specified property
+
+Use case ends.
+
+**Extensions**
+
+3a. The input did not specify a index
+
+- 3a1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+Use case resumes at step 2.
+
+3b. The input's specified index does not exist in the Property Directory
+
+- 3b1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+    Use case resumes at step 2.
+
+3c. The input's specified index is in the wrong format.
+
+- 3c1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+Use case resumes at step 2.
+
+#### Use Case 4: Editing a Property
+
+**MSS**
+
+1. User requests to list properties
+2. Condonery lists all properties
+3. User requests to change a specific property's fields
+4. Condonery updates the property's fields
+
+Use case ends.
+
+**Extensions**
+
+2a. The list of properties is empty.
+Use Case ends.
+
+3a. The given input is missing a required parameter
+
+- 3a1. Condonery shows an error message with an example of correct input with all the required arguments
+Use case resumes at step 3.
+
+3b. The given input is missing a required prefix
+
+- 3b1. Condonery shows an error message with an example of correct input with all the required arguments
+Use case resumes at step 3.
+
+3c. The input did not specify a index
+
+- 3c1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+Use case resumes at step 3.
+
+3d. The input's specified index does not exist in the Property Directory
+
+- 3d1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+Use case resumes at step 3.
+
+3e. The input's specified index is in the wrong format.
+
+- 3e1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+Use case resumes at step 3.
+
+#### Use Case 5: Filtering a property by Property Type
+
+**MSS**
+
+1. User requests to filter property by a specific property type
+2. Condonery shows a list of properties with applied user filter
+
+Use case ends
+
+**Extensions**
+
+1a. Specified type is not one of `HDB`, `CONDO`, or `LANDED`
+
+- 1a1. Condonery shows an error message stating that only `HDB`, `CONDO`, or `LANDED` values are accepted.
+Use case resumes at step 1.
+
+#### Use Case 6: Filtering a property by Property Status
+
+**MSS**
+
+1. User requests to filter property by a specific property type
+2. Condonery shows a list of properties with applied user filter
+
+Use case ends
+
+**Extensions**
+
+1a. Specified type is not one of `AVAILABLE`, `PENDING`, or `SOLD`
+
+- 1a1. Condonery shows an error message stating that only `AVAILABLE`, `PENDING`, or `SOLD` values are accepted.
+Use case resumes at step 1.
+
+#### Use Case 7: Linking an Interested Client to a Property
+
+**MSS**
+
+1. User requests to link an Interested Client to a Property
+2. Interested Client is successfully linked to the specified Property
+
+**Extensions**
+
+1a. Specified client name does not exist in the Client Directory
+
+- 1a1. Condonery shows an error message
+
+1b. Specified index does not exist in the Property Directory
+
+- 1b1. Condonery shows an error message stating that the property index is invalid
+
+#### Use Case 8: Finding a Property by name
+
+**MSS**
+
+1. User requests to search a property by name
+2. Properties that match the user specified name are displayed
+
+#### Use Case 9: Clearing all Properties
+
+**MSS**
+
+1. User requests to clear all properties in the Property List
+2. Condonery removes all the properties listen in the Property List and displays a success message
+
+Use case ends.
+
+#### Use Case 10: Help List
+
+**MSS**
+
+1. User requests to list all possible commands of Condonery
+2. Condonery shows the list of possible commands and the correct formats
+
+Use case ends.
+
+#### Use Case 11: Selecting a Property
+
+**MSS**
+
+1. User requests to select a particular property to view interested clients
+2. Condonery shows the interested clients of the selected property
+
+**Extensions**
+
+1a. Specified index does not exist in the Property Directory
+
+- 1a1. Condonery shows an error message stating that the property index is invalid
+
+1b. The input did not specify a index
+
+- 1b1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+
+#### Use Case 12: Filtering properties within a price range
+
+**MSS**
+
+1. User requests to view properties between a certain price range
+2. Condonery shows the properties that fulfill the price range criteria
+
+**Extensions**
+
+1a. Specified upper price range is lower than the lower price range
+
+- 1a1. Condonery shows an error message stating that an invalid price range was given
+
+1b. Negative numbers were given
+
+- 1b1. Condonery shows an error message stating that an invalid price range was given
+
 
 ### Non-Functional Requirements
 
@@ -541,8 +735,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Contact**: A client of the app user
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Property**: A listed unit of a property
+* **Command**: A text input keyed in by the user, in the command box of the GUI.
+  * A command must have a keyword (e.g. `select`, `clear`)
+  * A command might require a flag, and/or a parameter(s)
+* **Flag**: A flag denoting if a command is for properties or clients, i.e., `-p` and `-c`
+* **Parameter**: A combination of a prefix and an argument(s) that functions as inputs to a command
+  * Examples: `n/Samuel` is a name parameter; `a/Woodlands` is an address parameter
+* **Prefix**: The symbol used in a parameter to indicate which parameter it is for
+  * Examples: `n/` is the prefix for the name parameter; `a/` is the prefix for the address parameter
+* **Argument**: The user-defined inputs for parameters
+  * Examples: "Jaime" could be an argument for the name parameter; "Sembawang" could be an argument for the addresss parameter
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -550,49 +753,214 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
-</div>
+:information_source: Note: These instructions only provide a starting point for testers to work on; testers are expected to do more exploratory testing.
 
 ### Launch and shutdown
+Initial launch
+Download the Condonery.jar file and copy into an empty folder
+Run `java -jar Condonery.jar` in the folder.
 
-1. Initial launch
+Expected: Shows the GUI with a property and client directory. The window size may not be optimum.
 
-    1. Download the jar file and copy into an empty folder
+### Exit application
+Prerequisites: The application must be launched.
+Test case: exit
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+Expected: The application exits and the window closes itself automatically.
 
-1. Saving window preferences
+### Adding a property
 
-    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+Adding a property to the Property List
 
-    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+Prerequisites: Application must be in main window
 
-1. _{ more test cases …​ }_
+- Test cases (specifying compulsory inputs only): `add -p n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301 p/1,000,000 h/HDB`
+  - Expected: A new property is added to the end of the list of properties. Property list panel will then update to display all the properties in the property directory. The compulsory parameters will be set to what was specified in the command, whereas property status will be set to `AVAILABLE` by default when not stated in the input. Result display will output the message: `New property added: PINNACLE@DUXTON; Address: SG, Cantonment Rd, #1G, 085301; Price: 1000000; Property Type: HDB; Property Status: AVAILABLE`
+- Test case (missing a compulsory input (p/PRICE)): `add -p n/NEXT@DUXTON a/SG, Cantonment Rd, #1G, 085301 h/HDB`
+  - Expected: No property added to list of properties and input text will turn red to signal an error. Result display will output the invalid command format error message.
+- Test case (missing a compulsory input (h/PROPERTY_TYPE)): `add -p n/NEXT@DUXTON a/SG, Cantonment Rd, #1G, 085301 p/1,000,000`
+  - Expected: No property added to list of properties and input text will turn red to signal an error. Result display will output the invalid command format error message.
 
-### Deleting a person
+### Deleting a property
+Deleting a property while all properties are being shown
 
-1. Deleting a person while all persons are being shown
+Prerequisites: Property List must contain at least one property.
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+- Test case (Valid index): `delete -p 1`
+  - Expected: First property in the list will be deleted from the list of properties. Property list will reflect the status of the deleted property
+- Test case (Invalid index): `delete -p 0`
+  - Expected: No property will be deleted from the list of properties and input text will turn red to indicate there is an error in the input. Result display will output a correct example command and error message.
+- Test case (missing index): `delete-p `
+  - Expected: No property will be deleted from the list of properties and input text will turn red to indicate there is an error in the input. Result display will output a correct example command and error message.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+### Editing a property
+Editing a property while there are properties shown in the Property List
+   Prerequisites: Property List must contain at least one Property.
+   - Test case (editing one field of a Property): `edit -p 1 n/ Condo@NUS`
+     - Expected: The Property Name of the Property with index 1 in the Property List will be modified to become `Condo@NUS`. The remaining fields of this Property will remain the same. Result display will output the modified Property and its details.
+   - Test case (Invalid index given): `edit -p 0 n/Condo@NUS`
+     - Expected: No property will be edited. Invalid command format error will be displayed due to invalid index input.
+   - Test case (`-p` flag not provided): `edit 1 n/Condo@NUS`
+     - Expected: No property will be edited. Unknown error will be displayed as the flag was not provided.
+   - Test case (Index provided is larger than size of list e.g. size = 5): `edit -p 6 n/ Condo@NUS`
+     - Expected: No property will be edited. Error message stating invalid property index provided will be shown in the status message.
+   - Test case (No field is provided): `edit -p 1`
+     - Expected: No property will be edited. Error message stating at least one field must be provided is shown in the status message.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+### Listing all properties
+Listing all properties
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+   Prerequisites: Property List must contain at least one Property.
+   - Test case: `list -p`
+     - Expected: Property List will be updated to show all properties stored.
+     Result display will output a success message: `Listed all properties`
 
-1. _{ more test cases …​ }_
+### Clearing all properties
+Clearing all properties in the Property List
 
-### Saving data
+   Prerequisites: Property List must contain at least one property
+   - Test case: `clear -p`
+     - Expected: Property List is cleared and the UI is updated to show an empty Property List. Result display will output a success message : `Property directory has been cleared!`
 
-1. Dealing with missing/corrupted data files
+### Finding properties by name
+Finding properties in the Property List with name
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+Prerequisites: Property List must contain at least one Property.
+   - Test case (finding property name of `Wall Street Prime` with partial match): `find -p Wall Street`
+     - Expected: Property List will display all properties with matching name of `Wall Street`
+   - Test case (finding property name of `Wall Street Prime` with exact match): `find -p Wall Street Prime`
+     - Expected: Property List will display all properties with matching name of `Wall Street Prime`
 
-2. _{ more test cases …​ }_
+### Filtering properties by tags
+Finding all properties in the Property List with specified tags
+
+Prerequisites: Property List must contain at least one Property.
+   - Test case (finding properties with tag of `Luxury`): `filter -p Luxury`
+     - Expected: Property List will display all properties with matching tag of `Luxury`
+   - Test case (finding properties with tag of `Luxury` and `City`): `filter -p Luxury City`
+     - Expected: Property List will display all properties with matching tags of `Luxury` and `City`
+
+### Filtering properties within price range
+Finding all properties in the Property List with specified price range
+
+   Prerequisites: Property List must contain at least one Property.
+
+
+   - Test case (finding properties with range from 99 to 99999): `range -p l/99 u/99999`
+     - Expected: Property List will display all properties with price range from 99 to 99999
+   - Test case (Negative number given): `range -p l/-999 u/99999`
+     - Expected: Property List will display an error message stating only positive numbers are accepted
+   - Test case (Invalid input): `range -p l/abc u/99999`
+     - Expected: Property List will display an error message stating that invalid input was given, only positive integers are accepted
+
+### Filtering properties by status
+Finding all properties in the Property List with the specified Property Status
+
+   Prerequisites: Property List must contain at least one Property.
+   - Test case (finding all properties with status of `AVAILABLE`): `status -p AVAILABLE`
+     - Expected: Property List will display all properties with the status of available
+
+### Filtering properties by type
+Finding all properties in the Property List with the specified Property Type
+
+   Prerequisites: Property List must contain at least one Property.
+   - Test case (finding all properties with type of `HDB`): `type -p HDB`
+     - Expected: Property List will display all properties with the type of `HDB`
+   - Test case (finding all properties with type of `HOUSE`): `type -p HOUSE`
+     - Expected: Condonery will display an error message stating `HOUSE` is not a valid property type
+
+### Select a property to view its interested clients
+   Prerequisites: Property List must contain at least one Property.
+   - Test case (selecting a property with valid index): `select -p 1`
+     - Expected: Property List will display all interested clients of property with index of 1
+
+
+### Adding a client to the Client List
+   Prerequisites: Application must be in main window
+   - Test cases (specifying compulsory inputs only): `add -c n/James a/123, Clementi Rd, 1234665`
+     - Expected: A new client is added to the Client List. 
+     Client List panel will update to display all the clients in the client directory. 
+     The compulsory parameters will be set to what was specified in the command. 
+     Result display will output the message: 
+     `New client added: James; Address: 123, Clementi Rd, 1234665`
+   - Test case (missing a compulsory input (n/NAME)): `add -c a/123, Clementi Rd, 1234665`
+     - Expected: No client will be added to the Client List and input text will turn red to signal an error. 
+     Result display will indicate that an invalid command format has been specified.
+   - Test case (Interested Property does not exist): `add -c n/James a/123, Clementi Rd, 1234665 t/friend t/colleague ip/PINNACLE@DUXTON`
+     - Expected: No client added to the Client List and input text will turn red to signal an error. 
+     Result display will indicate that a property of `PINNACLE@DUXTON` was not found in the property directory.
+   
+### Deleting a client
+   Deleting a client while all clients are being shown
+
+   Prerequisites: Client List must contain at least one client.
+   - Test case (Valid index): `delete -c 1`
+     - Expected: First client in the list will be deleted from the list of clients. Client list will reflect the status of the deleted client
+   - Test case (Invalid index): `delete -c 0`
+     - Expected: No client will be deleted from the list of clients and input text will turn red to indicate there is an error in the input. Result display will output a correct example command and error message.
+   - Test case (missing index): `delete -c`
+     - Expected: No client will be deleted from the list of clients and input text will turn red to indicate there is an error in the input. Result display will output a correct example command and error message.
+
+### Editing a client
+Editing a client while there are properties shown in the Client List
+
+Prerequisites: Client List must contain at least one Client .
+- Test case (editing one field of a Client ): `edit -c 1 n/ John Lee`
+  - Expected: The Client Name of the client with index 1 in the Client List will be modified to become `John Lee`. 
+  The remaining fields of this Client will remain the same. Result display will output the modified Client and its details.
+- Test case (Invalid index given): `edit -c 0 n/John Lee`
+  - Expected: No client will be edited. Invalid command format error will be displayed due to invalid index input.
+- Test case (`-c` flag not provided): `edit 1 n/John Lee`
+  - Expected: No client will be edited. Unknown error will be displayed as the flag was not provided.
+- Test case (Index provided is larger than size of list e.g. size = 5): `edit -c 6 n/ John Lee`
+  - Expected: No client will be edited. Error message stating invalid client index provided will be shown in the status message.
+- Test case (No field is provided): `edit -c 1`
+  - Expected: No client will be edited. Error message stating at least one field must be provided is shown in the status message.
+
+### Listing all clients
+Listing all clients
+
+   Prerequisites: Client List must contain at least one Client.
+
+   - Test case: `list -c`
+   - Expected: Client List will be updated to show all clients stored. Result display will output a success message: `Listed all clients`
+
+### Clearing all clients
+   Clearing all properties in the Property List
+
+   Prerequisites: Client List must contain at least one client
+
+   - Test case: `clear -c`
+     - Expected: Property List is cleared and the UI is updated to show an empty Property List. Result display will output a success message : `Property directory has been cleared!`
+
+### Finding clients by name
+Finding clients in the Client List with name
+
+   Prerequisites: Client List must contain at least one client.
+   - Test case (finding client name of `John` with partial match): `find -c John`
+     - Expected: Client List will display all clients with matching name of `John`
+   - Test case (finding client name of `John Lee` with exact match): `find -c John Lee`
+     - Expected: Client List will display all clients with matching name of `John Lee`
+
+### Filtering clients by tags
+Finding all clients in the Client List with specified tags
+   Prerequisites: Client List must contain at least one Client.
+   - Test case (finding properties with tag of `friend`): `filter -c friend`
+     - Expected: Client List will display all clients with matching tag of `friend`
+   - Test case (finding properties with tag of `rich` and `friend`): `filter -c friend`
+     - Expected: Client List will display all clients with matching tags of `rich` and `friend`
+
+## **Appendix: Effort**
+Majority of the complexity faced in building our app came from dealing with multiple entities, namely Property and Client.
+Our group faced trouble in implementing a 2-way association between Clients and Properties.
+
+* For example, editing a `Client` with an association should update all references to the `Client`. As previously AB3 relied on an immutable implementation of editing entities, we had to do heavy testing to make sure that the information between all associations are synced.
+* Moreover, we had to ensure that storage of the 2-way association is feasible. Currently, our `Property` entities store a list of Interested Clients. Along the way, we realised that we are unable to store a list of Properties in a `Client` entity, as this resulted in our serialised storage being circular. We had to change a lot of our code to fix this, as we realised our previous implementation could not handle the storage requirement.
+
+Our group also tried to implement image storage for user's to upload their own pictures of Properties/Clients
+Here are some design considerations we had to deal with:
+* Initially, we wanted our `Logic` layer to handle the image uploading command. However, we soon realised this was unfeasible we as needed user input through the `Ui` layer, as we had to show a File Chooser, and only then handle the checking of file type. This problem was made more complicated
+as our storage location depended on the `UserPrefs`, which was stored in the `Model` layer. As much as possible, we didn't want the `Ui` layer to directly access the `Model` layer.<br>
+* The final solution our group came up with was to store the file name and file directory of each image in its respective entity (Property/Client). This allowed the `Ui` layer to directly source the image without accessing the `Model` layer, and instead accessing the individual entities in the `ObservableList`.
+The image uploading was left to the `Ui` layer, and the `Logic` layer used the `CommandResult` to signal to the `Ui` layer to accept an image upload, similar to how the Help command is implemented.
+

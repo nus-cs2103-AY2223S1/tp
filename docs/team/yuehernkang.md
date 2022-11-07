@@ -46,4 +46,3 @@ validation to ensure that the input provided is valid.
 ### Community:
 - Reviewed PRs of peers
 - Reported bugs and suggestions for other teams
-

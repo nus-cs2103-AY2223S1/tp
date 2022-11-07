@@ -5,9 +5,11 @@ import static seedu.condonery.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.condonery.model.client.Client;
 import seedu.condonery.model.property.exceptions.DuplicatePropertyException;
 import seedu.condonery.model.property.exceptions.PropertyNotFoundException;
 import seedu.condonery.model.property.exceptions.UniquePropertyNotFoundException;
@@ -149,6 +151,22 @@ public class UniquePropertyList implements Iterable<Property> {
             throw new UniquePropertyNotFoundException();
         } else {
             return uniqueProperty;
+        }
+    }
+
+    /**
+     * Edits the client references in all Properties
+     * @param originalClient
+     */
+    public void updateClient(Client originalClient, Client editedClient) {
+        requireAllNonNull(originalClient, editedClient);
+
+        for (Property property : internalList) {
+            Set<Client> interestedClients = property.getInterestedClients();
+            if (interestedClients.contains(originalClient)) {
+                interestedClients.remove(originalClient);
+                interestedClients.add(editedClient);
+            }
         }
     }
 

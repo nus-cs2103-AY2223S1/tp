@@ -1,0 +1,21 @@
+@startuml
+start
+:User executes `add -p -i [OTHER_ARGUMENTS]`;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([OTHER_ARGUMENTS are valid])
+    :Property with default image is added to PropertyDirectory;
+    :Ui displays File Chooser for user to select image;
+    if () then ([User uploads image])
+        :Uploaded image added to `data/images`;
+        :PropertyDirectory is updated to show the new image;
+    else ([User closes the File Chooser without upload])
+        :Property added uses default image;
+    endif
+else ([else])
+    :Error message is shown;
+endif
+stop
+@enduml

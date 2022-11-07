@@ -18,7 +18,7 @@ public class RangePropertyCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all properties within specified price range "
             + "and displays them as a list with index numbers.\n"
-            + "Parameters: l/[LOWER] u/[UPPER]...\n"
+            + "Parameters: l/[LOWER] u/[UPPER]\n"
             + "Example: " + COMMAND_WORD + " l/10,000 u/200,000";
 
     private final PropertyPriceWithinRangePredicate predicate;
