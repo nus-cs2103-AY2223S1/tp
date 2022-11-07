@@ -2,8 +2,8 @@ package jarvis.logic.commands;
 
 import static jarvis.logic.commands.CommandTestUtil.assertCommandFailure;
 import static jarvis.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static jarvis.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static jarvis.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static jarvis.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
+import static jarvis.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static jarvis.testutil.TypicalStudents.getTypicalStudentBook;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -28,9 +28,9 @@ class GradeCommandTest {
         Model expectedModel = new ModelManager(getTypicalStudentBook(), new UserPrefs());
         GradeProfile validGradeProfile = new GradeProfile();
         validGradeProfile.grade(Assessment.RA1, 16);
-        Student gradedStudent = expectedModel.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student gradedStudent = expectedModel.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         gradedStudent.updateGrades(validGradeProfile);
-        GradeCommand gradeCommand = new GradeCommand(INDEX_FIRST_PERSON, validGradeProfile);
+        GradeCommand gradeCommand = new GradeCommand(INDEX_FIRST_STUDENT, validGradeProfile);
         String expectedMessage = String.format(GradeCommand.MESSAGE_SUCCESS, gradedStudent);
 
         assertCommandSuccess(gradeCommand, model, expectedMessage, expectedModel);
@@ -47,14 +47,14 @@ class GradeCommandTest {
 
     @Test
     public void testEquals() {
-        GradeCommand gradeFirstCommand = new GradeCommand(INDEX_FIRST_PERSON, new GradeProfile());
-        GradeCommand gradeSecondCommand = new GradeCommand(INDEX_SECOND_PERSON, new GradeProfile());
+        GradeCommand gradeFirstCommand = new GradeCommand(INDEX_FIRST_STUDENT, new GradeProfile());
+        GradeCommand gradeSecondCommand = new GradeCommand(INDEX_SECOND_STUDENT, new GradeProfile());
 
         // same object -> returns true
         assertTrue(gradeFirstCommand.equals(gradeFirstCommand));
 
         // same fields -> returns true
-        GradeCommand gradeFirstCommandCopy = new GradeCommand(INDEX_FIRST_PERSON, new GradeProfile());
+        GradeCommand gradeFirstCommandCopy = new GradeCommand(INDEX_FIRST_STUDENT, new GradeProfile());
         assertTrue(gradeFirstCommand.equals(gradeFirstCommandCopy));
 
         // different types -> returns false

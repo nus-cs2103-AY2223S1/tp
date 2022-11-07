@@ -3,7 +3,7 @@ package jarvis.logic.commands;
 import static jarvis.logic.commands.CommandTestUtil.assertCommandFailure;
 import static jarvis.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static jarvis.testutil.Assert.assertThrows;
-import static jarvis.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static jarvis.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static jarvis.testutil.TypicalStudents.getTypicalStudentBook;
 
 import org.junit.jupiter.api.Test;
@@ -46,9 +46,9 @@ class MasteryCheckCommandTest {
     @Test
     void execute_validArguments_success() {
         Model expectedModel = new ModelManager(getTypicalStudentBook(), new UserPrefs());
-        Student targetStudent = expectedModel.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student targetStudent = expectedModel.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         targetStudent.updateMark(Assessment.MC1, 1);
-        MasteryCheckCommand masteryCheckCommand = new MasteryCheckCommand(INDEX_FIRST_PERSON,
+        MasteryCheckCommand masteryCheckCommand = new MasteryCheckCommand(INDEX_FIRST_STUDENT,
                 Assessment.MC1, true);
         String expectedMessage = String.format(MasteryCheckCommand.MESSAGE_SUCCESS, Assessment.MC1, targetStudent);
 
