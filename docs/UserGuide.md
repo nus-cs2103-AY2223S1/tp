@@ -35,6 +35,7 @@ While reading this user guide, these symbols will inform you if there is some im
 | Symbol               | Meaning                                                          |
 |----------------------|------------------------------------------------------------------|
 | :information_source: | Important information                                            |
+| :computer:           | Format-related information                                       |
 | :alarm_clock:        | Reminder                                                         |
 | :bulb:               | Bonus information that is not important to the usage of TaskBook |
 | :exclamation:        | Critical information related to errors                           |
@@ -208,7 +209,11 @@ The examples in this guide are formatted with the following conventions:
 
 Shows you either the list of commands available or information about a particular command.
 
-Format: `help [c/COMMAND]`
+<div markdown="block" class="alert alert-light">
+
+**:computer: Format:** `help [c/COMMAND]`
+
+</div>
 
 Examples:
 1. `help` shows the list of commands available.
@@ -221,13 +226,21 @@ Examples:
 
 Shows you a list of all contacts in your TaskBook in the order they were added.<br>
 
-Format: `contact list`
+<div markdown="block" class="alert alert-light">
+
+**:computer: Format:** `contact list`
+
+</div>
 
 #### Listing all Tasks : `task list`
 
 Shows you a list of all assigned tasks in your TaskBook in the order they were added.<br>
 
-Format: `task list`
+<div markdown="block" class="alert alert-light">
+
+**:computer: Format:** `task list`
+
+</div>
 
 ### Adding
 
@@ -248,7 +261,11 @@ Format: `task list`
 
 Adds a contact to your TaskBook.
 
-Format: `contact add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [#/TAG]…`
+<div markdown="block" class="alert alert-light">
+
+**:computer: Format:** `contact add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [#/TAG]…`
+
+</div>
 
 * For more information on the `NAME` parameter, see [NAME Parameter](#name-parameter).
 * For more information on the `PHONE_NUMBER` parameter, see [PHONE_NUMBER Parameter](#phone_number-parameter).
@@ -271,13 +288,17 @@ Examples:
 
 Adds a task of type todo into your task list.
 
-Format:
+<div markdown="block" class="alert alert-light">
+
+**:computer: Format:**
 
 1. **Assigned by** Format:  `task todo m/NAME d/DESCRIPTION [#/TAG]…`
 
 2. **Assigned to** Format:  `task todo o/NAME d/DESCRIPTION [#/TAG]…`
 
 3. **Self-assigned** Format:  `task todo d/DESCRIPTION [#/TAG]…`
+
+</div>
 
 * Adds a todo assigned by (`m/`) or assigned to (`o/`) a contact.
 * Input "Myself" or omit the `m/` and `o/` flags to assign yourself a todo.
@@ -314,13 +335,17 @@ Examples:
 
 Adds a task of type deadline into the task list.
 
-Format:
+<div markdown="block" class="alert alert-light">
+
+**:computer: Format:**
 
 1. **Assigned by** Format: `task deadline m/NAME d/DESCRIPTION t/DATE [#/TAG]…`
 
 2. **Assigned to** Format: `task deadline o/NAME d/DESCRIPTION t/DATE [#/TAG]…`
 
 3. **Self-assigned** Format: `task deadline d/DESCRIPTION t/DATE [#/TAG]…`
+
+</div>
 
 * Adds a deadline assigned by (`m/`) or assigned to (`o/`) a contact.
 * Input "Myself" or omit the `m/` and `o/` flags to assign yourself the deadline.
@@ -358,13 +383,17 @@ Examples:
 
 Adds a task of type event into your task list.
 
-Format:
+<div markdown="block" class="alert alert-light">
+
+**:computer: Format:**
 
 1. **Assigned by** Format: `task event m/NAME d/DESCRIPTION t/DATE [#/TAG]…`
 
 2. **Assigned to** Format: `task event o/NAME d/DESCRIPTION t/DATE [#/TAG]…`
 
 3. **Self-assigned** Format: `task event d/DESCRIPTION t/DATE [#/TAG]…`
+
+</div>
 
 * Adds an event assigned by (`m/`) or assigned to (`o/`) a contact.
     * Self-assignment defaults to `m/Myself` when `m/` and `o/` flags are omitted.
@@ -410,7 +439,11 @@ Examples:
 
 Edits the specified contact in your contact list.
 
-Format: `contact edit i/INDEX <n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS #/TAG…>`
+<div markdown="block" class="alert alert-light">
+
+**:computer: Format:** `contact edit i/INDEX <n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS #/TAG…>`
+
+</div>
 
 * Edits the contact at the specified `INDEX` with the parameters provided.
 * The index refers to the index number shown in the displayed contact list.
@@ -449,7 +482,11 @@ Examples:
 
 Edits the specified task in your task list.
 
-Format: `task edit i/INDEX <m/NAME o/NAME d/DESCRIPTION t/DATE #/TAG…>`
+<div markdown="block" class="alert alert-light">
+
+**:computer: Format:** `task edit i/INDEX <m/NAME o/NAME d/DESCRIPTION t/DATE #/TAG…>`
+
+</div>
 
 * Edits the task at the specified `INDEX` with the parameters provided.
 * The index refers to the index number shown in the displayed task list.
@@ -508,7 +545,11 @@ Examples:
 
 Deletes the specified contact from your contact list.
 
-Format: `contact delete i/INDEX`
+<div markdown="block" class="alert alert-light">
+
+**:computer: Format:** `contact delete i/INDEX`
+
+</div>
 
 * Deletes the contact at the specified `INDEX`.
 * The index refers to the index number shown in your displayed contact list.
@@ -531,7 +572,11 @@ Example:
 
 Deletes the specified task from your task list.
 
-Format: `task delete i/INDEX`
+<div markdown="block" class="alert alert-light">
+
+**:computer: Format:** `task delete i/INDEX`
+
+</div>
 
 * Deletes the task at the specified `INDEX`.
 * The index refers to the index number shown in your displayed task list.
@@ -553,7 +598,11 @@ Example:
 
 Displays all contacts matching the arguments provided by you.
 
-Format: `contact find q/QUERY`
+<div markdown="block" class="alert alert-light">
+
+**:computer: Format:** `contact find q/QUERY`
+
+</div>
 
 * QUERY is not case-sensitive.
 
@@ -564,7 +613,11 @@ Example:
 
 Displays all tasks matching the arguments provided by you.
 
-Format: `task find <q/QUERY x/DONE a/ASSIGNMENT>`
+<div markdown="block" class="alert alert-light">
+
+**:computer: Format:** `task find <q/QUERY x/DONE a/ASSIGNMENT>`
+
+</div>
 
 * QUERY is not case-sensitive.
 * ASSIGNMENT is either FROM or TO, representing "m/" and "o/", or 'Assigned by' and 'Assigned to', respectively.
@@ -592,7 +645,11 @@ Examples:
 
 Sorts your contact list based on the input parameter.
 
-Format: `contact sort s/SORT_TYPE`
+<div markdown="block" class="alert alert-light">
+
+**:computer: Format:** `contact sort s/SORT_TYPE`
+
+</div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -620,7 +677,11 @@ Example:
 
 Sorts your task list based on the input parameter.
 
-Format: `task sort s/SORT_TYPE`
+<div markdown="block" class="alert alert-light">
+
+**:computer: Format:** `task sort s/SORT_TYPE`
+
+</div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -652,7 +713,11 @@ Example:
 
 Marks the specified task from your task list as done.
 
-Format: `task mark i/INDEX`
+<div markdown="block" class="alert alert-light">
+
+**:computer: Format:** `task mark i/INDEX`
+
+</div>
 
 * Marks the task at the specified `INDEX` as done.
 * The index refers to the index number shown in your displayed task list.
@@ -665,7 +730,11 @@ Example:
 
 Marks the specified task from your task list as not done.
 
-Format: `task unmark i/INDEX`
+<div markdown="block" class="alert alert-light">
+
+**:computer: Format:** `task unmark i/INDEX`
+
+</div>
 
 * Marks the task at the specified `INDEX` as not done.
 * The index refers to the index number shown in your displayed task list.
@@ -690,7 +759,11 @@ Undoes the previous command and reverts your TaskBook to the previous state.
 
 </div>
 
-Format: `undo`
+<div markdown="block" class="alert alert-light">
+
+**:computer: Format:** `undo`
+
+</div>
 
 Example:
 1. `task todo m/Bob d/Add undo feature` - some command that causes a change in state
@@ -701,7 +774,11 @@ Example:
 
 Redoes the previous undo action and reverts your TaskBook to a previously undone state.
 
-Format: `redo`
+<div markdown="block" class="alert alert-light">
+
+**:computer: Format:** `redo`
+
+</div>
 
 Example:
 1. `task delete i/1` - some command that causes a change in state
@@ -714,7 +791,11 @@ Example:
 
 Ends the application immediately.
 
-Format: `bye`
+<div markdown="block" class="alert alert-light">
+
+**:computer: Format:** `bye`
+
+</div>
 
 ### Navigating Command History
 

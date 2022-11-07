@@ -16,7 +16,7 @@ Given below are my contributions to the project.
   * Credits: Some implementation ideas were taken from Jin Wei's task edit implementation in TaskBook.
 
 * **New Feature**: Added feature of todo, deadline and event tasks ([#138](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/138)).
-  * What it does: `task todo`, `task deadline` and `task event` allows the user to add different types of task in the TaskBook.
+  * What it does: `task todo`, `task deadline` and `task event` allow the user to add different types of task in the TaskBook.
   * Justification: This feature is a step-up to the product. The user can use different types of task that contains different fields that best suit the situation. For example, the deadline type contains an additional date field that allows the user to track the deadline of the task.
   * Highlights: The feature is written with each task type extending from an abstract class `Task`. This improves maintainability of the code. It also allows for ease of future extension if new task types were to be added in the future.
   * Credits: Some implementation ideas were taken from the task implementation in my individual project.
@@ -24,6 +24,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=dexter-sim&breakdown=true)
 
 * **Enhancements to existing features**:
+  * Improve code quality by reducing nesting ([#266](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/266)).
   * Fix bug regarding adding of duplicate tasks ([#160](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/160)). 
   * Abstract out description field of task into its own class ([#97](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/97)).
   * Update parse and command mechanism for contact and task add and delete ([#95](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/95)).
@@ -43,4 +44,7 @@ Given below are my contributions to the project.
   ([#140](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/140)) 
   ([#150](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/150)) 
   ([#174](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/174)) 
-  ([#247](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/247)).
+  ([#247](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/247))
+  ([#263](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/263)).
+  * Contributed to forum discussions:
+  ([#104](https://github.com/nus-cs2103-AY2223S1/forum/issues/104)).
