@@ -114,6 +114,16 @@ These are the GUI components of TaskBook. Components are all described from top 
      * **Event** - A task that involves you attending some event at some date. In the Task List, these tasks are labelled as [E], and are bright purple.
    * **Assignment** - An indicator on whether the task is assigned by you to someone else, or vice versa. 
    * **Assignor/Assignee** - The contact that has been assigned a task by you, or vice versa. This can be yourself.
+
+<figure>
+<p align = "center">
+<img src="images/GuiStatusBar.png">
+</p>
+<figcaption align = "center"><b>The Status Bar (Bottom of the TaskBook window).</b>
+</figcaption>
+</figure>
+
+{:start="6"}
 6. **Status Bar** - Indicates the location in your computer where TaskBook is tracking your Contact List and Task List.
 
 --------------------------------------------------------------------------------------------------------------------
