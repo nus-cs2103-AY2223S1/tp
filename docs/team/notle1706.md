@@ -24,15 +24,13 @@ Given below are my contributions to the project.
 
 
 * **Enhancements to existing features**:
-  * Refactored multiple classes to transition from AB3 to JeeqTracker (Pull requests 
-    [#97](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/97) (Person to Company),
-    [#109](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/109) (Person to Company),
-    [#120](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/120) (Person to Company),
-    [#112](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/112) (AddressBook to JeeqTracker),
-    [#173](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/173) (POC to Company),
-    [#177](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/177) (POC to Company),
-    [#183](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/183) (POC to Company),
-    [#200](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/200) (Company to Remarks))
+  * Refactored multiple classes to transition from AB3 to JeeqTracker
+    * Person to Company (Pull requests [#97](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/97), [#109](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/109), 
+    [#120](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/120))
+    * AddressBook to JeeqTracker (Pull request [#112](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/112))
+    * POC to Company (Pull request [#173](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/173), [#177](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/177),
+    [#183](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/183))
+    * Company to Remarks (Pull request [#200](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/200))
 
   * Updated storage to include POCs which has been changed to remarks (Pull request [#138](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/138))
   * Updated `edit` command to allow users to have more freedom in entering phone number, and email. Instead of blocking user input like `+65 9876 5432 (HOME)`,
@@ -50,4 +48,4 @@ Given below are my contributions to the project.
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [#184](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/184), [#153](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/153), [#136](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/136), [#111](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/111)
   * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2223S1-CS2103T-W12-2/tp/issues/156), [2](https://github.com/AY2223S1-CS2103T-W12-2/tp/issues/146), [3](https://github.com/AY2223S1-CS2103T-W12-2/tp/issues/114), [4](https://github.com/AY2223S1-CS2103T-W12-2/tp/issues/109), [5](https://github.com/AY2223S1-CS2103T-W12-2/tp/issues/106))
-  * Contributed to forum discussions ([1](https://github.com/nus-cs2103-AY2223S1/forum/issues/64))
+  * Contributed to a forum discussion. ([#64](https://github.com/nus-cs2103-AY2223S1/forum/issues/64))
