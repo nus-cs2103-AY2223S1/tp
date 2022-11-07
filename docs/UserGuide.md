@@ -75,7 +75,7 @@ There are 4 main types of commands used in Mass Linkers - Batchmate commands, In
 
 By segregating the commands in this manner, this makes it easier to make modifications and conduct a search based on different fields (i.e. search by common interests, modules or personal information).
 
-The following notes outline several noteworthy format that the [Feature](#5-features) section uses in detailing the usage of different commands.
+The following notes outline several noteworthy format that the [Features](#5-features) section uses in detailing the usage of different commands.
 
 <div markdown="block" class="alert alert-info">
 
@@ -122,7 +122,7 @@ Parameters are the input words that come after a command word to specify how the
 **:information_source: Regarding parameters:**<br>
 
 * For all commands involving `INDEX`, `INDEX` refers to the index number shown in the currently displayed list.<br>
-  * ___Beware!!!___ This may not be the full list of batchmates you have in Mass Linkers! For example, you may have entered the [find command](#514-find-a-batchmate-find), so the currently displayed list will be the result of `find` which is not the full list.
+  * ___Beware!!!___ This may not be the full list of batchmates you have in Mass Linkers! For example, you may have entered the [find](#514-find-a-batchmate-find) command, so the currently displayed list will be the result of `find` which is not the full list.
   * The index __must be a positive integer__, e.g. 1, 2, 3 … and be smaller than or equal to the number of batchmates in the currently displayed list.
 
 </div>
