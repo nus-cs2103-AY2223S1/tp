@@ -78,6 +78,8 @@ provided**.
 Whenever you are in doubt, forget the command formats for any feature, need help troubleshooting
 or you simply want to maximise your use of this application, do remember to revisit this User Guide.
 
+<div style="page-break-after: always;"></div>
+
 ## Navigating the User Guide
 
 For each of the [Features](#features) in this User Guide, you will be provided with
@@ -565,7 +567,7 @@ Examples:
 
 * `nextsem` moves all current modules into the previous modules list of the user and all contacts and removes all modules in the current modules list.
 
-<img src="images/AfterNextSem.png" width="500">
+<img src="images/AfterNextSem.png" width="550">
 
 [Scroll back to top](#table-of-contents)
 
@@ -744,7 +746,7 @@ Examples:
 
 * `filterprevmod CS2000` lists all contacts with module code CS2000 in their previous modules list.
 
-<img src="images/FilterPrevModCS2000.png" width="250">
+<img src="images/FilterPrevModCS2000.png" width="300">
 
 
 [Scroll back to top](#table-of-contents)
@@ -765,7 +767,7 @@ Examples:
 
 * `filterplanmod CS23333` lists all contacts with module code CS3333 in their planned modules list.
 
-* <img src="images/FilterPlanModCS3333.png" width="250">
+* <img src="images/FilterPlanModCS3333.png" width="350">
 
 [Scroll back to top](#table-of-contents)
 
