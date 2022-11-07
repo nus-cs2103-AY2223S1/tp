@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddToGroupCommand;
 import seedu.address.logic.commands.UngroupCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.group.Group;
@@ -31,20 +30,20 @@ public class UngroupCommandParser implements Parser<UngroupCommand> {
         Index index;
         Group groupToRemove;
 
-        String[] splitArgs = args.trim().split("\\s+", 2);
+        String[] splitArgs = args.trim().split("\\s+", 3);
         if (splitArgs.length != 2) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddToGroupCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UngroupCommand.MESSAGE_USAGE));
         }
 
         try {
             index = ParserUtil.parseIndex(splitArgs[0]);
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddToGroupCommand.MESSAGE_USAGE),
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UngroupCommand.MESSAGE_USAGE),
                     pe);
         }
 
         if (!Group.isValidGroupName(splitArgs[1])) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddToGroupCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UngroupCommand.MESSAGE_USAGE));
         }
         groupToRemove = new Group(splitArgs[1].toLowerCase());
 
