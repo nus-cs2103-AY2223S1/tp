@@ -390,22 +390,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | student                                       | keep track of the stage of my application                                                     | know which stages I am at for each application and thereafter what to prepare for it                          |
 | `* * *`  | student                                       | delete an internship that I am not interested in anymore                                      | get rid of internship applications that are not relevant to me anymore                                        |
 | `* * *`  | forgetful student                             | sort the list of internship applications by dates                                             | see and remember which interviews are upcoming to better prepare for them in case I have forgotten about them |
-| `* * *`  | student preparing for upcoming internships    | view daily tips to aid in my learning                                                         | be better prepared for the technical interviews                                                               |
-| `* * *`  | student preparing for technical interviews    | conveniently do practice questions                                                            | be better prepared for my technical interviews                                                                |
 | `* * *`  | student who got rejected by all the companies | clear the list of internship applications                                                     | I can start anew                                                                                              |
-| `* * *`  | student                                       | add an expiry date and time to an application that is in the “Online Assessment” stage.       | keep track of when I have to complete the Online Assessment by                                                |
+| `* * *`  | student                                       | add an expiry date and time to an application that is in the “Online Assessment” stage        | keep track of when I have to complete the Online Assessment by                                                |
 | `* * *`  | student who constantly changes my mind        | redo an undone command                                                                        | revert back the changes I had originally made                                                                 |
-| `* * `   | student                                       | filter my internship applications according to position                                       | view all my internship applications for that particular position that I am interested in                      |
-| `*`      | student                                       | rank all my internship applications                                                           | decide which applications that I have to focus on more.                                                       |
-| `*`      | easily confused student                       | prevent myself from adding the same internship application twice                              | I dont get distracted by duplicate internships                                                                |
+| `* *`    | easily confused student                       | prevent myself from adding the same internship application twice                              | I don't get distracted by duplicate internships                                                                |
+| `* *`    | forgetful student                             | easily access tips specific to each application based on the current stage                    | quickly see a list of things to prepare for an upcoming interview or deadline                                 |
+| `* *`    | student                                       | filter my internship applications according to position                                       | view all my internship applications for that particular position that I am interested in                      |
+| `* *`    | student preparing for technical interviews    | conveniently do practice questions                                                            | be better prepared for my technical interviews                                                                |
+| `* *`    | broke student                                 | sort the internships based on pay                                                             | determine which applications are more worth it in this current economic state                                 |
+| `*`      | student                                       | rank all my internship applications                                                           | decide which applications that I have to focus on more                                                        |
 | `*`      | student                                       | move an existing application to the "Rejection" stage and provide a reason why I got rejected | keep track of common trends or reasons for my failed applications                                             |
-| `*`      | broke student                                 | sort the internships based on pay                                                             | determine which applications are more worth it in this current economic state.                                |
-| `*`      | less experienced student with CLI             | view the list of commands                                                                     | familiarise myself with the commands.                                                                         |
-| `*`      | less experienced student                      | view some helpful resources                                                                   | understand the hiring process and tech landscapes better.                                                     |
+| `*`      | less experienced student                      | view some helpful resources                                                                   | understand the hiring process and tech landscapes better                                                      |
 | `*`      | anxious student                               | switch to a calender view                                                                     | easily see all my upcoming interviews/OAs/expiring offers                                                     |
-| `* * *`  | student                                       | view stage specific prepatory tips                                                            | see how I can prepare before my stage specific deadline.                                                      |
-| `*`      | student                                       | create a todo list for each internship entry                                                  | keep track of what I've done and what I've yet to do to prepare.                                              |
-| `* *`    | forgetful student                             | easily access tips specific to each internship based on the current stage                     | quickly see a list of things to prepare for an upcoming internship stage deadline.                            |
+| `*`      | student                                       | create a todo list for each internship entry                                                  | keep track of what I've done and what I've yet to do to prepare                                               |
 
 *{More to be added}*
 
@@ -431,6 +428,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<br>
 **Use case: UC02 - Delete an internship application**
 
 **Main Success Scenario (MSS)**
@@ -453,6 +451,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+<br>
 **Use case: UC03 - Edit an internship application**
 
 **Main Success Scenario (MSS)**
@@ -483,34 +482,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC04 - Sort the list of internship applications**
-
-**Main Success Scenario (MSS)**
-
-1. User requests to sort their applications by date and time.
-2. WorkBook displays the sorted list, with the nearest **upcoming** date and time at the top and the application that is furthest away at the bottom.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. The list is empty.
-
-   Use case ends.
-
-* 1b. Some internship applications do not have a date and time field.
-
-    * 1b1. WorkBook places such applications after the sorted section of **upcoming** date and times, in no particular order
-
-      Use case ends.
-
-* 1c. Some internship applications have a date and time field that has already passed. 
-
-    * 1c1. WorkBook places such applications at the very bottom (after any applications that do not have a date and time field).
-
-      Use case ends.
-  
-**Use case: UC05 - Undo a command**
+<br>
+**Use case: UC04 - Undo a command**
 
 **Main Success Scenario (MSS)**
 
@@ -527,7 +500,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
        Use case ends.
   
-**Use case: UC06 - Redo a command**
+<br>
+**Use case: UC05 - Redo a command**
 
 **Main Success Scenario (MSS)**
 
@@ -544,7 +518,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC07 - Clear list of internship applications**
+<br>
+**Use case: UC06 - Clear list of internship applications**
 
 **Main Success Scenario (MSS)**
 
@@ -561,7 +536,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC08 - Display help message**
+<br>
+**Use case: UC07 - Display help message**
 
 **Main Success Scenario (MSS)**
 
@@ -570,7 +546,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC09 - Exit application**
+<br>
+**Use case: UC08 - Exit application**
 
 **Main Success Scenario (MSS)**
 
@@ -579,6 +556,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+<br>
 **Use case: UC09 - View prepatory tips based on internship stage**
 
 1. User requests to view prepatory tips.
@@ -624,7 +602,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample internship applications. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -635,27 +613,43 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting an internship application
 
-1. Deleting a person while all persons are being shown
+1. Deleting an internship application while all applications are being shown
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First application is deleted from the list. Details of the deleted application shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No application is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data file.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Simulate a missing data file by deleting `data/workbook.json` (if it exists).
+
+   1. Start `WorkBook` and it should be populated with sample data.
+
+   1. Execute `exit` command.
+
+   1. `data/workbook.json` should be saved with the sample data.
+
+1. Dealing with corrupted data file.
+
+   1. Simulate a corrupted data file by manually editing `data/workbook.json`.<br>Delete the `company` field from one of the internship applications.
+
+   1. Start `WorkBook` and it should have no data at all.
+
+   1. Execute `exit` command.
+
+   1. `data/workbook.json` should only contain: `{ "internships" : [] }`.
 
 1. _{ more test cases …​ }_
