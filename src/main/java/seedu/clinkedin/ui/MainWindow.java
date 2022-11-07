@@ -249,6 +249,7 @@ public class MainWindow extends UiPart<Stage> {
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             if (isDisplay) {
+                resultDisplay.clearCharts();
                 resultDisplay.setFeedbackToUser(e.getMessage());
             }
             personCountDisplay.setPersonCountMessage(logic.getFilteredPersonList(), logic.getAddressBook());
