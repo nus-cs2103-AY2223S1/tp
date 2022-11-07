@@ -696,6 +696,8 @@ Format: `add-person-to-module m/MODULE_CODE n/NAME`
 * You can only add a person to a module if both the person and the module are currently
   displayed on screen.
 
+<div style="page-break-after: always;"></div>
+
 Example:
 
 ```
