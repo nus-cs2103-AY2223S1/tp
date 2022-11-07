@@ -12,8 +12,8 @@ import seedu.address.logic.CalendarLogic;
  * A textField that reads user input for the new month
  * when interacted with.
  */
-public class JumpText extends UiPart<Region> {
-    private static final String FXML = "JumpText.fxml";
+public class JumpBox extends UiPart<Region> {
+    private static final String FXML = "JumpBox.fxml";
     private static final String JUMP_TEXT_STYLE = "-fx-border-radius: 5; -fx-border-width: 2; "
             + "-fx-background-color: #1d1d1d; -fx-text-fill: white; -fx-font-size: 13;";
     private static final String GREY_BORDER = "-fx-border-color: grey;";
@@ -22,42 +22,42 @@ public class JumpText extends UiPart<Region> {
     private CalendarLogic calendarLogic;
 
     @FXML
-    private TextField jumpText;
+    private TextField jumpBox;
 
     /**
-     * Creates a {@code JumpText} with the given {@code CalendarLogic}.
+     * Creates a {@code JumpBox} with the given {@code CalendarLogic}.
      */
-    public JumpText(CalendarLogic calendarLogic) {
+    public JumpBox(CalendarLogic calendarLogic) {
         super(FXML);
         this.calendarLogic = calendarLogic;
-        jumpText.setStyle(JUMP_TEXT_STYLE + GREY_BORDER);
-        jumpText.focusedProperty().addListener(this::handleFocusedEvent);
+        jumpBox.setStyle(JUMP_TEXT_STYLE + GREY_BORDER);
+        jumpBox.focusedProperty().addListener(this::handleFocusedEvent);
     }
 
     @FXML
     protected void handleFocusedEvent(Observable observable) {
-        if (jumpText.isFocused()) {
-            jumpText.setStyle(JUMP_TEXT_STYLE + ORANGE_BORDER);
+        if (jumpBox.isFocused()) {
+            jumpBox.setStyle(JUMP_TEXT_STYLE + ORANGE_BORDER);
         } else {
-            jumpText.setStyle(JUMP_TEXT_STYLE + GREY_BORDER);
+            jumpBox.setStyle(JUMP_TEXT_STYLE + GREY_BORDER);
         }
     }
 
     @FXML
     protected void handleOnAction(ActionEvent event) {
-        jumpText.requestFocus();
+        jumpBox.requestFocus();
         calendarLogic.jump();
     }
 
     public String getText() {
-        return jumpText.getText();
+        return jumpBox.getText();
     }
 
     public void clear() {
-        jumpText.clear();
+        jumpBox.clear();
     }
 
-    public boolean isJumpTextFocused() {
-        return jumpText.isFocused();
+    public boolean isJumpBoxFocused() {
+        return jumpBox.isFocused();
     }
 }
