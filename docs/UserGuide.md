@@ -140,16 +140,14 @@ This section describes important information for you to take note of before and 
 
 |              Wide Layout               |
 |:--------------------------------------:|
+| Resize the window to a wider width to get this layout |
 | ![wide layout](images/AnnotatedUi.png) |
 
 |                     Narrow Layout                      |  
 |:------------------------------------------------------:|
+| Resize the window to a narrower width to get this layout |
 | ![narrow layout](images/AnnotatedUiNarrowBulbOnly.png) |
 
-
-|             Resizing Example             |
-|:----------------------------------------:|
-| ![ResponsiveUI](images/ResponsiveUi.gif) |
 
 
 ## 5. What you can do
