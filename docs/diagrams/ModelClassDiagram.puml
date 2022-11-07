@@ -42,7 +42,7 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 ModelManager -->"~* filtered" Person : " "
-ModelManager -->"~* filtered" Module : " "
+ModelManager -->"~* filtered" Module
 
 AddressBook *--> "1" UniquePersonList
 UniquePersonList --> " ~* all" Person
@@ -68,6 +68,4 @@ Module -[hidden]up-> UniqueModuleList
 ModuleCode -[hidden]right-> ModuleTitle
 Email -[hidden]right-> Name
 Name -[hidden]right-> Phone
-
-ModelManager -> "1" isHome
 @enduml

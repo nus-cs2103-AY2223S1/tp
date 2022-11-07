@@ -41,7 +41,7 @@ deactivate AddLinkCommand
 
 AddLinkCommandParser --> AddressBookParser
 deactivate AddLinkCommandParser
-AddLinkCommand -[hidden]-> AddLinkCommand
+AddLinkCommandParser -[hidden]-> AddLinkCommandParser
 destroy AddLinkCommandParser
 
 AddressBookParser --> LogicManager
