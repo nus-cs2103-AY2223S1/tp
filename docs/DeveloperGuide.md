@@ -323,7 +323,7 @@ This feature is achieved by saving `addressBookHistories` in the `ModelManager` 
 
 When the user gives an `undo` command, the most recent AddressBook will be popped from the `addressBookHistories` and replace the current one.
 
-#### Design considerations:
+#### Design Considerations
 
 **Aspect: How undo executes:**
 
@@ -542,10 +542,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons with debts
-1.  PayMeLah shows the list of persons with debts
+1. User requests to list persons who owe more than or equal to a certain amount of money
+1. PayMeLah shows the list of persons satisfying the condition
 
     Use case ends.
+
+**Extensions**
+
+* 1a. The user did not specify the amount.
+
+    * 1a1. PayMeLah shows the list of persons who owe any debts to the user 
+    
+      Use case ends.
+
+* 2a. There are no persons satisfying the condition.
+  
+    * 2a1. PayMeLah informs user that there are no persons that satisfy the condition.
+
+      Use case ends.
 
 **Extensions**
 
@@ -657,16 +671,34 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file<br>
+      Expected: Shows the GUI with a set of sample persons and debts. The window size may not be optimum.
 
 1. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+      Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a person
+
+1. Adding a person with valid inputs
+
+    1. Test cases: refer to UG for examples<br>
+       Expected: The corresponding person is added to PayMeLah.
+
+1. Adding a person with invalid inputs
+
+    1. Test cases: `add n/adam tele/a`, `add n/bob p/1`, etc.<br>
+       Expected: PayMeLah throws an error and shows which input was invalid
+
+1. Adding a duplicate person
+
+    1. Prerequisites: Have a person named `Alex Yeoh` in the persons list
+   
+    1. Test case: `add n/Alex Yeoh`<br>
+       Expected: PayMeLah throws an error informing that there is already an `Alex Yeoh` in the list
 
 ### Deleting a person
 
@@ -675,23 +707,304 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First person is deleted from the list. Details of the deleted contact shown in the status message.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No person is deleted. Error details shown in the status message (invalid index).
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect `delete` commands to try: `delete`, `delete x`, etc. (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Deleting a person while only some persons are displayed
+
+    1. Prerequisites: Filter the persons list using commands such as `find` and `listdebtors`. One or more persons remaining.
+
+    1. Test cases and expected behaviours are similar to the ones above.
+
+### Adding a debt
+
+1. Adding a debt with valid inputs
+
+    1. Prerequisites: There is at least 1 persons in the list.
+
+    1. Test cases: refer to UG for examples.<br>
+       Expected: The corresponding debt is added to the person(s) in the list.
+
+1. Adding a debt with invalid inputs
+
+    1. Test case: `adddebt 0 d/kfc m/$10.95`<br>
+       Expected: No debt is added. Error details shown in the status message (invalid index).
+
+    1. Other incorrect `adddebt` commands to try: `adddebt 1 d/ m/5`, `adddebt 1 d/burger m/-2.5`, etc.<br>
+       Expected: Similar to previous.
+
+1. Adding a duplicate debt
+
+    1. Prerequisites: The first person in the list has a debt with description `Taxi`, money `$20.00`, date `2022-10-11`, time `00:00`.
+
+    1. Test case: `adddebt 1 d/Taxi m/20 date/2022-10-11`<br>
+       Expected: PayMeLah throws an error informing that there is already an identical debt belonging to the first person
+
+### Splitting a debt
+
+1. Splitting a debt with valid inputs
+
+    1. Prerequisites: There are at least 3 persons in the list.
+   
+    1. Test cases: `splitdebt 1 2 3 d/Test m/4`<br>
+       Expected: The corresponding debt with the description "Test" and value "$1.34" and  is added to the persons 1, 2, and 3 in the list.
+
+1. Splitting a debt with invalid inputs
+
+    1. Test cases: `splitdebt 0 d/kfc m/$10`, `splitdebt d/kfc m/$10`, `splitdebt 1 m/$10`, `splitdebt 1 d/kfc`<br>
+       Expected: No debt is added. Error details shown in the status message (invalid format).
+   
+    1. Test case: `splitdebt 1 d/kfc m/-10`<br>
+       Expected: No debt is added. Error details shown in the status message (invalid money format).
+
+1. Splitting a debt with persons that do not exist
+
+    1. Prerequisites: There are 3 persons in the list.
+
+    1. Test cases: `splitdebt 4 d/kfc m/$10`, `splitdebt 0 1 2 3 4 d/kfc m/$10`, `splitdebt 1 5 d/kfc m/$10`<br>
+       Expected: No debt is added. Error details shown in the status message (invalid person index).
+
+### Deleting a debt
+
+1. Deleting a debt with valid inputs
+
+    1. Prerequisites: The second person in the list has 5 debts.
+    
+    1. Test cases: `deletedebt 2 debt/2 4`<br>
+       Expected: The second and fourth debts are removed from the second person in the list.
+
+1. Deleting a debt with invalid inputs
+
+    1. Test cases: `deletedebt 1 debt/0`, `deletedebt 0 debt/1`, `deletedebt 1`<br>
+       Expected: No debt is deleted. Error details shown in the status message (invalid format).
+
+1. Deleting a debt that does not exist
+
+    1. Prerequisites: The first person in the list has 2 debts.
+
+    1. Test cases: `deletedebt 1 debt/3`, `deletedebt 1 debt/1 2 3`, `deletedebt 1 debt/4`<br>
+       Expected: No debt is deleted. Error details shown in the status message (invalid debt index).
+
+### Clearing debts
+
+1. Clearing debts with valid inputs
+
+    1. Prerequisites: The first person in the list has 1 or more debts.
+
+    1. Test case: `cleardebts 1`<br>
+       Expected: All debts are removed from the first person.
+   
+    1. Other valid commands include any use of `cleardebts` with a correspondingly valid person index.<br>
+       Expected: All debts are removed from the corresponding person in the list.
+
+1. Clearing debts with invalid inputs
+
+    1. Test cases: `cleardebts 0`, `cleardebts 1 2`, `cleardebts`, etc.<br>
+       Expected: No debts are removed. Error details shown in the status message (invalid format).
+
+1. Clearing debts from a person that does not exist
+
+    1. Prerequisites: There are 3 persons in the list.
+
+    1. Test cases: `cleardebts 4`, `cleardebts 5`, `cleardebts 6`, etc.<br>
+       Expected: No debts are removed. Error details shown in the status message (invalid person index).
+
+### Marking debts
+
+1. Marking debts with valid inputs
+
+    1. Prerequisites: The first person in the list has unmarked debts.
+
+    1. Test cases: `mark 1 debt/1`, `mark 1 debt/1 2`<br>
+       Expected: The corresponding debt(s) of the first person are marked as paid.
+
+    1. Other valid commands include any use of `mark` with a correspondingly valid person index and debt index.<br>
+       Expected: The corresponding debt(s) of the corresponding person are marked as paid.
+
+1. Marking debts with invalid inputs
+
+    1. Test case: `mark 0`, `mark 1 debt/0`, `mark debt/2`, etc.<br>
+       Expected: No debts are marked. Error details shown in the status message (invalid format).
+
+1. Marking debts from a person that does not exist, or marking a debt that does not exist.
+
+    1. Prerequisites: There are 3 persons in the list, each having 1 debt.
+
+    1. Test case: `mark 4 debt/1`, `mark 1 debt/3`, `mark 2 debt/1 5`, etc.<br>
+       Expected: No debts are marked. Error details shown in the status message (invalid person/debt index).
+
+### Unmarking debts
+
+1. Similar to marking debts, but with persons having debts marked as paid initially, then attempting to mark them as unpaid.
+
+### Statement
+
+1. Requesting for statement when all persons are being displayed
+
+    1. Prerequisites: List all persons using the `list` command. At least 1 person in the list and the sum of debts is $100.
+
+    1. Test case: `statement`<br>
+       Expected: PayMeLah shows a statement showing you are owed $100 in total.
+
+1. Requesting for statement while only some persons are displayed
+
+    1. Prerequisites: Filter the persons list using commands such as `find` and `listdebtors`. At least 1 person in the list and the sum of debts is $50.
+
+    1. Test case: `statement`<br>
+       Expected: PayMeLah shows a statement showing you are owed $50 in total.
+
+### Sorting
+
+1. Sorting when all persons are being displayed
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+    1. Test cases: `sort n/+`, `sort m/-`, `sort date/+`<br>
+       Expected: All persons are sorted accordingly as mentioned in UG.
+   
+    1. Test cases: `sort t/+`, `sort n/?` and other invalid commands with sort.<br>
+       Expected: Persons list is not sorted. Error details shown in the status message.
+
+1. Sorting while only some persons are displayed
+
+    1. Prerequisites: Filter the persons list using commands such as `find` and `listdebtors`. Multiple persons remaining.
+
+    1. Test cases: Similar to positive test cases above.<br>
+       Expected: All persons are sorted accordingly, but only previously displayed persons are displayed. Use the `list` command to list all persons and verify all persons are indeed sorted correctly.
+
+    1. Negative test cases and expected outcome similar to above.
+
+### List debtors
+
+1. Listing all debtors
+
+    1. Prerequisites: One or more persons in PayMeLah have debt(s).
+
+    1. Test case: `listdebtors`<br>
+       Expected: All person(s) who have any debt are listed.
+
+    1. Test case: Clear every person's debts using `cleardebts`, then enter the command `listdebtors`<br>
+       Expected: No person listed. PayMeLah shows a message explaining no one has debts.
+
+1. Listing debtors who owe above a certain amount
+
+    1. Prerequisites: One or more persons in PayMeLah have debt(s) whose sum is greater or equal to $10, but none more than or equal to $1000.
+
+    1. Test case: `listdebtors m/10`<br>
+       Expected: All person(s) who owe more than or equal to $10 of debt are listed.
+
+    1. Test case: `listdebtors m/1000`<br>
+       Expected: Similar to expected outcome of negative test case above.
+
+### Find
+
+1. Finding people using single person-related input
+
+   1. Prerequisites: One or more persons has a name containing `david`.
+
+   1. Test cases: `find n/david`, `find n/davi`, `find n/DaVid`<br>
+      Expected: All person(s) who have a name containing `david` (ignoring whitespace and capitalisation) are listed.
+
+   1. Test cases: `find david`<br>
+      Expected: PayMeLah warns that the command format is incorrect.
+
+1. Finding people using single debt-related input
+
+   1. Prerequisites: One or more persons has a debt whose description is exactly `burger`.
+
+   1. Test cases: `find d/burger`<br>
+      Expected: All person(s) who have a debt with exact description `burger` are listed.
+
+   1. Test cases: `find d/Burger`, `find d/burgers`<br>
+      Expected: No one is listed, unless they have a debt with exact description `Burger`, `burgers`, etc. (case-sensitive exact matching)
+   
+1. Finding people using multiple inputs
+
+   1. Prerequisites: One or more people with the exact tag `friends` has a debt whose description is exactly `burger`.
+
+   1. Test cases: `find t/friends d/burger`, `find d/burger t/friends`<br>
+      Expected: All person(s) with the exact tag `friends`  and a debt with exact description `burger` are listed.
+
+1. Finding people using a threshold input
+
+   1. Prerequisites: One or more people have a debt with monetary amount above or equal to `$10.00`, one or more people have only debts with monetary amount below `$9.99`.
+
+   2. Test cases: `find above/10`, `find above/$10.00`
+      Expected: All person(s) with a debt with a monetary amount above to or equal to 10 dollars are listed, those who do not have such a debt are not.
+
+1. Finding people with multiple threshold inputs
+
+   1. Prerequisites: One or more people have debts only before `2022-10-31`, one or more people have debts only after `2022-12-01`, one or more people have a debt within `2022-11-01` to `2022-11-30`.
+
+   1. Test cases: `find after/2022-11-01 before/2022-11-30`
+      Expected: All persons(s) with a debt within the month of November 2022 are listed, but those people with no debt in this month are not.
+
+The expected behaviour of the `find` command is documented in detail in the UG, please refer to it for more example test cases to try.
+
+### Find debts
+
+1. Finding debts with single keyword
+
+    1. Prerequisites: One or more persons has a debt whose description contains the word `burger`.
+
+    1. Test cases: `finddebt burger`, `finddebt Burger`, `finddebt BURGER`<br>
+       Expected: All person(s) who have a debt whose description contains the word `burger` (ignoring capitalisation) are listed.
+
+    1. Test cases: `finddebt n/burger`, `finddebt debt/Burger`<br>
+       Expected: PayMeLah warns that command format is incorrect.
+
+1. Finding debts with multiple keywords
+
+    1. Prerequisites: One or more persons has a debt whose description contains the word `burger`. Same for `chicken`.
+
+    1. Test cases: `finddebt chicken burger`, `finddebt Chicken Burger`, `finddebt CHICKEN BURGER`<br>
+       Expected: All person(s) who have a debt whose description contains the word `burger`, or a debt whose description contains the word `chicken` (ignoring capitalisation), or both are listed.
+
+    1. Test cases: `finddebt n/chicken burger`, `finddebt debt/Chicken Burger`<br>
+       Expected: PayMeLah warns that command format is incorrect.
+
+### Undo
+
+1. Successful undo of a command
+
+    1. Test case: Enter `add n/newPerson`, then `undo`<br>
+       Expected: A person with name `newPerson` is added, then removed after `undo` is entered.
+
+    1. Test cases: Enter `add n/newPerson`, then filter the persons list using commands such as `find` and `listdebtors`, then `undo`<br>
+       Expected: Similar to above, but filter on persons list is reset and all persons are displayed.
+
+1. Unsuccessful undo of a command
+
+    1. Prerequisites: PayMeLah has just been launched, no command has been entered yet.
+
+    1. Test case: `undo`<br>
+       Expected: PayMeLah warns that there are no commands to undo.
+
+    1. Test case: Enter a command which does not modify PayMeLah's data, such as `find` and `statement`, then `undo`.<br>
+       Expected: PayMeLah warns that there are no commands to undo.
+   
+    1. Test case: Add 11 persons using `add n/newPerson1` ... `add n/newPerson11`. Then enter `undo` 11 times.<br>
+       Expected: The addition of `newPerson2` to `newPerson11` are reverted successfully, but PayMeLah warns that there are no commands to undo when attempting to do so the 11th time.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Prerequisites: PayMeLah has been launched at least once and an `addressbook.json` has been created in the `data` folder.
+   
+   1. Test case: delete the `addressbook.json` and launch PayMeLah<br>
+      Expected: PayMeLah launches with the sample persons and debts again, and the corresponding `addressbook.json` has been created in the `data` folder.
+   
+   1. Test case: open `addressbook.json` and delete a few random lines to corrupt the data. Then launch PayMeLah.<br>
+      Expected: PayMeLah launches with an empty list of persons, and `addressbook.json` is cleared to show an empty person list as well.
+   
+   1. Test case: while PayMeLah is open, delete or modify `addressbook.json`, then execute any valid command in PayMeLah.<br>
+      Expected: PayMeLah functions normally and overwrites any corrupted data
 
 
 --------------------------------------------------------------------------------------------------------------------
