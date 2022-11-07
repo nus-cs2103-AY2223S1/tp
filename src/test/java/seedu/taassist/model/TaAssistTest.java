@@ -51,7 +51,7 @@ public class TaAssistTest {
                 .withModuleClasses(new ModuleClass(VALID_CLASS_CS1101S))
                 .build();
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
-        List<ModuleClass> newModuleClasses = Arrays.asList(); // TODO: Add test case for classes too
+        List<ModuleClass> newModuleClasses = List.of();
         TaAssistStub newData = new TaAssistStub(newStudents, newModuleClasses);
 
         assertThrows(DuplicateElementException.class, () -> taAssist.resetData(newData));

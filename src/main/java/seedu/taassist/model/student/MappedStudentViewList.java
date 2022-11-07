@@ -33,6 +33,12 @@ public class MappedStudentViewList extends TransformationList<StudentView, Stude
         fireChange(new Change(c));
     }
 
+    /**
+     * Sets the target {@code Session} to be queried for each {@code Student} within the list.
+     *
+     * @param targetClass The {@code ModuleClass} that contains the {@code targetSession}.
+     * @param targetSession The target {@code Session}.
+     */
     public void setTarget(ModuleClass targetClass, Session targetSession) {
         this.targetClass = targetClass;
         this.targetSession = targetSession;
@@ -54,6 +60,12 @@ public class MappedStudentViewList extends TransformationList<StudentView, Stude
         return getStudentView(getSource().get(index));
     }
 
+    /**
+     * Returns a {@code StudentView} instance that queries the current target {@code Session} if it exists.
+     *
+     * @param student Student of interest.
+     * @return A {@code StudentView} instance that queries the targeted {@code Session}.
+     */
     private StudentView getStudentView(Student student) {
         StudentView studentView = new StudentView(student);
         if (targetClass == null || targetSession == null) {
@@ -67,12 +79,20 @@ public class MappedStudentViewList extends TransformationList<StudentView, Stude
         return getSource().size();
     }
 
+    /**
+     * The {@code Change} fired to any listeners of this list if the source list is modified.
+     */
     private class Change extends ListChangeListener.Change<StudentView> {
         private final ListChangeListener.Change<? extends Student> change;
 
-        public Change(ListChangeListener.Change<? extends Student> c) {
+        /**
+         * Constructs a {@code Change} instance with the provided {@code sourceChange}.
+         *
+         * @param sourceChange A {@code ListChangeListener.Change} from the source list.
+         */
+        public Change(ListChangeListener.Change<? extends Student> sourceChange) {
             super(MappedStudentViewList.this);
-            change = c;
+            change = sourceChange;
         }
 
         @Override
@@ -142,8 +162,16 @@ public class MappedStudentViewList extends TransformationList<StudentView, Stude
         }
     }
 
+    /**
+     * The {@code Change} fired to any listeners of this list if a new target was set through the
+     * {@code MappedStudentViewList#setTarget} method. This {@code Change} states that the whole
+     * list's elements have been updated.
+     */
     private class FullUpdateChange extends ListChangeListener.Change<StudentView> {
 
+        /**
+         * Constructs a {@code FullUpdateChange} instance.
+         */
         public FullUpdateChange() {
             super(MappedStudentViewList.this);
         }

@@ -20,8 +20,9 @@ import seedu.taassist.model.student.StudentView;
 public interface Logic {
     /**
      * Executes the command and returns the result.
+     *
      * @param commandText The command as entered by the user.
-     * @return the result of the command execution.
+     * @return The result of the command execution.
      * @throws CommandException If an error occurs during command execution.
      * @throws ParseException If an error occurs during parsing.
      */
@@ -57,7 +58,7 @@ public interface Logic {
     GuiSettings getGuiSettings();
 
     /**
-     * Set the user prefs' GUI settings.
+     * Sets the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
 

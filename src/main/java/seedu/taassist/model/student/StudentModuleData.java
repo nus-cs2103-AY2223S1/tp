@@ -25,6 +25,8 @@ public class StudentModuleData implements Identity<StudentModuleData>, Comparabl
 
     /**
      * Constructs a {@code StudentModuleData} with an empty session data list for the given module class.
+     *
+     * @param moduleClass Module class of interest.
      */
     public StudentModuleData(ModuleClass moduleClass) {
         requireNonNull(moduleClass);
@@ -38,6 +40,9 @@ public class StudentModuleData implements Identity<StudentModuleData>, Comparabl
 
     /**
      * Constructs a {@code StudentModuleData} with the given module class and list of session data.
+     *
+     * @param moduleClass Module class of interest.
+     * @param sessionDataList Sessions associated with {@code moduleClass}.
      */
     public StudentModuleData(ModuleClass moduleClass, List<SessionData> sessionDataList) {
         this(moduleClass);
@@ -58,6 +63,9 @@ public class StudentModuleData implements Identity<StudentModuleData>, Comparabl
 
     /**
      * Returns the {@code SessionData} within the module data for the given {@code Session}.
+     *
+     * @param target Session object associated with the SessionData to find.
+     * @return Found SessionData.
      */
     public Optional<SessionData> findSessionData(Session target) {
         requireNonNull(target);
@@ -67,6 +75,9 @@ public class StudentModuleData implements Identity<StudentModuleData>, Comparabl
     /**
      * Returns a new {@code StudentModuleData} by removing the given session from the list of session data.
      * If the session is not present, the original {@code StudentModuleData} is returned.
+     *
+     * @param session Session to remove.
+     * @return New StudentModuleData object containing all existing sessions except the provided {@code session}.
      */
     public StudentModuleData removeSession(Session session) {
         requireNonNull(session);
@@ -80,6 +91,10 @@ public class StudentModuleData implements Identity<StudentModuleData>, Comparabl
      * Returns a new {@code StudentModuleData} by updating the grade in the given {@code session}.
      * If the session does not exist in the list of session data, a new session data is added.
      * Assumption: the session exists in the module class.
+     *
+     * @param session Session to update the grade for.
+     * @param grade New grade value.
+     * @return New StudentModuleData containing the new {@code session} with the new {@code grade}.
      */
     public StudentModuleData updateGrade(Session session, Double grade) {
         requireAllNonNull(session, grade);

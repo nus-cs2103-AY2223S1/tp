@@ -8,8 +8,9 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant "student:Student" as Student MODEL_COLOR
+participant "oldStudent:Student" as Student MODEL_COLOR
 participant "newStudent:Student" as NewStudent MODEL_COLOR
+participant "smd:StudentModuleData" as SMD MODEL_COLOR
 end box
 
 [-> AssignCommand: execute(model)
@@ -20,7 +21,7 @@ activate Model
 Model --> AssignCommand: students
 deactivate Model
 
-loop for each student to be assigned
+loop for each oldStudent to assign
     AssignCommand -> Student: addModuleClass(moduleClassToAssign)
     activate Student
 
@@ -31,10 +32,21 @@ loop for each student to be assigned
     NewStudent --> Student
     deactivate NewStudent
 
+    create SMD
+    Student -> SMD: moduleClassToAssign
+    activate SMD
+    SMD --> Student
+    deactivate SMD
+
+    Student -> Student :add smd to newStudent's\n list of StudentModuleData
+    activate Student
+    Student --> Student
+    deactivate Student
+
     Student --> AssignCommand: newStudent
     deactivate Student
 
-    AssignCommand -> Model: setStudent(student, newStudent)
+    AssignCommand -> Model: setStudent(oldStudent, newStudent)
     activate Model
 
     Model --> AssignCommand

@@ -50,7 +50,7 @@ class JsonAdaptedStudentModuleData {
     /**
      * Converts this Jackson-friendly adapted student object into the model's {@code StudentModuleData} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted student.
+     * @throws IllegalValueException If there were any data constraints violated in the adapted student.
      */
     public StudentModuleData toModelType() throws IllegalValueException {
         if (className == null) {

@@ -31,7 +31,6 @@ class JsonSerializableTaAssist {
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
     private final List<JsonAdaptedModuleClass> moduleClasses = new ArrayList<>();
 
-    // TODO: Find out what this method is supposed to be used for. There are currently no usages of this method.
     /**
      * Constructs a {@code JsonSerializableTaAssist} with the given students.
      */
@@ -45,7 +44,7 @@ class JsonSerializableTaAssist {
     /**
      * Converts a given {@code ReadOnlyTaAssist} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableTaAssist}.
+     * @param source Future changes to this will not affect the created {@code JsonSerializableTaAssist}.
      */
     public JsonSerializableTaAssist(ReadOnlyTaAssist source) {
         students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
@@ -56,7 +55,7 @@ class JsonSerializableTaAssist {
     /**
      * Converts this TaAssist into the model's {@code TaAssist} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated.
+     * @throws IllegalValueException If there were any data constraints violated.
      */
     public TaAssist toModelType() throws IllegalValueException {
         TaAssist taAssist = new TaAssist();

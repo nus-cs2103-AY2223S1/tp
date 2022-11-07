@@ -33,7 +33,10 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
-     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     *
+     * @param oneBasedIndex String representation of a one-based index.
+     * @return Matching Index object (one-based).
+     * @throws ParseException If the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
@@ -46,7 +49,10 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndices} into an {@code List<Index>} and returns it. Leading and trailing whitespaces will
      * be trimmed.
-     * @throws ParseException if any of the specified indices is invalid (not non-zero unsigned integer).
+     *
+     * @param oneBasedIndices String representations of one-based indices delimited by whitespace.
+     * @return Matching Index objects (one-based).
+     * @throws ParseException If any of the specified indices is invalid (not non-zero unsigned integer).
      */
     public static List<Index> parseIndices(String oneBasedIndices) throws ParseException {
         List<Index> indices = new ArrayList<>();
@@ -64,7 +70,9 @@ public class ParserUtil {
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @param name String representation of a Name object.
+     * @return Matching Name object.
+     * @throws ParseException If the given {@code name} is invalid.
      */
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
@@ -79,7 +87,9 @@ public class ParserUtil {
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @param phone String representation of a Phone object.
+     * @return Matching Phone object.
+     * @throws ParseException If the given {@code phone} is invalid.
      */
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
@@ -94,7 +104,9 @@ public class ParserUtil {
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @param address String representation of an Address object.
+     * @return Matching Address object.
+     * @throws ParseException If the given {@code address} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
@@ -109,7 +121,9 @@ public class ParserUtil {
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @param email String representation of an Email object.
+     * @return Matching Email object.
+     * @throws ParseException If the given {@code email} is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
@@ -124,7 +138,9 @@ public class ParserUtil {
      * Parses a {@code String moduleClass} into a {@code ModuleClass}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code moduleClass} is invalid.
+     * @param moduleClass String representation of a ModuleClass object.
+     * @return Matching ModuleClass object.
+     * @throws ParseException If the given {@code moduleClass} is invalid.
      */
     public static ModuleClass parseModuleClass(String moduleClass) throws ParseException {
         requireNonNull(moduleClass);
@@ -136,7 +152,12 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> moduleClasses} into a {@code Set<ModuleClass>}.
+     * Parses a Collection of String representations of ModuleClass objects into a set of matching
+     * {@code moduleClasses}.
+     *
+     * @param moduleClasses String representations of ModuleClass objects.
+     * @return Matching ModuleClass objects.
+     * @throws ParseException If any of the given {@code moduleClass} in {@code moduleClasses} is invalid.
      */
     public static Set<ModuleClass> parseModuleClasses(Collection<String> moduleClasses) throws ParseException {
         requireNonNull(moduleClasses);
@@ -152,7 +173,9 @@ public class ParserUtil {
      * {@code date} is parsed using {@code DateTimeFormatter.ISO_LOCAL_DATE}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code date} is invalid.
+     * @param date String representation of a Date object.
+     * @return Matching Date object.
+     * @throws ParseException If the given {@code date} is invalid.
      */
     public static Date parseDate(String date) throws ParseException {
         requireNonNull(date);
@@ -167,7 +190,9 @@ public class ParserUtil {
     /**
      * Parses the string representation of a grade value into a double.
      *
-     * @throws ParseException if the given {@code numberString} does not represent a number.
+     * @param numberString String representation of a number.
+     * @return Matching number.
+     * @throws ParseException If the given {@code numberString} is not a valid number.
      */
     public static Double parseGrade(String numberString) throws ParseException {
         requireNonNull(numberString);
@@ -187,7 +212,9 @@ public class ParserUtil {
      * Parses a {@code String session} into a {@code Session}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code session} is invalid.
+     * @param session String representation of a Session object.
+     * @return Matching Session object.
+     * @throws ParseException If the given {@code session} is invalid.
      */
     public static Session parseSession(String session) throws ParseException {
         requireNonNull(session);
@@ -202,7 +229,10 @@ public class ParserUtil {
      * Parses a {@code String session} along with a {@code Date date} into a {@code Session}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code session} is invalid.
+     * @param session String representation of a Session object.
+     * @param date Date for created Session object.
+     * @return Matching Session object.
+     * @throws ParseException If the given {@code session} is invalid.
      */
     public static Session parseSession(String session, Date date) throws ParseException {
         requireAllNonNull(session, date);
@@ -214,7 +244,12 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> sessions} into a {@code Set<Session>}.
+     * Parses a Collection of String representations of Session objects into a set of matching
+     * {@code sessions} with the default date.
+     *
+     * @param sessions String representations of Session objects.
+     * @return Matching Session objects.
+     * @throws ParseException If any of the given {@code session} in {@code sessions} is invalid.
      */
     public static Set<Session> parseSessions(Collection<String> sessions) throws ParseException {
         requireNonNull(sessions);
@@ -226,7 +261,13 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> sessions} with {@code date} into a {@code Set<Session>}.
+     * Parses a Collection of String representations of Session objects into a set of matching
+     * {@code sessions} with the given {@code date}.
+     *
+     * @param sessions String representations of Session objects.
+     * @param date Date of each of the sessions.
+     * @return Matching Session objects.
+     * @throws ParseException If any of the given {@code session} in {@code sessions} is invalid.
      */
     public static Set<Session> parseSessions(Collection<String> sessions, Date date) throws ParseException {
         requireNonNull(sessions);

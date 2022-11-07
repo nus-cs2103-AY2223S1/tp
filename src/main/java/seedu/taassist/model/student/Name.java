@@ -32,7 +32,10 @@ public class Name {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Checks if a given string represents a valid student name.
+     *
+     * @param test String representation of a student's name.
+     * @return True if {@code test} is a valid student name.
      */
     public static boolean isValidName(String test) {
         return test.matches(VALIDATION_REGEX);
@@ -55,5 +58,4 @@ public class Name {
     public int hashCode() {
         return fullName.hashCode();
     }
-
 }

@@ -20,7 +20,9 @@ public class GradeCommandParser implements Parser<GradeCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the GradeCommand
      * and returns a GradeCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @param args Command arguments provided by the user.
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public GradeCommand parse(String args) throws ParseException {
         requireNonNull(args);

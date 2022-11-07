@@ -36,11 +36,14 @@ public class AssignCommand extends Command {
     private final ModuleClass moduleClassToAssign;
 
     /**
-     * Creates an AssignCommand to assign the given {@code ModuleClass} to students at the given {@code Indices}.
+     * Creates an AssignCommand to assign the students at the given {@code indices} to {@code moduleClassToAssign}.
+     *
+     * @param indices List of {@code Index} objects specifying which Student objects to assign to
+     *     {@code moduleClassToAssign}.
+     * @param moduleClassToAssign Module class to assign the students to.
      */
     public AssignCommand(List<Index> indices, ModuleClass moduleClassToAssign) {
-        requireAllNonNull(indices);
-        requireNonNull(moduleClassToAssign);
+        requireAllNonNull(indices, moduleClassToAssign);
         this.indices = indices;
         this.moduleClassToAssign = moduleClassToAssign;
     }
@@ -60,10 +63,17 @@ public class AssignCommand extends Command {
 
         studentsToAssign.forEach(s -> model.setStudent(s, s.addModuleClass(moduleClassToAssign)));
 
-        return new CommandResult(getSuccessMessage(studentsToAssign, moduleClassToAssign));
+        return new CommandResult(getCommandMessage(studentsToAssign, moduleClassToAssign));
     }
 
-    public static String getSuccessMessage(List<Student> students, ModuleClass moduleClass) {
+    /**
+     * Returns the command message on successful execution of the command.
+     *
+     * @param students Student objects that were assigned to {@code moduleClass}.
+     * @param moduleClass Module class the students were assigned to.
+     * @return Command message showing which Student objects were assigned to {@code moduleClass}.
+     */
+    public static String getCommandMessage(List<Student> students, ModuleClass moduleClass) {
         String studentNames = commaSeparate(students, student -> student.getName().toString());
         return String.format(MESSAGE_SUCCESS, moduleClass, studentNames);
     }

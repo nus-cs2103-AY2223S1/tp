@@ -1,7 +1,7 @@
 package seedu.taassist.logic.parser;
 
 /**
- * A prefix that marks the beginning of an argument in an arguments string.
+ * Represents a prefix that marks the beginning of an argument in an arguments string.
  * E.g. 'c/' in 'add James c/CS1101S'.
  */
 public class Prefix {

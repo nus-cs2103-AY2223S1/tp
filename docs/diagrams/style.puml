@@ -58,8 +58,7 @@ skinparam Sequence {
     BoxFontColor #FFFFFF
     FontName Arial
 
-    ReferenceBackgroundColor LOGIC_COLOR_T1
-    ReferenceBorderColor LOGIC_COLOR_T3
+    ReferenceBackgroundColor #FFFFFF
 }
 
 skinparam Participant {

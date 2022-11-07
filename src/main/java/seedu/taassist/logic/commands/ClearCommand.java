@@ -23,6 +23,5 @@ public class ClearCommand extends Command {
             return new CommandResult(MESSAGE_SUCCESS, UiAction.UNFOCUS);
         }
         return new CommandResult(MESSAGE_SUCCESS);
-
     }
 }

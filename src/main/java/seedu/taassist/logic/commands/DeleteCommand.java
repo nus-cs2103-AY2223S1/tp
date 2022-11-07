@@ -11,7 +11,7 @@ import seedu.taassist.model.Model;
 import seedu.taassist.model.student.Student;
 
 /**
- * Deletes a student identified using it's displayed index from TA-Assist.
+ * Deletes a student identified using its displayed index from TA-Assist.
  */
 public class DeleteCommand extends Command {
 
@@ -28,6 +28,8 @@ public class DeleteCommand extends Command {
 
     /**
      * Creates a DeleteCommand to delete the student at the given index.
+     *
+     * @param index Index of the Student object to delete.
      */
     public DeleteCommand(Index index) {
         requireNonNull(index);

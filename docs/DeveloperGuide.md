@@ -31,7 +31,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+<img class="center" src="images/ArchitectureDiagram.png" />
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -57,7 +57,7 @@ The rest of the App consists of four components.
 
 The ***Sequence Diagram*** below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img class="center" src="images/ArchitectureSequenceDiagram.png" />
 
 Each of the four main components (also shown in the diagram above):
 
@@ -66,7 +66,7 @@ Each of the four main components (also shown in the diagram above):
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+<img class="center" src="images/ComponentManagers.png" />
 
 The sections below give more details of each component.
 
@@ -93,7 +93,7 @@ The `UI` component:
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<img class="center" src="images/LogicClassDiagram.png"/>
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `TaAssistParser` class to parse the user command.
@@ -110,21 +110,21 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<img class="center" src="images/ParserClasses.png"/>
 
-How the parsing works:
+How the parsing works: <a name="parsing"></a>
 * When called upon to parse a user command, the `TaAssistParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TaAssistParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 The following sequence diagram shows how a generic command `XYZCommand` is parsed from user input with the help of `XYZCommandParser`.
 
-<img src="images/XYZCommandParserSequenceDiagram.png" width="800"/>
+<img class="center" src="images/XYZCommandParserSequenceDiagram.png"/>
 
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/taassist/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img class="center" src="images/ModelClassDiagram.png" />
 
 The `Model` component:
 
@@ -141,7 +141,7 @@ The `Model` component:
 
 The `UniqueList` class is a generic class that stores a collection of unique elements. In TA-Assist, a `UniqueList` stores either all the `Student` objects or all the `ModuleClass` objects.
 
-<img src="images/TaAssistObjectDiagram.png" width="600"/>
+<img class="center" src="images/TaAssistObjectDiagram.png"/>
 
 #### ModuleClass, Student, and related classes 
 
@@ -158,13 +158,13 @@ equality than the `equals` method. More details regarding this can be found in t
 
 The relationship between these classes is shown in the following class diagram:
 
-<img src="images/StudentAndModuleClassDiagram.png" width="600"/>
+<img class="center" src="images/StudentAndModuleClassDiagram.png"/>
 
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/taassist/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img class="center" src="images/StorageClassDiagram.png" />
 
 The `Storage` component:
 * Can save both TA-Assist data and user preference data in json format, and read them back into corresponding objects.
@@ -191,13 +191,13 @@ For instance, consider the following hypothetical scenario:
 
 Assume the current state of `TaAssist` is as follows:
 
-<img src="images/ImpleIdentityObjectDiagram.png" width="600" />
+<img class="center" src="images/ImpleIdentityObjectDiagram.png" />
 
 Now, let's say the user wants to add a `Quiz2` session to IS1103. However, since `ModuleClass` is immutable, we'll have
 to construct a new `IS1103` ModuleClass instance instead. Call this new instance `NewIS1103`. Hence, the state of
 `TaAssist` will now look like the one below:
 
-<img src="images/ImpleIdentityObjectDiagram2.png" width="700" />
+<img class="center" src="images/ImpleIdentityObjectDiagram2.png" />
 
 Now, notice that `AlexIS1103Data` is no longer referencing the same object. In addition, since their contents
 are different, we can't check with the `equals` method, as the `equals` method in our codebase should perform a strict
@@ -242,7 +242,7 @@ In addition, methods such as `addSessions` and `removeSessions` are also provide
 
 For example, the following sequence diagram shows how the command `adds s/Lab1` creates a `Session` named "Lab1" and adds it inside the focused class.
 
-<img src="images/AddsCommandSequenceDiagram.png" width="1000"/>
+<img class="center" src="images/AddsCommandSequenceDiagram.png"/>
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** The above diagram assumes that `Model` is currently in focus mode and 
@@ -301,7 +301,7 @@ While the `ModuleClass` object for the module "CS1231S" might be saved in `modul
 ```
 
 #### Design considerations
-* **Alternative 1 (current choice)**: The `StudentModuleData` and `SessionData` objects only save the `ModuleClass` name and
+* **Alternative 1 (Current Choice)**: The `StudentModuleData` and `SessionData` objects only save the `ModuleClass` name and
 `Session` name respectively. Because in any of their functionality, we do not need to know the list of `Sessions` in the
 `ModuleClass` object or the `Date` of the `Session` object. 
   * **Pros**:
@@ -334,25 +334,37 @@ While the `ModuleClass` object for the module "CS1231S" might be saved in `modul
       objects are referencing the same object.
 
 ### Assigning students to module classes
-<img src="images/AssignCommandSequenceDiagram.png" width="500" />
-
-Each student object contains a collection of `StudentModuleData` where module classes and the grades the student obtained for the sessions of the module classes are stored. When the user assigns students to a module class, a new `StudentModuleData` object is created and added to the collection for each student.
+Each student object contains a collection of `StudentModuleData` where module classes and the grades the student 
+obtained for the sessions of the module classes are stored. When the user assigns students to a module class, a new 
+`StudentModuleData` object is created and added to the collection for each student. 
+<img class="center" src="images/AssignCommandSequenceDiagram.png" />
 
 Given below are the different steps taken when the user assigns students to a module class.
 
-**Step 1**: The user enters the command keyword `assign`, followed by the indices of the students he want to assign module classes to, and the names of the module classes that he wants to assign to the students. Example: `assign 1 2 3 c/CS1101S`.
+**Step 1**: The user input is [parsed similar to other commands](#parsing) and an `AssignCommand` object is created 
+using the given the student indices and the module class to assign them to.
 
-**Step 2**: The program makes use of the `TAAssistParser` to make sense of the keyword, and determine which parser to use to parse the arguments. In this case, the `AssignCommandParser` is used.
+**Step 2**: The `AssignCommand` object is executed. The student indices are used to retrieve the `Student` objects 
+from the list of students captured by the `Model`. For each student, steps 3 and 4 are repeated. 
 
-**Step 3**: The `AssignCommandParser` makes sense of the arguments, and creates an `AssignCommand` object with the student indices and the module classes to assign them to.
+**Step 3**: The `Student#addModuleClass` method is used to create a new `Student` object from the old `Student` object.
+The method returns the old `Student` if the student is already assigned to the module class. Otherwise, a new `Student` object
+is created from the old one by copying over all the data fields. Then a new instance of `StudentModuleData` is created 
+with the given `ModuleClass` without any session information and added to the list of `StudentModuleData` of the new `Student`
+object. The new `Student` object is returned.
 
-**Step 4**: The `AssignCommand` object is executed. The student indices are be used to retrieve the `Student` objects from the list of students captured by the `Model` interface. For each student, the program creates a new `StudentModuleData` object for each module class that is not already assigned to the student. The `StudentModuleData` object only contains the module class name and not any session information. The `StudentModuleData` objects created for the student are added to the student object's collection of `StudentModuleData`.
+**Step 4**: The `Model#setStudent` method is used to replace the old `Student` object with the updated one in the model. 
 
-**Step 5**: The execution ends and returns a `CommandResult` object containing the success message to be displayed by the GUI to the user.
+**Step 5**: The execution ends and returns a `CommandResult` object containing the success message to be displayed by 
+the GUI to the user.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The sequence diagram above doesn't show the case where the student is already assigned to the module class.
+</div>
 
 #### Design considerations:
 
-* **Alternative 1 (current choice)**: Let each student maintain a collection of module classes that the student is being assigned to.
+* **Alternative 1 (Current Choice)**: Let each student maintain a collection of module classes that the student is being assigned to.
   * **Pros**: Only captures necessary information, and easier to implement. This structure is also easier to capture session information for the students.
   * **Cons**: Will be creating multiple `StudentModuleData` objects for a module class when multiple students are assigned to the module class. This may cause performance issues from the large number of objects created.
   
@@ -371,17 +383,17 @@ Giving grades for a session is only possible when a `ModuleClass` is focused. It
 `StudentModuleData`, where the matching `StudentModuleData` with the current focused `ModuleClass` is updated to reflect
 the given grade.
 
-<img src="images/GradeCommandSequenceDiagram.png" width="700" />
+<img class="center" src="images/GradeCommandSequenceDiagram.png" />
 
 Given bellow are the steps taken when the user gives grade to a student for a session: 
 
-**Step 1**: The user input is parsed similar to other commands and a `GradeCommand` object is created using the given 
+**Step 1**: The user input is [parsed similar to other commands](#parsing) and a `GradeCommand` object is created using the given 
 student indices, session name, and grade. 
 
 **Step 2**: The `GradeCommand` object is executed. The given indices are used to retrieve the `Student` objects from the 
 current curated list of students in `Model`. For each student, steps 3 to 5 are repeated.
 
-<img src="images/StudentGradeUpdate.png" width="700" />
+<img class="center" src="images/StudentGradeUpdate.png" />
 
 **Step 3**: The old `Student` object is used to create an updated `Student` object via the `Student#updateGrade` method. 
 The method creates the new student with an updated list of `StudentModuleData` by going through the list of the 
@@ -394,7 +406,7 @@ updated grade for the session. The method first creates a new `StudentModuleData
 object with the given grade and adds it to the list of `SessionData` in the new `StudentModuleData` object. 
 
 **Step 5**: After finishing steps 3-4, the `GradeCommand` will have an updated student. Then the `Model#setStudent` method
-is used to replace the old `Student` object with the updated one in our model. 
+is used to replace the old `Student` object with the updated one in the model. 
 
 **Step 6**: The execution ends and returns a `CommandResult` object containing the success message to be displayed by the GUI
 to the user. 
@@ -404,11 +416,11 @@ Viewing session-wise grades of a student is only possible when a `ModuleClass` i
 the list of `StudentModuleData` of the `Student` object and finding the data for the matching focused class. After retrieving it, 
 the session-wise grade can be read from the list of `SessionData` stored inside the `StudentModuleData`.  
 
-<img src="images/ViewCommandSequenceDiagram.png" width="700" />
+<img class="center" src="images/ViewCommandSequenceDiagram.png" />
 
 Given bellow are the steps taken when the user wants to view a student's session-wise grades:
 
-**Step 1**: The user input is parsed similar to other commands and a `ViewCommand` object is created using the given student index. 
+**Step 1**: The user input is [parsed similar to other commands](#parsing) and a `ViewCommand` object is created using the given student index. 
 
 **Step 2**: The `ViewCommand` object is executed. The given index is used to retrieve the correct `Student` object from the 
 curated list of students in `Model`.  
@@ -445,7 +457,7 @@ The `Logic` component calls these methods in `Model` to execute commands that re
 
 For example, the following sequence diagram shows how the `focus` command activates focus mode:
 
-<img src="images/FocusCommandSequenceDiagram.png" width="400" />
+<img class="center" src="images/FocusCommandSequenceDiagram.png" />
 
 On the other hand, the `unfocus` command deactivates focus mode by setting `focusedClass` to `null`.
 
@@ -482,7 +494,7 @@ With these two classes implemented, `SessionData` can now be easily passed to `U
 
 The following sequence diagram shows how changes are propagated to the `UI` through the chain of `ObservableList`-s when `TaAssist::addStudent(s)` is called:
 
-<img src="images/ObservableUpdateSequenceDiagram.png" w="800"/>
+<img class="center" src="images/ObservableUpdateSequenceDiagram.png" w="800"/>
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** The diagram above simplifies the `ListView` interaction as it is abstracted away by JavaFX and its details are mostly irrelevant to our implementation.
@@ -505,9 +517,9 @@ The following sequence diagram shows how changes are propagated to the `UI` thro
   * Cons: Hard to maintain. Each `Command` now needs to know that `CommandResult` can pass data other than for result display.
 
 ### UI Implementation
-**Home Screen**
+#### Home Screen
 
-<img src="images/UiMainScreen.png" width="600" />
+<img class="center" src="images/UiMainScreen.png" />
 
 The main screen consists of the following components:
 * `ResultDisplay` shows the results produced by the command input from the user; 
@@ -521,9 +533,9 @@ It was designed with the following considerations:
 * Operations on students can be performed conveniently by showing the list of all students on the main window, such as deleting, adding and finding students whenever required.
 * As we are targeting users with higher preference on CLI than GUI, putting the command input box at the bottom of the window may be more instinctive for their usage, due to the high similarity with the implementation of command terminals from various operating systems.
 
-**Focus Mode**
+#### Focus Mode
 
-<img src="images/UiFocusScreen.png" width="600" />
+<img class="center" src="images/UiFocusScreen.png" />
 
 The screen upon entering the focus mode consists of components:
 * `ResultDisplay`, as aforementioned, shows the results produced by the command input from the user;
@@ -534,7 +546,7 @@ The screen upon entering the focus mode consists of components:
 
 Whenever users call `scores s/SESSION_NAME`, the grade pertaining to that particular session appear, with ungraded students highlighted in red to the users.
 
-<img src="images/UiGrading.png" width="600" />
+<img class="center" src="images/UiGrading.png" />
 
 It was designed with the following consideration:
 * As sessions are usually time-sensitive, with those added later often being the more relevant sessions, sorting the sessions with the newest session at the front facilitate users in finding the sessions they are concerned with recently.
@@ -557,7 +569,7 @@ It was designed with the following consideration:
 
 **Target user profile**:
 
-* Works as teaching assistants.
+* Works as a teaching assistant.
 * Has a need to keep track of students' grades, attendance, and work submission status of relevant modules.
 * Prefers desktop apps over other types.
 * Can type fast.

@@ -11,6 +11,13 @@ import seedu.taassist.logic.parser.exceptions.ParseException;
  */
 public class ViewCommandParser implements Parser<ViewCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the ViewCommand
+     * and returns a ViewCommand object for execution.
+     *
+     * @param args Command arguments provided by the user.
+     * @throws ParseException If the user input does not conform the expected format.
+     */
     @Override
     public ViewCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
