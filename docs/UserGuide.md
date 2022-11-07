@@ -14,7 +14,7 @@ You can add modules to the app, allowing you to store important information like
 
 You can also add people to the app, such as your professors, teaching assistants or just friends, allowing you store their email addresses, phone numbers, telegram handles and which modules they are from.
 
-If you are an [SOC](#SOC) student, this app is perfect for you! SoCompiler can get your contact and module management tasks done faster than traditional [GUI](#graphical-user-interface-gui) apps.
+If you are a [School of Computing](#school-of-computing-soc) (SOC) student, this app is perfect for you! SoCompiler can get your contact and module management tasks done faster than traditional [GUI](#graphical-user-interface-gui) apps.
 
 Even if you are not, fret not! Just have a quick look at the [command summary](#command-summary) (they are rather intuitive) and start typing to give it a try!
 
@@ -396,6 +396,15 @@ Examples:
 `NAME` are optional. These fields can be updated later with the
 [editp](#editing-a-contact-editp) or [editm](#editing-a-module-editm) commands.
 
+**Q**: What if I have friends with the same name?<br>
+**A**: As our current iteration of SoCompiler does not allow duplicate names for contacts, if there are friends with the same first name, you may add in their full name or a nickname.
+
+**Q**: Why can I not add a phone number with its country code?<br>
+**A**: Currently, SoCompiler is optimised for SoC students, and thus we assume that everyone will have Singapore numbers. If you wish to add a foreign number, you can add it in without the `+` in front.
+
+**Q**: Why can I add duplicate information(phone numbers, telegram handles, email addresses) to different people?<br>
+**A**: We do not wish to restrict your freedom by restricting too many fields, and we trust that you will accurately check through all the information that you input.
+
 [Back to top](#socompiler-user-guide)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -431,7 +440,7 @@ Examples:
 * It refers to the address of a web page.
 * Example: https://google.com
 
-#### SOC
+#### School of Computing (SOC)
 
 * It refers to the School of Computing from the National University of Singapore.
 
