@@ -7,7 +7,7 @@ Tuthub is a desktop app for NUS professors who wish to track and choose their ne
 
 ## Summary of Contributions
 ### Code Contributed
-Around 4.5k lines of code according to the [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=fannyjian&breakdown=true)
+Around 4.6k lines of code according to the [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=fannyjian&breakdown=true)
 
 ### Enhancements implemented
 - **New Feature: Added `Tutor Details Panel` to UI** [#119](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/119)
@@ -44,6 +44,6 @@ Around 4.5k lines of code according to the [RepoSense Link](https://nus-cs2103-a
 - Updated use cases, user stories, glossary, product scope and instructions for manual testing.
 
 ### Reviewing contributions
-- PRs reviewed: [#77](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/77), [#129](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/129), [#134](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/134), [#139](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/139), [#276](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/276), [#297](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/297), [#311](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/311).
+- PRs reviewed: [#77](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/77), [#129](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/129), [#134](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/134), [#139](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/139), [#276](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/276), [#297](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/297), [#311](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/311), [#331](https://github.com/AY2223S1-CS2103T-T15-3/tp/pull/331).
 - Reported 14 bugs for another team in [PED](https://github.com/fannyjian/ped).
 - Participated in the module forum ([#405](https://github.com/nus-cs2103-AY2223S1/forum/issues/405) and [#406](https://github.com/nus-cs2103-AY2223S1/forum/issues/406)).
