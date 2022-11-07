@@ -1214,7 +1214,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 10. Data should be stored locally and not use any database management system.
 
 
-
+<div style="page-break-after: always"></div>
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
