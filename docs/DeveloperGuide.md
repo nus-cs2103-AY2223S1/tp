@@ -352,8 +352,8 @@ executed:
 The randomly assign task feature allows users to assign a `Task` (within a particular `Team`) to a random team member (
 represented as a `Person` object) within the team, who are not already assigned to that `Task`.
 
-This functionality is exposed to the user through the `assign_task_rand` command, and the logic is executed
-in `RandomlyAssignTaskCommand#execute()`.
+This functionality is exposed to the user through the `assign random` command, and the logic is executed
+in `AssignTaskRandomlyCommand#execute()`.
 
 Given below is an example usage scenario and the state of the `Team` object at each step.
 
@@ -362,13 +362,13 @@ The `Team` will contain multiple `Person` objects (representing team members).
 
 ![RandomlyAssignTaskState0](images/RandomlyAssignTaskState0.png)
 
-Step 2. The user executes the command `assign_task_rand 1` to assign the first (and only) `Task` randomly to any team
+Step 2. The user executes the command `assign random 1` to assign the first (and only) `Task` randomly to any team
 member. As none of the team members have been added, all of them are candidates for random assignment. One of them will
 be randomly assigned the task.
 
 ![RandomlyAssignTaskState1](images/RandomlyAssignTaskState1.png)
 
-Step 3. The user may want to assign a second team member to the task, hence executing `assign_task_rand 1` again. The
+Step 3. The user may want to assign a second team member to the task, hence executing `assign random 1` again. The
 team member who has previously been allocated will not be considered. Similar to above, one more team member will be
 randomly allocated the task.
 
@@ -378,11 +378,11 @@ randomly allocated the task.
 :information_source: **Note:** If there are no team members left to allocate (e.g. all team members have already been assigned to this task), an error will be thrown.
 </div>
 
-The following activity diagram summarizes the flow of `RandomlyAssignTaskCommand#execute()`.
+The following activity diagram summarizes the flow of `AssignTaskRandomlyCommand#execute()`.
 
 ![RandomlyAssignTaskActivityDiagram](images/RandomlyAssignTaskActivityDiagram.png)
 
-_Activity diagram of randomly assigning_
+_Activity diagram of randomly assigning a task_
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -1,7 +1,7 @@
 @startuml
 start
 
-title Activity Diagram for Randomly Assign Task
+title Activity Diagram for Randomly Assigning a Task
 
 if () then ([else])
     if () then ([else])
