@@ -99,6 +99,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasTutorExcept(Tutor excludedTutor, Tutor tutor) {
+        requireNonNull(tutor);
+        return tuthub.hasTutorExcept(excludedTutor, tutor);
+    }
+
+    @Override
     public void deleteTutor(Tutor target) {
         tuthub.removeTutor(target);
     }

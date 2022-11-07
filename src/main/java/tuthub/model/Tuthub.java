@@ -67,6 +67,14 @@ public class Tuthub implements ReadOnlyTuthub {
     }
 
     /**
+     * Returns true if a Tutor other than {@code excludedTutor} with the same identity as {@code Tutor} exists in tuthub.
+     */
+    public boolean hasTutorExcept(Tutor excludedTutor, Tutor tutor) {
+        requireNonNull(tutor);
+        return tutors.containsOtherThan(excludedTutor, tutor);
+    }
+
+    /**
      * Adds a Tutor to tuthub.
      * The Tutor must not already exist in tuthub.
      */

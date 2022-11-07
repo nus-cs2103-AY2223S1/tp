@@ -59,6 +59,11 @@ public interface Model {
     boolean hasTutor(Tutor tutor);
 
     /**
+     * Returns true if a tutor other than {@code excludedTutor} with the same identity as {@code tutor} exists in the tuthub.
+     */
+    boolean hasTutorExcept(Tutor excludedTutor, Tutor tutor);
+
+    /**
      * Deletes the given tutor.
      * The tutor must exist in the tuthub.
      */

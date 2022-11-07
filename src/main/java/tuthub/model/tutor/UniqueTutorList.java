@@ -37,6 +37,14 @@ public class UniqueTutorList implements Iterable<Tutor> {
     }
 
     /**
+     * Returns true if the list contains an equivalent Tutor as the given argument.
+     */
+    public boolean containsOtherThan(Tutor excludedTutor, Tutor toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch((x) -> !x.isSameTutor(excludedTutor) && x.isSameTutor(toCheck));
+    }
+
+    /**
      * Adds a Tutor to the list.
      * The Tutor must not already exist in the list.
      */
