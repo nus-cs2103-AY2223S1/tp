@@ -139,7 +139,7 @@ How the `Logic` component works:
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("addClient n/John Tan p/12345678")` API call.
 <!-- @@author rexong -->
 ![Interactions Inside the Logic Component for the `addClient n/John Tan p/12345678` Command](images/AddClientSequenceDiagram.png)
-
+<!-- @@author -->
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteClientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -234,7 +234,7 @@ We decided to set these 2 constraints on birthday:
 1) Birthday should not be in the future.
 
 2) Birthday should not be more than 100 years ago as we feel that client would not be able to buy product due to age limit.
-
+<!-- @@author -->
 #### 4.1.3 View client
 
 Syntax: `viewClient i/INDEX`, where `INDEX` is an index shown in the client list.
@@ -280,7 +280,7 @@ The sequence diagram below illustrates the interactions between the `Logic` and 
 Below is the activity diagram that summarises the execution of `delClient`.
 
 ![DeleteClientActivityDiagram](images/DeleteClientActivityDiagram.png)
-
+<!-- @@author -->
 #### 4.1.5 Edit Client feature
 
 Syntax: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
@@ -380,6 +380,7 @@ _The sequence diagram and activity diagram of `delMeeting` is similar to the dia
     - Cons: Complex to implement
 - Considering that the approach taken to develop _MyInsuRec_ is a breath first approach, where we should only build to the point where every iteration is a working product, **Solution 1** is thus chosen as it is easier to implement. However, Solution 2 could be a possible implementation for future iteration.
 
+<!-- @@author -->
 #### 4.2.4 View meeting
 
 Syntax: `viewMeeting i/INDEX`, where `INDEX` is an index shown in the meeting list.
@@ -692,7 +693,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
     * 1a1. System shows an error message.
 
       Use case ends.
-
+<!-- @@author -->
 #### 6.3.5 Use case: UC5 - Edit a client
 
 **MSS**
@@ -784,7 +785,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
     * 3a1. System shows an error message.
 
       Use case ends.
-
+<!-- @@author -->
 #### 6.3.10 Use case: UC10 - Edit a meeting
 
 **MSS**
@@ -1023,7 +1024,7 @@ testers are expected to do more *exploratory* testing.
 4. Delete client without parameters
     * Test case: `delClient`
         * Expected: No client is deleted. Error regarding invalid command format will be shown.
-
+<!-- @@author -->
 ### 7.5 Listing meetings
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.</div>
@@ -1073,6 +1074,7 @@ Deleting a meeting while all meetings are being shown
     * Test case: `delMeeting`
         * Expected: No meeting is deleted. Error regarding invalid command format will be shown.
 
+<!-- @@author -->
 ### 7.7 Viewing a meeting
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of meetings using `listMeeting` where the index number of the meeting can be found.</div>

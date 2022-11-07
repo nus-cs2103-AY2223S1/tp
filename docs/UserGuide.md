@@ -28,6 +28,7 @@ This guide smooths the learning curve and helps you learn how to use _MyInsuRec_
 
 Before we go on further, look out for these symbols in the User Guide as they provide some important messages you might want to know!
 
+<!-- @@author -->
 | Symbol               | Background color | Meaning                                                                                               |
 |----------------------|------------------|-------------------------------------------------------------------------------------------------------|
 | `command`            | -                | Indicates some command or parameter that can be entered into MyInsuRec.                               |
@@ -59,7 +60,7 @@ We hope that this guide is helpful in smoothing out the learning curve for you!
 [Return to the top](#)
 
 --------------------------------------------------------------------------------------------------------------------
-
+<!-- @@author -->
 ## 3. Overview
 
 The following subsections explains some terminology and main features of *MyInsuRec*:
@@ -159,7 +160,7 @@ This is the view after executing the `viewMeeting` command.
 [Return to the top](#)
 
 --------------------------------------------------------------------------------------------------------------------
-
+<!-- @@author -->
 ## 5. Installation Guide
 
 ### 5.1 System Requirements
@@ -312,7 +313,7 @@ This section guides you on how to use features available in *MyInsuRec*. We will
   e.g. if the command is used as `editClient i/1 n/Smith et/1230` where `et/` is the only invalid parameter, the input by preceding valid parameter `n/` will be read as `Smith et/1230` (this input is invalid because it is not alphanumeric)
 
 * All incorrect parameters up until the first valid parameter will be ignored for commands that take in parameters (such as `editClient` and `delMeeting`). <br> e.g. `delMeeting n/Alex i/1` will be parsed correctly since `i/1` is the first valid parameter and the incorrect parameter `n/Alex` before that is ignored.
-
+<!-- @@author -->
 </div>
 
 <div markdown="span" class="alert alert-warning">**:exclamation: Caution:**
@@ -358,7 +359,7 @@ Examples:
   * `addClient n/John Tan p/12345678 e/johntan@insurec.com a/123 ABC ROAD, #11-01 pd/Product1`
 * Same as above, but with multiple products
   * `addClient n/John Tan p/12345678 e/johntan@insurec.com a/123 ABC ROAD, #11-01 pd/Product1 pd/Product2 pd/Product3`
-
+<!-- @@author -->
 #### 7.1.2 List clients: `listClient`
 
 Shows the list of clients in MyInsuRec.
@@ -434,7 +435,7 @@ Use case:
 Examples:
 * Delete the client with an `INDEX` of 2
   * `delClient i/2`
-
+<!-- @@author -->
 #### 7.1.5 Edit client: `editClient`
 
 Edit details of the specified client.
@@ -577,7 +578,7 @@ Use case:
 Examples:
 * Delete meeting with an `INDEX` of 2
   * `delMeeting i/2`
-
+<!-- @@author -->
 #### 7.2.5 Edit meeting: `editMeeting`
 
 Edit details of the specified meeting.
