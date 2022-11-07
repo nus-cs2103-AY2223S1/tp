@@ -39,11 +39,11 @@ Given below are my contributions to the project.
           * (Now removed due to outdated UI) Made before/after diagrams for add/delete & tag/untag
         * v1.4: Fixed part of the issues with the UG pointed out during the PE dry run
     * Developer Guide (DG)
-        * v1.4: Wrote an introduction (user profile, value proposition, etc.), standardized image & caption formatting, 
+        * v1.4: Wrote an introduction (user profile, value proposition, etc.), did up the table of contents, standardized image & caption formatting, 
       tweaked formatting (added/changed headers, bold/italics to make some text easier to read)
         * v1.4: Added implementations for fav/unfav and an optional field (did up their diagrams as well)
 
 * **Review/Mentoring**:
     * Authored 11 user-story related issues
-    * Reviewed 14 pull requests 
+    * Reviewed 15 pull requests 
 
