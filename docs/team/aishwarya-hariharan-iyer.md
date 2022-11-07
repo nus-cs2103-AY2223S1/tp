@@ -65,8 +65,9 @@ Given below are my contributions to the project.
         * User Stories for all find commands and all client commands (Pull request [\#115](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/115))
 
 * **Contributions to team-based tasks and beyond**:
-    * Reviewed some team pull requests and offered suggestions
     * Created some issues for the weekly deliverables
+    * Reviewed and approved some PRs, explored in detail various design decisions using comments in assigned PRs and 
+      issues
     * Completed the assigned issues each week, including bug-fixing from the dry-run
     * Helped manage weekly meetings by setting Zoom links and taking notes
     * Reported bugs and suggestions for other teams in the class [(Link)](https://github.com/Aishwarya-Hariharan-Iyer/ped/issues)
