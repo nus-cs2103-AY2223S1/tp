@@ -1,7 +1,7 @@
 [![Java CI](https://github.com/AY2223S1-CS2103T-T15-1/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S1-CS2103T-T15-1/tp/actions/workflows/gradle.yml)
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-T15-1/tp/branch/master/graph/badge.svg?token=ELUB36KYBS)](https://codecov.io/gh/AY2223S1-CS2103T-T15-1/tp)
 
-![Ui](docs/images/ui-screenshots/Ui.png)
+![Ui](docs/images/Ui.png)
 
 Coydir is a desktop application used by Human Resource Executives to manage their employee base and streamline data collection.
 
@@ -13,9 +13,10 @@ It is made simpler with a easy-to-use graphical user interface(GUI) and can also
 - For the detailed documentation of this project, see the **[Coydir Product Website](https://ay2223s1-cs2103t-t15-1.github.io/tp/)**.
 
 **Other Links:**
-* [About Us](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/docs/AboutUs.md)
-* [Developer Guide](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/docs/DeveloperGuide.md)
-* [User Guide](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/docs/UserGuide.md)
+
+- [About Us](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/docs/AboutUs.md)
+- [Developer Guide](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/docs/DeveloperGuide.md)
+- [User Guide](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/docs/UserGuide.md)
 
 # Acknowledgements
 
