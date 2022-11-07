@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY_STATUS;
 
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditTagCommand;
@@ -18,12 +20,14 @@ import seedu.address.model.tag.PriorityTag;
  * create a EditTagCommand object.
  */
 public class EditTagCommandParser implements Parser<EditTagCommand> {
+    private final Logger logger = LogsCenter.getLogger(EditTagCommand.class);
     public static final String INVALID_INDEX_EDIT_TAG = "The index for tagedit should be an unsigned "
             + "positive integer greater than 0 "
             + "and lesser than 2147483648.";
 
     @Override
     public EditTagCommand parse(String args) throws ParseException {
+        logger.info("Parsing arguments for EditTagCommand.");
         requireNonNull(args);
         ArgumentMultimap argumentMultimap = ArgumentTokenizer
                 .tokenize(args, PREFIX_DEADLINE, PREFIX_PRIORITY_STATUS);
