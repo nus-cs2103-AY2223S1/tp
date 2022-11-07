@@ -221,7 +221,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How undo & redo executes:**
 
@@ -256,10 +256,10 @@ The following sequence diagram shows how the ModelManager works when archive com
 
 After`ApplicationBook#setArchive` is called the `Model#archiveApplication` will apply the predicate that hides the archived application to the `FilterList` in `Model` and the archived application will be hidden from the updated list shown in UI.
 
-#### Constraints of Data archiving:
+#### Constraints of Data archiving
 Archived applications cannot be archived again. Doing so will cause `CommandException` to be thrown. The same reasoning applies to retrieve command.
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How should data archiving be implemented?**
 
@@ -305,7 +305,7 @@ New commands are added to facilitate the operations of `Interview`.
 The sequence diagram is as follows:
 ![AddInterviewSequenceDiagram](images/AddInterviewSequenceDiagram.png)
 
-#### Constraints of Interview:
+#### Constraints of Interview
 
 In order for the Interview fields to make sense, several constraints are added:
 1. `InterviewDate` must be after the `Application` applied `Date`, else `InvalidInterviewException` will be thrown.
@@ -313,7 +313,7 @@ In order for the Interview fields to make sense, several constraints are added:
 3. Two Interviews are considered duplicates if they have the same `InterviewDate` and overlapping `InterviewTime`, then `DuplicateInterviewException` will be thrown.
 4. New `Interview` is allowed to overwrite the current `Interview` that is already assigned to an `Application`. This can be considered as an `EditInterview` feature, but we did not explicitly write out this feature as the `AddInterviewCommand` can be reused here instead.
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How should Interview be presented?**
 
@@ -326,7 +326,7 @@ In order for the Interview fields to make sense, several constraints are added:
 
 ### Find Feature 
 
-#### Design considerations: 
+#### Design considerations
 
 **Aspect: What fields should the `find` command search through?** 
 
