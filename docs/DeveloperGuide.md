@@ -259,7 +259,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 The Find Contact Feature is facilitated by `FindCommand`. It extends `Command` and uses the `PersonMatchesPredicate` field (which implements the `Predicate` interface).
 
 `PersonMatchesPredicate` encapsulates all the required filters the user enters. `FindCommand` then uses the `test` method of the `Predicate` interface to filter contacts one at a time. `PersonMatchesPredicate` uses `ALL` search for fields,
-but `OR` search in general. e.g. `find n/bob ann t/friend` will return contacts named `bob` and `ann` if both contacts have the tag `friend`. Whereas `find t/friend owesMoney` would just return all contacts who have the tag `friend` OR `owesMoney`.
+but `OR` search inside fields. e.g. `find n/bob ann t/friend` will return contacts named `bob` and `ann` if both contacts have the tag `friend`. Whereas `find t/friend owesMoney` would just return all contacts who have the tag `friend` OR `owesMoney`.
 
 Given below is an example usage scenario and how the find command mechanism behaves at each step.
 
@@ -268,6 +268,7 @@ Step 1. The user types `find n/bob t/friend` and presses enter.
 Step 2. The `find n/bob` will be parsed by `AddressBook#parseCommand()` which will return a `FindCommandParser` which also creates a `PersonMatchesPredicate`.
 
 Step 3. The `FindCommandParser` will parse `n/bob t/friend` using `parse()`. `parse()` creates a `List` of strings from the arguments of `n/` and a `Set` of strings from the arguments of `t/`. It then set the `namesList` of the `PersonMatchesPredicate` to the list of strings sets the `tagSet` of `PersonMatchesPredicate` to the set of strings.
+
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** `FindCommand` supports an "all fields matched" mode and "any fields matched" for module codes and tags. This means the setting of the modulesSet and tagsSet works differently than the other fields.
 </div>
@@ -291,7 +292,7 @@ The following sequence diagram shows how the find contact feature works.
 **Aspect: How find contact feature is implemented:**
 
 * **Alternative 1 (current choice):** Extend on the use of the class that implements the `Predicate` interface.
-    * Pros: Easily extendable for future enhancements of find command.
+    * Pros: Easily extendable for future enhancements of find command and when more fields are added to contacts. The `Predicate#test` just needs to accommodate one more field.
     * Pros: Less of the codebase needs to be changed.
 
 * **Alternative 2:** Create a generic contact class through the fields provided and match with other contacts to filter.
@@ -307,6 +308,36 @@ The following sequence diagram shows how the find contact feature works.
 * **Alternative 2 (current choice):** Create a `Set` out of the strings provided by the user.
     * Pros: This will allow us to use set operations such as `equal` and `containsAll` (subset) for `All` search and `retainALL` for intersect. The Java Set is a tried and tested collection which reduced the need for us to create new code for the set operations.
 
+### Proposed enhancements:
+
+**Aspect: How to make find contact more flexible:**
+
+Currently most fields are matched if they contain the full string. Although it is not case-sensitive, searching for contacts does not always need to be an exact match e.g. the user may enter a typo or may not fully remember the desired contact to look for.
+
+* **Alternative 1:** Implement fuzzy search to make a decision based on the "closeness" of the user input and contact's field.
+    * Pros: This may accommodate for user typos and reduce constraints, overall improving user experience.
+    * Cons: It may be difficult to implement as no one has experience with this algorithm. Furthermore, it may require heavy testing before it can be rolled out.
+  
+
+**Aspect: How to make find contact faster:**
+
+Currently most fields are matched using Java's `String#containsWordIgnoreCase`. Upon research this runs in O(nm) where n is the string and m is the substring. This can become very slow as the contact database size increases to very large numbers. 
+
+Moreover, the more specific the find command is, the longer the execution could take.
+
+* **Alternative 1:** Use the trie data structure to store contact information.
+    * Pros: This may reduce the runtime of `FindCommand` for each field from O(nm) to O(m).
+    * Cons: Implementing the data structure for each field may be difficult and will require a lot of testing.
+    * Cons: This may increase the runtime for other operations such as adding contacts.
+    * Cons: Implementing the data structure may require restructuring the entire program. This may not be worth the payoff as of now. 
+    * Cons: This will increase the memory usage of the program. The balance between runtime and space will have to be considered.
+
+* **Alternative 2:** Use a hashmap to store contact information.
+    * Pros: This may reduce the runtime of `FindCommand` for each field from O(nm) to O(n).
+    * Pros: Implementing this may not be very time-consuming, but testing may become complicated.
+    * Cons: This may increase the runtime for other operations such as adding contacts.
+    * Cons: Implementing the data structure may require restructuring the entire program. This may not be worth the payoff as of now.
+    * Cons: This will increase the memory usage of the program. The balance between runtime and space will have to be considered.
 
 ### Sort List Feature
 
