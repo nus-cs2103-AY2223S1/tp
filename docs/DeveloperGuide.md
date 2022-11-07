@@ -272,11 +272,11 @@ Step 1: The user enters the command `view 1`.
 
 Step 2: The `TuthubParser` verifies the `ViewCommand#COMMAND_WORD`, and requests `ViewCommandParser` to parse. The `ViewCommandParser` verifies the appropriateness of the user input (`index`).
 
-Step 3: Upon parsing, a new `ViewCommand` based on the valid index.
+Step 3: Upon parsing, a new `ViewCommand` is created based on the valid index.
 
 Step 4: When the `ViewCommand` is executed, a new `CommandResult` with `isView` set to `true` is created and `ModelManager#tutorToView` is updated with the selected tutor.
 
-Step 5: Upon recognising the `CommandResult` is of `isView` type, `MainWindow` calls `logic#getTutorToView()` to get the tutor to be displayed, which is passed into `MainWindow#handleView(Tutor tutor)`.
+Step 5: Upon recognising the `CommandResult` is of `isView` type, `MainWindow` calls `logic#getTutorToView()` to get the tutor to be displayed from `Model`, which is then passed into `MainWindow#handleView(Tutor tutor)`.
 
 Step 6: This causes the `TutorDetailsPanel` of the `tutor` to be set as visible, resulting in the side panel being displayed.
 
