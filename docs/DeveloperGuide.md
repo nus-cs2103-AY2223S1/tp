@@ -357,7 +357,7 @@ Currently most fields are matched if they contain the full string. Although it i
 
 Currently most fields are matched using Java's `String#containsWordIgnoreCase`. Upon research this runs in O(nm) where n is the string and m is the substring. This can become very slow as the contact database size increases to very large numbers. 
 
-Moreover, the more specific the find command is, the longer the execution could take.
+Moreover, the more filters the find command has, the longer the execution could take.
 
 * **Alternative 1:** Use the trie data structure to store contact information.
     * Pros: This may reduce the runtime of `FindCommand` for each field from O(nm) to O(m).
