@@ -271,6 +271,7 @@ Search Types:
 | **Job ID**          | Substring                 |
 | **Job Title**       | Matching word             |
 | **Tag**             | Matching word             |
+
 Examples:
 * `find n/Bobby` Returns applicants with names matching `bobby` and `Bobby Cortez`
 * `find g/Female c/3.5 2` returns female applicants with a CAP value of `3.5` or `2.0`
