@@ -367,6 +367,9 @@ Examples:
 
 `t find do paper` finds tasks that contain the `KEYWORD` 'do paper', such as 'do paper one', 'do paper two'
 
+| ![FindCommand](images/FindCommandImage.png) |
+|:-------------------------------------------:|
+|      Demonstration of FindTasksCommand      |
 ### Sorting the task list
 Sorts the tasks in the task list based on the criteria specified
 
@@ -512,6 +515,9 @@ Example:
 `e add m/CS2030S ex/midterms ed/20-11-2022` adds the exam with the exam module as 'CS2030S',
 exam description as 'midterms', exam date as '20-11-2022' into the exam list. 
 
+| ![AddExamCommand](images/AddExamImage.png) |
+|:------------------------------------------:|
+|      Demonstration of AddExamCommand       |
 
 ### Editing an exam
 Edits the specified exam, by updating the existing values to the input values.
