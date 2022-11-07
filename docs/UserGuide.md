@@ -33,6 +33,8 @@ to use and what it does for all the features available in myStudent. If you don'
 There are three possible list: the **student list**, the **tutor list** and the **class list**. 
 Only one of the three will be displayed at one time, and this list is referred to as the **displayed list**. 
 
+</div>
+
 <div markdown="block" class="alert alert-info">
 
 :information_source: Notes about the command format in this user guide:
