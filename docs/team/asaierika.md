@@ -59,6 +59,7 @@ to break the pre-existing functionalities of AB3, which leads to dependencies of
     * Added all diagrams for the User Guide.
     * Added the Layout section.
     * Added documentation for the show command.
+    * Added documentation for the Troubleshooting section.
   * Developer Guide:
     * Added documentation for the list type feature.
     * Added the sequence diagram for the `list command` in the list type feature.
