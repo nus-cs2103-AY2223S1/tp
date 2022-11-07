@@ -52,7 +52,6 @@ public class PersonMatchesKeywordsPredicateTest {
         // Only one matching keyword
         predicate.setKeywords("Bob Carol");
         assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").build()));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
 
         // Mixed-case keywords
         predicate.setKeywords("aLIce bOB");
