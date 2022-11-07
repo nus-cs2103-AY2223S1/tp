@@ -40,5 +40,5 @@ Given below are my contributions to the project.
         * Updated README.md and index.md to ensure [GitHub](https://github.com/AY2223S1-CS2103-F14-3/tp) and the [CinternS Product Website](https://ay2223s1-cs2103-f14-3.github.io/tp/) are displaying correctly.
 
 * **Community**:
-      * PRs reviewed (with non-trivial review comments) (PR [#91](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/91), PR [#199](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/199)).
-      * Reported 17 bugs and suggestions for other teams in the class (Issues: [here](https://github.com/jhchee18/ped/issues)).
+    * PRs reviewed (with non-trivial review comments) (PR [#91](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/91), PR [#199](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/199)).
+    * Reported 17 bugs and suggestions for other teams in the class (Issues: [here](https://github.com/jhchee18/ped/issues)).
