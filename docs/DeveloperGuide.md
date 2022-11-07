@@ -698,7 +698,7 @@ Expected: No profile is added. Error details shown in the status message.
 2. Incorrect help commands to try:: `help ...` (where ... contains any combination of characters)<br>
    Expected: No help window appears. Error details shown in the status message.
 
-### Clearing all datag
+### Clearing all data
 
 1. Prerequisites: Some data has been added with the `profile -a` and `event -a` commands.
 
