@@ -7,9 +7,7 @@ import static seedu.watson.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 import javafx.collections.ObservableList;
-
 import org.junit.jupiter.api.Test;
-
 import seedu.watson.commons.core.GuiSettings;
 import seedu.watson.logic.commands.exceptions.CommandException;
 import seedu.watson.model.Model;
