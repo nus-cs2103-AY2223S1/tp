@@ -70,6 +70,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W15-3/tp/blob/master/src/main/java/tracko/ui/Ui.java)
@@ -86,6 +88,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Order` and `InventoryItem` object residing in the `Model`.
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -116,6 +120,8 @@ How the parsing works:
 * When called upon to parse a user command, the `TrackOParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddOrderCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddOrderCommand`) which the `TrackOParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddOrderCommandParser`, `DeleteOrderCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W15-3/tp/blob/master/src/main/java/tracko/model/Model.java)
 
@@ -136,6 +142,7 @@ The `Model` component,
 
 </div>
 
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -153,6 +160,8 @@ The `Storage` component,
 Classes used by multiple components are in the `tracko.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -185,6 +194,8 @@ The `InventoryItem` class encapsulates item-related data packaged in the followi
 * `ItemName`, `Description`, `SellPrice`, `CostPrice` - inventory data related to the `InventoryItem`
 * `Quantity` - quantity of an item currently in the inventory
 * `Tag` - 30-character long tag to help classify items in the inventory
+
+<div style="page-break-after: always;"></div>
 
 ### Add Item Feature
 
@@ -243,6 +254,8 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: easier to implement
   * Cons: user input is very long and may be more prone to typos
 
+<div style="page-break-after: always;"></div>
+
 ### Delete Item Feature
 
 The delete item feature allows the user to delete an `InventoryItem` currently being tracked by the system.
@@ -280,6 +293,8 @@ end of diagram.
   - Pros: User do not need to check for the `InventoryItem` object's `Index`.
   - Cons: Harder to implement.
 
+<div style="page-break-after: always;"></div>
+
 ### List Items Feature
 
 The list items feature allows the user to list all the existing `InventoryItem`s in the inventory.
@@ -313,6 +328,8 @@ reaches the end of diagram.
 - **Alternative 1 (current choice)**: The command lists all the items in the inventory list.
   - Pros: Easier to implement.
   - Cons: Unable to filter specific items.
+
+<div style="page-break-after: always;"></div>
 
 ### Find Item Feature
 
@@ -352,6 +369,8 @@ reaches the end of diagram.
 - **Alternative 2**: The command can find items based on all of their fields.
     - Pros: Can search based on more fields, useful if the user has large number of items to navigate through.
     - Cons: Harder to implement.
+
+<div style="page-break-after: always;"></div>
 
 ### Edit Item Feature
 
@@ -406,6 +425,8 @@ end of diagram.
   - Pros: Less bug-prone, more convenient for the developers to implement.
   - Cons: Not user-friendly and makes things more difficult for the user.
 
+<div style="page-break-after: always;"></div>
+
 ### Order Management
 
 Order management is one of two core features of TrackO alongside inventory management. These two features work together
@@ -433,6 +454,8 @@ The `Order` class encapsulates order-related data packaged in the following clas
 * `ItemQuantityPair` - represents an ordered `InventoryItem` in the `Order`, with an accompanying `Quantity` that represents the amount of units of said `InventoryItem` ordered by the customer
 * `LocalDateTime` - the time at which the order entry was created in the system
 * `isPaid`/`isDelivered` - represents the completion status of the order (an `Order` is considered complete if both fields are true)
+
+<div style="page-break-after: always;"></div>
 
 ### Add Order Feature
 
@@ -523,6 +546,8 @@ The following activity diagram below illustrates the general flow of the user's 
   * Pros: Better user experience. Users can be sure that any previously entered input is already validated by the application, making it less overwhelming to input large amounts of information.
   * Cons: Harder to implement as it deviates from the original command execution structure (where one instance of user input relates to one full command execution).
 
+<div style="page-break-after: always;"></div>
+
 ### Find Order Feature
 
 The find order feature allows the user to find an `Order` to be tracked by the system.
@@ -571,6 +596,8 @@ The following activity diagram summarizes what happens when a user executes a va
   - Pros: More robust searching functionality, allowing users to search by more fields at once. This benefits users with a large customer base.
   The ability to search by delivery and payment status also allows users to keep track of the orders which have yet to be paid/delivered.
   - Cons: Harder to implement.
+
+<div style="page-break-after: always;"></div>
 
 ### Edit Order Feature
 
@@ -644,6 +671,8 @@ inputted by the user.
   - Pros: Less bug-prone, more convenient for the developers to implement.
   - Cons: Not user-friendly and makes things more difficult for the user.
 
+<div style="page-break-after: always;"></div>
+
 ### Sort Orders Feature
 
 The sort orders feature allows the user to sort all the displayed order list based on their time of creation.
@@ -678,13 +707,17 @@ reaches the end of diagram.
 
 #### Design Considerations
 
-**Aspect: How the `listi` command executes**
-
-- **Alternative 1 (current choice)**: The command lists all the items in the inventory list.
+**Aspect: Sorting criteria for `sorto` command**
+- **Alternative 1 (current choice)**: The command sorts all the orders in the order list by time created.
   - Pros: Easier to implement.
-  - Cons: Unable to filter specific items.
+  - Cons: User can only sort by order's time of creation.
+- **Alternative 2**: The command allows the user to sort by different criteria based on order details.
+  - Pros: User has more flexibility while sorting orders.
+  - Cons: Harder to implement.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -710,6 +743,7 @@ business owners who prefer to type more/are more efficient at typing to
 allow them to save time on managing orders and logistics instead of
 traditional GUI applications such as Excel, or even pen and paper.
 
+<div style="page-break-after: always;"></div>
 
 ## **Appendix B: User stories**
 
@@ -738,6 +772,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*    `  | business owner who is new to the application | import my current database of order and inventory information to TrackO | seamlessly transfer from other applications to TrackO                             |
 | `*   `   | business owner who is new to the application | use more verbose commands to complete my tasks                          | get more used to the syntax of the commands in the application                    |
 | `*   `   | tired business owner working at night        | view the application's GUI in dark mode                                 | my eyes don't get strained                                                        |
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix C: Use cases**
 
@@ -917,7 +953,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 1a1. System informs user of the incomplete item data.
 
       Use case resumes at 1.
-    
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix D: Non-Functional Requirements**
 
@@ -938,6 +975,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Command**: An instruction for the application to execute
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix F: Instructions for manual testing**
 
@@ -974,6 +1013,8 @@ testers are expected to do more *exploratory* testing.
    * Other incorrect addi commands to try: `addi`, `addi x`, `...`(where x is a string containing the inventory item details but is missing a required parameter) <br>
    Expected: similar to previous.
 
+<div style="page-break-after: always;"></div>
+
 ### Listing all inventory items
 
 1. Display all inventory items of a populated inventory
@@ -999,6 +1040,8 @@ testers are expected to do more *exploratory* testing.
    * Prerequisites: Have an inventory list containing only inventory items with the item names `Chair`, `Table`, `Bed`.
    * Test case: `findi pen` <br>
    Expected: No inventory item is displayed in the inventory list. 0 inventory items found shown in the status message.
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting an inventory item
 
@@ -1034,6 +1077,8 @@ testers are expected to do more *exploratory* testing.
    * Other incorrect delete commands to try: `deletei`, `deletei x`, ... (where x is larger than the size of the displayed inventory list) <br>
      Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
+
 ### Editing an inventory item
 
 1. Editing an inventory item while all inventory item(s) are being shown
@@ -1068,6 +1113,8 @@ testers are expected to do more *exploratory* testing.
    * Other incorrect edit commands to try: `editi`, `editi x`, ... (where x is larger than the sie of the displayed inventory list) <br>
      Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
+
 ### Adding an order
 
 1. Adding an order, attempt to add existing and non-existent inventory items in order's item list.
@@ -1098,6 +1145,8 @@ testers are expected to do more *exploratory* testing.
      * Step 2: `cancel` <br>
        Expected: System notifies that the command has been aborted and exits the command sequence.
 
+<div style="page-break-after: always;"></div>
+
 ### Listing all orders
 
 1. Listing all orders after calling `findo`
@@ -1125,6 +1174,8 @@ testers are expected to do more *exploratory* testing.
      specifications of the correct `findo` command format.
    * Other incorrect `findo` commands to try: `findo`, `findo -e`. <br>
      Expected: Similar to previous.
+
+<div style="page-break-after: always;"></div>
 
 ### Sorting orders by time created
 
@@ -1160,6 +1211,8 @@ testers are expected to do more *exploratory* testing.
    * Other incorrect delete commands to try: `deleteo`, `deleteo x`, `...` (where x is larger than the current 
    list size) <br>
    Expected: Similar to previous.
+
+<div style="page-break-after: always;"></div>
 
 ### Editing an order
 
@@ -1197,6 +1250,8 @@ testers are expected to do more *exploratory* testing.
    <br>
      Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
+
 ### Getting help
 
 1. Opening the help window
@@ -1221,7 +1276,9 @@ testers are expected to do more *exploratory* testing.
    Expected: The command does not proceed to the next stage and an error message is shown by the system.
    * Test case: `clear`, followed by `x`, `123`, `abc`, `...` (any input that is not `confirm` or `cancel`) <br>
    Expected: An error message showing the proper ways to proceed or abort the command is shown by the system.
-   
+
+<div style="page-break-after: always;"></div>
+
 ### Exiting TrackO
 
 1. Exiting via CLI
