@@ -15,7 +15,7 @@ If you can type fast, FRIDAY can get your student management tasks done faster t
 
 1. Ensure you have Java 11 or above installed in your computer.
 
-2. Download the latest `friday.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-4/tp/releases).
+2. Download the latest JAR file `friday.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the *home folder* for your FRIDAY.
 
@@ -514,7 +514,7 @@ If your changes to the data file makes its format invalid, FRIDAY will ignore al
 
 3. **Java:** Java is a programming language introduced in the 90's. It is used to create many applications that you use today. Including this one.
 
-4. **.jar:** Specifies the file format of the file.
+4. **JAR:** The file format of FRIDAY.
 
 5. **Command:** The text that you enter in the input box is a command.
 
