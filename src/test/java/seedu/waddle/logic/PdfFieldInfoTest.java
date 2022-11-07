@@ -6,9 +6,9 @@ import org.junit.jupiter.api.Test;
 
 public class PdfFieldInfoTest {
 
-    String name = "item_1";
-    String value = "dinner";
-    PdfFieldInfo info = new PdfFieldInfo(name, value);
+    private String name = "item_1";
+    private String value = "dinner";
+    private PdfFieldInfo info = new PdfFieldInfo(name, value);
 
     @Test
     public void getName_same() {

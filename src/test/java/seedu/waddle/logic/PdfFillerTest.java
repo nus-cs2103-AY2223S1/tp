@@ -1,29 +1,11 @@
 package seedu.waddle.logic;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.interactive.form.PDAcroForm;
-import org.apache.pdfbox.pdmodel.interactive.form.PDField;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.waddle.testutil.TypicalItineraries.AUTUMN;
-import static seedu.waddle.testutil.TypicalItineraries.SUMMER;
 import static seedu.waddle.testutil.TypicalItineraries.WINTER;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
-import seedu.waddle.commons.core.Text;
-import seedu.waddle.model.item.Day;
-import seedu.waddle.model.itinerary.Itinerary;
-import seedu.waddle.storage.JsonUserPrefsStorage;
-import seedu.waddle.storage.JsonWaddleStorage;
-import seedu.waddle.storage.StorageManager;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class PdfFillerTest {
 
