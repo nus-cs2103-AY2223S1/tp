@@ -41,7 +41,7 @@ Given below are my contributions to the project.
   * Justification: This helps to eliminate bugs for commands that uses this predicates.
   * Highlights: Increased code coverage by 6%.
 
-* **Attributes Test**: Writes test for Priority, TaskCategory, TaskDate, TaskDeadline,Task (Pull requests [\#177](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/177))
+* **Attributes Test**: Writes test for Priority, TaskCategory, TaskDate, TaskDeadline,Task (Pull requests [\#177](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/177)).
   * What it does: Performs automated testing to check if the attributes are valid.
   * Justification: This helps to ensure that invalid inputs for these attributes are handled appropriately, and that there will not be a case where a valid input is treated as an invalid input.
   * Highlights: Increased code coverage by 6%.
