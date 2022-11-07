@@ -190,34 +190,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain task management features are implemented.
 
 
-### Assign Teammate(s) to a Task Feature
-
-#### Current Implementation
-
-The `task assign` feature assigns/unassigns contacts to the task specified by the user. The selection of tasks is implemented by acting on the current filtered `TaskPanel` with a one-based `Index` specified by the user, getting the target `Task` at the specified index. The selection of teammates is implemented by acting on the current filtered `AddressBook` with one or more one-based `Index` specified by the user, getting the target `Teammate` at the specified index. The selection of teammate can also be done through specifying the full name of the teammate, which is matched with the target `Teammate` in the filtered `AddressBook`.
-
-![AssignTaskSequenceDiagram](images/AssignTaskSequenceDiagram.png)
-
-#### Example Usage of `task assign`
-
-1. User launches Arrow. The `TaskPanel` and `AddressBook` is populated with existing `Task` and `Teammate` entries respectively.
-2. User types in the command `task assign 1 +@2 -@Bernice Yu`. `1` is the specified index of `Task` in `TaskPanel` to be assigned to given in one-based form. `2` is the specified index of `Teammate` in the `AddressBook` to be assigned. "Bernice Yu" is the full name of the `Teammate` in the `AddressBook` to be unassigned.
-3. The `LogicManager` detects that this is a `TaskCommand`, and therefore passes the user input to the `TaskPanelParser`
-4. The `TaskPanelParser` detects the `AssignTaskCommand.COMMAND_WORD`, and therefore parses the command arguments via a `AssignTaskCommandParser`
-5. The relevant parameters are used to create an instance of a `AssignTaskCommandd`, which is then returned to the `TaskPanelParser`
-6. The `LogicManager` executes the command
-7. The command obtains the current state of the `TaskPanel` and `AddressBook` from `Model`.
-8. The `Task` to be modified is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
-9. The `Teammate`s to be assigned are fetched from the `AddressBook` using the specified `Index`, using its zero-based
-   form, or through matching his full name.
-10. The `Teammate`s are assigned/unassigned to the `Task`.
-11. The `GUI` is updated to show the new `TaskPanel` with the `Task`'s assigned contacts updated.
-
-The AssignTaskCommandParser relies on the ArgumentMultimap abstraction, which helps to tokenize the user input by
-pre-specified prefixes. The prefix +@ denotes that the contact is to be assigned, while prefix `@ denotes that the
-contact is to be unassigned from the task's assigned contact list.
-
-
 ### Clearing Tasks Feature
 
 #### Current Implementation
@@ -352,6 +324,38 @@ The `unmark` feature is implemented by acting on the current filtered`TaskPanel`
 4. The `Task` to be unmarked is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
 5. The `Task` is marked as incomplete.
 6. The `GUI` is updated to show the new `TaskPanel` with the `Task` marked as incomplete.
+
+
+
+### Assign Teammate(s) to a Task Feature
+
+#### Current Implementation
+
+The `task assign` feature assigns/unassigns contacts to the task specified by the user. The selection of tasks is implemented by acting on the current filtered `TaskPanel` with a one-based `Index` specified by the user, getting the target `Task` at the specified index. The selection of teammates is implemented by acting on the current filtered `AddressBook` with one or more one-based `Index` specified by the user, getting the target `Teammate` at the specified index. The selection of teammate can also be done through specifying the full name of the teammate, which is matched with the target `Teammate` in the filtered `AddressBook`.
+
+![AssignTaskSequenceDiagram](images/AssignTaskSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AssignTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+#### Example Usage of `task assign`
+
+1. User launches Arrow. The `TaskPanel` and `AddressBook` is populated with existing `Task` and `Teammate` entries respectively.
+2. User types in the command `task assign 1 +@2 -@Bernice Yu`. `1` is the specified index of `Task` in `TaskPanel` to be assigned to given in one-based form. `2` is the specified index of `Teammate` in the `AddressBook` to be assigned. "Bernice Yu" is the full name of the `Teammate` in the `AddressBook` to be unassigned.
+3. The `LogicManager` detects that this is a `TaskCommand`, and therefore passes the user input to the `TaskPanelParser`
+4. The `TaskPanelParser` detects the `AssignTaskCommand.COMMAND_WORD`, and therefore parses the command arguments via a `AssignTaskCommandParser`
+5. The relevant parameters are used to create an instance of a `AssignTaskCommandd`, which is then returned to the `TaskPanelParser`
+6. The `LogicManager` executes the command
+
+![AssignTaskSequenceDiagramReferenceFrame](images/AssignTaskSequenceDiagramReferenceFrame.png)
+
+7. The command obtains the current state of the `TaskPanel` and `AddressBook` from `Model`.
+8. The `Task` to be modified is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
+9. The `Teammate`s to be assigned are fetched from the `AddressBook` using the specified `Index`, using its zero-based form, or through matching his full name.
+10. `Contact`s of `Teammate`s to be assigned are created using the `Teammate`s' names.
+11. The modified `Task` is created with the newly assigned `Contact`s
+11. The `Model` is updated with the modified `Task`.
+12. The `GUI` is updated to show the new `TaskPanel` with the `Task`'s assigned contacts updated.
+
+The AssignTaskCommandParser relies on the ArgumentMultimap abstraction, which helps to tokenize the user input by pre-specified prefixes. The prefix +@ denotes that the contact is to be assigned, while prefix `@ denotes that the contact is to be unassigned from the task's assigned contact list.
 
 
 ### Task Class Design Considerations:
