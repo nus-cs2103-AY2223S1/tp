@@ -20,7 +20,7 @@ class JsonAdaptedReminder {
 
     /**
      * Constructs a {@code JsonAdaptedReminder} with the given {@code reminderTask} and {@code reminderDate}.
-     * {@code reminderDate} should be in the format of 'd-MM-yyyy'.
+     * {@code reminderDate} should be in the format of 'dd-MM-yyyy'.
      */
     @JsonCreator
     public JsonAdaptedReminder(@JsonProperty("key") String reminderTask, @JsonProperty("value") String reminderDate) {

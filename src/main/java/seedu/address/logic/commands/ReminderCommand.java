@@ -19,9 +19,10 @@ public class ReminderCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sets a reminder for a given contact\n"
             + "Example: " + COMMAND_WORD + " 1 r/update client information d/20-10-2022";
-    public static final String MESSAGE_DATE_CONSTRAINTS = "Date should be in the format 'D-MM-YYYY'";
+    public static final String MESSAGE_DATE_CONSTRAINTS = "Date should be in the format 'DD-MM-YYYY'";
     public static final String MESSAGE_INVALID_DATE = "The date provided is invalid!";
     public static final String MESSAGE_EMPTY_REMINDER = "The reminder should not be empty!";
+    public static final String MESSAGE_EMPTY_DATE = "The date should not be empty!";
 
     public static final String MESSAGE_ADD_REMINDER_SUCCESS = "Added reminder to Person: %1$s";
     public static final String MESSAGE_DELETE_REMINDER_SUCCESS = "Removed reminder from Person: %1$s";
@@ -62,5 +63,13 @@ public class ReminderCommand extends Command {
     private String generateSuccessMessage(Person personToEdit) {
         String message = !reminder.task.isEmpty() ? MESSAGE_ADD_REMINDER_SUCCESS : MESSAGE_DELETE_REMINDER_SUCCESS;
         return String.format(message, personToEdit);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ReminderCommand // instanceof handles nulls
+                && (index != null && index.equals(((ReminderCommand) other).index))
+                && (reminder != null && reminder.equals(((ReminderCommand) other).reminder))); // state check
     }
 }

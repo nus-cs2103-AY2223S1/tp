@@ -71,6 +71,10 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_BIRTHDAY_DESC = " " + PREFIX_BIRTHDAY
             + "10 Jan 2021"; // Birthday has to follow "d-mm-yyyy"
+    public static final String INVALID_DATE_FORMAT_DESC = " " + PREFIX_DATE
+            + "10 Jan 2021"; // Birthday has to follow "d-mm-yyyy"
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE
+            + "30-02-2021"; // February does not have a 30th
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

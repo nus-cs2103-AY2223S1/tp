@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -20,7 +21,7 @@ import seedu.address.model.person.Reminder;
 /**
  * Parses input arguments and creates a new {@code ReminderCommand} object
  */
-public class ReminderCommandParser {
+public class ReminderCommandParser implements Parser<ReminderCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the {@code ReminderCommand}
@@ -34,6 +35,11 @@ public class ReminderCommandParser {
 
         Index index;
         Reminder reminder;
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_REMINDER, PREFIX_DATE)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderCommand.MESSAGE_USAGE));
+        }
+
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
@@ -47,6 +53,11 @@ public class ReminderCommandParser {
         if (task.isBlank()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     ReminderCommand.MESSAGE_EMPTY_REMINDER));
+        }
+
+        if (date.isBlank()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ReminderCommand.MESSAGE_EMPTY_DATE));
         }
 
         try {
@@ -65,6 +76,14 @@ public class ReminderCommandParser {
         reminder = new Reminder(task, date);
 
         return new ReminderCommand(index, reminder);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
 

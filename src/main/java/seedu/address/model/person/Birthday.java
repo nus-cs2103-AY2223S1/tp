@@ -13,7 +13,7 @@ import java.time.format.ResolverStyle;
  * Guarantees: immutable; is always valid
  */
 public class Birthday {
-    public static final String MESSAGE_CONSTRAINTS = "Birthdays should be in the format 'D-MM-YYYY'";
+    public static final String MESSAGE_CONSTRAINTS = "Birthdays should be in the format 'DD-MM-YYYY'";
     public static final String MESSAGE_INVALID_DATE = "The birthday provided is invalid!";
     public static final String MESSAGE_INVALID_BIRTHDAY = "The birthday provided is in the future!";
 
