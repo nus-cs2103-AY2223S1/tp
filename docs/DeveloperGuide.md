@@ -405,13 +405,13 @@ Example Use: `client -s c/1`
 
 **Aspect: How sorted entities are stored in the Model:**
 
-* **Alternative 1 (current choice):** Sort entities directly on their original entity lists. After `SortProjectCommand`, `SortIssueCommand` or `SortClientCommand`, the original entity list gets manipulated and is rendered to the View.
-    * Pros: Saves lots of space
-    * Cons: Sort commands manipulate the original entity list in order to change the display on view
+**Alternative 1 (current choice):** Sort entities directly on their original entity lists. After `SortProjectCommand`, `SortIssueCommand` or `SortClientCommand`, the original entity list gets manipulated and is rendered to the View.
+* Pros: Saves lots of space
+* Cons: Sort commands manipulate the original entity list in order to change the display on view
 
-* **Alternative 2:** Maintain a separate sorted entity list for each entity and their purpose is to store each entity in their sorted order. After `SortProjectCommand`, `SortIssueCommand` or `SortClientCommand`, the respective sorted entity list gets manipulated and is rendered to the View.
-    * Pros: The original entity lists will not be affected by manipulations made through sorting in order to change the display on view 
-    * Cons: To maintain such a sorted entity list for Project, Issue and Client will take up considerable space
+**Alternative 2:** Maintain a separate sorted entity list for each entity and their purpose is to store each entity in their sorted order. After `SortProjectCommand`, `SortIssueCommand` or `SortClientCommand`, the respective sorted entity list gets manipulated and is rendered to the View.
+* Pros: The original entity lists will not be affected by manipulations made through sorting in order to change the display on view 
+* Cons: To maintain such a sorted entity list for Project, Issue and Client will take up considerable space
     
 Alternative 1 was chosen because it saves space when sorting entities. The command to set default view of each entity helped overcome the cons of directly manipulating of the original list. This meant rebooting the app removed the previous entity sort order and revert to the default order. 
 
@@ -452,13 +452,13 @@ The following activity diagram summarizes what happens when a user executes a pi
 
 **Aspect: How entities can be unpinned:**
 
-* **Alternative 1 (current choice):** The same command e.g. `PinClientCommand` used to pin the entity is also used to unpin the entity.
-    * Pros: Less duplication of code and less commands for the user to remember.
-    * Cons: Lesser separation of responsibilities as the same command is used for different (but similar) functionality.
+**Alternative 1 (current choice):** The same command e.g. `PinClientCommand` used to pin the entity is also used to unpin the entity.
+* Pros: Less duplication of code and less commands for the user to remember.
+* Cons: Lesser separation of responsibilities as the same command is used for different (but similar) functionality.
 
-* **Alternative 2:** An additional separate unpin command is created e.g. `UnpinClientCommand`.
-    * Pros: Better separation of responsibilities as one command is used to pin and the other is used to unpin the entity. There is no overlap.
-    * Cons: More duplication of code, additional command for user to remember with roughly the same functionality.
+**Alternative 2:** An additional separate unpin command is created e.g. `UnpinClientCommand`.
+* Pros: Better separation of responsibilities as one command is used to pin and the other is used to unpin the entity. There is no overlap.
+* Cons: More duplication of code, additional command for user to remember with roughly the same functionality.
 
 ### Find Command Feature
 
@@ -492,7 +492,7 @@ Example Use: `issue -f t/Documentation s/Incomplete u/LOW n/DevEnable p/1 i/3`
 Optional prefixes (at least one to be included): n/VALID_CLIENT_NAME, c/VALID_CLIENT_ID, e/VALID_EMAIL, m/VALID_MOBILE
 Example Use: `client -f n/BenTen c/1 m/12345678 e/Ben10@gmail.com`
 
-#### The following sequence diagram shows how the edit command operation works for editing an issue entity:
+The following sequence diagram shows how the find command operation works for finding a client:
 Example: `client -f n/Harry`
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
@@ -518,11 +518,27 @@ and `ClientCommandParser:parseFindlientCommand` to have access to the Model.
 Taking into consideration the extra coupling involved, Alternative 1 was chosen as the current design for Find 
 Command's access to the model.
 
+**Aspect: Find Command's validation of input keywords:**
+
+**Alternative 1: (current choice)** All keywords must pass the validation check based on their respective prefixes.
+* Pros: Helps to differentiate between no items being listed because none matched the search criteria and because the
+  criteria was invalid.
+* Cons: The user can only search by valid keywords and thus has less flexibility in choosing inputs.
+
+**Alternative 2:** The keywords need not pass the validation check for their respective prefixes.
+* Pros: The user has greater freedom in choosing the inputs which is a more familiar experience with respect to
+  other such apps.
+* Cons: There is ambiguity in cases where no items are listed as to whether it is because such an item can never exist
+  in the list or if it does not exist at the time of search.
+
+Taking into consideration the need for clear system feedback to the user, Alternative 1 was chosen as the current
+design for Find Command's validation of input keywords.
+
 **Aspect: How Find Command matches a keyword against the target in a given field:**
 
 **Alternative 1: (current choice)** At least one word in the target must match exactly with the keyword.
-* Pros: The search result is more precise and concise which makes it easier for the user to navigate and the 
-  keyword can be validated for each prefix which makes it easier for the user to use a variety of prefixes and keywords.
+* Pros: The search result is more precise and concise which makes it easier for the user to navigate and the keyword 
+  can be validated for each prefix which makes it easier for the user to use a variety of prefixes and keywords.
 * Cons: Partial searches are not supported as the user needs to search by whole words.
 
 **Alternative 2:** At least a part of the target must match with the keyword.
@@ -532,7 +548,7 @@ Command's access to the model.
 Taking into account the ease of use and the benefits of input validation, Alternative 1 was chosen as the current 
 design to match keywords against targets.
 
-**Aspect: How Find Command handles multiple keywords for a prefix:**
+**Aspect: How Find Command handles multiple keywords for name and title prefixes:**
 
 **Alternative 1: (current choice)** At least one word in the target must match exactly with at least one keyword.
 * Pros: The user can search for many keywords at once such that the user can filter the list based on multiple criteria.
@@ -540,28 +556,29 @@ design to match keywords against targets.
 
 **Alternative 2:** At least one word in the target must match exactly with all keywords.
 * Pros: The user can search for exact sentences or phrases.
-* Cons: The user can not search based on many keywords and may not remember long phrases.
+* Cons: The user can not search based on many keywords and may not be able to remember long phrases to use this
+  effectively.
 
-Taking into account the convenience and intuitiveness of searching for multiple keywords and the limitation 
-of the benefit of searching by phrases being relevant only to name and title arguments due to input validation, 
-Alternative 1 was chosen as the current design to handle multiple keywords for a prefix.
+Taking into account the ease of use when the user can search for long titles or names by remembering non-continuous 
+words as opposed to a long phrase and the relevance of the design decision being specific to the name and title 
+prefixes, Alternative 1 as chosen as the current design to handles multiple keywords for the name and title prefixes.
 
 **Aspect: How Find Command handles multiple arguments with the same prefix:**
 
 **Alternative 1: (current choice)** At least one word in the target is in the union of the set of keywords 
 from multiple arguments with the same prefix.
-* Pros: It is easier for the user to remember and more convenient to expand search criteria without having to alter 
-  prefix arguments already typed.
-* Cons: This might be redundant with the search made when multiple keywords are present for an argument.
+* Pros: The user can search for many keywords at once such that the user can filter the list based on multiple
+  criteria and more convenient to expand search criteria without having to alter prefix arguments already typed.
+* Cons: It might be redundant with the multi keyword search for arguments with name and title prefixes.
 
-**Alternative 2:** At least one word in the target matches with at least word from the last argument with the prefix.
-the same prefix.
-* Pros: It prevents redundancy with the search made when multiple keywords are present for an argument.
+**Alternative 2:** At least one word in the target matches with the keyword from the last argument with the same prefix.
+* Pros: It prevents redundancy with the search made when multiple keywords are present for an argument with the name
+  and title prefixes.
 * Cons: It does not allow the user to easily expand his search criteria and might be harder to remember.
 
 Taking into account the benefits of improving flexibility of use by allowing the user to expand the search criteria 
-as he types without having to edit a part of the command already typed, Alternative 1 was chosen as the current 
-design to handle multiple arguments with the same prefix.
+as he types without having to edit a part of the command already typed and the redundancy being restricted to only 
+certain prefixes, Alternative 1 was chosen as the current design to handle multiple arguments with the same prefix.
 
 **Aspect: How Find Command handles multiple arguments with different prefixes:**
 
@@ -604,7 +621,7 @@ which retrieves the issue with the parsed issueId from the `IssueList` in the sy
 Compulsory argument: VALID_ISSUE_ID
 Example use: `issue -u 2`
 
-#### The following sequence diagram shows how the mark command operation works for mark an issue entity:
+The following sequence diagram shows how the mark command operation works for mark an issue entity:
 Example: `issue -m 1`
 
 #### Design Considerations
@@ -658,27 +675,30 @@ with the shortest and easiest to type command possible. It also allowed for comm
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-|  `* * *` | student developer  |  track multiple projects spread across different websites in one place. | |
-| `* * *`         | forgetful developer  |  see all the tasks for my projects on one page  |  I will remember what needs to be an experienced developer,  |
-|  `* * *`        | developer  |  see the projects automatically sorted in accordance with the deadline  |  I can manage and clear those with a higher urgency first |
-| `* * *`         | user  |  add projects to the application | |
-| `* * *`         | user  |  delete projects from the application  |  I can keep my data accurate if I make a mistake in entering data. |
-| `* * *`         | user  |  edit projects from the application  |  I can handle changes in my projects. |
-| `* * *`         | user  |  tag clients to each project  |  I can know which clients each project is under. |
-|  `* * *`        | new user  |  view a guide  |  I can learn about the functionalities of the application. |
-| `* * *`         | user  |  add deadlines to the projects  |  I can prioritize accordingly. |
-| `* * *`         | user  |  add the contact numbers and email addresses of each client to the projects  |  I can contact them more efficiently. |
-|  `* * *`        | user  |  link my projects to their repositories  |  I can easily navigate to them. |
-|   `* *`        | developer  |  choose to ‘pin’ certain projects  |  I can quickly access them  |
-|   `* *`        | developer  |  see all the issues/room for improvements of the website that my clients have in one place,  |  I know what features/bugs to work on for them |
-|   `* *`        | new user  |  view dummy data  |  I can learn how to use the application. |
-|   `* *`        | new user  |  tag ongoing bugs to a project  |  I can allocate my time to bug fixes in an efficient manner. |
-| `* *`         | developer  |  sort the projects  |  I can see which projects require more urgency when the number of projects becomes too long. |
-|    `* *`       | developer  |  clear all data using a single command |  |
-|     `* *`      | user  |  split the project tiles into different categories  |  I can organize my workspace better. |
-|    `*`       | user  |  automatically check my projects for issues  |  I can efficiently check for outstanding bug fixes. |
+| Priority | As a …​             | I want to …​                                                                               | So that I can…​                                                                             |
+|----------|---------------------|--------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| `* * *`  | student developer   | track multiple projects spread across different websites in one place.                     |                                                                                             |
+| `* * *`  | forgetful developer | see all the tasks for my projects on one page                                              | I will remember what needs to be an experienced developer,                                  |
+| `* * *`  | developer           | see the projects automatically sorted in accordance with the deadline                      | I can manage and clear those with a higher urgency first                                    |
+| `* * *`  | user                | add projects to the application                                                            |                                                                                             |
+| `* * *`  | user                | delete projects from the application                                                       | I can keep my data accurate if I make a mistake in entering data.                           |
+| `* * *`  | user                | edit projects from the application                                                         | I can handle changes in my projects.                                                        |
+| `* * *`  | user                | tag clients to each project                                                                | I can know which clients each project is under.                                             |
+| `* * *`  | new user            | view a guide                                                                               | I can learn about the functionalities of the application.                                   |
+| `* * *`  | user                | add deadlines to the projects                                                              | I can prioritize accordingly.                                                               |
+| `* * *`  | user                | add the contact numbers and email addresses of each client to the projects                 | I can contact them more efficiently.                                                        |
+| `* * *`  | user                | link my projects to their repositories                                                     | I can easily navigate to them.                                                              |
+| `* * *`  | user                | find projects by fields such as their name, id and repository                              | I can easily view specific projects                                                         | 
+| `* * *`  | user                | find clients by fields such as their name, id, mobile and email                            | I can easily view specific clients                                                          |
+| `* * *`  | user                | find issues by fields such as their title, id, urgency, and status                         | I can easily view specific issues                                                           |
+| `* *`    | developer           | choose to ‘pin’ certain projects                                                           | I can quickly access them                                                                   |
+| `* *`    | developer           | see all the issues/room for improvements of the website that my clients have in one place, | I know what features/bugs to work on for them                                               |
+| `* *`    | new user            | view dummy data                                                                            | I can learn how to use the application.                                                     |
+| `* *`    | new user            | tag ongoing bugs to a project                                                              | I can allocate my time to bug fixes in an efficient manner.                                 |
+| `* *`    | developer           | sort the projects                                                                          | I can see which projects require more urgency when the number of projects becomes too long. |
+| `* *`    | developer           | clear all data using a single command                                                      |                                                                                             |
+| `* *`    | user                | split the project tiles into different categories                                          | I can organize my workspace better.                                                         |
+| `*`      | user                | automatically check my projects for issues                                                 | I can efficiently check for outstanding bug fixes.                                          |
 
 *{More to be added}*
 
@@ -1176,7 +1196,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all entities using the respective entity list command. Multiple entities in the list.
 
     2. Test case: `client -e c/1 n/Charles m/92345678 e/charles@gmail.com`<br>
-       Expected: Client with `clientId` 1 is edited to have new `name` Charles, new `mobile` 92345678 and new `email` 
+       Expected: Client with `clientId` 1 is edited to have new `ame` Charles, new `mobile` 92345678 and new `email` 
        charles@gmail.com. New `name` of the edited client shown in the status message. View of client list is shown.
 
     3. Test case: `issue -e i/2 t/Finish Work u/2`<br>
@@ -1187,11 +1207,11 @@ testers are expected to do more *exploratory* testing.
        Expected: Project with `projectId` 1 is edited to have new `deadline` 12 Dec 2019. The `name` of edited project 
        shown in the status message. View of project list is shown.
 
-    6. Test case: `client -e c/0 n/Barry m/12345678 e/harry@gmail.com`<br>
+    5. Test case: `client -e c/0 n/Barry m/12345678 e/harry@gmail.com`<br>
        Expected: No client is edited. Error details shown in the status message.
 
-    9. Other incorrect edit commands to try: `client -e`, `client -e c/1`, `client -e c/1 p/&&123456`, `client -e n/Harry c/x`, `...` (where x is larger than the 
-       client list size)<br>
+    6. Other incorrect edit commands to try: `client -e`, `client -e c/1`, `client -e c/1 p/&&123456`, `client -e 
+       n/Harry c/x`, `...` (where x is larger than the client list size)<br>
        Expected: Similar to previous.
     
 ### Sorting an entity
