@@ -656,7 +656,59 @@ testers are expected to do more *exploratory* testing.
 
 ### Increasing a customer's reward
 
+1. Increase a customer's reward via `PHONE_NUMBER`
+
+    1. Prerequisites: Ensure that the sample data is loaded with customers `Alex Yeoh`, `Bernice Yu`,... when launching the JAR file
+
+    2. Test case: `incr 1000 p/87438807`<br>
+       Expected: The reward of customer with `PHONE_NUMBER` corresponding to `87438807` (in this case `Alex Yeoh`) will be increased by 1000. Edited customer's detail shown in the status message
+
+    3. Test case: `incr 1000 p/11111111`<br>
+       Expected: No customer's reward is increased since `11111111` does not correspond to any customer's `PHONE_NUMBER`. Error details shown in the status message.
+
+    4. Other incorrect increment commands to try: `incr`, `incr p/87438807`, `incr p/`, `incr hello`, `...`<br>
+       Expected: Similar to previous.
+
+2. Increase a customer's reward via `EMAIL`
+
+    1. Prerequisites: Ensure that the sample data is loaded with customers `Alex Yeoh`, `Bernice Yu`,... when launching the JAR file
+
+    2. Test case: `incr 1000 e/charlotte@example.com`<br>
+       Expected: The reward of customer with `EMAIL` corresponding to `charlotte@example.com` (in this case `Charlotte Oliveiro`) will be increased by 1000. Edited customer's detail shown in the status message.
+
+    3. Test case: `incr e/bruno@mars.com`<br>
+       Expected: No customer's reward is increased since `bruno@mars.com` does not correspond to any customer's `EMAIL`. Error details shown in the status message.
+
+    4. Other incorrect increment commands to try: `incr`, `incr e/charlotte@example.com`, `incr e/`, `incr hello`, `...`<br>
+       Expected: Similar to previous.
+
 ### Decreasing a customer's reward
+
+1. Decrease a customer's reward via `PHONE_NUMBER`
+
+    1. Prerequisites: Ensure that the sample data is loaded with customers `Alex Yeoh`, `Bernice Yu`,... when launching the JAR file
+
+    2. Test case: `decr 1000 p/87438807`<br>
+       Expected: The reward of customer with `PHONE_NUMBER` corresponding to `87438807` (in this case `Alex Yeoh`) will be increased by 1000. Edited customer's detail shown in the status message
+
+    3. Test case: `decr 1000 p/11111111`<br>
+       Expected: No customer's reward is increased since `11111111` does not correspond to any customer's `PHONE_NUMBER`. Error details shown in the status message.
+
+    4. Other incorrect increment commands to try: `decr`, `decr p/87438807`, `decr p/`, `decr hello`, `...`<br>
+       Expected: Similar to previous.
+
+2. Decrease a customer's reward via `EMAIL`
+
+    1. Prerequisites: Ensure that the sample data is loaded with customers `Alex Yeoh`, `Bernice Yu`,... when launching the JAR file
+
+    2. Test case: `decr 1000 e/charlotte@example.com`<br>
+       Expected: The reward of customer with `EMAIL` corresponding to `charlotte@example.com` (in this case `Charlotte Oliveiro`) will be decreased by 1000. Edited customer's detail shown in the status message.
+
+    3. Test case: `decr e/bruno@mars.com`<br>
+       Expected: No customer's reward is increased since `bruno@mars.com` does not correspond to any customer's `EMAIL`. Error details shown in the status message.
+
+    4. Other incorrect increment commands to try: `decr`, `decr e/charlotte@example.com`, `decr e/`, `decr hello`, `...`<br>
+       Expected: Similar to previous.
 
 ### Listing all customers
 
@@ -743,12 +795,18 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: Ensure that there are no spaces in between the arithmetic operands and symbols
 
    2. Test case: `calc 5+2*(4-2)`<br>
-      Expected: The answer of `9.00` should be shown in the status message.
+      Expected: The answer of `9` should be shown in the status message.
    
    3. Test case: `calc 5 + 2 * (4 - 2)`<br>
-      Expected: The `invalid expression` message will be shown in the status message.
+      Expected: The answer of `9` should be shown in the status message.
+
+   4. Test case: `calc 1++1` <br>
+      Expected: The error message `INVALID ARITHMETIC EXPRESSION` will be shown.
+
+   5. Test case: `calc` <br>
+      Expected: The error message `Invadid command format!` will be shown with the instructions.
    
-   4. Other incorrect delete commands to try: `calc`, `calc hello`, `...`<br>
+   6. Other incorrect delete commands to try: `calc hello`, `calc 13//24*4^42` , `...`<br>
       Expected: Similar to previous.
 
 ### Viewing Help
