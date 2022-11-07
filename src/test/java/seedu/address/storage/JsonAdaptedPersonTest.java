@@ -1,6 +1,8 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BENSON;
@@ -152,11 +154,18 @@ public class JsonAdaptedPersonTest {
     }
 
     @Test
-    public void toModelType_invalidUpcomingAppointment_throwsIllegalValueException() {
+    public void toModelType_invalidUpcomingAppointment_createsEmptyUpcomingAppointment() {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_NEXT_OF_KIN, VALID_PATIENT_TYPE,
                         VALID_HOSPITAL_WING, VALID_FLOOR_NUMBER, VALID_WARD_NUMBER, VALID_MEDICATIONS,
                         VALID_PAST_APPOINTMENTS, INVALID_UPCOMING_APPOINTMENT);
-        assertThrows(IllegalValueException.class, person::toModelType);
+        try {
+            // get() without isPresent() check as JsonAdaptedPerson creates
+            // an empty UpcomingAppointment if the date is invalid
+            assertNull(person.toModelType().getUpcomingAppointment().get().getDate());
+        } catch (IllegalValueException e) {
+            // should not occur as the person is valid
+            fail();
+        }
     }
 }
