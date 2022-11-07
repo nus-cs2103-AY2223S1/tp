@@ -323,8 +323,8 @@ The find item command is supported by `FindItemCommand`. It extends `Command`.
 
 Given below is an example usage scenario and how the find item mechanism behaves at each step.
 
-Step 1. The user executes `findi chair mattress` command to find the orders containing items with the keywords
-keychain or apple. The `findi` command calls `FindItemCommandParser` which checks for the correct command
+Step 1. The user executes `findi chair mattress` command to find the items with the keywords
+chair or mattress. The `findi` command calls `FindItemCommandParser` which checks for the correct command
 syntax and separates the keywords, utilising each space as a delimiter.
 
 Step 2. The keywords are then passed into a constructor for `ItemContainsKeywordsPredicate`,
@@ -548,9 +548,14 @@ that will filter the items according to the keywords. The predicate is passed in
 `FindOrderCommandParser` will throw a `ParseException`.
 </div>
 
-The following sequence diagram shows how the find order operation works:
+The following sequence diagram shows how the find order command works:
 
 ![FindOrderSequenceDiagram](images/FindOrderSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindItemCommandParser`
+and `FindItemCommand` should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline 
+reaches the end of diagram.
+</div>
 
 The following activity diagram summarizes what happens when a user executes a valid find order command:
 ![FindOrderActivityDiagram](images/FindOrderActivityDiagram.png)
