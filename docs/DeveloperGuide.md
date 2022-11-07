@@ -762,7 +762,7 @@ For all use cases below, the **System** is the `NutriGoals` application and the 
 
 * **Surplus**: The positive difference between the calories consumed in a day and the target daily intake. These calories are consumed to facilitate weight gain and muscle growth.
 
-* **Food item**: Refers to an individual item of food that is consumed by the user
+* **Food item**: Refers to an individual item of food that is consumed by the user.
 
 * **Meals**: Breakfast, Lunch, Dinner e.t.c., categories that consist of multiple food items and is usually consumed at a particular time.
 
