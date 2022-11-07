@@ -744,11 +744,11 @@ testers are expected to do more *exploratory* testing.
        Expected: No person is deleted. Error message is shown in the result display.
 
     4. Other incorrect deletePerson commands to try: `deletePerson`, `deletePerson x`, `...` (where x is larger than the person list size)<br>
-       Expected: Similar to previous.
+       Expected: Similar to previous test case.
 
 2. Deleting a person while some persons are being shown
 
-    1. Prerequisites: List only some persons using the `find` command and specify certain keywords.
+    1. Prerequisites: List only some persons using the `findPersons` command and specify certain keywords.
 
     2. Test case: `deletePerson 1`<br>
        Expected: First person is deleted from the current displayed person list. Details of the deleted person shown in the result display.
@@ -757,7 +757,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No person is deleted from the current displayed person list. Error message is shown in the result display.
 
     4. Other incorrect deletePerson commands to try: `deletePerson`, `deletePerson x`, `...` (where x is larger than the person list size)<br>
-       Expected: Similar to previous.
+       Expected: Similar to previous test case.
 
 ### Adding a person
 
@@ -773,7 +773,7 @@ testers are expected to do more *exploratory* testing.
 
     4. Other incorrect addPerson commands to try: `addPerson 1`, `addPerson n/person a/street e/person@gmail.com p/12345678 d/01.01.2000 g/m`, `...`
        (where the date of birth is in the wrong format)<br>
-       Expected: Similar to previous.
+       Expected: Similar to previous test case.
 
 ### Listing Events by Event Date
 1. Listing Events by their Event Titles
@@ -787,7 +787,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Current event list remains the same and no events are sorted. Error message is shown in the result display.
 
     4. Other incorrect listEvent commands to try: `LISTEVENTS s/d`, `listEvents s/d e`, `listEvents s/n`<br>
-       Expected: Similar to second test case.
+       Expected: Similar to previous test case.
 
     5. `listEvents s/d` lists and sorts all events by their dates even if the event list does not display all events due to the `findEvents` command.
 
@@ -807,7 +807,7 @@ testers are expected to do more *exploratory* testing.
     5. Other incorrect tagEvent commands to try: `tagEvent x p/y` (where either x is larger than the size of the current event list or y is
        larger than the size of the current person list), `TAGEVENT 1 p/1`, `tagEvent 1 p/x` (where x is the index of a person that is already tagged in the first event
        in the current event list).<br>
-       Expected: Similar to second test case.
+       Expected: Similar to previous test case.
 
 2. Tagging multiple persons to an Event
     1. Prerequisites: There must be at least 1 event in the event list and more than 1 person in the person list.
@@ -824,7 +824,7 @@ testers are expected to do more *exploratory* testing.
     5. Other incorrect tagEvent commands to try: `tagEvent x p/y z` (where either x is larger than the size of the current event list or y or z is
        larger than the size of the current person list), `TAGEVENT 1 p/1 2`. `tagEvent 1 p/x y` (where either x or y is the index of a person that is already tagged in the
        first event in the current event list)<br>
-       Expected: Similar to second test case.
+       Expected: Similar to previous test case.
 
 ### Untagging Person(s) from an Event
 1. Untagging a person from an Event
@@ -844,7 +844,7 @@ testers are expected to do more *exploratory* testing.
     5. Other incorrect tagEvent commands to try: `untagEvent x p/y` (where either x is larger than the size of the current event list or y is
        larger than the size of the current person list), `UNTAGEVENT 1 p/1`, `untagEvent 1 p/x` (where x is the index of a person that is not tagged in the first event
        in the current event list).<br>
-       Expected: Similar to second test case.
+       Expected: Similar to previous test case.
 
 2. Untagging multiple persons from an Event
     1. Prerequisites: There must be more than 1 person tagged to an event in the event list and these persons must appear in the current displayed person list.
@@ -863,7 +863,7 @@ testers are expected to do more *exploratory* testing.
     5. Other incorrect tagEvent commands to try: `untagEvent x p/y z` (where either x is larger than the size of the current event list or y or z is
        larger than the size of the current person list), `UNTAGEVENT 1 p/1 2`, `untagEvent 1 p/x y` (where either x or y is the index of a person that is not tagged in the first event
        in the current event list).<br>
-       Expected: Similar to second test case.
+       Expected: Similar to previous test case.
 
 ### Generating a pie chart statistic for an Event
 1. Generating a pie chart statistic from an Event
@@ -877,7 +877,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No new window is opened. Error message is shown in the result display.
 
     4. Other incorrect makeStats commands to try: `MAKESTATS 1 t/g`, `makeStats 1 t/g a`<br>
-       Expected: Similar to second test case.
+       Expected: Similar to previous test case.
 
 ### Creating a mailing list for an Event
 1. Generating a mailing list from an Event
@@ -891,7 +891,7 @@ testers are expected to do more *exploratory* testing.
        Expected: No CSV files are created. Error message is shown in the result display.
 
     4. Other incorrect makeStats commands to try: `MAILEVENT 1`, `mailEvent x` (where x is larger than the size of the displayed event list)<br>
-       Expected: Similar to second test case.
+       Expected: Similar to previous test case.
 
 ### Saving data
 
@@ -918,7 +918,7 @@ we still encountered numerous merge conflicts and situations that we did not exp
 entities). Compared to other groups, we believe that we have put in an average amount of effort because one of the past lectures mentioned how
 most groups had over-exceeded the amount of effort that is actually required.
 
-Fortunately, some members within the group was able to experience first-hand working with others on a serious Software Engineering project. For
+Fortunately, some members within the group were able to experience first-hand working with others on a serious Software Engineering project. For
 those that were more experienced, we still had new takeways when we worked with other members in the group and we were able to guide each other
 and receive proper feedback from other groups in class as well as hold respectful discussions within the group. We believe our product has
 some use in the real world as it is simple enough to be used and can even be extended to other uses.
