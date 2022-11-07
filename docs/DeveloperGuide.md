@@ -686,9 +686,9 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
         Use case ends.
 
-* 2b. The student’s attendance is already marked as present.
+* 2a. The student’s attendance is already marked as present.
 
-    - 2b1. Teacher’s Pet shows a message indicating student’s attendance is already marked as present.
+    - 2a1. Teacher’s Pet shows a message indicating student’s attendance is already marked as present.
 
         Use case ends.
 
