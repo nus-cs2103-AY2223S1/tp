@@ -158,7 +158,129 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add link feature
+### Module subcomponent
+
+#### General Design
+
+A `Module` class is used to represent a module. A `Module` contains the following attributes:
+- `ModuleCode`, representing module code
+- `ModuleTitle`, representing module title (optional field). If there is no module title, then the 
+  module title is stored as empty string.
+- `TaskList`, representing a list of `Tasks`, which in turn represent a module-related task
+- `TreeSet` of `Link` objects, storing the set of links associated to the `Module`
+- `HashSet` of `Person` objects, storing the set of people associated to the `Module`
+
+More details regarding tasks can be found [here](#task-subcomponent).
+More details regarding links can be found [here](#link-subcomponent).
+More details regarding persons can be found [here](#person-subcomponent).
+More details regarding module-to-person associations can be found [here](#module-and-person-association).
+
+Here are the ways in which different classes in the `Model` component interact
+with `Module`:
+- A `UniqueModuleList` represents the list of `Module` objects.
+- The list of modules is stored in the `AddressBook` class.
+- The `ModelManager` class stores the `AddressBook` containing the list of unfiltered `Module`
+  objects, and a separate instance variable storing the list of filtered `Module` objects.
+
+The UML class diagram of the `Module`-related parts of `Model` component is shown below:
+
+![ModelModuleClassDiagram](images/ModelModuleClassDiagram.png)
+
+The `Storage` component has been updated for persistent storage of modules. `JsonAdaptedModule`
+has been added to represent a `Module` object in JSON format.
+
+### Add Module Feature
+
+One feature related to modules is the add module feature. This feature is especially 
+important because without the ability to add modules, it would be impossible to add tasks and 
+links. Associating a person to a module would also be impossible.
+
+The implementation of deleting and editing module are similar. Hence, they will be omitted.
+
+### Implementation of add module feature
+
+The add module mechanism is facilitated by `AddModuleCommand` and `AddModuleCommandParser`.
+`AddModuleCommandParser` will parse the module code (compulsory field) and the module title 
+(optional field), and return an `AddModuleCommand` object. Upon calling `AddModuleCommand#execute()`,
+a module object with the appropriate module code and module title will be added via 
+`Model#addModule()` method. 
+
+Below shows a description of an example scenario for adding a command. 
+
+**Step 1**: User enters command `add-module m/CS2105` to add module CS2105 to Plannit.
+
+**Step 2**: `AddressBookParser`, the parser for Plannit, will parse the user command to return an
+`AddModuleCommand` object.
+
+**Step 3**: The resulting `AddModuleCommand` object is then executed. The validity of the input
+module code provided is checked. This involves a check of whether the input is a duplicate module
+(case-insensitive, removing leading and trailing whitespaces).
+
+**Step 4**: After successful checks, the module `CS2105` will be added into Plannit.
+
+**Step 5**: `Model#goToHomePage()` is called, hence Plannit goes back to the home page.
+
+**Step 6**: The `saveAddressBook()` method of `StorageManager` is called to save the 
+newly-updated list of modules to a JSON file.
+
+**Step 7**: `JsonAddressBookStorage` is called, which serializes/converts the new list of modules
+into JSON format, so that it can be saved into a file. The file will be read whenever Plannit
+starts up so that it can load saved module and person data.
+
+**Step 8**: Plannit Graphical User Interface (GUI) displays message that the addition of module has
+been successful.
+
+The following sequence diagram summarizes what happens when the user requests to add module 
+`CS2105` to Plannit via `add-module` command, excluding updating the storage file.
+
+![AddModuleSequenceDiagram](images/AddModuleSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** The lifeline for `AddModuleCommand` and `AddModuleCommandParser` should end at the 
+destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+The following activity diagram summarizes what happens when the user requests to add module to
+Plannit via `add-module` command.
+
+![AddModuleActivityDiagram](images/AddModuleActivityDiagram.png)
+
+#### Alternatives Considered
+
+Aspect: The class-level design of how to integrate the `Module` class to the `Model` component.
+
+* **Alternative 1 (current choice):** Reuse the same `AddressBook` to also store the list of
+  unique `Module` objects.
+
+    * Pros: A duplicate class `AddressBook` for `Model` methods is not necessary.
+
+    * Cons: `AddressBook`, `ModelManager` and other classes would need to be updated to include
+      `Module`. Hence, the interfaces `ReadOnlyAddressBook` and `Model` also need to be updated to support
+      the `Module`-related methods.
+
+* **Alternative 2:** Create another `AddressBook`-like class to store the list of `Module` objects.
+
+    * Pros: Functionality for `Person` and `Module` are now separate. This better adheres to the
+      Single Responsibility Principle because `AddressBook` only does operations regarding `Person`
+      rather than doing operations regarding both `Person` and `Module`.
+
+    * Cons: More classes to implement. In particular, `AddressBook` and `ReadOnlyAddressBook`
+      need to be duplicated into separate classes to support `Module`.
+
+Rationale behind current choice:
+1. Duplicating `AddressBook` will result in duplicating dependent classes such as
+   `ReadOnlyAddressBook`, `JsonAddressBookStorage` and `JsonSerializableAddressBook`, hence complicating
+   the implementation. For example, the storage component will now need to deal with two `AddressBook`
+   instances, hence requiring either two separate storage files, or changing the implementation
+   to combine the contents of the two different `AddressBook`-like classes into one file. Combining
+   `Person` and `Module` into one `AddressBook` would avoid this issue.
+2. While dealing with lists of `Person` and `Module` objects are two different functionalities,
+   both functionalities deal with a list of user-provided objects. Therefore, the cohesion should not
+   significantly decrease.
+
+### Link subcomponent
+
+#### Add link feature
 
 The 'add link' feature allows for the user to add links with corresponding aliases to a `Module` in Plannit.
 Links in Plannit are represented by the `Link` class. A `Link` object contains two required fields,
@@ -265,7 +387,7 @@ TreeSet was selected as to ensure a consistent sorting order across all modules 
 will spend the least amount of the time searching for their required alias for each module,
 thus boosting their productivity.
 
-### Person component
+### Person subcomponent
 
 #### General design
 Every contact added into Plannit is represented as a `Person` object.
@@ -478,7 +600,7 @@ Rationale behind current choice:
    bugs as the implementation would be very different from existing (heavily-tested) code.
 
 
-### Task component
+### Task subcomponent
 
 #### Implementation
 

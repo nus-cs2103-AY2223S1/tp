@@ -1,6 +1,6 @@
 @startuml
 start
-:User executes add module command;
+:User executes add-module command;
 
 /'
 @@author cheeheng-reused
@@ -11,10 +11,14 @@ Comment reused from AB3 Activity Diagram Template.
 '@@author
 
 if () then ([syntax is valid])
-    if () then ([module does not already exist])
-        :Add module to Plannit;
-        :Save current Plannit state to
-        addressBookStateList;
+    :Parse module code and module title;
+    if () then ([module of the same module code
+    does not already exist])
+        :Add module to Plannit
+        model instance;
+        :Go to home page;
+        :Update storage file;
+        :Display success message;
     else ([else])
         :Show module already
         exists error;
