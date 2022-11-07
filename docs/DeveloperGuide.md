@@ -902,6 +902,8 @@ For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `us
 There are two Mastery Checks through the semester. Students will be assessed by their knowledge of the topics covered by presenting to their teaching assistant in pairs.
 Since users have to arrange dates to meet with their students to conduct the Mastery Checks, FRIDAY allows users to record the scheduled dates for each student.
 6. **Default Command**: The original command word for a command in FRIDAY. (e.g. `add`,`sort`)
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
