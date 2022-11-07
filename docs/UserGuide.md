@@ -53,11 +53,11 @@ Interface (GUI). If you can type fast, Duke The Market can help you organise you
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is specified multiple times, only the last occurrence of the parameter will be considered regardless of the validity of previous parameter inputs.<br>
-  e.g. if you specify `p/12341234 p/56785678`, even though both are valid phone numbers, only `p/56785678`, will be taken by the command as its parameter input.<br>
-  e.g. if you specify `d/A/B/C d/01/01/2022`, even though the first parameter input `d/A/B/C` is invalid,
-       only `d/01/01/2022`, which is a valid parameter input, will be taken by the command as its parameter input.<br>
-  e.g. if you specify `d/01/01/2022 d/A/B/C`, even though the first parameter input `d/01/01/2022` is valid,
+* If a parameter is specified multiple times, only the last occurrence of the parameter will be considered regardless of the validity of previous parameter inputs.
+  * e.g. if you specify `p/12341234 p/56785678`, even though both are valid phone numbers, only `p/56785678`, will be taken by the command as its parameter input.
+  * e.g. if you specify `d/A/B/C d/01/01/2022`, even though the first parameter input `d/A/B/C` is invalid,
+       only `d/01/01/2022`, which is a valid parameter input, will be taken by the command as its parameter input.
+  * e.g. if you specify `d/01/01/2022 d/A/B/C`, even though the first parameter input `d/01/01/2022` is valid,
        only `d/A/B/C`, which is an invalid parameter input, is considered.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
@@ -208,12 +208,12 @@ Examples:
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** A new event that has the same event title as an existing event in the application cannot be added to the application.<br><br>
 
-For example, if the application currently has a event with an event title `Car Sale`, the input `addEvent e/Car Sale d/10/10/2022 t/10:40 p/5000 dollars off all cars`
+For example, if the application currently has an event with an event title `Car Sale`, the input `addEvent e/Car Sale d/10/10/2022 t/10:40 p/5000 dollars off all cars`
 will not run and will output the error message `This event already exists in the address book`.
 </div>
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** To add an event with starting time during 12am, only input `t/00:00` is allowed. Input `t/24:00` will not be allowed.
+:information_source: **Note:** To add an event with the time of 12am, only input `t/00:00` is allowed. Meanwhile, the input of `t/24:00` is not allowed.
 </div>
 
 
@@ -339,7 +339,7 @@ Format: `mailEvent INDEX`
 
 * The `INDEX` refers to the index number shown in the displayed event list.
 * The `INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
-* The mailing list is saved as a CSV file at the following location: <br><br> `[JAR file location]/data/EVENT_TITLE.csv`.
+* The mailing list is saved as a CSV file at the following location: <br> `[JAR file location]/data/EVENT_TITLE.csv`.
   The CSV file has 2 columns: `Name` and `Email`, representing the name and email for every person tagged to the event.
 
 Example:
