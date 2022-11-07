@@ -33,5 +33,5 @@ refer to this [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboar
 **Review/mentoring contributions:** 
 * weekly review and merging of peer PRs (with simple review comments)
 
-**Contributions beyond the project team:** 
+**Contributions beyond the project team:**
 * Reported 9 bugs and suggestions for other teams.
