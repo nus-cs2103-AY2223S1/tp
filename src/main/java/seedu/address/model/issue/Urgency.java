@@ -40,7 +40,7 @@ public enum Urgency {
     /**
      * Checks if urgency string is valid.
      * @param urgency
-     * @return Boolean denoting whether the urgency integer string is valid.
+     * @return Boolean denoting whether the urgency string is valid.
      */
     public static boolean isValidUrgencyString(String urgency) {
         try {
