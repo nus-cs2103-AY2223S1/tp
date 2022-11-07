@@ -1,20 +1,19 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.buyer;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_DESIRED_CHARACTERISTICS_BOB;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRICE_RANGE_BOB;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRIORITY_LOW;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.DESC_AMY;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.DESC_BOB;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.VALID_DESIRED_CHARACTERISTICS_BOB;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.VALID_PRICE_RANGE_BOB;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.VALID_PRIORITY_LOW;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.buyer.EditBuyerCommand;
 import seedu.address.logic.commands.buyer.EditBuyerCommand.EditBuyerDescriptor;
 import seedu.address.testutil.EditBuyerDescriptorBuilder;
 

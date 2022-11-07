@@ -1,18 +1,18 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_DESIRED_CHARACTERISTICS_AMY;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_DESIRED_CHARACTERISTICS_BOB;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRICE_RANGE_AMY;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRICE_RANGE_BOB;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_PRIORITY_HIGH;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.VALID_DESIRED_CHARACTERISTICS_AMY;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.VALID_DESIRED_CHARACTERISTICS_BOB;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.VALID_PRICE_RANGE_AMY;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.VALID_PRICE_RANGE_BOB;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.VALID_PRIORITY_HIGH;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -134,5 +134,9 @@ public class TypicalBuyers {
 
     public static List<Buyer> getTypicalBuyers() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    public static List<Buyer> getTypicalBuyersWithMeier() {
+        return new ArrayList<>(Arrays.asList(BENSON, DANIEL));
     }
 }

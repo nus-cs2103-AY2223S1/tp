@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.commands.BuyerCommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalBuyers.getTypicalBuyersBook;
 import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 

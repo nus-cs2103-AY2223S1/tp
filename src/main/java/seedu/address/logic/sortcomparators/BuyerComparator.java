@@ -14,7 +14,7 @@ import seedu.address.model.price.PriceRange;
  */
 public class BuyerComparator implements Comparator<Buyer> {
     private Optional<Comparator<Name>> nameComparator;
-    private Optional<Comparator<PriceRange>> priceRangeComparator;
+    private Optional<Comparator<Optional<PriceRange>>> priceRangeComparator;
     private Optional<Comparator<Priority>> priorityComparator;
     private Optional<Comparator<LocalDateTime>> timeComparator;
 
@@ -22,7 +22,7 @@ public class BuyerComparator implements Comparator<Buyer> {
      * Creates a BuyerComparator object.
      */
     public BuyerComparator(Comparator<Name> nameComparator,
-                           Comparator<PriceRange> priceRangeComparator,
+                           Comparator<Optional<PriceRange>> priceRangeComparator,
                            Comparator<Priority> priorityComparator,
                            Comparator<LocalDateTime> timeComparator) {
         this.nameComparator = Optional.ofNullable(nameComparator);
@@ -37,7 +37,7 @@ public class BuyerComparator implements Comparator<Buyer> {
             return nameComparator.get().compare(firstBuyer.getName(), secondBuyer.getName());
         } else if (priceRangeComparator.isPresent()) {
             return priceRangeComparator.get()
-                    .compare(firstBuyer.getPriceRange().get(), secondBuyer.getPriceRange().get());
+                    .compare(firstBuyer.getPriceRange(), secondBuyer.getPriceRange());
         } else if (priorityComparator.isPresent()) {
             return priorityComparator.get()
                     .compare(firstBuyer.getPriority(), secondBuyer.getPriority());

@@ -1,7 +1,7 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.buyer;
 
-import static seedu.address.logic.commands.BuyerCommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.PropertyCommandTestUtil.showPropertyAtIndex;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.showBuyerAtIndex;
 import static seedu.address.testutil.TypicalBuyers.getTypicalBuyersBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
@@ -9,12 +9,14 @@ import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.property.ListPropertiesCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
-public class ListPropertiesCommandTest {
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
+ */
+public class ListBuyersCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -27,13 +29,13 @@ public class ListPropertiesCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListPropertiesCommand(), model, ListPropertiesCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListBuyersCommand(), model, ListBuyersCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPropertyAtIndex(model, INDEX_FIRST_ITEM);
-        assertCommandSuccess(new ListPropertiesCommand(), model, ListPropertiesCommand.MESSAGE_SUCCESS, expectedModel);
+        showBuyerAtIndex(model, INDEX_FIRST_ITEM);
+        assertCommandSuccess(new ListBuyersCommand(), model, ListBuyersCommand.MESSAGE_SUCCESS, expectedModel);
     }
-
 }
+

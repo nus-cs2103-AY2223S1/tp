@@ -1,11 +1,11 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.buyer;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.DESC_AMY;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.DESC_BOB;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.BuyerCommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.DESC_AMY;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.DESC_BOB;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalBuyers.getTypicalBuyersBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.buyer.EditBuyerCommand;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.buyer.EditBuyerCommand.EditBuyerDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;

@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
+import java.util.Optional;
 
 import seedu.address.logic.commands.buyer.SortBuyersCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -62,7 +63,7 @@ public class SortBuyersCommandParser extends Parser<SortBuyersCommand> {
 
         if (argMultimap.getValue(PREFIX_PRICE_RANGE).isPresent()) {
             Order order = ParserUtil.parseOrder(argMultimap.getValue(PREFIX_PRICE_RANGE).get());
-            Comparator<PriceRange> priceRangeComparator = new PriceRangeComparator(order);
+            Comparator<Optional<PriceRange>> priceRangeComparator = new PriceRangeComparator(order);
             buyerComparator = new BuyerComparator(null, priceRangeComparator, null, null);
         }
 
