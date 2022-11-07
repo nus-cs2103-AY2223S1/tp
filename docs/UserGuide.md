@@ -252,6 +252,7 @@ Below shows the command format used in FindMyIntern.
 
 * If a parameter is expected only once in the command but is specified multiple times, only the last occurrence of the parameter will be taken<br>
   * e.g. if `c/Google c/TikTok` is entered, only `c/TikTok` will be taken
+  * This does not apply to `INDEX`, e.g. if `delete 1 2` is entered, the command will fail
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`) will be ignored<br>
   * e.g. if `help 123` is entered, it will be interpreted as `help`
@@ -320,7 +321,7 @@ To change [application status](#application-status), see [`mark` command](#marki
 </div>
 </div>
 
-<div class="d-flex alert alert-warning">
+<div class="d-flex alert alert-warning mb-1">
 <div class="me-3">
   <span class="badge text-bg-warning">WARNING</span>
 </div>
@@ -339,7 +340,7 @@ See [Appendix: Link formats](#link-formats) for the link formats allowed. Not fo
 See [Appendix: Date/time formats](#datetime-formats) for the date/time formats allowed. Not following these formats will result in an error.
 </div>
 </div>
-
+<div style="page-break-after: always;"></div>
 Examples:
 * `add c/Apple l/https://jobs.apple.com/en-sg d/Software engineering internship a/11/10/2022` - Adds an internship application for `Apple` into the list 
 * `add c/Grab l/https://grab.careers/teams/campus d/Marketing internship a/11 Oct i/23 Nov, 3:00 pm` - Adds an internship application for `Grab` into the list
