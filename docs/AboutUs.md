@@ -32,7 +32,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/wrewsama.png" width="200px">
 
-[github](http://github.com/wrewsama) [portfolio](team/wrewsama.md)
+[[github](http://github.com/wrewsama)]
+[[portfolio](team/wrewsama.md)]
 
 * Role: Developer
 * Responsibilities: UI

@@ -3,7 +3,7 @@ layout: page
 title: Andrew Lo Zhi Sheng's Project Portfolio Page
 ---
 
-### Project: AddressBook Level 3
+### Project: GithubContact
 
 GithubContact is an address book **integrated with Github's Public API**, targeted at software engineering project
 managers to help them communicate and collaborate with their teams smoothly.
