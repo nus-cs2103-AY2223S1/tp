@@ -1,26 +1,26 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.issue.FindIssueCommand;
-import seedu.address.logic.commands.project.FindProjectCommand;
-import seedu.address.logic.parser.predicates.IssueContainsKeywordsPredicate;
-import seedu.address.logic.parser.predicates.ProjectContainsKeywordsPredicate;
-import seedu.address.model.Name;
-import seedu.address.model.issue.Status;
-import seedu.address.model.issue.Title;
-import seedu.address.model.issue.Urgency;
-import seedu.address.model.project.Repository;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Timer;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-public class FindIssueCommandParser {
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.issue.FindIssueCommand;
+import seedu.address.logic.parser.predicates.IssueContainsKeywordsPredicate;
+import seedu.address.model.Name;
+import seedu.address.model.issue.Status;
+import seedu.address.model.issue.Urgency;
+
+/**
+ * Represents the tests for parsing the FindIssueCommand.
+ */
+public class FindIssueCommandParserTest {
     private IssueCommandParser parser = new IssueCommandParser();
+
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "-f", "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -104,5 +104,14 @@ public class FindIssueCommandParser {
         assertParseFailure(parser, "-f", " u/INVALID", Urgency.MESSAGE_STRING_CONSTRAINTS);
         assertParseFailure(parser, "-f", " i/0", ParserUtil.MESSAGE_INVALID_INDEX);
         assertParseFailure(parser, "-f", " i/-1", ParserUtil.MESSAGE_INVALID_INDEX);
+    }
+
+    @Test
+    public void parse_emptyMultiPrefix_throwsException() {
+        assertParseFailure(parser, "-f", " n/", Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "-f", " p/", ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, "-f", " s/", Status.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "-f", " u/", Urgency.MESSAGE_STRING_CONSTRAINTS);
+        assertParseFailure(parser, "-f", " i/", ParserUtil.MESSAGE_INVALID_INDEX);
     }
 }

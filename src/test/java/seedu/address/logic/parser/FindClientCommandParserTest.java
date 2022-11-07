@@ -1,19 +1,23 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.client.FindClientCommand;
 import seedu.address.logic.parser.predicates.ClientContainsKeywordsPredicate;
 import seedu.address.model.Name;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientMobile;
 
-import java.util.Arrays;
-import java.util.List;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-
+/**
+ * Represents the tests for parsing the FindClientCommand.
+ */
 public class FindClientCommandParserTest {
     private ClientCommandParser parser = new ClientCommandParser();
     @Test
@@ -57,8 +61,7 @@ public class FindClientCommandParserTest {
                 new FindClientCommand(new ClientContainsKeywordsPredicate(name, email, phone, clientId));
         assertParseSuccess(parser, "-f",
                 " n/Harry Jaime n/Steve Rogers e/potter@reddit.com-sg e/test@gmail.com m/103835180 m/1234 "
-                        + "c/1 c/3",
-                expectedFindCommand);
+                        + "c/1 c/3", expectedFindCommand);
     }
 
     @Test
@@ -72,10 +75,8 @@ public class FindClientCommandParserTest {
 
         FindClientCommand expectedFindCommand =
                 new FindClientCommand(new ClientContainsKeywordsPredicate(name, email, phone, clientId));
-        assertParseSuccess(parser, "-f",
-                " n/Harry Jaime c/1 e/potter@reddit.com-sg n/Steve Rogers "
-                        + "m/103835180 e/test@gmail.com m/1234 c/3",
-                expectedFindCommand);
+        assertParseSuccess(parser, "-f", " n/Harry Jaime c/1 e/potter@reddit.com-sg n/Steve Rogers "
+                        + "m/103835180 e/test@gmail.com m/1234 c/3", expectedFindCommand);
     }
 
     @Test
@@ -85,5 +86,13 @@ public class FindClientCommandParserTest {
         assertParseFailure(parser, "-f", " m/12", ClientMobile.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "-f", " c/0", ParserUtil.MESSAGE_INVALID_INDEX);
         assertParseFailure(parser, "-f", " c/-1", ParserUtil.MESSAGE_INVALID_INDEX);
+    }
+
+    @Test
+    public void parse_emptyMultiPrefix_throwsException() {
+        assertParseFailure(parser, "-f", " n/", Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "-f", " e/", ClientEmail.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "-f", " m/", ClientMobile.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "-f", " c/", ParserUtil.MESSAGE_INVALID_INDEX);
     }
 }
