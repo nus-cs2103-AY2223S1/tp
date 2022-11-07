@@ -1,7 +1,7 @@
 [![CI Status](https://github.com/AY2223S1-CS2103T-W15-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-W15-2/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-W15-2/tp/branch/master/graph/badge.svg?token=H2G32SVMDR)](https://codecov.io/gh/AY2223S1-CS2103T-W15-2/tp)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/GUI.png)
 
 # REal-Time
 REal-Time is a desktop application for managing your client viewings and scheduling your meetings.
