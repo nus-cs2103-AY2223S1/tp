@@ -346,6 +346,10 @@ The following activity diagram summarizes what happens when a user executes an `
 
 ![EditTaskCommandActivityDiagram](images/EditTaskCommandActivityDiagram.png)
 
+The sequence diagram is shown below:
+
+![EditTaskCommandSequenceDiagram](images/EditTaskCommandSequenceDiagram.png)
+
 ### Sort Tasks Feature
 
 #### Implementation
