@@ -32,6 +32,7 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
     - [Command Summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Quick Start
 
@@ -63,6 +64,7 @@ BookFace replaces a paper-based system or manual tracking of books, providing gr
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -95,6 +97,8 @@ delete the user that is currently displayed.
 * Any whitespace between the start of a parameter prefix such as `n/` and the end of the preceding parameter will be ignored.<br>e.g. the parameter `p/` in `p/999999&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n/John` will be interpreted as `999999` and not `999999&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Adding a book : `add book`
 
 Adds a book to the library.
@@ -126,6 +130,8 @@ Format: `delete book INDEX`
 
 Examples:
 * `delete book 99`
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting a user: `delete user`
 
@@ -201,6 +207,8 @@ Format: `return INDEX`
 Examples:
 * `return 2` returns book number two (which has been previously loaned).
 
+<div style="page-break-after: always;"></div>
+
 ### Finding books : `find book`
 
 Finds a book using keywords.
@@ -236,6 +244,8 @@ Format: `find user KEYWORD [KEYWORD]...`
 Examples:
 * `find user wa` will find `Mohammad Rizwan` and `Wallace Andrew`.
 * `find user John Sim` will find `John Goh` and `Sim Chee Ming`.
+
+<div style="page-break-after: always;"></div>
 
 ### Editing a book : `edit book`
 
@@ -335,6 +345,8 @@ If your changes to the data file makes its format invalid, BookFace will discard
 **A**: Yes; it is a perfectly normal behaviour for the application **if there are loaned books in the book list**, as the intention is to show books that have been loaned as a priority in the list upon starting the app. Following this answer, the order of the book list does not immediately change after a `loan` or `return` command in order to prevent confusion in the sudden reordering of books while the app is in use.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
