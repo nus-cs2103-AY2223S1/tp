@@ -1,5 +1,3 @@
-# Gerard Stevan's Project Portfolio Page
-
 ## Project: Travelr
 Travelr allows you to plan trips around the activities in your bucket list. You will be able to keep track of your bucket list, travel dates, locations, and itineraries, all within the same app!
 
