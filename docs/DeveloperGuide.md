@@ -864,7 +864,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **GUI** A Graphical User Interface (GUI) is a visual way of interacting with a computer using items such as windows, icons, and menus.
 * **CLI** A Command Line Interface (CLI) is a way of interacting with a computer by typing commands into a text interface.
 * **JAR** Stands for Java Archive, and is a file format used to aggregate many Java class files and associated metadata and resources (text, images, etc.) into one file for distribution.
-* **Prefix** A prefix is a short string of characters that is used to identify a command parameter. It is always ended by a backslash (`\`).
+* **Prefix** A prefix is a short string of characters that is used to identify a command parameter. It is always ended by a backslash (`/`).
 * **Parameter** A parameter is a value in a command that is used to specify the behaviour of the command. Parameters are information to be supplied by the user.
 
 --------------------------------------------------------------------------------------------------------------------
