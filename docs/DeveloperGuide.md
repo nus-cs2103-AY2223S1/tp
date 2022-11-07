@@ -243,8 +243,8 @@ The sort command consists of these following classes:
 As with all other commands, the sort command has a `Parser` subclass that goes through the `AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object. It sorts the list of students by their grades in ascending or descending order as specified by the user.
 
 The command will be used as such:
-- sort by grade in ascending order - e.g.`sort asc`
-- sort by grade in descending order - e.g. `sort desc`
+- sort by English grade in ascending order - e.g.`sort asc s/ENGLISH`
+- sort by Math grade in descending order - e.g. `sort desc S/MATH`
 
 ### Grade feature
 
@@ -607,16 +607,54 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. Shut down application
+
+    1. Prerequisites: Application must currently be running.
+
+    2. Test case: Close the application using any means other than the command `exit`.
+       Expected: The application exits.
+
+    3. Test case: Close the application using the command `exit`.
+       Expected: The application exits.
+
+### Adding a student
+
+1. Adding a student while all students are being shown
+
+    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+
+    2. Test case: `add n/John Doe p/98765432 e/john@gmail.com a/2 Sengkang Avenue c/1A t/Student Council`<br>
+       Expected: Student John Doe is added the list. Details of the added student shown in the status message.
+
+    3. Test case: `add n/John Doe`<br>
+       Expected: No student is deleted. Missing required details. Error details shown in the status message. Status bar remains the same.
+
+    4. Other incorrect add commands to try: `add`, `add n/123`, `add p/abc`
+       Expected: Similar to previous.
+
+### Editing a student
+
+1. Editing a student while all students are being shown
+
+    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+
+    2. Test case: `edit 1 n/John Doe p/98765432`<br>
+       Expected: Phone number of John Doe is updated in the list. Details of the update shown in the status message.
+
+    3. Test case: `edit 0 n/John Doe p/98765432`<br>
+       Expected: No student is updated. Error details shown in the status message. Status bar remains the same.
+
+    4. Other incorrect edit commands to try: `edit`, `edit x n/John Doe`(where x is a non-existent index)
+       Expected: Similar to previous.
 
 ### Finding students
 
@@ -624,14 +662,15 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-    2. Test case: `findSubject math`<br>
+    2. Test case: `find s/math`<br>
        Expected: All students that have the subject `math` in the list will be shown in a new list. Timestamp in the status bar is updated.
 
-    3. Test case: `findSubject engrish`<br>
+    3. Test case: `find s/engrish`<br>
        Expected: No student will be shown in a new list. Status bar remains the same.
 
-    4. Other incorrect delete commands to try: `findSubject`, `findSubject x`, `...` (where x is a misspelled subject)<br>
+    4. Other incorrect delete commands to try: `find s/`, `find s/x`, `...` (where x is a misspelled subject)<br>
        Expected: Similar to previous.
+
 2. Finding students that belongs in the same class.
 
     1. Prerequisites: List all students using the `list` command. Multiple students in the list.
@@ -654,21 +693,70 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-   1. Test case: `delete 1`<br>
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Adding remark to a student
+
+1. Adding remark to a student while all students are being shown
+
+    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+
+    2. Test case: `remark 1 rem/Good at Math`<br>
+       Expected: Remark of the student is updated in the list. Details of the update shown in the status message.
+
+    3. Test case: `remark 0 rem/Good at Math`<br>
+       Expected: No remark added. Error details shown in the status message. Status bar remains the same.
+
+    4. Other incorrect remark commands to try: `remark`, `remark 1`
+       Expected: Similar to previous.
+
+### Grading students
+
+1. Grading students while all students are being shown
+
+    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+
+    2. Test case: `grade MATH_Quiz1_10_0.5_3.5`<br>
+       Expected: New window appears for the user to enter grades for each student.
+
+    3. Test case: `grade ENGRISH_Quiz1_10_0.5_3.5`<br>
+       Expected: No new window appears. Error details shown in the status message. Status bar remains the same.
+
+    4. Other incorrect grade commands to try: `grade`, `grade MATH_Quiz1_10_0.5`
+       Expected: Similar to previous.
+
+### Sorting students by grade
+
+1. Sorting students by grade while all students are being shown
+
+    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+
+    2. Test case: `sort asc s/ENGLISH`<br>
+       Expected: Students in list sorted by grades in ascending order. Details of the update shown in the status message.
+
+    3. Test case: `sort asc s/ENGRISH`<br>
+       Expected: No update in list. Error details shown in the status message. Status bar remains the same.
+
+    4. Other incorrect sort commands to try: `sort`, `sort asc`
+       Expected: Similar to previous.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Test case: Delete all data files<br>
+       Expected: The application will start with an empty module and task list. The application will create a new data file
+       when the user exits the application.
 
-1. _{ more test cases …​ }_
+    2. Test case: Modify the date of one the students in the data file to be of an invalid format.<br>
+       Expected: Similar to previous
+
+    3. Test case: Modify the date of one the students in the data file, but maintain the same format.<br>
+       Expected: The application boots up normally, with the saved data (if any), and the changes should be reflected on the UI.
