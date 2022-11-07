@@ -773,8 +773,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | outgoing secretary               | transfer the data to an incoming secretary                                            | hand over my job without hassle.                                        |
 
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `SectresBook` and the **Actor** is the `user`, unless specified otherwise)
