@@ -276,7 +276,7 @@ Here's an example of how the item planning page looks like:
 [Commands exclusive to the planning page](#commands-on-the-item-planning-page) can help you:
 * [add](#adding-an-item--add) new items
 * [edit](#editing-the-details-of-an-item--edit) or [delete](#deleting-an-item--delete) existing items
-* [view](#viewing-vacant-time-slots--free) the vacant time slots on your itinerary
+* [view](#viewing-vacant-timeslots--free) the vacant time slots on your itinerary
 * [schedule](#scheduling-an-item--plan) or [unschedule](#unscheduling-an-item--unplan) items
 * export your itinerary via your [clipboard](#copying-to-clipboard--copy) or as a [pdf](#exporting-as-pdf-file--pdf) file
 
