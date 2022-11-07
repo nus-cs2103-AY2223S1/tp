@@ -46,12 +46,12 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
-Person *--> Birthday
-Person *--> HealthInsurance
-Person *--> LifeInsurance
-Person *--> CriticalIllnessInsurance
-Person *--> DisabilityInsurance
-Person *--> "*" Reminder
+Person *---> HealthInsurance
+Person *---> LifeInsurance
+Person *---> CriticalIllnessInsurance
+Person *---> DisabilityInsurance
+Person *----> "*" Reminder
+Person *----> Birthday
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
