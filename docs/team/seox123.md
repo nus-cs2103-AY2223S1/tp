@@ -52,6 +52,3 @@ Given below are my contributions to the project.
 * **Team-based tasks**:
   * Conducted testing of app and opened issues. [#101](https://github.com/AY2223S1-CS2103T-W11-4/tp/issues/101), [#102](https://github.com/AY2223S1-CS2103T-W11-4/tp/issues/102)
   * Made necessary changes and renaming of classes to be more suitable with our application. [#53](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/53), [#85](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/85), [#248](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/248)
-
-* **Community**:
-  * Reported bugs and suggestions for other teams in the class
