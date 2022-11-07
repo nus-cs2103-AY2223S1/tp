@@ -96,7 +96,7 @@ Notes about the command format:
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `sview`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -265,6 +265,7 @@ You can use this command to edit details of a module in ProfNUS!
 **:information_source: Note**<br>
 
 - You can refer to the section [Module Manager Command Parameters](#421-module-manager-command-parameters) for more information about the parameters.
+- You have to specify **at least 1** parameter out of all the optional parameters listed below!
 - A module can have any number of tags(including 0), of your choice!
 
 </div>
@@ -277,7 +278,7 @@ You can use this command to edit details of a module in ProfNUS!
 
 </div>
 
-**Format:** `medit MODULE_CODE n/MODULE_NAME c/MODULE_CODE d/MODULE_DESCRIPTION [t/TAG]…​`
+**Format:** `medit MODULE_CODE [n/MODULE_NAME] [c/MODULE_CODE] [d/MODULE_DESCRIPTION] [t/TAG]…​`
 
 **Example:**
 
