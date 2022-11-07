@@ -181,7 +181,7 @@ The table below shows a list of [command](#glossary) parameters that will be use
 
 ### Adding a student: `add`
 
-Adds a student to FRIDAY, with the given name, [Telegram handle](#glossary), consultation date, [Mastery Check](#glossary) date, and tags.
+You can add a student to FRIDAY, with the given name, [Telegram handle](#glossary), consultation date, [Mastery Check](#glossary) date, and tags.
 
 Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...`
 
@@ -294,7 +294,10 @@ The table below shows a list of command parameters that will be used.
 
 ### Sorting students: `sort`
 
-Sorts all students in FRIDAY with the given criteria, in ascending or descending order. This will come in useful by allowing you to see which students have [Mastery Checks](#glossary) closest to the current date by sorting the list according to the students' Mastery Check dates, as shown in the example below.
+Once you have many students added to FRIDAY, viewing relevant information can get messy. To help with that, you can 
+sort students in FRIDAY with a given criteria, in ascending or descending order.
+As shown in the example below, this will come in useful by allowing you to see which students have [Mastery Checks](#glossary) closest 
+to the current date by sorting the list according to the students' Mastery Check dates.
 
 Format: `sort CRITERIA/ORDER`
 
@@ -312,7 +315,7 @@ Format: `sort CRITERIA/ORDER`
     * `a` (ascending)
     * `d` (descending)
 
-How criteria are sorted:
+Criteria are sorted in the following order: 
 * Names and Telegram handles - alphabetical order
 * Consultations and Mastery Checks - chronological order
 * Grades - numerical order
