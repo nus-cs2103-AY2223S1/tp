@@ -593,9 +593,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1a1. Tuthub requests for the correct data.
   * 1a2. User enters new data.
   * Steps 1a1-1a2 are repeated until the data entered are correct.
+
     Use case resumes from step 2.
 
-    Use case ends.
 
 **Use case: UC4 - Deleting a tutor**
 
