@@ -18,7 +18,7 @@ package "BobaBot Storage" #F4F6F6{
 Class "<<interface>>\nBobaBotStorage" as BobaBotStorage
 Class JsonBobaBotStorage
 Class JsonSerializableBobaBot
-Class JsonAdaptedPerson
+Class JsonAdaptedCustomer
 Class JsonAdaptedTag
 }
 
@@ -37,7 +37,7 @@ Storage -right-|> BobaBotStorage
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonBobaBotStorage .up.|> BobaBotStorage
 JsonBobaBotStorage ..> JsonSerializableBobaBot
-JsonSerializableBobaBot --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonSerializableBobaBot --> "*" JsonAdaptedCustomer
+JsonAdaptedCustomer --> "*" JsonAdaptedTag
 
 @enduml
