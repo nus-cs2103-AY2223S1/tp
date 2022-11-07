@@ -1,6 +1,5 @@
 ---
-layout: page 
-title: Marcus Lee's Project Portfolio Page
+layout: page title: Marcus Lee's Project Portfolio Page
 ---
 OmniHealth is a **Patient Management System** tailored to private clinicians to manage patients' details, records and
 upcoming appointments. As a private clinician, you can manage and monitor your patient database all in one location.
@@ -48,6 +47,8 @@ Given below are my contributions to the project.
     * Wrote test cases for `Record` and `Appointment` classes. (Pull
       Requests [\#58](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/58)
       , [\#91](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/91)
+    * Added Logging for `Appointment`, `AddAppointmentCommand`, `ClearAppointmentCommand`, `ClearRecordCommand`
+      , `Record` and `RecordList` classes. [\#176](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/176)
 
 * **Documentation**:
     * User Guide:
