@@ -211,7 +211,7 @@ may seem daunting.
 
 But fret not! This section will cover what all these terms actually mean. 
 
-While you're going through this section, don't worry too much about memorising the details of every "command", 
+While you're going through this section, don't worry too much about memorizing the details of every "command", 
 as they all have their own help messages for your reference at any time. Furthermore, the "commands" in TruthTable are 
 designed to be **easy to remember** and **natural**, so you will get up to speed in no time! 
 
@@ -281,8 +281,8 @@ Use of quotation marks around parameters (`""` and `''`) is optional.
 Otherwise, TruthTable will not carry out the command properly.
 
 For instance,
-- `add person -n "full name" ...` will recognise "full name" as the name being specified for the new person
-- `add person -n full name ...` will recognise "full" as the name being specified for the new person, however, this
+- `add person -n "full name" ...` will recognize "full name" as the name being specified for the new person
+- `add person -n full name ...` will recognize "full" as the name being specified for the new person, however, this
   command will not execute successfully as `name` will be treated as a **flag** (and this flag does not exist for
   the `add person` command)
 
@@ -301,7 +301,7 @@ For instance,
 If a flag is displayed with `...` behind it, this means that the flag accepts more than 1 parameter.
 
 For instance, in the `assign task` command, we can specify more than 1 assignee (provided they are valid).
-A valid command is `assign task 1 -a 1 2 3` where `1 2 3` are recognised as the assignees to the task with index `1`.
+A valid command is `assign task 1 -a 1 2 3` where `1 2 3` are recognized as the assignees to the task with index `1`.
 </div>
 
 
