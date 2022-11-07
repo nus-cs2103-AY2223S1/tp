@@ -224,19 +224,28 @@ To learn more about parameters, do check out the section on [Parameters](#52-inf
 
 ### Example Commands
 
+With the power of commands, you can now truly wield StudMap to organize your students and accomplish your TA responsibilities. 
+Commands will allow you to add new students to the list, append assignments to be graded or attendances that have been marked, and so much more!
+
 Let’s try out some commands! Type or copy a command into the Command Box and press Enter to execute it.
 
 * `list`
     * This updates the Student List with all the students you have.
-* `n/John Doe m/CS2103T id/E1234567`
+* `add n/John Doe m/CS2103T id/E1234567`
     * This adds a student named John Doe with student ID `E1234567` into StudMap, who is taking the module `CS2103T`
       .
       This is one of the ways you can add a new student into StudMap.
+* `mark 1 present c/Tut5`
+    * This marks the 1st student currently shown in the Student List as present for the class "Tut5".
 * `delete 3`
     * This deletes the 3rd student currently shown in the Student List.
 * `clear`
     * This deletes all the students, so you can start with a clean slate!
       <br><br>
+
+This is just a short preview of the features that StudMap has to offer. The [Features](#5-features) section 
+will guide you through all available commands in greater detail!
+
 
 ## 4.4 Migrating to StudMap
 
