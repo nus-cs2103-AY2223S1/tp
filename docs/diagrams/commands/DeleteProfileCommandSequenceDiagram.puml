@@ -8,6 +8,7 @@ Participant ":ProfileCommandParser" as profileCommandParser LOGIC_COLOR_T3
 Participant ":DeleteProfileCommandParser" as deleteProfileCommandParser LOGIC_COLOR_T3
 Participant "d:DeleteProfileCommand" as deleteProfileCommand LOGIC_COLOR_T3
 Participant ":CommandResult" as commandResult LOGIC_COLOR_T3
+Participant ":ParserUtil" as parserUtil LOGIC_COLOR_T2
 endBox
 
 box Model MODEL_COLOR_T1
@@ -27,8 +28,11 @@ profileCommandParser -> deleteProfileCommandParser ++
 return
 profileCommandParser -> deleteProfileCommandParser ++: parse(" -d 1")
 
+deleteProfileCommandParser -> parserUtil ++: parseIndex("1")
+return i
+
 create deleteProfileCommand
-deleteProfileCommandParser -> deleteProfileCommand ++
+deleteProfileCommandParser -> deleteProfileCommand ++: DeleteProfileCommand(i)
 return d
 return d
 destroy deleteProfileCommandParser

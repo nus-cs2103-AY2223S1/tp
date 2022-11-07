@@ -222,9 +222,11 @@ The `DeleteProfileCommand` extends the `ProfileCommand` abstract class. `Profile
 1. When the user inputs a command to delete a profile, the input is passed to `LogicManager` to be executed.
 2. `LogicManager` will call `NuSchedulerParser#parseCommand()`, which will create a new `ProfileCommandParser`.
 3. The method `ProfileCommandParser#parse()` is then called, and returns a new `DeleteProfileCommandParser`.
-4. The method `DeleteProfileCommandParser#parse()` will then return a new `DeleteProfileCommand`, if the user has entered the correct inputs.
-5. The `LogicManager` will call `Command#execute()` method of the `DeleteProfileCommand`, which will then delete the `Profile` at the specified index, using the `Model#deleteProfile()` method.
-6. When the command completes successfully, a `CommandResult` object is returned to the `LogicManager`, which will then display a success message to the user.
+4. The method `DeleteProfileCommandParser#parse()` will then call the method `ParserUtil#parseIndex()` which will return a `Index` object.
+5. The `Index` object is then used to create a `DeleteProfileCommand`, if the user has entered the correct inputs.
+6. `DeleteProfileCommand` then gets returned to the `LogicManager`.
+7. The `LogicManager` will call `Command#execute()` method of the `DeleteProfileCommand`, which will then delete the `Profile` at the specified index, using the `Model#deleteProfile()` method.
+8. When the command completes successfully, a `CommandResult` object is returned to the `LogicManager`, which will then display a success message to the user.
 
 The following sequence diagram shows how the `DeleteProfileCommand` works.
 
@@ -253,9 +255,10 @@ The `EditProfileCommand` extends the `ProfileCommand` abstract class. `ProfileCo
 1. When the user inputs a command to edit a profile, the input is passed to `LogicManager` to be executed.
 2. `LogicManager` will call `NuSchedulerParser#parseCommand()`, which will create a new `ProfileCommandParser`.
 3. The method `ProfileCommandParser#parse()` is then called, and return a new `EditProfileCommandParser`.
-4. The method `EditProfileCommandParser#parse()` will then return a new `EditProfileCommand`, if the user has entered the correct inputs.
-5. The `LogicManager` will call `Command#execute()` method of the `EditProfileCommand`, which will then update the `Profile` with the new details, using the `Model#setProfile()` method.
-6. When the command completes successfully, a `CommandResult` object is returned to the `LogicManager`, which will then display a success message to the user.
+4. The method `EditProfileCommandParser#parse()` will then create a new `EditProfileDescriptor` object.
+5. The method `EditProfileCommandParser#parse()` will then pass this `EditProfileDescriptor` object as a parameter to create a new `EditProfileCommand`. The `EditProfileCommand` is then returned, if the user has entered the correct inputs. 
+6. The `LogicManager` will call `Command#execute()` method of the `EditProfileCommand`, which will then update the `Profile` with the new details, using the `Model#setProfile()` method.
+7. When the command completes successfully, a `CommandResult` object is returned to the `LogicManager`, which will then display a success message to the user.
 
 The following sequence diagram shows how the `EditProfileCommand` works.
 
@@ -567,21 +570,71 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+### Adding a Profile
+
+1. Prerequisites: No profiles exist in the list with the phone number `12345678` and the email `johndoe@u.nus.edu`
+
+2. Test case: `profile -a n/John Doe p/12345678 e/johndoe@u.nus.edu`<br>
+Expected: A profile with the name `John Doe`, phone number `12345678`, email `johndoe@u.nus.edu` is added to the list of profiles in alphabetical order. Details of the added profile shown in the status message.
+
+3. Test case: `profile -a n/John Doe`<br>
+Expected: No profile is added. Error details shown in the status message. 
+
+### Editing a Profile
+
+1. Editing a profile from the displayed list
+
+   1. Test case: `profile -e 1 n/Alice Yeoh`<br>
+      Expected: The name of the first profile is changed to `Alice Yeoh`. Details of the profile with the edited details shown in the status message. If the first profile is attending any events, the profile's name will be updated under the event as well.
+
+   2. Test case: `profile -e 1`<br>
+      Expected: The first profile remains the same. Error details shown in the status message.
+   
+   3. Test case: `profile -e 0`<br>
+      Expected: No profile is edited. Error details shown in the status message.
+
+### Viewing Profiles
+
+1. Viewing all Profiles while a select few Profiles are shown
+
+   1. Prerequisites: Filter some profiles using the `profile -f Alex` command. Profiles with the word `Alex` in the name will remain in the list.
+
+   2. Test case: `profile -v`<br>
+      Expected: All profiles will be shown in the list. A success message is shown.
+
+   3. Test case: `profile -v Bernice`<br>
+      Expected: The profile list remains the same. Error details shown in the status message.
+
+### Finding a Profile by name
+
+1. Finding a profile by name from all profiles in NUScheduler
+
+   1. Prerequisites: List all profiles using the `profile -v` command. Multiple profiles in the list. At least one profile with the name `Alex` exists.
+
+   2. Test case: `profile -f Alex`<br>
+      Expected: Profiles containing the word `Alex` are shown in the list. The number of profiles displayed is shown in the status message.
+
+   3. Test case: `profile -f Alex Bernice`<br>
+      Expected: Profiles containing either the word `Alex` or `Bernice` or both are shown in the list. The number of profiles displayed is shown in the status message.
+
+   4. Test case: `profile -f`<br>
+      Expected: The profile list remains the same. Error details shown in the status message.
+
 ### Deleting a Profile
 
-1. Deleting a Profile while all Profiles are being shown
+1. Deleting a profile while all profiles are being shown
 
-   1. Prerequisites: List all Profiles using the `profile -v` command. Multiple Profiles in the list.
+   1. Prerequisites: List all profiles using the `profile -v` command. Multiple profiles in the list.
 
    2. Test case: `profile -d 1`<br>
-      Expected: First profile is deleted from the list. Details of the deleted profile shown in the status message. If first profile is attending any events, the profile will be removed from the event as well.
+      Expected: The first profile is deleted from the list. Details of the deleted profile shown in the status message. If the first profile is attending any events, the profile will be removed from the event as well.
 
-   3. Test case: `profile - d 0`<br>
-      Expected: No Profile is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `profile -d 0`<br>
+      Expected: No Profile is deleted. Error details shown in the status message.
 
    4. Other incorrect delete commands to try: `profile -d`, `profile -d x`, `...` (where x is larger than the list size, or 1000)<br>
       Expected: Similar to previous.
-
+   
 ### Adding an Event
 
 1. Adding a valid Event
@@ -597,35 +650,71 @@ testers are expected to do more *exploratory* testing.
 ### Adding a Profile to an Event
 
 1. Prerequisites: Profile to be added to Event is currently shown on the Profiles list. Event for Profile to be added to exist in the current event list.
+
 2. Test case: `event -ap 1 pr/1`
    Expected: Event has an attendee added with the name and number of the Profile. Details of the event shown in the status message.
 
 ### Deleting an attendee from an Event
+
 1. Prerequisites: Event to remove attendee from exist. Attendee to be removed exist in the Event.
+
 2. Test case: `event -dp 1 pr/1`
    Expected: Event no longer has attendee. Details of the event shown in the status message.
 
 ### Viewing upcoming Events
+
 1. Test case: `event -u 5`
    Expected: Event starting in the next 5 days will be displayed to the Events list.
 
 ### Viewing all Events
+
 1. Test case: `event -v`
    Expected: All Events are displayed to the Events list.
 
 ### Editing an Event
+
 1. Prerequisites: Event to be edited exist in the current list. Start and end includes both date and time.
+
 2. Test case: `event -e 1 n/Formal Dinner t/RC4 s/22/10/2022 09:00`
    Expected: Event on the current list is updated with the new title, with only one tag RC4, and the new start time. Event list is resorted. Details of the Event edited is displayed in the status message.
 
 ### Finding an Event
+
 1. Test case: `event -f Presentation`
    Expected: Event list will display all Events which contains "presentation", case-insensitive, within its title.
 
 ### Deleting an Event
+
 1. Prerequisites: Event to be deleted exist in the current list.
+
 2. Test case: `event -d 1`
    Expected: Event deleted is no longer visible in the list of events. Details of the Event deleted is displayed in the status message.
+
+### Accessing the Help Window
+
+1. Test case: `help`<br>
+   Expected: Help window appears.
+
+2. Incorrect help commands to try:: `help ...` (where ... contains any combination of characters)<br>
+   Expected: No help window appears. Error details shown in the status message.
+
+### Clearing all data
+
+1. Prerequisites: Some data has been added with the `profile -a` and `event -a` commands.
+
+2. Test case: `clear`<br>
+   Expected: All data is deleted from NUScheduler.
+
+3. Incorrect clear commands to try: `clear ...` (where ... contains any combination of characters)<br>
+Expected: No data is deleted. Error details shown in the status message.
+
+### Exiting NUScheduler
+
+1. Test case: `exit`<br>
+   Expected: NUScheduler closes.
+
+2. Incorrect exit commands to try: `exit ...` (where ... contains any combination of characters)<br>
+   Expected: NUScheduler does not close. Error details shown in the status message.
 
 ### Saving data
 
@@ -635,3 +724,15 @@ testers are expected to do more *exploratory* testing.
    2. Edit any email to a non-NUS email.
    3. Relaunch `NUScheduler.jar`.
    4. Expected: Data is invalid thus NUScheduler starts with an empty data file.
+
+## **Appendix: Effort**
+
+NUScheduler is not only developed to work with profile details, but simultaneously with events as well. As such, it was a challenging experience for us to implement both features in a cohesive way for our target users. The initial preparation of the codebase was tedious, as we had to rename the given `Person` class in our AB3 fork. This caused many test cases to break and it took us some time to fix this. This was a part of our experience in understanding the codebase, which also involved learning how the command pattern used by AB3 works.
+
+The implementation of our “flag” command syntax to make the pattern more CLI-like very rigorously tested our ability to pattern-match using regex. We needed to ensure that the flags were entered directly after the main command, while also trying not to hardcode the flag into the command. This pushed us to learn more about regex in detail, including using capturing groups and lookaheads to ensure incorrect command patterns are never allowed.
+
+After understanding the codebase, we moved to implementing the `Event` class as well, while simultaneously adding more commands for the `Profile` class. This tested our ability to manage code conflicts, and we took some time to ensure that the quality of our code was unaffected after every merge.
+
+One of our biggest changes in v1.3 was implementing the `AddProfilesToEventCommand`. It created dependencies between the `Profile` and `Event` classes, so it was very difficult to write unit tests for commands that involved both classes. The conversion of `JsonAdaptedEvent`s to the model’s `Event` object also had to be modified to check for the existence of the `Profile`s saved under the `Event` (to check for any illegal modifications to the data file and ensure that the same `Profile` is referenced in the `Event`). The implementation also caused issues with the updating of the UI as any changes made to the `Attendees` was not automatically reflected in the UI. Therefore, we had to make even more changes to the model to refresh the UI.
+
+All in all, despite the limited time window of development, we not only managed to create a cohesive product for our target users, but also managed to learn a lot about effective software development practices.

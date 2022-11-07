@@ -54,6 +54,7 @@ Event *--> Title
 Event *--> "startDate" DateTime
 Event *--> "endDate" DateTime
 Event *--> Attendees
+Event *--> Tag
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Telegram
