@@ -718,8 +718,6 @@ Preconditions: The current working team is set to the team that has the existing
 - **Task**: Anything that needs to be completed for the project to move forward.
 - **Team Leader**: The person in-charge of a project, typically a software engineering project.
 
-_{More to be added along the way}_
-
 ---
 
 ## **Appendix: Instructions for manual testing**
