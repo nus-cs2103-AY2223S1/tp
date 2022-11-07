@@ -118,12 +118,12 @@ The `sort` feature sorts the list of items currently displayed to the user by a 
 * Price
 * Remarks 
 
-Currently, sorting is performed ascendingly. A future implementation will allow sorting either ascendingly or descendingly.
+Currently, sorting is performed in ascending order. A future implementation will allow sorting either ascendingly or descendingly.
 
 ##### Feature Details
 
-1. The user can perform other commands that modifies the presented item list, such as the `find` command.
-1. The user specifies one or more criteria used for sorting. Available criteria for sorting are listed above.
+1. The user can perform other commands that modify the presented item list, such as the `find` command.
+1. The user specifies one or more criteria used for sorting. The available criteria for sorting are listed above.
 1. If the displayed item list is empty, then an empty list is displayed.
 1. If the item list is not empty, the items are sorted according to the specified criteria. Sorting is performed in order of the criteria specified.
 
