@@ -13,7 +13,7 @@ end box
 [-> MainWindow : executeCommand\n(client -d 1)
 activate MainWindow
 
-MainWindow --> LogicManager : execute\n(client -d 1)
+MainWindow -> LogicManager : execute\n(client -d 1)
 activate LogicManager
 
 LogicManager -> AddressBookParser : parseCommand\n(client -d 1)

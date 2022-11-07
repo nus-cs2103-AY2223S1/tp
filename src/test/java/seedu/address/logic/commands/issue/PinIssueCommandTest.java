@@ -107,7 +107,7 @@ public class PinIssueCommandTest {
         // null -> returns false
         assertFalse(pinIssueCommandIdOne.equals(null));
 
-        // different person -> returns false
+        // different command -> returns false
         assertFalse(pinIssueCommandIdOne.equals(pinIssueCommandIdTwo));
     }
 }

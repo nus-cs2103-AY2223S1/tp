@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_MOBILE;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_TITLE;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_URGENCY;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_REPOSITORY;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -32,6 +34,8 @@ public class CommandTestUtil {
     public static final String VALID_DEADLINE = "2022-03-05";
     public static final String VALID_REPOSITORY = "Amy/Tp";
     public static final String VALID_PROJECT_ID = "1";
+    public static final String VALID_TITLE = "Fix Errors";
+    public static final String VALID_URGENCY = "1";
     public static final String VALID_EMPTY_PROJECT_ID = "2147483647";
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -39,6 +43,8 @@ public class CommandTestUtil {
     public static final String MOBILE_DESC_BOB = " " + PREFIX_MOBILE + VALID_MOBILE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
     public static final String EMAIL_DESC_BOB = " " + PREFIX_EMAIL + VALID_EMAIL_BOB;
+    public static final String TITLE_DESC_TITLE = " " + PREFIX_TITLE + VALID_TITLE;
+    public static final String URGENCY_DESC_URGENCY = " " + PREFIX_URGENCY + VALID_URGENCY;
     public static final String DEADLINE_DESC_DEADLINE = " " + PREFIX_DEADLINE + VALID_DEADLINE;
     public static final String REPOSITORY_DESC_REPOSITORY = " " + PREFIX_REPOSITORY + VALID_REPOSITORY;
     public static final String PROJECT_DESC_PROJECT = " " + PREFIX_PROJECT_ID + VALID_PROJECT_ID;
@@ -49,6 +55,8 @@ public class CommandTestUtil {
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "20 October 2022"; // yyyy-mm-dd format
     public static final String INVALID_REPOSITORY_DESC = " " + PREFIX_REPOSITORY + "Repo"; // username/repository format
     public static final String INVALID_PROJECT_ID_DESC = " " + PREFIX_PROJECT_ID + "-3";
+    public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + " "; //empty title
+    public static final String INVALID_URGENCY_DESC = " " + PREFIX_URGENCY + "4";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
