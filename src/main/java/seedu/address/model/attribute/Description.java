@@ -19,4 +19,8 @@ public class Description extends AbstractAttribute<String> implements PrefixedAt
     public Prefix getPrefix() {
         return PREFIX_DESCRIPTION;
     }
+
+    public void edit(String newData) {
+        this.value = newData;
+    }
 }

@@ -16,6 +16,7 @@ public class CreateCommand extends PureCommand {
 
     public static final String COMMAND_WORD = "macro";
     private static final String INVALID_INPUT = "Invalid syntax!";
+    private static final String WRONG_CODE = "The code you entered cannot be compiled!";
     private static final String INVALID_NAME = "The command name you chose is not available!\n"
         + "Name should be unique with no space, start with a letter, can contain only numbers and letters";
     private static final String USE_EXAMPLE = "create [name] [code]\ne.g. markAllTask task foreach mark";
@@ -46,6 +47,9 @@ public class CreateCommand extends PureCommand {
                 }
                 String key = tokens[0].trim();
                 String value = tokens[1].trim();
+                if (!AddressBookParser.isValidCommand(value)) {
+                    throw new ParseException(WRONG_CODE);
+                }
                 if (AddressBookParser.isValidName(key) && AddressBookParser.get().isKeyAvailable(key)) {
                     return new CreateCommand(new CustomCommandBuilder(key, value));
                 }

@@ -31,7 +31,6 @@ import seedu.address.logic.commands.persons.AddPersonCommand;
 import seedu.address.logic.parser.persons.AddPersonCommandParser;
 import seedu.address.model.attribute.Address;
 import seedu.address.model.attribute.Email;
-import seedu.address.model.attribute.Name;
 import seedu.address.model.attribute.Phone;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -83,7 +82,8 @@ public class AddPersonCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB
-            + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
+            + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+            Person.MESSAGE_INVALID_PERSON_NAME);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC
@@ -104,7 +104,7 @@ public class AddPersonCommandParserTest {
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB
-            + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC, Name.MESSAGE_CONSTRAINTS);
+            + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC, Person.MESSAGE_INVALID_PERSON_NAME);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB

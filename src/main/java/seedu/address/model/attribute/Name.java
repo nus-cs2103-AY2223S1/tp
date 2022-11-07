@@ -13,7 +13,7 @@ public class Name extends AbstractAttribute<String> implements PrefixedAttribute
 
     public static final String TYPE = "Name";
     public static final String MESSAGE_CONSTRAINTS = "Names should only contain alphanumeric "
-        + "characters and spaces, and it should not be blank";
+        + "characters and spaces and can include special characters like '-' and '_',\n but it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace, otherwise " " (a blank string)
