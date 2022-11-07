@@ -490,19 +490,13 @@ By utilizing find student, users can find the student with only partial informat
 The proposed `Help` Feature provides the professor or students with useful information on how to optimally make use of this Jeryl app.
 The `Help` feature mechanism is facilitated by `HelpCommand` and `HelpCommandParser`. `HelpCommand` extends from the abstract class `Command`
 while `HelpCommandParser` extends from the interface `Parser`.
-More specific features like `HelpAddCommand` and `HelpDeleteCommand` extend from `HelpCommand` to serve for certain specific help requests.
 To summarize, it implements the following operation:
 * `HelpCommand#execute()` — oversees the execution process for `HelpCommand`.
-* `HelpAddCommand#execute()` — oversees the execution process for `HelpAddCommand`.
-* `HelpDeleteCommand#execute()` — oversees the execution process for `HelpDeleteCommand`.
-* `HelpFindCommand#execute()` — oversees the execution process for `HelpFindCommand`.
-* `HelpListCommand#execute()` — oversees the execution process for `HelpListCommand`.
-* `HelpMarkCommand#execute()` — oversees the execution process for `HelpMarkCommand`.
 
 Given below is an example usage scenario of `HelpCommand`:
 1. The user enters the `help` command or also provides the specific command of interest.
 2. `FypManagerParser` creates a new `HelpCommandParser` after preliminary check of user input.
-3. `HelpCommandParser` creates a new `HelpCommand` based on the processed input.
+3. `HelpCommandParser` creates a new `HelpCommand` based on the processed input (different type of command keyword).
 4. `LogicManager` executes the `HelpCommand` using the `LogicManager#execute()` method.
 5. `HelpCommand` shows help message, and then creates a `CommandResult` and returns it to `LogicManager` to complete the command.
 6. If it is just `HelpCommand`, `HelpWindow` would pop up with a link to JERYL user guide on it.
@@ -960,7 +954,6 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown
