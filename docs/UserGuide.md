@@ -291,7 +291,7 @@ Format: `focus c/CLASS_NAME`
   <img src="images/sampleFocusedGui.png" width="600"/>
 
 Example:
-* `focus c/CS1231S` enters focus mode for the **CS1231S** class, allowing you to manage data relating to **CS1231S**.
+* `focus c/CS2100` enters focus mode for the **CS2100** class, allowing you to manage data relating to **CS2100**.
 
 ### Clear all existing data: `clear`
 
@@ -411,13 +411,13 @@ Format: `scores s/SESSION_NAME`
 
 Example:
 
-* `scores s/tutorial 1` shows the grades of all students for the session **tutorial 1**, as shown below.
+* `scores s/Tutorial 11` shows the grades of all students for the session **tutorial 1**, as shown below.
   
   <img src="images/sampleScoresGui.png" width="600"/>
 
   In the above example,
-  * **Bernice Yu** has been allocated a score of **10.0** for **Tutorial 1**.
-  * **Tutorial 1** for **David Li** and **Roy Balakrishnan** has not been graded, hence their cells have been marked red.
+  * **Edbert Geraldy**,**Lin Zechen**,**Ng Jing Xue** and **Rezwan Arefin** have been allocated a score of **100.0** for **Tutorial 11**.
+  * **Tutorial 11** for **Xu Yi** has not been graded, hence her cell has been marked red.
 
 ### View session grades of student: `view`
 
