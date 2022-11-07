@@ -174,6 +174,10 @@ Examples:
 
 `m add c/cs2105 m/networking mc/3 adds a module` with the module code cs2105, the module name networking and the module credit 3
 
+| ![AddModuleCommand](images/AddModuleCommandDemo.png) |
+|:----------------------------------------------------:|
+|          Demonstration of AddModuleCommand           |
+
 
 ### Listing Modules
 Lists modules stored in module list.
@@ -382,7 +386,6 @@ Format: `t sort c/CRITERIA`
 Parameter:
 * `CRITERIA` refers to the criteria that is used for sorting the task list.
 
-
 Restrictions:
 * `CRITERIA` can be either `priority`, `deadline`, `module` or `description`
 * When sorting by priority, all tasks marked with priority status `HIGH` will appear at the top of the displayed task list, followed by `MEDIUM`, `LOW` and lastly all tasks with no priority status being at the bottom
@@ -404,6 +407,10 @@ Examples:
 `t sort c/module` sorts all the tasks in the task list by module code
 
 `t sort c/description` sorts all the tasks in the task list by task description
+
+| ![SortTaskCommand](images/SortTaskCommandDemo.png) |
+|:--------------------------------------------------:|
+|          Demonstration of SortTaskCommand          |
 
 
 ### Adding the tags to a task
@@ -436,6 +443,11 @@ Examples:
 
 `t tagadd 2 p/low dl/31-12-2022` tags the second task in the displayed task list with a priority status of 
 `LOW` and a deadline of `31-12-2022`
+
+| ![AddTagCommand](images/AddTagCommandDemo.png) |
+|:----------------------------------------------:|
+|         Demonstration of AddTagCommand         |
+
 
 ### Editing the tags of a task
 Edits the tags associated with the task
@@ -602,6 +614,11 @@ Examples:
 `e link e/1 t/1` links the first task in the displayed task list to the first exam in the displayed exam list
 
 `e link e/2 t/3` links the third task in the displayed task list to the second exam in the displayed exam list
+
+| ![LinkExamCommand](images/LinkExamCommandDemo.png) |
+|:--------------------------------------------------:|
+|          Demonstration of LinkExamCommand          |
+
 
 ### Unlinking an exam
 Unlinks the exam from the specified task according to the index given.
