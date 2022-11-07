@@ -14,7 +14,7 @@ participant ":Model" as Model MODEL_COLOR
 participant ":Client" as Client MODEL_COLOR
 end box
 
---> LogicManager : execute("client -p 3")
+-> LogicManager : execute("client -p 3")
 activate LogicManager
 
 LogicManager -> AddressBookParser : parseCommand("client -p 3")
@@ -44,19 +44,19 @@ deactivate AddressBookParser
 LogicManager -> PinClientCommand : execute()
 activate PinClientCommand
 
-PinClientCommand --> Client : togglePin()
+PinClientCommand -> Client : togglePin()
 activate Client
 
 Client --> PinClientCommand
 deactivate Client
 
-PinClientCommand --> Model : sortClientsByCurrentCategory()
+PinClientCommand -> Model : sortClientsByCurrentCategory()
 activate Model
 
 Model --> PinClientCommand
 deactivate Model
 
-PinClientCommand --> Model : sortClientsByPin()
+PinClientCommand -> Model : sortClientsByPin()
 activate Model
 
 Model --> PinClientCommand

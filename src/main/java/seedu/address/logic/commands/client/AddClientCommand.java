@@ -40,8 +40,8 @@ public class AddClientCommand extends ClientCommand {
 
     public static final String MESSAGE_SUCCESS = "New client added: %1$s";
     public static final String MESSAGE_DUPLICATE_CLIENT = "A client with the same name already exists!";
-    private static final String MESSAGE_CLIENT_ALREADY_PRESENT = "This project already has a client";
-    private static final String MESSAGE_PROJECT_NOT_FOUND = "This project id does not exist in the project book";
+    public static final String MESSAGE_CLIENT_ALREADY_PRESENT = "This project already has a client";
+    public static final String MESSAGE_PROJECT_NOT_FOUND = "This project id does not exist in the project book";
 
     private final ClientWithoutModel toAddClientWithoutModel;
     private final ProjectId projectId;

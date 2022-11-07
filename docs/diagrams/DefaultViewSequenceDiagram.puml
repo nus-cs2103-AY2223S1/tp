@@ -13,7 +13,7 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
---> LogicManager : execute("client -v")
+-> LogicManager : execute("client -v")
 activate LogicManager
 
 LogicManager -> AddressBookParser : parseCommand("client -v")
@@ -43,7 +43,7 @@ deactivate AddressBookParser
 LogicManager -> SetClientDefaultViewCommand : execute()
 activate SetClientDefaultViewCommand
 
-SetClientDefaultViewCommand --> Model : setDefaultView(CLIENT)
+SetClientDefaultViewCommand -> Model : setDefaultView(CLIENT)
 activate Model
 
 Model --> SetClientDefaultViewCommand
