@@ -21,7 +21,7 @@ you understand StudMap, so that you can make the best use of our features. Read 
 ---
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 # 2. Why StudMap?
 
@@ -986,6 +986,6 @@ discipline, and four digits, and sometimes a suffix. e.g. `CS2101`, `CS2103T`.
 
 ### Alphanumeric
 
-An alphanumeric character is one that is either a number (0-9) or a letter (any alphabet, lower or upper case).
-An input described as alphanumeric means that all the characters of the input must follow these constraints (i.e.
+An alphanumeric character is one that is either a number (0-9) or a letter (any letter of the alphabet, lower or upper
+case). An input described as alphanumeric means that all the characters of the input must follow these constraints (i.e.
 composed only of letters and/or numbers)
