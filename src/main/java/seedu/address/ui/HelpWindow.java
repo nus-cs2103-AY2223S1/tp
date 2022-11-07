@@ -179,7 +179,7 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String LIST_GENDER_DEMO_OUTPUT = "Listed all persons with specifications: "
             + "ADDRESS: NIL, CATEGORY: NIL, GENDER: F, TAG: NIL";
     private static final String LIST_TAG_SEARCH_TEXT = "List all with X Tag";
-        private static final String LIST_TAG_DEMO_INPUT = "list t/Pediatric";
+    private static final String LIST_TAG_DEMO_INPUT = "list t/Pediatric";
     private static final String LIST_TAG_DEMO_OUTPUT = "Listed all persons with specifications: "
             + "ADDRESS: NIL, CATEGORY: NIL, GENDER: NIL, TAG: Pediatric";
     private static final String LIST_MIX_SEARCH_TEXT = "List (Mix)";
