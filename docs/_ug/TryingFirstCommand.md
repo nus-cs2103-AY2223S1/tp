@@ -13,7 +13,7 @@ One of the available commands in FoodRem is the command to create a new item.
 The first word of every command allows FoodRem to distinguish different commands.
 
 * `new` tells FoodRem that this is the command to create a new item
-* [Flags](#flags) such as `n/` and `qty/` are [[ delimiter:delimiters ]] that enable FoodRem to distinguish different parameters supplied by you without ambiguity
+* [Flags](#flags) such as `n/` and `qty/` are [[ delimiter:delimiters ]] that enable FoodRem to distinguish different [[ parameter:parameters ]] supplied by you without ambiguity
 * [Placeholders](#placeholders) such as `ITEM_NAME` and `QUANTITY` shows you what you should place in each portion of the command
 
 Notice that there is a pair of square brackets `[]` surrounding some [[ parameter:parameters ]] like `qty/QUANTITY` in the format. This indicates that the parameter is **optional**. Each of these [[ placeholder:placeholders ]] in the [[ parameter:parameters ]] have a default value based on the commands. These are documented in the [Commands](#commands) section for each command.
@@ -84,7 +84,7 @@ You should now have a better understanding of how commands are formatted and use
 
 Here is a checklist you can use before running a [[ command ]]:
 
-* [ ] I know the restrictions of the command 
+* [ ] I know the restrictions of the command
 * [ ] I know what [[ parameter:parameters ]] are supplied to the command
 * [ ] I know the [[ flag:flags ]] for each parameter to be supplied
 * [ ] I know the restrictions of each parameter

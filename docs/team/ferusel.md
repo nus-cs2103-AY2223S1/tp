@@ -27,7 +27,7 @@ Given below are my contributions to the project.
 * **New Feature**: `inc`, `dec`, `view` commands
 
   * What it does: `inc` allows the user to increment a chosen item by a specified quantity. `dec` allows the user to decrement a chosen item by a specified quantity. `view` displays all relevant information about an `Item`, such as the quantity, name, tags, to the user.
-  * Justification: These are key features for FoodRem. 
+  * Justification: These are key features for FoodRem.
 
 * **New Feature**: `sort` command
 
@@ -72,4 +72,11 @@ List of PRs is incomplete, only vital ones are shown.
     * Add Sort Command UML [[PR#232]]
     * Update Developer Guide [[PR#528]]
 
-  
+* ** Features**:
+  * Add Item model [[PR#143]]
+  * Add Sort Command [[PR#158]]
+  * Add Increment and Decrement Command [[PR#161]]
+  * Add View command [[PR#209]]
+  * Add Statistics Command [[PR#360]]
+  * Update find command [[PR#367]]
+  * Fix stats command [[PR#372]]
