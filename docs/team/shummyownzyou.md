@@ -36,7 +36,7 @@ It is written in Java, and has about 14 kLoC.
       * Made minor improvements in format for user guide: [#126](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/126), [#132](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/132)
     * Developer Guide: 
       * Updated developer guide with sort feature and corresponding UML diagrams: [#106](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/106), [#132](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/132) 
-      * Updated developer guide with all use cases: [#39](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/39), [](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/209)
+      * Updated developer guide with all use cases: [#39](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/39), [#209](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/209)
       * Updated developer guide with manual testing for sort feature: [#209](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/209)
 
 * **Community**: 
