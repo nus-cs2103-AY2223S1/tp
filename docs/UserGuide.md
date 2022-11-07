@@ -315,8 +315,8 @@ Format: `clear`
 
 ### Creating new TAB : `new`
 
-Creates a new TAB and automatically swaps to the newly created data file.
-
+Creates a new TAB and automatically swaps to the newly created data file.<br>
+There can be a maximum of 5 books.
 Format: `new`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
@@ -339,19 +339,19 @@ Renames the current data file.
 
 Format: `rename {NEW_NAME}`
 
-Renames the current data file as the `NEW_NAME`
+Renames the current data file as the `NEW_NAME` in lowercase
 * `NEW_NAME` only accepts alphanumeric, '-' and '_' characters.
 
 Example:
-* `rename CS2103T` renames the current data file as `CS2103T.json`
+* `rename cs2103t` renames the current data file as `cs2103t.json`
 
 ### Saving the data
 
-TAB data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+TAB data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-TAB data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+TAB data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TAB will discard all data and start with an empty data file at the next run.
@@ -444,7 +444,7 @@ Action | Format, Examples
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Remark** | `remark INDEX r/REMARK`<br> e.g., `remark 1 r/Interested to be a TA`
 **Attendance** | `attendance INDEX attendance/ATTENDANCE` <br> e.g., `attendance 1 attendance/10/13`
-**Assignments** | `assignments assignments/ ASSIGNMENT_1 w/ASSIGNMENT_1_WEIGHTAGE, ASSIGNMENT_2 w/ASSIGNMENT_2_WEIGHTAGE…​`<br> e.g., `assignments assignments/ Assignment 1 w/15, Assignment 2 w/15, Midterms w/30, Finals w/40`
+**Assignments** | `assignments assignments/ASSIGNMENT_1 w/ASSIGNMENT_1_WEIGHTAGE, ASSIGNMENT_2 w/ASSIGNMENT_2_WEIGHTAGE…​`<br> e.g., `assignments assignments/Assignment 1 w/15, Assignment 2 w/15, Midterms w/30, Finals w/40`
 **Grade** | `grade INDEX assignment/INDEX grade/GRADE` <br> e.g., `grade 2 assignment/1 grade/68/80`
 **Availability** | `avail INDEX avail/AVAILABILITY` <br> e.g., `avail 1 avail/Available`
 **Roles** | `roles INDEX roles/ROLE1, ROLE2,...` <br> e.g., `roles 1 roles/Coordinator, Lecturer, Advisor`
