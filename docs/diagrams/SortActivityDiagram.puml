@@ -1,0 +1,20 @@
+@startuml
+start
+:User executes the Sort Command;
+
+switch()
+case ([Sort by role, ascending])
+    :Sort persons by their role
+     in ascending order;
+case ([Sort by role, descending])
+    :Sort persons by their role
+     in descending order;
+case ([Sort by name, ascending])
+    :Sort persons by their name
+     in ascending order;
+case ([Sort by name, descending])
+    :Sort persons by their name
+     in descending order;
+endswitch
+stop
+@enduml
