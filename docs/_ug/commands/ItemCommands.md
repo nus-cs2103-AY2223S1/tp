@@ -291,7 +291,7 @@ The command will produce a detailed view of this item.
 * If no remark is provided, the current remark will be cleared.
 * If two or more `REMARKS` values are provided, only the last `REMARKS` value will be taken.
 * If an item already has a remark, this command will overwrite the old remark with the new remark.
-* The new remark can overwrite the old remark even when they are the same. This is to give the user flexibility in editing remarks.
+* The new remark can overwrite the old remark even if they are the same. This is to give the user flexibility in editing remarks.
 ```
 
 **Example:**
