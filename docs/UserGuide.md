@@ -249,7 +249,7 @@ Examples:
 
 Deletes the specified student from the list of students.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-success">:bulb: **Tip:**
 You may want to use this command if any students drop out of the module or change tutorial groups.
 </div>
 
@@ -269,7 +269,7 @@ Examples:
 
 Copies all emails in the displayed student list onto the clipboard.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-success">:bulb: **Tip:**
 You may want to use this command to email a student or a selected group of students (e.g. those with grade C).
 </div>
 
@@ -288,7 +288,7 @@ Format: `extract emails`
     </ol>
 </div>
 
-<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+<div markdown="span" class="alert alert-failure">:warning: **Warning:**
 If your mail app does not open, you can paste your clipboard directly into your email recipient box but remember to delete "mailto:" in front of the emails.<br>
 You may also be required to separate the emails.
     <img src="images/ExtractEmails4.png">
@@ -331,7 +331,7 @@ Examples:
 
 Edits an existing tutorial in ModQuik.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-success">:bulb: **Tip:**
 You may want to use this command to update your tutorials when there are changes in venue e.g., from zoom to offline or vice versa.
 </div>
 
@@ -379,10 +379,6 @@ Examples:
 
 Adds a consultation slot at the given time, date, place and description to ModQuik.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-```Name``` can be anything e.g., Past Year Papers, and does not have to be the student's name.
-</div>
-
 Format: `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`
 * `DATE` should be given in the format yyyy-MM-dd, e.g. 2022-10-24.
 * `TIMESLOT` takes in a start time to end time in the format HH:mm-HH:mm, e.g., 18:00-20:00.
@@ -402,11 +398,6 @@ Examples:
     <td><img src="images/AddConsultation.png" width=350></td>
   </tr>
  </table>
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-On a closer look, consultation 1 and 4 are both from the same module and wish to go through the same thing!<br>
-You can combine the consultations and meet both students together to make it easier for you.
-</div>
 
 <a name="edit-consultation"></a>
 #### 5.3.2 Editing a consultation: `edit consultation`
@@ -461,11 +452,7 @@ Examples:
 <a name="add-reminder"></a>
 #### 5.4.1 Adding a reminder: `add reminder`
 
-Adds a reminder to ModQuik.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can add reminders such as "Mark Assignment 1" by a specified deadline.
-</div>
+Adds a reminder to ModQuik. You can add reminders such as "Mark Assignment 1" by a specified deadline.
 
 Format: `add reminder n/NAME T/TIME D/DATE p/PRIORITY d/DESCRIPTION `
 
@@ -626,12 +613,16 @@ _Figure 2. Grade Chart Tab_
 <a name="clear"></a>
 ### 5.6 Clearing data: `clear`
 
-Clears all existing data in a specific field (including student, tutorial, reminder and consultation) or the entire app.
+Clears all existing data in a specific field (including student, tutorial, reminder and consultation) or the entire app. 
 
 For example, user might choose to reset the data when the semester ends to prepare for the upcoming semester.
 
 Format: `clear f/FIELD`
 * `FIELD` including `all`, `student`, `tutorial`, `consultation`, `reminder`
+* 
+<div markdown="span" class="alert alert-danger">:exclamation: **Warning:**
+Take note that this action is irreversible.
+</div>
 
 Examples:
 * `clear f/all`

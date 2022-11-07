@@ -17,29 +17,53 @@ Given below are my contributions to the project.
       * What it does: Allows the user to add, edit and delete any students from the student list.
       * Highlights: This enhancement affects existing command as it was similar to the `add`, `edit` and `delete` commands that AddressBook already has.
         Thus, there was a need to abstract out similar components and adhere to the DRY principle.
-  * Added additional fields and modified existing fields of Student.
-      * `StudentId`
-      * `Phone`
-      * `TelegramHandle`
-      * `Grade`
-      * `Attendance`
-      * `Participation`
+  * Added and enhanced student fields.
+     * Attendance
+     * Grade
+     * Participation
+     * Phone
+     * StudentId
+     * TelegramHandle
   * Added the ability to mark and unmark reminders.
-      * What it does: Allows the user to mark their reminder as done, or unmark their reminder as undone.
-      * Justification: This feature makes our product more attractive as users can visualise which tasks they have done or are yet to be done.
+      * What it does: Allows the user to mark their reminder as done when they complete a task, or unmark their reminder as undone if they have not completed the task.
+      * Justification: This feature makes our product more attractive as users keep track of the tasks they have or have not done. This acts like a ToDo list in ModQuik.
+  * Enhanced ModQuik's parser.
+      * Highlights: This enhancement parses commands with no parameters such as `exit exit` or `list list` instead of throwing an error.
 
 * **Documentation**:
     * User Guide:
-        * Organised the structure and outline
+        * Organised and formatted the structure and outline.
         * Added documentation for the following sections:
           * `Navigating the User Guide`
           * `Navigating the GUI`
-          * `Add Student Feature`
+          * `Adding a student`
+          * `Editing a student`
+          * `Deleting a student`
+          * `Extracting student's emails`
+          * `Mark a reminder`
+          * `Unmark a reminder`
         * Added documentation for the following features:
-          * to be added soon
-        * Added visuals
+          * `Adding a student`
+          * `Editing a student`
+          * `Deleting a student`
+        * Added visuals for:
+          * `Student Features`
+          * `Tutorial Features`
+          * `Consultation Features`
+          * `Reminder Features`
+          * `GUI Overview`
     * Developer Guide:
-        * to be added soon
+        * Organised and formatted the structure and outline.
+        * Added documentation for the following sections:
+          * `Add Student Feature`
+          * `Edit Student Feature`
+          * `Delete Student Feature`
+        * Added diagrams:
+          * Model Class Diagram
+          * Add Student Command Sequence Diagram
+          * Edit Student Command Sequence Diagram
+          * Delete Student Command Sequence Diagram
 
-* **Contributions to team-based tasks**:
-    * to be added soon
+* **Contribution to team-based tasks**:
+    * Assigned issues to teammates.
+    * Assigned tags to issues.
