@@ -113,9 +113,9 @@ Shows a list of all persons in the application.
 Format: `listPersons [s/FIELD]`
 
 * Sorts all persons by a specified field. `FIELD` must take one of the following values:
-  * `n` or `N` sort by name in ascending lexicographical order, ignoring case differences
-  * `d` or `D` sort by date of birth from oldest to youngest
-  * `g` or `G` sort by gender, females first followed by males
+  * `n` or `N`: sort by name in ascending lexicographical order, ignoring case differences
+  * `d` or `D`: sort by date of birth from oldest to youngest
+  * `g` or `G`: sort by gender, females first followed by males
 
 * It is optional to include the sorting prefix and field. If the sorting prefix and field are not included, the application will display all persons in the current order that they are stored.
 * At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
@@ -281,8 +281,8 @@ Shows a list of all events in the application.
 Format: `listEvents [s/FIELD]`
 
 * Sorts the events by a specified field. `FIELD` must take one of the following values:
-  * `e` or `E` sort by event title in ascending lexicographical order, ignoring case differences
-  * `d` or `D` sort by date from oldest to newest
+  * `e` or `E`: sort by event title in ascending lexicographical order, ignoring case differences
+  * `d` or `D`: sort by date from oldest to newest
 
 * It is optional to include the sorting prefix and field. If the sorting prefix and field are not included, the application will display all events in the current order that they are stored.
 * At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
@@ -355,8 +355,8 @@ Format: `makeStats EVENT_INDEX t/STATISTIC_TYPE`
 * The `EVENT_INDEX` refers to the index number shown in the displayed event list.
 * The `EVENT_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `EVENT_INDEX` is a non-positive integer.
 * The `STATISTIC_TYPE` refers to the type of statistical data being generated and it must take one of the following values:
-  * `a` generate a pie chart showing the distribution of ages across age groups
-  * `g` generate a pie chart showing the distribution of genders
+  * `a` generate a pie chart showing the distribution of ages across age groups. Each age group has a 5-year age range.
+  * `g` generate a pie chart showing the distribution of genders, separating them into either `Male` or `Female` categories.
 
 Example:
 * `makeStats 1 t/g` generates gender statistics of the persons tagged to the 1st event in the event list
