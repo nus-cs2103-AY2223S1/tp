@@ -23,7 +23,7 @@ title: Developer Guide
     * [Showonly and Hideonly commands](#showonly-and-hideonly-commands)
     * [Filter command](#filter-command)
     * [Multiple data files](#multiple-data-files)
-    * [Command history](#command-history)
+    * [Command history](#command-history-feature)
     * [Venue and booking](#venue-and-booking)
 * [**Acknowledgements**](#acknowledgements)
 * [**Conclusion**](#conclusion)
@@ -1598,7 +1598,7 @@ testers are expected to do more *exploratory* testing.
 
 We recommend viewing the [Quality-of-life](UserGuide.md#quality-of-life) section before proceeding, as the following largely tests the functionality from that section.
 
-#### Command history
+#### Command history feature
 
 1. Browsing recent valid commands
    1. Prerequisites: List all residents using the `list` command, followed by adding a resident using the `add` command. The following test cases are to be done sequentially.
