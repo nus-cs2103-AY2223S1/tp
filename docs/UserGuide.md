@@ -1,5 +1,6 @@
 ---
-layout: page title: User Guide
+layout: page 
+title: User Guide
 ---
 
 User Guide
@@ -173,7 +174,7 @@ Format: `addresponse INDEX m/MESSAGE_COUNT`
 
 Example:
 
-* `addresponse 1 m/7`
+* `addresponse 1 m/7![img.png](img.png)`
 
 <img src="images/ug-screenshots/addresponse.png" alt="addresponse 1 m/7" width="1100">
 
@@ -239,7 +240,7 @@ Format: `findstu KEYWORD [MORE_KEYWORDS]`
 Examples:
 
 * `findstu john mary`
-* `findstu jun`
+* `findstu john`
 
 <img src="images/ug-screenshots/findstu.png" alt="findstu 1" width="1100">
 
