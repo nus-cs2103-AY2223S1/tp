@@ -16,8 +16,8 @@ TruthTable is a **desktop app for managing software engineering teams, optimized
 
 - Our application is based on the [AddressBook-Level3](https://se-education.org/addressbook-level3/) project created by the [SE-EDU initiative](https://se-education.org/).
 - Our application makes use of the [Picocli](https://picocli.info/) library for parsing and executing commands.
-- Our application makes use [JavaFX](https://openjfx.io/) of as the UI framework.
-- Our application makes use [Jackson](https://github.com/FasterXML/jackson) of as the JSON parser.
+- Our application makes use of [JavaFX](https://openjfx.io/) of as the UI framework.
+- Our application makes use of [Jackson](https://github.com/FasterXML/jackson) of as the JSON parser.
 - Our application makes use of [JUnit5](https://junit.org/junit5/) as the testing framework.
 
 ---
