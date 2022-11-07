@@ -379,7 +379,7 @@ distinct coloured tags under the friend's profile.
 
 #### Implementation
 
-The display feature is facilitated through the `PersonCard`, `PersonListPanel` and `UIPart` class, 
+The display feature is facilitated through the `PersonCard`, `PersonListPanel` and `UIPart` classes, 
 and configured using the `DarkTheme.css` file.
 
 The `PersonCard` class inherits from the `UIPart` class, representing the panel that displays each friend's profile. 
