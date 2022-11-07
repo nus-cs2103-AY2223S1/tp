@@ -28,11 +28,7 @@ Given below are my contributions to the project.
       * What it does: Allows the user to mark their reminder as done when they complete a task, or unmark their reminder as undone if they have not completed the task.
       * Justification: This feature makes our product more attractive as users keep track of the tasks they have or have not done. This acts like a ToDo list in ModQuik.
   * Enhanced ModQuik's parser.
-      * Highlights: This enhancement parses commands with no parameters such as exit exit or list list instead of throwing an error.
- 
-* **Project management**:
-    * Assigned issues to teammates.
-    * Assigned tags to issues.
+      * Highlights: This enhancement parses commands with no parameters such as `exit exit` or `list list` instead of throwing an error.
 
 * **Documentation**:
     * User Guide:
@@ -64,11 +60,10 @@ Given below are my contributions to the project.
           * `Delete Student Feature`
         * Added diagrams:
           * Model Class Diagram
-          * 
+          * Add Student Command Sequence Diagram
+          * Edit Student Command Sequence Diagram
+          * Delete Student Command Sequence Diagram
 
-* **Contributions to team-based tasks**:
-    * to be added soon
-
-* **Review/mentoring contributions**: to be added soon
-
-* **Contributions beyond the project team**: to be added soon
+* **Contribution to team-based tasks**:
+    * Assigned issues to teammates.
+    * Assigned tags to issues.
