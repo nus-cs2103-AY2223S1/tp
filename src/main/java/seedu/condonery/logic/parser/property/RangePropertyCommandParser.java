@@ -9,7 +9,6 @@ import static seedu.condonery.logic.parser.CliSyntax.PREFIX_UPPER;
 
 import java.util.stream.Stream;
 
-import seedu.condonery.commons.core.Messages;
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.property.RangePropertyCommand;
 import seedu.condonery.logic.parser.ArgumentMultimap;
