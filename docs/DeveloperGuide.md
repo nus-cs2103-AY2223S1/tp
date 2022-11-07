@@ -258,7 +258,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 The Find Contact Feature is facilitated by `FindCommand`. It extends `Command` and uses the `PersonMatchesPredicate` field (which implements the `Predicate` interface).
 
-`PersonMatchesPredicate` encapsulates all the required filters the user enters. `FindCommand` then uses the `test` method of the `Predicate` interface to filter contacts one at a time. `PersonMatchesPredicate` uses `ALL` search for fields,
+`PersonMatchesPredicate` encapsulates all the required filters the user enters. `FindCommand` then uses the `test` method of the `Predicate` interface to filter contacts one at a time.
+
+`PersonMatchesPredicate` uses `ALL` search for fields,
 but `OR` search inside fields. e.g. `find n/bob ann t/friend` will return contacts named `bob` and `ann` if both contacts have the tag `friend`. Whereas `find t/friend owesMoney` would just return all contacts who have the tag `friend` OR `owesMoney`.
 
 Given below is an example usage scenario and how the find command mechanism behaves at each step.
@@ -272,6 +274,7 @@ Step 3. The `FindCommandParser` will parse `n/bob t/friend` using `parse()`. `pa
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** `FindCommand` supports an "all fields matched" mode and "any fields matched" for module codes and tags. This means the setting of the modulesSet and tagsSet works differently than the other fields.
 </div>
+
 
 Step 4. `FindCommandParser` then creates a `FindCommand` by passing the `PersonMatchesPredicate` to its constructor.
 
