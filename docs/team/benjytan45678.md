@@ -35,7 +35,7 @@ Given below are my contributions to the project.
     * Highlights: Still optimized for fast typists as the prompt can be answered using keyboard commands
   * Enhanced the GUI of TrackAScholar: [#101](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/101/files) and [#185](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/185)
     * Implemented `PinCard`, `PinList` and its css files to improve the overall user interface.
-  * Wrote additional test cases for existing features to increase coverage by 4%: [#67](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/67),[#183](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/183) and [#189](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/189)
+  * Wrote additional test cases for existing features to increase overall coverage by 4%: [#67](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/67),[#183](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/183) and [#189](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/189)
 
 * **Documentation**: 
   * User Guide: 

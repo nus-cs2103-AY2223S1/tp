@@ -16,8 +16,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/ShummyOwnzYou)]
 [[portfolio](team/jiehui.md)]
 
-* Role: Project Advisor
-* Responsibilities: Backend
+* Role: Developer
+* Responsibilities: Documentation + Integration + Testing
 
 ### Samuel Cheong
 
@@ -27,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/samuelcheonws.md)]
 
 * Role: Team Member
-* Responsibilities: UI
+* Responsibilities: Integration + Testing + Scheduling
 
 ### Liu Yijun
 
@@ -36,8 +36,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/L1uY1jun)]
 [[portfolio](team/l1uy1jun.md)]
 
-* Role: Developer
-* Responsibilities: Documentation + Code Quality + Deliverables & Deadlines
+* Role: Team Leader
+* Responsibilities: Code Quality + Documentation + Deliverables & Deadlines
 
 ### Darren Tng
 
@@ -47,7 +47,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/darrencsacc.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Documentation
 
 
 ### Benjy Tan
@@ -58,4 +58,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/benjytan45678.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Documentation + Testing + UI
