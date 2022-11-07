@@ -122,7 +122,7 @@ The following table describes the sections in detail:
 
     * `view 3` : Displays full details of the 3rd tutor shown in the current list.
 
-    * `add n/John Doe p/98765432 e/e1234567 m/CS2100 y/3 s/A0123456X tn/1 r/5.0 t/senior` : Adds a tutor named `John Doe` to Tuthub.
+    * `add n/John Doe p/98765432 e/e1234567 m/CS2100 y/3 s/A0123456X tn/1 r/5.0` : Adds a tutor named `John Doe` to Tuthub.
 
     * `find n/alex` : Finds all tutors with names containing alex.
 
@@ -400,21 +400,21 @@ Format: `exit`
 
 ## **Command Summary**
 
-| Action                     | Format                                                                                                                             | Examples (if any)                                                                                      |
-|----------------------------|------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| See **Help**               | `help`                                                                                                                             |                                                                                                        |
-| **List** All Tutors        | `list`                                                                                                                             |                                                                                                        |
-| **View** a Tutor           | `view`                                                                                                                             | `view 1`                                                                                               |
-| **Add** Tutor              | `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MODULE s/STUDENT_ID tn/TEACHING_NOMINATIONS r/RATING [t/TAG]…​`                        | `add n/Betsy Crowe t/  e/E1234567@u.nus.edu  p/1234567 m/CS1101S y/3 s/A0123456X tn/1 r/4.99 t/senior` |
-| **Comment** on a Tutor     | `comment INDEX c/COMMENT`                                                                                                          | `comment 1 c/Tasks not Finished`                                                                       |
-| **Delete** a _Comment_     | `deletecomment TUTORINDEX COMMENTINDEX` or `dc TUTORINDEX COMMENTINDEX`                                                            | `deletecomment 1 1`, `dc 1 1`                                                                          |
-| **Edit** a Tutor's Details | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENT_ID] [tn/TEACHING_NOMINATIONS] [r/RATING] [t/TAG]…​` | `edit 3 m/CS2100 y/3 s/A0654729L`                                                                      |
-| **Find** a Tutor           | `find PREFIX/KEYWORDS [KEYWORDS]`                                                                                                  | `find n/Alex`                                                                                          |
-| **Mail** Tutor(s)          | `mail INDEX or "all"`                                                                                                              | `mail 3`                                                                                               |
-| **Sort** Tutor List        | `sort ORDER PREFIX`                                                                                                                | `sort a r/`                                                                                            |
-| **Delete** a _Tutor_       | `delete INDEX`                                                                                                                     | `delete 3`                                                                                             |
-| **Clear** Tutor List       | `clear`                                                                                                                            |                                                                                                        |
-| **Exit** Tuthub            | `exit`                                                                                                                             |                                                                                                        |
+| Action                     | Format                                                                                                                             | Examples (if any)                                                                                  |
+|----------------------------|------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| See **Help**               | `help`                                                                                                                             |                                                                                                    |
+| **List** All Tutors        | `list`                                                                                                                             |                                                                                                    |
+| **View** a Tutor           | `view`                                                                                                                             | `view 1`                                                                                           |
+| **Add** Tutor              | `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MODULE s/STUDENT_ID tn/TEACHING_NOMINATIONS r/RATING [t/TAG]…​`                        | `add n/Betsy Crowe e/E1234567@u.nus.edu  p/1234567 m/CS1101S y/3 s/A0123456X tn/1 r/4.99 t/senior` |
+| **Comment** on a Tutor     | `comment INDEX c/COMMENT`                                                                                                          | `comment 1 c/Tasks not Finished`                                                                   |
+| **Delete** a _Comment_     | `deletecomment TUTORINDEX COMMENTINDEX` or `dc TUTORINDEX COMMENTINDEX`                                                            | `deletecomment 1 1`, `dc 1 1`                                                                      |
+| **Edit** a Tutor's Details | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENT_ID] [tn/TEACHING_NOMINATIONS] [r/RATING] [t/TAG]…​` | `edit 3 m/CS2100 y/3 s/A0654729L`                                                                  |
+| **Find** a Tutor           | `find PREFIX/KEYWORDS [KEYWORDS]`                                                                                                  | `find n/Alex`                                                                                      |
+| **Mail** Tutor(s)          | `mail INDEX or "all"`                                                                                                              | `mail 3`                                                                                           |
+| **Sort** Tutor List        | `sort ORDER PREFIX`                                                                                                                | `sort a r/`                                                                                        |
+| **Delete** a _Tutor_       | `delete INDEX`                                                                                                                     | `delete 3`                                                                                         |
+| **Clear** Tutor List       | `clear`                                                                                                                            |                                                                                                    |
+| **Exit** Tuthub            | `exit`                                                                                                                             |                                                                                                    |
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
