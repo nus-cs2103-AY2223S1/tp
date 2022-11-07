@@ -60,7 +60,7 @@ public class ListModuleCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         ModuleContainsKeywordsPredicate predicate = preparePredicate(" ");
         ListModuleCommand command = new ListModuleCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
@@ -70,7 +70,7 @@ public class ListModuleCommandTest {
         ModuleContainsKeywordsPredicate predicate = preparePredicate("CS2100");
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         ListModuleCommand command = new ListModuleCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(List.of(ALICE, BENSON, CARL), model.getFilteredPersonList());
     }
