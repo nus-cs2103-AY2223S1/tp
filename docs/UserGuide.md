@@ -474,8 +474,6 @@ For a complete glossary of Minecraft terms, please visit this page on the
 | Terminology   | Definition                                                                                                         |
 |---------------|--------------------------------------------------------------------------------------------------------------------|
 | Mainstream OS | A mainstream desktop operating system, such as Windows, Linux, OS-X                                                |
-| Person        | A contact that is created in the app                                                                               |
-| Friend        | A person that is created in the app                                                                                |
 | Socials       | A person's social media account information, such as their Telegram handle, Instagram username or Twitter username |
 | CLI           | An acronym for "command line interface"                                                                            |
 | GUI           | An acronym for "graphical user interface"                                                                          |
