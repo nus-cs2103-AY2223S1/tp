@@ -20,7 +20,8 @@ public class MeetingTest {
     private final Person johann = new PersonBuilder().withName("Johann").build();
     private final Meeting meetingOneDifferentPerson = new MeetingBuilder(johann).build();
     private final Meeting meetingOneDifferentTitle = new MeetingBuilder().withDescription("Play chess").build();
-    private final Meeting meetingOneDifferentDateTime = new MeetingBuilder().withDateAndTime("10-10-2022").build();
+    private final Meeting meetingOneDifferentDateTime = new MeetingBuilder()
+        .withDateAndTime("Wednesday, 26 October 2020 06:30 PM").build();
     private final Meeting meetingOneDifferentLocation = new MeetingBuilder().withLocation("in lounge").build();
 
     /**

@@ -17,6 +17,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CreateMeetingCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteMeetingCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -93,6 +94,14 @@ public class AddressBookParserTest {
     public void parseCommand_createMeeting() throws Exception {
         assertTrue(parser.parseCommand(CreateMeetingCommand.COMMAND_WORD + " Yeoh }} Yu ;;; "
             + "Study ;;; 15-10-2022 1900 ;;; Utown") instanceof CreateMeetingCommand);
+        assertThrows(ParseException.class,
+            "Make sure you have entered the correct amount of information correctly separated!", ()
+                -> parser.parseCommand(CreateMeetingCommand.COMMAND_WORD + " Alex"));
+    }
+
+    @Test
+    public void parseCommand_deleteMeeting() throws Exception {
+        assertTrue(parser.parseCommand(DeleteMeetingCommand.COMMAND_WORD + " 1") instanceof DeleteMeetingCommand);
         assertThrows(ParseException.class,
             "Make sure you have entered the correct amount of information correctly separated!", ()
                 -> parser.parseCommand(CreateMeetingCommand.COMMAND_WORD + " Alex"));

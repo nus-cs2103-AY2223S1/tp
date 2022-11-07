@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -123,7 +124,7 @@ public class CreateMeetingCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof CreateMeetingCommand // instanceof handles nulls
-            && this.peopleToMeet.equals(((CreateMeetingCommand) other).peopleToMeet)
+            && Arrays.equals(this.peopleToMeet, ((CreateMeetingCommand) other).peopleToMeet)
             && this.meetingTitle.equals(((CreateMeetingCommand) other).meetingTitle)
             && this.processedMeetingDateAndTime.equals(((CreateMeetingCommand) other).processedMeetingDateAndTime)
             && this.meetingLocation.equals(((CreateMeetingCommand) other).meetingLocation)); // state check
