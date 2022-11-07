@@ -144,7 +144,7 @@ Here are the other classes in `Logic` (some of which omitted from the class diag
 <img src="images/ParserClasses.png" width="600"/>
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The classes in Orange above are provided by PicoCli. For more info, check out the
+:information_source: **Note:** The classes in Orange above are provided by picocli. For more info, check out the
 [picocli documentation page](https://picocli.info/).
 </div>
 
@@ -765,8 +765,7 @@ Preconditions: The current working team is set to the team that the link should 
   project.
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 - **Member**: A person in the team, working on a project.
-- **Private contact detail**: A contact detail that is not meant to be shared with others
-- **Repo**: A short-form for "repository" (usually on a platform such as GitHub or GitLab)
+- **Repo**: A short-form for "repository" meant to store code (usually on a platform such as GitHub or GitLab)
 - **Task**: Anything that needs to be completed for the project to move forward.
 - **Team Leader**: The person in-charge of a project, typically a software engineering project.
 
@@ -785,7 +784,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the latest _truthTable.jar_ file from [latest release](https://github.com/AY2223S1-CS2103T-W13-4/tp/releases)
+    1. Download the latest _truthtable.jar_ file from [latest release](https://github.com/AY2223S1-CS2103T-W13-4/tp/releases)
    and copy into an empty folder
 
     2. Double-click the jar file<br>
@@ -805,21 +804,21 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `add person -n John Doe -p 98765432 -e johnd@example.com -t developer designer` <br>
        Expected: If there is already a person called `John Doe` in TruthTable, then an error message will appear
-       at the output box. Otherwise, a new person will be added to the list in the right output box, with name `John Doe`,
+       in the output box. Otherwise, a new person will be added to the list in the right output box, with name `John Doe`,
        phone number `98765432`, email `johnd@example.com`, and tags `developer` and `designer`.
    
     2. Test case: `add person -n Jane Doe -p 92345678 -e janed@example.com` <br>
            Expected: If there is already a person called `Jane Doe` in TruthTable, then an error message will appear
-           at the output box. Otherwise, a new person will be added to the list in the right output box, with name
+           in the output box. Otherwise, a new person will be added to the list in the right output box, with name
            `Jane Doe`, phone number `92345678`, email `janed@example.com`, and no tags.
 
     3. Test case: `add person -n John Doe -p 98765432`<br>
-       Expected: No person is added. Error details shown in the message displayed at the output box.
+       Expected: No person is added. Error details shown in the message displayed in the output box.
 
     4. Other incorrect `add person` commands to try: `add person -p 98765432 -e johnd@example.com -t developer`,
        `add person -n John Doe -p 98765432`, `...` (where one or more attributes
-       are missing in the command)
-       Expected: An error message of `Invalid command format` will be displayed at the output box.
+       are missing in the command)<br>
+       Expected: An error message of `Invalid command format` will be displayed in the output box.
 
 ### Editing a person
 1. Editing a person while all persons are being shown
@@ -833,9 +832,9 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `edit person 0 -p 92345678 -e johndoe@example.com`
        Expected: No person is edited. Error details shown in the output box.
 
-    4. Other incorrect delete commands to try: `edit person`, `edit person x -n John`, `...`
-     (where x is larger than the list size)<br>
-     Expected: Similar to previous.
+    4. Other incorrect edit commands to try: `edit person`, `edit person X -n John`, `...`
+       (where X is a positive integer larger than the displayed persons list size)<br>
+       Expected: Similar to previous.
 
 ### Deleting a person
 
@@ -849,8 +848,8 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `delete person 0`<br>
        Expected: No person is deleted. Error details shown in the output box.
 
-    4. Other incorrect delete commands to try: `delete person`, `delete person x`, `...`
-       (where x is larger than the list size)<br>
+    4. Other incorrect delete commands to try: `delete person`, `delete person X`, `...`
+       (where X is a positive integer larger than the persons list size)<br>
        Expected: Similar to previous.
 
 ### Finding a person
@@ -869,7 +868,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Message indicating that no persons were found is displayed.
 
     4. Test case: `find person`<br>
-       Expected: An error message of `Invalid command format` will be displayed at the output box.
+       Expected: An error message of `Invalid command format` will be displayed in the output box.
 
 ### Listing all persons
 
@@ -891,8 +890,8 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `add member 0` <br>
        Expected: No member is added. Error details shown in the output box.
 
-    4. Other incorrect delete commands to try: `add member`, `add member x`, `...`
-       (where x is larger than the person list size)<br>
+    4. Other incorrect delete commands to try: `add member`, `add member X`, `...`
+       (where X is a positive integer larger than the displayed persons list size)<br>
        Expected: Similar to previous.
 
 ### Deleting a member
@@ -907,8 +906,8 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `delete member 0`<br>
        Expected: No member is deleted. Error details shown in the output box.
 
-    4. Other incorrect delete commands to try: `delete member`, `delete member x`, `...`
-       (where x is larger than the member list size)<br>
+    4. Other incorrect delete commands to try: `delete member`, `delete member X`, `...`
+       (where X is a positive integer larger than the displayed members list size)<br>
        Expected: Similar to previous.
 
 ### Finding a member
@@ -917,17 +916,17 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: Member list is not empty.
 
-    2. Test case: `find member -n John`<br>
+    2. Test case: `find member John`<br>
        Suppose that there is a member on the team named `John Doe`.<br>
        Expected: Message indicating number of persons found is displayed. Member list updates to only show
        the persons found.
 
-    3. Test case: `find member -n Jane`<br>
+    3. Test case: `find member Jane`<br>
        Suppose that there is no member with a name containing `Jane`.<br>
        Expected: Message indicating that no persons were found is displayed.
 
     4. Test case: `find member`<br>
-       Expected: An error message of `Invalid command format` will be displayed at the output box.
+       Expected: An error message of `Invalid command format` will be displayed in the output box.
 
 ### Listing all members
 
@@ -940,16 +939,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Sorting members in the currently selected team
     1. Test case: `sort members asc`<br>
-       Expected: Team members are sorted in ascending order in member list.
+       Expected: Team members are sorted in ascending alphabetical order in task list, based on their names.
 
     2. Test case: `sort members dsc`<br>
-       Expected: Team members are sorted in descending order in member list.
+       Expected: Team members are sorted in descending alphabetical order in task list, based on their names.
 
     3. Test case: `sort members res`<br>
-       Expected: Order of team members in member list is reset.
+       Expected: Order of team members in member list is reset to order of insertion.
 
     4. Test case: `sort members`<br>
-       Expected: An error message of `Invalid command format` will be displayed at the output box.
+       Expected: An error message of `Invalid command format` will be displayed in the output box.
 
 ## Testing Commands to Manage Teams
 ### Adding a team
@@ -957,26 +956,26 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `add team CS2102 -d "Database Systems"` <br>
        Expected: If there is already a team called `CS2102` in TruthTable, then an error message will appear
-       at the output box. Otherwise, a new team will be added to the team list tabs, with name `CS2102`,
+       in the output box. Otherwise, a new team will be added to the team list tabs, with name `CS2102`,
        and team description `Database Systems`.
 
     2. Test case: `add team CS2103T` <br>
        Expected: If there is already a team called `CS2103T` in TruthTable, then an error message will appear
-       at the output box. Otherwise, a new team will be added to the team list tabs, with name
+       in the output box. Otherwise, a new team will be added to the team list tabs, with name
        `CS2103T` and a default team description.
 
     3. Test case: `add team -d "Software Engineering"`<br>
-       Expected: No team is created. Error details shown in the message displayed at the output box.
+       Expected: No team is created. Error details shown in the message displayed in the output box.
 
     4. Test case: `add team`<br>
-       Expected: An error message of `Invalid command format` will be displayed at the output box.
+       Expected: An error message of `Invalid command format` will be displayed in the output box.
 
 ### Editing a team
 1. Editing the current team on TruthTable
 
     1. Prerequisites: The current working team is set to the team to be edited
 
-    2. Test case: `edit team -n CS2102 -d "Database Systems`
+    2. Test case: `edit team -n CS2102 -d "Database Systems`<br>
        Expected: Edits the team name and team description of the current team to be `CS2102` and `Database Systems`
        respectively.
 
@@ -995,9 +994,9 @@ testers are expected to do more *exploratory* testing.
 1. Sets the current working team to the target team
 
      1. Test case: `set team CS2103T`<br>
-        Expected: If there is no team named `CS2103T`, an error message is displayed in the output box the current
-        working team will not be changed. Otherwise, the team with name `CS2103T` will be set as the current working
-        team.
+        Expected: If there is no team named `CS2103T`, or the current team is named `CS2103T`, an error message is 
+        displayed in the output box and the current working team will not be changed.
+        Otherwise, the team with name `CS2103T` will be set as the current working team.
 
 ## Testing Commands to Manage Tasks
 ### Adding a task
@@ -1005,16 +1004,16 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `add task "Create PR"` <br>
        Expected: If there is already a task called `Create PR` in TruthTable, then an error message will appear
-       at the output box. Otherwise, a new task will be added to the task list, with name `Create PR`.
+       in the output box. Otherwise, a new task will be added to the task list, with name `Create PR`.
 
     2. Test case: `add task "Review PR" -a 1 3 -d 2022-12-02 23:59` <br>
-       Expected: If there is already a task called `Review PR` in TruthTable, then an error message will appear
-       at the output box. Otherwise, a new task will be added to the task list, with name
-       `Review PR`, assigned to the first and third members of your team's members list, and a
-       deadline of 2nd Dec 2022 23:59.
+       Expected: If there is already a task called `Review PR` in TruthTable, or if there are fewer than three members, 
+       then an error message will appear in the output box. Otherwise, a new task will be added to the task list, with 
+       name `Review PR`, assigned to the first and third members of your team's members list, and a deadline of 2nd Dec 
+       2022 23:59.
 
-    3. Test case: `add task -a 1 3 -d 2022-12-02 23:59`<br>
-       Expected: No person is added. Error details shown in the message displayed at the output box.
+    4. Test case: `add task -a 1 3 -d 2022-12-02 23:59`<br>
+       Expected: No task is added as no task name is provided. Error details shown in the message displayed in the output box.
 
 ### Editing a task
 1. Editing a task while all tasks are being shown
@@ -1029,8 +1028,8 @@ testers are expected to do more *exploratory* testing.
        Expected: The first task in the current team's task list is edited, removing all assignees from the task.
        The name and deadline are not modified in this example.
 
-    4. Other incorrect delete commands to try: `edit task`, `edit task x -n Meeting`, `...`
-       (where x is larger than the list size)<br>
+    4. Other incorrect delete commands to try: `edit task`, `edit task X -n Meeting`, `...`
+       (where X is a positive integer larger than the displayed tasks list size)<br>
        Expected: Similar to previous.
 
 ### Deleting a task
@@ -1045,8 +1044,8 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `delete task 0`<br>
        Expected: No task is deleted. Error details shown in the output box.
 
-    4. Other incorrect delete commands to try: `delete task`, `delete task x`, `...`
-       (where x is larger than the list size)<br>
+    4. Other incorrect delete commands to try: `delete task`, `delete task X`, `...`
+       (where X is a positive integer larger than the displayed tasks list size)<br>
        Expected: Similar to previous.
 
 ### Finding a task
@@ -1055,17 +1054,17 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: Task list is not empty.
 
-    2. Test case: `find task -n User Guide`<br>
+    2. Test case: `find task User Guide`<br>
        Suppose that there is a task named `User Guide`.<br>
        Expected: Message indicating number of tasks found is displayed. Task list updates to only show
        the tasks found.
 
-    3. Test case: `find task -n Review PR`<br>
+    3. Test case: `find task Review PR`<br>
        Suppose that there is no task with a name containing `Review` or `PR`.<br>
        Expected: Message indicating that no tasks were found is displayed.
 
     4. Test case: `find task`<br>
-       Expected: An error message of `Invalid command format` will be displayed at the output box.
+       Expected: An error message of `Invalid command format` will be displayed in the output box.
 
 ### Listing all tasks
 
@@ -1086,8 +1085,8 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `mark 0`<br>
        Expected: No task is marked as done. Error details shown in the output box.
 
-    4. Other incorrect delete commands to try: `mark`, `mark x`, `...`
-       (where x is larger than the list size)<br>
+    4. Other incorrect delete commands to try: `mark`, `mark X`, `...`
+       (where X is a positive integer larger than the displayed tasks list size)<br>
        Expected: Similar to previous.
 
 ### Unmark tasks as done
@@ -1102,8 +1101,8 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `unmark 0`<br>
        Expected: No task is marked as incomplete. Error details shown in the output box.
 
-    4. Other incorrect delete commands to try: `unmark`, `unmark x`, `...`
-       (where x is larger than the list size)<br>
+    4. Other incorrect delete commands to try: `unmark`, `unmark X`, `...`
+       (where X is a positive integer larger than the displayed tasks list size)<br>
        Expected: Similar to previous.
 
 ### Setting Deadline for task
@@ -1117,8 +1116,8 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `set deadline 0 2023-12-25 23:59`<br>
        Expected: No deadline is set for any task. Error details shown in the output box.
 
-    4. Other incorrect set deadline commands to try: `set deadline`, `set deadline x 2023-12-25 23:59`, `...`
-       (where x is larger than the list size)<br>
+    4. Other incorrect set deadline commands to try: `set deadline`, `set deadline X 2023-12-25 23:59`, `...`
+       (where X is a positive integer larger than the displayed tasks list size)<br>
        Expected: Similar to previous.
 
 ### Assigning a task to team member
@@ -1128,16 +1127,18 @@ testers are expected to do more *exploratory* testing.
        in member list.
 
     2. Test case: `assign task 2 -a 1 2`<br>
-       Expected: The second task on the task list is assigned to the first and second member in the team.
+       Expected: The second task on the task list is assigned to the first and second member in the team. If either of
+       the members have previously been assigned to the task, a warning will show up in the output box.
 
-    3. Test case: `assign task 1 -a`<br>
+    4. Test case: `assign task 1 -a`<br>
+       Expected: No additional assignee is set for any task. No error message will be shown. 
+
+    5. Test case: `assign task 0 -a 1 2`<br>
        Expected: No assignee is set for any task. Error details shown in the output box.
 
-    4. Test case: `assign task 0 -a 1 2`<br>
-       Expected: No assignee is set for any task. Error details shown in the output box.
-
-    5. Other incorrect set deadline commands to try: `assign task`, `assign task x -a x`, `...`
-       (where x is larger than the task list and member list size)<br>
+    6. Other incorrect set deadline commands to try: `assign task`, `assign task X -a Y`, `...`
+       (where X is a positive integer larger than the displayed tasks list size, and/or Y is a positive integer larger
+       than the displayed members list size)<br>
        Expected: Similar to previous.
 
 ### Assigning a task to random team member
@@ -1152,8 +1153,8 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `assign random 0`<br>
        Expected: No assignee is set for any task. Error details shown in the output box.
 
-    4. Other incorrect set deadline commands to try: `assign random`, `assign random x`, `...`
-       (where x is larger than the task list size)<br>
+    4. Other incorrect set deadline commands to try: `assign random`, `assign random X`, `...`
+       (where X is a positive integer larger than the displayed tasks list size)<br>
        Expected: Similar to previous.
 
 ### Filtering tasks by team member
@@ -1167,8 +1168,8 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `tasksof 0`<br>
        Expected: Error details shown in the output box.
 
-    4. Other incorrect set deadline commands to try: `tasksof`, `tasksof x`, `...`
-       (where x is larger than the member list size)<br>
+    4. Other incorrect set deadline commands to try: `tasksof`, `tasksof X`, `...`
+       (where X is a positive integer larger than the displayed members list size)<br>
        Expected: Similar to previous.
 
 ### Sorting members
@@ -1184,7 +1185,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Order of tasks in task list is reset.
 
     4. Test case: `sort tasks`<br>
-       Expected: An error message of `Invalid command format` will be displayed at the output box.
+       Expected: An error message of `Invalid command format` will be displayed in the output box.
 
 ### View summary of task assignments in team
 
@@ -1199,14 +1200,14 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `add link -n google -l https://google.com` <br>
        Expected: If there is already a link called `google` in TruthTable, then an error message will appear
-       at the output box. Otherwise, a new link will be added to the link list, with name `google`,
+       in the output box. Otherwise, a new link will be added to the link list, with name `google`,
        and URL `https://google.com`.
 
     2. Test case: `add link -n google"`<br>
-       Expected: No link is created. Error details shown in the message displayed at the output box.
+       Expected: No link is created. Error details shown in the message displayed in the output box.
 
     3. Test case: `add link`<br>
-       Expected: An error message of `Invalid command format` will be displayed at the output box.
+       Expected: An error message of `Invalid command format` will be displayed in the output box.
 
 ### Editing a link
 1. Editing an existing link in the team
@@ -1215,7 +1216,7 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case: `edit link 1 -n facebook -l https://facebook.com`
        Expected: The first link in the current team's link list is edited, setting the name as
-       `facebook`, with the URL of "https://facebook.com".
+       `facebook`, with the URL of `https://facebook.com`.
 
     3. Test case: `edit link 1 -n google`
        Expected: The first link in the current team's link list is edited, setting the name as
@@ -1224,8 +1225,8 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `edit link 0 -n google`
        Expected: No link is edited. Error details shown in the output box.
 
-    5. Other incorrect delete commands to try: `edit link`, `edit link x -n Meeting`, `...`
-       (where x is larger than the list size)<br>
+    5. Other incorrect delete commands to try: `edit link`, `edit link X -n Meeting`, `...`
+       (where X is a positive integer larger than the displayed links list size)<br>
        Expected: Similar to previous.
 
 ### Deleting a link
