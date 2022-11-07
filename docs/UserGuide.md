@@ -175,6 +175,7 @@ This document is to assist you in using MODPRO smoothly and effectively to track
 Adds the module into the module list.
 
 Format: `m add c/MODULE_CODE m/MODULE_NAME mc/MODULE_CREDIT`
+
 Parameters:
 * `MODULE_CODE` refers to the module code of the module being added.
 * `MODULE_NAME` refers to the name of the module.
