@@ -15,7 +15,7 @@ Code contributed: Here is a link to [my code](https://nus-cs2103-ay2223s1.github
 
 ### New Features implemented:
 
-- New Feature: Add **PropertyStatusEnum** as a Property Field
+- New Feature: Add **PropertyStatusEnum** as a Property Field (Pull Request [#115](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/115))
   - What it does: allows Properties to have PropertyStatus of `AVAILABLE`, `PENDING`, and `SOLD`
   - Justification: This allows the user to know a property's status which is important when doing recommendations to clients
   - Highlights: This enhancement allows users to
@@ -39,9 +39,9 @@ validation to ensure that the input provided is valid.
 - Delete Client (Pull Request [#86](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/86))
 
 ### Contributions to the DG:
-- Added documentation for Filter by `PropertyStatusEnum` feature
-- Added use cases
-- Added instructions for manual testing
+- Added documentation for Filter by `PropertyStatusEnum` feature (Pull Request [#229](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/229))
+- Added use cases (Pull Request [#251](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/251))
+- Added instructions for manual testing (Pull Request [#251](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/251)
 
 ### Community:
 - Reviewed PRs of peers
