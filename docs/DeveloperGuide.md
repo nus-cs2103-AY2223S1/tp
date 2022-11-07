@@ -762,11 +762,17 @@ For all use cases below, the **System** is the `NutriGoals` application and the 
 
 * **Deficit**: The amount of calories <ins>not</ins> consumed in order to facilitate fat burning and weight loss.
 
+* **Surplus**: The amount of calories consumed in excess of the recommended daily intake to facilitate mass gain.
+
 * **Macros**: Proteins, Carbohydrates, Fats e.t.c., macronutrient groups that provide people with energy.
 
-* **Meals**: Breakfast, Lunch, Dinner e.t.c., categories for users to input their daily meals under.
+* **Food item**: Refers to an individual item of food that is consumed by the user
 
-* **Surplus**: The amount of calories consumed in excess of the recommended daily intake to facilitate mass gain.
+* **Meals**: Breakfast, Lunch, Dinner e.t.c., categories that consist of multiple food items and is usually consumed at a particular time.
+
+* **Ideal weight**: The self-defined weight that users want to achieve for themselves.
+
+* **Gym**: Refers to a gymnasium used for weight training.
 
 --------------------------------------------------------------------------------------------------------------------
 
