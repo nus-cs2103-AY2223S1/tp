@@ -278,7 +278,7 @@ public class Person {
      * @param linksToAdd Links to be added to the person.
      * @return Set of links after adding new links to existing links.
      */
-    public Set<Link> mergeLinks(Set<Link> linksToAdd) {
+    public Set<Link> mergeLinks(Set<Link> linksToAdd) throws DuplicateLinkException {
         Set<Link> mergedLinks = new HashSet<>(links);
         for (Link l: linksToAdd) {
             if (links.contains(l)) {

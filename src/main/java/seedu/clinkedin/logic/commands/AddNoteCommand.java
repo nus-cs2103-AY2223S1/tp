@@ -11,6 +11,7 @@ import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.person.Note;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
+import seedu.clinkedin.model.person.exceptions.DuplicateNoteException;
 
 /**
  * Changes the note of an existing person in the address book.
@@ -52,7 +53,14 @@ public class AddNoteCommand extends Command {
         }
 
         Person personToUpdate = lastShownList.get(index.getZeroBased());
-        Note updatedNote = personToUpdate.mergeNote(note);
+
+        Note updatedNote;
+        try {
+            updatedNote = personToUpdate.mergeNote(note);
+        } catch (DuplicateNoteException d) {
+            throw new CommandException(d.getMessage());
+        }
+
         UniqueTagTypeMap tagMap = new UniqueTagTypeMap();
         tagMap.setTagTypeMap(personToUpdate.getTags());
         Person updatedPerson = new Person(personToUpdate.getName(), personToUpdate.getPhone(),

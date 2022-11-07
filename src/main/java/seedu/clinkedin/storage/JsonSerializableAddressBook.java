@@ -63,6 +63,9 @@ public class JsonSerializableAddressBook {
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
         Map<Prefix, TagType> map = new HashMap<>();
+        if (prefixMap.size() % 2 != 0) {
+            throw new IllegalValueException("Prefix Map is not in correct format!");
+        }
         for (int i = 0; i < prefixMap.size(); i = i + 2) {
             map.put(new Prefix(prefixMap.get(i)), new TagType(prefixMap.get(i + 1), new Prefix(prefixMap.get(i))));
         }
