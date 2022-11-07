@@ -799,7 +799,7 @@ Edits a specified task in the current team's task list.
 <div markdown="span" class="alert alert-warning">:exclamation: **Command Format:**
 
 Ensure that `TASK_INDEX` is entered before entering any `ASSIGNEES`, as they both take in positive integers. 
-Passing `TASK_INDEX` after `ASSIGNEES` makes it impossible to distinguish which number is actually `TASK_INDEX`.
+Passing `TASK_INDEX` after `ASSIGNEES` makes it impossible to distinguish which number is actually the `TASK_INDEX`.
 </div>
 
 
