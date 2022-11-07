@@ -5,10 +5,9 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":PennyWiseParser" as PennyWiseParser LOGIC_COLOR
 participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
-participant "editCommand:EditCommand" as EditCommand LOGIC_COLOR
-participant "editEntryDescriptor:EditEntryDescriptor" as EditEntryDescriptor LOGIC_COLOR
+participant "editCommand\n:EditCommand" as EditCommand LOGIC_COLOR
+participant "editEntryDescriptor\n:EditEntryDescriptor" as EditEntryDescriptor LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
-participant "<<class>>\nEditCommand" as EditCommandClass LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -55,22 +54,7 @@ deactivate PennyWiseParser
 LogicManager -> EditCommand : execute(model)
 activate EditCommand
 
-EditCommand -> Model :getFilteredExpenditureList()
-
-EditCommand -> EditCommand: getEntryToEdit()
-activate EditCommand
-return entryToEdit
-
-EditCommand -> EditCommandClass :createdEditedEntry()
-activate EditCommandClass
-return editedEntry
-deactivate EditCommandClass
-
-EditCommand -> Model : setExpenditure()
-Model --> EditCommand
-
-EditCommand -> Model : updateFilteredExpenditureList()
-Model --> EditCommand
+ref over EditCommand, Model : edit expenditure in model
 
 create CommandResult
 EditCommand -> CommandResult

@@ -112,10 +112,6 @@
     -fx-text-fill: -pw-white;
 }
 
-.chart-pie {
-    -fx-background-insets: 0;
-    -fx-border-width:0;
-}
 
 #noEntryText {
     -fx-text-fill: -pw-white;

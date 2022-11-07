@@ -109,7 +109,6 @@ public class ModelManager implements Model {
     @Override
     public void addExpenditure(Entry entry) {
         pennyWise.addExpenditure(entry);
-        updateFilteredExpenditureList(PREDICATE_SHOW_ALL_ENTRIES);
     }
 
     @Override
@@ -133,7 +132,6 @@ public class ModelManager implements Model {
     @Override
     public void addIncome(Entry entry) {
         pennyWise.addIncome(entry);
-        updateFilteredExpenditureList(PREDICATE_SHOW_ALL_ENTRIES);
     }
 
     @Override
@@ -189,6 +187,9 @@ public class ModelManager implements Model {
      * @return ObservableList of income pie chart data
      */
     public ObservableList<PieChart.Data> getIncomePieChartData() {
+        // make sure pie chart shows all unfiltered data
+        updateFilteredIncomeList(PREDICATE_SHOW_ALL_ENTRIES);
+
         if (filteredIncome.size() == 0) {
             return FXCollections.unmodifiableObservableList(FXCollections.observableArrayList());
         }
@@ -236,10 +237,12 @@ public class ModelManager implements Model {
      * @return ObservableList of expense pie chart data
      */
     public ObservableList<PieChart.Data> getExpensePieChartData() {
+        // make sure pie chart shows all unfiltered data
+        updateFilteredExpenditureList(PREDICATE_SHOW_ALL_ENTRIES);
+
         if (filteredExpenditure.size() == 0) {
             return FXCollections.unmodifiableObservableList(FXCollections.observableArrayList());
         }
-
         double[] expensePieChartArr = new double[6];
 
         for (Entry e : filteredExpenditure) {
