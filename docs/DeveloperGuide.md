@@ -424,6 +424,40 @@ It is designed to be a non-compulsory feature, as the recruiter might not be abl
 **Aspect: Argument type of the `Rating` constructor**
 It is designed to take in a String, as Commands are parsed as a String. However, the constructor will parse the String and the Rating is stored as an Integer.
 
+### Link Feature
+
+#### Implementation
+
+The proposed `Link` feature is added as an optional attribute under the `Person` class. A `Person` can have 0 or more links added to it and it stores all the links as a `Set` of `Link`.
+
+This feature is facilitated by `Link` class. The `Link` class uses an external Java library for `URL` to store the links so that it can use the library to identify and generate the host platform for the link to display an appropriate icon for the link in the UI.
+
+If a user doesn't provide links for a candidate while adding the candidate to the list then they can choose to add/update existing links using the `addLink` command. Moreover, the user can also replace/delete the entire list of existing links for a candidate using the `edit`/`delete` command.
+These features are implemented using the following class/methods:
+- `AddLinkCommandParser#parse()` - Extracts the index and all the links to be added to the candidate at the given index from the user input and calls `ParserUtil.parseLinks()` to get a `Set` of valid `Link`.
+- `ParserUtil#parseLinks()` - It further calls the `parseLink()` method that parses the link, generates a valid `URL` and returns the URl after wrapping it using the `Link` data type.
+- `Link#generatePlatform()` - It extracts the host from the given URL and generates the platform for the icon to be displayed in the UI as `linkedin`, `telegram`, `github`, `instagram`, `snapchat`, `discord`, `twitter`, or `facebook` if it is one of them or as `general` if it is not recognised.
+- `AddLinkCommand` - After doing all the relevant checks it adds the `Set` of `Link` passed to it as a parameter to the person at the given index when its `execute()` method is called.
+- `DeleteLinkCommandParser#parse()` - Parses the index of the candidate whose links are to be deleted.
+- `DeleteLinkCommand` - Creates a copy of the person at the provided index but with no links and sets the person at the given index as the new person in the address book. 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Since, while instantiating a `URL` in the `ParserUtil` the `URL` class throws an exception if the link is not in the correct format, we do not have an explicit method `isValidLink()` in the `Link` class to check for the validity of the link.<br>
+</div>
+
+Given below is an example usage scenario and how the add/edit/delete links mechanism behaves at each step:
+
+Assume, currently there are 3 people in the address book.
+
+Step 1. The user executes `add n/John p/12345678 a/21 College Road e/john@gmail.com s/Application received rate/4 l/https://telegram.com` command to add a person the address book with a single link at index 4.
+
+Step 2. The user executes `addLink 4 l/https://github.com l/https://linkedin.com` command to add 2 more links to person. Now, the person at index 4 will have a total for 3 links attached to it.
+
+Step 3. The user clicks on the icon with the `Github` logo for the person at index 4 to view the Github link added for the person.
+
+Step 3. The user executes the `edit 4 l/https://google.com` to replace the existing set of links for the person with a single link. Do note, since google is not a recognised platform by CLInkedIn, it will be displayed with a general link icon in the GUI.
+
+Step 4. The user executes the `deleteLink 4` to delete all the links of the person at index 4.
+
 ### Undo/redo feature
 
 #### Implementation
