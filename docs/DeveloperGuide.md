@@ -556,7 +556,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC6 - Exit the program**
+**Use case: UC6 - Sorting tutors**
+
+**MSS**
+
+1. User requests to sort the currently displayed tutor list.
+2. Tuthub sorts the list of tutors based on a prefix (`Rating` or `TeachingNomination`) in a specific order (ascending or descending).
+
+   Use case ends.
+
+**Use case: UC7 - Exit the program**
 
 **MSS**
 
