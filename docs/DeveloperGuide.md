@@ -367,7 +367,7 @@ The following sequence diagram shows how the remove operation works:
 ![Interactions Inside the Logic Component for the `remove` Command example](images/RemoveSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The _GUI_ interactions when `RemoveCommand#execute()` calls `RemoveCommand#promptUserConfirmation()`
-is abstracted out as this sequence diagram aims only to demonstrate the interactions inside Logic Component for the `remove` command.
+is abstracted out as this sequence diagram aims to only demonstrate the interactions inside Logic Component for the `remove` command.
 
 </div>
 
@@ -521,12 +521,14 @@ in the Activity Diagram but due to limitation of PlantUML, the arrowhead converg
 
 **Implementation**
 
-The import operation is facilitated by `ImportCommandParser`. `ImportComamndParser` will create an
-`ImportCommand` if the input prefix is `r` or `k`.
+The import operation is facilitated by `ImportCommand`. `ImportCommand` extends `Command` and implements the `Command#execute` operation.
+Data file must be stored in proper _Json_ format and named `trackAScholarImport.json` under the `./data` folder for the file to be properly read
+when executing the `ImportCommand`.
 
-`ImportCommand` extends `Command` and implements the `Command#execute` operation.
-
-[//]: # (Do I need to write how how importCommand executes the program?)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The interactions with the `Storage` component when reading
+the import data file `trackAScholarImport.json` is abstracted out as this implementation aims to only demonstrate the interactions inside
+Logic Component for the `import` command.
+</div>
 
 Given below is an example usage scenario and how the import operation is handled by TrackAScholar:
 
@@ -536,17 +538,16 @@ Given below is an example usage scenario and how the import operation is handled
 
 2. `TrackAScholarParser` identifies the `import` command and `ImportCommandParser` will be instantiated which calls `ImportCommandParser#parse()`
 
-3. `ImportCommandParser#parse()` checks if the argument correspond to `r` or `k` and initializes and returns an `ImportCommand` with the argument `str`.
+3. `ImportCommandParser#parse()` now initializes and returns an `ImportCommand` with the argument `r`.
 
-4. `LogicManager#execute()` now calls `ImportCommand#execute()`, which creates a new `JsonTrackAScholarStorage` object with the file path at ./data/trackAScholarImport.json.
-   `JsonTrackAScholarStorage#readTrackAScholar()` is then called to check if `trackAScholarImport.json` is present and calls `JsonUtil#readJsonFile()`.
-   This returns `Optional<ReadOnlyTrackAScholar>` and `Optional#get()` is called to get the `ReadOnlyTrackAScholar` object.
-   `ReadOnlyTrackAScholar#getApplicantList()` is called to obtain the `ObservableList<Applicant>` object.
+4. `LogicManager#execute()` now calls `ImportCommand#execute()`, which reads the data file `trackAScholarImport.json` to obtain the
+   imported applicant list.
 
-5. `ImportCommand#execute()` then checks if `str` in `ImportCommand` is `r`, `Model#importWithReplace()` to add the applicants within the 
-   `ObservableList<Applicant>` object into the current model, replacing applicants with the same name. 
+5. The argument `r` is then read and understood, which `LogicManager#execute()` now invokes `Model#importWithReplace()` to add
+   the applicants within the imported applicant list into the current `Model`. Duplicate applicants who have the
+   same name are now updated with imported applicants and new imported applicants are added into the current applicant list. 
 
-6. `ImportCommand#execute()` finishes with returning a `CommandResult` with a successful import message.
+6. `ImportCommand#execute()` finishes with returning a `CommandResult` containing information of a successful import.
 
 The following sequence diagram shows how the import operation works:
 

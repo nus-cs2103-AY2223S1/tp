@@ -15,13 +15,6 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-box Storage STORAGE_COLOR_T1
-'participant ":Storage" as Storage STORAGE_COLOR
-participant ":JsonTrackAScholarStorage" as JsonTrackAScholarStorage STORAGE_COLOR
-participant ":ReadOnlyTrackAScholar" as ReadOnlyTrackAScholar STORAGE_COLOR
-
-end box
-
 [-> LogicManager : execute("import r")
 activate LogicManager
 
@@ -40,7 +33,7 @@ TrackAScholarParser -> ImportCommandParser : parse("r")
 activate ImportCommandParser
 
 create ImportCommand
-ImportCommandParser -> ImportCommand : ImportCommand(str)
+ImportCommandParser -> ImportCommand : ImportCommand("r")
 activate ImportCommand
 
 ImportCommand --> ImportCommandParser
@@ -59,22 +52,7 @@ deactivate TrackAScholarParser
 LogicManager -> ImportCommand : execute()
 activate ImportCommand
 
-create JsonTrackAScholarStorage
-ImportCommand -> JsonTrackAScholarStorage : readTrackAScholar()
-
-activate JsonTrackAScholarStorage
-
-JsonTrackAScholarStorage --> ImportCommand
-deactivate JsonTrackAScholarStorage
-
-create ReadOnlyTrackAScholar
-ImportCommand -> ReadOnlyTrackAScholar : getApplicantList()
-activate ReadOnlyTrackAScholar
-
-ReadOnlyTrackAScholar --> ImportCommand : applicantList
-deactivate
-
-ImportCommand -> Model : importWithReplace(applicantList)
+ImportCommand -> Model : importWithReplace()
 activate Model
 
 Model --> ImportCommand
