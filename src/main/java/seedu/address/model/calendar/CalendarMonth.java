@@ -16,10 +16,8 @@ import javafx.collections.ObservableList;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class CalendarMonth {
-
     // Data fields
     private ObservableList<CalendarEvent> calendarEvents;
-
 
     /**
      * Every field must be present and not null.

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
@@ -35,8 +36,7 @@ public class DeleteAppointmentCommand extends Command {
      * @param appointmentIndex of the person in the filtered person list
      */
     public DeleteAppointmentCommand(Index personIndex, Index appointmentIndex) {
-        requireNonNull(personIndex);
-        requireNonNull(appointmentIndex);
+        requireAllNonNull(personIndex, appointmentIndex);
 
         this.personIndex = personIndex;
         this.appointmentIndex = appointmentIndex;

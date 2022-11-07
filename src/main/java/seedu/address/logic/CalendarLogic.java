@@ -12,32 +12,19 @@ import java.util.GregorianCalendar;
 
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.scene.Node;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.model.appointment.Date;
 import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.calendar.CalendarMonth;
+import seedu.address.ui.CalendarDisplay;
 import seedu.address.ui.CalendarEventListPanel;
-import seedu.address.ui.JumpBox;
-import seedu.address.ui.NextButton;
-import seedu.address.ui.PreviousButton;
-import seedu.address.ui.TextValidation;
 
 /**
  * The manager of the logic for the Calendar.
  */
 public class CalendarLogic {
-    private static final String SUCCESS_MESSAGE = "success";
-    private static final String WRONG_FORMAT_MESSAGE = "failure";
-    private static final String EMPTY_MESSAGE = "";
-
-
     private static final String[] MONTH_NAMES = {
         "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
@@ -47,31 +34,26 @@ public class CalendarLogic {
     };
     private static final String TEXT_HEADER_STYLE = "-fx-font-size: 15pt; -fx-text-fill: white; "
             + "-fx-background-color: #fff";
-    private PreviousButton prevButton = new PreviousButton("Prev", this);
-    private NextButton nextButton = new NextButton("Next", this);
-    private JumpBox jumpBox = new JumpBox(this);
-    private TextValidation textValidation = new TextValidation();
 
-    @FXML
-    private GridPane calendarGrid;
-    @FXML
-    private FlowPane topCalendar;
+    private static final String EMPTY_MESSAGE = "";
+    private static final String SUCCESS_MESSAGE = "success";
+    private static final String WRONG_FORMAT_MESSAGE = "failure";
     private Stage primaryStage;
     private Logic logic;
     private Calendar currentMonth;
     private CalendarMonth calendarMonth;
     private ObservableList<CalendarEvent> filteredCalendarEventList;
+    private CalendarDisplay calendarDisplay;
 
     /**
      * Constructs a {@code CalendarLogic} with the given {@code Logic}, {@code Stage}
      * {@code GridPane} and {@code HBox}.
      */
-    public CalendarLogic(Logic logic, Stage primaryStage, GridPane calendarGrid, FlowPane topCalendar) {
-        requireAllNonNull(logic, primaryStage, calendarGrid, topCalendar);
-        this.calendarGrid = calendarGrid;
-        this.topCalendar = topCalendar;
+    public CalendarLogic(Logic logic, Stage primaryStage, CalendarDisplay calendarDisplay) {
+        requireAllNonNull(logic, primaryStage, calendarDisplay);
         this.logic = logic;
         this.primaryStage = primaryStage;
+        this.calendarDisplay = calendarDisplay;
         ListChangeListener<CalendarEvent> temp = (x) -> {
             x.next();
             refresh();
@@ -90,30 +72,14 @@ public class CalendarLogic {
     }
 
     /**
-     * Draws the Ui for the Calendar.
+     * Fills body of the Calendar with the individual date components.
      */
-    public void drawCalendar() {
-        drawHeader();
-        drawBody();
-    }
-
-    public JumpBox getJumpBox() {
-        return jumpBox;
-    }
-
-    private void drawHeader() {
-        Text textHeader = getTextHeader();
-        topCalendar.getChildren().addAll(textHeader, prevButton.getRoot(), nextButton.getRoot(),
-                jumpBox.getRoot(), textValidation.getRoot());
-        topCalendar.setMargin(textHeader, new Insets(0, 50, 0, 0));
-    }
-
-    private void drawBody() {
+    public void drawBody() {
         // Draw days of the week
         for (int day = 1; day <= 7; day++) {
             Text tDayName = new Text(" " + getDayName(day));
             tDayName.setFill(WHITE);
-            calendarGrid.add(tDayName, day - 1, 0);
+            calendarDisplay.addToCalendarGrid(tDayName, day - 1, 0);
         }
 
         // Draw days in month
@@ -133,7 +99,7 @@ public class CalendarLogic {
             CalendarEventListPanel calendarEventListPanel = new CalendarEventListPanel(calendarEventsInDayOfMonth,
                     primaryStage);
             VBox calendarEventList = calendarEventListPanel.getCalendarEventList(currentDay);
-            calendarGrid.add(calendarEventList, dayOfWeek - 1, row);
+            calendarDisplay.addToCalendarGrid(calendarEventList, dayOfWeek - 1, row);
             currentDay++;
             dayOfWeek++;
         }
@@ -147,7 +113,7 @@ public class CalendarLogic {
         return MONTH_NAMES[n];
     }
 
-    private Text getTextHeader() {
+    public Text getTextHeader() {
         String monthString = getMonthName(currentMonth.get(Calendar.MONTH));
         String yearString = String.valueOf(currentMonth.get(Calendar.YEAR));
         Text header = new Text(monthString + ", " + yearString);
@@ -160,10 +126,9 @@ public class CalendarLogic {
      * Refreshes the CalendarEvents.
      */
     public void refresh() {
-        resetGridPane();
+        calendarDisplay.resetGridPane();
         this.calendarMonth = new CalendarMonth(filteredCalendarEventList);
-        textValidation.setTextValidation(EMPTY_MESSAGE);
-        drawCalendar();
+        calendarDisplay.drawCalendar();
     }
 
     /**
@@ -172,7 +137,7 @@ public class CalendarLogic {
     public void previous() {
         this.calendarMonth = new CalendarMonth(filteredCalendarEventList);
         currentMonth = getPreviousMonth(currentMonth);
-        textValidation.setTextValidation(EMPTY_MESSAGE);
+        calendarDisplay.setTextValidation(EMPTY_MESSAGE);
         updateCalendarMonth();
     }
 
@@ -182,7 +147,7 @@ public class CalendarLogic {
     public void next() {
         this.calendarMonth = new CalendarMonth(filteredCalendarEventList);
         currentMonth = getNextMonth(currentMonth);
-        textValidation.setTextValidation(EMPTY_MESSAGE);
+        calendarDisplay.setTextValidation(EMPTY_MESSAGE);
         updateCalendarMonth();
     }
     /**
@@ -195,9 +160,9 @@ public class CalendarLogic {
     }
 
     private GregorianCalendar getJumpMonth(Calendar cal) throws DateTimeParseException {
+        String inputDate = calendarDisplay.getJumpBoxText();
+        calendarDisplay.clearJumpBox();
 
-        String inputDate = jumpBox.getText();
-        jumpBox.clear();
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-MM-uuuu");
             formatter = formatter.withResolverStyle(ResolverStyle.STRICT);
@@ -205,14 +170,14 @@ public class CalendarLogic {
             Date jumpDate = new Date(ld);
             int newMonth = jumpDate.getMonth() - 1;
             int newYear = jumpDate.getYear();
-            textValidation.setTextValidation(SUCCESS_MESSAGE);
+            calendarDisplay.setTextValidation(SUCCESS_MESSAGE);
             return new GregorianCalendar(newYear, newMonth, 1);
         } catch (DateTimeParseException e) {
             if (e.getCause() == null) {
-                textValidation.setTextValidation(WRONG_FORMAT_MESSAGE);
+                calendarDisplay.setTextValidation(WRONG_FORMAT_MESSAGE);
             } else {
                 String str = e.getCause().getMessage();
-                textValidation.setTextValidation(str);
+                calendarDisplay.setTextValidation(str);
             }
         }
         return new GregorianCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), 1);
@@ -220,9 +185,9 @@ public class CalendarLogic {
 
     private void updateCalendarMonth() {
         Text newMonthHeader = getTextHeader();
-        topCalendar.getChildren().set(0, newMonthHeader);
-        topCalendar.setMargin(newMonthHeader, new Insets(0, 50, 0, 0));
-        resetCalendarBody();
+        calendarDisplay.setTopCalendarHeader(0, newMonthHeader);
+        calendarDisplay.resetMargin(newMonthHeader);
+        calendarDisplay.resetCalendarBody();
         drawBody();
     }
 
@@ -256,16 +221,7 @@ public class CalendarLogic {
         return new GregorianCalendar(futureYear, futureMonth, 1);
     }
 
-    private void resetGridPane() {
-        topCalendar.getChildren().clear();
-        Node node = calendarGrid.getChildren().get(0);
-        calendarGrid.getChildren().clear();
-        calendarGrid.getChildren().add(0, node);
-    }
 
-    private void resetCalendarBody() {
-        Node node = calendarGrid.getChildren().get(0);
-        calendarGrid.getChildren().clear();
-        calendarGrid.getChildren().add(0, node);
-    }
+
+
 }
