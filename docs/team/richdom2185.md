@@ -12,6 +12,10 @@ title: Richard Dominick's Project Portfolio Page
 
 Given below are my contributions to the project.
 
+* PRs Reviewed:
+
+  [[PR#528]] [[PR#527]] [[PR#523]] [[PR#522]] [[PR#521]] [[PR#520]] [[PR#519]] [[PR#518]] [[PR#517]] [[PR#516]] [[PR#513]] [[PR#506]] [[PR#505]] [[PR#466]] [[PR#459]] [[PR#458]] [[PR#450]] [[PR#446]] [[PR#435]] [[PR#434]] [[PR#432]] [[PR#429]] [[PR#428]] [[PR#420]] [[PR#419]] [[PR#376]] [[PR#375]] [[PR#374]] [[PR#372]] [[PR#370]] [[PR#369]] [[PR#368]] [[PR#367]] [[PR#365]] [[PR#362]] [[PR#360]] [[PR#359]] [[PR#358]] [[PR#357]] [[PR#355]] [[PR#353]] [[PR#351]] [[PR#340]] [[PR#335]] [[PR#329]] [[PR#324]] [[PR#319]] [[PR#318]] [[PR#316]] [[PR#310]] [[PR#306]] [[PR#303]] [[PR#302]] [[PR#299]] [[PR#295]] [[PR#292]] [[PR#290]] [[PR#287]] [[PR#286]] [[PR#282]] [[PR#281]] [[PR#278]] [[PR#274]] [[PR#272]] [[PR#264]] [[PR#261]] [[PR#258]] [[PR#257]] [[PR#255]] [[PR#235]] [[PR#234]] [[PR#231]] [[PR#230]] [[PR#229]] [[PR#223]] [[PR#222]] [[PR#211]] [[PR#203]] [[PR#201]] [[PR#198]] [[PR#196]] [[PR#178]] [[PR#176]] [[PR#171]] [[PR#164]] [[PR#163]] [[PR#162]] [[PR#161]] [[PR#160]] [[PR#158]] [[PR#155]] [[PR#102]] [[PR#100]] [[PR#96]] [[PR#95]] [[PR#93]] [[PR#92]] [[PR#91]] [[PR#90]] [[PR#89]] [[PR#88]] [[PR#87]] [[PR#85]] [[PR#83]] [[PR#81]] [[PR#79]] [[PR#78]] [[PR#77]] [[PR#67]] [[PR#65]] [[PR#64]] [[PR#57]] [[PR#35]] [[PR#34]] [[PR#14]] [[PR#2]]
+
 * PRs created (to be categorised later):
   * Add Richard's skeletal PPP and \"About Us\" info [[PR#80]]
   * Add use cases 9 and 10 to DG [[PR#86]]
@@ -76,6 +80,10 @@ Given below are my contributions to the project.
   * Fix extra whitespace in autoglossary items [[PR#511]]
   * Add and style PR badge for PPP [[PR#513]]
   * Fix PDF building script [[PR#514]]
+
+  * Add Issues badge for PPP ([PR#529](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/529))
+
+<!-- https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=richdom2185&breakdown=true -->
 
 <!-- TODO: Categorise everything -->
 <!-- * **New Feature**: Added the ability to undo/redo previous commands.
