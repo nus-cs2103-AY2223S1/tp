@@ -336,7 +336,7 @@ Sorting **KEYWORDS** are shown in the table below:
 | `phone`          | By numerical order of the phone number                                                                               |
 | `birthday`       | From oldest to youngest                                                                                              |                                                                                             
 | `income`         | From lowest to highest income                                                                                        |
-| `risk appetite`  | From highest to lowest ie. "H" to "M" to "L"                                                                         |
+| `risk appetite`  | From lowest to highest ie. "L" to "M" to "H"                                                                         |
 
 
 <div markdown="span" class="alert alert-primary">:warning: **Warning:**
