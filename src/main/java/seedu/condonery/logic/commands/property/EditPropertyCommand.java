@@ -9,6 +9,7 @@ import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_STATUS;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_TYPE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.condonery.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 import static seedu.condonery.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 
 import java.io.File;
@@ -50,10 +51,10 @@ public class EditPropertyCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_PRICE + "PRICE] "
-            + "[" + PREFIX_TAG + "TAG] "
             + "[" + PREFIX_IMAGE_UPLOAD + "] "
             + "[" + PREFIX_PROPERTY_TYPE + "PROPERTY_TYPE] "
             + "[" + PREFIX_PROPERTY_STATUS + "PROPERTY_STATUS] "
+            + "[" + PREFIX_TAG + "TAG]... "
             + "[" + PREFIX_INTERESTEDCLIENTS + "INTERESTED-CLIENTS]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Pinnacle@Duxton";
@@ -142,11 +143,12 @@ public class EditPropertyCommand extends Command {
 
         File existingImage = new File(propertyToEdit.getImagePath().toString());
         if (existingImage.exists()) {
-            existingImage.renameTo(new File(editedProperty.getImagePath().toString()));
+            existingImage.renameTo(new File(newEditedProperty.getImagePath().toString()));
         }
 
         model.setProperty(propertyToEdit, newEditedProperty);
         model.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
+        model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
 
         if (this.hasImage) {
             return new CommandResult(

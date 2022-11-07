@@ -241,6 +241,7 @@ public class ModelManager implements Model {
     public void setClient(Client target, Client editedClient) {
         requireAllNonNull(target, editedClient);
         clientDirectory.setClient(target, editedClient);
+        propertyDirectory.updateClient(target, editedClient);
     }
 
     @Override
