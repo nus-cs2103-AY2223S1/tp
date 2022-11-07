@@ -65,7 +65,7 @@ Given below are my contributions to the project.
 * Gave comments on suggestions for bug fixes in the issues tab
 * Tested for bugs and published issues based on bugs found in the issues sections.
 
-### Contributions beyond the project team:
+**Contributions beyond the project team**:
 
 * Frequently posted in the forums during the month of September to help other on iP related issues, such as setting the background, smoke testing and basic feature development.
 * During the PE-D, authored issues based on the structure of `Description`, `Steps to reproduce` and `Suggestion`, making the issues clear and reproducible and providing a starting point for any potential fixes.
