@@ -354,9 +354,11 @@ Here's a screenshot of Plannit before and after executing the command:
 <div style="page-break-after: always;"></div>
 
 ### 2.2. Tasks
+Plannit allows you to track tasks that have been assigned by your modules.
+
 #### 2.2.1. Add task
-Suppose a particular module has assigned you a task to be completed. You can 
-keep track of it by adding it to Plannit using the `add-task` command.
+Suppose a particular module has assigned you an assignment to be completed. You 
+can keep track of it by adding it to Plannit using the `add-task` command.
 
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:**<br/> 
@@ -570,6 +572,8 @@ Format: `delete-link m/MODULE_CODE la/LINK_ALIAS [la/LINK_ALIAS]*`
 * Module code must correspond to a currently displayed module on screen (case-insensitive).
 * You cannot delete a link using a non-existent link alias within the module.
 
+<div style="page-break-after: always;"></div>
+
 Example:
 ```
 delete-link m/CS2040 la/visualgo
@@ -650,6 +654,8 @@ This command will require three prefixes:
 
 Format: `add-person n/NAME e/EMAIL p/PHONE_NUMBER`
 * You cannot add a duplicate name into Plannit.
+
+<div style="page-break-after: always;"></div>
 
 Example:
 ```
