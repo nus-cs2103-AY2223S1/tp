@@ -43,7 +43,7 @@ public class Address {
     }
 
     public boolean isEmpty() {
-        return value == "";
+        return value.equals("");
     }
 
     @Override

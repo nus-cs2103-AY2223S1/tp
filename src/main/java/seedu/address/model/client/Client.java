@@ -124,11 +124,13 @@ public class Client {
         if (birthday.isEmpty()) {
             return false;
         }
-        return birthday.get().isBirthdayInPeriod(dateKeyword);
+        Birthday upcomingBirthday = Birthday.upcomingBirthday(birthday.get());
+
+        return upcomingBirthday.isInPeriod(dateKeyword);
     }
 
     public boolean isBirthdayValid() {
-        return birthday.isEmpty() || Birthday.isDateInValidPeriod(birthday.get());
+        return birthday.isEmpty() || Birthday.isDateBeforeHundredYear(birthday.get());
     }
 
     /**

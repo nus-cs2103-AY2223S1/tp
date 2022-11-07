@@ -29,6 +29,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRODUCT_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRODUCT_2;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalClients.AMY;
@@ -55,29 +61,40 @@ public class AddClientCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + PRODUCT_DESC_PRODUCT1, new AddClientCommand(expectedClient));
+                + ADDRESS_DESC_BOB + BIRTHDAY_DESC_BOB + PRODUCT_DESC_PRODUCT1,
+                new AddClientCommand(expectedClient));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + PRODUCT_DESC_PRODUCT1, new AddClientCommand(expectedClient));
+                + ADDRESS_DESC_BOB + BIRTHDAY_DESC_BOB + PRODUCT_DESC_PRODUCT1,
+                new AddClientCommand(expectedClient));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + PRODUCT_DESC_PRODUCT1, new AddClientCommand(expectedClient));
+                + ADDRESS_DESC_BOB + BIRTHDAY_DESC_BOB + PRODUCT_DESC_PRODUCT1,
+                new AddClientCommand(expectedClient));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + PRODUCT_DESC_PRODUCT1, new AddClientCommand(expectedClient));
+                + ADDRESS_DESC_BOB + BIRTHDAY_DESC_BOB + PRODUCT_DESC_PRODUCT1,
+                new AddClientCommand(expectedClient));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + PRODUCT_DESC_PRODUCT1, new AddClientCommand(expectedClient));
+                + ADDRESS_DESC_BOB + BIRTHDAY_DESC_BOB + PRODUCT_DESC_PRODUCT1,
+                new AddClientCommand(expectedClient));
+
+        // multiple birthday - last address accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
+                + BIRTHDAY_DESC_AMY + BIRTHDAY_DESC_BOB + PRODUCT_DESC_PRODUCT1,
+                new AddClientCommand(expectedClient));
 
         // multiple Products - all accepted
         Client expectedClientMultipleProducts = new ClientBuilder(BOB).withProducts(VALID_PRODUCT_1, VALID_PRODUCT_2)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + PRODUCT_DESC_PRODUCT2 + PRODUCT_DESC_PRODUCT1, new AddClientCommand(expectedClientMultipleProducts));
+                + BIRTHDAY_DESC_BOB + PRODUCT_DESC_PRODUCT2 + PRODUCT_DESC_PRODUCT1,
+                new AddClientCommand(expectedClientMultipleProducts));
     }
 
     @Test
@@ -89,7 +106,7 @@ public class AddClientCommandParserTest {
     }
 
     @Test
-    public void parse_compulsoryFieldMissing_failure() {
+    public void parse_missingPrefix_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddClientCommand.MESSAGE_USAGE);
 
         // missing name prefix
@@ -103,6 +120,28 @@ public class AddClientCommandParserTest {
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_PHONE_BOB,
                 expectedMessage);
+    }
+
+    @Test
+    public void parse_missingValue_failure() {
+        //empty phone value after phone prefix
+        assertParseFailure(parser, NAME_DESC_BOB + " " + PREFIX_PHONE, Phone.MESSAGE_CONSTRAINTS);
+
+        //empty name value after name prefix
+        assertParseFailure(parser, " " + PREFIX_NAME + PHONE_DESC_BOB, Name.MESSAGE_CONSTRAINTS);
+
+        //empty email value after email prefix
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + " " + PREFIX_EMAIL, Email.MESSAGE_CONSTRAINTS);
+
+        //empty address value after address prefix
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + " " + PREFIX_ADDRESS, Address.MESSAGE_CONSTRAINTS);
+
+        //empty product value after product prefix
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + " " + PREFIX_PRODUCT, Product.MESSAGE_CONSTRAINTS);
+
+        //empty birthday value after birthday prefix
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + " " + PREFIX_BIRTHDAY,
+                Birthday.MESSAGE_FORMAT_CONSTRAINTS);
     }
 
     @Test

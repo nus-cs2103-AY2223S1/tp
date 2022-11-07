@@ -44,7 +44,8 @@ public class EditMeetingCommand extends Command {
             + PREFIX_DATE + "23122022 ";
 
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided. "
+        + "The values should not be the same as before";
     public static final String MESSAGE_DUPLICATE_MEETING =
             "This meeting conflicts with another that exists in MyInsuRec";
 
@@ -74,6 +75,10 @@ public class EditMeetingCommand extends Command {
 
         Meeting meetingToEdit = lastShownList.get(index.getZeroBased());
         Meeting editedMeeting = createEditedMeeting(meetingToEdit, editMeetingDescriptor);
+
+        if (meetingToEdit.equals(editedMeeting)) {
+            throw new CommandException(MESSAGE_NOT_EDITED);
+        }
 
         // update meeting list
         try {

@@ -9,9 +9,13 @@ title: Developer Guide
 
 ## 1. Preface
 
-### 1.1 Product description
+### 1.1 Introduction
 
 MyInsuRec is a desktop app for financial advisors. It provides financial advisors with clients, meetings and products management abilities to ease their mental load. It also provides some customer relations features such as the ability to look up clients with upcoming birthdays.
+
+This developer guide serves as a documentation to help future developers better understand the system design of MyInsuRec. The guide includes sections on architecture diagrams of MyInsuRec, rationale for feature implementation, product requirements as well as some test cases for manual testing, and more. 
+
+Do look through this developer guide if you are interested in developing MyInsuRec further.
 
 ### 1.2 Acknowledgements
 
@@ -25,14 +29,41 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 2. Design
+## 2. How to use this Developer Guide
+
+Thank you for your interest in MyInsuRec!
+
+This guide smooths the learning curve and helps you understand the internals of MyInsuRec.
+
+If you are seeking to understand the internals of MyInsuRec, check out:
+* [3. Design](#3-design) 
+* [4. Implementation](#4-implementation) 
+* [5. Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)
+
+If you are interested in getting to understand the product's target user and how our product fits their needs, check out:
+* [6. Requirements](#6-appendix-requirements)
+* [6.5 Glossary](#65-glossary)
+
+If you want to test our product's features, check out:
+* [7. Manual testing](#7-appendix-instructions-for-manual-testing)
+
+Lastly, we also share our difficulties and challenges faced under:
+* [8. Effort](#8-appendix-effort)
+
+We once again thank you for your interest in MyInsuRec. If you have any questions or feedback about MyInsuRec, feel free to reach out to us at [myinsurec@gmail.com](mailto:myinsurec@gmail.com).
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 3. Design
+
+This section gives you a high-level overview of the internal design of MyInsuRec, and goes lower-level as you move along the section.
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-W16-4/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-### 2.1 Architecture
+### 3.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -40,25 +71,25 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 Given below is a quick overview of main components and how they interact with each other.
 
-#### 2.1.1 Main components of the architecture
+#### 3.1.1 Main components of the architecture
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-W16-4/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-W16-4/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#36-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#32-ui-component): The UI of the App.
+* [**`Logic`**](#33-logic-component): The command executor.
+* [**`Model`**](#34-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#35-storage-component): Reads data from, and writes data to, the hard disk.
 
 
-#### 2.1.2 How the architecture components interact with each other
+#### 3.1.2 How the architecture components interact with each other
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delClient i/1` ([deletes the client](https://ay2223s1-cs2103t-w16-4.github.io/tp/UserGuide.html#714-delete-client-delclient) found at index 1).
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command [`delClient i/1`](https://ay2223s1-cs2103t-w16-4.github.io/tp/UserGuide.html#714-delete-client-delclient) (deletes the client found at index 1).
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -73,7 +104,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### 2.2 UI component
+### 3.2 UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W16-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -83,14 +114,14 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W16-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W16-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
-The `UI` component,
+The `UI` component
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Client` object residing in the `Model`.
 
-### 2.3 Logic component
+### 3.3 Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W16-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -104,9 +135,9 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a client).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delClient i/1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("addClient n/John Tan p/12345678")` API call.
 
-![Interactions Inside the Logic Component for the `delClient i/1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `addClient n/John Tan p/12345678` Command](images/AddClientSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteClientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -119,9 +150,9 @@ How the parsing works:
 * When called upon to parse a user command, the `MyInsuRecParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddClientCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddClientCommand`) which the `MyInsuRecParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddClientCommandParser`, `DeleteClientCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### 2.4 Model component
+### 3.4 Model component
 
-#### 2.4.1 Overall structure
+#### 3.4.1 Overall structure
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W16-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="600" />
@@ -135,44 +166,44 @@ The `Model` component,
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 * `Client`, `Meeting` and `Product` have attributes here that are abstracted and portrayed in the following subsections. Not all dependencies and composition will be shown.
 
-#### 2.4.2 Client
+#### 3.4.2 Client
 
-<img src="images/ClientClassDiagram.png" width="600" />
+<img src="images/ClientClassDiagram.png" width="590" />
 
-#### 2.4.3 Meeting
+#### 3.4.3 Meeting
 
 <img src="images/MeetingClassDiagram.png" width="600" />
 
-#### 2.4.2 Product
+#### 3.4.4 Product
 
-<img src="images/ProductClassDiagram.png" width="150" />
+<img src="images/ProductClassDiagram.png" width="160" />
 
-### 2.5 Storage component
+### 3.5 Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W16-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="570" />
 
 The `Storage` component,
 * can save both _MyInsuRec_ data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `MyInsuRecStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### 2.6 Common classes
+### 3.6 Common classes
 
 Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 3. Implementation
+## 4. Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### 3.1 `Client`-related features
+### 4.1 `Client`-related features
 
-#### 3.1.1 Add client with product feature
+#### 4.1.1 Add client with product
 
-Syntax: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
+Syntax: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]...`
 
 Purpose: Adds a client with the given information to the internal model and storage
 
@@ -190,7 +221,17 @@ We decided to only allow adding of a client with its product only after the prod
 
 This is to try and maintain the overall cleanliness and housekeeping of _MyInsuRec_. Suppose we allow the user to add the client with any product name without it already existing in the product list. This might be organized and clean for the first few contacts added, but over time, the product name can get distorted. Shorthand forms may be used in place of the product name, case sensitivity and whitespaces are ignored. With _MyInsuRec_ also placing a focus on allowing users to get an idea of the popularity of each of the products they are selling, it is paramount that the product name stay the same, so as to enable the feature to work. Furthermore, one of the problems we are attempting to solve is the messiness of using traditional Excel spreadsheets. Having this validation check helps to preserve the data added, and thus the user can use the app for a longer time without feeling cluttered.
 
-#### 3.1.2 View Client feature
+#### 4.1.2 Birthday constraints
+
+Below is the activity diagram that illustrates the process of validating birthday when birthday of a client is added.
+
+![BirthdayActivityDiagram](images/BirthdayActivityDiagram.png)
+
+We decided to set these 2 constraints on birthday:
+1) Birthday should not be in the future
+2) Birthday should not be more than 100 years ago as we feel that client would not be able to buy product due to age limit.
+
+#### 4.1.3 View client
 
 Syntax: `viewClient i/INDEX`, where `INDEX` is an index shown in the client list.
 
@@ -202,7 +243,9 @@ Usage Scenario of `viewClient`:
 
 1) User inputs `viewClient i/1` to view the first client in the `Model`.
 
-:information_source: **Note:** If `INDEX` is larger than the current client list's size or `INDEX` is negative, then it will not show any client details. It will return an error to the user.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If `INDEX` is larger than the current client list's size or `INDEX` is negative, then it will not show any client details. It will return an error to the user.
+
+</div>
 
 Below is a sequence diagram that illustrates the execution of `viewClient` command and the interaction with `Model`.
 
@@ -212,7 +255,28 @@ Below is an activity diagram that summarises the execution of `viewClient`.
 
 ![ViewClientActivityDiagram](images/ViewClientActivityDiagram.png)
 
-#### 3.1.3 Edit Client feature
+#### 4.1.4 Delete Client
+
+Syntax: `delClient i/INDEX`, where `INDEX` is an index shown in the client list.
+
+Purpose: Delete client from model and storage.
+
+##### Implementation
+
+Usage Scenario of `delClient`:
+
+1) User inputs `listClient` to view the current list of clients in `Model` with their respective indexes.
+
+2) User inputs `delClient i/1` to delete the first client in the shown in `listClient`. This will evoke the `Command#execute` in `LogicManager`.
+
+The sequence diagram below illustrates the interactions between the `Logic` and `Model` after the execution of `delClient i/1`. 
+![DeleteClientSequenceDiagram](images/DeleteClientSequenceDiagram.png)
+
+Below is the activity diagram that summarises the execution of `delClient`.
+
+![DeleteClientActivityDiagram](images/DeleteClientActivityDiagram.png)
+
+#### 4.1.5 Edit Client feature
 
 Syntax: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
 
@@ -228,11 +292,11 @@ Below is a sequence diagram that illustrates the execution of `editClient i/1 a/
 
 ![EditClientSequenceDiagram](images/EditClientSequenceDiagram.png)
 
-### 3.2 `Meeting`-related features
+### 4.2 `Meeting`-related features
 
-#### 3.2.1 Add Meeting feature
+#### 4.2.1 Add meeting
 
-Syntax: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
+Syntax: `addMeeting i/INDEX d/DATE st/START_TIME et/END_TIME dn/DESCRIPTION`
 
 Purpose: Adds a meeting with the given information to the internal model and storage
 
@@ -268,7 +332,17 @@ the command is executed.
     - Cons: The parser will need to have access to the model in order to
       obtain the referenced client.
 
-#### 3.2.2 Delete Meeting Feature
+#### Meeting date constraints
+
+Below is the activity diagram that illustrates the process of validating meeting date.
+
+![MeetingDateActivityDiagram](images/MeetingDateActivityDiagram.png)
+
+We decided to set this constraint on meeting date:
+
+1) Meeting Date is not in the past.
+
+#### 4.2.2 Delete meeting
 
 Syntax: `delMeeting i/INDEX`, where `INDEX` is an index shown in the meeting list.
 
@@ -279,15 +353,10 @@ Purpose: Delete a specified `Meeting` from the Meeting List in `Model`
 Usage Scenario of `delMeeting`:
 
 1) User inputs `listMeeting` to view the current meetings in the `Model`'s Meeting List with their respective indexes.
+
 2) User then inputs `delMeeting i/1` to delete the first meeting shown in `listMeeting`. This will evoke `Command#execute` in `LogicManager`.
 
-Below is a sequence diagram that illustrates the execution of `delMeeting i/1` command and the interaction with `Model`.
-
-![DeleteMeetingSequenceDiagram](images/DeleteMeetingSequenceDiagram.png)
-
-Below is an activity diagram that summarises the execution of `delMeeting`.
-
-![DeleteMeetingActivityDiagram](images/DeleteMeetingActivityDiagram.png)
+_The sequence diagram and activity diagram of `delMeeting` is similar to the diagrams shown in [`delClient`](#413-delete-client) feature by replacing all occurrence of `client` with `meeting`._
 
 ##### Design Considerations
 
@@ -299,11 +368,9 @@ Below is an activity diagram that summarises the execution of `delMeeting`.
 - **Alternative Solution 2:** Allows multiple deletion
     - Pros: Convenient to delete multiple meetings when needed.
     - Cons: Complex to implement
-- Considering that the approach taken to develop MyInsuRec is a breath first approach,
-  where we should only build to the point where every iteration is a working product,
-  **Solution 1** is thus chosen as it is easier to implement.
+- Considering that the approach taken to develop MyInsuRec is a breath first approach, where we should only build to the point where every iteration is a working product, **Solution 1** is thus chosen as it is easier to implement. However, Solution 2 could be a possible implementation for future iteration.
 
-#### 3.2.3 View Meeting feature
+#### 4.2.3 View meeting
 
 Syntax: `viewMeeting i/INDEX`, where `INDEX` is an index shown in the meeting list.
 
@@ -315,7 +382,8 @@ Usage Scenario of `viewMeeting`:
 
 1) User inputs `viewMeeting i/1` to view the first meeting in the `Model`.
 
-:information_source: **Note:** If `INDEX` is larger than the current meeting list's size or `INDEX` is negative, then it will not show any meeting details. It will return an error to the user.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If `INDEX` is larger than the current meeting list's size or `INDEX` is negative, then it will not show any meeting details. It will return an error to the user.
+</div>
 
 Below is a sequence diagram that illustrates the execution of `viewMeeting` command and the interaction with `Model`.
 
@@ -325,7 +393,7 @@ Below is an activity diagram that summarises the execution of `viewMeeting`.
 
 ![ViewMeetingActivityDiagram](images/ViewMeetingActivityDiagram.png)
 
-#### 3.2.4 List Meeting feature
+#### 4.2.4 List meeting
 
 Syntax: `listMeeting [d/PERIOD]`
 
@@ -335,7 +403,7 @@ Purpose: View all `Meeting` from the Meeting List in `Model`, optionally using `
 
 Usage Scenario of `listMeeting`:
 
-Step 1. User inputs `listMeeting d/tomorrow` to view the meetings for tomorrow in the `Model`.
+1) User inputs `listMeeting d/tomorrow` to view the meetings for tomorrow in the `Model`.
 
 Below is a sequence diagram that illustrates the execution of `listMeeting d/tomorrow` command and the interaction with `Model`.
 
@@ -391,9 +459,9 @@ Below is a sequence diagram that illustrates the execution of `editMeeting i/1 d
 
 <img src="images/AlternativeEditActivityDiagram.png" width="250" />
 
-### 3.3 `Product`-related features
+### 4.3 `Product`-related features
 
-#### 3.3.1 Add Product feature
+#### 4.3.1 Add product
 
 Syntax: `addProduct pd/PRODUCT_NAME`
 
@@ -413,9 +481,9 @@ Below is an activity diagram that summarises the execution of `addProduct`.
 
 ![AddProductActivityDiagram](images/AddProductActivityDiagram.png)
 
-### 3.4 UI
+### 4.4 UI
 
-#### 3.4.1 Different view panels
+#### 4.4.1 Different view panels
 
 View panels are one of the main component of the UI and the main component where a user sees the results of their commands. Examples of view panel include `MeetingListPanel`, `ClientDetailedViewPanel` and more.
 
@@ -433,18 +501,18 @@ We chose to implement the changing of view panels through `CommandResult` due to
 
 ##### Design Considerations
 
-**Aspect: The method used to change view panels
+**Aspect: The method used to change view panels**
 
 - **Alternative 1 (current choice):** Pass the specific view through `CommandResult` using enum `CommandSpecific`. 
     - Pros: Simple and clear. It is also in line with how some other commands are implemented, and is the most natural manner to communicate with the UI from the Logic.
     - Cons: If we have too many views, we will need a lot of different `CommandSpecific`. Furthermore, our switch statements may get bloated.
 - **Alternative 2:** Use listeners on the model. For example, we can have listeners on `filteredClients` to change views when changes happen on `filteredClients`.
     - Pros: Cleaner design. We will not need a separate enum.
-    - Cons: Harder to implement. Increases coupling as well, as `Model` can skip communications through `Logic` to get `UI` to change views directly.
+    - Cons: Harder to implement. Increases coupling as well, as `Model` skips communications through `Logic` to get `UI` to change views directly, which is not in line with the architecture diagram.
 
 - Ultimately, we believe that we will not have too many views (likely a maximum of 6 as we only have to consider `Client`, `Meeting`, `Product` and their detailed variant). As such, we felt that passing the `CommandSpecific` is a cheaper (in terms of effort and programming hours and research) and better solution for now.
 
-**Aspect: Different view panels do not inherit from a single abstract panel class
+**Aspect: Different view panels do not inherit from a single abstract panel class**
 
 - View panels include not only `ListPanel`, but also `DetailedViewPanel`.
 - Within in view panel class, there are similar structures (FXML file name attribute, Logger, ListView, constructor, overwriting ListCell etc.), but that is where the similarities end. We feel that having the panels inherit from a single panel does not necessarily add any value, as they do not share any attribute or methods. We find that the use of polymorphism here to make all the different view panels inherit from a single parent class is an example of over engineering and adds no value to justify the effort of doing so.
@@ -487,11 +555,10 @@ From then on, the `AddClientCommand` can be built as expected.
   - A single `Pattern` for each `Prefix` is more succinct that a `List`.
   - No need to iterate through a list of `Strings` to find a match.
   - Matches can be made using pre-existing methods in `Matcher` class (no need to rely on `String` methods)
-<!-- problematic, rmb to update the header hashs after complete -->
   
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. Documentation, logging, testing, configuration, dev-ops
+## 5. Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -501,14 +568,14 @@ From then on, the `AddClientCommand` can be built as expected.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. Appendix: Requirements
+## 6. Appendix: Requirements
 
-### 5.1 Product scope
+### 6.1 Product scope
 
 **Target user profile**:
 
 * insurance agent
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of client contacts
 * has a need to look up client's information
 * has a need to track a significant amount of meetings
 * requires reminders regarding meeting schedules.
@@ -523,7 +590,7 @@ From then on, the `AddClientCommand` can be built as expected.
 * view scheduled meetings with client's details in one glance
 * less effort to recall client's information, more effort to satisfy client's needs
 
-### 5.2 User stories
+### 6.2 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
@@ -544,43 +611,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 | `* *`    | insurance agent | set the default views in my app to light mode and dark mode |                                                                             |                                                                        |
 
 
-### 5.3 Use cases
+### 6.3 Use cases
 
 (For all use cases below, the **System** is the `MyInsuRec` and the **Actor** is the `insurance agent`, unless specified otherwise)
 
-#### 5.3.1 Use case: UC1 - Add a client
+#### 6.3.1 Use case: UC1 - Add a client
 
 **MSS**
 
 1. User requests to add a client.
 2. System adds the client.
+3. System informs user that client has been added. 
 
    Use case ends.
 
 **Extensions**
 
-* 1a. User inputs incomplete or invalid client data.
+* 1a. User inputs incomplete or invalid data.
     * 1a1. System shows an error message.
 
       Use case ends.
 
-#### 5.3.2 Use case: UC2 - View a client
-
-**MSS**
-
-1. User selects client to view.
-2. System displays the client information.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. User selects a non-existent client.
-    * 1a1. System shows an error message.
-
-      Use case ends.
-
-#### 5.3.3 Use case: UC3 - List all clients
+#### 6.3.2 Use case: UC2 - List all clients
 
 **MSS**
 
@@ -601,12 +653,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
-#### 5.3.4 Use case: UC4 - Delete a client
+
+#### 6.3.3 Use case: UC3 - View a client
 
 **MSS**
 
-1. User requests to delete a client.
-2. Client is removed from the system.
+1. User requests for a [list of all clients](#632-use-case-uc2---list-all-clients).
+2. System shows a list of clients.
+3. User selects client to view.
+4. System displays the client information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User selects a non-existent client.
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+#### 6.3.4 Use case: UC4 - Delete a client
+
+**MSS**
+
+1. User requests for a [list of all clients](#632-use-case-uc2---list-all-clients).
+2. System shows a list of clients.
+3. User requests to delete a client by specifying the index of the client.
+4. System removes the client.
+5. System informs user that the specified client has been removed.
 
    Use case ends.
 
@@ -617,12 +691,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
-#### 5.3.5 Use case: UC5 - Edit a client
+#### 6.3.5 Use case: UC5 - Edit a client
 
 **MSS**
 
-1. User requests to edit a client.
-2. System replaces current client information with the new information.
+1. User requests for a [list of all clients](#632-use-case-uc2---list-all-clients).
+2. System shows a list of clients.
+3. User requests to edit a client by specifying the index of the client.
+4. System replaces current client information with the new information.
+5. System informs user that the specified client has been updated.
 
    Use case ends.
 
@@ -633,12 +710,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
-#### 5.3.6 Use case: UC6 - Add a meeting
+#### 6.3.6 Use case: UC6 - Add a meeting
 
 **MSS**
 
-1. User requests to add a meeting.
-2. System adds the meeting.
+1. User requests for a [list of all clients](#632-use-case-uc2---list-all-clients).
+2. System shows a list of clients. 
+3. User requests to add a meeting to a specific client by specifying the index of the client. 
+4. System adds the meeting. 
+5. System informs user that meeting has been added.
 
    Use case ends.
 
@@ -649,23 +729,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
-#### 5.3.7 Use case: UC7 - View a meeting
-
-**MSS**
-
-1. User requests to view a meeting in detail.
-2. System shows the meeting details.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. User selects a non-existent meeting or inputs an invalid index.
-    * 1a1. System shows an error message.
-
-      Use case ends.
-
-#### 5.3.8 Use case: UC8- List all meetings
+#### 6.3.7 Use case: UC7- List all meetings
 
 **MSS**
 
@@ -681,11 +745,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
-#### 5.3.9 Use case: UC9 - Delete a meeting
+#### 6.3.8 Use case: UC8 - View a meeting
 
 **MSS**
 
-1. User requests for a [list of all meetings (UC4)](#use-case-uc4---list-all-meetings).
+1. User requests for a [list of all meetings (UC4)](#637-use-case-uc7--list-all-meetings).
+2. System shows a list of all meetings.
+3. User requests to view a meeting in detail by specifying the index of the meeting.
+4. System shows the meeting details.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User selects a non-existent meeting or inputs an invalid index.
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
+#### 6.3.9 Use case: UC9 - Delete a meeting
+
+**MSS**
+
+1. User requests for a [list of all meetings (UC4)](#637-use-case-uc7--list-all-meetings).
 2. System shows a list of all meetings.
 3. User requests to delete one meeting from the list.
 4. System deletes the meeting specified by the user.
@@ -695,17 +777,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **Extensions**
 
-* 3a. User deletes a meeting that was not shown in the list.
+* 3a. User deletes a non-existent meeting.
     * 3a1. System shows an error message.
 
       Use case ends.
 
-#### 5.3.10 Use case: UC10 - Edit a meeting
+#### 6.3.10 Use case: UC10 - Edit a meeting
 
 **MSS**
 
-1. User requests to edit a meeting.
-2. System replaces current meeting information with the new information.
+1. User requests for a [list of all meetings (UC4)](#637-use-case-uc7--list-all-meetings).
+2. System shows a list of all meetings. 
+3. User requests to edit a meeting by specifying the index of the meeting. 
+4. System replaces current meeting information with the new information.
+5. System informs user that the specific meeting has been updated.
 
    Use case ends.
 
@@ -716,12 +801,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
-#### 5.3.11 Use case: UC11 - Add a product
+#### 6.3.11 Use case: UC11 - Add a product
 
 **MSS**
 
 1. User requests to add a product.
 2. System adds the product.
+3. System informs user that the product has been added.
 
    Use case ends.
 
@@ -732,7 +818,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
-#### 5.3.12 Use case: UC12 - List all products
+#### 6.3.12 Use case: UC12 - List all products
 
 **MSS**
 
@@ -741,11 +827,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
    Use case ends.
 
-#### 5.3.13 Use case: UC13 - Delete a product
+#### 6.3.13 Use case: UC13 - Delete a product
 
 **MSS**
 
-1. User requests for a [list of all products (UC4)](#537-use-case-uc7---list-all-products).
+1. User requests for a [list of all products (UC4)](#6312-use-case-uc12---list-all-products).
 2. System shows a list of all products.
 3. User requests to delete one product from the list.
 4. System deletes the product specified by the user.
@@ -760,7 +846,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
-### 5.4 Non-Functional Requirements
+### 6.4 Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed. (Technical requirement)
 2.  Should be able to hold up to 1000 clients without a noticeable sluggishness in performance for typical usage. (Performance requirements)
@@ -770,7 +856,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 6.  Should be able to work without an internet connection. (Constraints)
 7.  Should not take more than 10 seconds to execute any commands. (Performance requirements)
 
-### 5.5 Glossary
+### 6.5 Glossary
 
 #### Quick Reference
 
@@ -817,7 +903,7 @@ The main and largest component of the user interface the user will be interactin
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Appendix: Instructions for manual testing
+## 7. Appendix: Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
@@ -826,186 +912,211 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### 6.1 Launch and shutdown
+### 7.1 Launch and shutdown
 
 1. Initial launch
+   * Download the jar file and copy into an empty folder.
+   * Run the jar file via `java -jar MyInsuRec.jar` 
+       * Expected: Shows the GUI with a set of sample clients and products. The window size may not be optimum.
 
-   1. Download the jar file and copy into an empty folder.
+2. Saving window preferences
+    * Resize the window to an optimum size. Move the window to a different location. Close the window.
+    * Re-launch the app by double-clicking the jar file.
+        * Expected: The most recent window size and location is retained.
 
-   1. Run the jar file via `java -jar MyInsuRec.jar` 
-      1. Expected: Shows the GUI with a set of sample clients and products. The window size may not be optimum.
+3. Subsequent launches, with data edited
+    * Run the jar file via `java -jar MyInsuRec.jar`
+        * Expected: Shows the GUI with the correct edited data.
 
-1. Saving window preferences
+### 7.2 Adding a client
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.</div>
 
-   1. Re-launch the app by double-clicking the jar file.
-       Expected: The most recent window size and location is retained.
+   1. Prerequisites: No other client have the exact same name. The product `ProductTest` has not been added.
 
-1. _Subsequent launches, with data edited
-   1. Run the jar file via `java -jar MyInsuRec.jar`
-      2. Expected: Shows the GUI with the correct edited data.
+   2. Test case: `addClient n/John Tan p/89134083`
+      - Expected: A client named John Tan and phone number 89134083 is added and the view switches back to the list of client, where the list is updated with John Tan's newly added record.
 
-### 6.2 Adding a client
+   3. Test case: `addClient n/Trevor Tan p/89134083`
+      - Expected: A client named Trevor Tan and phone number 89134083 is added and the view switches back to the list of client, where the list is updated with Trevor Tan's newly added record. This test case focuses on the fact that the phone numbers are identical, which happens when parents buy policies for their child who does not have a cellular plan.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.
+   4. Test case: `addClient n/Trevor Tan p/89134083`
+      - Expected: No client is added and an error message is shown. This tests whether if the app allows clients of the same name, which is not allowed by design.
 
-</div>
-
-   1. Prerequisites: No other client have the exact same name.
-
-   1. Test case: `addClient n/John Tan p/89134083`
-      2. Expected: A client named John Tan and phone number 89134083 is added and the view switches back to the list of client, where the list is updated with John Tan's newly added record.
-
-   1. Test case: `addClient n/Trevor Tan p/89134083`
-       2. Expected: A client named Trevor Tan and phone number 89134083 is added and the view switches back to the list of client, where the list is updated with Trevor Tan's newly added record. This test case focuses on the fact that the phone numbers are identical, which happens when parents buy policies for their child who does not have a cellular plan.
-
-   1. Test case: `addClient n/Trevor Tan p/89134083`
-       2. Expected: No client is added and an error message is shown. This tests whether if the app allows clients of the same name, which is not allowed by design.
-
-   1. Test case: `addClient n/Justin Lim p/98120931 e/justinlim@gmail.com`
-       2. Expected: A client named Justin Lim and phone number 98120931 is added and the view switches back to the list of client, where the list is updated with Justin Lim's newly added record. This test case focuses on the fact that an optional field is used.
+   5. Test case: `addClient n/Justin Lim p/98120931 e/justinlim@gmail.com`
+      - Expected: A client named Justin Lim and phone number 98120931 is added and the view switches back to the list of client, where the list is updated with Justin Lim's newly added record. This test case focuses on the fact that an optional field is used.
     
-   1. Test case: `addClient n/Tom p/90231494 pd/ProductTest`
-      2. Expected: No client is added as the product `ProductTest` is not added beforehand.
-   3. Continuation: `addProduct pd/ProductTest`, then `addClient n/Tom p/90231494 pd/ProductTest` again.
-      4. Expected: The client should now be added with the product as the product is added with the `addProduct` command.
+   6. Test case: `addClient n/Tom p/90231494 pd/ProductTest`
+      - Expected: No client is added as the product `ProductTest` is not added beforehand.
+      
+   7. Test case: `addClient n/Tom p/90231494 pd/ProductTest`, suppose `ProductTest` is added.
+      - Expected: The client should now be added with the product as the product is added with the `addProduct` command.
 
-### 6.2 Viewing a client
+   8. Test case: `addClient Tom p/12345678`
+      - Expected: No client will be added. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect command format.
+   
+   9. Test case: `addClient n/Tom p/`
+      - Expected: No client will be added. Error details shown in the status message. Status bar remains the same. This test case focus on the missing values that should be accompanied after a parameter.
+
+   10. Test case: `addClient n/Tom p/12345`
+      - Expected: No client will be added. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect values that a parameter requires.
+
+### 7.3 Viewing a client
 
 1. Prerequisites: View a specific client's details using the `viewClient` command. There is exactly one client in the list.
 
 2. Test case: `viewClient i/1`
-   Expected: The details of the client who is at the first index is shown.
+   - Expected: The details of the client who is at the first index is shown.
 
 3. Test case: `viewClient i/a`
-   Expected: The index is not numeric, so there will be an error.
+   - Expected: The index is not numeric, so there will be an error.
 
 4. Test case: `viewClient i/2`
-   Expected: Index is larger than the size of client list, so there will be an error.
+   - Expected: Index is larger than the size of client list, so there will be an error.
 
 5. Test case: `viewClient i/0`
-   Expected: Index less than 1 is not allowed, therefore there will be an index error.
+   - Expected: Index less than 1 is not allowed, therefore there will be an index error.
 
 6. Test case: `viewClient i/`
-   Expected: Index is not provided, so there will be an error.
+   - Expected: Index is not provided, so there will be an error.
 
 7. Test case: `viewClient 1`
-   Expected: Prefix for index is not provided, so there will be an invalid command format error.
+   - Expected: Prefix for index is not provided, so there will be an invalid command format error.
 
-### 6.2 Deleting a client
+### 7.4 Deleting a client
 
-Deleting a client while all clients are being shown
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of clients using `listClient` where the index number of the client can be found.</div>
 
-   1. Prerequisites: List all clients using the `listClient` command. Multiple clients in the list.
+   1. Prerequisites: List all clients using the `listClient` command. At least one client is in the list.
 
-   1. Test case: `delClient i/1`
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `delClient i/1`
+      - Expected: First client is deleted from the list. Details of the deleted client shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delClient i/0`
-      Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `delClient` OR `delClient 1`
+      - Expected: No client is deleted. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect format. 
 
-   1. Other incorrect delete commands to try: `delClient`, `delClient x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+   4. Test case: `delClient i/-1`
+      - Expected: No client is deleted. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect index provided.
 
-### 6.3 Listing meetings
+### 7.5 Listing meetings
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.
-
-</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.</div>
 
 1. Prerequisites: One existing client, one meeting with date set to tomorrow (of system date), another set to within one week (but not tomorrow), another set to within one month (but not the next week).
-   2. To add the meetings, you can use the commands below (replace the dates with appropriate dates)
-      3. `addMeeting i/1 dn/Test st/1200 et/1300 d/<date tomorrow>`
-      3. `addMeeting i/1 dn/Test st/1200 et/1300 d/<date in the current week (but not tomorrow)>`
+   1. To add the meetings, you can use the commands below (replace the dates with appropriate dates)
+      1. `addMeeting i/1 dn/Test st/1200 et/1300 d/<date tomorrow>`
+      2. `addMeeting i/1 dn/Test st/1200 et/1300 d/<date in the current week (but not tomorrow)>`
       3. `addMeeting i/1 dn/Test st/1200 et/1300 d/<date in the current month (but not tomorrow or the current week)>`
 
-1. Test case: `listMeeting`
-    2. Expected: The view switches back to the list of meetings, and all three meetings are displayed.
+2. Test case: `listMeeting`
+   - Expected: The view switches back to the list of meetings, and all three meetings are displayed.
 
-1. Test case: `listMeeting d/tomorrow`
-    2. Expected: The view switches back to the list of meetings, and only the meeting tomorrow is displayed.
+3. Test case: `listMeeting d/tomorrow`
+   - Expected: The view switches back to the list of meetings, and only the meeting tomorrow is displayed.
 
-1. Test case: `listMeeting d/week`
-    2. Expected: The view switches back to the list of meetings, and the meetings tomorrow and in the next week are displayed.
+4. Test case: `listMeeting d/week`
+   - Expected: The view switches back to the list of meetings, and the meetings tomorrow and in the next week are displayed.
 
-1. Test case: `listMeeting d/month`
-    2. Expected: The view switches back to the list of meetings, and all three meetings are displayed.
+5. Test case: `listMeeting d/month`
+   - Expected: The view switches back to the list of meetings, and all three meetings are displayed.
 
-1. Test case: `listMeeting adsfadsf`
-    2. Expected: The view switches back to the list of meetings, and all three meetings are displayed. Extra parameters are ignored.
+6. Test case: `listMeeting adsfadsf`
+   - Expected: The view switches back to the list of meetings, and all three meetings are displayed. Extra parameters are ignored.
 
-### 6.2 Viewing a meeting
+### 7.6 Deleting a Meeting
+
+Deleting a meeting while all meetings are being shown
+
+1. Prerequisites: List all meetings using the `listMeeting` command. At least one meeting in the list.
+
+2. Test case: `delMeeting i/1`
+    - Expected: First meeting is deleted from the list. Details of the deleted meeting shown in the status message. Timestamp in the status bar is updated.
+
+3. Test case: `delMeeting` OR `delMeeting 1`
+    - Expected: No meeting is deleted. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect format.
+
+4. Test case: `delMeeting i/0` OR `delMeeting i/-1` OR `delMeeting i/` or `delMeeting i/x` (where x is larger than the list size).
+    - Expected: No meeting is deleted. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect index provided.
+
+### 7.7 Viewing a meeting
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of meetings using `listMeeting` where the index number of the meeting can be found.</div>
 
 1. Prerequisites: View a specific meeting's details using the `viewMeeting` command. There is exactly one meeting in the list.
 
-2. Test case: `viewMeeting i/1`
-   Expected: The details of the meeting who is at the first index is shown.
+2. View meeting at index 1
+   * Test case: `viewMeeting i/1`
+     * Expected: The details of the meeting who is at the first index is shown.
 
-3. Test case: `viewMeeting i/a`
-   Expected: The index is not numeric, so there will be an error.
+3. View meeting using non-numeric index
+   * Test case: `viewMeeting i/a`
+     * Expected: The index is not numeric, so there will be an error.
 
-4. Test case: `viewMeeting i/2`
-   Expected: Index is larger than the size of meeting list, so there will be an error.
+4. View meeting using an index out of range
+   * Test case: `viewMeeting i/2`
+     * Expected: Index is larger than the size of meeting list, so there will be an error.
 
-5. Test case: `viewMeeting i/0`
-   Expected: Index less than 1 is not allowed, therefore there will be an index error.
+5. View meeting using index 0
+   * Test case: `viewMeeting i/0`
+     * Expected: Index less than 1 is not allowed, therefore there will be an index error.
 
-6. Test case: `viewMeeting i/`
-   Expected: Index is not provided, so there will be an error.
+6. View meeting without providing index
+   * Test case: `viewMeeting i/`
+     * Expected: Index is not provided, so there will be an error.
 
-7. Test case: `viewMeeting 1`
-   Expected: Prefix for index is not provided, so there will be an invalid command format error.
+7. View meeting without using prefix
+   * Test case: `viewMeeting 1`
+     * Expected: Prefix for index is not provided, so there will be an invalid command format error.
 
-### 6.4 Adding a product
+### 7.8 Adding a product
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.
-
-</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.</div>
 
 1. Prerequisites: No other product have the exact same name.
 
-1. Test case: `addProduct pd/MyInsureCare`
-    2. Expected: A product named MyInsureCare is added and the view switches back to the list of product, where the list is updated with the newly added product.
+2. Add product with valid name
+   * Test case: `addProduct pd/MyInsureCare`
+     * Expected: A product named MyInsureCare is added and the view switches back to the list of product, where the list is updated with the newly added product.
 
-1. Test case: `addProduct pd/`
-    2. Expected: Empty fields are not allowed, so no product is added.
+3. Add product with empty field
+   * Test case: `addProduct pd/`
+     * Expected: Empty fields are not allowed, so no product is added.
 
-### 6.5 Listing products
+### 7.9 Listing products
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.</div>
 
-</div>
+1. List all meetings
+   * Test case: `listProduct`
+     * Expected: The list of product view shows up.
 
-1. Test case: `listProduct`
-    2. Expected: The list of product view shows up.
+2. List all meetings, with extra nonsensical parameters
+   * Test case: `listProduct adfafio3`
+     * Expected: The list of product view shows up. Any other parameter or input added after the command is ignored.
 
-1. Test case: `listProduct adfafio3`
-    2. Expected: The list of product view shows up. Any other parameter or input added after the command is ignored.
+### 7.10 Delete product
 
-### 6.6 Delete product
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of products using `listProduct` where the index number of the product can be found.
-
-</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of products using `listProduct` where the index number of the product can be found.</div>
 
 1. Prerequisites: There is at least one product already added.
 
-1. Test case: `delProduct i/1`
-    2. Expected: The list of product view shows up (if not already in it), and the first product is deleted.
+2. Delete product at index 1
+   * Test case: `delProduct i/1`
+     * Expected: The list of product view shows up (if not already in it), and the first product is deleted.
 
-1. Test case: `delProduct i/-1`
-    2. Expected: No product is deleted and an error message shows up as the index is invalid.
+3. View product with non-positive index
+   * Test case: `delProduct i/-1`
+     * Expected: No product is deleted and an error message shows up as the index is invalid.
 
-## 7. Appendix: Effort
+## 8. Appendix: Effort
 
 MyInsuRec is a brown-field project that extends from AB3. It is developed to become a financial advisor's everyday companion app, used for its client contacts tracking, meetings scheduling and products management ability.
 
-Our team has put in a substantial effort in developing this product. To date, we have over [10,000 lines of code](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=w16-4&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16). Over 350 automated tests were written, and many hours of writing code and testing them was spent on this.
+Our team has put in a substantial effort in developing this product. To date, we have over [12,000 lines of code](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=w16-4&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16). Over 380 automated tests were written, and many hours of writing code and testing them was spent on this.
 
 We have listed our project challenges below in an attempt to bring you closer to the behind-the-scenes of the product development, and help you understand the countless hours and the thoughts put into designing and creating the product.
 
-### 7.1 Product challenges
+### 8.1 Product challenges
 
 Some design considerations and effort is listed below:
 

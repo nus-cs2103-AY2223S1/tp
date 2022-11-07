@@ -26,8 +26,23 @@ public class DeleteClientCommandParserTest {
     }
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, " i/a",
+    public void parse_invalidIndex_throwsParseException() {
+        //Negative Index
+        assertParseFailure(parser, " i/-1", ParserUtil.MESSAGE_INVALID_INDEX);
+
+        //Zero Index
+        assertParseFailure(parser, " i/0", ParserUtil.MESSAGE_INVALID_INDEX);
+
+        //Empty Index
+        assertParseFailure(parser, " i/", ParserUtil.MESSAGE_INVALID_INDEX);
+
+        //Not Integer
+        assertParseFailure(parser, " i/a", ParserUtil.MESSAGE_INVALID_INDEX);
+    }
+
+    @Test
+    public void parse_invalidFormat_throwParseException() {
+        assertParseFailure(parser, " 1",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteClientCommand.MESSAGE_USAGE));
     }
 }

@@ -8,8 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 
-import java.util.NoSuchElementException;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditMeetingCommand;
 import seedu.address.logic.commands.EditMeetingCommand.EditMeetingDescriptor;
@@ -35,14 +33,12 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_INDEX, PREFIX_DATE, PREFIX_START_TIME, PREFIX_END_TIME,
                         PREFIX_DESCRIPTION);
 
-        Index index;
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
-        } catch (ParseException | NoSuchElementException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditMeetingCommand.MESSAGE_USAGE), e);
+        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_INDEX)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditMeetingCommand.MESSAGE_USAGE));
         }
+
+        Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
 
         EditMeetingDescriptor editMeetingDescriptor = new EditMeetingDescriptor();
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
@@ -57,10 +53,6 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
         }
         if (argMultimap.getValue(PREFIX_END_TIME).isPresent()) {
             editMeetingDescriptor.setEndTime(ParserUtil.parseTime(argMultimap.getValue(PREFIX_END_TIME).get()));
-        }
-
-        if (!editMeetingDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditMeetingCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditMeetingCommand(index, editMeetingDescriptor);

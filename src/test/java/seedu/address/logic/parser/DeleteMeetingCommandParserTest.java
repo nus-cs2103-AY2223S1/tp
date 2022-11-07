@@ -19,10 +19,24 @@ public class DeleteMeetingCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_throwsParseException() {
-        assertParseFailure(
-                parser,
-                " i/a",
+    public void parse_invalidIndex_throwsParseException() {
+        //Negative index
+        assertParseFailure(parser, " i/-1", ParserUtil.MESSAGE_INVALID_INDEX);
+
+        //Zero index
+        assertParseFailure(parser, " i/0", ParserUtil.MESSAGE_INVALID_INDEX);
+
+        //Empty index
+        assertParseFailure(parser, " i/", ParserUtil.MESSAGE_INVALID_INDEX);
+
+        //Not Integer
+        assertParseFailure(parser, " i/a", ParserUtil.MESSAGE_INVALID_INDEX);
+    }
+
+    @Test
+    public void parse_invalidFormat_throwParseException() {
+        assertParseFailure(parser, " 1",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteMeetingCommand.MESSAGE_USAGE));
     }
+
 }
