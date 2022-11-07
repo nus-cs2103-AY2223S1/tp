@@ -14,6 +14,10 @@ These statistics include:
 The cost of an item is the price of the item multiplied by the quantity of the item in your inventory.
 ```
 
+```tip
+You can use tags in creative ways to take advantage of these statistics! For example, by tagging items by their suppliers, you can use this command to find out which supplier you rely most on, which may be useful for your business negotiations or decisions!
+```
+
 **Example:**
 
 {% capture notes %}
