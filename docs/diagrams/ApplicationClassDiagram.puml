@@ -1,0 +1,30 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+ApplicationBook *-right-> "1" UniqueApplicationList
+ApplicationBook *-right-> "1" UniqueTagList
+UniqueTagList -[hidden]down- UniqueApplicationList
+UniqueTagList -[hidden]down- UniqueApplicationList
+
+UniqueTagList *-right-> "*" Tag
+UniqueApplicationList -right-> Application
+
+Application -up-> "*" Tag
+
+Application *--> "1" Company
+Application *--> "1" Contact
+Application *--> "1" Position
+Application *--> "1" Email
+Application *--> "1" Date
+Application *--> "1" Status
+Application *--> "0..1" Interview
+
+Interview *--> "1" Round
+Interview *--> "1" InterviewDate
+Interview *--> "1" InterviewTime
+Interview *--> "1" Location
+
+@enduml

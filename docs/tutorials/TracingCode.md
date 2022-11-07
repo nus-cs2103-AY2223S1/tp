@@ -39,7 +39,7 @@ In our case, we would want to begin the tracing at the very point where the App 
 
 <img src="../images/ArchitectureSequenceDiagram.png" width="550" />
 
-According to the sequence diagram you saw earlier (and repeated above for reference), the `UI` component yields control to the `Logic` component through a method named `execute`. Searching through the code base for an `execute()` method that belongs to the `Logic` component yields a promising candidate in `seedu.address.logic.Logic`.
+According to the sequence diagram you saw earlier (and repeated above for reference), the `UI` component yields control to the `Logic` component through a method named `execute`. Searching through the code base for an `execute()` method that belongs to the `Logic` component yields a promising candidate in `seedu.application.logic.Logic`.
 
 <img src="../images/tracing/searchResultsForExecuteMethod.png" />
 
@@ -48,7 +48,7 @@ According to the sequence diagram you saw earlier (and repeated above for refere
 :bulb: **Intellij Tip:** The ['**Search Everywhere**' feature](https://www.jetbrains.com/help/idea/searching-everywhere.html) can be used here. In particular, the '**Find Symbol**' ('Symbol' here refers to methods, variables, classes etc.) variant of that feature is quite useful here as we are looking for a _method_ named `execute`, not simply the text `execute`.
 </div>
 
-A quick look at the `seedu.address.logic.Logic` (an extract given below) confirms that this indeed might be what we’re looking for.
+A quick look at the `seedu.application.logic.Logic` (an extract given below) confirms that this indeed might be what we’re looking for.
 
 ```java
 public interface Logic {
@@ -78,7 +78,7 @@ Next, let's find out which statement(s) in the `UI` code is calling this method,
 
 ![`Find Usages` tool window. `Edit` \> `Find` \> `Find Usages`.](../images/tracing/FindUsages.png)
 
-Bingo\! `MainWindow#executeCommand()` seems to be exactly what we’re looking for\!
+Bingo! `MainWindow#executeCommand()` seems to be exactly what we’re looking for!
 
 Now let’s set the breakpoint. First, double-click the item to reach the corresponding code. Once there, click on the left gutter to set a breakpoint, as shown below.
  ![LeftGutter](../images/tracing/LeftGutter.png)

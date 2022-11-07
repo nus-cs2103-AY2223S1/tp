@@ -5,55 +5,54 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Jolyn Loh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jolynloh.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/jolynloh)]
+[[portfolio](team/jolynloh.md)]
 
-* Role: Project Advisor
+* Role: Code quality
+* Responsibilities: In charge of `Storage`
 
-### Jane Doe
+### Siew Ee Sung
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/eesung00.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/eesung00)]
+[[portfolio](team/eesung00.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Testing
+* Responsibilities: In charge of `Commons` and `Model`.
 
-### Johnny Doe
+### Chee Jer Hong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jhchee18.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/jhchee18)]
+[[portfolio](team/jhchee18.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Deliverables and deadlines
+* Responsibilities: In charge of `Model` and `UI`
 
-### Jean Doe
+### Tai Tze Kin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/teekaytai.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/teekaytai)]
+[[portfolio](team/teekaytai.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Team lead
+* Responsibilities: In charge of `Commands`
 
-### James Doe
+### Nguyen Minh Tuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nmtuan2001.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/nmtuan2001)]
+[[portfolio](team/nmtuan2001.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Integration
+* Responsibilities: In charge of `Parser`

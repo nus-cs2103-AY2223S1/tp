@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ApplicationBookParser" as ApplicationBookParser LOGIC_COLOR
+participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
+participant "c:SortByCompanyCommand" as SortByCompanyCommand LOGIC_COLOR
+participant "c:SortByDateCommand" as SortByDateCommand LOGIC_COLOR
+end box
+
+[-> LogicManager : execute()
+activate LogicManager
+
+LogicManager -> ApplicationBookParser : parseCommand()
+activate ApplicationBookParser
+
+create SortCommandParser
+ApplicationBookParser -> SortCommandParser
+activate SortCommandParser
+
+SortCommandParser --> ApplicationBookParser
+deactivate SortCommandParser
+
+ApplicationBookParser -> SortCommandParser : parse()
+activate SortCommandParser
+
+alt sort by company
+
+    create SortByCompanyCommand
+    SortCommandParser -> SortByCompanyCommand
+    activate SortByCompanyCommand
+
+    SortByCompanyCommand --> SortCommandParser
+    deactivate SortByCompanyCommand
+
+else sort by date
+
+    create SortByDateCommand
+    SortCommandParser -> SortByDateCommand
+    activate SortByDateCommand
+
+    SortByDateCommand --> SortCommandParser
+    deactivate SortByDateCommand
+
+end
+
+SortCommandParser --> ApplicationBookParser : c
+deactivate
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SortCommandParser -[hidden]-> ApplicationBookParser
+destroy SortCommandParser
+
+ApplicationBookParser --> LogicManager : c
+deactivate ApplicationBookParser
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
