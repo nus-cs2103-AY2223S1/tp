@@ -162,6 +162,8 @@ This can also be done by clicking on the person.
 Edits an existing person in TAB.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL]`
+
+
 Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
@@ -249,6 +251,8 @@ Format: `roles INDEX roles/ROLE1, ROLE2,...`
 Edits the roles of the person (whose position must be professor) at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 Roles are case-insensitive
 *  Each professor may only have 1 role
+
+
 Examples:
 *  `roles 1 roles/Coordinator` edits the roles of the 1st person(must be a professor) to be `Coordinator`.
 
