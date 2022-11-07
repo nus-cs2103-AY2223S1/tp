@@ -18,15 +18,11 @@ Given below are my contributions to the project.
 * **New Feature**: Major Ui changes
   * Justification: This feature is to revamp the current AB3 to give our project GUI uniqueness
   * Highlights: It gives the GUI a whole new look
-  * Sample GUI:
-  * <img src="..\images\sampleGUI.png">
   * Credits: *NIL*
 
 * **New Feature**: Added pin feature 📌
   * Justification: This feature for financial advisors to mark and view important clients
   * Highlights: `pin <Index>` allows users to pin and `viewPin` allows viewing of these clients at an instant!
-  * Screenshot:
-  * <img src="..\images\viewPin.png">
   * Credits: *NIL*
 
 * **New Feature**: Added viewIncome feature 📈
@@ -36,8 +32,6 @@ Given below are my contributions to the project.
       * Start and end date for clients' assigned policies
       * Yearly commissions
     * Highlights 2: Plots a graph based off the user specified year to calculate current income and predict future income
-      * Screenshot:
-      * <img src="..\images\viewIncome.png">
     * Credits: *NIL*
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=hongshenggg&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
@@ -76,6 +70,4 @@ Given below are my contributions to the project.
     * Javafx (for altering Ui changes)
     * Canva (for icon and logo design)
     * CSS for altering GUI looks
-
-P.S.: The creation of Long Time No See (LTNS) was definitely not an easy task and frankly, it would not have been possible without my team members, Colin, Marcus, Damien and Reuben. It has truly been a pleasure and a fulfilling journey working with passionate members like them! (If you're reading this, I really hope to work with ya'll again in future! ❤️)
 
