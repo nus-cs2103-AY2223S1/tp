@@ -49,7 +49,7 @@ This user guide also provides comprehensive explanations so that you know how to
 4. Double-click the file to start the app. The GUI, as shown in the image below, should appear in a few seconds. Note how the app contains some sample data.<br>
 
 <figure>
-<img src="images/Ui.png" alt="Ui" style="width:100%">
+<img src="images/QuickStart.png" alt="QuickStart" style="width:100%">
 <figcaption align = "center"><i>Fig.1 - App UI</i></figcaption>
 </figure>
 
@@ -353,21 +353,29 @@ Examples:
 
 ### Editing a task: `editT`
 
-Edits the information fields (e.g. description, deadline) of an existing task in the address book.
+Edits the information fields (e.g. description, deadline) of an existing task in the task list.
 
 Format: `editT INDEX [d/DESCRIPTION] [D/DEADLINE]`
 
-* Index of a task is its index number on the task list.
-
-* INDEX must be a positive integer more than 0.
-
-* At least one of the optional fields must be provided.
-
+* Index of a task is its index number on the currently shown task list.
+ 
 * Input values will replace existing values.
+
+<div markdown="block" class="alert alert-warning">
+
+:warning:There will be an error if you:<br>
+
+* Do not adhere to [field constraints](#section-2-tasks).<br> 
+
+* Enter 0 or a negative number as INDEX.<br>
+
+* Enter a number greater than the currently shown list size as INDEX.<br>
+
+* Do not provide at least one of the optional fields.<br>
 
 Example:
 
-* `editT 1 d/sleep D/22-10-2022` edits the first task’s description to be sleep and deadline to be 22-10-2022.
+* `editT 1 d/sleep D/22-10-2022` edits the first task’s description to be "sleep" and deadline to be 22-10-2022.
 
 ### Finding a task: `findT`
 
@@ -512,11 +520,11 @@ Example:
 
 Sorts all tasks in the task list by deadline.
 
+Format: `sortD`
+
 * Adding or editing a task will not affect the sorted order of the task list.
 
 * The list remains in this sorted order until a different sort command is used.
-
-Format: `sortD`
 
 <figure>
 <img src="images/sortD.png" alt="sortD" style="width:100%">
@@ -527,13 +535,13 @@ Format: `sortD`
 
 Sorts all tasks in the task list by id.
 
+Format: `sortI`
+
 * Id is the order in which the tasks were added.
 
 * Adding or editing a task will not affect the sorted order of the task list.
 
 * The list remains in this sorted order until a different sort command is used.
-
-Format: `sortI`
 
 <figure>
 <img src="images/sortI.png" alt="sortI" style="width:100%">
@@ -620,16 +628,21 @@ Example:
 
 ### Deleting all contacts and tasks by label: `deleteA`
 
-Deletes all contacts and tasks that contain the label(s) specified.
+Deletes all contacts and tasks that contain the label(s) specified. The label is also deleted.
 
-Format: `deleteA LABEL_NAME [MORE_LABEL_NAMES]`
-
-* The label is also deleted.
+Format: `deleteA LABEL_NAME [MORE_LABEL_NAMES]...`
 
 * If a contact/task has multiple labels, it will not be deleted as long as it has at least one label.
   Instead, the labels will be removed from the contact/task.
 
-<div markdown="span" class="alert alert-warning">:warning: Label does not exist.
+<div markdown="block" class="alert alert-warning">
+
+:warning:There will be an error if you:<br>
+
+* Do not adhere to the [field constraints](#section-3-labels).<br>
+
+* Try to delete a label that does not exist.<br>
+
 </div>
 
 <figure>
@@ -645,6 +658,8 @@ Format: `deleteA LABEL_NAME [MORE_LABEL_NAMES]`
 ### Viewing help: `help`
 
 Shows a window with a link to this user guide and latest release of YellowBook.
+
+Format: `help`
 
 ### Undoing a command: `undo`
 
@@ -675,6 +690,8 @@ Format: `clear`
 ### Exiting YellowBook: `exit`
 
 Closes the YellowBook program.
+
+Format: `exit`
 
 [[Back to Table of Contents](#table-of-contents)]
 
