@@ -3,6 +3,11 @@ layout: page
 title: User Guide
 ---
 
+* Table of Contents
+  {:toc}
+
+## Introduction
+
 Welcome to the User Guide of **FRIDAY**!
 
 As a [CS1101S teaching assistant](#glossary), do you find yourself scrambling between your notes, students' contacts, 
@@ -160,6 +165,20 @@ This section contains all the information and details of each feature of **FRIDA
 
 These features allow you to add and delete students, and edit their details.
 
+Before you dive into using the features, you may want to have a look at the common parameters used.
+The table below shows a list of command parameters that will be used.
+
+<table>
+<tr><th>Parameter Name</th><th>Description</th><th>Example</th></tr>
+<tr><td><pre>NAME</pre></td><td>The name of the student. <br><br> It must be an alphanumeric word.</td><td>E.g. Typing <code>John Doe</code> would represent the name of the student saved in the list.</td></tr>
+<tr><td><pre>TELEGRAM_HANDLE</pre></td><td>The Telegram handle of the student. <br> <br> The Telegram handle can only contain alphanumeric characters and underscores. <br> <br> It must also be between 5 and 32 characters long.</td><td><code>johndoe_123</code></td></tr>
+<tr><td><pre>CONSULTATION_DATE</pre></td><td>The consultation date of the student. <br> <br> It must be a valid date in the <code> YYYY-MM-DD </code> format, where the year is between 1900 and 2999.</td><td>E.g. <code>2022-09-27</code> would represent the student's consultation date of 27 September 2022.</td></tr>
+<tr><td><pre>MASTERY_CHECK_DATE</pre></td><td>The Mastery Check date of the student. <br> <br> It must be a valid date in the <code> YYYY-MM-DD </code> format, where the year is between 1900 and 2999.</td><td>E.g. <code>2022-08-30</code> would represent the student's Mastery Check date of 30 August 2022.</td></tr>
+<tr><td><pre>TAG</pre></td><td>The tag you want to attach to the student. </td><td>E.g. Typing <code>cool guy</code> would mean that "cool guy" is an additional information associated with the student.</td></tr>
+<tr><td><pre>REMARK</pre></td><td>The remark you want to add for the student. </td><td>E.g. Typing <code>Needs more help</code> would mean that "Needs more help" is an additional information associated with the student.</td></tr>
+<tr><td><pre>INDEX</pre></td><td>The index of the student in the displayed list. <br> <br> It must be a valid and positive index number.</td><td>E.g. Typing <code>2</code> would mean the student at the second position in the displayed list.</td></tr>
+</table>
+
 ### Adding a student: `add`
 
 Adds a student to FRIDAY, with the given name, Telegram handle, consultation date, Mastery Check date, and tags.
@@ -269,6 +288,17 @@ Outcome: The student at the 1st index (Alex Yap) will have the remark "Aspiring 
 
 These features allow you to organize your list of students to suit your needs.
 
+### Command Parameters
+Before you dive into using the features, you may want to have a look at the parameters used.
+The table below shows a list of command parameters that will be used.
+
+<table>
+<tr><th>Parameter Name</th><th>Description</th><th>Example</th></tr>
+<tr><td><pre>CRITERIA</pre></td><td>The criteria the displayed student list is sorted by.</td><td>E.g. Typing <code>n</code> would mean the displayed student list is sorted by students' names.</td></tr>
+<tr><td><pre>ORDER</pre></td><td>The order the displayed student list is sorted in.</td><td>E.g. Typing <code>a</code> would mean the displayed student list is sorted in ascending order.</td></tr>
+<tr><td><pre>KEYWORDS</pre></td><td>The keywords to search with to find students' information. </td><td>E.g. Typing <code>cool guy</code> would represent finding students with the information "cool guy" associated with them.</td></tr>
+</table>
+
 ### Sorting students: `sort`
 
 Sorts all students in FRIDAY with the given criteria, in ascending or descending order. This will come in useful by allowing you to see which students have Mastery Checks closest to the current date by sorting the list according to the students' Mastery Check dates, as shown in the example below.
@@ -342,6 +372,20 @@ Format: `list`
 ## Grading students
 
 These features allow you to record your students grades.
+
+### Command Parameters
+Before you dive into using the features, you may want to have a look at the parameters used.
+The table below shows a list of command parameters that will be used.
+
+<table>
+<tr><th>Parameter Name</th><th>Description</th><th>Example</th></tr>
+<tr><td><pre>RA1_SCORE</pre></td><td>The student's score for the first Reading Assessment. <br><br> The following applies to all `SCORE` parameters: <br> They must be numerical (up to two decimal places), and represent percentages. </td><td>E.g. <code> 70 </code> </td></tr>
+<tr><td><pre>RA2_SCORE</pre></td><td>The student's score for the second Reading Assessment. </td><td>E.g. <code> 89 </code> </td></tr>
+<tr><td><pre>PRACTICAL_SCORE</pre></td><td>The student's score for the Practical Assessment. </td><td>E.g. <code> 68.50 </code> </td></tr>
+<tr><td><pre>MIDTERM_SCORE</pre></td><td>The student's score for the Midterm Test. </td><td>E.g. <code> 100 </code> </td></tr>
+<tr><td><pre>FINALS_SCORE</pre></td><td>The student's score for the Final Examination. </td><td>E.g. <code> 95.5 </code> </td></tr>
+<tr><td><pre>INDEX</pre></td><td>The index of the student in the displayed list. </td><td> E.g. Typing <code>2</code> would mean the student at the second position in the displayed list.</td></tr>
+</table>
 
 ### Recording grades for a student: `grade`
 
@@ -467,6 +511,16 @@ Format: `exit`
 
 These features help you personalize your FRIDAY experience and improve your productivity when using FRIDAY.
 
+### Command Parameters
+Before you dive into using the features, you may want to have a look at the parameters used.
+The table below shows a list of command parameters that will be used.
+
+<table>
+<tr><th>Parameter Name</th><th>Description</th><th>Example</th></tr>
+<tr><td><pre>ALIAS</pre></td><td>An alias that you can set for a command. </td><td>E.g. <code> a </code> </td></tr>
+<tr><td><pre>COMMAND_KEYWORD</pre></td><td> The command keyword of the original command. </td><td>E.g. <code> add </code> </td></tr>
+</table>
+
 ### Adding aliases: `alias`
 
 Adds an alias for a command into FRIDAY, which you can use in place of the default command keywords.<br>
@@ -499,6 +553,10 @@ Views all aliases in FRIDAY, so that you know what aliases you have created and 
 
 Format: `aliaslist`
 
+## Miscellaneous features
+
+Overview: Other features that aid you in using FRIDAY.
+
 ### Getting User Guide link: `guide`
 
 If you ever need to refer to our User Guide while using FRIDAY, use this command to obtain the link to FRIDAY's User Guide.
@@ -511,6 +569,12 @@ Shows a summary of commands along with their command word used in FRIDAY. This a
 It also includes a link to this User Guide if needed.
 
 Format: `help`
+
+### Clearing all existing data: `clear`
+
+On your first launch of FRIDAY, a sample list of students is displayed. The `clear` command allows you to clear this and any other existing data in FRIDAY, resulting in an empty Student list.
+
+Format: `clear`
 
 ### Exiting FRIDAY : `exit`
 
@@ -577,7 +641,7 @@ Some Frequently Asked Questions:
 | **Delete a student**                         | `delete INDEX`                                                                                           |
 | **Edit a student's details**                 | `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`                |
 | **Add remarks for a student**                | `remark INDEX [r/REMARK]`                                                                                |
-| **Record the grades for a student**          | `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MID_TERM_SCORE] [ft/FINALS_SCORE]` |
+| **Record the grades for a student**          | `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MIDTERM_SCORE] [ft/FINALS_SCORE]` |
 | **Find a student's details**                 | `find KEYWORDS`                                                                                          |
 | **Mark a student's Mastery Check as passed** | `mark INDEX`                                                                                             |
 | **Unmark a student's Mastery Check**         | `unmark INDEX`                                                                                           |
