@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Kenneth's Project Portfolio Page(@Kennethsim2000)
+title: Kenneth's Project Portfolio Page([@Kennethsim2000])(https://github.com/Kennethsim2000)
 ---
 
 ### Project: HackAssist
@@ -27,12 +27,12 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
 
-Bug Fixes:
+**Bug Fixes:**
 
 * **Display Email in person assigned taskcard**: The person's email is displayed after the person name, reflected in the taskcard component. (Pull requests [\#170](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/170)).
   * Justification: The contact list allows for a two contacts to have the same name but no duplicate emails. Thus, to be able to tell two contacts with the same name apart, we provide additional information such as the email.
 
-Tests:
+**Tests:**
 
 * **Commands Test**: Writes test for FilterTaskCommand, FindTaskCommand, ListTaskCommand (Pull requests [\#159](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/159))
   * What it does: Performs automated testing to check if the commands work as expected.
@@ -64,8 +64,4 @@ Tests:
 * **Community**:
   * PRs reviewed (with non-trivial review comments): (Pull requests [\#55](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/55), [\#63](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/63), [\#72](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/72), [\#75](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/75), [\#84](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/84), [\#98](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/98)).
 
-* **Tools**:
-
-
-* _{to be updated soon}_
 
