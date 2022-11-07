@@ -224,7 +224,7 @@ This section describes some noteworthy details on how certain features are imple
 
 The Edit Person feature is facilitated by the `EditCommand` which utilises the `FindCommand`. It allows users to edit any editable field of a person given the index of the person, or the name of the person.
 
-If given a name that does not correspond to any person in the SectresBook, the edit features performs the same operations as the Find Command.
+If given a name that does not correspond to any person in the SectresBook, the edit features performs the same operations as the `Find` command.
 
 Given below is an example usage scenario and how the edit mechanism behaves at each step.
 
@@ -322,7 +322,7 @@ The following sequence diagram shows how the find command works:
 
 The Edit Loan feature is facilitated by the `EditLoanCommand` which utilises the `FindCommand`. It allows users to edit the loan value and update the loan history of a person given the index of the person, or the name of the person.
 
-If given a name that does not correspond to any person in the SectresBook, the edit feature performs the same operations as the Find Command.
+If given a name that does not correspond to any person in the SectresBook, the edit feature performs the same operations as the `Find` command.
 
 Given below is an example usage scenario and how the editLoan mechanism behaves at each step.
 
@@ -790,7 +790,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `SectresBook` and the **Actor** is the `user`, unless specified otherwise)
 
-###Use case: UC1 - Add a person
+### Use case: UC1 - Add a person
 
 **MSS**
 1. User requests to add a person.
@@ -808,7 +808,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-###Use case: UC2 - Update a person
+### Use case: UC2 - Update a person
 
 **MSS**
 1. User requests to list persons.
@@ -831,7 +831,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-###Use case: UC3 - Delete a person
+### Use case: UC3 - Delete a person
 
 **MSS**
 
@@ -854,7 +854,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-###Use case: UC4 - Find a person
+### Use case: UC4 - Find a person
 
 **MSS**
 1. User request to find using keyword.
@@ -862,7 +862,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-###Use case: UC5 - Display list of persons
+### Use case: UC5 - Display list of persons
 
 **MSS**
 1. User requests to list persons.
@@ -870,7 +870,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-###Use case : UC6 - Edit Loan of person
+### Use case: UC6 - Edit Loan of person
 
 **MSS**
 1. User requests to list persons.
@@ -892,7 +892,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-###Use case: UC7 - Find Person by their tag
+### Use case: UC7 - Find Person by their tag
 
 **MSS**
 1. User requests to find using a tag keyword.
@@ -900,7 +900,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-###Use case: UC8 - Add a Note
+### Use case: UC8 - Add a Note
 
 **MSS**
 1. User requests to add a note.
@@ -918,7 +918,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-###Use case: UC9 - Update a Note
+### Use case: UC9 - Update a Note
 
 **MSS**
 1. User requests to list notes.
@@ -941,7 +941,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-###Use case: UC10 - Delete a Note
+### Use case: UC10 - Delete a Note
 
 **MSS**
 1. User requests to list notes.
@@ -963,7 +963,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-###Use case: UC11 - Display list of notes
+### Use case: UC11 - Display list of notes
 
 **MSS**
 1. User has completed [UC12](#use-case-uc12---show-note-section)
@@ -972,7 +972,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-###Use case: UC12 - Hide Note section
+### Use case: UC12 - Hide Note section
 
 **MSS**
 1. User requests to hide the notes section of the Sectresbook.
@@ -980,7 +980,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-###Use case: UC13 - Show note section
+### Use case: UC13 - Show note section
 
 **MSS**
 1. User requests to show the notes section.
@@ -994,7 +994,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-###Use case: UC14 - Exit program
+### Use case: UC14 - Exit program
 
 **MSS**
 1. User requests to exit program. 
