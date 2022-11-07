@@ -521,30 +521,29 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
    Use case ends
 
-**Use case 3: List clients**
+**Use case 3: Viewing all clients**
 
 **MSS**
 
-1. User requests to list all clients
+1. User requests to view all clients.
 2. LTNS displays a list of all clients
 
    Use case ends
 
-**Use case 4: View clients**
+**Use case 4: View currently filtered clients**
 
 **MSS**
 
-1. User loads the application
-2. User requests to view a list of all currently filtered clients 
-3. LTNS displays a list of currently filtered clients
+1. User requests to view a list of all currently filtered clients 
+2. LTNS displays a list of currently filtered clients
 
    Use case ends.
 
-**Use case 6: Delete a person**
+**Use case 5: Delete a person**
 
 **MSS**
 
-1. User requests to <u>list clients(UC3)</u>
+1. User requests to <u>view all clients(UC3)</u>
 2. User requests to delete a specific person in the list
 3. LTNS deletes the person
 
@@ -562,11 +561,11 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
       Use case resumes at step 2.
     
-**Use case 7: Sort a list**
+**Use case 6: Sort a list**
 
 **MSS**
 
-1. User requests to <u>list clients(UC3)</u>, which will be shown based on date added (default sort)
+1. User requests to <u>view all clients(UC3)</u>, which will be shown based on date added (default sort)
 2. User requests to sort the list based on name (or any other metric)
 3. LTNS shows the list of clients, sorted in alphabetical order based on client's name. (or based on how the metric is compared)
 
@@ -578,11 +577,11 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
   Use case ends.
 
-**Use case 8: Delete a person**
+**Use case 7: Delete a person**
 
 **MSS**
 
-1. User requests to <u>list clients(UC3)</u>
+1. User requests to <u>list all clients(UC3)</u>
 2. User requests to delete a specific person in the list
 3. LTNS deletes the person
 
@@ -652,6 +651,7 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 **Use Case 11: Assign Policy**
 
 **MSS**
+
 1. Use loads the application
 2. User inputs the command to assign a existing policy to an existing client
 3. User tags on the details he would like to specify 
@@ -674,16 +674,17 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
       Use Case resumes at Step 2
 
 
-**Use Case 12: List Policies**
+**Use Case 12: Viewing all policies**
 
 **MSS**
 
-1. User requests to list all policies
+1. User requests to view all policies.
 2. LTNS displays a list of all policies
 
    Use case ends
 
-**Use case 13: View Policies**
+
+**Use case 13: View currently filtered policies**
 
 **MSS**
 
@@ -692,9 +693,40 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
    Use case ends.
 
+**Use Case 14: Deleting a policy**
+
+
+**MSS**
+
+1. User requests to <u>list all policies(UC12)</u>
+2. User requests to delete a specific policy in the list
+3. LTNS deletes the policy
+
+   Use case ends
+
+
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+
+
+* 3a. The given index is invalid.
+
+    * 3a1. LTNS shows an error message.
+
+      Use case resumes at step 2.
+
+
 **Event related Use Cases**
 
-**Use Case 13: Add Event**
+
+
+
+**Use Case 15: Add Event**
 
 **MSS**
 
@@ -722,11 +754,11 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
     Use Case resumes at Step 3.
 
 
-**Use case 14: Delete an event**
+**Use case 16: Delete an event**
 
 **MSS**
 
-1. User requests to <u>list events(UC 15)</u>
+1. User requests to <u>view all events(UC 17)</u>
 2. User requests to delete a specific event in the list
 3. LTNS deletes the event
 
@@ -746,26 +778,26 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
       Use Case resumes at step 2.
 
-**Use case 15: List Events**
+**Use case 17: View all events**
 
 **MSS**
 
-1. User requests to list all events
+1. User requests to view all events
 2. LTNS displays a list of all events
 
    Use Case ends
 
-**Use case 16: View Events**
+**Use case 18: View currently filtered events**
 
 **MSS**
 
-1. User requests to view currently filtered events 
+1. User requests to view all currently filtered events 
 2. LTNS displays a list of all currently filtered events.
 
     Use Case ends
 
 
-**Use case 17: View Calendar**
+**Use case 19: View Calendar**
 
 **MSS**
 
