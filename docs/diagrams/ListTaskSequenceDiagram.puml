@@ -1,0 +1,94 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":CodeConnectParser" as CodeConnectParser LOGIC_COLOR
+participant ":ListTaskCommandParser" as ListTaskCommandParser LOGIC_COLOR
+participant "a:ListTaskCommand" as ListTaskCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "d:DeadlineComparator" as DeadlineComparator MODEL_COLOR
+participant "d:DefaultComparator" as DefaultComparator MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("list time")
+activate LogicManager
+
+LogicManager -> CodeConnectParser : parseCommand("list time")
+activate CodeConnectParser
+
+create ListTaskCommandParser
+CodeConnectParser -> ListTaskCommandParser
+activate ListTaskCommandParser
+
+ListTaskCommandParser --> CodeConnectParser
+deactivate ListTaskCommandParser
+
+CodeConnectParser -> ListTaskCommandParser : parse("time")
+activate ListTaskCommandParser
+
+alt list by deadline
+
+    create DeadlineComparator
+    ListTaskCommandParser -> DeadlineComparator
+    activate DeadlineComparator
+
+    DeadlineComparator --> ListTaskCommandParser
+    deactivate DeadlineComparator
+
+else default list
+
+    create DefaultComparator
+    ListTaskCommandParser -> DefaultComparator
+    activate DefaultComparator
+
+    DefaultComparator --> ListTaskCommandParser
+    deactivate DefaultComparator
+
+end
+
+create ListTaskCommand
+ListTaskCommandParser -> ListTaskCommand : ListTaskCommand(d)
+activate ListTaskCommand
+
+ListTaskCommand --> ListTaskCommandParser : a
+deactivate ListTaskCommand
+
+ListTaskCommandParser --> CodeConnectParser : a
+deactivate ListTaskCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ListTaskCommandParser -[hidden]-> CodeConnectParser
+destroy ListTaskCommandParser
+
+CodeConnectParser --> LogicManager : a
+deactivate CodeConnectParser
+
+LogicManager -> ListTaskCommand : execute()
+activate ListTaskCommand
+
+ListTaskCommand -> Model : updateSortedTaskList(d)
+activate Model
+
+Model --> ListTaskCommand
+deactivate Model
+
+create CommandResult
+ListTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListTaskCommand : result
+deactivate CommandResult
+
+ListTaskCommand --> LogicManager : result
+deactivate ListTaskCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ListTaskCommand -[hidden]-> LogicManager
+destroy ListTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

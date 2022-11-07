@@ -256,20 +256,78 @@ Examples of command use:
 * `unmark 1`: unmarks the task at index 1 as incomplete
 
 #### Implementation flow
-Both the `mark` and `unmark` commands follow [general command implementation flow](#logic-component).
+
+To represent the completion status of `Task`, a new `Task` attribute `status` of type `Status` is added. The boolean field 
+`isComplete` in `Status` is `true` when a task is marked as complete and `false` when a task is incomplete.
+
+Only the execution of `mark` command will be shown below as both commands are implemented in a similar way.
+
+Outline of how components work together when the user enters a mark command:
+1. User enters `mark 1` into the command prompt box
+2. User input `mark 1` is passed to `LogicManager` which then calls `LogicManager#execute()` which then calls 
+`CodeConnectParser#parseCommand()`.
+3. It is determined the type of command is `mark` and a new `MarkTaskCommandParser` is created and `MarkTaskCommandParser#parse`
+is called, parsing and validating the index.
+4. If index is valid, a new `MarkTaskCommand` is created and returned to `LogicManager`.
+5. `LogicManager` calls `MarkTaskCommand#execute()`. If there exists an unmarked task at index 1, 
+`MarkTaskCommand#createMarkedTask()` is called, creating a copy of the task to be marked with its `status` set to `true`.
+6. `Model#setTask()` is then called to replace the task to be marked with the marked copy.
+
+![Interactions Inside the Logic Component for the `mark 1` Command](images/MarkTaskSequenceDiagram.png)
+<div style="text-align: center">Sequence diagram of mark command execution</div>
+
+The activity diagram below summarizes the implementation of a `mark` command. 
 
 ![Activity diagram for execution of a mark command](images/MarkTaskActivityDiagram.png)
  <div style="text-align: center">Activity diagram of mark command execution</div>
 
-![Interactions Inside the Logic Component for the `unmark 1` Command](images/UnmarkTaskSequenceDiagram.png)
-<div style="text-align: center">Sequence diagram of unmark command execution</div>
 
 #### Design considerations
 
-* One design consideration involoved marking/unmarking multiple tasks by adding a space before inputting the index of another task.
+* One design consideration involved marking/unmarking multiple tasks by adding a space before inputting the index of another task.
 However, users could forget to input spaces when inputting indexes of multiple tasks, leading to unintended tasks being
-marked/unmarked. This was considered to be an acceptable trade-off as users would be completing tasks one at a time
-most of the time, so a mass mark/unmark feature is a nice-to-have one.
+marked/unmarked without the users even realising it. Limiting the number of tasks that can be marked/unmarked to 1 is thus 
+considered to be an acceptable trade-off.
+
+### Listing of tasks
+
+#### About
+
+CodeConnect allows users to list all of their tasks with `list` and `list time` commands.
+* `list` command lists all the tasks in the order of most recently added task on top.
+* `list time` command lists all the tasks in the order of the task with the earliest deadline on top.
+
+#### Implementation flow
+
+Listing of tasks is facilitated by `ModelManager`. It contains `filteredTaskList` of type `FilteredList`. 
+It also contains `sortedTaskList` of type `SortedList` that wraps `filteredTaskList` in it. As any changes to `filteredTaskList`
+will be reflected in the `sortedTaskList`, the `Ui` displays `sortedTaskList` in the tasklist panel. `SortedList` contains the
+method SortedList#setComparator(Comparator<? super E> comparator). The above method is called in 
+`ModelManager#updateSortedTaskList(Comparator<Task> comparator)` that allows for the sorting of `sortedTaskList` with a comparator.
+
+As `list` and `list time` are implemented in a similar way, only the execution of `list time` will be shown below.
+
+Outline of how components work together when the user enters a list command:
+1. User enters `list time` into the command prompt box
+2. User input `list time` is passed to `LogicManager` which then calls `LogicManager#execute()` which then calls
+   `CodeConnectParser#parseCommand()`.
+3. It is determined the type of command is `list` and a new `ListTaskCommandParser` is created and `ListTaskCommandParser#parse`
+   is called. It is determined that the input is a command for listing tasks by deadline.
+4. A new `ListTaskCommand` is created with `DeadlineComparator` passed as parameter. `ListTaskCommand` is returned to `LogicManager`.
+5. `LogicManager` calls `ListTaskCommand#execute()`. `Model#updateSortedTaskList()` is then called, setting the comparator 
+   in `sortedTaskList` to `DeadlineComparator`. `Ui` then displays the tasks ordered by task with the earliest deadline on top.
+
+![Interactions Inside the Logic Component for the `list time` Command](images/ListTaskSequenceDiagram.png)
+<div style="text-align: center">Sequence diagram of list command execution</div>
+
+#### Design considerations
+
+* One design consideration involved deciding how tasks are ordered under default list command `list`.
+One choice was for tasks to be ordered with most recently added task on top and the other was for 
+tasks to be ordered with least recently added task on top. 
+* The former was chosen in the end as under a daily use basis, a tasklist is likely to evolve rather
+quickly. It was considered to be more convenient for a user to be able to see more recent and relevant 
+tasks at the top without having to scroll towards the bottom of the tasklist.
 
 ### Edit task feature
 
@@ -525,6 +583,25 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   * Missing data file:
+    1. Prerequisite: Missing `data/contacts.json` and/or `data/tasks.json`
+    2. Test case: Delete `data/contacts.json` and relaunch CodeConnect.
+       Expected: CodeConnect will launch with some sample contacts.
+    3. Test case: Delete `data/tasks.json` and relaunch CodeConnect.
+       Expected: CodeConnect will launch with some sample tasks.
+    4. Test case: Delete both `data/contatcs.json` and `data/tasks.json`. Relaunch CodeConnect.
+       Expected: CodeConnect will launch with some sample contacts and tasks.
 
-1. _{ more test cases …​ }_
+    * Corrupted data file:
+    1. Prerequisite: Corrupted `data/contacts.json` and/or `data/tasks.json`
+    2. Test case 1: Modify any contact's email to an invalid email in `data/contacts.json` and relaunch CodeConnect.
+       Expected: CodeConnect will launch with no contacts.
+    3. Test case 2: Modify any task's deadline to an invalid format (not in YYYY-MM-DD HH:MM format) in `data/tasks.json` 
+       and relaunch CodeConnect.
+       Expected: CodeConnect will launch with some sample tasks.
+    4. Test case: Perform both the modifications in the above test cases and relaunch CodeConnect.
+       Expected: CodeConnect will launch with some sample contacts and tasks.
+
+
+
+2. _{ more test cases …​ }_

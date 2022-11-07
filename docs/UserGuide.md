@@ -269,18 +269,28 @@ Example:
 
 #### Searching for tasks: `find`
 
-Find tasks by their name or module. The finding is done by **matching keywords** in a **case-insensitive** manner. <br>
-Finding tasks by module makes it convenient for you to see what tasks you have for a particular module at one look, while finding them by name helps you to look for a specific task quickly rather than scrolling through the entire task list.  
+Find tasks by their name or module. <br>
+Finding tasks by module makes it convenient for you to see what tasks you have for a particular module at one look, while finding them by name helps you to look for a specific task quickly rather than scrolling through the entire task list.
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: Note
+* The search is case-insensitive. e.g. `find n/tutorial` will match `Tutorial`
+* The order of the keywords does not matter. e.g. `find n/Set Problem` will match `Problem Set`
+* Partial and full words will be matched. e.g. `find m/2030S` and `find m/CS2030S` will match tasks whose module is `CS2030S`
+* Tasks that match at least one keyword will be returned (i.e. OR search). e.g. `find n/tut set` will match `Tutorial 1`
+  and `Problem Set 2`
+
+</div>
 
 Format:
 `find n/{keyword}` `find m/{module}`
 
 Examples:
-* `find n/homework` returns `Science homework`, `Math homework`
-* `find n/home` returns `Science homework`, `Math homework`
-* `find n/tut set` returns `Tutorial 1`, `Problem set 2`
-* `find m/CS1101S` returns `Problem set 4`, `Reading assignment 2`
-* `find m/1101S` returns `Problem set 4`, `Reading assignment 2`
+* `find n/home` returns all tasks with name that matches `home`. E.g. `Science homework`, `Math homework`
+* `find n/lab assignment` returns all tasks with name that matches `lab` or `assignment`. E.g. lab 1`, `assignment 2`
+* `find m/CS2030S CS2040S` returns all tasks with module that matches `CS2030S` or `CS2040S`.
+* `find m/20` returns all tasks with module that matches `20`.
 
 `find m/CS2103T` returns this:
 
@@ -377,18 +387,27 @@ Examples:
 
 #### Finding contacts: `findc`
 
-Find contacts whose names contain any of the given keywords, or contacts who take a particular module. <br>
-Contacts can be found by their names, or by the modules that they take. Finding contacts via module makes it very convenient to see who are your options if you need help for a that module. 
+Finds contacts by their name, modules they are taking, or a specified task. <br>
+Contacts can be found by their names, or by the modules that they take. Finding contacts via module makes it very convenient to see who are your options if you need help for a that module.
+
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: Note on searching by name or module
+Refer to the note at [searching for tasks](#searching-for-tasks-find) for more information on how
+CodeConnect searches by name or module
+
+</div>
 
 Format:
 `findc n/{name}` `findc m/{module}` `findc ts/{task_index}`
 
 Examples:
-* `findc n/John` returns `john`, `John Doe`
-* `findc n/jo` returns `john`, `John Doe`
-* `findc n/jo ja` returns `john`, `james`
-* `findc m/CS1231S` returns `Alex Yeoh`, `David Li`
-* `findc m/1231` returns `Alex Yeoh`, `David Li`
+* `findc n/John` returns all contacts with name that matches `John`. E.g. `john`, `John Doe`
+* `findc n/jo` returns all contacts with name that matches `jo`. E.g. `john`, `John Doe`
+* `findc n/jo ja` returns all contacts with name that matches `jo` or `ja`. E.g. `john`, `james`
+* `findc m/CS1231S CS1101S` returns all contacts that are taking at least one module that matches `CS1231S` or `CS1101S`.
+* `findc m/1S` returns all contacts that are taking at least one module that matches `1S`.
 * `findc ts/2` returns contacts that are taking the module that the task at index 2 belongs to
 
 <div markdown="block" class="alert alert-primary">
