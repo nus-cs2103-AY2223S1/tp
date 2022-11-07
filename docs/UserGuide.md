@@ -287,6 +287,7 @@ Parameters:
 * `DESCRIPTION` refers to the description that will replace the existing description of the task specified.
 
 <div markdown="span" class="alert alert-info">
+
 :information_source: **Note:** MODULE is case-insensitive.
 </div>  
 
@@ -303,6 +304,7 @@ Restrictions:
 * The edited task should not be the same as any existing task in the stored task list.
 
 <div markdown="span" class="alert alert-warning">
+
 :exclamation: **Warning:** If a task is linked to an exam, and its module is changed, the task will be unlinked from the exam.
 </div>
 
@@ -338,6 +340,9 @@ Examples:
 :bulb: **Tip:** You can sort and filter tasks based on their completion status. The percentage of completed tasks are also shown for each exam and module.
 </div>
 
+| ![MarkTaskCommand](images/MarkTask.png)   |
+|:-----------------------------------------:|
+|     Demonstration of MarkTaskCommand      |
 
 ### Unmarking a task
 Indicates the specified task is not completed.
