@@ -30,21 +30,20 @@ deactivate ViewClassCommandParser
 
 StudentRecordParser -> ViewClassCommandParser : parse(" 3A")
 activate ViewClassCommandParser
-
-create ViewClassCommand
-ViewClassCommandParser -> ViewClassCommand
-activate ViewClassCommand
-
-ViewClassCommand --> ParserUtil : parseClass(" 3A")
+ViewClassCommandParser --> ParserUtil : parseClass(" 3A")
 activate ParserUtil
-ParserUtil --> ViewClassCommand
+ParserUtil --> ViewClassCommandParser
 deactivate ParserUtil
 
 create ClassPredicate
-ViewClassCommand --> ClassPredicate
+ViewClassCommandParser --> ClassPredicate
 activate ClassPredicate
-ClassPredicate --> ViewClassCommand
+ClassPredicate --> ViewClassCommandParser
 deactivate ClassPredicate
+
+create ViewClassCommand
+ViewClassCommandParser -> ViewClassCommand : ViewClassCommand(ClassPredicate))
+activate ViewClassCommand
 
 ViewClassCommand --> ViewClassCommandParser
 deactivate ViewClassCommand
