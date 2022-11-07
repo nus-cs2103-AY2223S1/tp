@@ -85,7 +85,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<img src="images/UiClassDiagram.png" width="90%" />
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TutorListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -100,7 +100,7 @@ The `UI` component,
 
 In addition to the third point above, the `CommmandExecutor` functional interface, initially encapsulated inside the `CommandBox` class, was abstracted out to allow multiple `UI` components to communicate with the `Logic` component. The `CommandExecutor` is first created in `MainWindow` and passed down to `CommandBox` and `TutorListCard` to keep a link to `Logic` for the components to execute a command.
 
-![Implementation of UI Parts](images/CommandExecutorClassDiagram.png)
+<img src="images/CommandExecutorClassDiagram.png" width="280" />
 
 ### Logic component
 
@@ -135,7 +135,6 @@ How the parsing works:
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
-
 
 The `Model` component,
 
@@ -275,21 +274,23 @@ The following sequence diagram demonstrates the above operations (excluding the 
 The `view` command involves operations within the UI to display/hide the tutor details panel. The communication between the logic and UI classes is facilitated by the `CommandResult` class, where the following field has been added:
 - `CommandResult#isView` - Indicates if the current command is a `view` command.
 
-Given below is an example usage scenario when the user enters a `view` command in the command box and how the view mechanism behaves at each step (omitting the parsing details).
+Given below is an example usage scenario when the user enters a `view` command in the command box and how the view mechanism behaves at each step.
 
 Step 1: The user enters the command `view 1`.
 
-Step 2: Upon parsing, a new `ViewCommand` based on the valid index.
+Step 2: The `TuthubParser` verifies the `ViewCommand#COMMAND_WORD`, and requests `ViewCommandParser` to parse. The `ViewCommandParser` verifies the appropriateness of the user input (`index`).
 
-Step 3: When the `ViewCommand` is executed, a new `CommandResult` with `isView` set to `true` is created and `ModelManager#tutorToView` is updated with the selected tutor.
+Step 3: Upon parsing, a new `ViewCommand` is created based on the valid index.
 
-Step 4: Upon recognising the `CommandResult` is of `isView` type, `MainWindow` calls `logic#getTutorToView()` to get the tutor to be displayed, which is passed into `MainWindow#handleView(Tutor tutor)`.
+Step 4: When the `ViewCommand` is executed, a new `CommandResult` with `isView` set to `true` is created and `ModelManager#tutorToView` is updated with the selected tutor.
 
-Step 5: This causes the `TutorDetailsPanel` of the `tutor` to be set as visible, resulting in the side panel being displayed.
+Step 5: Upon recognising the `CommandResult` is of `isView` type, `MainWindow` calls `logic#getTutorToView()` to get the tutor to be displayed from `Model`, which is then passed into `MainWindow#handleView(Tutor tutor)`.
 
-The following sequence diagram demonstrates the above operations (excluding the parsing details):
+Step 6: This causes the `TutorDetailsPanel` of the `tutor` to be set as visible, resulting in the side panel being displayed.
 
-![ViewSequenceDiagram](./images/ViewSequenceDiagram.png)
+The following sequence diagram demonstrates the above operations:
+
+<img src="images/ViewSequenceDiagram.png"/>
 
 <ins>Design Considerations</ins>
 

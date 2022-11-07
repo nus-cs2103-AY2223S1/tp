@@ -7,7 +7,9 @@ participant ":TutorDetailsPanel" as TutorDetailsPanel LOGIC_COLOR
 end box
 
 box Logic LOGIC_COLOR_T1
-participant ":Logic" as Logic LOGIC_COLOR
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TuthubParser" as TuthubParser LOGIC_COLOR
+participant ":ViewCommandParser" as ViewCommandParser LOGIC_COLOR
 participant ":ViewCommand" as ViewCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -19,11 +21,39 @@ end box
 [-> MainWindow : executeCommand("view 1")
 activate MainWindow
 
-MainWindow -> Logic : execute("view 1")
-activate Logic
+MainWindow -> LogicManager : execute("view 1")
+activate LogicManager
+
+LogicManager -> TuthubParser : parseCommand("view 1")
+activate TuthubParser
+
+create ViewCommandParser
+TuthubParser -> ViewCommandParser
+activate ViewCommandParser
+
+ViewCommandParser --> TuthubParser
+deactivate ViewCommandParser
+
+TuthubParser -> ViewCommandParser : parse("1")
+activate ViewCommandParser
 
 create ViewCommand
-Logic -> ViewCommand
+ViewCommandParser -> ViewCommand
+activate ViewCommand
+
+ViewCommand --> ViewCommandParser
+deactivate ViewCommand
+
+ViewCommandParser --> TuthubParser
+deactivate ViewCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ViewCommandParser -[hidden]-> TuthubParser
+destroy ViewCommandParser
+
+TuthubParser --> LogicManager
+deactivate TuthubParser
+
+LogicManager --> ViewCommand : execute()
 activate ViewCommand
 
 ViewCommand -> Model : setTutorToView(tutorToView)
@@ -36,33 +66,32 @@ create CommandResult
 ViewCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> ViewCommand
+CommandResult --> ViewCommand : result
 deactivate CommandResult
 
-ViewCommand --> Logic : result
+ViewCommand --> LogicManager : result
 deactivate ViewCommand
 
-Logic --> MainWindow : result
-deactivate Logic
+LogicManager --> MainWindow : result
+deactivate LogicManager
 
 MainWindow --> CommandResult : isView()
 activate CommandResult
 
 CommandResult --> MainWindow : true
 deactivate CommandResult
-destroy CommandResult
 
-MainWindow -> Logic : getTutorToView()
-activate Logic
+MainWindow -> LogicManager : getTutorToView()
+activate LogicManager
 
-Logic -> Model : getTutorToView()
+LogicManager -> Model : getTutorToView()
 activate Model
 
-Model --> Logic : tutorToView
+Model --> LogicManager : tutorToView
 deactivate Model
 
-Logic -> MainWindow : tutorToView
-deactivate Logic
+LogicManager -> MainWindow : tutorToView
+deactivate LogicManager
 
 MainWindow --> MainWindow : handleView(tutorToView)
 activate MainWindow
