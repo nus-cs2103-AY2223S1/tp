@@ -9,8 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* This project is based on the AddressBook-Level3 project created by the SE-EDU initiative. 
-* Libraries used: JavaFX, Jackson, JUnit5.
+  * This project is based on the AddressBook-Level3 project created by the SE-EDU initiative. 
+  * Libraries used: JavaFX, Jackson, JUnit5.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
