@@ -6,7 +6,7 @@ title: Developer Guide
 **Teacher’s Pet** is a desktop application that empowers private tutors to manage their students and schedule their classes.
 
 This Developer Guide provides an in-depth documentation on how **Teacher’s Pet** is designed and implemented.
-It covers the architecture of **Teacher’s Pet** and provides detailed description regarding the implementation design.
+It covers the architecture of **Teacher’s Pet** and provides detailed descriptions regarding the implementation design.
 
 You can use this guide to maintain, upgrade, and evolve **Teacher’s Pet**.
 
