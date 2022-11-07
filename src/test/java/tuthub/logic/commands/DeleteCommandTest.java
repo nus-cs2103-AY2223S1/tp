@@ -28,7 +28,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Tutor tutorToDelete = model.getFilteredTutorList().get(INDEX_FIRST_TUTOR.getZeroBased());
+        Tutor tutorToDelete = model.getTutorList().get(INDEX_FIRST_TUTOR.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_TUTOR);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_TUTOR_SUCCESS, tutorToDelete);
@@ -41,7 +41,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTutorList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getTutorList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_TUTOR_DISPLAYED_INDEX);
@@ -51,7 +51,7 @@ public class DeleteCommandTest {
     public void execute_validIndexFilteredList_success() {
         showTutorAtIndex(model, INDEX_FIRST_TUTOR);
 
-        Tutor tutorToDelete = model.getFilteredTutorList().get(INDEX_FIRST_TUTOR.getZeroBased());
+        Tutor tutorToDelete = model.getTutorList().get(INDEX_FIRST_TUTOR.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_TUTOR);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_TUTOR_SUCCESS, tutorToDelete);
@@ -104,6 +104,6 @@ public class DeleteCommandTest {
     private void showNoTutor(Model model) {
         model.updateFilteredTutorList(p -> false);
 
-        assertTrue(model.getFilteredTutorList().isEmpty());
+        assertTrue(model.getTutorList().isEmpty());
     }
 }

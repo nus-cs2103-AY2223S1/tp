@@ -172,7 +172,7 @@ Classes used by multiple components are in the `tuthub.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Adding tutors
+### Add Feature
 
 Tutor information is stored as `Tutor` objects, which captures all the information that the tutor represents. When the user adds a tutor, the program creates a new `Tutor` object with the given information and adds it to the `ObservableList` to be displayed in the program. The `Model` class handles the checking of uniqueness while the `Storage` class handles the conversion of the `Tutor` object to a [JSON](https://www.json.org/) format and updating of the storage file in `{source_root}/data/Tuthub.json`.
 
@@ -307,7 +307,7 @@ The `sort` command involves the logic, model, and UI part of Tuthub. Most update
 - `ModelManager#getFilteredTutorList()` - Now returns the `sortedFilteredTutors` list.
 - `ModelManager#updateSortedTutorList(Comparator<Tutor>)` - Similar to `ModelManager#updateFilteredTutorList`, but updates the Comparator instead of predicate.
 
-Given below is an example usage scenario when the user enters a `view` command in the command box and how the sort mechanism behaves at each step.
+Given below is an example usage scenario when the user enters a `sort` command in the command box and how the sort mechanism behaves at each step.
 
 Step 1: The user enters the command `sort a r/`.
 
@@ -321,7 +321,7 @@ Step 5: Upon recognising the `CommandResult`, `MainWindow` calls `logic#getFilte
 
 Step 6: Then, the `TutorListPanel` sets the items to view as the new and updated `sortedFilteredTutors` list.
 
-The following sequence diagram demonstrates the above operations (excluding the parsing details):
+The following sequence diagram demonstrates the above operations:
 
 ![SortSequenceDiagram](./images/SortSequenceDiagram.png)
 
@@ -379,6 +379,32 @@ The following sequence diagram demonstrates the above operations (excluding the 
 - **Alternative 2:** Store the `comment` as a string, replacing it everytime a new comment is added to the tutor.
     - Pros: Easier to implement.
     - Cons: It is harder to add and remove comments from each tutor, as the previous comments need to be copied and then added manually by the user.
+
+### Mail Feature
+
+This command allows users to easily contact tutors from `Tuthub`'s displayed list. Users can mail a specific tutor (by `INDEX`) or **all** the currently displayed tutors.
+
+<ins>Implementation</ins>
+
+The `mail` command involves the logic and model part of Tuthub. Other than that, it relies on the `Java` classes, [`java.awt.Desktop`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/Desktop.html) and [`java.net.URI`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/net/URI.html).
+
+Given below is an example usage scenario when the user enters a `mail` command in the command box.
+
+Step 1: The user enters the command `mail all`.
+
+Step 2: The `TuthubParser` verifies the `MailCommand#COMMAND_WORD`, and requests `MailCommandParser` to parse. The `MailCommandParser` verifies the appropriateness of the user input (in this case, the valid inputs are `INDEX` or "`all`").
+
+Step 3: Upon parsing, a new `MailCommand` is created based on the target, which is `all`.
+
+Step 4: In the `MailCommand` execution, the `URI` message is created by getting the emails (`Tutor#getEmail()`) of each tutor in the currently displayed list. The emails are combined in the `message` variable, which is then used as an argument in `URI#create(String)`. 
+
+Step 5: The user's default mail client is accessed by calling `Desktop#mail(URI)` with the recently created `uri` as the argument. Then, a new `CommandResult` is created and stored in `LogicManager`.
+
+Step 6: Upon recognising the `CommandResult`, `MainWindow` displays the resulting `CommandResult`.
+
+The following sequence diagram demonstrates the above operations (excluding `java.awt.Desktop` and `java.net.URI` operations):
+
+![MailSequenceDiagram](./images/MailSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>

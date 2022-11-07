@@ -36,20 +36,20 @@ public class TestUtil {
      * Returns the middle index of the tutor in the {@code model}'s tutor list.
      */
     public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredTutorList().size() / 2);
+        return Index.fromOneBased(model.getTutorList().size() / 2);
     }
 
     /**
      * Returns the last index of the tutor in the {@code model}'s tutor list.
      */
     public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredTutorList().size());
+        return Index.fromOneBased(model.getTutorList().size());
     }
 
     /**
      * Returns the tutor in the {@code model}'s tutor list at {@code index}.
      */
     public static Tutor getTutor(Model model, Index index) {
-        return model.getFilteredTutorList().get(index.getZeroBased());
+        return model.getTutorList().get(index.getZeroBased());
     }
 }

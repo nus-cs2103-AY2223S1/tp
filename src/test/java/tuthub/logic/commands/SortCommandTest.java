@@ -82,7 +82,7 @@ public class SortCommandTest {
         expectedModel.updateSortedTutorList(ratingComparatorAsc);
         assertCommandSuccess(command1, model, expectedMessage1, expectedModel);
         assertEquals(Arrays.asList(DANIEL, BENSON, FIONA, ELLE, GEORGE, ALICE, CARL),
-                model.getFilteredTutorList());
+                model.getTutorList());
 
         // Test for sorting rating in descending order
         String expectedMessage2 = String.format("Sorted based on %1$s, in %2$s order.", "RATINGS", "descending");
@@ -92,7 +92,7 @@ public class SortCommandTest {
         expectedModel.updateSortedTutorList(ratingComparatorDesc);
         assertCommandSuccess(command2, model, expectedMessage2, expectedModel);
         assertEquals(Arrays.asList(CARL, ALICE, GEORGE, ELLE, FIONA, BENSON, DANIEL),
-                model.getFilteredTutorList());
+                model.getTutorList());
 
         // Test for sorting teaching nomination in ascending order
         String expectedMessage3 = String.format("Sorted based on %1$s, in %2$s order.",
@@ -105,7 +105,7 @@ public class SortCommandTest {
         assertCommandSuccess(command3, model, expectedMessage3, expectedModel);
         // All tutors have 1 teaching nomination, hence will stay the same as previous result.
         assertEquals(Arrays.asList(CARL, ALICE, GEORGE, ELLE, FIONA, BENSON, DANIEL),
-                model.getFilteredTutorList());
+                model.getTutorList());
 
         // Test for sorting teaching nomination in descending order
         String expectedMessage4 = String.format("Sorted based on %1$s, in %2$s order.",
@@ -117,6 +117,6 @@ public class SortCommandTest {
         expectedModel.updateSortedTutorList(teachingNominationComparatorDesc);
         assertCommandSuccess(command4, model, expectedMessage4, expectedModel);
         assertEquals(Arrays.asList(CARL, ALICE, GEORGE, ELLE, FIONA, BENSON, DANIEL),
-                model.getFilteredTutorList());
+                model.getTutorList());
     }
 }

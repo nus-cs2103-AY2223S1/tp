@@ -38,7 +38,7 @@ public class ViewCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Tutor> tutorList = model.getFilteredTutorList();
+        List<Tutor> tutorList = model.getTutorList();
 
         if (index.getZeroBased() >= tutorList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TUTOR_DISPLAYED_INDEX);

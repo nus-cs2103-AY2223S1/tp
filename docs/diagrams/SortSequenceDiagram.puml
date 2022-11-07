@@ -10,7 +10,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":TuthubParser" as TuthubParser LOGIC_COLOR
 participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
-participant ":SortCommand" as SortCommand LOGIC_COLOR
+participant "s:SortCommand" as SortCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -24,7 +24,7 @@ activate MainWindow
 MainWindow -> LogicManager : execute("sort a r/")
 activate LogicManager
 
-LogicManager -> TuthubParser : parseCommand("delete 1")
+LogicManager -> TuthubParser : parseCommand("sort a r/")
 activate TuthubParser
 
 create SortCommandParser
@@ -41,13 +41,16 @@ create SortCommand
 SortCommandParser -> SortCommand
 activate SortCommand
 
-SortCommand --> SortCommandParser
+SortCommand --> SortCommandParser : s
 deactivate SortCommand
 
-SortCommandParser --> TuthubParser
+SortCommandParser --> TuthubParser : s
 deactivate SortCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SortByRatingComparator -[hidden]-> TuthubParser
+destroy SortCommandParser
 
-TuthubParser --> LogicManager
+TuthubParser --> LogicManager : s
 deactivate TuthubParser
 
 LogicManager --> SortCommand : execute()

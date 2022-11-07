@@ -29,9 +29,9 @@ public class FindByTagCommand extends FindByPrefixCommand {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredTutorList(predicate);
-        System.out.println(model.getFilteredTutorList());
+        System.out.println(model.getTutorList());
         return new CommandResult((
-                String.format(Messages.MESSAGE_TUTORS_LISTED_OVERVIEW, model.getFilteredTutorList().size())));
+                String.format(Messages.MESSAGE_TUTORS_LISTED_OVERVIEW, model.getTutorList().size())));
     }
 
     @Override

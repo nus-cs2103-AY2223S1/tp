@@ -60,7 +60,7 @@ public class FindByPhoneCommandTest {
         FindByPhoneCommand command = new FindByPhoneCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredTutorList());
+        assertEquals(Collections.emptyList(), model.getTutorList());
     }
 
     @Test
@@ -70,7 +70,7 @@ public class FindByPhoneCommandTest {
         FindByPhoneCommand command = new FindByPhoneCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON), model.getFilteredTutorList());
+        assertEquals(Arrays.asList(ALICE, BENSON), model.getTutorList());
     }
 
     @Test
@@ -80,7 +80,7 @@ public class FindByPhoneCommandTest {
         FindByPhoneCommand command = new FindByPhoneCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, BENSON), model.getFilteredTutorList());
+        assertEquals(Arrays.asList(ALICE, BENSON), model.getTutorList());
     }
 
     /**
