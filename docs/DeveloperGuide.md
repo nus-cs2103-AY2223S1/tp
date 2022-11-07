@@ -385,9 +385,6 @@ The following activity diagram summarizes what happens when a user executes the 
 
 <img src="images/FindCommandActivityDiagram.png" />
 
-**Design Considerations**
-
-1. `ArgumentTokenizer#tokenize()` used to identify the prefix, to generate the corresponding `Predicate<Student>`.
 <div style="page-break-after: always;"></div>
 
 #### 4.2.5 ViewAll command
@@ -565,7 +562,6 @@ Sorting the list of students according to grade
 Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## 5. **Documentation, logging, testing, configuration, dev-ops**
 
@@ -853,6 +849,8 @@ Prerequisites: Existing student records do not have the names or IDs that will b
 2. Test case: `addStudent nm/Alex Yeoh id/123A class/2B exam/CA1 60 exam/CA2 70`
    * Expected: A new student record with the provided details is added to the list. Details of the student record are shown in the status message. Since exam grades have been provided, the student card UI shows the exam scores for each exam that has been provided.
 
+<div style="page-break-after: always;"></div>
+
 3. Test case: `addStudent nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 e/bobdoe@gmail.com exam/CA1 50`
    * Expected: A new student record with the provided details is added to the list. Details of the student record are shown in the status message. This test case includes parents' details as well.
 
@@ -886,6 +884,8 @@ To perform them consecutively, you may use `addStudent nm/Alex Yeoh id/123A clas
 
 3. Other incorrect delete commands to try: `delete`, `delete x`
    * Expected: The command entered by the user is highlighted red. The status message shows invalid format error message.
+
+<div style="page-break-after: always;"></div>
 
 ### 7.5 Finding a student record
 
@@ -921,6 +921,8 @@ Prerequisites for Test case 1: Classify currently shows the parent details in ea
 Prerequisites for Test case 2: Classify currently hide the parent details in each student card UI.
 2. Test case: `toggleView`
     * Expected: Shows parent details in each student card UI.
+
+<div style="page-break-after: always;"></div>
 
 ### 7.9 Calculating exam statistics
 
