@@ -89,7 +89,7 @@
                         <p>Copy the file to the folder you want to use as the <em>home folder</em> for your Condonery.</p>
                     </li>
                     <li>
-                        <p>Double-click the file to start the app.</p>
+                        <p>Double-click the file to start the app. The interface will look like this.</p>
                     </li>
                     <li>
                         <p>Type the command in the command box and press Enter to execute it. e.g. typing <strong><code class="language-plaintext highlighter-rouge">help</code></strong> and pressing Enter will open the help window.
@@ -506,7 +506,6 @@
                     Users can either read the User Guide from the Help Window, or choose to navigate to the URL in their browser to view
                     the full User Guide.</p>
 
-
                 <p>Format: <code class="language-plaintext highlighter-rouge">help</code></p>
 
                 <h3 id="exiting-the-program--exit">Exiting the program : <code class="language-plaintext highlighter-rouge">exit</code>
@@ -600,18 +599,19 @@
                                 </li>
                                 <li>If more than 1 client matches the substring, an error message will be shown. Users should then use a more specific search, or input the Client’s exact name (case-sensitive).</li>
                                 <li>If no clients matches the search, an error message will be shown.</li>
+                                <li>To add multiple clients, users should type <code class="language-plaintext highlighter-rouge">ic/[INTERESTED_CLIENT]</code> for each client. For example, <code class="language-plaintext highlighter-rouge">ic/Samuel ic/Alice</code>
+                                </li>
                             </ul>
                         </li>
                         <li>The <code class="language-plaintext highlighter-rouge">-i</code> flag allows the user to upload images of the property. A file chooser dialog will appear after running the command.<br>
                         </li>
                     </ul>
 
-
                 </div>
 
                 <p>Examples:</p>
                 <ul>
-                    <li><code class="language-plaintext highlighter-rouge">add -p n/KAMPUNG@ADMIRALTY a/676 Woodlands Drive 71, Singapore 730676 p/800,000 h/HDB t/Neighbourhood t/Elderly ic/James s/AVAILABLE</code></li>
+                    <li><code class="language-plaintext highlighter-rouge">add -p n/KAMPUNG@ADMIRALTY a/676 Woodlands Drive 71, Singapore 730676 p/800,000 h/HDB t/Neighbourhood t/Elderly ic/James ic/Jaime s/AVAILABLE</code></li>
                     <li><code class="language-plaintext highlighter-rouge">add -p n/PINNACLE@DUXTON a/SG, Cantonment Rd, #1G, 085301 p/1,000,000 h/HDB t/Luxury</code></li>
                 </ul>
 
@@ -859,7 +859,6 @@
                         <li>The GUI changes to display only the selected property in the property directory, while clients interested in that property are shown in the client directory.</li>
                     </ul>
 
-
                 </div>
 
                 <p>Examples:</p>
@@ -919,12 +918,13 @@
                                 </li>
                                 <li>If more than 1 property matches the substring, an error message will be shown. Users should then use a more specific search, or input the Property’s exact name (case-sensitive).</li>
                                 <li>If no properties matches the search, an error message will be shown.</li>
+                                <li>To add multiple properties, users should type <code class="language-plaintext highlighter-rouge">ip/[INTERESTED_PROPERTY]</code> for each property. For example, <code class="language-plaintext highlighter-rouge">ip/unit1 ip/unit2</code>
+                                </li>
                             </ul>
                         </li>
                         <li>The <code class="language-plaintext highlighter-rouge">-i</code> flag allows the user to upload images of the client. A file chooser dialog will appear after running the command.<br>
                         </li>
                     </ul>
-
 
                 </div>
 
@@ -1012,7 +1012,6 @@
                         <li>Only complete strings will be matched e.g., <code class="language-plaintext highlighter-rouge">Sam</code> will not match <code class="language-plaintext highlighter-rouge">Samuel</code>.</li>
                         <li>Client profiles matching at least one keyword will be returned (i.e., <code class="language-plaintext highlighter-rouge">OR</code> search). e.g., <code class="language-plaintext highlighter-rouge">Sean Lee</code> will return <code class="language-plaintext highlighter-rouge">Sean Tan</code>, <code class="language-plaintext highlighter-rouge">Bob Lee</code>.</li>
                     </ul>
-
 
                 </div>
 
