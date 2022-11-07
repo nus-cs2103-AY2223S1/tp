@@ -49,17 +49,14 @@ TutorCard --|> UiPart
 TuitionClassCard --|> UiPart
 NextOfKinDescription --|> UiPart
 
-StudentCard .right.> Model
+StudentCard .right.....> Model
 TutorCard .right.> Model
 TuitionClassCard .right.> Model
-MainWindow .down.> Model
 UiManager -right-> Logic
 MainWindow -right-> Logic
 
-StudentListPanel -[hidden]right- TutorListPanel
-TutorListPanel -[hidden]right- TuitionClassListPanel
-
 MainWindow -[hidden]-|> UiPart
-MainWindow -[hidden]-|> UiPart
-
+StudentCard -[hidden]-|> Model
+StudentCard -[hidden]-|> Model
+TutorCard -[hidden]-|> Model
 @enduml

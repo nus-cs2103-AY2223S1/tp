@@ -45,7 +45,6 @@ HelpWindow --|> UiPart
 
 StudentDescription ..> Model
 TutorDescription ..> Model
-MainWindow ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
