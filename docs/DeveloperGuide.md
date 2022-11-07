@@ -1091,7 +1091,7 @@ testers are expected to do more *exploratory* testing.
    Expected: Property list should be filtered to contain only properties that have 'house' as a substring in their name (case-insensitive).
    "x properties listed" message should be displayed, where x refers to the number of properties in the new filtered list.
 
-2. Test case: `findbuyers`
+2. Test case: `findprops`
    Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `findprops`
    command and a correct example.
 
@@ -1111,12 +1111,12 @@ testers are expected to do more *exploratory* testing.
 
 **Prerequisites**: A property that has an owner with name containing "Johnny" must exist in the property list.
 
-1. Test case: `filterproperties -o Johnny`
+1. Test case: `filterprops -o Johnny`
    Expected: Buyer list should be filtered to contain only properties whose owners have names containing "Johnny".
    "x properties listed" message should be displayed, where x refers to the number of properties in the new filtered list.
 
-2. Test case: `filterproperties`, `filterproperties 1`, `filterproperties x`
-   Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `filterproperties`
+2. Test case: `filterprops`, `filterprops 1`, `filterprops x`
+   Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `filterprops`
    command and a correct example.
 
 ### Listing all buyers
@@ -1134,11 +1134,11 @@ testers are expected to do more *exploratory* testing.
 
 **Prerequisites**: Property list should be filtered to show a subset of the original list.
 
-1. Test case: `listproperties`
+1. Test case: `listprops`
    Expected: Property list should return to its original state containing all properties. "Listed all properties" message should be displayed
    on the screen.
 
-2. Test case: `listproperties 1`, `listproperties x`
+2. Test case: `listprops 1`, `listprops x`
    Expected: Same behaviour as above.
 
 ### Matching buyers to properties
