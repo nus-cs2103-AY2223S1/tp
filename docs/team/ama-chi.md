@@ -1,4 +1,4 @@
-###Overview
+## Overview
 
 ### Summary of Contributions
 
@@ -6,17 +6,22 @@
 
 **Enhancements implemented:** 
 * Implemented a Meeting class to encapsulate a Meeting with a Client, Listing and Date/Time.
-* Implemented add, edit and delete functions for the Meeting class.
+  * Implemented `AddMeetingCommand`,`AddMeetingCommandParser`, 
+  * `EditMeetingCommand`, `EditMeetingCommandParser` and 
+  * `DeleteMeetingCommand`, `DeleteMeetingCommandParser` functions for the Meeting class.
+  
+  * What it does:
+    * Allows the user to create, edit and remove meetings.
 
 **Contributions to the UG:**
-* Edited formatting to ensure conistency across the User Guide.
+* Edited formatting to ensure consistency across the User Guide.
 * Styling and visual touch ups.
 
 **Contributions to the DG:**
 * Cleaning and formatting.
 
 **Contributions to team based tasks:** 
-* Created Milestones and deadlines.
+* Created Milestones `v1.1`, `v1.2`, `v1.2b`, `v1.3` and `v1.4` and  their respective deadlines.
 * Created Issues and assigned them to respective milestones.
 * Wrote Test cases for Meeting class.
 
@@ -25,4 +30,5 @@
 * Handled merge conflicts.
 * Discussions on weekly distribution of work.
 
-**Contributions beyond the project team:** _to be added soon_
+**Contributions beyond the project team:**
+* Bug reports for other teams.
