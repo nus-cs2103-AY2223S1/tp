@@ -18,21 +18,12 @@ if () then ([valid mark command])
                :Display owed amount
                is too large message;
                 else ([else])
-               :Calculate the date of the
-               next class (7 days later);
 
-            if () then ([got class conflicts])
-             :Display class conflict
-                  error message;
-            else ([else])
-                :Store the next class in ClassStorage;
 
-                :Remove existing class from ClassStorage;
+                :Update student with new owed
+                      amount and mark status;
 
-                :Update student with new class timing,
-                      owed amount and mark status;
 
-        endif
         endif
         endif
         endif

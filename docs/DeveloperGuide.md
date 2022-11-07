@@ -20,13 +20,13 @@ You can use this guide to maintain, upgrade, and evolve **Teacher’s Pet**.
   * [Storage](#storage-component)
 * [Implementation](#implementation)
   * [Edit Class Feature](#edit-class-feature)
-  * [Next Available Class Feature](#next-available-class-feature)
   * [Statistics Display Feature](#statistics-display-feature)
   * [Mark Student Feature](#mark-student-feature)
   * [Schedule List Feature](#schedule-list-feature)
   * [Sort-by](#sort-by-feature)
   * [Undo Command Feature](#undo-command-feature)
   * [Find by Feature](#find-by-feature)
+  * [[Proposed] Next Available Class Feature](#proposed-next-available-class-feature)
 * [Appendix](#appendix-requirements)
   * [Target User Profile](#target-user-profile)
   * [Value Proposition](#value-proposition)
@@ -205,6 +205,8 @@ The features covered in this guide are:
 * [Undo Command Feature](#undo-command-feature)
 * [Find-by feature](#find-by-feature)
 
+___
+
 ### Edit Class Feature
 
 This feature allows the teacher to create a class at a specified date and time.
@@ -254,6 +256,8 @@ The following activity diagram summarizes what happens when a teacher executes a
         1. Harder to implement.
         2. Only can set the class to a date at most 1 week away.
 
+___
+
 ### Next Available Class Feature
 
 This feature allows the teacher to find then next available class by specifying the time range and the duration that
@@ -296,6 +300,8 @@ The following activity diagram summarizes what happens when a teacher executes a
     * Pros: More flexible, allowing teacher to specify what the time range is and the duration of class interested in.
     * Cons: Harder to implement.
 
+___
+
 ### Statistics Display Feature
 
 This feature allows the teacher to get an overall view of his/her teaching statistics, which includes the number of students, total money owed and total money paid by the current list of students.
@@ -321,15 +327,11 @@ How the individual operations work:
 
 - `StatisticsCalculator#getAmountOwed()`
   1. When `StatisticsCalculator#getAmountOwed()` is called by `StatisticDisplay`, `StatisticsCalculator` attains the updated list of students from `ReadOnlyTeachersPet`.
-  2. After getting the list of students in the form of `ObservableList<Student>`, StatisticsCalculator iterates across all students in the list and sums the total amount owed.
-
-  ![StatisticsCalculatorGetAmountOwedSequenceDiagram](images/DG-images/StatisticsCalculatorGetAmountOwedSequenceDiagram.png)
+  2. After getting the list of students in the form of `ObservableList<Student>`, `StatisticsCalculator` iterates across all students in the list and sums the total amount owed.
 
 - `StatisticsCalculator#getAmountPaid()`
   1. When `StatisticsCalculator#getAmountPaid()` is called by `StatisticDisplay`, `StatisticsCalculator` attains the updated list of students from `ReadOnlyTeachersPet`.
-  2. After getting the list of students in the form of `ObservableList<Student>`, StatisticsCalculator iterates across all students in the list and sums the total amount paid.
-  
-  ![StatisticsCalculatorGetAmountPaidSequenceDiagram](images/DG-images/StatisticsCalculatorGetAmountPaidSequenceDiagram.png)
+  2. After getting the list of students in the form of `ObservableList<Student>`, `StatisticsCalculator` iterates across all students in the list and sums the total amount paid.
 
 #### Design Considerations:
 ##### Aspect: Implementing the statistics function:
@@ -343,6 +345,8 @@ How the individual operations work:
         1. Fewer repetition of code.
         2. More optimised solution as `ObservableList<Student>` needs to be iterated only once. 
     * Cons: Violates Single Responsibility Principle (SRP) as the function would have multiple responsibilities.
+
+___
 
 ### Schedule List Feature
 This feature allows the user to be able to view a schedule on the right hand side of the panel.
@@ -368,9 +372,11 @@ This `UniqueScheduleList` would store the filtered version of the original `Addr
   * Pros: Achieved our purpose of a `ScheduleList`
   * Cons: Code duplication
 
+___
+
 ### Mark Student Feature
 
-This feature allows the teacher to mark a student as present for class, which increases the student's amount owed by the rates per class, while setting the student's next class date to be a week later.
+This feature allows the teacher to mark a student as present for class, which increases the student's amount owed by the rates per class.
 
 #### Implementation Details
 
@@ -383,12 +389,6 @@ This command executes 3 main actions, they are:
    - This action will add `ratesPerClass` field to `moneyOwed` field in `Student`.
    - The addition of money is called through `Money#addTo(Money money)` method.
    - To prevent integer overflow from happening, `Money#addTo(Money money)` throws a `CommandException` if it occurs.
-
-3. Set the next class to be a week later.
-   - This action will update `Class` to be `7` days later at the same `startTime` and `endTime`.
-   - Addition of days to the current `Class` date is called through `Class#addDays(int numberOfDays)` method.
-   - The next `Class` will be checked if it clashes with another `Class`. If it does not, it will be saved in `ClassStorage`. All these are called through `ClassStorage#saveClass()`.
-   - The marked `Class` will be deleted from `ClassStorage`.
 
 The following diagram illustrates how the operation works:
 
@@ -403,7 +403,7 @@ This feature allows the user(teacher) to sort the students from Teacher's Pet by
 
 #### Implementation Details
 
-The proposed `sort` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
+The `sort` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
 The `SortCommand` object will be creating a comparator based on the argument received and pass it to `TeachersPet` so that it will return the
 list of students as per usual. Additionally, it implements the following operation:
 - `TeachersPet#SortStudents(ComparatorM<Student>)` -- Updates the `students` by sorting the list with the given `Comparator`.
@@ -416,8 +416,8 @@ The following diagram illustrates how the operation works:
 
 </div>
 
----
 
+---
 ### Undo command feature
 
 #### Implementation Details
@@ -457,9 +457,9 @@ The following sequence diagram shows how the undo operation works:
 
 This feature allows the user (teacher) to find a list of students from Teacher's Pet by one of the specified keywords.
 
-#### Proposed Implementation
+#### Implementation Details
 
-The proposed `find` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
+The `find` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
 There are 7 different variations of `find`:
 1. Find by name: Find all matching student(s) with any matching full keyword(s) from name of student using `find n/[KEYWORDS]`.
 2. Find by email: Find all matching student(s) with any matching full keyword(s) from email of student using `find e/[KEYWORDS]`.
@@ -489,7 +489,52 @@ Below is an example of the general flow of a find by address command.
 The Sequence Diagram below shows how the components interact with each other when the user issues a find command:
 
 ![FindByAddressSequenceDiagram](images/DG-images/FindByAddressSequenceDiagram.png)
---------------------------------------------------------------------------------------------------------------------
+
+---
+
+### [Proposed] Next Available Class Feature
+
+This feature allows the teacher to find then next available class by specifying the time range and the duration that
+he or she is looking at. For example, if the teacher wants to have a 1-hour class in the range of 1000-1600, but is not
+sure when is the next available date, he or she can simply run `avail 1000-1600 60` and the first available class would
+be output to the teacher.
+
+#### Proposed Implementation
+
+The main logic of the available class resides in `UniqueStudentlist::getAvailableClass`, where it takes a given
+`TimeRange` parameter and outputs the next available class.
+
+The `TimeRange` class stores the `startTimeRange`, `endTimeRange` and `duration` (in minutes).
+
+The `AvailCommandParser` reads the input and passes it to `ParserUtil` which returns a `TimeRange` object. If the
+duration provided is not valid or if the endTime is not valid, a `ParseException` will be thrown. If there are no
+exceptions being thrown, `AvailCommandParser` will create an `AvailCommand`.
+
+During the execution of `AvailCommand`, a call will be made to `Model` in order to get the available class. `Model`
+will then call `TeachersPet::getAvailableClass`. The `TeachersPet::getAvailableClass` will then call
+`UniqueStudentList::getAvailableClass` which will subsequently return a `Class` object, which will be displayed to
+the user.
+
+The following sequence diagram shows how the avail operation works:
+
+![AvailClassSequenceDiagram](images/DG-images/AvailClassSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a teacher executes an avail class command:
+
+![AvailClassActivityDiagram](images/DG-images/AvailClassActivityDiagram.png)
+
+#### Design Considerations:
+##### Aspect: Input format for avail class:
+
+* **Alternative 1**: avail
+    * Pros: Easy to implement.
+    * Cons: It will be hard coded to find the next available class of a one-hour slot. Inflexible.
+
+* **Alternative 2**: avail 0000-2359 0 (in minutes)
+    * Pros: More flexible, allowing teacher to specify what the time range is and the duration of class interested in.
+    * Cons: Harder to implement.
+
+---
 
 ## Appendix: Requirements
 

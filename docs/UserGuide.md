@@ -34,7 +34,6 @@ For a full list of commands and detailed instructions, head to the [Features](#f
       * [Find by Next of Kin's Contact Number](#find-by-next-of-kins-contact-number)
       * [Find by Class Date](#find-by-class-date)
       * [Find by Tag](#find-by-tag)
-    * [Next available class: `avail`](#next-available-class-avail)
     * [Sort displayed students: `sort`](#sort-the-displayed-students-sort)
       * [Sort by Name](#sort-by-name)
       * [Sort by Class](#sort-by-class-date)
@@ -54,9 +53,9 @@ For a full list of commands and detailed instructions, head to the [Features](#f
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `teachersPet.jar` from https://github.com/AY2223S1-CS2103T-T09-4/tp/releases when made available.
+2. Download the latest `teachersPet.jar` from [here](https://github.com/AY2223S1-CS2103T-T09-4/tp/releases).
 3. Copy the file to the folder you want to use as the *home folder* for your application.
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
+4. Double-click the file to start the app. A GUI similar to the below should appear in a few seconds.
    Note how the app contains some sample data.
 
 ![UI introduction](images/UG-screenshots/UiIntro.png)
@@ -69,13 +68,13 @@ For a full list of commands and detailed instructions, head to the [Features](#f
 
 Our application is divided into 5 areas to maximise productivity, the specific uses are:
 
-- Input Command - The dialog box where all user interaction are held.
-- Application’s Reply - A short answer whether the application has executed the command, or an error message if the
+1) Command Input - The dialog box where all user interaction are held.
+2) Command Result - A short answer whether the application has executed the command, or an error message if the
   application did not understand the command.
-- Student's Details - A window that will display the details of the student(s).
-- Statistics Window - A window that shows all the statistics of the tutor, such as the number of students and
+3) Student List - A window that will display the details of the student(s).
+4) Statistics Window - A window that shows all the statistics of the tutor, such as the number of students and
 the money collected/owed.
-- Day’s Schedule List - A scroll window which shows the schedule for the day, sorted by time.
+5) Schedule List - A scroll window which shows the schedule for the day, sorted by time.
 
 Basic Instructions:
 1. Type the command in the command box and press Enter to execute it. e.g., typing `help` and pressing Enter will open
@@ -99,8 +98,9 @@ Basic Instructions:
 - Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g., in `add n/NAME`, `NAME` is a parameter
   which can be used as `add n/John Doe`.
 - Items in square brackets are optional. e.g., `n/NAME [t/TAG]` can be used as `n/John Doe t/python` or as `n/John Doe`.
-- Items with `…` after them can be used multiple times including zero times. e.g., `[t/TAG]…` can be used as ` ` (e.g.
-  0 times), `t/python`, `t/javascript t/react` etc.
+- Items with `…` after them can be used multiple times including zero times. e.g., If you see `[t/TAG]…`, you can choose 
+not to provide a tag by not using the `t/` prefix, provide one tag like `t/python` or provide multiple tags
+like `t/javascript t/react` etc.
 - Parameters with a prefix can be in any order. e.g., if the command specifies `n/NAME p/CONTACT_NUMBER`, `p/CONTACT_NUMBER n/NAME`
   is also acceptable.
 - If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence
@@ -160,7 +160,8 @@ Adds a student to the Teacher’s Pet.
 
 ##### Next of Kin’s Contact Number:
     - Next of Kin’s contact number must not be empty.
-    - Next of Kin’s contact number must only contain numerical digits between `0` and `9`.
+    - Next of Kin’s contact number must only contain numerical digits
+      between `0` and `9`.
     - Next of Kin’s contact number must begin with `6`, `8` or `9`.
 
 <div markdown="span" class="alert alert-info">ℹ **Note:** Next of Kin’s contact number must contain exactly 8 digits.
@@ -176,12 +177,14 @@ Adds a student to the Teacher’s Pet.
 ##### Email:
     - Email must not be empty. 
     - Email should be in the format of `local@domain`, where:
-      - Local address should only contain alphanumeric characters and these special characters `+_.-`.
+      - Local address should only contain alphanumeric characters and
+        these special characters `+_.-`.
       - Consecutive special characters are not supported.
       - The domain name must:
         1. End with a domain label at least 2 characters long.
         2. Have each domain label start and end with alphanumeric characters.
-        3. Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+        3. Have each domain label consist of alphanumeric characters,
+           separated only by hyphens, if any.
 
 ##### Tags:
     - Tags are optional.
@@ -222,6 +225,9 @@ Edits an existing student in the list.
 - Additional Notes - `nt/`
 - Tag - `t/`
 
+<div markdown="span" class="alert alert-danger">❗ **Caution:** At least one of these fields must exist in order to make the edit command valid.
+</div>
+
 1. Student's Name (`n/`), Student's Contact Number (`p/`), Next of Kin’s Contact Number (`np/`), Email (`e/`), Address (`a/`) and Tag (`t/`) follow the same convention as [adding a student](#adding-a-student-add).
 
 2. Class Date (`dt/`):
@@ -236,41 +242,40 @@ Edits an existing student in the list.
     - Examples: `2022-10-09 1100-1230`, `MON 1100-1230`, `Mon 1100-1230`
     - Invalid inputs: `2022-10-9 1100-1230`, `2022-10-09 1100-1000`
 
+<div markdown="span" class="alert alert-info">ℹ **Note:** If the end time is 12AM, it is referring to 12AM of the next day.
+</div>
+
 <div markdown="span" class="alert alert-danger">❗ **Caution:** If a chosen date is occupied by another student, a class conflict error will arise.
 </div>
 
-4. Amount Paid (`paid/`):
+3. Amount Paid (`paid/`):
     - Amount Paid stands for the amount that has been paid by the Student.
     - Amount paid can only be an integer.
     - Amount paid must be non-negative.
 
-5. Amount Owed (`owed/`):
+4. Amount Owed (`owed/`):
     - Amount Owed stands for the amount that has been owed by the Student.
     - Format: `owed/` must be followed by an integer.
     - Amount owed can only be an integer.
     - Amount owed must be non-negative.
 
-6. Rates per Class (`rate/`):
+5. Rates per Class (`rate/`):
     - Rates per Class stands for the amount of charge per Class for the Student.
     - Rates per Class can only be an integer.
     - Rates per Class must be non-negative.
 
-<div markdown="span" class="alert alert-info">ℹ **Note:** Amount Owed, Amount Paid, and Rates per Class must be between $0 and $2147483647. They are modified
-  independent of each other.</div>
+    <div markdown="span" class="alert alert-info">ℹ **Note:** Amount Owed, Amount Paid, and Rates per Class must be between $0 and $2147483647. They are modified
+      independent of each other.</div>
 
-
-7. Additional Notes (`nt/`):
+6. Additional Notes (`nt/`):
     - Additional notes can be left empty.
     - Additional notes can take in any types of character.
     - Use `nt/` to set the additional notes.
     - Use `nt-a/` to append the additional notes.
     
-<div markdown="span" class="alert alert-danger">❗ **Caution:** Using both nt/ and nt-a/ in a single command will reset the content of Additional Notes
-to the content behind both nt/ and nt-a/ prefixes.
-</div>
-
-<div markdown="span" class="alert alert-danger">❗ **Caution:** At least one of these fields must exist in order to make the edit command valid.
-</div>
+    <div markdown="span" class="alert alert-danger">❗ **Caution:** Using both nt/ and nt-a/ in a single command will reset the content of Additional Notes
+    to the content behind both nt/ and nt-a/ prefixes.
+    </div>
 
 Format: `edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS]
 [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [rate/RATES_PER_CLASS] [nt/ADDITIONAL_NOTES] [nt-a/ADDITIONAL_NOTES_APPEND] [t/TAG]…`
@@ -293,7 +298,6 @@ Allows the user to mark a student as present for a class.
 
 The application will increase the student's owed amount by the rates per class.
 A cross will be displayed beside the student's name indicating that the student has attended the class.
-The student's next class will be set a week later at the same time, provided if there is a free time slot.
 
 Format: `mark INDEX-s`
 
@@ -305,15 +309,11 @@ Format: `mark INDEX-s`
 </div>
 
 Example:
-- `mark 2` marks the 2nd student in the Schedule List.
+- `mark 1` marks the 1st student in the Schedule List.
 
 ![UiMark](images/UG-screenshots/UiMark.png)
 
 <div markdown="span" class="alert alert-info">ℹ **Note:** Notice how the student's name changed to red? This is because the student now owes money!
-</div>
-
-<div markdown="span" class="alert alert-success">💡 **Tip:** If you want to charge the student for missing the class, you can do so by executing
-the mark command. This increases the amount owed but frees up that time slot for another student.
 </div>
 
 [↑ Back to top](#table-of-contents)
@@ -328,7 +328,7 @@ The application will reduce the student's owed amount by the amount paid.
 
 Format: `pay INDEX-s AMOUNT_PAID`
 
-- Marks the student as present at the specified `INDEX-s`.
+- Indicates that the student at a specified `INDEX-s` has paid.
 - The `INDEX-s` refers to the index number shown in the Schedule List (bottom right).
 - The `INDEX-s` must be a positive integer. e.g., `1, 2, 3, ...`.
 - The `AMOUNT_PAID` must be an integer and cannot be negative. e.g., `0, 1, 2, ...`.
@@ -399,7 +399,7 @@ Format: `find n/KEYWORD [MORE_KEYWORDS]`
 
 Example:
 
-`find n/tan` returns `Tan Xiao Ming` and `John Tan`.
+`find n/alex` returns `Alex Yeoh`.
 
 ![UiFindName](images/UG-screenshots/UiFindName.png)
 
@@ -452,7 +452,7 @@ Example:
 
 Finds all students with a particular next of kin's contact number.
 
-Formats: `find np/NEXT_OF_KIN_CONTACT_NUMBER`
+Format: `find np/NEXT_OF_KIN_CONTACT_NUMBER`
 
 - Only full numbers will be matched e.g., `8123` will not match `81234567`.
 - Only one contact number can be searched at each time.
@@ -460,7 +460,7 @@ Formats: `find np/NEXT_OF_KIN_CONTACT_NUMBER`
 <div markdown="span" class="alert alert-danger">❗ **Caution:** Do not include more than one contact number such as find np/91232323 81231232.
 </div>
 
-Examples:
+Example:
 
 `find np/91232323` returns all students with the next of kin's contact number set as `91232323`.
 
@@ -491,7 +491,7 @@ Examples:
 
 Finds all students with a particular tag.
 
-Formats: `find t/tagName`
+Format: `find t/TAG_NAME`
 
 - Only one tag can be searched at each time.
 - The tag is case-insensitive.
@@ -508,35 +508,6 @@ of javascript tag
 * `find t/python t/javascript` returns all students who have javascript and python tags, includings students who have 
 other tags on top of the two tags.
 
-[↑ Back to top](#table-of-contents)
-
----
-### Next available class: `avail`
-
-Finds the next available class given a time range and duration and returns the next available class within the time 
-range, with the specified class duration and after the current time.
-
-Format: `avail TIME_RANGE DURATION`
-
-- The `TIME_RANGE` would follow a 24-hour format of 0000-2359.
-- The `DURATION` is in minutes.
-
-<div markdown="span" class="alert alert-danger">❗ **Caution:** The duration should not exceed the time range. e.g., If the time range is 1000-1100
-and the duration is 70, this would be invalid.
-</div>
-
-Examples:
-- Given that there is 1 student on the current day of 2022-10-27 from 0900-1000 and the current time is 0800 HRS, `
-avail 1100-1200 60` would return `2022-10-27 1100-1200` since there is no student at that slot.
-- Given that there is 1 student on the current day of 2022-10-27 from 0900-1000 and the current time is 1105 HRS, 
-`avail 1100-1200 60` would return `2022-10-28 1100-1200` since the 1100-1200 60 window today has passed. 
-- Given that there are 2 students on the current day of 2022-10-27 from 0900-1000 and at 1030-1130 and the current
-time is 0800 HRS, `avail 0830-1300 60` would return `2022-10-27 1130-1230` as the next slot since there is no 
-sufficient duration between 1000-1030 for a 60 minutes class.
-- Given that there are 2 students on the current day of 2022-10-27 from 0900-1000 and at 1030-1130 and the current
-time is 1200 HRS, `avail 0830-1300 60` would return `2022-10-27 1200-1300` as the next slot since there is no sufficient
-duration between 1000-1030 for a 60 minutes class, and it is the next suitable time window based on the current time.
- 
 [↑ Back to top](#table-of-contents)
 
 ---
@@ -681,7 +652,7 @@ Students' data is saved as a JSON file `[JAR file location]/data/teachersPet.jso
 <div markdown="span" class="alert alert-danger">❗ **Caution:** If your changes to the data file makes its format invalid,
 Teacher’s Pet will not be able to load any data into the app. Do not worry that your data file will be discarded!
 To proceed, you will need to correct any changes you made in order to load the data.
-You may also delete the JSON file o have a new set of generated sample data.
+You may also delete the JSON file to have a new set of generated sample data.
 </div>
 
 [↑ Back to top](#table-of-contents)
@@ -732,19 +703,19 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 ## Prefix Summary
 
-| Prefix                                              | Meaning | Examples                                             |
-|-----------------------------------------------------|:--------|------------------------------------------------------|
-| Name of student                                     | n/      | `n/Alice`                                            |
-| Phone number of student                             | p/      | `p/81234567`                                         |
-| Next of Kin Phone number                            | np/     | `np/65432109`                                        |
-| Email of student                                    | e/      | `e/alice@email.com`                                  |
-| Date and time of student's class                    | dt/     | `dt/2022-10-27 1300-1400`                            |
-| Address of student                                  | a/      | `a/15 Bukit Timah Road, Singapore 155203`            |
-| Amount paid by student                              | paid/   | `paid/300`                                           |
-| Amount owed by student                              | owed/   | `owed/200`                                           |
-| Rates per Class                                     | rate/   | `rate/100`                                           |
-| Additional notes of student (create new notes)      | nt/     | `nt/I have created new notes for Alice`              |
-| Additional notes of student (append existing notes) | nt-a/   | `nt-a/I have added more notes to the existing notes` |
-| Tags of student                                     | t/      | `t/python`                                           |
+| Prefix | Meaning                                             | Examples                                             |
+|:-------|-----------------------------------------------------|------------------------------------------------------|
+| n/     | Name of student                                     | `n/Alice`                                            |
+| p/     | Phone number of student                             | `p/81234567`                                         |
+| np/    | Next of Kin Phone number                            | `np/65432109`                                        |
+| e/     | Email of student                                    | `e/alice@email.com`                                  |
+| dt/    | Date and time of student's class                    | `dt/2022-10-27 1300-1400`                            |
+| a/     | Address of student                                  | `a/15 Bukit Timah Road, Singapore 155203`            |
+| paid/  | Amount paid by student                              | `paid/300`                                           |
+| owed/  | Amount owed by student                              | `owed/200`                                           |
+| rate/  | Rates per Class                                     | `rate/100`                                           |
+| nt/    | Additional notes of student (create new notes)      | `nt/I have created new notes for Alice`              |
+| nt-a/  | Additional notes of student (append existing notes) | `nt-a/I have added more notes to the existing notes` |
+| t/     | Tags of student                                     | `t/python`                                           |
 
 [↑ Back to top](#table-of-contents)
