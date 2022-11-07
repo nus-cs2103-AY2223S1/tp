@@ -10,7 +10,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.modquik.model.student.predicates.NamePredicate;
-import seedu.modquik.testutil.PersonBuilder;
+import seedu.modquik.testutil.StudentBuilder;
 
 public class NamePredicateTest {
 
@@ -43,34 +43,34 @@ public class NamePredicateTest {
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
         NamePredicate predicate = new NamePredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new StudentBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
         predicate = new NamePredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new StudentBuilder().withName("Alice Bob").build()));
 
         // Only one matching keyword
         predicate = new NamePredicate(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Carol").build()));
+        assertTrue(predicate.test(new StudentBuilder().withName("Alice Carol").build()));
 
         // Mixed-case keywords
         predicate = new NamePredicate(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        assertTrue(predicate.test(new StudentBuilder().withName("Alice Bob").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         NamePredicate predicate = new NamePredicate(Collections.emptyList());
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").build()));
+        assertFalse(predicate.test(new StudentBuilder().withName("Alice").build()));
 
         // Non-matching keyword
         predicate = new NamePredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice Bob").build()));
+        assertFalse(predicate.test(new StudentBuilder().withName("Alice Bob").build()));
 
         // Keywords match phone, email and modquik, but does not match name
         predicate = new NamePredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345678")
+        assertFalse(predicate.test(new StudentBuilder().withName("Alice").withPhone("12345678")
                 .withEmail("alice@email.com").withTelegram("alice")
                 .withTutorialModule("CS2103T").withTutorialName("W17")
                 .withAttendance("0").withParticipation("0").withGrade("A").build()));

@@ -2,7 +2,7 @@ package seedu.modquik.logic.commands.reminder;
 
 import static seedu.modquik.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.modquik.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.modquik.testutil.TypicalPersons.getTypicalModQuik;
+import static seedu.modquik.testutil.TypicalStudents.getTypicalModQuik;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -24,6 +24,7 @@ import seedu.modquik.logic.commands.ClearCommand;
 import seedu.modquik.model.ModQuik;
 import seedu.modquik.model.Model;
 import seedu.modquik.model.ModelManager;
+import seedu.modquik.model.ModelType;
 import seedu.modquik.model.UserPrefs;
 import seedu.modquik.model.consultation.Consultation;
 import seedu.modquik.testutil.ConsultationBuilder;
@@ -48,7 +49,7 @@ public class EditConsultationCommandTest {
         Model expectedModel = new ModelManager(new ModQuik(model.getModQuik()), new UserPrefs());
         expectedModel.setConsultation(model.getFilteredConsultationList().get(0), editedConsultation);
 
-        assertCommandSuccess(editConsultationCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editConsultationCommand, model, expectedMessage, ModelType.CONSULTATION, expectedModel);
     }
 
     @Test
@@ -81,7 +82,7 @@ public class EditConsultationCommandTest {
         Model expectedModel = new ModelManager(new ModQuik(model.getModQuik()), new UserPrefs());
         expectedModel.setConsultation(lastConsultation, editedConsultation);
 
-        assertCommandSuccess(editConsultationCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editConsultationCommand, model, expectedMessage, ModelType.CONSULTATION, expectedModel);
     }
 
     @Test

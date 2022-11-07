@@ -1,7 +1,7 @@
 package seedu.modquik.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.modquik.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.modquik.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.modquik.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND_TEMPLATE;
 import static seedu.modquik.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.modquik.logic.commands.CommandTestUtil.ID_DESC_AMY;
@@ -11,7 +11,7 @@ import static seedu.modquik.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.modquik.logic.commands.CommandTestUtil.TELEGRAM_DESC_AMY;
 import static seedu.modquik.logic.commands.CommandTestUtil.TUTORIAL_DESC_AMY;
 import static seedu.modquik.testutil.Assert.assertThrows;
-import static seedu.modquik.testutil.TypicalPersons.AMY;
+import static seedu.modquik.testutil.TypicalStudents.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -33,7 +33,7 @@ import seedu.modquik.model.student.Student;
 import seedu.modquik.storage.JsonModQuikStorage;
 import seedu.modquik.storage.JsonUserPrefsStorage;
 import seedu.modquik.storage.StorageManager;
-import seedu.modquik.testutil.PersonBuilder;
+import seedu.modquik.testutil.StudentBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -62,7 +62,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete student 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
@@ -85,16 +85,16 @@ public class LogicManagerTest {
         String addCommand = AddStudentCommand.COMMAND_WORD
                 + NAME_DESC_AMY + ID_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + TELEGRAM_DESC_AMY + MODULE_DESC_AMY + TUTORIAL_DESC_AMY;
-        Student expectedStudent = new PersonBuilder(AMY).withTags().build();
+        Student expectedStudent = new StudentBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedStudent);
+        expectedModel.addStudent(expectedStudent);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredStudentList().remove(0));
     }
 
     @Test

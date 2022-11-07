@@ -6,7 +6,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.modquik.logic.parser.exceptions.ParseException;
-import seedu.modquik.model.student.Address;
 import seedu.modquik.model.student.Attendance;
 import seedu.modquik.model.student.Email;
 import seedu.modquik.model.student.Grade;
@@ -50,21 +49,6 @@ public class StudentParserUtil {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
-    }
-
-    /**
-     * Parses a {@code String modquik} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code modquik} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        Objects.requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
     }
 
     /**

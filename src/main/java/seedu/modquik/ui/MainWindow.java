@@ -32,7 +32,7 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private StudentListPanel studentListPanel;
     private TutorialListPanel tutorialListPanel;
     private ReminderListPanel reminderListPanel;
     private ConsultationListPanel consultationListPanel;
@@ -122,7 +122,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         tutorialListPanel = new TutorialListPanel(logic.getFilteredTutorialList());
         consultationListPanel = new ConsultationListPanel(logic.getFilteredConsultationList());
 
@@ -130,7 +130,7 @@ public class MainWindow extends UiPart<Stage> {
         reminderListPanelPlaceholder.getChildren().add(reminderListPanel.getRoot());
 
         // show the person list by default.
-        modelListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        modelListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
         listHeader.setText("Student");
 
         resultDisplay = new ResultDisplay();
@@ -163,6 +163,7 @@ public class MainWindow extends UiPart<Stage> {
         modelListPanelPlaceholder.getChildren().clear();
         modelListPanelPlaceholder.getChildren().add(gradeChart.getRoot());
         listHeader.setText("Grade chart");
+        logger.info("Show grade chart");
     }
 
     /**
@@ -185,6 +186,7 @@ public class MainWindow extends UiPart<Stage> {
         modelListPanelPlaceholder.getChildren().clear();
         modelListPanelPlaceholder.getChildren().add(tutorialListPanel.getRoot());
         listHeader.setText("Tutorial");
+        logger.info("Show tutorial lists");
     }
 
     /**
@@ -193,7 +195,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handlePerson() {
         modelListPanelPlaceholder.getChildren().clear();
-        modelListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        modelListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
         listHeader.setText("Student");
     }
 
@@ -225,10 +227,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
     }
 
     /**

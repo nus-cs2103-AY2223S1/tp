@@ -3,7 +3,7 @@ package seedu.modquik.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.modquik.storage.JsonAdaptedStudent.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.modquik.testutil.Assert.assertThrows;
-import static seedu.modquik.testutil.TypicalPersons.BENSON;
+import static seedu.modquik.testutil.TypicalStudents.BENSON;
 
 import java.util.ArrayList;
 import java.util.List;

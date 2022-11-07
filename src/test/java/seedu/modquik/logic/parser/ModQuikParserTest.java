@@ -15,12 +15,12 @@ import seedu.modquik.logic.commands.ListCommand;
 import seedu.modquik.logic.commands.student.AddStudentCommand;
 import seedu.modquik.logic.commands.student.DeleteStudentCommand;
 import seedu.modquik.logic.commands.student.EditStudentCommand;
-import seedu.modquik.logic.commands.student.EditStudentCommand.EditPersonDescriptor;
+import seedu.modquik.logic.commands.student.EditStudentCommand.EditStudentDescriptor;
 import seedu.modquik.logic.parser.exceptions.ParseException;
 import seedu.modquik.model.student.Student;
-import seedu.modquik.testutil.EditPersonDescriptorBuilder;
-import seedu.modquik.testutil.PersonBuilder;
-import seedu.modquik.testutil.PersonUtil;
+import seedu.modquik.testutil.EditStudentDescriptorBuilder;
+import seedu.modquik.testutil.StudentBuilder;
+import seedu.modquik.testutil.StudentUtil;
 
 public class ModQuikParserTest {
 
@@ -28,8 +28,8 @@ public class ModQuikParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Student student = new PersonBuilder().build();
-        AddStudentCommand command = (AddStudentCommand) parser.parseCommand(PersonUtil.getAddStudentCommand(student));
+        Student student = new StudentBuilder().build();
+        AddStudentCommand command = (AddStudentCommand) parser.parseCommand(StudentUtil.getAddStudentCommand(student));
         assertEquals(new AddStudentCommand(student), command);
     }
 
@@ -42,10 +42,10 @@ public class ModQuikParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Student student = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(student).build();
+        Student student = new StudentBuilder().build();
+        EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(student).build();
         EditStudentCommand command = (EditStudentCommand) parser.parseCommand(EditStudentCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_PERSON.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
         assertEquals(new EditStudentCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 

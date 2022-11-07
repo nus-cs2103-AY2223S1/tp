@@ -3,12 +3,12 @@ package seedu.modquik.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.modquik.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.modquik.commons.core.Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW;
 import static seedu.modquik.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.modquik.testutil.TypicalPersons.CARL;
-import static seedu.modquik.testutil.TypicalPersons.ELLE;
-import static seedu.modquik.testutil.TypicalPersons.FIONA;
-import static seedu.modquik.testutil.TypicalPersons.getTypicalModQuik;
+import static seedu.modquik.testutil.TypicalStudents.CARL;
+import static seedu.modquik.testutil.TypicalStudents.ELLE;
+import static seedu.modquik.testutil.TypicalStudents.FIONA;
+import static seedu.modquik.testutil.TypicalStudents.getTypicalModQuik;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -58,22 +58,22 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 0);
         NamePredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, ModelType.STUDENT, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredStudentList());
     }
 
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_STUDENTS_LISTED_OVERVIEW, 3);
         NamePredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, ModelType.STUDENT, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredStudentList());
     }
 
     /**
