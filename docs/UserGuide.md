@@ -279,10 +279,10 @@ Format:
 `find n/{keyword}` `find m/{module}`
 
 Examples:
-* `find n/home` returns all tasks with name that matches `home`. E.g. `Science homework`, `Math homework`
-* `find n/lab assignment` returns all tasks with name that matches `lab` or `assignment`. E.g. lab 1`, `assignment 2`
-* `find m/CS2030S CS2040S` returns all tasks with module that matches `CS2030S` or `CS2040S`.
-* `find m/20` returns all tasks with module that matches `20`.
+* `find n/home` - returns all tasks with name that matches "home". E.g. `Science homework`, `Math homework`
+* `find n/lab assignment` - returns all tasks with name that matches "lab" or "assignment". E.g. `lab 1`, `assignment 2`
+* `find m/CS2030S CS2040S` - returns all tasks with module that matches "CS2030S" or "CS2040S".
+* `find m/20` - returns all tasks with module that matches "20".
 
 `find m/CS2103T` returns this:
 
@@ -397,12 +397,12 @@ Format:
 `findc n/{name}` `findc m/{module}` `findc ts/{task_index}`
 
 Examples:
-* `findc n/John` returns all contacts with name that matches `John`. E.g. `john`, `John Doe`
-* `findc n/jo` returns all contacts with name that matches `jo`. E.g. `john`, `John Doe`
-* `findc n/jo ja` returns all contacts with name that matches `jo` or `ja`. E.g. `john`, `james`
-* `findc m/CS1231S CS1101S` returns all contacts that are taking at least one module that matches `CS1231S` or `CS1101S`.
-* `findc m/1S` returns all contacts that are taking at least one module that matches `1S`.
-* `findc ts/2` returns contacts that are taking the module that the task at index 2 belongs to
+* `findc n/John` - returns all contacts with name that matches "John". E.g. `john`, `John Doe`
+* `findc n/jo` - returns all contacts with name that matches "jo". E.g. `john`, `John Doe`
+* `findc n/jo ja` - returns all contacts with name that matches "jo" or "ja". E.g. `john`, `james`
+* `findc m/CS1231S CS1101S` - returns all contacts that are taking at least one module that matches "CS1231S" or "CS1101S".
+* `findc m/1S` - returns all contacts that are taking at least one module that matches "1S".
+* `findc ts/2` -returns contacts that are taking the module that the task at index 2 belongs to
 
 <div class="page-new"></div>
 
