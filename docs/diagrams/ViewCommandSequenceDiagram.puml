@@ -4,12 +4,12 @@
 box Logic LOGIC_COLOR_T1
 participant ":ViewCommand" as ViewCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
-participant "student:Student" as Student LOGIC_COLOR
-participant "smd:StudentModuleData" as SMD LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
+participant "student:Student" as Student MODEL_COLOR
+participant "smd:StudentModuleData" as SMD MODEL_COLOR
 end box
 
 [-> ViewCommand: execute(model)
