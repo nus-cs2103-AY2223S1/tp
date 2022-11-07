@@ -218,19 +218,19 @@ Format: `edit INDEX {Prefix}/{Parameter}...`
 **The prefixes and their respective parameters are as follows:**
 
 
-| Status  | Prefix | Parameter                               | Restrictions                                                                      |
-|---------|---|-----------------------------------------|-----------------------------------------------------------------------------------|
-| `+`     |   | INDEX                                   | Positive integer only.                                                            |
-| `-`     | n | NAME                                    | Alphanumeric characters and spaces only.                                          |
-| `-`     | p | PHONE                                   | Numbers only and at least 3 digits.                                               |
-| `-`     | e | EMAIL                                   | Must follow a valid email format. See below for more information.                 |
-| `-`     | nok | NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT | NAME & RELATIONSHIP: Alphabets and spaces only. <br/>CONTACT: Numbers only.       |
-| `-`     | pt | PATIENT_TYPE                            | Either `inpatient`/`i` or `outpatient`/`o`.                                       |
-| `-`     | hw | HOSPITAL_WING                           | Either `north`, `south`, `east` or `west`.  **Compulsory for inpatients**.        |
-| `-`     | fn | FLOOR_NUMBER                            | Positive integer only.            **Compulsory for inpatients**.                  |
-| `-`     | wn | WARD_NUMBER                             | One uppercase alphabet followed by 3 digits only.  **Compulsory for inpatients**. |
-| `-`     | ua | UPCOMING_APPOINTMENT                    | `dd-MM-yyyy` format only (i.e. `12-06-2022`).                                     |
-| `-` `*` | m | LONG_TERM_MEDICATION                    | Alphanumeric characters and spaces only.                                          |
+| Status  | Prefix | Parameter                               | Restrictions                                                                                  |
+|---------|---|-----------------------------------------|-----------------------------------------------------------------------------------------------|
+| `+`     |   | INDEX                                   | Positive integer only.                                                                        |
+| `-`     | n | NAME                                    | Alphanumeric characters and spaces only.                                                      |
+| `-`     | p | PHONE                                   | Numbers only and at least 3 digits.                                                           |
+| `-`     | e | EMAIL                                   | Must follow a valid email format. See below for more information.                             |
+| `-`     | nok | NEXT-OF-KIN_NAME, RELATIONSHIP, CONTACT | NAME & RELATIONSHIP: Alphabets and spaces only. <br/>CONTACT: Numbers only.                   |
+| `-`     | pt | PATIENT_TYPE                            | Either `inpatient`/`i` or `outpatient`/`o`.                                                   |
+| `-`     | hw | HOSPITAL_WING                           | Either `north`, `south`, `east` or `west` (case-insensitive).  **Compulsory for inpatients**. |
+| `-`     | fn | FLOOR_NUMBER                            | Positive integer only.            **Compulsory for inpatients**.                              |
+| `-`     | wn | WARD_NUMBER                             | One uppercase alphabet followed by 3 digits only.  **Compulsory for inpatients**.             |
+| `-`     | ua | UPCOMING_APPOINTMENT                    | `dd-MM-yyyy` format only (i.e. `12-06-2022`).                                                 |
+| `-` `*` | m | LONG_TERM_MEDICATION                    | Alphanumeric characters and spaces only.                                                      |
 
 **Email Format**
 
@@ -315,11 +315,11 @@ Format: `appt INDEX {Prefix}/{Parameter}...`
 **The prefixes and their respective parameters are as follows:**
 
 | Status  | Prefix | Parameter             | Restrictions                                  |
-|---------|--------|-----------------------|-----------------------------------------------|
-| `+`     |        | INDEX                 | Positive integer only.                        |
-| `+`     | on/    | DATE                  | `dd-MM-yyyy` format only (i.e. `12-06-2022`). |
-| `+`     | diag/  | DIAGNOSIS             | -                                             |
-| `-` `*` | m/     | MEDICATION_PRESCRIBED | Alphanumeric characters and spaces only.      |
+|---------|-----|-----------------------|-----------------------------------------------|
+| `+`     |     | INDEX                 | Positive integer only.                        |
+| `+`     | on  | DATE                  | `dd-MM-yyyy` format only (i.e. `12-06-2022`). |
+| `+`     | diag | DIAGNOSIS             | -                                             |
+| `-` `*` | m   | MEDICATION_PRESCRIBED | Alphanumeric characters and spaces only.      |
 
 **Upon Execution**
 
@@ -375,10 +375,10 @@ Format: `consult INDEX {Prefix}/{Parameter}...`
 **The prefixes and their respective parameters are as follows:**
 
 | Status  | Prefix | Parameter             | Restrictions                                  |
-|---------|--------|-----------------------|-----------------------------------------------|
-| `+`     |        | INDEX                 | Positive integer only.                        |
-| `+`     | diag/  | DIAGNOSIS             | -                                             |
-| `-` `*` | m/     | MEDICATION_PRESCRIBED | Alphanumeric characters and spaces only.      |
+|---------|------|-----------------------|-----------------------------------------------|
+| `+`     |      | INDEX                 | Positive integer only.                        |
+| `+`     | diag | DIAGNOSIS             | -                                             |
+| `-` `*` | m    | MEDICATION_PRESCRIBED | Alphanumeric characters and spaces only.      |
 
 **Upon Execution**
 
@@ -421,18 +421,18 @@ Format `get /PREDICATE PARAMETER`
 
 **The predicates you can use to get the patients by are as follows:**
 
-| Predicate                             | Parameter            | Description                                           |
-|---------------------------------------|----------------------|-------------------------------------------------------|
-| [n](#by-name-n)                       | NAME                 | Finds patients by name.                               |
-| [nok](#by-next-of-kin-data-nok)       | PATIENT_NAME         | Finds next-of-kin data of patients.                   | 
-| [hw](#by-hospital-wing-hw)            | HOSPITAL_WING        | Finds all the patients in a hospital wing.            |
-| [fn](#by-floor-number-fn)             | FLOOR_NUMBER         | Finds all the patients on a floor number.             |
-| [wn](#by-ward-number-wn)              | WARD_NUMBER          | Finds all the patients in a ward.                     |
-| [m](#by-long-term-medication-m)       | LONG_TERM_MEDICATION | Finds all the patients by their long-term medication. |
-| [inp](#by-patient-type-inp)           | -                    | Finds all the inpatients.                             |
-| [outp](#by-patient-type-outp)         | -                    | Finds all the outpatients.                            |
-| [appt](#by-appointments-appt)         | INDEX                | Finds all past appointments of a patient.             |
-| [appton](#by-appointment-date-appton) | APPOINTMENT_DATE     | Finds all with an appointment on a particular date.   |
+| Predicate                             | Parameter            | Description                                                      |
+|---------------------------------------|----------------------|------------------------------------------------------------------|
+| [n](#by-name-n)                       | NAME                 | Finds patients by name.                                          |
+| [nok](#by-next-of-kin-data-nok)       | PATIENT_NAME         | Finds next-of-kin data of a patient.                             | 
+| [hw](#by-hospital-wing-hw)            | HOSPITAL_WING        | Finds all the patients in a hospital wing.                       |
+| [fn](#by-floor-number-fn)             | FLOOR_NUMBER         | Finds all the patients on a floor number.                        |
+| [wn](#by-ward-number-wn)              | WARD_NUMBER          | Finds all the patients in a ward.                                |
+| [m](#by-long-term-medication-m)       | LONG_TERM_MEDICATION | Finds all the patients by their long-term medication.            |
+| [inp](#by-patient-type-inp)           | -                    | Finds all the inpatients.                                        |
+| [outp](#by-patient-type-outp)         | -                    | Finds all the outpatients.                                       |
+| [appt](#by-appointments-appt)         | INDEX                | Finds all past appointments of a patient.                        |
+| [appton](#by-appointment-date-appton) | APPOINTMENT_DATE     | Finds all the patients with an appointment on a particular date. |
 
 #### by name: `/n`
 
@@ -456,7 +456,7 @@ Format: `get /n NAME`
 
 #### next-of-kin data: `/nok`
 
-Finds next-of-kin data for patients matching the input `PATIENT_NAME`, and is hence similar to the `get \n` command.
+Finds next-of-kin data for patients matching the input `PATIENT_NAME`, and is hence similar to the `get /n` command.
 
 Format: `get /nok PATIENT_NAME`
 
