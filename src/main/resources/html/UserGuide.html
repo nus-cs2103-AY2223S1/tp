@@ -90,7 +90,7 @@
                     </li>
                     <li>
                         <p>Double-click the file to start the app. The interface will look like this.
-                            <img src="/tp/images/Ui.png" alt="Ui"></p>
+                            <img src="/tp/images/ug_condonery.png" alt="Ui"></p>
                     </li>
                     <li>
                         <p>Type the command in the command box and press Enter to execute it. e.g. typing <strong><code class="language-plaintext highlighter-rouge">help</code></strong> and pressing Enter will open the help window.
@@ -101,7 +101,7 @@
                                 <p><strong><code class="language-plaintext highlighter-rouge">list -p</code></strong> : Lists all properties.</p>
                             </li>
                             <li>
-                                <p><strong><code class="language-plaintext highlighter-rouge">add -p</code></strong><code class="language-plaintext highlighter-rouge">n/Pinnacle@Duxton a/Cantonment Rd, #1G, 085301 p/100,000 h/CONDO t/luxury</code> : Adds a listing named <code class="language-plaintext highlighter-rouge">Pinnacle@Duxton</code>, with the inputted details, to the property directory.</p>
+                                <p><strong><code class="language-plaintext highlighter-rouge">add -p </code></strong> <code class="language-plaintext highlighter-rouge">n/Pinnacle@Duxton a/Cantonment Rd, #1G, 085301 p/100,000 h/CONDO t/luxury</code> : Adds a listing named <code class="language-plaintext highlighter-rouge">Pinnacle@Duxton</code>, with the inputted details, to the property directory.</p>
                             </li>
                             <li>
                                 <p><strong><code class="language-plaintext highlighter-rouge">list -p</code></strong> followed by <strong><code class="language-plaintext highlighter-rouge">delete 3</code></strong> : Deletes the 3rd property shown in the current list.</p>
@@ -219,7 +219,7 @@
                         <td>Refers to property price.<br>
                         </td>
                         <td><code class="language-plaintext highlighter-rouge">p/1,000,000</code></td>
-                        <td>Each property can only have one price.<br> Accepts positive integers only.<br> Max input price is <code class="language-plaintext highlighter-rouge">2,147,483,647</code>.</td>
+                        <td>Each property can only have one price.<br> Accepts positive integers only.<br> Max input price is <code class="language-plaintext highlighter-rouge">2,147,483,647</code>.<br> Use of commas to separate digits allowed, except when commas is in front of leading digit (<code class="language-plaintext highlighter-rouge">,100</code>), comma not between digits (<code class="language-plaintext highlighter-rouge">100,</code>) or using consecutive commas (<code class="language-plaintext highlighter-rouge">10,,0</code>)</td>
                     </tr>
                     <tr>
                         <td><code class="language-plaintext highlighter-rouge">h/</code></td>
@@ -507,7 +507,7 @@
                     Users can either read the User Guide from the Help Window, or choose to navigate to the URL in their browser to view
                     the full User Guide.</p>
 
-                <p><img src="/tp/images/helpMessage.png" alt="help message"></p>
+                <p><img src="/tp/images/ug_help.png" alt="help message"></p>
 
                 <p>Format: <code class="language-plaintext highlighter-rouge">help</code></p>
 
@@ -608,7 +608,7 @@
                         </li>
                     </ul>
 
-                    <p><img src="/tp/images/fileChooser.png" alt="file_chooser"></p>
+                    <p><img src="/tp/images/ug_add_property.png" alt="file_chooser"></p>
 
                 </div>
 
@@ -780,7 +780,7 @@
                     <p><img class="emoji" title=":bulb:" alt=":bulb:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f4a1.png" height="20" width="20"> <strong>Tips:</strong></p>
 
                     <ul>
-                        <li>Lower and upper price boundaries only accept positive integer values (commas in between digits are acceptable).</li>
+                        <li>Lower and upper price boundaries only accept positive integer values (commas in between digits are acceptable; see Prefix List for acceptable comma usage).</li>
                         <li>Lower price boundary (<code class="language-plaintext highlighter-rouge">l/LOWER_BOUND</code>) cannot be higher than upper price boundary (<code class="language-plaintext highlighter-rouge">u/UPPER_BOUND</code>).</li>
                     </ul>
 
@@ -862,12 +862,14 @@
                         <li>The GUI changes to display only the selected property in the property directory, while clients interested in that property are shown in the client directory.</li>
                     </ul>
 
+                    <p><img src="/tp/images/ug_select_property.png" alt="select_property"></p>
+
                 </div>
 
                 <p>Examples:</p>
                 <ul>
                     <li>
-                        <code class="language-plaintext highlighter-rouge">select -p 5</code> returns the fifth property in the property directory, alongside the list of interested clients in the client directory.</li>
+                        <code class="language-plaintext highlighter-rouge">select -p 3</code> returns the third property in the property directory, alongside the list of interested clients in the client directory.</li>
                 </ul>
 
                 <h3 id="clearing-all-entries--clear--p">Clearing all entries : <code class="language-plaintext highlighter-rouge">clear -p</code>
@@ -927,7 +929,7 @@
                         </li>
                     </ul>
 
-                    <p><img src="/tp/images/fileChooser.png" alt="file_chooser"></p>
+                    <p><img src="/tp/images/ug_add_client.png" alt="file_chooser"></p>
 
                 </div>
 
@@ -1015,6 +1017,8 @@
                         <li>Only complete strings will be matched e.g., <code class="language-plaintext highlighter-rouge">Sam</code> will not match <code class="language-plaintext highlighter-rouge">Samuel</code>.</li>
                         <li>Client profiles matching at least one keyword will be returned (i.e., <code class="language-plaintext highlighter-rouge">OR</code> search). e.g., <code class="language-plaintext highlighter-rouge">Sean Lee</code> will return <code class="language-plaintext highlighter-rouge">Sean Tan</code>, <code class="language-plaintext highlighter-rouge">Bob Lee</code>.</li>
                     </ul>
+
+                    <p><img src="/tp/images/ug_find_client.png" alt="find_client"></p>
 
                 </div>
 
