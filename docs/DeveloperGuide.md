@@ -455,7 +455,7 @@ Sorting by default and alphabetical order is done using the `.sort(Comparator<? 
 
 <table>
 <tr>
-<td>Sort by</td> <td>Method</td> <td>Remarks</td>
+<td>Sort by</td> <td>Method</td>
 </tr>
 
 <tr>
@@ -475,10 +475,6 @@ Sorting by default and alphabetical order is done using the `.sort(Comparator<? 
         }
 ```
 </td>
-<td markdown="block">
-
-`uniqueId` has 2 parts, the time when the entry was added, and the sequence number it was added in. This was done because myStudent loads  data from the .json files instantly during startup i.e. `Instant.now()` is not precise enough, thus their sequence number is used instead to sort. 
-</td>
 </tr>
 
 <tr>
@@ -487,7 +483,6 @@ Sorting by default and alphabetical order is done using the `.sort(Comparator<? 
 
 `Comparator.compare(Tutor::getName)`
 </td>
-<td>For the  case where the tutor list is the one currently being displayed.</td>
 </tr>
 
 <tr>
@@ -496,9 +491,12 @@ Sorting by default and alphabetical order is done using the `.sort(Comparator<? 
 
 `Collections.reverse(internalList)`
 </td>
-<td></td>
 </tr>
 </table>
+
+**Remarks:**  
+In the method for default sorting, `uniqueId` has 2 values, the time when the entry was added, and the sequence number it was added in. Their keys are the `Integer` `0` and `1` respectively. This was done because myStudent loads  data from the .json files instantly during startup i.e. the method to capture the time, `Instant.now()`, is not precise enough. Thus, their sequence number is used instead to sort.
+
 
 #### Design considerations:
 
