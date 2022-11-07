@@ -561,9 +561,9 @@ when a person card is clicked on.
 `MainWindow` has the method `executeCommand` which will be passed on as an argument for the construction of a 
 `PersonListPanel` object which in turn is passed on as an argument to the creation of each `PersonCard` object. 
 When clicked, a `PersonCard` executes the `handleMouseClicked` method which makes use of the `MainWindow#executeCommand`
-method to execute a `view` command with the corresponding index of the `PersonCard` that was clicked. This is done to 
-prevent `PersonListPanel` and `PersonCard` from having direct access to `Model` or `Logic`, choosing to maintain 
-`MainWindow` and `Ui` as the classes that interact with Logic instead.
+method. The `MainWindow#executeCommand` method executes a `view` command with the corresponding index of the 
+`PersonCard` that was clicked. This is done to prevent `PersonListPanel` and `PersonCard` from having direct access to 
+`Model` or `Logic`, choosing to maintain `MainWindow` and `Ui` as the classes that interact with `Logic` instead.
 
 Things to note:
 * this is only done for `PersonCard` and not `ContactCard` as `ContactCard` already has all the information 
