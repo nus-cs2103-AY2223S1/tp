@@ -9,6 +9,8 @@ Teaching Assistant Assistant (TAA) is a desktop app for Teaching Assistants (TAs
 
 Given below are my contributions to the project.
 
+* **New Feature**: Student add command.
+* **New Feature**: Student delete command.
 * **New Feature**: Added the ability sort task automatically by its deadline.
 * **New Feature**: Ability to expand the task card whenever its click in the GUI.
 
@@ -23,6 +25,7 @@ Given below are my contributions to the project.
 
   * Developer Guide:
     * Added documentation for the task sort feature [#105](https://github.com/AY2223S1-CS2103T-T13-1/tp/pull/105)
+    * Added task class diagram and tutorial group class diagram [#239](https://github.com/AY2223S1-CS2103T-T13-1/tp/pull/239)
 
 **Community**:
   * Reported bugs and suggestions for other teams: [1](https://github.com/limweijun/ped/issues/1) [2](https://github.com/limweijun/ped/issues/2) [3](https://github.com/limweijun/ped/issues/3) [4](https://github.com/limweijun/ped/issues/4) [5](https://github.com/limweijun/ped/issues/5) [6](https://github.com/limweijun/ped/issues/6)
