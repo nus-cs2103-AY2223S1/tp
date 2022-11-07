@@ -1,5 +1,6 @@
 package seedu.waddle.model.item;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COST_SKINNY;
@@ -9,8 +10,11 @@ import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PRIORITY_SKINNY;
 import static seedu.waddle.testutil.TypicalItems.SHOPPING;
 import static seedu.waddle.testutil.TypicalItems.SKINNY;
 
+import java.time.LocalTime;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.waddle.commons.core.Text;
 import seedu.waddle.testutil.ItemBuilder;
 
 public class ItemTest {
@@ -42,6 +46,48 @@ public class ItemTest {
         String nameWithTrailingSpaces = VALID_ITEM_DESC_SKINNY + " ";
         editedSkinny = new ItemBuilder(SKINNY).withDesc(nameWithTrailingSpaces).build();
         assertFalse(SKINNY.isSameItem(editedSkinny));
+    }
+
+    @Test
+    public void getTimeString_notPlanned() {
+        String expectedString = "Time: (Not planned)";
+        String actualString = new ItemBuilder().build().getTimeString(Text.INDENT_NONE);
+        assertEquals(expectedString, actualString);
+    }
+
+    @Test
+    public void getTimeString_planned() {
+        // middle of the day
+        Item plannedItem = new ItemBuilder().withDesc("planned item").build();
+        plannedItem.setStartTime(LocalTime.NOON);
+        String expectedString = "Time: 12:00 - 13:00";
+        String actualString = plannedItem.getTimeString(Text.INDENT_NONE);
+        assertEquals(expectedString, actualString);
+
+        // start at midnight
+        Item plannedItem2 = new ItemBuilder().withDesc("planned item2").build();
+        plannedItem2.setStartTime(LocalTime.MIDNIGHT);
+        expectedString = "Time: 00:00 - 01:00";
+        actualString = plannedItem2.getTimeString(Text.INDENT_NONE);
+        assertEquals(expectedString, actualString);
+
+        // end at midnight
+        Item plannedItem3 = new ItemBuilder().withDesc("planned item3").build();
+        plannedItem3.setStartTime(LocalTime.parse("23:00"));
+        expectedString = "Time: 23:00 - 00:00 (next day)";
+        actualString = plannedItem3.getTimeString(Text.INDENT_NONE);
+        assertEquals(expectedString, actualString);
+    }
+
+    @Test
+    public void toString_correctOutput() {
+        String expectedString = "Airport" + System.lineSeparator()
+                + "    ★★★★★" + System.lineSeparator()
+                + "    Cost $100.00" + System.lineSeparator()
+                + "    Duration 60 mins" + System.lineSeparator()
+                + "    Time: (Not planned)";
+        String actualString = new ItemBuilder().build().toString();
+        assertEquals(expectedString, actualString);
     }
 
     @Test

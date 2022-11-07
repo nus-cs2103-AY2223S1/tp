@@ -70,7 +70,7 @@ public class PlanCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof PlanCommand // instanceof handles nulls
                 && itemIndex.equals(((PlanCommand) other).itemIndex)
-                && dayNumber == ((PlanCommand) other).dayNumber
+                && dayNumber.equals(((PlanCommand) other).dayNumber)
                 && startTime.equals(((PlanCommand) other).startTime));
     }
 }
