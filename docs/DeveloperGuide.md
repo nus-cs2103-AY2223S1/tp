@@ -632,7 +632,7 @@ and store the relevant search terms into each predicate. Combine those search te
 * Is reasonably comfortable using Command-Line Interface (CLI) apps
 
 **Value proposition:**
-* ENT doctors treat patients who often have chronic conditions and our product will make it easier for the staff to keep track of these patients, such as their appointment dates, the severity of their condition, their diagnosis, etc
+* ENT doctors treat patients who often have chronic conditions and our product will make it easier for the staff to keep track of these patients, such as their appointment dates, the completion status of these appointments, the type of appointment etc
 * ENT department offers a lot of services including head & neck surgery, voice clinic, and otology / skull base, etc; therefore, they need this app to filter different types of patients
 
 
@@ -666,7 +666,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user          | unhide my appointments                           | view hidden appointments to work with                                         |
 | `*`      | lazy user     | view my previous commands                        | avoid repeating to input the same or similar commands over and over again     |
 
-*{More to be added}*
 
 ### Use cases
 
@@ -1126,8 +1125,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 14. Should not require external software to run.
 
 
-*{More to be added}*
-
 ### Glossary
 
 * **Regular English text**: Basic text that is keyed in by a user. Not code or not system admin commands.
@@ -1139,7 +1136,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   interact with the computer.
 * **Graphical User Interface (GUI)**: A graphics-based operating system interface that uses icons, menus and a mouse
   (to click on the icon or pull down the menus) to manage interaction with the system.
-* **Main Success Scenario**: Describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong.
+* **Main Success Scenario (MSS)**: Describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong.
 * **Actor**: A role played by a user. An actor can be a human or another system. Actors are not part of the system; they reside outside the system.
 * **Backward compatible**: Refers to a hardware or software system that can use the interface of an older version of the same product.
 * **Store data locally**: Allow the required data to be stored in a file in the user’s computer.
