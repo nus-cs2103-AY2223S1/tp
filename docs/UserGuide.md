@@ -192,10 +192,14 @@ Examples:
 Deletes the specified module according to the index given.
 
 Format: `m del INDEX`
-* Deletes the module at the specified `INDEX` from the module list.
-* `INDEX` refers to the index number shown in the module list.
-* `INDEX` must be a positive integer 1, 2, 3, …​
-* If `INDEX` is non-positive or more than the number of modules in the module list, an error message will be displayed.
+
+Parameter:
+`INDEX` refers to the index number (shown in the displayed module list) of the module to be deleted.
+
+Restrictions:
+* `INDEX`
+  * `INDEX` should be an integer greater than 0 and less than 2147483648
+  * `INDEX` should not be greater than the number of modules in the displayed module list.
 
 Example:
 
@@ -203,37 +207,49 @@ Example:
 
 `m del 3` deletes the third module in the module list.
 
-<div markdown="span" class="alert alert-info">
-
-:information_source: **Note:** All tasks and exams related to the module will be deleted after the module is deleted.
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Warning:** All tasks and exams related to the module will be deleted after the specified module is deleted.
 </div>
 
 ### Editing a module
 Edits the specified module by updating the existing values to the input values.
 
-Format: `m edit INDEX (must be a positive integer) [c/MODULE_CODE]* [m/MODULE_NAME]* [mc/MODULE_CREDIT]*`
-* Edits the module at the specified `INDEX` in the exam list.
-* `MODULE_CODE` refers to the module code of the module
-* `MODULE_NAME` refers to the name of the module
-* `MODULE_CREDIT` refers to the number of modular credits that the module has
-* `INDEX` must be a positive integer 1, 2, 3, …
-* If `INDEX` is a non-positive or more than the number of modules in the module list, an error message will be displayed.
-* The module cannot be edited if its module code is similar to an existing module in the module list. An error message will be displayed to inform the user that the module already exists in the module list.
-* At least one optional field of the module to edit must be provided. Otherwise, an error message will be shown.
-* `MODULE_CODE` must be at least 6 characters long and the first two characters of the module code must be an alphabetical character.
-* `MODULE_NAME` should not be empty. Otherwise, an error message will be displayed to the user.
-* `MODULE_CREDIT` should not be empty and must be an integer between 0 and 20 inclusive.
+Format: `m edit INDEX [c/MODULE_CODE]* [m/MODULE_NAME]* [mc/MODULE_CREDIT]*`
+
+Parameters:
+* `INDEX` refers to the index number (shown in the displayed module list) of the module to be edited.
+* `MODULE_CODE` refers to the module code that will replace the existing module code of the module specified.
+* `MODULE_NAME` refers to the module name that will replace the existing module name of the module specified.
+* `MODULE_CREDIT` refers to the module credit that will replace the existing module credit of the module specified.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** MODULE_CODE is case-insensitive.
+</div>  
+
+Restrictions:
+* `INDEX`
+  * `INDEX` should be an integer greater than 0 and less than 2147483648
+  * `INDEX` should not be greater than the number of modules in the displayed module list.
+* `MODULE_CODE`
+  * `MODULE_CODE` should be at least 6 characters long.
+  * The first two characters of `MODULE_CODE` should be alphabetical and the remaining characters should be alphanumeric.
+  * `MODULE_CODE` should not be the module code of an existing module in the stored module list.
+* `MODULE_NAME` should not be empty.
+* `MODULE_CREDIT`
+  * `MODULE_CREDIT` should not be empty.
+  * `MODULE_CREDIT` should be an integer between 0 and 45 inclusive.
+* The input values should not be the same as existing values.
+* The edited module should not be the same as any existing module in the stored module list.
+
+<div markdown="span" class="alert alert-warning">
+:exclamation: **Warning:** If the module code of the module is edited, and the module is related to some tasks or exams, the module of these tasks and exams will be changed to this edited module.
+</div>
 
 Examples:
 
-`m edit 1 m/Programming Methodology I mc/4` changes the module name of the first module in the module list to ‘Programming Methodology I` and the module credit to ‘4’.
+`m edit 1 m/Programming Methodology I mc/4` changes the module name of the first module in the module list to 'Programming Methodology I' and the module credit to '4'.
 
 `m edit 2 c/cs2040 m/Data Structures and Algorithms mc/4` changes the module name of the second module in the module list to ‘Data Structures and Algorithms’, the module code to ‘cs2040’ and the module credit to ‘4’.
-
-<div markdown="span" class="alert alert-info">
-
-:information_source: **Note:** If the module code of the module is edited, and the module is linked to some tasks and exams, the module of these tasks and exams will be changed to this edited module.
-</div>
 
 
 ## Tasks-related Features
@@ -255,20 +271,22 @@ Example:
 Deletes the specified task according to the index given
 
 Format: `t del INDEX`
-* Deletes the task at the specified `INDEX` from the task list. 
-* The `INDEX` refers to the index number shown in the task list.
-* The `INDEX` must be a positive integer 1, 2, 3, …
-* If the task list is empty and the user inputs any number, an error message will be displayed.
-* If the index is non-positive or more than the number of tasks in the list, an error message will be displayed.
+
+Parameter:
+`INDEX` refers to the index number (shown in the displayed task list) of the task to be deleted.
+
+Restrictions:
+* `INDEX`
+  * `INDEX` should be an integer greater than 0 and less than 2147483648
+  * `INDEX` should not be greater than the number of tasks in the displayed task list.
 
 Examples:
 
-`t del 1` deletes the first task in the task list
+`t del 1` deletes the first task in the task list 
 
 `t del 3` deletes the third task in the task list
 
 <div markdown="span" class="alert alert-info">
-
 :information_source: **Note:** When the task is deleted, if it has a link to an exam, the task will be unlinked from the exam.
 </div>
 
