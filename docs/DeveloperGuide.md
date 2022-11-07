@@ -731,30 +731,131 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+
+### Managing contacts
+
+1. Adding a contact
+
+    1. Prerequisites: A contact with the same name as below does not already exist. (It does not exist in the sample data)
+
+    1. Test case: `addc n/John Doe p/98765432 m/CS4321`
+
+       Expected: The app is on the Contacts tab. A new contact is shown in the GUI and its details are shown in the result box.
+
+    1. Test case: `addc n/James Doe p/99887766 e/jamesdoe@example.com`
+
+       Expected: Similar to previous.
+
+    1. Test case: `addc n/David`
+
+       Expected: The app is on the Contacts tab. The command turns red and the result box shows an error message. No contacts are added.
+
+    1. Test case: `addc n/David p/88776655 e/`
+
+       Expected: Similar to previous.
+    
+
+2. Listing contacts
+
+    1. Test case: `listc`
+
+       Expected: The app is on the Contacts tab. Tasks are listed in order of least recently added first. The result box displays the matching message.
+
+    1. Test case: `listc foo`
+
+       Expected: Similar to previous.
+
+3. Finding contacts
+
+    1. Prerequisites: A contact with "do" in its name exists (if you're following this guide, there will be one)
+
+    1. Test case: `findc n/do`
+
+       Expected: The app is on the Contacts tab. Matching contacts are shown. The result box displays the matching message.
+
+    1. Test case: `findc n/do m/CS`
+
+       Expected: The app is on the Contacts tab. The command turns red and the result box shows an error message. The contacts shown in the contacts tab do not change.
+
+    1. Test case: `findc`
+
+       Expected: Similar to previous.
+
+    1. Test case: `findc n/asdfghjk`
+
+       Expected: No contacts are shown. The result box displays a message about listing contacts.
+    
+4. Editing contacts
+
+    1. Prerequisites: Contacts with the name "John Doe" and "James Doe" exist. (if you're following this guide, there will be one)
+
+    1. Run `findc n/John Doe`
+
+    1. Test case: `editc 1 m/CS1234`
+
+       Expected: The app is on the Contacts tab. The 1st contact in the list has its module set to `CS1234`. The result box displays a message about the contact being edited.
+
+    1. Test case: `editc 1 m/CS1234`
+
+       Expected: The app switches to the Task tab. The 1st contact in the list does not change. The result box displays a message about the contact being edited.
+
+    1. Test case: `editc 1 n/James Doe`
+
+       Expected: The command turns red and the result box shows an error message. The contacts shown in the contacts tab do not change.
+
+    1. Test case: `editc n/James Doe`
+
+       Expected: Similar to previous.
+
+    1. Test case: `editc 1`
+
+       Expected: Similar to previous.
+
+5. Deleting contacts
+
+    1. Test case: `delc -1`
+
+       Expected: The app is on the Contacts tab. The command turns red and the result box shows an error message. The contacts shown in the contacts tab do not change.
+
+    1. Test case: `delc`
+
+       Expected: Similar to previous.
+
+    1. Test case: `delc 1 n/Hello`
+
+       Expected: Similar to previous.
+
+    1. Test case: `delc 1`
+
+       Expected: The app is on the Contacts tab. The 1st contact in the list is deleted. The result box displays the matching message.
+
+6. Clearing all contacts
+
+    1. Prerequisites: Contacts tab has at least one contact.
+
+    2. Test case: `clear`
+
+        Expected: All contacts are deleted from the contact list.
+        
+7. Saveme
    
+    1. Prerequisites: A task with the same name and module as below does not already exist. (It does not exist in the sample data) A contact with the name "John Doe" exists. (if you're following this guide, there will be one)
 
-### Deleting a person
+    2. Run `add Assignment 1 m/CS4321 by/tomorrow 23:59`
+    
+    3. Test case: `saveme`
+    
+        Expected: The app is on the Contacts tab. The 1st contact in the list has a module tag `CS4321`.
 
-1. Deleting a person while all persons are being shown
+    4. Test case: `saveme foo`
 
-   1. Prerequisites: List all persons using the `listc` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
+       Expected: Similar to previous.
 
 ### Saving data
 
@@ -781,4 +882,7 @@ testers are expected to do more *exploratory* testing.
 
 
 
-2. _{ more test cases …​ }_
+2. Saving of data after running a valid command that modified it
+
+    1. Test case: Run any command that modifies data such as `add`, `addc`, `edit`. Exit CodeConnect and relaunch it.
+       Expected: Any modification made to the data is preserved.
