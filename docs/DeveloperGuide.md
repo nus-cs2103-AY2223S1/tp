@@ -451,7 +451,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 <br>
 </br>
 
-**Use case: Get Help**
+**Use case: UC01 - Get Help**
 
 **MSS**
 
@@ -461,7 +461,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 <br>
 
-**Use case: Edit a person**
+**Use case: UC02 - Edit a person**
 
 **MSS**
 
@@ -475,7 +475,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    <br>
 
 
-**Use case: List people in uNivUSal**
+**Use case: UC03 - List people in uNivUSal**
 
 **MSS**
 
@@ -485,7 +485,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 <br>
 
-**Use case: Delete a person**
+**Use case: UC04 - Delete a person**
 
 **MSS**
 
@@ -498,7 +498,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 <br>
 
-**Use case: Clear uNivUSal**
+**Use case: UC05 - Clear uNivUSal**
 
 **MSS**
 
@@ -508,7 +508,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 <br>
 
-**Use case: Add a person**
+**Use case: UC06 - Add a person**
 
 **MSS**
 
@@ -530,7 +530,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Add a social media account to an existing person in the contacts**
+**Use case: UC07 - Add a social media account to an existing person in the contacts**
 
 **MSS**
 
@@ -559,7 +559,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Delete a social media account of an existing person in the contacts**
+**Use case: UC08 - Delete a social media account of an existing person in the contacts**
 
 **MSS**
 
@@ -588,7 +588,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Setting a preferred social media account of an existing person in the contacts**
+**Use case: UC09 - Setting a preferred social media account of an existing person in the contacts**
 
 **MSS**
 
@@ -617,7 +617,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Open a social media account of an existing person in the contacts**
+**Use case: UC10 - Open a social media account of an existing person in the contacts**
 
 **MSS**
 
