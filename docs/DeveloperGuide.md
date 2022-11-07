@@ -277,7 +277,7 @@ Practical Assessment for the 5th student in FRIDAY. `GradeCommandParser` checks 
 
 The following Sequence Diagram summarises the aforementioned steps.
 
-<img src="images/GradeSequenceDiagram.png" width="574" />
+![Grade Command Sequence Diagram](images/GradeSequenceDiagram.png)
 
 #### Design considerations
 
