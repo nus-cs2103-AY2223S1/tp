@@ -14,7 +14,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/shummyownzyou.png" width="200px">
 
 [[github](https://github.com/ShummyOwnzYou)]
-[[portfolio](team/jiehui.md)]
+[[portfolio](team/shummyownzyou.md)]
 
 * Role: Developer
 * Responsibilities: Documentation + Integration + Testing
@@ -24,7 +24,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/samuelcheongws.png" width="200px">
 
 [[github](https://github.com/samuelcheongws/)]
-[[portfolio](team/samuelcheonws.md)]
+[[portfolio](team/samuelcheongws.md)]
 
 * Role: Developer
 * Responsibilities: Integration + Testing + Scheduling
