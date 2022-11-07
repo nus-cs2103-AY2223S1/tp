@@ -277,6 +277,7 @@ Examples:
 * `find g/Male t/offered KIV` returns male applicants who have an `offered` or `KIV` tag attached to them
 * `find g/Male e/gmail` returns male applicants who have a `gmail` substring in their email address
 
+<div style="page-break-after: always;"></div>
 
 ### 3.8 Importing applicants from an external JSON file: `import`
 
