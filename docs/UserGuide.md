@@ -333,6 +333,9 @@ Clears all entries from the address book.
 Format: `clear`
 
 
+<div style="page-break-after: always;"></div>
+
+
 ### 3.12 Exiting the program: `exit`
 
 Exits the program.
@@ -340,12 +343,10 @@ Exits the program.
 Format: `exit`
 
 
-<div style="page-break-after: always;"></div>
-
-
 ### 3.13 Saving the data
 
 InternConnect data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
 
 ### 3.14 Editing the data file
 
@@ -358,6 +359,7 @@ If your changes to the data file makes its format invalid, InternConnect will di
 
 
 <div style="page-break-after: always;"></div>
+
 
 ## 4. Command summary
 
