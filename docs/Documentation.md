@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Documentation guide
+title: Documentation Guide
 ---
 
 **Setting up and maintaining the project website:**
@@ -18,7 +18,7 @@ In addition to updating content files, you might have to update the config files
 
 - If you are using Intellij for editing documentation files, you can consider enabling 'soft wrapping' for `*.md` files, as explained in [_[se-edu/guides] **Intellij IDEA: Useful settings**_](https://se-education.org/guides/tutorials/intellijUsefulSettings.html#enabling-soft-wrapping)
 
-**Style guidance:**
+**Style Guidance:**
 
 - Follow the [**_Google developer documentation style guide_**](https://developers.google.com/style).
 

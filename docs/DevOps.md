@@ -1,16 +1,19 @@
 ---
 layout: page
-title: DevOps guide
+title: DevOps Guide
 ---
 
-- Table of Contents
+## Table of Contents
+{:.no_toc}
+
+1. Table of Contents
 {:toc}
 
 ---
 
-## Build automation
+## **Build Automation**
 
-This project uses Gradle for **build automation and dependency management**. **You are recommended to read [this Gradle Tutorial from the se-edu/guides](https://se-education.org/guides/tutorials/gradle.html)**.
+This project uses Gradle for **build automation and dependency management**. **You are recommended to read this [Gradle Tutorial from the se-edu/guides](https://se-education.org/guides/tutorials/gradle.html)**.
 
 Given below are how to use Gradle for some important project tasks.
 
@@ -32,11 +35,11 @@ Given below are how to use Gradle for some important project tasks.
 
 ---
 
-## Continuous integration (CI)
+## **Continuous Integration (CI)**
 
 This project uses GitHub Actions for CI. The project comes with the necessary GitHub Actions configurations files (in the `.github/workflows` folder). No further setting up required.
 
-### Code coverage
+### Code Coverage
 
 As part of CI, this project uses Codecov to generate coverage reports. When CI runs, it will generate code coverage data (based on the tests run by CI) and upload that data to the CodeCov website, which in turn can provide you more info about the coverage of your testes. Here are the steps to set up CodeCov for a fork of this repository.
 
@@ -45,7 +48,7 @@ As part of CI, this project uses Codecov to generate coverage reports. When CI r
 3. Wait for the next run of CI in your fork (or push a dummy commit to it to trigger CI) to confirm CI is able to upload generated coverage data to CodeCov. If CodeCov is not set up correctly, the CI run will fail with an error message that mentions CodeCov.
 4. Get the Markdown code for the Codecov badge provided in `Settings > Badges` and update the `docs/index.md` of your repo with it so that the badge [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-T12-2/tp/branch/master/graph/badge.svg?token=A2FU6P932B)](https://app.codecov.io/gh/AY2223S1-CS2103T-T12-2/tp) in that page reflects the coverage of your project.
 
-### Repository-wide checks
+### Repository-wide Checks
 
 In addition to running Gradle checks, CI includes some repository-wide checks. Unlike the Gradle checks which only cover files used in the build process, these repository-wide checks cover all files in the repository. They check for repository rules which are hard to enforce on development machines such as line ending requirements.
 
@@ -69,7 +72,7 @@ Any warnings or errors will be printed out to the console.
 
 ---
 
-## Making a release
+## **Making a release**
 
 Here are the steps to create a new release.
 
