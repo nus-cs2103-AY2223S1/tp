@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes addItem command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([valid index of supplier])
+    :Retrieve supplier of given index from person list;
+    :Create new supplyItem using supplier,
+     currentStock and minStock;
+    :New supplyItem is added to Inventory;
+else ([else])
+    :Show error that index is not valid;
+endif
+stop
+@enduml

@@ -44,6 +44,16 @@ public class UiManager implements Ui {
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 
+            //@@author hauchongtang-reused
+            //Snippet from https://stackoverflow.com/questions/47476328/how-to-make-main-javafx-window
+            // -still-resizable-coming-back-from-full-screen-mode
+            primaryStage.fullScreenProperty().addListener((v, o, n) -> {
+                if (!primaryStage.isFullScreen()) {
+                    primaryStage.setResizable(false);
+                    primaryStage.setResizable(true);
+                }
+            });
+
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);

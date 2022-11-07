@@ -1,0 +1,24 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+title Edit Supplier Command Summary
+(*) --> "User enters edit supplier command"
+--> Command is parsed
+if "" then
+    -left->[Invalid index]"Throw ParseError"
+    --> (*)
+else
+    -right-> Check validity of arguments
+    if "" then
+        -right->[All arguments are valid] "Create and edit a new Person"
+        -down->"Update SupplyItem referencing the edited Person"
+        -down->"Replace the specified Person with new Person"
+        --> (*)
+    else
+        -down>[else]"Throw CommandException"
+    endif
+endif
+
+--> (*)
+
+@enduml

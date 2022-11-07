@@ -1,0 +1,17 @@
+@startuml
+!include style.puml
+'https://plantuml.com/object-diagram
+
+object "__:EditCommand__" as editCommandObject STORAGE_COLOR
+object "__:Index__" as index UI_COLOR_T1
+object "__:EditPersonDescriptor__" as editPersonDescriptor MODEL_COLOR_T1
+object "__personToEdit:Person__" as personToEdit LOGIC_COLOR_T2
+object "__editedPerson:Person__" as editedPerson LOGIC_COLOR_T2
+
+title Object structure upon execution of edit supplier command
+
+index --> editCommandObject
+editPersonDescriptor --> editCommandObject
+personToEdit --> editCommandObject
+editedPerson --> editCommandObject
+@enduml

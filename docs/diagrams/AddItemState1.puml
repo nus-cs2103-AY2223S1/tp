@@ -1,0 +1,15 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title Initial state
+
+package States {
+    class State0 as "__supplyItemToBeAdded:Item__"
+
+}
+
+class Pointer as "Current State"
+Pointer -up-> State0
+@end

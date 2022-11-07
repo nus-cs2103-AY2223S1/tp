@@ -1,0 +1,17 @@
+@startuml
+
+title MarkTaskCommand
+
+:start;
+:User executes "markTask 1" command;
+
+if () then ([valid index])
+    :Gets the task from the task list;
+    :Update the task with marked state;
+    :Sets the updated marked task to its original
+    position in the task list;
+else ([else])
+    :Alert user that his target task index is invalid;
+endif
+stop
+@enduml

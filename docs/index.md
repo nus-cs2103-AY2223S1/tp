@@ -1,19 +1,36 @@
 ---
 layout: page
-title: AddressBook Level-3
+title: Salesy
 ---
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
+[![CI Status](https://github.com/AY2223S1-CS2103T-W08-4/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S1-CS2103T-W08-4/tp/actions)
+[![codecov](https://codecov.io/gh/AY2223S1-CS2103T-W08-4/tp/branch/master/graph/badge.svg?token=CV0THT0WWT)](https://codecov.io/gh/AY2223S1-CS2103T-W08-4/tp)
 
 ![Ui](images/Ui.png)
 
-**AddressBook is a desktop application for managing your contact details.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+# Welcome to Salesy! 😁
 
-* If you are interested in using AddressBook, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing AddressBook, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+## Description
 
+Salesy is an all-in-one tool for NUS canteen vendors whom want to keep track of their tasks, inventory and suppliers.
+With Salesy, you can expect a good visualization of your inventory and be as efficient as possible with your
+bookkeeping routines.
 
-**Acknowledgements**
+## Why is it named Salesy?
+It is named `Salesy` because our team wanted to up the sales of canteen vendors by allowing them to be more efficient using our management applicaiton.
 
-* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+## Features
+
+* Add and edit supplier contact information.
+* Create, customize and check off tasks.
+* View your upcoming tasks given by your own deadline.
+* Update your inventory and keep track of stock changes.
+* Be well aware when your stock is healthy, average or low.
+* Search for suppliers in our comprehensive data bank.
+
+## More information about this project
+* This project was made as part of CS2103T in AY22/23 S1.
+* If your are interested in the documentation of this project, head over to the **[Salesy Product Website](https://ay2223s1-cs2103t-w08-4.github.io/tp/)**.
+
+## Credits & Acknowledgements
+* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.

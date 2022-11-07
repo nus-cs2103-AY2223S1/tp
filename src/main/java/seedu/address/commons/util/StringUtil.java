@@ -65,4 +65,14 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Converts {@code target} of type {@code String} to {@code int}
+     * @return
+     */
+    public static int getIntFromString(String target) {
+        requireNonNull(target);
+
+        return Integer.parseInt(target);
+    }
 }

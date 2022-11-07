@@ -3,6 +3,8 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalSupplyItems.getTypicalInventory;
+import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
 
 import java.nio.file.Path;
 
@@ -12,7 +14,11 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
+import seedu.address.model.Inventory;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyInventory;
+import seedu.address.model.ReadOnlyTaskList;
+import seedu.address.model.TaskList;
 import seedu.address.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -26,7 +32,9 @@ public class StorageManagerTest {
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        JsonTaskStorage taskStorage = new JsonTaskStorage(getTempFilePath("taskList"));
+        JsonInventoryStorage inventoryStorage = new JsonInventoryStorage(getTempFilePath("inventory"));
+        storageManager = new StorageManager(addressBookStorage, userPrefsStorage, taskStorage, inventoryStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -65,4 +73,42 @@ public class StorageManagerTest {
         assertNotNull(storageManager.getAddressBookFilePath());
     }
 
+    @Test
+    public void taskListReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonTaskStorage} class.
+         */
+        TaskList original = getTypicalTaskList();
+        storageManager.saveTaskList(original);
+        ReadOnlyTaskList retrieved = storageManager.readTaskList().get();
+        assertEquals(original, new TaskList(retrieved));
+    }
+
+    @Test
+    public void getTaskListFilePath() {
+        assertNotNull(storageManager.getTaskListFilePath());
+    }
+
+    @Test
+    public void getInventoryFilePath() {
+        assertNotNull(storageManager.getInventoryFilePath());
+    }
+
+    @Test
+    public void getUserPrefsFilePath() {
+        assertNotNull(storageManager.getUserPrefsFilePath());
+    }
+
+    @Test
+    public void inventoryReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonInventoryStorage} class.
+         */
+        Inventory original = getTypicalInventory();
+        storageManager.saveInventory(original);
+        ReadOnlyInventory retrieved = storageManager.readInventory().get();
+        assertEquals(original, new Inventory(retrieved));
+    }
 }

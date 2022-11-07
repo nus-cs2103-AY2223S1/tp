@@ -9,19 +9,26 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyInventory;
+import seedu.address.model.ReadOnlyTaskList;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.item.SupplyItem;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TaskBuilder;
 
 public class AddCommandTest {
 
@@ -44,8 +51,9 @@ public class AddCommandTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person validPerson = new PersonBuilder().build();
+        Task emptyTask = new TaskBuilder().build();
         AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+        ModelStub modelStub = new ModelStubWithPerson(validPerson, emptyTask);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
@@ -124,12 +132,80 @@ public class AddCommandTest {
         }
 
         @Override
+        public ReadOnlyTaskList getTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        /**
+         * Returns the Inventory
+         */
+        @Override
+        public ReadOnlyInventory getInventory() {
+            return null;
+        }
+
+        @Override
         public boolean hasPerson(Person person) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public boolean hasPersonExcluding(Person person, Person excludedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addSupplyItem(SupplyItem item) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSupplyItem(SupplyItem item) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSupplyItemExcluding(SupplyItem item, SupplyItem excludedItem) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSupplyItemSuppliedBy(Person supplier) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<SupplyItem> supplyItemSuppliedBy(Person supplier) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSupplyItem(SupplyItem item, Index targetIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteSupplyItem(Index index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void increaseSupplyItem(Index targetIndex, int amount) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void decreaseSupplyItem(Index targetIndex, int amount) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void changeIncDecAmount(Index targetIndex, int amount) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -144,7 +220,47 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Task> getFilteredTaskList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<SupplyItem> getFilteredSupplyItemList() {
+            return null;
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setTask(Task task, Index targetIndex) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteTask(Index index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredSupplyItemList(Predicate<SupplyItem> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -154,10 +270,12 @@ public class AddCommandTest {
      */
     private class ModelStubWithPerson extends ModelStub {
         private final Person person;
+        private final Task task;
 
-        ModelStubWithPerson(Person person) {
+        ModelStubWithPerson(Person person, Task task) {
             requireNonNull(person);
             this.person = person;
+            this.task = task;
         }
 
         @Override

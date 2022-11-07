@@ -1,0 +1,34 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+title Person and SupplyItem relationship
+Package Model <<Rectangle>>{
+Class "<<interface>>\nModel" as Model
+Class ModelManager
+Class Person
+Class Address
+Class Email
+Class Name
+Class Phone
+Class Tag
+Class SupplyItem
+
+ModelManager .up.|> Model
+Person *--> Name
+Person *--> Phone
+Person *--> Email
+Person *--> Address
+Person *--> "*" Tag
+
+SupplyItem *--> Person
+
+Name -[hidden]right-> Phone
+Phone -[hidden]right-> Address
+Address -[hidden]right-> Email
+
+ModelManager -->"~* filtered" Person
+ModelManager --> SupplyItem
+@enduml

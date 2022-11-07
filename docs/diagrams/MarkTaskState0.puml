@@ -1,0 +1,17 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title Initial state of an un-marked task
+
+package States {
+    class State1 as "__taskToMark:Task__"
+    class State2 as "__markedTask:Task__"
+}
+State1 -[hidden]right-> State2
+hide State2
+
+class Pointer as "Current State" #FFFFFF
+Pointer -up-> State1
+@end

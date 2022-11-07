@@ -1,0 +1,17 @@
+@startuml
+
+title Maintaining a sorted TaskList when AddTaskCommand is used
+
+:start;
+:User executes "addTask d/Buy Chicken dl/2020-12-12 t/Food" command;
+
+if () then ([valid command])
+    :Create new Task from the valid input;
+    :Perform binary search to find the position
+    it should be inserted;
+    :Insert task into that position in the TaskList;
+else ([else])
+    :Alert user that command is invalid;
+endif
+stop
+@enduml

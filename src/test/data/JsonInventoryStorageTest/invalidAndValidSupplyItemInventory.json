@@ -1,0 +1,23 @@
+{
+  "supplyItemList": [ {
+    "name": "Eggs",
+    "currentStock": 99,
+    "minStock": 1,
+    "supplier": "Person with invalid name field: Ha!ns Mu@ster",
+    "phone": 999,
+    "price": "0.50",
+    "item": "item",
+    "address": "Neo Tiew Road",
+    "tagged": [ "anytag" ]
+  }, {
+    "name": "Chicken",
+    "currentStock": 60,
+    "minStock": 10,
+    "supplier": "LoveChicken Enterprises",
+    "phone": 995,
+    "price": "$5.00",
+    "item": "item",
+    "address": "Bukit Indah",
+    "tagged": [ "chicks" ]
+  } ]
+}

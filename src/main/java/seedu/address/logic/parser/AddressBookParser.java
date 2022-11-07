@@ -7,14 +7,26 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddItemCommand;
+import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteItemCommand;
+import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditStockCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListAllCommand;
+import seedu.address.logic.commands.ListInventoryCommand;
+import seedu.address.logic.commands.ListSupplierCommand;
+import seedu.address.logic.commands.ListTaskCommand;
+import seedu.address.logic.commands.MarkTaskCommand;
+import seedu.address.logic.commands.RefreshStatsCommand;
+import seedu.address.logic.commands.UnMarkTaskCommand;
+import seedu.address.logic.commands.UpdateTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -59,8 +71,17 @@ public class AddressBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListAllCommand.COMMAND_WORD:
+            return new ListAllCommand();
+
+        case ListInventoryCommand.COMMAND_WORD:
+            return new ListInventoryCommand();
+
+        case ListSupplierCommand.COMMAND_WORD:
+            return new ListSupplierCommand();
+
+        case ListTaskCommand.COMMAND_WORD:
+            return new ListTaskCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -68,9 +89,34 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
+        case AddTaskCommand.COMMAND_WORD:
+            return new AddTaskCommandParser().parse(arguments);
+
+        case DeleteTaskCommand.COMMAND_WORD:
+            return new DeleteTaskCommandParser().parse(arguments);
+
+        case UpdateTaskCommand.COMMAND_WORD:
+            return new UpdateTaskCommandParser().parse(arguments);
+
+        case MarkTaskCommand.COMMAND_WORD:
+            return new MarkTaskCommandParser().parse(arguments);
+
+        case UnMarkTaskCommand.COMMAND_WORD:
+            return new UnMarkTaskCommandParser().parse(arguments);
+
+        case AddItemCommand.COMMAND_WORD:
+            return new AddItemCommandParser().parse(arguments);
+
+        case DeleteItemCommand.COMMAND_WORD:
+            return new DeleteItemCommandParser().parse(arguments);
+
+        case EditStockCommand.COMMAND_WORD:
+            return new EditStockCommandParser().parse(arguments);
+
+        case RefreshStatsCommand.COMMAND_WORD:
+            return new RefreshStatsCommand();
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }

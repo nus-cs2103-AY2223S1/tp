@@ -14,14 +14,25 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddTaskCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteItemCommand;
+import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditStockCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListAllCommand;
+import seedu.address.logic.commands.ListInventoryCommand;
+import seedu.address.logic.commands.ListSupplierCommand;
+import seedu.address.logic.commands.ListTaskCommand;
+import seedu.address.logic.commands.MarkTaskCommand;
+import seedu.address.logic.commands.RefreshStatsCommand;
+import seedu.address.logic.commands.UnMarkTaskCommand;
+import seedu.address.logic.commands.UpdateTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -72,7 +83,7 @@ public class AddressBookParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindCommand.COMMAND_WORD + " n/" + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
@@ -83,9 +94,19 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    public void parseCommand_listSuppliers() throws Exception {
+        assertTrue(parser.parseCommand(ListSupplierCommand.COMMAND_WORD) instanceof ListSupplierCommand);
+        assertTrue(parser.parseCommand(ListSupplierCommand.COMMAND_WORD + " 3") instanceof ListSupplierCommand);
+    }
+
+    @Test
+    public void parseCommand_mark() throws Exception {
+        assertTrue(parser.parseCommand(MarkTaskCommand.COMMAND_WORD + " 1") instanceof MarkTaskCommand);
+    }
+
+    @Test
+    public void parseCommand_unmark() throws Exception {
+        assertTrue(parser.parseCommand(UnMarkTaskCommand.COMMAND_WORD + " 1") instanceof UnMarkTaskCommand);
     }
 
     @Test
@@ -97,5 +118,53 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void parseCommand_addTask() throws Exception {
+        assertTrue(parser.parseCommand(AddTaskCommand.COMMAND_WORD + " d/"
+                + "Buy fish dl/2029-12-12 t/food") instanceof AddTaskCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteTask() throws Exception {
+        assertTrue(parser.parseCommand(DeleteTaskCommand.COMMAND_WORD + " 1") instanceof DeleteTaskCommand);
+    }
+
+    @Test
+    public void parseCommand_updateTask() throws Exception {
+        assertTrue(parser.parseCommand(UpdateTaskCommand.COMMAND_WORD + " 1 d/Purchase oil dl/2029-10-10"
+                + " t/Important t/Urgent") instanceof UpdateTaskCommand);
+    }
+
+    @Test
+    public void parseCommand_editStock() throws Exception {
+        assertTrue(parser.parseCommand(EditStockCommand.COMMAND_WORD + " 1 c/50")
+                instanceof EditStockCommand);
+    }
+
+    @Test
+    public void parseCommand_deleteItem() throws Exception {
+        assertTrue(parser.parseCommand(DeleteItemCommand.COMMAND_WORD + " 1") instanceof DeleteItemCommand);
+    }
+
+    @Test
+    public void parseCommand_listAll() throws ParseException {
+        assertTrue(parser.parseCommand(ListAllCommand.COMMAND_WORD) instanceof ListAllCommand);
+    }
+
+    @Test
+    public void parseCommand_listTasks() throws ParseException {
+        assertTrue(parser.parseCommand(ListTaskCommand.COMMAND_WORD) instanceof ListTaskCommand);
+    }
+
+    @Test
+    public void parseCommand_listInventory() throws ParseException {
+        assertTrue(parser.parseCommand(ListInventoryCommand.COMMAND_WORD) instanceof ListInventoryCommand);
+    }
+
+    @Test
+    public void parseCommand_refreshStats() throws ParseException {
+        assertTrue(parser.parseCommand(RefreshStatsCommand.COMMAND_WORD) instanceof RefreshStatsCommand);
     }
 }

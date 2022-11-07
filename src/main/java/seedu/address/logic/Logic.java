@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.util.function.Consumer;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -8,7 +9,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.item.SupplyItem;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * API of the Logic component
@@ -30,8 +33,14 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
+    /** Returns an unmodifiable view of the filtered list of suppliers */
     ObservableList<Person> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the filtered list of tasks */
+    ObservableList<Task> getFilteredTaskList();
+
+    /** Returns an unmodifiable view of the filtered list of supply items */
+    ObservableList<SupplyItem> getFilteredSupplyItemList();
 
     /**
      * Returns the user prefs' address book file path.
@@ -47,4 +56,19 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Increases the SupplyItem amount.
+     */
+    Consumer<Integer> increaseSupplyItemHandler(int index);
+
+    /**
+     * Decreases the SupplyItem amount.
+     */
+    Consumer<Integer> decreaseSupplyItemHandler(int index);
+
+    /**
+     * Changes the increase/decrease amount of the SupplyItem.
+     */
+    Consumer<Integer> changeIncDecAmountHandler(int index);
 }

@@ -7,12 +7,13 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+<fx:root minHeight="900" minWidth="1300" onCloseRequest="#handleExit" title="Salesy" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -24,35 +25,60 @@
       </stylesheets>
 
       <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+        <MenuBar fx:id="menuBar" style="-fx-background-color: #989292;" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+          <Menu mnemonicParsing="false" text="Help" >
+            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help"/>
           </Menu>
         </MenuBar>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
-
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
-
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+        <SplitPane dividerPositions="0.8" VBox.vgrow="ALWAYS">
+        <VBox VBox.vgrow="ALWAYS">
+          <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+            <padding>
+              <Insets bottom="5" left="10" right="10" top="25" />
+            </padding>
+          </StackPane>
+          <StackPane fx:id="resultDisplayPlaceholder" maxHeight="200" minHeight="200" prefHeight="200" styleClass="pane-with-border" VBox.vgrow="NEVER">
+            <padding>
+              <Insets bottom="5" left="10" right="10" top="5" />
+            </padding>
+          </StackPane>
         </VBox>
-
+        <VBox minWidth="340" minHeight="200" styleClass="pane-with-border" VBox.vgrow="NEVER">
+          <TextField alignment="CENTER" disable="true" text="Stats" />
+          <StackPane fx:id="statsPanelPlaceholder" VBox.vgrow="NEVER">
+            <padding>
+              <Insets bottom="5" left="10" right="10" top="5" />
+            </padding>
+          </StackPane>
+        </VBox>
+        </SplitPane>
+        <SplitPane dividerPositions="0.5" VBox.vgrow="ALWAYS">
+          <VBox fx:id="personList" minWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <TextField alignment="CENTER" disable="true" text="Suppliers" />
+            <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+            <padding>
+              <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+          </VBox>
+          <VBox fx:id="inventoryList" minWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+          <TextField alignment="CENTER" disable="true" text="Inventory" />
+          <StackPane fx:id="inventoryPanelPlaceholder" VBox.vgrow="ALWAYS" />
+          <padding>
+            <Insets bottom="10" left="10" right="10" top="10" />
+          </padding>
+        </VBox>
+          <VBox fx:id="taskList" minWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <TextField alignment="CENTER" disable="true" text="Tasks" />
+            <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+            <padding>
+              <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+          </VBox>
+        </SplitPane>
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>

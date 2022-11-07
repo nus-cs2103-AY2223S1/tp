@@ -1,11 +1,15 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.item.SupplyItem;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * The API of the Model component.
@@ -13,6 +17,12 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<SupplyItem> PREDICATE_SHOW_ALL_SUPPLY_ITEMS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -52,16 +62,101 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
+    /** Returns the TaskList */
+    ReadOnlyTaskList getTaskList();
+
+    /** Returns the Inventory */
+    ReadOnlyInventory getInventory();
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if a person with the same identity as {@code person} exists in the address book,
+     * ignoring {@code excludedPerson}.
+     */
+    boolean hasPersonExcluding(Person person, Person excludedPerson);
+
+    /**
      * Deletes the given person.
      * The person must exist in the address book.
      */
     void deletePerson(Person target);
+
+    /**
+     * Adds a new supply {@code item} to inventory.
+     */
+    void addSupplyItem(SupplyItem item);
+
+    /**
+     * Returns true if there is a duplicated supply item in the inventory.
+     */
+    boolean hasSupplyItem(SupplyItem item);
+
+    /**
+     * Returns true if there is a duplicated supply item in the inventory, ignoring {@code excludedItem}.
+     */
+    boolean hasSupplyItemExcluding(SupplyItem item, SupplyItem excludedItem);
+
+    /**
+     * Returns true if {@code supplier} is a supplier for some supply item in the inventory.
+     */
+    boolean hasSupplyItemSuppliedBy(Person supplier);
+
+    /**
+     * Returns the SupplyItem that is supplied by {@code supplier}, if any.
+     */
+    Optional<SupplyItem> supplyItemSuppliedBy(Person supplier);
+
+    /**
+     * Replaces the given supply item {@code target} with {@code editedSupplyItem}.
+     * {@code item} must exist in the inventory.
+     */
+
+    void setSupplyItem(SupplyItem item, Index targetIndex);
+
+    /**
+     * Deletes the supply item at the specified {@code index}.
+     */
+    void deleteSupplyItem(Index index);
+
+    /**
+     * Increases the supply item at the specified {@code targetIndex} by {@code amount}.
+     */
+    void increaseSupplyItem(Index targetIndex, int amount);
+
+    /**
+     * Decreases the supply item at the specified {@code targetIndex} by {@code amount}.
+     */
+    void decreaseSupplyItem(Index targetIndex, int amount);
+
+    /**
+     * Changes the increase/decrease amount at the specified {@code targetIndex} to {@code amount}.
+     */
+    void changeIncDecAmount(Index targetIndex, int amount);
+
+    /**
+     * Adds a new task to taskList
+     */
+    void addTask(Task task);
+
+    /**
+     * Returns true if there is duplicated task in the taskList
+     */
+    boolean hasTask(Task task);
+
+    /**
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code task} must exist in the task list.
+     */
+    void setTask(Task task, Index targetIndex);
+
+    /**
+     * Deletes the task at the specified {@code index}.
+     */
+    void deleteTask(Index index);
 
     /**
      * Adds the given person.
@@ -79,9 +174,27 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    /** Returns an unmodifiable view of the filtered task list */
+    ObservableList<Task> getFilteredTaskList();
+
+    /** Returns an unmodifiable view of the filtered supplyItem list */
+    ObservableList<SupplyItem> getFilteredSupplyItemList();
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    /**
+     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTaskList(Predicate<Task> predicate);
+
+    /**
+     * Updates the filter of the filtered supply item to filter by the given {@code predicate}.
+     * @throws NullPointerException if (@code predicate) is null.
+     */
+    void updateFilteredSupplyItemList(Predicate<SupplyItem> predicate);
 }
