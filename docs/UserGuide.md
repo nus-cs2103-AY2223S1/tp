@@ -251,6 +251,11 @@ You cannot add duplicate properties that have the same address.
 </div>
 
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The characteristics field are optional.
+That is, it is perfectly okay to try and add a property that does not have this field.
+</div>
+
 Examples: <br>
 `addprop -n Peak Residences -a 333 Thompson Road -p 1000000 -d long property description -o Bob -ph 91234567 -c Toa Payoh; Bright`: 
 Adds a property called "Peak Residences" owned by Bob with a phone number of 91234567.
@@ -481,6 +486,12 @@ The `-strict` flag indicates to reduce the matches to only buyers that desire *a
 
 Examples:<br>
 `matchprop 5`: Matches property 5 to existing buyers in the database based on price and at least one characteristic.
+
+### Clearing the program: `clear`
+
+Clears Cobb (clears the Buyer List and Property List)
+
+Format: `clear`
 
 ### Exiting the program: `exit`
 

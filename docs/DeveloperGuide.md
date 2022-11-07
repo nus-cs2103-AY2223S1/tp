@@ -144,8 +144,7 @@ as a `Command` object.
 `Parser` interface so that they can be treated similarly where possible e.g. during testing.
 
 ### Model component
-**API** : 
-[`Model.java`](https://github.com/AY2223S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="950" />
 
@@ -196,85 +195,57 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Creating a buyer: `addbuyer`
 
-#### Proposed Implementation
+The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The `Buyer` class represents a buyer with buyer-specific fields. `PriceRange`, `Characteristics`, and `Priority`
+denote his budget, requirements for the property, and buyer priority respectively.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+These three fields are all optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`.
+When the user chooses not to indicate a buyer priority, the buyer's priority will be set to the default priority as `NORMAL`.
+When the user creates a buyer, the entry time is also automatically stored as an `LocalDateTime`.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+This is the class diagram of a `Buyer`.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+![BuyerClassDiagram](images/BuyerClassDiagram.png)
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+The object diagram below shows the new objects in the internal state when a valid `addbuyer` command `addbuyer -n Jane -ph 89991237 -e jane@gmail.com -a Bishan Street 12 -r 2000-5000` is input by the user.
+Note that a new `LocalDateTime` object is created by default and a new `Priority` object is also created albeit the user did not specify the priority parameter in the command.
+In addition, a new `Optional<PriceRange>` object containing a new `PriceRange` object is created since the user specified a price range parameter while a new `Optional<Characteristics>` containing null is created since the user did not specify the characteristics parameter.
+The latter is omitted from the diagram for simplicity purposes.
 
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th buyer in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new buyer. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the buyer was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
+![BuyerObjectDiagram](images/AddBuyerObjectDiagram-Final_state.png)
 
 #### Design considerations:
+No duplicate buyers can be added to the buyer list. This means that no two buyers with the same phone or email can exist. We considered using only name to identify a buyer, so that two people with the name but different contact numbers can be added. However, we decided against it as there could be two people with the exact same name. Therefore, we decided to use phone or email since these should be unique to every person.
+The entry time is added towards later of the development to help facilitate a more flexible implementation of the `sortbuyers` command.
+We considered whether to allow the user to specify a date and time by adding an additional `-d` flag, but later decided against it since we see little value for allowing such feature.  
 
-**Aspect: How undo & redo executes:**
+### Creating a property: `addprop`
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+The structure for executing an `addprop` command follows the flow as mentioned in the "Logic component" section of this guide.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the buyer being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+The `Property` class represents a property with property-specific fields. `Price` and `Characteristics` denote the price and feature of the property respectively.
 
-_{more aspects and alternatives to be added}_
+The `price` field is mandatory while the `characteristics` field is optional. When the user chooses not to indicate a property's characteristics, the `characteristics` field of a property may be null. Hence, it has been implemented using `Optional<T>`.
+When the user creates a property, the entry time is also automatically stored as an `LocalDateTime`.
+
+This is the class diagram of a `Property`.
+
+![PropertyClassDiagram](images/PropertyClassDiagramNew.png)
+
+The object diagram below shows the new objects in the internal state when a valid `addprop` command `addprop -n Peak Residences -a 333 Thompson Road -p 1000000 -d long property description -owner Bob -ph 91234567` is input by the user.
+Note that a new `LocalDateTime` object is created by default.
+In addition, a new `Optional<Characteristics>` containing null is created since the user did not specify the characteristics parameter.
+It is omitted from the diagram for simplicity purposes.
+
+![PropertyObjectDiagram](images/AddPropertyObjectDiagram-Final_state.png)
+
+#### Design considerations:
+No duplicate properties can be added to the property list. This means that no two properties with the same address can exist. We used name and price to identify a property in previous iterations, but later decided against it since in real life there could be identical properties with the exact same name and price. The only thing unique to the property would be the unit number recorded in the address.
+The entry time is added towards later of the development to help facilitate a more flexible implementation of the `sortprops` command.
+We considered whether to allow the user to specify a date and time by adding an additional `-d` flag, but later decided against it since we see little value for allowing such feature.
 
 ### \[Proposed\] Data archiving
 
@@ -592,6 +563,10 @@ being tested, consequently, they might give different outputs when applied to a 
 In order to allow for multiple-condition filtering, that is, the concatenation of multiple filter predicates, an abstract 
 `AbstractFilterXYZPredicate` class was created to employ polymorphic behaviour, where XYZ represents the entity type that
 we are working with, for example `AbstractFilterBuyersPredicate` or `AbstractFilterPropsPredicate`. 
+
+As `Property` has a single specific `Price`, it is much less useful to filter the list using one price value as it is
+unlikely to match any property. Instead, we decided to filter by a price range instead, where any property whose price
+falls within this range would be displayed.
 
 Additionally, since users
 are only allowed to filter using certain conditions as defined in the behaviour of the `filter` commands, concrete classes
@@ -962,14 +937,21 @@ Use case ends.
 3. Should be able to hold up to 1000 buyers without a noticeable sluggishness in performance for typical usage.
 4. Should be able to respond within two seconds.
 5. Should be downloaded and available to use within one minute.
+6. Should work without requiring an installer.
+7. Should avoid to include hard-to-test features
+7. Should not depend on a remote server.
+8. Should save data locally in a human editable text file.
+9. Should be able to be packaged into a JAR file.
+10. Should have a GUI with readable font, at least size 11, and resizable.
 6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Buyer**: A client interested in purchasing or investing in properties.
+* **Property**: A real estate unit listed or accessible in the market.
+* **Owner**: The person who possess the rights to use/ transfer/ commercialize the real estate unit.
+* **Property Agent**: A licensed professional that represents buyer or sellers in real estate transaction. Intended target users for this product.
 
 --------------------------------------------------------------------------------------------------------------------
 
