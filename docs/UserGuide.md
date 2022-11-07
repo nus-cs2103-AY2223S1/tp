@@ -137,8 +137,9 @@ in the table below:
 
     <div markdown="span" class="alert alert-primary">
         :bulb: **Tip:**
-        Any folder can be a home folder for your TrackO. In this case, the home folder is an 
-        empty folder called `TrackO` located in the `Desktop`.
+        Any folder can be a home folder for your TrackO. However, it is recommended that you use an **empty folder** as
+        your empty folder, as the file containing your data will also be stored in this folder. In this case, the home
+        folder is an empty folder called `TrackO` located in the `Desktop`.
     </div>
 
 4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. The application will already contain some sample
