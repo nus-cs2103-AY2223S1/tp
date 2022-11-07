@@ -41,25 +41,21 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
-        try {
-            TaskName name = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_NAME).get());
-            Optional<Description> description = Optional.empty();
-            if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-                description = Optional.of(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
-            }
-            Optional<Deadline> deadline = Optional.empty();
-            if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
-                deadline = Optional.of(ParserUtil.parseDeadline((argMultimap.getValue(PREFIX_DEADLINE).get())));
-            }
-            Set<Index> indices = ParserUtil.parseIndices(argMultimap.getAllValues(PREFIX_CONTACT));
+        TaskName name = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_NAME).get());
 
-            Task task = new Task(UUID.randomUUID(), name, description, deadline);
-
-            return new AddTaskCommand(task, indices);
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE), pe);
+        Optional<Description> description = Optional.empty();
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            description = Optional.of(ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get()));
         }
+        Optional<Deadline> deadline = Optional.empty();
+        if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
+            deadline = Optional.of(ParserUtil.parseDeadline((argMultimap.getValue(PREFIX_DEADLINE).get())));
+        }
+        Set<Index> indices = ParserUtil.parseIndices(argMultimap.getAllValues(PREFIX_CONTACT));
+
+        Task task = new Task(UUID.randomUUID(), name, description, deadline);
+
+        return new AddTaskCommand(task, indices);
     }
 
     /**
