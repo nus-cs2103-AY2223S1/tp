@@ -54,8 +54,6 @@ If you encounter any issues in launching and using the app, feel free refer to t
 * All parameters and their constraints have been provided in [the Appendix](#parameters-and-constraints) for your reference.
 </div>
 
-</div>
-
 ## Modes
 In TA-Assist, you can switch into a mode called the **focus** mode, which lets you run tasks that are specific to (module) class. Therefore,
 [some commands](#features-available-in-focus-mode) can only be executed when you are in focus mode. Commands that you can run in the default (unfocused) mode can also
