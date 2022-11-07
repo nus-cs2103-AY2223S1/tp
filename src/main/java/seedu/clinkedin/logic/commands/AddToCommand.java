@@ -109,7 +109,7 @@ public class AddToCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createUpdatedPerson(Person personToUpdate,
+    static Person createUpdatedPerson(Person personToUpdate,
                                               AddToCommand.UpdatePersonDescriptor updatePersonDescriptor)
             throws TagTypeNotFoundException, TagNotFoundException, DuplicateTagException, RatingAlreadyExistsException {
         assert personToUpdate != null;

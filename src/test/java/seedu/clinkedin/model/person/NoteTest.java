@@ -1,7 +1,9 @@
 package seedu.clinkedin.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -42,4 +44,35 @@ public class NoteTest {
         String note = "This is a note";
         assertEquals(new Note(note).value, note);
     }
+
+    @Test
+    public void toStringTest() {
+        String noteStr = "This is a note";
+        Note note = new Note(noteStr);
+        assertEquals(note.toString(), noteStr);
+    }
+
+    @Test
+    public void equalityTests() {
+        String noteStr1 = "This is a note";
+        String noteStr2 = "This is a note";
+        Note note1 = new Note(noteStr1);
+        Note note2 = new Note(noteStr2);
+
+        assertTrue(note1.equals(note1));
+        assertTrue(note1.equals(note2));
+        assertFalse(note1.equals(null));
+        assertFalse(note1.equals(6));
+    }
+
+    @Test
+    public void hashcodeTests() {
+        String noteStr1 = "This is a note";
+        String noteStr2 = "This is a note";
+        int hashcode1 = noteStr1.hashCode();
+        int hashcode2 = noteStr2.hashCode();
+        assertEquals(hashcode1, hashcode2);
+        assertEquals(hashcode1, hashcode1);
+    }
+
 }
