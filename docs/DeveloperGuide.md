@@ -192,7 +192,7 @@ The following activity diagram summarizes what happens when a user executes a li
 ![ListActivityDiagram](images/ListActivityDiagram.png)
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The diagrams above are generalized to `Client` but work similarly for other entity types (`Project, `Issue`).
+:information_source: **Note:** The diagrams above are generalized to `Client` but work similarly for other entity types (`Project`, `Issue`).
 </div>
 
 #### Design considerations
@@ -236,7 +236,7 @@ The following activity diagram summarizes what happens when a user executes a de
 ![DefaultViewActivityDiagram](images/DefaultViewActivityDiagram.png)
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The diagrams above are generalized to `Client` but work similarly for other entity types (`Project, `Issue`).
+:information_source: **Note:** The diagrams above are generalized to `Client` but work similarly for other entity types (`Project`, `Issue`).
 </div>
   
 ### Add Command Feature
@@ -461,7 +461,7 @@ The following activity diagram summarizes what happens when a user executes a pi
 ![PinActivityDiagram](images/PinActivityDiagram.png)
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The diagrams above are generalized to `Client` but work similarly for other entity types (`Project, `Issue`).
+:information_source: **Note:** The diagrams above are generalized to `Client` but work similarly for other entity types (`Project`, `Issue`).
 </div>
 
 #### Design considerations
