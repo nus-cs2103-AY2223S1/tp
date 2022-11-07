@@ -175,7 +175,6 @@ This document is to assist you in using MODPRO smoothly and effectively to track
 Adds the module into the module list.
 
 Format: `m add c/MODULE_CODE m/MODULE_NAME mc/MODULE_CREDIT`
-
 Parameters:
 * `MODULE_CODE` refers to the module code of the module being added.
 * `MODULE_NAME` refers to the name of the module.
@@ -249,6 +248,10 @@ Example:
 :exclamation: **Warning:** All tasks and exams related to the module will be deleted after the specified module is deleted.
 </div>
 
+------------------
+<div style="page-break-after: always;"></div>
+
+
 ### Editing a module
 Edits the specified module by updating the existing values to the input values.
 
@@ -289,6 +292,8 @@ Examples:
 
 `m edit 2 c/cs2040 m/Data Structures and Algorithms mc/4` changes the module name of the second module in the module list to ‘Data Structures and Algorithms’, the module code to ‘cs2040’ and the module credit to ‘4’.
 
+------------------
+<div style="page-break-after: always;"></div>
 
 ## Tasks-related Features
 
