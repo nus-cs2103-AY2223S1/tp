@@ -12,7 +12,7 @@ MODPRO is a desktop application which helps NUS students track the progress of t
 MODPRO helps you…
 * organise your tasks by modules and exams
 * track your progress for each module and exam with a progress bar
-* easily navigate through your tasks by tagging your tasks, filtering and sorting your task list.
+* easily navigate through your tasks by tagging them, and filtering and sorting your task list
 
 It is highly optimised for students who prefer Command Line Interface (CLI) by allowing those who type fast to key in commands to track their modules. If you struggle to type fast, we also provide a Graphical User interface (GUI) to assist you in using MODPRO.
 
