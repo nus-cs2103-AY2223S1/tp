@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-# Welcome to SoCompiler's User Guide
+# SoCompiler User Guide
 
 > The sole app that university students will need to streamline their everyday routines.
 
