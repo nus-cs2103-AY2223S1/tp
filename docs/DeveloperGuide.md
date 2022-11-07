@@ -658,7 +658,7 @@ Possible Extensions:
 
 ### Undo / Redo
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -674,11 +674,11 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `user n/Silas p/98765432 e/silastay@gmail.com a/Kent Ridge Drive g/SilasTSL curr/CS2100 prev/CS1101S plan/CS2109` command to add a new User to the address book. The "Add User" command calls `Model#commitAddressBook()`, causing the modified state of the address book after the "Add User" command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `delete user` to delete the newly created user. The `delete user` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`, and again the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -686,7 +686,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that deleting the user was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -713,13 +713,9 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 4. The user now decides that the undo was a mistake, and decides to redo that action by executing the `redo` command. The `redo` command will call `Model#redoAddressBook()`, which will shift the `currentStatePointer` once to the right, pointing it to the forward address book state, and restores the address book to that state.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
 
 #### State Management
 
@@ -727,13 +723,20 @@ Implementing Undo/Redo commands in this manner requires the developers to strict
 1. Every command (that can be undone/redone) should produce and save a new state of the AddressBook
 2. Every AddressBook should not be related to another
    - Every instance in each AddressBook should be completely new with new data
-   - E.g. Changing the User's name field should create a new User Object with the desired new name, instead of changing the exisitng User objects name.
+   - For example:
+      1. We first create a user with name field "Bob".
+     ![StateManagement0](images/StateManagement0.png)
+      2. Editing the User's name field to "Tim" should create a new User Object with the desired new name, instead of changing the existing User object's name.
+     ![StateManagement1](images/StateManagement1.png)
    - This is because each state of the AddressBook must be unique from one another
 
+Here's what a typical Object Diagram may look like for an Address Book State:
+![UndoRedoObjectDiagram](images/UndoRedoObjectDiagram.png)
+- In this diagram, `ab0` is the initial AddressBookstate that contains two contact, `bob0` and `alice0`.
+- After the user makes a change to the contact `bob0`, we have to save a new `AddressBook` into our `VersionedAddressBook`, with a new `bob1` Object that embodies the changed `bob0` Object, instead of just making the change to the `bob0` Object directly.
+#### New Classes/Methods
 
-#### Implementation
-
-Given below are the proposed Classes to implement:
+Given below are the new Classes implemented:
 
 * `VersionedAddressBook`
   * Extends `AddressBook` with an Undo/Redo history
@@ -750,7 +753,7 @@ Given below are the proposed Classes to implement:
     * Shifts `currentStatePointer` forward by one
     * Called after user inputs `redo` command
 
-Given below are the proposed Methods to implement:
+Given below are the new Methods implemented:
 * `Model`
   * `Model#canUndoAddressBook()` - Checks if there is a previous `AddressBook` state
   * `Model#canRedoAddressBook()` - Checks if there is a forward `AddressBook` state

@@ -45,7 +45,6 @@ public class TimetableIndexCommand extends TimetableCommand {
         if (!model.setTimetable(person.getLessons())) {
             throw new CommandException(String.format(MESSAGE_NO_LESSONS, index.getOneBased()));
         }
-        model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_TIMETABLE_ACKNOWLEDGEMENT, index.getOneBased()),
                 false, false, true);
     }
