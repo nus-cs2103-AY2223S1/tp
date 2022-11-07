@@ -24,6 +24,8 @@ Given below are my contributions to the project.
       * This required an in-depth analysis of the system and consideration of design alternatives. The implementation too was challenging when done in a way so as not to interfere with the functionality of existing commands.
       * Writing the test cases for this command also proved to be challenging as many of the test utilities had to be edited to accommodate the new command.
 
+<div style="page-break-after: always;"></div>
+
 * **Contributions to the UG**:
   * Refined the Introduction
   * Added the Quick Start section
