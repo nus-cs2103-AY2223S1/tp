@@ -28,10 +28,14 @@ The following is a short overview of the features and capabilities of NotionUS:
 |   a new user   | proceed to our [quick start](#quick-start) section to set up NotionUS and try its features |
 | returning user |       skip to our [command summary](#command-summary) for a summary of our features!       |
 
-* Table of Contents
+**Table of Contents**
+
+* TOC
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -49,6 +53,8 @@ The following is a short overview of the features and capabilities of NotionUS:
 4. Double-click the file to start the app. The app should look like the image below, and have some sample data has been pre-loaded to experiment with.
 
     ![Ui](images/user-guide/Ui.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Understanding the Graphical User Interface (GUI)
 
@@ -106,6 +112,7 @@ The GUI should be updated as shown below:
 Click to return to: [Quick Start](#quick-start), [Back to Top](#)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## GUI Features
 
@@ -121,6 +128,8 @@ Here is an example of autocomplete in action:
 
 However, it is recommended to read through the [Features](#command-features) section to understand the syntax for commands that require additional input.
 
+<div style="page-break-after: always;"></div>
+
 #### Returning to a previous command : `Up`/`Down` keys
 
 Loads previous command into the _Command Box_.
@@ -129,6 +138,7 @@ While the _Command Box_ is in focus, use the `Up` and `Down` arrow keys on your 
 Click to return to: [GUI Features](#gui-features), [Back to Top](#)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command Features
 
@@ -201,6 +211,7 @@ For example, `add -m GEA1000 -m CS2100 -p -n Project` will be interpreted as `ad
 
 </div>
 
+<div style="page-break-after: always;"></div>
 
 ### Getting help : `help`
 
@@ -215,6 +226,8 @@ Shortcut key: <kbd>F1</kbd>
 </div>
 
 Click to return to: [Command Features](#command-features), [Back to Top](#)
+
+<div style="page-break-after: always;"></div>
 
 ### Task Management
 
@@ -293,6 +306,8 @@ Examples:
 ![Before image of Delete Command](images/user-guide/DeleteCommandBefore.png)
 ![After image of Delete Command](images/user-guide/DeleteCommandAfter.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Marking a task as complete: `mark`
 
 Mark a task as complete.
@@ -315,6 +330,8 @@ Format: `unmark TASK_NUMBER`
 
 Example: `unmark 2`
 
+<div style="page-break-after: always;"></div>
+
 #### Tagging a task: `tag`
 
 Allows you to tag a task.
@@ -332,18 +349,22 @@ Example: `tag 1 -t optional`
 
 Clears all entries of tasks in the task list.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:**<br>
 Clear command does not clear archived task list.  
-
 </div>
 
 Format: `clear`
 
-<div markdown="block" class="alert alert-info">
-**:information_source: Note:**<br>
+<div markdown="span" class="alert alert-warning">
+
+:warning: **Warning:**
+
 This command is irreversible!
+
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Viewing Specific Tasks
 
@@ -354,6 +375,8 @@ command to filter a list down to the results you are looking for. To reset the l
 Current filters applied will be shown in the UI at the top bar.
 
 ![Before image of List Command](images/user-guide/ListCommandBefore.png)
+
+
 ![After image of List Command](images/user-guide/ListCommandAfter.png)
 
 We have the following commands in this section:
@@ -484,6 +507,7 @@ This command is irreversible!
 
 </div>
 
+<div style="page-break-after: always;"></div>
 
 #### View archived tasks : `showarchive`
 
@@ -502,6 +526,7 @@ Format: `exit`
 Click to return to: [Command Features](#command-features), [Back to Top](#)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Other Features
 
@@ -512,15 +537,13 @@ NotionUS data are saved in the hard disk automatically after any command that ch
 NotionUS data are saved as a JSON file `[JAR file location]/data/taskList.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">
-
-**:exclamation: Caution:**<br>
 If your changes to the data file makes its format invalid, NotionUS will discard all data and start with an empty data file at the next run.
-
 </div>
 
 Click to return to: [Back to Top](#)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
@@ -540,6 +563,7 @@ Click to return to: [Back to Top](#)
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
@@ -569,6 +593,7 @@ Format meanings:
 Click to return to: [Back to Top](#)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Glossary
 
