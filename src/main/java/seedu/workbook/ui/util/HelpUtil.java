@@ -1,9 +1,8 @@
 package seedu.workbook.ui.util;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -34,7 +33,7 @@ public class HelpUtil {
     public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t10-3.github.io/tp/UserGuide.html";
     public static final String URL_MESSAGE = "Refer to the user guide for more information: " + USERGUIDE_URL;
 
-    public static final List<String> listOfHeaders = Arrays.asList(
+    public static final List<String> LIST_OF_HEADERS = Arrays.asList(
             ADD_HEADER,
             LIST_HEADER,
             FIND_HEADER,
@@ -46,7 +45,7 @@ public class HelpUtil {
             EXIT_HEADER
     );
 
-    public static final List<String> listOfExamples = Arrays.asList(
+    public static final List<String> LIST_OF_EXAMPLES = Arrays.asList(
             ADD_EXAMPLE,
             LIST_EXAMPLE,
             FIND_EXAMPLE,
@@ -55,11 +54,11 @@ public class HelpUtil {
             CLEAR_EXAMPLE,
             UNDO_EXAMPLE,
             REDO_EXAMPLE,
-            EXIT_EXAMPLE  
+            EXIT_EXAMPLE
     );
 
-    public static final Map<Command, String> headerForCommands = new HashMap<>();
-    public static final Map<Command, String> exampleForCommands = new HashMap<>();
+    public static final Map<Command, String> HEADERS_FOR_COMMAND = new HashMap<>();
+    public static final Map<Command, String> EXAMPLES_FOR_COMMAND = new HashMap<>();
 
     /**
      * Contains all commands supported by WB.
@@ -74,8 +73,8 @@ public class HelpUtil {
      */
     static {
         for (int i = 0; i < Command.values().length; i++) {
-            headerForCommands.put(Command.values()[i], listOfHeaders.get(i));
-            exampleForCommands.put(Command.values()[i], listOfExamples.get(i));
+            HEADERS_FOR_COMMAND.put(Command.values()[i], LIST_OF_HEADERS.get(i));
+            EXAMPLES_FOR_COMMAND.put(Command.values()[i], LIST_OF_EXAMPLES.get(i));
         }
     }
 
@@ -85,7 +84,7 @@ public class HelpUtil {
      * @return Command header as String.
      */
     public static String getCommandHeader(Command command) {
-        return headerForCommands.get(command);
+        return HEADERS_FOR_COMMAND.get(command);
     }
 
     /**
@@ -94,7 +93,7 @@ public class HelpUtil {
      * @return Command example as String.
      */
     public static String getCommandExample(Command command) {
-        return exampleForCommands.get(command);
+        return EXAMPLES_FOR_COMMAND.get(command);
     }
 
     public static String getUserGuideUrl() {
