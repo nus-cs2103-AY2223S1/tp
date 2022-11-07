@@ -27,6 +27,7 @@ import seedu.address.model.ReadOnlyFindMyIntern;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.internship.Internship;
 import seedu.address.testutil.InternshipBuilder;
+
 public class AddCommandTest {
 
     @Test
