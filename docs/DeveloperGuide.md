@@ -1089,6 +1089,7 @@ testers are expected to do more *exploratory* testing.
 1. _{ more test cases …​ }_
 
 ### Adding an appointment
+
 1. Adding valid appointments until maximum appointment limit for a client is reached while all persons are being shown
 
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. No person has existing appointments scheduled.
@@ -1107,9 +1108,50 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `aa 1 d/24-01-2023 12:30 l/Jurong Point, Starbucks`<br>
        Expected: No appointment is added. Error details will show that the user has reached the maximum number of appointments(3) scheduled for this client
 
+### Editing an appointment
+
+1. Editing existing appointments with new Location and Datetime fields
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. 
+<br>First person has only one appointment with Location as
+`Jurong Point, Starbucks` and Datetime as `21-01-2023 13:30`
+
+    1. Test case: `ea 1.1 d/22-01-2023 13:30`<br>
+     Expected: Person at index 1 has its appointment at index 1 edited with a new Datetime of `22-01-2023 13:30`. 
+<br>Details of the newly edited appointment and the old appointment is shown in the status message.
+    1. Test case: `ea 1.1 l/WestMall`<br>
+     Expected: Person at index 1 has an appointment edited with a new Location of `WestMall`.
+     <br>Details of the newly edited appointment and the old appointment is shown in the status message.
+    
+    1. Test case: `ea 1.1 d/23-01-2023 13:30 l/Jcube`<br>
+     Expected: Person at index 1 has its appointment at index 1 edited with a new Location of `Jcube` and new Datetime `23-01-2023 13:30`.
+     <br>Details of the newly edited appointment and the old appointment is shown in the status message.
+
+    1. Test case: `ea 1.1 d/24-01-2023 13:30 l/Jcube`<br>
+     Expected: No appointment is edited. 
+     <br>Error details will show that the user's newly edited Location field is unchanged. 
+
+    1. Test case: `ea 1.1 d/23-01-2023 13:30 l/Vivocity`<br>
+     Expected: No appointment is edited. 
+     <br>Error details will show that the user already has an appointment scheduled at this time.
+
+### Deleting an appointment
+
+1. Deleting existing appointments with new Location and Datetime fields
+
+  1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+     <br>First person has only one appointment.
+
+  1. Test case: `da 1.1`<br>
+     Expected: Person at index 1 has its appointment at index 1 deleted 
+     <br>Details of the deleted appointment is shown in the status message.
+  1. Test case: `da 1.1 l/WestMall`<br>
+     Expected: No appointment is deleted.
+     <br>Error details in will show that the appointment index is invalid.
+
 ### Finding Clients
 
-## Find by name
+#### Find by name
 1. Finding a client by their name:
 
     1. Prerequisites: User input is valid, prefixes are present and Financial Advisor Planner contains clients.
