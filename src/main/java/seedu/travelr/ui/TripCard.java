@@ -10,7 +10,7 @@ import javafx.scene.layout.Region;
 import seedu.travelr.model.trip.Trip;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Trip}.
  */
 public class TripCard extends UiPart<Region> {
 
@@ -41,7 +41,7 @@ public class TripCard extends UiPart<Region> {
     @FXML
     private Label tripDate;
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code TripCard} with the given {@code Trip} and index to display.
      */
     public TripCard(Trip trip, int displayedIndex, Image completed) {
         super(FXML);

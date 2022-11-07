@@ -15,7 +15,7 @@ import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable Travelr that is serializable to JSON format.
  */
 @JsonRootName(value = "travelr")
 class JsonSerializableTravelr {
@@ -28,7 +28,6 @@ class JsonSerializableTravelr {
 
     /**
      * Constructs a {@code JsonSerializableTravelr} with the given trips.
-     * TODO: Rename JsonProperty in local data file from persons to trips
      */
     @JsonCreator
     public JsonSerializableTravelr(@JsonProperty("bucketList") List<JsonAdaptedEvent> bucketList,
@@ -38,7 +37,7 @@ class JsonSerializableTravelr {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyTravelr} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableTravelr}.
      */
@@ -48,7 +47,7 @@ class JsonSerializableTravelr {
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this travelr object into the model's {@code Travelr} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

@@ -20,7 +20,7 @@ public class EventListPanel extends UiPart<Region> {
     private ListView<Event> eventListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code EventListPanel} with the given {@code ObservableList}.
      */
     public EventListPanel(ObservableList<Event> eventList) {
         super(FXML);
@@ -29,7 +29,7 @@ public class EventListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Event} using a {@code EventCard}.
      */
     class EventListViewCell extends ListCell<Event> {
         @Override

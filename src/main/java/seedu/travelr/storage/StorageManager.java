@@ -60,7 +60,6 @@ public class StorageManager implements Storage {
 
     @Override
     public Optional<ReadOnlyTravelr> readTravelr(Path filePath) throws DataConversionException, IOException {
-        // No problems here with storage
         logger.fine("Attempting to read data from file: " + filePath);
         return travelrStorage.readTravelr(filePath);
     }

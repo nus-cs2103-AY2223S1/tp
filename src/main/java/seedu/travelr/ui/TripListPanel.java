@@ -14,7 +14,7 @@ import seedu.travelr.model.trip.ObservableTrip;
 import seedu.travelr.model.trip.Trip;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of Trips.
  */
 public class TripListPanel extends UiPart<Region> {
     private static final String FXML = "TripListPanel.fxml";
@@ -28,7 +28,7 @@ public class TripListPanel extends UiPart<Region> {
     private ListView<Trip> tripListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code TripListPanel} with the given {@code ObservableList}.
      */
     public TripListPanel(ObservableList<Trip> tripList, ObservableTrip selectedTrip, Image completed) {
         super(FXML);
@@ -39,7 +39,7 @@ public class TripListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Trip} using a {@code TripCard}.
      */
     class TripListViewCell extends ListCell<Trip> {
         @Override
