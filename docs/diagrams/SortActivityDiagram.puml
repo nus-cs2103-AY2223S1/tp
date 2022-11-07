@@ -1,0 +1,17 @@
+@startuml
+start
+:User inputs sort command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([command is valid argument])
+    :Executes sort command;
+    :Transaction Panel will display
+    all the sorted transactions of a client based on sort.
+    Client Panel will display
+    the selected client;
+else ([else])
+endif
+stop
+@enduml

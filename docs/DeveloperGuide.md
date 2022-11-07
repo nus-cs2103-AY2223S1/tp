@@ -17,7 +17,7 @@ title: Developer Guide
     * [Buy / Sell transaction feature](#buysell-feature-for-transactions)
     * [Edit transaction feature](#editing-feature-for-transactions)
     * [Delete Client/Transaction/Remark feature](#delete-clienttransactionremark-feature)
-    * [Sort feature]()
+    * [Sort feature](#sort-feature)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
     * [Product Scope](#product-scope)
@@ -32,6 +32,7 @@ title: Developer Guide
       * [Clearing all data](#use-case-uc07---clearing-all-data)
       * [Buying from a client](#use-case-uc08---buying-from-a-client)
       * [Selling to a client](#use-case-uc09---selling-to-a-client)
+      * [Sorting a client](#use-case-uc10---sort-client-by-latest-transaction-br)
     * [Non-Functional Requirements](#non-functional-requirements)
     * [Glossary](#glossary)
 * [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
@@ -40,6 +41,7 @@ title: Developer Guide
   * [Delete a transaction](#deleting-a-transaction)
   * [Delete a remark](#deleting-a-remark)
   * [Filtering transactions](#filtering-transactions-from-all-clients)
+  * [Sort a client](#sorting-transactions-from-a-client)
   * [Saving data](#saving-data)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -331,8 +333,6 @@ The following sequence diagram shows how the edit operation works in Logic Manag
 
 ![EditTransactionSequenceDiagram](images/EditTransactionSequenceDiagram.png)
 
-_{more aspects and alternatives to be added}_
-
 ### Delete Client/Transaction/Remark feature
 
 This feature allows the user to delete a specific `client`, `transaction`, or `remark` of their choice.
@@ -355,7 +355,7 @@ The deletion process occurs in these `3` main steps:
 The **sequence diagram** below shows how a client is deleted for user input `delete 1 m/client`.
 
 ![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FilterTransCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
@@ -380,6 +380,55 @@ The process for deleting a `remark` is the same as the process of deleting a `tr
 * **Alternative 2:** Create separate individual commands to Delete Client/Transaction/Remark, e.g. `deleteClient 1`, `deleteTransaction 1`, `deleteRemark 1`.
     * Pros: More intuitive to use, shorter command to type.
     * Cons: Adds more valid commands that the user can use, which may not be very user-friendly since they have to remember more commands. Also, there will be much more classes and code.
+
+### Sort feature
+
+#### Current Implementation
+
+The sort mechanism for `transactions` is facilitated by a `SortCommandParser` and `SortCommand`.
+
+The `SortCommandParser` will take in the `userInput`, parse it, and return the correct concrete command type that is `SortCommand` which will be executed to achieve the sort functionality.
+
+The operation is exposed in the `logic` interface as `Logic#execute()`.
+
+Given below is an example usage scenario and how the sort transaction mechanism behaves at each step.
+
+Step 1. The user launches the application. The `UiManager` will call on the `MainWindow` to invoke the UI which displays the clients.
+
+![BuyState0](images/BuyState0-initial_state.png)
+
+Step 2. The user executes `sort 1 latest` command to sort the transaction of the client at index 1 by the latest transactions first.
+
+Step 3. The `Execute` of `SortCommand` will call `Model#getFilteredClientList()` to get the list of clients. `List<Client>#get()` is called to
+get the client at the index to copy. The copied client is replaced with the client at the index by calling `Model#setClient(Client, Client)`.
+
+Step 4. The `CommandResult` of `FilterTransCommand` will call `MainWindow#handleSortTransaction()`,
+to display the sorted transactions from the `Client#getSortLatestTransaction()` while the client panel list will display the clients.
+
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+ </div>
+
+The following activity diagram summarizes what happens when a user executes a sort command:
+
+<img src="images/SortActivityDiagram.png" width="250" />
+
+#### Design Considerations:
+
+**Aspect: How Sort executes:**
+
+* **Alternative 1 (current choice):** Sort Transaction specified by `oldest` or `latest` selected by `index`
+    * Pros: Easy to implement and easy to understand command. Also targeted sort command allows for unnecessary transactions to be hidden, increasing user-friendliness.
+    * Cons: Users may want to sort and view all transactions by `oldest` or `latest`.
+
+* **Alternative 2:** Sort all Transaction of all clients by `oldest` or `latest`.
+    * Pros: Allows for faster sorting for users if user wants to sort every client.
+    * Cons: It is rare for users to want to sort all clients by `oldeest` or `latest`. Also, there maybe information overload if all transactions are displayed when sorted.
+
+_{more aspects and alternatives to be added}_
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -600,6 +649,17 @@ Users are able to perform several tasks within the application that is broken do
 
 * Similar to [UC08](#use-case-uc08---buying-from-a-client). Just changing Buy to Sell.
 
+#### **Use case: UC10 - Sort client by latest transaction** <br>
+**Preconditions: JeeqTracker has at least 1 client**
+
+**MSS**
+
+1. User requests to sort the client at index 1 by latest transactions
+2. JeeqTracker displays the list of transactions of client at index 1 sorted by the latest dates first.
+
+    Use case ends.
+
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -692,6 +752,16 @@ testers are expected to do more *exploratory* testing.
    If there are no buy transactions, the transaction list panel will be empty.
    2. Test case: `filter sold`<br/>Expected: No transaction is filtered. Error details shown in the `Application's Reply` panel.
    3. Other incorrect filter commands to try: `filter`, `filter all`, `filter 1`<br/>Expected: Similar to previous.
+
+### Sorting transactions from a client
+
+1. Sorting transactions.
+
+   1. Prerequisites: At least one client in the list. 
+   2. Test case: `sort 1 latest`<br/>Expected: All transactions in index 1 client will be displayed in the transaction list panel, sorted with the latest transactions first.
+   If there are no transactions, the transaction list panel will be empty.
+   3. Test case: `sort 2 newest`<br/>Expected: No transactions for index 2 client is sorted. Error details shown in the `Application's Reply` panel.
+   4. Other incorrect sort commands to try: `sort all latest`, `sort oldest`, `sort newest`<br/>Expected: Similar to previous.
     
 ### Adding buy/sell transactions
 
@@ -727,23 +797,23 @@ have an idea of how we should render transactions and remarks on the screen, and
 edit can be evolved to handle them. The lack of references in AB3 made it a lot harder since the Person class in
 AB3 does not have a **List** attribute, and we have to add it.
 
-Furthermore, we felt like we have created two additional AB3 in total, twice the effort of what it takes to create AB3.
+Furthermore, we felt like we had created two additional AB3 in total, twice the effort of what it takes to create AB3.
 The **transactions** and **remarks** each are almost like an AB3. They have their own storage, user interface, model,
-and have its own CRUD (Create, Read, Update, Delete) functionality. We also have to spend a lot of time learning about
-JavaFX, Jackson, since none of us have any experience with these prior to CS2103T. It definitely took more time and
+and have its own CRUD (Create, Read, Update, Delete) functionality. We also had to spend a lot of time learning about
+JavaFX, Jackson, since none of us has any experience with these prior to CS2103T. It definitely took more time and
 effort to create the user interface that we have now compared to the one in IP, since it was basically hand-holding in
 IP.
 
-We also have to refactor the application once at around week 10, because we realise that there isn't a real value
-proposition for our application. Hence, thousands of lines were refactored at that period, and it took effort to
+We also have to refactor the application once at around week 10, because we realised that there wasn't a real value
+proposition for our application. Hence, thousands of lines were refactored at that period, and it took much effort to
 get used to the new terms within the code.
 
-We spent a lot of effort in creating the UserGuide, adding almost up to triple the length of the original AB3, adding
+We have spent a lot of effort in creating the UserGuide, adding almost up to triple the length of the original AB3, adding
 new sections that AB3 doesn't have, and more user-friendly screenshots of the application with annotations.
 
-For Developer Guide, we have to change almost every single diagram within the application to align to our current
-code, and add more explanations to it. When appropriate, we also included new diagrams which are relevant, and
-created much more user stories, use cases, Non-Functional Requirements, Glossary, and Instructions for manual testing.
+For Developer Guide, we had to change almost every single diagram within the application to align to our current
+code, and add more explanations to it. When appropriate, we also included new diagrams which were relevant, and
+created many more user stories, use cases, Non-Functional Requirements, Glossary, and Instructions for manual testing.
 It is definitely much more than the original developer guide.
 
 Overall, our team has spent **a lot more effort in our application, user guide, developer guide** than the original
