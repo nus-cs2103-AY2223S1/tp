@@ -18,7 +18,7 @@ title: Li Zekai's Project Portfolio Page
 
 * **Enhancements to existing features**:
 
-  * Added more test code that increased code coverage by $1\%$ [#262](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/262).
+  * Added more test code that increased code coverage by 1% [#262](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/262).
   * Improve timetable GUI so that users can change the color of every slot [176](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/176).
 
 * **Documentation**:
@@ -33,5 +33,4 @@ title: Li Zekai's Project Portfolio Page
 * **Community**:
 
   * PRs reviewed: [#158](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/158), [#126](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/126), [#137](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/137)
-
 
