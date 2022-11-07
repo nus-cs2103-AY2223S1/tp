@@ -203,7 +203,7 @@ Tutors are regarded as the same if they have the **same email or student ID**!
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:**
-Refer to [this section](#notes-about-frequently-used-command-parameters) for more information about various parameters!
+Refer to [this section](#frequently-used-command-parameters) for more information about various parameters!
 
 </div>
 
@@ -233,7 +233,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MODULE] [y/YEAR] [s/S
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:**
-Refer to [this section](#notes-about-frequently-used-command-parameters) for more information about various parameters!
+Refer to [this section](#frequently-used-command-parameters) for more information about various parameters!
 
 </div>
 
@@ -296,7 +296,7 @@ Format: `find PREFIX/KEYWORDS [KEYWORDS]`
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:**
-Refer to [this section](#notes-about-frequently-used-command-parameters) for more information about various parameters!
+Refer to [this section](#frequently-used-command-parameters) for more information about various parameters!
 
 </div>
 
