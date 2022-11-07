@@ -12,6 +12,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.intrack.commons.core.index.Index;
+import seedu.intrack.commons.exceptions.IllegalValueException;
 import seedu.intrack.logic.commands.AddTagCommand;
 import seedu.intrack.model.tag.Tag;
 
@@ -37,5 +38,11 @@ public class AddTagCommandParserTest {
 
         // no parameters
         assertParseFailure(parser, AddTagCommand.COMMAND_WORD, expectedMessage);
+    }
+
+    @Test
+    public void parse_invalidCommandFormat_throws_ParseException() {
+        assertParseFailure(parser,  "  "
+                , String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
     }
 }
