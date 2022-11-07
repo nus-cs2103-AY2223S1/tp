@@ -18,8 +18,8 @@ import javafx.stage.Stage;
 import seedu.address.model.appointment.Date;
 import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.calendar.CalendarMonth;
-import seedu.address.ui.CalendarDisplay;
-import seedu.address.ui.CalendarEventListPanel;
+import seedu.address.ui.calendar.CalendarDisplay;
+import seedu.address.ui.calendar.CalendarEventListPanel;
 
 /**
  * The manager of the logic for the Calendar.

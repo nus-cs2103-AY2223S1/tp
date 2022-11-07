@@ -1,9 +1,10 @@
-package seedu.address.ui;
+package seedu.address.ui.calendar;
 
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
+import seedu.address.ui.UiPart;
 
 /**
  * A Label that handles the errors from the jump feature

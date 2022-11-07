@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.calendar;
 
 import javafx.beans.Observable;
 import javafx.beans.value.ChangeListener;

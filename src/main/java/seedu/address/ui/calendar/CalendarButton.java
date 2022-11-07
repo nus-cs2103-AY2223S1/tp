@@ -1,8 +1,9 @@
-package seedu.address.ui;
+package seedu.address.ui.calendar;
 
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.Region;
+import seedu.address.ui.UiPart;
 
 /**
  * Represents a Button used in the Calendar with hidden internal logic.

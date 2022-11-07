@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.calendar;
 
 
 import javafx.fxml.FXML;
@@ -16,6 +16,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.logic.CalendarLogic;
 import seedu.address.logic.Logic;
+import seedu.address.ui.UiPart;
 
 /**
  * A UI component that displays information of a Calendar.

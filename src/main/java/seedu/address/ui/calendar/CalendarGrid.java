@@ -1,7 +1,8 @@
-package seedu.address.ui;
+package seedu.address.ui.calendar;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;
+import seedu.address.ui.UiPart;
 
 /**
  * A UI component that represents the grid of the Calendar.

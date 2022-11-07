@@ -1,10 +1,11 @@
-package seedu.address.ui;
+package seedu.address.ui.calendar;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.appointment.Appointment;
+import seedu.address.ui.UiPart;
 
 /**
  * An UI component that displays information of an {@code Appointment}.
@@ -33,6 +34,4 @@ public class AppointmentHBox extends UiPart<Region> {
         timeLabel.setText(appointment.getTimeFormat());
         locationLabel.setText(appointment.getLocation().toString());
     }
-
-
 }
