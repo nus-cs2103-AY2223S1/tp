@@ -127,6 +127,8 @@ The `Graphical UI` that will be displayed to user upon launching `InternConnect`
 
 <img src="images/annotatedGui.png" />
 
+<div style="page-break-after: always;"></div>
+
 ### 3.3 Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -176,6 +178,7 @@ The `Model` component,
 
 </div>
 
+<div style="page-break-after: always;"></div>
 
 ### 3.5 Storage component
 
@@ -245,6 +248,8 @@ The following activity diagram summarizes what happens when a user executes a ch
 
 ![CheckoutActivityDiagram](images/CheckoutActivityDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Design considerations
 
 **Aspect: How checkout executes:**
@@ -297,6 +302,8 @@ The following sequence diagram shows how the `view` command works:
 
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Design considerations
 
 **Aspect: How the UI window is split to show a panel of list of all applicants and another panel to view details of an applicant:**
@@ -333,6 +340,8 @@ Given below is an example success scenario and how the `import` mechanism behave
 The following sequence diagram shows how the `import` command works:
 
 ![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### Design Considerations
 
@@ -455,7 +464,7 @@ The following sequence diagram shows how the `find` command works:
 
 
 **Aspect: Different search types**
-* **Alternative 1 **: we create a new command for each type of search
+* **Alternative 1**: we create a new command for each type of search
     * Pros:
         * All commands current follow this design, allows for consistency in code structure, and follows current OOP design conventions.
         * Naming format for all commands are fixed.
@@ -511,6 +520,7 @@ how internship campus recruiters work with their applicants’ data.
 Say goodbye to opening multiple windows to retrieve the information you need and
 focus on what matters more: matching the right people for the right job.
 
+<div style="page-break-after: always;"></div>
 
 ### 6.2 User stories
 
