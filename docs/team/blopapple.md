@@ -47,6 +47,8 @@ Added the ability to dynamically edit a task for a patient.
     * Implemented ScheduleListPanel to support time-based queries for task viewing [\#285](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/285)
     * Implemented TruncatedTaskListPanel to support viewing all patients' tasks [\#285](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/285)
 
+<div style="page-break-after: always;"></div>
+
 ### Contributions to User Guide
 * Added documentation for the `listTask` feature [\#67](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/67)
 * Added documentation for the `viewTask` feature [\#67](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/67)
