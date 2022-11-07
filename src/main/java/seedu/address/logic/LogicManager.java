@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import java.io.IOException;
+import java.nio.file.AccessDeniedException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
@@ -25,6 +26,11 @@ import seedu.address.storage.Storage;
  */
 public class LogicManager implements Logic {
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
+
+    private static final String PERM_ERR =
+        "Unable to save your information!\nPlease check the FAQ section of the user guide for more information."
+            + "The user guide can be accessed through Help in the menu. \n%s";
+
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
     private final Model model;
@@ -32,8 +38,7 @@ public class LogicManager implements Logic {
     private final AddressBookParser addressBookParser;
 
     /**
-     * Constructs a {@code LogicManager} with the given {@code Model} and
-     * {@code Storage}.
+     * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
     public LogicManager(Model model, Storage storage) {
         this.model = model;
@@ -51,6 +56,9 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+        } catch (AccessDeniedException e) {
+            logger.info("Permission Error: " + e.getMessage());
+            throw new CommandException(String.format(PERM_ERR, e));
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }

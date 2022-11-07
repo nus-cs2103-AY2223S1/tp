@@ -11,11 +11,13 @@ import seedu.address.logic.commands.tasks.AddTaskCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.attribute.Name;
 import seedu.address.model.task.Task;
 
-//@@author connlim
+// @@author connlim
 
 /**
  * Parses input arguments and creates a new TaskCommand object
@@ -31,7 +33,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESCRIPTION);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_DESCRIPTION) || !argMultimap.getPreamble()
-                .isEmpty()) {
+            .isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
@@ -39,10 +41,10 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         if (name.length() == 0) {
             throw new ParseException(String.format(MESSAGE_EMPTY_NAME, AddTaskCommand.MESSAGE_USAGE));
         }
-
+        Name parsedName = ParserUtil.parseName(name);
         String address = argMultimap.getValue(PREFIX_DESCRIPTION).get();
 
-        Task task = new Task(name, address);
+        Task task = new Task(parsedName.fullName, address);
 
         return new AddTaskCommand(task);
     }

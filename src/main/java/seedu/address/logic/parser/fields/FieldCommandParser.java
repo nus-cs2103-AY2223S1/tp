@@ -47,7 +47,7 @@ public class FieldCommandParser implements Parser<FieldCommand> {
         case DeleteFieldCommand.SUBCOMMAND_WORD:
             return new DeleteFieldCommandParser().parse(arguments);
         default:
-            throw new ParseException("errrr");
+            throw new ParseException(MESSAGE_USAGE);
         }
     }
 }
