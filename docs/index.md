@@ -6,7 +6,7 @@ title: SoConnect
 [![CI Status](https://github.com/AY2223S1-CS2103T-W15-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-W15-1/tp/actions)
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-W15-1/tp/branch/master/graph/badge.svg?token=N56Z27OWOL)](https://codecov.io/gh/AY2223S1-CS2103T-W15-1/tp)
 
-![Ui](images/Ui.png)
+![Ui](images/SoConnectGUI.png)
 
 SoConnect is a **desktop app for managing contacts and tasks**. It aims to help NUS SoC students stay better connected to their school life, in terms of social connections and school tasks. SoConnect is also **optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SoConnect can **get your contact and task management done faster than traditional GUI apps.**
 
