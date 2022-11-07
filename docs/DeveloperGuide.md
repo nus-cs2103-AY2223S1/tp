@@ -213,6 +213,10 @@ This is shown in the diagram below:
 
 ![Add Appointment Sequence Diagram](images/AddAppointmentCommandSequenceDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** command_details and command_values refer to the command `aa 1 d/21-01-2023 `12:30 l/Starbucks` and the command values `1 d/21-01-2023 `12:30 l/Starbucks`. We have substituted these values for readability.
+
+</div>
+
 *Figure 11: Sequence Diagram showing the execution of an `aa` (Add Appointment) command*
 
 #### Design Considerations
@@ -224,6 +228,70 @@ This is shown in the diagram below:
   * Pros: Lower number of commands needed to be executed to add all the desired `Appointments`
   * Cons: Complex input validation as unique `DateTimes` and `Locations` must be enforced within the command and alongside the existing `Appointments`. The maximum number of `Appointments` must also be enforced. Also, length of user input may be very long
 
+#### Delete Appointment Command
+
+Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager##execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser##parseCommand(userInput)` which parses the command.
+
+Step 2. If the user input matches the format for the command word for the `DeleteAppointmentCommand`, `AddressBookParser` will create an `DeleteAppointmentCommandParser` and will call the `DeleteAppointmentCommandParser##parse(args)` to parse the command.
+
+Step 3. Validation for the user input is performed, such as validating the client's `Index` and the appointment's `Index`.
+
+Step 4. If the user input is valid, a new `DeleteAppointmentCommand` object is created and returned to the `LogicManager`.
+
+Step 5. `LogicManager` will call `DeleteAppointmentCommand##execute(model)` method. Further validation is performed, such as checking whether an `Appointment` exists to be deleted.
+
+Step 6. If the command is valid, the `remove` method of the `MaximumSortedList` containing the client's `Appointments` is called, which will update the `Person` and `Model`.
+
+Step 7. `DeleteAppointmentCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
+
+This is shown in the diagram below:
+
+![Delete Appointment Sequence Diagram](images/DeleteAppointmentCommandSequenceDiagram.png)
+
+*Figure 11: Sequence Diagram showing the execution of an `da` (Delete Appointment) command*
+
+#### Design Considerations
+**Aspect: How many `Appointments` can be deleted for each command**
+* **Alternative 1 (current choice):** Delete only one `Appointment` in each command.
+    * Pros: Simpler input validation and length of user input is shorter.
+    * Cons: User has to execute the `da` command multiple times to delete all their desired `Appointments`
+* **Alternative 2**: Multiple `Appointments` can be deleted in each command
+    * Pros: Lower number of commands needed to be executed to delete all the desired `Appointments`
+    * Cons: Complex input validation as multiple index must be enforced within the command and alongside the existing `Appointments`. The maximum number of `Appointments` to delete must also be enforced. 
+
+### Find feature
+
+The `find` command allows the user to search for multiple fields at once. An OR search is performed and clients matching at least one keyword will be returned.
+
+Overview of implementation for `find` command:
+
+Currently, the `FindCommandParser` class parses the different prefixes and their values and creates the corresponding `FindPredicate` (e.g the Name prefix will create a `NameContainsKeywordsPredicate` and the Income prefix will create an `IncomeContainsKeywordsPredicate`). These predicates are stored in a list, and are then passed as an argument to the `FindCommand`. The `FindCommand` updates the list of filtered `Persons`.
+
+Given below is an example success scenario and how the find mechanism behaves at each step.
+
+1. The user executes `find`.
+2. `LogicManager` calls `AddressBookParser#parseCommand(userInput)`.
+3. `AddressBookParser` calls `FindCommandParser#parse(userInput)`.
+4. `FindCommandParser` parses the arguments and converts all the prefixes and their values to a list of predicates.
+5. `LogicManager` calls `FindCommand#execute(model, storage)`.
+6. `FindCommand` calls `Model#updateFilteredPersonList(predicates)`.
+7. `FindCommand` updates the `filteredPersons` in `model` and only clients that match any of the keywords are shown.
+
+The following activity diagram summarizes what happens when a user executes the Find command:
+
+![Find Command Activity Diagram](images/FindCommandActivityDiagram.png)
+
+*Figure 12: Activity Diagram showing the execution of an `find` command*
+
+#### Design Considerations
+
+**Aspect: Format of the `find` command**
+* **Alternative 1 (current choice):** Use prefixes to search for specific fields
+    * Pros: Simpler input validation and search time is shorter, as the search is only conducted for the input fields.
+    * Cons: User may have to type a longer command to match the specific fields and values they require during search.
+* **Alternative 2**: Input keywords will be searched for every field
+    * Pros: Shorter command input, as only the required keywords are inputted.
+    * Cons: Longer search time for each individual command and more complex validation is required, as keywords may be different types like `String` or `Integer`.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -342,6 +410,7 @@ The following is a more detailed explanation on how `Calendar Navigation` works.
 
 The following activity diagram summarizes what happens when a user selects a navigation feature:
 ![Calendar Navigation Activity](images/CalendarNavigationActivityDiagram.png)
+
 #### Calendar Pop-up
 The calendar Pop-up allows user to view the details of the appointment in the calendar
 
@@ -387,20 +456,21 @@ The following activity diagram summarizes what happens when a user selects an ap
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​           | I want to …​                                                           | So that I can…​                                                                    |
-|----------|-------------------|------------------------------------------------------------------------|------------------------------------------------------------------------------------|
-| `* * *`  | financial advisor | add new client                                                         | keep track of the client's profile                                                 |
-| `* * *`  | financial advisor | delete a client                                                        | remove entries that are no longer needed                                           |
-| `* * *`  | financial advisor | edit a client's profile                                                | update relevant and up-to-date information of the client                           |
-| `* * *`  | financial advisor | search clients by name                                                 | retrieve information of clients without having to go through the entire list       |
-| `* * *`  | financial advisor | sort clients by alphabetical order                                     | have an organised list of contacts                                                 |
+| Priority | As a …​           | I want to …​                                                           | So that I can…​                                                                            |
+|----------|-------------------|------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|
+| `* * *`  | financial advisor | add new client                                                         | keep track of the client's profile                                                         |
+| `* * *`  | financial advisor | delete a client                                                        | remove entries that are no longer needed                                                   |
+| `* * *`  | financial advisor | edit a client's profile                                                | update relevant and up-to-date information of the client                                   |
+| `* * *`  | financial advisor | search clients by name                                                 | retrieve information of clients without having to go through the entire list               |
+| `* * *`  | financial advisor | sort clients by alphabetical order                                     | have an organised list of contacts                                                         |
 | `* * *`  | financial advisor | store important information of clients                                 | make pivotal decisions on how to better suit the clients' needs based on their information |
-| `* * *`  | financial advisor | store upcoming appointments for each client                            | keep track of all my upcoming appointments                                         |
-| `* * `   | financial advisor | view the list of clients that are scheduled for meeting on a given day | be reminded and keep track of the scheduled meetings                               |
-| `* *`    | financial advisor | have an image of my client                                             | remember and recognise the clients during the meetings                             |
-| `* *`    | fast-typist       | navigate through the calendar with my keyboard                         | view all my appointments in the calendar quickly                                   |
-
-*{More to be added}*
+| `* * *`  | financial advisor | store upcoming appointments for each client                            | keep track of all my upcoming appointments                                                 |
+| `* * *`  | financial advisor | edit my current appointments for each client                           | update my appointment details, if any changes has been made                                |
+| `* * *`  | financial advisor | delete an appointment                                                  | remove any completed or cancelled appointments in my list of appointments                  |
+| `* * *`  | busy person       | quickly view the format of any command                                 | can focus on my daily tasks instead of having to remember the command syntax               |
+| `* * `   | financial advisor | view the list of clients that are scheduled for meeting on a given day | be reminded and keep track of the scheduled meetings                                       |
+| `* *`    | financial advisor | have an image of my client                                             | remember and recognise the clients during the meetings                                     |
+| `* *`    | fast-typist       | navigate through the calendar with my keyboard                         | view all my appointments in the calendar quickly                                           |
 
 ### Use cases
 
@@ -657,8 +727,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-    *{More to be added}*
-
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -668,10 +736,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 5. Should work without an internet connection
 6. Should be reliable and bug free
 7. Stored data should be backwards compatible with older versions
-8. Stored data should be secure and only accessible by user
-9. User interface should be usable for beginners
+8. User interface should be usable for beginners
+9. Application should be usable by a single user
+10. Data should be stored locally and not use any database management system.
 
-*{More to be added}*
+
 
 ### Glossary
 
@@ -679,8 +748,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **CLI**: Command Line Interface
 * **GUI**: Graphical User Interface
+* **MSS**: Main Success Scenario: Describes the most straightforward interaction for a given use case, which assumes that nothing goes wrong 
+* **FXML**: FX Markup Language, the format in which the GUI layout is stored in
 
-*{More to be added}*
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -716,18 +787,18 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. No person has existing appointments scheduled.
 
-    1. Test case: `aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`<br>
+    1. Test case: `aa 1 d/21-01-2023 12:30 l/Jurong Point, Starbucks`<br>
        Expected: Person at index 1 has an appointment added. Details of the newly added appointment is shown in the status message.
 
-    1. Test case: `aa 1 d/23-Jan-2023 12:30 PM l/Jurong Point, Starbucks`<br>
+    1. Test case: `aa 1 d/23-01-2023 12:30 l/Jurong Point, Starbucks`<br>
        Expected: Person at index 1 has an appointment added. Details of the newly added appointment is shown in the status message.
        The GUI correctly reorders the appointment list by date and time.
 
-    1. Test case: `aa 1 d/22-Jan-2023 12:30 PM l/Jurong Point, Starbucks`<br>
+    1. Test case: `aa 1 d/22-01-2023 12:30 l/Jurong Point, Starbucks`<br>
       Expected: Person at index 1 has an appointment added. Details of the newly added appointment is shown in the status message.
       The GUI correctly reorders the appointment list by date and time.
 
-    1. Test case: `aa 1 d/24-Jan-2023 12:30 PM l/Jurong Point, Starbucks`<br>
+    1. Test case: `aa 1 d/24-01-2023 12:30 l/Jurong Point, Starbucks`<br>
        Expected: No appointment is added. Error details will show that the user has reached the maximum number of appointments(3) scheduled for this client
 
 ### Deleting a person

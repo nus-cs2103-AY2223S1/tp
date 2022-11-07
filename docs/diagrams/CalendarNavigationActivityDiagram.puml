@@ -2,7 +2,6 @@
 'https://plantuml.com/activity-diagram-beta
 
 start
-:User selects the calendar tab;
 :User selects a navigation feature;
 if () then ([feature is Button])
   if () then([Next Button])

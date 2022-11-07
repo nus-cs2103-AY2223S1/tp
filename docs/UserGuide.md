@@ -9,9 +9,9 @@ title: User Guide
 
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Introduction
-Financial Advisor Planner (FAP) is a **desktop app for Financial Advisors (FA) to manage their clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FAP can get your client management tasks done faster than traditional GUI apps. With FAP, you can now 
+Financial Advisor Planner (FAP) is a **desktop app for Financial Advisors (FA) to manage their clients, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, FAP can get your client management tasks done faster than traditional GUI apps. With FAP, you can now schedule your appointments, manage and find clients easily. 
 
-## 2. About
+## 2. Using the User Guide
 
 ### 2.1 Navigating the User Guide
 
@@ -21,7 +21,8 @@ This section aims to help you navigate the user guide.
 2. [Section 3, Quick start](#3-quick-start) has been provided to help you set up **Financial Advisor Planner**.
 3. [Section 4, Prefixes](#4-prefixes) has been provided where the prefixes are documented.
 4. [Section 5, Features](#5-features) has been provided where the main features and their commands are documented.
-5. [Section 8, Glossary](#8-glossary) has been provided where certain terms that are used in this document are defined.
+5. [Section 7, Command Summary](#7-command-summary) has been provided where the commands are summarised in a list for easy reference.
+6. [Section 8, Glossary](#8-glossary) has been provided where certain terms that are used in this document are defined.
 
 ### 2.2 Tips for reading the User Guide
 
@@ -60,7 +61,7 @@ Symbol/Syntax        | Meaning
 
    * **`sort KEYWORD`** : Sorts the contacts based on the `KEYWORD`.
 
-   * **`find`** `n/John`: looks for contact that matches keyword ‘John’
+   * **`find`** `n/John`: looks for contact that matches name (Prefix - n/) ‘John’
 
    * **`exit`** : Exits the app.
 
@@ -163,7 +164,7 @@ Adds a client to the list of clients.
 
 Format: `add n/NAME p/PHONE e/EMAIL a/ADDRESS i/YEARLY_INCOME m/MONTHLY_CONTRIBUTIONS r/RISK_APPETITE ip/INVESTMENT_PLAN c/CLIENT_TYPE [t/TAG]…​`
 
-* This command is case-sensitive for the parameter NAME.
+* This command is case-sensitive for the parameters NAME, EMAIL, ADDRESS, and INVESTMENT_PLAN.
 * After each execution of add command, the displayed contact list resets to the original contact list.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** 
@@ -181,7 +182,7 @@ Do note that t/TAG is an OPTIONAL TAG, the rest are compulsory. That is to say t
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$200000 m/$5000 c/POTENTIAL r/Medium ip/Savings Plan`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/200000 m/5000 c/POTENTIAL r/Medium ip/Savings Plan`
 
 #### 5.1.3 Listing all clients : `list`
 
@@ -197,7 +198,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [
 
 * Edits the client at the specified `INDEX`. The index refers to the index number shown in the displayed client list. The index **must be a positive integer** 1, 2, 3,…​
 * At least one of the fields must be provided.
-  * After each execution of edit command, the displayed contact list resets to the original contact list.
+* After each execution of edit command, the displayed contact list resets to the original contact list.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
 * You can remove all the client’s tags by typing `t/` without
@@ -207,9 +208,9 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st client to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd client to be `Betsy Crower` and clears all existing tags.
 
-#### 5.1.5 Filtering clients by keyword: `find`
+#### 5.1.5 Find clients by keyword: `find`
 
-Finds clients whose names contain any of the given keywords.
+Finds clients who match the find criteria.
 
 Format: `find PREFIX/ KEYWORD [MORE_KEYWORDS]
 [n/ NAME [MORE_NAMES]]
@@ -227,9 +228,6 @@ Refer to [Prefixes](#4-prefixes) for the types of prefixes.
 * The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
 * Only full words will be matched e.g. Han will not match Hans
 * Clients matching at least one keyword will be returned (i.e. OR search). e.g. Hans Bo will return Hans Gruber, Bo Yang
-* The search also applies to other information available such as mobile number or policy numbers.
-  E.g John Doe has the mobile number 87438807
-    * find p/87438807 will return John Doe
 * The search can be limited to certain categories by using find [CATEGORY] KEYWORD instead.
   * E.g find p/87438807 will return John Doe
 
@@ -248,7 +246,7 @@ Deletes the specified client from the list of clients.
 Format: `delete INDEX`
 
 * Deletes the client at the specified `INDEX`.
-* The index refers to the index number shown in the displayed client list.
+* The index refers to the index number shown in the current displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -257,10 +255,14 @@ Examples:
 
 #### 5.1.7 Sorting: `sort KEYWORD`/  `sort KEYWORD desc`
 
-* Sorts the contacts shown in the list of clients by alphabetical order. It is ascending by default.
+* Sorts the contacts shown in the list of clients according to given KEYWORD. It is ascending by default.
 * You can sort the contacts in descending order by adding `desc` behind the `KEYWORD`.
 * The `KEYWORD` is case-insensitive. e.g. sort NaME is the same as sort name. However, do note that the command word sort is case sensitive and must be in lower case.
-
+* Sort format:
+  * `name` sorts by alphabetical order
+  * `appt` sorts by date and time
+  * `risk` sorts from low to high
+  * `income` & `monthly` sorts by specified order (<, > or =)
 
 Format: sort `KEYWORD` / sort `KEYWORD desc`
 
@@ -301,7 +303,7 @@ Also, the appointment details will be added to the calendar.
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 <br>
 
-* DATE_AND_TIME has the format `dd-MM-yyyy HH:mm` (e.g "01-03-2022 18:00" represents 1st March 2022, 6:00 PM)
+* DATE_AND_TIME has the format `dd-mm-yyyy hh:mm` (e.g "01-03-2022 18:00" represents 1st March 2022, 6:00 PM)
 * Month, Day, Hour, Minutes can only take in a 2 digit number
 * Year can only take in a 4 digit number
 </div>
@@ -450,16 +452,17 @@ Action | Format, Examples
 --------|------------------
 **Add client** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/YEARLY_INCOME r/RISK_APPETITE m/MONTHLY_CONTRIBUTIONS c/CLIENT_TYPE [t/TAG]…​ ` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 i/60000 r/Low s/1000 t/friend t/colleague`
 **Add Appointment** | `aa INDEX d/DATE_AND_TIME l/LOCATION` <br> e.g., `aa 1 d/21-01-2023 12:30 l/Jurong Point, Starbucks`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [r/RISK_APPETITE] [m/MONTHLY_CONTRIBUTIONS] [c/CLIENT_TYPE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Edit Appointment** | `ea PERSON_INDEX.APPOINTMENT_INDEX [d/DATE_AND_TIME] [l/LOCATION]` <br> e.g., `ea 1.2 d/21-01-2023 12:30 l/NUS, TechnoEdge`
-**Delete Appointment** | `da PERSON_INDEX.APPOINTMENT_INDEX` <br> e.g, `da 1.2`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [i/YEARLY_INCOME] [r/RISK_APPETITE] [m/MONTHLY_CONTRIBUTIONS] [c/CLIENT_TYPE] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Exit** | `exit`
+**Delete Appointment** | `da PERSON_INDEX.APPOINTMENT_INDEX` <br> e.g, `da 1.2`
 **Find** | `find PREFIX/KEYWORD [MORE_KEYWORDS]` e.g., `find n/James Jake`
+**Sort** | `sort KEYWORD, sort KEYWORD desc`
 **List** | `list`
 **Help** | `help`
-**Sort** | `sort KEYWORD, sort KEYWORD desc` 
+**Exit** | `exit`
+
 
 ## 8. Glossary
 
