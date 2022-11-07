@@ -137,7 +137,7 @@ Shows the help guide.<br><br>
 Users can either read the User Guide from the Help Window, or choose to navigate to the URL in their browser to view
 the full User Guide.
 
-![help message](images/helpMessage.png)
+![help message](images/ug_help.png)
 
 Format: `help`
 
@@ -215,7 +215,7 @@ Optional arguments:
   * If no clients matches the search, an error message will be shown.
 * The `-i` flag allows the user to upload images of the property. A file chooser dialog will appear after running the command.<br>
 
-![file_chooser](images/fileChooser.png)
+![file_chooser](images/ug_add_property_image.png)
 
 </div>
 
@@ -406,7 +406,9 @@ Format: `select -p INDEX`
 * The `INDEX` refers to the index number shown in the currently displayed property directory. 
 * The `INDEX` **must be a positive integer** 1, 2, 3, … 
 * The GUI changes to display only the selected property in the property directory, while clients interested in that property are shown in the client directory. 
-    
+
+![select_property](images/ug_select_property.png)
+
 </div>
 
 Examples:
@@ -451,7 +453,7 @@ Optional arguments:
   * If no properties matches the search, an error message will be shown.
 * The `-i` flag allows the user to upload images of the client. A file chooser dialog will appear after running the command.<br>
 
-![file_chooser](images/fileChooser.png)
+![file_chooser](images/ug_add_client_image.png)
 
 </div>
 
@@ -517,6 +519,8 @@ Format: `find -c NAME [MORE_NAMES]`
 * The order of the keywords does not matter. e.g., `Tan Sean` will match `Sean Tan`.
 * Only complete strings will be matched e.g., `Sam` will not match `Samuel`.
 * Client profiles matching at least one keyword will be returned (i.e., `OR` search). e.g., `Sean Lee` will return `Sean Tan`, `Bob Lee`.
+
+![find_client](images/ug_find_client.png)
 
 </div>
 
