@@ -663,7 +663,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect `delete` commands to try: `delete`, `delete x`, etc. (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. Deleting a person while only some persons are shown
+1. Deleting a person while only some persons are displayed
 
     1. Prerequisites: Filter the persons list using commands such as `find` and `listdebtors`. One or more persons remaining.
 
@@ -673,7 +673,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a debt with valid inputs
 
-    1. Test cases: refer to UG for examples<br>
+    1. Prerequisites: There is at least 1 persons in the list.
+
+    1. Test cases: refer to UG for examples.<br>
        Expected: The corresponding debt is added to the person(s) in the list.
 
 1. Adding a debt with invalid inputs
@@ -740,25 +742,69 @@ testers are expected to do more *exploratory* testing.
 
 1. Clearing debts with valid inputs
 
-    1. Prerequisites: There are persons in the list.
+    1. Prerequisites: The first person in the list has 1 or more debts.
 
-    1. Test cases: `cleardebts 1`<br>
-       Expected: The first person in the list appears without any debts.
+    1. Test case: `cleardebts 1`<br>
+       Expected: All debts are removed from the first person.
    
     1. Other valid commands include any use of `cleardebts` with a correspondingly valid person index.<br>
-       Expected: The corresponding person in the list appears without any debts.
+       Expected: All debts are removed from the corresponding person in the list.
 
 1. Clearing debts with invalid inputs
 
-    1. Test case: `cleardebts 0`, `cleardebts 1 2`, `cleardebts`<br>
+    1. Test cases: `cleardebts 0`, `cleardebts 1 2`, `cleardebts`, etc.<br>
        Expected: No debts are removed. Error details shown in the status message (invalid format).
 
 1. Clearing debts from a person that does not exist
 
     1. Prerequisites: There are 3 persons in the list.
 
-    1. Test case: `cleardebts 4`, `cleardebts 5`, `cleardebts 6`<br>
+    1. Test cases: `cleardebts 4`, `cleardebts 5`, `cleardebts 6`, etc.<br>
        Expected: No debts are removed. Error details shown in the status message (invalid person index).
+
+### Marking debts
+
+1. Marking debts with valid inputs
+
+    1. Prerequisites: The first person in the list has unmarked debts.
+
+    1. Test cases: `mark 1 debt/1`, `mark 1 debt/1 2`<br>
+       Expected: The corresponding debt(s) of the first person are marked as paid.
+
+    1. Other valid commands include any use of `mark` with a correspondingly valid person index and debt index.<br>
+       Expected: The corresponding debt(s) of the corresponding person are marked as paid.
+
+1. Marking debts with invalid inputs
+
+    1. Test case: `mark 0`, `mark 1 debt/0`, `mark debt/2`, etc.<br>
+       Expected: No debts are marked. Error details shown in the status message (invalid format).
+
+1. Marking debts from a person that does not exist, or marking a debt that does not exist.
+
+    1. Prerequisites: There are 3 persons in the list, each having 1 debt.
+
+    1. Test case: `mark 4 debt/1`, `mark 1 debt/3`, `mark 2 debt/1 5`, etc.<br>
+       Expected: No debts are marked. Error details shown in the status message (invalid person/debt index).
+
+### Unmarking debts
+
+1. Similar to marking debts, but with persons having debts marked as paid initially, then attempting to mark them as unpaid.
+
+### Statement
+
+1. Requesting for statement when all persons are being displayed
+
+    1. Prerequisites: List all persons using the `list` command. At least 1 person in the list and the sum of debts is $100.
+
+    1. Test case: `statement`<br>
+       Expected: PayMeLah shows a statement showing you are owed $100 in total.
+
+1. Requesting for statement while only some persons are displayed
+
+    1. Prerequisites: Filter the persons list using commands such as `find` and `listdebtors`. At least 1 person in the list and the sum of debts is $50.
+
+    1. Test case: `statement`<br>
+       Expected: PayMeLah shows a statement showing you are owed $50 in total.
 
 ### Sorting
 
