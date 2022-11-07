@@ -4,12 +4,11 @@ import static coydir.logic.commands.CommandTestUtil.assertCommandFailure;
 import static coydir.logic.commands.CommandTestUtil.assertViewDepartmentCommandSuccess;
 import static coydir.testutil.TypicalPersons.getTypicalDatabase;
 
-import coydir.logic.commands.exceptions.CommandException;
-import coydir.logic.parser.ViewDepartmentCommandParser;
-import coydir.logic.parser.exceptions.ParseException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import coydir.logic.parser.ViewDepartmentCommandParser;
+import coydir.logic.parser.exceptions.ParseException;
 import coydir.model.Model;
 import coydir.model.ModelManager;
 import coydir.model.UserPrefs;

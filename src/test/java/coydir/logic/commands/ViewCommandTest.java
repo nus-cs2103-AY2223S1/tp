@@ -3,10 +3,8 @@ package coydir.logic.commands;
 import static coydir.logic.commands.CommandTestUtil.assertCommandFailure;
 import static coydir.logic.commands.CommandTestUtil.assertViewingCommandSuccess;
 import static coydir.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static coydir.testutil.Assert.assertThrows;
 import static coydir.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
-import coydir.commons.core.index.Index;
 import org.junit.jupiter.api.Test;
 
 import coydir.commons.core.Messages;
