@@ -319,7 +319,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the [`seedu.addressbook.commons`](https://github.com/AY2223S1-CS2103T-W17-2/tp/tree/master/src/main/java/seedu/pennywise/commons) package.
+Classes used by multiple components are in the [`seedu.pennywise.commons`](https://github.com/AY2223S1-CS2103T-W17-2/tp/tree/master/src/main/java/seedu/pennywise/commons) package.
 
 <p align="right">
     <a href="#top">Back to Top </a>
@@ -473,7 +473,7 @@ Below is a sequence diagram and explanation of how the EditCommand is executed.
 
 11. The `EditCommand` eventually creates a `CommandResult` instance and returns it to `LogicManager`.
 
-### View pie charts and line graphs
+### View Pie Charts and Line Graphs
 
 #### How the `view` command works
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The command syntax for view command is as follows:
@@ -488,7 +488,9 @@ The `ViewCommandParser` class is responsible for parsing the parameter received 
 as well as `GraphType` to the `ViewCommand` class.
 
 The `ViewCommand` class is responsible for filtering the entry list and generating the correct `GraphConfiguration`.
+
 The class diagram below shows the structure of `ViewCommand`.
+
 ![ViewCommandClassDiagram](images/ViewCommandClassDiagram.png)
 
 The `view` command will produce a category view with a pie chart or a daily view with a line graph. This is achieved with an optional
@@ -496,6 +498,7 @@ input `mo/MONTH`. If it is present, the entry list will be filtered by the speci
 a line graph will be displayed. Otherwise, the full list will be shown and a pie chart will be displayed.
 
 The activity diagram below illustrates the workflow described above when a user executes the `view` command.
+
 ![ViewActivityDiagram](images/ViewActivityDiagramBusiness.png)
 
 Given below is an example usage scenario and how the pie chart view mechanism behaves at each step.
@@ -518,7 +521,7 @@ the steps in **command execution** as well as **UI updates**.
 expenditure list based on `predicate` generated from the `viewEntriesDescriptor`.
 The `CommandResult`, containing the `graphConfiguration`, is returned to `LogicManager` and passed to `MainWindow`.
 
-6.`MainWindow` checks the `commandResult` which indicates a need to update graph. It then calls the `updateGraph` method which renders the graph according to the `graphConfiguration`.
+6. `MainWindow` checks the `commandResult` which indicates a need to update graph. It then calls the `updateGraph` method which renders the graph according to the `graphConfiguration`.
 
 7. In `updateGraph`, `LogicManager#getExpensePieChartData` calls `ModelManager#getPieChartData` which returns the `pieChartData`.
    It then creates a new `GraphPanel` with the `pieChartData` and add it to the UI.

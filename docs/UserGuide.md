@@ -137,6 +137,16 @@ this [link](https://www.freecodecamp.org/news/command-line-for-beginners/) to le
 
 6. Congrats! You are now ready to get started on supercharging your financial management flow!
 
+<div markdown="span" class="alert alert-info">:information_source: **For Mac users**
+
+When you first open up the application, you may encounter a warning that the application is from an unidentified developer.
+To resolve this issue, please [open up the "System Preferences" application](https://support.apple.com/en-is/guide/mac-help/mh15217/12.0/mac/12.0) in Mac and select "Security & Privacy".
+Then, allow the system to use PennyWise by clicking on the "Open Anyway" button as shown below.
+
+![Mac Unidentified Developer](images/ug/MacUnidentifiedDeveloper.png)
+
+</div>
+
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
 Curious about the various commands? Refer to the [Features](#features) below to find out more about each command.
 </div>
@@ -194,12 +204,14 @@ you still see the most important information about your budgeting. If details of
 
 - The Pie Chart Legend will be hidden should the application be of a smaller size. This ensures your categorical
   overview can still be seen at a glance!
+
   ![ChartLegend](images/ug/ChartLegend.png)
 
 2. Line Graph Dates
 
 - Certain Line Graph dates will be hidden should the application be of a smaller size. This ensures you can still view
   the trend of your entries easily.
+
   ![LineGraphDates](images/ug/LineGraphDates.png)
 
 </div>
@@ -441,6 +453,7 @@ The command format is provided below:
 
 - Example: `summary`
 - Expected:
+
     <pre>
        Total Expenditure: $154.49
        Total Income: $250.00
@@ -453,6 +466,7 @@ The command format is provided below:
 
 - Examples: `summary mo/2022-10`
 - Expected:
+
     <pre>
           Financials Summarized
           Total Expenditure: $4.20
