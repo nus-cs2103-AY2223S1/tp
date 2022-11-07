@@ -1,20 +1,6 @@
 @startuml
 !include style.puml
 
-' box Logic LOGIC_COLOR_T1
-' participant ":LogicManager" as LogicManager LOGIC_COLOR
-' participant ":FoodRemParser" as FoodRemParser LOGIC_COLOR
-' participant ":TagCommandParser" as TagCommandParser LOGIC_COLOR
-' participant ":TagCommand" as TagCommand LOGIC_COLOR
-' participant ":Item" as Item LOGIC_COLOR
-' participant ":CommandResult" as CommandResult LOGIC_COLOR
-
-' end box
-
-' box Model MODEL_COLOR_T1
-' participant ":Model" as Model MODEL_COLOR
-' end box
-
 [-> UiView : viewFrom("hello")
 activate UiView
 
