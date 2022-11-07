@@ -175,7 +175,7 @@ Originally there was a `UidManager` class which facilitated the generation and i
 
 The add patient mechanism is facilitated by `Patient`, `AddCommandParser`,`AddCommand`, `Model`, `AddressBook` and `UniquePersonList`.
 
-`Patient` extends from `Person`. A `Patient` have the `Person` attributes and a `dateTimeList`. This is shown in the diagram below:
+`Patient` extends from `Person`. A `Patient` have the `Person` attributes and a `dateSlotList`. This is shown in the diagram below:
 
 ![PatientClassDiagram](images/PatientClassDiagram.png)
 
@@ -185,7 +185,7 @@ The `AddCommand` will then be executed and add the `Patient` to the `Model`'s `A
 
 Given below is an example usage scenario and how the add patient mechanism behaves at each step.
 
-Step 1. The user executes `Add c/P n/Lily g/F p/91103813 a/ABC STREET 111 e/lily@gmail.com t/heartDisease dt/2022-10-10T15:20` command to add a new patient that requires nurse's home-visit.
+Step 1. The user executes `Add c/P n/Lily g/F p/91103813 a/ABC STREET 111 e/lily@gmail.com t/heartDisease ds/2022-10-10,3` command to add a new patient that requires nurse's home-visit.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The `c/P` is needed to indicate that the person added is a patient.`Name`, `Gender`, `Phone`, `Address`, `Email` is compulsory but `Tag` and `DateTime` has been made optional. The `n/`, `g/`, `p/` ... are the prefixes used to extract different details' field of the patient.
 
@@ -199,7 +199,7 @@ Step 4. The `AddCommand` will be executed and the patient will be added to the `
 
 The following sequence diagram shows how the add patient operation works:
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** For simplification purpose, `c/P n/Lily g/F p/91103813 a/ABC STREET 111 e/lily@gmail.com t/heartDisease dt/2022-10-10T15:20` will be written as userInput and all the parsed patient's details will be written as patientDetails.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** For simplification purpose, `c/P n/Lily g/F p/91103813 a/ABC STREET 111 e/lily@gmail.com t/heartDisease ds/2022-10-10,3` will be written as userInput and all the parsed patient's details will be written as patientDetails.
 
 </div>
 
@@ -215,25 +215,27 @@ The following activity diagram summarizes what happens when a user executes an a
 
 **Aspect: How to deal with duplication:**
 
-- **Alternative 1:** Check the name. If the name is the same, then shows duplicate error and that patient would not be added.
-
+- **Alternative 1:** Check the name. If the name is the same, then show duplicate error and do not proceed to add the patient.
   - Pros: Easy to implement.
   - Cons: If the 2 different patients have the exact same name, the user would not be able to add that patient.
 
-- **Alternative 2:** Check the name. If the name is the same, then shows duplicate warning but that patient would still be added.
+- **Alternative 2:** Check the name. If the name is the same, then show duplicate warning but that patient would still be added.
   - Pros: If the 2 different patients have the exact same name, the user would still be able to add that patient. At the same time, it will show potential duplication to the user.
   - Cons: The user have to manually check whether it is the same person and delete it if it is a duplication.
   - Cons: The user might miss out the duplicated patients.
 
+- **Alternative 3 (Chosen):** Check the similarity levels by comparing attributes of both people. If there is only a zero or one field difference between the two, then show duplicate warning but that patient would still be added
+  - Pros: By comparing similarity levels, it reduces the chances of actually having a duplicate, which means that if the warning appears then there is a high chance that it is an actual duplicate, not a false duplicate with only same name.
+  - Cons: The user would still have to manually delete if it is a duplicate.
+  
 **Aspect: The home-visit `DateTime` input:**
 
 - **Alternative 1:** The `DateTime` input is in the format of `YYYY-MM-DDTHH:mm` and it can in any time.
-
   - Pros: More specific date and time recorded for the patient.
   - Pros: More flexible in the home visit date and time that a patient can choose.
   - Cons: It is hard to determine/check time crashes when assigning a home-visit `DateTime` to a nurse.
 
-- **Alternative 2:** The `DateTime` input will be in the format of `YYYY-MM-DD` and slot. The slot will have fixed starting time and fixed duration.
+- **Alternative 2 (Chosen):** The `DateTime` input will be in the format of `YYYY-MM-DD` and slot. The slot will have fixed starting time and fixed duration.
   - Pros: It is easy to determine/check time crashes when assigning a home-visit `DateTime` slot to a nurse.
   - Cons: Less flexible in the home visit date and time that a patient can choose.
 

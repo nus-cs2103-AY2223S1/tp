@@ -13,13 +13,19 @@ Class ModelManager
 Class UserPrefs
 
 Class UniquePersonList
+Class BasePerson
 Class Person
+Class Patient
+Class Nurse
+Class NextOfKin
+Class Physician
 Class Address
 Class Email
 Class Name
 Class Phone
 Class Tag
-
+Class DateSlot
+Class HomeVisit
 }
 
 Class HiddenOutside #FFFFFF
@@ -36,11 +42,24 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 AddressBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
+BasePerson *--> Name
+BasePerson *--> Phone
+BasePerson *--> Email
+
+Person .up.|> BasePerson
 Person *--> Address
 Person *--> "*" Tag
+
+Physician .up.|> BasePerson
+NextOfKin .up.|> BasePerson
+
+Patient .up.|> Person
+Patient *--> "*" DateSlot
+Patient *--> "0..1" Physician
+Patient *--> "0..1" NextOfKin
+
+Nurse .up.|> Person
+Nurse *--> "*" HomeVisit
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
