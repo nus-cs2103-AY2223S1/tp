@@ -11,15 +11,17 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added the main representation of our user's patrons, i.e: The `Client` class. This is an extension from `Person`.
   * Justification: This feature allows the user to store information specific to financial advisors.
-  * Highlights:  It encapsulates extensions from the original AB3's person model. You can store birthdays, add income, RiskAppetite levels etc.
-      * Updated Commands to add/edit/delete a new client
+  * Highlights:  It encapsulates extensions from the original AB3's person model. 
+    * The user can store a `Birthday`, update `RiskAppetite` levels and add a client's yearly `Income`.
+    * Updated Commands to add/edit/delete the new person class.
 
 
 * **New Feature**: Added the main representation of a meeting with the user and his `Client` i.e: The `Event` class.
   * Justification: This feature allows the user to keep track of his meetings with his clients.
-  * Highlights: Meetings with a client are recording as an `Event`. Includes a `Description` and `Date` with start and end times.
+  * Highlights: Meetings with a client are recording as an `Event`. Includes a `Description` and `Date` with start and end times, encapsulated as a `Duration`.
     * Used by Reuben to make the `calendar` feature of the app.
   * Credits: Similar model implementation to AB3's `Person` class
+
 
 * **Code contributed**: [Link here!](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=cowlinn&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
@@ -36,6 +38,7 @@ Given below are my contributions to the project.
   * `Add/Delete` an Event
   * Updated save functionality for `Event` 
   * Updates to Parser to parse inputs for both the updated `Person` and `Event` classes.
+  * Updated original `Person` test cases to fit updated attributes
 
 * **Documentation**:
   * User Guide:
@@ -54,7 +57,8 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): 6
-    * Specific PR examples: #193, #81, #203, #172
+    * Specific PR examples: [#193](https://github.com/AY2223S1-CS2103T-W13-2/tp/pull/193), [#81](https://github.com/AY2223S1-CS2103T-W13-2/tp/pull/81), 
+    [#203](https://github.com/AY2223S1-CS2103T-W13-2/tp/pull/203), [#172](https://github.com/AY2223S1-CS2103T-W13-2/tp/pull/172)
   * Bugs reported: Mainly for UserGuide / Developer Guide / Testing SUTs
   * Gave more than average comments for all peer-review related activities: E.g: PE-D, iP feedback etc.
 
