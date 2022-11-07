@@ -19,7 +19,7 @@ public class AddModuleCommand extends Command {
             + "Parameters: "
             + PREFIX_MOD_CODE + "MODULE_CODE "
             + PREFIX_MOD_NAME + "MODULE_NAME "
-            + PREFIX_MOD_CREDIT + "MODULAR_CREDIT\n"
+            + PREFIX_MOD_CREDIT + "MODULE_CREDIT\n"
             + "Example: " + "m " + COMMAND_WORD + " " + PREFIX_MOD_CODE + "CS2100 "
             + PREFIX_MOD_NAME + "Computer organisation " + PREFIX_MOD_CREDIT + "4";
     public static final String MODULE_ADDED_SUCCESS = "Module has been added successfully!";

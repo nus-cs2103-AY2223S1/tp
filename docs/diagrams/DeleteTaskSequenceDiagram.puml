@@ -1,0 +1,80 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DeleteTaskCommandParser" as DeleteTaskCommandParser LOGIC_COLOR
+participant ":DeleteTaskCommand" as DeleteTaskCommand LOGIC_COLOR
+participant ":MarkCommand" as MarkCommand LOGIC_COLOR
+participant "taskToDelete:Task" as TargetTask LOGIC_COLOR
+participant "markedTask:Task" as MarkedTask LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+
+[-> LogicManager : execute("t del 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser: parseCommand("mark 1")
+activate AddressBookParser
+
+create DeleteTaskCommandParser
+AddressBookParser -> DeleteTaskCommandParser
+activate DeleteTaskCommandParser
+
+DeleteTaskCommandParser --> AddressBookParser
+deactivate DeleteTaskCommandParser
+
+AddressBookParser -> DeleteTaskCommandParser : parse("1")
+activate DeleteTaskCommandParser
+
+create DeleteTaskCommand
+DeleteTaskCommandParser -> DeleteTaskCommand
+activate DeleteTaskCommand
+
+DeleteTaskCommand --> DeleteTaskCommandParser
+deactivate DeleteTaskCommand
+
+DeleteTaskCommandParser --> AddressBookParser
+deactivate DeleteTaskCommandParser
+
+DeleteTaskCommandParser -[hidden]-> AddressBookParser
+destroy DeleteTaskCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> DeleteTaskCommand: execute()
+activate DeleteTaskCommand
+
+DeleteTaskCommand -> Model : getFilteredTaskList().get(targetIndex.getZeroBased())
+activate Model
+
+Model --> DeleteTaskCommand : taskToDelete
+deactivate Model
+
+DeleteTaskCommand -> Model : deleteTask(taskToDelete)
+activate Model
+
+Model --> DeleteTaskCommand
+deactivate Model
+
+create CommandResult
+DeleteTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteTaskCommand
+deactivate CommandResult
+
+DeleteTaskCommand --> LogicManager: result
+deactivate DeleteTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

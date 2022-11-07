@@ -378,7 +378,6 @@ The following activity diagram summarizes what happens when MarkCommand is execu
 The `t edit` command allows users to update the specified task with the fields provided. The provided fields will replace the existing fields.
 
 #### How does the feature work
-
 The edit task feature is currently implemented through the `EditTaskCommand` which extends the abstract class `Command`.
 A copy of the task to be edited will be created, with its existing `MODULE` and `DESCRIPTION` replaced with the new
 values provided. This edited task will then replace the
@@ -421,6 +420,52 @@ The following activity diagram summarizes what happens when EditTaskCommand is e
 |  ![EditTaskActivityDiagram](images/EditTaskActivityDiagram.png)  |
 |:----------------------------------------------------------------:|
 |        Activity diagram of EditTaskCommand                       |
+
+### Delete Task Command
+
+####Command Format
+`t del INDEX` where `INDEX` is the index (shown in the displayed task list) of the task to be deleted.
+
+####What is the feature about
+The `t del` command allows users to delete a specific task from the displayed task list.
+
+####How does the feature work
+The delete task feature is currently implemented through the `DeleteTaskCommand` which extends the abstract class `Command`.
+The task to be deleted will be retrieved from the `Model` based on the `INDEX` given. This task will then be deleted from the
+the `DistinctTaskList`.
+
+####UML diagrams
+Shown below is a sequence diagram of what occurs when the execute method of LogicManager is invoked.
+
+| ![DeleteTaskSequenceDiagram](images/DeleteTaskSequenceDiagram.png) |
+|:------------------------------------------------------------------:|
+|               Sequence diagram of DeleteTaskCommand                |
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `DeleteTaskCommandParser` and `DeleteTaskCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifelines reach the end of the diagram.
+</div>
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** If the command fails, `Model#deleteTask()` will not be called, so the task list will not change. If so, `DeleteTaskCommand` will return an error to the user rather than attempting to perform the command.
+</div>
+
+**Sequence of actions made when `execute` method of `LogicManager` is invoked**
+
+1. The user types the `t del 1` command.
+2. The `execute()` method of the `LogicManager` is called.
+3. The `LogicManager` then calls `AddressBookParser#parseCommand()` which parses `t del 1`, creating a `DeleteTaskCommandParser` object.
+4. The `AddressBookParser` calls `DeleteTaskCommandParser#parse()` which parses `1` and creates a `DeleteTaskCommand` object with an `Index` object storing the target index `1`.
+5. Then, the `LogicManager`calls `DeleteTaskCommand#execute()`.
+6. The `DeleteTaskCommand` retrieves the task at the `Index`, which is the first task in the filtered task list, from the `Model`.
+7. The `DeleteTaskCommand` command calls `Model#deleteTask()` to delete the `taskToDelete`.
+
+The following activity diagram summarizes what happens when DeleteTaskCommand is executed
+
+| ![DeleteTaskActivityDiagram](images/DeleteTaskActivityDiagram.png) |
+|:------------------------------------------------------------------:|
+|               Activity diagram of DeleteTaskCommand                |
 
 ### Link Exam feature
 
