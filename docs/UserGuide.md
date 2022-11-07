@@ -368,9 +368,7 @@ Examples:
 | Lecture Zoom Link  | Zoom link of a lecture                            | lz/        | ✓        | Must be a valid [URL](#url) which begins with https://                     |           
 | Tutorial Details   | Details of a tutorial, e.g. location and time     | t/         | ✓        |                                                                            |          
 | Tutorial Zoom Link | Zoom link of a tutorial                           | tz/        | ✓        | Must be a valid [URL](#url) which begins with https://                     |           
-| Assignment Details | Details of an assignment, e.g. title and due date | a/         | ✓        | Should only contain [alphanumeric](#alphanumeric) characters and spaces.   |     
-
-[Back to top](#socompiler-user-guide)
+| Assignment Details | Details of an assignment, e.g. title and due date | a/         | ✓        | Should only contain [alphanumeric](#alphanumeric) characters and spaces.   |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -420,6 +418,8 @@ Examples:
 **A**: We do not wish to restrict your freedom by restricting those fields. Do check that the information you input is accurate.
 
 [Back to top](#socompiler-user-guide)
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
