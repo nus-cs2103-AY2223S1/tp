@@ -325,11 +325,11 @@ The following activity diagram shows what happens when a user executes a `addtas
 
 #### About this feature
 The add internship remark feature allows users to add a remark to his/her internship interview information via the command
-`remark` `INDEX` `r/`.
+`remark` `r/`.
 
 #### How it is implemented
 The implemented `remark` command is facilitated by `RemarkCommand` and `RemarkCommandParser`. It enables users to add a Remark to their internship information.
-It uses the `get(int INDEX)` on the list of internships received from `getFilteredInternshipList()` which is exposed to the `Model` interface as `Model#getFilteredInternshipList()` to
+It uses the `get(0)` on the list of internships received from `getSelectedInternshipList()` which is exposed to the `Model` interface as `Model#getSelectedInternshipList()` to
 get an Internship Object. A new Internship object is then created with the new remark. Then the`InTrack#setInternship(Internship target, Internship editedInternship)` which is exposed in the Model interface as
 `Model#setInternship(Internship target, Internship editedInternship)`, is used to replace the old Internship panel with the new one.
 
@@ -337,7 +337,7 @@ get an Internship Object. A new Internship object is then created with the new r
 Given below is how the remark mechanism behaves at each step.
 
 #### Parsing User input
-Step 1. The user inputs the `remark` command  and provide the `INDEX` of the internship the user wants to add the remark to, the `r/` prefix and finally the `REMARK_CONTENT`
+Step 1. The user inputs the `remark` command  and the `r/` prefix and finally the `REMARK_CONTENT`
 that he/she wants to add.
 
 Step 2. The 'InTrackParser' then parses the user input and checks if the command word and arguments are correct before creating a new
@@ -354,11 +354,13 @@ Step 4. If the format is correct, `RemarkCommandParser` will create a `RemarkCom
 
 Step 5. The `LogicManager` executes the `RemarkCommand`.
 
-Step 6. The `RemarkCommand` obtains a list of `Internship`s via the `getFilteredInternshipList()` method
-which is exposed to the `Model` interface as `Model#getFilteredInternshipList()`
+Step 6. The `RemarkCommand` obtains a list of `Internship`s via the `getSelectedInternshipList()` method
+which is exposed to the `Model` interface as `Model#getSelectedInternshipList()`.
 
 Step 7. The `RemarkCommand` obtains the `Internship` object that the user wants to add the remark to via the
-`get(int INDEX)` method from list of `Internship`s.
+`get(0)` method from list of `Internship`s.
+
+A `CommandException` will be thrown if an internship is not selected.
 
 Step 8. The `RemarkCommand` then creates a new `Internship` object with the same variables as the old `Internship` except for the
 `REMARK_CONTENT` that the user has input.

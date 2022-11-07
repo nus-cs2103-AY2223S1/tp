@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("remark 1 r/example")
+[-> LogicManager : execute("remark r/example")
 activate LogicManager
 
-LogicManager -> InTrackParser : parseCommand("remark 1 r/example")
+LogicManager -> InTrackParser : parseCommand("remark r/example")
 activate InTrackParser
 
 create RemarkCommandParser
@@ -26,7 +26,7 @@ activate RemarkCommandParser
 RemarkCommandParser --> InTrackParser
 deactivate RemarkCommandParser
 
-InTrackParser -> RemarkCommandParser : parse("1 r/example")
+InTrackParser -> RemarkCommandParser : parse("r/example")
 activate RemarkCommandParser
 
 create RemarkCommand
@@ -47,7 +47,7 @@ destroy RemarkCommandParser
 LogicManager -> RemarkCommand : execute()
 activate RemarkCommand
 
-RemarkCommand -> Model : getFilteredInternshipList()
+RemarkCommand -> Model : getSelectedInternshipList()
 activate Model
 
 Model --> RemarkCommand

@@ -46,6 +46,7 @@ Given below are my contributions to the project.
     * Justification: This is to allow users to delete tags they no longer want or need from applications.
 
 * **Project management**:
+    * Ideation for user stories and features.
     * Created Milestone v1.1 and created some issues for the team.
     * Created  the tags to be used for labelling issues.
     * Helped to write some parts of the demo UG including taking screenshots of application.
