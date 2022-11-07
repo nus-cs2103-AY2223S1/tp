@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
+import java.util.function.Predicate;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -44,6 +45,13 @@ public class AddAssignmentsCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        Predicate<Person> predicate = new Predicate<Person>() {
+            @Override
+            public boolean test(Person person) {
+                return true;
+            }
+        };
+        model.updateFilteredPersonList(predicate);
         List<Person> lastShownList = model.getFilteredPersonList();
         int numOfPeople = lastShownList.size();
         String relativePath = "./data/";
