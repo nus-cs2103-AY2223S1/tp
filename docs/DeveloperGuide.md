@@ -774,7 +774,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Setting mastery check result for a student
 
-1. Setting mastery check result for a student while the full student list is being shown
+1. Setting mastery check result for a student while the expanded student list is being shown
 
    1. Prerequisites: List all lessons using the `liststudent` command. There must be at least one student existing in the student list.
    
@@ -819,7 +819,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding a note to a lesson
 
-1. Adding a note to a lesson while full lesson list is being shown
+1. Adding a note to a lesson while expanded lesson list is being shown
 
     1. Prerequisites: List all lessons using the `listlesson` command. There must be at least one lesson existing in the lesson list.
    
@@ -831,7 +831,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a note from a lesson
 
-1. Deleting a note from a lesson while full lesson list is being shown
+1. Deleting a note from a lesson while expanded lesson list is being shown
 
     1. Prerequisites: List all lessons using the `listlesson` command. There must be at least one lesson with at least one note existing in the lesson list.
 
@@ -849,7 +849,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Adding participation for a student in a lesson
 
-1. Adding participation for a student in a lesson while the full lesson list is being shown.
+1. Adding participation for a student in a lesson while the expanded lesson list is being shown.
 
     1. Prerequisites: List all lessons using the `listlesson` command. There must be at least one lesson existing in the lesson list.
 
