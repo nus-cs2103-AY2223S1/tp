@@ -1,5 +1,6 @@
 ---
-layout: page title: PennyWise User Guide
+layout: page
+title: PennyWise User Guide
 ---
 
 ![PennyWise Logo](images/PennyWiseLogo.png)
@@ -164,6 +165,10 @@ incomes, you need to tell PennyWise the following:
 * Amount: what was the amount associated with this particular entry
 * Date: when was this entry logged in PennyWise
 * Category: how this entry is classified
+
+<div markdown="span" class="alert alert-info">:information_source: **Info:**
+In PennyWise, there is an upper limit $1 000 000 for amounts.
+</div>
 
 ### Familiarising yourself with the interface
 

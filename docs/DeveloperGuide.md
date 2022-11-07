@@ -627,14 +627,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-<p align="right">
-    <a href="#top">Back to Top </a>
-</p>
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -665,7 +657,7 @@ In particular, this encompasses:
 ### Product scope
 
 Here, we share the target user profile and the value proposition of PennyWise, which can aid you in having a better
-understanding of how our features _fit together__ a cohesive product and how it matches our target user.
+understanding of how our features __fit together__ a cohesive product and how it matches our target user.
 
 **Target user profile**:
 
@@ -915,8 +907,6 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Adding an entry
 
 1. Adding an entry while all entries are being shown
@@ -1000,16 +990,6 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect delete commands to try: `summary x`, `...` (where x is a string that does not follow the command format)<br>
        Expected: Error details shown in the status message.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
 
 <p align="right">
     <a href="#top">Back to Top </a>
