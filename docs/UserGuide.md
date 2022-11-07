@@ -12,29 +12,29 @@ patient bills for the family clinic.
 ---
 
 ## Features
-* [Add a patient (addpatient)](#111-add-a-patient-addpatient-ap)
-* [Add an appointment of a patient (addappointment)](#112-add-an-appointment-of-a-patient-addappointment-aa)
-* [Add a bill of an appointment (addbill)](#113-add-a-bill-of-an-appointment-addbill-ab)
-* [Edit a patient (editpatient)](#121-edit-a-patient-editpatient-ep)
-* [Edit an appointment of a patient (editappointment)](#122-edit-an-appointment-of-a-patient-editappointment-ea)
-* [Edit a bill of an appointment (editbill)](#123-edit-a-bill-of-an-appointment-editbill-eb)
-* [Find patient(s) (findpatient)](#131-find-patients-findpatient-fp)
-* [Find appointment(s) (findappointment)](#132-find-appointments-findappointment-fa)
-* [Find bill(s) (findbill)](#133-find-bills-findbill-fb)
-* [Sort patients (sortpatient)](#141-sort-patients-sortpatient-sop)
-* [Sort appointments (sortappointment)](#142-sort-appointments-sortappointment-soa)
-* [Sort bills (sortbill)](#143-sort-bills-sortbill-sob)
-* [Select a patient (selectpatient)](#151-select-a-patient-selectpatient-slp)
-* [Select an appointment (selectappointment)](#152-select-an-appointment-selectappointment-sla)
-* [Set a bill to be paid (setpaid)](#161-set-bill-as-paid-setpaid-sp)
-* [Set a bill to be unpaid (setunpaid)](#162-set-bill-as-unpaid-setunpaid-sup)
-* [List all patients, bills and appointments (list)](#17-list-list-ls)
-* [Delete a patient (deletepatient)](#181-delete-a-patient-deletepatient-dp)
-* [Delete an appointment (deleteappointment)](#182-delete-an-appointment-of-a-patient-deleteappointment-da)
-* [Delete a bill (deletebill)](#183-delete-a-bill-of-an-appointment-deletebill-db)
-* [Undo previous command (undo)](#19-undo-undo)
-* [Redo previous command (redo)](#110-redo-redo)
-* [Clear all data (clear)](#111-clear-clear)
+* [Add a patient (addpatient, ap)](#111-add-a-patient-addpatient-ap)
+* [Add an appointment of a patient (addappointment, aa)](#112-add-an-appointment-of-a-patient-addappointment-aa)
+* [Add a bill of an appointment (addbill, ab)](#113-add-a-bill-of-an-appointment-addbill-ab)
+* [Edit a patient (editpatient, ea)](#121-edit-a-patient-editpatient-ep)
+* [Edit an appointment of a patient (editappointment, ea)](#122-edit-an-appointment-of-a-patient-editappointment-ea)
+* [Edit a bill of an appointment (editbill, eb)](#123-edit-a-bill-of-an-appointment-editbill-eb)
+* [Find patient(s) (findpatient, fp)](#131-find-patients-findpatient-fp)
+* [Find appointment(s) (findappointment, fa)](#132-find-appointments-findappointment-fa)
+* [Find bill(s) (findbill, fb)](#133-find-bills-findbill-fb)
+* [Sort patients (sortpatient, sop)](#141-sort-patients-sortpatient-sop)
+* [Sort appointments (sortappointment, soa)](#142-sort-appointments-sortappointment-soa)
+* [Sort bills (sortbill, sob)](#143-sort-bills-sortbill-sob)
+* [Select a patient (selectpatient, slp)](#151-select-a-patient-selectpatient-slp)
+* [Select an appointment (selectappointment, sla)](#152-select-an-appointment-selectappointment-sla)
+* [Set bill as paid (setpaid, sp)](#161-set-bill-as-paid-setpaid-sp)
+* [Set bill as unpaid (setunpaid, sup)](#162-set-bill-as-unpaid-setunpaid-sup)
+* [List (list, ls)](#17-list-list-ls)
+* [Delete a patient (deletepatient, dp)](#181-delete-a-patient-deletepatient-dp)
+* [Delete a patient's appointment (deleteappointment, da)](#182-delete-an-appointment-of-a-patient-deleteappointment-da)
+* [Delete the bill of an appointment (deletebill, db)](#183-delete-a-bill-of-an-appointment-deletebill-db)
+* [Undo (undo)](#19-undo-undo)
+* [Redo (redo)](#110-redo-redo)
+* [Clear (clear)](#111-clear-clear)
 * [Exit the program (exit)](#112-exit-exit)
 * [Help (help)](#113-help-help)
 * [Save the data](#114-save-the-data)
@@ -601,7 +601,7 @@ After:
 
 <img src="images/ug/deletecommand/dp2.png">
 
-### 1.8.2 Delete an appointment of a patient `deleteappointment`, `da`
+### 1.8.2 Delete a patient's appointment `deleteappointment`, `da`
 
 Deletes an appointment by the index number of the appointment in the list.
 
@@ -628,7 +628,7 @@ After:
 
 <img src="images/ug/deletecommand/da2.png">
 
-### 1.8.3 Delete a bill of an appointment `deletebill`, `db`
+### 1.8.3 Delete the bill of an appointment `deletebill`, `db`
 
 Deletes a bill by the index number of the bill in the list.
 
@@ -777,4 +777,4 @@ HealthContact data are saved as a JSON file `[JAR file location]/data/healthcont
 - Try opening the application by running the command `java -jar HealthContact.jar` in the command prompt.
 
 3. Q: What do I do if the data on the application panels are too long and are partially hidden by "..."?
-- Use select commands to view the details or expand the window.
+- Use select commands to view the details or expand the application window.
