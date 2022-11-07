@@ -173,7 +173,7 @@ When you first open up the application, this is the *default view*, which shows 
 
 ![UserInterfaceExplanation](images/ug/UserInterfaceExplanation.png)
 
-|                                       `Component`                                        |                                                                      `Explanation`                                                                      |
+|                                        Component                                         |                                                                       Explanation                                                                       |
 |:----------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------:|
 |     ![](https://img.shields.io/static/v1?label=&message=List%20Display&color=862e9c)     |          Where you view your entry lists (Expenditure or Income) <br> This can be filtered by the [`view`](#view-entries-by-category) command           |
 |    ![](https://img.shields.io/static/v1?label=&message=Graph%20Display&color=5c940d)     | Where you view your entries in a graphical overview (Pie Chart or Line Graph) <br> This can be modified by the [`view`](#view-entries-by-month) command |
@@ -257,7 +257,7 @@ For **ALL** entries, categories are <ins>COMPULSORY</ins> and every entry can on
 following table lists the `Expenditure` and `Income` entries categories. The category names are <ins>
 case-insensitive</ins>. E.g. `Food` is same as `food`.
 
-|   `Expenditure`   |    `Income`     |
+|    Expenditure    |     Income      |
 |:-----------------:|:---------------:|
 |     **Food**      |   **Salary**    |
 |   **Groceries**   |  **Allowance**  |
@@ -617,22 +617,14 @@ out for our future software updates!
 
 | Action              | Format, Examples                                                                                                                                        |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **
-Add**             | `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY` <br> e.g. `add t/e d/Lunch a/15.60 da/10-10-2022 c/Food`                                   |
-| **
-Delete**          | `delete INDEX_OF_ENTRY t/ENTRY_TYPE` <br> e.g. `delete 2 t/e`                                                                                           |
-| **
-Edit**            | `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`<br> e.g. `edit 2 t/i a/150.00 da/22-10-2022` |
-| **
-Summary**         | `summary [mo/MONTH]`<br> e.g. `summary mo/2022-09`                                                                                                      |
-| **View (
-Category)** | `view t/ENTRY_TYPE` <br> e.g. `view t/e`                                                                                                                |
-| **View (
-Month)**    | `view t/ENTRY_TYPE mo/MONTH` <br> e.g. `view t/i mo/2022-10`                                                                                            |
-| **
-Clear**           | `clear`                                                                                                                                                 |
-| **
-Exit**            | `exit`                                                                                                                                                  |
+| **Add**             | `add t/ENTRY_TYPE d/DESCRIPTION a/AMOUNT da/DATE c/CATEGORY` <br> e.g. `add t/e d/Lunch a/15.60 da/10-10-2022 c/Food`                                   |
+| **Delete**          | `delete INDEX_OF_ENTRY t/ENTRY_TYPE` <br> e.g. `delete 2 t/e`                                                                                           |
+| **Edit**            | `edit INDEX_OF_ENTRY t/ENTRY_TYPE [d/EDITED_DESCRIPTION a/EDITED_AMOUNT da/EDITED_DATE c/EDITED_CATEGORY]`<br> e.g. `edit 2 t/i a/150.00 da/22-10-2022` |
+| **Summary**         | `summary [mo/MONTH]`<br> e.g. `summary mo/2022-09`                                                                                                      |
+| **View (Category)** | `view t/ENTRY_TYPE` <br> e.g. `view t/e`                                                                                                                |
+| **View (Month)**    | `view t/ENTRY_TYPE mo/MONTH` <br> e.g. `view t/i mo/2022-10`                                                                                            |
+| **Clear**           | `clear`                                                                                                                                                 |
+| **Exit**            | `exit`                                                                                                                                                  |
 
 <p align="right">
     <a href="#top">Back to Top </a>
