@@ -39,6 +39,7 @@ title: Developer Guide
     * [File management](#file-management)
     * [Venue management](#venue-management)
     * [Quality-of-life](#quality-of-life)
+* [**Appendix: Effort**](#appendix-effort)
 
 ---
 
