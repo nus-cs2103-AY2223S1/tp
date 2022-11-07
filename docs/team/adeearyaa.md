@@ -45,6 +45,7 @@ This displays my code contributions for the project: [RepoSense link](https://nu
 #### Review/mentoring contributions
 - Reviewed a few PRs made by my teammates.
 - Merged a few PRs as well.
+
 #### Contributions beyond the project team
 - Reported an above average amount of bugs in the PE-D(12) 
 - Asked questions on the forum which ended up helping others who were in the same situation.
