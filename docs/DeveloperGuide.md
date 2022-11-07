@@ -2,6 +2,14 @@
 layout: page title: Developer Guide
 ---
 
+Developer Guide
+==========
+
+This developer guide is targeted at developers who see the value in this application and would like to further 
+improve on its design or implementation. This guide is also targeted at future maintainers of this application and 
+students who wish to use this application and understand how it works.
+
+
 * Table of Contents 
   * **[Acknowledgements](#acknowledgements)**
   * **[Setting up, getting started](#setting-up-getting-started)**
@@ -173,8 +181,7 @@ The `Model` component,
 
 ### Storage component
 
-**
-API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T08-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T08-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -239,6 +246,7 @@ Step 5. After successfully adding student to the student list, a `CommandResult`
 that the student has been successfully added.
 
 The following sequence diagram shows how the add student operation works:
+
 ![AddStuSequenceDiagram](images/AddStuSequenceDiagram.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddStuCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -251,11 +259,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How AddStu executes::**
 
-- **Alternative 1: Require user to key in response and attendance number in when adding student**
+- **Alternative 1**: Require user to key in response and attendance number in when adding student
     - Pros: More details of a student can be viewed right after adding a student
     - Cons: Troublesome for CS2103T TAs to add a student quickly as many details have to be keyed in if what they want
       is to just keep track of the students name and contact name.
-- **Alternative 2: Only name, telegram handle and email needs to be keyed in when adding student**
+- **Alternative 2**: Only name, telegram handle and email needs to be keyed in when adding student
     - Pros: Faster to add a student
     - Cons: CS2103T TA has to use another command to change the response and attendance number of the student.
 
@@ -294,11 +302,13 @@ Step 5. After successfully editing the response attribute, `AddResponseCommand` 
 `Ui`.
 
 The following sequence diagram shows how the add response feature is executed:
+
 ![AddResponseSequenceDiagram](images/AddResponseSequenceDiagram.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddResponseCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-The following activity diagram summarizes what happens when a user executes a new command:  
+The following activity diagram summarizes what happens when a user executes a new command:
+
 ![AddResponseActivityDiagram](images/AddResponseActivityDiagram.png)
 
 #### Design Considerations
@@ -350,6 +360,7 @@ after the `addq Why?` command executes to be saved in the `addressBook`.
 
 
 The following sequence diagram shows how the add question operation works:
+
 ![AddQSequenceDiagram](images/AddQSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a user executes a new `addq` command.
@@ -400,6 +411,7 @@ Step 5. After successfully editing the attendance attribute, `AttendanceCommand`
 `Ui`.
 
 The following sequence diagram shows how the attendance feature is executed.
+
 ![AttendanceSequenceDiagram](images/AttendanceSequenceDiagram.png)
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddStuCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -407,6 +419,7 @@ The following sequence diagram shows how the attendance feature is executed.
 ![AttendanceSequenceDiagramReferenceFrame](images/AttendanceSequenceDiagramReferenceFrame.png)
 
 The following activity diagram summarizes what happens when a user executes a new `attendance` command.
+
 ![AttendaceActivityDiagram](images/AttendanceActivityDiagram.png)
 
 #### Design Considerations
