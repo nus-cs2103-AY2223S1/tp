@@ -1,5 +1,6 @@
 package seedu.address.model.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -112,6 +113,19 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(DateSlot::new)
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * Returns a assigned dateSlots list.
+     */
+    public static List<DateSlot> getAssignedDateSlotsList(List<String> stringList) {
+        List<DateSlot> toBeUpdateDateSlotList = new ArrayList<>();
+        for (String s : stringList) {
+            String[] sArray = s.split(":");
+            toBeUpdateDateSlotList.add(new DateSlot(sArray[0], true, false,
+                    false, Long.parseLong(sArray[1])));
+        }
+        return toBeUpdateDateSlotList;
     }
 
 }

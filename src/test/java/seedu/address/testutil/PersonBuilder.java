@@ -178,6 +178,16 @@ public class PersonBuilder {
     }
 
     /**
+     * Parses the {@code List<String> assignedDateSlot} into a {@code List<DateSlot>} and
+     * set it to the {@code Person} that we are building.
+     * Applies only to Patient.
+     */
+    public PersonBuilder withAssignedDatesSlots(List<String> assignedDatesSlots) {
+        this.dateSlotList = SampleDataUtil.getAssignedDateSlotsList(assignedDatesSlots);
+        return this;
+    }
+
+    /**
      * Parses the {@code homeVisit} into a {@code List<HomeVisit>} and
      * set it to the {@code Person} that we are building.
      * Applies only to Nurse.
