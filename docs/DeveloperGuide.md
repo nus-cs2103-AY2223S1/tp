@@ -266,7 +266,7 @@ The following sequence diagram demonstrates the above operations (excluding the 
 The `view` command involves operations within the UI to display/hide the tutor details panel. The communication between the logic and UI classes is facilitated by the `CommandResult` class, where the following field has been added:
 - `CommandResult#isView` - Indicates if the current command is a `view` command.
 
-Given below is an example usage scenario when the user enters a `view` command in the command box and how the view mechanism behaves at each step (omitting the parsing details).
+Given below is an example usage scenario when the user enters a `view` command in the command box and how the view mechanism behaves at each step.
 
 Step 1: The user enters the command `view 1`.
 
