@@ -29,26 +29,8 @@ public class ViewScheduleCommandParser implements Parser<ViewScheduleCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewScheduleCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
 
-        if (trimmedArgs.isEmpty()) {
-            return new ViewScheduleCommand();
-        }
-
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_WEEKDAY, PREFIX_MODULE_OF_SCHEDULE);
-        if (!argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    ViewScheduleCommand.MESSAGE_USAGE));
-        }
-
-        Set<String> weekdaysList = ParserUtil.parseWeekdays(argMultimap.getAllValues(PREFIX_WEEKDAY));
-        Set<String> modulesList = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MODULE_OF_SCHEDULE));
-
-        ArrayList<String> keywords = new ArrayList<>();
-        keywords.addAll(weekdaysList);
-        keywords.addAll(modulesList);
-
-        return new ViewScheduleCommand(new ScheduleContainsKeywordsPredicate(keywords), modulesList);
+        return new ViewScheduleCommand();
     }
 
     /**
