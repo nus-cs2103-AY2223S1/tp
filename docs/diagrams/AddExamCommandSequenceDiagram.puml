@@ -26,7 +26,7 @@ activate AddExamCommandParser
 AddExamCommandParser --> AddressBookParser
 deactivate AddExamCommandParser
 
-AddressBookParser -> AddExamCommandParser: parse("addexam...")
+AddressBookParser -> AddExamCommandParser: parse(m/cs2...)
 activate AddExamCommandParser
 
 create AddExamCommand
