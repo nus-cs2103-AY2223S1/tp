@@ -128,9 +128,9 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidDob_throwsIllegalValueException() {
         JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, INVALID_EMAIL,
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL,
                         VALID_ADDRESS, VALID_GENDER, INVALID_DOB, VALID_UID);
-        String expectedMessage = Email.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Date.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 

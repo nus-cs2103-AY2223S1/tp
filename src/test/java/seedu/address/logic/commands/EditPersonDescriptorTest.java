@@ -52,12 +52,12 @@ public class EditPersonDescriptorTest {
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different dob -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withDob(VALID_DOB_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
-
         // different gender -> returns false
         editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withGender(VALID_GENDER_BOB).build();
+        assertFalse(DESC_AMY.equals(editedAmy));
+
+        // different dob -> returns false
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withDob(VALID_DOB_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }
