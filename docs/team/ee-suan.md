@@ -25,18 +25,18 @@ Given below are my contributions to the project.
 
 
 * **Enhancements to existing features**:
-    Added Weight as field for Exercise ([PR #51](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/51))
-    Added unit tests for Weight ([PR #63](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/63))
+    * Added Weight as field for Exercise ([PR #51](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/51))
+    * Added unit tests for Weight ([PR #63](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/63))
 
 * **Documentation**:
     * User Guide:
         * Added documentation for `:gen` command ([PR #129](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/129))
-        * Updated UML diagrams ([PR #213](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/213))
+        * Updated UML diagrams to reflect current implementation ([PR #213](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/213))
 
     * Developer Guide:
         * Added implementation and design details to support `:gen` command ([PR #104](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/104))
 
-* **Community**:
+* **Contribution to team-based tasks**:
      * Reviewed Team Member's PRs
         * Suggested alternative implementation to abide by Open-Closed Principle ([PR #100](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/100))
      * Provided ideas and contributed in discussions during weekly team meeting.
