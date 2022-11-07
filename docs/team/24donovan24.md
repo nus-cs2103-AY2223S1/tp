@@ -42,7 +42,7 @@ Given below are my contributions to the project.
         * Added implementation details for `:sort` command ([PR #101](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/101))
         * Added user stories, use cases and instructions for manual testing as per discussed by team ([PR #211](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/211))
 
-* **Community**:
+* **Contribution to team-based tasks**:
     * Reviewed Team Members' PRs.
     * Participated and contributed to weekly team meetings.
 
