@@ -870,7 +870,8 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case: `view 1`<br/>Expected: The list of clients panel is filtered to left only the first client in the original list. All transactions and remarks with first client is shown in the transaction list panel and remark list panel respectively.
     3. Test case: `view 0`<br/>Expected: List of clients panel is not filtered. Transactions panel and Remarks panel is not updated. Error details is shown in the `Application's Reply` panel.
-    4. Other incorrect view commands to try: `view abc`, `view x` (where x is larger than the client list size displayed)
+    4. Other incorrect view commands to try: `view abc`, `view x` (where x is larger than the client list size displayed)<br/>
+    Expected: Similar to previous.
 
 ### Deleting a client
 
@@ -884,7 +885,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete 0 m/client`<br>
       Expected: No client is deleted. Error details shown in the `Application's Reply` panel.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x m/client` (where x is larger than the client list size), `delete 1`<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x m/client` (where x is larger than the displayed client list size), `delete 1`<br>
       Expected: Similar to previous.
 
 ### Deleting a transaction
