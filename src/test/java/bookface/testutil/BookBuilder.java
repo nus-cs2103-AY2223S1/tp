@@ -4,7 +4,6 @@ import static bookface.testutil.TypicalDates.TYPICAL_DATE;
 
 import java.util.Date;
 
-import bookface.logic.parser.exceptions.ParseException;
 import bookface.model.book.Author;
 import bookface.model.book.Book;
 import bookface.model.book.Title;
@@ -63,7 +62,7 @@ public class BookBuilder {
     /**
      * Sets the {@code returnDate} of the {@code Book} that we are building.
      */
-    public BookBuilder withReturnDate() throws ParseException {
+    public BookBuilder withReturnDate() {
         this.returnDate = TYPICAL_DATE;
         return this;
     }

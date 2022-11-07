@@ -20,6 +20,10 @@ public class TypicalBooks {
             .withAuthor("Roger Smith").build();
     public static final Book GET_MOTIVATED = new BookBuilder().withTitle("Get Motivated")
             .withAuthor("Lim Chee Teck").build();
+    public static final Book CRYING_LOUD_LOAN = new BookBuilder().withTitle("Crying loud")
+            .withAuthor("Bill Smith").withReturnDate().build();
+    public static final Book YES_MAN_LOAN = new BookBuilder().withTitle("Yes Man")
+            .withAuthor("Iggy Teck").withReturnDate().build();
 
     private TypicalBooks() {} // prevents instantiation
 
@@ -37,6 +41,10 @@ public class TypicalBooks {
 
     public static List<Book> getTypicalBooks() {
         return new ArrayList<>(Arrays.asList(HOW_TO_SPELL, MAKING_A_COMPUTER, GET_MOTIVATED));
+    }
+
+    public static List<Book> getTypicalLoanedBook() {
+        return new ArrayList<>(Arrays.asList(CRYING_LOUD_LOAN, YES_MAN_LOAN));
     }
 
     public static List<Book> getSingleBook() {
