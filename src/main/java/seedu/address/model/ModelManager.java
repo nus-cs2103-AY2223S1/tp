@@ -34,7 +34,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Team> filteredTeams;
-    private final FilteredList<Task> filteredTasks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -48,7 +47,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTeams = new FilteredList<>(this.addressBook.getTeamList());
-        filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
 
     }
 
@@ -232,12 +230,6 @@ public class ModelManager implements Model {
         filteredTeams.setPredicate(predicate);
     }
 
-    @Override
-    public void updateFilteredTaskList(Predicate<Task> predicate) {
-        requireNonNull(predicate);
-        filteredTasks.setPredicate(predicate);
-    }
-
     /**
      * Returns person object which has given name.
      * @param name Name of person.
@@ -289,11 +281,6 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Team> getFilteredTeamList() {
         return filteredTeams;
-    }
-
-    @Override
-    public ObservableList<Task> getFilteredTaskList() {
-        return filteredTasks;
     }
 
     /**
