@@ -1061,6 +1061,7 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `view XYZ ABC` <br>
       Expected: CommandBox shows `Provided name is invalid`
    4. Other incorrect unmark commands to try: `view` (without any name).
+      Expected: Similar to previous.
 
 ### Next Session feature
 
@@ -1074,6 +1075,7 @@ testers are expected to do more *exploratory* testing.
       Test case: `list`
       Expected: CommandBox shows `Listed all persons \n No next Session timing!`
    5. Other cases to try: on launch of application next session feedback to user in CommandBox.
+      Expected: Similar to previous.
 
 ### Adding of attendance to student
 
@@ -1082,8 +1084,9 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `attendance 1 a/2022-08-08` <br>
       Expected: `2022-08-08` will be added to the attendance of the student in the first index in the list. It will be marked as absent by default and displayed as `2022-08-08 [Absent]`.
    3. Test case: `attendance a/2022-08-08` <br>
-     Expected: Grade is not added to any persons. Error details shown in the status message.
+      Expected: Grade is not added to any persons. Error details shown in the status message.
    4. Other incorrect commands to try: `attendance` , `attendance 1 a/`.
+      Expected: Similar to previous.
 
 ### Adding of session to student
 
@@ -1098,3 +1101,4 @@ testers are expected to do more *exploratory* testing.
    5. Test case: `session s/Thu 09:00` <br>
       Expected: Session is not added to any persons. Error details shown in the status message.
    6. Other incorrect commands to try: `session` , `session 1 a/`.
+      Expected: Similar to previous.
