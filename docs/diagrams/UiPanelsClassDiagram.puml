@@ -1,0 +1,62 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+Class "<<interface>>\nUi" as Ui
+Class "{abstract}\nUiPart" as UiPart
+Class UiManager
+show MainWindow members
+Class MainWindow
+Class PersonListPanel
+Class PersonCard
+Class TaskListPanel
+Class TaskCard
+Class PersonTaskCard
+Class PersonTaskListPanel
+Class TaskPersonCard
+Class TaskPersonListPanel
+}
+
+class MainWindow {
+    isContactTabShown Boolean
+}
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Ui
+
+UiManager .left.|> Ui
+UiManager -down-> "1" MainWindow
+MainWindow *-down-> "0..1" PersonListPanel
+MainWindow *-down-> "0..1" TaskListPanel
+MainWindow *-down-> "0..1" PersonTaskListPanel
+MainWindow *-down-> "0..1" TaskPersonListPanel
+
+PersonListPanel -down-> "*" PersonCard
+TaskListPanel -down-> "*" TaskCard
+PersonTaskListPanel -down-> "*" PersonTaskCard
+TaskPersonListPanel -down-> "*" TaskPersonCard
+
+MainWindow -left-|> UiPart
+
+PersonListPanel --|> UiPart
+PersonCard --|> UiPart
+TaskListPanel --|> UiPart
+TaskCard --|> UiPart
+PersonTaskListPanel --|> UiPart
+PersonTaskCard --|> UiPart
+TaskPersonListPanel --|> UiPart
+TaskPersonCard --|> UiPart
+
+PersonCard ..> Model
+TaskCard ..> Model
+PersonTaskCard ...> Model
+TaskPersonCard .right.> Model
+MainWindow -[hidden]-|> UiPart
+@enduml

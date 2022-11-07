@@ -69,11 +69,17 @@ The sections below give more details of each component.
 
 The API of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/ui/Ui.java).
 
-Here's a partial class diagram of the `UI` component.
+Here's a partial class diagram of the `UI` component without any of the task/contact management panels.
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component without Panels](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts, e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, and etc. All these parts, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+Here's another partial class diagram of the `UI` component with the task and contact management panels.
+
+![Structure of the UI Component with Panels](images/UiPanelsClassDiagram.png)
+
+The UI keeps track of which tab the user is currently viewing with the `isContactTabShown` boolean. If the contacts tab is currently in view, `MainWindow` contains `PersonListPanel` and `PersonTaskListPanel`, and it contains `TaskListPanel` and `TaskPersonListPanel` if otherwise.
 
 The `UI` component uses the [JavaFx](https://openjfx.io/) UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -188,7 +194,7 @@ The following class diagram summarizes the relationship between `PersonTaskBridg
 
 #### Design Considerations
 
-**Aspect: How `Person` and `Task` are associated with `PersonTaskBridge`:**
+**Aspect: How `Person` and `Task` are associated with `PersonTaskBridge`**
 
 - **Alternative 1 (current choice):** Stores `Person` and `Task` UUID in `PersonTaskBridge`.
 
@@ -199,7 +205,23 @@ The following class diagram summarizes the relationship between `PersonTaskBridg
   - Pros: No change is needed for `Person` and `Task` schema.
   - Cons: Requires changes to `PersonTaskBridge` objects every time a command changes `Person` or `Task` object index.
 
-### View tasks details
+### Optional `Description` and `Deadline` Fields
+
+The `Description` and `Deadline` fields for tasks are optional for the users fill in. The implementation of this optionality is 
+facilitated by wrapping the values using the [`java.util.Optional<T>`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html) class. 
+By doing so, we took advantage of the provided methods, e.g. `orElse`, `or`, and etc. This `Optional` class thus helps to encapsulate
+the logic of methods that depend on the presence or absence of the contained value.
+
+#### Difference from Optional `Tag`
+
+It is also optional for a `Person` to have tags. To achieve this, a `Person` stores the tags in a `HashSet`.
+If no tags are assigned to a `Person`, the `HashSet` will be empty. By doing so, a `Person` can have any number of tags.
+
+This differs from the implementation of optionality for `Description` and `Deadline`. For `Description` and `Deadline`,
+a `Task` can either contain the value or no value at all. Thus, due to the differing multiplicities, we could not use the 
+same implementation as tags.
+
+### View Task Details
 
 The implementation of the task tab UI is facilitated by `TaskCard` and `TaskListPanel`.
 
@@ -215,6 +237,31 @@ The implementation of Command Suggestions and Command Auto-Completion is facilit
 
 - `CommandSuggestor#suggestCommand` - Suggests a command with the corresponding syntax based on the user's current input
 - `CommandSuggestor#autocompleteCommand` - Completes the current user input according to the shown command suggestion
+
+#### Design Considerations
+
+**Aspect: How to provide command suggestions to users**
+
+- **Alternative 1 (current choice):** Provide command suggestion over the command box.
+
+  - Pros: Uses less screen real estate
+  - Cons: Only able to view one possible command
+
+- **Alternative 2:** Provide command suggestions in a separate display box
+  itself.
+  - Pros: Able to display all possible commands
+  - Cons: Uses more screen real estate
+
+**Aspect: How to autocomplete commands for users**
+
+- **Alternative 1:** Autocomplete up to next prefix according displayed command suggestion.
+
+  - Pros: Users can easily autocomplete the command shown with just one tab
+  - Cons: Users might have to backspace and complete the command again for commands with common prefixes. Eg. `add_contact`, `add_task`
+
+- **Alternative 2 (current choice):** Autocomplete up to the longest matching prefix of all possible commands.
+  - Pros: Easy to autocomplete commands with common prefixes
+  - Cons: Users might have to type a few characters more
 
 ---
 
@@ -267,119 +314,186 @@ Priority levels:
 | `* * *`  | user           | find contacts by name    | locate details of contacts without having to go through the entire list    |
 | `* * *`  | user           | add task for contact     | add a task to a contact to keep track of                                   |
 | `* * *`  | user           | view tasks by contact    | view tasks belonging to a contact                                          |
-| `* *`    | user           | update a task            | update the particulars of a task                                           |
 | `* * *`  | user           | delete a task            | remove tasks that I no longer need                                         |
-| `* *`    | user           | list all tasks           | to locate details of all the tasks immediately                             |
+| `* *`    | user           | update a task            | update the particulars of a task                                           |
+| `* *`    | user           | list all tasks           | get an overview of all tasks in my app                                     |
 | `* *`    | user           | find tasks by name       | locate details of tasks without having to go through the entire list       |
 | `* *`    | forgetful user | autocomplete my commands | conveniently type commands without referring to the user guide excessively |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+For all use cases below, the system is `Swift+` and the actor is the `user`, unless specified otherwise.
 
-**Use case: Update a person**
+**Use case: UC1 - Create a contact**
 
-**MSS**
+MSS:
 
-1.  User requests to list people
-2.  AddressBook shows a list of people
-3.  User requests to edit a specific person in the list
-4.  AddressBook edits the person
+1. User requests to add a contact.
+2. Swift+ creates the contact. 
 
-    Use case ends.
+Use case ends.
 
-**Extensions**
+Extensions:
 
-- 2a. The list is empty.
+- 1a. Swift+ detects an error in the entered data.
+    - 1a1. Swift+ requests for the correct data.
+    - Use case resumes from step 1.
 
-  Use case ends.
+**Use case: UC2 - Update a contact**
 
-- 3a. The given index is invalid.
+MSS:
 
-  - 3a1. AddressBook shows an error message.
+1.  User requests to view all contacts.
+2.  Swift+ returns a list of all contacts.
+3.  User requests to edit a specific contact in the list.
+4.  Swift+ edits the details of the specified contact.
 
-    Use case resumes at step 2.
+Use case ends.
 
-- 3b. The command arguments are invalid.
+Extensions:
 
-  - 3b1. AddressBook shows an error message.
+- 2a. Swift+ returns an empty list.
+    - Use case ends.
+- 3a. Swift+ detects the given index to be invalid.
+    - 3a1. Swift+ requests for a valid index.
+    - Use case resumes from step 3.
+- 3b. Swift+ detects an error in the entered data.
+    - 3b1. Swift+ requests for the correct data.
+    - Use case resumes from step 3.
 
-    Use case resumes at step 2.
+**Use case: UC3 - Delete a person**
 
-**Use case: Delete a person**
+MSS:
 
-**MSS**
+1.  User requests to view all contacts.
+2.  Swift+ returns a list of all contacts.
+3.  User requests to delete a specific contact in the list.
+4.  Swift+ deletes the specified contact.
 
-1.  User requests to list people
-2.  AddressBook shows a list of people
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+Use case ends.
 
-    Use case ends.
+Extensions:
 
-**Extensions**
+- 2a. Swift+ returns an empty list.
+    - Use case ends.
+- 3a. Swift+ detects the given index to be invalid.
+    - 3a1. Swift+ requests for a valid index.
+    - Use case resumes from step 3.
 
-- 2a. The list is empty.
+**Use case: UC4 - Create a task**
 
-  Use case ends.
+MSS:
 
-- 3a. The given index is invalid.
+1. User requests to add a task.
+2. Swift+ creates the task.
 
-  - 3a1. AddressBook shows an error message.
+Use case ends.
 
-    Use case resumes at step 2.
+Extensions:
 
-**Use case: Update a task**
+- 1a. Swift+ detects an error in the entered data.
+    - 1a1. Swift+ requests for the correct data.
+    - Use case resumes from step 1.
 
-**MSS**
+**Use case: UC5 - Update a task**
 
-1.  User requests to list tasks
-2.  AddressBook shows a list of tasks
-3.  User requests to edit a specific task in the list
-4.  AddressBook edits the task
+MSS:
 
-    Use case ends.
+1.  User requests to view all tasks.
+2.  Swift+ returns a list of all tasks.
+3.  User requests to edit a specific task in the list.
+4.  Swift+ edits the details of the specified task.
+ 
+Use case ends.
 
-**Extensions**
+Extensions:
 
-- 2a. The list is empty.
+- 2a. Swift+ returns an empty list.
+    - Use case ends.
+- 3a. Swift+ detects the given index to be invalid.
+    - 3a1. Swift+ requests for a valid index.
+    - Use case resumes from step 3.
+- 3b. Swift+ detects an error in the entered data.
+    - 3b1. Swift+ requests for the correct data.
+    - Use case resumes from step 3.
 
-  Use case ends.
+**Use case: UC6 - Delete a task**
 
-- 3a. The given index is invalid.
+MSS:
 
-  - 3a1. AddressBook shows an error message.
+1.  User requests to view all tasks.
+2.  Swift+ returns a list of all tasks.
+3.  User requests to delete a specific task in the list.
+4.  Swift+ deletes the specified task.
 
-    Use case resumes at step 2.
+Use case ends.
 
-- 3b. The command argument is invalid.
+Extensions:
 
-  - 3b1. AddressBook shows an error message.
+- 2a. Swift+ returns an empty list.
+    - Use case ends.
+- 3a. Swift+ detects the given index to be invalid.
+    - 3a1. Swift+ requests for a valid index.
+    - Use case resumes from step 3.
 
-    Use case resumes at step 2.
+**Use case: UC7 - View tasks associated with a contact**
 
-**Use case: Delete a task**
+MSS:
 
-**MSS**
+1. User requests to view all contacts.
+2. Swift+ returns a list of all contacts.
+3. User requests to view tasks associated with a specified contact.
+4. Swift+ returns the contact and all associated tasks.
 
-1.  User requests to list tasks
-2.  AddressBook shows a list of tasks
-3.  User requests to delete a specific task in the list
-4.  AddressBook deletes the task
+Extensions:
 
-    Use case ends.
+- 2a. Swift+ returns an empty list.
+    - Use case ends.
+- 3a. Swift+ detects the given index to be invalid.
+    - 3a1. Swift+ requests for a valid index.
+    - Use case resumes from step 3.
 
-**Extensions**
+**Use case: UC8 - Mark a task as completed**
 
-- 2a. The list is empty.
+MSS:
 
-  Use case ends.
+1. User requests to view all tasks.
+2. Swift+ returns a list of all tasks.
+3. User requests to mark a task as completed.
+4. Swift+ marks the specified task as completed.
 
-- 3a. The given index is invalid.
+Extensions:
 
-  - 3a1. AddressBook shows an error message.
+- 2a. Swift+ returns an empty list.
+    - Use case ends.
+- 3a. Swift+ detects the given index to be invalid.
+    - 3a1. Swift+ requests for a valid index.
+    - Use case resumes from step 3.
+- 3b. Swift+ detects that the specified task is already completed.
+    - Swift+ indicates that task is already completed.
+    - Use case ends.
 
-    Use case resumes at step 2.
+**Use case: UC9 - Assign a task to a contact**
+
+MSS:
+
+1. User requests to view all tasks and contacts.
+2. Swift+ returns all tasks and contacts.
+3. User requests to assign a task to a contact.
+4. Swift+ assigns the specified task to the specified contact.
+
+Extensions:
+
+- 2a. Swift+ returns an empty list of contacts.
+    - Use case ends.
+- 2b. Swift+ returns an empty list of tasks.
+    - Use case ends.
+- 3a. Swift+ detects given contact or task index to be invalid.
+    - Swift+ requests for a valid index.
+    - Use case resumes from step 3.
+- 3b. Swift+ detects that the specified task is already assigned to the specified contact.
+    - Swift+ indicates that task is already assigned to the contact.
+    - Use case ends.
 
 ### Non-Functional Requirements
 

@@ -1,23 +1,21 @@
 @startuml
 !include style.puml
+skinparam linetype polyline
+skinparam linetype ortho
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>> {
     Class AddressBook
-    Class Model
-    Class Person
     Class Task
+    Class Person
     Class PersonTaskBridge
     Class PersonTaskBridgeList
+
+    Task -d- Person : > assigned to
+    (Person, Task) .. PersonTaskBridge
+    PersonTaskBridgeList "*" *-up-> PersonTaskBridge
+    AddressBook "1" *--> PersonTaskBridgeList
 }
-
-Person --> "*" PersonTaskBridge
-Task --> "*" PersonTaskBridge
-PersonTaskBridgeList *-up-> "*" PersonTaskBridge
-
-AddressBook *--> "1" PersonTaskBridgeList
-Model --> "~* all" PersonTaskBridge
-
 @enduml

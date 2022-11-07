@@ -575,7 +575,7 @@ Alternatively, you can click on the **Contacts and Tasks button** in the top too
 
 #### Viewing help: `help`
 
-Shows a message explaining how to access the user guide.
+> Shows a message explaining how to access the user guide.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip** <br>
 Alternatively, you can click on the **Help button** in the top toolbar.
