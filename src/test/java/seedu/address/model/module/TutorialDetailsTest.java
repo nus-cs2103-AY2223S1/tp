@@ -9,11 +9,6 @@ import org.junit.jupiter.api.Test;
 public class TutorialDetailsTest {
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new TutorialDetails(null));
-    }
-
-    @Test
     public void constructor_invalidTutorialDetail_throwsIllegalArgumentException() {
         String invalidTutorialDetail = "";
         assertThrows(IllegalArgumentException.class, () -> new TutorialDetails(invalidTutorialDetail));
@@ -21,8 +16,6 @@ public class TutorialDetailsTest {
 
     @Test
     public void isValidTutorialDetailsDescription() {
-        // null tutorial details
-        assertThrows(NullPointerException.class, () -> TutorialDetails.areValidTutorialDetails(null));
 
         // invalid tutorial details
         assertFalse(TutorialDetails.areValidTutorialDetails(" ")); // Empty string
