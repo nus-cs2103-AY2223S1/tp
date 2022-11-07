@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `e0773695@u.nus.edu`
 
 ## Project team
 
@@ -17,17 +17,19 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/piyotato.md)]
 
 * Role: Developer
-* Responsibilities: [To Be Added]
+* Responsibilities: Code Quality, Testing, Design expert
+* In Charge of: EditStudentCommand, IndexCommand
 
 ### Silas Yeo
 
 <img src="images/comicalromance.png" width="200px">
 
 [[github](http://github.com/comicalromance)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/comicalromance.md)]
 
 * Role: Developer
-* Responsibilities: [To Be Added]
+* Responsibilities: JavaFX integration, Scheduling and Tracking
+* In Charge of: Import, Mark, Module
 
 ### Po Hsien
 
@@ -37,7 +39,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/lpohsien.md)]
 
 * Role: Developer
-* Responsibilities: [To Be Added]
+* Responsibilities: Code Quality, Testing
+* In Charge of: Tag, Grade
 
 ### Lin Zizheng
 
@@ -47,7 +50,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/dr-arrgghh.md)]
 
 * Role: Developer
-* Responsibilities: [To Be Added]
+* Responsibilities: Deliverables and deadlines, Scheduling and tracking
+* In Charge of: Filter
 
 ### Pang Bao Bin
 
@@ -57,4 +61,5 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/highorbit25.md)]
 
 * Role: Developer
-* Responsibilities: [To Be Added]
+* Responsibilities: Integration, Code Quality
+* In Charge of: Sort, Participate
