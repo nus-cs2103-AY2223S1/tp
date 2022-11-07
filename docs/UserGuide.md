@@ -98,6 +98,7 @@ Danger zone! Do pay attention to the information here carefully.
 - `Highlights` are used to denote commands or output from the application.
 
 ### Definitions
+
 | Term                               | Definition                                                                                                                                                          |
 |------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Entry**                          | An entry refers to either an expenditure or income                                                                                                                  |
