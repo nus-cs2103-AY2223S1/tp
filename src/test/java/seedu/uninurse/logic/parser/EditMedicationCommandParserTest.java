@@ -1,11 +1,11 @@
 package seedu.uninurse.logic.parser;
 
 import static seedu.uninurse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.uninurse.logic.commands.EditMedicationCommand.MESSAGE_FAILURE;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.uninurse.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.uninurse.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.uninurse.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.uninurse.model.medication.Medication.MESSAGE_CONSTRAINTS;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -69,7 +69,7 @@ class EditMedicationCommandParserTest {
         String userInput = INDEX_FIRST_PERSON.getOneBased() + " " + INDEX_FIRST_ATTRIBUTE.getOneBased() + " "
                 + PREFIX_MEDICATION;
 
-        assertParseFailure(parser, userInput, MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, userInput, MESSAGE_FAILURE);
     }
 
     @Test

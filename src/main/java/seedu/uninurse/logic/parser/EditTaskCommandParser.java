@@ -42,7 +42,9 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
 
             return new EditTaskCommand(indices.get(0), indices.get(1), editTaskDescriptor);
         } catch (NoSuchElementException nse) {
-            throw new ParseException(EditTaskCommand.MESSAGE_NOT_EDITED);
+            // Handles missing prefix
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditTaskCommand.MESSAGE_USAGE));
         }
     }
 }

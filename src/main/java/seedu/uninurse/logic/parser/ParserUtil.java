@@ -13,7 +13,9 @@ import java.util.Optional;
 
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.commons.util.StringUtil;
+import seedu.uninurse.logic.commands.EditMedicationCommand;
 import seedu.uninurse.logic.commands.EditMedicationCommand.EditMedicationDescriptor;
+import seedu.uninurse.logic.commands.EditTaskCommand;
 import seedu.uninurse.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 import seedu.uninurse.model.condition.Condition;
@@ -242,6 +244,10 @@ public class ParserUtil {
             optionalMedicationDosage = Optional.of(trimmedMedicationDosage);
         }
 
+        if (optionalMedicationType.isEmpty() && optionalMedicationDosage.isEmpty()) {
+            throw new ParseException(EditMedicationCommand.MESSAGE_FAILURE);
+        }
+
         if (!Medication.isValidMedication(optionalMedicationType, optionalMedicationDosage)) {
             throw new ParseException(Medication.MESSAGE_CONSTRAINTS);
         }
@@ -397,7 +403,7 @@ public class ParserUtil {
 
         if (optionalTaskDescription.isEmpty() && optionalTaskDateAndTime.isEmpty()
                 && optionalTaskRecurrenceAndFrequency.isEmpty()) {
-            throw new ParseException(Task.MESSAGE_CONSTRAINTS);
+            throw new ParseException(EditTaskCommand.MESSAGE_FAILURE);
         }
 
         return new EditTaskDescriptor(optionalTaskDescription, optionalTaskDateAndTime,

@@ -8,11 +8,11 @@ import static seedu.uninurse.logic.commands.CommandTestUtil.DESC_TASK_DESCRIPTIO
 import static seedu.uninurse.logic.commands.CommandTestUtil.DESC_TASK_DESCRIPTION_RECURRENCE_INSULIN;
 import static seedu.uninurse.logic.commands.CommandTestUtil.DESC_TASK_INSULIN;
 import static seedu.uninurse.logic.commands.CommandTestUtil.DESC_TASK_RECURRENCE_INSULIN;
+import static seedu.uninurse.logic.commands.EditTaskCommand.MESSAGE_FAILURE;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.uninurse.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.uninurse.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.uninurse.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.uninurse.model.task.Task.MESSAGE_CONSTRAINTS;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalDateTime.DATE_TIME_ONE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
@@ -67,7 +67,7 @@ class EditTaskCommandParserTest {
         String userInput = INDEX_FIRST_PERSON.getOneBased() + " " + INDEX_FIRST_ATTRIBUTE.getOneBased() + " "
                 + PREFIX_TASK_DESCRIPTION;
 
-        assertParseFailure(parser, userInput, MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, userInput, MESSAGE_FAILURE);
     }
 
     @Test

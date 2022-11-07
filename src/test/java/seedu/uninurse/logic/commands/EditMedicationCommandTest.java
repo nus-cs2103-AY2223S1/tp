@@ -104,7 +104,7 @@ class EditMedicationCommandTest {
 
     @Test
     void execute_validIndicesFilteredList_success() {
-        // use second person in TypicalPersons since there is a medication to edit
+        // use second person in TypicalPatients since there is a medication to edit
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
         Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
