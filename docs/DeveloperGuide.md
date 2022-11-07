@@ -220,6 +220,7 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Properties Objects
 
@@ -250,6 +251,7 @@ And a non-editable properties:
     - Tracks the transactional history of incoming and outgoing loans. Each Loan History comprises a Loan and a Record.
 
 During instantiation, a person object can be declared with all fields, but during editing, Loan must use a specialised command `editLoan` to transform its data.
+<div style="page-break-after: always;"></div>
 
 ### Properties of Note Objects
 
