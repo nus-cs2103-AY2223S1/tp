@@ -329,7 +329,37 @@ The following activity diagram summarizes what happens when a user executes a `m
 Reason for choosing option 1:
 A professor is more highly likely to remember the module codes of the modules that he is teaching rather than the index in the list in our application. Hence, an additional step would be required of the professor if option 2 were to be chosen. Therefore, option 1 is preferred.
 
-###  5.5. AddSchedule feature
+### 5.5. The view more details of a target module feature
+
+#### Implementation
+
+The proposed view more information about a target functionality is facilitated by `ViewTargetModuleCommand`. It extends `Command` and overrides the method `Command#execute(Model model)`.
+
+The following sequence diagram shows how viewing more details about a module works:
+
+![ViewTargetModuleSequence](images/ViewTargetModuleSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
+
+The following activity diagram summarizes what happens when a user executes a `vtarget` command.
+
+![ViewTargetModuleActivity](images/ViewTargetModuleActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How vtarget executes
+
+|                                                           | Pros                                                                                                 | Cons                                                                                              |
+|-----------------------------------------------------------|------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| **Option 1** <br/> View by module code                    | Allows convenience for user since user knows what module he would like to get more information about | User might be confused if similar modules with similar module codes exist, eg. CS2103 and CS2103T |
+| **Option 2** <br/> View by making use of indexing in list | Allows convenience if module code is forgotten                                                       | Have to use `mlist` command to obtain the indexing                                                |
+
+Reason for choosing option 2:
+As shown below in our [Use Cases](#73-use-cases), the expected behaviour of a Professor is to run the command `mlist` to view 
+the modules that he has added to ProfNUS first, then choosing to view more details about a module. Hence, the
+indexing would be clearly known to the Professor and thus, option 2 is preferred.
+
+###  5.6. AddSchedule feature
 
 #### Implementation
 
@@ -350,7 +380,7 @@ During the execution, the following validity checks will be conducted:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the command isn't executed successfully and a `CommandException` is thrown, then the new schedule won't be added to the ProfNUS.</div>
 
-### 5.6. EditSchedule feature
+### 5.7. EditSchedule feature
 
 #### Implementation
 
@@ -386,7 +416,7 @@ Reason for choosing Option 2:
 
 To locate a schedule uniquely with schedule, a user needs to know the module code, class type, and class group. For example, `CS2103T tut W11`. However, when there are too many groups, professors can easily forget which group he is looking for. Therefore, using the index is better in this case.
 
-### 5.7. ViewSchedule feature
+### 5.8. ViewSchedule feature
 
 #### Implementation
 
