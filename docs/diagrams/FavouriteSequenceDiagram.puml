@@ -4,9 +4,9 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":FoodGuideParser" as FoodGuideParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
-participant "d:TagCommand" as TagCommand LOGIC_COLOR
+participant ":FavouriteCommandParser" as FavouriteCommandParser LOGIC_COLOR
+participant "f:FavouriteCommand" as FavouriteCommand LOGIC_COLOR
+participant "t:TagCommand" as TagCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -20,50 +20,69 @@ activate LogicManager
 LogicManager -> FoodGuideParser : parseCommand("fav 1")
 activate FoodGuideParser
 
-create DeleteCommandParser
-FoodGuideParser -> DeleteCommandParser
-activate DeleteCommandParser
+create FavouriteCommandParser
+FoodGuideParser -> FavouriteCommandParser
+activate FavouriteCommandParser
 
-DeleteCommandParser --> FoodGuideParser
-deactivate DeleteCommandParser
+FavouriteCommandParser --> FoodGuideParser
+deactivate FavouriteCommandParser
 
-FoodGuideParser -> DeleteCommandParser : parse("1")
-activate DeleteCommandParser
+FoodGuideParser -> FavouriteCommandParser : parse("1")
+activate FavouriteCommandParser
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+create FavouriteCommand
+FavouriteCommandParser -> FavouriteCommand
+activate FavouriteCommand
 
-DeleteCommand --> DeleteCommandParser : d
-deactivate DeleteCommand
+create TagCommand
+FavouriteCommand -> TagCommand : super(index, tagsToAdd)
+activate TagCommand
 
-DeleteCommandParser --> FoodGuideParser : d
-deactivate DeleteCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> FoodGuideParser
-destroy DeleteCommandParser
+TagCommand --> FavouriteCommand
+deactivate TagCommand
 
-FoodGuideParser --> LogicManager : d
+FavouriteCommand --> FavouriteCommandParser
+deactivate FavouriteCommand
+
+FavouriteCommandParser --> FoodGuideParser
+deactivate FavouriteCommandParser
+
+FavouriteCommandParser -[hidden]-> FoodGuideParser
+destroy FavouriteCommandParser
+
+FoodGuideParser --> LogicManager
 deactivate FoodGuideParser
 
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
+LogicManager -> FavouriteCommand : execute()
+activate FavouriteCommand
 
-DeleteCommand -> Model : deleteEatery(1)
+FavouriteCommand -> TagCommand : super.execute()
+activate TagCommand
+
+TagCommand -> Model : getFilteredEateryList()
 activate Model
 
-Model --> DeleteCommand
+Model --> TagCommand
+deactivate Model
+
+TagCommand -> Model : setEatery(eateryToTag, taggedEatery)
+activate Model
+
+Model --> TagCommand
 deactivate Model
 
 create CommandResult
-DeleteCommand -> CommandResult
+TagCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> TagCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+TagCommand --> FavouriteCommand
+deactivate TagCommand
+
+FavouriteCommand --> LogicManager : result
+deactivate FavouriteCommand
 
 [<--LogicManager
 deactivate LogicManager
