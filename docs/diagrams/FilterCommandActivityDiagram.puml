@@ -1,0 +1,14 @@
+@startuml
+start
+:User enters Filter command;
+
+if () then ([Invalid parameter(s)])
+    :HackAssist displays \n error message indicating \n invalid user input;
+
+else ([Valid parameter(s)])
+    :HackAssist filters all tasks \n based on their category \n and/or deadline attributes;
+    :HackAssist displays filtered \n task list and information of \n filter parameter(s) to user;
+
+endif
+stop
+@enduml
