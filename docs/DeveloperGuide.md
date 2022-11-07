@@ -300,7 +300,7 @@ In the case where `AddNoteCommand` is executed for adding to student specific no
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage students and tasks in an organised manner easily and quickly
+**Value proposition**: manage students, tasks and lessons in an organised manner easily and quickly
 
 
 ### User stories
@@ -663,7 +663,12 @@ Use case ends.
 
 Refer to <ins>UC21 - Delete a student</ins> with the only difference being task instead of student.
 
-**Use case: UC23 - Clear all students, tasks and lessons**
+
+**Use case: UC23 - Delete a lesson**
+
+Refer to <ins>UC21 - Delete a student</ins> with the only difference being lesson instead of student.
+
+**Use case: UC24 - Clear all students, tasks and lessons**
 
 Preconditions: There are existing tasks, students and/or lessons in JARVIS.
 
