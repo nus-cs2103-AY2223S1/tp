@@ -143,9 +143,10 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add an eatery).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
-
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+<p align="center">
+<img src="images/DeleteSequenceDiagram.png" /> <br>
+*The* ***Sequence Diagram*** *illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.*
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -227,9 +228,67 @@ The detection of `PREFIX_HELP` is as follows:
 
 The detection rules limit false-positives from stray `-h`s in names of eateries, locations, etc.
 
-For supported commands, the following activity diagram summarizes what happens when a user executes a command:
+<p align="center">
+<img src="images/CommandDisplayHelpActivityDiagram.png" /> <br>
+*For supported commands, the* ***activity diagram*** *summarizes what happens when a user executes a command.*
+</p>
 
-<img src="images/CommandDisplayHelpActivityDiagram.png" />
+### Favourite/Unfavourite feature
+The favourite/unfavourite commands were introduced as a way to standardize how "favourite eateries" are tagged.
+In a way, `fav`/`unfav` is a shortcut for `tag`/`untag`. The "`<3`" favourite tag is implemented in such a way in the interest of time, and the fact that
+it can be searched up with other tags via `findTag`, hence proving to be more useful at the project's current iteration.
+
+#### Implementation
+Currently, `FavouriteCommand`/`UnfavouriteCommand` is similar to the other commands available for use, with the exception that it 
+_extends_ `TagCommand`/`UntagCommand` and not `Command`. Since `FavouriteCommand` and `UnfavouriteCommand` are both implemented
+in a similar way, this section will be focusing mainly on `FavouriteCommand` for ease of explanation.
+
+<p align="center">
+<img src="images/FavouriteSequenceDiagram.png" /> <br>
+*The* ***Sequence Diagram*** *shows the interactions within the Logic component when `fav` is called.*
+</p>
+
+As can be seen by the above diagram, most function calls to `FavouriteCommand` is directed to TagCommand, though there are some points to note:
+* The fixed "`<3`" tag should be made into a tag in the `FavouriteCommand` class rather than in the `TagCommand` class. This is because `FavouriteCommand` is the subclass, hence `TagCommand` should have no dependencies on `FavouriteCommand`.
+* Using the above-mentioned `-h` help command should show a custom message for `FavouriteCommand`, since it's command `fav` is different from `tag`.
+* Upon successfully favouriting an eatery, the user should receive a message indicating the "`<3`" is a tag, and can be searched up and used as a criteria for the `-r` randomizer feature via the `findTag` command.
+
+Through a comparison with the sequence diagram found in the [logic component section](#logic-component) that bears the shape of most of the default commands, it can be seen in exactly which function calls `FavouriteCommand` differs.
+<br>
+
+When `FavouriteCommand` is first initialized, it initializes `TagCommand` via a `super()` method call. Hence, the process of turning "`<3`" into a tag acceptable by `TagCommand` has to be streamlined, such that prefixes in `FavouriteCommand` are used.
+Additionally, the `execute()` call to `FavouriteCommand` is passed onto `TagCommand` whereby `TagCommand` then normally interacts with the `Model` class as other commands do.
+
+This unique implementation of `FavouriteCommand` and `UnfavouriteCommand` is especially important to keep in mind if future modifications (e.g. keeping favourited eateries at the top of the list) are implemented.
+
+### Optional fields in Eateries _(currently not in use)_
+The ability to keep some fields optional is very useful as the user is less inclined to use a dummy input when seeking to decide on the contents on fields later.
+Hence, this works with the `edit` command to give the user even more flexibility.
+Due to the importance of the `price` field, this option is removed and no longer presented to the user in the current iteration of our product. However, it is still feasible to implement should the need for it arise.
+
+#### Implementation
+
+<p align="center">
+<img src="images/OptionalFieldActivityDiagram.png" /> <br>
+*The* ***Activity Diagram*** *shows how different the AddCommandParser and Eatery classes operate with different inputs.*
+</p>
+
+_(Note: This diagram omits references to `-h` help as it is presented on its own. For more information about help, you can refer to the
+[section about the -h command](#displaying-command-help) above.)_
+
+As seen from the diagram, the compulsory fields are always checked first to ensure that the argument map does not contain null values.
+Thereafter, the call to the optional field's constructor is handled within the `Eatery` object.
+The optional field should be able to receive both null and non-null values (or by using 2 different constructors), with the input left empty indicating that there is currently no value for the optional field.
+At the end, a complete eatery is returned to be added, with other classes having no idea whether the Eatery contains the optional field or not.
+<br>
+
+Since null values may cause NullPointerException errors, it is important that all data relating to this field is kept within the class itself.
+Hence, heavy abstraction should be used here. Such examples include:
+* Not giving public direct access to the value (e.g. `toString()` returns `" "` instead of null)
+* Keeping the parsing of the data files to the related optional field class only
+<br>
+
+There are several ways to deal with storing this optional value, but the one that was used for this particular implementation was storing the optional field as an empty `""` string. This is because the optional field constructor with a value did not allow null values. Hence, any empty strings appearing in the json save file must have been due to the use of the default constructor.
 
 ### Searching through Food Guide
 
@@ -286,9 +345,8 @@ Each `XYZContainsKeywordsPredicate` is then used by `ModelManager` to update the
 
 ### Product scope
 
-**Target user profile**:
-
-* This product is for NUS students/staff who prefer CLI over GUI
+**Target user profile**: This product is for ...
+* NUS students/staff who prefer CLI over GUI
 * want to keep track of the various food options in NUS.
 
 **Value proposition**: This application summarizes the various food options available in NUS, and allows users to make an informed choice as to what to eat.
