@@ -497,7 +497,7 @@ Each time TA-Assist is launched, the previous `data/taassist.json.bak` file will
 
 For all parameters, the following constraints are applied: <a name="implicit-constraint"></a>
 * As TA-Assist uses prefixes such as `p/` and `c/` to identify the start of a new parameter, all parameters have the implicit constraint that they must not contain prefixes of another parameter if that other parameter is being used in a command. 
-  * e.g. You cannot add a student with the address `Commongrove n/123A` as the `n/123A` prefix will be parsed by Ta-Assist as the Student's name.
+  * e.g. You cannot add a student with the address `Commongrove n/123A` as the `n/123A` prefix will be parsed by TA-Assist as the Student's name.
 
 The following is the list of all parameters used in TA-Assist along with their constraints:
 
