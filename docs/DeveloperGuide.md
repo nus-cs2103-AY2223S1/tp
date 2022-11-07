@@ -30,24 +30,24 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App.
+The ***Architecture Diagram*** given above explains the high-level design of HackAssist.
 
 Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-F12-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-F12-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-F12-2/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-F12-2/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for:
 
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
-The rest of the App consists of four components.
+The rest of HackAssist consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
+* [**`UI`**](#ui-component): The UI of HackAssist.
 * [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
+* [**`Model`**](#model-component): Holds the data of HackAssist in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
 **How the architecture components interact with each other**
@@ -71,11 +71,11 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-F12-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/UiClassDiagramNew.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-F12-2/tp/blob/master/src/main/java/seedu/address/MainApp.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-F12-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -158,6 +158,65 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Adding a Task into the TaskList
+
+#### Implementation
+
+The insertion mechanism allows a `Task` to be added into the tasklist. A task consists of attributes such as its **name**, **description**, **priority level**, **category**, **deadline** and **email** of person assigned. The command is executed using the `AddTaskCommand`class which extends the `Command` class and the respective attributes of a task is determined from the `AddTaskCommandParser` class which parses the user input.
+
+Given below is an example usage scenario and how the AddTask mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time, with a tasklist populated with default tasks.
+
+Step 2. The user executes `addTask n/Fix toggle d/Fix dark mode button pr/high c/frontend dl/2022-12-12 pe/charlotte@example.com` to add a task to the tasklist. The `AddTaskCommand` calls the `Model#hasTask()`, checking if the tasklist already contains the task. If the task already exist, an exception will be thrown and a **task already exist** error message will be returned to the user.
+
+Step 3. If the task does not exist in the tasklist, the `AddTaskCommand` calls the `Model#addTask` to add the task into the tasklist.
+
+Step 4. After making an insert into the tasklist, the `AddTaskCommand` calls the `Model#update`, which calls
+`AddressBook#setTasks` to update the tasklist in the model to the latest version.
+
+The following sequence diagram shows how the AddTask operation works:
+![AddTaskSequenceDiagram](images/AddTaskCommandUMLDiagram2.png)
+
+The following activity diagram summarizes what happens when a user executes a AddTask command:
+![AddTaskActivityDiagram](images/AddTaskCommandActivityDiagram.png)
+
+### Deleting a Task from the TaskList
+
+#### Implementation
+
+The deletion mechanism allows a `Task` to be deleted from the tasklist based on its index. The command is executed using the `DeleteTaskCommand`class which extends the `Command` class and the index of the task to be deleted is determined from the `DeleteTaskCommandParser` class which parses the user input
+
+Given below is an example usage scenario and how the DeleteTask mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time, with a tasklist populated with default tasks.
+
+Step 2. The user wants to delete the second task on the task list. The user executes `deleteTask 2` to delete the second task from the tasklist. The `DeleteTaskCommand` calls the `Model#getFilteredTaskList()`, and checks if the index of the task to be deleted is within the size of the tasklist. If it is not, an error message containing **invalid index provided**
+is displayed to the user.
+
+Step 3. Next, `Model#getFilteredPersonList` is called to obtain the personlist and we check each person to see if the email matches the email of the person the task is assigned to. If it matches, we delete the task from the list of tasks the person is assigned to.
+
+Step 4. After updating all the relevant people assigned to the task, the `DeleteTaskCommand` calls the
+`Model#deleteTask` to delete the task from the tasklist.
+
+Step 5. After making a deletion from the tasklist, the `DeleteTaskCommand` calls the `Model#update`, which calls
+`AddressBook#setTasks` to update the tasklist in the model to the latest version
+
+The following sequence diagram shows how the DeleteTask operation works:
+![AddTaskSequenceDiagram](images/DeleteTaskCommandUMLDiagram2.png)
+
+The following activity diagram summarizes what happens when a user executes a DeleteTask command:
+![AddTaskActivityDiagram](images/DeleteTaskCommandActivityDiagram.png)
+
+### Edit Task Feature
+
+#### Implementation
+
+When the `editTask` command is entered, an `EditTaskCommand.EditTaskDescriptor` is created which stores the new details to edit the task with. If the inputs are invalid, an exception will be thrown and the corresponding error message will be displayed. If the inputs are valid, then the `model` is updated with the edited task.
+
+The following activity diagram summarizes what happens when a user executes an `editTask` command:
+
+![EditTaskCommandActivityDiagram](images/EditTaskCommandActivityDiagram.png)
 
 ### Display of person and task list
 
@@ -197,10 +256,162 @@ We went through several iterations and design alternatives when considering the 
 * **Alternative 1 :** Display the people on the Left, and the spotlighted person's task on the right
     * Pros: Able to spotlight a single person's tasks and the details regarding those tasks
     * Cons: Displaying the result of filtering or sorting through all available tasks at once would be very difficult, and confusing for the user
+
 * **Alternative 2:** Display all the people on the Left, and all tasks on the right
     * Pros: Allow the sorting and filtering of tasks to be carried our much easier
     * Cons: Could result in too much information being present, which could overwhelm the user.
 
+### Task and Person display each other
+
+#### Proposed Implementation
+
+Currently, A person in the addressbook has no relation to the tasks assigned to that person. This feature will allow tasks and persons to be related to each other, and allow the UI to display which tasks are assigned to a person, and which person is in charge of a task.
+
+This will be implemented by modifying 3 already existing commands
+
+* `Add` — Whenever a person is added, any task that shares the same email as the new Person's email wil be updated to reflect the person's name.
+* `Delete` — Whenever a person is deleted, their tasks will be edited to reflect that they are not assigned to any person
+* `Edit` — Whenever a person is edited, their tasks will be edited to reflect the new changes
+
+Given below is an example usage scenario.
+
+Step 1. The user launches the application for the first time.
+
+Step 2. A new person (John) is added, with an email of test@example.com
+
+Step 3. A new task is added, assigned to John.
+
+Step 4. John is edited to James via the Edit command. This will be reflected in the task that John/James is assigned to
+
+Step 5. James is deleted as a Person. The task is changed to be not assigned to anyone.
+
+### Finding a Task by keywords
+
+#### Implmentation
+
+The find mechanism allows a `Task` to be identified based on its **name** and **description** attributes. The command is executed using the `FindTaskCommand`, and keyword(s) for the search criteria is determined from the `FindTaskCommandParser` class which parses the user input. A `Predicate<Task>`, an instance of `TaskContainsKeywordsPredicate`, is created and it goes through the tasklist to filter every `Task` based on their **name** and **description** attributes and whether it matches any of the input keyword(s). Keyword matching is case-insensitive. The filtered tasklist is then displayed on the application.
+
+Given below is an example usage scenario and how the find mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time, with a tasklist populated with default tasks.
+
+Step 2. The user wants to find tasks that have the keyword 'create' in their names and/or descriptions. The user executes `findTask create`. The `FindTaskCommandParser` parses the input keyword and creates an instance of `FindTaskCommand` with 'create' as its `TaskContainsKeywordsPredicate`. This `Predicate<Task>` is passed as an argument into `Model#updateFilteredTaskList(Predicate<Task>)`.
+
+Step 3. Next, `Model#getFilteredTaskList()` is called to update the tasklist to display the tasks 'Create UIUX Design' and 'Create Presentation'.
+
+The following activity diagram summarizes what happens when a user executes a `findTask` command:
+
+![AddTaskActivityDiagram](images/FindTaskCommandActivityDiagram.png)
+
+### Filtering of tasks by Task Category, Task Deadline or Both
+
+#### Proposed Implementation
+
+The proposed filter mechanism allows a `Task` to be filtered based on its `Task Category` or `Task Deadline`. The command is executed using the `FilterTaskCommand`class which extends the `Command` class and the filter criteria is determined from the `FilterTaskParser` class which parses the user input. The `TaskCategoryAndDeadlinePredicate` class will filter the existing task list based on the keyword parsed from the `FilterTaskCategoryParser` class and return the filtered tasklist, which will be displayed on the application.
+
+Given below is an example usage scenario and how the filter mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time, with an empty tasklist.
+
+Step 2. The user executes `addTask n/homework d/coding assignment pr/high c/backend dl/2022-12-12 pe/charlotte@example.com` to add a task to the tasklist.
+
+Step 3. The user repeats step 2 to add more tasks to the tasklist.
+
+Step 4. The user decides that he only wants to see the tasks that are backend related and are due by 2022-12-12. The user executes `filter c/backend dl/2022-12-12` to filter the tasks that are backend related and are due before 2022-12-12. After this, only tasks that have `TaskCategory:backend` are displayed onto the application.
+
+The following sequence diagram shows how the filter operation works:
+
+Step 5. After looking through all the tasks that are related to backend, the user wants to revert back to the original set of tasks. The user calls `listTasks`, which will list the unfiltered tasklist.
+
+The following activity diagram summarizes what happens when a user executes a filter command:
+
+**Design considerations**
+
+**Aspect: How filter executes:**
+
+* **Alternative 1 (current choice):** Filters entire tasklist
+  * Pros: Easy to implement.
+  * Cons: May have performance issues as the entire tasklist must be parsed.
+
+* **Alternative 2:**
+  * Pros:
+  * Cons:
+
+### Sort Tasks Feature
+
+#### Implementation
+
+When the `sort` command is entered, a `Comparator<Task>` is created which will be an instance of either `model.task.SortByDeadline` or `model.task.SortByPriority`. This `Comparator<Task>` will be reversed if the task list needs to be sorted in descending order. The `SortedList<Task>` in the `Model` will then be updated to use the new `Comparator<Task>`.
+
+### Email Address in Task as Reference (Foreign Key) to Member in Saved Data
+
+#### Motivation
+
+To assign a task to a team member (represented by a `Person` object), we need to save an attribute of the `Person` object in the `JsonAdaptedTask` object that uniquely identifies the person.
+
+#### Implementation
+
+We use a person's email as foreign key as it can uniquely identify a person in our person list. By implementing a foreign key this way, a change in person object is reflected in the task associated to that person. An alternative to this is to keep a person object in a task object but this will prevent the change in the person object that is supposed to be associated with the task object from being displayed in the task as they are two separate objects.
+
+#### Design Considerations
+
+**Aspect: How to Relate a Task and a Person in the Saved Data**
+
+* **Alternative 1 (current choice):** Foreign Key Method: Save Person's Email Address in Task Data File.
+  * Pros: Changes in person can be cascaded to task.
+  * Cons: -.
+
+* **Alternative 2:** Foreign Key Method: Save Person Phone Number in Task Data File.
+  * Pros: Changes in person can be cascaded to task.
+  * Cons: Compared to email address, phone number is more likely to be identical e.g. people may have the same phone number if they put their home phone number and they live in the same house.
+
+* **Alternative 3:** Save JSonAdaptedPerson in JSonAdaptedTask.
+  * Pros: -.
+  * Cons: Changes in `person` object are more prone to not be reflected in their associated `task`.
+
+### Persistent Storage for Task
+
+#### Motivation
+
+For creation of new tasks, deletion of tasks and changes of current tasks to persist over different sessions of using HackAssist (after user close HackAssist and open it again).
+
+#### Implementation
+
+When HackAssist is opened, it will read the data file (AddressBook.json) saved in hard disk in Json format. This data file contains a list of task details (name, description, priority, category, deadline, email of the associated `Person` object (person assigned to this task) and status (done or not done)). Details of each task are read to create a `Task` object which is then added to the running HackAssist's `TaskList`.
+
+An overview of this process is shown below in the form of an activity diagram.
+
+![StorageReadActivityDiagram](images/StorageReadActivityDiagram.png)
+
+When reading Json file we also check whether the values saved are valid before converting it back to a Task object. This is to prevent creating a Task object with illegal values such as an empty name or name like " ". We also check for such illegal values when creating a task through commands. However, they do not prevent creations of task with illegal values that is done by editing Json data file. Thus, the checks when creating Task from Json data file is necessary.
+
+Upon execution of each `Command`, we convert each `Task` object in  `TaskList` to `JsonAdaptedTask` object which is then saved in Json format in hard disk. Each `JsonAdaptedTask` object contains the details of the task.
+
+An overview of this process is shown below in the form of an activity diagram.
+
+![StorageSaveActivityDiagram](images/StorageSaveActivityDiagram.png)
+
+#### Design Considerations
+
+**Aspect: When to save data?**
+
+* **Alternative 1 (current choice):** Saves the data after execution of each command.
+    * Pros: User does not have to remember to save (saved automatically).
+    * Cons: More computationally expensive as more save operations are performed.
+
+* **Alternative 2:** Creates a save command and save it when save command is executed.
+    * Pros: Less computationally expensive as less save operations are performed.
+    * Cons: User may forget to enter save command and lose all of their changes.
+
+* **Alternative 3:** Save when user enters exit command.
+    * Pros: Less computationally expensive as less save operations are performed.
+    * Cons: User may forget to enter exit command when closing the program and lose all of their changes.
+
+Our current choice of implementation is preferred considering the main use of HackAssist. HackAssist is created mainly for Hackathons where the environment is hectic and stressful and thus, users may tend to forget to save. Moreover, although the computation cost of automatic savings are higher, the difference is not obvious during usage. Thus, we consider the cost of losing saved changes to be worse.
+
+### Persistent Storage for Member
+
+The motivation, implementation and design considerations are similar to [Persistent Storage for Task](#persistent-storage-for-task)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -279,211 +490,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-### \[Proposed\] Adding a Task into the TaskList.
-
-#### Proposed Implementation
-
-The proposed insertion mechanism allows a `Task` to be added into the tasklist. A task consists of attributes such as its **name**, **description**, **priority level**, **category**, **deadline** and **email** of person assigned. The command is executed using the `AddTaskCommand`class which extends the `Command` class and the respective attributes of a task is determined from the `AddTaskCommandParser` class which parses the user input.
-
-Given below is an example usage scenario and how the AddTask mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time, with a tasklist populated with default tasks.
-
-Step 2. The user executes `addTask n/Fix toggle d/Fix dark mode button pr/high c/frontend dl/2022-12-12 pe/charlotte@example.com` to add a task to the tasklist. The `AddTaskCommand` calls the `Model#hasTask()`, checking if the tasklist already contains the task. If the task already exist, an exception will be thrown and a **task already exist** error message will be returned to the user.
-
-Step 3. If the task does not exist in the tasklist, the `AddTaskCommand` calls the `Model#addTask` to add the task into the tasklist.
-
-step 4. After making an insert into the tasklist, the `AddTaskCommand` calls the `Model#update`, which calls
-`AddressBook#setTasks` to update the tasklist in the model to the latest version.
-
-The following sequence diagram shows how the AddTask operation works:
-![AddTaskSequenceDiagram](images/AddTaskCommandUMLDiagram2.png)
-
-The following activity diagram summarizes what happens when a user executes a AddTask command:
-![AddTaskActivityDiagram](images/AddTaskCommandActivityDiagram.png)
-
-### \[Proposed\] Deleting a Task into the TaskList.
-
-#### Proposed Implementation
-
-The proposed deletion mechanism allows a `Task` to be deleted from the tasklist based on its index. The command is executed using the `DeleteTaskCommand`class which extends the `Command` class and the index of the task to be deleted is determined from the `DeleteTaskCommandParser` class which parses the user input
-
-Given below is an example usage scenario and how the DeleteTask mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time, with a tasklist populated with default tasks.
-
-Step 2. The user wants to delete the second task on the task list. The user executes `deleteTask 2` to delete the second task from the tasklist. The `DeleteTaskCommand` calls the `Model#getFilteredTaskList()`, and checks if the index of the task to be deleted is within the size of the tasklist. If it is not, an error message containing **invalid index provided**
-is displayed to the user.
-
-Step 3. Next, `Model#getFilteredPersonList` is called to obtain the personlist and we check each person to see if the email matches the email of the person the task is assigned to. If it matches, we delete the task from the list of tasks the person is assigned to.
-
-Step 4. After updating all the relevant people assigned to the task, the `DeleteTaskCommand` calls the
-`Model#deleteTask` to delete the task from the tasklist.
-
-step 5. After making a deletion from the tasklist, the `DeleteTaskCommand` calls the `Model#update`, which calls
-`AddressBook#setTasks` to update the tasklist in the model to the latest version
-
-The following sequence diagram shows how the DeleteTask operation works:
-![AddTaskSequenceDiagram](images/DeleteTaskCommandUMLDiagram2.png)
-
-The following activity diagram summarizes what happens when a user executes a DeleteTask command:
-![AddTaskActivityDiagram](images/DeleteTaskCommandActivityDiagram.png)
-
-### Edit Task Feature
-
-#### Implementation
-
-When the `editTask` command is entered, an `EditTaskCommand.EditTaskDescriptor` is created which stores the new details to edit the task with. If the inputs are invalid, an exception will be thrown and the corresponding error message will be displayed. If the inputs are valid, then the `model` is updated with the edited task.
-
-The following activity diagram summarizes what happens when a user executes an `editTask` command:
-
-![EditTaskCommandActivityDiagram](images/EditTaskCommandActivityDiagram.png)
-
-### Sort Tasks Feature
-
-#### Implementation
-
-When the `sort` command is entered, a `Comparator<Task>` is created which will be an instance of either `model.task.SortByDeadline` or `model.task.SortByPriority`. This `Comparator<Task>` will be reversed if the task list needs to be sorted in descending order. The `SortedList<Task>` in the `Model` will then be updated to use the new `Comparator<Task>`.
-
-### \[Proposed\] Task and Person display each other
-
-#### Proposed Implementation
-
-Currently, A person in the addressbook has no relation to the tasks assigned to that person. This feature will allow tasks and persons to be related to each other, and allow the UI to display which tasks are assigned to a person, and which person is in charge of a task.
-
-This will be implemented by modifying 3 already existing commands
-
-* `Add` — Whenever a person is added, any task that shares the same email as the new Person's email wil be updated to reflect the person's name.
-* `Delete` — Whenever a person is deleted, their tasks will be edited to reflect that they are not assigned to any person
-* `Edit` — Whenever a person is edited, their tasks will be edited to reflect the new changes
-
-Given below is an example usage scenario.
-
-Step 1. The user launches the application for the first time.
-
-Step 2. A new person (John) is added, with an email of test@example.com
-
-Step 3. A new task is added, assigned to John.
-
-Step 4. John is edited to James via the Edit command. This will be reflected in the task that John/James is assigned to
-
-Step 5. James is deleted as a Person. The task is changed to be not assigned to anyone.
-
-### Email Address in Task as Reference (Foreign Key) to Member in Saved Data
-
-#### Motivation
-
-To assign a task to a team member (represented by a `Person` object), we need to save an attribute of the `Person` object in the `JsonAdaptedTask` object that uniquely identifies the person.
-
-#### Implementation
-
-We use a person's email as foreign key as it can uniquely identify a person in our person list. By implementing a foreign key this way, a change in person object is reflected in the task associated to that person. An alternative to this is to keep a person object in a task object but this will prevent the change in the person object that is supposed to be associated with the task object from being displayed in the task as they are two separate objects.
-
-#### Design Considerations
-
-**Aspect: How to Relate a Task and a Person in the Saved Data**
-
-* **Alternative 1 (current choice):** Foreign Key Method: Save Person's Email Address in Task Data File.
-  * Pros: Changes in person can be cascaded to task.
-  * Cons: -.
-
-* **Alternative 2:** Foreign Key Method: Save Person Phone Number in Task Data File.
-  * Pros: Changes in person can be cascaded to task.
-  * Cons: Compared to email address, phone number is more likely to be identical e.g. people may have the same phone number if they put their home phone number and they live in the same house.
-
-* **Alternative 3:** Save JSonAdaptedPerson in JSonAdaptedTask.
-  * Pros: -.
-  * Cons: Changes in `person` object are more prone to not be reflected in their associated `task`.
-
-### Persistent Storage for Task
-
-#### Motivation
-
-For creation of new tasks, deletion of tasks and changes of current tasks to persist over different sessions of using HackAssist (after user close HackAssist and open it again).
-
-#### Implementation
-
-When HackAssist is opened, it will read the data file (AddressBook.json) saved in hard disk in Json format. This data file contains a list of task details (name, description, priority, category, deadline, email of the associated `Person` object (person assigned to this task) and status (done or not done)). Details of each task are read to create a `Task` object which is then added to the running HackAssist's `TaskList`.
-
-An overview of this process is shown below in the form of an activity diagram.
-
-![StorageReadActivityDiagram](images/StorageReadActivityDiagram.png)
-
-When reading Json file we also check whether the values saved are valid before converting it back to a Task object. This is to prevent creating a Task object with illegal values such as an empty name or name like " ". We also check for such illegal values when creating a task through commands. However, they do not prevent creations of task with illegal values that is done by editing Json data file. Thus, the checks when creating Task from Json data file is necessary.
-
-Upon execution of each `Command`, we convert each `Task` object in  `TaskList` to `JsonAdaptedTask` object which is then saved in Json format in hard disk. Each `JsonAdaptedTask` object contains the details of the task.
-
-An overview of this process is shown below in the form of an activity diagram.
-
-![StorageSaveActivityDiagram](images/StorageSaveActivityDiagram.png)
-
-#### Design Considerations
-
-**Aspect: When to save data?**
-
-* **Alternative 1 (current choice):** Saves the data after execution of each command.
-    * Pros: User does not have to remember to save (saved automatically).
-    * Cons: More computationally expensive as more save operations are performed.
-
-* **Alternative 2:** Creates a save command and save it when save command is executed.
-    * Pros: Less computationally expensive as less save operations are performed.
-    * Cons: User may forget to enter save command and lose all of their changes.
-
-* **Alternative 3:** Save when user enters exit command.
-    * Pros: Less computationally expensive as less save operations are performed.
-    * Cons: User may forget to enter exit command when closing the program and lose all of their changes.
-
-Our current choice of implementation is preferred considering the main use of HackAssist. HackAssist is created mainly for Hackathons where the environment is hectic and stressful and thus, users may tend to forget to save. Moreover, although the computation cost of automatic savings are higher, the difference is not obvious during usage. Thus, we consider the cost of losing saved changes to be worse.
-
-### Persistent Storage for Member
-
-The motivation, implementation and design considerations are similar to [Persistent Storage for Task](#persistent-storage-for-task)
-
-### \[Proposed\] Filtering of tasks by Task Category, Task Deadline or Both
-
-#### Proposed Implementation
-
-The proposed filter mechanism allows a `Task` to be filtered based on its `Task Category` or `Task Deadline`. The command is executed using the `FilterTaskCommand`class which extends the `Command` class and the filter criteria is determined from the `FilterTaskParser` class which parses the user input. The `TaskCategoryAndDeadlinePredicate` class will filter the existing task list based on the keyword parsed from the `FilterTaskCategoryParser` class and return the filtered tasklist, which will be displayed on the application.
-
-Given below is an example usage scenario and how the filter mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time, with an empty tasklist.
-
-Step 2. The user executes `addTask n/homework d/coding assignment pr/high c/backend dl/2022-12-12 pe/charlotte@example.com` to add a task to the tasklist.
-
-Step 3. The user repeats step 2 to add more tasks to the tasklist.
-
-step 4. The user decides that he only wants to see the tasks that are backend related and are due by 2022-12-12. The user executes `filter c/backend dl/2022-12-12` to filter the tasks that are backend related and are due before 2022-12-12. After this, only tasks that have `TaskCategory:backend` are displayed onto the application.
-
-The following sequence diagram shows how the filter operation works:
-
-Step 5. After looking through all the tasks that are related to backend, the user wants to revert back to the original set of tasks. The user calls `listTasks`, which will list the unfiltered tasklist.
-
-The following activity diagram summarizes what happens when a user executes a filter command:
-
-**Design considerations**
-
-**Aspect: How filter executes:**
-
-* **Alternative 1 (current choice):** Filters entire tasklist
-  * Pros: Easy to implement.
-  * Cons: May have performance issues as the entire tasklist must be parsed.
-
-* **Alternative 2:**
-  * Pros:
-  * Cons:
-
-_{more aspects and alternatives to be added}_
-
-
---------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 

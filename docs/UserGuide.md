@@ -360,15 +360,17 @@ Examples:
 **A**: No, your data will be stored in the `HackAssist.json` file. Data will only be lost if `HackAssist.json` file is deleted.<br>
 **Q**: How do I backup my data?<br>
 **A**: Create a copy of the `HackAssist.json` file in another directory.
-
+**Q**: What is the difference between member (members) and person (people)?<br>
+**A**: Member (or team member) refers to `Person` objects in the contact.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
 
-| Word      | Definition                                                              |
-|-----------|-------------------------------------------------------------------------|
-| GUI       | Graphical User Interface - The visual representation of the application |
-| Parameter | Input to the command called                                             |
+| Word      | Definition                                                                                                   |
+|-----------|--------------------------------------------------------------------------------------------------------------|
+| GUI       | Graphical User Interface - The visual representation of the application                                      |
+| Parameter | Inputs provided after the main command. For example, `c/uiux` is a parameter to the command `filter c/uiux`, |
+| JSON file | A file format (JavaScript Object Notation) used for storing data                                             |
 
 --------------------------------------------------------------------------------------------------------------------
 
