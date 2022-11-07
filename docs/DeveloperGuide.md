@@ -746,6 +746,14 @@ filter, as well as introducing tasks, tutorial groups and grades.
 
 1. **Learning JavaFX** - We had to learn JavaFX in order to implement the GUI. This was a challenge because
 there was a steep learning curve, and we had to learn how to use FXML, as well as how to use the JavaFX API.
+Our efforts include:
+   1. **Creating two views** -- one for Tasks and another for Students, which the user can switch between by clicking
+on the buttons on the left side of the screen.
+   2. **Making the UI interactive**, such as the ability to double click on a task to view the students assigned to the
+task. We had to handle the special case of a task having no students assigned to it by learning how to block users'
+clicks.
+   3. **Making the UI responsive** to resizing by learning how layout, padding, and margins work hand-in-hand to ensure
+that UI components remain well aligned, properly spaced, and sufficiently large to accommodate text. 
 2. **Implementing complex features** - We had to implement many complex features, such as the ability to grade,
 edit tasks, and filter by tutorial group. This was a challenge because we had to design the implementation from
 scratch and think about the the relationships between the different classes.
