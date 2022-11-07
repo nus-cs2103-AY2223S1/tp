@@ -548,19 +548,23 @@ Use case ends.
 **Extensions**
 
 1a. The given input is missing a required argument
-1a1. Condonery shows an error message with an example of correct input with all the required arguments
+
+- 1a1. Condonery shows an error message with an example of correct input with all the required arguments
 Use case resumes at step 1.
 
 1b. The given input is missing a required prefix
-1b1. Condonery shows an error message with an example of correct input with all the required arguments
+
+- 1b1. Condonery shows an error message with an example of correct input with all the required arguments
 Use case resumes at step 1.
 
 1c. The given Property Name already exists in the Property Directory
-1c1. Condonery shows an error message stating that the property already exists in the Property Directory.
+
+- 1c1. Condonery shows an error message stating that the property already exists in the Property Directory.
 Use case resumes at step 1.
 
 1d. The given Property Price parameter exceeds the MAX_INT
-1d1. Condonery shows an error message stating that the price is invalid.
+
+- 1d1. Condonery shows an error message stating that the price is invalid.
 Use case resumes at step 1.
 
 
@@ -578,15 +582,18 @@ Use case ends.
 **Extensions**
 
 3a. The input did not specify a index
-3a1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+
+- 3a1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 Use case resumes at step 2.
 
 3b. The input's specified index does not exist in the Property Directory
-3b1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
-Use case resumes at step 2.
+
+- 3b1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+    Use case resumes at step 2.
 
 3c. The input's specified index is in the wrong format.
-3c1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+
+- 3c1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 Use case resumes at step 2.
 
 #### Use Case 4: Editing a Property
@@ -607,27 +614,27 @@ Use Case ends.
 
 3a. The given input is missing a required parameter
 
-3a1. Condonery shows an error message with an example of correct input with all the required arguments
+- 3a1. Condonery shows an error message with an example of correct input with all the required arguments
 Use case resumes at step 3.
 
 3b. The given input is missing a required prefix
 
-3b1. Condonery shows an error message with an example of correct input with all the required arguments
+- 3b1. Condonery shows an error message with an example of correct input with all the required arguments
 Use case resumes at step 3.
 
 3c. The input did not specify a index
 
-3c1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+- 3c1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 Use case resumes at step 3.
 
 3d. The input's specified index does not exist in the Property Directory
 
-3d1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+- 3d1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 Use case resumes at step 3.
 
 3e. The input's specified index is in the wrong format.
 
-3e1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+- 3e1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 Use case resumes at step 3.
 
 #### Use Case 5: Filtering a property by Property Type
@@ -643,7 +650,7 @@ Use case ends
 
 1a. Specified type is not one of `HDB`, `CONDO`, or `LANDED`
 
-1a1. Condonery shows an error message stating that only `HDB`, `CONDO`, or `LANDED` values are accepted.
+- 1a1. Condonery shows an error message stating that only `HDB`, `CONDO`, or `LANDED` values are accepted.
 Use case resumes at step 1.
 
 #### Use Case 6: Filtering a property by Property Status
@@ -659,7 +666,7 @@ Use case ends
 
 1a. Specified type is not one of `AVAILABLE`, `PENDING`, or `SOLD`
 
-1a1. Condonery shows an error message stating that only `AVAILABLE`, `PENDING`, or `SOLD` values are accepted.
+- 1a1. Condonery shows an error message stating that only `AVAILABLE`, `PENDING`, or `SOLD` values are accepted.
 Use case resumes at step 1.
 
 #### Use Case 7: Linking an Interested Client to a Property
@@ -673,11 +680,11 @@ Use case resumes at step 1.
 
 1a. Specified client name does not exist in the Client Directory
 
-1a1. Condonery shows an error message
+- 1a1. Condonery shows an error message
 
 1b. Specified index does not exist in the Property Directory
 
-1b1. Condonery shows an error message stating that the property index is invalid
+- 1b1. Condonery shows an error message stating that the property index is invalid
 
 #### Use Case 8: Finding a Property by name
 
@@ -715,11 +722,11 @@ Use case ends.
 
 1a. Specified index does not exist in the Property Directory
 
-1a1. Condonery shows an error message stating that the property index is invalid
+- 1a1. Condonery shows an error message stating that the property index is invalid
 
 1b. The input did not specify a index
 
-1b1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+- 1b1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 
 #### Use Case 12: Filtering properties within a price range
 
@@ -732,11 +739,11 @@ Use case ends.
 
 1a. Specified upper price range is lower than the lower price range
 
-1a1. Condonery shows an error message stating that an invalid price range was given
+- 1a1. Condonery shows an error message stating that an invalid price range was given
 
 1b. Negative numbers were given
 
-1b1. Condonery shows an error message stating that an invalid price range was given
+- 1b1. Condonery shows an error message stating that an invalid price range was given
 
 
 ### Non-Functional Requirements
@@ -803,11 +810,11 @@ Deleting a property while all properties are being shown
 
 Prerequisites: Property List must contain at least one property.
 
-- Test case (Valid index): `delete 1`
+- Test case (Valid index): `delete -p 1`
   - Expected: First property in the list will be deleted from the list of properties. Property list will reflect the status of the deleted property
-- Test case (Invalid index): `delete 0`
+- Test case (Invalid index): `delete -p 0`
   - Expected: No property will be deleted from the list of properties and input text will turn red to indicate there is an error in the input. Result display will output a correct example command and error message.
-- Test case (missing index): `delete`
+- Test case (missing index): `delete-p `
   - Expected: No property will be deleted from the list of properties and input text will turn red to indicate there is an error in the input. Result display will output a correct example command and error message.
 
 ### Editing a property
@@ -868,7 +875,7 @@ Finding all properties in the Property List with specified price range
    - Test case (Negative number given): `range -p l/-999 u/99999`
      - Expected: Property List will display an error message stating only positive numbers are accepted
    - Test case (Invalid input): `range -p l/abc u/99999`
-     - Expected: Property List will display an error message stating that invalid input was give, only positive integers are accepted
+     - Expected: Property List will display an error message stating that invalid input was given, only positive integers are accepted
 
 ### Filtering properties by status
 Finding all properties in the Property List with the specified Property Status
@@ -895,21 +902,27 @@ Finding all properties in the Property List with the specified Property Type
 ### Adding a client to the Client List
    Prerequisites: Application must be in main window
    - Test cases (specifying compulsory inputs only): `add -c n/James a/123, Clementi Rd, 1234665`
-     - Expected: A new client is added to the Client List. Client List panel will update to display all the clients in the client directory. The compulsory parameters will be set to what was specified in the command. Result display will output the message: `New property added: PINNACLE@DUXTON; Address: SG, Cantonment Rd, #1G, 085301; Price: 1000000; Property Type: HDB; Property Status: AVAILABLE`
+     - Expected: A new client is added to the Client List. 
+     Client List panel will update to display all the clients in the client directory. 
+     The compulsory parameters will be set to what was specified in the command. 
+     Result display will output the message: 
+     `New client added: James; Address: 123, Clementi Rd, 1234665`
    - Test case (missing a compulsory input (n/NAME)): `add -c a/123, Clementi Rd, 1234665`
-     - Expected: No client will be added to the Client List and input text will turn red to signal an error. Result display will indicate that an invalid command format has been specified.
+     - Expected: No client will be added to the Client List and input text will turn red to signal an error. 
+     Result display will indicate that an invalid command format has been specified.
    - Test case (Interested Property does not exist): `add -c n/James a/123, Clementi Rd, 1234665 t/friend t/colleague ip/PINNACLE@DUXTON`
-     - Expected: No client added to the Client List and input text will turn red to signal an error. Result display will indicate that a property of PINNACLE@DUXTON was not found in the property directory.
+     - Expected: No client added to the Client List and input text will turn red to signal an error. 
+     Result display will indicate that a property of `PINNACLE@DUXTON` was not found in the property directory.
    
 ### Deleting a client
    Deleting a client while all clients are being shown
 
    Prerequisites: Client List must contain at least one client.
-   - Test case (Valid index): `delete 1`
+   - Test case (Valid index): `delete -c 1`
      - Expected: First client in the list will be deleted from the list of clients. Client list will reflect the status of the deleted client
-   - Test case (Invalid index): `delete 0`
+   - Test case (Invalid index): `delete -c 0`
      - Expected: No client will be deleted from the list of clients and input text will turn red to indicate there is an error in the input. Result display will output a correct example command and error message.
-   - Test case (missing index): `delete`
+   - Test case (missing index): `delete -c`
      - Expected: No client will be deleted from the list of clients and input text will turn red to indicate there is an error in the input. Result display will output a correct example command and error message.
 
 ### Editing a client
@@ -917,7 +930,8 @@ Editing a client while there are properties shown in the Client List
 
 Prerequisites: Client List must contain at least one Client .
 - Test case (editing one field of a Client ): `edit -c 1 n/ John Lee`
-  - Expected: The Client Name of the client with index 1 in the Client List will be modified to become `John Lee`. The remaining fields of this Client will remain the same. Result display will output the modified Client and its details.
+  - Expected: The Client Name of the client with index 1 in the Client List will be modified to become `John Lee`. 
+  The remaining fields of this Client will remain the same. Result display will output the modified Client and its details.
 - Test case (Invalid index given): `edit -c 0 n/John Lee`
   - Expected: No client will be edited. Invalid command format error will be displayed due to invalid index input.
 - Test case (`-c` flag not provided): `edit 1 n/John Lee`
