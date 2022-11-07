@@ -25,7 +25,7 @@ public class ModuleName {
     }
 
     public static boolean isValidModuleName(String moduleName) {
-        return moduleName.length() > 0;
+        return moduleName.strip().length() > 0;
     }
 
     @Override
