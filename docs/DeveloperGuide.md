@@ -211,7 +211,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The class diagram below shows out current implementation of the `Student` class 
+The class diagram below shows our current implementation of the `Student` class 
 which extends from the `Person` class.
 
 ![StudentClassDiagram](images/StudentClassDiagram.png)
@@ -272,17 +272,17 @@ at the index provided by the user.
 The following sequence diagram shows how the `editstu` command works:
 ![EditStuCommandSequenceDisgram](./images/EditStuCommandSequenceDiagram.png)
 
-After ProfNUS receives the command to edit a `Student` with the given index, it will find the corresponding 
+After ProfNUS receives the command to edit a `Student` with the given index, it will find the corresponding
 `Student` and edit its details.
 
 During the execution, the following validity checks will be conducted:
 - Module existence check - The model will check if it can find the module's indicated as the student's modules
-or, it's teaching modules. If any module specified is not found, then a `CommandException` will be thrown.
+  or, it's teaching modules. If any module specified is not found, then a `CommandException` will be thrown.
 - Duplicate Student check - The model will check if the edited student has the same `StudentId` as the
-rest of the students in ProfNUS. If such a duplicate is found, then a `CommandException` will be thrown and 
-the student will not be edited.
-- Teaching conflict check - The model will check if the edited student is a teaching assistant and a student 
-of the same module. If a conflict occers, then a `CommandException` will be thrown.
+  rest of the students in ProfNUS. If such a duplicate is found, then a `CommandException` will be thrown and
+  the student will not be edited.
+- Teaching conflict check - The model will check if the edited student is a teaching assistant and a student
+  of the same module. If a conflict occurs, then a `CommandException` will be thrown.
 
 The following activity diagram summarizes what happens when a user executes a `editstu` command.
 
@@ -303,8 +303,19 @@ A professor is unlikely to remember a Student's Id and it would also be a hassle
 to just typing the index of the student. Additionally, with other commands to search through the list of students by module
 and name, it should be easy for a professor to find the desired student to edit. Therefore, option 2 is preferred.
 
+### 5.3. View module list feature
 
-### 5.3. View module details feature
+#### Implementation
+
+The proposed view module list functionality is accomplished by `ListModuleCommand` which extends the `Command` class. The `ListModuleCommand` overrides the following method:
+
+- `ListModuleCommand#execute(Model model)` — Executes the command and displays all modules
+
+The following sequence diagram shows how view module operation works :
+
+![ListModuleSequence](images/ListModuleSequence.png)
+
+### 5.4. View students and tutors in module feature
 
 #### Implementation
 
@@ -333,8 +344,9 @@ The following activity diagram summarizes what happens when a user executes a `m
 Reason for choosing option 1:
 Modules like CS2103T, CS2103R and CS2103 have the same module name "Software Engineering". If we allow searching by module name, the program would not know which "Software Engineering" module to display.
 This would mean that we would need to have unique module names. However, this is not possible if the professor is teaching modules that have the same name but different code.
+As module code is the only unique field Module has, we decided to view modules by module code only to avoid any errors.
 
-### 5.4. The edit a module feature
+### 5.5. The edit a module feature
 
 #### Implementation
 
@@ -362,7 +374,7 @@ The following activity diagram summarizes what happens when a user executes a `m
 Reason for choosing option 1:
 A professor is more highly likely to remember the module codes of the modules that he is teaching rather than the index in the list in our application. Hence, an additional step would be required of the professor if option 2 were to be chosen. Therefore, option 1 is preferred.
 
-###  5.5. AddSchedule feature
+###  5.6. AddSchedule feature
 
 #### Implementation
 
@@ -383,7 +395,7 @@ During the execution, the following validity checks will be conducted:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the command isn't executed successfully and a `CommandException` is thrown, then the new schedule won't be added to the ProfNUS.</div>
 
-### 5.6. EditSchedule feature
+### 5.7. EditSchedule feature
 
 #### Implementation
 
@@ -419,7 +431,7 @@ Reason for choosing Option 2:
 
 To locate a schedule uniquely with schedule, a user needs to know the module code, class type, and class group. For example, `CS2103T tut W11`. However, when there are too many groups, professors can easily forget which group he is looking for. Therefore, using the index is better in this case.
 
-### 5.7. ViewSchedule feature
+### 5.8. ViewSchedule feature
 
 #### Implementation
 
@@ -721,7 +733,6 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### 8.1. Launch and shutdown
