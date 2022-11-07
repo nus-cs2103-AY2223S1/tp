@@ -730,6 +730,7 @@ Guarantee: bobaBot will revert back to the state after the Command was executed.
 
       Use case ends.
 
+<div style="page-break-after: always;"></div>
 **Use case 9: Calculate change to be given to Customer**
 
 System: bobaBot <br>
