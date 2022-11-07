@@ -18,6 +18,8 @@ neat functionalities of **TrackO** that will make your life easier!
 
 If you are looking to help develop this project, take a look at our [Developer Guide](DeveloperGuide.md) too.
 
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 
 * [**Introduction**](#introduction)
@@ -50,6 +52,8 @@ If you are looking to help develop this project, take a look at our [Developer G
 * [**Command Summary**](#command-summary)
 * [**Glossary**](#glossary)
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
@@ -80,6 +84,8 @@ Interested? Jump straight to our [Quick Start section](#quick-start) to get star
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
+<div style="page-break-after: always;"></div>
+
 ---
 
 ## Using this guide
@@ -108,6 +114,8 @@ p.s. Not too sure about some technical terms in this guide? Check out our [gloss
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
+<div style="page-break-after: always;"></div>
+
 -------------------------------------------------------------------------------------------------------------------
 
 ## Symbols and Syntax
@@ -124,6 +132,8 @@ in the table below:
 | [Hyperlinked text in blue](#symbols-and-syntax) | When it is pressed, it should lead you to another section in the document or to an external link.                                               |
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
+
+<div style="page-break-after: always;"></div>
 
 ---------
 
@@ -165,6 +175,8 @@ the application's sample data.
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Layout
@@ -174,6 +186,8 @@ The image below describes TrackO's layout:
 <img src="./images/user-guide/TrackOLayout.png" alt="TrackOLayout">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
+
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -235,6 +249,8 @@ To check out more commands, you can head over to our [Features](#features) secti
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
+<div style="page-break-after: always;"></div>
+
 -------
 
 ## Command guide
@@ -262,6 +278,8 @@ This section of the user guide helps to break down the formatting used for comma
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
+<div style="page-break-after: always;"></div>
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
@@ -274,6 +292,8 @@ The commands included in this section are related to inventory management.
 As of `v1.4`, there are 5 commands.
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
+
+<div style="page-break-after: always;"></div>
 
 ### Adding an inventory item: `addi`
 
@@ -307,6 +327,8 @@ The following result will be displayed in the application:
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
+<div style="page-break-after: always;"></div>
+
 ### Listing all inventory items: `listi`
 
 Lists all the existing items in the store’s inventory.
@@ -320,6 +342,8 @@ Executing it on our sample data will display the following result:
   <img src="./images/user-guide/ListiExample.png" alt="ListiExample">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
+
+<div style="page-break-after: always;"></div>
 
 ### Finding an inventory item: `findi`
 
@@ -346,6 +370,8 @@ Example(s):
   <img src="./images/user-guide/FindiExample2.png" alt="FindiExample2">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting an inventory item: `deletei`
 
@@ -374,6 +400,8 @@ Example(s):
   <img src="./images/user-guide/DeleteiExample2.png" alt="DeleteiExample2">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
+
+<div style="page-break-after: always;"></div>
 
 ### Editing an inventory item: `editi`
 
@@ -424,6 +452,8 @@ you are trying to edit is currently involved in an uncompleted order (in this ca
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
+<div style="page-break-after: always;"></div>
+
 -------------------------------------------------------------------------
 
 ### <u>Order management</u>
@@ -432,6 +462,8 @@ The commands included in this section are related to order management.
 As of `v1.4`, there are 7 commands.
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
+
+<div style="page-break-after: always;"></div>
 
 ### Adding an order: `addo`
 
@@ -485,6 +517,8 @@ following result:
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
+<div style="page-break-after: always;"></div>
+
 ### Listing all orders: `listo`
 
 Lists all the orders a store has.
@@ -498,6 +532,8 @@ on our sample data will display the following result:
   <img src="./images/user-guide/ListoExample.png" alt="ListoExample">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
+
+<div style="page-break-after: always;"></div>
 
 ### Finding order(s): `findo`
 
@@ -568,6 +604,8 @@ Completed orders are orders which have been paid **and** delivered. You can sear
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
+<div style="page-break-after: always;"></div>
+
 ### Sorting orders by time created: `sorto`
 
 Sorts the displayed list of orders by the time at which they were created.
@@ -602,6 +640,8 @@ Executing it on our sample data will display the following result:
      <img src="./images/user-guide/SortoNew1-3.png" alt="SortoExample1-3">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting an order: `deleteo`
 
@@ -644,6 +684,8 @@ sample data will display this result:
      <img src="./images/user-guide/DeleteoExample3-2.png" alt="DeleteoExample3-2">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
+
+<div style="page-break-after: always;"></div>
 
 ### Editing an order: `edito`
 
@@ -704,6 +746,8 @@ Example(s):
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
+<div style="page-break-after: always;"></div>
+
 ### Marking an order as paid/delivered: `marko`
 
 Marks an existing order in the order list as paid and/or delivered. 
@@ -745,6 +789,8 @@ Example(s):
   <img src="./images/user-guide/MarkoExample2.png" alt="MarkoExample2">
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
+
+<div style="page-break-after: always;"></div>
 
 ### <u>General features</u>
 
@@ -810,6 +856,8 @@ data file at the next run.
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
+<div style="page-break-after: always;"></div>
+
 ## Command summary
 
 | Action                                                              | Format, Examples                                                                                                                                                                                                                                                                |
@@ -831,6 +879,8 @@ data file at the next run.
 | [**Exit**](#exiting-tracko-exit)                                    | `exit`                                                                                                                                                                                                                                                                          |
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
+
+<div style="page-break-after: always;"></div>
 
 ## Glossary
 
