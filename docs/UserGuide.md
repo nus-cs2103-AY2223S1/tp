@@ -7,22 +7,12 @@ HR Pro Max++ is a **desktop app for team leads in SMEs to manage Projects, Staff
 It is optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI).
 
 Our simple and intuitive commands will help you quickly learn how to use HR Pro Max++ to quickly finish all your Project Management Tasks.
-If you can type fast, you will be able to make the most of HR Pro Max++, and get your Project management Tasks done faster than traditional GUI apps.
+If you can type fast, you will be able to make the most of HR Pro Max++, and get your Project Management Tasks done faster than traditional GUI apps.
 
 Here are some shortcuts to get help:
 * To set up HR Pro Max++, go to our [Quick start section](#quick-start).
 * If you are unsure of the terminology, check our [Glossary section](#glossary).
 * To see how all our commands work, head to our [Features section](#features).
-
-&nbsp;<br>
-&nbsp;<br>
-&nbsp;<br>
-&nbsp;<br>
-&nbsp;<br>
-&nbsp;<br>
-&nbsp;<br>
-&nbsp;<br>
-&nbsp;<br>
 --------------------------------------------------------------------------------------------------------------------
 ## **Table of Contents**
 
@@ -30,6 +20,8 @@ Here are some shortcuts to get help:
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div> 
+
 ## **Glossary**
 In this User Guide, there might some terms unknown to you. We have provided elaboration on some
 of these terms in the hopes that it will clear your doubts.
@@ -42,6 +34,7 @@ of these terms in the hopes that it will clear your doubts.
 | **Parameter** | Parameters are the information that are needed to be passed together with the command such that it can be executed.                 |
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div>
 ## **Quick start**
 
 1. Ensure you have Java `11` or above is installed in your Computer. Please kindly refer to [this guide](https://blog.hubspot.com/website/check-java-verison) for further instructions on how to do so.
@@ -53,8 +46,11 @@ of these terms in the hopes that it will clear your doubts.
 4. Double-click the jar file to start the app. The GUI similar to the below should appear in a few seconds. Note that the app contains some sample data.<br>
    ```yaml
    Note:
-   If you are an Apple user, you may not be able to double-click the jar file to start the app.
-   In that case, you can either right click the jar file and run it from the drop-down menu, or run the following command in the terminal: java -jar HR_Pro_Max++.jar
+   If you are an Apple user, you may not be able to double-click the jar file to 
+   start the app.
+   In that case, you can either right click the jar file and run it from the
+   drop-down menu, or run the following command in 
+   the terminal: java -jar HR_Pro_Max++.jar
    ```
    ![Ui](images/Ui.png)
 6. You can proceed to the next section for a quick [overview of the user interface](#user-interface).
@@ -63,6 +59,8 @@ of these terms in the hopes that it will clear your doubts.
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div>
+
 ## **User Interface**
 Our app's user interface is divided into 5 main parts:
 1. [Command Box](#command-box)
@@ -118,6 +116,8 @@ For information on all commands that are related to Staff, refer to the [Staff C
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div> 
+
 # **Features**
 
 <div markdown="block" class="alert alert-info">
@@ -154,6 +154,8 @@ For information on all commands that are related to Staff, refer to the [Staff C
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div>
+
 ## **Project Commands**
 This section contains information regarding all the commands that can be used to manage Projects.
 
@@ -170,6 +172,8 @@ This is a description of the different parameters for Projects.
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div> 
+
 ### Adding a Project : `addproj`
 
 Adds a Project to Project list.
@@ -236,7 +240,6 @@ Sorts the Project list according to ascending order of `PROJECT_DEADLINE`.
 Format: `sortproj`
 
 ```yaml
-
 Warning !!!:
   - This command is irreversible, you will not be able to get back the original ordering
     after this command.
@@ -297,6 +300,8 @@ Examples:
 [Back to Project Glossary](#project-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div> 
+
 ## **Staff Commands**
 
 Since each Project contains a list of Staff, we recommend that before using Staff commands on any Project,
@@ -322,6 +327,8 @@ Warning !!!:
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div> 
+
 ### Adding a Staff member to Project : `addstaff`
 
 Adds a Staff member into the Project at the specified `INDEX`.
@@ -459,6 +466,8 @@ Staff whose name contains `Adrian` or `Lam` are also listed.
 [Back to Staff Glossary](#staff-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div> 
+
 ## **Task Commands**
 This section contains information on all the commands related to Tasks.
 
@@ -472,6 +481,8 @@ This section contains information on all the commands related to Tasks.
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div> 
+
 ### Adding a Task : `addtask`
 
 Adds a Task to the Task list.
@@ -597,6 +608,8 @@ Examples:
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div> 
+
 ## **General Commands**
 This section contains information on all the commands that are not related to any specific feature.
 
@@ -641,14 +654,8 @@ There is no need to save manually.
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-# **FAQ**
+<div style="page-break-after: always"></div> 
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HR Pro Max++ home folder.
-
-[Back to top](#table-of-contents)
-
---------------------------------------------------------------------------------------------------------------------
 # **Summary**
 This section contains a summary of all the commands and prefixes in HR Pro Max++.
 
@@ -727,5 +734,15 @@ The prefix `t/` is for tags that are used for Projects and Staff only.
 | **td/**    | Task deadline      | td/TASK_DEADLINE       |
 | **tdesc/** | Task description   | tdesc/TASK_DESCRIPTION |
 | **t/**     | Tag                | t/TAG                  |
+
+[Back to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div> 
+
+# **FAQ**
+
+**Q**: How do I transfer my data to another Computer?<br>
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HR Pro Max++ home folder.
 
 [Back to top](#table-of-contents)
