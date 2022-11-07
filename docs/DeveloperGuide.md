@@ -790,13 +790,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC5 - Tag client to project**
+**Use case: List all clients**
 
 **MSS**
 
-1. User <ins>views the list of projects (UC1).</ins>
-2. User requests to tag a client to a specific project in the list.
-3. DevEnable tags the client to the project in the list.
+1.  User requests to list clients
+2.  DevEnable shows a list of clients.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+  * 1a1. DevEnable displays a default message.
+
+    Use case ends.
+
+**Use case: Add Client to DevEnable**
+
+**MSS**
+
+1.  User requests to add a client.
+2.  DevEnable adds the client to the list, and attaches it to a project..
 
     Use case ends.
 
@@ -806,7 +821,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. DevEnable displays an error message with the correct usage.
 
       Use case resumes at Step 2.
-* 2b. DevEnable detects that the project does not exist in the list.
+* 2b. DevEnable detects that the project that the client will be attached to does not exist in the list.
     * 2b1. DevEnable displays an error message that the project does not exist.
 
       Use case ends.
@@ -1044,6 +1059,129 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: Add issue to DevEnable**
+
+**MSS**
+
+1.  User requests to add a issue.
+2.  DevEnable adds the issue to the list, and attaches it to a project..
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The user makes an error in writing the request.
+    * 2a1. DevEnable displays an error message with the correct usage.
+
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that the project that the issue will be attached to does not exist in the list.
+    * 2b1. DevEnable displays an error message that the project does not exist.
+
+      Use case ends.
+
+**Use case: UC6 - Delete issue from project**
+
+**MSS**
+
+1. User <ins>views the list of projects (UC1).</ins>
+2. User requests to delete a issue from a specific project in the list.
+3. DevEnable deletes the issue from the project in the list.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The user makes an error in writing the request.
+    * 2a1. DevEnable displays an error message with the correct usage.
+
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that the project does not exist in the list.
+    * 2b1. DevEnable displays an error message that the project does not exist.
+
+      Use case ends.
+* 2c. DevEnable detects that the issue is not assigned to the project.
+    * 2c1. DevEnable displays an error message that the issue does not exist.
+
+      Use case ends.
+
+**Use case: UC7 - Edit issue of project**
+
+**MSS**
+
+1. User <ins>views the list of projects (UC1).</ins>
+2. User requests to edit a issue of a specific project in the list.
+3. DevEnable edits the issue of the project in the list.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The user makes an error in writing the request.
+    * 2a1. DevEnable displays an error message with the correct usage.
+
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that the project does not exist in the list.
+    * 2b1. DevEnable displays an error message that the project does not exist.
+
+      Use case ends.
+* 2c. DevEnable detects that the issue is not assigned to the project.
+    * 2c1. DevEnable displays an error message that the issue does not exist.
+
+      Use case ends.
+
+	  
+**Use case: List all issues**
+
+**MSS**
+
+1.  User requests to list issues
+2.  DevEnable shows a list of issues.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+  * 1a1. DevEnable displays a default message.
+
+    Use case ends.
+
+**Use case: Mark issue as complete**	
+
+**MSS**
+
+1. User requests to mark an issue as complete
+2. DevEnable marks said issue as complete
+
+**Extensions**
+- 1a. There are no issues/issue is not found.
+	- 1a1. DevEnable displays an error message
+
+	Use Case ends.
+
+- 1b. The issue is already complete
+	- 1b1. DevEnable displays an error message
+
+	Use Case ends.
+
+**Use case: Mark issue as incomplete**	
+
+**MSS**
+
+1. User requests to mark an issue as incomplete
+2. DevEnable marks said issue as incomplete
+
+**Extensions**
+- 1a. There are no issues/issue is not found.
+	- 1a1. DevEnable displays an error message
+
+	Use Case ends.
+
+- 1b. The issue is already incomplete
+	- 1b1. DevEnable displays an error message
+
+	Use Case ends.
+
 **Use case: UC16 - Find issues**
 
 **MSS**
@@ -1065,6 +1203,127 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+
+**Use Case: View a sorted list of projects**
+
+**MSS**
+
+1. User requests to view a sorted list of projects with parameters.
+2. DevEnable displays a sorted list of projects with said parameters.
+
+	Use Case ends
+
+**Extensions**
+- 1a. User makes an error in writing the request (incorrect parameters and/or sorting keys)
+	- 1a1. DevEnable displays an error message with the correct usage.
+
+	Use Case Ends
+
+
+**Use Case: View a sorted list of clients**
+
+**MSS**
+
+1. User requests to view a sorted list of clients with parameters.
+2. DevEnable displays a sorted list of clients with said parameters.
+
+	Use Case ends
+
+**Extensions**
+- 1a. User makes an error in writing the request (incorrect parameters and/or sorting keys)
+	- 1a1. DevEnable displays an error message with the correct usage.
+
+	Use Case Ends
+	
+**Use Case: View a sorted list of issues**
+
+**MSS**
+
+1. User requests to view a sorted list of issues with parameters.
+2. DevEnable displays a sorted list of issues with said parameters.
+
+	Use Case ends
+
+**Extensions**
+- 1a. User makes an error in writing the request (incorrect parameters and/or sorting keys)
+	- 1a1. DevEnable displays an error message with the correct usage.
+
+	Use Case Ends
+
+**Use Case: Pin/Unpin a project**
+
+**MSS**
+
+1. User requests to pin a project
+2. DevEnable pins/unpins said project in the list, depending on whether it was pinned initially.
+
+	Use Case ends
+
+**Extensions**
+- 1a. User makes an error in writing the request (negative ID)
+	- 1a1. DevEnable displays an error message with the correct usage.
+
+	Use Case resumes at Step 1.
+
+
+**Use Case: Pin/Unpin a issue**
+
+**MSS**
+
+1. User requests to pin a issue
+2. DevEnable pins/unpins said issue in the list, depending on whether it was pinned initially.
+
+	Use Case ends
+
+**Extensions**
+- 1a. User makes an error in writing the request (negative ID)
+	- 1a1. DevEnable displays an error message with the correct usage.
+
+	Use Case resumes at Step 1.
+
+**Use Case: Pin/Unpin a client**
+
+**MSS**
+
+1. User requests to pin a client
+2. DevEnable pins/unpins said client in the list, depending on whether it was pinned initially.
+
+	Use Case ends
+
+**Extensions**
+- 1a. User makes an error in writing the request (negative ID)
+	- 1a1. DevEnable displays an error message with the correct usage.
+
+	Use Case resumes at Step 1.
+
+**Use Case: Set default view of DevEnable to project list**
+
+**Guarantees:** On startup, DevEnable shows project list initially.
+
+**MSS**
+
+1. User requests for the project list to be the default view
+2. DevEnable sets the default view to be the project list.
+
+**Use Case: Set default view of DevEnable to client list**
+
+**Guarantees:** On startup, DevEnable shows client list initially.
+
+**MSS**
+
+1. User requests for the client list to be the default view
+2. DevEnable sets the default view to be the client list.
+
+**Use Case: Set default view of DevEnable to issue list**
+
+**Guarantees:** On startup, DevEnable shows issue list initially.
+
+**MSS**
+
+1. User requests for the issue list to be the default view
+2. DevEnable sets the default view to be the issue list.
+
+
 **Use case: UC17 - View list of commands**
 
 **MSS**
@@ -1074,7 +1333,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-*{More to be added}*
+**Use Case: Clear project book**
+
+**MSS**
+
+1. User requests to clear project book
+2. DevEnable clears project book
+
+	Use case ends
+
+**Use Case: Exit project book**
+
+**MSS**
+
+1. User requests to exit project book
+2. DevEnable exits
+
+	Use Case ends
 
 ### Non-Functional Requirements
 
