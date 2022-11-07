@@ -739,7 +739,6 @@ testers are expected to do more *exploratory* testing.
    1. Test case: Delete the `data` folder <br>
    Expected: On app launch, InterNUS is populated with sample data.
 
-
    1. Test case: Delete the `addressbook.json` file <br>
    Expected: On app launch, InterNUS is populated with sample data.
 
