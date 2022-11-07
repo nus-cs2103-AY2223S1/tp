@@ -54,7 +54,7 @@ Given below are my contributions to the project.
   * Debugged and fixed more than half of the bugs from PE Dry Run
   * Organised team meetings and led discussions on the project
   * Led the team by assigning tasks, reminding teammates to complete them and checking through their work
-  * Managed and scribed the project Google document and made team submissions
+  * Managed and scribed the project Google document and made team submissions like demo screenshots and PE Dry Run bug report
 
 
 * __Review/mentoring contributions__:
