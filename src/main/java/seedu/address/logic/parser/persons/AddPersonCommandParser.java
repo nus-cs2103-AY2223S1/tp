@@ -43,7 +43,7 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPersonCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parsePersonName(argMultimap.getValue(PREFIX_NAME).get());
+        Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Person person = new Person(name.fullName);
         person.setTags(tagList);
