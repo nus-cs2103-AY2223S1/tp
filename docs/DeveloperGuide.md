@@ -1015,17 +1015,15 @@ Implementing ModQuik was not easy. We have summarised the difficulties and chall
 As we are creating a tool for TAs to manage all their teaching responsibilities, we have to implement several new classes to get the minimum viable product of ModQuik.
 We created `Tutorial`, `Consultation` and `Reminder` classes and its associated inner field classes. When applicable, we try to abstract out commonly reused classes.
 However, it was not easy to identify them, and we had to make many subsequent changes along the way to due to other design considerations such as the fact that tutorials are repeated on a weekly basis while consultations are usually a one-off thing.
-We also had to create Parser classes for each of the subsequent classes that we have created in order for our commands to work properly.
+We also created multiple Parser classes for each of the subsequent classes that we have created in order for our commands to work properly.
 As we use multi-word commands, this poses yet another challenge to implement a bug-free way of parsing inputs as it created a plethora of ways for invalid inputs to occur.
 
 One major challenge that we faced was limiting the number of classes that a TA could add. In reality, TAs could only teach up to 2 modules every semester.
 However, this would require us to implement tight constraints on our user as we would have to validate the inputs every step along the way.
 The most inconvenient aspect is that editing any student entry that involves changing the module code will require user to first delete a module (if they are already capped at 2 modules) and then add the new module.
 This presents yet another dilemma, because if the TA deletes the module code, then by design all the student entries related to the module should be deleted as well.
-However, this would not be very viable as the TA might simply want to add another student into the list of students, and such design would not accomodate nicely to accidental errors as well.
-Moreover, if we were to link the module to the students, editing the tutorial module code will also edit all the affiliated student entries. However, this is not a desired behaviour. 
-For instance, though rare, a student may end up having the same TA for 2 mods. 
-
-There are many plausible arguments, and it also depends on how the user uses the product. If given more time...
+However, this would not be desirable as the TA might simply want to add another student into the list of students, and such design would not accommodate nicely to accidental errors.
+Moreover, if we were to link the module to the students, editing the tutorial module code will also edit all the affiliated student entries, but this might not be the intended behaviour.
+For instance, though rare, a student may end up having the same TA for 2 mods.
 
 ### 9.2 User Interface
