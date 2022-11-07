@@ -24,8 +24,8 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteTagCommand.MESSAGE_USAGE));
         }
-        //Checking invalid prefixes to eliminate them
-        if (argMultiMap.getPreamble().isEmpty() || argMultiMap.getPreamble().contains("/")) {
+
+        if (!argMultiMap.getPreamble().matches("(-|\\+)?\\d+(\\.\\d+)?")) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteTagCommand.MESSAGE_USAGE));
         }

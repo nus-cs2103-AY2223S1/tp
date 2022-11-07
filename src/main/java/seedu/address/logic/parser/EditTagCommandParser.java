@@ -28,8 +28,8 @@ public class EditTagCommandParser implements Parser<EditTagCommand> {
         ArgumentMultimap argumentMultimap = ArgumentTokenizer
                 .tokenize(args, PREFIX_DEADLINE, PREFIX_PRIORITY_STATUS);
         Index index;
-        //Added the check for slash to eliminate invalid prefixes from being recognised
-        if (argumentMultimap.getPreamble().isEmpty() || argumentMultimap.getPreamble().contains("/")) {
+
+        if (!argumentMultimap.getPreamble().matches("(-|\\+)?\\d+(\\.\\d+)?")) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     EditTagCommand.MESSAGE_USAGE));
         }

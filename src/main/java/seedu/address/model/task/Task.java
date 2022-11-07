@@ -11,10 +11,10 @@ import seedu.address.model.module.Module;
 import seedu.address.model.tag.DeadlineTag;
 import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.exceptions.DeadlineTagAlreadyExistsException;
-import seedu.address.model.tag.exceptions.DeadlineTagDoesNotExist;
+import seedu.address.model.tag.exceptions.DeadlineTagDoesNotExistException;
 import seedu.address.model.tag.exceptions.DeadlineTagUnchangedException;
-import seedu.address.model.tag.exceptions.PriorityTagAlreadyExistsException;
-import seedu.address.model.tag.exceptions.PriorityTagDoesNotExist;
+import seedu.address.model.tag.exceptions.PriorityTagAlreadyExistsException;;
+import seedu.address.model.tag.exceptions.PriorityTagDoesNotExistException;
 import seedu.address.model.tag.exceptions.PriorityTagUnchangedException;
 import seedu.address.model.task.exceptions.TaskAlreadyMarkedException;
 import seedu.address.model.task.exceptions.TaskAlreadyUnmarkedException;
@@ -178,7 +178,7 @@ public class Task {
      */
     public Task deletePriorityTag() {
         if (priorityTag == null) {
-            throw new PriorityTagDoesNotExist();
+            throw new PriorityTagDoesNotExistException();
         }
         return new Task(module, description, status, null, deadlineTag, linkedExam);
     }
@@ -228,7 +228,7 @@ public class Task {
      */
     public Task deleteDeadlineTag() {
         if (deadlineTag == null) {
-            throw new DeadlineTagDoesNotExist();
+            throw new DeadlineTagDoesNotExistException();
         }
         return new Task(module, description, status, priorityTag, null, linkedExam);
     }

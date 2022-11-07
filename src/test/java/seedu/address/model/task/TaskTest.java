@@ -14,10 +14,24 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.tag.DeadlineTag;
+import seedu.address.model.tag.PriorityTag;
+import seedu.address.model.tag.exceptions.DeadlineTagAlreadyExistsException;
+import seedu.address.model.tag.exceptions.DeadlineTagDoesNotExistException;
+import seedu.address.model.tag.exceptions.DeadlineTagUnchangedException;
+import seedu.address.model.tag.exceptions.PriorityTagAlreadyExistsException;
+import seedu.address.model.tag.exceptions.PriorityTagDoesNotExistException;
+import seedu.address.model.tag.exceptions.PriorityTagUnchangedException;
 import seedu.address.model.task.exceptions.TaskAlreadyMarkedException;
 import seedu.address.model.task.exceptions.TaskAlreadyUnmarkedException;
+import seedu.address.testutil.DeadlineTagBuilder;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
+import seedu.address.testutil.PriorityTagBuilder;
 import seedu.address.testutil.TaskBuilder;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class TaskTest {
 
@@ -41,6 +55,57 @@ public class TaskTest {
     @Test
     public void unmark_unmarkedTask_throwsTaskAlreadyUnmarkedException() {
         assertThrows(TaskAlreadyUnmarkedException.class, () -> TASK_A.unmark());
+    }
+
+    @Test
+    public void isSameTask_nullTask_returnsFalse() {
+        Task task = new TaskBuilder().build();
+        assertFalse(task.isSameTask(null));
+    }
+
+    @Test
+    public void setPriorityTag_taskAlreadyHasPriorityTag_throwPriorityTagAlreadyExistsException() {
+        Task task = new TaskBuilder().withPriorityTag(new PriorityTagBuilder()
+                .build()).build();
+        PriorityTag priorityTag = new PriorityTagBuilder().withStatus("LOW").build();
+        assertThrows(PriorityTagAlreadyExistsException.class, () -> task.setPriorityTag(priorityTag));
+    }
+
+    @Test
+    public void replacePriorityTag_taskPriorityTagIsUnchanged_throwsPriorityTagUnchangedException() {
+        Task task = new TaskBuilder().withPriorityTag(new PriorityTagBuilder()
+                .build()).build();
+        PriorityTag priorityTag = new PriorityTagBuilder().build();
+        assertThrows(PriorityTagUnchangedException.class, () -> task.replacePriorityTag(priorityTag));
+    }
+
+    @Test
+    public void deletePriorityTag_taskPriorityTagNotPresent_throwsPriorityTagDoesNotExistException() {
+        Task task = new TaskBuilder().withPriorityTag(null).build();
+        assertThrows(PriorityTagDoesNotExistException.class, task::deletePriorityTag);
+    }
+
+    @Test
+    public void setDeadlineTag_taskAlreadyHasDeadlineTag_throwDeadlineTagAlreadyExistsException() {
+        Task task = new TaskBuilder().withDeadlineTag(new DeadlineTagBuilder()
+                .build()).build();
+        LocalDate date = LocalDate.parse("25-12-2023",  DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        DeadlineTag deadlineTag = new DeadlineTagBuilder().withDeadline(date).build();
+        assertThrows(DeadlineTagAlreadyExistsException.class, () -> task.setDeadlineTag(deadlineTag));
+    }
+
+    @Test
+    public void replaceDeadlineTag_taskDeadlineTagIsUnchanged_throwsDeadlineTagUnchangedException() {
+        Task task = new TaskBuilder().withDeadlineTag(new DeadlineTagBuilder()
+                .build()).build();
+        DeadlineTag deadlineTag = new DeadlineTagBuilder().build();
+        assertThrows(DeadlineTagUnchangedException.class, () -> task.replaceDeadlineTag(deadlineTag));
+    }
+
+    @Test
+    public void deleteDeadlineTag_taskDeadlineTagNotPresent_throwsDeadlineTagDoesNotExistException() {
+        Task task = new TaskBuilder().withDeadlineTag(null).build();
+        assertThrows(DeadlineTagDoesNotExistException.class, task::deleteDeadlineTag);
     }
 
     @Test

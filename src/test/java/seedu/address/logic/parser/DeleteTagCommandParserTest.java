@@ -16,6 +16,8 @@ import seedu.address.logic.commands.DeleteTagCommand;
 public class DeleteTagCommandParserTest {
 
     private DeleteTagCommandParser parser = new DeleteTagCommandParser();
+    private final String invalidCommandFormatMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+            DeleteTagCommand.MESSAGE_USAGE);
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -44,16 +46,14 @@ public class DeleteTagCommandParserTest {
 
     @Test
     public void parse_missingFields_failure() {
-        String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                DeleteTagCommand.MESSAGE_USAGE);
 
         //Missing index
         String missingIndex = PREFIX_TAG + "priority deadline";
-        assertParseFailure(parser, missingIndex, expectedMessage);
+        assertParseFailure(parser, missingIndex, invalidCommandFormatMessage);
 
         //Missing keywords
         String missingKeywords = "1 priority deadline";
-        assertParseFailure(parser, missingKeywords, expectedMessage);
+        assertParseFailure(parser, missingKeywords, invalidCommandFormatMessage);
     }
 
     @Test
@@ -72,6 +72,9 @@ public class DeleteTagCommandParserTest {
         String invalidKeyword = "1 " + PREFIX_TAG + "pri";
         String invalidKeywordMessage = ParserUtil.MESSAGE_INVALID_KEYWORDS;
         assertParseFailure(parser, invalidKeyword, invalidKeywordMessage);
+
+        //Invalid index(Not a Number)
+        assertParseFailure(parser, "abc t/priority", invalidCommandFormatMessage);
 
         //Invalid index(Non-positive)
         String invalidIndexMessage = DeleteTagCommandParser.INVALID_INDEX_FOR_DELETE_TAG;

@@ -22,12 +22,7 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
     public AddTagCommand parse(String args) throws ParseException {
         requireNonNull(args);
         String[] indexWithTags = args.strip().split("\\s", 2);
-        if (indexWithTags.length != 2) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddTagCommand.MESSAGE_USAGE));
-        }
-        //Checks if any prefixes(Including possible invalid ones) exist
-        if (indexWithTags[0].contains("/")) {
+        if (indexWithTags.length != 2 || !indexWithTags[0].matches("(-|\\+)?\\d+(\\.\\d+)?")) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     AddTagCommand.MESSAGE_USAGE));
         }
