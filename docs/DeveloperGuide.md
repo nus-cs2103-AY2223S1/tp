@@ -156,16 +156,41 @@ Classes used by multiple components are in the `seedu.condonery.commons` package
 This section describes some noteworthy details on how certain features are implemented.
 
 ### Select property/client feature
+#### High-level details
+* The select feature is meant to expand on either a `Property` or a `Client` to display its details in the GUI.
+* Importantly, a `Property` can hold a list of interested clients and a `Client` can hold a list of properties that the client is interested in.
+* Depending on if a `Property` or `Client` is selected, the GUI changes to show just the selected `Property` or `Client` in its respective tab, and its interested clients or intersted properties - respectively - in the other tab.
+* The select command is as follows, where `select -p [INDEX]` is used to select a property under the property directory, and `select -c [INDEX]` is used to select a client under the client directory:
 
-The select feature is meant to expand on either a `Property` or a `Client` to display its details in the GUI. Importantly, a `Property` can hold a list of interested clients and a `Client` can hold a list of properties that the client is interested in. Depending on if a `Property` or `Client` is selected, the GUI changes to show just the selected `Property`/`Client` in its respective tab, and its interested clients/intersted properties in the other tab. The select command is as follows:
-```
-select -[pc] [INDEX]
-```
-The compulsory input `INDEX` would correspond to the current displayed list in the GUi.
-Examples of usage:
-* `select -p 2`
-* `select -c 10`
+  ```
+  select -[pc] [INDEX]
+  ```
 
+  * The compulsory input `INDEX` would correspond to the current displayed list in the GUi.
+* Examples of usage:
+  * `select -p 2`
+  * `select -c 10`
+
+#### Technical details
+* The implementation of the select feature mainly revolves around two classes each for a `Property` and a `Client`: `SelectPropertyCommand`, `SelectPropertyCommandParser`, `SelectClientCommand` and `SelectClientCommandParser`.
+  * The `SelectPropertyCommand` and `SelectClientCommand` classes handle the backend execution of the command, such as changing the list of Properties or Clients to be displayed on the GUI (See the UML diagrams below for a detailed breakdown).
+  * The `SelectPropertyCommandParser` and `SelectClientCommandParser` classes handle the parsing of the arguments that have been supplied with the `select -[pc]` command (See the UML diagrams below for a detailed breakdown).
+    * The user is supposed to only provide a valid `[INDEX]` as an argument. If invalid arguments have been provided, the parser classes throw a `ParseException` and display a message on the GUI to inform the user of the error.
+
+#### UML Diagrams
+The diagrams below are for `SelectPropertyCommand` and `SelectPropertyCommandParser`.
+
+This activity diagram models the workflow when a `select -p 1` input is given by the user.
+
+Importantly, errors that might be thrown are modeled in this diagram.
+
+![SelectPropertyActivityDiagram](images/SelectPropertyActivityDiagram.png)
+
+This sequence diagram shows the interactions between the `Logic`, `Model`, and `Ui` classes when a `select -p 1` input is given by the user.
+
+![SelectPropertySequenceDiagram](images/SelectPropertySequenceDiagram.png)
+
+The logic for `SelectClientCommand` and `SelectClientCommandParser` are similar and derivable from the diagrams too.
 
 ### Range feature
 
@@ -274,8 +299,8 @@ In order to ensure data cleanliness and that the inputs by the users are valid, 
 
 ![RangeActivityDiagram](images/RangeActivityDiagram.png)
 
-### Filter by Property Status Feature [Yue Hern]
-This feature allows users to filter properties by `PropertyStatusEnum`. 
+### Filter by Property Status Feature
+This feature allows users to filter properties by `PropertyStatusEnum`.
 
 The feature is activated by the command patter `status -p [property_status]`
 
@@ -309,7 +334,7 @@ Aspect: Input format for `StatusPropertyCommand`
 
 - **Alternative 1** (current choice): Accept both lower and upper case for `StatusPropertyCommand` argument
 (e.g. accept both `status -p available` and `status -p AVAILABLE` inputs)
-  - Pros: 
+  - Pros:
     - Less prone to error for the user
     - More intuitive for the user
   - Cons:
@@ -376,14 +401,14 @@ models in order to determine the location to source for the uploaded images.
 
 ### Undo feature
 
-The undo mechanism is facilitated by `CommandQueue`. 
+The undo mechanism is facilitated by `CommandQueue`.
 
 `CommandQueue` stores a List of Commands which had been executed during the application lifecycle, and is stored as a field in the `Model` class.
 Everytime the `LogicManager` executes a command, it will call `Model#addCommand()`, which adds the `Command` to the `CommandQueue`.
-In addition, the initial state of the `PropertyDirectory` and `ClientDirectory` is saved on initialization. 
+In addition, the initial state of the `PropertyDirectory` and `ClientDirectory` is saved on initialization.
 
 The undo functionality is exposed in the `Model` interface as `Model#undoCommand()`.
-This method handles the resetting of `PropertyDirectory` and `ClientDirectory` to its initial states, and then executing all the commands except for the most recent one. 
+This method handles the resetting of `PropertyDirectory` and `ClientDirectory` to its initial states, and then executing all the commands except for the most recent one.
 
 Here is the sequence diagram for when `undo` command is executed.
 ![UndoSequenceDiagram.png](images/UndoSequenceDiagram.png)
@@ -433,10 +458,6 @@ Step 6. The user executes `clear -p`, which calls `Model#addCommand()`. We notic
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**
@@ -469,7 +490,7 @@ CommandQueue and re-executes _n - 1_ commands on undo.
 
 ### Product scope
 
-***Target user profile**:
+**Target user profile**:
 
 * middle-aged property agent selling new condos to prospective clients
 * has a need to manage a significant number of property listings and clients
@@ -521,7 +542,7 @@ Use case ends.
 
 1. User requests to add a property
 2. Condonery adds the property into the Property Directory
- 
+
 Use case ends.
 
 **Extensions**
@@ -585,22 +606,27 @@ Use case ends.
 Use Case ends.
 
 3a. The given input is missing a required parameter
+
 3a1. Condonery shows an error message with an example of correct input with all the required arguments
 Use case resumes at step 3.
 
 3b. The given input is missing a required prefix
+
 3b1. Condonery shows an error message with an example of correct input with all the required arguments
 Use case resumes at step 3.
 
 3c. The input did not specify a index
+
 3c1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 Use case resumes at step 3.
 
 3d. The input's specified index does not exist in the Property Directory
+
 3d1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 Use case resumes at step 3.
 
 3e. The input's specified index is in the wrong format.
+
 3e1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 Use case resumes at step 3.
 
@@ -616,6 +642,7 @@ Use case ends
 **Extensions**
 
 1a. Specified type is not one of `HDB`, `CONDO`, or `LANDED`
+
 1a1. Condonery shows an error message stating that only `HDB`, `CONDO`, or `LANDED` values are accepted.
 Use case resumes at step 1.
 
@@ -631,6 +658,7 @@ Use case ends
 **Extensions**
 
 1a. Specified type is not one of `AVAILABLE`, `PENDING`, or `SOLD`
+
 1a1. Condonery shows an error message stating that only `AVAILABLE`, `PENDING`, or `SOLD` values are accepted.
 Use case resumes at step 1.
 
@@ -638,15 +666,17 @@ Use case resumes at step 1.
 
 **MSS**
 
-
 1. User requests to link an Interested Client to a Property
 2. Interested Client is successfully linked to the specified Property
 
 **Extensions**
 
 1a. Specified client name does not exist in the Client Directory
+
 1a1. Condonery shows an error message
+
 1b. Specified index does not exist in the Property Directory
+
 1b1. Condonery shows an error message stating that the property index is invalid
 
 #### Use Case 8: Finding a Property by name
@@ -684,9 +714,11 @@ Use case ends.
 **Extensions**
 
 1a. Specified index does not exist in the Property Directory
+
 1a1. Condonery shows an error message stating that the property index is invalid
 
 1b. The input did not specify a index
+
 1b1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 
 #### Use Case 12: Filtering properties within a price range
@@ -699,8 +731,11 @@ Use case ends.
 **Extensions**
 
 1a. Specified upper price range is lower than the lower price range
+
 1a1. Condonery shows an error message stating that an invalid price range was given
+
 1b. Negative numbers were given
+
 1b1. Condonery shows an error message stating that an invalid price range was given
 
 
@@ -785,7 +820,7 @@ Listing all properties
 
    Prerequisites: Property List must contain at least one Property.
    - Test case: `list -p`
-     - Expected: Property List will be updated to show all properties stored. 
+     - Expected: Property List will be updated to show all properties stored.
      Result display will output a success message: `Listed all properties`
 
 ### Clearing all properties
@@ -806,13 +841,13 @@ Prerequisites: Property List must contain at least one Property.
 
 ### Filtering properties by tags
 Finding all properties in the Property List with specified tags
-   
+
 Prerequisites: Property List must contain at least one Property.
    - Test case (finding properties with tag of `Luxury`): `filter -p Luxury`
      - Expected: Property List will display all properties with matching tag of `Luxury`
    - Test case (finding properties with tag of `Luxury` and `City`): `filter -p Luxury City`
      - Expected: Property List will display all properties with matching tags of `Luxury` and `City`
-   
+
 ### Filtering properties within price range
 Finding all properties in the Property List with specified price range
 
@@ -841,7 +876,7 @@ Finding all properties in the Property List with the specified Property Type
      - Expected: Property List will display all properties with the type of `HDB`
    - Test case (finding all properties with type of `HOUSE`): `type -p HOUSE`
      - Expected: Condonery will display an error message stating `HOUSE` is not a valid property type
-     
+
 ### Select a property to view its interested clients
    Prerequisites: Property List must contain at least one Property.
    - Test case (selecting a property with valid index): `select -p 1`
@@ -890,7 +925,7 @@ Listing all clients
 
    - Test case: `list -c`
    - Expected: Client List will be updated to show all clients stored. Result display will output a success message: `Listed all clients`
-   
+
 ### Clearing all clients
    Clearing all properties in the Property List
 
@@ -908,17 +943,17 @@ Finding clients in the Client List with name
    - Test case (finding client name of `John Lee` with exact match): `find -c John Lee`
      - Expected: Client List will display all clients with matching name of `John Lee`
 
-   ###Filtering clients by tags
+### Filtering clients by tags
 Finding all clients in the Client List with specified tags
    Prerequisites: Client List must contain at least one Client.
    - Test case (finding properties with tag of `friend`): `filter -c friend`
      - Expected: Client List will display all clients with matching tag of `friend`
    - Test case (finding properties with tag of `rich` and `friend`): `filter -c friend`
      - Expected: Client List will display all clients with matching tags of `rich` and `friend`
-     
+
 ## **Appendix: Effort**
 Majority of the complexity faced in building our app came from dealing with multiple entities, namely Property and Client.
-Our group faced trouble in implementing a 2-way association between Clients and Properties. 
+Our group faced trouble in implementing a 2-way association between Clients and Properties.
 
 * For example, editing a `Client` with an association should update all references to the `Client`. As previously AB3 relied on an immutable implementation of editing entities, we had to do heavy testing to make sure that the information between all associations are synced.
 * Moreover, we had to ensure that storage of the 2-way association is feasible. Currently, our `Property` entities store a list of Interested Clients. Along the way, we realised that we are unable to store a list of Properties in a `Client` entity, as this resulted in our serialised storage being circular. We had to change a lot of our code to fix this, as we realised our previous implementation could not handle the storage requirement.
