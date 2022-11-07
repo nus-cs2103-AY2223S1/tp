@@ -3,11 +3,11 @@ layout: page
 title: Marcus Lee's Project Portfolio Page
 ---
 ### Project: OmniHealth
-## Overview
+
 OmniHealth is a **Patient Management System** tailored to private clinicians to manage patients' details, records and
 upcoming appointments. OmniHealth allows you to manage and search for your patient's details and records with ease using 
 its management system, and also allows you to keep track of upcoming appointments for them.
-## Summary of Contributions
+
 Given below are my contributions to the project.
 
 * **New Feature**: Added the ability for users to create patient `Records` and manage them in a `RecordList`
