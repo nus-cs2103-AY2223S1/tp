@@ -1136,7 +1136,7 @@ testers are expected to do more *exploratory* testing.
       Situation 2: First application is an unarchived application.<br>
       Expected   : First application is archived from the list. Details of the archived application are shown. The list remains as the filtered list by the keyword.
 
-### Appendix: Effort
+## Appendix: Effort
 
 CinternS was for many of us the first group-based software development project we have done. A significant amount of effort was spent on understanding the existing codebase, gaining more familiarity with technologies like Git and JavaFX and also learning to coordinate with one another.
 
