@@ -13,4 +13,8 @@ public class TypicalTasks {
             DATE_TIME_ONE);
     public static final Task TASK_HEALTH_RECORDS = new NonRecurringTask("Update health records");
     public static final Task TASK_CARE_PLAN = new NonRecurringTask("Discuss care plan with family");
+
+    public static final String TYPICAL_TASK_INSULIN = "Administer 1 unit of insulin";
+    public static final String TYPICAL_RECURRENCE_DAY = "1 DAY";
+    public static final String TYPICAL_RECURRENCE_WEEK = "1 WEEK";
 }

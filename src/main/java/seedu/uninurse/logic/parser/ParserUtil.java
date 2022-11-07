@@ -214,6 +214,10 @@ public class ParserUtil {
      */
     public static EditMedicationDescriptor parseEditMedicationDescriptor(String medication) throws ParseException {
         requireAllNonNull(medication);
+        if (medication.endsWith("|")) {
+            throw new ParseException(EditMedicationDescriptor.MESSAGE_CONSTRAINTS);
+        }
+
         String[] medicationTypeAndDosage = medication.split("\\|");
 
         if (medicationTypeAndDosage.length > 2 || medicationTypeAndDosage.length == 0) {
@@ -225,10 +229,6 @@ public class ParserUtil {
 
         if (medicationTypeAndDosage.length == 2) {
             trimmedMedicationDosage = medicationTypeAndDosage[1].trim();
-        }
-
-        if (medication.endsWith("\\|")) {
-            throw new ParseException(EditMedicationDescriptor.MESSAGE_CONSTRAINTS);
         }
 
         Optional<String> optionalMedicationType = Optional.empty();
@@ -347,6 +347,10 @@ public class ParserUtil {
      */
     public static EditTaskDescriptor parseEditTaskDescriptor(String task) throws ParseException {
         requireAllNonNull(task);
+        if (task.endsWith("|")) {
+            throw new ParseException(EditTaskDescriptor.MESSAGE_CONSTRAINTS);
+        }
+
         String[] taskArguments = task.split("\\|");
 
         if (taskArguments.length > 3 || taskArguments.length == 0) {
@@ -363,10 +367,6 @@ public class ParserUtil {
 
         if (taskArguments.length == 3) {
             trimmedTaskRecurrenceAndFrequency = taskArguments[2].trim();
-        }
-
-        if (task.endsWith("\\|")) {
-            throw new ParseException(EditTaskDescriptor.MESSAGE_CONSTRAINTS);
         }
 
         Optional<String> optionalTaskDescription = Optional.empty();

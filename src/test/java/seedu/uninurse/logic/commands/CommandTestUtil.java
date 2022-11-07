@@ -10,8 +10,11 @@ import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.uninurse.testutil.Assert.assertThrows;
+import static seedu.uninurse.testutil.TypicalDateTime.DATE_TIME_ONE;
 import static seedu.uninurse.testutil.TypicalMedications.TYPICAL_DOSAGE_AMOXICILLIN;
 import static seedu.uninurse.testutil.TypicalMedications.TYPICAL_MEDICATION_AMOXICILLIN;
+import static seedu.uninurse.testutil.TypicalTasks.TYPICAL_RECURRENCE_DAY;
+import static seedu.uninurse.testutil.TypicalTasks.TYPICAL_TASK_INSULIN;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,6 +24,7 @@ import java.util.Optional;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.EditMedicationCommand.EditMedicationDescriptor;
 import seedu.uninurse.logic.commands.EditPatientCommand.EditPatientDescriptor;
+import seedu.uninurse.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.UninurseBook;
@@ -82,6 +86,14 @@ public class CommandTestUtil {
     public static final EditMedicationDescriptor DESC_MED_TYPE_AMOXICILLIN;
     public static final EditMedicationDescriptor DESC_MED_DOSAGE_AMOXICILLIN;
 
+    public static final EditTaskDescriptor DESC_TASK_INSULIN;
+    public static final EditTaskDescriptor DESC_TASK_DESCRIPTION_INSULIN;
+    public static final EditTaskDescriptor DESC_TASK_DATETIME_INSULIN;
+    public static final EditTaskDescriptor DESC_TASK_RECURRENCE_INSULIN;
+    public static final EditTaskDescriptor DESC_TASK_DESCRIPTION_DATETIME_INSULIN;
+    public static final EditTaskDescriptor DESC_TASK_DESCRIPTION_RECURRENCE_INSULIN;
+    public static final EditTaskDescriptor DESC_TASK_DATETIME_RECURRENCE_INSULIN;
+
     static {
         DESC_AMY = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).build();
@@ -94,6 +106,21 @@ public class CommandTestUtil {
                 Optional.of(TYPICAL_MEDICATION_AMOXICILLIN), Optional.empty());
         DESC_MED_DOSAGE_AMOXICILLIN = new EditMedicationDescriptor(
                 Optional.empty(), Optional.of(TYPICAL_DOSAGE_AMOXICILLIN));
+
+        DESC_TASK_INSULIN = new EditTaskDescriptor(
+                Optional.of(TYPICAL_TASK_INSULIN), Optional.of(DATE_TIME_ONE), Optional.of(TYPICAL_RECURRENCE_DAY));
+        DESC_TASK_DESCRIPTION_INSULIN = new EditTaskDescriptor(
+                Optional.of(TYPICAL_TASK_INSULIN), Optional.empty(), Optional.empty());
+        DESC_TASK_DATETIME_INSULIN = new EditTaskDescriptor(
+                Optional.empty(), Optional.of(DATE_TIME_ONE), Optional.empty());
+        DESC_TASK_RECURRENCE_INSULIN = new EditTaskDescriptor(
+                Optional.empty(), Optional.empty(), Optional.of(TYPICAL_RECURRENCE_DAY));
+        DESC_TASK_DESCRIPTION_DATETIME_INSULIN = new EditTaskDescriptor(
+                Optional.of(TYPICAL_TASK_INSULIN), Optional.of(DATE_TIME_ONE), Optional.empty());
+        DESC_TASK_DESCRIPTION_RECURRENCE_INSULIN = new EditTaskDescriptor(
+            Optional.of(TYPICAL_TASK_INSULIN), Optional.empty(), Optional.of(TYPICAL_RECURRENCE_DAY));
+        DESC_TASK_DATETIME_RECURRENCE_INSULIN = new EditTaskDescriptor(
+                Optional.empty(), Optional.of(DATE_TIME_ONE), Optional.of(TYPICAL_RECURRENCE_DAY));
     }
 
     /**

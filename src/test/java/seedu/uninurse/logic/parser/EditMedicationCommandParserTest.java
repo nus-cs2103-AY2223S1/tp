@@ -94,7 +94,7 @@ class EditMedicationCommandParserTest {
     @Test
     public void parse_emptyMedicationDosageEdit_success() {
         String userInput = INDEX_FIRST_PERSON.getOneBased() + " " + INDEX_FIRST_ATTRIBUTE.getOneBased() + " "
-                + PREFIX_MEDICATION + MEDICATION_TYPE_STUB + " | ";
+                + PREFIX_MEDICATION + MEDICATION_TYPE_STUB;
 
         EditMedicationCommand expectedCommand =
                 new EditMedicationCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE, DESC_MEDICATION_TYPE_STUB);
@@ -103,13 +103,9 @@ class EditMedicationCommandParserTest {
     }
 
     @Test
-    public void parse_noMedicationSeparatorEdit_success() {
+    public void parse_endWithMedicationSeparatorEdit_failure() {
         String userInput = INDEX_FIRST_PERSON.getOneBased() + " " + INDEX_FIRST_ATTRIBUTE.getOneBased() + " "
-                + PREFIX_MEDICATION + MEDICATION_TYPE_STUB;
-
-        EditMedicationCommand expectedCommand =
-                new EditMedicationCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE, DESC_MEDICATION_TYPE_STUB);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
+                + PREFIX_MEDICATION + MEDICATION_TYPE_STUB + " | ";
+        assertParseFailure(parser, userInput, EditMedicationDescriptor.MESSAGE_CONSTRAINTS);
     }
 }
