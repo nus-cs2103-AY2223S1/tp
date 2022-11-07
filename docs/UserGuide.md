@@ -624,6 +624,7 @@ Examples:
 * Add product with product name of 'Product1'
   * `addProduct pd/Product1`
 <!-- @@author -->
+<!-- @@author sikai00 -->
 #### 7.3.2 List products: `listProduct`
 
 Show the list of products in MyInsuRec.
@@ -664,7 +665,7 @@ This feature should only be used if there is a need to delete a product, which i
 Examples:
 * Delete product with an `INDEX` of 2
     * `delProduct i/2`
-
+<!-- @@author -->
 ### 7.4 General commands
 
 #### 7.4.1 View help: `help`
@@ -784,6 +785,8 @@ Add the product to the client using the [`editClient`](#715-edit-client-editclie
 
 This section covers technical issues you may run into while using *MyInsuRec*.
 
+<!-- @@author sikai00 -->
+
 ### 10.1 Checking your system's Java version
 
 To check that your system has the correct Java version (Java 11 and above) to run *MyInsuRec*, you can follow the steps below:
@@ -809,6 +812,8 @@ To check that your system has the correct Java version (Java 11 and above) to ru
 [Return to the top](#)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<!-- @@author Thing1Thing2 -->
 
 ## 10. Acknowledgements
 
@@ -895,6 +900,8 @@ e.g. the `delClient` command requires the [`INDEX`](#index) value identifying a 
 [Return to the top](#)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<!-- @@author sikai00 -->
 
 ## 12. Contact Us
 
