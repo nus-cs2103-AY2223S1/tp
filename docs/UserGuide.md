@@ -203,7 +203,7 @@ Tutors are regarded as the same if they have the **same email or student ID**!
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:**
-Refer to [this section](#notes-about-frequently-used-command-parameters) for more information about various parameters!
+Refer to [this section](#frequently-used-command-parameters) for more information about various parameters!
 
 </div>
 
@@ -233,7 +233,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MODULE] [y/YEAR] [s/S
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:**
-Refer to [this section](#notes-about-frequently-used-command-parameters) for more information about various parameters!
+Refer to [this section](#frequently-used-command-parameters) for more information about various parameters!
 
 </div>
 
@@ -296,7 +296,7 @@ Format: `find PREFIX/KEYWORDS [KEYWORDS]`
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:**
-Refer to [this section](#notes-about-frequently-used-command-parameters) for more information about various parameters!
+Refer to [this section](#frequently-used-command-parameters) for more information about various parameters!
 
 </div>
 
@@ -421,7 +421,7 @@ Format: `exit`
 ## **FAQ**
 
 **Q**: How do I save my data in Tuthub?<br>
-**A**: Tuthub data are saved in the hard disk automatically after any command that changes the data is executed. There is no need to save manually.
+**A**: Tuthub data are saved in the hard disk automatically after any command is executed. There is no need to save manually.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Tuthub home folder.
