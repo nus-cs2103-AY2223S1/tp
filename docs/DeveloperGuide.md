@@ -315,7 +315,7 @@ Step 2. The method `LogicManager#execute` is called on the user input, prompting
 
 Step 3. The `execute` method of `ViewDepartmentCommand` is then called on the object, which returns a `CommandResult` object.
 
-Step 4. This checks if the department exist using the `department:isValidDepartmnet` by the department name which is `Finance` in this case. If there does not exist such `department` in the standardized list of departments in `departments#VALID_DEPARTMENTS`, a `CommandException` will be thrown and a message indicating invalid department will be shown. If the `department` exists, then the `MainWindow#handleViewDepartment` will be trigger, which results in the panel on the right being updated with the correct `department` information.
+Step 4. This checks if the department exist using the `department#isValidDepartmnet` by the department name which is `Finance` in this case. If there does not exist such `department` in the standardized list of departments in `departments#VALID_DEPARTMENTS`, a `CommandException` will be thrown and a message indicating invalid department will be shown. If the `department` exists, then the `MainWindow#handleViewDepartment` will be trigger, which results in the panel on the right being updated with the correct `department` information.
 
 ### Rate feature
 
