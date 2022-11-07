@@ -36,7 +36,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added documentatin for `view` command (PR [#84](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/84/))
+        * Added documentation for `view` command (PR [#84](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/84/))
         * Refined the description for `Email` and `Cap` field (PR [#258](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/258))
     * Developer Guide:
         * Added user stories and use cases (PR [#83](https://github.com/AY2223S1-CS2103-F14-2/tp/pull/83))
