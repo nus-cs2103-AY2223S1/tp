@@ -166,23 +166,40 @@ After the command is executed:
 
 #### Find a Person : `find`
 
-Displays the persons that match a given keyword. Keyword could be any of the following
-attributes of the person :
+Displays the persons that match a given keyword. 
+
+Format: `find KEYWORD`
+
+-Keyword could be any of the following attributes of the person :
 - `name`
 - `address`
 - `role`
 - `github user`
 - `tags`
 
-A fuzzy search is done to display the results. The keyword can have minor spelling errors
-, and still return correct results. It is also case-insensitive.
+-You can only run this command in the home page and not the person's detail page.
 
-Format: `find KEYWORD`
+-The keyword can have minor spelling errors (~ 1 or 2 incorrect characters), provided the 
+entire value of the attribute is entered (for example: for John Doe, Jorn Foe will work but not Jorn) and 
+still return correct results.
+
+-For `name`, `address`, `role` and `tags`, the attribute value only needs to contain the keyword, 
+provided the spelling is correct. e.g. `find John` will return contacts `John Doe` and `Smith John`.
+
+-The keyword must only be any one of the attributes of the person, and cannot be multiple attributes.
+
+-Find command performs an `OR` search for keywords within fields of the users. e.g. `find xyz` can return two persons, 
+one with the tag `xyz` and one with the role `xyz`.
+
+-The search is also case-insensitive.  e.g. `john` will match `John`
 
 Example:
+- Find all the people named David: `find david`
+- Find all the people with address Clementi: `find Clementi`
 - Find all the people with role SWE: `find SWE`
 - Find all the people with tag friends: `find friends`
-- Find all the people named David: `find david`
+- Find the person with GitHub username sh4nH: `find sh4nH`
+
 
 Before the command is executed:
 

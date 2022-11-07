@@ -216,6 +216,79 @@ The below activity diagram highlights what happens when a user uses the `set` co
     * Pros: Easier to implement.
     * Cons: Difficult to extend.
 
+
+### Find Command
+
+#### Implementation
+The Find Command makes use of the following classes:
+
+* `FindCommand` — Finds and lists the `Person` objects in the model whose attributes match the given keyword.
+* `FindCommandParser` — Parses the arguments supplied by the user.
+* `PersonMatchesKeywordsPredicate` — Tests that a `Person` matches any of the given keywords.
+
+`PersonMatchesKeywordsPredicate` encapsulates the keywords the user enters. 
+FindCommand then uses the test method of the Predicate interface to filter contacts one at a time.
+
+`PersonMatchesKeywordsPredicate` tests for the following fields
+
+* `name`
+* `address`
+* `tags`
+* `role`
+* `user`
+
+Find command performs an `OR` search for keywords within fields of the users. e.g. `find xyz` can return two persons,
+one with the tag `xyz` and one with the role `xyz`.
+
+Given below is an example of a usage scenario and what each class does at each step.
+
+Step 1: The user types and enters the command `find John Doe`.
+
+Step 2: The command will be parsed by the `AddressBook#parseCommand()` which returns a `FindCommandParser`, 
+which also creates a `PersonMatchesKeywordsPredicate` object.
+
+Step 3: `FindCommandParser` will parse the `John Doe` using the `parse(args)` method, which trims the keywords
+entered by the user and then sets the `keywords` of the `PersonMatchesKeywordsPredicate` object to the 
+trimmed keyword arguments.
+
+Step 4: `FindCommandParser` then creates a `FindCommand` by passing the 
+`PersonMatchesKeywordsPredicate` to its constructor.
+
+Step 5: The `FindCommand` will then be executed using `execute(model)` method.
+
+Step 6:  The `filterPersonList(predicate)` method will be called and the list of persons 
+will be filtered according to the `PersonMatchesKeywordsPredicate`. This list would then be sorted (by name). 
+The persons for which any of the tested attributes match `John Doe` will be in the list.
+
+Step 7: A `CommandResult` will be returned.
+
+Step 8: The list of contacts will then be displayed to the user.
+
+The sequence diagram below illustrates the process of how the Find Command works.
+![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
+
+#### Design considerations:
+
+* **Alternative 1 (current choice):** Use a `PersonMatchesKeywordsPredicate` object which tests for each attribute one
+ at a time.
+    * Pros:
+        * Reduces the amount of code we have to write as we build on the previous Predicate class, and test for more
+          attributes the same way.
+        * Allows us to implement fuzzy search which checks for text similarity, but with the entire value of the 
+          attribute only.
+        * Easily extendable for future enhancements of find command and when more fields are added to contacts.
+           The `Predicate` class just needs to accommodate one more field.
+    * Cons:
+        * Only one attribute can be tested using a single find search.
+        * The fuzzy search does not work if the full value of the attribute (with spelling errors) is not 
+           entered for the most part.
+
+* **Alternative 2:** Test for multiple fields using a find command that requires the user to mention the attribute type 
+ followed by the keyword(s) for one or many attributes.
+    * Pros: Results where multiple fields are tested can be displayed to the user.
+    * Cons: The command itself won't be as user-friendly since the user has to mention the type
+      for each attribute.
+
 ### Sort Command
 
 The Sort Command makes use of the following classes:
@@ -574,7 +647,7 @@ Use Case ends.
 5. Without noticeable delay, should be able to add and update contact information.
 6. Without noticeable delay, should be able to delete contact information.
 7. Must be able to cache github repository list for future use.
-8. Must be able to display search results for find function within 3 seconds.
+8. Must be able to display search results for find function within 3 seconds even for large address books.
 
 *{More to be added}*
 
