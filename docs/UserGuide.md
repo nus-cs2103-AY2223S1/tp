@@ -2,6 +2,7 @@
 layout: page
 title: User Guide
 ---
+
 <style>
 h1, h2, h3, h4, h5, h6 {
   color: #000000;
@@ -116,6 +117,7 @@ facing, you can refer to this guide.
   - [The Main Page](#the-main-page)
     - [The Menu Bar](#the-menu-bar)
     - [The Command Box](#the-command-box)
+    - [The Results Display](#the-results-display)
     - [The Student Card](#the-student-card)
 * [A Brief Guide to Commands](#a-brief-guide-to-commands)
   - [The Command Structure](#the-command-structure)
@@ -128,6 +130,8 @@ facing, you can refer to this guide.
 * [Handling Grades](#handling-grades)
   - [Grading your Students](#grading-your-students)
   - [Predicting a Student's grade](#predicting-a-students-grade)
+* [Handling Attendance](#handling-attendance)
+  - [Marking attendance for your Students](#marking-attendance-for-your-students)
 * [Utility Features](#utility-features)
   - [Sorting Students](#sorting-students)
   - [Finding a Student](#finding-a-student)
@@ -199,7 +203,8 @@ You can use the following table to navigate through the components in the main p
   - [The File tab](#the-file-tab)
   - [The Help tab](#the-help-tab)
 * [The Command Box](#the-command-box)
-* [The Student card](#the-student-card)
+* [The Results Display](#the-results-display)
+* [The Student Card](#the-student-card)
 
 <div style="page-break-after: always;"></div>
 ---
@@ -250,7 +255,16 @@ They are used to perform actions with Watson.
 
 <div style="page-break-after: always;"></div>
 ---
-### The Student card
+### The Results Display
+
+<img src="images/ResultsDisplay.png" alt="results display" class="special-img">
+
+The results display (circled in red above) is where Watson provides feedback after the entering of commands.
+If a command is executed successfully, a success message will be shown. If a command is not successfully executed, an
+error message will be shown and a help message may also be present to help you correct the error.
+
+---
+### The Student Card
 
 <img src="images/Student.png" alt="student" class="special-img">
 
@@ -408,11 +422,20 @@ You can add a student to Watson by using the `add` command.
 
 ### Examples
 
-`add n/John Doe p/98765432 e/john@gmail.com a/2 Sengkang Avenue c/1A t/Student Council`
+`add n/Johnson Doe p/98765432 e/johnson@gmail.com a/2 Sengkang Avenue c/1A t/Student Council`
 
 `add n/Amy Lee a/Changi Airport p/87878787 e/amy@outlook.com c/1.4 rem/Good at Math`
 
-### Step-By-Step
+### Step-By-Step Example
+
+Let's use `add n/Johnson Doe p/98765432 e/johnson@gmail.com a/2 Sengkang Avenue c/1A t/Student Council` and see how the 
+process of adding a Student works!
+
+1) Type in the command `add` followed by the parameters, then press `Enter` on your keyboard.
+You should see that a [Student Card](#the-student-card) has been created for "Johnson" at the end of the list in
+Watson, with the parameters added as details below his name.
+2) [The Results Display](#the-results-display) should also show a success message saying that Johnson Doe has been
+added into Watson.
 
 ---
 <br>
@@ -421,7 +444,8 @@ You can add a student to Watson by using the `add` command.
 
 <strong>Problem:</strong> I typed in the command, but Watson says that the command is invalid!
 
-<strong>Solution:</strong> Check your command format! You can refer to the [command structure](#the-command-structure) for more information.
+<strong>Solution:</strong> Check your command format! The proper command format including samples should have been
+shown in the results display section below the command box.
 
 <br>
 
@@ -473,7 +497,22 @@ This number is shown next to the student's name.
 
 `edit 2 t/Financial Assistance`
 
-### Step-By-Step
+### Step-By-Step Example
+
+Let's use `edit 2 t/Financial Assistance` and see how the editing process works!
+
+1) Type in the command `edit` followed by the parameters, then press `Enter` on your keyboard.
+You should see that the [Student Card](#the-student-card) for the second student in the list has been updated with the
+new tag.
+2) [The Results Display](#the-results-display) should also show a success message saying that the second student has
+been edited.
+
+<div class="flex-box">
+<img src="images/EditCommandBeforePic.png" alt="edit command before pic" class="special-img">
+<img src="images/EditCommandAfterPic.png" alt="edit command after pic" class="special-img">
+</div>
+<br>
+<div class="img-caption">On the left: before editing, on the right: after editing</div>
 
 ---
 <br>
@@ -512,7 +551,15 @@ This number is shown next to the student's name.
 
 `delete 1`
 
-### Step-By-Step
+### Step-By-Step Example
+
+Let's use `delete 1` and see how the deleting process works!
+
+1) Type in the command `delete` followed by the parameters, then press `Enter` on your keyboard.
+You should see that the [Student Card](#the-student-card) for the first student in the list has been deleted from
+Watson.
+2) [The Results Display](#the-results-display) should also show a success message saying that the first student has
+been deleted.
 
 <br>
 <div class="info-box">
@@ -533,7 +580,7 @@ You can add a remark to a student with the `remark` command.
 
 <strong class="red-text">Command Word:</strong> `remark`
 
-<strong class="orange-text">Compulsory Parameters:</strong> `INDEX`, `rem/REMARK`
+<strong class="orange-text">Compulsory Parameters:</strong> `INDEX`, `REMARK`
 
 ### Parameter Information
 
@@ -544,11 +591,19 @@ This number is shown next to the student's name.
 
 ### Examples
 
-`remark 1 rem/Good at Math`
+`remark 1 Good at Math`
 
-`remark 2 rem/Enjoys playing football`
+`remark 2 Enjoys playing football`
 
-### Step-By-Step
+### Step-By-Step Example
+
+Let's use `remark 2 Enjoys playing football` and see how the add remark process works!
+
+1) Type in the command `remark` followed by the parameters, then press `Enter` on your keyboard.
+You should see that the [Student Card](#the-student-card) for the second student in the list has been updated with an
+additional remark "Enjoys playing football".
+2) [The Results Display](#the-results-display) should also show a success message saying that the remark has been added
+for the second student.
 
 ---
 <br>
@@ -572,7 +627,7 @@ for a future assessment.
 
 Watson currently supports two features regarding student grades:
 
-* [Grading your students](#adding-a-student)
+* [Grading your students](#grading-your-students)
 * [Editing a student](#editing-a-student)
 
 ## Grading your Students
@@ -706,6 +761,59 @@ This prediction means that Alex is likely to get about 62 percent for their next
 </div>
 
 <div style="page-break-after: always;"></div>
+---
+
+# Handling Attendance
+
+Watson allows you to mark attendance for your students and keep track of them easily.
+
+Watson currently has one feature regarding student attendance:
+
+* [Marking attendance for your Students](#marking-attendance-for-your-students)
+
+## Marking attendance for your Students
+
+Watson's mark attendance command allows you to mark attendance for all your students in a class for a particular day in
+a single command.
+
+<strong class="red-text">Command Word:</strong> `markAtt`
+
+<strong class="orange-text">Compulsory Parameters:</strong> `d/DATE`, `c/CLASS`,
+`ind/INDEX NUMBERS OF EVERYONE PRESENT`
+
+### Parameter Information
+
+* All parameters cannot be blank.
+* INDEX NUMBERS refer to the number displayed beside each student's name in Watson.
+* Multiple index numbers can be added after the prefix "ind/".
+* If all students from the class are absent, type '0' for the "INDEX NUMBERS" field, ie "markAtt d/DATE c/CLASS ind/0".
+
+### Examples
+
+`markAtt d/5/6/2022 c/1.2 ind/5`
+
+`markAtt d/7/11/2022 c/1.2 ind/2 3 5 8 9 10`
+
+### Step-By-Step Example
+
+Let's use `markAtt d/7/11/2022 c/1.2 ind/2 3 5 8 9 10` and see how the attendance process works!
+
+1) Type in the command `markAtt` followed by the parameters, then press `Enter` on your keyboard.
+2) You should see in the results display section below the command box that attendance for the index numbers specified
+in class 1.2 have been marked as present, and the remaining students have been marked as absent.
+3) Individual attendance for each student should have been updated too.
+
+---
+<br>
+<div class="info-box">
+<div class="big-font">Troubleshooting</div>
+
+<strong>Problem:</strong> I typed in the command, but Watson says that the command format is invalid!
+
+<strong>Solution:</strong> Check your command format! The proper command format including samples should have been 
+shown in the results display section below the command box.
+</div>
+
 ---
 
 # Utility Features
