@@ -8,9 +8,28 @@ title: User Guide
 
 ## Introduction
 
-FRIDAY is a **desktop app for CS1101S Teaching Assistants to organize and track their students’ information and progress, 
-optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). 
-If you can type fast, FRIDAY can get your student management tasks done faster than traditional GUI apps.
+Welcome to the User Guide of **FRIDAY**!
+
+As a [CS1101S teaching assistant](#glossary), do you find yourself scrambling between your notes, students' contacts, 
+and calendar to consolidate and manage of all your students' information? Do you spend hours consolidating your students'
+work and keeping track of their progress to ensure that they have completed their tasks on time and are coping well in 
+the module?
+
+Worry no more! Our application, **FRIDAY**, will reduce the hassle of managing your students and save you valuable time
+and effort by alleviating your workload. You can spend more time focusing on your own studies, improving your 
+teaching methods, and provide a better learning experience for your students!
+
+**FRIDAY** is an intuitive and easy-to-use application that helps CS1101S teaching assistants consolidate
+their students' information - such as contact details, grades, consultation dates, and assignments - into a single 
+application.
+
+The application is optimised for use via a [Command Line Interface (CLI)](#glossary), while having the benefits of a 
+[Graphical User Interface (GUI)](#glossary). This means that you can operate the application by typing and inputting 
+commands into a Command Box. If you are fast at typing, **FRIDAY** can get your student management tasks done faster 
+than other GUI applications. As a GUI application, it also allows users to interact with the application through 
+interactive graphical icons such as buttons.
+
+If you are interested to try, jump to [Quick Start](#quick-start) to learn how to start using **FRIDAY**!
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
@@ -19,7 +38,7 @@ This section guides you along the process of downloading and opening FRIDAY.
 
 1. Ensure you have Java 11 or above installed in your computer.
 
-2. Download the latest `friday.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-4/tp/releases).
+2. Download the latest JAR file `friday.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the *home folder* for your FRIDAY.
 
@@ -31,14 +50,16 @@ This section guides you along the process of downloading and opening FRIDAY.
     * **`add n/Alex Yeoh t/al3xx c/2022-10-25`** : Adds a student named `Alex Yeoh` to FRIDAY.
 
     * **`list`** : Lists all students.
-    
+
     * **`delete 2`** : Deletes the 2nd student shown in the current list.
 
     * **`clear`** : Deletes all students.
 
     * **`exit`** : Exits FRIDAY.
-   
+
 6. Refer to the [Features](#features) below for details of each command.
+
+[Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 ## A guide to using FRIDAY's CLI
@@ -76,11 +97,11 @@ This section guides you along the process of downloading and opening FRIDAY.
 
 </div>
 
+[Table of Contents](#table-of-contents)
+
 
 ## Features
 
-<<<<<<< HEAD
-=======
 This section contains all the information and details of each feature of **FRIDAY**. These features are split into 5 sections depending on their purpose and function:
 1. [Student management](#Student management)
 2. [Organizing students](#Organizing students)
@@ -88,7 +109,6 @@ This section contains all the information and details of each feature of **FRIDA
 4. [Miscellaneous features](#Miscellaneous features)
 5. [Features for advanced users](#Features for advanced users)
 
->>>>>>> 5b8ed9cb9d2d9f704c5511b5891f40b3bd32a8c8
 ## Student management
 
 These features allow you to add and delete students, and edit their details.
@@ -158,7 +178,7 @@ Format: `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHE
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** <br>
 * The index of the student must be specified and there should be exactly one INDEX parameter.
-* You can choose which field to edit for the student. Name, Telegram handle, consultation, Mastery Check, and tag(s) are 
+* You can choose which field to edit for the student. Name, Telegram handle, consultation, Mastery Check, and tag(s) are
 optional fields, but there should be at least one field specified for the `edit` command to be valid.<br>
 </div>
 
@@ -201,6 +221,8 @@ Example: `remark 1 r/Aspiring to be a CS1101S TA for next year`
 Outcome: The student at the 1st index (Alex Yap) will have the remark "Aspiring to be a CS1101S TA for next year".
 
 ![RemarkCommandOutcome.png](images/RemarkCommandOutcome.png)
+
+[Table of Contents](#table-of-contents)
 
 ## Organizing students
 
@@ -284,6 +306,8 @@ Outcome: The only student in the list whose details match the keyword "alex" is 
 Lists all students in FRIDAY. This command helps you to reset the sorting and finding done by the `sort` and `find` commands respectively.
 
 Format: `list`
+
+[Table of Contents](#table-of-contents)
 
 ## Grading students
 
@@ -431,7 +455,6 @@ Views all aliases in FRIDAY, so that you know what aliases you have created and 
 
 Format: `aliaslist`
 
-<<<<<<< HEAD
 ## Miscellaneous features
 
 Overview: Other features that aid you in using FRIDAY.
@@ -474,6 +497,8 @@ Advanced users are welcome to update data directly by editing the data file.
 If your changes to the data file makes its format invalid, FRIDAY will ignore all data and start with an empty file in the next run.<br>
 </div>
 
+[Table of Contents](#table-of-contents)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -492,7 +517,7 @@ Some Frequently Asked Questions:
        minimally must be of version 7. All versions above Windows 7 should be compatible. All MacOS versions above Version 10.10 (Yosemite) will be compatible with FRIDAY.
 
 **Q**: What if I am not good at typing. Is FRIDAY for me?<br>
-**A**: Yes Friday is still for you. Why you may ask? The commands are still very short and even if you are a slow typist, 
+**A**: Yes Friday is still for you. Why you may ask? The commands are still very short and even if you are a slow typist,
        you will be saving time as compared to pen and paper or an Excel sheet. <br>
        Furthermore, FRIDAY is more aesthetically pleasing and has all the necessary features easily accessible at your fingertips.
 
@@ -504,6 +529,8 @@ Some Frequently Asked Questions:
 3. Cloud compatibility
 4. Easy import and export of data
 5. Undoing previous actions
+
+[Table of Contents](#table-of-contents)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -529,34 +556,40 @@ Some Frequently Asked Questions:
 | **Getting Help**                             | `help`                                                                                                   |
 | **Exiting FRIDAY**                           | `exit`                                                                                                   |
 
+[Table of Contents](#table-of-contents)
 ---------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
+1. **CS1101S:** CS1101S Programming Methodology is a Computer Science module in National Univeristy of Singapore (NUS), School of Computing. This module introduces the concepts of programming and computational problem-solving, and is the first and foremost introductory module to computing, hence it is usually taken by first year Computer Science undergraduate students.
 
-1. **CLI:** CLI stands for command line interface. It is a system wherein the user enters textual one line inputs into an input box and the computer responds with a textual or graphical output.
+2. **Teaching Assistant:** Teaching assistants (TA) are people who help and support teachers or lecturers to provide and coordinate effective classroom instruction. For CS1101S, teaching assistants are undergraduate students who have completed the module. The role of a CS1101S TA involves planning, preparing and delivering weekly tutorial sessions, marking assignments and monitoring their students' progress and engagement levels.
 
-2. **GUI:** GUI stands for graphical user interface. It is the opposite of CLI wherein the user interacts with icons and items on the screen to communicate with the computer. Outputs are also displayed in graphical form.
+3. **CLI:** CLI stands for command line interface. It is a system wherein the user enters textual one line inputs into an input box and the computer responds with a textual or graphical output.
 
-3. **Java:** Java is a programming language introduced in the 90's. It is used to create many applications that you use today. Including this one.
+4. **GUI:** GUI stands for graphical user interface. It is the opposite of CLI wherein the user interacts with icons and items on the screen to communicate with the computer. Outputs are also displayed in graphical form.
 
-4. **.jar:** Specifies the file format of the file.
+5. **Java:** Java is a programming language introduced in the 90's. It is used to create many applications that you use today. Including this one.
 
-5. **Command:** The text that you enter in the input box is a command.
+6. **JAR:** The file format of FRIDAY.
 
-6. **Parameter:** The text that follows the first word of your input in the input box.
+7. **Command:** The text that you enter in the input box is a command.
 
-7. **Prefix:** A word or letter used in commands to specify the field you are adding, editing or sorting by.
+8. **Parameter:** The text that follows the first word of your input in the input box.
 
-8. **RA1:** Reading assessment 1 is a minor assessment in the CS1101S module that tests the content of the first half of the module.
+9. **Prefix:** A word or letter used in commands to specify the field you are adding, editing or sorting by.
 
-9. **RA2:** Reading assessment 2 is a minor assessment in the CS1101S module that tests the content of the second half of the module.
+10. **RA1:** Reading assessment 1 is a minor assessment in the CS1101S module that tests the content of the first half of the CS1101S module.
 
-10. **Midterm:** Midterm examination is a major assessment that occurs halfway through the CS1101S module.
+11. **RA2:** Reading assessment 2 is a minor assessment in the CS1101S module that tests the content of the second half of the CS1101S module.
 
-11. **Practical:** Practical examination is a major non-paper assessment that occurs at the end of the CS1101S module.
+12. **Midterm:** Midterm examination is a major assessment that occurs halfway through the CS1101S module.
 
-12. **Final:** Final examination is a major paper assessment that occurs at the end of the CS1101S module.
+13. **Practical:** Practical examination is a major non-paper assessment that occurs at the end of the CS1101S module.
 
-13. **Mastery Check:** A pass/fail assessment on students to assess their understanding of the concepts taught. There are 2 Mastery checks per semester.
+14. **Final:** Final examination is a major paper assessment that occurs at the end of the CS1101S module.
 
-14. **Alias:** A nickname or an alternate name that you can set for a command.
+15. **Mastery Check:** A pass/fail assessment on students to assess their understanding of the concepts taught. There are 2 Mastery checks per semester.
+
+16. **Alias:** A nickname or an alternate name that you can set for a command.
+
+[Table of Contents](#table-of-contents)

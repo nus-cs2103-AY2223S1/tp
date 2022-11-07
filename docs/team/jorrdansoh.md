@@ -14,9 +14,9 @@ Given below are my contributions to the project.
   * What it does: Allows the user to sort students by different criteria (such as name or consultation date), in ascending or descending order.
   * Justification: This feature improves the product because a user can choose how they want to organize the students, or see if they have any upcoming consultations or Mastery Checks.
   * Highlights: The current list of sorting criteria is: name, Telegram handle, consultation, Mastery Check, and grades.
-  * Effort: The sort feature was not easy to implement due to the number of sorting criteria and the restrictions of existing 
+  * Effort: The sort feature was not easy to implement due to the number of sorting criteria and the restrictions of existing
             design principles. Furthermore, to ensure good code quality, many iterations of the sorting
-            mechanism were needed to ultimately produce a functional feature that is also well-implemented.   
+            mechanism were needed to ultimately produce a functional feature that is also well-implemented.
 
 
 * **Code Contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jorrdansoh&breakdown=true)
