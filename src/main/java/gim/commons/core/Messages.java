@@ -12,7 +12,7 @@ public class Messages {
     public static final String MESSAGE_FIND_EMPTY_EXERCISES_LIST = "%1$d exercises listed!\n"
             + "Note that :filter only filters for you the list shown on the Exercise List Window.\n"
             + "If you think your keyword is correct, try executing :list before executing :filter again.";
-    public static final String MESSAGE_INCORRECT_INDEX_FORMAT = "Incorrect format for index(es)";
+    public static final String MESSAGE_INCORRECT_INDEX_FORMAT = "Possible incorrect format for index(es)";
     public static final String MESSAGE_MISSING_LEVEL = "No difficulty level selected!";
     public static final String MESSAGE_INVALID_LEVEL = "Difficulty level not supported!";
 
