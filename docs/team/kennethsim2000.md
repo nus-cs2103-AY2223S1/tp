@@ -25,11 +25,12 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=Kennethsim2000&tabRepo=AY2223S1-CS2103T-F12-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
-* **Project management**:
-  * Successfully integrated code from other team members by reviewing pull requests of other team members(Pull requests [\#55](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/55), [\#63](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/63), [\#72](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/72), [\#75](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/75), [\#84](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/84), [\#98](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/98)).
-
 * **Enhancements to existing features**:
 
+Bug Fixes:
+
+* **Display Email in person assigned taskcard**: The person's email is displayed after the person name, reflected in the taskcard component. (Pull requests [\#69](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/69)).
+  * Justification: The contact list allows for a two contacts to have the same name but no duplicate emails. Thus, to be able to tell two contacts with the same name apart, we provide additional information such as the email.
 
 Tests:
 
@@ -51,13 +52,17 @@ Tests:
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `Add Task`, `Delete Task`, `View Tasks`, `Glossary`, `FAQ`, `filter`, `Edit Task`[\#13](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/13)), [\#106](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/106)), [\#178](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/178))
-    
+    * Added documentation for the features `Add Task`, `Delete Task`, `View Tasks`, `Glossary`, `FAQ`, `filter`, `Edit Task` (Pull requests [\#13](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/13), [\#106](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/106)), [\#178](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/178))
+    * Fix the following bugs: (Pull requests [\#165](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/165)).
+    * Issue 136: Inaccurate documentation for listTasks command
+    * Issue 130: Clear command clears the address book, not the task list.
+ 
   * Developer Guide:
-    * Added implementation details of the `filter`, `addTask`, `deleteTask` feature [\#110](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/110)), [\#196](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/196))
+    * Added implementation details of the `filter`, `addTask`, `deleteTask` feature (Pull requests [\#110](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/110), [\#196](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/196))
+    * Added sequence and activity diagrams for addTask and deleteTask.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#55](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/55), [\#63](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/63), [\#72](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/72), [\#75](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/75), [\#84](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/84), [\#98](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/98)).
+  * PRs reviewed (with non-trivial review comments): (Pull requests [\#55](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/55), [\#63](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/63), [\#72](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/72), [\#75](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/75), [\#84](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/84), [\#98](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/98)).
 
 * **Tools**:
 
