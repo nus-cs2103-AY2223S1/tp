@@ -1,0 +1,85 @@
+@startuml
+!include ../../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ModtrektParser" as ModtrektParser LOGIC_COLOR
+participant "d:RemoveCommand" as RemoveCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "c:ModCode" as ModCode MODEL_COLOR
+participant ":ModuleList" as ModuleList MODEL_COLOR
+participant ":TaskBook" as TaskBook MODEL_COLOR
+end box
+
+[-> LogicManager : execute("remove module CS2103T")
+activate LogicManager
+
+LogicManager -> ModtrektParser : parseCommand("remove module CS2103T")
+activate ModtrektParser
+
+create RemoveCommand
+ModtrektParser -> RemoveCommand
+activate RemoveCommand
+
+create ModCode
+RemoveCommand -> ModCode
+activate ModCode
+
+ModCode --> RemoveCommand : c
+deactivate ModCode
+
+RemoveCommand --> ModtrektParser : d
+deactivate RemoveCommand
+
+ModtrektParser --> LogicManager : d
+deactivate ModtrektParser
+
+LogicManager -> RemoveCommand : execute()
+activate RemoveCommand
+
+RemoveCommand -> Model : parseModuleFromCode(c)
+activate Model
+Model --> RemoveCommand : module
+deactivate Model
+
+RemoveCommand -> Model : deleteModule(module)
+activate Model
+
+Model -> ModuleList : removeModule(module)
+activate ModuleList
+
+ModuleList --> Model
+deactivate ModuleList
+
+Model --> RemoveCommand
+deactivate Model
+
+RemoveCommand -> Model : deleteTasksOfModule(module)
+activate Model
+
+Model -> TaskBook : deleteTasksOfModule(module)
+activate TaskBook
+
+TaskBook --> Model
+deactivate TaskBook
+
+Model --> RemoveCommand
+deactivate Model
+
+create CommandResult
+RemoveCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> RemoveCommand : result
+deactivate CommandResult
+
+RemoveCommand --> LogicManager : result
+deactivate RemoveCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox styleClass="profile-side-panel" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+    </padding>
+    <Label fx:id="courseNameLabel" styleClass="course-name" text="My Course" textFill="WHITE" wrapText="true" HBox.hgrow="ALWAYS" />
+    <Label fx:id="inspirationalQuote" styleClass="inspirational-quote" text="&quot;Strive for progress, not perfection.&quot;" textFill="WHITE" wrapText="true" HBox.hgrow="ALWAYS" />
+    <VBox alignment="CENTER_LEFT" styleClass="progress-content">
+        <Label fx:id="creditsCount" styleClass="credits-count" text="0 MCs" textFill="WHITE" />
+        <Label styleClass="credits-count-completed" text="Completed" textFill="WHITE" />
+    </VBox>
+    <VBox alignment="CENTER_LEFT" styleClass="progress-content">
+        <Label fx:id="activeTasks" styleClass="credits-count" text="0" textFill="WHITE" />
+        <Label fx:id="activeTasksText" styleClass="credits-count-completed" text="Active Tasks" textFill="WHITE" />
+    </VBox>
+</VBox>

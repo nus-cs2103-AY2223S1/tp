@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" fx:id="cardPane" alignment="CENTER_LEFT" spacing="2" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane HBox.hgrow="ALWAYS">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+        </columnConstraints>
+        <VBox id="task-card" alignment="CENTER_LEFT" GridPane.columnIndex="0" GridPane.hgrow="ALWAYS">
+            <HBox alignment="BASELINE_LEFT" spacing="5">
+                <Label fx:id="id" styleClass="cell_small_label" />
+                <Label fx:id="module" styleClass="cell_small_label" />
+            </HBox>
+                <Label fx:id="description" styleClass="cell_big_label" wrapText="true" />
+                <Label fx:id="dueDate" styleClass="cell_small_label">
+            <padding>
+               <Insets top="10.0" />
+            </padding></Label>
+                <FlowPane fx:id="badges" hgap="5" vgap="5">
+            <padding>
+               <Insets top="10.0" />
+            </padding></FlowPane>
+        </VBox>
+        <padding>
+            <Insets bottom="20.0" left="15.0" right="15.0" top="20.0" />
+        </padding>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+    </GridPane>
+</HBox>

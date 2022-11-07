@@ -1,0 +1,67 @@
+@startuml
+!include ../../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ModtrektParser" as ModtrektParser LOGIC_COLOR
+participant "a:EditTaskCommand" as EditTaskCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit task 1 -c CS2103T -ds Assignment 2")
+activate LogicManager
+
+LogicManager -> ModtrektParser : parseCommand("edit task 1 -c CS2103T -ds Assignment 2")
+activate ModtrektParser
+
+create EditTaskCommand
+ModtrektParser -> EditTaskCommand
+activate EditTaskCommand
+
+EditTaskCommand --> ModtrektParser : a
+deactivate EditTaskCommand
+
+ModtrektParser --> LogicManager : a
+deactivate ModtrektParser
+
+LogicManager -> EditTaskCommand : execute()
+activate EditTaskCommand
+
+EditTaskCommand -> Model : getFilteredTaskList()
+activate Model
+
+Model --> EditTaskCommand
+deactivate Model
+
+EditTaskCommand -> Model : deleteTask(task)
+activate Model
+
+
+Model --> EditTaskCommand
+deactivate Model
+
+EditTaskCommand -> Model : addTask(newTask)
+activate Model
+
+
+Model --> EditTaskCommand
+deactivate Model
+
+create CommandResult
+EditTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditTaskCommand : result
+deactivate CommandResult
+
+EditTaskCommand --> LogicManager : result
+deactivate EditTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
