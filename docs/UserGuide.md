@@ -311,7 +311,7 @@ Different countries have different regulations on pet sale, and you may need to 
 </div>
 
 What if the buyer that you want to add already has some orders?
-You can add a buyer and his/her orders in one shot! Check it out below :point_down: <br><br>
+**You can add a buyer and his/her orders in one shot!** Check it out below :point_down: <br><br>
 Format: `add-b n/NAME ph/PHONE_NUMBER e/EMAIL a/ADDRESS l/LOCATION o/add-o(order1 prefixes and parameters) o/add-o(order2 prefixes and parameters)…​`
 
 <div markdown="span" class="alert alert-primary">
@@ -334,12 +334,14 @@ Examples:
 * To add a buyer with two
   orders: `add-b n/Hongyi ph/11223344 e/hhygg@u.nus.edu a/UTR 138600 l/Singapore o/add-o o_st/Pending o_r/add-r o_a/1 o_sp/Siamese cat o_c/black o_cp/black and brown o_p/30 o_pr/20, 50 o_d/2022-10-26 o_ar/vaccinated o_ar/free delivery o/add-o  o_st/Negotiating o_r/add-r o_a/3 o_sp/Shih Tzu o_c/white o_cp/dotted white o_p/44.1 o_pr/10.6, -1 o_d/2022-09-20 o_ar/noble blood o_ar/not naughty`
 
-<div markdown="span" class="alert alert-primary">
+
+<div markdown="span" class="alert alert-warning">
 
 :exclamation: **Caution**: Take note that the above added buyers are considered as the SAME, so if you try all these sample commands, PetCode will notify you that the buyer already exists in the list.
-Check out [FAQ](#faq) on the concept of "What is being the same".
+Check out [FAQ](#faq) on the concept of "How contacts and items are considered as duplicates".
 
 </div>
+
 
 <div markdown="span" class="alert alert-primary">
 
@@ -404,12 +406,16 @@ Examples:
 * To add a supplier with two pets for
   sale: `add-s n/Carol Pet House ph/17238965 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 l/Singapore p/add-p p_n/Luck p_d/2022-01-01 p_c/pink p_cp/pure pink p_h/41.2 p_s/Yorkshire pig p_cert/US certified p_v/true p_w/102.5 p_p/270.3 p/add-p p_n/Snupy p_d/2021-05-31 p_c/white p_cp/dotted p_h/89.3 p_cert/US certified p_s/Californian rabbit p_v/false p_w/32.8 p_p/330.3`
 
+<div markdown="span" class="alert alert-warning">
+
 :exclamation: **Caution**: Take note that the above added suppliers are considered as the SAME, so if you try all these sample commands, PetCode will notify you that the supplier already exists in the list.
 Check out [FAQ](#faq) on the concept of "What is being the same".
 
+</div>
+
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** Overwhelmed by the prefixes when adding multiple pets?
+:bulb: **Tip:** **Overwhelmed by the prefixes** when adding multiple pets?
 Check out [Add Command using the popup window](#adding-a-contact-with-a-popup-window--add) to add multiple pets when adding a supplier **without prefixes**.
 
 </div>
@@ -432,6 +438,9 @@ Format: `add-o INDEX_OF_BUYER o_st/STATUS o_r/add-r o_a/AGE o_sp/SPECIES o_c/COL
 :exclamation: **Caution**: `INDEX_OF_BUYER` should be immediately after `add-o`.
 Ensure that at the index is a buyer before executing this command,
 which can be achieved by executing the [List Command](#listing-contacts-or-items--list) or [Find buyer command](#finding-a-buyer--find-b) beforehand. <br>
+</div>
+
+<div markdown="span" class="alert alert-warning">
 
 :exclamation: **Caution**: Please ensure that `o_r/` is followed by `add-r` immediately and there are no other prefixes
 between `o_r/`, `o_a/`, `o_c/`, `o_cp/`, and `o_sp/`. This is because they as a whole specify how the requested pet
@@ -530,14 +539,14 @@ This ensures that you can use all the available shortcuts.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source:  If a compulsory text field is ***empty*** or a text field ***starts with whitespace*** during saving, the cursor will be brought to that text field,
+:information_source: **Note**: If a compulsory text field is ***empty*** or a text field ***starts with whitespace*** during saving, the cursor will be brought to that text field,
 which will be highlighted in red.
 
 </div>
 
 <div markdown="block" class="alert alert-info">
 
-:information_source:  If the input of a text field is in the ***wrong format*** during saving, the person will not be added to
+:information_source:  **Note**: If the input of a text field is in the ***wrong format*** during saving, the person will not be added to
 the contacts and the pop-up window will not close.
 The error message and the correct format of the input will be shown in the **main window**.
 
@@ -545,8 +554,8 @@ The error message and the correct format of the input will be shown in the **mai
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: This command is only available for **adding a buyer or supplier** for the current version.
-Note that the three buttons for adding pets to a supplier, which are `Upload photo`, `Upload pet certificate`, `Upload vaccination proof` (you can refer to the picture above),
+:exclamation: **Caution**: This command is only available for **adding a buyer or supplier** for the current version.
+Note that the three buttons for adding pets to a supplier, which are `Upload photo`, `Upload pet certificate`, `Upload vaccination proof` (as seen in the image above),
 only **open the file explorer** and **do nothing more**. You may be able to upload files from your local disk to the storage of PetCode in future versions.
 
 </div>
@@ -583,7 +592,7 @@ Example:
 
 </div>
 
-Using the original set of sample data without any modification, the following picture shows the display list before the
+Using the original set of sample data **without any modification**, the following picture shows the display list before the
 match command is executed. The original order is `Shiro`, `Ashy`, `Plum`, `Page`, `Snowy`, and `Buddy`.
 
 ![before match command](images/BeforeMatch.png)
@@ -707,7 +716,7 @@ Examples:
 
 :information_source: **Notes**: <br>
 
- * Only **one** attribute is allowed. For example, `find a/6th College Ave West ph/98986668` and `find ph/98986668 ph/98986677` are not allowed.
+ * Only **one** attribute is allowed. For example, `find a/6th College Ave West ph/98986668` and `find ph/98986668 ph/98986677` are not allowed.<br>
  * This command is case-insensitive, meaning `find a/Wall Street` is equivalent to `find a/wall street`. <br>
  * The above principles also apply to the sub-commands of `find` given below.
 
@@ -786,7 +795,7 @@ Please provide **at least one** attribute when using this command.
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: Notes: <br>
+:information_source: **Notes**: <br>
 
  * This command is case-insensitive, meaning `filter-o o_st/Pending` is equivalent to `filter-o o_st/pending`. <br>
  * Having multiple prefixes of the same type is allowed, but only the latest input will be taken.
@@ -810,7 +819,7 @@ Format: `filter-o PREFIX/ATTRIBUTE [PREFIX/ATTRIBUTE]…​`
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution**: Order status can only be one of the following three: `pending`, `negotiating`, `delivering`.
+:exclamation: **Caution**: Order status can only be one of the following three: `Pending`, `Negotiating`, `Delivering`.
 
 </div>
 
@@ -960,9 +969,8 @@ _Details coming soon ..._
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous PetCode home folder.
 
-**Q**: What is being the same? Why does the app tell my that the buyer/deliverer/supplier already exits in the list? How
-are contacts and
-items considered as duplicates?<br>
+**Q**: What is being the same? Why does the app tell me that the buyer/deliverer/supplier already exits in the list? How
+are contacts and items considered as duplicates?<br>
 **A**: Unfortunately, we do not allow duplicate contacts or items in our app, otherwise you may mistakenly modify a
 person that you don't intend to! For buyer/deliverer/supplier, if they are of the same person category and have the same
 name and the same email address, they are considered as the same. However, we do allow a buyer and a deliverer to have
@@ -1026,7 +1034,7 @@ These prefixes are for you to indicate different parameters when you add a new [
 |     **[Check](#checking-which-item-belongs-to-which-contact--check)**      | `check KEY INDEX`                                                                         | `check buyer 1`                                                         |
 |                 **[Clear](#clearing-all-entries--clear)**                  | `clear`                                                                                   |                                                                         |
 |             **[Delete](#deleting-a-contact-or-item--delete)**              | `delete-KEY INDEX`                                                                        | `delete-b 1`, `delete-d 2`, `delete-s 3`, `delete-o 1`, `delete-p 2`    |
-|             **[Edit](#editing-attributes-of-a-contact--edit)**             | `edit-KEY INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [l/LOCATION]`                    | `edit-b 1 n/Alex`, `edit-s 3 n/Bobby p/884321`                          |
+|             **[Edit](#editing-attributes-of-a-contact--edit)**             | `edit-KEY INDEX [n/NAME] [ph/PHONE] [e/EMAIL] [a/ADDRESS] [l/LOCATION]`                   | `edit-b 1 n/Alex`, `edit-s 3 n/Bobby ph/884321`                         |
 |             **[Find](#finding-contacts-using-keywords--find)**             | `find PREFIX/ATTRIBUTE`                                                                   | `find n/James Jake`                                                     |
 |                 **[Find Buyer](#finding-a-buyer--find-b)**                 | `find-b PREFIX/ATTRIBUTE`                                                                 | `find-b n/James Jake`                                                   |
 |             **[Find Deliverer](#finding-a-deliverer--find-d)**             | `find-d PREFIX/ATTRIBUTE`                                                                 | `find-d n/James Jake`                                                   |
