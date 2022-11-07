@@ -780,10 +780,6 @@ ProfNUS data are saved as a JSON file `[JAR file location]/data/profnus.json`. A
 If your changes to the data file makes its format invalid, ProfNUS will discard all data and start with an empty data file at the next run.
 </div>
 
-### 4.9. Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## 5. FAQ
