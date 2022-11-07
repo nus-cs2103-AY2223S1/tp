@@ -1943,7 +1943,7 @@ Although the general colour scheme of the GUI was not modified, changes were sti
 As a team, we have successfully morphed Plannit from AB3. Plannit is an **all-in-one application** that streamlines the execution of module deliverables by **empowering NUS students** with the ability to manage **tasks**, **links** and **module-mates** (i.e. students in the same module) to increase their productivity.
 
 Some statistics of Plannit project include (as of 5th November 2022, 21:31:50 UTC+8):
-- 12th in most LOC written (including but not limited to documentation code, functional code and test code)
+- 12th in most lines of code written (including but not limited to documentation code, functional code and test code)
 - 5000+ lines of functional code (on top of AB3)
 - 7000+ lines of test code (on top of AB3)
 - One of the teams with the most review comments (>450)
