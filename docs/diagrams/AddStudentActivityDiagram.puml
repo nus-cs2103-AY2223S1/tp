@@ -21,11 +21,11 @@ if () then ([all prefixes present])
                 if() then ([no duplicate student id in ModQuik])
                     :Add new Student to ModQuik;
                  else ([else])
-                    :Display error message that student id 
+                    :Display error message that student id
                     provided already exists in ModQuik;
                 endif
             else ([else])
-                : Display error message that the student
+                :Display error message that the student
                 provided already exists in ModQuik;
             endif
         else ([else])
