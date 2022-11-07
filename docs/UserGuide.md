@@ -190,8 +190,7 @@ Adds a student to the Teacher’s Pet.
 - Tags are optional.
 - A student can have any number of tags (including 0).
 - Tags must only contain alphanumeric characters.
-- Tags cannot contain spacings.
-- Tags must contain at least 1 alphanumeric character.
+- Tags cannot be blank or contain spacings.
     
 <div markdown="span" class="alert alert-info">ℹ **Note:** One tag is limited to `40` characters long.
 </div>
