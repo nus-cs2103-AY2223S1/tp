@@ -26,6 +26,7 @@ Class Name
 Class Phone
 Class RatesPerClass
 Class Tag
+Class Mark
 
 }
 
@@ -54,6 +55,7 @@ Student *--> MoneyOwed
 Student *--> MoneyPaid
 Student *--> RatesPerClass
 Student *--> AdditionalNotes
+Student *--> Mark
 Student *--> "*" Tag
 
 Name -[hidden]right-> Phone
