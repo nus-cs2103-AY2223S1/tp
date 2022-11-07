@@ -13,7 +13,9 @@ import java.util.Optional;
 
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.commons.util.StringUtil;
+import seedu.uninurse.logic.commands.EditMedicationCommand;
 import seedu.uninurse.logic.commands.EditMedicationCommand.EditMedicationDescriptor;
+import seedu.uninurse.logic.commands.EditTaskCommand;
 import seedu.uninurse.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 import seedu.uninurse.model.condition.Condition;
@@ -214,6 +216,10 @@ public class ParserUtil {
      */
     public static EditMedicationDescriptor parseEditMedicationDescriptor(String medication) throws ParseException {
         requireAllNonNull(medication);
+        if (medication.endsWith("|")) {
+            throw new ParseException(EditMedicationDescriptor.MESSAGE_CONSTRAINTS);
+        }
+
         String[] medicationTypeAndDosage = medication.split("\\|");
 
         if (medicationTypeAndDosage.length > 2 || medicationTypeAndDosage.length == 0) {
@@ -236,6 +242,10 @@ public class ParserUtil {
 
         if (trimmedMedicationDosage.length() > 0) {
             optionalMedicationDosage = Optional.of(trimmedMedicationDosage);
+        }
+
+        if (optionalMedicationType.isEmpty() && optionalMedicationDosage.isEmpty()) {
+            throw new ParseException(EditMedicationCommand.MESSAGE_FAILURE);
         }
 
         if (!Medication.isValidMedication(optionalMedicationType, optionalMedicationDosage)) {
@@ -343,6 +353,10 @@ public class ParserUtil {
      */
     public static EditTaskDescriptor parseEditTaskDescriptor(String task) throws ParseException {
         requireAllNonNull(task);
+        if (task.endsWith("|")) {
+            throw new ParseException(EditTaskDescriptor.MESSAGE_CONSTRAINTS);
+        }
+
         String[] taskArguments = task.split("\\|");
 
         if (taskArguments.length > 3 || taskArguments.length == 0) {
@@ -389,7 +403,7 @@ public class ParserUtil {
 
         if (optionalTaskDescription.isEmpty() && optionalTaskDateAndTime.isEmpty()
                 && optionalTaskRecurrenceAndFrequency.isEmpty()) {
-            throw new ParseException(Task.MESSAGE_CONSTRAINTS);
+            throw new ParseException(EditTaskCommand.MESSAGE_FAILURE);
         }
 
         return new EditTaskDescriptor(optionalTaskDescription, optionalTaskDateAndTime,

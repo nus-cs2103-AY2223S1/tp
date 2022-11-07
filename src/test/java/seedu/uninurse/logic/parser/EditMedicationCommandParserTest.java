@@ -1,11 +1,11 @@
 package seedu.uninurse.logic.parser;
 
 import static seedu.uninurse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.uninurse.logic.commands.EditMedicationCommand.MESSAGE_FAILURE;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.uninurse.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.uninurse.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.uninurse.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.uninurse.model.medication.Medication.MESSAGE_CONSTRAINTS;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -69,7 +69,7 @@ class EditMedicationCommandParserTest {
         String userInput = INDEX_FIRST_PERSON.getOneBased() + " " + INDEX_FIRST_ATTRIBUTE.getOneBased() + " "
                 + PREFIX_MEDICATION;
 
-        assertParseFailure(parser, userInput, MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, userInput, MESSAGE_FAILURE);
     }
 
     @Test
@@ -94,7 +94,7 @@ class EditMedicationCommandParserTest {
     @Test
     public void parse_emptyMedicationDosageEdit_success() {
         String userInput = INDEX_FIRST_PERSON.getOneBased() + " " + INDEX_FIRST_ATTRIBUTE.getOneBased() + " "
-                + PREFIX_MEDICATION + MEDICATION_TYPE_STUB + " | ";
+                + PREFIX_MEDICATION + MEDICATION_TYPE_STUB;
 
         EditMedicationCommand expectedCommand =
                 new EditMedicationCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE, DESC_MEDICATION_TYPE_STUB);
@@ -103,13 +103,9 @@ class EditMedicationCommandParserTest {
     }
 
     @Test
-    public void parse_noMedicationSeparatorEdit_success() {
+    public void parse_endWithMedicationSeparatorEdit_failure() {
         String userInput = INDEX_FIRST_PERSON.getOneBased() + " " + INDEX_FIRST_ATTRIBUTE.getOneBased() + " "
-                + PREFIX_MEDICATION + MEDICATION_TYPE_STUB;
-
-        EditMedicationCommand expectedCommand =
-                new EditMedicationCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE, DESC_MEDICATION_TYPE_STUB);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
+                + PREFIX_MEDICATION + MEDICATION_TYPE_STUB + " | ";
+        assertParseFailure(parser, userInput, EditMedicationDescriptor.MESSAGE_CONSTRAINTS);
     }
 }
