@@ -96,17 +96,17 @@ Format: `exit`
 
 ### Field Details
 
-| PREFIX/ARGUMENT                           | Note                                                                                                                                                       |
-|-------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| n/PROJECT_NAME or n/CLIENT_NAME           | must only contain alphanumeric chatracters (cannot be empty or start with a space                                                                          |
-| i/PROJECT_ID or i/CLIENT_ID or i/ISSUE_ID | must exist and be a positive integer (1, 2, 3 ...​)                                                                                                        |
-| t/TITLE                                   | cannot be empty or start with a space                                                                                                                      |
-| d/DEADLINE                                | must be in the format yyyy-mm-dd                                                                                                                           |
-| r/REPOSITORY                              | must be in the form USERNAME/REPO_NAME<br/> NOTE: Clicking the Repository Link of a project will copy it to the clipboard                                  |
-| m/CLIENT_MOBILE                           | must only contain numbers and must be more than 3 digits long such that any number with a countrycode can be added without any prefix or connecting symbol |
-| e/CLIENT_EMAIL                            | must be in the format LOCAL_NAME@DOMAIN_NAME.com (local name must be longer than 3 characters)                                                             |
-| u/URGENCY                                 | must be an integer from 0 to 3, 0 for NONE, 1 for LOW, 2 for MEDIUM and 3 for HIGH                                                                         |
-| s/STATUS                                  | must be either `Incomplete` or `Completed`                                                                                                                     |
+| PREFIX/ARGUMENT                                   | Note                                                                                                                                                       |
+|---------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| n/PROJECT_NAME or n/CLIENT_NAME or l/CLIENT_LABEL | must only contain alphanumeric chatracters (cannot be empty or start with a space                                                                          |
+| p/PROJECT_ID or c/CLIENT_ID or i/ISSUE_ID         | must exist and be a positive integer (1, 2, 3 ...​)                                                                                                        |
+| t/TITLE                                           | cannot be empty or start with a space                                                                                                                      |
+| d/DEADLINE                                        | must be in the format yyyy-mm-dd                                                                                                                           |
+| r/REPOSITORY                                      | must be in the form USERNAME/REPO_NAME<br/> NOTE: Clicking the Repository Link of a project will copy it to the clipboard                                  |
+| m/CLIENT_MOBILE                                   | must only contain numbers and must be more than 3 digits long such that any number with a countrycode can be added without any prefix or connecting symbol |
+| e/CLIENT_EMAIL                                    | must be in the format LOCAL_NAME@DOMAIN_NAME.com (local name must be longer than 3 characters)                                                             |
+| u/URGENCY                                         | must be an integer from 0 to 3, 0 for NONE, 1 for LOW, 2 for MEDIUM and 3 for HIGH                                                                         |
+| s/STATUS                                          | must be either `Incomplete` or `Completed`                                                                                                                     |
 
 > NOTE: Multiple issues can have the exact same fields (other than the issue id), as it is possible for a project to
 > have multiple of the same issues.
