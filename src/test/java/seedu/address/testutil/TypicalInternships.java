@@ -96,7 +96,7 @@ public class TypicalInternships {
     private TypicalInternships() {} // prevents instantiation
 
     /**
-     * Returns an {@code FindMyIntern} with all the typical persons.
+     * Returns an {@code FindMyIntern} with all the typical internships.
      */
     public static FindMyIntern getTypicalFindMyIntern() {
         FindMyIntern fmi = new FindMyIntern();
@@ -108,5 +108,20 @@ public class TypicalInternships {
 
     public static List<Internship> getTypicalInternships() {
         return new ArrayList<>(Arrays.asList(ALIBABA, BINANCE, CITADEL, DELL, EBAY, FACEBOOK, GOLDMAN));
+    }
+
+    /**
+     * Returns an {@code FindMyIntern} with internships without interview date.
+     */
+    public static FindMyIntern getNoInterviewFindMyIntern() {
+        FindMyIntern fmi = new FindMyIntern();
+        for (Internship internship : getNoInterviewInternships()) {
+            fmi.addInternship(internship);
+        }
+        return fmi;
+    }
+
+    public static List<Internship> getNoInterviewInternships() {
+        return new ArrayList<>(Arrays.asList(ALIBABA, GOOGLE_NO_INTERVIEW, TIKTOK_NO_INTERVIEW, GOLDMAN));
     }
 }

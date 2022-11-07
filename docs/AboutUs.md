@@ -25,7 +25,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/desmondyst.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: `Mark` command, User guide, Developer Guide
 
 ### Lee Ian Ee
 
@@ -44,7 +44,7 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/marcusgwj.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: `Sort` command, User guide, Developer Guide
 
 ### Tee Yi Teng
 
