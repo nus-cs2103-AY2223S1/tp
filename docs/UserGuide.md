@@ -470,9 +470,9 @@ Travelr data are saved locally automatically after any command. There is no need
 * **Displayed trips list**: List of trips being displayed in the left panel of the UI
 * **GUI**: Stands for Graphical User Interface, which refers to the user interface that you will be interacting with.
 
-### Icons
-|<strong>Icon</strong>|<strong>Explanation</strong>|
-|:-:|:-:|
-|:information_source:|The segment will provide useful information for using Travelr.|
-|:warning:|The segment will provide important notes about Travelr.|
-|:point_up:|The segment explains the uses of a feature.|
+## Icons 
+Given below are the definition of the icons used in this User Guide.
+
+* :information_source: --- The segment will provide useful information for using Travelr.
+* :warning: --- The segment will provide important notes about Travelr.
+* :point_up: --- The segment explains the uses of a feature.|
