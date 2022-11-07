@@ -1,0 +1,78 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
+participant ":FindCommandParser" as FindParser LOGIC_COLOR
+participant "FindableCategoryParser" as CategoryParser LOGIC_COLOR
+participant "f:FindCommand" as FindCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "p:ContainsKeywordPredicate" as Predicate MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute("find c/n Shop")
+activate LogicManager
+
+LogicManager -> InternshipBookParser : parseCommand("find c/n Shop")
+activate InternshipBookParser
+
+create FindParser
+InternshipBookParser -> FindParser
+activate FindParser
+
+FindParser --> InternshipBookParser
+deactivate FindParser
+
+InternshipBookParser -> FindParser : parse("find c/n Shop")
+activate FindParser
+
+FindParser -> CategoryParser : parse("n")
+activate CategoryParser
+
+CategoryParser --> FindParser
+deactivate CategoryParser
+
+create Predicate
+FindParser -> Predicate
+activate Predicate
+
+Predicate --> FindParser : p
+deactivate Predicate
+
+create FindCommand
+FindParser -> FindCommand
+activate FindCommand
+
+FindCommand --> FindParser
+deactivate FindCommand
+
+FindParser --> InternshipBookParser : f
+deactivate  FindParser
+
+FindParser -[hidden]> InternshipBookParser : f
+destroy FindParser
+
+InternshipBookParser --> LogicManager : f
+deactivate InternshipBookParser
+
+LogicManager -> FindCommand : execute()
+activate FindCommand
+
+FindCommand -> Model : updateFilteredInternshipList(p)
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+FindCommand --> LogicManager : result
+deactivate FindCommand
+
+FindCommand -[hidden]-> LogicManager : result
+destroy FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Scene?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.Scene?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.image.Image?>
+
+<?import javafx.scene.control.Label?>
+<fx:root minHeight="675" minWidth="1000" onCloseRequest="#handleExit" title="PleaseHireUs"
+         type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/pleasehireus_icon.png" />
   </icons>
   <scene>
     <Scene>
@@ -33,27 +39,136 @@
           </Menu>
         </MenuBar>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="150" minHeight="150" prefHeight="200"
+                   styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+        <GridPane maxHeight="Infinity" maxWidth="Infinity"
+                  styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+          <VBox fx:id="internshipList" prefHeight="300.0"
+                styleClass="pane-with-border" GridPane.rowSpan="2" VBox.vgrow="ALWAYS">
+            <padding>
+              <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+            <StackPane fx:id="internshipListPanelPlaceholder" alignment="CENTER_LEFT" VBox.vgrow="ALWAYS" />
+          </VBox>
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+          <VBox fx:id="viewCommand"
+                styleClass="pane-with-border"
+                GridPane.columnIndex="1" GridPane.rowIndex="0"
+                VBox.vgrow="ALWAYS">
+            <padding>
+              <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+            <Label style="-fx-font-size: 13pt; -fx-font-family: Segoe UI Light; -fx-text-fill: white; -fx-font-weight: 700" >
+              Details
+              <padding>
+                <Insets bottom="0" top="0"/>
+              </padding>
+            </Label>
+            <StackPane fx:id="viewCommandPanelPlaceholder" alignment="CENTER_LEFT" VBox.vgrow="ALWAYS"/>
+          </VBox>
+
+          <VBox fx:id="statistics" maxHeight="150.0" minWidth="600.0" prefHeight="150.0"
+                styleClass="pane-with-border" GridPane.columnIndex="1" GridPane.rowIndex="1" alignment="CENTER" VBox.vgrow="ALWAYS">
+            <padding>
+              <Insets bottom="30" left="10" right="10" top="10" />
+            </padding>
+            <StackPane VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS" fx:id="statisticsPlaceholder" alignment="CENTER"/>
+            <GridPane HBox.hgrow="ALWAYS" minHeight="20" maxHeight="20" >
+              <VBox alignment="CENTER" GridPane.columnIndex="0" VBox.vgrow="ALWAYS" minHeight="50">
+                <padding>
+                  <Insets right="10" left="10" />
+                </padding>
+                <VBox alignment="CENTER" style="-fx-background-color: #fa9960; -fx-background-radius:20px;">
+                  <Label style="-fx-text-fill: #af4505;">
+                    APPLIED
+                  </Label>
+                </VBox>
+              </VBox>
+              <VBox alignment="CENTER" GridPane.columnIndex="1" VBox.vgrow="ALWAYS">
+                <padding>
+                  <Insets right="10" left="10" />
+                </padding>
+                <VBox alignment="CENTER" style="-fx-background-color: #33c2ff;-fx-background-radius:20px;">
+                  <Label style="-fx-text-fill: #074e81;">
+                    ASSESSMENT
+                  </Label>
+                </VBox>
+              </VBox>
+              <VBox alignment="CENTER"  GridPane.columnIndex="2" VBox.vgrow="ALWAYS">
+                <padding>
+                  <Insets right="10" left="10" />
+                </padding>
+                <VBox alignment="CENTER" style="-fx-background-color: #ffe74e;-fx-background-radius:20px;">
+                  <Label style="-fx-text-fill: #9f6100;">
+                    INTERVIEW
+                  </Label>
+                </VBox>
+              </VBox>
+              <VBox alignment="CENTER"  GridPane.columnIndex="3" VBox.vgrow="ALWAYS">
+                <padding>
+                  <Insets right="10" left="10" />
+                </padding>
+                <VBox alignment="CENTER" style="-fx-background-color: #f487fc;-fx-background-radius:20px;">
+                  <Label style="-fx-text-fill: #8d1296;">
+                    OFFER
+                  </Label>
+                </VBox>
+              </VBox>
+              <VBox alignment="CENTER"  GridPane.columnIndex="4" VBox.vgrow="ALWAYS">
+                <padding>
+                  <Insets right="10" left="10" />
+                </padding>
+                <VBox alignment="CENTER" style="-fx-background-color: #8df863;-fx-background-radius:20px;">
+                  <Label style="-fx-text-fill: #05813b;">
+                    ACCEPTED
+                  </Label>
+                </VBox>
+              </VBox>
+              <VBox alignment="CENTER"  GridPane.columnIndex="5" VBox.vgrow="ALWAYS">
+                <padding>
+                  <Insets right="10" left="10" />
+                </padding>
+                <VBox alignment="CENTER" style="-fx-background-color: #fc5f5f;-fx-background-radius:20px;">
+                  <Label style="-fx-text-fill: #600505;">
+                    REJECTED
+                  </Label>
+                </VBox>
+              </VBox>
+              <columnConstraints>
+                <ColumnConstraints maxWidth="Infinity" hgrow="ALWAYS"/>
+                <ColumnConstraints maxWidth="Infinity" hgrow="ALWAYS"/>
+                <ColumnConstraints maxWidth="Infinity" hgrow="ALWAYS"/>
+                <ColumnConstraints maxWidth="Infinity" hgrow="ALWAYS"/>
+                <ColumnConstraints maxWidth="Infinity" hgrow="ALWAYS"/>
+                <ColumnConstraints maxWidth="Infinity" hgrow="ALWAYS"/>
+              </columnConstraints>
+            </GridPane>
+          </VBox>
+
+          <columnConstraints>
+            <ColumnConstraints maxWidth="Infinity" prefWidth="350" hgrow="ALWAYS"/>
+            <ColumnConstraints maxWidth="Infinity" hgrow="ALWAYS"/>
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints maxHeight="Infinity" minHeight="200.0" prefHeight="350.0" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="150" minHeight="150.0" prefHeight="150.0" vgrow="SOMETIMES" />
+          </rowConstraints>
+
+        </GridPane>
+
+        <StackPane fx:id="reminderBarPlaceholder" VBox.vgrow="NEVER" />
+
       </VBox>
     </Scene>
   </scene>

@@ -5,46 +5,69 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyInternshipBook" as ReadOnlyInternshipBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class InternshipBook
+Class VersionedInternshipBook
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
-Class Address
-Class Email
+Package "Internship" <<Rectangle>> {
+Class "Internship" as Internship
 Class Name
+Class Position
+Class "ApplicationProcess" as ApplicationProcess
+Class Date
+Class Email
 Class Phone
-Class Tag
+Class Remark
+Class Website
+Class UniqueInternshipList
+Class "<<enumeration>>\nApplicationProcessState" as ApplicationProcessState
+'Class "{abstract}\nComparableModel" as ComparableModel
+'Class "<<enumeration>>\nComparableCategory" as ComparableCategory
+}
+
+Package "Tag" <<Rectangle>> {
+Class "Tag" as Tag
+}
 
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+InternshipBook .up.|> ReadOnlyInternshipBook
+VersionedInternshipBook .up.|> InternshipBook
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyInternshipBook
+ModelManager -down-> "1" VersionedInternshipBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+VersionedInternshipBook *-->"1" UniqueInternshipList
+ModelManager -->"~* filtered" Internship
+UniqueInternshipList --> "~* all" Internship
+Internship *--> Name
+Internship *--> Position
+Internship *--> ApplicationProcess
+Internship *--> Date
+Internship *--> Phone
+Internship *--> Email
+Internship *--> Remark
+Internship *--> Website
+Internship *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+'ComparableCategory -- Internship
 
-ModelManager -->"~* filtered" Person
+ApplicationProcess --> ApplicationProcessState
+
+'ApplicationProcess --|> ComparableModel
+'Date --|> ComparableModel
+'Name --|> ComparableModel
+'Position --|> ComparableModel
+
 @enduml

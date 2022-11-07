@@ -1,0 +1,22 @@
+{
+  "internships": [ {
+    "name": "Amazon",
+    "phone": "94351253",
+    "email": "amazon@example.com",
+    "remark": "1 George St, Singapore 049145",
+    "tagged": [ "stocks" ],
+    "position" : "Backend Intern",
+    "website" : "NA",
+    "date" : "24-09-2022",
+    "applicationProcess" : "APPLIED"
+  }, {
+    "name": "Amazon",
+    "phone": "94351253",
+    "email": "pauline@example.com",
+    "remark": "4th street",
+    "position" : "Backend Intern",
+    "website" : "NA",
+    "date" : "24-09-2022",
+    "applicationProcess" : "APPLIED"
+  } ]
+}

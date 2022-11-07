@@ -3,47 +3,55 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":CommandHistory" as CommandHistory LOGIC_COLOR
+participant ":InternshipBookParser" as InternshipBookParser LOGIC_COLOR
 participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+participant ":VersionedInternshipBook" as VersionedInternshipBook MODEL_COLOR
 end box
 [-> LogicManager : execute(undo)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(undo)
-activate AddressBookParser
+LogicManager -> InternshipBookParser : parseCommand(undo)
+activate InternshipBookParser
 
 create UndoCommand
-AddressBookParser -> UndoCommand
+InternshipBookParser -> UndoCommand
 activate UndoCommand
 
-UndoCommand --> AddressBookParser
+UndoCommand --> InternshipBookParser
 deactivate UndoCommand
 
-AddressBookParser --> LogicManager : u
-deactivate AddressBookParser
+InternshipBookParser --> LogicManager : u
+deactivate InternshipBookParser
 
 LogicManager -> UndoCommand : execute()
 activate UndoCommand
 
-UndoCommand -> Model : undoAddressBook()
+UndoCommand -> Model : undoInternshipBook()
 activate Model
 
-Model -> VersionedAddressBook : undo()
-activate VersionedAddressBook
+Model -> VersionedInternshipBook : undo()
+activate VersionedInternshipBook
 
-VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
-VersionedAddressBook --> Model :
-deactivate VersionedAddressBook
+VersionedInternshipBook -> VersionedInternshipBook :resetData(ReadOnlyInternshipBook)
+VersionedInternshipBook --> Model :
+deactivate VersionedInternshipBook
 
 Model --> UndoCommand
 deactivate Model
 
+UndoCommand -> CommandHistory : getPreviousModifyCommand()
+activate CommandHistory
+
+CommandHistory --> UndoCommand
+deactivate CommandHistory
+
 UndoCommand --> LogicManager : result
+
 deactivate UndoCommand
 UndoCommand -[hidden]-> LogicManager : result
 destroy UndoCommand

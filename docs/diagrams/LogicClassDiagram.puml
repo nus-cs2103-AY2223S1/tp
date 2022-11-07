@@ -6,9 +6,10 @@ skinparam classBackgroundColor LOGIC_COLOR
 
 package Logic {
 
-Class AddressBookParser
+Class InternshipBookParser
 Class XYZCommand
 Class CommandResult
+Class CommandHistory
 Class "{abstract}\nCommand" as Command
 
 
@@ -27,8 +28,9 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .right.|> Logic
-LogicManager -right->"1" AddressBookParser
-AddressBookParser ..> XYZCommand : creates >
+LogicManager -down->"1" CommandHistory
+LogicManager -right->"1" InternshipBookParser
+InternshipBookParser ..> XYZCommand : creates >
 
 XYZCommand -up-|> Command
 LogicManager .left.> Command : executes >
@@ -36,6 +38,7 @@ LogicManager .left.> Command : executes >
 LogicManager --> Model
 LogicManager --> Storage
 Storage --[hidden] Model
+Command .up.> CommandHistory
 Command .[hidden]up.> Storage
 Command .right.> Model
 note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
