@@ -343,6 +343,10 @@ Step 5. `UpdateContactCommand` gets `Patient` with UID 3 from the database, and 
 
 Step 6. `Model` updates the database, and displays the attending physician on `Patient` UID 3.
 
+The activity diagram below summarises exception handling of UpdateContactCommand:
+
+![UpdateContactActivityDiagram](images/UpdateContactActivityDiagram.png))
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

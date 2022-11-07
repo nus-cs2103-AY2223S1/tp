@@ -55,8 +55,7 @@ public class Patient extends Person {
      * Initialise patient with given attending physician and next of kin.
      */
     public Patient(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address,
-            Set<Tag> tags, List<DateSlot> dateSlot,
-            Optional<Physician> p, Optional<NextOfKin> n) {
+            Set<Tag> tags, List<DateSlot> dateSlot, Optional<Physician> p, Optional<NextOfKin> n) {
         super(uid, name, gender, phone, email, address, tags);
         requireAllNonNull(dateSlot);
         dateSlots.addAll(dateSlot);
@@ -107,7 +106,8 @@ public class Patient extends Person {
     }
 
     public String getDatesSlotsInString() {
-        String dateSlotsString = getDatesSlots().stream().map(x -> x.toString()).collect(Collectors.joining(","));
+        String dateSlotsString = getDatesSlots().stream().map(x -> x.toString()).collect(
+                Collectors.joining(", "));
         if (dateSlotsString.length() == 0) {
             return String.format("Home Visits Date and Time: %s;", MESSAGE_FOR_EMPTY_DATESLOT);
         }

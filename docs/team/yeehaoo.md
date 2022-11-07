@@ -35,7 +35,7 @@ Given below are my contributions to the project.
     * Update emergency contact feature
     * Help feature
     * Find feature
-    * Enhance overall grammar and readability
+    * Enhance overall grammar and readability [#230](https://github.com/AY2223S1-CS2103-F13-4/tp/pull/230)
   * Developer Guide:
     * List feature
     * Update emergency contact feature
