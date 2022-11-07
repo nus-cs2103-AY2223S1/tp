@@ -9,7 +9,7 @@ software engineering modules to build projects. It helps track the team's progre
 
 Given below are my contributions to the project.
 
-* **New Feature**: `assign task` - Added command to assign tasks randomly.
+* **New Feature**: `assign random` - Added command to assign tasks randomly.
     * **What it does**: Assigns a particular task to a random team member that is not already assigned to the task
     * **Justification**: When team leads have to assign many tasks to people, this might lead to "decision paralysis". A
       lot of times, a task can be done by anyone. This feature allows team leads to assign tasks without needing to
