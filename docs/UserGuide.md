@@ -25,8 +25,8 @@ With `Food Guide`, you can search for the available food options in NUS and make
 * [Features](#features)
   * [Help](#help-command--help)
   * [List](#listing-all-eateries--list)
-  * [Find](#finding-eateries-by-name--find) / [FindTag](#finding-eateries-by-tag--findtag) / 
-  [FindLocation](#finding-eateries-by-location--findlocation) / [FindCuisine](#finding-eateries-by-cuisine--findcuisine)
+  * [Find](#finding-eateries-by-name--find) / [FindTag](#finding-eateries-by-tag--findtag) /
+    [FindLocation](#finding-eateries-by-location--findlocation) / [FindCuisine](#finding-eateries-by-cuisine--findcuisine)
   * [Tag](#add-tag-to-eatery--tag) / [Untag](#remove-tag-from-eatery--untag)
   * [Add](#add-eatery-add) / [Delete](#delete-eatery--delete)
   * [Fav](#favourite-eatery--fav) / [Unfav](#unfavourite-eatery--unfav)
@@ -98,13 +98,13 @@ e.g. typing **`help`** and pressing Enter will open the help window. <br>
 
 * Items with `…`​ after them can be used **one or more times**. <br>
   e.g. `-t TAGNAME…​` can be used as `-t Foodcourt`, `-t Tea -t Coffee` etc.  <br>
-Note:  (i.e. 0 times) is only allowed if there are square brackets, e.g. `[-t TAGNAME]` <br><br>
+  Note:  (i.e. 0 times) is only allowed if there are square brackets, e.g. `[-t TAGNAME]` <br><br>
 
 * **Prefixed parameters** _(e.g. -n, -p, -t, etc.)_ can be in **any order**. <br>
-  e.g. if the command specifies `-n NAME -t TAG`, `-t TAG -n NAME` is also acceptable. <br><br>
+  e.g. if the command specifies `-n NAME -t TAGNAME`, `-t TAGNAME -n NAME` is also acceptable. <br><br>
 
-* If a parameter is expected only once in the command, but you have specified it multiple times, 
-only the last occurrence of the parameter will be taken. <br>
+* If a parameter is expected only once in the command, but you have specified it multiple times,
+  only the last occurrence of the parameter will be taken. <br>
   e.g. if you specify `-n nameA -n nameB`, only `-n nameB` will be taken. <br><br>
 
 * Extra parameters for commands that do not take in parameters (such as `help`) will be ignored. <br>
@@ -161,7 +161,7 @@ Example: `find mala -r 2`
 
 Below is an example of what the list would look like when using the randomizer `-r` command.
 The command used is shown on the command line. <br>
-Note how only 2 random eateries with "mala" in their names are shown. 
+Note how only 2 random eateries with "mala" in their names are shown.
 ![Ui](images/user-guide/UgFindWildcard.png)
 
 
@@ -264,10 +264,10 @@ Example: `findPrice $`
 
 _Create custom tag(s) for an eatery to facilitate searching._
 
-**Format:** `tag ID -t TAGNAME…​ [-h]`
+**Format:** `tag INDEX -t TAGNAME…​ [-h]`
 
 **Arguments:** <br>
-`ID`: ID of eatery to place tag on <br>
+`INDEX`: index of eatery to place tag on <br>
 `TAGNAME`: name of tag to assign to eatery <br>
 `-h`: displays help message (specific to tag) <br><br>
 Example: `tag 1 -t coffee -t tea`
@@ -278,15 +278,15 @@ Example: `tag 1 -t coffee -t tea`
 
 _Remove custom tag(s) from eatery._
 
-**Format:** `untag ID -t TAGNAME…​ [-h]`
+**Format:** `untag INDEX -t TAGNAME…​ [-h]`
 
 **Arguments:** <br>
-`ID`: ID of eatery to remove tag from <br>
+`INDEX`: index of eatery to remove tag from <br>
 `TAGNAME`: name of tag to remove from eatery <br>
 `-h`: displays help message (specific to untag) <br><br>
 Example: `untag 1 -t coffee -t tea`
 
-Below is a comparison between when the store at ID 50 is `tag[ged]` _(left)_ then `untag[ged]` _(right)_.
+Below is a comparison between when the store at index 50 is `tag[ged]` _(left)_ then `untag[ged]` _(right)_.
 The commands used are shown on the command line. <br>
 Note how the blue "cafe" tag on store 50 disappears after the untag command.
 ![Ui](images/user-guide/UgTagUntagComparison.png)
@@ -294,18 +294,18 @@ Note how the blue "cafe" tag on store 50 disappears after the untag command.
 
 ### Add eatery : `add`
 
-_Adds a new eatery to NUSEatWhere's database. Eatery will be added to the end of the 
+_Adds a new eatery to NUSEatWhere's database. Eatery will be added to the end of the
 current list <br>
 (i.e. if the current list pre-addition has 5 eateries, the newly added eatery will be of index 6)._
 
-**Format:** `add -n NAME -l LOCATION -c CUISINE [-p PRICE] [-t TAG]…​ [-h]`
+**Format:** `add -n NAME -l LOCATION -c CUISINE -p PRICE [-t TAG]…​ [-h]`
 
 **Arguments:** <br>
 `NAME`: name of the eatery to be added <br>
 `LOCATION`: location of the eatery <br>
 `CUISINE`: cuisine type of the eatery <br>
 `PRICE`: price of the eatery <br>
-`TAG`: extra tags to add to the eatery <br>
+`TAGNAME`: extra tags to add to the eatery <br>
 `-h`: displays help message (specific to add) <br><br>
 Example: `add -n KOI -l Central Square -c Drinks` <br>
 Example: `add -n KOI -l Central Square -c Drinks -p $$`
@@ -316,14 +316,14 @@ Example: `add -n KOI -l Central Square -c Drinks -p $$`
 
 _Deletes an eatery from NUSEatWhere's database_
 
-**Format:** `delete ID [-h]`
+**Format:** `delete INDEX [-h]`
 
 **Arguments:** <br>
-`ID`: ID of eatery to remove from NUSEatWhere <br>
+`INDEX`: index of eatery to remove from NUSEatWhere <br>
 `-h`: displays help message (specific to delete) <br><br>
 Example: `delete 3`
 
-Below is a comparison between when the store at ID 70 is `add[ed]` _(left)_ then `delete[d]` _(right)_.
+Below is a comparison between when the store at index 70 is `add[ed]` _(left)_ then `delete[d]` _(right)_.
 The commands used are shown on the command line. <br>
 Note how the eatery at index 70 disappears after the delete command.
 ![Ui](images/user-guide/UgAddDeleteComparison.png)
@@ -333,12 +333,12 @@ Note how the eatery at index 70 disappears after the delete command.
 
 _Favourites an eatery from NUSEatWhere's database._
 
-**Format:** `fav ID [-h]`
+**Format:** `fav INDEX [-h]`
 
 **Arguments:** <br>
 
-`ID`: ID of the eatery to favourite <br>
-`-h`: displays help message (specfic to fav) <br><br>
+`INDEX`: index of the eatery to favourite <br>
+`-h`: displays help message (specific to fav) <br><br>
 Example: `fav 3`
 
 <br>
@@ -347,12 +347,12 @@ Example: `fav 3`
 
 _Unfavourites an eatery from NUSEatWhere's database._
 
-**Format:** `unfav ID [-h]`
+**Format:** `unfav INDEX [-h]`
 
 **Arguments:** <br>
 
-`ID`: ID of the eatery to unfavourite <br>
-`-h`: displays help message (specfic to unfav) <br><br>
+`INDEX`: index of the eatery to unfavourite <br>
+`-h`: displays help message (specific to unfav) <br><br>
 Example: `unfav 3`
 
 <br>
@@ -382,25 +382,25 @@ _... Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer? <br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains 
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous NUSEatWhere home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-| Action           | Format                                                          |
-|:-----------------|:----------------------------------------------------------------|
-| **Help**         | `help`                                                          |
-| **List**         | `list [-h]`                                                     |
-| **Find**         | `find NAME…​ [-r NUMBER] [-h]`                                  |
-| **FindTag**      | `findTag TAGNAME…​ [-r NUMBER] [-h]`                            |
-| **FindLocation** | `findLocation LOCATIONNAME…​ [-r NUMBER] [-h]`                  |
-| **FindCuisine**  | `findCuisine CUISINENAME…​ [-r NUMBER] [-h]`                    |
-| **FindPrice**    | `findPrice PRICE…​ [-r NUMBER] [-h]`									                   |
-| **Tag**          | `tag ID -t TAGNAME…​ [-h]`                                      |
-| **Untag**        | `untag ID -t TAGNAME…​ [-h]`                                    |
-| **Add**          | `add -n NAME -l LOCATION -c CUISINE [-p PRICE] [-t TAG…​] [-h]` |
-| **Delete**       | `delete ID [-h]`                                                |
-| **fav**          | `fav ID [-h]`                                                   |
-| **unfav**        | `unfav ID [-h]`                                                 |
+| Action           | Format                                                              |
+|:-----------------|:--------------------------------------------------------------------|
+| **Help**         | `help`                                                              |
+| **List**         | `list [-h]`                                                         |
+| **Find**         | `find NAME…​ [-r NUMBER] [-h]`                                      |
+| **FindTag**      | `findTag TAGNAME…​ [-r NUMBER] [-h]`                                |
+| **FindLocation** | `findLocation LOCATIONNAME…​ [-r NUMBER] [-h]`                      |
+| **FindCuisine**  | `findCuisine CUISINENAME…​ [-r NUMBER] [-h]`                        |
+| **FindPrice**    | `findPrice PRICE…​ [-r NUMBER] [-h]`									                       |
+| **Tag**          | `tag INDEX -t TAGNAME…​ [-h]`                                       |
+| **Untag**        | `untag INDEX -t TAGNAME…​ [-h]`                                     |
+| **Add**          | `add -n NAME -l LOCATION -c CUISINE [-p PRICE] [-t TAGNAME…​] [-h]` |
+| **Delete**       | `delete INDEX [-h]`                                                 |
+| **fav**          | `fav INDEX [-h]`                                                    |
+| **unfav**        | `unfav INDEX [-h]`                                                  |

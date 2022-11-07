@@ -233,9 +233,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 * Pros: Easy to implement.
 * Cons: May have performance issues in terms of memory usage.
 
-  
 
-  
+
+
 
 * **Alternative 2:** Individual command knows how to undo/redo by itself.
 
@@ -244,7 +244,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
--------------------------------------------------------------------------------------------------------------------- 
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -271,18 +271,18 @@ _{more aspects and alternatives to be added}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …  | I want to …  | So that I can…  |  
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |  
-| `* * *`  | user                                 | see usage instructions       | easily figure out and remember how to use the app               |  
-| `* * *`  | user                                   | see what stalls there are in NUS             |  know what food is available                                                                  |    
+| Priority | As a …  | I want to …  | So that I can…  |
+| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
+| `* * *`  | user                                 | see usage instructions       | easily figure out and remember how to use the app               |
+| `* * *`  | user                                   | see what stalls there are in NUS             |  know what food is available                                                                  |
 | `* * *` | user | search for stalls by name |
 | `* * *` | user | search for stalls by tags |
 | `* * *` | user | search for stalls by location |
 | `* * *` | user | search for stalls by cuisine |
-| `* * *`  | user                                     | tag stalls   | organize stalls by tags             |  
-| `* * *`   | user  | untag a stall       | remove a stall from a tag group  
-| `* *`   | user | add new food stalls              | customize the list                                 |  
-| `* *`  | user | remove food stalls        | customize the list |  
+| `* * *`  | user                                     | tag stalls   | organize stalls by tags             |
+| `* * *`   | user  | untag a stall       | remove a stall from a tag group
+| `* *`   | user | add new food stalls              | customize the list                                 |
+| `* *`  | user | remove food stalls        | customize the list |
 
 *{More to be added}*
 
