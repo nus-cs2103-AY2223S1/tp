@@ -22,7 +22,7 @@ some relevant test cases for `containsKeywordsPredicate` classes
 
 **Project management**:
 
-Tested and reviewed 23 PRs in total. Some notable PRs are linked below.
+Tested and reviewed 25 PRs in total. Some notable PRs are linked below.
 
 * v1.1
     * 4 PRs on updating documentation (#7, #9, #11, #19)
@@ -40,8 +40,9 @@ Tested and reviewed 23 PRs in total. Some notable PRs are linked below.
     * 1 PR on `fav`/`unfav` feature (#74)
 * v1.4
     * 1 PR on UI changes (#150)
-    * 2 PRs on documentation ([#149](https://github.com/AY2223S1-CS2103T-W11-1/tp/pull/149), #156)
+    * 3 PRs on documentation ([#149](https://github.com/AY2223S1-CS2103T-W11-1/tp/pull/149), #156, #166)
     * 1 PR on `find` ([#148](https://github.com/AY2223S1-CS2103T-W11-1/tp/pull/148))
+    * 1 PR on `help` (#168)
 
 **Documentation**:
 
@@ -58,4 +59,5 @@ Tested and reviewed 23 PRs in total. Some notable PRs are linked below.
 **Developer Guide**
 * Updated hyperlinks to link back to team repo instead of `AB3`
 * Refactored some `AB3` code in DG to fit `foodguide` (e.g. People -> Eateries)
+* Furnished details on search features, i.e. `find`, `findLocation`, `findPrice`, `findCuisine`, `findTags`
 
