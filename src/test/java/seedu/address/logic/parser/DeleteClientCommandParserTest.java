@@ -4,6 +4,8 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,12 +26,19 @@ public class DeleteClientCommandParserTest {
     public void parse_validArgs_returnsDeleteCommand() {
         assertParseSuccess(parser,
                 DeleteClientCommand.COMMAND_FLAG, "1", new DeleteClientCommand(INDEX_FIRST));
+        assertParseSuccess(parser,
+                DeleteClientCommand.COMMAND_FLAG, "2", new DeleteClientCommand(INDEX_SECOND));
+        assertParseSuccess(parser,
+                DeleteClientCommand.COMMAND_FLAG, "3", new DeleteClientCommand(INDEX_THIRD));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser,
                 DeleteClientCommand.COMMAND_FLAG, "a",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteClientCommand.MESSAGE_USAGE));
+        assertParseFailure(parser,
+                DeleteClientCommand.COMMAND_FLAG, "",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteClientCommand.MESSAGE_USAGE));
     }
 }
