@@ -315,6 +315,7 @@ Step 6: This causes the `TutorDetailsPanel` of the `tutor` to be set as visible,
 This command allows users to edit a specific tutor (by `INDEX`) in `Tuthub`'s displayed list.
 
 <ins>Implementation</ins>
+
 Similar to [`add` command](#add-feature), the `edit` command involves the logic and model components of Tuthub, where the `Model` class handles the checking of uniqueness.
 
 The following methods in particular facilitate the editing of tutors:
