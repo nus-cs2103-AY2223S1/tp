@@ -104,7 +104,7 @@ _None_
 > Exits FoodRem
 
 ```warning
-The data file is only saved when you exit the application using this command.
+This command is the only guaranteed way for the data file to be saved when you exit the application To prevent, always exit the application using this command instead of any other way.
 ```
 
 **Example:**
