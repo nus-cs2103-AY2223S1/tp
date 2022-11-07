@@ -8,6 +8,7 @@ title: User Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Introduction**
 
@@ -47,6 +48,7 @@ This user guide is optimized for TrackAScholar's most recent version, v1.4.
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Legend** 
 
@@ -58,8 +60,6 @@ Here are certain indicators explained so that the user may better comprehend the
 
 :exclamation: **Caution:** Cautions are placed in this guide as warnings for certain erroneous actions.
 
-[Return to top](#table-of-contents)
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Glossary**
@@ -67,7 +67,10 @@ Here are certain indicators explained so that the user may better comprehend the
 * **GUI:** Graphical User Interface: Refers to the user interface through which users interact with via visual representations.
 * **CLI:** Command Line Interface: Refers to a user interface that receive commands from a user in the form of lines of text.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Quick start** - How to get started
 
@@ -91,6 +94,7 @@ Here are certain indicators explained so that the user may better comprehend the
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Overview of TrackAScholar app**  
 
@@ -98,7 +102,10 @@ This is how the application will look like when opened.
 
 ![Overview of TrackAScholar app](images/UserGuideCommands/TrackAScholarOverview.png)
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Features**
 
@@ -136,6 +143,7 @@ This is how the application will look like when opened.
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Viewing help window : `help`
 
@@ -151,6 +159,7 @@ help
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Adding an applicant: `add`
 
@@ -189,6 +198,7 @@ Sample output for `add n/Samuel Cheong m/Medicine e/samuelcheong1234@gmail.com p
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Listing all applicants : `list`
 
@@ -205,6 +215,7 @@ Sample output for `list`:
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Editing an existing applicant : `edit`
 
@@ -244,6 +255,7 @@ Sample output for `edit 2 n/Samuel Cheong m/`:
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Deleting an applicant : `delete`
 
@@ -269,6 +281,7 @@ Sample output for `delete 2`:
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Removing applicants by status : `remove`
 
@@ -299,6 +312,7 @@ Sample output for `remove accepted`:
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Clearing all entries : `clear`
 
@@ -322,6 +336,7 @@ Sample output for `clear`:
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Finding applicants by name, scholarship or major : `find`
 
@@ -351,6 +366,7 @@ Sample output for `find n/Alex n/Irfan m/Medicine`:
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Filtering applicants by application status: `filter`
 
@@ -374,6 +390,7 @@ Sample output for `filter pending`:
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Sorting applicants by either name, scholarship or application status : `sort`
 
@@ -401,6 +418,7 @@ Sample output for `sort name`:
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Importing a trackAScholar file : `import`
 
@@ -439,6 +457,7 @@ Examples:
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Pinning an applicant : `pin`
 
@@ -464,6 +483,7 @@ Sample output for `pin 2`:
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Unpins an applicant : `unpin`
 
@@ -489,6 +509,7 @@ Sample output for `unpin Bernice Yu`:
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### Exiting the app : `exit`
 
@@ -520,6 +541,7 @@ If your changes to the data file makes its format invalid, TrackAScholar will di
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Command summary**
 
@@ -539,3 +561,5 @@ If your changes to the data file makes its format invalid, TrackAScholar will di
 | **Pin**    | `pin INDEX` <br/> e.g. `pin 2`                                                                                                                                                             |
 | **Unpin**  | `unpin FULL_NAME` <br/> e.g. `unpin Alex Yeoh`                                                                                                                                             |
 | **Exit**   | `exit`                                                                                                                                                                                     |
+
+[Return to top](#table-of-contents)
