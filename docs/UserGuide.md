@@ -56,8 +56,8 @@ Titles, locations and descriptions that are too long will be truncated. To view 
 |**Input Box**|where you enter your commands.|
 |**Output Box**|where the results of your command are shown.
    |**Selected Trip Box**| where the current selected trip is shown.<br><br> Use [<code>select</code>](#selecting-a-trip-to-view-its-itinerary-select) to select a trip.|
-|**Trip List Display** |where the Trips stored in Travelr are shown.<br><br> Commands to change the types of trips being shown: <br><ul> [<li><code>completed</code></li>](#viewing-all-completed-trips-and-events-completed) [<li><code>view</code></li>](#viewing-all-trips-and-events-view) [<li><code>list</code></li>](#viewing-trips-list-list) </ul> See feature list for more information about the commands.|
-|**Event List Display**|where the Events stored in Travelr are shown.<br><br> Commands to change the types of events being shown: <br><ul>[<li><code>completed</code></li>](#viewing-all-completed-trips-and-events-completed) [<li><code>view</code></li>](#viewing-all-trips-and-events-view) [<li><code>list-e</code></li>](#viewing-bucket-list-list-e) [<li><code>select</code></li>](#selecting-a-trip-to-view-its-itinerary-select) </ul> See feature list for more information about the commands.
+|**Trip List Display** |where the Trips stored in Travelr are shown.<br><br> Commands to change the types of trips being shown: <br>[<code>completed</code>](#viewing-all-completed-trips-and-events-completed), [<code>view</code>](#viewing-all-trips-and-events-view), [<code>list</code>](#viewing-trips-list-list) <br> See feature list for more information about the commands.|
+|**Event List Display**|where the Events stored in Travelr are shown.<br><br> Commands to change the types of events being shown: <br>[<code>completed</code>](#viewing-all-completed-trips-and-events-completed), [<code>view</code>](#viewing-all-trips-and-events-view), [<code>list-e</code>](#viewing-bucket-list-list-e), [<code>select</code>](#selecting-a-trip-to-view-its-itinerary-select) <br> See feature list for more information about the commands.
 
 
 </div>
@@ -222,8 +222,8 @@ Adds the specified event from the bucket list to the specified trip's itinerary.
 Format: `add-et n/EVENT NAME t/TRIP NAME`
 - Adds the event with the specified EVENT NAME
 - Event is added to the trip at the specified TRIP NAME
-- The TRIP NAME must exist in the trips list.
-- The EVENT NAME must exist in the events list.
+- The TRIP NAME must exist in Travelr.
+- The EVENT NAME must exist in the bucket list.
 
 *Note: Event names and trip names are used as inputs instead of indexes to make the command as specific as possible.
 
@@ -249,8 +249,8 @@ Remove the specified event from the specified trip. The event will then be retur
 Format: `delete-et n/EVENT NAME t/TRIP NAME`
 - Remove the event with the specified event titled `EVENT NAME` from the specified trip titled `TRIP NAME`
 - Event is added to the bucket list.
-- The TRIP NAME must exist in the trips list.
-- The EVENT NAME must exist in the trip itinerary.
+- The TRIP NAME must exist in Travelr.
+- The EVENT NAME must exist in the trip's itinerary.
 
 <div class="alert alert-block alert-success">
    
