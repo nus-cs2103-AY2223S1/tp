@@ -10,7 +10,7 @@ import bookface.model.ObjectContainsKeywordsPredicate;
 import bookface.model.person.Person;
 
 /**
- * Deletes a user identified using it's displayed index from the user list.
+ * Finds a user from the user list.
  */
 public class FindUserCommand extends FindCommand {
 

@@ -13,8 +13,8 @@ public class ReturnCommandParser implements Parseable<ReturnCommand> {
     public static final String VALIDATION_REGEX = "(\\d+)";
 
     /**
-     * Parses the given {@code String} of arguments in the context of the LoanCommand
-     * and returns a LoanCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ReturnCommand
+     * and returns a ReturnCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override

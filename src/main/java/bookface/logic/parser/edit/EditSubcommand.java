@@ -6,7 +6,7 @@ import bookface.logic.parser.ParserFunction;
 import bookface.logic.parser.exceptions.ParseException;
 
 /**
- * An enum class that contains all the valid user commands.
+ * An enum class that contains all the valid Edit commands.
  */
 public enum EditSubcommand implements CommandReturnable {
     USER((args) -> new EditUserArgumentsParser().parse(args)),

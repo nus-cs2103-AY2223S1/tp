@@ -6,7 +6,7 @@ import bookface.model.BookFace;
 import bookface.model.Model;
 
 /**
- * Clears the user list.
+ * Clears the two lists.
  */
 public class ClearCommand extends Command {
 

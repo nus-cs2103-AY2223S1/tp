@@ -18,7 +18,7 @@ import bookface.model.book.Book;
 import bookface.model.book.Title;
 
 /**
- * Command to edit a book from the book list using its displayed index from the book list
+ * Edits a book from the book list using its displayed index from the book list
  */
 public class EditBookCommand extends EditCommand {
     public static final String COMMAND_WORD = "book";

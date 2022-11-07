@@ -157,6 +157,7 @@ public class UniquePersonList implements Iterable<Person> {
         CollectionUtil.requireAllNonNull(book);
         Optional<Person> person = book.getLoanee();
         person.ifPresent((p) -> {
+            assert book.isLoaned();
             int index = internalList.indexOf(p);
             internalList.set(index, p);
         });

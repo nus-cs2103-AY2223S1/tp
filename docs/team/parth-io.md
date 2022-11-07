@@ -32,6 +32,11 @@ Given below are my contributions to the project.
   * Improved error messages by generating them using information from the command itself [\#156](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/156/commits/cdc96cba547bf657fa29ad1c151e220d11a37e8f)
     * Justification: The error messages were written by hand, leading to incorrect error messages if the logic for the command was updated. The error message generation also tied in with the subcommand handling, with error messages for subcommands nested within the main command.
   * Updated `clear all` command, updated the `help` window with a copy button, fixed `help` window display issue ([\#156](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/156/commits/d3f0d44d28a30ff291d9f84297e9dc859495a53f))
+  * Improvements to code quality made
+    * such as using `Optional` and `assert` [\#165](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/165)
+    * or by reducing code duplication using generics [\#118](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/118)
+  * Fix bugs with data file parsing and deserialisation [\#227](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/227)
+  * Wrote tests for the whole of `JsonAdaptedBookTest.java` and for other files [\#234](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/234)
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=parth-io&breakdown=true)
 
@@ -39,15 +44,17 @@ Given below are my contributions to the project.
   * Created the team repo, set up CodeCov, add user stories as issues.
   * Helped review and merge PRs on a timely basis (even after they have been merged, for example [\#160](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/160))
   * Proposed design suggestions in PR reviews
-  * Created v1.3, v1.4, v1.4b milestones and the project board
+  * Created v1.2, v1.3, v1.4 milestones and the project board
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `add user`, `delete user`, `delete book`, `edit book`, and `edit user` [\#64](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/64), [\#166](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/166)
+    * Added documentation for the features `add user`, `delete user`, `delete book`, `edit book`, and `edit user` [\#64](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/64), [\#166](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/166
+    * Made other edits such as to the 'Notes on the Command Format'
   * Developer Guide:
     * Added the Non-Functional requirements [\#85](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/85)
     * Did cosmetic tweaks for the Glossary table [\#92](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/92)
-    * Added an explanation on the design of command parsing, the implementation details of the `delete` feature, and a code-reuse table [\#143](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/143)
+    * Added an explanation on the design of command parsing, the implementation details of the `delete` feature, and an Acknowledgements table [\#143](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/143)
+    * Updated the class diagrams [\#225](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/225)
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#94](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/94), [\#115](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/115), [\#152](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/152), [\#159](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/159), [\#164](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/164), [\#123](https://github.com/AY2223S1-CS2103-F14-4/tp/pull/123)

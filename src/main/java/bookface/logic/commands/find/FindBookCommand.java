@@ -10,7 +10,7 @@ import bookface.model.ObjectContainsKeywordsPredicate;
 import bookface.model.book.Book;
 
 /**
- * Command to delete a book from the booklist using it's displayed index from the book list
+ * Finds a book from the book list.
  */
 public class FindBookCommand extends FindCommand {
     public static final String COMMAND_WORD = "book";

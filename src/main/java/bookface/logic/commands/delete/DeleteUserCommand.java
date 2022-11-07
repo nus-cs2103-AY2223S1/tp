@@ -12,7 +12,7 @@ import bookface.model.Model;
 import bookface.model.person.Person;
 
 /**
- * Deletes a user identified using it's displayed index from the user list.
+ * Deletes a user identified using its displayed index from the user list.
  */
 public class DeleteUserCommand extends DeleteCommand {
 

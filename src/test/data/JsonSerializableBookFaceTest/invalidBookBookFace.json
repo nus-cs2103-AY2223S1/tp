@@ -7,7 +7,7 @@
   "books": [ {
     "title" : "How to Spell",
     "author" : "Ronald !@$#%ERROR",
-    "isLoaned": false,
+    "isLoaned": true,
     "returnDate": ""
   } ]
 }

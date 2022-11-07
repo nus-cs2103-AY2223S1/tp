@@ -11,7 +11,7 @@ import bookface.logic.parser.ParserFunction;
 import bookface.logic.parser.exceptions.ParseException;
 
 /**
- * An enum class that contains all the valid user commands.
+ * An enum class that contains all the valid List commands.
  */
 public enum ListSubcommand implements CommandReturnable {
     USERS((args) -> new ListUsersCommand()),
