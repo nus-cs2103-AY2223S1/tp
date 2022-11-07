@@ -85,7 +85,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
     /**
      * Creates a UpdatedPatientCard with the given Patient and headerString.
      */
-    public UpdatedPatientCard(Patient patient, String headerString) {
+    public UpdatedPatientCard(Patient patient, String headerString, boolean scrollPaneIsResizable) {
         super(FXML);
         this.patient = patient;
 
@@ -134,7 +134,6 @@ public class UpdatedPatientCard extends UiPart<Region> {
                 this.taskContainer.getChildren().add(getTaskBox(i + 1, task));
             }
         }
-        this.taskScrollPane.prefViewportHeightProperty().bind(this.taskScrollPaneContainer.heightProperty());
 
         /* Remarks */
         this.remarkHeader.setText("Remarks");
@@ -145,7 +144,10 @@ public class UpdatedPatientCard extends UiPart<Region> {
                 this.remarkContainer.getChildren().add(getRemarkBox(remark));
             }
         }
-        this.remarkScrollPane.prefViewportHeightProperty().bind(this.remarkScrollPaneContainer.heightProperty());
+        if (scrollPaneIsResizable) {
+            this.taskScrollPane.prefViewportHeightProperty().bind(this.taskScrollPaneContainer.heightProperty());
+            this.remarkScrollPane.prefViewportHeightProperty().bind(this.remarkScrollPaneContainer.heightProperty());
+        }
     }
 
     @Override

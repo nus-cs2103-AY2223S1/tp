@@ -98,7 +98,7 @@ public class OutputPanel extends UiPart<Region> {
      * accordingly with patient and headerString if executed command is patient related.
      */
     private void handlePatient(Patient patient, String headerString) {
-        UpdatedPatientCard updatedPersonCard = new UpdatedPatientCard(patient, headerString);
+        UpdatedPatientCard updatedPersonCard = new UpdatedPatientCard(patient, headerString, true);
         updatedPersonCard.getRoot().prefWidthProperty().bind(this.getRoot().widthProperty());
         updatedPersonCard.getRoot().prefHeightProperty().bind(this.getRoot().heightProperty());
 

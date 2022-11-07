@@ -48,7 +48,7 @@ public class UpdatedPersonListPanel extends UiPart<Region> {
             } else {
                 // Can provide a better way to check in the future.
                 if (person instanceof Patient) {
-                    setGraphic(new UpdatedPatientCard((Patient) person, "").getRoot());
+                    setGraphic(new UpdatedPatientCard((Patient) person, "", false).getRoot());
                 }
             }
         }
