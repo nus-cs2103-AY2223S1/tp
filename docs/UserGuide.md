@@ -37,7 +37,54 @@ If you can type fast, FRIDAY can get your student management tasks done faster t
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## A guide to using FRIDAY's CLI
+## About
+
+### Document structure
+This User Guide has been structured in a way to help you find information easily and quickly. In the next subsection
+,Section - reading this document you can find a multitude of tips on how to use this User Guide. The following sections 
+documents the main features of FRIDAY
+
+* Student management
+* Organizing students
+* Grading students
+* Miscellaneous features
+* Features for advanced users
+
+### Reading this document
+This section on reading the document will introduce you to some technical terms and formats that will be used throughout the guide.
+Please make yourself familiar with the content here before moving to other sections in this user guide.
+
+#### Understanding the GUI
+
+Figure X depicts the GUI of FRIDAY which is annotated with a description of each GUI component
+
+[Insert Image here Darren]
+
+#### Understanding Symbols and syntax
+
+The table explains the general syntax and common occurrences throughout the user guide
+
+| Syntax                         | Meaning and usage                                                                                                   |
+|--------------------------------|---------------------------------------------------------------------------------------------------------------------|
+| `Sample command`               | A purple color highlighted box specifying an executable command that can be entered in the command box              |
+| CAPITALIZED TEXT               | Indicates a parameter that follows the first word of a command                                                      |
+| **:information_source: Info:** | The icon indicates a section of increased importance and provides essential information to the smooth use of FRIDAY |
+| **:bulb: Tip:**                | A quick memorable form of advice to the user to make their friday experience enjoyable                              |
+
+#### Understanding command terms and general information
+
+Some terms that you may encounter along the way may confuse you. To help you understand all these terms this user guide has a dedicated glossary section with all the key terms 
+and hyperlinks to the first occurrence of the word in each section of the User guide.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about CLI:**<br>
+
+* [Insert image again darren]
+* In this image we have a labelled box in red called the command box. CLI or command line interface refers to
+  <b>commands</b> in the form of text/<b>lines</b> that you as a user enter in the command box to create a response
+  in the result display which is your <b> interface </b>. 
+</div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -72,9 +119,9 @@ If you can type fast, FRIDAY can get your student management tasks done faster t
 
 </div>
 
+---------------------------------------------------------------------------------------------------------------------
 
 ## Features
-
 
 ## Student management
 
