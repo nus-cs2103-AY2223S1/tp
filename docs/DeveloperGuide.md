@@ -1014,26 +1014,6 @@ testers are expected to do more *exploratory* testing.
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Sorting all applicants by name, scholarship or application status 
-
-1. Filtering existing applicants based on the specified application status while all applicants are being shown
-
-    1. Prerequisites: Multiple applicants in the list.
-
-    1. Test case: `sort NAME` <br>
-       Expected: All applicants will be sorted in alphabetical order, ignoring case-sensitivity, and will be shown in TrackAScholar GUI.
-
-    1. Test case: `filter Bob` <br>
-       Expected: No changes displayed on TrackAScholar GUI since only applicants with application status `ACCEPTED`, `PENDING` and
-       `REJECTED` can be filtered. Error details shown in the status message.
-
-    1. Other incorrect filter commands to try: `filter` and `filter Alex Yeoh` <br>
-       Expected: Similar to previous.
-
-[Return to top](#table-of-contents)
-
---------------------------------------------------------------------------------------------------------------------
-
 ### Import trackAScholarImport File
 
 1. Importing a trackAScholarImport file into the current model
