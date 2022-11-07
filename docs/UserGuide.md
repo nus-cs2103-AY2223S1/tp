@@ -332,6 +332,16 @@ Examples:
 * `findc m/1231` returns `Alex Yeoh`, `David Li`
 * `findc ts/2` returns contacts that are taking the module that the task at index 2 belongs to
 
+<div markdown="block" class="alert alert-primary">
+
+:bulb: `findc n/John Tan` vs `findc n/John n/Tan`
+
+Both `findc n/John Tan` and `findc n/John n/Tan` will return the same search results.
+For example, if there are two names "John Tan" and "Bryan Tan" in your contacts list, `findc n/John Tan` will show
+both contacts, as it searches for `John` and `Tan` independently, just like `findc n/John n/Tan`.
+
+</div>
+
 #### Quick-search for contacts: `saveme`
 
 Finds contacts that can help with the task at the first index of the task list.

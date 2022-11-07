@@ -165,6 +165,8 @@ public class MainWindow extends UiPart<Stage> {
     public void focusTaskTab() {
         SingleSelectionModel<Tab> selectionModel = tabPanePlaceholder.getSelectionModel();
         selectionModel.select(1);
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTaskListFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
     }
 
     /**
@@ -173,6 +175,8 @@ public class MainWindow extends UiPart<Stage> {
     public void focusPersonTab() {
         SingleSelectionModel<Tab> selectionModel = tabPanePlaceholder.getSelectionModel();
         selectionModel.select(0);
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
     }
 
     void show() {
