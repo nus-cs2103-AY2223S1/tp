@@ -621,7 +621,24 @@ Use Case ends.
     * 1b1. System shows an error message.
       Use case resumes at step 1.
 
-**Use case: UC-07 - Delete a Contact from a person**
+**Use case: UC-07 - View a person's Contact**
+
+**Preconditions:**
+* Person has been added to the system.
+* User is inside the person's Contact Detail Page.
+
+**MSS:**
+1. User open the link of the contact.
+2. System redirects user to the contact application (ex: Telegram, WhatsApp).
+
+Use Case ends.
+
+**Extensions**
+* 1a. The link of contact is broken.
+    * 1a. System shows an error message.
+      Use case resumes at step 1.
+
+**Use case: UC-08 - Delete a Contact from a person**
 
 **Preconditions:**
 * Person has been added to the system.
@@ -643,7 +660,7 @@ Use Case ends.
     * 1b1. System shows an error message.
       Use case resumes at step 1.
 
-**Use case: UC-08 - Set timezone of a person**
+**Use case: UC-09 - Set timezone of a person**
 
 **Preconditions:**
 * Person has been added to the system.
@@ -669,7 +686,7 @@ Use Case ends.
     * 1c1. System shows an error.
       Use case resumes at step 1.
 
-**Use case: UC-09 - Delete timezone from a person**
+**Use case: UC-10 - Delete timezone from a person**
 
 **Preconditions:**
 * Person has been added to the system.
@@ -688,7 +705,7 @@ Use Case ends.
       Use case resumes at step 1.
 
 
-**Use case: UC-10 - Set role of a person**
+**Use case: UC-11 - Set role of a person**
 
 **Preconditions:**
 * Person has been added to the system.
@@ -714,7 +731,7 @@ Use Case ends.
     * 1c1. System shows an error.
       Use case resumes at step 1.
 
-**Use case: UC-11 - Delete role from a person**
+**Use case: UC-12 - Delete role from a person**
 
 **Preconditions:**
 * Person has been added to the system.
@@ -732,6 +749,22 @@ Use Case ends.
     * 1a1. System shows an error message.
       Use case resumes at step 1.
 
+**Use case: UC-13 - Sort the list of person**
+
+**Preconditions:**
+* User is inside the Person Listing page
+
+**MSS:**
+1. User sets the field that need to be sorted.
+2. System is updated to show the sorted list of person.
+
+Use Case ends.
+
+**Extensions**
+* 1a. That field is invalid and cannot be sort.
+    * 1a1. System shows an error message.
+      Use case resumes at step 1.
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -740,7 +773,7 @@ Use Case ends.
 4. Should be able to load the contact list within 2 seconds.
 5. Without noticeable delay, should be able to add and update contact information.
 6. Without noticeable delay, should be able to delete contact information.
-7. Must be able to cache github repository list for future use.
+7. Must be able to cache GitHub's repository list for future use.
 8. Must be able to display search results for find function within 3 seconds even for large address books.
 
 *{More to be added}*
