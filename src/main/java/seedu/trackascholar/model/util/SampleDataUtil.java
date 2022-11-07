@@ -6,7 +6,13 @@ import java.util.stream.Collectors;
 
 import seedu.trackascholar.model.ReadOnlyTrackAScholar;
 import seedu.trackascholar.model.TrackAScholar;
-import seedu.trackascholar.model.applicant.*;
+import seedu.trackascholar.model.applicant.Applicant;
+import seedu.trackascholar.model.applicant.ApplicationStatus;
+import seedu.trackascholar.model.applicant.Email;
+import seedu.trackascholar.model.applicant.Name;
+import seedu.trackascholar.model.applicant.Phone;
+import seedu.trackascholar.model.applicant.Pin;
+import seedu.trackascholar.model.applicant.Scholarship;
 import seedu.trackascholar.model.major.Major;
 
 /**
