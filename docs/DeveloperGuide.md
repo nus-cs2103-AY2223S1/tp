@@ -781,7 +781,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Click on the Contacts tab.
 
-       Expected: The Contacts tab is highlighted. A list of contacts is shown. The data file path at the bottom changes to the contact list file (`/data/addressbook.json` by default).
+       Expected: The Contacts tab is highlighted. A list of contacts is shown. The data file path at the bottom changes to the contact list file (`/data/contacts.json` by default).
 
 ### Managing tasks
 
