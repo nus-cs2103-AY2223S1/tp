@@ -118,13 +118,13 @@ Upon completing this section, you should be able to explore SoConnect on your ow
 
 ### 6.2. Key Definitions
 
-#### 6.2.1 Command
+#### 6.2.1. Command
 
 Command is the action you want SoConnect to perform. Most commands require [parameters](#622-parameter) after the command so that SoConnect has the required information to perform the action. 
 
 e.g. `help`
 
-#### 6.2.2 Parameter
+#### 6.2.2. Parameter
 
 A parameter has a prefix and information which are written together without a space in between. The information are words in `UPPER_CASE` and are to be provided by you. The prefix, which ends with a `/`, is specified before the information and determines the information type. Do note that some commands only require the prefix as a parameter.  <br>
 
