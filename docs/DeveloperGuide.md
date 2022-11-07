@@ -97,14 +97,14 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g. `AddPersonCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic`
-component for the `execute("delete-person 1")` API call.
+component for the `execute("delete-person n/Alex")` API call.
 
-![Interactions Inside the Logic Component for the `delete-person 1` Command](images/DeletePersonSimplifiedSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete-person  n/Alex` Command](images/DeletePersonSimplifiedSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** 
 The lifeline for `DeletePersonCommandParser`  and `DeletePersonCommand` should 
@@ -117,8 +117,11 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser` interface so that   they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class 
+  creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific 
+  command name e.g. `AddPersonCommandParser`) which uses the other classes 
+  shown above to parse the user command and create a `XYZCommand` object (e.g. `AddPersonCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g. `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g. during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T10-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -131,8 +134,9 @@ The `Model` component,
 * stores the address book data i.e.:
     * all `Person` objects (which are contained in a `UniquePersonList` object).
     * all `Module` objects (which are contained in a `UniqueModuleList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores the currently 'selected' `Module` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Module>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the current `isHome` status of the application in an `ObservableList<Boolean>` object which is exposed to outsiders as an unmodifiable `ObservableList<Boolean>` that can be 'observed' e.g. the UI can be bound to this object so that the UI automatically updates when the `isHome` status changes.
+* stores the currently 'selected' `Person` objects (e.g. results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Module` objects (e.g. results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Module>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model`
   represents data entities of the domain, they should make sense on their own without depending on other components).
@@ -165,7 +169,7 @@ This section describes some noteworthy details on how certain features are imple
 A `Module` class is used to represent a module. A `Module` contains the following attributes:
 - `ModuleCode`, representing module code
 - `ModuleTitle`, representing module title (optional field). If there is no module title, then the 
-  module title is stored as empty string.
+  module title is stored as an empty string.
 - `TaskList`, representing a list of `Tasks`, which in turn represent a module-related task
 - `TreeSet` of `Link` objects, storing the set of links associated to the `Module`
 - `HashSet` of `Person` objects, storing the set of people associated to the `Module`
@@ -189,7 +193,7 @@ The UML class diagram of the `Module`-related parts of `Model` component is show
 The `Storage` component has been updated for persistent storage of modules. `JsonAdaptedModule`
 has been added to represent a `Module` object in JSON format.
 
-### Add Module Feature
+#### Add Module Feature
 
 One feature related to modules is the add module feature. This feature is especially 
 important because without the ability to add modules, it would be impossible to add tasks and 
@@ -197,13 +201,13 @@ links. Associating a person to a module would also be impossible.
 
 The implementation of deleting and editing module are similar. Hence, they will be omitted.
 
-### Implementation of add module feature
+#### Implementation of add module feature
 
 The add module mechanism is facilitated by `AddModuleCommand` and `AddModuleCommandParser`.
 `AddModuleCommandParser` will parse the module code (compulsory field) and the module title 
 (optional field), and return an `AddModuleCommand` object. Upon calling `AddModuleCommand#execute()`,
-a module object with the appropriate module code and module title will be added via 
-`Model#addModule()` method. 
+a module object with the appropriate module code and module title will be 
+added via the `Model#addModule()` method. 
 
 Below shows a description of an example scenario for adding a command. 
 
@@ -227,7 +231,7 @@ newly-updated list of modules to a JSON file.
 into JSON format, so that it can be saved into a file. The file will be read whenever Plannit
 starts up so that it can load saved module and person data.
 
-**Step 8**: Plannit Graphical User Interface (GUI) displays message that the addition of module has
+**Step 8**: Plannit's Graphical User Interface (GUI) displays message that the addition of module has
 been successful.
 
 The following sequence diagram summarizes what happens when the user requests to add module 
@@ -240,7 +244,7 @@ The following sequence diagram summarizes what happens when the user requests to
 destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-The following activity diagram summarizes what happens when the user requests to add module to
+The following activity diagram summarizes what happens when the user requests to add a module to
 Plannit via `add-module` command.
 
 ![AddModuleActivityDiagram](images/AddModuleActivityDiagram.png)
@@ -282,11 +286,11 @@ Rationale behind current choice:
 
 #### Add link feature
 
-The 'add link' feature allows for the user to add links with corresponding aliases to a `Module` in Plannit.
+The add link feature allows for the user to add links with corresponding aliases to a `Module` in Plannit.
 Links in Plannit are represented by the `Link` class. A `Link` object contains two required fields,
 a `String` URL and a `String` alias. For each Plannit `Module`, `Link` objects are stored in a `TreeSet`.
 
-The implementation of the 'delete link' feature is highly similar to this, but without a `String` URL input.
+The implementation of the delete link feature is highly similar to this, but without a `String` URL input.
 
 #### Implementation
 
@@ -299,7 +303,10 @@ It then creates a `AddLinkCommand` object with the pairings for the specified `M
 Given below is an example usage scenario and how the add link mechanism behaves at each step.
 
 **Step 1**: The user decides to add a link to a current module in Plannit using the following input:
-`add-link m/CS1231 l/<link URL> la/<link alias>`.
+
+```
+add-link m/CS1231 l/<link URL> la/<link alias>
+```
 
 **Step 2**: The `LogicManager` calls the `LogicManager#execute()` method on the user input.
 Then, the `LogicManager` calls the `AddressBookParser#parseCommand()` method
@@ -320,14 +327,14 @@ A copy of the `Module`'s fields is then created and the `Link` object is added t
 **Step 6**: A new `Module` is created with the modified and copied fields, which replaces
 the original `Module` object in Plannit using the `Model#setModule()` method.
 
-The following sequence diagram shows how the 'add link' feature works:
+The following sequence diagram shows how the add link feature works:
 ![AddLinkSequenceDiagram](images/AddLinkFeature/AddLinkSequenceDiagram.png)
 <div markdown="span" class="alert alert-info">:information_source: 
 **Note:** The lifeline for `AddLinkCommand` and `AddLinkCommandParser` should end at the destroy marker (X) 
 but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-The following activity diagram shows how the 'add link' feature works:
+The following activity diagram shows how the add link feature works:
 ![AddLinkActivityDiagram](images/AddLinkFeature/AddLinkActivityDiagram.png)
 
 #### Design considerations:
@@ -356,6 +363,15 @@ The following activity diagram shows how the 'add link' feature works:
     * Cons:
         * Cluttered and unorganised display of links.
         * Slow identification, access, and deletion of links from the user's perspective.
+          Rationale behind current choice:
+
+Rationale behind current choice:
+
+Link Representation: Each link requires an alias and URL such that users are able to make sense of
+each URL present in Plannit. By enforcing the user to select their own alias,
+they are more likely to remember what each alias means in the long run.
+Aliases are also especially useful in differentiating between similarly named
+URLs, i.e. same domain but the remainder of the url has no semantic meaning to the user (e.g. zoom links).
 
 **Aspect: Link Storage:**
 * **Alternative 1 (current choice)**: Link objects stored in a `TreeSet` object within `Module`.
@@ -363,7 +379,7 @@ The following activity diagram shows how the 'add link' feature works:
         * Consistent display order of links in Plannit.
     * Cons:
         * Harder to implement.
-* **Alternative 2**: Link objects stored in a `ArrayList` object within `Module`.
+* **Alternative 2**: Link objects stored in an `ArrayList` object within `Module`.
     * Pros:
         * Easy to implement.
     * Cons:
@@ -376,18 +392,15 @@ The following activity diagram shows how the 'add link' feature works:
 
 Rationale behind current choice:
 
-Link Representation: Each link requires an alias and URL such that users are able to make sense of
-each URL present in Plannit. By enforcing the user to select their own alias,
-they are more likely to remember what each alias means in the long run.
-Aliases are also especially useful in differentiating between similar named
-URLs, i.e., same domain but the remainder of the url has no semantic meaning to the user (e.g. zoom links).
-
-Link Storage:
 TreeSet was selected as to ensure a consistent sorting order across all modules such that users
 will spend the least amount of the time searching for their required alias for each module,
 thus boosting their productivity.
 
 ### Person subcomponent
+
+The terms 'contact' and 'person' have similar meanings and for the majority of the time, can be understood as referring
+to the same entity. The only scenario that calls for a distinction is when you are inputting a command word; we use person instead
+of contact.
 
 #### General design
 Every contact added into Plannit is represented as a `Person` object.
@@ -428,8 +441,8 @@ added to a module.
 
 ![DeletePersonStep1ObjectDiagram](images/DeletePersonStep1ObjectDiagram.png)
 
-**Step 2**. The user executes `delete-person 2` command and this creates a `deletePersonCommand` to delete the 2nd person
-(that is currently displayed on the GUI) in the address book. Upon execution, `UniqueModuleList#removePersonFromModules
+**Step 2**. The user executes `delete-person n/Emma` command and this creates a `deletePersonCommand` to delete Emma
+(that is currently displayed on the GUI) from the address book. Upon execution, `UniqueModuleList#removePersonFromModules
 ()` and `UniquePersonList#remove()` are eventually called. `UniqueModuleList#removePersonFromModules()` removes all
 occurrences of the person in every module.
 
@@ -626,10 +639,10 @@ supporting operations to add, delete and swap tasks.
 </div>
 
 Similar to `UniqueModuleList` and `UniquePersonList`, a `TaskList` contains the following:
-* `internaList` - An `ObservableList<>` containing the tasks
+* `internalList` - An `ObservableList<>` containing the tasks
   of a module. This list is used for the adding and removing of objects in
   the data structure.
-* `internaUnmodifiableList` - An `ObservableList<>` that is
+* `internalUnmodifiableList` - An `ObservableList<>` that is
   an **unmodifiable** copy of `internalList`. This list is used when external
   objects requests a copy of the current list of objects.
 
@@ -659,7 +672,6 @@ for the deleting and swapping of tasks is highly similar.
 **Step 1**. The user requests to add a task into a module present in Plannit by
 inputting the `add-task` command followed by the `m/` flag to indicate the
 module code argument and the `td/` flag indicate the task description argument.
-<br>
 E.g.:
 ```
 add-task m/CS1231 td/Submit the weekly assignment
@@ -758,10 +770,10 @@ Find module mechanism is facilitated by the `FindModuleCommand` and `FindModuleC
 It allows users to obtain a list of modules starting with the keyword provided.<br>
 
 It uses the following methods provided by the `Model` interface.
-* `Model#updateFilteredModuleList()`: Update the current module list and filter it according to the given predicate `Predicate<Module> predicate`, reflecting the changes accordingly in the GUI
-* `Model#getHomeStatusAsBoolean()`: obtains the home status of Plannit.
+* `Model#updateFilteredModuleList()`: Update the current module list and filter it according to the given `Predicate<Module>`, reflecting the changes accordingly in the GUI.
+* `Model#getHomeStatusAsBoolean()`: Obtains the home status of Plannit.
 
-Given below is an example usage scenario and how the mechanism
+Given below is an example usage scenario of how the mechanism
 behaves when a user searches for modules in Plannit.
 
 **Step 1**. The user requests to search for a module in the Plannit by
@@ -776,7 +788,7 @@ to parse the user input. After validating the arguments provided by the user, th
 is used to instantiate a `ModuleCodeStartsWithKeywordPredicate` object.
 
 **Step 3**: A `FindModuleCommand` object is instantiated using the `ModuleCodeStartsWithKeywordPredicate`
-obtained in **Step 2** which is returned to the `LogicManager`.
+obtained in **Step 2**, which is then returned to the `LogicManager`.
 
 **Step 4**: `LogicManager` calls the `FindModuleCommand#execute()` method. This method will first
 obtain the home status of Plannit by calling `Model#getHomeStatusAsBoolean()` and check if Plannit
@@ -814,22 +826,22 @@ List module mechanism is facilitated by the `ListModuleCommand`.
 It allows users to obtain a list of every module in Plannit.<br>
 
 It uses the following methods provided by the `Model` interface.
-* `Model#updateFilteredModuleList()`: Update the current module list and filter it according to the given predicate `Predicate<Module> predicate`, reflecting the changes accordingly in the GUI
-* `Model#getHomeStatusAsBoolean()`: obtains the home status of Plannit.
+* `Model#updateFilteredModuleList()`: Update the current module list and filter it according to the given `Predicate<Module>`, reflecting the changes accordingly in the GUI.
+* `Model#getHomeStatusAsBoolean()`: Obtains the home status of Plannit.
 
-Given below is an example usage scenario and how the mechanism
+Given below is an example usage scenario of how the mechanism
 behaves when a user list all modules in Plannit.
 
 **Step 1**. The user requests to list all modules in Plannit by
 inputting the `list-module` command.
 E.g.:
 ```
-list-module CS
+list-module
 ```
 
 **Step 2**: The `LogicManager` uses the `AddressBookParser` to parse the user input.
 After validating the arguments provided by the user, the user input is used to instantiate
-a `ListModuleCommand` object, which is returned to the `LogicManger`.
+a `ListModuleCommand` object, which is returned to the `LogicManager`.
 
 **Step 3**: `LogicManager` calls the `ListModuleCommand#execute()` method. This method will first
 obtain the home status of Plannit by calling `Model#getHomeStatusAsBoolean()` and check if Plannit
@@ -864,12 +876,12 @@ It allows users to navigate to a specific module given their respective module c
 (i.e. tasks, links and persons) that are associated to that module.<br>
 
 It uses the following methods provided by the `Model` interface.
-* `Model#getModuleUsingModuleCode()`: Retrieves a `Module` object using the `ModuleCode` object associated with that `Module`
-* `Model#updateFilteredModuleList()`: Update the current module list and filter it according to the given predicate `Predicate<Module> predicate`, reflecting the changes accordingly in the GUI
-* `Model#updateFilteredPersonList()`: Update the current person list and filter it according to the given predicate `Predicate<Person> predicate`, reflecting the changes accordingly in the GUI
+* `Model#getModuleUsingModuleCode()`: Retrieves a `Module` object using the `ModuleCode` object associated with that `Module`.
+* `Model#updateFilteredModuleList()`: Update the current module list and filter it according to the given predicate `Predicate<Module> predicate`, reflecting the changes accordingly in the GUI.
+* `Model#updateFilteredPersonList()`: Update the current person list and filter it according to the given predicate `Predicate<Person> predicate`, reflecting the changes accordingly in the GUI.
 * `Model#setHomeStatus()`: Sets the home status of Plannit.
 
-Given below is an example usage scenario and how the mechanism
+Given below is an example usage scenario of how the mechanism
 behaves when a user navigates to a module in Plannit.
 
 **Step 1**. The user requests to navigate to a module present in the Plannit
@@ -882,8 +894,8 @@ goto CS1231
 **Step 2**: The `LogicManager` uses the `AddressBookParser` and `GoToCommandParser`
 to parse the user input. After validating the arguments provided by the user, the user input
 is used to perform the following actions: <br>
-* Extract the `ModuleCode` of the module to navigate to in the `GoToCommandParser` using the method `ParserUtil#parseModuleCode()`
-* Instantiate a `ModuleCodeMatchesKeywordPredicate` object
+* Extract the `ModuleCode` of the module to navigate to in the `GoToCommandParser` using the method `ParserUtil#parseModuleCode()`.
+* Instantiate a `ModuleCodeMatchesKeywordPredicate` object.
 
 **Step 3**: A `GoToCommand` object is instantiated using the `ModuleCodeMatchesKeywordPredicate` and `ModuleCode`
 obtained in **Step 2** which is returned to the `LogicManager`.
@@ -929,9 +941,9 @@ Navigate to home mechanism is facilitated by the `HomeCommand`.
 It navigates users back to the home page of Plannit, showing all modules and persons stored in Plannit.<br>
 
 It uses the following methods provided by the `Model` interface.
-* `Model#goToHomePage()`: Sets home status to true and update module list and person list to show all modules and persons respectively, reflecting the changes accordingly in the GUI
+* `Model#goToHomePage()`: Sets home status to true and update module list and person list to show all modules and persons respectively, reflecting the changes accordingly in the GUI.
 
-Given below is an example usage scenario and how the mechanism
+Given below is an example usage scenario of how the mechanism
 behaves when a user navigates back to the home page of Plannit.
 
 **Step 1**. The user requests to go home by inputting the `home` command.
@@ -941,13 +953,13 @@ home
 ```
 
 **Step 2**: The `LogicManager` uses the `AddressBookParser` to instantiate
-a `HomeCommand` object, which is returned to the `LogicManger`.
+a `HomeCommand` object, which is returned to the `LogicManager`.
 
 **Step 3**: `LogicManager` calls the `HomeCommand#execute()` method. This method will then
 call the `Model#goToHomePage()` method which perform the following actions:
-* Set home status to true
-* Update module list to show all modules
-* Update person list to show all persons
+* Set home status to true.
+* Update module list to show all modules.
+* Update person list to show all persons.
 
 **Step 5**: A new `CommandResult` object is returned, indicating success.
 
@@ -974,9 +986,9 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
     * Pros: Provides an intuitive and more versatile way for users to navigate between modules.
     * Cons: Might result in confusion when some commands are usable out of the home page.
 
-* **Alternative 3:** Navigate to module by index.
+* **Alternative 3:** Navigate to a single module by index.
     * Pros: Allows for quicker input as compared to typing out the entire module code
-    * Cons: Require user to navigate back to home page before going to another module which might be unintuitive for users.
+    * Cons: Requires user to navigate back to home page before going to another module which might be unintuitive for users.
 
 ##### Rationale behind current choice:
 1. Alternative 1 was chosen as it provides a more intuitive way for prospective users.
@@ -1021,7 +1033,7 @@ Hence, to prevent confusion we chose Alternative 1.
 
 **Plannit** is an **all-in-one application** that streamlines the execution of module
 deliverables by **empowering NUS students** with the ability to manage **tasks**, **links** and
-**module-mates** (i.e., students in the same module) to increase their productivity.
+**module-mates** (i.e. students in the same module) to increase their productivity.
 
 
 
@@ -1310,16 +1322,16 @@ Extensions:
 
   Use case ends.
 
-#### Use case: UC15 - Navigate to Home Page
+#### Use case: UC15 - Navigate to home page
 **Main Success Scenario (MSS)**
-1.  User requests to navigate to Home Page.
-2.  Plannit displays the Home Page.
+1.  User requests to navigate to home page.
+2.  Plannit displays the home page.
 
 Use case ends.
 
 **Extensions**
 
-* 1a. Already at Home Page.
+* 1a. Already at home page.
 
   Use case ends.
 
@@ -1433,7 +1445,7 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 1. Initial launch
 
-    1. Download the `JAR` file and copy it into an empty folder
+    1. Download the `JAR` file and copy it into an empty folder.
 
     2. Double-click the `JAR` file or run `java -jar plannit.jar` using the terminal.
        Expected:
@@ -1467,7 +1479,7 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
         * Module `MA2104` with module title `Multivariable Calculus` included in module list.
         * Result display shows `MA2104` successfully added. Plannit returns to home page.
 
-    4. Other incorrect `add-module` command (e.g., `add-module`, `add-module MA2104`)<br>
+    4. Other incorrect `add-module` command (e.g. `add-module`, `add-module MA2104`)<br>
        Expected:
         * No module is added.
         * Result display shows incorrect command format.
@@ -1490,7 +1502,7 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
         * Module code of first module changed to `MA2104`.
         * Plannit automatically sorts resulting list of modules in lexicographical order.
 
-    4. Other incorrect `edit-module` commands (e.g., `edit-module`, `edit-module 32`)<br>
+    4. Other incorrect `edit-module` commands (e.g. `edit-module`, `edit-module 32`)<br>
        Expected:
         * No module is edited.
         * Result display shows error message about incorrect command format.
@@ -1752,7 +1764,8 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
     1. Prerequisite: Both the person to be added to the module and the module itself are currently displayed on Plannit. Also, the person to be added to the module has not yet been added to the module.
 
-    2. Test case: `add-person-to-module m/MA2001 n/Alex Yeoh`, assuming both `MA2001` and `Alex Yeoh` are currently displayed on Plannit.
+    2. Test case: `add-person-to-module m/MA2001 n/Alex Yeoh`<br>
+       Assumption: both `MA2001` and `Alex Yeoh` are currently displayed on Plannit<br>
        Expected:
         * `Alex Yeoh` is added to `MA2001`.
         * Result display shows successful addition of `Alex Yeoh` to `MA2001`.
@@ -1764,12 +1777,13 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
         * Result display shows an error message stating that `David Li` has already been added to `MA2001`.
 
     4. Test case:
-       `add-person-to-module m/GE3238 n/David Li`, assuming `David Li` is not currently displayed on Plannit but `GE3238` is currently displayed on Plannit.
+       `add-person-to-module m/GE3238 n/David Li`<br>
+       Assumption: `David Li` is not currently displayed on Plannit but `GE3238` is currently displayed on Plannit<br>
        Expected:
         * No person is added to module.
-        * Result display shows an error message stating that the input person is not in the currently displayed list.
+        * Result display shows an error message stating that the input person is not in the currently displayed list<br>
 
-    5. Test inputs where command format is invalid (e.g., `add-person-to-module`, `add-person-to-module m/CS2103T`)
+    5. Test inputs where command format is invalid (e.g. `add-person-to-module`, `add-person-to-module m/CS2103T`)
        Expected:
         * No person is added to module.
         * Result display shows that the command format is invalid.
@@ -1786,12 +1800,13 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
         * Contact with name Alex Yeoh is deleted from the displayed list and Plannit.
         * Details of the deleted contact displayed to the user.
 
-    3. Test case: `delete-person n/Bob`, assuming Bob is currently not displayed on screen<br>
+    3. Test case: `delete-person n/Bob`
+       Assumption: Bob is currently not displayed on screen<br>
        Expected:
         * No person is deleted.
         * Error message detailing the fact that no Bob is currently displayed on screen.
 
-    4. Other incorrect delete person commands to try: `delete-person`, `delete-person 123`, `delete-person m/Bob`<br>
+    5. Other incorrect delete person commands to try: `delete-person`, `delete-person 123`, `delete-person m/Bob`<br>
        Expected:
         * No person is deleted.
         * An error message with relevant details is displayed to the user.
@@ -1868,10 +1883,10 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
     1. Prerequisites: Must be at the home page. Multiple persons in Plannit.
 
     2. Test case: `find-person Bernice`<br>
-        Assumption: Person `Bernice` is not in the current person list<br>
-        Expected:
-         * Person list is updated with persons whose names start with `Bernice` (case-insensitive).
-         * Number of persons listed shown in the status message.
+       Assumption: Person `Bernice` is not in the current person list<br>
+       Expected:
+        * Person list is updated with persons whose names start with `Bernice` (case-insensitive).
+        * Number of persons listed shown in the status message.
 
 3. Finding persons while not at home page 
 
@@ -1921,13 +1936,13 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
     2. Test case: `goto CS1234`<br>
 
-        Assumption: Module `CS1234` is not in Plannit<br>
+       Assumption: Module `CS1234` is not in Plannit<br>
 
-        Expected:
-         * Module list remains the same.
-         * Person list remains the same.
-         * Command box remains the same.
-         * Error details shown in the status message.
+       Expected:
+        * Module list remains the same.
+        * Person list remains the same.
+        * Command box remains the same.
+        * Error details shown in the status message.
 
 ### Navigating back home
 
@@ -1959,10 +1974,10 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
 
 ## **Appendix: Effort**
 ### Initial design
-Although we described Plannit as a morph of the original AB3, there was substantial unique design decisions to be made. Problems of our target audience were analysed and a comprehensive list of user stories were generated to guide us in deciding the necessary features to include in our application. Fields such as tasks and links were deemed as "must-have" features of modules that we wanted to include in our application. Association between modules and persons was also decided as an important feature to be included, since it would vastly improve the usefulness of the persons list within Plannit.
+Although we described Plannit as a morph of the original AB3, there were substantial unique design decisions to be made. Problems of our target audience were analysed and a comprehensive list of user stories were generated to guide us in deciding the necessary features to include in our application. Fields such as tasks and links were deemed as "must-have" features of modules that we wanted to include in our application. Association between modules and persons was also decided as an important feature to be included, since it would vastly improve the usefulness of the persons list within Plannit.
 
 ### Implementation
-While AB3 deals with only persons, Plannit deals with both modules and persons at the same time. Modules and persons are not exactly independent entities because Plannit allows creating/deleting associations between person and module via the `add-person-to-module` and `delete-person-from-module` commands. This association proved highly challenging to implement, as the additional coupling meant that commands involving modules may unintentionally affect the persons. Deletion of persons now also involved the modification of modules. Our team eventually overcame this after extensive modifications to AB3 code, as well as rigorous testing to weed out any potential unintended behaviours.
+While AB3 only deals with persons, Plannit deals with both modules and persons at the same time. Modules and persons are not exactly independent entities because Plannit allows creating/deleting associations between person and module via the `add-person-to-module` and `delete-person-from-module` commands. This association proved highly challenging to implement, as the additional coupling meant that commands involving modules may unintentionally affect the persons. Deletion of persons now also involved the modification of modules. Our team eventually overcame this after extensive modifications to AB3 code, as well as rigorous testing to weed out any potential unintended behaviours.
 
 We also added the concept of having a home page, where detailed information of modules are hidden. This was introduced with the aim to reduce clutter by only displaying the relevant information required by the user. This functionality introduced a whole host of obstacles for us, including, but not limited to:
 * Behavioural decisions regarding whether a command can be executed away from the home page.
@@ -1975,7 +1990,7 @@ Although the general colour scheme of the GUI was not modified, changes were sti
 
 <!-- @@author cheeheng -->
 ### Project Achievements
-As a team, we have successfully morphed Plannit from AB3. Plannit is an **all-in-one application** that streamlines the execution of module deliverables by **empowering NUS students** with the ability to manage **tasks**, **links** and **module-mates** (i.e., students in the same module) to increase their productivity.
+As a team, we have successfully morphed Plannit from AB3. Plannit is an **all-in-one application** that streamlines the execution of module deliverables by **empowering NUS students** with the ability to manage **tasks**, **links** and **module-mates** (i.e. students in the same module) to increase their productivity.
 
 Some statistics of Plannit project include (as of 5th November 2022, 21:31:50 UTC+8):
 - 12th in most LOC written (including but not limited to documentation code, functional code and test code)
