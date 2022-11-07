@@ -7,6 +7,15 @@ title: Developer Guide
     <img width="250" src="images/OmniHealth_logo.png" alt="">
 </p>
 
+## About OmniHealth
+
+OmniHealth is a **Patient Management System** designed specifically for private clinicians to manage their patients' information, records, and scheduled appointments.
+OmniHealth allows its users to manage and monitor their patient database from a single location.
+Furthermore, users can use OmniHealth's **sorting and filtering tool** to conveniently manage and find their patients' details and records of previous visits.
+Additionally, OmniHealth's **appointment tracker** allows users to tag upcoming appointments for each patient.
+
+This Developer Guide explains in detail how OmniHealth is developed and implemented. It begins with an overview of OmniHealth's **system architecture**, then breaks it down into *smaller components* and provides detailed descriptions for each component, and ultimately explains the reasoning behind how key functionalities of this application are implemented. As a developer, you can utilise this guide to maintain and update OmniHealth.
+
 ## Table of Contents
 - [**Acknowledgements**](#acknowledgements)
 - [**Setting up, getting started**](#setting-up-getting-started)
@@ -19,19 +28,16 @@ title: Developer Guide
   - [Common classes](#common-classes)
 - [**Implementation**](#implementation)
   - [Implemented features:](#implemented-features)
-    - Record features:
-      - [Add record feature](#implemented-add-record-feature)
-      - [List records feature](#implemented-list-records-feature)
-      - [Delete record feature](#implemented-delete-record-feature)
-      - [Edit record feature](#implemented-edit-record-feature)
-      - [Find records feature](#implemented-find-records-feature)
-      - [Clear all records feature](#implemented-clear-all-records-feature)
-    - Appointment features:
-      - [Add appointment feature](#implemented-add-appointment-feature)
-      - [Clear appointment feature](#implemented-clear-appointment-feature)
+    - [Add record feature](#add-record-feature)
+    - [List records feature](#list-records-feature)
+    - [Delete record feature](#delete-record-feature)
+    - [Edit record feature](#edit-record-feature)
+    - [Find records feature](#find-records-feature)
+    - [Clear all records feature](#clear-all-records-feature)
+    - [Add appointment feature](#add-appointment-feature)
+    - [Clear appointment feature](#clear-appointment-feature)
   - [Proposed features:](#proposed-features)
-    - [Appointment features:](#appointment-features-proposed)
-      - [Upcoming appointment tracker feature](#proposed-upcoming-appointment-tracker-feature)
+    - [Upcoming appointment tracker feature](#upcoming-appointment-tracker-feature)
 - [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
 - [**Appendix: Requirements**](#appendix-requirements)
   - [Product scope](#product-scope)
@@ -41,7 +47,15 @@ title: Developer Guide
   - [Glossary](#glossary)
 - [**Appendix: Instructions for manual testing**](#appendix-instructions-for-manual-testing)
   - [Launch and shutdown](#launch-and-shutdown)
-  - [Deleting a person](#deleting-a-person)
+  - [Displaying a patient's record list](#displaying-a-patients-record-list)
+  - [Adding a record](#adding-a-record)
+  - [Editing a record](#editing-a-record)
+  - [Find a record in a patient's record list](#find-a-record-in-a-patients-record-list)
+  - [Undo a find command](#undo-a-find-command)
+  - [Deleting a record](#deleting-a-record)
+  - [Clearing all records from a patient's record list](#clearing-all-records-from-a-patients-record-list)
+  - [Adding an appointment to a patient](#adding-an-appointment-to-a-patient)
+  - [Removing an appointment from a patient](#removing-an-appointment-from-a-patient)
   - [Saving data](#saving-data)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -893,7 +907,7 @@ when using a mouse. (Designed with CLI in mind)
 Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+testers are expected to do more exploratory testing.
 
 </div>
 

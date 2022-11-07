@@ -22,6 +22,8 @@ This User Guide aims to help your business integrate smoothly with OmniHealth, g
 It shows you how to start using OmniHealth, essential OmniHealth features, Frequently Asked Questions (FAQ) and a neat command summary
 for easy reference. So, let's [get started](#installation)!
 
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 
 - [Installation](#installation)
@@ -60,7 +62,7 @@ for easy reference. So, let's [get started](#installation)!
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 <div style="page-break-after: always;"></div>
---------------------------------------------------------------------------------------------------------------------
+
 ## Installation
 
 1. Ensure you have Java `11` or above installed in your Computer. Refer to the [FAQ](#faq) for more information on installation.
@@ -75,9 +77,16 @@ for easy reference. So, let's [get started](#installation)!
 
 6. Head over to the next section to learn [how to use OmniHealth](#how-to-use-omnihealth).
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## How to Use OmniHealth
-This section covers all you need to know to start using OmniHealth. 
+<div markdown="block" class="alert alert-warning">
+
+:warning: We **highly recommend** that you read through this section before moving on to our Features and FAQ sections!<br>
+
+</div>
+
+> This section covers all you need to know to start using OmniHealth. 
 We will go through the essentials to better understand OmniHealth's [layout](#layout), [navigation](#navigation) and [command format](#command-format).
 
 ### Layout
@@ -86,7 +95,7 @@ Don't be overwhelmed, here's a rundown of the different sections of OmniHealth:
 
 **OmniHealth's GUI:**
 
-![ui-annotated](images/UiAnnotated.png){: .shadow}
+<img src="images/UiAnnotated.png" alt="ui-annotated" width="550"/>
 
 ### Navigation
 Managing your patient database is made easy with OmniHealth and navigating it is easier!
@@ -117,7 +126,7 @@ After using a find command [`find`](#finding-patients-by-name-find) or [`rfind`]
 To display all the patients/records (**Unfiltered List View**), you can use the command [`showall`](#displaying-the-full-list-showall).
 <div markdown="block" class="alert alert-info">
 
-**:information_source: [`showall`](#displaying-the-full-list-showall) command is applicable to both Patient List View and Record List View**<br>
+:information_source: **Note:**[`showall`](#displaying-the-full-list-showall) command is applicable to both Patient List View and Record List View<br>
 
 </div>
 
@@ -173,7 +182,9 @@ Here are some general guidelines for you to better understand the command format
 | RECORD_DETAILS   | r/   | Details of the record, taking any value but cannot be blank                                                 |
 | MEDICATION       | m/   | Medication prescribed, if any                                                                               |                                                                          
 
-[<*Back to ToC*>](#table-of-contents)
+<sub>[return to table of contents](#table-of-contents)</sub>
+
+<div style="page-break-after: always;"></div>
 
 ## Features
 > This section covers each of the features in detail. Before continuing, please ensure you have read the section on [Command Formats](#command-format)!
@@ -195,7 +206,7 @@ What you should expect to find:
 ![help message](images/helpMessage.png)
 Format: `help`
 
-[<*Back to ToC*>](#table-of-contents)
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Listing all patients: `list`
 
@@ -205,7 +216,7 @@ Returns to the patient list from the record list screen.
 
 Format: `list`
 
-[<*Back to ToC*>](#table-of-contents)
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Listing all records of a patient: `rlist`
 
@@ -223,7 +234,7 @@ Examples:
 * `rlist 1` displays all records of the 1st patient in the displayed patient list.
 * `find Betsy` followed by `rlist 1` displays all records of the 1st patient in the results of the find command.
 
-[<*Back to ToC*>](#table-of-contents)
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Displaying the full list: `showall`
 
@@ -234,7 +245,7 @@ Examples:
 
 Format: `showall`
 
-[<*Back to ToC*>](#table-of-contents)
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Exiting the program: `exit`
 
@@ -242,7 +253,7 @@ Format: `showall`
 
 Format: `exit`
 
-[<*Back to ToC*>](#table-of-contents)
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Patient Commands
 > Commands relating to the patient list, such as adding and deleting patients
@@ -270,14 +281,14 @@ You can use tags to make special notes about your patient!
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 
-For a refresher on some input constraints, you can refer to the section for [key definitions](#key-definitions)!
+For a refresher on some input constraints, you can refer to the [key definitions](#key-definitions) section!
 </div>
 
 Examples:
 * `add n/John Doe b/08-08-1988 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `add n/Betsy Crowe b/16-06-1996 e/betsycrowe@example.com a/Ang Mo Kio Ave 5, block 13, #02-033 p/1234567 t/PollenAllergy`
 
-[<*Back to ToC*>](#table-of-contents)
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Deleting a patient: `delete`
 
@@ -294,7 +305,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the find command.
 
-[<*Back to ToC*>](#table-of-contents)
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Editing a patient: `edit`
 
@@ -317,7 +328,7 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
 
-[<*Back to ToC*>](#table-of-contents)
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Finding patients by name: `find`
 
@@ -336,7 +347,7 @@ Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
 
-[<*Back to ToC*>](#table-of-contents)
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Clearing all patient entries: `clear`
 
@@ -344,7 +355,7 @@ Examples:
 
 Format: `clear`
 
-[<*Back to ToC*>](#table-of-contents)
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Appointment Commands
 
@@ -375,7 +386,7 @@ Examples:
 * `appt 1 d/11-09-2024 1200` adds an appointment for the patient with index 1, with a date and time of 11/09/2024, 1200.
 * `appt 2 d/15-11-2025 1400` adds an appointment for the patient with index 2, with a date and time of 15/11/2024, 1400.
 
-[<*Back to ToC*>](#table-of-contents)
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Clearing an appointment: `apptcl`
 
@@ -392,7 +403,7 @@ Format: `apptcl PATIENT_INDEX`
 Examples:
 * `apptcl 1` clears the appointment (if any) of the patient with index 1.
 
-[<*Back to ToC*>](#table-of-contents)
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Record Commands
 
@@ -417,7 +428,7 @@ Examples:
 * `radd d/11-09-2001 1200 r/Patient tested negative for COVID-19 m/Paracetamol 500mg m/Dextromethorphan`
 * `radd d/28-02-2020 2030 r/Patient experienced vomiting`
 
-[<*Back to ToC*>](#table-of-contents)
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Deleting a record: `rdelete`
 
@@ -432,7 +443,7 @@ Format: `rdelete RECORD_INDEX`
 Examples:
 * `rlist 1` then `rdelete 2` deletes the 2nd record from the 1st patient’s listed records.
 
-[<*Back to ToC*>](#table-of-contents)
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Editing a record: `redit`
 
@@ -456,7 +467,7 @@ Examples:
 *  `redit 1 d/12-12-2012 1200` Edits the date of the 1st record to be `12-12-2012 1200`.
 *  `redit 2 r/Fever m/` Edits the data of the 2nd record to be `Fever` and clears all existing medication.
 
-[<*Back to ToC*>](#table-of-contents)
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Finding records by keyword: `rfind`
 
@@ -479,7 +490,7 @@ Examples:
 * `rfind r/Covid-19` returns a record with `Covid-19` and `Contracted covid-19` stored in its record data field.
 * `rfind r/cold d/10-2022` returns a record that matches both `cold` in the record data field, and has a date within Oct 2022.
 
-[<*Back to ToC*>](#table-of-contents)
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 #### Clearing all patient records : `rclear`
 
@@ -487,7 +498,7 @@ Examples:
 
 Format: `rclear`
 
-[<*Back to ToC*>](#table-of-contents)
+<sub>[return to table of contents](#table-of-contents)</sub>
 
 ### Saving & Loading
 
@@ -505,9 +516,9 @@ OmniHealth's data are saved as a JSON file `[JAR file location]/data/patientlist
 If your changes to the data file makes its format invalid, OmniHealth will discard all data and start with an empty data file at the next run.
 </div>
 
-[<*Back to ToC*>](#table-of-contents)
+<sub>[return to table of contents](#table-of-contents)</sub>
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 **Q**: My computer doesn't have Java 11! How can I install it? <br>
@@ -530,9 +541,9 @@ choose to overwrite the file. You can now open the application in the new comput
 free services such as Google Drive to store your data online if you wish!
 The data file can be found in the JSON file under `[JAR file location]/data/patientlist.json`.
 
-[<*Back to ToC*>](#table-of-contents)
+<sub>[return to table of contents](#table-of-contents)</sub>
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command summary
 
@@ -556,4 +567,4 @@ The data file can be found in the JSON file under `[JAR file location]/data/pati
 | **Find Record**          | `rfind [d/RECORD_DATE] [r/RECORD_DETAILS] [m/MEDICATION] `<br> e.g., `rfind d/10-2022 r/Covid-19 m/Panadol`                                                                             |
 | **Clear Records**        | `rclear`                                                                                                                                                                                |
 
-[<*Back to ToC*>](#table-of-contents)
+<sub>[return to table of contents](#table-of-contents)</sub>
