@@ -16,6 +16,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.CanHelpWithTaskPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.DeadlineComparator;
 import seedu.address.model.task.DefaultComparator;
 import seedu.address.model.task.Task;
 
@@ -232,10 +233,11 @@ public class ModelManager implements Model {
     @Override
     public void updateSortedTaskList(Comparator<Task> comparator) {
         requireNonNull(comparator);
+        assert comparator instanceof DefaultComparator || comparator instanceof DeadlineComparator;
         if (comparator instanceof DefaultComparator) {
             sortedTasks.setComparator(new DefaultComparator(taskList));
         } else {
-            sortedTasks.setComparator(comparator);
+            sortedTasks.setComparator(new DeadlineComparator(taskList));
         }
     }
 
