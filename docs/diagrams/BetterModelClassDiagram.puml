@@ -5,12 +5,14 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 TeachersPet *-right-> "1" UniqueStudentList
+TeachersPet *-right-> "1" UniqueScheduleList
 TeachersPet *-right-> "1" UniqueTagList
 UniqueTagList -[hidden]down- UniqueStudentList
 UniqueTagList -[hidden]down- UniqueStudentList
 
 UniqueTagList *-right-> "*" Tag
 UniqueStudentList -right-> Student
+UniqueScheduleList -right-> Student
 
 Student -up-> "*" Tag
 
