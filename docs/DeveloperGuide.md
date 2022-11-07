@@ -191,6 +191,36 @@ Some `logic` and `model` details are omitted as they are already explained in th
     * Pros: Some stages that we may not have prepared for may omit date or time, encouraging flexibility of the tracker.
     * Cons: Effort required is too high in the early stages of development whereby a functional product is prioritized.
 
+
+### Find feature
+
+#### Implementation
+
+The find feature is facilitated by `FindCommand` and `FindCommandParser` classes. The `parse` method in `FindCommandParser`
+checks if mandatory fields are first present.
+If all are present, the new `UniqueInternshipList` will contain the internships that contain the keywords the user's have entered.
+
+Below shows the class diagram of filtering existing internship applications using keywords that are input by the user. The list will only contain internships that pass the predicate. This list automatically sorts using `SortedList`.
+This takes place in the `UniqueInternshipList` as shown in the diagram below.
+Some `logic` and `model` details are omitted as they are already explained in the [Architecture section](#architecture) above.
+
+<img src="images/FindCommandDiagram.png" width="550" />
+
+#### Design considerations:
+
+**Aspect: Not allowing user's to find internships using more than one attribute:**
+
+* **Alternative 1 (current choice):** Only allowing keywords from one attribute, (an error message displayed if user inputs keywords corresponding to more than one attribute)
+    * Pros: Allows user to be able to filter internship applications by one attribute of their interest(e.g. Company, Role or Stage).
+  If user was allowed to filter by more than one attribute it will result in them being able to see internships that did not match the other attributes they have input.
+  
+    * Cons: User will not be able to filter their internship application listings by more than attribute.
+
+* **Alternative 2:** Allowing user to filter internships by more than one attribute
+    * Pros: Allows user to filter and find internships using keywords belonging to multiple attributes.
+    * Cons: Will result in the user being able to see internships that did not contain keywords of one of the attributes but contained another keyword of another attribute. This is possibly unwanted behaviour.
+    
+
 ### Undo/Redo feature
 
 The undo feature allows for users to revert back to their previous undone state in the Workbook. 
