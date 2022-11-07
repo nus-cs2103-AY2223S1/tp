@@ -40,26 +40,28 @@ Given below are my contributions to the project.
     * Highlight: `clear` command is a cross-component feature as it requires access to the lists of students, tutorials, consultations, reminders or all. 
     Implementing `clear` to compile with OOP principle, i.e. preventing exposing internal structures, was quite challenging. 
 
-### Project management:
-  * Responsible for admin tasks (wrap up milestone, release jar file, submit documentation,...)
 
 ### Documentation:
   * User Guide:
-    * Completed documentation for consultation features: 
+    * Completed documentation for consultation features: [283](https://github.com/AY2223S1-CS2103T-W17-3/tp/pull/283),...
   * Developer Guide:
-    * Completed user stories and value proposition
-    * Add test cases for consultation and student features in manual testing section
-    * Update storage UML diagram
-    * Update architecture UML diagram
-    * Add `add student` activity diagram
+    * Completed user stories and value proposition: [248](https://github.com/AY2223S1-CS2103T-W17-3/tp/pull/248)
+    * Add test cases for consultation and student features in manual testing section: [263](https://github.com/AY2223S1-CS2103T-W17-3/tp/pull/263), [289](https://github.com/AY2223S1-CS2103T-W17-3/tp/pull/289)
+    * Update storage UML diagram: [266](https://github.com/AY2223S1-CS2103T-W17-3/tp/pull/266)
+    * Update architecture UML diagram: [279](https://github.com/AY2223S1-CS2103T-W17-3/tp/pull/279)
+    * Add `add student` activity diagram [285](https://github.com/AY2223S1-CS2103T-W17-3/tp/pull/285), [912](https://github.com/AY2223S1-CS2103T-W17-3/tp/pull/912)
 
-### Contributions to team-based tasks:
-  * Upload draft UG, jar file, UG, DG, demo video
-  * Release v1.3.trial, v1.3.0, v1.4
-  * Wrap up v1.2, v1.3, 1.4
+### Project management:
+  * Responsible for admin tasks (wrap up milestone, release jar file, submit documentation,...)
+  * Contributions to team-based tasks:
+    * Upload draft UG, jar file, UG, DG, demo video
+    * Release v1.3.trial, v1.3.0, v1.4
+    * Wrap up v1.2, v1.3, 1.4
 
 ### Review/mentoring contributions: [About 45 pull requests](https://github.com/AY2223S1-CS2103T-W17-3/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
-  * PRs reviewed (with non-trivial review comments):
+  * PRs reviewed (with non-trivial review comments): [229](https://github.com/AY2223S1-CS2103T-W17-3/tp/pull/229), 
+  [102](https://github.com/AY2223S1-CS2103T-W17-3/tp/pull/102), 
+  [103](https://github.com/AY2223S1-CS2103T-W17-3/tp/pull/103),...
 
 ### Contributions beyond the project team: 
   * Contributed to forum discussions [7 issues](https://github.com/nus-cs2103-AY2223S1/forum/issues?q=is%3Aissue+author%3Aapril-anh)
