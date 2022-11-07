@@ -1,5 +1,10 @@
 package jarvis.testutil;
 
+import static jarvis.logic.commands.CommandTestUtil.VALID_DEADLINE_MISSION2;
+import static jarvis.logic.commands.CommandTestUtil.VALID_DEADLINE_QUEST2;
+import static jarvis.logic.commands.CommandTestUtil.VALID_DESC_MISSION2;
+import static jarvis.logic.commands.CommandTestUtil.VALID_DESC_QUEST2;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,6 +24,17 @@ public class TypicalTasks {
     public static final Task QUEST1 = new TaskBuilder().withDesc("Check quest 1").build();
     public static final Task MASTERY_CHECK = new TaskBuilder().withDesc("Conduct mastery check")
             .withDeadline(LocalDate.of(2022, 9, 12)).build();
+
+    // Manually added
+    public static final Task FOLLOW_UP = new TaskBuilder().withDesc("Follow up on question").build();
+    public static final Task REPLY_STUDENTS = new TaskBuilder().withDesc("Reply student")
+            .withDeadline(LocalDate.of(2022, 10, 31)).build();
+
+    // Manually added - Task's details found in {@code CommandTestUtil}
+    public static final Task MISSION2 = new TaskBuilder().withDesc(VALID_DESC_MISSION2)
+            .withDeadline(VALID_DEADLINE_MISSION2).build();
+    public static final Task QUEST2 = new TaskBuilder().withDesc(VALID_DESC_QUEST2)
+            .withDeadline(VALID_DEADLINE_QUEST2).build();
 
     private TypicalTasks() {} // prevents instantiation
 
