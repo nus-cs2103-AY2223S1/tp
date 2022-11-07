@@ -883,10 +883,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-- 1a. User inputs incomplete order data.
-    - 1a1. System informs user of the incomplete data.
+- 1a. User inputs incomplete item data.
+    - 1a1. System informs user of the incomplete item data.
 
       Use case resumes at 1.
+    
+**Use case: UC10 - Sort orders based on the time they are created**
+
+1. User requests to sort orders based on the time they are created.
+2. System sorts the orders.
+
+   Use case ends.
+
+**Use case: UC11 - Edit an order**
+
+1. User requests to edit an item.
+2. System edits the order.
+   
+   Use case ends.
+
+**Extensions**
+
+- 1a. User inputs incomplete order data.
+  - 1a1. System informs user of the incomplete order data.
+
+    Use case resumes at 1.
 
 ## **Appendix D: Non-Functional Requirements**
 
