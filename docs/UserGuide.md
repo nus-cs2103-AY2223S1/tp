@@ -26,21 +26,9 @@ can also serve as a reference for experienced users, with a convenient [Command 
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your computer. To tell if you already have the correct version 
-of Java installed on your system, refer to [Checking your system's Java version](#checking-your-systems-java-version).
+1. Please ensure you have installed the app. If you haven't, please refer to the [Installation Guide](#installation-guide).
 
-2. Download the latest `checkUp.jar` from [here](https://github.com/AY2223S1-CS2103T-W16-3/tp/releases).
-
-3. Copy the file to the folder you want to use as the _home folder_ for your checkUp instance.
-
-4. Navigate to the home folder with `cd PATH_TO_FOLDER` through your command line interface.
-
-5. Run `java -jar checkUp.jar` to start the app. The GUI similar to the below image should appear after startup.
-
-6. Note how the app contains some sample data.<br>
-   ![Ui](images/ug-images/Ui-explanations.png)
-
-7. Type your desired command into the command box and press `<Enter>` to execute it. e.g. typing **`help`** and pressing
+2. Type your desired command into the command box and press `<Enter>` to execute it. e.g. typing **`help`** and pressing
    `<Enter>` will open the help window.<br>
    Some example commands you can try:
 
@@ -54,7 +42,7 @@ of Java installed on your system, refer to [Checking your system's Java version]
 
     * **`view`** `1` : Views the 1st contact shown in the current patient list panel by displaying it on the patient details panel.
 
-8. Refer to the [Features](#features) below for details of each command.
+3. Refer to the [Features](#features) below for details of each command.
 
 <sup><sub>[back to top](#back-to-topt)</sub></sup>
 
