@@ -61,6 +61,7 @@ Given below are my contributions to the project.
         * [Update Ui diagram](../images/UiClassDiagram.png) ([#157](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/157))
         * [Sorting task list implementation](../DeveloperGuide.md#sorting-task-list) ([#157](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/157))
         * [Sorting diagram](../images/SortDescriptionAlphabeticalSequenceDiagram.png) ([#157](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/157))
+        * [Use cases](../DeveloperGuide.md#use-cases) ([#301](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/301))
 
 
 * **Team**:
