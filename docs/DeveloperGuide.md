@@ -98,16 +98,16 @@ The `UI` component,
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-Here's a (partial) class diagram of the `Logic` component:
+Here's a (partial) class diagram of the `Logic` component for the command operations:
 
 <img src="images/LogicClassDiagram.png" width="550"/>
 
-*Figure 5. Class diagram showing the structure of the `Ui` component*
+*Figure 5. Class diagram showing the structure of the `Logic` component for the command operations*
 
-How the `Logic` component works:
+How the `Logic` component works during command execution:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a person or to add an appointment).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -124,9 +124,18 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 *Figure 7. Class diagram showing the classes in the `Logic` component used for parsing a command* 
+
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+
+Here are the other classes in Logic (omitted from the class diagram above) that are used to update the Calendar whenever the user interacts with the Calendar's UI:
+
+<img src="images/CalendarLogicClassDiagram.png" width="600"/>
+
+How the `Logic` component works during the user's interaction with the Calendar:
+1. When the user interacts with the Calendar Ui, such as by getting the next month in the Calendar, `Model`
+*Figure 8. Class diagram showing the classes in the `Logic` component used for during the User's interaction with the Calendar*
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -216,7 +225,7 @@ Step 7. `AddAppointmentCommand` will create a `CommandResult` object and will re
 
 This is shown in the diagram below:
 
-![Add Appointment Sequence Diagram](images/AddAppointmentCommandSequenceDiagram.png)
+<img src="images/AddAppointmentCommandSequenceDiagram.png" width="2000"/>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** command_details and command_values refer to the command `aa 1 d/21-01-2023 `12:30 l/Starbucks` and the command values `1 d/21-01-2023 `12:30 l/Starbucks`. We have substituted these values for readability.
 
@@ -438,6 +447,8 @@ The following sequence diagram summarizes how an up arrow key navigates to the p
 
 ### Calendar features
 The calendar feature allows a calendar to display with the corresponding appointments of the month in a calendar format. The feature consists of the following features:
+
+
 * `Calendar Display` — Can display appointments of a month in a calendar format.
 * `Calendar Navigation` — Can navigate between months with/without a mouse.
 * `Calendar Pop-Up` — Can view the details of each appointment.
