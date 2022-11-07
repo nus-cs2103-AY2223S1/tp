@@ -531,6 +531,7 @@ Example:
 Exports the data for the displayed list of candidates to the specified location in the specified format. 
 
 Format: `export path/<PATH WITH NAME OF FILE TO BE EXPORTED TO>`
+* The path must be absolute path.
 * The format of the file must be JSON or CSV.
 * Any directory in the path which does not exist will automatically be created.
 * Only the displayed list of candidates will be exported.
@@ -547,6 +548,7 @@ Alternatively to export files using GUI, you can either go to `Export` -> `Expor
 Imports the data for candidates from the specified file.
 
 Format: `import path/<PATH WITH NAME OF FILE TO BE IMPORTED FROM>`
+* The path must be absolute path.
 * The format of the file must be JSON or CSV.
 * Data being import will be merged with the existing data in CLInkedIn.
 * Candidates whose name already exists in CLInkedIn will be ignored.
