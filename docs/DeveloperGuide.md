@@ -143,9 +143,10 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add an eatery).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
-
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+<p align="center">
+<img src="images/DeleteSequenceDiagram.png" /> <br>
+*The* ***Sequence Diagram*** *illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.*
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -230,6 +231,34 @@ The detection rules limit false-positives from stray `-h`s in names of eateries,
 For supported commands, the following activity diagram summarizes what happens when a user executes a command:
 
 <img src="images/CommandDisplayHelpActivityDiagram.png" />
+
+### Favourite/Unfavourite feature
+The favourite/unfavourite commands were introduced as a way to standardize how "favourite eateries" are tagged.
+In a way, `fav`/`unfav` is a shortcut for `tag`/`untag`. The "`<3`" favourite tag is implemented in such a way in the interest of time, and the fact that
+it can be searched up with other tags via `findTag`, hence proving to be more useful at the project's current iteration.
+
+#### Implementation
+Currently, `FavouriteCommand`/`UnfavouriteCommand` is similar to the other commands available for use, with the exception that it 
+_extends_ `TagCommand`/`UntagCommand` and not `Command`. Since `FavouriteCommand` and `UnfavouriteCommand` are both implemented
+in a similar way, this section will be focusing mainly on `FavouriteCommand` for ease of explanation.
+
+<p align="center">
+<img src="images/FavouriteSequenceDiagram.png" /> <br>
+*The* ***Sequence Diagram*** *shows the interactions within the Logic component when `fav` is called.*
+</p>
+
+As can be seen by the above diagram, most function calls to `FavouriteCommand` is directed to TagCommand, though there are some points to note:
+* The fixed "`<3`" tag should be made into a tag in the `FavouriteCommand` class rather than in the `TagCommand` class. This is because `FavouriteCommand` is the subclass, hence `TagCommand` should have no dependencies on `FavouriteCommand`.
+* Using the above-mentioned `-h` help command should show a custom message for `FavouriteCommand`, since it's command `fav` is different from `tag`.
+* Upon successfully favouriting an eatery, the user should receive a message indicating the "`<3`" is a tag, and can be searched up and used as a criteria for the `-r` randomizer feature via the `findTag` command.
+
+Through a comparison with the sequence diagram found in the [logic component section](#logic-component) that bears the shape of most of the default commands, it can be seen in exactly which function calls `FavouriteCommand` differs.
+<br>
+
+When `FavouriteCommand` is first initialized, it initializes `TagCommand` via a `super()` method call. Hence, the process of turning "`<3`" into a tag acceptable by `TagCommand` has to be streamlined, such that prefixes in `FavouriteCommand` are used.
+Additionally, the `execute()` call to `FavouriteCommand` is passed onto `TagCommand` whereby `TagCommand` then normally interacts with the `Model` class as other commands do.
+
+This unique implementation of `FavouriteCommand` and `UnfavouriteCommand` is especially important to keep in mind if future modifications (e.g. keeping favourited eateries at the top of the list) are implemented.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -334,9 +363,8 @@ _{more aspects and alternatives to be added}_
 
 ### Product scope
 
-**Target user profile**:
-
-* This product is for NUS students/staff who prefer CLI over GUI
+**Target user profile**: This product is for ...
+* NUS students/staff who prefer CLI over GUI
 * want to keep track of the various food options in NUS.
 
 **Value proposition**: This application summarizes the various food options available in NUS, and allows users to make an informed choice as to what to eat.
