@@ -73,9 +73,9 @@ public class TypicalLessons {
     }
 
     public static List<Lesson> getTypicalLessons() {
-        Consult CONSULT_1 = new Consult(CONSULT_DESCRIPTION_1, TP3, CONSULT_STUDENTS);
-        MasteryCheck MC_1 = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_1, TP1, MASTERY_CHECK_STUDENTS);
-        Studio STUDIO_1 = new Studio(STUDIO_DESCRIPTION_1, TP2, STUDIO_STUDENTS);
-        return new ArrayList<>(Arrays.asList(MC_1, STUDIO_1, CONSULT_1));
+        Consult consult1 = new Consult(CONSULT_DESCRIPTION_1, TP3, CONSULT_STUDENTS);
+        MasteryCheck mc1 = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_1, TP1, MASTERY_CHECK_STUDENTS);
+        Studio studio1 = new Studio(STUDIO_DESCRIPTION_1, TP2, STUDIO_STUDENTS);
+        return new ArrayList<>(Arrays.asList(mc1, studio1, consult1));
     }
 }

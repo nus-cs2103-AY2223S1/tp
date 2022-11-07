@@ -50,12 +50,12 @@ public class TypicalTasks {
     }
 
     public static List<Task> getTypicalTasks() {
-        Task MISSION1 = new TaskBuilder().withDesc("Mark mission 1")
+        Task mission1 = new TaskBuilder().withDesc("Mark mission 1")
                 .withDeadline(LocalDate.of(2022, 10, 23)).build();
-        Task STUDIO = new TaskBuilder().withDesc("Prepare studio 1 slides").build();
-        Task QUEST1 = new TaskBuilder().withDesc("Check quest 1").build();
-        Task MASTERY_CHECK = new TaskBuilder().withDesc("Conduct mastery check")
+        Task studio = new TaskBuilder().withDesc("Prepare studio 1 slides").build();
+        Task quest1 = new TaskBuilder().withDesc("Check quest 1").build();
+        Task mc = new TaskBuilder().withDesc("Conduct mastery check")
                 .withDeadline(LocalDate.of(2022, 9, 12)).build();
-        return new ArrayList<>(Arrays.asList(MISSION1, STUDIO, QUEST1, MASTERY_CHECK));
+        return new ArrayList<>(Arrays.asList(mission1, studio, quest1, mc));
     }
 }
