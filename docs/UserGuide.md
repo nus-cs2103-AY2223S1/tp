@@ -460,4 +460,6 @@ Examples:
 * It refers to the School of Computing from the National University of Singapore.
 
 --------------------------------------------------------------------------------------------------------------------
+Thank you for reading our SoCompiler User Guide!
+
 [Back to top](#socompiler-user-guide)
