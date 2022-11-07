@@ -12,7 +12,7 @@ Given below are my contributions to the project.
 * **New Feature**:
   * _(to be added soon)_
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=cxyterence&breakdown=true)
 
 * **Project management**:
   * _(to be added soon)_
