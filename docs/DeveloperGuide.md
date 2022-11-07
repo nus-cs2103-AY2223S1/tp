@@ -228,7 +228,9 @@ Below is the activity diagram that illustrates the process of validating birthda
 ![BirthdayActivityDiagram](images/BirthdayActivityDiagram.png)
 
 We decided to set these 2 constraints on birthday:
-1) Birthday should not be in the future
+
+1) Birthday should not be in the future.
+
 2) Birthday should not be more than 100 years ago as we feel that client would not be able to buy product due to age limit.
 
 #### 4.1.3 View client
@@ -332,7 +334,7 @@ the command is executed.
     - Cons: The parser will need to have access to the model in order to
       obtain the referenced client.
 
-#### Meeting date constraints
+#### 4.2.2 Meeting date constraints
 
 Below is the activity diagram that illustrates the process of validating meeting date.
 
@@ -342,7 +344,7 @@ We decided to set this constraint on meeting date:
 
 1) Meeting Date is not in the past.
 
-#### 4.2.2 Delete meeting
+#### 4.2.3 Delete meeting
 
 Syntax: `delMeeting i/INDEX`, where `INDEX` is an index shown in the meeting list.
 
@@ -370,7 +372,7 @@ _The sequence diagram and activity diagram of `delMeeting` is similar to the dia
     - Cons: Complex to implement
 - Considering that the approach taken to develop MyInsuRec is a breath first approach, where we should only build to the point where every iteration is a working product, **Solution 1** is thus chosen as it is easier to implement. However, Solution 2 could be a possible implementation for future iteration.
 
-#### 4.2.3 View meeting
+#### 4.2.4 View meeting
 
 Syntax: `viewMeeting i/INDEX`, where `INDEX` is an index shown in the meeting list.
 
@@ -393,7 +395,7 @@ Below is an activity diagram that summarises the execution of `viewMeeting`.
 
 ![ViewMeetingActivityDiagram](images/ViewMeetingActivityDiagram.png)
 
-#### 4.2.4 List meeting
+#### 4.2.5 List meeting
 
 Syntax: `listMeeting [d/PERIOD]`
 
@@ -408,9 +410,6 @@ Usage Scenario of `listMeeting`:
 Below is a sequence diagram that illustrates the execution of `listMeeting d/tomorrow` command and the interaction with `Model`.
 
 ![ListMeetingSequenceDiagram](images/ListMeetingSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** `pred` refers to a predicate where the `Meeting` are filtered based on that predicate.
-</div>
 
 ##### Design Considerations
 
