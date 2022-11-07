@@ -24,7 +24,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nitant-p&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
 * **Project Management**
-    * Drafted the team's `AboutUs.md` and added details of all members.
+    * Drafted the team's `AboutUs.md` and added details of all members. [#24](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/24/files) 
   
 * **Documentation:**
 
