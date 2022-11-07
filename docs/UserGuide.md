@@ -87,7 +87,7 @@ Here are some symbols used throughout this user guide:
    7. [Modifying remarks](#adding-a-remark-add--p)
       1. [Adding a remark: `add` `-p`](#adding-a-remark-add--p)
       2. [Editing a remark: `edit` `-p` `-r`](#editing-a-remark-edit--p--r)
-      3. [Deleting a remark: `delete` `-p` `-r`](#deleting-a-remark-delete--p--r)
+      3. [Deleting a remark: `delete` `-p` `-r`](#deleting-a-remark-delete--p--r)<div style="page-break-after: always;"></div>
    8. [Viewing patients](#listing-all-patients-list)
       1. [Listing all patients: `list`](#listing-all-patients-list)
       2. [Viewing all details of a patient: `focus` `-p`](#viewing-all-details-of-a-patient-focus--p)
@@ -137,6 +137,7 @@ The app comes with some sample patients by default. Type `clear` in the command 
 <div align="center"><i> UniNurse user interface </i></div>
 
 <br>
+<div style="page-break-after: always;"></div>
 
 5. Type your command in the command box and hit `Enter` to execute the command. Here are some example commands
    you can try:
@@ -274,8 +275,6 @@ Example: `johndoe@gmail.com`
 
 Example:`a/John street, block 123, #01-01`
 
-<div style="page-break-after: always;"></div>
-
 ### Multi-valued attributes
 
 #### `t/TAG`
@@ -285,6 +284,8 @@ Example:`a/John street, block 123, #01-01`
 `TAG` is specified by the prefix `t/`, and its index by the flag `-t`.
 
 Example:`t/12-A nursing home`
+
+<div style="page-break-after: always;"></div>
 
 #### `d/TASK_DESCRIPTION | DATE TIME | INTERVAL TIME_PERIOD`
 
@@ -542,12 +543,11 @@ You can add multiple tags at once when you first [add a patient](#adding-a-patie
 
 </div>
 
-<a name="edit-multi-valued-attributes"></a>
-<div markdown="block" class="alert alert-success">
-
-[Back to Table of Contents ↑](#table-of-contents)
-
 <div style="page-break-after: always;"></div>
+
+<a name="edit-multi-valued-attributes"></a>
+
+<div markdown="block" class="alert alert-success">
 
 :bulb: **Tip:**
 
@@ -616,6 +616,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a tag: `delete` `-p` `-t`
 
 You can delete a tag of a patient with the `delete` command.
@@ -637,6 +639,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a task: `add` `-p`
 
@@ -670,6 +674,8 @@ If you enter a `TIME` of `2400`, then the date and time will be set to `0000` ho
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `list` followed by `add -p 1 d/Administer 3ml of example medicine` adds a task to the 1st patient in the patient list.
 * `find Betsy` followed by `add -p 2 d/Change dressing on left arm | 12-7-22` adds a task to the 2nd patient in the results of the `find` command, on 12th July 2022 0000 hours.
@@ -695,6 +701,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Editing a task: `edit` `-p` `-d`
 
 You can edit a task of a patient with the `edit` command.
@@ -718,6 +726,8 @@ Examples:
 * `list` followed by `edit -p 2 -d 3 d/| 25-10-22 | 2 weeks` edits the date and recurrence of the 3rd task for the 2nd patient in the patient list to 25th October 2022 and every 2 weeks, while keeping the original description and time. If the task was a non-recurring task, then this edit transforms the task into a recurring task with a recurrence of every 2 weeks.
 * `find David` followed by `edit -p 1 -d 2 d/Change bandage | | 4 days` edits the description and recurrence of the 2nd task of the 1st patient in the results of `find` command to `Change bandage` and every 4 days, while keeping the original date and time. If the task was a non-recurring task, then this edit transforms the task into a recurring task with a recurrence of every 4 days.
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Notes:**
@@ -738,6 +748,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting a task: `delete` `-p` `-d`
 
@@ -760,6 +772,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a medical condition: `add` `-p`
 
@@ -801,6 +815,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Editing a medical condition: `edit` `-p` `-c`
 
 You can edit a medical condition of a patient with the `edit` command.
@@ -832,6 +848,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a medical condition: `delete` `-p` `-c`
 
 You can delete a medical condition of a patient with the `delete` command.
@@ -853,6 +871,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a medication: `add` `-p`
 
@@ -895,6 +915,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Editing a medication: `edit` `-p` `-m`
 
 You can edit a medication of a patient with the `edit` command.
@@ -928,6 +950,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a medication: `delete` `-p` `-m`
 
 You can delete a medication of a patient with the `delete` command.
@@ -949,6 +973,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a remark: `add` `-p`
 
@@ -989,6 +1015,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Editing a remark: `edit` `-p` `-r`
 
 You can edit a remark of a patient with the `edit` command.
@@ -1019,6 +1047,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a remark: `delete` `-p` `-r`
 
 You can delete a medical condition of a patient with the `delete` command.
@@ -1041,6 +1071,8 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Listing all patients: `list`
 
 You can view a list of all patients using the `list` command.
@@ -1052,6 +1084,8 @@ Format: `list`
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Viewing all details of a patient: `focus` `-p`
 
@@ -1074,6 +1108,8 @@ Examples:
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Finding patients: `find`
 
 You can find specific patients using the `find` command.
@@ -1095,6 +1131,8 @@ Format: **`find`** `[KEYWORD]… [xyz/XYZ_KEYWORD]…`
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Examples:
 * `find key n/John n/Betsy n/Charlie e/@example.com e/@u.nus.edu` displays all patients who fulfill all conditions below:
     * The patient's name must contain either `John` or `Betsy` or `Charlie`.
@@ -1113,6 +1151,8 @@ Examples:
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Viewing all tasks for a particular day: `view`
 
@@ -1142,6 +1182,8 @@ Examples:
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Viewing all tasks for today: `view` `--today`
 
@@ -1175,6 +1217,8 @@ This command replaces `DATE` in the [previous command](#viewing-all-tasks-for-a-
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Viewing all tasks of a patient: `view` `-p`
 
@@ -1227,6 +1271,8 @@ This command replaces `PATIENT_INDEX` in the [previous command](#viewing-all-tas
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Undoing previous command: `undo`
 
 You can undo the last command which modifies the application data with the `undo` command.
@@ -1270,6 +1316,8 @@ Example:
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Clearing all entries: `clear`
 
@@ -1316,6 +1364,8 @@ You do not need to save manually.
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 ### Editing the data file
 
 UniNurse data are saved as a JSON file `[JAR file location]/data/uninurse.json`.
@@ -1342,6 +1392,8 @@ the data of your previous UniNurse home folder.
 [Back to Table of Contents ↑](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Command summary**
 
