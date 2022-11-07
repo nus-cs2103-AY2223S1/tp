@@ -3,6 +3,8 @@
 
 An [[ item:Item ]] in FoodRem represents something in your inventory. This can be an ingredient, a piece of equipment, and more. Feel free to include or exclude certain attributes for each item, although you must minimally provide a name for the item.
 
+{% include page-break.html %}
+
 The following are the attributes stored for each item:
 
 * Item name
