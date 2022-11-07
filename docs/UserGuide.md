@@ -23,7 +23,6 @@ use its text-based commands. Get started now by heading over to [How to use this
 ---
 
 ## **Table of Contents**
-
 {:.no_toc}
 
 1. Table of Contents
