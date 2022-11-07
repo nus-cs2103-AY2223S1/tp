@@ -37,7 +37,7 @@ public class JsonSerializableTrackO {
     /**
      * Converts a given {@code ReadOnlyTrackO} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableTrackO}.
      */
     public JsonSerializableTrackO(ReadOnlyTrackO source) {
 

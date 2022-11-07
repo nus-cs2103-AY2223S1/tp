@@ -31,7 +31,6 @@ import tracko.model.UserPrefs;
 import tracko.storage.JsonTrackOStorage;
 import tracko.storage.JsonUserPrefsStorage;
 import tracko.storage.StorageManager;
-// import tracko.testutil.OrderBuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -151,8 +150,8 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonTrackOStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonTrackOIoExceptionThrowingStub extends JsonTrackOStorage {
+        private JsonTrackOIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
