@@ -14,6 +14,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.common.Name;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskName;
 import seedu.address.model.team.Team;
@@ -87,10 +88,12 @@ public class TaskEditCommand extends Command {
 
         model.editTask(teamIndex, taskIndex, newTaskName, newDeadline);
         String deadlineString = newDeadline == null ? "" : newDeadline.toString();
+        Name previousTaskName = lastShownTeamList.get(teamIndex.getZeroBased())
+                .getTask(taskIndex.getZeroBased()).getName();
         String nameString = newTaskName == null
-                ? lastShownTeamList.get(teamIndex.getZeroBased())
-                .getTask(taskIndex.getZeroBased()).getName().toString()
+                ? previousTaskName.toString()
                 : newTaskName.toString();
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, nameString, deadlineString));
     }
 

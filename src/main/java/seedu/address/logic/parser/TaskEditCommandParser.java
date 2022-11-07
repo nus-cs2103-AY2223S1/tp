@@ -51,13 +51,12 @@ public class TaskEditCommandParser implements Parser<TaskEditCommand> {
                     TaskEditCommand.MESSAGE_USAGE), pe);
         }
 
-        if (!argMultimap.getValue(PREFIX_TASK_NAME).isEmpty()) {
+        if (argMultimap.getValue(PREFIX_TASK_NAME).isPresent()) {
             newTaskName = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_TASK_NAME).get());
         }
 
         newDeadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_TASK_DEADLINE).orElse(null))
                 .orElse(null);
-
 
         if (newTaskName == null && newDeadline == null) {
             throw new ParseException(MESSAGE_NOT_EDITED);

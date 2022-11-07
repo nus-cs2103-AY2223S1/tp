@@ -63,6 +63,7 @@ public class TaskDeleteCommand extends Command {
 
         Task taskToDelete = lastShownTeamList.get(teamIndex.getZeroBased()).getTask(taskIndex.getZeroBased());
         model.deleteTask(teamIndex, taskIndex);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, taskToDelete));
     }
 

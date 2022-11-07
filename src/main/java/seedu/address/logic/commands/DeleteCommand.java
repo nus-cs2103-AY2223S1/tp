@@ -54,7 +54,9 @@ public class DeleteCommand extends Command {
             Team t = teamsWithMember.get(i);
             model.removePersonFromTeam(personToDelete, t);
         }
+
         model.deletePerson(personToDelete);
+
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 

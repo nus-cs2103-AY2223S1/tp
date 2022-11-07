@@ -145,7 +145,7 @@ public class Task {
         final StringBuilder builder = new StringBuilder();
         builder.append("[" + getStatusIcon() + "] " + getName());
 
-        if (!getDeadline().isEmpty()) {
+        if (getDeadline().isPresent()) {
             builder.append(" (by: " + getDeadline().get() + ")");
         }
         return builder.toString();

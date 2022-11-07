@@ -76,9 +76,9 @@ public class AssignMemberCommand extends Command {
 
         model.addPersonToTeam(person, team);
         TeamName teamName = model.getTeamName(teamIndex);
-        PersonName name = model.getPersonName(personIndex);
+        PersonName personName = model.getPersonName(personIndex);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, name, teamName));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, personName, teamName));
     }
 
 }
