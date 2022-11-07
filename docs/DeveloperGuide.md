@@ -430,6 +430,9 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
           in JSON format or not a valid file path or file already exists etc.
         * Quite messy since the users can specify a completely different file path/directory everytime they
           execute `export` command.
+
+<div style="page-break-after: always;"></div>
+
 * **Alternative 3**: We save the files in the `data/export/` folder and user specifies only the file name.
     * Pros:
         * Location for all exported JSON files is in a single folder.
@@ -518,7 +521,6 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
         * Intuitive and easy for Users to use
         * Less syntax and user input required in comparison to _alternative 2_
     * Cons:
-        * Limits User's freedom in how they want to search
         * Search type for the field may not be how the User wants to search
 
 
