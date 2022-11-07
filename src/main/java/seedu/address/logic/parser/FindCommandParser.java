@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FIND_ANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_KEYWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -35,8 +35,8 @@ public class FindCommandParser implements Parser<FindCommand> {
         Optional<String> rawIntersectTags = mainArgMultimap.getValue(PREFIX_FIND_ALL);
         Optional<String> rawUnionTags = mainArgMultimap.getValue(PREFIX_FIND_ANY);
 
-        List<Tag> intersectTags = new ArrayList<>();
-        List<Tag> unionTags = new ArrayList<>();
+        Set<Tag> intersectTags = new HashSet<>();
+        Set<Tag> unionTags = new HashSet<>();
 
         if (rawIntersectTags.isPresent()) {
             ArgumentMultimap argMultimap =

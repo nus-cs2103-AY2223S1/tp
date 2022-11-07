@@ -23,7 +23,7 @@ public class OpenCustomerCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Opens a customer and shows customer details and switches tab "
             + "to commissions to show commissions made by the customer.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must be a positive integer less than 2147483648)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     private final Index targetIndex;

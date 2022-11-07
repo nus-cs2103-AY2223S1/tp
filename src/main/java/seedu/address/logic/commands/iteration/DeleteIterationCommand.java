@@ -24,7 +24,7 @@ public class DeleteIterationCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the iteration identified by the index number used in the displayed iteration list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must be a positive integer less than 2147483648)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_ITERATION_SUCCESS = "Deleted Iteration: %1$s";

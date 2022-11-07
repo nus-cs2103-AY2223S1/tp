@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_DATE;
@@ -51,14 +52,38 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
     public static final String VALID_TAG_ANIMAL = "animal";
+    public static final String VALID_TAG_CARNIVORE = "carnivore";
+    public static final String VALID_TAG_HERBIVORE = "herbivore";
+    public static final String VALID_TAG_MAMMAL = "mammal";
+    public static final String VALID_TAG_FISH = "fish";
+    public static final String VALID_TAG_BIRD = "bird";
+    public static final String VALID_TAG_PET = "pet";
+    public static final String VALID_TAG_MARINE = "marine";
+    public static final String VALID_TAG_LAND = "land";
     public static final String VALID_TAG_FOOD = "food";
 
-    public static final String VALID_TITLE_CAT = "Cat";
-    public static final String VALID_TITLE_DOG = "Dog";
-    public static final String VALID_TITLE_ELEPHANT = "Elephant";
+    public static final String VALID_TITLE_CAT = "Garfield Cat";
+    public static final String VALID_TITLE_DOG = "Poodle Dog";
+    public static final String VALID_TITLE_ELEPHANT = "African Elephant";
+    public static final String VALID_TITLE_PENGUIN = "King Penguin";
+    public static final String VALID_TITLE_SHARK = "Great White Shark";
+    public static final String VALID_TITLE_ZEBRA = "African Zebra";
+    public static final String VALID_TITLE_WHALE = "Great Blue Whale";
+    public static final String VALID_TITLE_DEER = "Bambi Deer";
     public static final String VALID_DESCRIPTION_CAT = "A white cat";
     public static final String VALID_DESCRIPTION_DOG = "A black dog";
     public static final String VALID_DESCRIPTION_ELEPHANT = "A red elephant";
+    public static final String VALID_DESCRIPTION_PENGUIN = "A cute penguin";
+    public static final String VALID_DESCRIPTION_SHARK = "A fierce shark";
+    public static final String VALID_DESCRIPTION_ZEBRA = "A camouflaged zebra";
+    public static final String VALID_DESCRIPTION_WHALE = "A big whale";
+    public static final String VALID_DESCRIPTION_DEER = "A beautiful deer";
+
+    public static final String VALID_FEE_LITTLE = "0.341245";
+    public static final String VALID_FEE_NORMAL = "50.03";
+
+    public static final String VALID_FALSE_STATUS = "False";
+    public static final String VALID_TRUE_STATUS = "true";
 
     public static final String VALID_DATE_FIRST_DAY_OF_YEAR = "2022-01-01";
     public static final String VALID_DATE_LAST_DAY_OF_YEAR = "2022-12-31";
@@ -78,6 +103,23 @@ public class CommandTestUtil {
             + "/src/test/data/images/test_image_2.png";
 
     public static final String TITLE_DESC_CAT = " " + PREFIX_TITLE + VALID_TITLE_CAT;
+    public static final String TITLE_DESC_DOG = " " + PREFIX_TITLE + VALID_TITLE_DOG;
+    public static final String TITLE_DESC_ELEPHANT = " " + PREFIX_TITLE + VALID_TITLE_ELEPHANT;
+
+    public static final String FEE_DESC_LITTLE = " " + PREFIX_FEE + VALID_FEE_LITTLE;
+    public static final String FEE_DESC_NORMAL = " " + PREFIX_FEE + VALID_FEE_NORMAL;
+
+    public static final String STATUS_DESC_FALSE = " " + PREFIX_STATUS + VALID_FALSE_STATUS;
+    public static final String STATUS_DESC_TRUE = " " + PREFIX_STATUS + VALID_TRUE_STATUS;
+
+    public static final String DESC_OF_CAT = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_CAT;
+    public static final String DESC_OF_DOG = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_DOG;
+    public static final String DESC_OF_ELEPHANT = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_ELEPHANT;
+
+    public static final String DEADLINE_DESC_START = " " + PREFIX_DEADLINE
+            + VALID_DATE_FIRST_DAY_OF_YEAR;
+    public static final String DEADLINE_DESC_END = " " + PREFIX_DEADLINE
+            + VALID_DATE_LAST_DAY_OF_YEAR;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
