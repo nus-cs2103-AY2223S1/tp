@@ -100,7 +100,7 @@
                             </Label>
                         </HBox>
                         <HBox prefHeight="43.0" prefWidth="500.0">
-                            <Label prefHeight="35.0" prefWidth="261.0" style="-fx-padding: 0 0 0 20;" text="M add c/MODULE_CODE m/MODULE_NAME mc/MODULAR_CREDIT" textFill="WHITE" wrapText="true" />
+                            <Label prefHeight="35.0" prefWidth="261.0" style="-fx-padding: 0 0 0 20;" text="M add c/MODULE_CODE m/MODULE_NAME mc/MODULE_CREDIT" textFill="WHITE" wrapText="true" />
                             <Label prefHeight="36.0" prefWidth="207.0" style="-fx-padding: 0 0 0 35;" text="Adds the module to the module list" textFill="WHITE" wrapText="true" />
                         </HBox>
                         <HBox prefHeight="66.0" prefWidth="497.0">

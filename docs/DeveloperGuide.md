@@ -357,7 +357,7 @@ Shown below is a sequence diagram of what occurs when the execute method of Logi
 
 **Sequence of actions made when `execute` method of `LogicManager` is invoked**
 
-1. The user types the `t mark 1` command.
+1. The user types the `t del 1` command.
 2. The `execute()` method of the `LogicManager` is called.
 3. The `LogicManager` then calls `AddressBookParser#parseCommand()` which parses `t del 1`, creating a `DeleteTaskCommandParser` object.
 4. The `AddressBookParser` calls `DeleteTaskCommandParser#parse()` which parses `1` and creates a `DeleteTaskCommand` object with an `Index` object storing the target index `1`.
