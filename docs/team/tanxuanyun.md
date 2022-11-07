@@ -23,6 +23,7 @@ Users will be able to save contact person information to manage them more conven
 
 * **Project management**:
   * Prepare meeting agenda 
+  * Setup weekly meeting
   * Created and assigned issues to team members.
   * Reviewed team members’ pull requests
 
@@ -30,6 +31,8 @@ Users will be able to save contact person information to manage them more conven
   * Allow phone and email in add -p command to be optional 
   * Allow contact person company to be stored with add -p command
   * Allow linking of contact person and internship in add -p command
+
+***
 
 * **Documentation**:
   * User Guide:
