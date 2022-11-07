@@ -555,7 +555,7 @@ Examples:
 
 #### Deleting a contact : `contact delete`
 
-Deletes the specified contact from your contact list.
+Deletes the specified contact from your displayed contact list.
 
 <div markdown="block" class="alert alert-light">
 
