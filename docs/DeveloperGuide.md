@@ -888,7 +888,7 @@ testers are expected to do more *exploratory* testing.
       ```
       Expected: No changes displayed on TrackAScholar GUI and an error message will be prompted,
       indicating an applicant must have specified phone number, email, scholarship name, application status,
-      as represented by the prefixes `p/`, `e/`, `s/` and `as` respectively.
+      as represented by the prefixes `p/`, `e/`, `s/` and `as/` respectively.
 
 [Return to top](#table-of-contents)
 
@@ -991,6 +991,67 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous.
 
 [Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Finding applicants by name, scholarship or major
+
+1. Finding existing applicants based on the specified characteristics while these applicants are being shown
+   1. Prerequisites: List all applicants using the `list` command. 3 applicants in the list. The list contains
+      first applicant named `Muhammad Ali` with the following characteristics:
+      ```
+      Name: Muhammad Ali
+      Major(s): Business Analytics
+      Application Status: pending
+      Scholarship Name: NUS Global Merit Scholarship
+      Email: MuhammadAli@gmail.com
+      Phone Number: 87788807
+      ```
+      ,second applicant named `Muhammad Ali Jinnah` with the following characteristics:
+      ```
+      Name: Muhammad Ali Jinnah
+      Major(s): Geography
+      Application Status: pending
+      Scholarship Name: NUS Merit Scholarship
+      Email: MuhammadAliJinnah@hotmail.com
+      Phone Number: 89833223
+      ```
+      and third applicant named `John Tan` with the following characteristics:
+      ```
+      Name: John Tan
+      Major(s): Mathematics
+      Application Status: pending
+      Scholarship Name: NUS Sports Scholarship
+      Email: JohnTan@hotmail.com
+      Phone Number: 89870223
+      ```
+   1. Test case: `find n/Muhammad` <br>
+      Expected: Since the first 2 applicants in the list have name containing the word `Muhammad`, they will be shown on TrackAScholar GUI.
+
+   1. Test case: `find n/Ali Muhammad` <br>
+      Expected: Since both applicant's name contains both words `Ali` and `Muhammad`, irrespective of order, they will be shown on
+      TrackAScholar GUI.
+    
+   1. Test case: `find n/Muhammad n/John` <br>
+      Expected: Since the same prefix `n/` is used more than once, TrackAScholar will show all the applicants in the list since
+      the names of applicants in the list contains either the word `Muhammad` or `John`.
+    
+   1. Test case: `find n/Muhammad n/John s/Global` <br>
+      Expected: Since different prefixes `n/` and `s/` are used, TrackAScholar will show only the first applicant since its name contains either the word
+      `Muhammad` or `John` ***and*** its scholarship name contains the word `Global`.
+   
+   1. Test case: `find m/Math` <br>
+      Expected: No applicants displayed on TrackAScholar GUI since `Math` is incomplete and does not fully match the major of the third applicant, `Mathematics`.
+      
+   1. Test case: `find p/88127823` <br>
+      Expected: No changes displayed on TrackAScholar GUI as only prefixes `n/`, `s/` and `m/` are recognised for `find` command and one of these prefixes must be present.
+      Error details shown in the status message.
+   
+   1. Other incorrect find commands to try: `find` and `find Alex Yeoh` <br>
+      Expected: Similar to previous.
+
+[Return to top](#table-of-contents)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
