@@ -257,10 +257,6 @@ The following sequence diagram shows how the checkout operation works:
 
 ![CheckoutSequenceDiagram](images/CheckoutSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CheckoutCommand`
-should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
 The following activity diagram summarizes what happens when a user executes a checkout command:
 
 ![CheckoutActivityDiagram](images/CheckoutActivityDiagram.png)
@@ -319,24 +315,20 @@ The following sequence diagram shows how the `view` command works:
 
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ViewCommandParser`
-should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
 <div style="page-break-after: always;"></div>
 
 #### Design considerations
 
 **Aspect: How the UI window is split to show a panel of list of all applicants and another panel to view details of an applicant:**
 
+![guiDesignConsideration1](images/guiDesignConsideration1.png)
 - **Alternative 1 (current implementation):** Window is split into half below the result display box.
     - Pros: Symmetrical and looks more regular.
     - Cons: Pane to view details of an applicant is smaller.
-![guiDesignConsideration1](images/guiDesignConsideration1.png)
+![guiDesignConsideration2](images/guiDesignConsideration2.png)
 - **Alternative 2:** Window is split from the top, so both command box and result display box are halved.
     - Pros: Can have a larger pane to view details of an applicant.
     - Cons: Need to scroll more to see typed command and result displayed.
-![guiDesignConsideration2](images/guiDesignConsideration2.png)
 
 
 ### 4.3 Import Feature
@@ -361,10 +353,6 @@ Given below is an example success scenario and how the `import` mechanism behave
 The following sequence diagram shows how the `import` command works:
 
 ![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ImportCommandParser`
-should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 
 <div style="page-break-after: always;"></div>
 
@@ -470,10 +458,6 @@ Given below is an example success scenario and how the `find` mechanism behaves 
 The following sequence diagram shows how the `find` command works:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser`
-should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
 
 #### Design Considerations
 
@@ -617,13 +601,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. The specified applicant is a duplicate to another applicant in the list.
 
-    * 1b1. InternConnect shows an error message.
+    * 1a1. InternConnect shows an error message.
 
       Use case ends.
 
 * 1c. The specified applicant has an invalid data value.
 
-    * 1c1. InternConnect shows an error message.
+    * 1a1. InternConnect shows an error message.
 
       Use case ends.
 
@@ -635,7 +619,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to <u>list all applicants (UC01)</u>
+1.  User requests to <u>list all applicants (UC01)</u> or <u>find applicants by field (UC06)</u>
 2.  User requests to modify an applicant at a certain index with its parameters
 3.  InternConnect modifies the applicant
 4.  InternConnect shows the updated applicant
@@ -686,7 +670,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to <u>list all applicants (UC01)</u>
+1.  User requests to <u>list all applicants (UC01)</u> or <u>find applicants by field (UC06)</u>
 2.  User requests to delete an applicant at a certain index in the list
 3.  InternConnect deletes the applicant
 4.  InternConnect shows the updated list of applicants
@@ -707,7 +691,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
 * 2b. The given index is not a positive integer or is out of bounds.
 
-    * 2b1. InternConnect shows an error message.
+    * 2a1. InternConnect shows an error message.
 
       Use case ends.
 
@@ -716,7 +700,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to <u>list all applicants (UC01)</u>
+1.  User requests to <u>list all applicants (UC01)</u> or <u>find applicants by field (UC06)</u>
 2.  User requests to view an applicant at a certain index in the list
 3.  InternConnect shows the detailed data of the applicant
 
@@ -739,7 +723,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2b. The given index is not a positive integer or is out of bounds.
 
-    * 2b1. InternConnect shows an error message.
+    * 2a1. InternConnect shows an error message.
 
       Use case ends.
 
@@ -848,7 +832,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1c. The given file has invalid value, incorrect format, and/or duplicate applicants.
 
     * 1c1. InternConnect wipes all data from the file.
-    * 1c2. InternConnect fills the data with an empty data.
+    * 1b2. InternConnect fills the data with an empty data.
 
       Use case resumes from step 2.
 
