@@ -9,7 +9,7 @@ Participant ":Model" as model MODEL_COLOR
 user -[USER_COLOR]> ui : Press up arrow key
 activate ui UI_COLOR
 
-ui -[UI_COLOR]> logic : getPrevInCommandHistory
+ui -[UI_COLOR]> logic : getPrevInCommandHistory()
 activate logic LOGIC_COLOR
 
 logic -[LOGIC_COLOR]> model : getPrevCommand()

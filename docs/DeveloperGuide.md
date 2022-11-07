@@ -201,6 +201,12 @@ It will then remove the old appointment and add the newly edited appointment. Th
 #### Add Appointment Command
 
 Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager##execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser##parseCommand(userInput)` which parses the command.
+For example, the user inputs this command: `aa 1 d/15-02-2022 12:00 l/NUS`.
+<br>
+The initial state of the `MaximumSortedList<Appointment>` object present in the specified client Person object before executing the command is shown below (assuming the client currently has 0 appointments scheduled):
+<br>
+![Before Add Appointment Object Diagram](images/BeforeAddAppointmentObjectDiagram.png)
+<br>
 
 Step 2. If the user input matches the format for the command word for the `AddAppointmentCommand`, `AddressBookParser` will create an `AddAppointmentCommandParser` and will call the `AddAppointmentCommandParser##parse(args)` to parse the command.
 
@@ -211,6 +217,10 @@ Step 4. If the user input is valid, a new `AddAppointmentCommand` object is crea
 Step 5. `LogicManager` will call `AddAppointmentCommand##execute(model)` method. Further validation is performed, such as checking whether a duplicate `Appointment` exists and whether the user has already scheduled the maximum number, 3, of `Appointments` for the specified client.
 
 Step 6. If the command is valid, the `add` method of the `MaximumSortedList` containing the client's `Appointments` is called, which will update the `Person` and `Model`.
+The `MaximumSortedList<Appointment>` object present in the specified client `Person` will be updated as shown below:
+<br>
+![After Add Appointment Object Diagram](images/AfterAddAppointmentObjectDiagram.png)
+<br>
 
 Step 7. `AddAppointmentCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
 
@@ -236,7 +246,12 @@ This is shown in the diagram below:
 #### Edit Appointment Command
 
 Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager##execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser##parseCommand(userInput)` which parses the command.
-
+For example, the user inputs this command: `ea 1.1 l/NUS`.
+<br>
+The initial state of the `MaximumSortedList<Appointment>` object present in the specified client Person object before executing the command is shown below (assuming the client currently has 1 appointment scheduled):
+<br>
+![Before Edit Appointment Object Diagram](images/BeforeEditAppointmentObjectDiagram.png)
+<br>
 Step 2. If the user input matches the format for the command word for the `EditAppointmentCommand`, `AddressBookParser` will create an `EditAppointmentCommandParser` and will call the `AddAppointmentCommandParser##parse(args)` to parse the command.
 
 Step 3. Validation for the user input is performed, such as validating the client's `Index` and the appointment's `Index`
@@ -251,13 +266,16 @@ Step 7. Further validation is performed, such as checking whether an `Appointmen
 
 Step 6. If the command is valid, the `remove` and `add` method of the `MaximumSortedList` containing the client's `Appointments` is called, 
 removing the old appointment and adding the newly edited appointment. `Person` and `Model` will be updated accordingly.
-
+The `MaximumSortedList<Appointment>` object present in the specified client `Person` will be updated as shown below:
+<br>
+![After Edit Appointment Object Diagram](images/AfterEditAppointmentObjectDiagram.png)
+<br>
 Step 7. `EditAppointmentCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
 
 This is shown in the diagram below:
 <br>
 ![Edit Appointment Sequence Diagram](images/EditAppointmentCommandSequenceDiagram.png)
-
+<br>
 *Figure 11: Sequence Diagram showing the execution of an `ea` (Edit Appointment) command*
 
 #### Design Considerations
@@ -271,7 +289,12 @@ This is shown in the diagram below:
 #### Delete Appointment Command
 
 Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager##execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser##parseCommand(userInput)` which parses the command.
-
+For example, the user inputs this command: `da 1.1`.
+<br>
+The initial state of the `MaximumSortedList<Appointment>` object present in the specified client Person object before executing the command is shown below (assuming the client currently has 1 appointment scheduled):
+<br>
+![Before Delete Appointment Object Diagram](images/BeforeDeleteAppointmentObjectDiagram.png)
+<br>
 Step 2. If the user input matches the format for the command word for the `DeleteAppointmentCommand`, `AddressBookParser` will create an `DeleteAppointmentCommandParser` and will call the `DeleteAppointmentCommandParser##parse(args)` to parse the command.
 
 Step 3. Validation for the user input is performed, such as validating the client's `Index` and the appointment's `Index`.
@@ -281,13 +304,16 @@ Step 4. If the user input is valid, a new `DeleteAppointmentCommand` object is c
 Step 5. `LogicManager` will call `DeleteAppointmentCommand##execute(model)` method. Further validation is performed, such as checking whether an `Appointment` exists to be deleted.
 
 Step 6. If the command is valid, the `remove` method of the `MaximumSortedList` containing the client's `Appointments` is called, which will update the `Person` and `Model`.
-
+The `MaximumSortedList<Appointment>` object present in the specified client `Person` will be updated as shown below:
+<br>
+![After Delete Appointment Object Diagram](images/AfterDeleteAppointmentObjectDiagram.png)
+<br>
 Step 7. `DeleteAppointmentCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
 
 This is shown in the diagram below:
-
+<br>
 ![Delete Appointment Sequence Diagram](images/DeleteAppointmentCommandSequenceDiagram.png)
-
+<br>
 *Figure 12: Sequence Diagram showing the execution of an `da` (Delete Appointment) command*
 
 #### Design Considerations
@@ -425,14 +451,17 @@ to listen for the event when a valid command word is typed
 3. When the event occurs, `ResultDisplay#setFeedbackToUser()` is called to display the command's message usage in the `ResultDisplay`
 
 ### Command History feature
-This feature allows the user to navigate to their previously entered commands.
+This feature allows the user to navigate to their previously entered commands using up/down arrow keys
 - Only valid commands will be saved in the command history
 - Command history will only save up to 20 previously typed valid commands
 - Consecutive duplicate commands will not be saved (e.g entering “list” 3 times in a row will only add “list” to command history once)
 
-The following sequence diagram summarizes how a valid command is saved in CommandHistoryStorage:
+`CommandHistory` has an index pointer which tracks where the user is currently at in the command history list
+and also manages the writing and reading of commands to and from the command history list.
+
+The following sequence diagram summarizes how a valid command is saved in TextCommandHistoryStorage:
 ![Add to command history storage](images/AddToCommandHistorySequenceDiagram.png)
-<br>
+<br><br>
 The following sequence diagram summarizes how an up arrow key navigates to the previous command:
 ![Navigate command history](images/NavigateCommandHistorySequenceDiagram.png)
 

@@ -1,0 +1,18 @@
+@startuml
+skinparam arrowThickness 1.1
+skinparam arrowColor #000123
+skinparam classBackgroundColor MODEL_COLOR
+skinparam classAttributeIconSize 0
+show fields
+
+title After deleting Appointment
+
+object "__:Person__" as person {
+}
+
+object "__:MaximumSortedList<Appointment>__" as appointmentList {
+}
+
+person --> appointmentList
+
+@enduml

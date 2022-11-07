@@ -1,0 +1,30 @@
+@startuml
+skinparam arrowThickness 1.1
+skinparam arrowColor #000123
+skinparam classBackgroundColor MODEL_COLOR
+skinparam classAttributeIconSize 0
+show fields
+
+title After editing Appointment
+
+object "__:Person__" as person {
+}
+object "__:MaximumSortedList<Appointment>__" as appointmentList {
+}
+
+object "__:Appointment__" as appointment {
+
+}
+
+object "__NUS:Location__" as location {
+}
+
+object "__15-02-2022 12:00:DateTime__" as dateTime {
+}
+
+person --> appointmentList
+appointmentList --> appointment
+appointment --> location
+appointment --> dateTime
+
+@enduml
