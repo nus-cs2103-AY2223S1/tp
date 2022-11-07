@@ -135,7 +135,7 @@ public class CmdBuilder {
         return new FindCommandParser<>(G_CHANGER, G_SIZE);
     }
 
-        // =========================== task ===============================
+    // =========================== task ===============================
 
     public static final MarkTaskCommand makeMarkTask(Index index) {
         return new MarkTaskCommand(index);

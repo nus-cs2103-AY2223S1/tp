@@ -2,23 +2,19 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.logic.commands.tasks.MarkTaskCommand.*;
+import static seedu.address.logic.commands.tasks.MarkTaskCommand.ALREADY_MARKED;
+import static seedu.address.logic.commands.tasks.MarkTaskCommand.MESSAGE_USAGE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.tasks.MarkTaskCommand;
-import seedu.address.logic.parser.CmdBuilder;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.TaskBuilder;
 import seedu.address.testutil.TypicalTasks;
 
 public class MarkTaskCommandTest {
@@ -39,8 +35,8 @@ public class MarkTaskCommandTest {
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() throws CommandException {
         MarkTaskCommand markTaskCommand = new MarkTaskCommand(null);
-        assertThrows(CommandException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE),
-                () -> markTaskCommand.execute(model));
+        assertThrows(CommandException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE), () ->
+                markTaskCommand.execute(model));
     }
 
     @Test
@@ -48,7 +44,7 @@ public class MarkTaskCommandTest {
         MarkTaskCommand markTaskCommand = new MarkTaskCommand(INDEX_FIRST);
         Task taskToMark = model.getFromFilteredTasks(INDEX_FIRST);
         model.setTask(taskToMark, taskToMark.mark());
-        assertThrows(CommandException.class, String.format(ALREADY_MARKED, taskToMark),
-                () -> markTaskCommand.execute(model));
+        assertThrows(CommandException.class, String.format(ALREADY_MARKED, taskToMark), () ->
+                markTaskCommand.execute(model));
     }
 }

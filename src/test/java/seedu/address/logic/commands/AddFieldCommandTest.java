@@ -9,12 +9,12 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.fields.AddFieldCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.item.DisplayItem;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.fields.AddFieldCommand;
 
 
 public class AddFieldCommandTest {
