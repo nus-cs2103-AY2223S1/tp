@@ -224,6 +224,9 @@ Edits an existing student in the list.
 - Additional Notes - `nt/`
 - Tag - `t/`
 
+<div markdown="span" class="alert alert-danger">❗ **Caution:** At least one of these fields must exist in order to make the edit command valid.
+</div>
+
 1. Student's Name (`n/`), Student's Contact Number (`p/`), Next of Kin’s Contact Number (`np/`), Email (`e/`), Address (`a/`) and Tag (`t/`) follow the same convention as [adding a student](#adding-a-student-add).
 
 2. Class Date (`dt/`):
@@ -238,8 +241,8 @@ Edits an existing student in the list.
     - Examples: `2022-10-09 1100-1230`, `MON 1100-1230`, `Mon 1100-1230`
     - Invalid inputs: `2022-10-9 1100-1230`, `2022-10-09 1100-1000`
 
-<div markdown="span" class="alert alert-danger">❗ **Caution:** If a chosen date is occupied by another student, a class conflict error will arise.
-</div>
+    <div markdown="span" class="alert alert-danger">❗ **Caution:** If a chosen date is occupied by another student, a class conflict error will arise.
+    </div>
 
 3. Amount Paid (`paid/`):
     - Amount Paid stands for the amount that has been paid by the Student.
@@ -257,9 +260,8 @@ Edits an existing student in the list.
     - Rates per Class can only be an integer.
     - Rates per Class must be non-negative.
 
-<div markdown="span" class="alert alert-info">ℹ **Note:** Amount Owed, Amount Paid, and Rates per Class must be between $0 and $2147483647. They are modified
-  independent of each other.</div>
-
+    <div markdown="span" class="alert alert-info">ℹ **Note:** Amount Owed, Amount Paid, and Rates per Class must be between $0 and $2147483647. They are modified
+      independent of each other.</div>
 
 6. Additional Notes (`nt/`):
     - Additional notes can be left empty.
@@ -267,12 +269,9 @@ Edits an existing student in the list.
     - Use `nt/` to set the additional notes.
     - Use `nt-a/` to append the additional notes.
     
-<div markdown="span" class="alert alert-danger">❗ **Caution:** Using both nt/ and nt-a/ in a single command will reset the content of Additional Notes
-to the content behind both nt/ and nt-a/ prefixes.
-</div>
-
-<div markdown="span" class="alert alert-danger">❗ **Caution:** At least one of these fields must exist in order to make the edit command valid.
-</div>
+    <div markdown="span" class="alert alert-danger">❗ **Caution:** Using both nt/ and nt-a/ in a single command will reset the content of Additional Notes
+    to the content behind both nt/ and nt-a/ prefixes.
+    </div>
 
 Format: `edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS]
 [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [rate/RATES_PER_CLASS] [nt/ADDITIONAL_NOTES] [nt-a/ADDITIONAL_NOTES_APPEND] [t/TAG]…`
@@ -729,19 +728,19 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 ## Prefix Summary
 
-| Representation of                                   | Prefix | Examples                                             |
-|-----------------------------------------------------|:-------|------------------------------------------------------|
-| Name of student                                     | n/     | `n/Alice`                                            |
-| Phone number of student                             | p/     | `p/81234567`                                         |
-| Next of Kin Phone number                            | np/    | `np/65432109`                                        |
-| Email of student                                    | e/     | `e/alice@email.com`                                  |
-| Date and time of student's class                    | dt/    | `dt/2022-10-27 1300-1400`                            |
-| Address of student                                  | a/     | `a/15 Bukit Timah Road, Singapore 155203`            |
-| Amount paid by student                              | paid/  | `paid/300`                                           |
-| Amount owed by student                              | owed/  | `owed/200`                                           |
-| Rates per Class                                     | rate/  | `rate/100`                                           |
-| Additional notes of student (create new notes)      | nt/    | `nt/I have created new notes for Alice`              |
-| Additional notes of student (append existing notes) | nt-a/  | `nt-a/I have added more notes to the existing notes` |
-| Tags of student                                     | t/     | `t/python`                                           |
+| Prefix | Meaning                                             | Examples                                             |
+|:-------|-----------------------------------------------------|------------------------------------------------------|
+| n/     | Name of student                                     | `n/Alice`                                            |
+| p/     | Phone number of student                             | `p/81234567`                                         |
+| np/    | Next of Kin Phone number                            | `np/65432109`                                        |
+| e/     | Email of student                                    | `e/alice@email.com`                                  |
+| dt/    | Date and time of student's class                    | `dt/2022-10-27 1300-1400`                            |
+| a/     | Address of student                                  | `a/15 Bukit Timah Road, Singapore 155203`            |
+| paid/  | Amount paid by student                              | `paid/300`                                           |
+| owed/  | Amount owed by student                              | `owed/200`                                           |
+| rate/  | Rates per Class                                     | `rate/100`                                           |
+| nt/    | Additional notes of student (create new notes)      | `nt/I have created new notes for Alice`              |
+| nt-a/  | Additional notes of student (append existing notes) | `nt-a/I have added more notes to the existing notes` |
+| t/     | Tags of student                                     | `t/python`                                           |
 
 [↑ Back to top](#table-of-contents)
