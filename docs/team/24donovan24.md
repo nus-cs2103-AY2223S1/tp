@@ -30,6 +30,8 @@ Given below are my contributions to the project.
     * Added Sets as a field of an Exercise ([PR #53](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/53), [PR #62](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/62), [PR #72](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/72))
     * Added unit tests for Sets ([PR #62](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/62))
 
+<div style="page-break-after: always;"></div>
+
 * **Documentation**:
     * User Guide:
         * Added documentation for `:sort` command ([PR #125](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/125))
