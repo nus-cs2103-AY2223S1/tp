@@ -17,7 +17,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/ish1506.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities:
+  * Testing
+  * In-charge of `Model` component
 
 ### Tan Xuan Yun
 
@@ -26,8 +28,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/tanxuanyun)]
 [[portfolio](team/tanxuanyun.md)]
 
-* Role: `to be added soon`
-* Responsibilities: `to be added soon`
+* Role: Developer
+* Responsibilities: 
+  * Integration of components 
+  * In-charge of `Logic` component 
 
 ### Lee Cheng Da
 
@@ -36,7 +40,9 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/chengda300)] [[portfolio](team/chengda300.md)]
 
 * Role: Developer
-* Responsibilities: Feature enhancements
+* Responsibilities:
+  * Documentation
+  * In-charge of `Storage` component
 
 ### Liu Fangrui
 
@@ -45,8 +51,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/liufangrui)]
 [[portfolio](team/liufangrui.md)]
 
-* Role: `to be added soon`
-* Responsibilities: `to be added soon`
+* Role: Developer
+* Responsibilities: 
+  * Deliverables and deadlines 
+  * Scheduling and tracking
 
 ### Ng Qi Ting
 

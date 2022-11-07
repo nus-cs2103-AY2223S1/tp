@@ -9,30 +9,37 @@ InterNUS is a desktop app for managing internship applications, optimized for us
 
 Given below are my contributions to the project.
 
-* **New Feature**: `to be added soon`
-  * What it does: `to be added soon`
-  * Justification: `to be added soon`
-  * Highlights: `to be added soon`
-  * Credits: `to be added soon`
+* **New Feature**: `Link Command`
+  * What it does: Allows the user to link a person and an internship together, specified person will then be displayed as contact person of the specified internship, and specified internship will be displayed as the internship of the person.
+  * Justification: When applying for internships, there is often a contact person that students will contact. It is important that we display this relationship between the person and the internship to allow easy navigation when students intend to follow up on their internships
 
-* **New Feature**: `to be added soon`
-
+* **New Feature**: `Unlink Command`
+  * What it does: Allows the user to unlink a person and an internship that was previously linked together.
+  * Justification: There may be errors when students attempt to link a person and an internship together. In addition, students might decide to unlink the contact person after being accepted or rejected by the relevant internship. 
+  
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=liufangrui&breakdown=true)
 
 * **Project management**:
-  * `to be added soon`
+  * Created and assigned issues to team members. 
+  * Reviewed team members’ pull requests.
 
 * **Enhancements to existing features**:
-  * `to be added soon`
-
-* **Documentation**:
-  * User Guide:
-    * `to be added soon`
-  * Developer Guide:
-    * `to be added soon`
+  * Updated parser to be able to parse flags in addition to the command word 
+  * Updated parser to throw exceptions when certain command words are used without flags
 
 * **Community**:
-  * `to be added soon`
+  * PRs reviewed (with non-trivial review comments): [#281](https://github.com/AY2223S1-CS2103T-F11-1/tp/pull/281),
+  [#191](https://github.com/AY2223S1-CS2103T-F11-1/tp/pull/191),
+  [#141](https://github.com/AY2223S1-CS2103T-F11-1/tp/pull/141),
+  [#91](https://github.com/AY2223S1-CS2103T-F11-1/tp/pull/91), 
+  [#61](https://github.com/AY2223S1-CS2103T-F11-1/tp/pull/61), 
+  * Reported [bugs and made suggestions](https://github.com/liufangrui/ped/issues)
 
-* **Tools**:
-  * `to be added soon`
+--------------------------------------------------------------------------------------------------------------------
+* **Documentation**:
+  * User Guide:
+    * Added "Linking a person and an internship"
+    * Added "Unlinking a person and an internship"
+    * Added "Listing all persons"
+  * Developer Guide:
+    * Added "Linking a person and an internship" implementation

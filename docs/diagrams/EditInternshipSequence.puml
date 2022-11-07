@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditInternshipCommandParser" as EditInternshipCommandParser LOGIC_COLOR
+participant "e:EditInternshipCommand" as EditInternshipCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit -i 1 s/R")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("edit -i 1 s/R")
+activate AddressBookParser
+
+create EditInternshipCommandParser
+AddressBookParser -> EditInternshipCommandParser
+activate EditInternshipCommandParser
+
+EditInternshipCommandParser --> AddressBookParser
+deactivate EditInternshipCommandParser
+
+AddressBookParser -> EditInternshipCommandParser : parse("1 s/R")
+activate EditInternshipCommandParser
+
+create EditInternshipCommand
+EditInternshipCommandParser -> EditInternshipCommand : EditInternshipCommand(1, descriptor)
+activate EditInternshipCommand
+
+
+EditInternshipCommand --> EditInternshipCommandParser : command
+deactivate EditInternshipCommand
+
+EditInternshipCommandParser --> AddressBookParser : command
+deactivate EditInternshipCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditInternshipCommandParser -[hidden]-> AddressBookParser
+destroy EditInternshipCommandParser
+
+AddressBookParser --> LogicManager : command
+deactivate AddressBookParser
+
+LogicManager -> EditInternshipCommand : execute()
+activate EditInternshipCommand
+
+EditInternshipCommand -> Model : getFilteredInternshipList()
+
+EditInternshipCommand -> EditInternshipCommand : createEditedInternship()
+
+EditInternshipCommand -> Model : setInternship(internshipToEdit, editedInternship)
+
+create CommandResult
+EditInternshipCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditInternshipCommand : result
+deactivate CommandResult
+
+EditInternshipCommand --> LogicManager : result
+deactivate EditInternshipCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
