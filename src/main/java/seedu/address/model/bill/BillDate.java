@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -15,9 +14,8 @@ import java.time.format.DateTimeParseException;
 public class BillDate {
     public static final String MESSAGE_CONSTRAINTS =
             "Bill date should be like 'yyyy-MM-dd'";
-
-    public final LocalDate localDate;
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public final LocalDate localDate;
 
     /**
      * Constructs a {@code Slot}.
