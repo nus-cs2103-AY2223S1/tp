@@ -50,12 +50,6 @@ public abstract class AbstractSingleItem extends AbstractDisplayItem {
     }
 
     @Override
-    public String getRelativePath(DisplayItem parent) {
-        assert parent instanceof AbstractSingleItem;
-        return getRelativePath((AbstractSingleItem) parent);
-    }
-
-    @Override
     public Set<? extends DisplayItem> getParents() {
         if (parent == null) {
             return Set.of();
