@@ -183,7 +183,7 @@ Adds a client to the LTNS.
 
 Format: `addClient n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ b/BIRTHDAY i/INCOME ra/RISK_APPETITE`
 
-Find a detailed explanation of different input restrictions [here](#Command-format-table).
+Find a detailed explanation of different input restrictions [here](#command-format-table).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A client can have any number of tags (including 0)
@@ -374,7 +374,7 @@ Adds a policy to the LTNS.
 
 Format: `addPolicy ti/TITLE cmp/COMPANY_CODE cms/Y1COMMISION% Y2COMISSION% Y3ONWARDS% cov/COVERAGE...`
 
-Find a detailed explanation of different input restrictions [here](#Command-format-table).
+Find a detailed explanation of different input restrictions [here](#command-format-table).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A policy must have one or more coverages.
@@ -491,7 +491,7 @@ If you have yet to add either your Client or Policy to the Application, you can 
 
 Format: `assign CLIENT_INDEX POLICY_INDEX pr/PREMIUM sd/STARTDATE ed/ENDDATE`
 
-Find a detailed explanation of different input restrictions [here](#Command-format-table).
+Find a detailed explanation of different input restrictions [here](#command-format-table).
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The start and end dates should be of the format "YYYY-MM-DD", and within the years 1900 - 2100.
@@ -556,7 +556,7 @@ Example Usage:
 
 ### Adding an Event: `addEvent`
 
-Find a detailed explanation of different input restrictions [here](#Command-format-table).
+Find a detailed explanation of different input restrictions [here](#command-format-table).
 
 An `Event` represents an appointment with an existing Client. It has the duration (represented by the start and end time) and
 the date of the appointment. It also has a handy description to briefly describe the contents of the meeting.
