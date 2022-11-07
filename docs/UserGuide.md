@@ -51,7 +51,7 @@ means switching from GUI-based applications to CLI code editors.
 Hence, TruthTable allows you to use a **CLI for all your project management needs**, reducing the impact of context
 switching.
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-info">
 **:star: For experienced CLI users:**
 
 TruthTable's command syntax is actually very similar to other command line applications like
@@ -72,38 +72,31 @@ of TruthTable's [features](#key-features-of-truthtable).
 If you are an experienced user of TruthTable, this guide also contains valuable tips on how you can maximise your 
 productivity while using TruthTable.
 
-Here are the symbols and text styles to look out for while using this guide:
+Here are the alerts to look out for while using this guide:
 
-| Symbol               | Meaning                                                                        |
-|----------------------|--------------------------------------------------------------------------------|
-| :information_source: | Important information for all users to take note                               |
-| :bulb:               | Tip for all users                                                              |
-| :star:               | Tip for advanced users                                                         |
-| :exclamation:        | Critical information to be wary of                                             |
+<div markdown="block" class="alert alert-primary">**:information_source: Important alert**:
+Important information for all users to take note
+</div>
+
+<div markdown="block" class="alert alert-success">**:bulb: Tip**:
+Tip for all users
+</div>
+
+<div markdown="block" class="alert alert-info">**:star: Tip**:
+This alert contains helpful information
+</div>
+
+<div markdown="block" class="alert alert-warning">**:exclamation: Warning alert**:
+This alert contains important information to be wary of.
+</div>
+
+Here are some text styles to look out for as well.
 
 | Text Style                 | Meaning                                              |
 |----------------------------|------------------------------------------------------|
 | [Glossary link](#glossary) | Clickable link to navigate to a section in the guide |
 | `text with background`     | Text relevant to the commands or name of a file      |
 | <kbd>Esc</kbd>             | Keyboard button                                      |
-
-Throughout the guide, there will also be alerts that look the following.
-
-<div markdown="block" class="alert alert-dark">**Miscellaneous alert**:
-This alert contains miscellaneous information
-</div>
-
-<div markdown="block" class="alert alert-info">**Important alert**:
-This alert contains important information
-</div>
-
-<div markdown="block" class="alert alert-primary">**Helpful alert**:
-This alert contains helpful information
-</div>
-
-<div markdown="block" class="alert alert-warning">**Warning alert**:
-This alert contains important information to be wary of.
-</div>
 
 ## Table of Contents
 
@@ -268,7 +261,7 @@ Here's a summary of what each highlighted section represents.
 | 6      | Flag/Parameter Name and Alias   | -                      | All aliases of a flag/parameter will be listed and separated with commas (`,`) |
 | 7      | Flag/Parameter Description      | -                      | Brief description of flag/parameter                                            |
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-primary">
 **:information_source: Important note for flags**
 
 - Specifying an "equal" sign (`=`) after the flag is optional, and it has no effect on the command.
@@ -278,7 +271,7 @@ Here's a summary of what each highlighted section represents.
 
 </div>
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-primary">
 **:information_source: Important note for parameters**
 
 Use of quotation marks around parameters (`""` and `''`) is optional.
@@ -301,7 +294,7 @@ For instance,
 - `"'"` is invalid as `'` will be passed as a parameter, which is invalid.
 </div>
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-success">
 **:bulb: Flags with multiple parameters**
 
 If a flag is displayed with `...` behind it, this means that the flag accepts more than 1 parameter.
@@ -311,7 +304,7 @@ A valid command is `assign task 1 -a 1 2 3` where `1 2 3` are recognised as the 
 </div>
 
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 **:star: POSIX clustered short options**: TruthTable supports clustered options as specified 
 <a href="https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html#tag_12_02" target="_blank">here</a>
 </div>
@@ -353,7 +346,7 @@ If you're looking to migrate your team information onto TruthTable, here is a st
 ---
 ## Commands
 
-<div markdown="block" class="alert alert-info">**:information_source: Make sure you have 
+<div markdown="block" class="alert alert-primary">**:information_source: Make sure you have 
 [read this section](#understanding-truthtables-cli) before continuing!**
 </div>
 
@@ -368,7 +361,7 @@ Consequently, the commands are split into **5** main sections:
 4. [Link commands](#commands-to-manage-links--urls)
 5. [General commands](#general-commands)
 
-<div markdown="block" class="alert alert-info">**:information_source: Notes about command format**
+<div markdown="block" class="alert alert-primary">**:information_source: Notes about command format**
 
 - Format for each command adheres to the structure laid out in the 
 [help command section](#example-command-help-message-add-person---help)
@@ -406,11 +399,11 @@ Consequently, the commands are split into **5** main sections:
   - For e.g. `help with extra words` will display an error message
 </div>
 
-<div markdown="block" class="alert alert-info">**:information_source: Parameter constraints can be found 
+<div markdown="block" class="alert alert-primary">**:information_source: Parameter constraints can be found 
 [here](#flag-and-parameter-constraints)**
 </div>
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-success">
 **:bulb: Letter casing for parameters**
 
 Note that the parameters in this user guide are all upper-cased, which differs from the lower-cased parameters in 
@@ -436,7 +429,7 @@ Adds a person to TruthTable.
 | `-p`,`--phone`  | :heavy_check_mark: | Phone of person (e.g. 98765432)         |
 | `-t`,`--tags`   | :x:                | Tags of person (e.g. Frontend, Backend) |
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-success">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
@@ -604,7 +597,7 @@ Delete a team member from the user’s team.
 
 Finds all members in the current team whose names or emails contain any of the given keywords.
 
-<div markdown="span" class="alert alert-info">
+<div markdown="span" class="alert alert-primary">
 :information_source: **Note:** You can find members using **either** emails or names. This means that you 
 should **not** use both `-n` and `-e` in the `find member` command. 
 </div>
@@ -684,7 +677,7 @@ Summary of the commands to manage teams can be found [here](#summary-of-team-com
 
 Add a new team to your list of teams, an error will be displayed if the team name is already in use.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+<div markdown="span" class="alert alert-primary">:information_source: **Note:** 
 Team name must consist only of alphanumeric characters (i.e., **spaces are NOT allowed**).
 </div>
 
