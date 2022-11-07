@@ -6,8 +6,8 @@ title: Tan How Suen's Project Portfolio Page
 ### Project: FRIDAY
 
 FRIDAY is a desktop application used for managing CS1101S students, that is written in Java and built upon AddressBook
-Level 3. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has
-about 10 kLoC.
+Level 3.
+The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 
 Given below are my contributions to the project.
 
@@ -53,6 +53,7 @@ Given below are my contributions to the project.
     * Added documentation for the `remark` feature [\#106](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/106)
     * Added documentation for the `grade` feature [\#116](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/116)
     * Reformatted Command Summary
+    * Added and updated Introduction section to explain the purpose of user guide and the product information.
   * Developer Guide:
     * Added Non-functional requirements
     * Refactored names to update for FRIDAY [\#106](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/106)
