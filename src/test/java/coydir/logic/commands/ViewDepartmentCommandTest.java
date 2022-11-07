@@ -1,8 +1,12 @@
 package coydir.logic.commands;
 
+import static coydir.logic.commands.CommandTestUtil.assertCommandFailure;
 import static coydir.logic.commands.CommandTestUtil.assertViewDepartmentCommandSuccess;
 import static coydir.testutil.TypicalPersons.getTypicalDatabase;
 
+import coydir.logic.commands.exceptions.CommandException;
+import coydir.logic.parser.ViewDepartmentCommandParser;
+import coydir.logic.parser.exceptions.ParseException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -159,6 +163,24 @@ public class ViewDepartmentCommandTest {
     @Test
     public void viewTechnologyDepartmentSuccess() {
         ViewDepartmentCommand viewDepartmentCommand = new ViewDepartmentCommand("Technology");
+        String expectedMessage = String.format(
+                ViewDepartmentCommand.MESSAGE_VIEW_DEPARTMENT_SUCCESS, "Technology");
+        assertViewDepartmentCommandSuccess(viewDepartmentCommand, model, expectedMessage,
+                expectedModel, "Technology");
+    }
+
+    @Test
+    public void viewInvalidDepartmentTest() {
+        ViewDepartmentCommand viewDepartmentCommand = new ViewDepartmentCommand("Tech");
+        String expectedMessage = String.format(
+                ViewDepartmentCommand.MESSAGE_UNKNOWN_DEPARTMENT);
+        assertCommandFailure(viewDepartmentCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void viewDepartmentCaseInsensitiveTest() throws ParseException {
+        ViewDepartmentCommandParser viewDepartmentCommandParser = new ViewDepartmentCommandParser();
+        ViewDepartmentCommand viewDepartmentCommand = viewDepartmentCommandParser.parse("TeChNoLogY");
         String expectedMessage = String.format(
                 ViewDepartmentCommand.MESSAGE_VIEW_DEPARTMENT_SUCCESS, "Technology");
         assertViewDepartmentCommandSuccess(viewDepartmentCommand, model, expectedMessage,

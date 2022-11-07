@@ -40,7 +40,7 @@ public class ViewCommand extends Command {
             return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, personToView.getName()),
                     index.getZeroBased());
         } catch (IndexOutOfBoundsException e) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_INDEX);
         }
     }
 
