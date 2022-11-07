@@ -6,7 +6,6 @@ title: CodeConnect
 [![CI Status](https://github.com/AY2223S1-CS2103T-T14-2/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S1-CS2103T-T14-2/tp/actions/workflows/gradle.yml)
 [![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
 
-![UiTasks](images/UiTasks.png)
 ![UiContacts](images/UiContacts.png)
 
 **CodeConnect is a desktop application for managing contacts and tasks of your modules.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).

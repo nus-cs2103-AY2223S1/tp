@@ -72,6 +72,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public Path getTaskListFilePath() {
+        return model.getTaskListFilePath();
+    }
+
+    @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
     }

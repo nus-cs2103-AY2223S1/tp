@@ -66,6 +66,7 @@ public class EditContactCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownList = model.getFilteredPersonList();
 
+        assert(index.getZeroBased() >= 0);
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }

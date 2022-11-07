@@ -175,6 +175,26 @@ public class MainWindow extends UiPart<Stage> {
         selectionModel.select(0);
     }
 
+    @FXML
+    public void setTasksPath() {
+        try {
+            StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTaskListFilePath());
+            statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        } catch (NullPointerException e) {
+            System.out.println("Not initialized on first run.");
+        }
+    }
+
+    @FXML
+    public void setContactsPath() {
+        try {
+            StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+            statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        } catch (NullPointerException e) {
+            System.out.println("Not initialized on first run.");
+        }
+    }
+
     void show() {
         primaryStage.show();
     }

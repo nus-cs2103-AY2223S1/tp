@@ -2,14 +2,25 @@
 layout: page
 title: Developer Guide
 ---
+
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Introduction
+
+CodeConnect is a **desktop app** specially designed for **Computer Science students from NUS**. With this app, not only can you manage your **tasks and contacts** effectively in one unified place, you can also conveniently search for peers to seek help or collaboration on a particular task.
+
+This developer guide serves both as a **guide for new contributors** to navigate and start working on the project and as a reference to various code and feature **design decisions** for existing developers.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Acknowledgements
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+We use the following libraries in CodeConnect:
+
+* [JChronic](https://mvnrepository.com/artifact/com.rubiconproject.oss/jchronic)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -93,7 +104,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `CodeConnectParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -110,7 +121,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `CodeConnectParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `CodeConnectParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -137,7 +148,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+![Storage component class diagram](images/StorageClassDiagram.png)
 
 The `Storage` component,
 * can save address book data, task list data  and user preference data in json format, and read them back into corresponding objects.
@@ -229,12 +240,8 @@ The `add` command follows the [general command implementation flow](#logic-compo
 #### Design Considerations
 
 * A natural date parser is used because it gives the most flexibility possible in the type of date formats that can be entered, including relative dates ("tomorrow") and abbreviations ("2 Jan").
-* Uniquely, the LocalDateTime within Deadline is expected to be formatted to and from strings by the class's users. This is because different formats and strictnesses are appropriate in different situations.
-  * `ParserUtil.parseDeadline` handles user input, so it uses the NaturalDateParser.
-  * The `Storage` component uses a fixed format string so that saved data can be unambiguously restored.
-  * Deadline(String) uses the format used before natural date parsing to reduce changes to test code.
-* Deadline has a validation function for the input to its string constructor, just like other field classes. The validation is performed by attempting to parse it and checking for errors, as there is no cheaper method in this case.
 * When a date range is specified, the end of the range is used; e.g. a task that's due "tomorrow" will be due 23:59 tomorrow. This is the most common interpretation in our experience.
+* `Deadline`, as a thin data class, only provides constructors from preparsed LocalDateTimes and its own serialization. Parsing user input is handled by other methods, such as `ParserUtil.parseDeadline`. This improves cohesion of the class.
 * The `add` command shares the `m/` prefix for modules with the other commands.
   * The `by/` prefix is chosen for the deadline, as it is a good compromise between brevity and comprehensibility ("do this *by* a certain date").
 
@@ -322,11 +329,11 @@ tasks to be ordered with least recently added task on top.
 quickly. It was considered to be more convenient for a user to be able to see more recent and relevant 
 tasks at the top without having to scroll towards the bottom of the tasklist.
 
-### \[Proposed\] Edit task feature
+### Edit task feature
 
 #### About
 
-CodeConnect will allow the user to edit an existing task in the task list.
+CodeConnect allows the user to edit an existing task in the task list.
 
 Example of command use:
 - `edit 1 m/CS1101S`
@@ -388,29 +395,36 @@ Search for contacts for help with a particular task faster than having to think 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                                    | I want to …​                                                                   | So that I can…​                                                        |
-|----------|------------------------------------------------------------|--------------------------------------------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                                   | see usage instructions                                                         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                                       | add a new person                                                               |                                                                        |
-| `* * *`  | user                                                       | delete a person                                                                | remove entries that I no longer need                                   |
-| `* * *`  | user                                                       | find a person by name                                                          | locate details of persons without having to go through the entire list |
-| `* * *`  | SOC student who has many (computing) modules in a semester | have a platform to keep track of all my submissions/tasks                      |                                                                        |
-| `* * *`  | busy SOC student                                           | keep track of what I have to complete                                          | not miss out on any deadlines                                          |
-| `* * *`  | typical SOC student who has too many assignments           | keep track of the status of my assignments                                     |                                                                        |
-| `* * *`  | SOC student with many assignments and tasks                | use the search feature to find the task I am looking for                       |                                                                        |
-| `* *`    | SOC student working on a group project                     | see all the contacts of those people in my group project                       | easily contact them                                                    |
-| `* *`    | (human) user                                               | enter the deadline of my tasks in multiple formats                             | I don't need to think about the date format when manipulating tasks    |
-| `* *`    | user                                                       | hide private contact details                                                   | minimize chance of someone else seeing them by accident                |
-| `*`      | future thinking SOC CS Student                             | list tasks and events for the next 7 days                                      | plan what I want to do better                                          |
-| `*`      | SOC student with many digital files to organize            | link a task to relevant local files (pdf, pptx, etc.)                          | open them quickly                                                      |
-| `*`      | overwhelmed SOC student                                    | filter tasks by whether or not they are graded                                 | decide on what to do first                                             |
-| `*`      | SOC student                                                | assign an estimated time to complete for each task                             | realistically estimate how much I can accomplish in a day              |
-| `*`      | future thinking SOC student                                | prioritize my tasks                                                            | plan what I should be working on first                                 |
-| `*`      | forgetful SOC student                                      | be greeted (or warned) with a list of urgent/overdue tasks when I open the app | remind myself about them                                               |
-| `*`      | SOC student who has many venues to keep track of           | store the venues associated with my tasks                                      |                                                                        |
-| `*`      | user with many persons in the address book                 | sort persons by name                                                           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …​                                          | I want to …​                                                                   | So that I can …​                                                       | Implemented in Current Version? |
+|----------|--------------------------------------------------|--------------------------------------------------------------------------------|------------------------------------------------------------------------|---------------------------------|
+| `* * *`  | new or forgetful user                            | see usage instructions                                                         | learn how to get started and use the app, if I forget                  | yes                             |
+| `* * *`  | user                                             | add a new contact                                                              | track details of people I know                                         | yes                             |
+| `* * *`  | user                                             | delete a contact                                                               | remove contacts that I no longer need                                  | yes                             |
+| `* *`    | impatient user                                   | delete all contacts                                                            |                                                                        | yes                             |
+| `* *`    | user                                             | edit a contact                                                                 |                                                                        | yes                             |
+| `* * *`  | user                                             | find persons by name                                                           | locate details of persons without having to go through the entire list | yes                             |
+| `* * *`  | user                                             | find persons by module taken                                                   | get a list of people that can help me with a particular module         | yes                             |
+| `* * *`  | user stuck on work                               | find persons by task that I need help with                                     | get help for a particular task quickly                                 | yes                             |
+| `* * *`  | user                                             | add a new task                                                                 | record important to-do's                                               | yes                             |
+| `* *`    | user                                             | be able to enter the deadline of my tasks in multiple formats                  | not need to think about the date format when manipulating tasks        | yes                             |
+| `* * *`  | user                                             | delete a task                                                                  | remove contacts that are irrelavant                                    | yes                             |
+| `* * *`  | user                                             | mark a task as complete                                                        |                                                                        | yes                             |
+| `* * *`  | user                                             | mark a task as not complete                                                    |                                                                        | yes                             |
+| `* * *`  | user with multiple deadlines                     | list tasks by deadline                                                         | prioritise what to do first                                            | yes                             |
+| `* *`    | future thinking SOC student                      | prioritize my tasks                                                            | plan what I should be working on first                                 | yes                             |
+| `* *`    | user                                             | edit a task                                                                    | change deadline if it is updated                                       | yes                             |
+| `* * *`  | user with many tasks                             | find a task by name                                                            | locate details of tasks without having to go through the entire list   | yes                             |
+| `* * *`  | user with many tasks                             | find a task by module it belongs to                                            | know what tasks I must do for a particular module                      | yes                             |
+| `* *`    | impatient user                                   | delete all completed tasks at once                                             | conveniently clean my task list                                        | yes                             |
+| `* *`    | SOC student working on a group project           | see all the contacts of those people in my group project                       | easily contact them                                                    | no                              |
+| `* *`    | user                                             | hide private contact details                                                   | minimize chance of someone else seeing them by accident                | no                              |
+| `*`      | future thinking SOC CS Student                   | list tasks and events for the next 7 days                                      | plan what I want to do better                                          | no                              |
+| `*`      | SOC student with many digital files to organize  | link a task to relevant local files (pdf, pptx, etc.)                          | open them quickly                                                      | no                              |
+| `*`      | overwhelmed SOC student                          | filter tasks by whether or not they are graded                                 | decide on what to do first                                             | no                              |
+| `*`      | SOC student                                      | assign an estimated time to complete for each task                             | realistically estimate how much I can accomplish in a day              | no                              |
+| `*`      | forgetful SOC student                            | be greeted (or warned) with a list of urgent/overdue tasks when I open the app | remind myself about them                                               | no                              |
+| `*`      | SOC student who has many venues to keep track of | store the venues associated with my tasks                                      |                                                                        | no                              |
+| `*`      | user with many persons in the address book       | sort persons by name                                                           | locate a person easily                                                 | no                              |
 
 ### Use cases
 
@@ -550,13 +564,11 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `listc` command. Multiple persons in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
@@ -566,8 +578,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 

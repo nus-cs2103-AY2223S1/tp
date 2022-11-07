@@ -14,6 +14,10 @@ public class CanHelpWithTaskPredicate implements Predicate<Person> {
     private final Index taskIndex;
     private Task task;
 
+    public CanHelpWithTaskPredicate(Index taskIndex) {
+        this.taskIndex = taskIndex;
+    }
+
     public CanHelpWithTaskPredicate(int taskIndex) {
         this.taskIndex = Index.fromOneBased(taskIndex);
     }
@@ -25,7 +29,7 @@ public class CanHelpWithTaskPredicate implements Predicate<Person> {
      * @return {@code Predicate} to execute on the person.
      */
     public static CanHelpWithTaskPredicate withTask(Task task) {
-        CanHelpWithTaskPredicate predicate = new CanHelpWithTaskPredicate(1);
+        CanHelpWithTaskPredicate predicate = new CanHelpWithTaskPredicate(Index.fromOneBased(1));
         predicate.setTask(task);
         return predicate;
     }
