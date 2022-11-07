@@ -1,0 +1,84 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HealthcareXpressParser" as HealthcareXpressParser LOGIC_COLOR
+participant ":UndoUnmarkCommandParser" as UndoUnmarkCommandParser LOGIC_COLOR
+participant "m:UndoUnmarkCommand" as UndoUnmarkCommand LOGIC_COLOR
+participant ":InternalEditor" as InternalEditor LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("unmark userInput")
+activate LogicManager
+
+LogicManager -> HealthcareXpressParser : parseCommand("unmark userInput")
+activate HealthcareXpressParser
+
+create UndoUnmarkCommandParser
+HealthcareXpressParser -> UndoUnmarkCommandParser
+activate UndoUnmarkCommandParser
+
+UndoUnmarkCommandParser --> HealthcareXpressParser
+deactivate UndoUnmarkCommandParser
+
+HealthcareXpressParser -> UndoUnmarkCommandParser : parse("userInput")
+activate UndoUnmarkCommandParser
+
+create UndoUnmarkCommand
+UndoUnmarkCommandParser -> UndoUnmarkCommand
+activate UndoUnmarkCommand
+
+UndoUnmarkCommand --> UndoUnmarkCommandParser : m
+deactivate UndoUnmarkCommand
+
+UndoUnmarkCommandParser --> HealthcareXpressParser : m
+deactivate UndoUnmarkCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+UndoUnmarkCommandParser -[hidden]-> HealthcareXpressParser
+destroy UndoUnmarkCommandParser
+
+HealthcareXpressParser --> LogicManager : m
+deactivate HealthcareXpressParser
+
+LogicManager -> UndoUnmarkCommand : execute()
+activate UndoUnmarkCommand
+
+Create InternalEditor
+UndoUnmarkCommand -> InternalEditor
+activate InternalEditor
+
+InternalEditor --> UndoUnmarkCommand
+deactivate InternalEditor
+
+UndoUnmarkCommand -> InternalEditor : editPatient()
+activate InternalEditor
+
+InternalEditor -> Model : setPerson()
+activate Model
+
+Model --> InternalEditor
+deactivate Model
+
+deactivate InternalEditor
+
+create CommandResult
+UndoUnmarkCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> UndoUnmarkCommand
+deactivate CommandResult
+
+UndoUnmarkCommand --> LogicManager : result
+deactivate UndoUnmarkCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

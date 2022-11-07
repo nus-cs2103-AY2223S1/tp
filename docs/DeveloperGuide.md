@@ -267,7 +267,7 @@ The following sequence diagram shows how unmarking a dateslot works:
 
 ![UnmarkSequenceDiagram](images/UnmarkSequenceDiagram.png)
 
-The following activity diagram shows what happens when a user marks an appointment as visited.
+The following activity diagram shows what happens when a user unmarks a dateslot.
 
 ![UnmarkActivityDiagram](images/UnmarkActivityDiagram.png)
 
@@ -282,6 +282,53 @@ The following activity diagram shows what happens when a user marks an appointme
 - **Alternative 2:** Make no changes and raise no exceptions.
   - Pros: Easier to implement and test.
   - Cons: User may have erroneously unmarked the wrong dateslot, and may not notice.
+
+### Undounmark feature
+
+#### Implementation for remarking dateslots of Patients
+
+The undo unmarking mechanism is facilitated by `Patient`, `Nurse`, `UndoUnmarkCommandParser`, `UndoUnmarkCommand`, `Model`, `AddressBook`, and `UniquePersonList`.
+
+The `HealthcareXpressParser` will take in user input and recognise it as an `UndoUnmarkCommand`, and pass on the user input to `UndoUnmarkCommandParser`.
+
+`UndoUnmarkCommandParser` will then identify the Patient of interest, by parsing the uid provided by the user.
+
+`UndoUnmarkCommandParser` will also identify the dateslot index given by the user.
+
+`UndoUnmarkCommandParser` returns an `UndoUnmarkCommand`.
+
+Upon execution, the `UndoUnmarkCommand` will check if the uid refers to a valid patient. If so, it will check if the dateslot at the specified dateslot is currently marked. If it is unmarked, it will undo the unmarking.
+
+Given below is an example usage scenario and how the undo unmark mechanism works.
+
+Step 1. The user enters the command `undounmark id/1 dsi/1` command to undo the unmarking of the dateslot at index 1 of the dateslot list of the Patient with uid of 1.
+
+Step 2. The `HealthcareXpressParser` will parse the user command and pass the input to the `UndoUnmarkCommandParser`
+
+Step 3. The `UndoUnmarkCommandParser` will parse the uid and dateslot index, and ensure that both are present. It will then return an `UndoUnmarkCommand` with the uid and dateslot index.
+
+Step 4. The `UndoUnmarkCommand` will execute, creating an `InternalEditor` to update the dateslot list of the patient with the dateslot at the specified dateslot index marked.
+
+The following sequence diagram shows how undoing an unmarking works:
+
+![UndoUnmarkSequenceDiagram](images/UndoUnmarkSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user undos an unmark.
+
+![UndoUnmarkActivityDiagram](images/UndoUnmarkActivityDiagram.png)
+
+#### Design considerations
+
+** Aspect: Undo unmarking DateSlots that have already been marked: **
+
+- **Alternative 1 (chosen):** Print an error message to inform the user that the dateslot has been marked.
+  - Pros: User will be made aware that they have probably erroneously marked the wrong dateslot, and make the necessary correction.
+  - Cons: More difficult to implement, requires more thorough testing.
+
+- **Alternative 2:** Make no changes and raise no exceptions.
+  - Pros: Easier to implement and test.
+  - Cons: User may have erroneously marked the wrong dateslot, and may not notice.
+
 
 ### List feature
 

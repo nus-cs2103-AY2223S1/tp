@@ -1,0 +1,25 @@
+@startuml
+!include style.puml
+
+start
+:User executes mark command;
+
+if () then ([uid and dateslot index are both present])
+    if () then ([uid refers to a valid patient])
+        if () then ([dateslot index is valid])
+            if () then ([dateslot at index is unmarked])
+                :Mark the dateslot at the index for the patient with uid;
+            else ([else])
+                :Show error message about dateslot already being marked;
+            endif
+        else ([else])
+            :Show error message about dateslot index being invalid;
+        endif
+    else ([else])
+        :Show error message about invalid uid;
+    endif
+else ([else])
+    :Show error message about missing uid and/or missing dateslot index;
+endif
+stop
+@enduml
