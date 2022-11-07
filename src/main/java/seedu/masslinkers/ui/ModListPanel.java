@@ -48,7 +48,7 @@ public class ModListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code StudentCard}.
      */
-    static class ModListViewCell extends ListCell<Mod> {
+    class ModListViewCell extends ListCell<Mod> {
         @Override
         protected void updateItem(Mod module, boolean isEmpty) {
             super.updateItem(module, isEmpty);

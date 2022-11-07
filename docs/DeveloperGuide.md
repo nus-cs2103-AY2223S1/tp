@@ -59,7 +59,7 @@ Given below is a quick overview of the main components and how they interact wit
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/masslinkers/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T11-4/tp/blob/master/src/main/java/seedu/masslinkers/MainApp.java). It is responsible for,
 * At app launch: Initialises the components in the correct sequence and connects them up with each other.
-* At shutdown: Shuts down the components and invoke cleanup methods where necessary.
+* At shutdown: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
