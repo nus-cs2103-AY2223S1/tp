@@ -7,11 +7,13 @@ title After "down" key pressed
 
 package previousCommands {
     class PreviousCommand1 as "ls -u"
-    class PreviousCommand2 as " "
+    class PreviousCommand2 as " mark 1 "
+    class PreviousCommand3 as " "
 }
 
 PreviousCommand1 -[hidden]right-> PreviousCommand2
+PreviousCommand2 -[hidden]right-> PreviousCommand3
 
 class Pointer as "pointer" #FFFFFF
-Pointer -up-> PreviousCommand2
+Pointer -up-> PreviousCommand3
 @enduml

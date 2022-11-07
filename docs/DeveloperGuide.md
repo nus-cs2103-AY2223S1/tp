@@ -12,12 +12,12 @@ Welcome to the NotionUS developer guide!
 
 ## **1. Introduction**
 
-### **1.1 Purpose**
+### 1.1 Purpose
 This document describes the architecture and software design decisions for our CLI-based task management app NotionUS.
 While the document is in general for anyone who wants to understand the system, it is primarily targeted towards the
 designers, developers and software testers of notionUS.
 
-### **1.2 Scope**
+### 1.2 Scope
 As the goal of this document is to cover and explain the architecture and design decisions, we first discuss
 the high-level architecture and software design under the "Design" section. Then we go into details of
 implementation of our features in the "Implementation" section.
@@ -287,7 +287,7 @@ This feature uses the following methods from the `Model` interface:
 
 #### 5.3.2 Usage scenario
 
-Given below is an example usage scenario and how the mechanism behaves at each step to execute the `ls -u --module CS2103T` command.
+Given below is an example usage scenario and how the mechanism behaves at each step to execute the `ls -u --module CS2103T` command. 
 
 **Step 1.** The user enters `ls -u --module CS2103T` to filter out tasks that are unmarked and under the `Module` "CS2103T".
 
@@ -299,16 +299,13 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 
 **Step 5.** Meanwhile, `ListCommandParser#getPredicate("--module CS2103T")` returns an instance of `ListModuleCommandParser` as the `--module` flag expects a parameter, that has to be parsed.
 
-**Step 6.** `ListCommandParser` calls `ListModuleCommandParser#getPredicate(String)` method.
-* `ListModuleCommandParser` conducts a validity check by calling `ParserUtil#parseModule(String)`. If the module is invalid, a `ParseException` will be thrown and execution will halt.
-  * Details of `ParserUtil#parseModule(String)` are omitted as they are not significant to demonstrate execution of the `ListCommand`.
-* A new instance of `ModuleContainsKeywordsPredicate` is created and returned.
+**Step 6.** `ListCommandParser` calls `ListModuleCommandParser#getPredicate(String)` method. A new instance of `ModuleContainsKeywordsPredicate` is created and returned.
 
 **Step 7.** A new `ListCommand` instance is instantiated. Both predicates, `TaskIsDonePredicate` from **Step 4** and `ListModuleCommandPredicate` from **Step 6** are passed into the `ListCommand` constructor. `ListCommand` instance is returned to `LogicManager`.
 
 Below is the sequence diagram for the partial execution of `ls -u --module CS2103T` up till **Step 7**.
 
-![Partial sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram1.png)
+![Partial sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram1-0.png)
 
 **Step 8.** `LogicManager` calls the `ListCommand#execute()` method.
 
@@ -322,10 +319,6 @@ Below is the sequence diagram for the partial execution of `ls -u --module CS210
 
 ![Partial sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram2.png)
 
-Below is the sequence diagram for the complete execution of `ls -u --module CS2103T`.
-
-![Sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram.png)
-
 ### 5.4 Returning to a previous command
 
 #### 5.4.1 Implementation
@@ -335,6 +328,9 @@ it works in a terminal.
 
 This mechanism of returning to previous commands is facilitated by `CommandHistory`. It works with `CommandBox`, storing
 entered commands internally in `previousCommands` and controls the traversal with the aid of `pointer`.
+* `previousCommands` – An [ArrayList](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/ArrayList.html) storing `String`s
+* `pointer` - An `int` variable that points to a `String` in `previousCommands`
+
 Additionally, it implements the following operations:
 
 * `CommandHistory#add(String)` – Saves the entered command into the history.
@@ -359,22 +355,26 @@ stores this command into `previousCommands`.
 
 **Step 3.** The user presses on the `up` key to return to the previously entered command. This action calls
 the `CommandHistory#up()` which will shift `pointer` once to the left, pointing it to the previous command in history,
-and feeds this String back to the command box.
+and feeds this String `ls -u` back to the command box.
 
 ![State diagram 2 of up/down key](images/UpDownState2.png)
 
-**Step 4.** The user presses on the `down` key to traverse down the history. This action calls the `CommandHistory#up()`
-which will shift `pointer` once to the right. Since the `pointer` is already pointing to the latest command in history,
-there are no more commands to be returned to.
+**Step 4.** The user enters another command `mark 1`. Through the same mechanism as in Step 1, this command will be stored into `previousCommands`.
+`pointer` will be reset to the last position. 
+
+![State diagram 3 of up/down key](images/UpDownState4.png)
+
+**Step 5.** The user presses on the `down` key to traverse down the history. This action calls the `CommandHistory#down()` method
+which will shift `pointer` once to the right. Since the `pointer` is pointing outside of the arrayList, there is no command to be restored. 
 Hence, the command box will be cleared.
 
-![State diagram 3 of up/down key](images/UpDownState3.png)
+![State diagram 3 of up/down key](images/UpDownState5.png)
 
 The following activity diagram summarizes what happens when a user clicks on the `up`/`down` keys.
 
 ![Activity diagram of up/down key](images/UpDownKeyActivityDiagram.png)
 
-#### 5.4.3 Design considerations:
+#### 5.4.3 Design considerations
 
 **Aspect: How command history is stored:**
 
@@ -420,7 +420,7 @@ Step 4. The user adds the required additional information if required and then h
 Below is an activity diagram to display how the feature works:
 ![AutocompleteActivityDiagram](images/AutocompleteActivityDiagram.png)
 
-#### 5.5.2 Design considerations:
+#### 5.5.2 Design considerations
 
 **Aspect: Filtering commandList to find matching commands:**
 
@@ -915,7 +915,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with corrupted data files
 
-    1. Open `addressbook.json`. There are some preloaded tasks in this file.
+    1. Open `taskList.json`. There are some preloaded tasks in this file.
 
     2. In line 2, change `tasks` to `task`. This corrupts the file and system will recognise the mismatch.
 
@@ -925,14 +925,14 @@ testers are expected to do more *exploratory* testing.
     4. Add a new task by entering `add -n Tutorial 1 -m CS2100` <br>
        Expected: Task will be added into empty task list. Now, task list contains 1 task.
 
-    5. Open `addressbook.json` again. <br>
+    5. Open `taskList.json` again. <br>
        Expected: Tasks that were present prior to the corruption are now gone. Task list contains only one task (`Tutorial 1`).
 
 2. Dealing with missing data files
 
-    1. Open `addressbook.json`. There are some preloaded tasks in this file.
+    1. Open `taskList.json`. There are some preloaded tasks in this file.
 
-    2. Delete `addressbook.json` manually.
+    2. Delete `taskList.json` manually.
 
     3. Follow Steps 3-5 of the above "Dealing with corrupted data files". Expected behaviour is the same.
 
