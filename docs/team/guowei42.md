@@ -5,7 +5,10 @@ title: Guo Wei's Project Portfolio Page
 
 ### Project: TAB
 
-TAB is a desktop address book application used for helping Professors and TAs in their daily tasks. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Teacher’s Address Book (TAB) is a **desktop app made for teachers, teaching assistants(TA) and professors for managing
+contacts of each other, as well as their students, optimized for use via a Command Line Interface** (CLI) while still
+having the benefits of a Graphical User Interface (GUI). If you can type fast, TAB can get your contact management tasks
+done faster than traditional GUI apps.
 
 Given below are my contributions to the project.
 
@@ -29,16 +32,24 @@ Given below are my contributions to the project.
     * Managed releases `v1.2`
 
 * **Enhancements to existing features**:
-    * _{WIP}_
+    * Increased code testing coverage by `+3.11%`. [#157](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/157)
+    * Modified Regex to fit project requirement [#32](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/32)
+    * Implemented Remark feature [#31](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/31)
 
 * **Documentation**:
     * User Guide:
-        * Added some FAQs
-        * _{WIP}_
+        * Added FAQs such as proper way to delete a file
     * Developer Guide:
         * Added diagrams for Features implemented above
-        * _{WIP}_
 
 * **Community**:
-    * Reviewed PRs #93, #92, #85, #75, #74, #61
+    * Reviewed PRs [#61](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/61),
+[#74](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/74), 
+[#75](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/75), 
+[#85](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/85),
+[#92](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/92), 
+[#93](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/93),
+[#148](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/148),
+[#152](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/152),
+[#158](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/158)
 
