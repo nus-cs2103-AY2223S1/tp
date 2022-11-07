@@ -38,7 +38,7 @@ This guide contains all you need to get started on working with GithubContact.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest GithubContact.jar from [here](https://github.com/AY2223S1-CS2103T-W08-2/tp/releases).
+2. Download the latest githubContact.jar from [here](https://github.com/AY2223S1-CS2103T-W08-2/tp/releases).
 
 3. Copy the file to the folder you want to use as the home folder for your GithubContact.
 
