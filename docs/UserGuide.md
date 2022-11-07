@@ -130,7 +130,7 @@ If a command was not successfully executed, the text within the command input bo
 
 ### 2. Buyer List
 You can find the buyer list located at the left section of the window.<br><br>
-![Buyer List](images/BuyerList.png)<br><br>
+<img src="images/BuyerList.png" width="300" /><br><br>
 The __Buyer List__ displays information regarding buyers who are currently stored in Cobb's database. The buyer list
 might not be showing *all* the buyers in the database all the time (see [FAQ](#faq)).
 
@@ -138,7 +138,7 @@ The buyer list can be filtered and modified using commands given in the [feature
 
 ### 3. Property List
 You can find the property list located at the right section of the window.<br><br>
-![Property List](images/PropertyList.png)<br><br>
+<img src="images/PropertyList.png" width="300" /><br><br>
 The __Property List__ displays information regarding properties that are currently stored in Cobb's database. The property list
 might not be showing *all* the properties in the database all the time (see [FAQ](#faq)).
 
