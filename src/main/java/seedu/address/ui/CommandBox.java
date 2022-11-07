@@ -186,6 +186,7 @@ public class CommandBox extends UiPart<Region> {
                 return;
             } else if (isMostRecentInCommandHistory()) {
                 textField.setText(getCurrentCommand());
+                index++;
             } else {
                 textField.setText(commandHistory.get(++index));
             }
