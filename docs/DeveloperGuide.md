@@ -407,7 +407,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `   | fast-typing user   | type a command to switch between different tabs | do not need to use my mouse                                                              |
 | `* *`    | fast-typing user   | type a command to exit Modquik                  | do not need to use my mouse                                                              |
 
-### 7.3 Use cases
+### 7.3 Use Cases
 
 (For all use cases below, the **System** is the `ModQuik`, the **Actor** is the `user`, and **entries** can be either of type `student`, `tutorial`, `consultation` or `reminder`, unless specified otherwise)
 
@@ -543,11 +543,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
         Use case ends.
 
-* 1b. The reminder does not exist.
+* 1b. The given index is invalid.
 
-    * 1b1. System shows an error message that the reminder does not exist. 
-      
-        Use case ends.
+    * 1b1. System shows an error message that the index of the entry is invalid.
+
+      Use case ends.
 
 **Use case: Unmark a reminder**
 
@@ -566,11 +566,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
         Use case ends.
 
-* 1b. The reminder does not exist.
+* 1b. The given index is invalid.
 
-    * 1b1. System shows an error message that the reminder does not exist. 
-      
-        Use case ends.
+    * 1b1. System shows an error message that the index of the entry is invalid.
+
+      Use case ends.
 
 **Use case: Sort reminder**
 
