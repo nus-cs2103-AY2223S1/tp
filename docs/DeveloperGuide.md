@@ -576,6 +576,10 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `add Math assignment m/ by/2022-01-02 3:45pm`
    
       Expected: The command turns red and the result box shows an error message. No tasks are added.
+      
+   1. Test case: `add Programming assignment m/CS1234 by/2022-01-02 4pm`
+   
+      Expected: The command turns red and the result box shows an error message. No tasks are added.
 
 1. Listing tasks
 
@@ -611,7 +615,7 @@ testers are expected to do more *exploratory* testing.
    
    1. Test case: `find n/asdfghjk`
    
-      Expected: The app switches to the Task tab. No tasks are shown. The result box displays a message about listing matching tasks.
+      Expected: The app switches to the Task tab. No tasks are shown. The result box displays a message about listing tasks.
    
 1. Marking and unmarking tasks
 
@@ -645,11 +649,11 @@ testers are expected to do more *exploratory* testing.
    
    1. Test case: `edit 1 m/CS1234`
    
-      Expected: The 1st task in the list has its module set to `CS1234`. The result box displays a message about the task being edited.
+      Expected: The app switches to the Task tab. The 1st task in the list has its module set to `CS1234`. The result box displays a message about the task being edited.
    
    1. Test case: `edit 1 m/CS1234`
    
-      Expected: The 1st task in the list does not change. The result box displays a message about the task being edited.
+      Expected: The app switches to the Task tab. The 1st task in the list does not change. The result box displays a message about the task being edited.
       
    1. Test case: `edit 1 n/Programming assignment`
    
@@ -667,17 +671,29 @@ testers are expected to do more *exploratory* testing.
 
    1. Run `list time` to change the sort order.
    
-   1. Test case: `delete -1`
+   1. Test case: `del -1`
    
       Expected: The command turns red and the result box shows an error message. The tasks shown in the tasks tab do not change.
    
-   1. Test case: `delete`
+   1. Test case: `del`
+   
+      Expected: The command turns red and the result box shows an error message. The tasks shown in the tasks tab do not change.
+      
+   1. Test case: `del 1 n/Hello`
    
       Expected: The command turns red and the result box shows an error message. The tasks shown in the tasks tab do not change.
    
-   1. Test case: `delete 1`
+   1. Test case: `del 1`
    
       Expected: The app switches to the Task tab. The list is still sorted by increasing deadline. The 1st task in the list is deleted. The result box displays the matching message.
+      
+1. Clearing completed tasks
+
+   1. Prerequisites: At least one, but not all, tasks are marked. (if you're following this guide, `mark 2`)
+   
+   1. Test case: `clean now`
+   
+      Expected: The app switches to the Task tab. The list is still sorted and filtered like before the command. All marked tasks and none of the unmarked tasks are deleted. The result box displays the matching message.
 
 ### Deleting a person
 
