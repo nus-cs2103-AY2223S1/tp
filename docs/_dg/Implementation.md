@@ -24,3 +24,7 @@ There are four main groups of features that are implemented:
 ### General Features
 
 {% include_relative _dg/implementations/GeneralFeatures.md %}
+
+### User Interface
+
+{% include_relative _dg/implementations/UserInterface.md %}

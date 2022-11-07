@@ -1,0 +1,33 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+Class "<<interface>>\nViewable" as Viewable
+
+Class FilterByTagView
+Class ItemView
+Class ItemWithMessageView
+Class StatsView
+Class StringView
+Class TagToRenameView
+Class TagView
+Class TagsView
+Class TagsWithMessageView
+
+FilterByTagView ..|> Viewable
+ItemView ..|> Viewable
+ItemWithMessageView ..|> Viewable
+StatsView ..|> Viewable
+StringView ..|> Viewable
+TagToRenameView ..|> Viewable
+TagView ..|> Viewable
+TagsView ..|> Viewable
+TagsWithMessageView ..|> Viewable
+
+Class UiView
+
+Viewable -- UiView
+
+@enduml
