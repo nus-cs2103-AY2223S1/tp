@@ -469,7 +469,7 @@ CommandQueue and re-executes _n - 1_ commands on undo.
 
 ### Product scope
 
-***Target user profile**:
+**Target user profile**:
 
 * middle-aged property agent selling new condos to prospective clients
 * has a need to manage a significant number of property listings and clients
@@ -585,22 +585,27 @@ Use case ends.
 Use Case ends.
 
 3a. The given input is missing a required parameter
+
 3a1. Condonery shows an error message with an example of correct input with all the required arguments
 Use case resumes at step 3.
 
 3b. The given input is missing a required prefix
+
 3b1. Condonery shows an error message with an example of correct input with all the required arguments
 Use case resumes at step 3.
 
 3c. The input did not specify a index
+
 3c1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 Use case resumes at step 3.
 
 3d. The input's specified index does not exist in the Property Directory
+
 3d1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 Use case resumes at step 3.
 
 3e. The input's specified index is in the wrong format.
+
 3e1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 Use case resumes at step 3.
 
@@ -616,6 +621,7 @@ Use case ends
 **Extensions**
 
 1a. Specified type is not one of `HDB`, `CONDO`, or `LANDED`
+
 1a1. Condonery shows an error message stating that only `HDB`, `CONDO`, or `LANDED` values are accepted.
 Use case resumes at step 1.
 
@@ -631,6 +637,7 @@ Use case ends
 **Extensions**
 
 1a. Specified type is not one of `AVAILABLE`, `PENDING`, or `SOLD`
+
 1a1. Condonery shows an error message stating that only `AVAILABLE`, `PENDING`, or `SOLD` values are accepted.
 Use case resumes at step 1.
 
@@ -638,15 +645,17 @@ Use case resumes at step 1.
 
 **MSS**
 
-
 1. User requests to link an Interested Client to a Property
 2. Interested Client is successfully linked to the specified Property
 
 **Extensions**
 
 1a. Specified client name does not exist in the Client Directory
+
 1a1. Condonery shows an error message
+
 1b. Specified index does not exist in the Property Directory
+
 1b1. Condonery shows an error message stating that the property index is invalid
 
 #### Use Case 8: Finding a Property by name
@@ -684,9 +693,11 @@ Use case ends.
 **Extensions**
 
 1a. Specified index does not exist in the Property Directory
+
 1a1. Condonery shows an error message stating that the property index is invalid
 
 1b. The input did not specify a index
+
 1b1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 
 #### Use Case 12: Filtering properties within a price range
@@ -699,8 +710,11 @@ Use case ends.
 **Extensions**
 
 1a. Specified upper price range is lower than the lower price range
+
 1a1. Condonery shows an error message stating that an invalid price range was given
+
 1b. Negative numbers were given
+
 1b1. Condonery shows an error message stating that an invalid price range was given
 
 
@@ -907,8 +921,8 @@ Finding clients in the Client List with name
      - Expected: Client List will display all clients with matching name of `John`
    - Test case (finding client name of `John Lee` with exact match): `find -c John Lee`
      - Expected: Client List will display all clients with matching name of `John Lee`
-
-   ###Filtering clients by tags
+     
+### Filtering clients by tags
 Finding all clients in the Client List with specified tags
    Prerequisites: Client List must contain at least one Client.
    - Test case (finding properties with tag of `friend`): `filter -c friend`
