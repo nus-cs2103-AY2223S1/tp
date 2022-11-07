@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.hrpro.commons.core.Messages.MESSAGE_TASKS_LISTED_PLURAL_OVERVIEW;
+import static seedu.hrpro.commons.core.Messages.MESSAGE_TASKS_LISTED_SINGULAR_OVERVIEW;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.hrpro.testutil.TypicalHrPro.getTypicalHrPro;
 import static seedu.hrpro.testutil.TypicalTasks.TASK_1;
@@ -72,6 +73,16 @@ public class FindTaskCommandTest {
         expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(TASK_1, TASK_2, TASK_3), model.getFilteredTaskList());
+    }
+
+    @Test
+    public void execute_oneKeyword_oneTaskFound() {
+        String expectedMessage = String.format(MESSAGE_TASKS_LISTED_SINGULAR_OVERVIEW, 1);
+        TaskDescriptionContainsKeywordsPredicate predicate = preparePredicate("assign");
+        FindTaskCommand command = new FindTaskCommand(predicate);
+        expectedModel.updateFilteredTaskList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(TASK_1), model.getFilteredTaskList());
     }
 
     /**
