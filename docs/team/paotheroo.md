@@ -35,12 +35,16 @@ Given below are my contributions to the project.
   * Synced the `sortByPriority` and `sortByDeadline` features into a single `sort` command (Pull request [\#112](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/112))
   * Bugfixed the `addTask` feature (Pull request [\#171](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/171))
 
+* **Tests**:
+  * Added test cases for `EditTaskCommandParser` and `FindTaskCommandParser` (Pull request [\#232](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/232))
+
 * **Documentation**:
   * User Guide:
-    * Added documentation for the `listTasks` feature (Pull request [\#108](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/108))
+    * Added documentation for the `listTasks` and `findTask` feature (Pull requests [\#108](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/108), [\#194](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/194))
   * Developer Guide:
     * Added non-function requirements (Pull request [\#21](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/21))
-    * Added implementation details of the `filterByDeadline` feature (Pull request [\#108](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/108))
+    * Added implementation details for the `filterByDeadline`, `findTask` and `listTasks` features (Pull request [\#108](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/108), [\#227](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/227), [\#230](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/230))
+    * Updated implementation details for the `filter` feature to reflect the syncing of the `filterByCategory` and `filterByDeadline` features (Pull request [\#231](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/231))
 
 * **Community**:
   * PRs reviewed: [\#42](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/42), [\#88](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/88), [\#184](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/183)
