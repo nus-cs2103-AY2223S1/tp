@@ -36,7 +36,6 @@ public class TypicalModules {
             .withModuleCredit(4)
             .build();
 
-
     public static final Module CS2030S = new ModuleBuilder().withModuleCode("CS2030S")
         .withModuleName("Programming Methodology for CS students").withModuleCredit(4).build();
     public static final Module CS2040S = new ModuleBuilder().withModuleCode("CS2040S")

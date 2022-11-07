@@ -8,6 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CREDIT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_NAME;
 
+import java.util.regex.Pattern;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -20,6 +22,8 @@ import seedu.address.model.module.ModuleName;
  */
 public class EditModuleCommandParser implements Parser<EditModuleCommand> {
 
+    private final Pattern pattern = Pattern.compile("(-|\\+)?\\d+(\\.\\d+)?");
+
     /**
      * Parses the given {@code String} of arguments in the context of the EditModuleCommand
      * and returns an EditModuleCommand object for execution.
@@ -30,10 +34,9 @@ public class EditModuleCommandParser implements Parser<EditModuleCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MOD_CODE, PREFIX_MOD_NAME, PREFIX_MOD_CREDIT);
 
-        try {
-            Integer.parseInt(argMultimap.getPreamble());
-        } catch (NumberFormatException ne) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditModuleCommand.MESSAGE_USAGE));
+        if (!pattern.matcher(argMultimap.getPreamble()).matches()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditModuleCommand.MESSAGE_USAGE));
         }
 
         Index index;

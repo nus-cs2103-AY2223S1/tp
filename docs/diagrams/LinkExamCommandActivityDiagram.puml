@@ -1,0 +1,30 @@
+@startuml
+start
+:User executes LinkExamCommand;
+if () then ([invalid command format])
+    :Display invalid command format error message;
+else ([else])
+    if () then ([invalid task index])
+    :Display invalid task index shown error message;
+
+    else ([else])
+        if () then ([invalid exam index])
+        :Display invalid exam index shown error;
+        else ([else])
+            if () then ([task is already linked])
+            :Display task is task is already linked error;
+            else ([else])
+                :Link task to the exam;
+                :Display message that task has been linked successfully;
+            endif
+        endif
+    endif
+endif
+
+
+
+
+
+stop
+
+@enduml
