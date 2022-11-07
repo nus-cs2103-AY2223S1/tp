@@ -88,14 +88,17 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` and `Notes` object residing in the `Model`.
 
-#### UI Elements
+This component may be controlled by commands through the `CommandResult` class, which specifies an optional `UiState` that the program should be in at the end of the command execution. This is parsed finally in the `MainWindow::executeCommand` which invokes necessary changes to the UI.
 
+For more information related to the implementation of the UI, please review the section [UI Features](#ui-features).
+
+#### UI Elements
+![](images/UiLabeled.png)
 1. **Command Box**: A text box that allows users to enter in commands for later execution.
 2. **ResultDisplay**: A readonly text box that serves as a console to give feedback from the `Logic` component to the user, such as error messages or logs.
 3. **Person List**: A horizontal sliding list that displays all persons in the SectresBook. This list can be filtered to display only relevant people according to some predicate.
 4. **Note List**: A vertical sliding list that displays all notes in the SectresBook. This list can be filtered to display only relevant notes according to some predicate.
 5. **Person Inspect Panel**: This Panel displays data of a person, using the UI command `inspect`.
-6. **Status Bar Footer**: This footer displays the address where the data file is saved to.
 
 ### Logic component
 
@@ -180,14 +183,18 @@ A person object contains editable properties:
     - Records the email address of the person
 4. Address
     - Records the home address of the person
-5. Tag
+5. Birthday
+    - Records the birthday of the person
+6. Tag
     - Optionally tags the person with a variable number of tags for easy reference within the SectresBook.
 
-And a non-editable property:
+And a non-editable properties:
 1. Loan
     - Tracks the current loan amount of the person. A positive number means that the person currently owes money to the club, a negative number means that money is due to be paid to the person.
+2. List of Loan Histories
+    - Tracks the transactional history of incoming and outgoing loans. Each Loan History comprises a Loan and a Record.
 
-During instantiation, a person object can be declared with all fields, but during editing, Loan must use a specialised command to transform its data.
+During instantiation, a person object can be declared with all fields, but during editing, Loan must use a specialised command `editLoan` to transform its data.
 
 ## Properties of Note Objects
 
@@ -211,11 +218,15 @@ During instantiation, a note object can be declared with any of these properties
 
 This section describes some noteworthy details on how certain features are implemented.
 
+## Person Features
+
 ### Edit Feature
+
+#### Implementation
 
 The Edit Person feature is facilitated by the `EditCommand` which utilises the `FindCommand`. It allows users to edit any editable field of a person given the index of the person, or the name of the person.
 
-If given a name that does not correspond to any person in the SectresBook, the edit features performs the same operations as the Find Command.
+If given a name that does not correspond to any person in the SectresBook, the edit features performs the same operations as the `Find` command.
 
 Given below is an example usage scenario and how the edit mechanism behaves at each step.
 
@@ -272,6 +283,108 @@ but due to a limitation of PlantUML, the lifeline reaches the end of diagram. </
   * Pros: Stricter input requirement, ensuring that persons are not accidentally deleted.
   * Cons: Longer input required for the same output.
 
+
+### Find Person
+
+#### Implementation
+
+The Find Person feature is facilitated by 'FindCommand'. It allows users to find all Persons with names that are matching or phone number starting with any of the keywords.
+
+Given below is an example usage scenario and how the find feature behaves at each step.
+
+Step 1. The user executes 'find David' command to find all Persons in the address book that includes the name `David`.
+
+Step 2. A `FindCommand` is constructed with a `NameContainsKeywordPredicate` which checks through the list of persons in the address book and only shows those with their first/last name matching `David`.
+
+Step 3. The `FindCommand` is executed and the `NameContainsKeywordsPredicate` is used to update the filtered person list.
+
+The following sequence diagram shows how the find command works:
+
+<img src="images/FindCommandSequence.png" width="740"/>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` and `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+#### Design considerations:
+
+**Aspect: How find executes:**
+
+* **Alternative 1 (current choice):** Chooses person based on the whole first/last name matching the keyword.
+    * Pros: More specific Persons list after the find command.
+    * Cons: User needs to know the first/last name of the person they are trying to find.
+
+* **Alternative 2:** Chooses person if name contains the keyword.
+    * Pros: Easier to find person.
+    * Cons: Persons list may show other persons that are not desired by the user.
+
+### Edit loan value and history of Person by EditLoan feature
+
+#### Implementation
+
+The Edit Loan feature is facilitated by the `EditLoanCommand` which utilises the `FindCommand`. It allows users to edit the loan value and update the loan history of a person given the index of the person, or the name of the person.
+
+If given a name that does not correspond to any person in the SectresBook, the edit feature performs the same operations as the `Find` command.
+
+Given below is an example usage scenario and how the editLoan mechanism behaves at each step.
+
+Step 1. The user enters the editLoan command, with either the index or the person's name.
+
+Step 2a If an index is entered, the `EditLoanCommandParser` carries this index to the `EditCommand`, which retrieves the `Person` to edit by getting the `Model`'s current `FilteredList<Person>` and retrieving by index.
+
+Step 2b. If a non-number is entered, the `EditLoanCommandParser` invokes the `FindCommandParser#parse` method and executes it at the same time with `FindCommand#execute`. The `FilteredList<Person>` is then checked to ensure that there is exactly one person that corresponds with the search term. Otherwise, the method short-circuits with ambiguity errors (more than 1 person) or invalid person errors (no persons at all). If successful, `EditLoanCommandParser` returns a new `EditLoanCommand` with a one-based-index of 1.
+
+- Example of ambiguity error message:
+> There is more than 1 person with the name [NAME]
+
+- Example of invalid name error message:
+> There is nobody with the name [NAME]
+
+Step 3. `EditLoanCommand#execute` is called by the `LogicManager`. The person to edit is retrieved by the index given and a new edited person is created by copying over non-transformed fields and replacing the transformed field.
+
+Step 4. The `editedPerson` is then set to replace the previous state of the `Person` object in the `Model` with `Model#setPerson`.
+
+The following sequence diagram shows how the `editLoan` feature works with index.
+
+<img src="images/EditLoanSequenceDiagram.png" width="740"/>
+
+### Find Persons and Notes by Tag feature
+
+#### Implementation
+
+The find Persons and Notes by Tag feature (called `findTag`) is facilitated by `FindTagCommand`. It allows users to find all Persons and Notes with the given Tags.
+
+Given below is an example usage scenario and how the findTag feature behaves at each step.
+
+Step 1. The user executes `findTag Finance` command to find all Persons and Notes in the SectresBook with the tag `Finance`.
+
+Step 2. A `FindTagCommand` is constructed with a `PersonTagsContainsKeywordsPredicate` and `NoteTagsContainsKeywordsPredicate` which will check through the list of Persons and Notes in the SectresBook and only show those with the tag `Finance`.
+
+Step 3. The `FindTagCommand` is executed and the `PersonTagsContainsKeywordsPredicate` and `NoteTagsContainsKeywordsPredicate` is passed to model to update the Person List and Note List to only show Persons and Notes with the tag `Finance`.
+
+The following sequence diagram shows how the findTag command works:
+
+<img src="images/FindTagSequenceDiagram.png">
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindTagCommandParser` and `FindTagCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+#### Design considerations:
+
+**Aspect: How findTag executes:**
+
+* **Alternative 1 (current choice):** Goes through all Persons and Notes to check for Tag.
+    * Pros: Easy to implement (Similar to current find command).
+    * Cons: May have performance issues in terms of having to do many more steps.
+
+* **Alternative 2:** Goto searched Tags and get the Persons and Notes that each Tag points to.
+    * Pros: Will use fewer steps (Go directly to the Tags rather than looking through all Persons and Notes).
+    * Cons: Implementation would be more complicated.
+
+
+## Notes Features
+
 ### addNote feature
 
 #### Implementation
@@ -314,7 +427,7 @@ The following sequence diagram shows how the addNote operation works:
 
 ### deleteNote feature
 
-#### Proposed implementation
+#### Implementation
 
 The deleteNote mechanism is facilitated by `DeleteNoteCommand`. It extends `Command` and overrides `Command#execute()` to implement the following operation:
 - `DeleteNoteCommand#execute()` : deletes the note at the specified index from the note list.
@@ -355,74 +468,195 @@ The following sequence diagram shows how the addNote operation works:
     * Pros: Would be more precise (Title of notes are unique).
     * Cons: Long command would be needed to delete a note with a long Title.
 
-### Find Person
-
-### Implementation
-
-The Find Person feature is facilitated by 'FindCommand'. It allows users to find all Persons with names that are matching or phone number starting with any of the keywords.
-
-Given below is an example usage scenario and how the find feature behaves at each step.
-
-Step 1. The user executes 'find David' command to find all Persons in the address book that includes the name `David`.
-
-Step 2. A `FindCommand` is constructed with a `NameContainsKeywordPredicate` which checks through the list of persons in the address book and only shows those with their first/last name matching `David`.
-
-Step 3. The `FindCommand` is executed and the `NameContainsKeywordsPredicate` is used to update the filtered person list.
-
-The following sequence diagram shows how the find command works:
-
-<img src="images/FindCommandSequence.png" width="740"/>
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` and `FindCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-#### Design considerations:
-
-**Aspect: How find executes:**
-
-* **Alternative 1 (current choice):** Chooses person based on the whole first/last name matching the keyword.
-    * Pros: More specific Persons list after the find command.
-    * Cons: User needs to know the first/last name of the person they are trying to find.
-
-* **Alternative 2:** Chooses person if name contains the keyword.
-    * Pros: Easier to find person.
-    * Cons: Persons list may show other persons that are not desired by the user.
-
-### Find Person by Tag feature
+### editNote feature
 
 #### Implementation
 
-The find Person by Tag feature (called `findTag`) is facilitated by `FindTagCommand`. It allows users to find all Persons with the given Tags.
+The editNote mechanism is facilitated by `EditNoteCommand` and utilises the `FindNoteCommand`. It extends `Command` and overrides `Command#execute()` to implement the following operation:
+- `EditNoteCommand#execute()` : edits the note at the specified index (or with matching title) from the note list.
 
-Given below is an example usage scenario and how the findTag feature behaves at each step.
+Given below is an example usage scenario and how the editNote mechanism behaves at each step.
 
-Step 1. The user executes `findTag Finance` command to find all Persons in the address book with the tag `Finance`.
+Step 1. The user launches the application and wishes to edit a note's title with a new title. The user lists the current notes: 
+1. Title: Meeting, Content: 3rd October 9pm
+2. Title: Event, Content: Remind club members to attend.
 
-Step 2. A `FindTagCommand` is constructed with a `TagsContainsKeywordsPredicate` which will check through the list of persons in the address book and only show those with the tag `Finance`.
+The user has decided to edit the first note titled `Meeting` with a new title, `Club Meeting`.
 
-Step 3. The `FindTagCommand` is executed and the `TagsContainsKeywordsPredicate` is passed to model to update the Person List to only show Persons with the tag `Finance`.
+Step 2a. If an index is entered (user executes `editNote 1 title/Club Meeting`), the `EditNoteCommandParser` carries this index to the `EditNoteCommand`, which retrieves the `Note` to edit by getting the `Model`'s current `FilteredList<Note>` and retrieving by index.
 
-The following sequence diagram shows how the findTag command works:
+Step 2b. If a non-number is entered (user executes `editNote meeting title/Club Meeting`), `EditNoteCommandParser` calls `FindNoteCommandParser#parse()` and executes `FindNoteCommand#execute()` concurrently. 
 
-<img src="images/FindTagSequenceDiagram.png" width="740"/>
+`FilteredList<Note>` is then checked to ensure that exactly one note corresponds with the search term. 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindTagCommandParser` and `FindTagCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+Otherwise, the method short-circuits with ambiguity errors (more than 1 note) or invalid note errors (no notes at all). If successful, `EditNoteCommandParser` returns a new `EditNoteCommand` object.
+
+
+- Example of ambiguity error message:
+> There is more than 1 note with meeting in their title!
+> 
+> Please use a more unique specifier or use indices to edit.
+
+- Example of invalid title error message:
+> There are no notes with meeting in their titles in the list!
+
+Step 3. `EditNoteCommand#execute()` will be called by `LogicManager#execute()`. The note to edit is retrieved by the index given and a new edited note is created by copying over non-transformed fields and replacing the transformed field.
+
+Step 4. The `editedNote` is then set to replace the previous state of the `Note` object in the `Model` with `Model#setNote`.
+
+The following sequence diagram shows how the `editNote` feature works.
+
+![EditNoteSequenceDiagram](images/EditNoteSequenceDiagram.png)
+
+The following activity diagram shows the workflow of `editNote` feature.
+
+![EditNoteActivityDiagram](images/EditNoteActivityDiagram.png)
+
+#### Design considerations
+
+**Aspect: How the note to be edited is specified:**
+
+* **Alternative 1 (current choice):** Note is specified by index or title.
+    * Pros: Better convenience for users.
+    * Cons: Would need to use findNote command for notes specified by title. (more dependencies)
+
+* **Alternative 2:** Note is specified by Title.
+    * Pros: Easy to implement
+    * Cons: Not flexible for users.
+
+
+## UI Features
+
+### General UI Design and Mechanism
+
+#### Implementation
+
+During the creation of the new UI, a lot of the FXML structure and the relationships between containers of the UI had to be refactored.
+
+![](images/UIComponentsLabeled.png)
+
+The UI is divided into 2 major sections - one occupied by the `CommandBox` and another occupied by the `WindowAnchorPane`.
+
+The `WindowAnchorPane` consists of an StackPane.
+- The `ResultDisplay` is in the first layer
+- The `PersonListPanel`, `InspectionPanel` and the `NotesListPanel` are in the second layer below.
+
+The `ResultDisplay` is _click-through_ (does not capture any mouse clicks) and normally has an opacity of 0, so it is effectively hidden.
+
+The `InspectionPanel` is another anchor pane divided into two left and right elements:
+    - A basic information `HBox` on the left
+    - A loan history list view display on the right
+
+These two elements in the `InspectionPanel` will always maintain the same ratio, basic information to loan history list view, of 2:3.
+
+When the user clicks the `CommandBox` or presses the `SPACE` key, this triggers an event on the `CommandBox` that invokes a transition to the `ResultDisplay` to show the display. As it is on the first layer, the `ResultDisplay` will partially cover the elements below it.
+
+Note that the `ResultsDisplay` never reach full opacity, instead an opacity of 0.8 allows the elements below to be partially visible.
+
+Here are the anchor points of the three major panes within the second layer of `WindowAnchorPane`:
+
+- The `PersonListPanel` has a left anchor of `0`, top anchor of `0`, right anchor of `0.6` with respect to window width (starting from left) and bottom anchor of `0.45` with respect to window height (starting from top).
+- The `InspectionPanel` has a left anchor of `0`, top anchor of `0.45`, right anchor of `0.6` with respect to window width (starting from left) and bottom anchor of `0` with respect to window height (starting from top).
+- The `NotesListPanel` has a left anchor of `0.6`, top anchor of `0`, right anchor of `0` with respect to window width (starting from left) and bottom anchor of `0` with respect to window height (starting from top).
+
+The arbitrary values above are actually boundaries shared by the three panels and may be manipulated to change the view of the three major elements together. We may imagine the `PersonListPanel` to be glued to the `NotesListPanel` on its right and the `InspectionPanel` below, likewise for the other two elements. This allows the ratios to be adjusted together by simply change the vertical anchor or horizontal anchors.
+
+The Observer Pattern is prevalent throughout the UI design in order to update other components in response to any change to the UI. One such example is the [`inspect` command](#inspect-feature).
+
+This activity diagram details how interactions with the UI is controlled
+
+![](images/UIActivityDiagram.png)
+
+#### Design Considerations
+
+As the main window of the application is resizable, the ratio of the anchors maintains the aspect of each panel with respect to the window size (unlike constant values which will not change according to window size).
+
+The resizing is handled through the _Observer Pattern_, thankfully existing by default in JavaFX, which updates the proportions of the components upon any change to the height or width of the window.
+
+The main problem came from estimating the correct current space allocated by the window size.
+
+As the three main components are within the `WindowAnchorPane`, and the `WindowAnchorPane` shares its space with an unnamed `StackPane` described by the structure above, this meant that the `WindowAnchorPane` has less space than the actual window size. To make things worse, JavaFX overestimates the actual scene proportions in relation to the window size.
+
+A padding of around 200px was used to help `WindowAnchorPane` displace it's top height to the true position it is at and a bottom padding of 20px was added to give some room from the bottom of the window. The height and width passed into function resizing the anchor panes must always be adjusted according the scene size and the offsets.
+
+A visual defect exists when the screen size exceeds 1080p, as the Inspection Panel is no longer able to stay attached to the anchor point at the bottom of the screen. This defect worsens as the window gets taller.
+
+### Inspect Feature
+
+#### Implementation
+
+The inspect command is a UI-Centric command that controls which person's details are currently shown in the inspection panel.
+
+This is functionally similar to clicking on a person's card, which also updates the information in the inspection panel.
+
+This features uses an Observer on the `SelectionModel` of the `ListView` of persons, updating the `InspectionPanel` whenever a new person is selected.
+
+Step 1. The user executes `'inspect David'` command to view the details of David.
+
+Step 2. An `InspectCommandParser` is parsed with `David`.
+
+Step 3. The `InspectCommand` is created containing a keyword `David`.
+
+Step 4. The `InspectCommand` is executed and a `CommandResult` is created with the `UiState` `inspect` and arguments `David`.
+
+Step 5. The `MainWindow` is receives the `CommandResult` and reads the `UiState` part of the result. This directs it to update the inspect panel.
+
+Step 6. The Person List is retrieved from the `MainWindow` and its selection model is accessed. From here, if the given argument is a number, we will index the person through the order in the list. Otherwise, we will search through the entire list until first person matching the keywords is returned.
+
+Step 7. The Inspection Panel is retrieved from the main window and has its properties updated from the person's information that was returned.
+
+The following sequence diagram shows how the find command works:
+
+<img src="images/InspectSequenceDiagram.png" width="740"/>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `InspectCommandSequence` and `InspectCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
 #### Design considerations:
 
-**Aspect: How findTag executes:**
+**Aspect: How to design a UI command**
 
-* **Alternative 1 (current choice):** Goes through all Persons to check for Tag.
-    * Pros: Easy to implement (Similar to current find command).
-    * Cons: May have performance issues in terms of having to do many more steps.
+Unlike other command, this command does not mutate any underlying data. One challenge is that the execution flow is different from other commands which mutate data, making the implementation less direct.
 
-* **Alternative 2:** Goto searched Tags and get the Persons that each Tag points to.
-    * Pros: Will use fewer steps (Go directly to the Tags rather than looking through all Persons).
-    * Cons: Implementation would be more complicated.
+We had to find a good insertion point where the information carried from the user input could be used in the program without the need for major refactoring. We realised that the user's input is first taken in through the `MainWindow` class, and through following the function calls, would be used in `MainWindow::executeCommand`. So the inspection operation is effectively added at the end of the executeCommand just before it terminates.
 
+Inspiration was taken from the execution flow of `handleExit` and `handleHelp` prior to the construction of the new UI.
+
+The procedures for `handleExit` and `handleHelp` were changed by refactoring `CommandResult` to carry an ideal state that the UI is expected to be in by the end of the execution. A switch statement was added to the bottom of the `executeCommand` function, much like how the normal commands are parsed, to deal with UI-Centric commands like `help`, `exit` and `inspect`.
+
+### Showing and Hiding the Notes Panel Feature
+
+#### Implementation
+
+Here are the anchor points of the three major panes within the `WindowAnchorPane`:
+
+- The `PersonListPanel` has a left anchor of `0`, top anchor of `0`, right anchor of `0.6` with respect to window width (starting from left) and bottom anchor of `0.45` with respect to window height (starting from top).
+- The `InspectionPanel` has a left anchor of `0`, top anchor of `0.45`, right anchor of `0.6` with respect to window width (starting from left) and bottom anchor of `0` with respect to window height (starting from top).
+- The `NotesListPanel` has a left anchor of `0.6`, top anchor of `0`, right anchor of `0` with respect to window width (starting from left) and bottom anchor of `0` with respect to window height (starting from top).
+
+Notice that the `PersonListPanel` and `InspectionPanel` share a boundary of the ratio `0.45` with respect to the window height and the both of them share a boundary of `0.6` with respect to screen width with the `NotesListPanel`.
+
+The command `hideNotes` is effectively accomplished by interpolating the ratios smoothly over time to create a sliding effect. To maintain the aspect ratio of the notes panel and prevent deformities, the right anchor interpolates from 0 to `0.6 - 1 = -0.4`, as the left anchor interpolates from `0.6` to `1`.
+
+This maintains the constant size of `x0.4` with respect to window size during the transition.
+
+A fading transition is applied across the same time to smoothly reduce the opacity of the panel.
+
+The time interval set for this transition is `0.3` seconds.
+
+The `showNotes` implementation is exactly the inverse of the `hideNotes` implementation across time.
+
+
+#### Design considerations:
+
+**Aspect: Challenges related to resizing**
+
+Because hiding the notes panel will also pull the inspection panel longer, and that the inspection panel is divided into two parts itself, the `InspectionPanel` is also further another anchor pane that maintains the ratio of the width between the basic information display and the loans history property.
+
+This concept was only implemented after the implementation of hideNotes, where visual inconsistencoes will start appearing due to disobeying the original ratio.
+
+The padding of the `InspectionPanel` also causes an issue if the right anchor of the pane is not manipulated with the left anchor, as the padding will snap the left anchor to the right of the right anchor. This causes the `InspectionPanel` to be pulled through the entire width of the `NotesListPanel` cause the entire `WindowAnchorPane` to overflow its allocated width. The consideration to slide the right anchor at a constant difference with respect to the left anchor was introduced to combat this issue.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -543,22 +777,37 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​      | I want to …​                                             | So that I can…​                                                        |
-| -------- |--------------|----------------------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | secretary    | add club members’ information into the address book      | keep track of their contact information.                               |
-| `* * *`  | secretary    | edit a club member’s information                         | stay updated with them if their contact information changes.           |
-| `* * *`  | secretary    | delete a club member’s information from the address book | stop keeping track of them when they leave the club.                   |
-| `* * *`  | user         | search for a person by their name or contact number      | locate details of persons without having to go through the entire list |
-| `* *`    | secretary    | search contacts according to a specific tag              | easily  contact people in a whole group                                |
-| `*`      | user         | maintain a set of tasks to be done                       | keep track of things to be done.                                       |
+| Priority | As a …​                          | I want to …​                                                                          | So that I can…​                                                         |
+|----------|----------------------------------|---------------------------------------------------------------------------------------|-------------------------------------------------------------------------|
+| `* * *`  | secretary                        | add club members’ information into the address book                                   | keep track of their contact information.                                |
+| `* * *`  | secretary                        | edit a club member’s information                                                      | stay updated with them if their contact information changes.            |
+| `* * *`  | secretary                        | delete a club member’s information from the address book                              | stop keeping track of them when they leave the club.                    |
+| `* * *`  | user                             | search for a person by their name or contact number                                   | locate details of persons without having to go through the entire list. |
+| `* *`    | secretary                        | search contacts according to a specific tag                                           | easily  contact people in a whole group.                                |
+| `*`      | user                             | maintain a set of tasks to be done                                                    | keep track of things to be done.                                        |
+| `* * *`  | treasurer                        | see the amount each person owes me                                                    | keep track of my finances.                                              |
+| `*`      | person that keeps track of tasks | see who in my contacts lies under which tasks and which tasks lies under each contact | keep track of my deadlines.                                             |
+| `*`      | treasurer                        | keep track of my club's fund and the budget assigned to every project                 | better organise and plan the club's finances.                           |
+| `*`      | secretary                        | archive the contact information of a club member that has left the club               | contact old club members by looking at archived contacts.               |
+| `* *`    | expert user                      | quickly use the CLI commands to speed up operations                                   | enhance the productivity of meetings and task recording.                |
+| `* *`    | secretary                        | pinpoint all the addresses of members and find the nearest amongst all members        | organise club activities and events that minimise travel time.          |
+| `* * *`  | treasurer                        | identify which member owes the club money                                             |                                                                         |
+| `* *`    | secretary                        | password protect the software                                                         | protect member's personal data.                                         |
+| `* *`    | busy treasurer                   | get reminded of upcoming payments                                                     | ask for payments before they are due.                                   |
+| `*`      | user                             | use the GUI elements to autofill the CLI                                              | recognise and learn the commands for future typing.                     |
+| `* *`    | user                             | configure the GUI elements' size and colours                                          | customise the application to my needs.                                  |
+| `* *`    | secretary                        | set priorities on tasks                                                               | focus on tasks that are more important first.                           |
+| `*`      | secretary                        | get statistics on the number of tasks done                                            | ensure that the club is on track with finishing tasks.                  |
+| `*`      | new user                         | learn how to use the commands using in-app guidance                                   | easily pick up the commands and perform my duties                       |
+| `* *`    | new user                         | have sample data that I can test out commands with                                    | familiarize myself with how the application works.                      |
+| `* * *`  | outgoing secretary               | transfer the data to an incoming secretary                                            | hand over my job without hassle.                                        |
 
-*{More to be added}*
 
 ### Use cases
 
 (For all use cases below, the **System** is the `SectresBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a person**
+#### Use case: UC1 - Add a person
 
 **MSS**
 1. User requests to add a person.
@@ -576,7 +825,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Update a person**
+#### Use case: UC2 - Update a person
 
 **MSS**
 1. User requests to list persons.
@@ -599,7 +848,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Delete a person**
+#### Use case: UC3 - Delete a person
 
 **MSS**
 
@@ -622,15 +871,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Find a person**
+#### Use case: UC4 - Find a person
 
 **MSS**
 1. User request to find using keyword.
-2. SectressBook shows a list of persons matching keyword.
+2. SectresBook shows a list of persons matching keyword.
 
    Use case ends.
 
-**Use case: Display list of persons**
+#### Use case: UC5 - Display list of persons
 
 **MSS**
 1. User requests to list persons.
@@ -638,22 +887,177 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-*{More to be added}*
+#### Use case: UC6 - Edit Loan of person
+
+**MSS**
+1. User requests to list persons.
+2. SectresBook shows a list of persons.
+3. User requests to update the loan of a specific person in the list.
+4. SectresBook updates loan and loan history of the person.
+
+**Extensions**
+* 2a. The list is empty.
+
+    Use case ends.
+* 3a. The given index is invalid.
+    * 3a1. SectresBook shows an error message.
+
+      Use case resumes at step 2.
+* 3b. The command line arguments are invalid.
+    * 3b1. SectresBook shows an error message.
+
+      Use case resumes at step 2.
+
+
+#### Use case: UC7 - Find Person by their tag
+
+**MSS**
+1. User requests to find using a tag keyword.
+2. SectresBook shows a list of persons matching the tag keyword.
+
+   Use case ends.
+
+#### Use case: UC8 - Add a Note
+
+**MSS**
+1. User requests to add a note.
+2. SectresBook adds the note to the list of notes.
+
+   Use case ends.
+
+**Extensions**
+* 1a. The given note title already exists.
+    * 1a1. SectresBook shows an error message.
+
+      Use case ends.
+* 1b. Necessary fields are incomplete/empty.
+    * 1b1. Sectresbook shows an error message.
+
+      Use case ends.
+
+#### Use case: UC9 - Update a Note
+
+**MSS**
+1. User requests to list notes.
+2. SectresBook shows a list of notes.
+3. User requests to update a specific note in the list.
+4. SectresBook updates information of the note.
+
+   Use case ends.
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+* 3a. The given index is invalid.
+    * 3a1. SectresBook shows an error message.
+
+      Use case resumes at step 2.
+* 3b. The command line arguments are invalid.
+    * 3b1. SectresBook shows an error message.
+
+      Use case resumes at step 2.
+
+#### Use case: UC10 - Delete a Note
+
+**MSS**
+1. User requests to list notes.
+2. SectresBook shows a list of notes.
+3. User requests to delete a specific note in the list.
+4. SectresBook deletes the person.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. SectresBook shows an error message.
+
+      Use case resumes at step 2.
+
+#### Use case: UC11 - Find a Note
+
+**MSS**
+1. User request to find using keyword.
+2. SectresBook shows a list of notes matching keyword.
+
+   Use case ends.
+
+#### Use case: UC12 - Display list of notes
+
+**MSS**
+1. User has completed [UC11](#use-case-uc11---display-list-of-notes)
+2. User requests to list notes.
+3. SectresBook displays the list of all notes stored.
+
+   Use case ends.
+
+#### Use case: UC13 - Hide Note section
+
+**MSS**
+1. User requests to hide the notes section of the Sectresbook.
+2. Sectresbook hides the note section, extending the addressbook section.
+
+   Use case ends.
+
+**Extensions**
+* 1a. Already hiding the notes section.
+
+    Use case ends.
+
+#### Use case: UC14 - Show note section
+
+**MSS**
+1. User requests to show the notes section.
+2. Sectresbook shows the notes section on the right side of the interface.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Already showing the notes section.
+
+    Use case ends.
+
+#### Use case: UC15 - Exit program
+
+**MSS**
+1. User requests to exit program. 
+2. Sectresbook closes the program.
+
+    Use case ends.
 
 ### Non-Functional Requirements
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should run independently of remote servers.
+2. Should not use a relational database management system to store data.
+3. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 4. Should not require internet connection, all operations are performed locally.
-5. Should not consume a lot of battery to keep it running in the background
+5. Should not consume a lot of battery to keep it running in the background.
+6. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+7. Should be able to hold up to 1000 notes without a noticeable sluggishness in performance for typical usage.
+8. Should be able to respond to any commands within 2 seconds as long as there are under 1000 entries stored in the application.
+9. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+10. Should automatically save any changes to the data in the storage directly.
+11. The product is intended only for a single user (i.e. not a multi-user product)
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Java 11**: Eleventh version of the Java Platform, Standard Edition Development Kit (JDK). SectresBook requires this to be installed to run.
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **Note**: A segment of text that describes a task to be done, coupled with tags that reference people in the SectresBook who are associated with the given task.
 * **Secretary**: A person acting as overseers for the administrative functions of a club.
+* **Treasurer**: A club member that manages and accounts for all the funds of a club.
+* **Tag**: A label that groups related people or notes together, such that they can be referred to as a single encapsulated entity specified by the tag.
+* **Graphical User Interface (GUI)**: An image-based interface that is more visually appealing than a command-line interface and encapsulates information through the use of icons and images.
+* **Command Line Interface (CLI)**: A text-based interface that receives typed commands as input and returns textual feedback as output.
+
 
 --------------------------------------------------------------------------------------------------------------------
 

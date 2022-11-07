@@ -10,8 +10,9 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> Birthday
 Person *-right-> Loan
-Loan *--> "*" LoanHistory
-LoanHistory --> LoanDifference
-LoanHistory --> LoanReason
+Person *--right-> "*" LoanHistory
+LoanHistory --> "1" Loan
+LoanHistory --> "1" Reason
 @enduml
