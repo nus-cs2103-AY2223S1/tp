@@ -174,16 +174,17 @@ Refer to [Prefixes](#4-prefixes) for the types of prefixes.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**
 <br>
-RISK_APPETITE can only have the values ‘HIGH’, ‘MEDIUM’ or ‘LOW’
+
+* RISK_APPETITE can only have the values ‘HIGH’, ‘MEDIUM’ or ‘LOW’
 <br>
 <br>
-INVESTMENT_PLAN must end with the word Plan
+* INVESTMENT_PLAN must end with the word Plan
 <br>
 <br>
-CLIENT_TYPE can only have the values ‘POTENTIAL’ or ‘CURRENT’
+* CLIENT_TYPE can only have the values ‘POTENTIAL’ or ‘CURRENT’
 <br>
 <br>
-Do note that t/TAG is an OPTIONAL TAG, the rest are compulsory. That is to say that a client can have any number of tags, including 0.
+* Do note that t/TAG is an OPTIONAL TAG, the rest are compulsory. That is to say that a client can have any number of tags, including 0.
 </div>
 
 Examples:
@@ -315,6 +316,7 @@ Also, the appointment details will be added to the calendar.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 <br>
+
 * DATE_AND_TIME has the format `dd-mm-yyyy hh:mm` (e.g "01-03-2022 18:00" represents 1st March 2022, 6:00 PM)
 <br>
 * Month, Day, Hour, Minutes can only take in a 2 digit number 
@@ -324,6 +326,7 @@ Also, the appointment details will be added to the calendar.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Input DATE_AND_TIME must be valid in order for the command to be executed
 <br>
+
 * Each client can have a maximum of 3 appointments, and there cannot be appointments with the same DATE_AND_TIME in the overall list of appointments.
 <br>
 * We allow the adding of appointments that are in the past, this is similar to any calendar apps where you can add events to dates that are in the past. 
@@ -400,7 +403,7 @@ Examples:
 
 ![previous button](images/PreviousButton.png)
 
-##### 5.3.2.1 Jump Box
+##### 5.3.2.3 Jump Box
 Typing in the desired date in the provided text field followed by pressing the "ENTER" key will show the given calendar of the month and year.
 
 Format: DATE in `dd-MM-yyyy`
