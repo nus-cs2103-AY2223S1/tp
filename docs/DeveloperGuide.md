@@ -257,10 +257,6 @@ The following sequence diagram shows how the checkout operation works:
 
 ![CheckoutSequenceDiagram](images/CheckoutSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `CheckoutCommand`
-should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
 The following activity diagram summarizes what happens when a user executes a checkout command:
 
 ![CheckoutActivityDiagram](images/CheckoutActivityDiagram.png)
