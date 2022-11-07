@@ -35,6 +35,9 @@ Given below are my contributions to the project.
   * Synced the `sortByPriority` and `sortByDeadline` features into a single `sort` command (Pull request [\#112](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/112))
   * Bugfixed the `addTask` feature (Pull request [\#171](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/171))
 
+* **Tests**:
+  * Added test cases for `EditTaskCommandParser` and `FindTaskCommandParser` (Pull request [\#232](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/232))
+
 * **Documentation**:
   * User Guide:
     * Added documentation for the `listTasks` and `findTask` feature (Pull requests [\#108](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/108), [\#194](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/194))
