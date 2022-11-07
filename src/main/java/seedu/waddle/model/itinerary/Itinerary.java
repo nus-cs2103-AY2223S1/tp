@@ -217,7 +217,7 @@ public class Itinerary {
     public Item planItem(Index itemIndex, DayNumber dayNumber, LocalTime startTime) throws CommandException {
         Item item;
         try {
-              item = this.unscheduledItemList.get(itemIndex.getZeroBased());
+            item = this.unscheduledItemList.get(itemIndex.getZeroBased());
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
         }

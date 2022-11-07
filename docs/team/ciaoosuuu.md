@@ -62,6 +62,7 @@ it was necessary to look through the heavy documentation to implement this featu
   * Created milestone v1.4
   * Made use of issue tracker
   * Provided pull request reviews for teammates
+  
 * **Tools**:
   * Integrated a third party library (Apache PDFBox) to the project
    ([#97](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/97), 
