@@ -16,7 +16,7 @@ end box
 [-> MainWindow : executeCommand("client -l")
 activate MainWindow
 
-MainWindow --> LogicManager : execute("client -l")
+MainWindow -> LogicManager : execute("client -l")
 activate LogicManager
 
 LogicManager -> AddressBookParser : parseCommand("client -l")

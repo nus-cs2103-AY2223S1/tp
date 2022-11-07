@@ -15,7 +15,7 @@ end box
 [-> MainWindow : executeCommand\n(project -a n/Team Project)
 activate MainWindow
 
-MainWindow --> LogicManager : execute\n(project -a n/Team Project)
+MainWindow -> LogicManager : execute\n(project -a n/Team Project)
 activate LogicManager
 
 LogicManager -> AddressBookParser : parseCommand\n(project -a n/Team Project)
