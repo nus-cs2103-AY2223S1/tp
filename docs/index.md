@@ -1,6 +1,6 @@
 ---
 layout: page
-title: ArtBuddy
+title: Waddle
 ---
 
 # Waddle 🦆
