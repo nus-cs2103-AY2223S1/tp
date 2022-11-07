@@ -695,7 +695,7 @@ Expected: No profile is added. Error details shown in the status message.
 1. Test case: `help`<br>
    Expected: Help window appears.
 
-2. Incorrect help commands to try:: `help ...` (where ... contains any combination of characters)<br>
+2. Incorrect help commands to try: `help ...` (where ... contains any combination of characters)<br>
    Expected: No help window appears. Error details shown in the status message.
 
 ### Clearing all data
