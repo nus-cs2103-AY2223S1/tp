@@ -73,7 +73,7 @@ This guide aims to
 
 **Highlights** <br>
 Highlighted text refers to commands, parameters, fields values or any user inputs.
-e.g. [`commands`](#glossary) [`PARAMETERS`](#glossary)
+e.g. [`commands`](glossary) [`PARAMETERS`](glossary)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -678,6 +678,7 @@ _Details coming soon..._
 
 ## 7. Appendix
 
+<a name="glossary"></a>
 ### 7.1 Glossary
 
 | Term                               | Description                                                                                                                                                                                    |
@@ -779,3 +780,5 @@ Examples:
 [`clear`]: #clear
 [`help`]: #help
 [`exit`]: #exit
+
+[glossary]: #glossary
