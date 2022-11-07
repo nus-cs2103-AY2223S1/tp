@@ -31,6 +31,7 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
     - Editing the find feature in the user guide to reflect how to efficiently and accurately use the command.
     - Adding questions to the FAQ section. [FAQ updates](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/189)
     - Add Glossary explaining key terms [Glossary updates](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/189#issue-1437330080)
+    - Add about section [About section](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/208)
       <br>
       <br>
     - **Contributions to the DG**:
