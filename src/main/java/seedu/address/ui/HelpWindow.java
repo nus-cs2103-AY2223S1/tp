@@ -107,8 +107,8 @@ public class HelpWindow extends UiPart<Stage> {
             + " Tags: [pediatric]; Unavailable Date: 12/12/2022, 13/12/2022";
     private static final String DELETE_SPECIFIC_UNAVAILABLE_DATE_SEARCH_TEXT = "Edit Unavailable Date "
             + "(delete specific Unavailable Date)";
-    private static final String DELETE_SPECIFIC_UNAVAILABLE_DATE_DEMO_INPUT = "edit id/12 udi/2";
-    private static final String DELETE_SPECIFIC_UNAVAILABLE_DATE_DEMO_OUTPUT = "Edited person: Category: N Uid: 12; "
+    private static final String DELETE_SPECIFIC_UD_DEMO_INPUT = "edit id/12 udi/2";
+    private static final String DELETE_SPECIFIC_UD_DEMO_OUTPUT = "Edited person: Category: N Uid: 12; "
             + "Name: Kola; Gender: M; Phone: 88888888; Email: Kola@example.com; "
             + "Address: Blk 768 Woodlands Ave 6, Singapore 730768; Tags: [pediatric]; Unavailable Date: 12/12/2022";
     private static final String DELETE_ALL_UNAVAILABLE_DATE_SEARCH_TEXT = "Edit Unavailable Date "
@@ -130,8 +130,9 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String DELETE_SPECIFIC_DATE_SLOT_SEARCH_TEXT = "Edit Date and Slot "
             + "(delete specific Date and Slot)";
     private static final String DELETE_SPECIFIC_DATE_SLOT_DEMO_INPUT = "edit id/10 dsi/2";
-    private static final String DELETE_SPECIFIC_DATE_SLOT_DEMO_OUTPUT = "Edited person: Category: P Uid: 10; Name: John Doe;"
-            + " Gender: M; Phone: 98765432; Email: johnd@example.com; Address: 311, Clementi Ave 2, #02-25;"
+    private static final String DELETE_SPECIFIC_DATE_SLOT_DEMO_OUTPUT = "Edited person: Category: P Uid: 10; "
+            + "Name: John Doe; Gender: M; Phone: 98765432; Email: johnd@example.com; "
+            + "Address: 311, Clementi Ave 2, #02-25;"
             + " Tags: [asthma]; Home Visits DateSlot: 11/11/2022 12:00";
     private static final String DELETE_ALL_DATE_SLOT_SEARCH_TEXT = "Edit Date and Slot "
             + "(delete all Date and Slot)";
@@ -341,22 +342,22 @@ public class HelpWindow extends UiPart<Stage> {
         dictionary.put(EDIT_EMAIL_SEARCH_TEXT, new String[] { EDIT_EMAIL_DEMO_INPUT, EDIT_EMAIL_DEMO_OUTPUT });
         dictionary.put(EDIT_ADDRESS_SEARCH_TEXT, new String[] { EDIT_ADDRESS_DEMO_INPUT, EDIT_ADDRESS_DEMO_OUTPUT });
         dictionary.put(EDIT_TAG_SEARCH_TEXT, new String[] { EDIT_TAG_DEMO_INPUT, EDIT_TAG_DEMO_OUTPUT });
-        dictionary.put(ADD_UNAVAILABLE_DATE_SEARCH_TEXT, new String[] { ADD_UNAVAILABLE_DATE_DEMO_INPUT,
-                ADD_UNAVAILABLE_DATE_DEMO_OUTPUT });
-        dictionary.put(EDIT_UNAVAILABLE_DATE_SEARCH_TEXT, new String[] { EDIT_UNAVAILABLE_DATE_DEMO_INPUT,
-                EDIT_UNAVAILABLE_DATE_DEMO_OUTPUT });
-        dictionary.put(DELETE_SPECIFIC_UNAVAILABLE_DATE_SEARCH_TEXT, new String[] {
-                DELETE_SPECIFIC_UNAVAILABLE_DATE_DEMO_INPUT, DELETE_SPECIFIC_UNAVAILABLE_DATE_DEMO_OUTPUT });
-        dictionary.put(DELETE_ALL_UNAVAILABLE_DATE_SEARCH_TEXT, new String[] {
-                DELETE_ALL_UNAVAILABLE_DATE_DEMO_INPUT, DELETE_ALL_UNAVAILABLE_DATE_DEMO_OUTPUT });
-        dictionary.put(ADD_DATE_SLOT_SEARCH_TEXT, new String[] { ADD_DATE_SLOT_DEMO_INPUT,
-                ADD_DATE_SLOT_DEMO_OUTPUT });
-        dictionary.put(EDIT_DATE_SLOT_SEARCH_TEXT, new String[] { EDIT_DATE_SLOT_DEMO_INPUT,
-                EDIT_DATE_SLOT_DEMO_OUTPUT });
-        dictionary.put(DELETE_SPECIFIC_DATE_SLOT_SEARCH_TEXT, new String[] { DELETE_SPECIFIC_DATE_SLOT_DEMO_INPUT,
-                DELETE_SPECIFIC_DATE_SLOT_DEMO_OUTPUT });
-        dictionary.put(DELETE_ALL_DATE_SLOT_SEARCH_TEXT, new String[] { DELETE_ALL_DATE_SLOT_DEMO_INPUT,
-                DELETE_ALL_DATE_SLOT_DEMO_OUTPUT });
+        dictionary.put(ADD_UNAVAILABLE_DATE_SEARCH_TEXT,
+                new String[] { ADD_UNAVAILABLE_DATE_DEMO_INPUT, ADD_UNAVAILABLE_DATE_DEMO_OUTPUT });
+        dictionary.put(EDIT_UNAVAILABLE_DATE_SEARCH_TEXT,
+                new String[] { EDIT_UNAVAILABLE_DATE_DEMO_INPUT, EDIT_UNAVAILABLE_DATE_DEMO_OUTPUT });
+        dictionary.put(DELETE_SPECIFIC_UNAVAILABLE_DATE_SEARCH_TEXT,
+                new String[] { DELETE_SPECIFIC_UD_DEMO_INPUT, DELETE_SPECIFIC_UD_DEMO_OUTPUT });
+        dictionary.put(DELETE_ALL_UNAVAILABLE_DATE_SEARCH_TEXT,
+                new String[] { DELETE_ALL_UNAVAILABLE_DATE_DEMO_INPUT, DELETE_ALL_UNAVAILABLE_DATE_DEMO_OUTPUT });
+        dictionary.put(ADD_DATE_SLOT_SEARCH_TEXT,
+                new String[] { ADD_DATE_SLOT_DEMO_INPUT, ADD_DATE_SLOT_DEMO_OUTPUT });
+        dictionary.put(EDIT_DATE_SLOT_SEARCH_TEXT,
+                new String[] { EDIT_DATE_SLOT_DEMO_INPUT, EDIT_DATE_SLOT_DEMO_OUTPUT });
+        dictionary.put(DELETE_SPECIFIC_DATE_SLOT_SEARCH_TEXT,
+                new String[] { DELETE_SPECIFIC_DATE_SLOT_DEMO_INPUT, DELETE_SPECIFIC_DATE_SLOT_DEMO_OUTPUT });
+        dictionary.put(DELETE_ALL_DATE_SLOT_SEARCH_TEXT,
+                new String[] { DELETE_ALL_DATE_SLOT_DEMO_INPUT, DELETE_ALL_DATE_SLOT_DEMO_OUTPUT });
         dictionary.put(EDIT_MIX_SEARCH_TEXT, new String[] { EDIT_MIX_DEMO_INPUT, EDIT_MIX_DEMO_OUTPUT });
         dictionary.put(EXIT_SEARCH_TEXT, new String[] { EXIT_DEMO_INPUT, EXIT_DEMO_OUTPUT });
         dictionary.put(FIND_SEARCH_TEXT, new String[] { FIND_DEMO_INPUT, FIND_DEMO_OUTPUT });
@@ -370,18 +371,18 @@ public class HelpWindow extends UiPart<Stage> {
         dictionary.put(LIST_VISIT_STATUS_SEARCH_TEXT,
                 new String[] { LIST_VISIT_STATUS_DEMO_INPUT, LIST_VISIT_STATUS_DEMO_OUTPUT });
         dictionary.put(LIST_MIX_SEARCH_TEXT, new String[] { LIST_MIX_DEMO_INPUT, LIST_MIX_DEMO_OUTPUT });
-        dictionary.put(ASSIGN_SPECIFIC_SEARCH_TEXT, new String[] { ASSIGN_SPECIFIC_DEMO_INPUT,
-                ASSIGN_SPECIFIC_DEMO_OUTPUT });
-        dictionary.put(ASSIGN_ALL_SEARCH_TEXT, new String[] { ASSIGN_ALL_DEMO_INPUT,
-                ASSIGN_ALL_DEMO_OUTPUT });
-        dictionary.put(DEASSIGN_ALL_PATIENT_SEARCH_TEXT, new String[] { DEASSIGN_ALL_PATIENT_DEMO_INPUT,
-                DEASSIGN_ALL_PATIENT_DEMO_OUTPUT });
-        dictionary.put(DEASSIGN_SPECIFIC_PATIENT_SEARCH_TEXT, new String[] { DEASSIGN_SPECIFIC_PATIENT_DEMO_INPUT,
-                DEASSIGN_SPECIFIC_PATIENT_DEMO_OUTPUT });
-        dictionary.put(DEASSIGN_ALL_NURSE_SEARCH_TEXT, new String[] { DEASSIGN_ALL_NURSE_DEMO_INPUT,
-                DEASSIGN_ALL_NURSE_DEMO_OUTPUT });
-        dictionary.put(DEASSIGN_SPECIFIC_NURSE_SEARCH_TEXT, new String[] { DEASSIGN_SPECIFIC_NURSE_DEMO_INPUT,
-                DEASSIGN_SPECIFIC_NURSE_DEMO_OUTPUT });
+        dictionary.put(ASSIGN_SPECIFIC_SEARCH_TEXT,
+                new String[] { ASSIGN_SPECIFIC_DEMO_INPUT, ASSIGN_SPECIFIC_DEMO_OUTPUT });
+        dictionary.put(ASSIGN_ALL_SEARCH_TEXT,
+                new String[] { ASSIGN_ALL_DEMO_INPUT, ASSIGN_ALL_DEMO_OUTPUT });
+        dictionary.put(DEASSIGN_ALL_PATIENT_SEARCH_TEXT,
+                new String[] { DEASSIGN_ALL_PATIENT_DEMO_INPUT, DEASSIGN_ALL_PATIENT_DEMO_OUTPUT });
+        dictionary.put(DEASSIGN_SPECIFIC_PATIENT_SEARCH_TEXT,
+                new String[] { DEASSIGN_SPECIFIC_PATIENT_DEMO_INPUT, DEASSIGN_SPECIFIC_PATIENT_DEMO_OUTPUT });
+        dictionary.put(DEASSIGN_ALL_NURSE_SEARCH_TEXT,
+                new String[] { DEASSIGN_ALL_NURSE_DEMO_INPUT, DEASSIGN_ALL_NURSE_DEMO_OUTPUT });
+        dictionary.put(DEASSIGN_SPECIFIC_NURSE_SEARCH_TEXT,
+                new String[] { DEASSIGN_SPECIFIC_NURSE_DEMO_INPUT, DEASSIGN_SPECIFIC_NURSE_DEMO_OUTPUT });
         dictionary.put(UNMARK_SEARCH_TEXT, new String[] { UNMARK_DEMO_INPUT, UNMARK_DEMO_OUTPUT });
         dictionary.put(UNDO_UNMARK_SEARCH_TEXT, new String[] { UNDO_UNMARK_DEMO_INPUT, UNDO_UNMARK_DEMO_OUTPUT });
         dictionary.put(CHECK_SIMILAR_SEARCH_TEXT, new String[] { CHECK_SIMILAR_DEMO_INPUT, CHECK_SIMILAR_DEMO_OUTPUT });
