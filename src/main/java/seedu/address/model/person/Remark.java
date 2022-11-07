@@ -28,10 +28,17 @@ public class Remark {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid remark.
      */
     public static boolean isValidRemark(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given string is a valid remark and remark is not empty.
+     */
+    public static boolean isValidRemarkNonEmpty(String test) {
+        return test.matches(VALIDATION_REGEX) && !(test.trim().isEmpty());
     }
 
     @Override

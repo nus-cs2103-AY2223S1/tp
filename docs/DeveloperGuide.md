@@ -13,7 +13,10 @@ Libraries used:
 * [JavaFX](https://openjfx.io/)
 * [Jackson](https://github.com/FasterXML/jackson)
 * [JUnit5](https://github.com/junit-team/junit5)
-* [Mockito](https://github.com/mockito/mockito) framework used for testing
+* [Mockito](https://github.com/mockito/mockito)
+
+Feature Design Reference:
+* Undo/Redo command design referenced from se-edu addressbook-level3 [proposed features](https://se-education.org/addressbook-level3/DeveloperGuide.html#proposed-undoredo-feature)
 
 Reference for developer guide:
 * [se-edu addressbook-level3](https://github.com/se-edu/addressbook-level3/blob/master/docs/DeveloperGuide.md)
