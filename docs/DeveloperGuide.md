@@ -756,8 +756,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
     Use case resumes at step 1.
 
-[Return to top](#table-of-contents)
-
 --------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC06 - Remove all applicants with a specified application status**
@@ -1206,6 +1204,29 @@ testers are expected to do more *exploratory* testing.
        `REJECTED` can be filtered. Error details shown in the status message.
 
     1. Other incorrect filter commands to try: `filter` and `filter Alex Yeoh` <br>
+       Expected: Similar to previous.
+
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Sorting all applicants by name, scholarship or application status
+
+1. Sorting all existing applicants based on the specified name, scholarship or application status while all applicants are being shown
+
+    1. Prerequisites: Multiple applicants in the list.
+
+    2. Test case: `sort NAME` <br>
+       Expected: All applicants will be sorted by applicant name in ascending alphabetical order, ignoring case-sensitivity, and will be shown in TrackAScholar GUI.
+   
+    3. Test case: `sort SCHOLARSHIP -r` <br>
+       Expected: All applicants will be sorted by scholarship name in descending alphabetical order, ignoring case-sensitivity, and will be shown in TrackAScholar GUI.
+   
+    4. Test case: `sort PHONE` <br>
+       Expected: No changes displayed on TrackAScholar GUI since TrackAScholar can only sort applicants by `NAME`, `SCHOLARSHIP` and
+       `STATUS` can be filtered. Error details shown in the status message.
+
+    5. Other incorrect filter commands to try: `sort` and `sort Alex Yeoh` <br>
        Expected: Similar to previous.
 
 [Return to top](#table-of-contents)

@@ -20,7 +20,7 @@ It is written in Java, and has about 14 kLoC.
 
 * **Project management**:
   * Refactored all instances of `AddressBook` and `Person` to `TrackAScholar` and `Applicant`,
-    along with all related methods, test cases and parameter names. [#65](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/65), [#71](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/71)
+    along with all related methods, test cases and parameter names: [#65](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/65), [#71](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/71)
 
 * **Enhancements to existing features**: 
   * Updated `Logic` and `Model` to display pinned applicants on the UI: [#114](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/114)
