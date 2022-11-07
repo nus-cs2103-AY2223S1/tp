@@ -1,0 +1,101 @@
+@startuml
+!include style.puml
+
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackAScholarParser" as TrackAScholarParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+
+participant ":EditCommand" as EditCommand LOGIC_COLOR
+participant "e:EditApplicantDescriptor" as EditApplicantDescriptor LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+'participant "applicant:Applicant" as Applicant MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit 1 n/Sam \n p/91234567 \n e/samnew@example.com \n s/NUS Sports Scholarship \n as/accepted")
+activate LogicManager
+
+LogicManager -> TrackAScholarParser : parseCommand(args)
+activate TrackAScholarParser
+
+create EditCommandParser
+TrackAScholarParser -> EditCommandParser : EditCommandParser()
+activate EditCommandParser
+
+EditCommandParser --> TrackAScholarParser
+deactivate EditCommandParser
+
+
+TrackAScholarParser -> EditCommandParser : parse("1 n/Sam \n p/91234567 \n e/samnew@example.com \n s/NUS Sports Scholarship \n as/accepted")
+activate EditCommandParser
+
+
+EditCommandParser -> EditCommandParser : isPrefixPresent()
+activate EditCommandParser
+
+EditCommandParser --> EditCommandParser
+deactivate EditCommandParser
+
+create EditApplicantDescriptor
+EditCommandParser -> EditApplicantDescriptor : EditApplicantDescriptor()
+activate EditApplicantDescriptor
+
+EditApplicantDescriptor --> EditCommandParser : e
+deactivate EditApplicantDescriptor
+
+create EditCommand
+EditCommandParser -> EditCommand : EditCommand(index, e)
+activate EditCommand
+
+EditCommand --> EditCommandParser
+deactivate EditCommand
+
+EditCommandParser --> TrackAScholarParser
+deactivate EditCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> TrackAScholarParser
+destroy EditCommandParser
+
+TrackAScholarParser --> LogicManager
+deactivate TrackAScholarParser
+
+LogicManager -> EditCommand : execute()
+activate EditCommand
+
+EditCommand -> Model : getFilteredApplicantList()
+activate Model
+
+Model --> EditCommand
+deactivate
+
+EditCommand -> Model : setApplicant()
+activate Model
+
+Model --> EditCommand
+deactivate
+
+EditCommand -> Model : updateFilteredApplicantList()
+activate Model
+
+Model --> EditCommand
+deactivate
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditCommand
+deactivate CommandResult
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

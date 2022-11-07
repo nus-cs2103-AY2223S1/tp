@@ -1,0 +1,16 @@
+{
+  "applicants": [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "scholarship": "Arts",
+    "applicationStatus": "pending",
+    "majors": [ "Business" ]
+  }, {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "pauline@example.com",
+    "scholarship": "Sports",
+    "applicationStatus": "pending"
+  } ]
+}

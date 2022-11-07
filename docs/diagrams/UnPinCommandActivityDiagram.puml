@@ -1,0 +1,20 @@
+@startuml
+start
+:User enters UnPin command;
+
+if () then ([Is invalid name])
+    :TrackAScholar displays \nerror message indicating\ngiven Applicant does not\n              exists;
+
+else ([Else])
+        if () then ([Applicant is already\nunpinned in TrackAScholar])
+              :TrackAScholar displays\nerror message indicating\nthat Applicant is already \nunpinned in TrackAScholar;
+
+        else ([else])
+              :Create new Applicant\nwith updated Pin field;
+              :Update existing Applicant\n   with new Applicant in\n        TrackAScholar;
+
+        endif
+
+endif
+stop
+@enduml

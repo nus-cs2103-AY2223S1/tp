@@ -1,0 +1,13 @@
+@startuml
+start
+:User enters Find command;
+
+if () then ([is invalid parameters])
+    :TrackAScholar displays\nerror message indicating\ninvalid user input;
+
+else ([Is valid parameters])
+    :TrackAScholar displays\napplicants found\nand the total count;
+
+endif
+stop
+@enduml

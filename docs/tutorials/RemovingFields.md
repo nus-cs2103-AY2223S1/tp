@@ -20,7 +20,7 @@ However, if you have no such prior knowledge, removing a field can take a quite 
 
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 ## Safely deleting `Address`
 

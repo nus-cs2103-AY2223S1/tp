@@ -1,0 +1,14 @@
+@startuml
+start
+:User enters Filter command;
+
+
+if () then ([is invalid parameters])
+    :TrackAScholar displays\nerror message indicating\ninvalid user input;
+
+else ([Is valid application status])
+    :TrackAScholar displays\napplicants with matching\nscholarship application\nstatus and the total count;
+
+endif
+stop
+@enduml

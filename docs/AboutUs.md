@@ -9,51 +9,53 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Shum Jie Hui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/shummyownzyou.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/ShummyOwnzYou)]
+[[portfolio](team/shummyownzyou.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Documentation + Integration + Testing
 
-### Jean Doe
+### Samuel Cheong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/samuelcheongws.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/samuelcheongws/)]
+[[portfolio](team/samuelcheongws.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Integration + Testing + Scheduling
+
+### Liu Yijun
+
+<img src="images/l1uy1jun.png" width="200px">
+
+[[github](https://github.com/L1uY1jun)]
+[[portfolio](team/l1uy1jun.md)]
+
+* Role: Team Leader
+* Responsibilities: Code Quality + Documentation + Deliverables + Scheduling
+
+### Darren Tng
+
+<img src="images/darrencsacc.png" width="200px">
+
+[[github](https://github.com/DarrenCsAcc)]
+[[portfolio](team/darrencsacc.md)]
+
+* Role: Developer
+* Responsibilities: Documentation + Testing
+
+
+### Benjy Tan
+
+<img src="images/benjytan45678.png" width="200px">
+
+[[github](https://github.com/benjytan45678)]
+[[portfolio](team/benjytan45678.md)]
+
+* Role: Developer
+* Responsibilities: Documentation + Testing + UI

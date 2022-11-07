@@ -1,0 +1,29 @@
+@startuml
+start
+:User enters Pin command;
+
+if () then ([Is negative index])
+    :TrackAScholar displays\nerror message indicating\nindex must be positive;
+
+else ([else])
+
+    if () then ([Is valid index])
+        :Retrieve current applicant\n   from TrackAScholar;
+
+        if () then ([Applicant is already\npinned in TrackAScholar])
+              :TrackAScholar displays \nerror message indicating \nthat Applicant is already \npinned in TrackAScholar;
+
+        else ([else])
+              :Create new Applicant\nwith updated Pin field;
+              :Update existing Applicant\n   with new Applicant in\n        TrackAScholar;
+
+        endif
+
+    else ([else])
+        :TrackAScholar displays \nerror message indicating \nindex provided is invalid;
+
+    endif
+
+endif
+stop
+@enduml

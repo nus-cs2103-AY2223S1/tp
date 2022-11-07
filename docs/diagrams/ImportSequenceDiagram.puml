@@ -1,0 +1,74 @@
+@startuml
+!include style.puml
+
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackAScholarParser" as TrackAScholarParser LOGIC_COLOR
+participant ":ImportCommandParser" as ImportCommandParser LOGIC_COLOR
+
+participant ":ImportCommand" as ImportCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("import r")
+activate LogicManager
+
+LogicManager -> TrackAScholarParser : parseCommand(args)
+activate TrackAScholarParser
+
+create ImportCommandParser
+TrackAScholarParser -> ImportCommandParser : ImportCommandParser()
+activate ImportCommandParser
+
+ImportCommandParser --> TrackAScholarParser
+deactivate ImportCommandParser
+
+
+TrackAScholarParser -> ImportCommandParser : parse("r")
+activate ImportCommandParser
+
+create ImportCommand
+ImportCommandParser -> ImportCommand : ImportCommand("r")
+activate ImportCommand
+
+ImportCommand --> ImportCommandParser
+deactivate ImportCommand
+
+ImportCommandParser --> TrackAScholarParser
+deactivate ImportCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ImportCommandParser -[hidden]-> TrackAScholarParser
+destroy ImportCommandParser
+
+TrackAScholarParser --> LogicManager
+deactivate TrackAScholarParser
+
+LogicManager -> ImportCommand : execute()
+activate ImportCommand
+
+ImportCommand -> Model : importWithReplace()
+activate Model
+
+Model --> ImportCommand
+deactivate
+
+
+create CommandResult
+ImportCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ImportCommand
+deactivate CommandResult
+
+ImportCommand --> LogicManager : result
+deactivate ImportCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

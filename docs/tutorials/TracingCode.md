@@ -10,7 +10,7 @@ title: "Tutorial: Tracing code"
 When trying to understand an unfamiliar code base, one common strategy used is to trace some representative execution path through the code base. One easy way to trace an execution path is to use a debugger to step through the code. In this tutorial, you will be using the IntelliJ IDEA’s debugger to trace the execution path of a specific user command.
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 ## Before we start
 
@@ -28,8 +28,8 @@ Before we proceed, ensure that you have done the following:
 1. Read the [*Architecture* section of the DG](../DeveloperGuide.md#architecture)
 1. Set up the project in Intellij IDEA
 1. Learn basic debugging features of Intellij IDEA
-   * If you are using a different IDE, we'll leave it to you to figure out the equivalent feature to use in your IDE.
-   * If you are not using an IDE, we'll let you figure out how to achieve the same using your coding toolchain.
+    * If you are using a different IDE, we'll leave it to you to figure out the equivalent feature to use in your IDE.
+    * If you are not using an IDE, we'll let you figure out how to achieve the same using your coding toolchain.
 
 ## Setting a breakpoint
 
@@ -81,7 +81,7 @@ Next, let's find out which statement(s) in the `UI` code is calling this method,
 Bingo\! `MainWindow#executeCommand()` seems to be exactly what we’re looking for\!
 
 Now let’s set the breakpoint. First, double-click the item to reach the corresponding code. Once there, click on the left gutter to set a breakpoint, as shown below.
- ![LeftGutter](../images/tracing/LeftGutter.png)
+![LeftGutter](../images/tracing/LeftGutter.png)
 
 ## Tracing the execution path
 
@@ -104,7 +104,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    `CommandResult commandResult = logic.execute(commandText);` is the line that you end up at (i.e., the place where we put the breakpoint).
 
 1. We are interested in the `logic.execute(commandText)` portion of that line so let’s _Step in_ into that method call:<br>
-    ![StepInto](../images/tracing/StepInto.png)
+   ![StepInto](../images/tracing/StepInto.png)
 
 1. We end up in `LogicManager#execute()` (not `Logic#execute` -- but this is expected because we know the `execute()` method in the `Logic` interface is actually implemented by the `LogicManager` class). Let’s take a look at the body of the method. Given below is the same code, with additional explanatory comments.
 
@@ -151,7 +151,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    ```
 
 1. _Step over_ the statements in that method until you reach the `switch` statement. The 'Variables' window now shows the value of both `commandWord` and `arguments`:<br>
-    ![Variables](../images/tracing/Variables.png)
+   ![Variables](../images/tracing/Variables.png)
 
 1. We see that the value of `commandWord` is now `edit` but `arguments` is still not processed in any meaningful way.
 
@@ -179,8 +179,8 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. Let’s continue stepping through until we return to `LogicManager#execute()`.
 
-    The sequence diagram below shows the details of the execution path through the Logic component. Does the execution path you traced in the code so far match the diagram?<br>
-    ![Tracing an `edit` command through the Logic component](../images/tracing/LogicSequenceDiagram.png)
+   The sequence diagram below shows the details of the execution path through the Logic component. Does the execution path you traced in the code so far match the diagram?<br>
+   ![Tracing an `edit` command through the Logic component](../images/tracing/LogicSequenceDiagram.png)
 
 1. Now, step over until you read the statement that calls the `execute()` method of the `EditCommand` object received, and step into that `execute()` method (partial code given below):
 
@@ -201,19 +201,19 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    ```
 
 1. As suspected, `command#execute()` does indeed make changes to the `model` object. Specifically,
-   * it uses the `setPerson()` method (defined in the interface `Model` and implemented in `ModelManager` as per the usual pattern) to update the person data.
-   * it uses the `updateFilteredPersonList` method to ask the `Model` to populate the 'filtered list' with _all_ persons.<br>
-     FYI, The 'filtered list' is the list of persons resulting from the most recent operation that will be shown to the user immediately after. For the `edit` command, we populate it with all the persons so that the user can see the edited person along with all other persons. If this was a `find` command, we would be setting that list to contain the search results instead.<br>
-     To provide some context, given below is the class diagram of the `Model` component. See if you can figure out where the 'filtered list' of persons is being tracked.
-     <img src="../images/ModelClassDiagram.png" width="450" /><br>
-   * :bulb: This may be a good time to read through the [`Model` component section of the DG](../DeveloperGuide.html#model-component)
+    * it uses the `setPerson()` method (defined in the interface `Model` and implemented in `ModelManager` as per the usual pattern) to update the person data.
+    * it uses the `updateFilteredPersonList` method to ask the `Model` to populate the 'filtered list' with _all_ persons.<br>
+      FYI, The 'filtered list' is the list of persons resulting from the most recent operation that will be shown to the user immediately after. For the `edit` command, we populate it with all the persons so that the user can see the edited person along with all other persons. If this was a `find` command, we would be setting that list to contain the search results instead.<br>
+      To provide some context, given below is the class diagram of the `Model` component. See if you can figure out where the 'filtered list' of persons is being tracked.
+      <img src="../images/ModelClassDiagram.png" width="450" /><br>
+    * :bulb: This may be a good time to read through the [`Model` component section of the DG](../DeveloperGuide.html#model-component)
 
 1. As you step through the rest of the statements in the `EditCommand#execute()` method, you'll see that it creates a `CommandResult` object (containing information about the result of the execution) and returns it.<br>
    Advancing the debugger by one more step should take you back to the middle of the `LogicManager#execute()` method.<br>
 
 1. Given that you have already seen quite a few classes in the `Logic` component in action, see if you can identify in this partial class diagram some of the classes you've encountered so far, and see how they fit into the class structure of the `Logic` component:
-    <img src="../images/LogicClassDiagram.png" width="550"/>
-   * :bulb: This may be a good time to read through the [`Logic` component section of the DG](../DeveloperGuide.html#logic-component)
+   <img src="../images/LogicClassDiagram.png" width="550"/>
+    * :bulb: This may be a good time to read through the [`Logic` component section of the DG](../DeveloperGuide.html#logic-component)
 
 1. Similar to before, you can step over/into statements in the `LogicManager#execute()` method to examine how the control is transferred to the `Storage` component and what happens inside that component.
 
@@ -244,13 +244,13 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. While you are stepping through the classes in the `Storage` component, here is the component's class diagram to help you understand how those classes fit into the structure of the component.<br>
    <img src="../images/StorageClassDiagram.png" width="550" />
-   * :bulb: This may be a good time to read through the [`Storage` component section of the DG](../DeveloperGuide.html#storage-component)
+    * :bulb: This may be a good time to read through the [`Storage` component section of the DG](../DeveloperGuide.html#storage-component)
 
 1. We can continue to step through until you reach the end of the `LogicManager#execute()` method and return to the `MainWindow#executeCommand()` method (the place where we put the original breakpoint).
 
 1. Stepping into `resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());`, we end up in:
 
-    **`ResultDisplay#setFeedbackToUser()`**
+   **`ResultDisplay#setFeedbackToUser()`**
     ``` java
     public void setFeedbackToUser(String feedbackToUser) {
         requireNonNull(feedbackToUser);
@@ -288,14 +288,14 @@ Here are some quick questions you can try to answer based on your execution path
 2.  What components will you have to modify to perform the following
     enhancements to the application?
 
-    1.  Make command words case-insensitive
+    1. Make command words case-insensitive
 
-    2.  Allow `delete` to remove more than one index at a time
+    2. Allow `delete` to remove more than one index at a time
 
-    3.  Save the address book in the CSV format instead
+    3. Save the address book in the CSV format instead
 
-    4.  Add a new command
+    4. Add a new command
 
-    5.  Add a new field to `Person`
+    5. Add a new field to `Person`
 
-    6.  Add a new entity to the address book
+    6. Add a new entity to the address book
