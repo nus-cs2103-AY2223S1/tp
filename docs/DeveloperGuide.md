@@ -425,53 +425,154 @@ testers are expected to do more *exploratory* testing.
 ### Adding a Task or Deadline
 
 1. Adding a Task
-
+   1. Prerequisites: task "Foo" isn't already added. If added, delete it first.
+   2. Test case: `add_task n/Foo d/Foo`<br>
+      Expected: Task "Foo" is added to the task list. Details of the added task shown in the status message.
+   3. Test case: `add_task n/Foo d/Foo`<br>
+      Expected: No task is added. Error details shown in the status message.
 2. Adding a Deadline
+   1. Prerequisites: deadline "Bar" isn't already added. If added, delete it first.
+   2. Test case: `add_task n/Bar d/Bar dl/02-02-2022 2200`<br>
+      Expected: Deadline "Bar" is added to the task list. Details of the added deadline shown in the status message.
+   3. Test case: `add_task n/Bar d/Bar dl/02-02-2022 2200`<br>
+      Expected: No deadline is added. Error details shown in the status message.
 
-### Completing a Task or Deadline
+### Mark / Unmark a Task or Deadline
 
-1. Completing a Task or Deadline
+1. Marking a Task or Deadline
+
+   1. Prerequisites: task "Foo" is already added. If not added, add it first. Foo should be the first index in the task list.
+   2. Test case: `mark 1`<br>
+      Expected: Task "Foo" is marked as completed. Details of the completed task shown in the status message.
+   3. Test case: `mark 1`<br>
+      Expected: No task is marked as completed. Error details shown in the status message.
+   4. Test case: `mark 0`<br>
+      Expected: No task is marked as completed. Error details shown in the status message.
+
+2. Unmarking a Task or Deadline
+
+   1. Prerequisites: task "Bar" is already added. If not added, add it first. Foo should be the first index in the task list and already marked as complete.
+   2. Test case: `unmark 1`<br>
+      Expected: Task "Bar" is marked as uncompleted. Details of the uncompleted task shown in the status message.
+   3. Test case: `unmark 1`<br>
+      Expected: No task is marked as uncompleted. Error details shown in the status message.
+   4. Test case: `unmark 0`<br>
+      Expected: No task is marked as uncompleted. Error details shown in the status message.
 
 ### Switching Lists
 
-1. Switching to the Task List
+1. List all tasks
+
+   1. Test case: `list_task`<br>
+      Expected: All tasks are listed in the task list and, if not already on the "Task List" view it's swapped to it. Details of the listed tasks shown in the status message.
+
+   2. Test case: `list_contact`<br>
+      Expected: All contacts are listed in the contact list and, if not already on the "Contact List" view it's swapped to it. Details of the listed contacts shown in the status message.
+
+   3. Test case: type `ctrl + tab`<br>
+      Expected: The current list is switched to the other list.
 
 ### Viewing Task, Deadline and Contact Assocation
 
-1. Example
+1. Select Task or Deadline to view Contact Assocation
+
+   1. Prerequisites: task "Foo" is already added and assigned to contact "Alex". If not added, add it first. Foo should be the first index in the task list.
+   2. Test case: `select_task 1`<br>
+      Expected: Task "Foo" is selected, the view is swapped to the "Task List" and the contact list is updated to show all contacts associated with the task. Details of the selected task shown in the status message.
+   3. Test case: `select_task 0`<br>
+      Expected: No task is selected. Error details shown in the status message.
+
+2. Select Contact to view Task or Deadline Association
+
+   1. Prerequisites: contact "Alex" is already added and assigned to task "Foo". If not added, add it first. Alex should be the first index in the contact list.
+   2. Test case: `select_contact 1`<br>
+      Expected: Contact "Alex" is selected, the view is swapped to the "Contact List" and the task list is updated to show all tasks associated with the contact. Details of the selected contact shown in the status message.
+   3. Test case: `select_contact 0`<br>
+      Expected: No contact is selected. Error details shown in the status message.
 
 ### Finding Task, Deadline or Contact
 
+1. Find Task or Deadline
+
+   1. Prerequisites: task "Foo" is already added and "Bar" is not added. If not added, add it first.
+   2. Test case: `find_task Foo`<br>
+      Expected: All tasks containing "Foo" are listed in the task list. Details of the listed tasks shown in the status message.
+   3. Test case: `find_task Bar`<br>
+      Expected: No tasks are listed in the task list. Details of the listed tasks shown in the status message.
+
+2. Find Contact
+   1. Prerequisites: contact "Alex" is already added and "Bob is not added". If not added, add it first.
+   2. Test case: `find_contact Alex`<br>
+      Expected: All contacts containing "Alex" are listed in the contact list. Details of the listed contacts shown in the status message.
+   3. Test case: `find_contact Bob`<br>
+      Expected: No contacts are listed in the contact list. Details of the listed contacts shown in the status message.
+
 ### Deleting a Task, Deadline or Contact
 
-1. Deleting a person / task while all persons / task are being shown
+1. Deleting a Contact, Task or Deadline while all Contact, Task or Deadline are being shown
 
-   1. Prerequisites: List all persons / task using the `list_contact` or `list_task` command.
+   1. Prerequisites: List all Contacts, Tasks or Deadlines using the `list_contact` or `list_task` command.
 
-   2. Test case: `delete_contact 1` / `delete_task 1`<br>
-      Expected: First contact / task is deleted from the list. Details of the deleted contact / task shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `delete_contact 1` or `delete_task 1`<br>
+      Expected: First Contact or Task is deleted from the list. Details of the deleted Contact or Task shown in the status message.
 
-   3. Test case: `delete_contact 0` / `delete_task 0`<br>
-      Expected: No person / task is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `delete_contact 0` or `delete_task 0`<br>
+      Expected: No Contact, Task or Deadline is deleted. Error details shown in the status message. Status bar remains the same.
 
    4. Other incorrect delete commands to try: `delete_contact` / `delete_task`, `delete_contact x` / `delete_task x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 ### Editing a Task, Deadline or Contact
 
+1. Editing a Contact, Task or Deadline while all Contact, Task or Deadline are being shown
+
+   1. Prerequisites: List all Contacts, Tasks or Deadlines using the `list_contact` or `list_task` command. There should be at least one contact or task.
+
+   2. Test case: `edit_contact 1 n/Alex Yeoh p/98765432
+      Expected: First Contact is edited to have the name "Alex Yeoh" and phone number "98765432". Details of the edited Contact shown in the status message.
+
+   3. Test case: `edit_contact 0 n/Alex Yeoh p/98765432`<br>
+      Expected: No Contact is edited. Error details shown in the status message. Status bar remains the same.
+
+   4. Test case: `edit_task 1 n/Bar d/Foo dl/02-02-2022 2200`<br>
+      Expected: First Task is edited to have the name "Bar", description "Foo" and deadline "02-02-2022 2200". Details of the edited Task shown in the status message.
+
+   5. Test case: `edit_task 0 n/Bar d/Foo dl/02-02-2022 2200`<br>
+      Expected: No Task is edited. Error details shown in the status message. Status bar remains the same.
+
+   6. Other incorrect edit commands to try: `edit_contact` / `edit_task`, `edit_contact x ...` / `edit_task x ...`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Autocomplete
+
+1. type `li` then press `tab`<br>
+   Expected: Autocomplete the command based on the current command text, autocompleting it to list\_.
+
+2. type `list_t` then press `tab`<br>
+   Expected: Autocomplete the command based on the current command text, autocompleting it to list_task.
+
 ### Clearing all entries
+
+1. Clear all exisiting data in the application
+   1. Test case: `clear`<br>
+      Expected: All data is cleared from the application. Status message shows the number of contacts, tasks and deadlines cleared.
 
 ### Saving data
 
 1.  Shutdown the app by typing `exit` into the command box.
-1.  Re-launch the app by double-clicking the jar file.<br>
+2.  Re-launch the app by double-clicking the jar file.<br>
     Expected: The most recent state is saved.
-
-1.  Dealing with missing/corrupted data files
-
-    1.  _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+3.  Dealing with missing/corrupted data files
+    1.  Corrupt the data file in `data/addressbook.json` by adding random characters to make the JSON file unreadable or by simply deleting it.
+    2.  Re-launch the app by double-clicking the jar file.<br>
+        Expected: The app will start with an empty address book.
+    3.  After new data is added, the corrupted data file will be overwritten by the app. Any missing file will be replaced by the app.
 
 ### Viewing Help
+
+1. View Help
+   1. Test case: `help`<br>
+      Expected: Help window opens.
 
 ---
 
