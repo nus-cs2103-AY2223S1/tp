@@ -3,7 +3,9 @@ layout: page
 title: User Guide
 ---
 # Waddle User Guide 🦆
-Waddle is a **simple, no-frills travel planning application catered to people who love doing everything on their keyboards**. Waddle allows users to plan their travels in **3 simple steps**.
+Waddle is a **simple, no-frills travel planning application catered to people who love doing everything on their keyboards**.
+
+Waddle allows you to plan your travels in **3 simple steps**.
 1. Create a trip itinerary
 2. Add activities to your itinerary
 3. Make a schedule for your trip
@@ -50,6 +52,7 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
 <div style="page-break-after: always"></div>
 
 ## Quick start
+To begin planning your travels with Waddle, simply set it up as follows:
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -61,7 +64,7 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
    Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+And you're ready to waddle! To execute any command, type it command in the command box and press Enter. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`list`** : Lists all itineraries.
@@ -74,7 +77,7 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
 
    * **`exit`** : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+For more commands and their details, refer to the [Features](#features) section below.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
