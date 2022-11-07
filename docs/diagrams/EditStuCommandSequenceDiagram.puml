@@ -3,7 +3,7 @@
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ProfNUSParser" as ProfNUSParser LOGIC_COLOR
 participant ":EditStuCommandParser" as EditStuCommandParser LOGIC_COLOR
 participant "d: EditStudentDescriptor" as EditStudentDescriptor LOGIC_COLOR
 participant "e:EditStuCommand" as EditStuCommand LOGIC_COLOR
@@ -18,17 +18,17 @@ end box
 [-> LogicManager : execute("editstu 1 n/David c/CS1101S c/CS2107")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("editstu 1 n/David c/CS1101S c/CS2107")
-activate AddressBookParser
+LogicManager -> ProfNUSParser : parseCommand("editstu 1 n/David c/CS1101S c/CS2107")
+activate ProfNUSParser
 
 create EditStuCommandParser
-AddressBookParser -> EditStuCommandParser
+ProfNUSParser -> EditStuCommandParser
 activate EditStuCommandParser
 
-EditStuCommandParser --> AddressBookParser
+EditStuCommandParser --> ProfNUSParser
 deactivate EditStuCommandParser
 
-AddressBookParser -> EditStuCommandParser : parse("n/David c/CS1101S c/CS2107")
+ProfNUSParser -> EditStuCommandParser : parse("n/David c/CS1101S c/CS2107")
 activate EditStuCommandParser
 
 create EditStudentDescriptor
@@ -45,11 +45,12 @@ activate EditStuCommand
 EditStuCommand --> EditStuCommandParser
 deactivate EditStuCommand
 
-EditStuCommandParser --> AddressBookParser
+EditStuCommandParser --> ProfNUSParser
 deactivate EditStuCommandParser
 
-AddressBookParser --> LogicManager: e
-deactivate AddressBookParser
+ProfNUSParser --> LogicManager: e
+deactivate ProfNUSParser
+destroy EditStuCommandParser
 
 LogicManager -> EditStuCommand
 activate EditStuCommand
@@ -88,6 +89,8 @@ deactivate CommandResult
 
 EditStuCommand -> LogicManager : CommandResult
 deactivate EditStuCommand
+destroy EditStuCommand
+
 
 [<--LogicManager
 deactivate LogicManager
