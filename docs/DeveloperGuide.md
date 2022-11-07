@@ -419,7 +419,7 @@ The `find` mechanism is facilitated within [TeachersPet.java](https://github.com
 There are 7 different variations of `find`:
 1. Find by name: Find all matching student(s) with any matching full keyword(s) from name of student using `find n/[KEYWORDS]`.
 2. Find by email: Find all matching student(s) with any matching full keyword(s) from email of student using `find e/[KEYWORDS]`.
-3. Find by address: Find all matching student(s) with any matching full keyword(s) from address of using `find a/[KEYWORDS]`.
+3. Find by address: Find all matching student(s) with any matching keyword(s) from address of using `find a/[KEYWORDS]`.
 4. Find by student's contact number: Find the matching student with a particular contact number using `find p/CONTACT_NUMBER`.
 5. Find by next of kin's contact number: Find all matching student(s) with a particular next of kin's contact number using `find np/NEXT_OF_KIN_CONTACT_NUMBER`.
 6. Find by class date: Find all matching student(s) with classes on a particular date`find dt/[CLASS_DATE]`.
