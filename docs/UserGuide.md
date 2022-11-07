@@ -670,15 +670,15 @@ Reverses the most recent command.
 
 * ```undo``` undoes the most recent command.
 
-1. Original Data
+Original Data
 
 <img src="images/ug/undoredocommand/undo1.PNG">
 
-2. Execute `deletepatient 1` to delete all information of Bernice Yu.
+Execute `deletepatient 1` to delete all information of Bernice Yu.
 
 <img src="images/ug/undoredocommand/undo2.png">
 
-3. Execute `undo`, information of Bernice Yu comes back.
+Execute `undo`, information of Bernice Yu comes back.
 
 <img src="images/ug/undoredocommand/undo3.png">
 
@@ -699,19 +699,19 @@ Reverses the most recent undo command.
 
 * ```redo``` redoes the most recent undo command.
 
-1. Original Data
+Original Data
 
 <img src="images/ug/undoredocommand/redo1.PNG">
 
-2. Execute `deletepatient 1` to delete all information of Bernice Yu.
+Execute `deletepatient 1` to delete all information of Bernice Yu.
 
 <img src="images/ug/undoredocommand/redo2.png">
 
-3. Execute `undo`, information of Bernice Yu comes back.
+Execute `undo`, information of Bernice Yu comes back.
 
 <img src="images/ug/undoredocommand/redo3.png">
 
-4. Execute `redo`, information of Bernice Yu is deleted again.
+Execute `redo`, information of Bernice Yu is deleted again.
 
 <img src="images/ug/undoredocommand/redo4.png">
 
@@ -766,7 +766,7 @@ HealthContact data are saved in the hard disk automatically after any command th
 HealthContact data are saved as a JSON file `[JAR file location]/data/healthcontact.json`. Advanced users are welcome to update data directly by editing that data file.
 * If the changes to the data file makes its format invalid, HealthContact will discard all data and start with an empty data file at the next run.
 
-# 2. FAQ
+# 2. Frequently Asked Questions
 1. Q: How do I find out which appointment a bill is for?
 - Use the FindAppointmentCommand to find all appointments for a patient using the patient name on the bill. Then, use the SelectAppointmentCommand to see which appointment is the bill for.
 
