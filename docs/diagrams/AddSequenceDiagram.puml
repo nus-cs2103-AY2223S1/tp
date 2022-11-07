@@ -11,12 +11,13 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
+participant "person:Person" as Person MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add n/John Doe ... t/friend")
+[-> LogicManager : execute("add \n n/John Doe p/98765432 \n e/johnd@example.com \n a/John street, block 123, #01-01 \n b/18-08-2000")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("add n/John Doe ... t/friend")
+LogicManager -> AddressBookParser : parseCommand("add \n n/John Doe p/98765432 \n e/johnd@example.com \n a/John street, block 123, #01-01 \n b/18-08-2000")
 activate AddressBookParser
 
 create AddCommandParser
@@ -26,8 +27,21 @@ activate AddCommandParser
 AddCommandParser --> AddressBookParser
 deactivate AddCommandParser
 
-AddressBookParser -> AddCommandParser : parse("n/John Doe ... t/friend")
+AddressBookParser -> AddCommandParser : parse("add \n n/John Doe p/98765432 \n e/johnd@example.com \n a/John street, block 123, #01-01 \n b/18-08-2000")
 activate AddCommandParser
+
+AddCommandParser -> AddCommandParser : arePrefixesPresent()
+activate AddCommandParser
+
+AddCommandParser --> AddCommandParser
+deactivate AddCommandParser
+
+create Person
+AddCommandParser -> Person : Person()
+activate Person
+
+Person --> AddCommandParser : person
+deactivate Person
 
 create AddCommand
 AddCommandParser -> AddCommand
@@ -47,6 +61,12 @@ deactivate AddressBookParser
 
 LogicManager -> AddCommand : execute()
 activate AddCommand
+
+AddCommand -> Model : hasPerson(person)
+activate Model
+
+Model --> AddCommand
+deactivate
 
 AddCommand -> Model : addPerson(Person)
 activate Model
