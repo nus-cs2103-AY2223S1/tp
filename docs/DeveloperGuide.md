@@ -130,7 +130,7 @@ The `Model` component,
 * stores the current list of `Commission` objects belonging to the selected `Customer` (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Commission>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-* keeps track of the currently selected GUI tab using a `GuiTab` enum. The tab that the GUI displays is updated after each command is executed. 
+* keeps track of the currently selected GUI tab using a `GuiTab` enum. The tab that the GUI displays is updated after each command is executed.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Customer` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Customer` needing their own `Tag` objects.<br>
 
@@ -800,9 +800,9 @@ a bug.
 1. Deleting a customer while all customers are being shown
     1. Prerequisites: List all customers using the `list` command. Multiple customers in the list.
     1. Test case: `delcus 1`<br>
-       1. Expected: First contact is deleted from the list. Details of the deleted customer shown in the status message. Timestamp in the status bar is updated.
+       1. Expected: First contact is deleted from the list. Details of the deleted customer shown in the status message.
     1. Test case: `delcus 0`<br>
-       1. Expected: No customer is deleted. Error details shown in the status message. Status bar remains the same.
+       1. Expected: No customer is deleted. Error details shown in the status message.
     1. Other incorrect delete commands to try: `delcus`, `delcus x`, `...` (where x is larger than the list size)<br>
        1. Expected: Similar to previous.
 

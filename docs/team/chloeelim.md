@@ -36,8 +36,6 @@ Given below are my contributions to the project.
     find help on these bugs since JavaFX isn't exactly a popular frontend framework.
     * Keeping in mind possible future extensions to edit commands via GUI, each window had to be further abstracted
     out into its own class.
-    * It was also fun trying to add the image upload and drag and drop features. The add tag support feature by GUI
-    was especially fun to implement and design!
 
 
 * **New Feature**: Added `Iteration` related commands
@@ -60,10 +58,10 @@ Given below are my contributions to the project.
   using Figma, and updated the styling in AB according to the mockup designed
   ([#72](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/72) and
   [#93](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/93)).
-  
+
   * Added UI Components `CommissionDetailsPane` [#84](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/84)
   and `IterationListItem` [#89](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/89): To display a view of a commission's details, and a list view of its iterations.
-  
+
   * Added test cases for `Iteration` classes and its related commands (`additer`, `deliter`, and `edititer`)
   ([#100](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/100) and
   [#111](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/111)).
@@ -72,6 +70,7 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
       * Wrote the introduction sections of the User Guide [#146](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/146).
+      * Wrote the Using the Guide, Quick Start, Appendix and Glossary sections, added style and formatting [#200](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/200).
       * Added documentation for commands `additer`, `deliter`, and `edititer`
         ([#57](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/57) and
         [#136](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/136)).
@@ -87,7 +86,7 @@ Given below are my contributions to the project.
     [#68](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/68),
     [#92](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/92).
   * Reported [bugs and suggestions](https://github.com/chloeelim/ped/issues) for other teams in the class.
-  
+
 
 * **Project management**:
   * Released [v1.2](https://github.com/AY2223S1-CS2103T-W11-3/tp/releases/tag/v1.2)

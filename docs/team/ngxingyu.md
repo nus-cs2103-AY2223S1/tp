@@ -10,19 +10,19 @@ ArtBuddy (AB) a desktop application that helps commission-based artists manage t
 Given below are my contributions to the project.
 
 * **Key Contribution**: Implemented the `addcus` [#67](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/67), `sortcus` [#106](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/106) and `allcom` [#140](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/140) command
-  * *What it does:* 
+  * *What it does:*
     * `addcus` allows the user to create a new customer entry.
     * `sortcus` allows the user to sort the customer list by several comparators.
     * `allcom` allows the user to view all commissions across all customer entries.
   * Highlights:
     * Implementing the `addcus` command involved implementing the `Customer` model and adapting `AddCustomerCommandParser` to accept optional arguments.
     * Implementing `sortcus` involved wrapping the `FilteredList` of all customers in a `SortedList` and accepting one of several `Comparator` comparators.
-    * Implementing `allcom` required careful consideration of the design for allowing us to switch between one of several commission lists when the selected customer changes, ensuring that the GUI is updated appropriately. 
+    * Implementing `allcom` required careful consideration of the design for allowing us to switch between one of several commission lists when the selected customer changes, ensuring that the GUI is updated appropriately.
 * **Key Contribution**: Improved the design of various components
   * Implemented global commissions list to support commission-level operations across different customers [#140](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/140)
   * Improved the image loading and storing implementation [#122](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/122)
   * Improved implementation of `Commission` [#82](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/82) [#83](https://github.com/AY2223S1-CS2103T-W11-3/tp/pull/83).
-    * Stored the customer's reference within each `Commission` so we do not need to update the customer field for every commission each time the customer changes.  
+    * Stored the customer's reference within each `Commission` so we do not need to update the customer field for every commission each time the customer changes.
 
 * **Documentation**:
   * User Guide:

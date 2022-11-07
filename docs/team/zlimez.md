@@ -11,16 +11,16 @@ JavaFx.
 
 Given below are my contributions to the project.
 
-* **New Feature**: 
+* **New Feature**:
   * Implement `addcom` - Adds commission to selected customer.
   * Implement `findcom` - Filters current commission list for those that contains the specified keyword and tags.
   * Implement `listcom` - Returns the original unfiltered commission list.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=zlimez)
 
-* **Project management**: None 
+* **Project management**: None
 
-* **Enhancements to existing features**: 
+* **Enhancements to existing features**:
   * Polish image retrieval for iterations.
   * Merge keyword and tag filtering of customers into one `find` command.
 
