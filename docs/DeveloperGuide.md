@@ -231,7 +231,7 @@ The following methods in `tuthub` manage the finding of tutors:
 * `tuthub#FindByTagCommand(TagContainsKeywordsPredicate predicate)` - Finds and adds tutors with tags matching keywords to list of tutors displayed
 * `tuthub#FindByPrefixParser(String args)` - Parses the `find` command and determines the `prefix` corresponding to the attribute to search through to find matching tutors
 * `ModelManager#filteredTutors` - A `javafx.collections.transformation.FilteredList` that contains a list of filtered tutors according to a predicate
-* `ModelManager#getTutorList()` - Returns the `sortedFilteredTutors` list
+* `ModelManager#getSortedFilteredTutorList()` - Returns the `sortedFilteredTutors` list
 * `ModelManager#updateFilteredTutorList(Predicate<Tutor> predicate)` - Updates filtered list based on predicate
 
 Given below is an example usage scenario when the user is finding tutors whose names contain alex.
@@ -304,7 +304,7 @@ This command sorts `Tuthub`'s displayed list based on quantitative measures, suc
 
 The `sort` command involves the logic, model, and UI part of Tuthub. Most updates are made within the `ModelManager`, which are:
 - `ModelManager#sortedFilteredTutors` - A `javafx.collections.transformation.SortedList` that contains `ModelManager#filteredTutors`.
-- `ModelManager#getTutorList()` - Now returns the `sortedFilteredTutors` list.
+- `ModelManager#getSortedFilteredTutorList()` - Now returns the `sortedFilteredTutors` list.
 - `ModelManager#updateSortedTutorList(Comparator<Tutor>)` - Similar to `ModelManager#updateFilteredTutorList`, but updates the Comparator instead of predicate.
 
 Given below is an example usage scenario when the user enters a `sort` command in the command box and how the sort mechanism behaves at each step.
