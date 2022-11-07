@@ -1,6 +1,6 @@
 ---
 layout: page
-title: ShummyOwnzYou's Project Portfolio Page
+title: Shum Jie Hui's Project Portfolio Page
 ---
 ### Project: TrackAScholar
 
@@ -28,18 +28,19 @@ It is written in Java, and has about 14 kLoC.
     * Justification: 
       * The pinned applicant list does not display applicant index number to avoid inconsistencies and confusion between the 2 applicant lists for commands requiring indexes. 
       * This change allows a more straightforward way to unpin applicants as applicant names are guaranteed to be unique.
-
+  * Wrote additional test cases for new and existing features to improve coverage by 3%: [#62](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/62), [#186](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/186), [#199](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/199), [#207](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/207)
 
 * **Documentation**:
     * User Guide:
-      * Updated user guide to include pin command: [#121](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/121)
+      * Updated user guide with pin feature: [#121](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/121)
       * Made minor improvements in format for user guide: [#126](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/126), [#132](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/132)
     * Developer Guide: 
-      * Updated developer guide with use case 5: [#39](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/39)
-      * Updated developer guide with sort feature and corresponding UML diagrams: [#106](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/106), [#132](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/132)  
+      * Updated developer guide with sort feature and corresponding UML diagrams: [#106](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/106), [#132](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/132) 
+      * Updated developer guide with all use cases: [#39](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/39), [](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/209)
+      * Updated developer guide with manual testing for sort feature: [#209](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/209)
 
 * **Community**: 
-  * PRs reviewed (with non-trivial suggestions): [#111](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/111), [#124](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/124)
+  * PRs reviewed (with non-trivial suggestions): [#111](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/111), [#124](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/124), [#204](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/204)
   * Hosted multiple discussion sessions with team members on PR issues and weekly tasks.
   * Reported bugs for [CS2103T-T17-1](https://github.com/AY2223S1-CS2103T-T17-1/tp) during PE dry run [here](https://github.com/ShummyOwnzYou/ped/issues).
 
