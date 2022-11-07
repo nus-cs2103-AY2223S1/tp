@@ -14,13 +14,20 @@ Given below are my contributions to the project.
 [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=wadia82&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=guokweijie&tabRepo=AY2223S1-CS2103T-W08-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 ### Enhancements to existing features:
-*DeletePatientCommand to let the user to delete patient identified by their index in the currently displayed list. Deleting patient deletes related appointments and bills.
+*Added the ability to delete all appointments and bills of the patient when a patient is deleted (Delete Patient Command). 
+Added the ability to delete individual appointments(Delete Appointment Command) and bills(Delete Bill Command).
 
-*DeleteAppointmentCommand to let the user delete an appointment identified by their index in the currently displayed list.
+What it does: Lets the user delete patient, appointment, or bill identified by their index in the currently displayed list.
 
-*DeleteBillCommand to let the user delete a bill identified by their index in the currently displayed list.
+Justification: Earlier deleting a contact from the address book would just delete the contact details. This is not intuitive or user-friendly as they would then have to proceed to delete the appointments and the bills of the patient.
+Additionally, there was no support for any operations for appointments and bills, so those had to be explicitly added.
 
-*FindBillCommand to let the user to filter bills by name, date, amount and whether the bills have been paid or not. It allows the user to filter by one or multiple fields in a single command.
+Highlights: Deleting a patient from the list deletes their appointments and bills. Deleting an appointment from the list also deletes the bill for that appointment.
+
+
+*Added the ability to filter bills by name, date, amount and whether the bills have been paid or not.
+
+What is does: It allows the user to filter by one or multiple fields in a single command. 
 
 ### Contribution to Documentation
 *AboutUs.md
