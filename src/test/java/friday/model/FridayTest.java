@@ -49,7 +49,7 @@ public class FridayTest {
     public void resetData_withDuplicateStudents_throwsDuplicateStudentException() {
         // Two students with the same identity fields
         Student editedAlice = new StudentBuilder(TypicalStudents.ALICE)
-                .withMasteryCheck(CommandTestUtil.VALID_MASTERYCHECK_BOB)
+                .withMasteryCheck(CommandTestUtil.VALID_MASTERYCHECK_DATE_BOB, false)
                 .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
                 .build();
         List<Student> newStudents = Arrays.asList(TypicalStudents.ALICE, editedAlice);
@@ -78,7 +78,7 @@ public class FridayTest {
     public void hasStudent_studentWithSameIdentityFieldsInFriday_returnsTrue() {
         friday.addStudent(TypicalStudents.ALICE);
         Student editedAlice = new StudentBuilder(TypicalStudents.ALICE)
-                .withMasteryCheck(CommandTestUtil.VALID_MASTERYCHECK_BOB)
+                .withMasteryCheck(CommandTestUtil.VALID_MASTERYCHECK_DATE_BOB, false)
                 .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
                 .build();
         assertTrue(friday.hasStudent(editedAlice));

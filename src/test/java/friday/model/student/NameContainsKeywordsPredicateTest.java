@@ -72,6 +72,6 @@ public class NameContainsKeywordsPredicateTest {
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alic@email.com", "Main", "Street"));
         assertFalse(predicate.test(new StudentBuilder().withName("Alic").withTelegramHandle("12349")
                 .withConsultation(LocalDate.of(2022, 9, 1))
-                .withMasteryCheck(LocalDate.of(2022, 9, 10)).build()));
+                .withMasteryCheck(LocalDate.of(2022, 9, 10), false).build()));
     }
 }

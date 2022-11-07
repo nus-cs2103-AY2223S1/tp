@@ -100,7 +100,6 @@ How the `Logic` component works:
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
-
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -117,7 +116,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W15-4/tp/blob/master/src/main/java/friday/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="500" />
 
 
 The `Model` component,
@@ -129,7 +128,7 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Friday`, which `Student` references. This allows `Friday` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" width="650" />
 
 </div>
 
@@ -138,7 +137,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W15-4/tp/blob/master/src/main/java/friday/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="600" />
 
 The `Storage` component,
 * can save both FRIDAY data and user preference data in json format, and read them back into corresponding objects.
@@ -147,7 +146,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `fridaybook.commons` package.
+Classes used by multiple components are in the `friday.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -217,33 +216,36 @@ The following Sequence Diagram summarises the aforementioned steps.
 
 #### Implementation
 
-The alias command will be executed by `AliasCommand`. Aliases added will be stored in a `UniqueAliasList`, while
-in-built command names (e.g. add, delete) will be stored in a constant `reservedCommandList`.
+The alias command will be executed by `AliasCommand`. Aliases added will be stored in a `AliasMap`, while
+in-built command names (e.g. add, delete) will be stored in a constant `LIST_RESERVED_KEYWORD` in the `ReservedKeyword` class.
+
+![Alias Command Activity Diagram](images/AliasCommandActivityDiagram.png)
 
 Given below is an example usage scenario and how the alias mechanism behaves at each step.
 
-1. The user launches the application for the first time. FRIDAY will initialise an `ALiasManager`
-with an empty `UniqueAliasList`.
+1. The user launches the application for the first time. FRIDAY will initialise a `Friday`
+with an empty `AliasMap`.
 
-2. The user executes `alias list ls` command to add an alias `ls` for the command `list`. The `alias` command
-will check that `list` is in the `reservedCommandList` and `ls` is not in the `UniqueAliasList`. After both conditions
-are fulfilled, an `Alias("list","ls")` object will be created and will be added to the `UniqueAliasList` with
-`Model#addAlias(Alias toadd)`.
+2. The user executes `alias a/ls k/list` command to add an alias `ls` for the command `list`. `FridayParser` will parse 
+`alias` and create a new `AliasCommandParser`.`AliasCommandParser` will parse `a/ls k/list` and create an `AlliasCommand` with `Alias("ls")` 
+and a `ReservedKeyword("list")`. When executing the `AliasCommand`, the command will check that `list` is in the `LIST_RESERVED_KEYWORD`,`ls` is not in the 
+`AliasMap` and `ls` is a valid alias. After all the conditions are fulfilled, `Model#addAlias(Alias("ls"), ReservedKeyword("list")))` will be called to add
+this alias-keyword mapping into `AliasMap`.
 
-3. The user executes `ls` using the alias of the `list` command. The `AliasManager` will check that
-the alias `ls` is assigned to a command (in this case it is `list`) in `FridayParser`. `commandWord` in
-`FridayParser` will then be assigned the name of the command in the `reservedCommandList` and the `ListCommand`
-is then executed.
-
-_{To add sequence diagram}_
-
-_{To add activity diagram}_
+3. The user executes `ls` using the alias of the `list` command. `Model#getKeyword("ls")` will check `AliasMap` in `Model` 
+for an alias-keyword mapping. As there is a mapping of `ls` to `list`, `Model#getKeyword("ls")` will return `list`. 
+`list` will then be assigned to `commandWord` in `FridayParser`. `commandWord` will then be used to get the command to be executed.
+![Using Alias Sequence Diagram](images/UsingAliasSequenceDiagram.png)
 
 #### Design considerations
 
-**Aspect: How alias command is implemented:**
+**Aspect: How `Alias` is stored in `AliasMap`:**
 
-_{To add other design considerations}_
+|                                                                                                                          | **Pros**                       | **Cons**                                                                                                                                                                                 |
+|--------------------------------------------------------------------------------------------------------------------------|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Option 1 (current choice)** <br> Stored as an Alias-ReservedKeyword mapping in a Map                                   | Fast with O(1) time complexity | At high capacity, there might be complications due to collision in Map                                                                                                                   |
+| **Option 2** <br> Alias and ReservedKeyword stored within an association class in a List | Can store more Aliases         | To get an Alias, iteration through the whole list must be done causing the time complexity to be at O(Number of Aliases) and this might cause performance issues when there are many aliases |
+_
 
 ### Grade Feature
 FRIDAY allows the user to record their students' grades for assessments and examinations in CS1101S. There are 5 
@@ -255,8 +257,16 @@ students' grades for the assessments.
 #### Implementation
 The `grade` command is executed by `GradeCommand`. In CS1101S, the 5 main examinations are Reading Assessment 1, Reading Assessment 2, Practical Assessment, Midterm exam, and Final exam, which are denoted by "ra1", "ra2", "pa", "mt", and "ft" respectively.
 
-For each student, there are 5 grades, each with the result scored by the student, in percentages between 0% and 100% inclusive, and the name of the examination it is associated with.
+For each student, there are 5 grades, each with the result scored by the student, in percentages between 0% and 100% inclusive, and up to 2 decimal places, and the name of the examination it is associated with.
 The grades are then stored in a `GradesList` which is unique for every student and has a fixed length of 5 for every student managed by the user.
+
+![Grade Command Activity Diagram](images/GradeCommandActivityDiagram.png)
+
+The 5 grades are stored as `Grade` objects in a unique `GradesList` for each student. `GradesList` uses a `HashMap` for
+the data structure in storing the `Grade` objects as it allows for fast access of the individual grades. It is also 
+useful for potential future implementation where there may be more grades in the module, hence allowing FRIDAY to be
+expandable and adaptable for such possible scenarios. `ArrayList` is only utilised when the order of the grades is 
+necessary, such as when displaying the grades in the GUI and for storage purposes.
 
 Given below is an example usage scenario and how the grading mechanism behaves at each step.
 
@@ -265,12 +275,13 @@ Practical Assessment for the 5th student in FRIDAY. `GradeCommandParser` checks 
 
 2. The `GradeCommand` will access the `GradesList` of the specified student and the individual grades specified by the user. The `GradesList` is updated, where Reading Assessment 1 and Practical Assessment examinations are updated with the new scores, and the other examinations have the same scores as before.
 
-The following Sequence Diagram shows the aforementioned steps.
+The following Sequence Diagram summarises the aforementioned steps.
+
 <img src="images/GradeSequenceDiagram.png" width="574" />
 
 #### Design considerations
 
-**Aspect: Should we allow users to determine the examinations:**
+**Aspect: Should we allow users to determine the examinations**
 * **Alternative 1 (current choice): Fix the examinations in the list of grades for every student**
   * Pros: Standardised for every student, without the need to check, create or delete examinations for every student, and easy to implement.
   * Cons: Less freedom for users. Unaccounted for unforeseen circumstances (e.g. There is a change in the assessments for the CS1101S module).
@@ -278,7 +289,7 @@ The following Sequence Diagram shows the aforementioned steps.
   * Pros: Provides freedom for users and flexibility for changes in the grading system of the module.
   * Cons: Not standardised for every student, and more prone to user error, as each examination will thus need to create new unique prefixes and identity to know which examination it is referring to.
 
-**Aspect: Should we allow users to set the scores of each grade in their own way (e.g. "99%", "A", "65/70", etc.):**
+**Aspect: Should we allow users to set the scores of each grade in their own way (e.g. "99%", "A", "65/70", etc.)**
 * **Alternative 1 (current choice): Standardise scoring of each grade in terms of percentage:**
   * Pros: Standardised and neat for every assessment and for every student, applicable for the 5 assessments in the CS1101S module, and easy to implement.
   * Cons: Less flexible for assessments whereby percentage scores are not applicable. (e.g. Pass/Fail assessments, alphabetical grading, etc.), and the possible need to manually calculate the percentage.
@@ -288,19 +299,51 @@ The following Sequence Diagram shows the aforementioned steps.
   * Cons: Very difficult to check for valid scores due to large number of possibility, not standardised for every student and grade, less able to compare the students' strengths and weaknesses in certain assessments, and difficult to implement.
 
 ### Find feature
+FRIDAY allows the user to search through all the fields entered for any student and outputs a modified list of students that match the criteria. This list can then be modified and the changes will be reflected in the storage used.
 
 #### Implementation
 The find command is executed similar to all other commands. It goes through the parser and is interpreted using the
 logic established. However, it is unique in the sense that it will look through all the possible fields and data
 and return matches.
 
-Example of current implementation of find feature
+Below is the activity diagram depicting how the find function is implemented
 
-1. The user launches the application for the first time. FRIDAY will initialise a list of all the fields
-and their data into a list of students.
+![Find command activity diagram](images/FindCommandActivityDiagram.png)
 
-2. When user types in the find command the logic will tell the program to go through all the fields for every
-student inside the student class and return the student if there is a successful match in any of the fields
+The `find` command will be executed by `FindCommand`. Before that, `FindCommandParser` parses the user input and decide what predicate is passed to `FindCommand`. The filtered list
+is stored as `filteredStudents` in `ModelManager`, and is updated every time `FindCommand` is run.
+
+Given below is an example usage scenario and how the sort mechanism behaves at each step.
+
+1. FRIDAY initialises an `ObservableList<Student>` named `students` and
+   a `FilteredList<Student>` named `filteredStudents` upon launch.
+
+2. The user executes `find keyword` command to sort the students by name in ascending order.
+
+3. The user input is passed to
+   `LogicManager`, which then calls the `FindCommandParser#parse` method to parse the argument `keyword`.
+
+4. The `FindCommandParser` checks that the criteria is valid, and creates a `FindCommand` with a `Predicate`
+   that is used to filter the students list.
+
+5. The `LogicManager` calls the `FindCommand#execute` method, which in turn calls  `Model#updateFilteredStudentList`
+   to update `sortedStudents` with the given `Predicate`.
+
+6. The list `students` is set to `filteredStudents`, and the `StudentListPanel#setList` method is called to refresh the
+   `ListView` in the UI with the new `students` list.
+
+The following sequence diagram summarizes the aforementioned steps.
+
+![Find command sequence diagram](images/FindSequenceDiagram.png)
+
+#### Design considerations
+**Aspect: Should we allow users to find block keywords:**
+* **Alternative 1 (current choice): Allow user to find by single keywords**
+    * Pros: Provides more search results and the expected student is part of the list.
+    * Cons: The expected student may not appear at the top of the list due to lexicography.
+* **Alternative 2: Allow users to find by block keywords**
+    * Pros: Possibly more accurate searches.
+    * Cons: Higher possibly that search is unsuccessful due to error in keywords.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -664,13 +707,78 @@ For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `us
     * 3b1. FRIDAY shows an error message.
 
       Use case resumes at step 2.
+  
+<br>
+
+**Use Case 11: Add an alias.**
+
+**MSS**
+
+1. User requests to add alias for a default command
+2. FRIDAY adds alias
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given alias is invalid.
+    
+    * 2a1. FRIDAY shows an error message showing what is an invalid alias.
+  
+      Use case resumes at step 1
+
+* 2b. The given default command is invalid.
+
+    * 2b1. FRIDAY shows an error message showing that default command is invalid.
+
+      Use case resumes at step 1
+
+* 2c. The given alias and default command is in the wrong format.
+
+    * 2c1. FRIDAY shows an error message showing the correct format.
+
+      Use case resumes at step 1
+
+* 2d. The given alias already exists in FRIDAY.
+
+    * 2d1. FRIDAY shows an error message showing that alias already exists in FRIDAY.
+
+      Use case resumes at step 1
+
+<br>
+
+**Use Case 12: Deleting an alias.**
+
+**MSS**
+
+1. User requests to delete an alias
+2. FRIDAY deletes alias
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given alias is not in FRIDAY.
+
+    * 2a1. FRIDAY shows an error message showing that alias is not in FRIDAY.
+
+      Use case resumes at step 1
+
+* 2b. The given alias is in the wrong format.
+
+    * 2b1. FRIDAY shows an error message showing the correct format.
+
+      Use case resumes at step 1
+
+<br>
 
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 100 students without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 100 students without a noticeable sluggishness in performance for typical usage.
+3. Should be able to hold up to 50 aliases without a noticeable sluggishness in performance for typical usage.
+4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
 ### Glossary
 

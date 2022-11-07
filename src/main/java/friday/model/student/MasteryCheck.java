@@ -113,8 +113,16 @@ public class MasteryCheck implements Comparable<MasteryCheck> {
         this.isPassed = false;
     }
 
-    public boolean canPass() {
-        return this.value.isBefore(LocalDate.now());
+    /**
+     * Checks if a Mastery Check can be marked as passed. Returns false if the given Mastery Check is empty or if its
+     * value is before the current date, and true otherwise.
+     */
+    public boolean canMarkAsPassed() {
+        if (!this.isEmpty()) {
+            return this.value.isBefore(LocalDate.now());
+        } else {
+            return false;
+        }
     }
 
     @Override

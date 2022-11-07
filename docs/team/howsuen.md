@@ -1,13 +1,13 @@
 ---
 layout: page
 title: Tan How Suen's Project Portfolio Page
---
+---
 
 ### Project: FRIDAY
 
-FRIDAY is a desktop application built upon AddressBook Level 3, used for managing CS1101S students.
-The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about
-10 kLoC.
+FRIDAY is a desktop application used for managing CS1101S students, that is written in Java and built upon AddressBook 
+Level 3. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has 
+about 10 kLoC.
 
 Given below are my contributions to the project.
 

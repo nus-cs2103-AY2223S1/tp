@@ -30,7 +30,8 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Wrote documentation for the feature `list` (Pull request [\#74](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/74))
-    * Wrote documentation for the feature `alias`, `unalias` and `aliaslist`
+    * Wrote documentation for the feature `alias`, `unalias` and `aliaslist` (Pull request [\#180](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/180))
+    * Updated documentation for the feature `help` (Pull request [\#180](https://github.com/AY2223S1-CS2103T-W15-4/tp/pull/180))
   * Developer Guide:
     * to be added soon
 

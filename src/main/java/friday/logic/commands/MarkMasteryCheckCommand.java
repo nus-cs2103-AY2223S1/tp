@@ -18,9 +18,12 @@ public class MarkMasteryCheckCommand extends Command {
             + " the index number as done.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 ";
+    public static final String MESSAGE_SUCCESS = "Marked Mastery Check of Student: %s as passed.";
     public static final String MESSAGE_ALREADY_MARKED = "'s Mastery Check has already been marked as passed!";
     public static final String MESSAGE_CANNOT_PASS = "'s Mastery Check cannot be marked as passed as the date(%s) has"
             + " not been reached yet. (Today's date: %s)";
+    public static final String MESSAGE_EMPTY_MASTERYCHECK = " currently does not have any scheduled Mastery Check to be"
+            + " marked as passed.";
 
     private Index index;
 
@@ -37,9 +40,11 @@ public class MarkMasteryCheckCommand extends Command {
         }
 
         Student studentToMark = lastShownList.get(index.getZeroBased());
-        if (studentToMark.getMasteryCheck().getIsPassed()) {
+        if (studentToMark.getMasteryCheck().isEmpty()) {
+            throw new CommandException(studentToMark.getName() + MESSAGE_EMPTY_MASTERYCHECK);
+        } else if (studentToMark.getMasteryCheck().getIsPassed()) {
             throw new CommandException(studentToMark.getName() + MESSAGE_ALREADY_MARKED);
-        } else if (!studentToMark.getMasteryCheck().canPass()) {
+        } else if (!studentToMark.getMasteryCheck().canMarkAsPassed()) {
             String str = String.format(MESSAGE_CANNOT_PASS, studentToMark.getMasteryCheck().getValue(),
                     LocalDate.now());
             throw new CommandException(studentToMark.getName() + str);
@@ -51,6 +56,6 @@ public class MarkMasteryCheckCommand extends Command {
     }
 
     private String generateSuccessMessage(Student studentToMark) {
-        return String.format("Marked Mastery Check of Student: %s as passed.", studentToMark.getName());
+        return String.format(MESSAGE_SUCCESS, studentToMark.getName());
     }
 }

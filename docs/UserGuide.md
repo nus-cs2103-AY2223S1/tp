@@ -52,7 +52,7 @@ If you can type fast, FRIDAY can get your student management tasks done faster t
 
   e.g `n/NAME [t/TELEGRAM_HANDLE]` can be used as `n/John Doe t/johndoe` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+* Items with `…`​ after them can be used any number of times including zero times.<br>
 
   e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/fast learner`, `tag/fast learner tag/good at recursion` etc.
 
@@ -92,8 +92,8 @@ Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_D
 * Dates for consultation and Mastery Check must be in the format YYYY-MM-DD.
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A student can have any number of tags (including 0).
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+* A student can have any number of tags (including 0).
 </div>
 
 Example: `add n/Alex Yeoh t/al3xx c/2022-10-25 m/2022-08-16 tag/cool guy tag/quiet`
@@ -108,26 +108,41 @@ Deletes the student at the given index from FRIDAY.
 Format: `delete INDEX`
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:** 
-The index of the student must be specified and there should be exactly one INDEX parameter.
+**:information_source: Note:** <br>
+* The index of the student must be specified and there should be exactly one INDEX parameter.
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The index of the student can be seen from the student list.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
+* The index of the student can be seen from the student list.
 </div>
 
 ### Editing a student: `edit`
 
 Edits a student's details in FRIDAY.
 
-Format: `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]`
+Format: `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The index of the student must be specified and there should be exactly one INDEX parameter.<br>
-The index of the student can be seen from the student list.<br>
-The name, Telegram handle, consultation, mastery check, and tag(s) are optional, but there should be at least one parameter.<br>
-A student can have any number of tags (including 0).
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** <br>
+* The index of the student must be specified and there should be exactly one INDEX parameter.
+* You can choose which field to edit for the student. Name, Telegram handle, consultation, Mastery Check, and tag(s) are 
+optional fields, but there should be at least one field specified for the `edit` command to be valid.<br>
 </div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:** <br>
+* The index of the student can be seen from the student list.
+* A student can have any number of tags (including 0).
+</div>
+
+Example: `edit 1 n/Alex Yap t/AlexYap tag/Experienced coder tag/Intern m/2022-11-06 c/2022-10-10`
+
+Initial: A student with name "Alex Yeoh", with the following details: Telegram handle as "@al3xx", Mastery Check date 
+on 2022-08-16, consultation date on 2022-11-11, and a tag "Colour blind".
+![EditCommandInitial.png](images/EditCommandInitial.png)
+
+Outcome: Student's name changed to "Alex Yap", along with the following changed details: Telegram handle as "@AlexYap", 
+Mastery Check date as 2022-11-06, consultation date as 2022-10-10, and tags as "Experienced coder" and "Intern".
+![EditCommandOutcome.png](images/EditCommandOutcome.png)
 
 ### Editing a remark for a student: `remark`
 
@@ -135,11 +150,21 @@ Adds a remark for a specified student.
 
 Format: `remark INDEX [r/REMARK]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The index of the student must be specified and there should be exactly one INDEX parameter.<br>
-The index of the student can be seen from the student list.<br>
-The remark is optional. Not including the remark (i.e. `remark INDEX`) will remove any existing remark from the student.<br>
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** <br>
+* The index of the student must be specified and there should be exactly one INDEX parameter.
 </div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+* The index of the student can be seen from the student list.<br>
+* The remark is optional. If you do not include the remark (i.e. input `remark INDEX` as your command), FRIDAY will 
+remove any existing remark for the specified student.<br>
+</div>
+
+Example: `remark 1 r/Aspiring to be a CS1101S TA for next year`
+
+Outcome: The student at the 1st index (Alex Yap) will have the remark "Aspiring to be a CS1101S TA for next year".
+![RemarkCommandOutcome.png](images/RemarkCommandOutcome.png)
 
 ### Recording grades for a student: `grade`
 
@@ -147,14 +172,28 @@ Records the grades of the assessments and examinations for a specified student.
 
 Format: `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MID_TERM_SCORE] [ft/FINALS_SCORE]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The index of the student must be specified and there should be exactly one INDEX parameter.<br>
-The index of the student can be seen from the student list.<br>
-The scores of the assessments, Reading Assessment 1 (RA1), Reading Assessment 2 (RA2), Practical Assessment (PA), Midterm Test, and Final Examination, are in percentages between 0% to 100% inclusive, with up to 2 decimals allowed.<br>
-The scores are optional, but there should be at least one parameter.
+* The examinations and their associated prefixes are:
+  * Reading Assessment 1 - `ra1`
+  * Reading Assessment 2 - `ra2`
+  * Practical Assessment - `pa`
+  * Midterm Test - `mt`
+  * Final Test `ft`
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** <br>
+* The index of the student must be specified and there should be exactly one INDEX parameter.
+* The scores of the assessments must be numerical as percentages, i.e. between 0% and 100% inclusive, with up to 2
+decimal places allowed. `0`, `100.00` and `69.1` are examples of valid scores.
 </div>
 
-Example after entering `grade 1 ra1/90 ra2/80 pa/100 mt/85 ft/78`:
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br>
+* The index of the student can be seen from the student list.
+* The scores are optional, but there should be at least one score specified for `grade` command to be valid.
+</div>
+
+Example:`grade 1 ra1/90 ra2/80.1 pa/100.00 mt/85.23 ft/78`
+
+Outcome: The student at the 1st index (Alex Yap) will have their grades updated.
 ![GradeCommand.png](images/GradeCommand.png)
 
 ### Finding individual student details: `find`
@@ -323,6 +362,22 @@ If your changes to the data file makes its format invalid, FRIDAY will ignore al
 **Q**: I accidentally made the data file invalid and now my old data does not show in FRIDAY. How do I fix this?<br>
 **A**: To retrieve the old data, revert all invalid changes in the data file **before running any commands** in FRIDAY.
 
+**Q**: Which computers can run this software?<br>
+**A**: All computers can run this software as it not limited by hardware. However on the software side Windows computers <br>
+       minimally must be of version 7. All versions above Windows 7 should be compatible. All MacOS versions above Version 10.10 (Yosemite) will be compatible with FRIDAY.
+
+**Q**: What if I am not good at typing. Is FRIDAY for me?<br>
+**A**: Yes Friday is still for you. Why you may ask? The commands are still very short and even if you are a slow typer <br>
+       you will be saving time as compared to pen and paper or an excel sheet. <br>
+       Furthermore, FRIDAY is more aesthetically pleasing and has all the necessary features easily accessible at your fingertips.
+
+**Q**: What are the additional features coming to FRIDAY?<br>
+**A**: FRIDAY is always expanding to serve you better. In the near future you can expect to see. 
+       1. Shared databases 
+       2. Larger storage limits 
+       3. Cloud compatibility 
+       4. Easy import and export of data
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -346,3 +401,31 @@ If your changes to the data file makes its format invalid, FRIDAY will ignore al
 | **Get a link to the User Guide**             | `guide`                                                                                                  |
 | **Getting Help**                             | `help`                                                                                                   |
 | **Exiting FRIDAY**                           | `exit`                                                                                                   |
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+##Glossary
+
+1. CLI: CLI stands for command line interface. It is a system wherein the user enters textual one line inputs into an input box and the computer responds with a textual or graphical output.
+
+2. GUI: GUI stands for graphical user interface. It is the opposite of CLI wherein the user interacts with icons and items on the screen to communicate with the computer. Outputs are also displayed in graphical form.
+
+3. Java : Java is a programming language introduced in the 90's. It is used to create many applications that you use today. Including this one.
+
+4. .jar : Specifies the file format of the file.
+
+5. Command: The text that you enter in the input box is a command.
+
+6. Parameter: The text that follows the first word of your input in the input box.
+
+7. RA1: Reading assessment 1 a minor assessment in the CS1101S module that tests the content of the first half of the module.
+
+8. RA2: Reading assessment 2 a minor assessment in the CS1101S module that tests the content of the second half of the module.
+
+9. Midterm: Midterm examination a major assessment that occurs halfway through the CS1101S module.
+
+10. Practical: Practical examination is a major non-paper assessment that occurs at the end of the CS1101S module.
+
+11. Final: Final examination is a major paper assessment that occurs at the end of the CS1101S module.
+
+12. Mastery Check: A pass/fail for of assessment on students to assess their understanding of the concepts taught. There are 2 Mastery checks per semester.
+
+13. Alias: A nickname or an alternate name for a command that you can set.
