@@ -152,6 +152,8 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
@@ -1007,6 +1009,7 @@ point for testers to work on; testers are expected to do more exploratory testin
 3. Other incorrect `delete` commands to try: `delete`, `delete john`, `delete x`(where `x` is larger than the list size)<br>
    Expected: No applicant is deleted. Error details shown in the status message.
 
+<div style="page-break-after: always;"></div>
 
 ### 7.6 Locating applicants by field
 
@@ -1057,6 +1060,9 @@ point for testers to work on; testers are expected to do more exploratory testin
       Expected: No applicant is added. Template file created in `data/template/template.json`. Error details shown in
       the status message.
 
+<div style="page-break-after: always;"></div>
+
+
 3. Other incorrect import commands to try: `import`, `import folderName`(where `folderName` is a folder)<br>
    Expected: No applicant is added. Error details shown in the status message.
 
@@ -1084,6 +1090,9 @@ point for testers to work on; testers are expected to do more exploratory testin
    3. Test case: `export a`
       Expected: JSON file created in `data/export/` folder with a key-value pair where the key is
       **"persons"** and value is a non-empty array. Success message shown in the status message.
+
+
+<div style="page-break-after: always;"></div>
 
 
 ### 7.9 Checkout a new or existing list
