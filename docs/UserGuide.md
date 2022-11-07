@@ -376,17 +376,12 @@ these commands help you to focus only on the information you need!
 
 ### Listing all residents : `list`
 
-Lists *all* the residents in the **RC4HDB** database. If the table view is showing a filtered portion of the residents,
+Lists *all* the residents in the **RC4HDB** database with *all* fields included in the view. If the table view is showing a [filtered portion](#filtering-residents-by-field--filter) of the residents,
 calling `list` will restore and display the full list of residents.
 
 Format: `list`
 * Any input entered directly after `list` will be ignored. i.e. *`list asd`*, `asd` will be ignored.
 * Resets the columns in the table to the default view with *all* columns visible.
-
-Calling `list` on our sample data will produce the following result:
-  
-![list command](images/ug-photos/list_command.png)
-
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -396,24 +391,27 @@ Calling `list` on our sample data will produce the following result:
 
 Shows only the specified columns from the *current* table view.
 
-If your screen is too cluttered, you may use this command to show only the columns you need!
-Take note that:
+[comment]: <> (If your screen is too cluttered, you may use this command to show only the columns you need!)
+
+Note:
 
 1. You can only use `showonly` on existing columns in the current table view, and
-2. The `showonly` command does not modify the list of residents being displayed. 
-   
-Filtered residents *stay filtered*!
+2. The `showonly` command does not modify the list of residents being displayed. [Filtered residents](#filtering-residents-by-field--filter) *stay filtered*.
 
 Format: `showonly LETTER [MORE_LETTERS]`
+* Valid inputs include `i n p e r g h m t` (case-insensitive), which correspond to the first letter of each field in the table.
+    * This *should not* be confused with the `n/` or `p/` prefixes used in `add` or `filter`.
+* Letters *must* be separated by a single whitespace.
+* The order of each letter does not matter.
+* Duplicate letters are ignored.
+* There needs to be at least one column shown in the table at all times.
+* You can always use `reset` to restore the full table view!
 
-Calling `filter /all g/M` (click [here](#filtering-residents-by-field--filter) to learn about `filter`) followed by
-`showonly n g h` will produce the following result:
+Calling `filter /all g/M` on a full table, followed by `showonly n g h` will produce the following result:
 
+![showonly](images/ug-photos/showonly_photo.png)
 
-![showonly](images/ug-photos/showonly_command.png)
-
-As you can see,`showonly` displays only the specified columns and preserves the filter! This is one way you can 
-use our commands in conjunction with one another.
+As you can see,`showonly` displays only the specified columns, and does not change the filtered list of residents. 
 
 The following examples are to be performed one after the other:
 
@@ -421,18 +419,7 @@ The following examples are to be performed one after the other:
 2. Using `showonly r p e` on the table from point 1 is **invalid** as the *room*, *phone* and
   *email* columns are *not present* in the current table.
 3. However, using `showonly n g` on said table is **valid**, and will return a table with only the *name* and
-  *email* columns shown.
-   
-
-Note:
-* Valid inputs include `i n p e r g h m t` (case-insensitive), which correspond to the first letter of each field in the table.
-  * This *should not* be confused with the `n/` or `p/` prefixes used in `add` or `filter`.
-* Letters *must* be separated by a single whitespace.
-* The order of each letter does not matter.
-* Duplicate letters are ignored. 
-* There needs to be at least one column shown in the table at all times.
-* You can always use `reset` to restore the full table view!
-
+  *gender* columns shown.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -442,17 +429,28 @@ Note:
 
 Hides only the specified columns from the *current* table view.
 
-Use `hideonly` if there are more columns to show than hide.
-Like `showonly`:
+[comment]: <> (Use `hideonly` if there are more columns to show than hide.)
+
+Note:
 
 1. You can only use `hideonly` on existing columns in the current table view, and
-2. The `hideonly` command does not modify the list of residents being displayed. 
-   
-Residents found using `find` *stay displayed* in the table! (click [here](#locating-residents-by-name--find) to learn about `find`)
+2. The `hideonly` command does not modify the list of residents being displayed. Residents found using `find` *stay displayed* in the table. 
+
+(Click [here](#locating-residents-by-name--find) to learn about `find`)
 
 Format: `hideonly LETTER [MORE_LETTERS]`
+* Valid inputs include `i n p e r g h m t` (case-insensitive), which correspond to the first letter of each field in the table.
+    * This *should not* be confused with the `n/` or `p/` prefixes used in `edit` or `filter`.
+* Letters *must* be separated by a single whitespace.
+* The order of each letter does not matter.
+* Duplicate letters are ignored.
+* There needs to be at least one column shown in the table at all times.
+* You can always use `reset` to restore the full table view!
 
-![hideonly](images/ug-photos/hideonly_command.png)
+Calling `hideonly i r p e m t` on a full table will produce the following result:
+
+![hideonly](images/ug-photos/hideonly_photo.png)
+
 
 The following examples are to be performed one after the other:
 
@@ -464,31 +462,21 @@ The following examples are to be performed one after the other:
 3. However, using `hideonly n` on said table is **valid**, and will return a table with only the *gender* and *house*
    columns shown, as the *name* column has been hidden.
 
-Note:
-
-* Valid inputs include `i n p e r g h m t` (case-insensitive), which correspond to the first letter of each field in the table.
-    * This *should not* be confused with the `n/` or `p/` prefixes used in `edit` or `filter`.
-* Letters *must* be separated by a single whitespace.
-* The order of each letter does not matter.
-* Duplicate letters are ignored.
-* There needs to be at least one column shown in the table at all times.
-* You can always use `reset` to restore the full table view!
-
-
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
 
 ### Resetting hidden columns : `reset`
 
-Resets the columns in the table to the default view with *all* columns visible.
+Resets the columns in the table to the full view with *all* columns visible.
 
-Use this when you have called `showonly` or `hideonly` on the table!
+[comment]: <> (Use this when you have called `showonly` or `hideonly` on the table!)
 
 Format: `reset`
 * Any input entered directly after `reset` will be ignored. i.e. *`reset asd`*, `asd` will be ignored.
 * This command is different from the `list` command in that it does not affect the list of residents being displayed.
-  * However, both commands cause the full set of resident fields to be displayed in the table.
+    * However, both commands cause the full set of resident fields (i.e. the full set of columns) to be displayed in the table.
+
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -498,24 +486,23 @@ Format: `reset`
 
 Finds residents whose names contain any of the given keywords.
 
-Format: `find NAME [ADDITIONAL_NAMES]`
+Format: `find KEYWORD [ADDITIONAL_NAMES]`
 * The search is case-insensitive. e.g `peter pang` will match `Peter Pang`.
 * Only the name is searched.
 * The order of the keywords does not matter.
 * Full and partial words will be matched e.g. `Nav` will match `Navarun`.
-* Residents matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Quek Wei` will return `Quek Xiang`, `Jun Wei`.
+* Residents matching at least one keyword will be returned, e.g. `Quek Wei` will return `Quek Xiang`, `Jun Wei`.
 
 Calling `find el an` on our sample data will produce the following result:
 
-![find_command](images/ug-photos/find_command.png)
+![find_command](images/ug-photos/find_photo.png)
 
-As you can see, the residents with names containing either "el" or "an", and are listed as the result of the `find` command.
+As you can see, the residents with names containing either "el" or "an" are listed as the result of the `find` command.
 
 Examples:
-* `find shawn` returns `shawn` and `Shawn Tan`.
-* `find elizabeth david` returns `Elizabeth Ong`, `David Lee`.
-* `find char li` returns `Charmaine Yee`, `William Li`.<br>
+* `find shawn` returns `Shawn Lee` and `Shawn Ng`
+* `find elizabeth david` returns `Elizabeth Ong`, `David Lee`
+* `find char li` returns `Charmaine Yee`, `William Li`<br>
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -642,7 +629,7 @@ The **FILE_NAME** must follow this <a>[format](#file-command-format)</a> and
 </div>
 
 Examples:
-* `file import residents` will import the data from `residents.csv` into a new **resident** data file which can be found in the `residents` folder in the **main** data folder.
+* `file import residents` will import the data from `residents.csv` into a new **resident** data file which can be found in the `residents` **sub** data folder in the **main** data folder.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -699,7 +686,7 @@ add, remove bookings for those venues.
 
 To view the bookings, you will have to **click on the tab labelled as bookings**.
 
-![Booking tab](images/venue_tab_ui.png)
+![Booking tab](images/ug-photos/booking_photo.png)
 
 As you perform the booking commands, the table will automatically update to reflect the changes you have made.
 
