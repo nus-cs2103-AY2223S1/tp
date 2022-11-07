@@ -10,28 +10,30 @@ It is written in Java, and has about 14 kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**: `to be added soon`
-
 * **Code contributed**: 
 *  Refer to my [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=AY2223S1-CS2103T-W10-3&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=DarrenCsAcc&tabRepo=AY2223S1-CS2103T-W10-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
-* Renamed all tags to major
-* Changed all usage of address name to scholarship name.
+* Renamed and refactored tags to major[#109](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/109)
+* Renamed and refactored usage of address name to scholarship name.[#55](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/55) and [#58](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/58/commits)
 * Designed TrackAScholar logo
 
 * **Enhancements to existing features**: 
-* * Added `SortCommandParserTest`
+* * Added `SortCommandParserTest`[#93](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/93)
 
 * **Documentation**:
-  * User Guide: Added sort command in features.
-                Added remove command in features.
-                Corrected grammar mistakes and updated introduction.
-                Added glossary.
   
-  * Developer Guide:Added find command in developer guide.
-  * Completed sequence diagram for find.[Here](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/202/commits/1fa69447fa1f19c9850000bcedcc73bce9147bc1)
-  * Completed activity diagram for find.[Here](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/202/commits/20458e101962adf1b8843b0200d328d6e6850fb2)
+  * User Guide: 
+  * Added sort command in features. [#93](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/93)
+  * Added remove command in features. [#93](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/93)
+  * Corrected grammar mistakes and updated introduction. [#182](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/182/commits) 
+  * Added glossary. [#182](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/182/commits)
+  
+  * Developer Guide:
+  * Added find command in developer guide.[#201](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/201)
+  * Completed sequence diagram for find.[#202](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/202) and [#206](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/206) 
+  * Proposed Future iterations [#201](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/201)
+  * Completed activity diagram for find.[#202](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/202) and [#206](https://github.com/AY2223S1-CS2103T-W10-3/tp/pull/206)
 
 * **Community**: 
 * Joined all discussion sessions with team members on PR issues and weekly tasks.
