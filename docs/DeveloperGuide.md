@@ -175,7 +175,7 @@ The class `Meeting` encapsulates the information of a meeting created by the use
 - `peopleToMeetArray`: an `ArrayList` of the Persons to meet
 - `peopleToMeetList`: a `UniquePersonList` of the Persons to meet
 - `meetingDescription`: a `String` containing the title/ description of the meeting
-- `meetingDateAndTime`: a `String` containing the date and time of the meeting
+- `processedMeetingDateAndTime`: a `String` containing the date and time of the meeting
 - `meetingLocation`: a `String` containing the location of the meeting
 
 Command: `<Names of people to meet (from address book, split names by }} )> ;;; <Title of meeting> ;;; 
@@ -200,6 +200,8 @@ and the date and time of the meeting in the user input is in the correct format
   -- Throws an `IndexOutOfBoundsException` and an error message will be displayed
 6. The user adds a meeting with the same Persons and at the same date and time as an existing meeting
   -- Throws a `DuplicateMeetingException` and an error message will be displayed
+7. The user inputs a name (of the Person to meet) that matches multiple Persons in the Address Book
+  -- Throws an `ImpreciseMatchException` and an error message will be displayed
 
 
 The diagrams below should sufficiently explain the main cases for the command.
@@ -240,6 +242,40 @@ The following classes had to be extended in order to support meeting list
 The app maintained its own internal list of meetings in the `ModelManager` and the 
 `LogicManager` would save the current model whenever the execute function to the `meetinglist.json`. As such, there
 was no need of having to create additional classes to support the model or logic classes
+
+### [Implemented] Delete Meetings from the Meeting List
+#### Implementation
+
+The command to delete meetings consists of these various classes:
+- Class `DeleteMeetingCommand` which extends the abstract class `Command`
+- Class `DeleteMeetingCommandParser` which implements the interface `Parser<DeleteMeetingCommand>`
+
+As with all other commands in Yellow Pages, the feature to delete meetings contains a subclass of `Parser` which is
+involved in `AddressBookParser` and a subclass of `Command` that returns an appropriate new `CommandResult` Object.
+
+Command: `deletemeeting <index of meeting in the UI>`
+
+Example:
+`deletemeeting 2`
+
+Primarily there are ? main cases for this command:
+- The user enters the command word correctly spelled, followed by a space and the index of the meeting to remove
+  -- this is the intended usage of the command and the Meeting object is removed from both UI and the MeetingList
+1. Argument after the command word `deletemeeting` is empty
+  -- Throws a `ParseException` and an error message will be displayed
+2. Arguments after the command word `deletemeeting` contain multiple words, or are NOT positive integers
+  -- Throws a `ParseException` and an error message will be displayed
+3. Argument after the command word `deletemeeting` is a positive integer but exceeds the index of the last meeting in the UI
+  -- Throws a `CommandException` and an error message will be displayed
+
+The diagrams below should sufficiently explain the main cases for the command.
+
+![FilterMeetingsActivityDiagram](images/DeleteMeetingSequenceDiagram.png)
+#### Sequence Diagram for Deleting New Meetings
+
+![FilterMeetingsSequenceDiagram](images/DeleteMeetingActivityDiagram.png)
+#### Activity Diagram for Deleting New Meetings
+
 
 ### [Implemented] Filter Meetings between Dates
 #### Implementation

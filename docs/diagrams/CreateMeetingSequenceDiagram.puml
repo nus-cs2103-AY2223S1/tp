@@ -36,26 +36,24 @@ CreateMeetingCommandParser -> CreateMeetingCommand
 activate CreateMeetingCommand
 destroy CreateMeetingCommandParser
 
-'
-'CreateMeetingCommand --> CreateMeetingCommandParser : cm
-'deactivate CreateMeetingCommand
-
-'CreateMeetingCommandParser --> AddressBookParser : cm
-'deactivate CreateMeetingCommandParser
-''Hidden arrow to position the destroy marker below the end of the activation bar.
-'CreateMeetingCommandParser -[hidden]-> AddressBookParser
-
-LogicManager -> CreateMeetingCommand : execute(model)
 CreateMeetingCommand --> LogicManager : cm
+LogicManager -> CreateMeetingCommand : execute(model)
 
 CreateMeetingCommand -> MeetingStatic : convertNameToPerson(model, peopleToMeet)
 CreateMeetingCommand <-- MeetingStatic :
-CreateMeetingCommand -> Model : createNewMeeting(\n arrayOfPeopleToMeet,\n meetingTitle, \n meetingDateAndTime, \n meetingLocation)
+CreateMeetingCommand -> Model : createNewMeeting(\n peopleToMeet,\n meetingTitle, \n processedMeetingDateAndTime, \n meetingLocation)
 activate Model
-CreateMeetingCommand -> Model : addMeeting(newMeeting)
-Model -> Meeting : Meeting(\n arrayOfPeopleToMeet,\n meetingTitle, \n meetingDateAndTime, \n meetingLocation)
-Model <-- Meeting
 
+Model -> Meeting : Meeting(\n peopleToMeetArray,\n meetingTitle, \n processedMeetingDateAndTime, \n meetingLocation)
+activate Meeting
+Model <-- Meeting : newMeeting
+deactivate Meeting
+Model --> CreateMeetingCommand
+deactivate Model
+
+CreateMeetingCommand -> Model : addMeeting(newMeeting)
+activate Model
+Model --> CreateMeetingCommand
 deactivate Model
 
 create CommandResult
@@ -65,7 +63,7 @@ activate CommandResult
 CommandResult --> CreateMeetingCommand
 deactivate CommandResult
 
-CreateMeetingCommand --> LogicManager : result
+CreateMeetingCommand --> LogicManager : commandResult
 deactivate CreateMeetingCommand
 
 [<--LogicManager

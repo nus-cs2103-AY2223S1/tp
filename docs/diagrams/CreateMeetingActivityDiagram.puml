@@ -13,28 +13,34 @@ else (arguments are not empty)
         :Throw IndexOutOfBoundsException;
         :Display error message in UI;
     else ( correct number of \n arguments (meeting information) \n Includes name of people to meet, \n description, date and time, location)
-        if () then ( meeting description and title \n are empty strings)
+        if () then ( meeting description and location \n are empty strings)
+            :Throw ParseException;
             :Display error message in UI;
-        else ( meeting description and title \n are not empty strings)
-            if () then ( input name does not match \n any person in address book)
-                :Throw PersonNotFoundException;
+        else ( meeting description and location \n are not empty strings)
+            if () then ( date and time of the meeting \n are in the wrong format)
+                :Throw ParseException or \n java.text.ParseException \n (depending on exact cause);
                 :Display error message in UI;
-            else (input name does not \n match person in address book)
-                if () then ( user enters duplicate names of the \n same person in the address book)
-                    :Throw DuplicatePersonException;
+            else (date and time of the meeting \n are in the right format)
+                if () then ( input name is empty OR does not \n match any person in address book)
+                    :Throw PersonNotFoundException;
                     :Display error message in UI;
-                else (user enters names of distinct \n persons in the address book)
-                    if () then ( date and time of the meeting \n are in the wrong format)
-                        :Throw java.text.ParseException;
+                else ( input name matches at least one \n person in address book)
+                    if () then ( user enters duplicate name predicates \n OR multiple name predicates match \n the same person in the address book)
+                        :Throw DuplicatePersonException;
                         :Display error message in UI;
-                    else ( date and time of the meeting \n are in the right format)
-                        :New Meeting is created;
-                        if () then ( There is another meeting in MeetingList \n with the same Persons to meet \n and date and time as the new Meeting)
-                            :Throw DuplicateMeetingException;
+                    else (user enters names predicates that are distinct)
+                        if () then ( the same name predicate matches \n multiple contacts in the address book)
+                            :Throw ImpreciseMatchException;
                             :Display error message in UI;
-                        else ( date and time of the meeting \n are in the right format)
-                            :New Meeting is added to Meeting List;
-                            :Display success message with meeting details;
+                        else ( no conflicting matches in name predicate)
+                            :New Meeting is created;
+                            if () then ( There is another meeting in MeetingList \n with the same Persons to meet \n and date and time as the new Meeting)
+                                :Throw DuplicateMeetingException;
+                                :Display error message in UI;
+                            else ( new meeting added is unique)
+                                :New Meeting is added to Meeting List;
+                                :Display success message with meeting details;
+                            endif
                         endif
                     endif
                 endif
