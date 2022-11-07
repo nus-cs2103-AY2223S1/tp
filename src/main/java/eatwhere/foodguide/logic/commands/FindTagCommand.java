@@ -20,9 +20,9 @@ public class FindTagCommand extends Command {
 
     public static final String COMMAND_WORD = "findTag";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all eateries whose list of tags matches any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]... [-r NUMBER]\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all eateries with a tag matching any of "
+            + "the specified names (case-insensitive) and displays them as a list with index numbers.\n"
+            + "Parameters: TAGNAME [MORE_TAGNAMES]... [-r NUMBER]\n"
             + "Example: " + COMMAND_WORD + " vegetarian -r 1";
 
     private final Predicate<Eatery> predicate;

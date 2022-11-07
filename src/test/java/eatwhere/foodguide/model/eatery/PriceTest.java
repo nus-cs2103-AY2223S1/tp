@@ -21,11 +21,9 @@ public class PriceTest {
     }
 
     @Test
-    public void isValidPhone() {
-        // null price
-        assertTrue(Price.isValidPrice(null));
-
+    public void isValidPrice() {
         // invalid prices
+        assertFalse(Price.isValidPrice("")); // empty string
         assertFalse(Price.isValidPrice(" ")); // spaces only
         assertFalse(Price.isValidPrice("91")); // less than 3 numbers
         assertFalse(Price.isValidPrice("phone")); // non-numeric
@@ -33,7 +31,6 @@ public class PriceTest {
         assertFalse(Price.isValidPrice("9312 1534")); // spaces within digits
 
         // valid prices
-        assertTrue(Price.isValidPrice("")); // empty string, for no phone number
         assertTrue(Price.isValidPrice("$"));
         assertTrue(Price.isValidPrice("$$"));
         assertTrue(Price.isValidPrice("$$$"));

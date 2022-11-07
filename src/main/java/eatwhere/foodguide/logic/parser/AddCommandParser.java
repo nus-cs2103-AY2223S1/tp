@@ -41,23 +41,18 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new DisplayCommandHelpException(AddCommand.MESSAGE_USAGE);
         }
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_CUISINE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_PRICE, PREFIX_CUISINE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Cuisine cuisine = ParserUtil.parseCuisine(argMultimap.getValue(PREFIX_CUISINE).get());
+        Price price = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PRICE).get());
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Eatery eatery;
-        if (argMultimap.getAllValues(PREFIX_PRICE).isEmpty()) {
-            eatery = new Eatery(name, cuisine, location, tagList);
-        } else {
-            Price price = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PRICE).get());
-            eatery = new Eatery(name, price, cuisine, location, tagList);
-        }
+        Eatery eatery = new Eatery(name, price, cuisine, location, tagList);
 
         return new AddCommand(eatery);
     }
