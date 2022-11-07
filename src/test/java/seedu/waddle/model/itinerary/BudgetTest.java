@@ -37,4 +37,5 @@ public class BudgetTest {
         assertTrue(Budget.isValidBudget("1000000"));
         assertTrue(Budget.isValidBudget("500.50"));
     }
+  
 }
