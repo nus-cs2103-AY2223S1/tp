@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("taskmark t/1 task/2")
+[-> LogicManager : execute("taskmark t/1 task/3")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("taskmark t/1 task/2")
+LogicManager -> AddressBookParser : parseCommand("taskmark t/1 task/3")
 activate AddressBookParser
 
 create TaskMarkCommandParser
@@ -26,7 +26,7 @@ activate TaskMarkCommandParser
 TaskMarkCommandParser --> AddressBookParser
 deactivate TaskMarkCommandParser
 
-AddressBookParser -> TaskMarkCommandParser : parse("t/1 task/2")
+AddressBookParser -> TaskMarkCommandParser : parse("t/1 task/3")
 activate TaskMarkCommandParser
 
 create TaskMarkCommand
@@ -48,7 +48,7 @@ deactivate AddressBookParser
 LogicManager -> TaskMarkCommand : execute()
 activate TaskMarkCommand
 
-TaskMarkCommand -> Model : markTask(1,2)
+TaskMarkCommand -> Model : markTask(1,3)
 activate Model
 
 Model --> TaskMarkCommand

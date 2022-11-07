@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("taskedit t/1 task/1 taskname/Update GUI d/12-12-2023")
+[-> LogicManager : execute("taskedit t/1 task/1 n/Update GUI")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("taskedit t/1 task/1 taskname/Update GUI d/12-12-2023")
+LogicManager -> AddressBookParser : parseCommand("taskedit t/1 task/1 n/Update GUI")
 activate AddressBookParser
 
 create TaskEditCommandParser
@@ -26,7 +26,7 @@ activate TaskEditCommandParser
 TaskEditCommandParser --> AddressBookParser
 deactivate TaskEditCommandParser
 
-AddressBookParser -> TaskEditCommandParser : parse("t/1 task/1 taskname/Update GUI d/12-12-2023")
+AddressBookParser -> TaskEditCommandParser : parse("t/1 task/1 n/Update GUI")
 activate TaskEditCommandParser
 
 create TaskEditCommand

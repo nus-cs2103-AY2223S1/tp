@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("t/Backend")
+[-> LogicManager : execute("create n/Backend")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("create t/Backend")
+LogicManager -> AddressBookParser : parseCommand("create n/Backend")
 activate AddressBookParser
 
 create CreateCommandParser
@@ -26,7 +26,7 @@ activate CreateCommandParser
 CreateCommandParser --> AddressBookParser
 deactivate CreateCommandParser
 
-AddressBookParser -> CreateCommandParser : parse("t/backend")
+AddressBookParser -> CreateCommandParser : parse("n/Backend")
 activate CreateCommandParser
 
 create CreateCommand
@@ -58,7 +58,6 @@ create CommandResult
 CreateCommand -> CommandResult
 activate CommandResult
 
-
 CommandResult --> CreateCommand : result
 deactivate CommandResult
 
@@ -72,4 +71,3 @@ destroy CreateCommand
 deactivate LogicManager
 
 @enduml
-

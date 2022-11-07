@@ -14,10 +14,10 @@ participant ":Model" as Model MODEL_COLOR
 participant "teamToDelete:Team" as Team MODEL_COLOR
 end box
 
-[-> LogicManager : execute("deleteteam t/1")
+[-> LogicManager : execute("delteam 1")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("deleteteam t/1")
+LogicManager -> AddressBookParser : parseCommand("delteam 1")
 activate AddressBookParser
 
 create DeleteTeamCommandParser
@@ -27,7 +27,7 @@ activate DeleteTeamCommandParser
 DeleteTeamCommandParser --> AddressBookParser
 deactivate DeleteTeamCommandParser
 
-AddressBookParser -> DeleteTeamCommandParser : parse("deleteteam t/1")
+AddressBookParser -> DeleteTeamCommandParser : parse("1")
 activate DeleteTeamCommandParser
 
 create DeleteTeamCommand
