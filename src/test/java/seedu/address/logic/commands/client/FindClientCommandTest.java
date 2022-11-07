@@ -40,12 +40,12 @@ public class FindClientCommandTest {
                 new ClientEmail("mary@nus.com"), new ArrayList<>(), new ClientId(3), new Pin(false));
         actualModel.addClient(clientMary);
 
-        CommandResult expectedCommandResult = new CommandResult(
+        CommandResult expectedCommandResultName = new CommandResult(
                 String.format(Messages.MESSAGE_CLIENTS_LISTED_OVERVIEW, actualModel.getFilteredClientList().size()));
 
         List<String> name = Arrays.asList("Watson");
         List<String> email = Arrays.asList("rosie@reddit.com-sg");
-        List<String> phone = Arrays.asList("103835180");
+        List<String> phone = Arrays.asList("12345678");
         List<String> clientId = Arrays.asList("1");
         List<String> empty = new ArrayList<>();
 
@@ -58,22 +58,22 @@ public class FindClientCommandTest {
         expectedNameModel.addClient(clientRosie);
         expectedNameModel.addClient(clientMary);
 
-        assertCommandSuccess(findName, actualModel, expectedCommandResult, expectedNameModel, stubUi);
+        assertCommandSuccess(findName, actualModel, expectedCommandResultName, expectedNameModel, stubUi);
 
         //by mobile
-        FindClientCommand fine = new FindClientCommand(new ClientContainsKeywordsPredicate(
-                name, empty, empty, empty));
+        FindClientCommand findMobile = new FindClientCommand(new ClientContainsKeywordsPredicate(
+                empty, empty, , empty));
 
         Model expectedModel = new ModelManager();
         expectedModel.addClient(clientJohn);
         expectedModel.addClient(clientRosie);
         expectedModel.addClient(clientMary);
 
-        assertCommandSuccess(findName, actualModel, expectedCommandResult, expectedModel, stubUi);
+        assertCommandSuccess(findName, actualModel, expectedCommandResultName, expectedModel, stubUi);
 
 
         //by name
-        FindClientCommand findName = new FindClientCommand(new ClientContainsKeywordsPredicate(
+        FindClientCommand findEmail = new FindClientCommand(new ClientContainsKeywordsPredicate(
                 name, empty, empty, empty));
 
         Model expectedModel = new ModelManager();
@@ -81,10 +81,10 @@ public class FindClientCommandTest {
         expectedModel.addClient(clientRosie);
         expectedModel.addClient(clientMary);
 
-        assertCommandSuccess(findName, actualModel, expectedCommandResult, expectedModel, stubUi);
+        assertCommandSuccess(findName, actualModel, expectedCommandResultName, expectedModel, stubUi);
 
-        //by name
-        FindClientCommand findName = new FindClientCommand(new ClientContainsKeywordsPredicate(
+        //by id
+        FindClientCommand findId = new FindClientCommand(new ClientContainsKeywordsPredicate(
                 name, empty, empty, empty));
 
         Model expectedModel = new ModelManager();
@@ -92,6 +92,6 @@ public class FindClientCommandTest {
         expectedModel.addClient(clientRosie);
         expectedModel.addClient(clientMary);
 
-        assertCommandSuccess(findName, actualModel, expectedCommandResult, expectedModel, stubUi);
+        assertCommandSuccess(findName, actualModel, expectedCommandResultName, expectedModel, stubUi);
     }
 }
