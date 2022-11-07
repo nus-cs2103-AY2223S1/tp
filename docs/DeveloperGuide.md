@@ -248,6 +248,12 @@ Currently, the appointment feature supports 3 different type of command:
 #### Add Appointment Command
 
 Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
+For example, the user inputs this command: `aa 1 d/15-02-2022 12:00 l/NUS`.
+<br>
+The initial state of the `MaximumSortedList<Appointment>` object present in the specified client Person object before executing the command is shown below (assuming the client currently has 0 appointments scheduled):
+<br>
+![Before Add Appointment Object Diagram](images/BeforeAddAppointmentObjectDiagram.png)
+<br>
 
 Step 2. If the user input matches the format for the command word for the `AddAppointmentCommand`, `AddressBookParser` will create an `AddAppointmentCommandParser` and will call the `AddAppointmentCommandParser::parse(args)` to parse the command.
 
@@ -258,6 +264,10 @@ Step 4. If the user input is valid, a new `AddAppointmentCommand` object is crea
 Step 5. `LogicManager` will call `AddAppointmentCommand::execute(model)` method. Further validation is performed, such as checking whether a duplicate `Appointment` exists and whether the user has already scheduled the maximum number, 3, of `Appointments` for the specified client.
 
 Step 6. If the command is valid, the `add` method of the `MaximumSortedList` containing the client's `Appointments` is called, which will update the `Person` and `Model`.
+The `MaximumSortedList<Appointment>` object present in the specified client `Person` will be updated as shown below:
+<br>
+![After Add Appointment Object Diagram](images/AfterAddAppointmentObjectDiagram.png)
+<br>
 
 Step 7. `AddAppointmentCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
 
@@ -283,7 +293,12 @@ This is shown in the diagram below:
 #### Edit Appointment Command
 
 Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
-
+For example, the user inputs this command: `ea 1.1 l/NUS`.
+<br>
+The initial state of the `MaximumSortedList<Appointment>` object present in the specified client Person object before executing the command is shown below (assuming the client currently has 1 appointment scheduled):
+<br>
+![Before Edit Appointment Object Diagram](images/BeforeEditAppointmentObjectDiagram.png)
+<br>
 Step 2. If the user input matches the format for the command word for the `EditAppointmentCommand`, `AddressBookParser` will create an `EditAppointmentCommandParser` and will call the `AddAppointmentCommandParser::parse(args)` to parse the command.
 
 Step 3. Validation for the user input is performed, such as validating the client's `Index` and the appointment's `Index`
@@ -298,13 +313,16 @@ Step 7. Further validation is performed, such as checking whether an `Appointmen
 
 Step 6. If the command is valid, the `remove` and `add` method of the `MaximumSortedList` containing the client's `Appointments` is called,
 removing the old appointment and adding the newly edited appointment. `Person` and `Model` will be updated accordingly.
-
+The `MaximumSortedList<Appointment>` object present in the specified client `Person` will be updated as shown below:
+<br>
+![After Edit Appointment Object Diagram](images/AfterEditAppointmentObjectDiagram.png)
+<br>
 Step 7. `EditAppointmentCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
 
 This is shown in the diagram below:
 <br>
 ![Edit Appointment Sequence Diagram](images/EditAppointmentCommandSequenceDiagram.png)
-
+<br>
 *Figure 11: Sequence Diagram showing the execution of an `ea` (Edit Appointment) command*
 
 #### Design Considerations
@@ -318,7 +336,12 @@ This is shown in the diagram below:
 #### Delete Appointment Command
 
 Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
-
+For example, the user inputs this command: `da 1.1`.
+<br>
+The initial state of the `MaximumSortedList<Appointment>` object present in the specified client Person object before executing the command is shown below (assuming the client currently has 1 appointment scheduled):
+<br>
+![Before Delete Appointment Object Diagram](images/BeforeDeleteAppointmentObjectDiagram.png)
+<br>
 Step 2. If the user input matches the format for the command word for the `DeleteAppointmentCommand`, `AddressBookParser` will create an `DeleteAppointmentCommandParser` and will call the `DeleteAppointmentCommandParser::parse(args)` to parse the command.
 
 Step 3. Validation for the user input is performed, such as validating the client's `Index` and the appointment's `Index`.
@@ -328,13 +351,16 @@ Step 4. If the user input is valid, a new `DeleteAppointmentCommand` object is c
 Step 5. `LogicManager` will call `DeleteAppointmentCommand::execute(model)` method. Further validation is performed, such as checking whether an `Appointment` exists to be deleted.
 
 Step 6. If the command is valid, the `remove` method of the `MaximumSortedList` containing the client's `Appointments` is called, which will update the `Person` and `Model`.
-
+The `MaximumSortedList<Appointment>` object present in the specified client `Person` will be updated as shown below:
+<br>
+![After Delete Appointment Object Diagram](images/AfterDeleteAppointmentObjectDiagram.png)
+<br>
 Step 7. `DeleteAppointmentCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
 
 This is shown in the diagram below:
-
+<br>
 ![Delete Appointment Sequence Diagram](images/DeleteAppointmentCommandSequenceDiagram.png)
-
+<br>
 *Figure 12: Sequence Diagram showing the execution of an `da` (Delete Appointment) command*
 
 #### Design Considerations
@@ -457,9 +483,94 @@ The following activity diagram summarizes what happens when a user executes the 
     * Pros: Shorter command input, as only the required keywords are inputted.
     * Cons: Longer search time for each individual command and more complex validation is required, as keywords may be different types like `String` or `Integer`.
 
+### Parameter hint (enhancement)
+This enhancement allows a user to view the correct prefixes and arguments of a command before entering the command.
+
+The parameter hints for the command will be shown in the ResultDisplay once the command word is typed out.
+
+Implementation:
+1. `CommandBox` takes in the `ResultDisplay` as one of the arguments for its constructor method
+2. In the `CommandBox` constructor method, `setupCommandHistoryNavigation()` is called which sets up `commandTextField`
+   to listen for the event when a valid command word is typed
+3. When the event occurs, `ResultDisplay#setFeedbackToUser()` is called to display the command's message usage in the `ResultDisplay`
+
+### Command History feature
+This feature allows the user to navigate to their previously entered commands using up/down arrow keys
+- Only valid commands will be saved in the command history
+- Command history will only save up to 20 previously typed valid commands
+- Consecutive duplicate commands will not be saved (e.g entering “list” 3 times in a row will only add “list” to command history once)
+
+`CommandHistory` has an index pointer which tracks where the user is currently at in the command history list
+and also manages the writing and reading of commands to and from the command history list.
+
+The following sequence diagram summarizes how a valid command is saved in TextCommandHistoryStorage:
+![Add to command history storage](images/AddToCommandHistorySequenceDiagram.png)
+<br><br>
+The following sequence diagram summarizes how an up arrow key navigates to the previous command:
+![Navigate command history](images/NavigateCommandHistorySequenceDiagram.png)
+
+### Calendar features
+The calendar feature allows a calendar to display with the corresponding appointments of the month in a calendar format. The feature consists of the following features:
+
+* `Calendar Display` — Can display appointments of a month in a calendar format.
+* `Calendar Navigation` — Can navigate between months with/without a mouse.
+* `Calendar Pop-Up` — Can view the details of each appointment.
+
+#### Overall implementation of Calendar
+
+The main calendar display is implemented using the `CalendarDisplay` class, which acts as the main container for the entire Calendar feature. This main container consists of a `topCalendar`, which is a `FlowPane` that contains the current month to be displayed, and the different navigation buttons as well as the `JumpBox`. Also, `CalendarDisplay` contains `calendarGrid`, which is a GridPane that contains all the dates and `Appointment` buttons within the calendar.
+
+Upon initialisation of the `CalendarDisplay`, it will display the current month and year, using the `CalendarLogic#drawCalendar()` method. The current month and year is obtained using the default `Java` package's `GregorianCalendar` class.
+
+![Calendar Class Diagram](images/CalendarUiClassDiagram.png)
+
+*Figure x. Class diagram showing the classes for the Calendar in the `Ui`.*
+
+**Calendar Display**
+
+Implementation:
+
+The following is a more detailed explanation on how `Calendar Display` is implemented:
+1. When the app first launches, `MainWindow#fillInnerParts()` is called, which then initialises the `Calendar Display`.
+2. The `CalendarLogic` class is initialised, where the current month to be displayed in the Calendar is set using `Java`'s `GregorianCalendar` class. 
+3. Next, `CalendarLogic#drawCalendar()` is called which initialises the header of the Calendar, by calling `CalendarLogic#drawHeader()`, where the `FlowPane`, `topCalendar`, displays the current month.
+4. Also, `CalendarLogic#drawCalendar()` will then call `CalendarLogic#drawBody()` which initialise the body of the Calendar and each individual day of the month is created in the Calendar.
+5. A `CalendarEventListPanel` object is created for each day of the month, and `EventButtons` are added to each `CalendarEventListPanel` if there is an appointment falling on that particular day.
+6. Following which, when appointments are added,`Model#updateCalendarEventList()` is called which then updates the `Calendar Display` as well.
+
+The following activity diagram summarizes what happens when a user selects the Calendar tab:
+![Calendar Display Activity](images/CalendarDisplayActivityDiagram.png)
+
+**Calendar Navigation**
+
+The Calendar navigation allows a user to navigate between different months in the calendar and also navigate between the different appointments within the current month.
+This feature uses JavaFX's [`FocusModel`](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/FocusModel.html) features to obtain different behaviours when a UI component is focused.
+Also, JavaFX's [`KeyEvent`](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/input/KeyEvent.html) feature is used to listen to the different keystrokes that will update our UI.
+
+These are the ways that a user can use the `Calendar Navigation` feature.
+1. Clicking on the Next/Prev buttons to view the next/previous month in the calendar
+2. Pressing N or B key to view the next/previous month in the calendar
+3. Typing the date in the Jump Box and pressing the ENTER key to view the input month and year of the date.
+
+The following activity diagram summarizes what happens when a user selects a navigation feature:
+![Calendar Navigation Activity](images/CalendarNavigationActivityDiagram.png)
+
+#### Calendar Pop-up
+The calendar Pop-up allows user to view the details of the appointment in the calendar
+
+Implementation:
+
+These are the ways that a user can use the `Calendar Pop-up` feature.
+1. Clicking on the Up/Down/Left/Right keys to view adjacent appointments oriented in space in the calendar
+2. Pressing SHIFT or SHIFT + TAB key to view the next/previous appointment in the calendar
+3. Clicking on a desired appointment to view the appointment in the calendar
+
+The following activity diagram summarizes what happens when a user selects an appointment in the calendar tab:
+![Calendar Pop-Up Activity](images/CalendarPopUpActivityDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+#### Proposed future Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -536,88 +647,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
-
-### Parameter hint (enhancement)
-This enhancement allows a user to view the correct prefixes and arguments of a command before entering the command.
-
-The parameter hints for the command will be shown in the ResultDisplay once the command word is typed out.
-
-Implementation:
-1. `CommandBox` takes in the `ResultDisplay` as one of the arguments for its constructor method
-2. In the `CommandBox` constructor method, `setupCommandHistoryNavigation()` is called which sets up `commandTextField`
-to listen for the event when a valid command word is typed
-3. When the event occurs, `ResultDisplay#setFeedbackToUser()` is called to display the command's message usage in the `ResultDisplay`
-
-### Command History feature
-This feature allows the user to navigate to their previously entered commands.
-- Only valid commands will be saved in the command history
-- Command history will only save up to 20 previously typed valid commands
-- Consecutive duplicate commands will not be saved (e.g entering “list” 3 times in a row will only add “list” to command history once)
-
-The following sequence diagram summarizes how a valid command is saved in CommandHistoryStorage:
-![Add to command history storage](images/AddToCommandHistorySequenceDiagram.png)
-<br>
-The following sequence diagram summarizes how an up arrow key navigates to the previous command:
-![Navigate command history](images/NavigateCommandHistorySequenceDiagram.png)
-
-### Calendar features
-The calendar feature allows a calendar to display with the corresponding appointments of the month in a calendar format. The feature consists of the following features:
-
-* `Calendar Display` — Can display appointments of a month in a calendar format.
-* `Calendar Navigation` — Can navigate between months with/without a mouse.
-* `Calendar Pop-Up` — Can view the details of each appointment.
-
-#### Overall implementation of Calendar
-
-The main calendar display is implemented using the `CalendarDisplay` class, which acts as the main container for the entire Calendar feature. This main container consists of a `topCalendar`, which is a `FlowPane` that contains the current month to be displayed, and the different navigation buttons as well as the `JumpBox`. Also, `CalendarDisplay` contains `calendarGrid`, which is a GridPane that contains all the dates and `Appointment` buttons within the calendar.
-
-Upon initialisation of the `CalendarDisplay`, it will display the current month and year, using the `CalendarLogic#drawCalendar()` method. The current month and year is obtained using the default `Java` package's `GregorianCalendar` class.
-
-![Calendar Class Diagram](images/CalendarUiClassDiagram.png)
-
-*Figure x. Class diagram showing the classes for the Calendar in the `Ui`.*
-
-**Calendar Display**
-
-Implementation:
-
-The following is a more detailed explanation on how `Calendar Display` is implemented:
-1. When the app first launches, `MainWindow#fillInnerParts()` is called, which then initialises the `Calendar Display`.
-2. The `CalendarLogic` class is initialised, where the current month to be displayed in the Calendar is set using `Java`'s `GregorianCalendar` class. 
-3. Next, `CalendarLogic#drawCalendar()` is called which initialises the header of the Calendar, by calling `CalendarLogic#drawHeader()`, where the `FlowPane`, `topCalendar`, displays the current month.
-4. Also, `CalendarLogic#drawCalendar()` will then call `CalendarLogic#drawBody()` which initialise the body of the Calendar and each individual day of the month is created in the Calendar.
-5. A `CalendarEventListPanel` object is created for each day of the month, and `EventButtons` are added to each `CalendarEventListPanel` if there is an appointment falling on that particular day.
-6. Following which, when appointments are added,`Model#updateCalendarEventList()` is called which then updates the `Calendar Display` as well.
-
-The following activity diagram summarizes what happens when a user selects the Calendar tab:
-![Calendar Display Activity](images/CalendarDisplayActivityDiagram.png)
-
-**Calendar Navigation**
-
-The Calendar navigation allows a user to navigate between different months in the calendar and also navigate between the different appointments within the current month.
-This feature uses JavaFX's [`FocusModel`](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/FocusModel.html) features to obtain different behaviours when a UI component is focused.
-Also, JavaFX's [`KeyEvent`](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/input/KeyEvent.html) feature is used to listen to the different keystrokes that will update our UI.
-
-These are the ways that a user can use the `Calendar Navigation` feature.
-1. Clicking on the Next/Prev buttons to view the next/previous month in the calendar
-2. Pressing N or B key to view the next/previous month in the calendar
-3. Typing the date in the Jump Box and pressing the ENTER key to view the input month and year of the date.
-
-The following activity diagram summarizes what happens when a user selects a navigation feature:
-![Calendar Navigation Activity](images/CalendarNavigationActivityDiagram.png)
-
-#### Calendar Pop-up
-The calendar Pop-up allows user to view the details of the appointment in the calendar
-
-Implementation:
-
-These are the ways that a user can use the `Calendar Pop-up` feature.
-1. Clicking on the Up/Down/Left/Right keys to view adjacent appointments oriented in space in the calendar
-2. Pressing SHIFT or SHIFT + TAB key to view the next/previous appointment in the calendar
-3. Clicking on a desired appointment to view the appointment in the calendar
-
-The following activity diagram summarizes what happens when a user selects an appointment in the calendar tab:
-![Calendar Pop-Up Activity](images/CalendarPopUpActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
