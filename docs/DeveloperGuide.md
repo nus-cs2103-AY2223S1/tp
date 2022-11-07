@@ -226,17 +226,17 @@ E.g. `Name`, `Phone`, `Email`. When the user wants to find a tutor, the user spe
 to the specific attribute of the tutor followed by the keywords to be searched. `Tutor` objects that are matched the
 keywords being searched are added to the `FilteredList` to be displayed in the program to the user.
 
-The following methods in `tuthub` manage the finding of tutors:
-* `tuthub#FindByNameCommand(NameContainsKeywordsPredicate predicate)` - Finds and adds tutors with names matching keywords to list of tutors displayed
-* `tuthub#FindByPhoneCommand(PhoneContainsKeywordsPredicate predicate)` - Finds and adds tutors with phone number matching keywords to list of tutors displayed
-* `tuthub#FindByEmailCommand(EmailContainsKeywordsPredicate predicate)` - Finds and adds tutors with emails matching keywords to list of tutors displayed
-* `tuthub#FindByModuleCommand(ModuleContainsKeywordsPredicate predicate)` - Finds and adds tutors with modules matching keywords to list of tutors displayed
-* `tuthub#FindByYearCommand(YearContainsKeywordsPredicate predicate)` - Finds and adds tutors with year matching keywords to list of tutors displayed
-* `tuthub#FindByStudentIdCommand(StudenIdContainsKeywordsPredicate predicate)` - Finds and adds tutors with student ids matching keywords to list of tutors displayed
-* `tuthub#FindByTeachingNominationCommand(TeachingNominationContainsKeywordsPredicate predicate)` - Finds and adds tutors with teaching nominations matching keywords to list of tutors displayed
-* `tuthub#FindByRatingCommand(RatingContainsKeywordsPredicate predicate)` - Finds and adds tutors with rating matching keywords to list of tutors displayed
-* `tuthub#FindByTagCommand(TagContainsKeywordsPredicate predicate)` - Finds and adds tutors with tags matching keywords to list of tutors displayed
-* `tuthub#FindByPrefixParser(String args)` - Parses the `find` command and determines the `prefix` corresponding to the attribute to search through to find matching tutors
+The following methods in `Tuthub` manage the finding of tutors:
+* `Tuthub#FindByNameCommand(NameContainsKeywordsPredicate predicate)` - Finds and adds tutors with names matching keywords to list of tutors displayed
+* `Tuthub#FindByPhoneCommand(PhoneContainsKeywordsPredicate predicate)` - Finds and adds tutors with phone number matching keywords to list of tutors displayed
+* `Tuthub#FindByEmailCommand(EmailContainsKeywordsPredicate predicate)` - Finds and adds tutors with emails matching keywords to list of tutors displayed
+* `Tuthub#FindByModuleCommand(ModuleContainsKeywordsPredicate predicate)` - Finds and adds tutors with modules matching keywords to list of tutors displayed
+* `Tuthub#FindByYearCommand(YearContainsKeywordsPredicate predicate)` - Finds and adds tutors with year matching keywords to list of tutors displayed
+* `Tuthub#FindByStudentIdCommand(StudenIdContainsKeywordsPredicate predicate)` - Finds and adds tutors with student ids matching keywords to list of tutors displayed
+* `Tuthub#FindByTeachingNominationCommand(TeachingNominationContainsKeywordsPredicate predicate)` - Finds and adds tutors with teaching nominations matching keywords to list of tutors displayed
+* `Tuthub#FindByRatingCommand(RatingContainsKeywordsPredicate predicate)` - Finds and adds tutors with rating matching keywords to list of tutors displayed
+* `Tuthub#FindByTagCommand(TagContainsKeywordsPredicate predicate)` - Finds and adds tutors with tags matching keywords to list of tutors displayed
+* `Tuthub#FindByPrefixParser(String args)` - Parses the `find` command and determines the `prefix` corresponding to the attribute to search through to find matching tutors
 * `ModelManager#filteredTutors` - A `javafx.collections.transformation.FilteredList` that contains a list of filtered tutors according to a predicate
 * `ModelManager#getSortedFilteredTutorList()` - Returns the `sortedFilteredTutors` list
 * `ModelManager#updateFilteredTutorList(Predicate<Tutor> predicate)` - Updates filtered list based on predicate
@@ -400,7 +400,7 @@ The `CommentCommandParser` verifies the appropriateness of the user input (`inde
 Step 3: Upon parsing, a new `CommentCommand` is created based on the `index` and the `comment`.
 A new `Comment` is created based on the `comment` parsed. 
 
-Step 4: In the `CommentCommand` execution, the `model#getFilteredTutorList` is called upon to retrieve the list of displayed tutors.
+Step 4: In the `CommentCommand` execution, the `ModelManager#getSortedFilteredTutorList()` is called upon to retrieve the list of displayed tutors.
 The `Tutor` whose index matches the `index` is then stored (after accounting for 0 based indexing).
 In this case, the first `Tutor` is selected.
 
@@ -442,7 +442,7 @@ Step 3: Upon parsing, a new `DeleteCommentCommand` is created based on the `tuto
 Both indexes are converted to 0 based indexing.
 In this case, the `tutorIndex` and `commentIndex` are both set to `0`.
 
-Step 4: In the `DeleteCommentCommand` execution, the `model#getFilteredTutorList` is called upon to retrieve the list of displayed tutors.
+Step 4: In the `DeleteCommentCommand` execution, the `ModelManager#getSortedFilteredTutorList()` is called upon to retrieve the list of displayed tutors.
 The `Tutor` whose index matches the `tutorIndex` is then stored. 
 In this case, the first `Tutor` is selected.
 
