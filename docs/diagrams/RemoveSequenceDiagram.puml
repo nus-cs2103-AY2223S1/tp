@@ -13,7 +13,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant "ApplicationStatus" as ApplicationStatus MODEL_COLOR
+participant ":ApplicationStatus" as ApplicationStatus MODEL_COLOR
 end box
 
 [-> LogicManager : execute("remove accepted")
@@ -36,10 +36,10 @@ TrackAScholarParser -> RemoveCommandParser : parse("accepted")
 activate RemoveCommandParser
 
 create ApplicationStatus
-RemoveCommandParser -> ApplicationStatus:ApplicationStatus()
+RemoveCommandParser -> ApplicationStatus : ApplicationStatus()
 activate ApplicationStatus
 
-ApplicationStatus --> RemoveCommandParser
+ApplicationStatus --> RemoveCommandParser : targetStatus
 deactivate ApplicationStatus
 
 create RemoveCommand

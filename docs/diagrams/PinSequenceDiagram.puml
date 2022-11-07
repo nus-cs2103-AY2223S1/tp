@@ -52,10 +52,10 @@ activate PinCommand
 PinCommand -> Model : getFilteredApplicantList()
 activate Model
 
-Model --> PinCommand : oldApplicant
+Model --> PinCommand
 deactivate Model
 
-PinCommand -> PinCommand : createPinnedApplicant(oldApplicant)
+PinCommand -> PinCommand : createPinnedApplicant()
 activate PinCommand
 
 create Applicant
@@ -68,7 +68,7 @@ deactivate Applicant
 PinCommand --> PinCommand : newApplicant
 deactivate PinCommand
 
-PinCommand -> Model : setApplicant(1,newApplicant)
+PinCommand -> Model : setApplicant()
 activate Model
 
 Model --> PinCommand

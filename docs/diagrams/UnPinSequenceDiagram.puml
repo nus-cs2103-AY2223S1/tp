@@ -31,7 +31,7 @@ TrackAScholarParser -> UnPinCommandParser : parse("Alex Yeoh")
 activate UnPinCommandParser
 
 create UnPinCommand
-UnPinCommandParser -> UnPinCommand : UnPinCommand(name)
+UnPinCommandParser -> UnPinCommand : UnPinCommand()
 activate UnPinCommand
 
 UnPinCommand --> UnPinCommandParser
@@ -52,10 +52,10 @@ activate UnPinCommand
 UnPinCommand -> Model : getAllApplicants()
 activate Model
 
-Model --> UnPinCommand : oldApplicant
+Model --> UnPinCommand
 deactivate Model
 
-UnPinCommand -> UnPinCommand : createUnPinnedApplicant(oldApplicant)
+UnPinCommand -> UnPinCommand : createUnPinnedApplicant()
 activate UnPinCommand
 
 create Applicant
@@ -69,7 +69,7 @@ UnPinCommand --> UnPinCommand : newApplicant
 
 deactivate UnPinCommand
 
-UnPinCommand -> Model : setApplicant(1,newApplicant)
+UnPinCommand -> Model : setApplicant()
 activate Model
 
 Model --> UnPinCommand
