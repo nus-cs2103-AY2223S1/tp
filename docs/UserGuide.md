@@ -73,6 +73,19 @@ For first-time users, we also recommend you to first read through the various [p
 
 --------------------------------------------------------------------------------------------------------------------
 
+## The [GUI](#graphical-user-interface) Layout
+
+![Ui_annotated](images/Ui_annotated.png)
+
+* A: Command input area. This is where you would key in your commands.
+* B: Command output area. This is where the feedback of your commands would be displayed
+* C: Contact List. This is where all contacts are displayed with their individual fields.
+* D: Module List. This is where all modules are displayed with their individual fields.
+
+[Back to top](#welcome-to-socompilers-user-guide)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Things to note
 
 <div markdown="block" class="alert alert-info">
