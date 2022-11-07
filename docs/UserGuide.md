@@ -742,7 +742,7 @@ We plan to be able to detect duplicate clients entries in v1.5. For example, 'Jo
 
 **Q**: Why can't I add a product to my client?<br>
 **A**: First check that the product has been created use the [`listProduct`](#732-list-products-listproduct) command.
-Create the product suing the [`addProduct`](#731-add-product-addproduct) command if it is not there.
+Create the product using the [`addProduct`](#731-add-product-addproduct) command if it is not there.
 Add the product to the client using the [`editClient`](#715-edit-client-editclient)  or [`addClient`](#711-add-client-addclient) command.
 
 [Return to the top](#)
