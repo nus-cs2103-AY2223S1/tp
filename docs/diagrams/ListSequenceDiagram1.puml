@@ -54,11 +54,6 @@ deactivate ListModuleCommandParser
 ListCommandParser -> ListModuleCommandParser : getPredicate("CS2103T")
 activate ListModuleCommandParser
 
-ListModuleCommandParser -> ParserUtil
-activate ParserUtil
-
-ParserUtil --> ListModuleCommandParser
-deactivate ParserUtil
 
 ListModuleCommandParser -> ParserUtil : parseModule("CS2103T");
 activate ParserUtil

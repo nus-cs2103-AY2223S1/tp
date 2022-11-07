@@ -55,7 +55,7 @@ public class ListUnmarkedCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
         TaskIsDonePredicate predicate = preparePredicate(" ");
         ListUnmarkedCommand command = new ListUnmarkedCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
@@ -65,7 +65,7 @@ public class ListUnmarkedCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         TaskIsDonePredicate predicate = preparePredicate("false");
         ListUnmarkedCommand command = new ListUnmarkedCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(List.of(ALICE, ELLE, FIONA), model.getFilteredPersonList());
     }

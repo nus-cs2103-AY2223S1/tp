@@ -18,7 +18,7 @@ public class ListAllCommand extends ListCommand {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilterStatus("Showing all tasks", true);
         return new CommandResult(ListCommand.MESSAGE_SUCCESS);
     }

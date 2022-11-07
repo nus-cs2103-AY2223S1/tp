@@ -59,12 +59,6 @@ deactivate ListModuleCommandParser
 ListCommandParser -> ListModuleCommandParser : getPredicate("CS2103T")
 activate ListModuleCommandParser
 
-ListModuleCommandParser -> ParserUtil
-activate ParserUtil
-
-ParserUtil --> ListModuleCommandParser
-deactivate ParserUtil
-
 ListModuleCommandParser -> ParserUtil : parseModule("CS2103T");
 activate ParserUtil
 
@@ -105,7 +99,7 @@ deactivate TaskListParser
 LogicManager -> ListCommand : execute()
 activate ListCommand
 
-ListCommand -> Model : updateFilteredPersonList()
+ListCommand -> Model : updateFilteredTaskList(predicate)
 activate Model
 
 Model --> ListCommand

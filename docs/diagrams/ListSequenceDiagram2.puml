@@ -16,7 +16,7 @@ end box
 LogicManager -> ListCommand : execute()
 activate ListCommand
 
-ListCommand -> Model : updateFilteredPersonList()
+ListCommand -> Model : updateFilteredTaskList(predicate)
 activate Model
 
 Model --> ListCommand

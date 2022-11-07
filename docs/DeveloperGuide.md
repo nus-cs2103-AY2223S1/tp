@@ -266,10 +266,13 @@ Words in `UPPER_CASE` are values of parameters to be supplied by the user
 | `-d`*       | List all tasks with deadline on or after a date   | `ls -d DATE`                  | 
 | `-n`*       | List all task names with the matching keywords    | `ls -n KEYWORD`               | 
 
-In the table above, flags that are labelled with a `*` are commands that expect a parameter, as seen in the Format column. 
-These commands have a corresponding Parser that implements `Parser<ListModuleCommand>` to parse the parameter passed in. Each Parser implements the `parse` method in `Parser` interface. In the process of that, validity checks are conducted. These are some examples of validity checks conducted in the subclass parsers: 
-* In `ListModuleCommandParser`, the argument is checked to contain only alphanumeric characters with no spaces, and is not blank
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:**
+Flags that are labelled with a `*` are commands that expect a parameter, as seen in the Format column. <br>
+These commands have a corresponding Parser that implements `Parser<ListModuleCommand>` to parse the parameter passed in. Each Parser implements the `parse` method in `Parser` interface. In the process of that, validity checks are conducted. <br>
+Example of validity check: 
 * In `ListDeadlineCommandParser`, the argument is checked to be numbers be in `YYYY-MM-DD` format 
+</div>
 
 `ListCommand` extends `Command`, overriding the `execute` method. To allow for multiple filters, the constructor of `ListCommand` takes in `List<Predicate<Task>>`.
 
@@ -277,19 +280,44 @@ This feature uses the following methods from the `Model` interface:
 * `Model#updateFilteredTaskList`: Updates the current task list by applying a filter as indicated by the given predicate `Predicate<Task>`. The GUI will be updated accordingly to display the filtered task list. 
 * `Model#updateFilterStatus`: Updates the list of filters that have been applied to the current task list displayed. This will be reflected on the GUI.  
 
+#### 5.3.2 Usage Scenario 
+
 Given below is an example usage scenario and how the mechanism behaves at each step to execute the `ls -u --module CS2103T` command.
 
 **Step 1.** The user enters `ls -u --module CS2103T` to filter out tasks that are unmarked and under the `Module` "CS2103T".
 
-**Step 2.** The
+**Step 2.** `LogicManager` calls the `TaskListParser#parseCommand(String)` method. Within the execution of this method, a `ListCommandParser` instance is created. 
 
-Below is the sequence diagram for the execution of `ls -u --module CS2103T`.
+**Step 3.** `TaskListParser` calls the `ListCommandParser#parse(String)` method. `ListCommandParser` self-invocates `ListCommandParser#getPredicate(String)` for each flag found (i.e. `-u`, `--module`).
 
-![Partial sequence diagram when command `ls -u --module CS2103T` is executed]
+**Step 4.** `ListCommandParser#getPredicate("-u")` directly returns an instance of `TaskIsDonePredicate` as the `-u` flag does not expect a parameter. 
 
-![Partial sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram1-0.png)
+**Step 5.** Meanwhile, `ListCommandParser#getPredicate("--module CS2103T")` returns an instance of `ListModuleCommandParser` as the `--module` flag expects a parameter, that has to be parsed. 
 
-![Partial sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram2-0.png)
+**Step 6.** `ListCommandParser` calls `ListModuleCommandParser#getPredicate(String)` method. The following occurs during the execution of this method. 
+* `ListModuleCommandParser` conducts a validity check by calling `ParserUtil#parseModule(String)`. If the module is invalid, a `ParseException` will be thrown and execution will halt.
+  * Details of `ParserUtil#parseModule(String)` are omitted as they are not significant to demonstrate execution of the `ListCommand`.
+* An instance of `ModuleContainsKeywordsPredicate` is created and returned. 
+
+**Step 7.** With the necessary predicate instances, `ListCommand` instance is instantiated. Both predicates, `TaskIsDonePredicate` from **Step 4** and `ListModuleCommandPredicate` from **Step 6** are passed into the `ListCommand` constructor. `ListCommand` instance is returned to `LogicManager`.
+
+Below is the sequence diagram for the partial execution of `ls -u --module CS2103T` up till **Step 7**. 
+
+![Partial sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram1.png)
+
+**Step 8.** `LogicManager` calls the `ListCommand#execute()` method. 
+
+**Step 9.** The two predicates passed in are reduced into one `predicate`. The current `taskList` is updated by calling `Model#updateFilteredTaskList(predicate)`.
+
+**Step 10.** `Model#updateFilterStatus(String)` is called twice to update the list of filters being applied to the current displayed `taskList`. 
+
+**Step 11.** A new `CommandResult` object is returned, signifying that command execution was successful. 
+
+Below is the sequence diagram for the partial execution of `ls -u --module CS2103T` from **Step 8** to **Step 11**.
+
+![Partial sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram2.png)
+
+Below is the sequence diagram for the complete execution of `ls -u --module CS2103T`.
 
 ![Sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram.png)
 
@@ -694,14 +722,15 @@ testers are expected to do more *exploratory* testing.
     4. Add a new task by entering 'add -n Tutorial 1 -m CS2100' <br>
        Expected: Task will be added into empty task list. Now, task list contains 1 task.
 
-    5. Open `/data/addressbook.json` again. 
+    5. Open `/data/addressbook.json` again. <br>
        Expected: Tasks that were present prior to the corruption are now gone. Task list contains only one task (`Tutorial 1`).
 
 2. Dealing with missing data files
 
     1. Open `/data/addressbook.json`. There are some pre-loaded tasks in this file.
 
-    2. In line 2, change `tasks` to `task`. This corrupts the file and system will recognise the mismatch.
+    2. Delete `/data/addressbook.json` manually. 
 
-    3. Launch NotionUS by double-clicking the jar file. <br>
-       Expected: No tasks will be shown on the GUI.
+    3. Follow Steps 3-5 of the above "Dealing with corrupted data files". Expected behaviour is the same.
+   
+3. 
