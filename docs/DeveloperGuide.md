@@ -175,7 +175,7 @@ Originally there was a `UidManager` class which facilitated the generation and i
 
 The add patient mechanism is facilitated by `Patient`, `AddCommandParser`,`AddCommand`, `Model`, `AddressBook` and `UniquePersonList`.
 
-`Patient` extends from `Person`. A `Patient` have the `Person` attributes and a `dateTimeList`. This is shown in the diagram below:
+`Patient` extends from `Person`. A `Patient` have the `Person` attributes and a `dateSlotList`. This is shown in the diagram below:
 
 ![PatientClassDiagram](images/PatientClassDiagram.png)
 
