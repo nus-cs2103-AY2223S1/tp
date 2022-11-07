@@ -9,11 +9,10 @@ if () then ([invalid person index])
 :User informed of invalid person index;
 stop
 else ([valid person index])
-:Person-to-edit;
 endif
 
 :Model saves current AddressBook;
-:PayMeLah generates debts-to-mark DebtList from debt indices ⋔;
+:PayMeLah generates debts-to-mark DebtList from debt indices and person-to-edit ⋔;
 
 repeat
   :PayMeLah attempts marking debt as paid;
