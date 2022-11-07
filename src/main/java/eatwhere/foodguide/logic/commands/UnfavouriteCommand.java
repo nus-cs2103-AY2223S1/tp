@@ -1,5 +1,7 @@
 package eatwhere.foodguide.logic.commands;
 
+import static eatwhere.foodguide.logic.commands.FavouriteCommand.FAVTAG;
+import static eatwhere.foodguide.logic.commands.FavouriteCommand.FAVTAGSET;
 import static java.util.Objects.requireNonNull;
 
 import eatwhere.foodguide.commons.core.index.Index;
@@ -7,9 +9,9 @@ import eatwhere.foodguide.logic.commands.exceptions.CommandException;
 import eatwhere.foodguide.model.Model;
 
 /**
- * Edits the details of an existing eatery in the food guide.
+ * Removes a favourite tag from an eatery.
  */
-public class UnfavouriteCommand extends Command {
+public class UnfavouriteCommand extends UntagCommand {
 
     public static final String COMMAND_WORD = "unfav";
 
@@ -18,20 +20,16 @@ public class UnfavouriteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_UNFAV_EATERY_SUCCESS = "Favourite Eatery: %1$s";
-
-    private final Index index;
-
     /**
      * @param index of the eatery in the filtered eatery list to edit
      */
     public UnfavouriteCommand(Index index) {
-        requireNonNull(index);
-        this.index = index;
+        super(requireNonNull(index), requireNonNull(FAVTAGSET));
+        assert super.isContaining(FAVTAG);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult(String.format(MESSAGE_UNFAV_EATERY_SUCCESS));
+        return super.execute(model);
     }
 }
