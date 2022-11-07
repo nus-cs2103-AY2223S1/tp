@@ -210,7 +210,7 @@ All commands follow this format except: [`delete`](#deleting-entries),
 For example, given the command `add t/e d/Lunch a/15.60 da/15-08-2022 c/Food`, let us deconstruct the command format
 step-by-step!
 
-|      Format      |                Example                 |3
+|      Format      |                Example                 |
 |:----------------:|:--------------------------------------:|
 |     Command      |                 `add`                  |
 | Entry Identifier |                 `t/e`                  |
