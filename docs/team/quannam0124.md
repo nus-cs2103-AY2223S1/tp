@@ -29,6 +29,7 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Opened 17 issues and closed some
+<div style="page-break-after: always;"></div>
 
 * **Enhancements to existing features**:
   * Added additional test cases for existing model (calculate total transactions in Transaction model)
