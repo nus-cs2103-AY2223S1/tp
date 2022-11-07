@@ -619,6 +619,8 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 
       Use case ends.
 
+Below is a use case diagram summarising the use cases listed above:
+![Use Cases](images/UseCaseDiagram.png)
 
 ### 7.4 Non-Functional Requirements
 
