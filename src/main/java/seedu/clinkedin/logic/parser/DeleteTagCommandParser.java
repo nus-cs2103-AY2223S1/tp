@@ -21,6 +21,9 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
     @Override
     public DeleteTagCommand parse(String args) throws ParseException {
         requireNonNull(args);
+        if (args.trim().length() == 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTagCommand.MESSAGE_USAGE));
+        }
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.getPrefixes());
 
         boolean foundAny = CliSyntax.getPrefixTags().stream().anyMatch(pref -> argMultimap

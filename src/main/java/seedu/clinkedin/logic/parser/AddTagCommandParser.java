@@ -19,6 +19,9 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
     @Override
     public AddTagCommand parse(String args) throws ParseException {
         requireNonNull(args);
+        if (args.trim().length() == 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTagCommand.MESSAGE_USAGE));
+        }
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.getPrefixes());
         if (CliSyntax.getPrefixTags().size() == 0) {
             throw new ParseException("No tag type found in the address book. "

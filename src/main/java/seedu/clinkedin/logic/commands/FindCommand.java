@@ -19,7 +19,7 @@ public class FindCommand extends Command {
             + "with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie\n"
-            + "Example: " + COMMAND_WORD + " n/alex p/87654321 t/friends t/owesMoney";
+            + "Example: " + COMMAND_WORD + " n/alex p/87654321 st/Java st/Python";
 
     final DetailsContainKeywordsPredicate predicate;
 
