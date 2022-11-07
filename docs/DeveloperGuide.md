@@ -676,7 +676,7 @@ with the shortest and easiest to type command possible. It also allowed for comm
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​             | I want to …​                                                                               | So that I can…​                                                                             |
-|----------|---------------------|--------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| -------- | ------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------- |
 | `* * *`  | student developer   | track multiple projects spread across different websites in one place.                     |                                                                                             |
 | `* * *`  | forgetful developer | see all the tasks for my projects on one page                                              | I will remember what needs to be an experienced developer,                                  |
 | `* * *`  | developer           | see the projects automatically sorted in accordance with the deadline                      | I can manage and clear those with a higher urgency first                                    |
@@ -688,7 +688,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                | add deadlines to the projects                                                              | I can prioritize accordingly.                                                               |
 | `* * *`  | user                | add the contact numbers and email addresses of each client to the projects                 | I can contact them more efficiently.                                                        |
 | `* * *`  | user                | link my projects to their repositories                                                     | I can easily navigate to them.                                                              |
-| `* * *`  | user                | find projects by fields such as their name, id and repository                              | I can easily view specific projects                                                         | 
+| `* * *`  | user                | find projects by fields such as their name, id and repository                              | I can easily view specific projects                                                         |
 | `* * *`  | user                | find clients by fields such as their name, id, mobile and email                            | I can easily view specific clients                                                          |
 | `* * *`  | user                | find issues by fields such as their title, id, urgency, and status                         | I can easily view specific issues                                                           |
 | `* *`    | developer           | choose to ‘pin’ certain projects                                                           | I can quickly access them                                                                   |
@@ -698,9 +698,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | developer           | sort the projects                                                                          | I can see which projects require more urgency when the number of projects becomes too long. |
 | `* *`    | developer           | clear all data using a single command                                                      |                                                                                             |
 | `* *`    | user                | split the project tiles into different categories                                          | I can organize my workspace better.                                                         |
-| `*`      | user                | automatically check my projects for issues                                                 | I can efficiently check for outstanding bug fixes.                                          |
-
-*{More to be added}*
+| `* * *`  | user                | edit client details                                                                        | I can change and update client details when I have more information.                        |
+| `* * *`  | user                | add issues to projects                                                                     | Keep track of what features/bugs need to be worked on.                                      |
+| `* * *`  | user                | delete issues from projects                                                                | Remove issues added by mistake/no longer needed.                                            |
+| `* * *`  | user                | find certain issues based on fields                                                        | Better keep track of, and retrieve the specific issue I want.                               |
+| `* * *`  | user                | mark issues as completed                                                                   | I can keep track of what issues are completed/not done                                      |
+| `* * *`  | user                | unmark completed issues as not completed                                                   | I can keep track of what issues are completed/not done                                      |
+| `* *`    | user                | see a list of all clients I am currently working with                                      | I can keep an overview of my entire client base.                                            |
+| `* *`    | user                | sort a list of clients based on name or other fields                                       | see a list of my clients in an organised fashion.                                           |
+| `*`      | user                | configure the app to list projects/clients/issues on startup                               | use the app more efficiently.                                                               |
 
 ### Use cases
 
