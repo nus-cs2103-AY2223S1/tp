@@ -11,7 +11,7 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 participant "lastShownList:List<Commission>" as lastShownList MODEL_COLOR
 participant "commissionToDelete:Commission" as commissionToDelete MODEL_COLOR
-participant "customer:Customer" as customer MODEL_COLOR
+'participant "customer:Customer" as customer MODEL_COLOR
 end box
 
 [-> LogicManager : execute("delcom 1")
@@ -26,7 +26,7 @@ activate Model
 Model --> DeleteCommissionCommand : lastShownList
 deactivate Model
 
-DeleteCommissionCommand -> lastShownList : get(1)
+DeleteCommissionCommand -> lastShownList : get(0)
 activate lastShownList
 
 lastShownList --> DeleteCommissionCommand : commissionToDelete
@@ -38,11 +38,11 @@ activate commissionToDelete
 commissionToDelete --> DeleteCommissionCommand : customer
 deactivate commissionToDelete
 
-DeleteCommissionCommand -> customer : removeCommission(commissionToDelete)
-activate customer
+DeleteCommissionCommand -> Model : removeCommission(customer, commissionToDelete)
+activate Model
 
-customer --> DeleteCommissionCommand
-deactivate customer
+Model --> DeleteCommissionCommand
+deactivate Model
 
 DeleteCommissionCommand -> Model : selectTab(GuiTab.COMMISSION)
 activate Model
