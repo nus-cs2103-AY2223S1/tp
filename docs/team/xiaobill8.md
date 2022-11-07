@@ -17,21 +17,25 @@ Given below are my contributions to the project.
 * **New Feature**: Added Storage for Tasks ([#126](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/126)).
     * What it does: TaskBookStorage allows for the storage of Tasks in a JSON format.
     * Justification: This feature allows for the saving and loading of Tasks so that users can reopen the application to their last saved state.
-    * Highlights: The feature is defensively written to prevent the save file from becoming corrupted. Furthermore, the storage of Tasks is independent of storage of Contacts even though they are in the same JSON file, this minimizes dependencies between them and thus possible errors or conflicts.
-    * Credits: Integrated Task storage into existing Contact storage implemented in AB-3.
+    * Highlights: The feature is defensively written to prevent the save file from becoming corrupted. Furthermore, the storage of Tasks is independent of storage of Contacts even though they are in the same JSON file, this minimizes dependencies between them and thus possible errors or conflicts. The storage of Tasks also uses Jackson's `@JsonTypeInfo` and `@JsonSubTypes` for seamless saving and loading of Tasks while maintaining the specific Task subtype.
+    * Credits: Integrated Task storage into existing Contact storage implemented in AB-3. Used annotations from the Jackson library.
 
 * **Team tasks**:
     * [#116](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/116) Refactored existing "AddressBook" instances to "TaskBook".
-    * Managed Testing.
+    * [#268](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/268) Managed Integration Tests.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=xiaobill8&breakdown=true)
 
 * **Documentation**:
     * User Guide:
         * [#82](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/82) Added instructions for Deadline command.
+        * [#243](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/243) Updated Quick Start with a valid Todo command.
+        * [#303](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/303) Updated Contact Delete command description.
     * Developer Guide:
         * [#82](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/82) Added Non-functional requirements
         * [#163](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/163) Added implementation of Tasks.
         * [#163](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/163) Updated Model component and corresponding Model UML diagram
         * [#163](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/163) Updated Storage component explanation and corresponding Storage UML diagram
+        * [#292](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/292) Added Effort Section
+        * [#300](https://github.com/AY2223S1-CS2103T-T13-4/tp/pull/300) Updated Manual Testing Section
         
