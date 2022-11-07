@@ -3,6 +3,8 @@ package seedu.waddle.model.item;
 import static java.util.Objects.requireNonNull;
 import static seedu.waddle.commons.util.AppUtil.checkArgument;
 
+import seedu.waddle.model.itinerary.Itinerary;
+
 /**
  * Represents the estimated cost of an Item in the Itinerary.
  */
@@ -38,6 +40,20 @@ public class Cost {
 
     public float getValue() {
         return this.cost;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Cost)) {
+            return false;
+        }
+
+        Cost otherCost = (Cost) other;
+        return this.cost == otherCost.cost;
     }
 
     @Override

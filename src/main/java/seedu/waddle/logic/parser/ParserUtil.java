@@ -166,7 +166,12 @@ public class ParserUtil {
     public static Priority parsePriority(String priority) throws ParseException {
         requireNonNull(priority);
         String trimmedPriority = priority.trim();
-        Integer stars = Integer.parseInt(trimmedPriority);
+        int stars = 0;
+        try {
+            stars = Integer.parseInt(trimmedPriority);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
+        }
         if (!Priority.isValidPriority(stars)) {
             throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
         }
