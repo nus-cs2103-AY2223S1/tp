@@ -72,7 +72,8 @@ public class AddMeetingCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         ObservableList<Client> clientList = model.getFilteredClientList();
-        if (linkedClientIndex.getZeroBased() >= clientList.size()) {
+
+        if (linkedClientIndex.getOneBased() > clientList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
