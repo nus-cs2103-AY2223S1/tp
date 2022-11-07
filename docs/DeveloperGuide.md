@@ -5,7 +5,7 @@ title: Developer Guide
 
 PleaseHireUs (PHU) is an internship tracking application specially customised for CS students who are struggling to 
 keep track of their applications. PHU has been optimized for use via a Command Line Interface (CLI) while still 
-having the benefits of a Graphical User Interface (GUI). Fast typist would be able to work more efficiently.
+having the benefits of a Graphical User Interface (GUI). Fast typists would be able to work more efficiently.
 
 ![Ui](images/icon.png){:style="display:block; margin-left:auto; margin-right:auto"}
 
@@ -29,7 +29,7 @@ This guides aims to: <br>
 
 1. Provide developers with a brief overview of the design architecture of our product.
 2. Explain some design considerations in the development of the application.
-3. Provide interested developers with documentations to continue development of our product.
+3. Provide interested developers with documentation to continue development of our product.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Navigating the Developer Guide**
@@ -102,7 +102,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -139,7 +139,7 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `InternshipBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add an internship).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -237,7 +237,7 @@ The following sequence diagram shows how the add command works.
 ### Delete feature
 
 #### Proposed Implementation
-PHU allows user to delete multiple internships in one command. The proposed delete mechanism involves keeping track of the positions of `Internship` to be deleted, which is implemented by using `Indexes` class, and deleting all the corresponding internships.
+PHU allows users to delete multiple internships in one command. The proposed delete mechanism involves keeping track of the positions of `Internship` to be deleted, which is implemented by using `Indexes` class, and deleting all the corresponding internships.
 
 The following sequence diagram shows how the delete command works.
 
@@ -327,7 +327,7 @@ The following sequence diagram shows how the find command works.
 
 #### Design Considerations
 **How to filter the Internships**:
-* Use a class for the predicate and `javafx.collections.transformation.FilteredList` (current))
+* Use a class for the predicate and `javafx.collections.transformation.FilteredList` (current)
   * Pros: Simple, Better cohesion, more maintainability
   * Cons: More code to write
 
@@ -549,7 +549,7 @@ _{To be updated in v2.0}_
 
 **Target user profile**: Our target user is a computer science student who:
 
-* has a need to keep track a large number of internship applications and their status
+* has a need to keep track of a large number of internship applications and their status
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -803,8 +803,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Term                           | Description                                                                                                                                        |
 |--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
-| Graphical User Interface (GUI) | GUI allows user to interact with an application through graphics such as icons, menu, etc.                                                         |
-| Command Line Interface (CLI)   | CLI allows user to use text as commands to be executed by an application.                                                                          |
+| Graphical User Interface (GUI) | GUI allows users to interact with an application through graphics such as icons, menu, etc.                                                        |
+| Command Line Interface (CLI)   | CLI allows users to use text as commands to be executed by an application.                                                                         |
 | Command                        | Instruction typed by the user for PHU to execute.                                                                                                  |
 | Parameter                      | A component of a command for the user to input information. For PHU context, this refers to the internship application details.                    |
 | Prefix                         | An abbreviation for the name of the parameter. Prefix should be entered before the actual parameter in a command and always ends with a slash (/). |
@@ -893,7 +893,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Shows the full list of internships sorted by the company name in lexicographically order.
    
     4. Test case: `list c/d true`<br>
-      Expected: Shows the full list of internships sorted by the date. Internships are sorted from the latest to earliest date.
+      Expected: Shows the full list of internships sorted by the date. Internships are sorted from the latest to the earliest date.
 
 ### Deleting internship(s)
 
@@ -998,7 +998,7 @@ testers are expected to do more *exploratory* testing.
 1. Viewing help message
 
    1. Test case: `help`<br>
-      Expected: The help window pop-up, showing the command summary and a link to the User Guide.
+      Expected: The help window pops up, showing the command summary and a link to the User Guide.
 
 ### Undo command
 
@@ -1032,10 +1032,3 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `redo`<br>
        Expected: No command is redone. Error details shown in the status message.
 
-### Saving data [To be updated]
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
