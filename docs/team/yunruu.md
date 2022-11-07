@@ -45,4 +45,4 @@ Given below are my contributions to the project.
 - **Documentation**:
   - User Guide: to be added soon
   - Developer Guide: to be added soon
-- **Reviewing/Mentoring**: [#22](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/22), [#84](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/84), [#124](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/124), [#140](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/140), [#147](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/147)
+- **Reviewing/Mentoring**: [#22](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/22), [#84](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/84), [#124](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/124), [#140](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/140), [#147](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/147), [#222](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/222), [#232](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/232), [#233](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/233)
