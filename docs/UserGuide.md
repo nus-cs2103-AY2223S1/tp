@@ -296,7 +296,7 @@ You can also quickly narrow down your choices with the randomizer feature._
 You can search for any number of tags by typing them all after findTag
 </div>
 
-**Arguments:** <br>
+**Inputs:** <br>
 `TAGNAME`: the tag(s) the eatery must have <br>
 `NUMBER`: how many randomly selected eateries to show (more than 0) <br>
 `-h`: displays help message (specific to findTag)
