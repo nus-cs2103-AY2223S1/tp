@@ -90,7 +90,7 @@ public class EditCommand extends Command {
         Tutor tutorToEdit = lastShownList.get(index.getZeroBased());
         Tutor editedTutor = createEditedTutor(tutorToEdit, editTutorDescriptor);
 
-        if (!tutorToEdit.isSameEditedTutor(editedTutor) && model.hasTutor(editedTutor)) {
+        if (!tutorToEdit.isSameEditedTutor(editedTutor) && model.hasTutorExcept(tutorToEdit, editedTutor)) {
             throw new CommandException(MESSAGE_DUPLICATE_TUTOR);
         }
 
