@@ -24,7 +24,7 @@ Given below are my contributions to the project:
 
 * **Enhancements to existing features**:
   * Add functionality to unassign member from a team on deleting that team (pull request: [\#130](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/130))
-  * Added test cases for create and delete team command, assign and unassign member command to increase code coverage (pull requests: [\#250](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/250))
+  * Added test cases for create and delete team command, assign and unassign member command to increase code coverage (pull requests: [\#250](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/250) & [\#267](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/267) & [\#272](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/272)))
 
 * **Documentation**:
     * User Guide:
