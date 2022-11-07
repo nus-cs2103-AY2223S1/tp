@@ -9,12 +9,13 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * {@link #isValidCapValues(double, double)}
  */
 public class Cap {
-    public static final String MESSAGE_CONSTRAINTS = "CAPs should only consist of two numeric values "
-        + "without symbols and alphabets, "
-        + "namely the current CAP value and its maximum value!\n"
-        + "e.g. 4.0/5.0";
-    public static final double MINIMUM = 0.0;
     public static final String CAP_SEPARATOR = "/";
+    public static final String MESSAGE_CONSTRAINTS = "CAP values should be "
+        + "in the format of CAP_VALUE" + CAP_SEPARATOR + "MAXIMUM_CAP_VALUE and adhere to the following constraints:\n"
+        + "- CAP_VALUE and MAXIMUM_CAP_VALUE should be positive numerical values and should not exceed 100.0\n"
+        + "- CAP_VALUE and MAXIMUM_CAP_VALUE should not contain symbols and alphabets\n"
+        + "e.g. 4.0" + CAP_SEPARATOR + "5.0";
+    public static final double MINIMUM = 0.0;
     public static final String VALIDATION_REGEX = "[\\s]*[0-9][\\s]*[.]?[\\s]*[0-9]*[\\s]*";
     public final double value;
     public final double maximum;
