@@ -194,12 +194,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public String nextCommand() {
+    public String getNextCommand() {
         return commandHistory.getNextCommand();
     }
 
     @Override
-    public String prevCommand() {
+    public String getPrevCommand() {
         return commandHistory.getPrevCommand();
     }
 
