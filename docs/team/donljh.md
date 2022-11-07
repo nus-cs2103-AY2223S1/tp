@@ -48,7 +48,7 @@ Given below are my contributions to the project.
     * Developer Guide:
       * Added implementation details of the `Order` class and `addo` feature
       * Added manual testing section for `deletei`, `editi`, `addo`
-    * Relevant pull request(s): [#141](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/141)
+    * Relevant pull request(s): [#141](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/141), [#228](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/228)
 
   * **Review/Mentoring Contributions:**:
     * Pull requests reviewed (with non-trivial review comments): [#199](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/199), [#136](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/136), [#125](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/125), [#111](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/111)  

@@ -928,188 +928,184 @@ testers are expected to do more *exploratory* testing.
 
 ### Launch and shutdown
 
-1. Initial launch
-
-   i. Download the jar file and copy into an empty folder
-
-   ii. Double-click the jar file Expected: Shows the GUI with a set of sample orders and items. 
-   The window automatically expands to occupy the entire screen.
+1. Initial launch 
+* Download the jar file and copy into an empty folder
+* Double-click the jar file <br>
+  Expected: Shows the GUI with a set of sample orders and items. 
+  The window automatically expands to occupy the entire screen.
 
 
 ### Adding an inventory item
 1. Adding an inventory item
-   1. Prerequisites: None
-   2. Test case: `addi i/Chair q/100 d/Wooden Chair sp/50 cp/10 t/Fragile` <br>
-  Expected: Inventory item is added to the inventory list. Details of the added inventory item shown in the status message.
-   3. Test case: `addi i/Chair d/Wooden Chair sp/50 cp/10 t/Fragile` <br>
-  Expected: No inventory item is added. Error details shown in the status message.
-   4. Other incorrect addi commands to try: `addi`, `addi x`, `...`(where x is a string containing the inventory item details but is missing a required parameter) <br>
-  Expected: similar to previous.
+   * Prerequisites: None
+   * Test case: `addi i/Chair q/100 d/Wooden Chair sp/50 cp/10 t/Fragile` <br>
+   Expected: Inventory item is added to the inventory list. Details of the added inventory item shown in the status message.
+   * Test case: `addi i/Chair d/Wooden Chair sp/50 cp/10 t/Fragile` <br>
+   Expected: No inventory item is added. Error details shown in the status message.
+   * Other incorrect addi commands to try: `addi`, `addi x`, `...`(where x is a string containing the inventory item details but is missing a required parameter) <br>
+   Expected: similar to previous.
 
 ### Listing all inventory items
 1. Display all inventory items of a populated inventory list
-   1. Prerequisites: Have an inventory list containing 1 or more inventory items
-   2. Test case: `listi` <br>
-  Expected: All inventory items are displayed.
+   * Prerequisites: Have an inventory list containing 1 or more inventory items
+   * Test case: `listi` <br>
+   Expected: All inventory items are displayed.
 
 2. Display all inventory items of an empty inventory list
-   1. Prerequisites: Have an inventory list containing 0 inventory items
-   2. Test case: `listi` <br>
-  Expected: No inventory items are displayed.
+   * Prerequisites: Have an inventory list containing 0 inventory items
+   * Test case: `listi` <br>
+   Expected: No inventory items are displayed.
 
 ### Finding an inventory item
 1. Finding an inventory item that exists in the inventory list
-   1. Prerequisites: Have an inventory list containing only inventory items with the item names `Chair`, `Table`, `Bed`.
-   2. Test case: `findi Chair` <br>
-  Expected: Only the inventory item with the item name `Chair` is displayed. Number of inventory items
-  found shown in the status message.
-   4. Test case: `findi` <br>
-  Expected: No inventory item is found, no change to current displayed inventory item list.
-  Error details shown in the status message.
+   * Prerequisites: Have an inventory list containing only inventory items with the item names `Chair`, `Table`, `Bed`.
+   * Test case: `findi Chair` <br>
+   Expected: Only the inventory item with the item name `Chair` is displayed. Number of inventory items found shown in the status message.
+   * Test case: `findi` <br>
+   Expected: No inventory item is found, no change to current displayed inventory item list. Error details shown in the status message.
 
 2. Finding an inventory item that does not exist in the inventory list
-   1. Prerequisites: Have an inventory list containing only inventory items with the item names `Chair`, `Table`, `Bed`.
-   2. Test case: `findi pen` <br>
-  Expected: No inventory item is displayed in the inventory list. 0 inventory items
-  found shown in the status message.
+   * Prerequisites: Have an inventory list containing only inventory items with the item names `Chair`, `Table`, `Bed`.
+   * Test case: `findi pen` <br>
+   Expected: No inventory item is displayed in the inventory list. 0 inventory items found shown in the status message.
 
 ### Deleting an inventory item
 
 1. Deleting an inventory item while all inventory item(s) are being shown
-* Prerequisites: List all inventory items using the `listi` command. Multiple inventory items in the inventory list.
-  First inventory item in the displayed inventory list is not involved in any uncompleted orders.
-  Third inventory item in the displayed inventory list is involved in uncompleted order(s).
-  For example, with the sample data loaded in TrackO, the command `listi` will list all inventory items,
-  where the first inventory item `Chair` is not involved in any uncompleted orders,
-  whereas the third item `Bolster` is.
-* Test case: `deletei 1` <br>
-  Expected: First inventory item is deleted from the inventory list. Details of the deleted inventory item shown in the status message.
-* Test case: `deletei 3` <br>
-  Expected: No inventory item is deleted from the inventory list. Error details shown in the status message (involved in uncompleted orders).
-* Test case: `deletei 0` <br>
-  Expected: No inventory item is deleted. Error details shown in the status message.
-* Other incorrect delete commands to try `deletei`, `deletei x`, ... (where x is larger than the size of the displayed inventory list)
-  Expected: Similar to previous,
+   * Prerequisites: List all inventory items using the `listi` command. Multiple inventory items in the inventory list.
+     First inventory item in the displayed inventory list is not involved in any uncompleted orders.
+     Third inventory item in the displayed inventory list is involved in uncompleted order(s).
+     For example, with the sample data loaded in TrackO, the command `listi` will list all inventory items,
+     where the first inventory item `Chair` is not involved in any uncompleted orders,
+     whereas the third item `Bolster` is.
+   * Test case: `deletei 1` <br>
+     Expected: First inventory item is deleted from the inventory list. Details of the deleted inventory item shown in the status message.
+   * Test case: `deletei 3` <br>
+     Expected: No inventory item is deleted from the inventory list. Error details shown in the status message (involved in uncompleted orders).
+   * Test case: `deletei 0` <br>
+     Expected: No inventory item is deleted. Error details shown in the status message.
+   * Other incorrect delete commands to try `deletei`, `deletei x`, ... (where x is larger than the size of the displayed inventory list)
+     Expected: Similar to previous,
 
 2. Deleting an inventory item while only some inventory item(s) are being shown
-* Prerequisites: Find inventory item(s) using the `findi` command.
-  First inventory item in the displayed inventory list is not involved in any uncompleted orders.
-  Second inventory item in the displayed inventory list is involved in uncompleted order(s).
-  For example, with the sample data loaded in TrackO, the command `findi Chair Mattress` will find and display only the items with the name `Chair` and `Mattress` in the inventory list,
-  where first item `Chair` is not involved in any uncompleted orders,
-  whereas second item `Mattress` is involved.
-* Test case: `deletei 1` <br>
-  Expected: First inventory item is deleted from the displayed inventory list. Details of the deleted inventory item shown in the status message.
-* Test case: `deletei 2`, where n is the index of an inventory item which is involved in uncompleted order(s). For example, `deletei 2` after `findi Chair Pillow` with the sample data. <br>
-  Expected: No inventory item is deleted. Error details shown in the status message.
-* Test case: `deletei 0` <br>
-  Expected: No inventory item is deleted. Error details shown in the status message.
-* Other incorrect delete commands to try: `deletei`, `deletei x`, ... (where x is larger than the size of the displayed inventory list)
-  Expected: Similar to previous
+   * Prerequisites: Find inventory item(s) using the `findi` command.
+     First inventory item in the displayed inventory list is not involved in any uncompleted orders.
+     Second inventory item in the displayed inventory list is involved in uncompleted order(s).
+     For example, with the sample data loaded in TrackO, the command `findi Chair Mattress` will find and display only the items with the name `Chair` and `Mattress` in the inventory list,
+     where first item `Chair` is not involved in any uncompleted orders,
+     whereas second item `Mattress` is involved.
+   * Test case: `deletei 1` <br>
+     Expected: First inventory item is deleted from the displayed inventory list. Details of the deleted inventory item shown in the status message.
+   * Test case: `deletei 2`, where n is the index of an inventory item which is involved in uncompleted order(s). For example, `deletei 2` after `findi Chair Pillow` with the sample data. <br>
+     Expected: No inventory item is deleted. Error details shown in the status message.
+   * Test case: `deletei 0` <br>
+     Expected: No inventory item is deleted. Error details shown in the status message.
+   * Other incorrect delete commands to try: `deletei`, `deletei x`, ... (where x is larger than the size of the displayed inventory list)
+     Expected: Similar to previous
 
 ### Editing an inventory item
 
 1. Editing an inventory item while all inventory item(s) are being shown
-* Prerequisites: List all inventory items using the `listi` command. Multiple inventory items in the inventory list.
-  First inventory item in the displayed inventory list is not involved in any uncompleted orders.
-  Third inventory item in the displayed inventory list is involved in uncompleted order(s).
-  For example, with the sample data loaded in TrackO, the command `listi` will list all inventory items,
-  where the first inventory item `Chair` is not involved in any uncompleted orders,
-  whereas the third item `Bolster` is.
-* Test case: `editi 1 i/Red Chair q/20 sp/10 cp/2` <br>
-  Expected: First inventory item is edited. Name, quantity, sell price and cost price is updated to `Red Chair`, `20`, `$10.00`, `$2.00` respectively.
-* Test case: `editi 3 i/Test Item Name` <br>
-  Expected: No inventory item is edited. Error details shown in the status message (involved in uncompleted orders).
-* Test case: `editi 0` <br>
-  Expected: No inventory item is edited. Error details shown in the status message.
-* Other incorrect edit commands to try: `editi`, `editi x`, ... (where x is larger than the size of the displayed inventory list) <br>
-  Expected: Similar to previous
+   * Prerequisites: List all inventory items using the `listi` command. Multiple inventory items in the inventory list.
+     First inventory item in the displayed inventory list is not involved in any uncompleted orders.
+     Third inventory item in the displayed inventory list is involved in uncompleted order(s).
+     For example, with the sample data loaded in TrackO, the command `listi` will list all inventory items,
+     where the first inventory item `Chair` is not involved in any uncompleted orders,
+     whereas the third item `Bolster` is.
+   * Test case: `editi 1 i/Red Chair q/20 sp/10 cp/2` <br>
+     Expected: First inventory item is edited. Name, quantity, sell price and cost price is updated to `Red Chair`, `20`, `$10.00`, `$2.00` respectively.
+   * Test case: `editi 3 i/Test Item Name` <br>
+     Expected: No inventory item is edited. Error details shown in the status message (involved in uncompleted orders).
+   * Test case: `editi 0` <br>
+     Expected: No inventory item is edited. Error details shown in the status message.
+   * Other incorrect edit commands to try: `editi`, `editi x`, ... (where x is larger than the size of the displayed inventory list) <br>
+     Expected: Similar to previous
 
 2. Editing an inventory item while only some inventory item(s) are being shown
-* Prerequisites: Find inventory item(s) using the `findi` command.
-  First inventory item in the displayed inventory list is not involved in any uncompleted orders.
-  Second inventory item in the displayed inventory list is involved in uncompleted order(s).
-  For example, with the sample data loaded in TrackO, the command `findi Chair Mattress` will find and display only the items with the name `Chair` and `Mattress` in the inventory list,
-  where first item `Chair` is not involved in any uncompleted orders,
-  whereas second item `Mattress` is involved.
-* Test case: `editi 1 i/Red Chair q/20 sp/10 cp/2` <br>
-  Expected:  First inventory item is edited. Name, quantity, sell price and cost price is updated to `Red Chair`, `20`, `$10.00`, `$2.00` respectively.
-* Test case: `editi 2 i/Test Item Name` <br>
-  Expected: No inventory item is edited. Error details shown in the status message (involved in uncompleted orders).
-* Test case: `editi 0` <br>
-  Expected: No inventory item is edited. Error details shown in the status message.
-* Other incorrect edit commands to try: `editi`, `editi x`, ... (where x is larger than the sie of the displayed inventory list) <br>
-  Expected: Similar to previous
+   * Prerequisites: Find inventory item(s) using the `findi` command.
+     First inventory item in the displayed inventory list is not involved in any uncompleted orders.
+     Second inventory item in the displayed inventory list is involved in uncompleted order(s).
+     For example, with the sample data loaded in TrackO, the command `findi Chair Mattress` will find and display only the items with the name `Chair` and `Mattress` in the inventory list,
+     where first item `Chair` is not involved in any uncompleted orders,
+     whereas second item `Mattress` is involved.
+   * Test case: `editi 1 i/Red Chair q/20 sp/10 cp/2` <br>
+     Expected:  First inventory item is edited. Name, quantity, sell price and cost price is updated to `Red Chair`, `20`, `$10.00`, `$2.00` respectively.
+   * Test case: `editi 2 i/Test Item Name` <br>
+     Expected: No inventory item is edited. Error details shown in the status message (involved in uncompleted orders).
+   * Test case: `editi 0` <br>
+     Expected: No inventory item is edited. Error details shown in the status message.
+   * Other incorrect edit commands to try: `editi`, `editi x`, ... (where x is larger than the sie of the displayed inventory list) <br>
+     Expected: Similar to previous
 
 ### Adding an order
 
 1. Adding an order, attempt to add existing and non-existent inventory items in order's item list.
-* Prerequisites: Multiple inventory items exist in the inventory list. One of them with the item name `Chair`, and **none** of them with the name `Apple`
-* Test Case: Execute the following commands below in sequence and check the response by the system.
-  * Step 1: `addo n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25` <br>
-    Expected: Add order command initiated. System prompts for further item and quantity input
-  * Step 2: `i/Chair q/10` <br>
-    Expected: System accepts the item and quantity input, prompts for further input.
-  * Step 3: `i/Apple q/20` <br>
-    Expected: System notifies that inventory item with name `Apple` does not exist, prompts for further input.
-  * Step 4: `done` <br>
-    Expected: Order is added to the order list. Order details shown in the status message.
+   * Prerequisites: Multiple inventory items exist in the inventory list. One of them with the item name `Chair`, and **none** of them with the name `Apple`
+   * Test Case: Execute the following commands below in sequence and check the response by the system.
+   * Step 1: `addo n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25` <br>
+       Expected: Add order command initiated. System prompts for further item and quantity input
+   * Step 2: `i/Chair q/10` <br>
+       Expected: System accepts the item and quantity input, prompts for further input.
+   * Step 3: `i/Apple q/20` <br>
+     Expected: System notifies that inventory item with name `Apple` does not exist, prompts for further input.
+   * Step 4: `done` <br>
+     Expected: Order is added to the order list. Order details shown in the status message.
 
 2. Initiating the command, attempt to add an order with an empty item list
-* Prerequisites: None
-* Test case: Execute the following commands below in sequence and check the response by the system.
-  * Step 1: `addo n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25` <br>
-    Expected: Add order command initiated. System prompts for further item and quantity input
-  * Step 2: `done` <br>
-    Expected: System notifies that order's item list cannot be empty and exits the command sequence.
+   * Prerequisites: None
+   * Test case: Execute the following commands below in sequence and check the response by the system.
+     * Step 1: `addo n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25` <br>
+       Expected: Add order command initiated. System prompts for further item and quantity input
+     * Step 2: `done` <br>
+       Expected: System notifies that order's item list cannot be empty and exits the command sequence.
 
 3. Initiating the command, aborting the command.
-* Prerequisites: None
-* Test case: Execute the following commands below in sequence and check the response by the system.
-  * Step 1: `addo n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25` <br>
-    Expected: Add order command initiated. System prompts for further item and quantity input.
-  * Step 2: `cancel` <br>
-    Expected: System notifies that the command has been aborted and exits the command sequence.
+   * Prerequisites: None
+   * Test case: Execute the following commands below in sequence and check the response by the system.
+     * Step 1: `addo n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25` <br>
+       Expected: Add order command initiated. System prompts for further item and quantity input.
+     * Step 2: `cancel` <br>
+       Expected: System notifies that the command has been aborted and exits the command sequence.
 
 ### Listing all orders
 
 1. Listing all orders after calling `findo`
-* Prerequisites: List all orders using the `listo` command. There are already multiple existing orders.
-  Of these orders, there exist 2 orders made by customers with `Chan` in their names. Before testing, enter `findo n/Chan`<br/>
-  Expected: Order list displays 2 orders by customers with `Chan` in their name.
-* Test case: Enter `listo` into the command box.<br/>
-  Expected: ALl orders listed in the order list.
-* Other incorrect `listo` commands to try: Enter `listO` into the command box.<br/>
-  Expected: Result display shows `Unknown command`.
+   * Prerequisites: List all orders using the `listo` command. There are already multiple existing orders.
+     Of these orders, there exist 2 orders made by customers with `Chan` in their names. Before testing, enter `findo n/Chan`<br/>
+     Expected: Order list displays 2 orders by customers with `Chan` in their name.
+   * Test case: Enter `listo` into the command box.<br/>
+     Expected: ALl orders listed in the order list.
+   * Other incorrect `listo` commands to try: Enter `listO` into the command box.<br/>
+     Expected: Result display shows `Unknown command`.
 
 ### Finding order(s)
 
 1. Finding an order while all orders are being shown
-* Prerequisites: List all orders using the `listo` command. Multiple orders in the list.
-* Test case: Enter `findo -d` into the command box.</br>
-  Expected: Orders which have been delivered are displayed. The number of orders which
-  correspond to the search parameters is displayed in the result display.
-* Test case: Enter `findo n/Alex a/Geylang` into the command box.<br/>
-  Expected: Orders which have a customer name `Alex` and address containing the word
-  `Geylang` will be displayed. The number of orders which correspond to the search
-  parameters is displayed in the result display.
-* Test case: Enter `findo Alex` into the command box.<br/>
-  Expected: Result display displays an invalid command format message with the
-  specifications of the correct `findo` command format.
-* Other incorrect `findo` commands to try: `findo`, `findo -e`.
-  Expected: Similar to previous.
+   * Prerequisites: List all orders using the `listo` command. Multiple orders in the list.
+   * Test case: Enter `findo -d` into the command box.</br>
+     Expected: Orders which have been delivered are displayed. The number of orders which
+     correspond to the search parameters is displayed in the result display.
+   * Test case: Enter `findo n/Alex a/Geylang` into the command box.<br/>
+     Expected: Orders which have a customer name `Alex` and address containing the word
+     `Geylang` will be displayed. The number of orders which correspond to the search
+     parameters is displayed in the result display.
+   * Test case: Enter `findo Alex` into the command box.<br/>
+     Expected: Result display displays an invalid command format message with the
+     specifications of the correct `findo` command format.
+   * Other incorrect `findo` commands to try: `findo`, `findo -e`.
+     Expected: Similar to previous.
 
 ### Sorting orders by time created
 
 1. Sorting orders by time created while all orders are being shown
-* Prerequisites: List all orders using the `listo` command. Multiple orders in the order list.
-* Test case: Enter `sorto old` into the command box.<br/>
-  Expected: Orders in the order card will be displayed from oldest to newest.
-* Test case: Enter `sorto new` into the command box.<br/>
-  Expected: Orders in the order card will be displayed from newest to oldest.
-* Test case: Enter `sorto hello` into the command box.<br/>
-  Expected: Result display displays an invalid command format message with the
-  specifications of the correct `sorto` command format.
+   * Prerequisites: List all orders using the `listo` command. Multiple orders in the order list.
+   * Test case: Enter `sorto old` into the command box.<br/>
+     Expected: Orders in the order card will be displayed from oldest to newest.
+   * Test case: Enter `sorto new` into the command box.<br/>
+     Expected: Orders in the order card will be displayed from newest to oldest.
+   * Test case: Enter `sorto hello` into the command box.<br/>
+     Expected: Result display displays an invalid command format message with the
+     specifications of the correct `sorto` command format.
 
 ### Deleting an order
 
