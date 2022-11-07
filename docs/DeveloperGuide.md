@@ -569,7 +569,7 @@ The calendar feature allows a calendar to display with the corresponding appoint
 
 #### Overall implementation of Calendar
 
-The main calendar display is implemented using the `CalendarDisplay` class, which acts as the main container for the entire Calendar feature. This main container consists of a `topCalendar`, which is a `FlowPane` that contains the current month to be displayed, and the different navigation buttons as well as the `JumpBox`. Also, `CalendarDisplay` contains `calendarGrid`, which is a GridPane that contains all the dates and `Appointment` buttons within the calendar.
+The main calendar display is implemented using the `CalendarDisplay` class, which acts as the main container for the entire Calendar feature. This main container consists of a `TopCalendar`, which is a `FlowPane` that contains the current month to be displayed, and the different navigation buttons as well as the `JumpBox`. Also, `CalendarDisplay` contains `CalendarGrid`, which is a GridPane that contains all the dates and `Appointment` buttons within the calendar.
 
 Upon initialisation of the `CalendarDisplay`, it will display the current month and year, using the `CalendarLogic#drawCalendar()` method. The current month and year is obtained using the default `Java` package's `GregorianCalendar` class.
 
@@ -584,7 +584,7 @@ Implementation:
 The following is a more detailed explanation on how `Calendar Display` is implemented:
 1. When the app first launches, `MainWindow#fillInnerParts()` is called, which then initialises the `Calendar Display`.
 2. The `CalendarLogic` class is initialised, where the current month to be displayed in the Calendar is set using `Java`'s `GregorianCalendar` class. 
-3. Next, `CalendarLogic#drawCalendar()` is called which initialises the header of the Calendar, by calling `CalendarLogic#drawHeader()`, where the `FlowPane`, `topCalendar`, displays the current month.
+3. Next, `CalendarLogic#drawCalendar()` is called which initialises the header of the Calendar, by calling `CalendarLogic#drawHeader()`, where the `TopCalendar`, displays the current month.
 4. Also, `CalendarLogic#drawCalendar()` will then call `CalendarLogic#drawBody()` which initialise the body of the Calendar and each individual day of the month is created in the Calendar.
 5. A `CalendarEventListPanel` object is created for each day of the month, and `EventButtons` are added to each `CalendarEventListPanel` if there is an appointment falling on that particular day.
 6. Following which, when appointments are added,`Model#updateCalendarEventList()` is called which then updates the `Calendar Display` as well.

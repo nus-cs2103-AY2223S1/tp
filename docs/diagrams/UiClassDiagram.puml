@@ -16,8 +16,8 @@ Class PersonCard
 Class StatusBarFooter
 Class CommandBox
 
-package Calendar_Ui <<Rectangle>> {
-Class HiddenCalendar_Ui #FFFFFF
+package Calendar <<Rectangle>> {
+Class HiddenCalendar #FFFFFF
 }
 }
 
@@ -41,7 +41,7 @@ MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" PersonListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
-MainWindow *-down-> Calendar_Ui
+MainWindow *-down-> Calendar
 
 PersonListPanel -left> "*" PersonCard
 
@@ -53,14 +53,14 @@ PersonListPanel --|> UiPart
 PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
-Calendar_Ui --|> UiPart
+Calendar --|> UiPart
 
 PersonCard ..> Model
-Calendar_Ui ..> Model
+Calendar ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-Calendar_Ui -[hidden]left- PersonListPanel
+Calendar -[hidden]left- PersonListPanel
 PersonListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay

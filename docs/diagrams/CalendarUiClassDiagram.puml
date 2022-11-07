@@ -4,7 +4,7 @@ skinparam arrowThickness 1.1
 skinparam arrowColor UI_COLOR_T4
 skinparam classBackgroundColor UI_COLOR
 
-package Calendar_Ui <<Rectangle>>{
+package Calendar <<Rectangle>>{
 Class "{abstract}\nUiPart" as UiPart
 Class CalendarDisplay
 Class "{abstract}\nCalendarButton" as CalendarButton
@@ -16,6 +16,8 @@ Class CalendarEventListPanel
 Class TextValidation
 Class CalendarPopup
 Class CalendarPopupContent
+Class TopCalendar
+Class CalendarGrid
 }
 
 package Model <<Rectangle>> {
@@ -30,30 +32,35 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> CalendarDisplay
 
 CalendarDisplay -down-> "*" CalendarEventListPanel
-CalendarDisplay -down-> "1" NextButton
-CalendarDisplay -down-> "1" PreviousButton
+
 CalendarDisplay -down-> "1" JumpText
 CalendarDisplay -down-> "1" TextValidation
+CalendarDisplay -down-> "1" CalendarGrid
+CalendarDisplay -down-> "1" TopCalendar
 CalendarEventListPanel -down-> "*" EventButton
+CalendarDisplay -right-> "1" NextButton
+CalendarDisplay -right-> "1" PreviousButton
 
 EventButton "1" <-down-> "1" CalendarPopup
 EventButton -down|> CalendarButton
 NextButton -down-|> CalendarButton
 PreviousButton -down-|> CalendarButton
 CalendarPopup -right> "1" CalendarPopupContent
-CalendarDisplay -right-> CalendarLogic
+CalendarDisplay <-right-> CalendarLogic
 
 CalendarDisplay --|> UiPart
-CalendarButton --|> UiPart
+CalendarButton -up-|> UiPart
 JumpText ---|> UiPart
 TextValidation --|> UiPart
-CalendarPopup --|> UiPart
-CalendarPopupContent -|> UiPart
+CalendarPopup -up-|> UiPart
+CalendarPopupContent -up-|> UiPart
+CalendarGrid --|> UiPart
+TopCalendar --|> UiPart
 
 
-CalendarButton ..> Model
-JumpText ..> Model
-TextValidation ..> Model
+CalendarButton .right.> Model
+JumpText .right.> Model
+TextValidation .right.> Model
 
 CalendarDisplay -[hidden]up- NextButton
 

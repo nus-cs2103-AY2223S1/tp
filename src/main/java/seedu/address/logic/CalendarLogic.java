@@ -113,6 +113,9 @@ public class CalendarLogic {
         return MONTH_NAMES[n];
     }
 
+    /**
+     * Returns the {@code Text} representing the current month.
+     */
     public Text getTextHeader() {
         String monthString = getMonthName(currentMonth.get(Calendar.MONTH));
         String yearString = String.valueOf(currentMonth.get(Calendar.YEAR));
