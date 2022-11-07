@@ -50,6 +50,7 @@ Code contribution for this project is listed in [RepoSense](https://nus-cs2103-a
   - Add `invalidGroupAddressBook`, `invalidTaskAddressBook` to existing `invalidPersonAddressBook` for checking of Json file data retrieval. [#155](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/155)
   - Add `invalidAndValidGroupAddressBook`, `invalidAndValidTaskAddressBook` to existing `invalidAndValidPersonAddressBook` for checking of errors in Json file data retrieval. [#155](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/155)
   - Add typical, duplicate and invalid Json files in `JsonAddressBookStorageTest` for testing of save and load functions in `JsonSerializableAddressBookTest`. [#155](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/155)
+  - Add additional test data in `SampleDataUtil` that is a duplicate of the test data Json files. [#157](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/157)
 
 ### Contributions to the user guide
 
