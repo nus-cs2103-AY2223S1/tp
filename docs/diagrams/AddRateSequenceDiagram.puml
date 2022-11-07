@@ -1,0 +1,48 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "ar:AddRateCommand" as AddRateCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute(addrate)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(addrate)
+activate AddressBookParser
+
+create AddRateCommand
+AddressBookParser -> AddRateCommand
+
+AddRateCommand --> AddressBookParser
+deactivate AddRateCommand
+
+AddressBookParser --> LogicManager : ar
+deactivate AddressBookParser
+
+LogicManager -> AddRateCommand : execute(model)
+activate AddRateCommand
+
+AddRateCommand -> Model : setPerson(person)
+activate Model
+AddRateCommand -[hidden]-> LogicManager : void
+Model --> AddRateCommand
+deactivate Model
+
+AddRateCommand -> Model : updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)
+activate Model
+AddRateCommand -[hidden]-> LogicManager : void
+Model --> AddRateCommand
+deactivate Model
+
+AddRateCommand --> LogicManager : result
+deactivate AddRateCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
