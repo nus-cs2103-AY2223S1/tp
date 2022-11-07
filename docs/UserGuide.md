@@ -52,6 +52,7 @@ If you encounter any issues in launching and using the app, feel free refer to t
 * Extraneous parameters for commands that do not expect such parameters may be parsed incorrectly.
   * e.g. if you specify `addc c/CS1231S n/CS2030S`, the parser interprets it as adding a class named "CS1231S n/CS2030S", which is not a valid class name. Hence, TA-Assist throws an error.
 * All parameters and their constraints have been provided in [the Appendix](#parameters-and-constraints) for your reference.
+</div>
 
 ### Modes
 In TA-Assist, you can switch into a mode called the **focus** mode, which lets you run tasks that are specific to (module) class. Therefore,
@@ -59,7 +60,6 @@ In TA-Assist, you can switch into a mode called the **focus** mode, which lets y
 be run in focus mode. On the other hand, commands that are available only in focus mode cannot be executed in the default (unfocused) mode.
 
 Let's first begin with the commands available in the default mode.
-</div>
 
 
 | Command    | Format                                                             |
