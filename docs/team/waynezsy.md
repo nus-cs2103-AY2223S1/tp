@@ -25,7 +25,6 @@ Given below are my largest contributions to the project.
   * Justification: This feature helps simplify debt-adding processes for users who are confused about how to calculate GST and Service Charge by doing the calculation for them.
   * Highlights: The final implementation of this feature made use of an elegant design where target users (NUS students) simply have to make use of common Singaporean lingo, a money amount followed `++`, to indicate a need for PayMeLah to calculate GST and Service Charge. Through the use of OOP design and encapsulation, modifications done to the `Money` class to implement this feature did not cause regressions in any other classes that have dependencies with `Money`, enabling the usage of this feature across commands such as `adddebt` and `splitdebt` and ensuring extensibility to future commands.
 
-
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=waynezsy&tabRepo=AY2223S1-CS2103T-W13-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
