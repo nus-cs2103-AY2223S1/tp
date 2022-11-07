@@ -453,7 +453,7 @@ executed:
 
 ## **Appendix: Requirements**
 
-### app scope
+### Product scope
 
 **Target user profile**:
 
@@ -468,7 +468,7 @@ executed:
   Google Docs)
 - Users can visualize teams’ progress easily
 - Users can delegate tasks to their teammates conveniently
-- CLI interface to manage project tasks much more quickly than GUI based apps
+- CLI interface to manage project tasks much more quickly than GUI based products
 
 ### User stories
 
