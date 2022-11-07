@@ -942,7 +942,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Invalid command will be shown as `watsap` is an invalid SOCIAL
 
 ### Opening a social account using CLI
-1. Deleting a social account to an existing contact.
+1. Opening a social account of an existing contact.
     1. Prerequisites: List all contacts using the list command. First contact has social accounts filled out.
     2. Testcase:`open 1 s/WHATSAPP` <br>
        Expected: Default web browser opens link to the Whatsapp chat of the first contact. Details of success command shown in status message.
@@ -951,7 +951,7 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect open commands to try: `prefer 0 s/TELEGRAM`
 
 ### Opening a social account by clicking GUI
-1. Deleting a social account to an existing contact.
+1. Opening a social account of an existing contact.
     1. Prerequisites: List all contacts using the list command. First contact has social accounts filled out. Second contact has no social accounts filled out.
     2. Testcase: Click on the Whatsapp social box of the first person in the contact list.
        Expected: Default web browser opens link to the Whatsapp chat of the first contact. Details of success command shown in status message.
