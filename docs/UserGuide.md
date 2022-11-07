@@ -133,8 +133,8 @@ After opening TruthTable for the first time, you should see the following screen
 
 ![Application Interface](images/ApplicationInterface.png)
 
-Each section contains several components, which will be labelled in their respective sections below. These 
-components are numbered, and their names and descriptions will be displayed in a tabular format.
+Each section contains several [components](#component), which will be labelled in their respective sections below. 
+These parts are numbered, and their names and descriptions will be displayed in a tabular format.
 
 ### Teams Section
 
@@ -1465,6 +1465,12 @@ The user interface is some interface of which we interact with computers and com
 Examples include
 - Monitors
 - Keyboards
+
+### Component
+
+References a part of the user interface.
+
+For instance, the input box in the [command section](#command-section) is a component of said section.
 
 ### JSON File
 
