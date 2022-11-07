@@ -735,19 +735,19 @@ automation of matching between suitable properties and buyers.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                        | I want to …​                                                                    | So that I can…​                                    |
-|----------|------------------------------------------------|---------------------------------------------------------------------------------|----------------------------------------------------|
-| `* * *`  | property agent                                 | add new buyers                                                                  |                                                    |
-| `* * *`  | property agent                                 | add new properties                                                              |                                                    |
-| `* *`    | property agent                                 | edit contact and property information offline                                   | keep the information updated                       |
-| `* *`    | property agent                                 | delete existing contact and property entries                                    | remove redundant information, to keep dataset neat |
-| `* *`    | property agent with a large number of contacts | sort buyers and properties according to various relevant criteria               | easily find information using their order          |
-| `* *`    | property agent                                 | find and filter for certain characteristics                                     | easily find matches                                |
-| `*`      | non tech-savvy user                            | be able to make use of the command-line interface without too much difficulty   |                                                    |
-| `*`      | property agent                                 | filter out properties that do not meet the conditions of a prospective buyer    |                                                    |
-| `*`      | property agent                                 | view all existing information at a glance in a clean, visually-appealing manner | easily make sense of information presented         |
-| `*`      | property agent with many clients               | avoid duplicate contacts                                                        | have a neat list of active clients                 |
-| `*`      | property agent                                 | prioritise some clients who are desperate to find a place                       | contact them first and close the deal more easily  |
+| Priority | As a …​                                        | I want to …​                                                                    | So that I can…​                                            |
+|----------|------------------------------------------------|---------------------------------------------------------------------------------|------------------------------------------------------------|
+| `* * *`  | property agent                                 | add new buyers                                                                  |                                                            |
+| `* * *`  | property agent                                 | add new properties                                                              |                                                            |
+| `* *`    | property agent                                 | edit contact and property information offline                                   | keep the information updated                               |
+| `* *`    | property agent                                 | delete existing contact and property entries                                    | remove redundant information, to keep dataset neat         |
+| `* *`    | property agent with a large number of contacts | sort buyers and properties according to various relevant criteria               | easily find information using their order                  |
+| `* *`    | property agent                                 | find and filter for certain characteristics                                     | easily find matches                                        |
+| `* *`    | non tech-savvy user                            | be able to make use of the command-line interface without too much difficulty   |                                                            |
+| `* *`    | property agent                                 | match potential buyers to a property and vice versa                             | quickly determine which properties to show to which buyers |
+| `*`      | property agent                                 | view all existing information at a glance in a clean, visually-appealing manner | easily make sense of information presented                 |
+| `*`      | property agent with many clients               | avoid duplicate contacts                                                        | have a neat list of active clients                         |
+| `*`      | property agent                                 | prioritise some clients who are desperate to find a place                       | contact them first and close the deal more easily          |
 
 ### Use cases
 
