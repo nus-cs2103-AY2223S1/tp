@@ -23,8 +23,7 @@ Given below are my contributions to the project.
     * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
 
 * **Enhancements to existing features**:
-    * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-    * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+    * Wrote additional tests for existing features to increase coverage from 33% to 39% (Pull requests [\#36](), [\#38]())
 
 * **Documentation**:
     * User Guide:
