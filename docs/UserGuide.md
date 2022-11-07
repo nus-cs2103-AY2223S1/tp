@@ -431,8 +431,6 @@ Use case:
 Examples:
 * Delete the client with an `INDEX` of 2
   * `delClient i/2`
-* Delete the client with an `INDEX` of 6
-  * `delClient i/6`
 
 #### 7.1.5 Edit client: `editClient`
 
