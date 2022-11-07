@@ -736,17 +736,22 @@ This list is unique, meaning each label with a distinct name is only shown once,
 Format: `addL c/INDEX t/INDEX l/label_NAME`
 
 * Index of a contact is its index number on the currently shown contact list.
+
 * Index of a task is its index number on the currently shown task list.
 
 <div markdown="block" class="alert alert-warning">
 
 :warning: There will be an error if you:<br>
 
-* Do not adhere to the [field constraints](#section-3-labels)
-* Specify more than one contact or more than one task
-* Try to delete a label from a contact or task that does not have it
-* Enter 0 or a negative number as INDEX
-* Enter a number greater than the currently shown list size as INDEX”
+* Do not adhere to the [field constraints](#section-3-labels).
+
+* Specify more than one contact or more than one task.
+
+* Try to delete a label from a contact or task that does not have it.
+
+* Enter 0 or a negative number as INDEX.
+
+* Enter a number greater than the currently shown list size as INDEX.
 
 </div>
 
@@ -770,17 +775,22 @@ Otherwise, it is only deleted from the specified contact/task label list.
 Format: `deleteL c/INDEX t/INDEX l/label_NAME`
 
 * Index of a contact is its index number on the currently shown contact list.
+
 * Index of a task is its index number on the currently shown task list.
 
 <div markdown="block" class="alert alert-warning">
 
 :warning: There will be an error if you:<br>
 
-* Do not adhere to the [field constraints](#section-3-labels)
-* Specify more than one contact or more than one task
-* Try to add a label to a contact or task that already has it
-* Enter 0 or a negative number as INDEX
-* Enter a number greater than the currently shown list size as INDEX”
+* Do not adhere to the [field constraints](#section-3-labels).
+
+* Specify more than one contact or more than one task.
+
+* Try to add a label to a contact or task that already has it.
+
+* Enter 0 or a negative number as INDEX.
+
+* Enter a number greater than the currently shown list size as INDEX.
 
 </div>
 
