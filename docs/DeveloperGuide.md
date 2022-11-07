@@ -635,6 +635,14 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Test case: delete a name field in the save file.
+       Expected: Save file gets wiped.
 
-1. _{ more test cases …​ }_
+    2. Test case: set an activity's date to `test`.
+       Expected: Save file gets wiped.
+
+    3. Test case: set an activity's status to `test`.
+        Expected: Save file gets wiped.
+
+    4. Test case: set an activity's rating to `test`.
+       Expected: Save file gets wiped.
