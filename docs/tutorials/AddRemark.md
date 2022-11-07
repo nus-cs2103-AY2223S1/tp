@@ -51,13 +51,13 @@ You can refer to the changes in this [diff](https://github.com/se-edu/addressboo
 
 Run `Main#main` and try out your new `RemarkCommand`. If everything went well, you should see something like this:
 
-![Output displayed](../images/add-remark/RemarkHello.png)
+![Output displayed](../images/diagrams/add-remark/RemarkHello.png)
 
 ## Change `RemarkCommand` to throw an exception
 
 While we have successfully printed a message to `ResultDisplay`, the command does not do what it is supposed to do. Let’s change the command to throw a `CommandException` to accurately reflect that our command is still a work in progress.
 
-![The relationship between RemarkCommand and Command](../images/add-remark/CommandInterface.png)
+![The relationship between RemarkCommand and Command](../images/diagrams/add-remark/CommandInterface.png)
 
 Following the convention in other commands, we add relevant messages as constants and use them.
 
@@ -144,7 +144,7 @@ Now let’s move on to writing a parser that will extract the index and remark f
 
 Create a `RemarkCommandParser` class in the `seedu.address.logic.parser` package. The class must extend the `Parser` interface.
 
-![The relationship between Parser and RemarkCommandParser](../images/add-remark/ParserInterface.png)
+![The relationship between Parser and RemarkCommandParser](../images/diagrams/add-remark/ParserInterface.png)
 
 Thankfully, `ArgumentTokenizer#tokenize()` makes it trivial to parse user input. Let’s take a look at the JavaDoc provided for the function to understand what it does.
 
@@ -264,7 +264,7 @@ Then insert the following into [`main/resources/view/PersonListCard.fxml`](https
 
 That’s it! Fire up the application again and you should see something like this:
 
-![$remark shows up in each entry](../images/add-remark/$Remark.png)
+![$remark shows up in each entry](../images/diagrams/add-remark/$Remark.png)
 
 ## Modify `Person` to support a `Remark` field
 
@@ -317,7 +317,7 @@ public PersonCard(Person person, int displayedIndex) {
 }
 ```
 
-![The remark label is bound properly!](../images/add-remark/RemarkBound.png)
+![The remark label is bound properly!](../images/diagrams/add-remark/RemarkBound.png)
 
 ## Putting everything together
 
@@ -365,7 +365,7 @@ save it with `Model#setPerson()`.
     }
 ```
 
-![Congratulations!](../images/add-remark/RemarkComplete.png)
+![Congratulations!](../images/diagrams/add-remark/RemarkComplete.png)
 
 ## Writing tests
 
@@ -384,11 +384,11 @@ The convention for test names is `methodName_testScenario_expectedResult`. An ex
 
 Let’s create a test for `RemarkCommand#execute()` to test that adding a remark works. On `IntelliJ IDEA` you can bring up the context menu and choose to `Go To` \> `Test` or use the appropriate keyboard shortcut.
 
-![Using the context menu to jump to tests](../images/add-remark/ContextMenu.png)
+![Using the context menu to jump to tests](../images/diagrams/add-remark/ContextMenu.png)
 
 Then, create a test for the `execute` method.
 
-![Creating a test for `execute`.](../images/add-remark/CreateTest.png)
+![Creating a test for `execute`.](../images/diagrams/add-remark/CreateTest.png)
 
 Following convention, let’s change the name of the generated method to `execute_addRemarkUnfilteredList_success`.
 

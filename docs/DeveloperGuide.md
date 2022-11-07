@@ -32,13 +32,13 @@ to the project. You can also use this as a reference, if you are interested in d
 * StudMap's Developer Guide is adapted
   from [AB3's Developer Guide](https://se-education.org/addressbook-level3/DeveloperGuide.html);
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-# Setting up, getting started
+# Setting Up and Getting Started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 # Design
 
@@ -56,9 +56,9 @@ and edit diagrams.
 Given below is an **Architecture Diagram**. It explains the high-level design of StudMap. Below the diagram is a quick
 overview of main components and how they interact with each other.
 
-![Architecture](images/ArchitectureDiagram.png){: diagram}
+![Architecture](images/diagrams/ArchitectureDiagram.png){: diagram}
 
-### Main components of the architecture
+### Main Components of the Architecture
 
 **`Main`** has two classes
 called [`Main`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/Main.java)
@@ -77,12 +77,12 @@ The rest of StudMap consists of four components.
 * [**`Model`**](#model-component): Holds the data of StudMap in memory.
 * [**`Storage`**](#storage-component): Reads data from and writes data to the hard disk.
 
-### How the architecture components interact with each other
+### How Architecture Components Interact
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
 the command `delete 1`.
 
-![Sequence Diagram](images/ArchitectureSequenceDiagram.png){: diagram}
+![Sequence Diagram](images/diagrams/ArchitectureSequenceDiagram.png){: diagram}
 
 Each of the four main components (also shown in the diagram above)
 
@@ -95,7 +95,7 @@ the `LogicManager.java` class which follows the `Logic` interface. Other compone
 through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the
 implementation of a component), as illustrated in the (partial) class diagram below.
 
-![Component Managers](images/ComponentManagers.png)){: diagram}
+![Component Managers](images/diagrams/ComponentManagers.png)){: diagram}
 
 The sections below give more details of each component.
 
@@ -104,7 +104,7 @@ The sections below give more details of each component.
 The **API** of this component is specified
 in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/ui/Ui.java).
 
-![Structure of the UI Component](images/UiClassDiagram.png){: diagram}
+![Structure of the UI Component](images/diagrams/UiClassDiagram.png){: diagram}
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`
 , `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
@@ -123,14 +123,14 @@ The `UI` component
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Student` object residing in the `Model`.
 
-## Logic component
+## Logic Component
 
 **API:**
 [`Logic.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
-![Logic Class Diagram](images/LogicClassDiagram.png){: diagram}
+![Logic Class Diagram](images/diagrams/LogicClassDiagram.png){: diagram}
 
 How the `Logic` component works:
 
@@ -143,7 +143,8 @@ How the `Logic` component works:
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
 call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png){: diagram}
+![Interactions Inside the Logic Component for the `delete 1` Command](images/diagrams/DeleteSequenceDiagram.png){:
+diagram}
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -161,12 +162,12 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g. `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
 
-## Model component
+## Model Component
 
 **API:**
 [`Model.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/model/Model.java)
 
-![Model Class Diagram](images/ModelClassDiagram.png){: diagram}
+![Model Class Diagram](images/diagrams/ModelClassDiagram.png){: diagram}
 
 The `Model` component
 
@@ -181,16 +182,16 @@ The `Model` component
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `StudMap`, which `Student` references. This allows `StudMap` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
-![More OOP Model](images/BetterModelClassDiagram.png)
+![More OOP Model](images/diagrams/BetterModelClassDiagram.png)
 
 </div>
 
-## Storage component
+## Storage Component
 
 **API:**
 [`Storage.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/storage/Storage.java)
 
-![Storage Class Diagram](images/StorageClassDiagram.png){: diagram}
+![Storage Class Diagram](images/diagrams/StorageClassDiagram.png){: diagram}
 
 The `Storage` component
 
@@ -201,11 +202,11 @@ The `Storage` component
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
 
-## Common classes
+## Common Classes
 
 Classes used by multiple components are in the `seedu.studmap.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 # Implementation
 
@@ -218,7 +219,7 @@ This section describes some noteworthy details on how certain features are imple
 The `filter` feature is implemented by the `FilterCommand` class which extends its parent `Command` class. The structure
 of the `filter` feature can be summarized via the sequence diagram shown below.
 
-![Filter Sequence Diagram](images/FilterCommandSequenceDiagram.png){: diagram}
+![Filter Sequence Diagram](images/diagrams/FilterCommandSequenceDiagram.png){: diagram}
 
 This method is implemented to support the feature of filtering students by the tags that is assigned to them.
 
@@ -228,7 +229,7 @@ The `FilterCommand` supports one operation:
   operation to be executed. This will update the filtered list in the dashboard shown to the user based on the tag set
   by the user
 
-### General flow for `FilterCommand`
+### General Flow for `FilterCommand`
 
 The flow for `FilterCommand#execute` is as such:
 
@@ -267,7 +268,7 @@ brief summary of the class structure is illustrated in the class diagram below, 
 Since all concrete implementations of the `EditStudentCommand` share the same class structure, the example
 of `MarkCommand` will also be used to explain the implementation details.
 
-![MarkCommandClassDiagram](images/MarkCommandClassDiagram.png){: diagram}
+![MarkCommandClassDiagram](images/diagrams/MarkCommandClassDiagram.png){: diagram}
 
 `IndexListGenerator` is an abstract class representing the list of indexes to modify.
 The instance of `IndexListGenerator` can be either
@@ -284,7 +285,7 @@ and passed them to the constructor of the respective command (`MarkCommand` in t
 using `MarkCommandParser` is illustrated in the class diagram
 below.
 
-![MarkCommandParserClassDiagram](images/MarkCommandParserClassDiagram.png){: diagram}
+![MarkCommandParserClassDiagram](images/diagrams/MarkCommandParserClassDiagram.png){: diagram}
 
 ### General flow for `EditStudentCommand`
 
@@ -296,7 +297,7 @@ Given below is the typical flow for `EditStudentCommand` such as the  `MarkComma
 
 Below is a more detailed sequence diagram for the execution of the command using the same example of `MarkCommand`.
 
-![MarkCommandSequenceDiagram](images/MarkCommandSequenceDiagram.png){: diagram}
+![MarkCommandSequenceDiagram](images/diagrams/MarkCommandSequenceDiagram.png){: diagram}
 
 ### Additional Notes
 
@@ -308,22 +309,49 @@ status.
 #### Multi-State Attributes
 
 Some attributes of a `Student` can have multiple states and can be represented by an identifier. This is encapsulated by
-the `MultiStateTag<S, T>` generic class, where `S` is the type of the identifier (e.g. `String`), while `T` is the type
+the `MultiStateAttribute<S, T>` generic class, where `S` is the type of the identifier (e.g. `String`), while `T` is the type
 of the state, typically some `enum`.
 
-`mark` /`unmark` : This command adds/modifies/removes a student's attendances that are represented by the `Attendance`
-class and include a `Status` enumeration containing `ATTENDED` and `NOT_ATTENDED`.
+1. `mark` /`unmark` : This command adds/modifies/removes a student's attendances that are represented by
+   the `Attendance`
+   class. `Attendance` is a `MultiStateAttribute<String, Attendance.Status>` which includes a `Status` enumeration
+   containing `ATTENDED` and `NOT_ATTENDED`.<br><br>
 
-`grade` /`ungrade` : This command adds/modifies/removes a student's assignment grading record that are represented by
-the `Assigment` class and include a `Status` enumeration containing `NEW`, `RECEIVED`, and `MARKED`.
+2. `grade` /`ungrade` : This command adds/modifies/removes a student's assignment grading record that are represented by
+   the `Assigment` class. `Assignment` is a `MultiStateAttribute<String, Assignment.Status>` which includes a `Status`
+   enumeration containing `NEW`, `RECEIVED`, and `MARKED`.<br><br>
 
-`participate` /`unparticipate` : This command adds/modifies/removes a student's participation record that are
-represented by the `Participation` class and include a `Status` enumeration containing `PARTICIPATED`
-and `NOT_PARTICIPATED`.
+3. `participate` /`unparticipate` : This command adds/modifies/removes a student's participation record that are
+   represented by the `Participation` class. `Participation` is a `MultiStateAttribute<String, Participation.Status>`
+   which includes a `Status` enumeration containing `PARTICIPATED` and `NOT_PARTICIPATED`.<br><br>
 
 ### Design Considerations:
 
-**Aspect: How mark command executes:**
+**Aspect: Abstraction of the generic `EditStudentCommand`:**
+
+* **Common behaviours**
+    1. Parse some indices of students to mutate in some way
+    2. Parse some potential mutations to students
+    3. Return immediately if no mutations are parsed
+    4. Perform mutation on students
+    5. Replace original students in StudMap
+    6. Phrase command result in terms of the edits that were made
+
+These behaviours have been abstracted into `IndexCommandParser`, `EditStudentCommandParser` and `EditStudentCommand`.
+
+**Aspect: Abstraction of the generic `MultiStateAttribute`:**
+
+* **Common behaviours**
+    1. Have a field for identifying it (`identifier`) and also a value (`status`).
+    2. Need equality defined by `identifier` but not `status` since they are used in a `HashMap`
+    3. Need strong equality sometimes desired where `identifier` and `status` must both be equal, such as when
+       determining
+       whether a `Student` has been edited.
+
+These behaviours have been abstracted into `MultiStateAttribute`. Due to the way it is implemented as a generic class,
+you can reasonably extend it to create attributes that use non-string identifiers and non-enum states (e.g. `Integer`).
+
+**Aspect: How command executes:**
 
 * **Alternative 1 (current choice):** Update the students using StudentEditor.
     * Pros: Easy to extend functionality to other classes, more OOP-oriented
@@ -349,13 +377,13 @@ This operation is exposed in the `Model` interface as `sortFilteredStudentList()
 
 The following sequence diagram shows how the sort operation works:
 
-![SortSequenceDiagram](images/SortCommandSequenceDiagram.png){: diagram}
+![SortSequenceDiagram](images/diagrams/SortCommandSequenceDiagram.png){: diagram}
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
-### General flow for `SortCommand`
+### General Flow for `SortCommand`
 
 Given below is an example usage scenario and how the sort mechanism behaves at each step.
 
@@ -381,7 +409,7 @@ Given below is an example usage scenario and how the sort mechanism behaves at e
 
 7. The sorted list is displayed to the user.
 
-### Design considerations:
+### Design Considerations
 
 **Aspect: How sort executes:**
 
@@ -419,19 +447,19 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 Step 1. The user launches the application for the first time. The `VersionedStudMap` will be initialized with the
 initial student map state, and the `currentStatePointer` pointing to that single student map state.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+![UndoRedoState0](images/diagrams/undo-redo/UndoRedoState0.png){: diagram}
 
 Step 2. The user executes `delete 5` command to delete the 5th student in the student map. The `delete` command
 calls `Model#commitStudMap()`, causing the modified state of the student map after the `delete 5` command executes
 to be saved in the `studMapStateList`, and the `currentStatePointer` is shifted to the newly inserted student map
 state.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+![UndoRedoState1](images/diagrams/undo-redo/UndoRedoState1.png){: diagram}
 
 Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitStudMap()`
 , causing another modified student map state to be saved into the `studMapStateList`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+![UndoRedoState2](images/diagrams/undo-redo/UndoRedoState2.png){: diagram}
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitStudMap()`, so the student map state will not be saved into the `studMapStateList`.
 
@@ -441,7 +469,7 @@ Step 4. The user now decides that adding the student was a mistake, and decides 
 the `undo` command. The `undo` command will call `Model#undoStudMap()`, which will shift the `currentStatePointer`
 once to the left, pointing it to the previous student map state, and restores the student map to that state.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+![UndoRedoState3](images/diagrams/undo-redo/UndoRedoState3.png){: diagram}
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial StudMap state, then there are no previous StudMap states to restore. The `undo` command uses `Model#canUndoStudMap()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
@@ -450,7 +478,7 @@ than attempting to perform the undo.
 
 The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+![UndoSequenceDiagram](images/diagrams/undo-redo/UndoSequenceDiagram.png){: diagram}
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -467,20 +495,20 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 as `list`, will usually not call `Model#commitStudMap()`, `Model#undoStudMap()` or `Model#redoStudMap()`.
 Thus, the `studMapStateList` remains unchanged.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+![UndoRedoState4](images/diagrams/undo-redo/UndoRedoState4.png){: diagram}
 
 Step 6. The user executes `clear`, which calls `Model#commitStudMap()`. Since the `currentStatePointer` is not
 pointing at the end of the `studMapStateList`, all student map states after the `currentStatePointer` will be
 purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern
 desktop applications follow.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+![UndoRedoState5](images/diagrams/undo-redo/UndoRedoState5.png){: diagram}
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+![CommitActivityDiagram](images/diagrams/undo-redo/CommitActivityDiagram.png){: diagram}
 
-### Design considerations:
+### Design Considerations
 
 **Aspect: How undo & redo executes:**
 
@@ -492,9 +520,34 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
---------------------------------------------------------------------------------------------------------------------
+# \[Proposed\] Better Index Parsing
 
-# **Documentation, logging, testing, configuration, dev-ops**
+## Proposed Implementation
+
+Necessary generic classes have already been created for this purpose. In `IndexCommandParser`, you can attempt to parse
+the given `preamble` in more detail, such as by identifying other common indexing syntax (e.g. `2..5`) to represent
+indices between `2` and `5` inclusive. After parsing, you can then write a `IndexListGenerator`, which is a
+functional interface that produces a list of `Index` for StudMap to perform operations on.
+
+Due to the OOP design of StudMap, you only need to implement it correctly once. All parsers that inherit
+from `IndexCommandParser`, including
+
+* `EditCommandParser`
+* `MarkCommandParser`
+* `UnmarkCommandParser`
+* `GradeCommandParser`
+* `UngradeCommandParser`
+* `ParticipateCommandParser`
+* `UnparticipateCommandParser`
+* `TagCommandParser`
+* `UntagCommandParser`
+* `DeleteCommandParser`
+
+will immediately work with the new syntax.
+
+---
+
+# Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -502,7 +555,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 # Appendix: Requirements
 
@@ -579,11 +632,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-*{More to be added}*
-
 ## Non-Functional Requirements
 
-1. The software should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. The software should work on any [**mainstream OS**](#mainstream-os) as long as it has **Java 11** or above installed.
 2. The software should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical
    usage.
 3. The software should be able to start up in 30 seconds.
@@ -601,21 +652,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 12. The documentation should not exceed 15MB per file.
 13. The software and documentation should be accessible for users who have a basic command of the English language.
 
-## Glossary
-
-* **TA:** Teaching assistant for the specific module
-* **Student:** A person that is partaking in a module.
-* **Module:** The university class that the student is enrolled in, encoded by a unique module code consisting of a 2-3
-  letter prefix that generally denotes the discipline, and 4 digits at the back, the first of which indicates the level
-  of the module.
-* **JAR file:** package file format typically used to aggregate many Java class files and associated metadata and
-  resources into one file for distribution.
-* **GUI:** main interface that the user interacts with to input commands and view results.
-* **Mainstream OS:** Windows, Linux, Unix, OS-X
-* **Tag:** A label for students defined by the user, possibly shared by multiple students.
-* **Attribute:** Characteristics of students that all students have.
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 # Appendix: Instructions for manual testing
 
@@ -644,16 +681,55 @@ testers are expected to do more *exploratory* testing.
 
 ## Deleting a student
 
-1. Deleting a student while all students are being shown
+1. Deleting a student while all students are being shown.
 
-   a. Prerequisites: List all students using the `list` command. Multiple students in the list.
+   a. Prerequisites: List all students using the `list` command. Multiple students in the list.<br><br>
 
    b. Test case: `delete 1`<br>
    Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-   Timestamp in the status bar is updated.
+   Timestamp in the status bar is updated.<br><br>
 
    c. Test case: `delete 0`<br>
-   Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
+   Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.<br><br>
 
    d. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-   Expected: Similar to previous.
+   Expected: Similar to previous.<br><br>
+
+---
+
+# Glossary
+
+### TA
+
+Teaching assistant for a module.
+
+### Student
+
+A person that is partaking in a module.
+
+### Module
+
+The university class that the student is enrolled in, encoded by a unique module code consisting of a 2-3
+letter prefix that generally denotes the discipline, and 4 digits at the back, the first of which indicates the level
+of the module.
+
+### JAR file
+
+package file format typically used to aggregate many Java class files and associated metadata and
+resources into one file for distribution.
+
+### GUI
+
+main interface that the user interacts with to input commands and view results.
+
+### Mainstream OS
+
+Windows, Linux, Unix, OS-X
+
+### Tag
+
+A label for students defined by the user, possibly shared by multiple students.
+
+### Attribute
+
+Characteristics of students that all students have.

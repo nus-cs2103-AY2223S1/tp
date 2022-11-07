@@ -418,7 +418,7 @@ that has commas in the CSV.
 
 1. Remove the default list of students by typing `clear`
 2. Modify the import template using the CSV editor of your choice (e.g. Excel, Notepad)<br><br>
-   ![example CSV](images/exampleCSV.png)
+   ![example CSV](images/misc/exampleCSV.png)
    <br><br>
    _Example of a properly edited import template which you can download here: [example csv](files/example_template.csv)_
    <br><br>
@@ -833,7 +833,7 @@ If your changes to the data file makes its format invalid, StudMap will discard 
 Confused about the usage of a certain feature? Don't worry, self-help is available on the comprehensive online User
 Guide.
 
-![help message](images/helpMessage.png)
+![help message](images/misc/helpMessage.png)
 
 **Format:** `help`
 
