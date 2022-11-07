@@ -12,7 +12,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -73,10 +72,10 @@ public class AddAddressCommand extends Command {
         if (!personToAddAddress.isSamePerson(addressedPerson) && model.hasPerson(addressedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-        ReadOnlyAddressBook pastAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
+        UndoCommand.prepareSaveModelBefore(model);
         model.setPerson(personToAddAddress, addressedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        UndoCommand.saveBeforeMod(this, pastAddressBook, model.getAddressBook());
+        UndoCommand.saveBeforeMod(model);
         return new CommandResult(String.format(MESSAGE_ADD_ADDRESS_SUCCESS, addressedPerson));
     }
 
