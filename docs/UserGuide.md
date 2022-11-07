@@ -137,12 +137,12 @@ and other module related information such as your teaching schedule for the modu
 Before you get started with this feature, have a look at the common parameters we have used. Take a look before you
 continue!
 
-| Parameter            | Description & Restriction                                                                                                                                                                         | Example                                                         |
-|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
-| `MODULE_NAME`        | This parameter represents the name of the module you are adding into ProfNUS.<br/>The name should be alphanumeric.<br/>Modules in ProfNUS are allowed to have the same names.                     | `Software Engineering`                                          |
-| `MODULE_CODE`        | This parameter represents the module code of a module in ProfNUS. Using module code can uniquely determine a module. The format should abide by the Module Code Format of NUS.                    | `CS2030S`                                                       |
-| `MODULE_DESCRIPTION` | This parameter represents the description of the module you are adding into ProfNUS.<br/>The description should be alphanumeric.<br/>Modules in ProfNUS are allowed to have the same description. | `This module teaches you about software engineering principles.` |
-| `TAG`                | This parameter represents the tag you want to attach to the module.<br/>It must be a single word consisting of alphanumeric characters.                                                           | `ModuleCoordinator`                                             |
+| Parameter            | Description & Restriction                                                                                                                                                                                                                                               | Example                                                         |
+|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
+| `MODULE_NAME`        | This parameter represents the name of the module you are adding into ProfNUS.<br/>The name should be alphanumeric.<br/>Modules in ProfNUS are allowed to have the same names.                                                                                           | `Software Engineering`                                          |
+| `MODULE_CODE`        | This parameter represents the module code of a module in ProfNUS. Using module code can uniquely determine a module. The format should abide by the Module Code Format of NUS. Module codes are not case sensitive, this means that `CS2030S` is the same as `cs2030s`. | `CS2030S`                                                       |
+| `MODULE_DESCRIPTION` | This parameter represents the description of the module you are adding into ProfNUS.<br/>The description should be alphanumeric.<br/>Modules in ProfNUS are allowed to have the same description.                                                                       | `This module teaches you about software engineering principles.` |
+| `TAG`                | This parameter represents the tag you want to attach to the module.<br/>It must be a single word consisting of alphanumeric characters.                                                                                                                                 | `ModuleCoordinator`                                             |
 
 #### 4.2.2. Viewing list of modules: `mlist`
 
@@ -186,9 +186,11 @@ as well as any tags given to the module upon using this command!
 Now, let's use the `vtarget` command to see how you can view more information about a module.
 
 **Step 1**: Type the command `vtarget 1` in the command box.
+
 ![vtarget_step1](images/userguide/vtarget_step1.png)
 
 **Step 2**: Press enter, and you will be able to see more information about a module now!
+
 ![vtarget_step2](images/userguide/vtarget_step2.png)
 
 #### 4.2.4. Viewing module details: `mview`
@@ -202,6 +204,14 @@ You can use this command to view a list of students and tutors in the module.
 Let's use the `mview` command to view all the students and tutors in a module.
 
 **Step 1**: Type the command `mview c/CS1101S` in the command box.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note**<br>
+
+- Module codes are not case-sensitive, this means that `CS2030S` is the same as `cs2030s`.
+
+</div>
 
 <div markdown="span" class="alert alert-warning">
 
@@ -372,9 +382,9 @@ You can add a student / teaching assistant by using this command.
 
 :exclamation: **Caution:**<br>
 
-- Please make sure you have added the module with `MODULE_CODE` before you add any students with `MODULE_CODE`. Otherwise, ProfNUS will consider the command to be invalid.
+- Please make sure you have added the module with `MODULE_CODE` before you add any students with `MODULE_CODE`. Otherwise, ProfNUS will consider the command to be invalid.<br>
 
-- A student should not be a teaching assistant and a student of the same module!
+- A student should not be a teaching assistant and a student of the same module!<br>
 
 - If a student name is too long, only the first 50 characters of the name will be shown!
 
@@ -687,7 +697,7 @@ You can add a schedule by using this command.
 
 :exclamation: **Caution:**<br>
 
-- Please make sure you have added the module with `MODULE_CODE` before you add any schedules with `MODULE_CODE`. Otherwise, ProfNUS will consider the command to be invalid and report an error.
+- Please make sure you have added the module with `MODULE_CODE` before you add any schedules with `MODULE_CODE`. Otherwise, ProfNUS will consider the command to be invalid and report an error.<br>
 - If the schedule to be added conflicts with any existing schedule, ProfNUS will report an error and **will not** perform any operation.
 
 </div>
