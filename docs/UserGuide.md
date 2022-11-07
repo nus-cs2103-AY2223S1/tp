@@ -359,6 +359,8 @@ Examples:
 
 [Scroll back to top](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Listing contacts
 
 Shows a list of all persons in your contact list, so you can view all your contacts.
@@ -386,7 +388,7 @@ Examples:
 * `find John` returns john and John Doe
 * `find alex david` returns `Alex Yeoh`, `David Li`
 
-![Find Command](images/FindCommand.png)
+<img src="images/FindCommand.png" width="500">
 
 [Scroll back to top](#table-of-contents)
 
@@ -542,7 +544,7 @@ Examples:
 
 * `modsleft 1` outputs the list of remaining CS Core Requirement modules that you have yet to clear.
 
-<img src="images/ModulesLeft.png" width="500">
+<img src="images/ModulesLeft.png" width="480">
 
 [Scroll back to top](#table-of-contents)
 
@@ -564,6 +566,8 @@ Examples:
 <img src="images/AfterNextSem.png" width="500">
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ## Timetable features
 
@@ -614,7 +618,7 @@ Format for contact: `timetable INDEX`
 
 A window similar to this will be shown:
 
-<img src="images/TimetableWindow.png" width="250" />
+<img src="images/TimetableWindow.png" width="200" />
 
 * Shows the timetable of the user or specified `INDEX`.
   * The index refers to the index number shown in the displayed contact list.
@@ -823,6 +827,8 @@ Examples:
 <img src="images/UndoRedoExample2.png" width="500">
 
 [Scroll back to top](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Copying GitHub URL
 
