@@ -1,6 +1,11 @@
 package seedu.travelr.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.travelr.testutil.TypicalTrips.getEmptyTravelr;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.travelr.logic.parser.SelectCommandParser;
 import seedu.travelr.logic.parser.exceptions.ParseException;
 import seedu.travelr.model.Model;
@@ -8,9 +13,6 @@ import seedu.travelr.model.ModelManager;
 import seedu.travelr.model.UserPrefs;
 import seedu.travelr.model.trip.Trip;
 import seedu.travelr.testutil.TripBuilder;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.travelr.testutil.TypicalTrips.getEmptyTravelr;
 
 class SelectCommandTest {
 
@@ -29,7 +31,7 @@ class SelectCommandTest {
     }
 
     @Test
-    void testEquals() throws ParseException{
+    void testEquals() throws ParseException {
         SelectCommand selectCommand = new SelectCommandParser()
                 .parse("1");
         SelectCommand selectCommandCopy = new SelectCommandParser()

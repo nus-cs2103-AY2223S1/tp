@@ -1,15 +1,15 @@
 package seedu.travelr.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.travelr.commons.core.index.Index;
-import seedu.travelr.logic.commands.SelectCommand;
-import seedu.travelr.model.event.EventInItineraryPredicate;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.travelr.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.travelr.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.travelr.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.travelr.commons.core.index.Index;
+import seedu.travelr.logic.commands.SelectCommand;
+import seedu.travelr.model.event.EventInItineraryPredicate;
 
 class SelectCommandParserTest {
 
@@ -31,5 +31,4 @@ class SelectCommandParserTest {
         assertParseFailure(parser, "n/asd", String.format(
                 MESSAGE_INVALID_INDEX + "\n\n" + MESSAGE_INVALID_COMMAND_FORMAT, SelectCommand.MESSAGE_USAGE));
     }
-
 }
