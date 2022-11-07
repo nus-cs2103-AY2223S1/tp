@@ -5,15 +5,15 @@ title: User Guide
 
 **TA-Assist** is a desktop app for Teaching Assistants (TA) to keep track of students’ particulars and allocate marks for attendance and assignments. It is optimized for use via a Command Line Interface (CLI) while having the benefits of a Graphical User Interface (GUI).
 
-This user guide provides a brief documentation on how you can install the application and describes how each feature should be used. Start by looking at the [quick start](#quick-start) guide to get you started.
+This user guide provides brief documentation on how you can install the application and describes how each feature should be used. Start by looking at the [quick start](#quick-start) guide to get you started.
 
 * Table of Contents
 {:toc}
 
 
 ## Quick Start
-1. Ensure you have **Java `11`** or above installed in your computer.
-2. Download the latest `taassist.jar` from [here](https://github.com/AY2223S1-CS2103T-T12-1/tp/releases/tag/v1.3).
+1. Ensure you have **Java `11`** or above installed on your computer.
+2. Download the latest `taassist.jar` from [here](https://github.com/AY2223S1-CS2103T-T12-1/tp/releases/tag/v1.4).
 3. **Copy** the file to the folder you want to use as the _home folder_ for your TA-Assist.
 4. **Double-click** the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains sample data.
 
@@ -21,7 +21,7 @@ This user guide provides a brief documentation on how you can install the applic
 
 {% include important.html content="
 
-If you encounter any issues in launching and using the app, feel free refer to the [FAQ section](#frequently-asked-questions-faq)!
+If you encounter any issues in launching and using the app, feel free to refer to the [FAQ section](#frequently-asked-questions-faq)!
 
 " %}
 
@@ -37,13 +37,13 @@ If you encounter any issues in launching and using the app, feel free refer to t
 * Items in square brackets are optional.
   * e.g. `n/NAME [c/CLASS_NAME]` can be used as `n/John Doe c/CS1231S` or as `n/John Doe`.
 * Items with `...` after them can be used multiple times.
-  * e.g. `[c/CLASS_NAME...]` can be used as ` ` (i.e. 0 times since it is also optional), `c/CS1101S`, or `c/CS2030 c/ST2334` etc.
+  * e.g. `c/CLASS_NAME...` can be used as `c/CS1101S`, or `c/CS2030 c/ST2334`.
 * Parameters, excluding index parameters, can be in any order.
   * e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
   * e.g. while `assign INDEX c/CLASS_NAME` is acceptable, `assign c/CLASS_NAME INDEX` is not acceptable.
 * If a parameter is expected only once in a command, but you specified it multiple times, the parser takes only the last occurrence of the parameter.
   * e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) are ignored by the parser.
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`, and `clear`) are ignored by the parser.
   * e.g. if you specify `help 123`, the parser interprets it as `help`.
 * Extraneous parameters for commands that do not expect such parameters may be parsed incorrectly.
   * e.g. if you specify `addc c/CS1231S n/CS2030S`, the parser interprets it as adding a class named "CS1231S n/CS2030S", which is not a valid class name. Hence, TA-Assist throws an error.
@@ -82,21 +82,21 @@ Note that these commands are also available in focus mode.
 
 " %}
 
-### View help : `help`
+### View help: `help`
 
 {% include note.html content="
 
-Automatically redirects you to this User Guide page.
+Automatically opens your browser and redirects you to this User Guide page.
 
 " %}
 
 
 Format: `help`
-* If the attempt to redirect you to this User Guide page fails, the following help window appears:
-
+* If TA-Assist is unable to redirect you to the page, i.e. due to a non-existent browser, unsupported operating system, etc.,
+  the following dialog box will be shown instead:
   ![help message](images/helpMessage.png)
 
-  You can click on the "**Copy URL**" button to copy the URL shown in the help window, then paste the URL in the address bar of your favourite browser to visit this User Guide page.
+  You can click on the "**Copy URL**" button to copy the URL shown in the help window, then paste the URL into the address bar of your favourite browser to visit this User Guide page.
 
 
 ### Add a student: `add`
@@ -158,7 +158,7 @@ Finds students whose names contain any of the given keywords.
 
 Format: `find KEYWORD...
 * The search is **case-insensitive**, i.e. `Joh` matches with `john` and `JOHN`.
-* The search is performed on the current displayed student list.
+* The search is performed on the currently displayed student list.
 * To clear the current search, use the `list` command.
 
 Examples:
@@ -201,10 +201,10 @@ Adds one or more classes to TA-Assist.
 
 Format: `addc c/CLASS_NAME...`
 * Adds the classes with the specified names.
-* Class names are converted to **upper-case**.
+* Class names are converted to **uppercase**.
   * e.g. `addc c/cs1101s` adds a class **CS1101S**.
-* The class names are **case-insensitive**.
-  * e.g. If a class with a name **CS1101S** already exists, `addc c/cs1101s` does not add another **CS1101S** class.
+* Class names are **case-insensitive**.
+  * e.g. If a class with the name **CS1101S** already exists, `addc c/cs1101s` does not add another **CS1101S** class.
 
 Examples:
 * `addc c/CS2103T c/CS2100` adds the classes named **CS2103T** and **CS2100**.
@@ -219,7 +219,7 @@ Deletes one or more classes from TA-Assist.
 
 Format: `deletec c/CLASS_NAME...`
 * Deletes the classes with the specified names.
-* The class names are **case-insensitive**.
+* Class names are **case-insensitive**.
 
 Examples:
 * `deletec c/CS2103T c/CS2100` deletes the classes named **CS2103T** and **CS2100**.
@@ -307,18 +307,18 @@ Format: `clear`
 
 The following commands are **ONLY** available in [**focus mode**](#modes).
 
-| Command   | Format                                   |
-| --------- | ---------------------------------------- |
-| `list`    | `list`                                   |
-| `adds`    | `adds s/SESSION_NAME... [d/DATE]`        |
-| `deletes` | `deletes s/SESSION_NAME...`              |
+| Command   | Format                                        |
+|-----------|-----------------------------------------------|
+| `list`    | `list`                                        |
+| `adds`    | `adds s/SESSION_NAME... [d/DATE]`             |
+| `deletes` | `deletes s/SESSION_NAME...`                   |
 | `grade`   | `grade INDEX... s/SESSION_NAME g/GRADE_VALUE` |
-| `scores`  | `scores s/SESSION_NAME`                  |
-| `view`    | `view INDEX`                             |
-| `export`  | `export`                                 |
-| `unfocus` | `unfocus`                                |
+| `scores`  | `scores s/SESSION_NAME`                       |
+| `view`    | `view INDEX`                                  |
+| `export`  | `export`                                      |
+| `unfocus` | `unfocus`                                     |
 
-*Click [here](# Commands) for commands that are also available in default mode.*
+*Click [here](#commands) for commands that are also available in default mode.*
 
 ### List all students in the class: `list`
 
@@ -329,7 +329,7 @@ Shows a list of all students in the class.
 " %}
 
 Format: `list`
-* The list of students only shows the students that were assigned to the currently focused class.
+* The list of students only shows the students that are assigned to the currently focused class.
 
 {% include important.html content="
 
@@ -337,7 +337,7 @@ Note that `list` in focused mode has different [behavior outside focus mode](#li
 
 " %}
 
-### Create session: `adds`
+### Create sessions: `adds`
 
 {% include note.html content="
 
@@ -353,10 +353,10 @@ A session can be treated as a task a student has to complete in the class. These
 
 Format: `adds s/SESSION_NAME... [d/DATE]`
 * Creates new sessions with names `SESSION_NAME` on the same `DATE`. If the `DATE` field is empty, the current date is used instead.
-* `DATE` field should follow the format `YYYY-MM-DD`.
+* The `DATE` field should follow the format `YYYY-MM-DD`.
 * Session names are **capitalised** (i.e. the first character of each word will be converted to upper-case. The remaining characters of the word will be converted to lower-case).
   * e.g. `adds s/tutorial ONE` adds a session **Tutorial One**. `adds s/_tutorial_2` adds a session **_tutorial_2**.
-* The session names are **case-insensitive**.
+* Session names are **case-insensitive**.
   * e.g. If a session **Lab 1** already exists, `adds s/lab 1` does not create another **Lab 1** session.
 
 Example:
@@ -372,7 +372,7 @@ Deletes one or more sessions from the focused class.
 
 Format: `deletes s/SESSION_NAME...`
 * Deletes the sessions with the specified names.
-* The session names are **case-insensitive**.
+* Session names are **case-insensitive**.
 
 Examples:
 * `deletes s/Lab1 s/Assignment3` deletes the session named **Lab1** and **Assignment3**.
@@ -441,7 +441,7 @@ Exports the class data as a CSV file.
 
 {% include tip.html content="
 
-Comma-Separated Values (CSV) files can be opened with **Microsoft Excel**, where you can get an organised view of all the data.
+Comma-Separated Values (CSV) files can be opened with **a spreadsheet application**, i.e. **Microsoft Excel**, where you can get an organised view of all the data.
 
 " %}
 
@@ -449,11 +449,11 @@ Format: `export`
 * The exported class data includes:
   * Student names of the class.
   * All session names of the class.
-  * The grades of the students corresponding to each session.
+  * The grades of the students for each session.
 * An example generated CSV file when opened in Microsoft Excel:
 ![Example Excel file](images/exampleExcelFile.png)
-  * First column shows all the student names.
-  * Subsequent columns show the grades for a student for various sessions (e.g. **David Li** scores **0** for **Tutorial 1**).
+  * The first column shows all the student names.
+  * Subsequent columns show the grades of students for various sessions (e.g. **David Li** scores **0** for **Tutorial 1**).
 
 ### Exit focus mode: `unfocus`
 
@@ -466,11 +466,9 @@ Exits focus mode.
 Format: `unfocus`
 * Alternatively, you can exit focus mode by clicking on the button shown [here](#enter-focus-mode-focus).
 
-### Automated Data Backup
+## Automated Data Backup
 
-On each launch of TA-Assist, if the save data loads without error, a backup of the save data is made and saved to `data/taassist.json.bak`. 
-
-In the event that you need to revert a catastrophic change, you may simply quit the app and overwrite `data/taassist.json` with the backup file. 
+On each launch of TA-Assist, if the save data loads without error, a backup of the save data is made and saved to `data/taassist.json.bak`. If you need to revert a catastrophic change, you may simply quit the app and overwrite `data/taassist.json` with the backup file. 
 
 {% include important.html content="
 
@@ -490,23 +488,23 @@ Each time TA-Assist is launched, the previous `data/taassist.json.bak` file will
 
 **Q**: How do I transfer my data to another computer?
 
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TA-Assist home folder.
+**A**: Install the app on the other computer and overwrite the empty data file it creates with the file that contains the data of your previous TA-Assist home folder.
 
 ## Appendix
 
 ### Parameters and Constraints
 
-For all parameters, the following constraints are applied:
-* As Ta-Assist uses prefixes such as `p/` and `c/` to identify the start of a new parameter, all parameters have the implicit constraint that they must not contain prefixes of another parameter if that other parameter is being used in a command. 
+For all parameters, the following constraints are applied: <a name="implicit-constraint"></a>
+* As TA-Assist uses prefixes such as `p/` and `c/` to identify the start of a new parameter, all parameters have the implicit constraint that they must not contain prefixes of another parameter if that other parameter is being used in a command. 
   * e.g. You cannot add a student with the address `Commongrove n/123A` as the `n/123A` prefix will be parsed by Ta-Assist as the Student's name.
 
 The following is the list of all parameters used in TA-Assist along with its constraints:
 
 * `INDEX` 
-  * Indices must be a positive integer.
+  * Indices must be positive integers.
   * Indices must be within the indices shown in the displayed list.
 * `KEYWORD` 
-  * Search keywords can not contain spaces.
+  * Search keywords cannot contain spaces.
 * `n/NAME` 
   * Student names must not be empty.
   * Student names must only contain alphanumeric characters and spaces.
@@ -516,12 +514,13 @@ The following is the list of all parameters used in TA-Assist along with its con
 * `e/EMAIL`
   * E-mails must be of the format `local-part@domain`, i.e. `johndoe+work@s.mail.com`.
   * `local-part` must only contain alphanumeric characters and these special characters, excluding the parentheses, (`+_.-`).
-  * `domain` is made up of domain labels, separated by period.
+  * `domain` is made up of domain labels, separated by periods.
     * Each `domain` must end with a domain label of at least 2 characters long.
     * Each domain label must start and end with alphanumeric characters.
-    * Each domain label must consists of only alphanumeric characters, separated only by hyphens, if any.
+    * Each domain label must consist of only alphanumeric characters, separated only by hyphens if any.
 * `a/ADDRESS`
   * Addresses must not be empty.
+  * Note that addresses follows the [above implicit constraint](#implicit-constraint).
 * `c/CLASS_NAME`
   * Class names must be alphanumeric.
   * Class names must not exceed 25 characters.
@@ -530,4 +529,7 @@ The following is the list of all parameters used in TA-Assist along with its con
   * Session names must only contain alphanumeric characters, underscores, and spaces.
 * `d/DATE`
   * Dates must be of the format `YYYY-MM-DD`, i.e. 25th May 2022 must be written as `2022-05-25`.
-  * Dates must be a valid date, i.e. `2001-02-29` is not a valid date because the year 2001 is not a leap year.
+  * Dates must be valid, i.e. `2001-02-29` is not a valid date because the year 2001 is not a leap year.
+* `g/GRADE_VALUE`
+  * Grades must be a non-negative numerical value, i.e. `0`, `100.0`, and `12.34`.
+  * Grades will be rounded to two decimal places.
