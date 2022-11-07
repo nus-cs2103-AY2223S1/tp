@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ELEMENT;
@@ -20,12 +21,6 @@ public class DeleteClientCommandParserTest {
     private DeleteClientCommandParser parser = new DeleteClientCommandParser();
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, " i/a",
-                ParserUtil.MESSAGE_INVALID_INDEX);
-    }
-
-    @Test
     public void parse_validArgs_returnsDeleteCommand() {
         assertParseSuccess(parser, " i/1", new DeleteClientCommand(INDEX_FIRST_ELEMENT));
     }
@@ -41,7 +36,13 @@ public class DeleteClientCommandParserTest {
         //Empty Index
         assertParseFailure(parser, " i/", ParserUtil.MESSAGE_INVALID_INDEX);
 
-        //Floating Point Number
-        assertParseFailure(parser, " i/1.5", ParserUtil.MESSAGE_INVALID_INDEX);
+        //Not Integer
+        assertParseFailure(parser, " i/a", ParserUtil.MESSAGE_INVALID_INDEX);
+    }
+
+    @Test
+    public void parse_invalidFormat_throwParseException() {
+        assertParseFailure(parser, " 1",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteClientCommand.MESSAGE_USAGE));
     }
 }

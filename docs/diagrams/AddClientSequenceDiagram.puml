@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MyInsuRecParser" as MyInsuRecParser LOGIC_COLOR
+participant ":AddClientCommandParser" as AddClientCommandParser LOGIC_COLOR
+participant "a:AddClientCommand" as AddClientCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addClient n/John Tan p/12345678")
+activate LogicManager
+
+LogicManager -> MyInsuRecParser : parseCommand("addClient n/John Tan p/12345678")
+activate MyInsuRecParser
+
+create AddClientCommandParser
+MyInsuRecParser -> AddClientCommandParser
+activate AddClientCommandParser
+
+AddClientCommandParser --> MyInsuRecParser
+deactivate AddClientCommandParser
+
+MyInsuRecParser -> AddClientCommandParser : parse("n/John Tan p/12345678")
+activate AddClientCommandParser
+
+create AddClientCommand
+AddClientCommandParser -> AddClientCommand
+activate AddClientCommand
+
+AddClientCommand --> AddClientCommandParser : a
+deactivate AddClientCommand
+
+AddClientCommandParser --> MyInsuRecParser : a
+deactivate AddClientCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddClientCommandParser -[hidden]-> MyInsuRecParser
+destroy AddClientCommandParser
+
+MyInsuRecParser --> LogicManager : a
+deactivate MyInsuRecParser
+
+LogicManager -> AddClientCommand : execute()
+activate AddClientCommand
+
+AddClientCommand -> Model : addClient(clientToAdd)
+activate Model
+
+Model --> AddClientCommand
+deactivate Model
+
+create CommandResult
+AddClientCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddClientCommand
+deactivate CommandResult
+
+AddClientCommand --> LogicManager : result
+deactivate AddClientCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

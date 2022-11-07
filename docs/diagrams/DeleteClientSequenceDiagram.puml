@@ -48,7 +48,7 @@ deactivate MyInsuRecParser
 LogicManager -> DeleteClientCommand : execute()
 activate DeleteClientCommand
 
-DeleteClientCommand -> Model : deleteClient(client1)
+DeleteClientCommand -> Model : deleteClient(clientToDelete)
 activate Model
 
 Model --> DeleteClientCommand

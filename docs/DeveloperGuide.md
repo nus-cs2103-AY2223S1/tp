@@ -89,7 +89,7 @@ The rest of the App consists of four components.
 
 #### 3.1.2 How the architecture components interact with each other
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delClient i/1` ([deletes the client](https://ay2223s1-cs2103t-w16-4.github.io/tp/UserGuide.html#714-delete-client-delclient) found at index 1).
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command [`delClient i/1`](https://ay2223s1-cs2103t-w16-4.github.io/tp/UserGuide.html#714-delete-client-delclient) (deletes the client found at index 1).
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -114,7 +114,7 @@ The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `Re
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W16-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W16-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
-The `UI` component,
+The `UI` component
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
@@ -135,9 +135,9 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a client).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delClient i/1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("addClient n/John Tan p/12345678")` API call.
 
-![Interactions Inside the Logic Component for the `delClient i/1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `addClient n/John Tan p/12345678` Command](images/AddClientSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteClientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -221,6 +221,16 @@ We decided to only allow adding of a client with its product only after the prod
 
 This is to try and maintain the overall cleanliness and housekeeping of _MyInsuRec_. Suppose we allow the user to add the client with any product name without it already existing in the product list. This might be organized and clean for the first few contacts added, but over time, the product name can get distorted. Shorthand forms may be used in place of the product name, case sensitivity and whitespaces are ignored. With _MyInsuRec_ also placing a focus on allowing users to get an idea of the popularity of each of the products they are selling, it is paramount that the product name stay the same, so as to enable the feature to work. Furthermore, one of the problems we are attempting to solve is the messiness of using traditional Excel spreadsheets. Having this validation check helps to preserve the data added, and thus the user can use the app for a longer time without feeling cluttered.
 
+#### Constraint regrading Birthday
+
+Below is the activity diagram that illustrates the process of validating birthday when birthday of a client is added.
+
+![BirthdayActivityDiagram](images/BirthdayActivityDiagram.png)
+
+We decided to set these 2 constraints on birthday:
+1) Birthday should not be in the future
+2) Birthday should not be more than 100 years ago as we feel that client would not be able to buy product due to age limit.
+
 #### 4.1.2 View client
 
 Syntax: `viewClient i/INDEX`, where `INDEX` is an index shown in the client list.
@@ -245,11 +255,32 @@ Below is an activity diagram that summarises the execution of `viewClient`.
 
 ![ViewClientActivityDiagram](images/ViewClientActivityDiagram.png)
 
+#### 4.1.3 Delete Client
+
+Syntax: `delClient i/INDEX`, where `INDEX` is an index shown in the client list.
+
+Purpose: Delete client from model and storage.
+
+##### Implementation
+
+Usage Scenario of `delClient`:
+
+1) User inputs `listClient` to view the current list of clients in `Model` with their respective indexes.
+
+2) User inputs `delClient i/1` to delete the first client in the shown in `listClient`. This will evoke the `Command#execute` in `LogicManager`.
+
+The sequence diagram below illustrates the interactions between the `Logic` and `Model` after the execution of `delClient i/1`. 
+![DeleteClientSequenceDiagram](images/DeleteClientSequenceDiagram.png)
+
+Below is the activity diagram that summarises the execution of `delClient`.
+
+![DeleteClientActivityDiagram](images/DeleteClientActivityDiagram.png)
+
 ### 4.2 `Meeting`-related features
 
 #### 4.2.1 Add meeting
 
-Syntax: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
+Syntax: `addMeeting i/INDEX d/DATE st/START_TIME et/END_TIME dn/DESCRIPTION`
 
 Purpose: Adds a meeting with the given information to the internal model and storage
 
@@ -285,6 +316,15 @@ the command is executed.
     - Cons: The parser will need to have access to the model in order to
       obtain the referenced client.
 
+#### Constraint regrading Meeting Date
+
+Below is the activity diagram that illustrates the process of validating meeting date.
+
+![MeetingDateActivityDiagram](images/MeetingDateActivityDiagram.png)
+
+We decided to set this constraint on meeting date:
+1) Meeting Date is not in the past.
+
 #### 4.2.2 Delete meeting
 
 Syntax: `delMeeting i/INDEX`, where `INDEX` is an index shown in the meeting list.
@@ -296,15 +336,10 @@ Purpose: Delete a specified `Meeting` from the Meeting List in `Model`
 Usage Scenario of `delMeeting`:
 
 1) User inputs `listMeeting` to view the current meetings in the `Model`'s Meeting List with their respective indexes.
+
 2) User then inputs `delMeeting i/1` to delete the first meeting shown in `listMeeting`. This will evoke `Command#execute` in `LogicManager`.
 
-Below is a sequence diagram that illustrates the execution of `delMeeting i/1` command and the interaction with `Model`.
-
-![DeleteMeetingSequenceDiagram](images/DeleteMeetingSequenceDiagram.png)
-
-Below is an activity diagram that summarises the execution of `delMeeting`.
-
-![DeleteMeetingActivityDiagram](images/DeleteMeetingActivityDiagram.png)
+_The sequence diagram and activity diagram of `delMeeting` is similar to the diagrams shown in [`delClient`](#413-delete-client) feature by replacing all occurrence of `client` with `meeting`._
 
 ##### Design Considerations
 
@@ -316,9 +351,7 @@ Below is an activity diagram that summarises the execution of `delMeeting`.
 - **Alternative Solution 2:** Allows multiple deletion
     - Pros: Convenient to delete multiple meetings when needed.
     - Cons: Complex to implement
-- Considering that the approach taken to develop MyInsuRec is a breath first approach,
-  where we should only build to the point where every iteration is a working product,
-  **Solution 1** is thus chosen as it is easier to implement.
+- Considering that the approach taken to develop MyInsuRec is a breath first approach, where we should only build to the point where every iteration is a working product, **Solution 1** is thus chosen as it is easier to implement. However, Solution 2 could be a possible implementation for future iteration.
 
 #### 4.2.3 View meeting
 
@@ -571,33 +604,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 1. User requests to add a client.
 2. System adds the client.
+3. System informs user that client has been added. 
 
    Use case ends.
 
 **Extensions**
 
-* 1a. User inputs incomplete or invalid client data.
+* 1a. User inputs incomplete or invalid data.
     * 1a1. System shows an error message.
 
       Use case ends.
 
-#### 6.3.2 Use case: UC2 - View a client
-
-**MSS**
-
-1. User selects client to view.
-2. System displays the client information.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. User selects a non-existent client.
-    * 1a1. System shows an error message.
-
-      Use case ends.
-
-#### 6.3.3 Use case: UC3 - List all clients
+#### 6.3.2 Use case: UC2 - List all clients
 
 **MSS**
 
@@ -618,12 +636,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
+
+#### 6.3.3 Use case: UC3 - View a client
+
+**MSS**
+
+1. User requests for a [list of all clients](#632-use-case-uc2---list-all-clients).
+2. System shows a list of clients.
+3. User selects client to view.
+4. System displays the client information.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User selects a non-existent client.
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
 #### 6.3.4 Use case: UC4 - Delete a client
 
 **MSS**
 
-1. User requests to delete a client.
-2. Client is removed from the system.
+1. User requests for a [list of all clients](#632-use-case-uc2---list-all-clients).
+2. System shows a list of clients.
+3. User requests to delete a client by specifying the index of the client.
+4. System removes the client.
+5. System informs user that the specified client has been removed.
 
    Use case ends.
 
@@ -638,8 +678,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **MSS**
 
-1. User requests to edit a client.
-2. System replaces current client information with the new information.
+1. User requests for a [list of all clients](#632-use-case-uc2---list-all-clients).
+2. System shows a list of clients.
+3. User requests to edit a client by specifying the index of the client.
+4. System replaces current client information with the new information.
+5. System informs user that the specified client has been updated.
 
    Use case ends.
 
@@ -654,8 +697,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **MSS**
 
-1. User requests to add a meeting.
-2. System adds the meeting.
+1. User requests for a [list of all clients](#632-use-case-uc2---list-all-clients).
+2. System shows a list of clients. 
+3. User requests to add a meeting to a specific client by specifying the index of the client. 
+4. System adds the meeting. 
+5. System informs user that meeting has been added.
 
    Use case ends.
 
@@ -666,23 +712,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
-#### 6.3.7 Use case: UC7 - View a meeting
-
-**MSS**
-
-1. User requests to view a meeting in detail.
-2. System shows the meeting details.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. User selects a non-existent meeting or inputs an invalid index.
-    * 1a1. System shows an error message.
-
-      Use case ends.
-
-#### 6.3.8 Use case: UC8- List all meetings
+#### 6.3.7 Use case: UC7- List all meetings
 
 **MSS**
 
@@ -698,11 +728,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
+#### 6.3.8 Use case: UC8 - View a meeting
+
+**MSS**
+
+1. User requests for a [list of all meetings (UC4)](#637-use-case-uc7--list-all-meetings).
+2. System shows a list of all meetings.
+3. User requests to view a meeting in detail by specifying the index of the meeting.
+4. System shows the meeting details.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User selects a non-existent meeting or inputs an invalid index.
+    * 1a1. System shows an error message.
+
+      Use case ends.
+
 #### 6.3.9 Use case: UC9 - Delete a meeting
 
 **MSS**
 
-1. User requests for a [list of all meetings (UC4)](#use-case-uc4---list-all-meetings).
+1. User requests for a [list of all meetings (UC4)](#637-use-case-uc7--list-all-meetings).
 2. System shows a list of all meetings.
 3. User requests to delete one meeting from the list.
 4. System deletes the meeting specified by the user.
@@ -712,7 +760,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **Extensions**
 
-* 3a. User deletes a meeting that was not shown in the list.
+* 3a. User deletes a non-existent meeting.
     * 3a1. System shows an error message.
 
       Use case ends.
@@ -721,8 +769,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **MSS**
 
-1. User requests to edit a meeting.
-2. System replaces current meeting information with the new information.
+1. User requests for a [list of all meetings (UC4)](#637-use-case-uc7--list-all-meetings).
+2. System shows a list of all meetings. 
+3. User requests to edit a meeting by specifying the index of the meeting. 
+4. System replaces current meeting information with the new information.
+5. System informs user that the specific meeting has been updated.
 
    Use case ends.
 
@@ -739,6 +790,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 1. User requests to add a product.
 2. System adds the product.
+3. System informs user that the product has been added.
 
    Use case ends.
 
@@ -762,7 +814,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
 **MSS**
 
-1. User requests for a [list of all products (UC4)](#537-use-case-uc7---list-all-products).
+1. User requests for a [list of all products (UC4)](#6312-use-case-uc12---list-all-products).
 2. System shows a list of all products.
 3. User requests to delete one product from the list.
 4. System deletes the product specified by the user.
@@ -827,125 +879,118 @@ testers are expected to do more *exploratory* testing.
 
 ### 7.2 Adding a client
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.</div>
 
-</div>
+   1. Prerequisites: No other client have the exact same name. The product `ProductTest` has not been added.
 
-1. Prerequisites: No other client have the exact same name.
+   2. Test case: `addClient n/John Tan p/89134083`
+      - Expected: A client named John Tan and phone number 89134083 is added and the view switches back to the list of client, where the list is updated with John Tan's newly added record.
 
-2. Add client with only essential information
-   * Test case: `addClient n/John Tan p/89134083`
-       * Expected: A client named John Tan and phone number 89134083 is added and the view switches back to the list of client, where the list is updated with John Tan's newly added record.
+   3. Test case: `addClient n/Trevor Tan p/89134083`
+      - Expected: A client named Trevor Tan and phone number 89134083 is added and the view switches back to the list of client, where the list is updated with Trevor Tan's newly added record. This test case focuses on the fact that the phone numbers are identical, which happens when parents buy policies for their child who does not have a cellular plan.
 
-3. Add client with same phone number as another client
-   * Test case: `addClient n/Trevor Tan p/89134083`
-      * Expected: A client named Trevor Tan and phone number 89134083 is added and the view switches back to the list of client, where the list is updated with Trevor Tan's newly added record. This test case focuses on the fact that the phone numbers are identical, which happens when parents buy policies for their child who does not have a cellular plan.
+   4. Test case: `addClient n/Trevor Tan p/89134083`
+      - Expected: No client is added and an error message is shown. This tests whether if the app allows clients of the same name, which is not allowed by design.
 
-4. Add duplicate client of the same name
-   * Test case: `addClient n/Trevor Tan p/89134083`
-      * Expected: No client is added and an error message is shown. This tests whether if the app allows clients of the same name, which is not allowed by design.
-
-5. Add client with an optional field
-   * Test case: `addClient n/Justin Lim p/98120931 e/justinlim@gmail.com`
-      * Expected: A client named Justin Lim and phone number 98120931 is added and the view switches back to the list of client, where the list is updated with Justin Lim's newly added record. This test case focuses on the fact that an optional field is used.
+   5. Test case: `addClient n/Justin Lim p/98120931 e/justinlim@gmail.com`
+      - Expected: A client named Justin Lim and phone number 98120931 is added and the view switches back to the list of client, where the list is updated with Justin Lim's newly added record. This test case focuses on the fact that an optional field is used.
     
-6. Add client with a non-existent product
-   * Test case: `addClient n/Tom p/90231494 pd/ProductTest`
-      * Expected: No client is added as the product `ProductTest` is not added beforehand.
+   6. Test case: `addClient n/Tom p/90231494 pd/ProductTest`
+      - Expected: No client is added as the product `ProductTest` is not added beforehand.
+      
+   7. Test case: `addClient n/Tom p/90231494 pd/ProductTest`, suppose `ProductTest` is added.
+      - Expected: The client should now be added with the product as the product is added with the `addProduct` command.
 
-7. Add client with an existing product
-   * Continuation: `addProduct pd/ProductTest`, then `addClient n/Tom p/90231494 pd/ProductTest` again.
-      * Expected: The client should now be added with the product as the product is added with the `addProduct` command.
+   8. Test case: `addClient Tom p/12345678`
+      - Expected: No client will be added. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect command format.
+   
+   9. Test case: `addClient n/Tom p/`
+      - Expected: No client will be added. Error details shown in the status message. Status bar remains the same. This test case focus on the missing values that should be accompanied after a parameter.
+
+   10. Test case: `addClient n/Tom p/12345`
+      - Expected: No client will be added. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect values that a parameter requires.
 
 ### 7.3 Viewing a client
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of clients using `listClient` where the index number of the client can be found.
-
-</div>
-
 1. Prerequisites: View a specific client's details using the `viewClient` command. There is exactly one client in the list.
 
-2. View client at index 1
-   * Test case: `viewClient i/1`
-      * Expected: The details of the client who is at the first index is shown.
+2. Test case: `viewClient i/1`
+   - Expected: The details of the client who is at the first index is shown.
 
-3. View client using non-numeric index
-   * Test case: `viewClient i/a`
-      * Expected: The index is not numeric, so there will be an error.
+3. Test case: `viewClient i/a`
+   - Expected: The index is not numeric, so there will be an error.
 
-4. View client using an index out of range
-   * Test case: `viewClient i/2`
-      * Expected: Index is larger than the size of client list, so there will be an error.
+4. Test case: `viewClient i/2`
+   - Expected: Index is larger than the size of client list, so there will be an error.
 
-5. View client using index 0
-   * Test case: `viewClient i/0`
-      * Expected: Index less than 1 is not allowed, therefore there will be an index error.
+5. Test case: `viewClient i/0`
+   - Expected: Index less than 1 is not allowed, therefore there will be an index error.
 
-6. View client without providing index
-   * Test case: `viewClient i/`
-      * Expected: Index is not provided, so there will be an error.
+6. Test case: `viewClient i/`
+   - Expected: Index is not provided, so there will be an error.
 
-7. View client without using prefix
-   * Test case: `viewClient 1`
-      * Expected: Prefix for index is not provided, so there will be an invalid command format error.
+7. Test case: `viewClient 1`
+   - Expected: Prefix for index is not provided, so there will be an invalid command format error.
 
 ### 7.4 Deleting a client
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of clients using `listClient` where the index number of the client can be found.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of clients using `listClient` where the index number of the client can be found.</div>
 
-</div>
+   1. Prerequisites: List all clients using the `listClient` command. At least one client is in the list.
 
-1. Prerequisites: Requires multiple clients in the list (more than 1, recommended to have 3).
+   2. Test case: `delClient i/1`
+      - Expected: First client is deleted from the list. Details of the deleted client shown in the status message. Timestamp in the status bar is updated.
 
-2. Delete client at index 1
-   * Test case: `delClient i/1`
-     * Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   3. Test case: `delClient` OR `delClient 1`
+      - Expected: No client is deleted. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect format. 
 
-3. View client using index 0
-   * Test case: `delClient i/0`
-     * Expected: No client is deleted. Error details shown in the status message. Status bar remains the same.
-
-4. Other incorrect delete commands to try: `delClient`, `delClient x`, `...` (where x is larger than the list size)
-   * Expected: Similar to previous.
+   4. Test case: `delClient i/-1`
+      - Expected: No client is deleted. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect index provided.
 
 ### 7.5 Listing meetings
 
 //@@author sikai00
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.
-
-</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.</div>
 
 1. Prerequisites: One existing client, one meeting with date set to tomorrow (of system date), another set to within one week (but not tomorrow), another set to within one month (but not the next week).
-   2. To add the meetings, you can use the commands below (replace the dates with appropriate dates)
-      3. `addMeeting i/1 dn/Test st/1200 et/1300 d/<date tomorrow>`
-      3. `addMeeting i/1 dn/Test st/1200 et/1300 d/<date in the current week (but not tomorrow)>`
+   1. To add the meetings, you can use the commands below (replace the dates with appropriate dates)
+      1. `addMeeting i/1 dn/Test st/1200 et/1300 d/<date tomorrow>`
+      2. `addMeeting i/1 dn/Test st/1200 et/1300 d/<date in the current week (but not tomorrow)>`
       3. `addMeeting i/1 dn/Test st/1200 et/1300 d/<date in the current month (but not tomorrow or the current week)>`
 
-2. List all meetings
-   * Test case: `listMeeting`
-     * Expected: The view switches back to the list of meetings, and all three meetings are displayed.
+2. Test case: `listMeeting`
+   - Expected: The view switches back to the list of meetings, and all three meetings are displayed.
 
-3. List meetings happening tomorrow
-   * Test case: `listMeeting d/tomorrow`
-     * Expected: The view switches back to the list of meetings, and only the meeting tomorrow is displayed.
+3. Test case: `listMeeting d/tomorrow`
+   - Expected: The view switches back to the list of meetings, and only the meeting tomorrow is displayed.
 
-4. List meetings happening in the week
-   * Test case: `listMeeting d/week`
-     * Expected: The view switches back to the list of meetings, and the meetings tomorrow and in the next week are displayed.
+4. Test case: `listMeeting d/week`
+   - Expected: The view switches back to the list of meetings, and the meetings tomorrow and in the next week are displayed.
 
-5. List meetings happening in the month
-   * Test case: `listMeeting d/month`
-     * Expected: The view switches back to the list of meetings, and all three meetings are displayed.
+5. Test case: `listMeeting d/month`
+   - Expected: The view switches back to the list of meetings, and all three meetings are displayed.
 
-6. List all meetings, with extra nonsensical parameters
-   * Test case: `listMeeting adsfadsf`
-     * Expected: The view switches back to the list of meetings, and all three meetings are displayed. Extra parameters are ignored.
+6. Test case: `listMeeting adsfadsf`
+   - Expected: The view switches back to the list of meetings, and all three meetings are displayed. Extra parameters are ignored.
 
-### 7.6 Viewing a meeting
+### 7.6 Deleting a Meeting
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of meetings using `listMeeting` where the index number of the meeting can be found.
+Deleting a meeting while all meetings are being shown
 
-</div>
+1. Prerequisites: List all meetings using the `listMeeting` command. At least one meeting in the list.
+
+2. Test case: `delMeeting i/1`
+    - Expected: First meeting is deleted from the list. Details of the deleted meeting shown in the status message. Timestamp in the status bar is updated.
+
+3. Test case: `delMeeting` OR `delMeeting 1`
+    - Expected: No meeting is deleted. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect format.
+
+4. Test case: `delMeeting i/0` OR `delMeeting i/-1` OR `delMeeting i/` or `delMeeting i/x` (where x is larger than the list size).
+    - Expected: No meeting is deleted. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect index provided.
+
+### 7.7 Viewing a meeting
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of meetings using `listMeeting` where the index number of the meeting can be found.</div>
 
 1. Prerequisites: View a specific meeting's details using the `viewMeeting` command. There is exactly one meeting in the list.
 
@@ -973,27 +1018,23 @@ testers are expected to do more *exploratory* testing.
    * Test case: `viewMeeting 1`
      * Expected: Prefix for index is not provided, so there will be an invalid command format error.
 
-### 7.7 Adding a product
+### 7.8 Adding a product
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.
-
-</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.</div>
 
 1. Prerequisites: No other product have the exact same name.
 
-1. Add product with valid name
+2. Add product with valid name
    * Test case: `addProduct pd/MyInsureCare`
      * Expected: A product named MyInsureCare is added and the view switches back to the list of product, where the list is updated with the newly added product.
 
-1. Add product with empty field
+3. Add product with empty field
    * Test case: `addProduct pd/`
      * Expected: Empty fields are not allowed, so no product is added.
 
-### 7.8 Listing products
+### 7.9 Listing products
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.
-
-</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.</div>
 
 1. List all meetings
    * Test case: `listProduct`
@@ -1003,11 +1044,9 @@ testers are expected to do more *exploratory* testing.
    * Test case: `listProduct adfafio3`
      * Expected: The list of product view shows up. Any other parameter or input added after the command is ignored.
 
-### 7.9 Delete product
+### 7.10 Delete product
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of products using `listProduct` where the index number of the product can be found.
-
-</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of products using `listProduct` where the index number of the product can be found.</div>
 
 1. Prerequisites: There is at least one product already added.
 
