@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page-with-header
 title: Tin Jingyao's Project Portfolio Page
 ---
 
