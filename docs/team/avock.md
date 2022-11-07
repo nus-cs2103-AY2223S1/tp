@@ -1,5 +1,5 @@
 ---
-layout: page 
+layout: alt-page
 title: Kok Chun Khai's Project Portfolio Page
 ---
 
@@ -32,7 +32,7 @@ Given below are my contributions to the project.
         * Credits: Integration of functionality was done with the help of `@Yingming23`.
         * To Note: Currently only works for modules in the _current semester_, will be implementing it such that users can
           select their preferred academic year to query from, as well as input custom modules.
-          <br><br/>
+          <div style="page-break-after: always;"></div>
     * **Add Module Command**:
         * What it does: Adds a module to the SoCompiler data archive, similar to the add-command introduced in AB3.
         * Justification: Allows user to add modules to a separate list from the Person for a better overview and clarity.
@@ -55,10 +55,12 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
+        * General updates and reorganizing.
         * Initial update of UG to fit basic SoCompiler commands [#36](https://github.com/AY2223S1-CS2103T-W12-1/tp/pull/36)
         * Refactored contact and module field summary into a table format [#233](https://github.com/AY2223S1-CS2103T-W12-1/tp/pull/233)
     * Developer Guide:
-        * Added implementation details for the add-module-command [#104](https://github.com/AY2223S1-CS2103T-W12-1/tp/pull/104/commits/c9883309cc242a53004f8e01cbabedb37db75e69).
+        * General updates and reorganizing.
+        * Added implementation details for the `add-module` command [#104](https://github.com/AY2223S1-CS2103T-W12-1/tp/pull/104/commits/c9883309cc242a53004f8e01cbabedb37db75e69).
           <br><br/>
 
 * **Community**:
