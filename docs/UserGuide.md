@@ -208,8 +208,9 @@ Edits a patient's information, such as name, phone number, address, email, remar
 
 #### Format: 
 
-* `editpatient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​`
-* `ep INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​`
+`editpatient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​`
+
+`ep INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​`
 
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list.
   The index **must be a positive integer** 1, 2, 3, …​
@@ -235,8 +236,10 @@ Edits a patient's information, such as name, phone number, address, email, remar
 Edits an appointment of a patient, such as name, medical test, slot, and doctor.
 
 #### Format: 
-* `editappointment INDEX [n/NAME] [t/MEDICAL_TEST] [s/SLOT<yyyy-MM-dd HH:mm>] [d/DOCTOR]`
-* `ea INDEX [n/NAME] [t/MEDICAL_TEST] [s/SLOT<yyyy-MM-dd HH:mm>] [d/DOCTOR]`
+
+`editappointment INDEX [n/NAME] [t/MEDICAL_TEST] [s/SLOT<yyyy-MM-dd HH:mm>] [d/DOCTOR]`
+
+`ea INDEX [n/NAME] [t/MEDICAL_TEST] [s/SLOT<yyyy-MM-dd HH:mm>] [d/DOCTOR]`
 
 * Edits the appointment at the specified `INDEX`.
   The index refers to the index number shown in the displayed appointment list.
@@ -256,7 +259,7 @@ Edits an appointment of a patient, such as name, medical test, slot, and doctor.
 Edits a bill of an appointment.
 
 #### Format: 
-* `editbill INDEX [a/amount] [d/bill date]` `eb INDEX [a/amount] [d/bill date]`
+`editbill INDEX [a/amount] [d/bill date]` `eb INDEX [a/amount] [d/bill date]`
 
 * Edits the bill at the specified `INDEX`. The index refers to the index number shown in the displayed bill list.
   The index **must be a positive integer** 1, 2, 3, …​
@@ -281,7 +284,7 @@ Filters patients by one or more fields using their prefixes, and their correspon
 special characters).
 
 #### Format:
-* ```findpatient <prefix><input> ...``` or ```fp <prefix><input>...```
+```findpatient <prefix><input> ...``` or ```fp <prefix><input>...```
 
 * The command words are ``findpatient`` or ``fp``.
 * The prefixes are n/ for Name, p/ for Phone, e/ for Email, a/ for Address, r/ for Remark and t/ for Tags.
@@ -680,7 +683,7 @@ Reverses the most recent undo command.
 
 1. Original Data
 
-<img src="images/ug/undoredocommand/redo1.png">
+<img src="images/ug/undoredocommand/redo1.PNG">
 
 2. Execute `deletepatient 1` to delete all information of Bernice Yu.
 
