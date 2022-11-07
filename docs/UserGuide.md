@@ -204,6 +204,8 @@ Here's a screenshot of Plannit before and after executing the command:
 Adding a module will bring you back to the home page.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### 2.1.2. Delete module
 You can delete the module with the indicated module code from Plannit. This could be useful at 
 the end of the semester when you would want to do some cleanup and prepare for the modules for 
