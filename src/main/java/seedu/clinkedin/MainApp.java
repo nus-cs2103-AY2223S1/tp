@@ -86,15 +86,7 @@ public class MainApp extends Application {
             } else {
                 initialData = addressBookOptional.get();
             }
-            // Might want to try doing the above using orElseGet().
-            // Might want to keep.
-            //            JFrame dialogFrame = new JFrame();
-            //            JOptionPane.showMessageDialog(dialogFrame,
-            //                    "Sample data being loaded as no entries found.",
-            //                    "Please Note",
-            //                    JOptionPane.INFORMATION_MESSAGE);
         } catch (DataConversionException e) {
-            // Might want to change this for Sample Data DataConversionException.
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook.");
             initialData = new AddressBook();
             JFrame dialogFrame = new JFrame();
