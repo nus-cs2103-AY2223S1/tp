@@ -1,9 +1,5 @@
 package bookface.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import bookface.logic.commands.edit.EditBookCommand;
 import bookface.model.book.Author;
 import bookface.model.book.Book;

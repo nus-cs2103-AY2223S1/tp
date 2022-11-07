@@ -13,9 +13,8 @@ import bookface.model.Model;
 import bookface.model.ModelManager;
 import bookface.model.UserPrefs;
 import bookface.model.book.Book;
-import bookface.testutil.EditBookDescriptorBuilder;
 import bookface.testutil.BookBuilder;
-import bookface.testutil.TypicalIndexes;
+import bookface.testutil.EditBookDescriptorBuilder;
 
 public class EditBookCommandTest {
     private final Model model = new ModelManager(getTypicalBookFaceData(), new UserPrefs());

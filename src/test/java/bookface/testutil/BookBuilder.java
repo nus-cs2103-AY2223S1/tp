@@ -3,13 +3,11 @@ package bookface.testutil;
 import static bookface.testutil.TypicalDates.TYPICAL_DATE;
 
 import java.util.Date;
-import java.util.HashSet;
 
 import bookface.logic.parser.exceptions.ParseException;
 import bookface.model.book.Author;
 import bookface.model.book.Book;
 import bookface.model.book.Title;
-import bookface.model.person.Person;
 
 /**
  * A utility class to help with building Book objects.
