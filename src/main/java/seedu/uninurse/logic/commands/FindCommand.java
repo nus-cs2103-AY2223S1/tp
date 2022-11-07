@@ -35,6 +35,7 @@ public class FindCommand extends Command {
             + PREFIX_NAME + "Jo " + PREFIX_NAME + "Betty "
             + PREFIX_EMAIL + "@example.com";
     public static final String MESSAGE_SUCCESS = "%1$d persons listed!";
+    public static final String MESSAGE_FAILURE = "Keywords cannot be empty.";
     public static final CommandType COMMAND_TYPE = CommandType.FIND;
 
     private final PatientMatchPredicate predicate;

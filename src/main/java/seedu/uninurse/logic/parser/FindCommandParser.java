@@ -35,6 +35,14 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String[] keywords = argMultimap.getPreamble().trim().split("\\s+");
 
+        for (Prefix prefix : PREFIXES_PATIENT_ALL) {
+            for (String string : argMultimap.getAllValues(prefix)) {
+                if (string.trim().isEmpty()) {
+                    throw new ParseException(FindCommand.MESSAGE_FAILURE);
+                }
+            }
+        }
+
         return new FindCommand(new PatientMatchPredicate(List.of(keywords), argMultimap));
     }
 }
