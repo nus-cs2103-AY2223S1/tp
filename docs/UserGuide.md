@@ -200,7 +200,7 @@ Format for each variant of `sort`:
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: A `sort` command without the flag specified explicitly will be interpreted as `sort -p` by default.
+:information_source: <b>NOTE</b><br> A `sort` command without the flag specified explicitly will be interpreted as `sort -p` by default.
 
 </div>
 
@@ -224,7 +224,7 @@ Adds a new FYP of a student to the FYP manager. The same student ID should not e
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: An `add` command without the `-s` flag specified explicitly will be interpreted as `add -s` by default.
+:information_source: <b>NOTE</b><br> An `add` command without the `-s` flag specified explicitly will be interpreted as `add -s` by default.
 
 </div>
 
@@ -250,7 +250,7 @@ Removes a FYP from the FYP manager. The specified student ID must exist in the F
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: A `delete` command without the `-s` flag specified explicitly will be interpreted as `delete -s` by default.
+:information_source: <b>NOTE</b><br> A `delete` command without the `-s` flag specified explicitly will be interpreted as `delete -s` by default.
 
 </div>
 
@@ -319,7 +319,7 @@ Format for each variant of `find`:
 
 3. `StudentName`: `find -n KEYWORD/[KEYWORD2/KEYWORD3/…]`
 
-   Example: `find -n Alex/Vivi/roy` finds all students with name that contains either `Alex`, `Vivi`, or `roy`. Note that the command is case-insensitive, therefore the capitalization does not matter.
+   Example: `find -n Alex/Vivi/roy` finds all students with name that contains either `Alex`, `Vivi`, or `roy`.
 
    ![find -n](images/find-n.png)
 
@@ -331,12 +331,12 @@ Format for each variant of `find`:
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: A `find` command without the flag specified explicitly will be interpreted as `find -p` by default.
+:information_source: <b>NOTE</b><br> A `find` command without the flag specified explicitly will be interpreted as `find -p` by default.
 
 </div>
 
 * the `/` in the above examples shows multiple input parameters. <br>
-  e.g. `find -i A0123456X/A0123456G` will search for all students with either student ID of *A0123456X* or *A0123456G*.
+  e.g. `find -i A0123456X/A0123456G` will search for all students with either student ID of `A0123456X` or `A0123456G`.
 * Only the four specified fields above could be searched, and only one field can be searched at any one time.
 * The keyword is case-insensitive, e.g. `Neural NetWORK` will match `neural network`.
 * The keyword could contain spaces, e.g. `practical guide of machine learning` is allowed.
@@ -405,7 +405,7 @@ Format: `delete -d i/STUDENT_ID r/DEADLINE_RANK`
 
 Example:
 
-* `delete -d i/A0123456G r/1`
+* `delete -d i/A0123456G r/1` will delete the first deadline of the student with student ID `A0123456G`.
 
 --------------------------------------------------------------------------------------------------------------------
 
