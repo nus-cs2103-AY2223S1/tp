@@ -5,7 +5,7 @@ title: Sheyuan's Project Portfolio Page
 
 ### Project: StudMap
 
-* **Code contributed**: [RepoSense link]()
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=piyotato)
 
 * **Project management**:
   * Helped to coordinate multiple team meetings
