@@ -36,6 +36,6 @@ deactivate model
 deactivate listPersonsCommand
 
 skinparam NoteTextAlignment left
-note right of model : s represents the SortField object\nwithin the ListPersonsCommand object
+note right of model : s represents the PersonSortField object\nstored within the ListPersonsCommand object
 
 @enduml

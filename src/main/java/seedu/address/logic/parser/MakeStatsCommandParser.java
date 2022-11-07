@@ -11,7 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new MakeStatsCommand.
  */
-public class MakeStatsCommandParser {
+public class MakeStatsCommandParser implements Parser<MakeStatsCommand> {
 
     private static final String TYPE_GENDER = "g";
     private static final String TYPE_AGE = "a";
@@ -44,9 +44,9 @@ public class MakeStatsCommandParser {
         //check which type of statistics is requested
         boolean isGenderStatistic;
         if (TYPE_GENDER.equals(argMultimap.getValue(PREFIX_TYPE).get().trim())) {
-            isGenderStatistic = true;
+            isGenderStatistic = Boolean.TRUE;
         } else if (TYPE_AGE.equals(argMultimap.getValue(PREFIX_TYPE).get().trim())) {
-            isGenderStatistic = false;
+            isGenderStatistic = Boolean.FALSE;
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MakeStatsCommand.MESSAGE_USAGE));
         }
