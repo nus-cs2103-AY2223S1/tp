@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.ModelManager;
 import seedu.clinkedin.model.UserPrefs;
+import seedu.clinkedin.model.person.DetailsContainGeneralKeywordsPredicate;
 import seedu.clinkedin.model.person.DetailsContainKeywordsPredicate;
 
 /**
@@ -30,9 +31,9 @@ public class FindCommandTest {
     @Test
     public void equals() {
         DetailsContainKeywordsPredicate firstPredicate =
-                new DetailsContainKeywordsPredicate(Collections.singletonList("first"));
+                new DetailsContainGeneralKeywordsPredicate(Collections.singletonList("first"));
         DetailsContainKeywordsPredicate secondPredicate =
-                new DetailsContainKeywordsPredicate(Collections.singletonList("second"));
+                new DetailsContainGeneralKeywordsPredicate(Collections.singletonList("second"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -78,6 +79,6 @@ public class FindCommandTest {
      * Parses {@code userInput} into a {@code DetailsContainKeywordsPredicate}.
      */
     private DetailsContainKeywordsPredicate preparePredicate(String userInput) {
-        return new DetailsContainKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+        return new DetailsContainGeneralKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }
