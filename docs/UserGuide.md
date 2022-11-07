@@ -306,7 +306,8 @@ Editing a module will bring you back to the home page.
 </div>
 
 #### 2.1.4. Find module
-When you are on the home page, you can search for modules whose module codes start with the specified keywords.
+Suppose you want to filter the list of modules to find modules whose module codes starts with specific characters,
+you can search for them on the home page using the `find-module` command.
 
 Format: `find-module KEYWORD`
 * The KEYWORD is case-insensitive.
@@ -335,7 +336,7 @@ updated with the persons associated with the module.
 </div>
 
 #### 2.1.5. List module
-When you are on the home page, you may obtain the list of every module in Plannit.
+Suppose you want to see every module stored in Plannit, you can do so on the home page using the `list-module` command.
 
 Format: `list-module`
 
@@ -622,7 +623,8 @@ to the same entity. The only scenario that calls for a distinction is when you a
 of contact.
 
 #### 2.4.1. Add person
-You may add a contact to Plannit using the `add-person` command.
+Suppose you want to track the contact details of a module-mate. You may do so by adding his contact into Plannit using 
+the `add-person`command.
 
 This command will require three prefixes:
 
@@ -658,7 +660,7 @@ words, an association between a person and a module will be created.
 
 This would be useful when you want to find study buddies. In this case, you can add a fellow
 student studying the same module using the `add-person-to-module` command, then use `goto` to
-find your list of potential study buddies.
+find your list of potential study buddies. Read more about `goto` [here](#251-navigate-between-modules).
 
 This command will require two prefixes:
 
@@ -700,7 +702,8 @@ module using the [`goto`](#251-navigate-between-modules) command.
 </div>
 
 #### 2.4.3. Delete person
-You may delete a contact from Plannit using the `delete-person` command.
+Suppose one of your contacts in Plannit graduated from NUS and you do not want to track his contact details anymore.
+You may delete his contact from Plannit using the `delete-person` command.
 
 This command will require one prefix:
 
@@ -733,6 +736,10 @@ Deleting a person from Plannit will bring you back to the home page.
 You can remove the association between a person and a module (if it exists) using the `delete-person-from-module`
 command.
 
+This would be useful when a particular friend of yours dropped out of a module. In this case, you can remove the
+association between him and the module using this feature, and `goto` will no longer display his contact.
+Read more about `goto` [here](#251-navigate-between-modules).
+
 This command will require two prefixes:
 
 | Field           | Prefix | Constraints                                                                                                                       |
@@ -763,7 +770,8 @@ Deleting a person will bring you back to the home page.
 </div>
 
 #### 2.4.5. Edit person
-You may edit a contact using the `edit-person` command.
+Suppose you accidentally made a typo in the name of a contact in Plannit.
+You may edit his contact details using the `edit-person` command.
 
 This command will require an index and minimally any of the three prefixes:
 
@@ -799,7 +807,8 @@ Editing a person will bring you back to the home page.
 </div>
 
 #### 2.4.6. Find person
-When you are on the home page, you can search for people whose names start with the specified keywords.
+Suppose you want to filter the list of persons to find persons whose names starts with specific characters,
+you can search for them on the home page using the `find-person` command.
 
 Format: `find-person KEYWORD`
 * The KEYWORD is case-insensitive.
@@ -820,7 +829,7 @@ a screenshot of Plannit before and after executing the command:
 | {::nomarkdown}<p align="center"><img src="images/find-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/find-person-after.png"/></p> <p align="left"><p>The person list is now updated with persons whose name starts with `Alex`</p><p/>{:/} |
 
 #### 2.4.7. List person
-When you are on the home page, you may obtain the list of every person in Plannit.
+Suppose you want to see every person stored in Plannit, you can do so on the home page using the `list-person` command.
 
 Format: `list-person`
 
@@ -835,8 +844,9 @@ Here's a screenshot of Plannit before and after executing the command:
 With navigation functionalities, you now have the ability to navigate between different modules in Plannit!
 
 #### 2.5.1. Navigate between modules
-You may navigate between modules to view tasks and contacts associated with a particular
-module using the `goto` command.
+Suppose you want to focus on a single module, you can do so using the `goto` command.
+
+This gives you a clear view of the tasks, links, and contacts associated with a particular module.
 
 Format: `goto MODULE_CODE`
 * You should provide a module code of an existing module in Plannit.
@@ -870,7 +880,8 @@ For Macbook user: If tasks are not shown, double-click on the module to open it!
 </div>
 
 #### 2.5.2. Navigate to home
-An overview of the modules and persons in Plannit is provided on the home page.
+Suppose you want to have an overview of all modules and contacts in Plannit,
+you can do so using the `home` command.
 
 You may navigate to the home page using the `home` command.
 
