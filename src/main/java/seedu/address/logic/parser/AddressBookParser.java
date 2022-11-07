@@ -77,7 +77,8 @@ public class AddressBookParser {
         defaultMapper.put(ClearCommand.COMMAND_WORD, k -> new ClearCommand());
         defaultMapper.put(ChangeTeamCommand.COMMAND_WORD, k -> new ChangeTeamCommandParser().parse(k));
         defaultMapper.put(TaskCommand.COMMAND_WORD, k -> new TaskCommandParser().parse(k));
-        defaultMapper.put(AddUserToTeamCommand.COMMAND_WORD, k -> new seedu.address.logic.parser.teams.AddUserToTeamCommandParser().parse(k));
+        defaultMapper.put(AddUserToTeamCommand.COMMAND_WORD, k ->
+                new seedu.address.logic.parser.teams.AddUserToTeamCommandParser().parse(k));
         defaultMapper.put(TeamCommand.COMMAND_WORD, k -> new TeamCommandParser().parse(k));
         defaultMapper.put(CheckTaskCompleteCommand.COMMAND_WORD, k -> new CheckTaskCompleteCommandParser().parse(k));
         defaultMapper.put(ContainsAttributeCommand.COMMAND_WORD, k -> new ContainsAttributeCommandParser().parse(k));
