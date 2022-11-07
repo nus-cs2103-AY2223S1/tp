@@ -11,9 +11,9 @@ and track client offers and listings.
 Given below are my contributions to the project.
 
 * **New Feature**: Added ability to add, delete, edit and find clients.
-  * What it does: allows the user to add new clients to the address book, edit their information, find the client and 
+  * What it does: allows the user to add new clients to the address book, edit their information, find the client and
 delete the client if they want to.
-   * Justification: This feature improves the product significantly because as a real estate agent, they need to manage 
+   * Justification: This feature improves the product significantly because as a real estate agent, they need to manage
 their clients and allows them to freely manipulate their clients information.
    * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. As the Person class was too generic, having a Client class would be more specific and
 future commands would make use of the Client class instead.
@@ -31,12 +31,10 @@ future commands would make use of the Client class instead.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `addC`, `editC`, `deleteC` and `findC` 
+    * Added documentation for the features `addC`, `editC`, `deleteC` and `findC`
   * Developer Guide:
     * Added implementation details of the `delete` feature.
 
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [\#55](), [\#60](), [\#86]()
-
-   

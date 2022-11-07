@@ -23,7 +23,7 @@
     * Added `compareTo` to `Client`, `Listing`, `Meeting` and `Offer` classes so
     `UniqueClientList`, `UniqueListingList`, `UniqueMeetingList` and `UniqueOfferList` can
     sort the list everytime a new entry is added. ([#60](https://github.com/AY2223S1-CS2103T-W15-2/tp/pull/60), [#84](https://github.com/AY2223S1-CS2103T-W15-2/tp/pull/84))
-  
+
 * New Feature: Cascading-delete mechanism for lists. ([#89](https://github.com/AY2223S1-CS2103T-W15-2/tp/pull/89))
   * What it does:
     * Deleting entries that have related entries from other lists will have a cascading effect.
@@ -71,9 +71,9 @@
     * AddListingCommandTest
   * Offer-Related
     * JsonAdaptedOfferTest
-    
+
 **Review/mentoring contributions:**
-* Merging and Review PRs 
+* Merging and Review PRs
 * Discussion providing feedback to teammates on implementation of app architecture.
 
 **Contributions beyond the project team:**
