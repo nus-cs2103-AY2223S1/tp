@@ -3,26 +3,26 @@ layout: page
 title: Developer Guide
 ---
 
-* Table of Contents
-{:toc}
-
 ## **Introduction**
 
 Cobb is a JavaFX application that helps property agents manage their database of buyers and properties using a command-line interface.
 
-### **Purpose**
+### Purpose of Guide
 
-This guide is primarily targeted towards developers looking to understand or extend the functionalities of Cobb, 
+This guide is primarily targeted towards developers looking to understand or extend the functionalities of Cobb,
 and software testers looking to test Cobb's features. You are also welcome to read this if you understand UML diagrams
 and have a general understanding of how a software application works under the hood.
 
-### **Scope**
+### Scope of Guide
 
-This guide first gives a high-level architecture overview of Cobb, before explaining the main components that make up 
+This guide first gives a high-level architecture overview of Cobb, before explaining the main components that make up
 the application. It then explains some notable features and the design considerations behind their implementation. To
-better understand what the application does from the user's standpoint, you might want to dive into the 
-[Use cases](#Use cases) section first, or simply run the application and try it for yourself before reading the rest 
+better understand what the application does from the user's standpoint, you might want to dive into the
+[Use cases](#Use cases) section first, or simply run the application and try it for yourself before reading the rest
 of the guide.
+
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
@@ -30,8 +30,8 @@ of the guide.
 Based off on [AddressBook-Level3](https://github.com/se-edu/addressbook-level3). <br>
 Libraries used: [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [JavaFX](https://openjfx.io),
 [PlantUML](https://plantuml.com).
---------------------------------------------------------------------------------------------------------------------
 
+--------------------------------------------------------------------------------------------------------------------
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -98,10 +98,9 @@ The sections below give more details of each component.
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `BuyerListPanel`, `PropertyListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-F12-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
-
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
@@ -121,7 +120,7 @@ How the `Logic` component works:
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddBuyerCommand`) 
 which is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a buyer).
-4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletebuyer 1")` 
 API call.
@@ -147,7 +146,7 @@ as a `Command` object.
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="950" />
+<img src="images/ModelClassDiagram.png" width="1000" />
 
 The `Model` component,
 
@@ -166,8 +165,7 @@ should make sense on their own without depending on other components)
 model is given below. A generic Cobb class is created as the parent for BuyerBook and PropertyBook since the two 
 children classes have a lot of methods with identical purposes.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="850" />
-
+<img src="images/BetterModelClassDiagram.png" width="1000" />
 </div>
 
 
@@ -188,17 +186,13 @@ that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 ### Navigate previous commands with arrow keys
 
@@ -221,7 +215,7 @@ exists in the history
 
 These methods are called by `CommandBox#handleCommandEntered()` and `CommandBox#handleKeyReleased(KeyEvent e)`.
 
-Here is the UML diagram for `CommandRetriever`.
+Here is the class diagram for `CommandRetriever`.
 
 ![CommandRetrieverClassDiagram](images/CommandRetrieverClassDiagram.png)
 
@@ -238,7 +232,7 @@ A sequence diagram is also provided below.
 Step 1. The user launches the application for the first time. `commandHistory` is initialised as an empty
 `ArrayList<String>`, and index is initialised as 0.
 
-Step 2. The user executes a command, `listbuyers` by pressing the Enter key. `CommandBox#handleCommand` is fired,
+Step 2. The user executes a command, `listbuyers` by pressing the Enter key. `CommandBox#handleCommand()` is fired,
 getting the text from the text field. Since it is a valid command, it is executed successfully. `listbuyers` is added
 to the `commandHistory` list, and index is set to `commandHistory.size()`.
 
@@ -249,10 +243,10 @@ Step 4. The user presses and releases the Up arrow. `CommandBox#handleKeyRelease
 to display the `(index - 1)`th element in `commmandHistory`. Because the current command is one that has not been
 executed, it is saved in the field `currentCommand`.
 
-Step 5. The user presses and releases the Up arrow again. `CommandBox#handleKeyReleased` is fired, but since there are
+Step 5. The user presses and releases the Up arrow again. `CommandBox#handleKeyReleased()` is fired, but since there are
 no more previous commands, nothing happens.
 
-Step 6. The user presses and releases the Down arrow. `CommandBox#handleKeyReleased` is fired. Since this is the last
+Step 6. The user presses and releases the Down arrow. `CommandBox#handleKeyReleased()` is fired. Since this is the last
 element in `commandHistory`, the text field is set to display the string `currentCommand`. This would be the user's
 unexecuted command from Step 3.
 
@@ -284,11 +278,11 @@ list to be displayed correctly on the user's screen.
         * The relative index of an entry will change depending on the current structure of the `ObservableList`. This 
           means that a property that has index `1` might not have the same index after the property list is filtered.
 
-* **Alternative 2**: Entries in a list are indexed by an internal `EntryID` parameter that is automatically generated 
+* **Alternative 2**: Entries in a list are indexed by an internal fixed `uuid` parameter that is automatically generated 
   upon its creation.
     * Pros:
         * Users will still be able to identify the index of the entry by first looking for the entry in the list, and then
-          looking at the value of its `EntryID` parameter.
+          looking at the value of its `uuid` parameter.
         * The index of the entry in the list will not change if the structure of the list is changed, e.g. through filtering
           or sorting operations.
     * Cons:
@@ -297,10 +291,10 @@ list to be displayed correctly on the user's screen.
         * Users might be able to execute commands on entries in the list that are not currently visible, which might lead
           to confusion.
 
-### Internal implementations of Buyers and Properties
+### Internal implementations of Buyer and Property
 
 Cobb allows functionality that performs operations on two distinct types of entities stored in the database: Potential property
-buyers, as well as properties that are for sale. To allow for this functionality, two classes were created that represented each type
+buyers, as well as properties that are for sale. To allow for this functionality, two classes were created to represent each type
 of entity: `Buyer` and `Property`, respectively.
 
 The structure of a `Buyer` object can be viewed in the class diagram below.
@@ -308,27 +302,27 @@ The structure of a `Buyer` object can be viewed in the class diagram below.
 ![BuyerClassDiagram](images/BuyerClassDiagram.png)
 
 From the diagram, it can be seen that a `Buyer` object consists of the following attributes:
-- A `Name`, representing the name of the buyer.
-- A `Phone`, representing the phone number of the buyer.
-- An `Address`, representing the address of the buyer.
-- An `Email`, representing the email address of the buyer.
-- An `entryTime`, representing the creation time of the buyer (created and accessed internally).
-- A `Priority`, representing the priority of the buyer - High, Normal or Low.
-- A `PriceRange`, representing the price range of properties that a buyer is willing to consider.
-- A `Characteristics`, representing the characteristics of a property that a buyer is looking for.
+- `name`, representing the name of the buyer.
+- `phone`, representing the phone number of the buyer.
+- `address`, representing the address of the buyer.
+- `email`, representing the email address of the buyer.
+- `priority`, representing the priority of the buyer - High, Normal or Low.
+- `priceRange`, representing the price range of properties that a buyer is willing to consider.
+- `characteristics`, representing the characteristics of a property that a buyer is looking for.
+- `entryTime`, representing the creation time of the buyer (created and accessed internally).
 
 On the other hand, the structure of a `Property` object can be viewed in the class diagram below.
 
 ![PropertyClassDiagram](images/PropertyClassDiagramNew.png)
 
 From the diagram, it can be seen that a `Property` object consists of the following attributes:
-- A `PropertyName`, representing the name of the property.
-- An `Address`, representing the address of the property.
-- A `Description`, representing a short description of the property.
-- An `Owner`, representing the Owner of the property. An owner has an `ownerName` and an `ownerPhone`.
-- A `propertyEntryTime`, representing the creation time of the property (created and accessed internally).
-- A `Price`, representing the price of the property.
-- A `Characteristics`, representing the characteristics that a property possesses.
+- `propertyName`, representing the name of the property.
+- `address`, representing the address of the property.
+- `description`, representing a short description of the property.
+- `owner`, representing the Owner of the property. An owner has an `ownerName` and an `ownerPhone`.
+- `price`, representing the price of the property.
+- `characteristics`, representing the characteristics that a property possesses.
+- `propertyEntryTime`, representing the creation time of the property (created and accessed internally).
 
 #### Design Considerations
 
@@ -351,15 +345,13 @@ From the diagram, it can be seen that a `Property` object consists of the follow
 * **Alternative 2**: All individual attributes are stored directly in the `Property` or `Buyer` classes, with all related
   functionality also implemented within them. This would result in `Buyer` and `Property` objects similar to that in the 
   UML diagram below.
+  ![Alternative Property and Buyer implementation](images/AlternativeBuyerAndProperty.png)
   * Pros:
     * No extra classes are required, as all attributes are stored directly in the component classes.
     * All functionality is executed by the singular component class, so there is no confusion.
   * Cons:
     * Very bloated component classes with a lot of functionality.
     * Difficult to abstract and test each functionality of the class separately.
-
-
-![Alternative Property and Buyer implementation](images/AlternativeBuyerAndProperty.png)
 
 ### Creating a buyer: `addbuyer`
 
@@ -391,7 +383,7 @@ Note that the following objects are created by default:
 
 The `Optional<Characteristics>` object has been omitted from the object diagram for brevity.
 
-#### Design considerations:
+#### Design Considerations
 The buyer list should not allow for creation of duplicate buyers. This means that some condition(s) defining equality
 between two separate `Buyer` objects should be specified.
 
@@ -413,7 +405,7 @@ The activity diagram for the creation of a buyer can be seen below.
 
 The structure for executing an `addprop` command follows the flow as mentioned in the "Logic component" section of this guide.
 
-The `Property` class represents a property with property-specific fields. `Price` and `Characteristics` denote the price and feature of the property respectively.
+The `Property` class represents a property with property-specific fields. `Price` and `Characteristics` classes denote the price and feature of the property respectively.
 
 The `price` field is mandatory while the `characteristics` field is optional. When the user chooses not to indicate a property's characteristics, the `characteristics` field of a property may be null. Hence, it has been implemented using `Optional<T>`.
 When the user creates a property, the entry time is also automatically stored as an `LocalDateTime`.
@@ -423,19 +415,20 @@ This is the class diagram of a `Property`.
 ![PropertyClassDiagram](images/PropertyClassDiagramNew.png)
 
 Following the execution of this sample `addprop` command:
-`addprop -n Peak Residences -a 333 Thompson Road -p 1000000 -d long property description -owner Bob -ph 91234567`, the following
+`addprop -n Peak Residences -a 333 Thompson Road -p 1000000 -d long property description -o Bob -ph 91234567`, the following
 object diagram represents the internal state of the newly created `Property`.
 
 ![PropertyObjectDiagram](images/AddPropertyObjectDiagram-Final_state.png)
 
 Note that the following objects are created by default:
 1. A new `LocalDateTime` object.
-2. A new `Optional<Characteristics>` object containing a null pointer, as no characteristics flag was specified in the command.
+2. A new `Optional<Characteristics>` object containing a null pointer, if no `-c` flag was specified in the command.
 
+<div markdown="span" class="alert alert-primary">:exclamation: **Note:**
 The `Optional<Characteristics>` object has been omitted form the object diagram for brevity.
+</div>
 
-
-#### Design considerations:
+#### Design Considerations
 The property list should not allow for creation of duplicate properties. This means that some condition(s) defining equality
 between two separate `Property` objects should be specified.
 
@@ -466,7 +459,6 @@ Both commands allow the user to change any of the fields of a buyer or property.
 When the edit command is inputted, the `EditBuyerCommandParser` and `EditPropertyCommandParser` classes are used to parse the user input and create the respective `EditBuyerCommand` and `EditPropertyCommand` objects.
 When these created command objects are executed by the `LogicManager`, the `EditBuyerCommand#execute(Model model)` or `EditPropertyCommand#execute(Model model)` methods are called. These methods will edit the buyer or property in the model, and return a `CommandResult` object.
 
-
 <div markdown="span" class="alert alert-primary">:exclamation: **Note:**
 To be more concise, we will be referring to both buyers and properties as entities in this section from here onwards.
 </div>
@@ -478,7 +470,7 @@ The new buyer or property is then added into the model, replacing the old one. T
 The following sequence diagram shows how the `EditBuyerCommand` is executed.
 ![EditBuyerSequenceDiagram](images/EditSequenceDiagram.png)
 
-#### Design considerations
+#### Design Considerations
 **Aspect: How the edit commands should relate to each other:**
 
 * **Alternative 1 (current choice):** `EditBuyerCommand` and `EditPropertyCommand` are separate, and both inherit from the `Command` class.
@@ -520,10 +512,9 @@ This is the class diagram showing the full `Property` class diagram, with the `O
 The `Owner` class enacts the Composition relationship, as the `Property` class contains the `Owner` object. Hence, if the property is deleted, it's associated owner will also be deleted.
 The tradeoffs for this approach is examined below:
 
-#### Design considerations:
+#### Design Considerations
 
 **Aspect: How the owner class associates with the property class**
-
 
 * **Alternative 1 (current choice):** Owner class is coupled together with the property class.
     * Pros:
@@ -576,9 +567,8 @@ Based on command parameters passed in by the user, these predicates are construc
 `Predicate`, which is then used to filter the `ObservableArrayList` directly. More specifics regarding concatenation behaviour
 can be found in the [filter-specific design considerations](#filter-specific-design-considerations) section located below.
 
-The UML diagram below represents the overall structure of the predicates for `Buyers` and `Properties`.
-
-![FilterPredicatesClassDiagram](images/FilterPredicatesClassDiagram.png)
+The class diagram below represents the overall structure of the predicates for `Buyers` and `Properties`. <br>
+<img src="images/FilterPredicatesClassDiagram.png" width="1000" />
 
 #### Filter-specific design considerations
 1. Filtering `Properties` by their prices takes in a `priceRange` instead of just a `Price` as it makes more sense for
@@ -605,32 +595,32 @@ manipulate the list based on their needs.
 A `Comparator` is used to sort the `ObservableList`. Different comparators with different conditions are used to sort the
 list by different criteria. The following are the `Comparators` used to allow for the corresponding sorting functions:
 
-`Buyer`: `BuyerComparator`
+**`Buyer`: `BuyerComparator`**
 1. `BuyerNameComparator`: sort by buyer's name
 2. `PriceRangeComparator`: sort by buyer's price range
 3. `PriorityComparator`: sort by buyer's priority
 
-`Property`: `PropertyComparator`
-4. `PropertyNameComparator`: sort by property's name
-5. `PriceComparator`: sort by property's price
-Both:
-6. `TimeComparator`: sort by entry's time of creation
+**`Property`: `PropertyComparator`**
+1. `PropertyNameComparator`: sort by property's name
+2. `PriceComparator`: sort by property's price <br>
 
-A `BuyerComparator` compares two `Buyer`s by using the `Comparator` stored in it on the corresponding `Buyer` fields.
+**Both:**
+1. `TimeComparator`: sort by entry's time of creation
+
+A `BuyerComparator` compares two `Buyer` entities by using the `Comparator` stored in it on the corresponding `Buyer` fields.
 For example, if a `BuyerComparator` contains a `BuyerNameComparator`, the two `Buyer`s are compared by their `Name`s using the `BuyerNameComparator`.
 As we allow sorting only by one criterion at a time, a `BuyerComparator` will only contain one field `Comparator`. 
 
 The UML diagrams below represent the overall structure of the `Comparator`s used.
 
-![BuyerComparatorsClassDiagram](images/SortBuyerComparatorsClassDiagram.png)
+<img src="images/SortPropComparatorsClassDiagram.png" width="1000" height="300"/>
+<img src="images/SortPropComparatorsClassDiagram.png" width="1000" height="300"/>
 
-![PropertyComparatorsClassDiagram](images/SortPropComparatorsClassDiagram.png)
-
-Below is a Seqeunce Diagram showing how a `sortbuyer -n ASC` command is executed through the model to modify the original `ObservableList`.
+Below is a Sequence Diagram showing how a `sortbuyer -n ASC` command is executed through the model to modify the original `ObservableList`.
 
 ![SortBuyersSequenceDiagram](images/SortSequenceDiagram.png)
 
-#### Design Considerations:
+#### Design Considerations
 Similar to the `FilteredList` abstraction provided by JavaFX, we considered using a `SortedList` to present the list in a
 sorted version without modifying the underlying data structure `ObservableList`. This is
 to preserve the chronological order in which users enter the entries so that it can still be displayed with the `list` command.
@@ -679,9 +669,9 @@ contains both a `PriceRange` and `Characteristics`.
 We see how `MatchBuyerCommand` only works to create a combined predicate of `PriceRange` and `Characteristic`, which is 
 then passed to the constructor of `FilterPropertiesCommand` and executed.
 
-#### Design considerations:
+#### Design Considerations
 
-`Buyer` and `Property` have many different fields, but there were only a few common fields between them. Both classes
+`Buyer` and `Property` have many fields, but there were only a few common fields between them. Both classes
 contain `Characteristics`. `Property` contains `Price`, which inherits from `PriceRange` that `Buyer` contains. Thus,
 it makes sense that only these fields are used in the match commands, since it would not be possible to filter the list
 by a field that is not present in a matching object.
@@ -708,19 +698,18 @@ to occur would likely give the user more matches that were irrelevant instead of
 ### Product scope
 
 **Target user profile**:
-
 * property agent
-* needs to manage a significant number of buyers, sellers and properties concurrently
-* often overwhelmed by a disorganised and inefficient database
+* needs to manage a significant number of buyers and properties concurrently
+* often overwhelmed by a disorganised information
 * wants to keep track of all information neatly categorised in one place
 * takes too long to manually go through each property to find one that matches a buyer's requirements
-* prefers desktop apps over other types
 * can type fast and prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: increases efficiency and convenience by allowing quick text-based inputs,
-use of commands to quickly execute functionalities as compared to buttons in the UI on desktop applications, 
-automation of matching between suitable properties and buyers
+**Value proposition**: <br>
+Improves efficiency and convenience by allowing quick text-based inputs --
+use of commands to quickly execute functionalities such as adding, deleting, and filtering entries. Coupled with the
+automation of matching between suitable properties and buyers.
 
 ### User stories
 
@@ -751,6 +740,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User chooses to add a new buyer.
 2. User enters the details of the buyer.
 3. User executes add command.
+4. Cobb adds the buyer and displays updated list of buyers.
 
 Use case ends.
 
@@ -758,7 +748,6 @@ Use case ends.
 * 3a. The buyer already exists.<br>
   3a1. Cobb shows an error message.<br>
   Use case ends.
-
 
 * 3b. User provides incorrectly formatted information.<br>
   3b1. Cobb shows an error message.<br>
@@ -770,8 +759,8 @@ Use case ends.
 
 1. User chooses to add a new property.
 2. User enters the details of the property.
-3. If available, user enters the details of the owner of the property.
-4. User executes add command.
+3. User executes add command.
+4. Cobb adds the property and displays updated list of properties.
 
 Use case ends.
 
@@ -779,7 +768,6 @@ Use case ends.
 * 4a. The property already exists.<br>
   4a1. Cobb shows an error message.<br>
   Use case ends.
-
 
 * 4b. User provides incorrectly formatted information.<br>
   4b1. Cobb shows an error message. <br>
@@ -791,37 +779,48 @@ Use case ends.
 
 1. User chooses to edit an existing buyer.
 2. User finds buyer they want to edit.
-3. User executes update command with relevant information to update.
+3. User executes edit command with relevant information to update.
+4. Cobb edits the buyer and displays updated list of buyers.
 
 Use case ends.
 
 **Extensions**
-* 3a. User provides incorrect information to update.<br>
-  3a1. Cobb shows an error message.<br>
-  Use case ends.
-
+* 2a. The property does not exist.
+    * 2a1. Cobb shows an error message.
+    * Use case ends.
+* 3a. The new details cause the property to be a duplicate of another property.
+    * 3a1. Cobb shows an error message.
+    * Use case ends.
+* 3b. The new details are the same as previous details.
+    * 3b1. Property remains the same.
+    * Use case ends.
+* 3c. The new details are invalid.
+    * 3c1. Cobb shows an error message.
+    * Use case ends
+  
 ### Use case: Edit a property
 
 **MSS:**
 
 1. User chooses to edit an existing property.
-2. User enters the details of the property to be edited.
-3. Property is successfully edited with the new details.
+2. User finds property they want to edit.
+3. User executes edit command with relevant information to update. 
+4. Cobb edits the property and displays updated list of properties.
 
 Use case ends.
 
 **Extensions**
-* 1a. The property does not exist.
-    * 1a1. Cobb shows an error message.
-    * Use case ends.
-* 2a. The new details cause the property to be a duplicate of another property.
+* 2a. The property does not exist.
     * 2a1. Cobb shows an error message.
     * Use case ends.
-* 2b. The new details are the same as previous details.
-    * 2b1. Property remains the same.
+* 3a. The new details cause the property to be a duplicate of another property.
+    * 3a1. Cobb shows an error message.
     * Use case ends.
-* 2c. The new details are invalid.
-    * 2c1. Cobb shows an error message.
+* 3b. The new details are the same as previous details.
+    * 3b1. Property remains the same.
+    * Use case ends.
+* 3c. The new details are invalid.
+    * 3c1. Cobb shows an error message.
     * Use case ends
 
 ### Use case: List properties
@@ -848,9 +847,10 @@ Use case ends.
 
 **MSS:**
 
-1. User <u>lists properties [(Use case: List properties)](#use-case-list-properties)</u>.
+1. User <u>lists properties</u> [(Use case: List properties)](#use-case-list-properties).
 2. User finds properties that are no longer relevant (e.g. already sold).
 3. User executes delete command on these properties.
+4. Cobb deletes the property and displays updated list of properties.
 
 Use case ends.
 
@@ -858,9 +858,12 @@ Use case ends.
 
 **MSS:**
 
-1. User <u>lists buyers [(Use case: List buyers)](#use-case-list-buyers)</u>.
-2. User finds buyers that are no longer relevant (e.g. already bought a house).
+1. User <u>lists buyers</u> [(Use case: List buyers)](#use-case-list-buyers).
+2. User finds the buyer that is no longer relevant (e.g. already bought a house).
 3. User executes delete command on these buyers.
+4. Cobb deletes the buyer and displays updated list of buyers.
+
+Use case ends.
 
 ### Use case: Sort properties
 
@@ -887,8 +890,9 @@ Use case ends.
 **Preconditions**: Prospective buyer has been added.
 
 **MSS:**
-1. User <u>lists all buyers [(Use case: List buyers)](#use-case-list-buyers)</u>.
+1. User <u>lists all buyers</u> [(Use case: List buyers)](#use-case-list-buyers).
 2. User executes match command on desired buyer.
+3. Cobb displays the matched list of properties.
 
 Use case ends.
 
@@ -896,8 +900,11 @@ Use case ends.
 
 **MSS:**
 1. User gets a new buyer.
-2. User <u>adds the buyer [(Use case: Add buyer)](#use-case-add-a-buyer)</u>
-3. User tries to <u>match the buyer to a property [(Use case: Match buyer to property)](#use-case-match-buyer-to-properties)</u>.
+2. User <u>adds the buyer</u> [(Use case: Add buyer)](#use-case-add-a-buyer).
+3. User tries to <u>match the buyer to suitable properties</u> [(Use case: Match buyer to property)](#use-case-match-buyer-to-properties).
+4. Cobb displays the matched list of properties.
+
+Use case ends.
 
 **Extensions:**
 * 2a. Buyer already exists.<br>
@@ -909,11 +916,11 @@ Use case ends.
 **Preconditions**: Property exists in database.
 
 **MSS:**
-1. User <u>lists all properties [(Use case: List properties)](#use-case-list-properties)</u>.
+1. User <u>lists all properties</u> [(Use case: List properties)](#use-case-list-properties).
 2. User executes match command on desired property.
+3. Cobb displays the matched list of buyers.
 
 Use case ends.
-
 
 ### Non-Functional Requirements
 
@@ -963,13 +970,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 ### Adding a buyer
@@ -983,11 +990,11 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a buyer
 
-1. Test case: `delete 1`<br>
+1. Test case: `deletebuyer 1`<br>
    Expected: First buyer is deleted from the list. "Deleted Buyer" message should be displayed on the screen
    with details of the deleted contact.
 
-2. Test case: `delete 0`<br>
+2. Test case: `deletebuyer 0`<br>
    Expected: No buyer is deleted. Error details shown in the status message. 
 
 3. Other incorrect delete commands to try: `delete`, `delete x`, `...`, `delete test` (where x is larger than the list size)<br>
@@ -1038,7 +1045,7 @@ testers are expected to do more *exploratory* testing.
    Expected: Buyer list should return to its original state containing all buyers. "Listed all buyers" message should be displayed
    on the screen.
 
-3. Test case: `listbuyers 1`, `listbuyers x`
+2. Test case: `listbuyers 1`, `listbuyers x`
    Expected: Same behaviour as above.
 
 ### Matching buyers to properties
@@ -1063,4 +1070,4 @@ testers are expected to do more *exploratory* testing.
    command and a correct example.
 
 3. Test case: `sortbuyers -n`, `sortbuyers -n oops`, `sortbuyers -n 1`
-   Expected: "Order should be ASC or DESC" error mesage should be displayed.
+   Expected: "Order should be ASC or DESC" error message should be displayed.

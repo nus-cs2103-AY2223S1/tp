@@ -13,8 +13,8 @@ class Buyer {
 }
 
 class PriceRange {
-+Price low
-+Price high
+-Price low
+-Price high
 
 + boolean isValidPriceRange(String test)
 + boolean isWithinPriceRange(Price p)

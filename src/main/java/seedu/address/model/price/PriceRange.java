@@ -23,9 +23,9 @@ public class PriceRange {
 
     public static final PriceRange RESET_PRICE_RANGE = new PriceRange();
 
-    public final Price low;
-    public final Price high;
     public final boolean isReset;
+    private final Price low;
+    private final Price high;
 
     /**
      * Constructs a {@code PriceRange}.
