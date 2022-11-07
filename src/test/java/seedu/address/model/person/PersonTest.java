@@ -109,15 +109,15 @@ public class PersonTest {
     @Test
     void addPastAppointment_duplicateAdd_failure() {
         String[] pastAppointment = {"02-12-2000", "panadol", "migraine"};
-        Person Alice = new PersonBuilder(ALICE).withPastAppointment(pastAppointment).build();
-        Alice.addPastAppointment(SampleDataUtil.getPastAppointment(pastAppointment));
-        assertEquals(Alice.getPastAppointmentCount(), 1);
+        Person alice = new PersonBuilder(ALICE).withPastAppointment(pastAppointment).build();
+        alice.addPastAppointment(SampleDataUtil.getPastAppointment(pastAppointment));
+        assertEquals(alice.getPastAppointmentCount(), 1);
     }
 
     @Test
     void deleteMostRecentPastAppointment_noPastAppointments_failure() {
-        Person Alice = new PersonBuilder(ALICE).build();
-        Alice.deleteMostRecentPastAppointment();
-        assertEquals(Alice.getPastAppointmentCount(), 0);
+        Person alice = new PersonBuilder(ALICE).build();
+        alice.deleteMostRecentPastAppointment();
+        assertEquals(alice.getPastAppointmentCount(), 0);
     }
 }

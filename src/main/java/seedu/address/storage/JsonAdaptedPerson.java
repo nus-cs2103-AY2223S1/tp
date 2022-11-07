@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.PastAppointment;
 import seedu.address.model.appointment.UpcomingAppointment;
 import seedu.address.model.person.Email;
@@ -228,7 +227,8 @@ class JsonAdaptedPerson {
         if (upcomingAppointment == null) {
             modelUpcomingAppointment = new UpcomingAppointment((LocalDate) null);
         } else if (!UpcomingAppointment.isValidDate(upcomingAppointment)) {
-            throw new IllegalValueException(Appointment.MESSAGE_CONSTRAINTS);
+            // remove upcoming appointment if date has passed
+            modelUpcomingAppointment = new UpcomingAppointment((LocalDate) null);
         } else {
             modelUpcomingAppointment = new UpcomingAppointment(upcomingAppointment);
         }

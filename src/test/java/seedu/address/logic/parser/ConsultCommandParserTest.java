@@ -23,7 +23,7 @@ class ConsultCommandParserTest {
 
     private ConsultCommandParser parser = new ConsultCommandParser();
     private Index firstIndex = TypicalIndexes.INDEX_FIRST_PERSON;
-    private String invalid_message = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ConsultCommand.MESSAGE_USAGE);
+    private String invalidMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ConsultCommand.MESSAGE_USAGE);
 
     @Test
     public void parse_null_throwsNullPointerException() {
@@ -32,14 +32,14 @@ class ConsultCommandParserTest {
 
     @Test
     public void parse_emptyString_throwsParseException() {
-        assertParseFailure(parser, "", invalid_message);
+        assertParseFailure(parser, "", invalidMessage);
     }
 
     @Test
     public void parse_invalidIndex_throwsParseException() {
         String diagnosis = "fever";
         String toParse = firstIndex.getZeroBased() + " " + CliSyntax.PREFIX_DIAGNOSIS + diagnosis;
-        assertParseFailure(parser, toParse, invalid_message);
+        assertParseFailure(parser, toParse, invalidMessage);
     }
 
     @Test
