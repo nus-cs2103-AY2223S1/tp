@@ -25,18 +25,6 @@ to use and what it does for all the features available in myStudent. If you don'
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: Notes about some keywords in this user guide:
-
-* **Entry**: an entry is a **student**, a **tutor** or a **class**.
-
-* **Displayed list**: it refers to the current list that is displayed. 
-There are three possible list: the **student list**, the **tutor list** and the **class list**. 
-Only one of the three will be displayed at one time, and this list is referred to as the **displayed list**. 
-
-</div>
-
-<div markdown="block" class="alert alert-info">
-
 :information_source: Notes about the command format in this user guide:
 
 * **Format** appears in each command section. It refers to the format of the inputs that you need to type into the command box to execute the commands.
@@ -68,9 +56,22 @@ Only one of the three will be displayed at one time, and this list is referred t
 
 </div>
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: Notes about some keywords in this user guide:
+
+* **Entry**: an entry is a **student**, a **tutor** or a **class**.
+
+* **Displayed list**: it refers to the current list that is displayed. 
+There are three possible list: the **student list**, the **tutor list** and the **class list**. 
+Only one of the three will be displayed at one time, and this list is referred to as the **displayed list**. 
+
+</div>
+
 Below is a quick guide on how to get started.
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Quick Start
 1. Ensure you have Java 11 or above installed in your Computer.
@@ -137,6 +138,7 @@ Some applicable commands that helps to modify your data are: [assign](#assign-cl
 </div>
 
 ---
+<div style="page-break-after: always;"></div>
 
 ## Layout
 
@@ -224,6 +226,8 @@ For more information regarding `Export`, you can click [here](#exporting-address
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## Features
 
 ### Viewing help: `help`
@@ -256,6 +260,8 @@ Examples:
 Plays a neat animation before exiting myStudent.
 
 Format: `exit`
+
+<div style="page-break-after: always;"></div>
 
 ## Adding and Removing Entries
 
@@ -428,6 +434,8 @@ Examples:
 <img src="images/deleteCommand_after.png"/>
 
 </p>
+
+<div style="page-break-after: always;"></div>
 
 ## Manipulation of data
 
@@ -692,6 +700,8 @@ Examples:
 
 </p>
 
+<div style="page-break-after: always;"></div>
+
 ## Presentation and Organisation of data
 
 ### Showing the details of a person: `show`
@@ -910,6 +920,8 @@ Note that the **displayed list** is the **tutor list**, so `find i/NUS q/Bachelo
 </p>
 
 Note that the **displayed list** is the **class list**, so `find d/monday #/tag` returns all classes conducted on Monday and have the tag “hard”.
+
+<div style="page-break-after: always;"></div>
 
 ## Advanced
 
