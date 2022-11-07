@@ -7,7 +7,7 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## Acknowledgements
 
 * Based on the AddressBook-Level 3 project created by the [SE-EDU initiative](https://se-education.org/)
 * Libraries Used: [JavaFX](https://openjfx.io/),  [JUnit5](https://github.com/junit-team/junit5), [Jackson](https://github.com/FasterXML/jackson)
@@ -15,13 +15,13 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## Setting up, getting started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Design**
+# Design
 
 <div markdown="span" class="alert alert-primary">
 
@@ -162,7 +162,7 @@ Classes used by multiple components are in the `longtimenosee.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Feature Implementation**
+# Feature Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -445,7 +445,7 @@ Alternative 1 was preferred over alternative 2 due to the following reasons:
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Documentation, logging, testing, configuration, dev-ops**
+# Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -459,9 +459,9 @@ Alternative 1 was preferred over alternative 2 due to the following reasons:
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Appendix**
+# Appendix
 
-## **Requirements**
+## Requirements
 
 ### Product scope
 
@@ -847,7 +847,7 @@ Use case ends
 * **Risk Appetite**: Level of risk a client is willing to accept or tolerate when making financial decisions
 
 
-## **Instructions for manual testing**
+## Instructions for manual testing
 
 Given below are instructions to test the app manually.
 
