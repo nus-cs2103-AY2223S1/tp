@@ -13,12 +13,12 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.buyer.Name;
+import seedu.address.model.characteristics.Characteristics;
 import seedu.address.model.price.PriceRange;
 import seedu.address.model.property.FilterPropsByOwnerNamePredicate;
 import seedu.address.model.property.FilterPropsByPriceRangePredicate;
 import seedu.address.model.property.FilterPropsContainingAllCharacteristicsPredicate;
 import seedu.address.model.property.FilterPropsContainingAnyCharacteristicPredicate;
-import seedu.address.model.characteristics.Characteristics;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FilterProperties}.

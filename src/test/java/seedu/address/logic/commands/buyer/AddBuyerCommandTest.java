@@ -17,7 +17,6 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.buyer.AddBuyerCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.BuyerBook;
 import seedu.address.model.Model;

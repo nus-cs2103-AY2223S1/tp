@@ -4,12 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_BUYERS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.buyer.BuyerCommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalBuyers.ALICE;
-import static seedu.address.testutil.TypicalBuyers.BENSON;
-import static seedu.address.testutil.TypicalBuyers.CARL;
-import static seedu.address.testutil.TypicalBuyers.DANIEL;
-import static seedu.address.testutil.TypicalBuyers.ELLE;
-import static seedu.address.testutil.TypicalBuyers.KEYWORD_MATCHING_MEIER;
 import static seedu.address.testutil.TypicalBuyers.getTypicalBuyersBook;
 import static seedu.address.testutil.TypicalProperties.getTypicalPropertyBook;
 
