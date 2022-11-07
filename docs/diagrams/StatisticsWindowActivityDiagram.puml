@@ -1,0 +1,30 @@
+@startuml
+start
+:User makes changes to a student;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+:StatisticsCalculator counts and stores the total number of students;
+
+:StatisticsCalculator sums the total amount owed;
+
+if () then ([total amount owed > $2147483647])
+    :Store a warning message;
+else ([else])
+    :Store the actual amount owed;
+
+endif
+
+:StatisticsCalculator sums the total amount paid;
+
+if () then ([total amount paid > $2147483647])
+    :Store a warning message;
+else ([else])
+    :Store the actual amount paid;
+
+endif
+
+:Update the StatisticsDisplay;
+stop
+@enduml

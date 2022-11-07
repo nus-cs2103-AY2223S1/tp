@@ -1,10 +1,11 @@
-title: "AB-3"
+title: "Teacher's Pet"
 theme: minima
 
 header_pages:
   - UserGuide.md
   - DeveloperGuide.md
   - AboutUs.md
+  - UserGuide_CS2101.md
 
 markdown: kramdown
 

@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -12,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -29,26 +31,33 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private final String feedbackToUser =
+            "JSON file is invalid. File will not be saved until the error is corrected."
+            + "\nYou may delete the JSON file if you want a fresh restart or"
+            + " revert any changes to JSON file if you still want the data.";
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ScheduleListPanel scheduleListPanel;
+    private StatisticsDisplay statisticsDisplay;
+
 
     @FXML
     private StackPane commandBoxPlaceholder;
-
     @FXML
     private MenuItem helpMenuItem;
-
     @FXML
-    private StackPane personListPanelPlaceholder;
-
+    private StackPane studentListPanelPlaceholder;
+    @FXML
+    private StackPane scheduleListPanelPlaceholder;
     @FXML
     private StackPane resultDisplayPlaceholder;
-
     @FXML
     private StackPane statusbarPlaceholder;
+    @FXML
+    private StackPane statisticsPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -110,17 +119,25 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+
+        // replace this with getSchedule() method to be implemented
+        scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
+        scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTeachersPetFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        statisticsDisplay = new StatisticsDisplay();
+        statisticsDisplay.showStatisticsToUser(logic.getStatisticsCalculator());
+        statisticsPlaceholder.getChildren().add(statisticsDisplay.getRoot());
     }
 
     /**
@@ -163,8 +180,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    public StudentListPanel getStudentListPanel() {
+        return studentListPanel;
     }
 
     /**
@@ -172,11 +189,13 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException,
+            DataConversionException, IOException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            statisticsDisplay.showStatisticsToUser(logic.getStatisticsCalculator());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -187,10 +206,17 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | DataConversionException | IOException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    /**
+     * Displays error message to user when there is invalid format in the teachersPet json file.
+     */
+    public void displayErrorMessageInvalidJson() {
+        resultDisplay.setFeedbackToUser(feedbackToUser);
     }
 }

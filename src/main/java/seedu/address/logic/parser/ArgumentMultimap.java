@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -56,5 +58,23 @@ public class ArgumentMultimap {
      */
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
+    }
+
+    /**
+     * Validates whether only a single type of prefix is stored in Argument MultiMap.
+     * Checks if multiple keywords are searched for non-tag prefixes.
+     *
+     * @return true if there are 2 or more prefixes and keywords stored.
+     */
+    public boolean containsMultiplePrefix() {
+        Integer sizeOffset = argMultimap.size() - 1;
+
+        for (Prefix prefix: argMultimap.keySet()) {
+            List<String> keyWords = argMultimap.get(prefix);
+            if (keyWords.size() > 1 && prefix != PREFIX_TAG) {
+                return true;
+            }
+        }
+        return sizeOffset > 1;
     }
 }

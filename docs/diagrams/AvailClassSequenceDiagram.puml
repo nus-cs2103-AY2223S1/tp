@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TeachersPetParser" as TeachersPetParser LOGIC_COLOR
+participant ":AvailCommandParser" as AvailCommandParser LOGIC_COLOR
+participant ":AvailCommand" as AvailCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("avail 1000-1300 60")
+activate LogicManager
+
+LogicManager -> TeachersPetParser : parseCommand("avail 1000-1300 60")
+activate TeachersPetParser
+
+create AvailCommandParser
+TeachersPetParser -> AvailCommandParser
+activate AvailCommandParser
+
+AvailCommandParser --> TeachersPetParser
+deactivate AvailCommandParser
+
+TeachersPetParser -> AvailCommandParser : parse("avail 1000-1300 60")
+activate AvailCommandParser
+
+create AvailCommand
+AvailCommandParser -> AvailCommand
+activate AvailCommand
+
+AvailCommand --> AvailCommandParser : command
+deactivate AvailCommand
+
+AvailCommandParser --> TeachersPetParser : command
+deactivate AvailCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AvailCommandParser -[hidden]-> TeachersPetParser
+destroy AvailCommandParser
+
+TeachersPetParser --> LogicManager : command
+deactivate TeachersPetParser
+
+LogicManager -> AvailCommand : execute(model)
+activate AvailCommand
+
+AvailCommand -> Model : getAvailableClass
+activate Model
+
+Model --> AvailCommand : Class
+deactivate Model
+
+create CommandResult
+AvailCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AvailCommand
+deactivate CommandResult
+
+AvailCommand --> LogicManager : result
+deactivate AvailCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

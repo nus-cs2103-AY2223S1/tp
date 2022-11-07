@@ -2,35 +2,46 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.student.Student;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds and lists all students in student list whose details contain any of the argument keywords/number in a prefix.
+ * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds all students with keywords in a specific prefix. "
+            + "Prefixes supported by this search include: n/, p/, np/, e/, a/, dt/, t/. "
+            + "The matched students are displayed in a list on the left hand panel with index numbers.\n"
+            + "The search keywords which are after the prefixes (NAME in the case of n/NAME) are case-insensitive.\n"
+            + "Acceptable parameters: [n/NAME] [p/PHONE] [np/NOK_PHONE] [e/EMAIL] [a/ADDRESS] [dt/DATE] [t/TAG].\n"
+            + "Exactly one type of prefix should be used in a single find command. "
+            + "However, find by multiple tags is allowed.\n"
+            + "Example: " + COMMAND_WORD + " n/alice bob charlie\n"
+            + "Example: " + COMMAND_WORD + " t/python t/beginner";
 
-    private final NameContainsKeywordsPredicate predicate;
+    public static final String ONLY_ONE_PREFIX_MESSAGE = "You can only search with 1 prefix for "
+            + "n/, p/, np/, e/, a/, dt/, or multiple prefixes for t/.\n" + "Examples: find n/Ben, find t/Java t/Python";
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    private final Predicate<Student> predicate;
+
+    public FindCommand(Predicate<Student> predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredStudentList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
     }
 
     @Override

@@ -20,7 +20,7 @@ public class UiManager implements Ui {
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
-    private static final String ICON_APPLICATION = "/images/address_book_32.png";
+    private static final String ICON_APPLICATION = "/images/teacherpet.png";
 
     private Logic logic;
     private MainWindow mainWindow;
@@ -48,6 +48,14 @@ public class UiManager implements Ui {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
         }
+    }
+
+    /**
+     * Displays error message to user when there is invalid format in the teachersPet json file.
+     */
+    @Override
+    public void displayInvalidJsonFileMessage() {
+        mainWindow.displayErrorMessageInvalidJson();
     }
 
     private Image getImage(String imagePath) {

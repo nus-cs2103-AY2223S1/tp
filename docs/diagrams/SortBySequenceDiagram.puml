@@ -1,0 +1,57 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TeachersPetParser" as TeachersPetParser LOGIC_COLOR
+participant ":SortCommand" as SortCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":TeachersPet" as TeachersPet MODEL_COLOR
+participant "students:UniqueStudentList" as UniqueStudentList MODEL_COLOR
+end box
+[-> LogicManager : execute("sort NAME ASC")
+activate LogicManager
+
+LogicManager -> TeachersPetParser : parseCommand("sort NAME ASC")
+activate TeachersPetParser
+
+create SortCommand
+TeachersPetParser -> SortCommand
+activate SortCommand
+
+SortCommand --> TeachersPetParser : command
+deactivate SortCommand
+
+TeachersPetParser --> LogicManager : command
+deactivate TeachersPetParser
+
+LogicManager -> SortCommand : execute(model)
+activate SortCommand
+
+SortCommand -> Model : sortStudents(c:Comparator)
+activate Model
+
+Model -> TeachersPet : sortStudents(c:Comparator)
+activate TeachersPet
+
+TeachersPet -> UniqueStudentList : sortStudents(c:Comparator)
+UniqueStudentList --> TeachersPet
+deactivate UniqueStudentList
+
+TeachersPet --> Model
+deactivate TeachersPet
+
+Model --> SortCommand
+deactivate Model
+
+SortCommand --> LogicManager : result
+deactivate SortCommand
+SortCommand -[hidden]-> LogicManager : result
+destroy SortCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -1,18 +1,20 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.Person;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.student.Student;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -37,51 +39,81 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getTeachersPetFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setTeachersPetFilePath(Path teachersPetFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces teacher's pet data with the data in {@code teachersPet}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setTeachersPet(ReadOnlyTeachersPet teachersPet);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the TeachersPet */
+    ReadOnlyTeachersPet getTeachersPet();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a student with the same identity as {@code student} exists in the address book.
      */
-    boolean hasPerson(Person person);
+    boolean hasStudent(Student student);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given student.
+     * The student must exist in the address book.
      */
-    void deletePerson(Person target);
+    void deleteStudent(Student target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given student.
+     * {@code student} must not already exist in the address book.
      */
-    void addPerson(Person person);
+    void addStudent(Student student);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given student {@code target} with {@code editedStudent}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The student identity of {@code editedStudent} must not be the same as another existing student in Teacher's Pet.
      */
-    void setPerson(Person target, Person editedPerson);
-
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    void setStudent(Student target, Student editedStudent);
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Sorts the current filtered student list with the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void sortStudents(Comparator<Student> comparator);
+    /** Returns an unmodifiable view of the filtered student list */
+    ObservableList<Student> getFilteredStudentList();
+
+    /**
+     * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredStudentList(Predicate<Student> predicate);
+
+    /** Returns an unmodifiable view of the schedule list for that day*/
+    ObservableList<Student> getFilteredScheduleList();
+
+    /**
+     * Updates the filter of the filtered student list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredScheduleList(Predicate<Student> predicate);
+
+    /**
+     * Updates previous state of the address book.
+     */
+    void updateTeachersPetHistory();
+
+    /**
+     * Undo last change made to state of teacher's pet.
+     */
+    void undo() throws CommandException;
+
+    /**
+     * Deletes the latest addition in the ArrayList of Teachers Pet.
+     */
+    void deleteTeachersPetHistory();
+
 }

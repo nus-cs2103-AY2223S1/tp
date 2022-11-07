@@ -1,0 +1,36 @@
+@startuml
+start
+:User executes mark command;
+
+if () then ([valid mark command])
+
+    if () then ([index is out of range])
+        :Display invalid
+        index message;
+
+        else ([else])
+            if () then([student is already marked])
+            :Display "student has been
+           marked previously" message;
+
+            else ([else])
+               if () then ([moneyOwed + ratesPerClass > Integer.MAX_VALUE])
+               :Display owed amount
+               is too large message;
+                else ([else])
+
+
+                :Update student with new owed
+                      amount and mark status;
+
+
+        endif
+        endif
+        endif
+
+else ([else])
+    :Display unknown
+    command message;
+endif
+stop
+@enduml

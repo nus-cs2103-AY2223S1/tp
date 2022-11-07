@@ -10,11 +10,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+<fx:root minHeight="750" minWidth="1000" onCloseRequest="#handleExit" title="Teacher's Pet" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/teacherpet.png" />
   </icons>
   <scene>
     <Scene>
@@ -23,8 +23,8 @@
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+      <VBox prefHeight="258.0" prefWidth="690.0" VBox.vgrow="ALWAYS">
+        <MenuBar fx:id="menuBar" prefWidth="690.0" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
@@ -32,28 +32,42 @@
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
+        <SplitPane dividerPositions="0.5" VBox.vgrow="ALWAYS">
+          <VBox>
+            <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
+            </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
+            <StackPane fx:id="resultDisplayPlaceholder" maxHeight="125" minHeight="100" prefHeight="125" styleClass="pane-with-border" VBox.vgrow="NEVER">
+            </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
-          <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
-          </padding>
-        </StackPane>
-
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+            <VBox fx:id="studentList" minWidth="400" prefWidth="400" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+              <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+              </padding>
+              <StackPane fx:id="studentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+            </VBox>
+            <padding>
+              <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+          </VBox>
+          <VBox>
+            <VBox fx:id="scheduleList" minWidth="400" prefWidth="400" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+              <StackPane fx:id="statisticsPlaceholder" prefHeight="170.0" prefWidth="200.0" minHeight="185.0">
+                <padding>
+                  <Insets bottom="10" top="5" />
+                </padding>
+              </StackPane>
+              <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+              </padding>
+              <StackPane fx:id="scheduleListPanelPlaceholder" prefHeight="45.0" prefWidth="438.0" VBox.vgrow="ALWAYS" />
+            </VBox>
+            <padding>
+              <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+          </VBox>
+        </SplitPane>
+        <StackPane fx:id="statusbarPlaceholder" />
       </VBox>
     </Scene>
   </scene>

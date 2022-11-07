@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <HBox spacing="5" alignment="CENTER_LEFT" styleClass="schedule_box">
+        <padding>
+            <Insets top="5" right="5" bottom="5" left="15" />
+        </padding>
+        <Label text="Schedule for" styleClass="cell_title_label" />
+        <Label fx:id="classDate" text="\$classDate" styleClass="cell_title_label" />
+    </HBox>
+    <ListView fx:id="scheduleListView" VBox.vgrow="ALWAYS" />
+</VBox>

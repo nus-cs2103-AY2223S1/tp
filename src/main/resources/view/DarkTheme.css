@@ -1,6 +1,6 @@
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    background-color: black; /* Used in the default.html file */
 }
 
 .label {
@@ -93,31 +93,58 @@
     -fx-background-color: derive(#1d1d1d, 20%);
 }
 
+.list-view-schedule {
+    -fx-background-insets: 0;
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-padding: 8 0 0 0;
+}
+
 .list-cell {
-    -fx-label-padding: 0 0 0 0;
-    -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
+    /*-fx-background-radius: 20px;*/
+    /*-fx-label-padding: 0 0 0 0;*/
+    /*-fx-graphic-text-gap : 0;*/
+    -fx-label-padding: 5 5;
+    -fx-graphic-text-gap : 5;
+    -fx-padding: 5px;
+    -fx-background-radius: 15px;
+    -fx-background-insets: 5px;
+    -fx-background-color: transparent;
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    /*-fx-background-radius: 20px;*/
+    -fx-background-color: #282828;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
-}
-
-.list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    /*-fx-background-radius: 20px;*/
+    -fx-background-color: #282828;
 }
 
 .list-cell:filled:selected #cardPane {
+    /*-fx-background-radius: 20px;*/
+    /*-fx-background-color: #424d5f;*/
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+}
+
+.list-cell:filled:selected #cardPane {
+    /*-fx-border-radius: 20px;*/
     -fx-border-color: #3e7b91;
     -fx-border-width: 1;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
 }
 
 .list-cell .label {
     -fx-text-fill: white;
+}
+
+.cell_title_label {
+    -fx-font-family: "Arial";
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-alignment: "center-right";
 }
 
 .cell_big_label {
@@ -130,6 +157,13 @@
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
+}
+
+.cell_mark_label {
+    -fx-font-family: "Arial";
+    -fx-font-size: 15px;
+    -fx-text-fill: #010504;
+    -fx-alignment: "center-right";
 }
 
 .stack-pane {
@@ -154,6 +188,18 @@
 }
 
 .result-display .label {
+    -fx-text-fill: black !important;
+}
+
+.statistics-display {
+    -fx-background-color: transparent;
+    -fx-font-family: "Segoe UI Light";
+    -fx-padding: 17px;
+    -fx-font-size: 13pt;
+    -fx-text-fill: white;
+}
+
+.statistics-display .label {
     -fx-text-fill: black !important;
 }
 
@@ -307,6 +353,11 @@
     -fx-padding: 8 1 8 1;
 }
 
+.header_box {
+    -fx-padding: 10 30 10 30;
+    -fx-background-color: #181818;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
@@ -328,11 +379,16 @@
     -fx-text-fill: white;
 }
 
-#filterField, #personListPanel, #personWebpage {
+#filterField, #studentListPanel, #studentWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
 #resultDisplay .content {
+    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-radius: 0;
+}
+
+#statisticsDisplay .content {
     -fx-background-color: transparent, #383838, transparent, #383838;
     -fx-background-radius: 0;
 }

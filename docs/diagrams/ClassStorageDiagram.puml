@@ -1,0 +1,13 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class ClassStorage {
+- <u>Model</u>
+- <u>TeachersPet</u>
+- <u>HashMap<LocalDate, List<Student>></u>
+--
+- <u>initialiseClass</u>
++ <u>saveClass</u>
++ <u>refresh</u>
+}
+@enduml

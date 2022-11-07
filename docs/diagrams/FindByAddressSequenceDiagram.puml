@@ -1,0 +1,53 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant ":AddressContainsKeywordsPredicate" as AddressContainsKeywordsPredicate LOGIC_COLOR
+participant ":FindCommand" as FindCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> FindCommandParser : parse(args)
+activate FindCommandParser
+
+create AddressContainsKeywordsPredicate
+FindCommandParser -> AddressContainsKeywordsPredicate : AddressContainsKeywordsPredicate(keywords)
+activate AddressContainsKeywordsPredicate
+
+AddressContainsKeywordsPredicate --> FindCommandParser : predicate
+deactivate AddressContainsKeywordsPredicate
+
+create FindCommand
+FindCommandParser -> FindCommand : FindCommand(predicate)
+activate FindCommand
+
+FindCommand --> FindCommandParser : command
+deactivate FindCommand
+
+[<--FindCommandParser : command
+deactivate FindCommandParser
+
+[->FindCommand : execute(model)
+activate FindCommand
+
+FindCommand -> Model : updateFilteredStudentList(predicate)
+activate Model
+
+Model --> FindCommand :
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult : CommandResult(feedBackToUser)
+activate CommandResult
+
+CommandResult --> FindCommand : commandResult
+deactivate CommandResult
+
+[<--FindCommand : commandResult
+deactivate FindCommand
+@enduml

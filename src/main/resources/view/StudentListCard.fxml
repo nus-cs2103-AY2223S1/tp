@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+    </columnConstraints>
+    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+      <padding>
+        <Insets bottom="20" left="25" right="25" top="20" />
+      </padding>
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label fx:id="id" styleClass="cell_title_label">
+          <minWidth>
+            <!-- Ensures that the label text is never truncated -->
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
+        <Label fx:id="name" styleClass="cell_title_label" text="\$first" wrapText="true" >
+               <font>
+                  <Font name="Arial Bold" size="15.0" />
+               </font>
+        </Label>
+        <padding>
+          <Insets bottom="8" />
+        </padding>
+      </HBox>
+
+      <FlowPane fx:id="tags" />
+      <HBox>
+        <padding>
+          <Insets top="5" />
+        </padding>
+        <Label minWidth="20" styleClass="cell_small_label" text="Phone: " />
+        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true" />
+      </HBox>
+      <HBox>
+        <padding>
+          <Insets top="3" />
+        </padding>
+        <Label minWidth="105" styleClass="cell_small_label" text="Next of Kin Phone: " />
+        <Label fx:id="nokPhone" styleClass="cell_small_label" text="\$nokPhone" wrapText="true" />
+      </HBox>
+      <HBox>
+        <padding>
+          <Insets top="3" />
+        </padding>
+        <Label minWidth="53" styleClass="cell_small_label" text="Address: " />
+        <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" />
+      </HBox>
+      <HBox>
+        <padding>
+          <Insets top="3" />
+        </padding>
+        <Label minWidth="38" styleClass="cell_small_label" text="Email: " />
+        <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" />
+      </HBox>
+      <HBox>
+        <padding>
+          <Insets top="3" />
+        </padding>
+        <Label minWidth="55" styleClass="cell_small_label" text="Class Date: " />
+        <Label fx:id="classDetails" styleClass="cell_small_label" text="\$classDetails" wrapText="true" />
+      </HBox>
+      <HBox>
+        <padding>
+          <Insets top="3" />
+        </padding>
+        <Label minWidth="85" styleClass="cell_small_label" text="Amount owed: $" />
+        <Label fx:id="moneyOwed" styleClass="cell_small_label" text="\$moneyOwed" wrapText="true"/>
+      </HBox>
+      <HBox prefWidth="210.0">
+        <padding>
+          <Insets top="3" />
+        </padding>
+        <Label minWidth="80" styleClass="cell_small_label" text="Amount paid: $" />
+        <Label fx:id="moneyPaid" styleClass="cell_small_label" text="\$moneyPaid" wrapText="true" />
+      </HBox>
+      <HBox>
+        <padding>
+          <Insets top="3" />
+        </padding>
+        <Label minWidth="95" styleClass="cell_small_label" text="Rates per Class: $" />
+        <Label fx:id="ratesPerClass" styleClass="cell_small_label" text="\$ratesPerClass" wrapText="true" />
+      </HBox>
+      <HBox>
+        <padding>
+          <Insets top="3" />
+        </padding>
+        <Label minWidth="104" styleClass="cell_small_label" text="Additional Notes: " />
+        <Label fx:id="additionalNotes" styleClass="cell_small_label" text="\$additionalNotes" wrapText="true" />
+      </HBox>
+    </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+  </GridPane>
+</HBox>
