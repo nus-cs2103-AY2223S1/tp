@@ -22,14 +22,12 @@ FinBook is optimized for use via a Command Line Interface (CLI), which means mos
     * **New feature**: Import command
         * What it does: Allows the user to import data from a JSON or CSV file.
         * Justification: Lets the user add multiple clients at once from an external source, saving them time as they do not have to reinsert the clients one by one. It also lets the user move their data between devices easily.
-        * Highlights:
-            * Works seamlessly in conjunction with the export command. The user can import data that has been exported using the export command.
+        * Highlights: Works seamlessly in conjunction with the export command. The user can import data that has been exported using the export command.
         * Credits: Uses [OpenCSV](https://opencsv.sourceforge.net/) for reading from CSV files.
     * **New feature**: Export command
         * What it does: Allows the user to export data to a CSV file.
         * Justification: Lets the user edit their data using other applications. This is particularly useful when there are a lot of (>100) clients stored in FinBook, as is easier to edit this data using spreadsheet software like Excel.
-        * Highlights:
-            * Works seamlessly in conjunction with the import command. The user can export data, optionally edit the data, and reimport it using the import command.
+        * Highlights: Works seamlessly in conjunction with the import command. The user can export data, optionally edit the data, and reimport it using the import command.
         * Credits: Uses [OpenCSV](https://opencsv.sourceforge.net/) for writing to CSV files.
     * **New feature**: Lock command
         * What it does: Allows the user to lock FinBook. A password dialog box asking for the user's password is displayed, and the user can resume using FinBook after entering the correct password.
