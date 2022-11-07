@@ -6,6 +6,7 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Introduction**
 
@@ -31,6 +32,7 @@ If you are a developer that recently joined the PayMeLah development team, or a 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -74,11 +76,15 @@ Each of the four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
+<div style="page-break-after: always;"></div>
+
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -96,6 +102,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -126,6 +134,8 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W13-3/tp/blob/master/src/main/java/paymelah/model/Model.java)
 
@@ -146,6 +156,8 @@ The `Model` component,
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W13-3/tp/blob/master/src/main/java/paymelah/storage/Storage.java)
@@ -162,6 +174,7 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -181,12 +194,19 @@ To enable the user to retroactively add a `Debt` that is backdated, the `AddDebt
 
 Consider an example of a valid `adddebt` command, `adddebt 1 2 d/food m/10`. The new objects in the final internal state after this example has been parsed is given by the object diagram below. Note that new `DebtDate` and `DebtTime` objects are created even though the user did not specify date and time parameters in their input command.
 
-<img src="images/AddDebtObjectDiagram.png" width="450" />
+<img src="images/AddDebtObjectDiagram.png" width="750" />
 
-The activity diagrams below detail the behaviour of PayMeLah when a user inputs an `adddebt` command of valid syntax to be executed.
+<div style="page-break-after: always;"></div>
 
-<img src="images/AddDebtActivityDiagram.png" width="450" />
+The following activity diagrams detail the behaviour of PayMeLah when a user inputs an `adddebt` command of valid syntax to be executed.
+
+<img src="images/AddDebtActivityDiagram.png" width="450" />0
+
+<div style="page-break-after: always;"></div>
+
 <img src="images/AddDebtActivityDiagramRake.png" width="450" />
+
+<div style="page-break-after: always;"></div>
 
 ### Split debt feature: `splitdebt`
 
@@ -204,8 +224,9 @@ The remaining functionality and behaviour of `SplitDebtCommand` and `SplitDebtCo
 
 Consider an example of a valid `splitdebt` command, `splitdebt 0 1 2 d/pizza m/30`. The new objects in the final internal state after this example has been parsed is given by the object diagram below. Note that new `DebtDate` and `DebtTime` objects are created even though the user did not specify date and time parameters in their input command.
 
-<img src="images/SplitDebtObjectDiagram.png" width="450" />
+<img src="images/SplitDebtObjectDiagram.png" width="750" />
 
+<div style="page-break-after: always;"></div>
 
 ### Clear debts feature: `cleardebts`
 
@@ -221,7 +242,9 @@ This new `Person` object replaces the original `Person` object in the `Model` co
 Consider an example of a valid `cleardebts` command `cleardebts 1`. The objects in the internal state after this example has been parsed, and after the constructed `ClearDebtsCommand` has been executed, is given by the object diagrams below.
 
 <img src="images/ClearDebtsObjectDiagram.png" width="450" />
-<img src="images/ClearDebtsObjectDiagramAfter.png" width="300" />
+<img src="images/ClearDebtsObjectDiagramAfter.png" width="400" />
+
+<div style="page-break-after: always;"></div>
 
 ### Delete debt feature: `deletedebt`
 
@@ -249,7 +272,7 @@ Consider an example of a valid `deletedebt` command `deletedebt 1 debt/2 3`. The
 <img src="images/DeleteDebtObjectDiagram.png" width="450" />
 <img src="images/DeleteDebtAfterObjectDiagram.png" width="280" />
 
-
+<div style="page-break-after: always;"></div>
 
 ### Find-by-anything feature: `find`
 
@@ -267,11 +290,13 @@ which will return `true` if the given `Person` matches all the person-related fi
 For example, suppose the user has multiple friends named Gary, and wants to find the one that owes money for a burger.
 The command `find n/gary d/burger` can be used to accomplish this. The sequence diagram below shows the basic events that take place.
 
-<img src="images/FindSequenceDiagram.png" width="600" />
+<img src="images/FindSequenceDiagram.png" width="1100" />
 
 Note that due to the universal nature of find-by-anything, this command is dependent on lots of components:
 
-<img src="images/FindClassDiagram.png" width="600" />
+<img src="images/FindClassDiagram.png" width="750" />
+
+<div style="page-break-after: always;"></div>
 
 ### List debtors feature: `listdebtors`
 
@@ -295,6 +320,8 @@ The activity diagram below details the behaviour of PayMeLah when a user request
     * Pros: More consistent behaviour: every `ListDebtorsCommand` will have an associated `DebtGreaterEqualAmountPredicate`.
     * Cons: May not work properly with possible future extensions (e.g. Money modified to use other precisions besides 2 decimal points)
 
+<div style="page-break-after: always;"></div>
+
 ### Mark debts as paid/unpaid feature: `mark`/`unmark`
 
 #### Implementation
@@ -314,6 +341,8 @@ The activity diagrams below detail the behaviour of PayMeLah when a user inputs 
 
 <img src="images/MarkActivityDiagram.png" width="450" />
 <img src="images/MarkActivityDiagramRake.png" width="450" />
+
+<div style="page-break-after: always;"></div>
 
 ### Undo feature: `undo`
 
@@ -337,6 +366,7 @@ When the user gives an `undo` command, the most recent AddressBook will be poppe
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -347,6 +377,7 @@ When the user gives an `undo` command, the most recent AddressBook will be poppe
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -356,7 +387,7 @@ When the user gives an `undo` command, the most recent AddressBook will be poppe
 
 * is a university student who organizes many bulk purchases
 * has a need to manage a significant number of contacts
-* has a need to track who has paid him back
+* has a need to track who has paid them back
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -366,6 +397,8 @@ When the user gives an `undo` command, the most recent AddressBook will be poppe
 1. track their debtors
 1. view total money owed from all debtors
 1. manage contacts faster than a typical mouse/GUI driven app
+
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -389,6 +422,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user    | save my contacts and debts over multiple usage sessions of the app                            | I do not need to key in data again when I exit and re-enter the app          |
 | `* *`    | user    | sort the list of contacts by name, amount owed and how long they have owed the debt           | I can quickly decide who to prioritize chasing for debts.                    |
 | `* *`    | user    | easily undo any unintentional or wrong changes I made to my address book                      | I do not have to take a long time to revert my changes.                      |
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -427,6 +462,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. PayMeLah shows an error message.
   
       Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **UC03: Add a debt**
 
@@ -472,6 +509,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
+
 **UC05: Mark debts as paid**
 
 **MSS**
@@ -515,6 +554,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. PayMeLah shows an error message.
 
       Use case resumes at step 2.
+
+<div style="page-break-after: always;"></div>
 
 **UC07: Delete debts**
 
@@ -567,6 +608,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **UC09: Clear debts**
 
 **MSS**
@@ -599,6 +642,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 **UC11: Find a person by debt description**
 
 **MSS**
@@ -624,6 +669,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+<div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements
 
 1. The software should work on any mainstream OS as long as it has Java 11 or above installed.
@@ -647,6 +694,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. The software and documentation should be accessible for users who have a basic command of the English language.
 1. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
+<div style="page-break-after: always;"></div>
+
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
@@ -655,6 +704,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Debt**: The transaction event (e.g. group dinner, Grab food order) where money is owed between a debtor and a creditor
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -680,6 +730,8 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a person
 
@@ -720,6 +772,8 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Filter the persons list using commands such as `find` and `listdebtors`. One or more persons remaining.
 
     1. Test cases and expected behaviours are similar to the ones above.
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a debt
 
@@ -769,6 +823,8 @@ testers are expected to do more *exploratory* testing.
     1. Test cases: `splitdebt 4 d/kfc m/$10`, `splitdebt 0 1 2 3 4 d/kfc m/$10`, `splitdebt 1 5 d/kfc m/$10`<br>
        Expected: No debt is added. Error details shown in the status message (invalid person index).
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a debt
 
 1. Deleting a debt with valid inputs
@@ -814,6 +870,8 @@ testers are expected to do more *exploratory* testing.
     1. Test cases: `cleardebts 4`, `cleardebts 5`, `cleardebts 6`, etc.<br>
        Expected: No debts are removed. Error details shown in the status message (invalid person index).
 
+<div style="page-break-after: always;"></div>
+
 ### Marking debts
 
 1. Marking debts with valid inputs
@@ -841,6 +899,8 @@ testers are expected to do more *exploratory* testing.
 ### Unmarking debts
 
 1. Similar to marking debts, but with persons having debts marked as paid initially, then attempting to mark them as unpaid.
+
+<div style="page-break-after: always;"></div>
 
 ### Statement
 
@@ -879,6 +939,8 @@ testers are expected to do more *exploratory* testing.
 
     1. Negative test cases and expected outcome similar to above.
 
+<div style="page-break-after: always;"></div>
+
 ### List debtors
 
 1. Listing all debtors
@@ -900,6 +962,8 @@ testers are expected to do more *exploratory* testing.
 
     1. Test case: `listdebtors m/1000`<br>
        Expected: Similar to expected outcome of negative test case above.
+
+<div style="page-break-after: always;"></div>
 
 ### Find
 
@@ -946,6 +1010,8 @@ testers are expected to do more *exploratory* testing.
 
 The expected behaviour of the `find` command is documented in detail in the UG, please refer to it for more example test cases to try.
 
+<div style="page-break-after: always;"></div>
+
 ### Find debts
 
 1. Finding debts with single keyword
@@ -990,6 +1056,8 @@ The expected behaviour of the `find` command is documented in detail in the UG, 
    
     1. Test case: Add 11 persons using `add n/newPerson1` ... `add n/newPerson11`. Then enter `undo` 11 times.<br>
        Expected: The addition of `newPerson2` to `newPerson11` are reverted successfully, but PayMeLah warns that there are no commands to undo when attempting to do so the 11th time.
+
+<div style="page-break-after: always;"></div>
 
 ### Saving data
 
