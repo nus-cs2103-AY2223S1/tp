@@ -667,7 +667,7 @@ In the above example, we are adding a contact with name `Bobbie`, email `bobbie@
 
 | Before executing the command                                                                                                                               | After executing the command                                                                                       |
 |------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|
-| {::nomarkdown}<p align="center"><img src="images/add-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-person-after.png"/></p><p>Bobbie has been added!</p><br?{:/} |
+| {::nomarkdown}<p align="center"><img src="images/add-person-before.png"/></p><p>Enter the command into the command box and hit <code>ENTER</code>.</p>{:/} | {::nomarkdown}<p align="center"><img src="images/add-person-after.png"/></p><p>Bobbie has been added!</p><br>{:/} |
 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**<br>
