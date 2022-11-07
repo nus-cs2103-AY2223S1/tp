@@ -321,6 +321,7 @@ Adds a task of type todo into your task list.
 
 * `NAME` must be written in full.
 * `NAME` is case-sensitive.
+* `NAME` must exist in the contacts list.
 
 </div>
 
@@ -369,6 +370,7 @@ Adds a task of type deadline into the task list.
 
 * `NAME` must be written in full.
 * `NAME` is case-sensitive.
+* `NAME` must exist in the contacts list.
 
 </div>
 
@@ -416,6 +418,7 @@ Adds a task of type event into your task list.
 
 * `NAME` must be written in full.
 * `NAME` is case-sensitive.
+* `NAME` must exist in the contacts list.
 
 </div>
 
