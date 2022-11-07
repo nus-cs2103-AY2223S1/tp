@@ -26,14 +26,14 @@ This displays my code contributions for the project: [RepoSense link](https://nu
 - Added the value proposition.
 - Improved the tone of the user guide to make it more appealing to readers.
 - Added boxes categorized according to tips, good to know and warning categories
-- PR for the addition of the features above [User Guide Changes](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/150)
-- Added the implementation of the find command to the User Guide [Find User Guide](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/97)
-- Added images to the user guide to make it more clear for users [Images User Guide](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/164)
+- PR for the addition of the features above: [User Guide Changes](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/150)
+- Added the implementation of the find command to the User Guide: [Find User Guide](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/97)
+- Added images to the user guide to make it more clear for users: [Images User Guide](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/164)
 
 #### Contributions to Developer Guide
-- Added user stories. [Update User Stories](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/31)
-- Added use cases. [Update Use Cases](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/75)
-- Added Find Command's implementation [Find Command](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/179)
+- Added user stories: [Update User Stories](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/31)
+- Added use cases: [Update Use Cases](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/75)
+- Added Find Command's implementation: [Find Command](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/179)
 
 #### Contributions to team-based tasks
 - [Testing](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/81): Added attributes for internships and test code.
