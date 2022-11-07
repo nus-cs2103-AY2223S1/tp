@@ -46,12 +46,12 @@ public class ProjectCard extends UiPart<Region> {
         super(FXML);
         this.project = project;
         id.setText(displayedIndex + ". ");
-        projectName.setText(project.getProjectName().fullName);
-        budget.setText("Budget: S$" + project.getBudget().value);
-        deadline.setText("Deadline: " + project.getDeadline().deadline);
+        projectName.setText(project.getProjectName().getFullName());
+        budget.setText("Budget: S$" + project.getBudget().getBudget());
+        deadline.setText("Deadline: " + project.getDeadline().getDeadline());
         project.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .sorted(Comparator.comparing(tag -> tag.getTagName()))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.getTagName())));
     }
 
     @Override

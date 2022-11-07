@@ -203,7 +203,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentHrPro, userPrefs)));
 
         // different project filteredList -> returns false
-        String[] keywords = APPLE.getProjectName().fullName.split("\\s+");
+        String[] keywords = APPLE.getProjectName().getFullName().split("\\s+");
         modelManager.updateFilteredProjectList(new ProjectNameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(hrPro, userPrefs)));
 

@@ -16,7 +16,7 @@ public class StaffContact {
      */
     public static final String VALIDATION_REGEX = "[689]{1}\\d{7}";
 
-    public final String staffContact;
+    private final String staffContact;
 
     /**
      * Constructs a {@code StaffContact}.
@@ -51,5 +51,9 @@ public class StaffContact {
     @Override
     public int hashCode() {
         return staffContact.hashCode();
+    }
+
+    public String getStaffContact() {
+        return staffContact;
     }
 }

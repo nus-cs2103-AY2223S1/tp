@@ -30,14 +30,14 @@ public class ProjectUtil {
      */
     public static String getProjectDetails(Project project) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_PROJECT_NAME + project.getProjectName().fullName + " ");
-        sb.append(PREFIX_BUDGET + project.getBudget().value + " ");
-        sb.append(PREFIX_DEADLINE + project.getDeadline().deadline.toString() + " ");
+        sb.append(PREFIX_PROJECT_NAME + project.getProjectName().getFullName() + " ");
+        sb.append(PREFIX_BUDGET + project.getBudget().getBudget() + " ");
+        sb.append(PREFIX_DEADLINE + project.getDeadline().getDeadline() + " ");
         project.getStaffList().asUnmodifiableObservableList().stream().forEach(
                 s -> sb.append(PREFIX_STAFF_NAME + s.getStaffName().toString() + " ")
         );
         project.getTags().stream().forEach(
-            s -> sb.append(PREFIX_TAG + s.tagName + " ")
+            s -> sb.append(PREFIX_TAG + s.getTagName() + " ")
         );
         return sb.toString();
     }
@@ -58,7 +58,7 @@ public class ProjectUtil {
             if (tags.isEmpty()) {
                 sb.append(PREFIX_TAG);
             } else {
-                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+                tags.forEach(s -> sb.append(PREFIX_TAG).append(s.getTagName()).append(" "));
             }
         }
         return sb.toString();

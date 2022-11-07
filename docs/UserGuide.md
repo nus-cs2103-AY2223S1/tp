@@ -64,7 +64,7 @@ Our app's user interface is divided into 5 main parts:
 
 ![Ui](images/UiLabelled.png)
 
-### **Command Box**
+### Command Box
 The command box is where you can type in your commands.
 ![Command Box](images/CommandBox.png)
 
@@ -79,26 +79,26 @@ Some example commands you can try:
 
 * **`exit`** : Exits the app.
 
-### **Result Display**
+### Result Display
 The result display is where the output of your commands will be shown.
 For example, entering an incorrect `addproj` command like shown below will cause an error message to be displayed in the result display.
 
 ![Result Display](images/ResultDisplay.png)
 
-### **Task Panel**
+### Task Panel
 This section in the user interface displays the list of Tasks that you have entered into the app.
 For information on all commands that are related to Tasks, refer to the [Task Commands](#task-commands) section.
 
 ![Task Panel](images/TaskPanel.png)
 
-### **Project Panel**
+### Project Panel
 This section in the user interface displays the list of Projects that you have entered into the app.
 When first starting the program, the `Project` list will contain some sample data as shown.
 For information on all commands that are related to Projects, refer to the [Project Commands](#project-commands) section.
 
 ![Project Panel](images/ProjectPanel.png)
 
-### **Staff Panel**
+### Staff Panel
 This section in the user interface displays the list of Staff that you have entered into the app.
 When first starting the program, the `Staff` list will be empty by default.
 To see how to view the `Staff` list attached to a Project, you can check [this](#view-the-staff-list-within-a-project--view) section of the user guide.
@@ -161,7 +161,7 @@ This is a description of the different parameters for Projects.
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Adding a Project :** `addproj`
+### Adding a Project : `addproj`
 
 Adds a Project to Project list.
 
@@ -183,7 +183,7 @@ Examples:
 [Back to Project Glossary](#project-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Listing all Projects and Tasks :** `list`
+### Listing all Projects and Tasks : `list`
 
 Show all the Projects and Tasks in the Project and Task list respectively.
 
@@ -196,7 +196,7 @@ Format: `list`
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Finding Projects :** `findproj`
+### Finding Projects : `findproj`
 
 Finds all Projects whose names match any of the specified keywords (case-insensitive) and displays them as a list with index numbers.
 
@@ -220,7 +220,7 @@ For example, projects `CS2103`, `CS4000` and `CS2103 TP` will be listed.
 [Back to Project Glossary](#project-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Sorting the Project list :** `sortproj`
+### Sorting the Project list : `sortproj`
 
 Sorts the Project list according to ascending order of `PROJECT_DEADLINE`.
 
@@ -237,7 +237,7 @@ Warning !!!:
 [Back to Project Glossary](#project-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Editing a Project :** `editproj`
+### Editing a Project : `editproj`
 
 Edits the Project at the specified `INDEX` in the currently displayed Project list. Existing values will be updated to the input values.
 
@@ -264,7 +264,7 @@ Examples:
 [Back to Project Glossary](#project-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Deleting a Project :** `delproj`
+### Deleting a Project : `delproj`
 
 Deletes the Project at the specified `INDEX` from the Project list.
 
@@ -313,7 +313,7 @@ Warning !!!:
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Adding a Staff member to Project :** `addstaff`
+### Adding a Staff member to Project : `addstaff`
 
 Adds a Staff member into the Project at the specified `INDEX`.
 
@@ -341,7 +341,7 @@ Examples:
 [Back to Staff Glossary](#staff-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Deleting a Staff member from Project :** `delstaff`
+### Deleting a Staff member from Project : `delstaff`
 
 Deletes a Staff member and all their info from the Project which has its name specified.
 The Project must be in the currently displayed Project list for this command to work as expected.
@@ -372,7 +372,7 @@ Examples:
 [Back to Staff Glossary](#staff-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
-### **View the Staff list within a Project :** `view`
+### View the Staff list within a Project : `view`
 
 Views the Staff list of the Project at the specified `INDEX`.
 
@@ -390,7 +390,7 @@ Examples:
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Editing a Staff member within a Project :** `editstaff`
+### Editing a Staff member within a Project : `editstaff`
 
 Edits the Staff details of a Staff in the Project which has its name specified.
 The Project must be in the currently displayed Project list for this command to work as expected.
@@ -425,7 +425,7 @@ Examples:
 [Back to Staff Glossary](#staff-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Finding a Staff member within a Project :** `findstaff`
+### Finding a Staff member within a Project : `findstaff`
 
 Changes the displayed Staff list to contain only Staff members with names that match any of the keywords.
 
@@ -463,7 +463,7 @@ This section contains information on all the commands related to Tasks.
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Adding a Task :** `addtask`
+### Adding a Task : `addtask`
 
 Adds a Task to the Task list.
 
@@ -483,7 +483,7 @@ Examples:
 [Back to Task Glossary](#task-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Deleting a Task :** `deltask`
+### Deleting a Task : `deltask`
 
 Deletes a Task at the specified `INDEX` from the Task list.
 
@@ -503,7 +503,7 @@ Examples:
 [Back to Task Glossary](#task-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Finding a Task :** `findtask`
+### Finding a Task : `findtask`
 
 Finds all Tasks which have descriptions matching any of the KEYWORDS.
 
@@ -525,7 +525,7 @@ Examples:
 [Back to Task Glossary](#task-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Sorting the Task list by deadline :** `sorttask`
+### Sorting the Task list by deadline : `sorttask`
 
 Sorts all Tasks in displayed Task list by deadline. Earlier deadlines will be placed first.
 
@@ -540,7 +540,7 @@ Format: `sorttask`
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Sorting the Task list by whether its complete :** `sortcomplete`
+### Sorting the Task list by whether its complete : `sortcomplete`
 
 ```yaml
 Warning !!!:
@@ -555,7 +555,7 @@ Format: `sortcomplete`
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Marking a Task as complete :** `marktask`
+### Marking a Task as complete : `marktask`
 
 Marks the Task at the specified `INDEX` in the displayed Task list as complete.
 
@@ -572,7 +572,7 @@ Examples:
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Marking a Task as incomplete :** `unmarktask`
+### Marking a Task as incomplete : `unmarktask`
 
 Marks the Task at the specified `INDEX` in the displayed Task list as incomplete.
 
@@ -591,7 +591,7 @@ Examples:
 ## **General Commands**
 This section contains information on all the commands that are not related to any specific feature.
 
-### **Help :** `help`
+### Help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -602,7 +602,7 @@ Format: `help`
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Exiting the program :** `exit`
+### Exiting the program : `exit`
 
 Exits the program.
 
@@ -611,7 +611,7 @@ Format: `exit`
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-### **Clearing all Data :** `clear`
+### Clearing all Data : `clear`
 
 Clears **all data** from HR Pro Max++.
 
@@ -646,7 +646,7 @@ This section contains a summary of all the commands and prefixes in HR Pro Max++
 --------------------------------------------------------------------------------------------------------------------
 ## **Command Summary**
 This section contains summary tables of all the commands you can use in HR Pro Max++.
-### **Project Commands Summary**
+### Project Commands Summary
 
 | Action                    | Format, Examples                                                                                   |
 |---------------------------|----------------------------------------------------------------------------------------------------|
@@ -657,7 +657,7 @@ This section contains summary tables of all the commands you can use in HR Pro M
 | **Sort Projects**         | `sortproj`                                                                                         |
 | **List Project and Task** | `list`                                                                                             |
 
-### **Staff Commands Summary**
+### Staff Commands Summary
 
 | Action              | Format, Examples                                                                                          |
 |---------------------|-----------------------------------------------------------------------------------------------------------|
@@ -668,7 +668,7 @@ This section contains summary tables of all the commands you can use in HR Pro M
 | **View Staff list** | `view INDEX` <br> e.g. `view 1`                                                                           |
 
 
-### **Task Commands Summary**
+### Task Commands Summary
 
 | Action                         | Format, Examples                                                                                                         |
 |--------------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -682,7 +682,7 @@ This section contains summary tables of all the commands you can use in HR Pro M
 | **Unmark Tasks**               | `unmarktask INDEX`<br> e.g. `unmarktask 1`                                                                               |
 
 
-### **General Commands Summary**
+### General Commands Summary
 
 | Action                    | Format, Examples |
 |---------------------------|------------------|
