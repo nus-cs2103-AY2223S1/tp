@@ -66,5 +66,5 @@ Given below are my contributions to the project.
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [#109](https://github.com/AY2223S1-CS2103T-W12-1/tp/pull/109), [#119](https://github.com/AY2223S1-CS2103T-W12-1/tp/pull/119), [#235](https://github.com/AY2223S1-CS2103T-W12-1/tp/pull/235)<sup>*</sup>
     * Reported bugs and suggestions for other teams in the class: Reported bugs and provided suggestions for another team ([link](https://github.com/avock/ped/tree/main/files))<br>
-      <font size = "2">_<sup>*</sup>note that the majority of bugs/issues discovered are discussed during our weekly meeting, and this list does not include bugs/issues/suggestions during such sessions._</font>
+      <font size = "2"><sup>*</sup>_note that the majority of bugs/issues discovered are discussed during our weekly meeting, and this list does not include bugs/issues/suggestions during such sessions._</font>
       <br><br/>
