@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_BUDGET;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COST;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COUNTRY;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DAY_NUMBER;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_ITEM_DURATION;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_ITINERARY_DURATION;
@@ -77,7 +78,7 @@ public class CommandTestUtil {
     public static final String BUDGET_DESC_WINTER = " " + PREFIX_BUDGET + VALID_BUDGET_WINTER;
     public static final String BUDGET_DESC_TEST = " " + PREFIX_BUDGET + VALID_BUDGET_TEST;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_DESCRIPTION + "Family Trip&"; // '&' not allowed
+    public static final String INVALID_NAME_DESC = " " + PREFIX_DESCRIPTION + "Family Trip^"; // '&' not allowed
     public static final String INVALID_COUNTRY_DESC = " " + PREFIX_COUNTRY + "Germany("; // '(' not allowed in country
     public static final String INVALID_START_DATE_DESC = " " + PREFIX_START_DATE + "Jan 01"; // wrong format
     public static final String INVALID_DURATION_DESC = " " + PREFIX_ITINERARY_DURATION
@@ -89,11 +90,17 @@ public class CommandTestUtil {
     public static final String VALID_ITEM_DESC_SKINNY = "Skinny Dipping";
     public static final String VALID_ITEM_DESC_ART = "Art Museum";
     public static final String VALID_ITEM_DESC_BEACH = "Beach Party";
+    public static final String VALID_ITEM_DESC_TOUR = "Visit tourist spot";
+    public static final String VALID_ITEM_DESC_BREAKFAST = "Hotel breakfast";
+    public static final String VALID_ITEM_DESC_LUNCH = "Eat lunch";
 
     public static final String VALID_DURATION_SHOPPING = "30";
     public static final String VALID_DURATION_SKINNY = "45";
     public static final String VALID_DURATION_ART = "60";
     public static final String VALID_DURATION_BEACH = "240";
+    public static final String VALID_DURATION_TOUR = "180";
+    public static final String VALID_DURATION_BREAKFAST = "20";
+    public static final String VALID_DURATION_LUNCH = "50";
 
     public static final LocalTime VALID_START_TIME_2330 = LocalTime.parse("23:30");
     public static final LocalTime VALID_START_TIME_0000 = LocalTime.parse("00:00");
@@ -104,42 +111,68 @@ public class CommandTestUtil {
     public static final String VALID_COST_SKINNY = "10";
     public static final String VALID_COST_ART = "100";
     public static final String VALID_COST_BEACH = "1000";
+    public static final String VALID_COST_TOUR = "200";
+    public static final String VALID_COST_BREAKFAST = "15";
+    public static final String VALID_COST_LUNCH = "50";
 
     public static final int VALID_PRIORITY_SHOPPING = 2;
     public static final int VALID_PRIORITY_SKINNY = 3;
     public static final int VALID_PRIORITY_ART = 4;
     public static final int VALID_PRIORITY_BEACH = 5;
+    public static final int VALID_PRIORITY_TOUR = 1;
+    public static final int VALID_PRIORITY_BREAKFAST = 2;
+    public static final int VALID_PRIORITY_LUNCH = 4;
+
+
+    public static final String VALID_DAY_NUMBER = "1";
 
     public static final String ITEM_DESC_DESC_SHOPPING = " " + PREFIX_DESCRIPTION + VALID_ITEM_DESC_SHOPPING;
     public static final String ITEM_DESC_DESC_SKINNY = " " + PREFIX_DESCRIPTION + VALID_ITEM_DESC_SKINNY;
     public static final String ITEM_DESC_DESC_ART = " " + PREFIX_DESCRIPTION + VALID_ITEM_DESC_ART;
     public static final String ITEM_DESC_DESC_BEACH = " " + PREFIX_DESCRIPTION + VALID_ITEM_DESC_BEACH;
+    public static final String ITEM_DESC_DESC_TOUR = " " + PREFIX_DESCRIPTION + VALID_ITEM_DESC_TOUR;
+    public static final String ITEM_DESC_DESC_BREAKFAST = " " + PREFIX_DESCRIPTION + VALID_ITEM_DESC_BREAKFAST;
+    public static final String ITEM_DESC_DESC_LUNCH = " " + PREFIX_DESCRIPTION + VALID_ITEM_DESC_LUNCH;
 
     public static final String ITEM_DURATION_DESC_SHOPPING = " " + PREFIX_ITEM_DURATION + VALID_DURATION_SHOPPING;
     public static final String ITEM_DURATION_DESC_SKINNY = " " + PREFIX_ITEM_DURATION + VALID_DURATION_SKINNY;
     public static final String ITEM_DURATION_DESC_ART = " " + PREFIX_ITEM_DURATION + VALID_DURATION_ART;
     public static final String ITEM_DURATION_DESC_BEACH = " " + PREFIX_ITEM_DURATION + VALID_DURATION_BEACH;
+    public static final String ITEM_DURATION_DESC_TOUR = " " + PREFIX_ITEM_DURATION + VALID_DURATION_TOUR;
+    public static final String ITEM_DURATION_DESC_BREAKFAST = " " + PREFIX_ITEM_DURATION + VALID_DURATION_BREAKFAST;
+    public static final String ITEM_DURATION_DESC_LUNCH = " " + PREFIX_ITEM_DURATION + VALID_DURATION_LUNCH;
 
     public static final String START_TIME_DESC_2300 = " " + PREFIX_START_TIME + VALID_START_TIME_2330;
     public static final String START_TIME_DESC_0000 = " " + PREFIX_START_TIME + VALID_START_TIME_0000;
     public static final String START_TIME_DESC_1715 = " " + PREFIX_START_TIME + VALID_START_TIME_1715;
-    public static final String START_TIME_DESC_1220 = " " + PREFIX_START_TIME + VALID_START_TIME_1200;
+    public static final String START_TIME_DESC_1200 = " " + PREFIX_START_TIME + VALID_START_TIME_1200;
 
     public static final String COST_DESC_SHOPPING = " " + PREFIX_COST + VALID_COST_SHOPPING;
     public static final String COST_DESC_SKINNY = " " + PREFIX_COST + VALID_COST_SKINNY;
     public static final String COST_DESC_ART = " " + PREFIX_COST + VALID_COST_ART;
     public static final String COST_DESC_BEACH = " " + PREFIX_COST + VALID_COST_BEACH;
+    public static final String COST_DESC_TOUR = " " + PREFIX_COST + VALID_COST_TOUR;
+    public static final String COST_DESC_BREAKFAST = " " + PREFIX_COST + VALID_COST_BREAKFAST;
+    public static final String COST_DESC_LUNCH = " " + PREFIX_COST + VALID_COST_LUNCH;
+
 
     public static final String PRIORITY_DESC_SHOPPING = " " + PREFIX_PRIORITY + VALID_PRIORITY_SHOPPING;
     public static final String PRIORITY_DESC_SKINNY = " " + PREFIX_PRIORITY + VALID_PRIORITY_SKINNY;
     public static final String PRIORITY_DESC_ART = " " + PREFIX_PRIORITY + VALID_PRIORITY_ART;
     public static final String PRIORITY_DESC_BEACH = " " + PREFIX_PRIORITY + VALID_PRIORITY_BEACH;
+    public static final String PRIORITY_DESC_TOUR = " " + PREFIX_PRIORITY + VALID_PRIORITY_TOUR;
+    public static final String PRIORITY_DESC_BREAKFAST = " " + PREFIX_PRIORITY + VALID_PRIORITY_BREAKFAST;
+    public static final String PRIORITY_DESC_LUNCH = " " + PREFIX_PRIORITY + VALID_PRIORITY_LUNCH;
+
+
+    public static final String DAY_NUMBER_DESC = " " + PREFIX_DAY_NUMBER + VALID_DAY_NUMBER;
 
     public static final String INVALID_ITEM_DESC_DESC = " " + PREFIX_DESCRIPTION + "吃饭";
     public static final String INVALID_ITEM_DURATION_DESC = " " + PREFIX_ITEM_DURATION + "abc";
     public static final String INVALID_START_TIME_DESC = " " + PREFIX_START_TIME + "1200";
     public static final String INVALID_COST_DESC = " " + PREFIX_COST + "$500";
     public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "nice";
+    public static final String INVALID_DAY_NUMBER_DESC = " " + PREFIX_DAY_NUMBER + "-1";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

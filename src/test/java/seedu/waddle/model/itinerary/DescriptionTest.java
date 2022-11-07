@@ -26,7 +26,6 @@ public class DescriptionTest {
 
         // invalid name
         assertFalse(Description.isValidDescription("")); // empty string
-        assertFalse(Description.isValidDescription(" ")); // spaces only
         assertFalse(Description.isValidDescription("^")); // only non-alphanumeric characters
         assertFalse(Description.isValidDescription("summer*")); // contains non-alphanumeric characters
 

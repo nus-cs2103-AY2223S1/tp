@@ -93,6 +93,8 @@ public class TypicalItineraries {
 
         // configure AUTUMN
         autumn.addItem(typicalItems.get(0));
+        autumn.addItem(typicalItems.get(4));
+        autumn.addItem(typicalItems.get(5));
         try {
             autumn.planItem(Index.fromZeroBased(0), new DayNumber("1"), VALID_START_TIME_2330);
         } catch (CommandException e) {

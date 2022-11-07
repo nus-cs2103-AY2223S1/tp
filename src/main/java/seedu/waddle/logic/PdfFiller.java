@@ -76,7 +76,7 @@ public class PdfFiller {
      * @param day The day containing items to export.
      * @throws IOException When export fails.
      */
-    public void fillDay(Day day) throws IOException {
+    private void fillDay(Day day) throws IOException {
         UniqueItemList itemList = day.getItemList();
         int itemListSize = itemList.getSize();
         int numOfPages = (int) Math.ceil((double) itemListSize / MAX_DISPLAY);

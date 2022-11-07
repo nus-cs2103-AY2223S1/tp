@@ -41,6 +41,20 @@ public class Cost {
     }
 
     @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Cost)) {
+            return false;
+        }
+
+        Cost otherCost = (Cost) other;
+        return this.cost == otherCost.cost;
+    }
+
+    @Override
     public String toString() {
         return String.valueOf(cost);
     }
