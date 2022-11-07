@@ -264,12 +264,12 @@ The command will be used as such:
 e.g.`grade MATH_CA1_100_0.4_0.1`
 - Words in `UPPER_CASE` are the inputs to be supplied by the user.
 
-The command works in the following steps:
-1) Users enter the `GradeCommand` following the above specified format in the `CommandBox`, providing `Subject` and `Assessment` details such as assessment name, total score, weightage and difficulty
-2) `GradeCommandParser` will parse the `GradeCommand` to check whether the parameters provided are valid and return a `CommandResult` with a `StudentList`, which is a list of `Students` filtered by the specified `Subject`
-3) If the parameters are valid, a `GradeWindow` GUI will be opened which will prompt the user to enter the `Grade` of the first `Student` in the `StudentList`
-4) Once the grade is entered, the method `updateUiToNextStudent` will be called to update the `Student` specified in the `GradeWindow` to the next available `Student` in the `StudentList`.
-5) Repeat step 4 until  the grades of all `Students` in the `StudentList` have been entered accordingly. 
+The command works in the following steps: <br>
+1) Users enter the `GradeCommand` following the above specified format in the `CommandBox`, providing `Subject` and `Assessment` details such as assessment name, total score, weightage and difficulty <br>
+2) `GradeCommandParser` will parse the `GradeCommand` to check whether the parameters provided are valid and return a `CommandResult` with a `StudentList`, which is a list of `Students` filtered by the specified `Subject` <br>
+3) If the parameters are valid, a `GradeWindow` GUI will be opened which will prompt the user to enter the `Grade` of the first `Student` in the `StudentList`<br>
+4) Once the grade is entered, the method `updateUiToNextStudent` will be called to update the `Student` specified in the `GradeWindow` to the next available `Student` in the `StudentList`. <br>
+5) Repeat step 4 until  the grades of all `Students` in the `StudentList` have been entered accordingly. <br>
 
 
 ### Grade Prediction feature
@@ -290,7 +290,7 @@ For each of the student's previous assessments, perform the following procedure:
 Let's call this number the **difficulty bonus**.
 
 1.2. Add the **difficulty bonus** to the student's grade for the assessment.
-We call this their **normalized score**.
+We call this their **normalized score**. <br>
 2) Take the average of the student's **normalized scores** for all their previous assessments,
    then add the difficulty of the assessment to predict. This is the final prediction!
 
@@ -308,10 +308,10 @@ The command will be used as such:
 - Words in `UPPER_CASE` are the inputs to be supplied by the user.
 
 The command works in the following steps:
-1) Users enter the `PredictionCommand` following the above specified format in the `CommandBox`, providing the name of the `Student`, `Subject` and `Difficulty`
-2) `PredictionCommandParser` will parse the `PredictionCommand` to check whether the provided arguments are valid and return a `CommandResult`
-3) The `PredictGrade` method in `PredictionUtil` class will be used to predict the grade given the arguments provided
-4) A new `PredictionWindow` will be opened to display the predicted grade
+1) Users enter the `PredictionCommand` following the above specified format in the `CommandBox`, providing the name of the `Student`, `Subject` and `Difficulty` <br>
+2) `PredictionCommandParser` will parse the `PredictionCommand` to check whether the provided arguments are valid and return a `CommandResult` <br>
+3) The `PredictGrade` method in `PredictionUtil` class will be used to predict the grade given the arguments provided <br>
+4) A new `PredictionWindow` will be opened to display the predicted grade <br>
 
 ###Attendance feature
 #### current Implementation
@@ -324,13 +324,13 @@ The Attendance command consists of these following classes:
 As with all other commands, the `AttendanceCommand` command has a `Parser` subclass that goes through the `AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object. It marks the attendance of students from a specified `studentClass` on a given `Date`
 
 The command will be used as such:
-- `markAtt d/DATE c/STUDENTCLASS ind/INDEXES` eg. markAtt d/12-02-2023 c/1.2 ind/1 2 3
+- `markAtt d/DATE c/STUDENTCLASS ind/INDEXES` eg. `markAtt d/12-02-2023 c/1.2 ind/1 2 3`
 - Words in `UPPER_CASE` are the inputs to be supplied by the user.
 
 The command works in the following steps:
-1) Users enter the `AttendanceCommand` following the above specified format in the `CommandBox`, providing the `Date`, `StudentClass` and `Indexes` of students present
-2) `AttendanceCommandParser` will parse the `AttendanceCommand` to check whether the provided arguments are valid 
-3) For each `Student` in the specified `StudentClass`, the `updateAttendance` method in the `Attendance` class is called to update the model to indicate whether the `Student` is present.
+1) Users enter the `AttendanceCommand` following the above specified format in the `CommandBox`, providing the `Date`, `StudentClass` and `Indexes` of students present <br>
+2) `AttendanceCommandParser` will parse the `AttendanceCommand` to check whether the provided arguments are valid <br>
+3) For each `Student` in the specified `StudentClass`, the `updateAttendance` method in the `Attendance` class is called to update the model to indicate whether the `Student` is present. <br>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -736,7 +736,7 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect sort commands to try: `sort`, `sort asc`
        Expected: Similar to previous.
 
-### Marking attendace of students
+### Marking attendance of students
 1. Marking attendance while all students are being shown
 
     1. Prerequisites: List all students using the `list` command. Multiple students in the list.
