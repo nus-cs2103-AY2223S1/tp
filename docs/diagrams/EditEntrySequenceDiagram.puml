@@ -26,6 +26,4 @@ deactivate EditCommandClass
 EditCommand -> Model : setExpenditure()
 Model --> EditCommand
 
-EditCommand -> Model : updateFilteredExpenditureList()
-Model --> EditCommand
 @enduml
