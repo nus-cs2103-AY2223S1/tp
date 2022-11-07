@@ -461,7 +461,6 @@ object to display that the exam was successfully added.
 
 <div markdown="span" class="alert alert-info">
 
-<<<<<<< HEAD
 :information_source: **Note:**
 
 * For step 4, the `Exam` object will not be created if the exam description or exam date or module 
@@ -560,44 +559,31 @@ The following activity diagram summarises what happens when FindTasksCommand is 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-<<<<<<< HEAD
-| Priority | As a …​      | I want to …​                                      | So that I can…​                                                                                      |
-|---------|--------------|---------------------------------------------------|------------------------------------------------------------------------------------------------------|
-| `* * *` | NUS student  | view the list of tasks I need to complete         | start implementing those tasks.                                                                      |
-| `* * *` | NUS student  | create the tasks in the tasklist                  | add the list of tasks that need to be completed                                                      |
-| `* * *` | NUS student  | mark a task as complete                           | have a better idea of what I have completed.                                                         |
-| `* *`   | NUS student  | tag the priority of the tasks in the tasklist     | prioritise the task that I would like to complete first                                              |
-| `* * *` | NUS student  | delete the tasks in my tasklist                   | remove them if added wrongly.                                                                        |
-| `* * *` | NUS student  | delete the modules in my modulelist               | remove them if added wrongly.                                                                        |
-| `* * *` | NUS student  | edit the modules in my modulelist                 | remove them if added wrongly.                                                                        |
-| `* *`   | NUS student  | find a task by task description through a command | quickly locate the task instead of having to go through the whole list of tasks just to find it.     |
-| `* *`   | NUS student  | find a module by module code through a command    | quickly locate the module instead of having to go through the whole list of modules just to find it. |                                                   |                                                                                                 |
-| `* * *` | NUS student  | add my exams to the exam list                     | add my upcoming exams to the exam list to track my revision progress.                                |
-| `* * *` | NUS student  | edit the exams in the exam list                   | change and correct the exam details easily if I input the wrong details.                             |
-| `* * *` | NUS student  | view the list of modules I have                   | see the modules I am taking and my study progress for the modules.                                   |
-   
-=======
-| Priority | As a …​     | I want to …​                                                 | So that I can…​                                                   |
-|----------|-------------|--------------------------------------------------------------|-------------------------------------------------------------------|
-| `* * *`  | NUS student | view a help guide on how to use the list of commands         | refer to this guide when I forget some of the commands            |
-| `* * *`  | NUS student | view the list of tasks I need to complete                    | start implementing those tasks.                                   |
-| `* * *`  | NUS student | create the tasks in the tasklist                             | add the list of tasks that need to be completed                   |
-| `* * *`  | NUS student | mark a task as complete                                      | have a better idea of what I have completed.                      |
-| `* * * ` | NUS student | add modules to my module list                                | add the modules that I am currently taking to the module list     |
-| `* * *`  | NUS student | delete the tasks in my tasklist                              | remove them if added wrongly.                                     |
-| `* * *`  | NUS student | delete the modules in my modulelist                          | remove them if added wrongly.                                     |
-| `* * *`  | NUS student | edit the modules in my modulelist                            | remove them if added wrongly.                                     |
-| `* * *`  | NUS student | link the task in the task list to the exam in the exam list  | track the number of exam-related tasks                            |
-| `* * `   | NUS student | tag the priority status of a task in the task list           | prioritise the task that I would like to complete first           |
-| `* * `   | NUS student | tag the deadline of a task in the task list                  | track the date that the task should be completed                  |
-| `* * `   | NUS student | edit the priority status tagged to a task in the task list   | change the priority of the task I would like to complete first    |
-| `* * `   | NUS student | edit the deadline tagged to a task in the task list          | change the deadline that I would like to complete the task        |
-| `* * `   | NUS student | delete the priority status tagged to a task in the task list | remove the priority status of tasks which have been added wrongly |
-| `* * `   | NUS student | tag the priority status tagged to a task in the task list    | remove deadlines which I no longer want to track.                 |
-| `* * `   | NUS student | sort the tasks in the task list                              | organise the tasks in the task list                               |
 
->>>>>>> master
-*{More to be added}*
+| Priority | As a …​     | I want to …​                                                 | So that I can…​                                                   |
+|--------|-------------|--------------------------------------------------------------|-------------------------------------------------------------------|
+| `* * *` | NUS student | view a help guide on how to use the list of commands         | refer to this guide when I forget some of the commands            |
+| `* * *` | NUS student | view the list of tasks I need to complete                    | start implementing those tasks.                                   |
+| `* * *` | NUS student | create the tasks in the tasklist                             | add the list of tasks that need to be completed                   |
+| `* * *` | NUS student | mark a task as complete                                      | have a better idea of what I have completed.                      |
+| `* * * ` | NUS student | add modules to my module list                                | add the modules that I am currently taking to the module list     |
+| `* * *` | NUS student | delete the tasks in my tasklist                              | remove them if added wrongly.                                     |
+| `* * *` | NUS student | delete the modules in my modulelist                          | remove them if added wrongly.                                     |
+| `* * *` | NUS student | edit the modules in my modulelist                            | remove them if added wrongly.                                     |
+| `* * *` | NUS student | link the task in the task list to the exam in the exam list  | track the number of exam-related tasks                            |
+| `* * *` | NUS student  | add my exams to the exam list                     | add my upcoming exams to the exam list to track my revision progress.                                |
+| `* * *` | NUS student  | view the list of modules I have                   | see the modules I am taking and my study progress for the modules.                                   |
+| `* * ` | NUS student | tag the priority status of a task in the task list           | prioritise the task that I would like to complete first           |
+| `* * ` | NUS student | tag the deadline of a task in the task list                  | track the date that the task should be completed                  |
+| `* * ` | NUS student | edit the priority status tagged to a task in the task list   | change the priority of the task I would like to complete first    |
+| `* * ` | NUS student | edit the deadline tagged to a task in the task list          | change the deadline that I would like to complete the task        |
+| `* * ` | NUS student | delete the priority status tagged to a task in the task list | remove the priority status of tasks which have been added wrongly |
+| `* * ` | NUS student | tag the priority status tagged to a task in the task list    | remove deadlines which I no longer want to track.                 |
+| `* * ` | NUS student | sort the tasks in the task list                              | organise the tasks in the task list                               |
+| `* *` | NUS student  | find a task by task description through a command | quickly locate the task instead of having to go through the whole list of tasks just to find it.     |
+| `* *` | NUS student  | find a module by module code through a command    | quickly locate the module instead of having to go through the whole list of modules just to find it. |                                                   |                                                                                                 |
+| `* *` | NUS student  | edit the exams in the exam list                   | change and correct the exam details easily if I input the wrong details.                             |
+
 
 ### Use cases
 
@@ -1196,7 +1182,7 @@ module code `cs2100` is added to the module list.
     
 
 ### Editing an exam 
-2. Editing an exam in the exam list.
+1. Editing an exam in the exam list.
     1. Prerequisite: the module `cs2030s` is present in the module list, and `cs2040s` is not present in module list and exam list only has 2 exams. 
     2. Test case: `e edit 1 m/cs2030s ex/Finals ed/30-12-2023`<br>
        Expected: The first exam in the exam list is edited by changing the module field to `cs2030s`, exam description to `Finals`, exam date to `30-12-2023`. 
@@ -1214,7 +1200,7 @@ module code `cs2100` is added to the module list.
 
 
 ### Finding a task  
-3. Finding a task in the task list
+1. Finding a task in the task list
    1. Prerequisite: The tasks with task descriptions as "WORK", "homework 1", "homewoRK 2", "past year paper" are inside the task list.
    2. Test case: `t find work` <br>
       Expected: The task list should display the 3 tasks with task description of "WORK", "homework 1", "homewoRK 2",with a message saying "3 tasks listed"
@@ -1224,8 +1210,8 @@ module code `cs2100` is added to the module list.
       Expected: The task list should show no tasks displayed, with a message saying "0 tasks listed"
 
 
-### Finding a task
-4. Finding a module in the module list
+### Finding a module
+1. Finding a module in the module list
     1. Prerequisite: The modules with module code as "CS2030s", "CS2040S", "CS3333" are inside the module list.
     2. Test case: `m find cs`<br>
        Expected: The module list should display the 3 modules with module code of "CS2030s", "CS2040S", "CS3333",with a message saying "3 modules listed"
@@ -1236,7 +1222,7 @@ module code `cs2100` is added to the module list.
     
 
 ### Listing modules
-5. Listing modules in the stored module list
+1. Listing modules in the stored module list
     1. Prerequisite: The modules with module code as "CS2030s", "CS2040S", "CS3333" are inside the module list, and a `m find 20` command is done.
     2. Test case: `m list`<br>
        Expected: The module list should now display the all 3 modules with module code of "CS2030s", "CS2040S", "CS3333",with a message saying "Listed all modules"
@@ -1244,7 +1230,7 @@ module code `cs2100` is added to the module list.
 
 
 ### Listing tasks
-6. Listing tasks in the stored tasks list
+1. Listing tasks in the stored tasks list
     1. Prerequisite: The tasks with task descriptions as "WORK", "homework 1", "homewoRK 2", "past year paper" are inside the task list, and a `t find paper` command is done. 
     2. Test case: `t list` <br>
        Expected: The task list should now display the all 4 tasks with task descriptions of "WORK", "homework 1", "homewoRK 2", "past year paper",with a message saying "Listed all tasks"
