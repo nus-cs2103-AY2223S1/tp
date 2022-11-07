@@ -3,7 +3,16 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/8"
-    xmlns:fx="http://javafx.com/fxml/1">
-  <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display"/>
-</StackPane>
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+
+<?import javafx.scene.control.ScrollPane?>
+
+<ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="NEVER" HBox.hgrow="ALWAYS" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="cover2" >
+
+<HBox styleClass="text-input" prefHeight="100" minWidth="600">
+  <Label fx:id="instead"  styleClass="text-input-label" maxHeight="1.7976931348623157E308" minHeight="-Infinity"  wrapText="true"/>
+  </HBox>
+</ScrollPane>

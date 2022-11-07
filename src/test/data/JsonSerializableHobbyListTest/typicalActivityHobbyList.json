@@ -1,0 +1,40 @@
+{
+  "_comment": "HobbyList save file which contains the same Activity values as in TypicalActivities#getTypicalHobbyList()",
+  "activities" : [ {
+    "name" : "And Then There Were None",
+    "description" : "Mystery novel by Agatha Christie",
+    "tagged" : [ "book" ]
+  }, {
+    "name" : "Battlefield 4",
+    "description" : "First person shooter by EA",
+    "tagged" : [ "video_game" ],
+    "review" : "decent game"
+  }, {
+    "name" : "Charlotte",
+    "description" : "Comedy drama anime",
+    "date": "2022-03-01",
+    "tagged" : [ ],
+    "review" : "decent anime with weird ending"
+  }, {
+    "name" : "Despicable Me 3",
+    "description" : "Comedy film directed by Pierre Coffin and Kyle Balda",
+    "date": "2022-10-10",
+    "tagged" : [ "movie" ]
+  }, {
+    "name" : "Exercise",
+    "description" : "100 push-ups, 100 sit-ups, 100 squats and 10km run",
+    "date": "2021-09-03",
+    "tagged" : [ ]
+  }, {
+    "name" : "Fried Chicken",
+    "description" : "At some place",
+    "tagged" : [ ]
+  }, {
+    "name" : "Golf",
+    "description" : "At Marina Bay Golf Course",
+    "date": "2021-09-29",
+    "tagged" : [ ],
+    "status" : "COMPLETED",
+    "rating" : 2
+  } ]
+}

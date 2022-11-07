@@ -5,55 +5,56 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `sitong.hao@u.nus.edu`
 
 ## Project team
 
-### John Doe
+### Hao Sitong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/o-ohst.jpg" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/o-ohst)]
+[[portfolio](team/o-ohst.md)]
 
 * Role: Team Lead
-* Responsibilities: UI
+* Responsibilities: Overall project coordination
 
-### Johnny Doe
+### Ong Zheng Long
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zhenglong3.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/ZhengLong3)]
+[[portfolio](team/zhenglong3.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Iteration, Testing
 
-### James Doe
+### Nguyen Quy Duc
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ngquyduc.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/ngquyduc)]
+[[portfolio](team/ngquyduc.md)]
+
+* Role: Developer
+* Responsibilities: Iteration, Testing
+
+### Yap Sien Soon
+
+<img src="images/ssyap98.jpg" width="200px">
+
+[[github](https://github.com/ssyap98)]
+[[portfolio](team/ssyap98.md)]
+
+* Role: Developer
+* Responsibilities: Documentation
+
+### Zhang Bokun
+
+<img src="images/bokun2.png" width="200px">
+
+[[github](http://github.com/bokun2)]
+[[portfolio](team/bokun2.md)]
 
 * Role: Developer
 * Responsibilities: UI

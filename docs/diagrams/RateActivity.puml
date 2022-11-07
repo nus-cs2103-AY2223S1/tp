@@ -1,0 +1,71 @@
+@startuml
+ !include style.puml
+
+ box Logic LOGIC_COLOR_T1
+ participant ":LogicManager" as LogicManager LOGIC_COLOR
+ participant ":HobbyListParser" as HobbyListParser LOGIC_COLOR
+ participant ":RateCommandParser" as RateCommandParser LOGIC_COLOR
+ participant "r:RateCommand" as RateCommand LOGIC_COLOR
+ participant ":CommandResult" as CommandResult LOGIC_COLOR
+ endbox
+
+ box Model MODEL_COLOR_T1
+ participant ":Model" as Model MODEL_COLOR
+ endbox
+
+ [-> LogicManager : execute("rate 1 r/5 re/good movie")
+ activate LogicManager
+
+ LogicManager -> HobbyListParser : parseCommand("rate 1 r/5 re/good movie")
+ activate HobbyListParser
+
+ create RateCommandParser
+ HobbyListParser -> RateCommandParser
+ activate RateCommandParser
+ RateCommandParser --> HobbyListParser
+ deactivate RateCommandParser
+
+ HobbyListParser -> RateCommandParser : parse("1 r/5 re/good movie")
+ activate RateCommandParser
+
+ create RateCommand
+ RateCommandParser -> RateCommand
+ activate RateCommand
+
+ RateCommand --> RateCommandParser : r
+ deactivate RateCommand
+
+ RateCommandParser --> HobbyListParser : r
+ deactivate RateCommandParser
+ 'Hidden arrow to position the destroy marker below the end of the activation bar.
+ RateCommandParser -[hidden]-> HobbyListParser
+ destroy RateCommandParser
+
+ HobbyListParser --> LogicManager : r
+ deactivate HobbyListParser
+
+ LogicManager -> RateCommand : execute()
+ activate RateCommand
+
+ RateCommand -> RateCommand : createActivityWithRating()
+
+ RateCommand -> Model : setActivity(activityToRate, activityWithRating)
+ activate Model
+
+ Model --> RateCommand
+ deactivate Model
+
+ create CommandResult
+ RateCommand -> CommandResult
+ activate CommandResult
+
+ CommandResult --> RateCommand
+ deactivate CommandResult
+
+ RateCommand --> LogicManager : result
+ deactivate RateCommand
+
+ [<--LogicManager
+ deactivate LogicManager
+
+ @enduml

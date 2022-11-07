@@ -1,0 +1,9 @@
+{
+  "activities": [ {
+    "name": "Valid Activity",
+    "description": "4th street"
+  }, {
+    "name": "Activity With Invalid Description Field",
+    "description": ""
+  } ]
+}
