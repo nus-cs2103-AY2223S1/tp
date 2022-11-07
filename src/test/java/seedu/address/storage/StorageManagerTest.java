@@ -12,9 +12,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.AddressBook;
 import seedu.address.model.ArchivedTaskList;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTaskList;
+import seedu.address.model.TaskList;
 import seedu.address.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -58,10 +58,10 @@ public class StorageManagerTest {
          * {@link JsonAddressBookStorage} class.
          * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
+        TaskList original = getTypicalAddressBook();
         storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        ReadOnlyTaskList retrieved = storageManager.readAddressBook().get();
+        assertEquals(original, new TaskList(retrieved));
     }
 
     @Test
@@ -78,7 +78,7 @@ public class StorageManagerTest {
          */
         ArchivedTaskList original = getTypicalArchivedTaskList();
         storageManager.saveArchivedTaskList(original);
-        ReadOnlyAddressBook retrieved = storageManager.readArchivedTaskList().get();
+        ReadOnlyTaskList retrieved = storageManager.readArchivedTaskList().get();
         assertEquals(original, new ArchivedTaskList(retrieved));
     }
 

@@ -49,12 +49,12 @@ public interface Model {
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setAddressBook(ReadOnlyTaskList addressBook);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the TaskList */
+    ReadOnlyTaskList getAddressBook();
 
-    ReadOnlyAddressBook getArchivedTaskList();
+    ReadOnlyTaskList getArchivedTaskList();
 
     /**
      * Returns true if a task with the same identity as {@code task} exists in the address book.
@@ -123,7 +123,7 @@ public interface Model {
 
     void updateFilteredArchivedTaskList(Predicate<Task> predicate);
 
-    void setArchivedTaskList(ReadOnlyAddressBook addressBook);
+    void setArchivedTaskList(ReadOnlyTaskList addressBook);
 
     void setArchivedTaskListFilePath(Path archivedTaskBookFilePath);
 

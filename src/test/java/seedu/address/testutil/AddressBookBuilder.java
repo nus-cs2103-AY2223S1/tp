@@ -1,34 +1,34 @@
 package seedu.address.testutil;
 
-import seedu.address.model.AddressBook;
+import seedu.address.model.TaskList;
 import seedu.address.model.task.Task;
 
 /**
  * A utility class to help with building Addressbook objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
+ *     {@code TaskList ab = new AddressBookBuilder().withPerson("John", "Doe").build();}
  */
 public class AddressBookBuilder {
 
-    private AddressBook addressBook;
+    private TaskList addressBook;
 
     public AddressBookBuilder() {
-        addressBook = new AddressBook();
+        addressBook = new TaskList();
     }
 
-    public AddressBookBuilder(AddressBook addressBook) {
+    public AddressBookBuilder(TaskList addressBook) {
         this.addressBook = addressBook;
     }
 
     /**
-     * Adds a new {@code Task} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Task} to the {@code TaskList} that we are building.
      */
     public AddressBookBuilder withPerson(Task task) {
         addressBook.addPerson(task);
         return this;
     }
 
-    public AddressBook build() {
+    public TaskList build() {
         return addressBook;
     }
 }

@@ -28,7 +28,6 @@ for the code that I contributed.
   * Merged Quick start section to include the GUI walkaround
   * Added how `Autocomplete` works including a guiding image
   * Added descriptions to the `ls -n` (list name) and `find` commands, including images to show successful usage
-  * Edited any discrepancies in the UG
 * **Contributions to the DG**: 
   * Renamed all instances of `AddressBook` to match the current project files, including most UML diagrams
   * Added the explanation of the implementation of the `Autocomplete` feature including its activity UML diagram
@@ -43,20 +42,20 @@ for the code that I contributed.
   * Drafted initial wireframe for the app
   * Changed names in UI to NotionUS
 * **Review/mentoring contributions**: 
-  * PRs reviewed
-    * [**#186**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/186)
-    * [**#179**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/179)
-    * [**#91**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/91)
-    * [**#88**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/88)
-    * [**#85**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/85)
-    * [**#84**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/84)
-    * [**#83**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/83)
-    * [**#70**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/70)
-    * [**#69**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/69)
-    * [**#68**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/68)
-    * [**#66**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/66)
-    * [**#17**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/17)
-    * [**#15**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/15)
+  * PRs reviewed:
+    [**#186**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/186),
+    [**#179**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/179),
+    [**#91**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/91),
+    [**#88**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/88),
+    [**#85**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/85),
+    [**#84**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/84),
+    [**#83**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/83),
+    [**#70**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/70),
+    [**#69**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/69),
+    [**#68**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/68),
+    [**#66**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/66),
+    [**#17**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/17),
+    [**#15**](https://github.com/AY2223S1-CS2103T-F12-3/tp/pull/15)
 * **Contributions beyond the project team**: 
   * Asked [a question in forum](https://github.com/nus-cs2103-AY2223S1/forum/issues/422) regarding where to reference 
 license(s) used which may be useful to others.

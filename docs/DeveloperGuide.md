@@ -24,8 +24,8 @@ implementation of our features in the "Implementation" section.
 ## **2. Acknowledgements**
 
 
-* [AddressBook Level-3](https://se-education.org/addressbook-level3/)
-* [Open Font License for Quicksand font](http://scripts.sil.org/OFL)
+* This project is based on the [AddressBook Level-3](https://se-education.org/addressbook-level3/) created by the [SE-EDU initiative](https://se-education.org/).
+* The Quicksand font's Open Font License: [Open Font License for Quicksand font](http://scripts.sil.org/OFL)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -35,15 +35,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## *4. *Design**
-
-<div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in
-the [diagrams](https://github.com/AY2223S1-CS2103T-F12-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML
-Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit
-diagrams.
-</div>
+## **4. Design**
 
 ### 4.1 Architecture
 
@@ -63,14 +55,14 @@ is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
-[**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+[**`Commons`**](#46-common-classes) represents a collection of classes used by multiple other components.
 
 The rest of the App consists of four components.
 
-* [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`UI`**](#42-ui-component): The UI of the App.
+* [**`Logic`**](#43-logic-component): The command executor.
+* [**`Model`**](#44-model-component): Holds the data of the App in memory.
+* [**`Storage`**](#45-storage-component): Reads data from, and writes data to, the hard disk.
 
 **How the architecture components interact with each other**
 
@@ -127,8 +119,7 @@ The `UI` component,
 
 ### 4.3 Logic component
 
-**
-API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -164,6 +155,7 @@ How the parsing works:
   interface so that they can be treated similarly where possible e.g, during testing.
 
 ### 4.4 Model component
+
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F12-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -175,18 +167,20 @@ The `Model` component,
 * stores the currently 'selected' `Task` objects (e.g., results of a search query) as a separate _filtered_ list which
   is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to
   this list so that the UI automatically updates when the data in the list change.
+* stores the archived `Task` objects in another `UniqueTaskList` object.
 * stores the filter status when the task list is filtered and also updates when the list changes.
-* to support a default sorting of `Task` objects, `Task` implements the `Comparable<Task>` interface
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
   a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
+
+For the `Task` class,
+* to support a default sorting of `Task` objects, `Task` implements the `Comparable<Task>` interface
 * As `Deadline` is an optional field, their values are stored in an `Optional` object.
 
 ### 4.5 Storage component
 
-**
-API** : [`Storage.java`](https://github.com/se-edu/TaskList-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/se-edu/TaskList-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 <img src="images/StorageClassDiagram-0.png" width="550" />
 
@@ -194,7 +188,7 @@ The `Storage` component,
 
 * can save both address book data and user preference data in json format, and read them back into corresponding
   objects.
-* inherits from both `TaskListStorage`, `ArchivedtaskListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
+* inherits from both `TaskListStorage`, `ArchivedTaskListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
   the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
@@ -425,15 +419,15 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 
 **MSS:**
 
-1. User requests to add a task into the task list
-2. NotionUS adds task into task list and displays it
+1. User requests to add a task into the task list.
+2. NotionUS adds task into task list and displays it.
 
    Use case ends.
 
 **Extensions:**
 
-* 1a. User does not provide the required information for the task
-    * 1a1. NotionUS shows an error, requesting the user re-enter their task
+* 1a. User does not provide the required information for the task.
+    * 1a1. NotionUS shows an error, requesting the user re-enter their task.
 
       Use case ends.
 
@@ -441,39 +435,39 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 
 **MSS:**
 
-1. User finds the id associated with the task
-2. User requests to edit the task
-3. NotionUS edits the task and displays it
+1. User finds the ID associated with the task he wants to edit.
+2. With the task ID, user requests to edit the task.
+3. NotionUS edits the task and displays it.
 
    Use case ends.
 
 **Extensions:**
 
-* 2a. User provides an invalid ID
-    * 2a1. NotionUS shows an error, requesting the user check the task id
+* 2a. User provides an invalid ID.
+    * 2a1. NotionUS shows an error, requesting the user check the task ID.
 
       Use case starts from 1.
 
 
-* 2b. User does not provide any changes
-    * 2b1. NotionUS provides a note that nothing was changed
+* 2b. User does not provide any changes.
+    * 2b1. NotionUS provides a note that nothing was changed.
 
-      Use case ends
+      Use case ends.
 
 **Use Case: UC3 - Delete a task**
 
 **MSS:**
 
-1. User finds the id associated with the task
-2. User requests to delete the task
-3. NotionUS deletes the task and updates the view
+1. User finds the ID associated with the task he wants to delete.
+2. With the task ID, user requests to delete the task.
+3. NotionUS deletes the task and updates the view.
 
    Use case ends.
 
 **Extensions:**
 
-* 2a. User provides an invalid ID
-    * 2a1. NotionUS shows an error, requesting the user check the task id
+* 2a. User provides an invalid ID.
+    * 2a1. NotionUS shows an error, requesting the user check the task ID.
 
       Use case starts from 1.
 
@@ -481,74 +475,151 @@ Unless specified otherwise, the **System** is the `NotionUS` application and the
 
 **MSS:**
 
-1. User creates a task (UC1)
-2. With the task id, user requests to tag the task
-3. NotionUS tags the task and displays it
+1. User finds the ID associated with the task he wants to tag.
+2. With the task ID, user requests to tag the task with a specified task.
+3. NotionUS adds the specified tag to the task and displays it.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. User provides an invalid ID.
+    * 2a1. NotionUS shows an error, requesting the user check the task ID.
+
+      Use case starts from 1.
+
+**Use Case: UC5 - Mark a task as done**
+
+**MSS:**
+
+1. User finds the ID associated with the task he wants to mark as done.
+2. With the task ID, user requests to mark the task as done.
+3. NotionUS marks the specified task as done.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. User provides an invalid ID.
+    * 2a1. NotionUS shows an error, requesting the user check the task ID.
+
+      Use case starts from 1.
+
+**Use Case: UC6 - Mark a task as not done**
+
+**MSS:**
+
+1. User finds the ID associated with the task he wants to mark as not done.
+2. With the task ID, user requests to mark the task as not done.
+3. NotionUS marks the specified task as not done.
+
    Use case ends.
 
 **Extensions:**
 
 * 2a. User provides an invalid ID
-    * 2a1. NotionUS shows an error, requesting the user check the task id
+    * 2a1. NotionUS shows an error, requesting the user check the task ID
 
       Use case starts from 1.
 
-**Use Case: UC4 - Tag a task**
+**Use Case: UC7 - Find a task with a keyword**
 
 **MSS:**
 
-1. User creates a task (UC1)
-2. With the task id, user requests to tag the task
-3. NotionUS tags the task and displays it
-   Use case ends.
-
-**Extensions:**
-
-* 2a. User provides an invalid ID
-    * 2a1. NotionUS shows an error, requesting the user check the task id
-
-      Use case starts from 1.
-
-**Use Case: UC5 - Finding a word in task attributes**
-
-**MSS:**
-
-1. User would like to perform a global search to find a keyword
-2. User requests find the keyword
-3. NotionUS updates the view with the tasks which attributes contain the keyword
+1. User requests a global search with a specified keyword.
+2. NotionUS updates the displayed task list with the tasks with attributes that contain the keyword.
 
    Use case ends.
 
 **Extensions:**
 
-* 2a. User provides a keyword that does not exist
-    * 2a1. NotionUS displays an empty page
+* 2a. User provides a keyword that does not exist in any task.
+    * 2a1. NotionUS displays an empty page.
 
       Use case ends.
 
-**Use Case: UC6 - Autocompleting commands**
+**Use Case: UC8 - Filter displayed tasks with specified attributes**
 
 **MSS:**
 
-1. User would to find a command for listing marked tasks
-2. User types `l` in the command box
-3. NotionUS displays a popup menu displaying the possible commands that begin with `l`
-4. User uses the arrow keys to select through the possible commands
-5. User clicks enter to fill the command box with the highlighted command
+1. User requests a filter with one or more specified attributes.
+2. NotionUS updates the displayed task list with the tasks that contain the specified attributes.
 
    Use case ends.
 
 **Extensions:**
 
-* 2a. User uses a letter that does not match any commands
-    * 2a1. NotionUS does not display a popup
+* 2a. User provides an attribute or a set of attributes that no task fulfills.
+    * 2a1. NotionUS displays an empty page.
+
+      Use case ends.
+
+**Use Case: UC9 - Archive a task**
+
+**MSS:**
+
+1. User finds the ID of the task he wants to archive.
+2. With the task ID, user requests to archive the task.
+3. NotionUS archives the task, removing it from the displayed task list and adds it to the archive.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. User provides an invalid ID.
+    * 2a1. NotionUS shows an error, requesting the user check the task ID.
+
+      Use case starts from 1.
+
+**Use Case: UC10 - Show archived tasks**
+
+**MSS:**
+
+1. User requests to show the archived tasks.
+2. NotionUS displays the archived tasks.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. No task has been archived.
+    * 2a1. NotionUS displays an empty page.
+
+      Use case ends.
+
+**Use Case: UC11 - Clear all tasks**
+
+**MSS:**
+
+1. User requests to clear all tasks.
+2. NotionUS deletes all tasks, displaying an empty task list.
+
+   Use case ends.
+
+**Use Case: UC12 - Autocompleting commands**
+
+**MSS:**
+
+1. User wants to find a command for listing marked tasks.
+2. User types `l` in the command box.
+3. NotionUS displays a popup menu displaying the possible commands that begin with `l`.
+4. User uses the arrow keys to select through the possible commands.
+5. User clicks enter to fill the command box with the highlighted command.
+
+   Use case ends.
+
+**Extensions:**
+
+* 2a. User uses a letter that does not match any commands.
+    * 2a1. NotionUS does not display a popup.
 
       Use case ends.
   
-* 2b. User inputs a command that matches a command in the popup
-    * 2b1. NotionUS closes the popup as suggestions are not required
+* 2b. User inputs a command that matches a command in the popup.
+    * 2b1. NotionUS closes the popup as suggestions are not required.
 
       Use case ends.
+
 
 ### 7.4 Non-Functional Requirements
 
