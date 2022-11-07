@@ -304,20 +304,20 @@ Now, let's use `mdel` to delete a module in ProfNUS!
 As SOC Professors, you certainly have many students and teaching assistants to keep track of.
 In ProfNUS, you are able to add students / teaching assistants in to our contact list.
 We are able to save the individual's name, unique student id, phone number, email, telegram handle,
-address and other school related information such as modules the student is taking, modules which 
+address and other school related information such as modules the student is taking, modules which
 the student is a teaching assistant for and the class groups that the student is in.
-Teaching assistants in ProfNUS are considered students as well and as such, an individual 
+Teaching assistants in ProfNUS are considered students as well and as such, an individual
 can be both a student and a teaching assistant at the same time.
 
 ![studentandta.png](./images/userguide/studentandta.png)
 
-As we can see, the person `Bernice Yu` is a student of the module `CS2040S` as seen by the red label and a 
-teaching assistant of the module `CS2030S` as seen by the green label. If you edit or delete `Bernice Yu`, the changes will 
+As we can see, the person `Bernice Yu` is a student of the module `CS2040S` as seen by the red label and a
+teaching assistant of the module `CS2030S` as seen by the green label. If you edit or delete `Bernice Yu`, the changes will
 be saved on both sides.
 
 #### 4.3.1. Student Manager Command Parameters
 
-Before you get started with this feature, have a look at the common parameters we have used. Take a look before you 
+Before you get started with this feature, have a look at the common parameters we have used. Take a look before you
 continue!
 
 | Parameter     | Description & Restriction                                                                                                                                                                                                                                                                                                                                                                                                                    | Example                             |
@@ -399,7 +399,7 @@ You can use this command to edit a student in the Student Manager.
 - Refer to section [Student Manager Command Parameters](#431-student-manager-command-parameters) for more information about the parameters
 - You must enter at least on optional parameter to edit the student.
 - When editing tags, modules, ta modules and class groups, the existing information of the student will be removed i.e adding of tags, modules, ta modules and class groups is not cumulative.
-- You can remove all the student’s tags by typing `t/` without specifying any tags after it. 
+- You can remove all the student’s tags by typing `t/` without specifying any tags after it.
 Likewise, this can be done for modules, ta modules and class groups as well by typing `c/`, `ta/` and `cg/` respectively.
 - Editing a student that is a teaching assistant will change the details of both of them displayed in the list.
 - Successfully editing a student will redirect you to the all student's and teaching assistant's page.
@@ -408,7 +408,7 @@ Likewise, this can be done for modules, ta modules and class groups as well by t
 
 **Example:**
 
-For instance, you have accidentally indicated that the student `John Doe` is a teaching assistant of 
+For instance, you have accidentally indicated that the student `John Doe` is a teaching assistant of
 the module `CS2040S` and a student of the module `CS2030S` when instead it should be the other way round.
 
 You can follow the steps shown below to amend this error.
@@ -463,7 +463,7 @@ You can use this command to delete a student from the student list.
 
 - Refer to section [Student Manager Command Parameters](#431-student-manager-command-parameters) for more information about the parameters
 - Deletes the student at the specified index.
-- The index refers to the index number shown in the displayed student list. 
+- The index refers to the index number shown in the displayed student list.
 - The index **must be a positive integer** 1, 2, 3, …​
 - Deleting a student from the student list will also delete the teaching assistant from the teaching assistant list if the student is a teaching assistant.
 - Successfully deleting a student will redirect you to the all student's and teaching assistant's page.
@@ -474,7 +474,7 @@ You can use this command to delete a student from the student list.
 
 :exclamation: **Caution:**
 
-- Please make sure the `INDEX` you type is **valid**, i.e. it appears in the displayed list. 
+- Please make sure the `INDEX` you type is **valid**, i.e. it appears in the displayed list.
 Otherwise, **no** student will be deleted by ProfNUS.
 
 </div>
@@ -509,7 +509,7 @@ You can use this command to delete a teaching assistant from the teaching assist
 - Deleting a teaching assistant from the teaching assistant list will also delete the student from the student list.
 - Deleting a teaching assistant is very similar to deleting a student. Do refer to [Deleting a student](#435-deleting-a-student-delstu) if you are unsure.
 - Successfully deleting a teaching assistant will redirect you to the all student's and teaching assistant's page.
-- 
+
 </div>
 
 <div markdown="span" class="alert alert-warning">
@@ -527,7 +527,7 @@ You can use this command to delete a teaching assistant from the teaching assist
 
 #### 4.3.8. Locating students and teaching assistants by name: `find`
 
-You can find your students / teaching assistants by searching for keywords in their name. 
+You can find your students / teaching assistants by searching for keywords in their name.
 
 **Format:** `find KEYWORD [MORE_KEYWORDS]`
 
