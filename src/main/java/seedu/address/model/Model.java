@@ -102,7 +102,7 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
-    public Person getPerson(PersonName personName);
+    public Person getPerson(PersonName name);
 
     public PersonName getPersonName(Index personIndex);
 

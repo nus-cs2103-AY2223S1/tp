@@ -125,7 +125,7 @@ public class EditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditPersonDescriptor {
-        private PersonName personName;
+        private PersonName name;
         private Phone phone;
         private Email email;
         private Address address;
@@ -138,7 +138,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
-            setName(toCopy.personName);
+            setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
@@ -149,15 +149,15 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(personName, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
         }
 
-        public void setName(PersonName personName) {
-            this.personName = personName;
+        public void setName(PersonName name) {
+            this.name = name;
         }
 
         public Optional<PersonName> getName() {
-            return Optional.ofNullable(personName);
+            return Optional.ofNullable(name);
         }
 
         public void setPhone(Phone phone) {

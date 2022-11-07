@@ -34,19 +34,19 @@ public class EditTeamCommand extends Command {
 
 
     private final Index targetIndex;
-    private final TeamName newTeamTeamName;
+    private final TeamName newTeamName;
 
     /**
      * Edit team command constructor
      * @param targetIndex of the team in the filtered person list to edit
-     * @param newTeamTeamName details to edit the team with
+     * @param newTeamName details to edit the team with
      */
-    public EditTeamCommand(Index targetIndex, TeamName newTeamTeamName) {
+    public EditTeamCommand(Index targetIndex, TeamName newTeamName) {
         requireNonNull(targetIndex);
-        requireNonNull(newTeamTeamName);
+        requireNonNull(newTeamName);
 
         this.targetIndex = targetIndex;
-        this.newTeamTeamName = newTeamTeamName;
+        this.newTeamName = newTeamName;
     }
 
     @Override
@@ -58,12 +58,12 @@ public class EditTeamCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_TEAM_DISPLAYED_INDEX);
         }
 
-        if (model.teamNameExists(newTeamTeamName)) {
+        if (model.teamNameExists(newTeamName)) {
             throw new CommandException(MESSAGE_DUPLICATE_TEAM_NAME);
         }
 
-        model.setTeamName(targetIndex, newTeamTeamName);
-        return new CommandResult(String.format(MESSAGE_EDIT_TEAM_SUCCESS, newTeamTeamName));
+        model.setTeamName(targetIndex, newTeamName);
+        return new CommandResult(String.format(MESSAGE_EDIT_TEAM_SUCCESS, newTeamName));
     }
 
     @Override
@@ -71,6 +71,6 @@ public class EditTeamCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof EditTeamCommand // instanceof handles nulls
                 && targetIndex.equals(((EditTeamCommand) other).targetIndex)
-                && newTeamTeamName.equals(((EditTeamCommand) other).newTeamTeamName)); // state check
+                && newTeamName.equals(((EditTeamCommand) other).newTeamName)); // state check
     }
 }

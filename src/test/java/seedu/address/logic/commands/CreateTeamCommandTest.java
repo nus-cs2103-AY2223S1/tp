@@ -180,7 +180,7 @@ public class CreateTeamCommandTest {
         }
 
         @Override
-        public Person getPerson(PersonName personName) {
+        public Person getPerson(PersonName name) {
             throw new AssertionError("This method should not be called.");
         }
 

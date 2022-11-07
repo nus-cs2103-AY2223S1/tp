@@ -240,16 +240,16 @@ public class ModelManager implements Model {
 
     /**
      * Returns person object which has given name.
-     * @param personName Name of person.
+     * @param name Name of person.
      * @return Person object.
      */
     @Override
-    public Person getPerson(PersonName personName) {
+    public Person getPerson(PersonName name) {
         List<Person> persons = getFilteredPersonList();
-        requireNonNull(personName);
+        requireNonNull(name);
         for (int i = 0; i < persons.size(); i++) {
             Person person = persons.get(i);
-            if (person.getName().equals(personName)) {
+            if (person.getName().equals(name)) {
                 return person;
             }
         }

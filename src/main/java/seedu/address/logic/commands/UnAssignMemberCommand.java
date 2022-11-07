@@ -71,10 +71,10 @@ public class UnAssignMemberCommand extends Command {
         }
 
         TeamName teamName = model.getTeamName(teamIndex);
-        PersonName personName = model.getPersonName(personIndex);
+        PersonName name = model.getPersonName(personIndex);
         model.removePersonFromTeam(person, team);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, personName, teamName));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, name, teamName));
     }
 
 }
