@@ -1,8 +1,8 @@
 package jarvis.model;
 
-import jarvis.logic.commands.exceptions.InvalidMarkException;
-
 import java.util.EnumMap;
+
+import jarvis.logic.commands.exceptions.InvalidMarkException;
 
 /**
  * A class to encapsulate a student's grades for all assessments.
@@ -20,6 +20,9 @@ public class GradeProfile {
         }
     }
 
+    /**
+     * Records the marks for the given assessment.
+     */
     public void grade(Assessment a, double mark) {
         if (mark < 0 || mark > a.getTotalMarks()) {
             throw new InvalidMarkException();

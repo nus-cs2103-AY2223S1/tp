@@ -1,5 +1,15 @@
 package jarvis.logic.commands;
 
+import static jarvis.logic.commands.CommandTestUtil.assertCommandFailure;
+import static jarvis.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static jarvis.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static jarvis.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static jarvis.testutil.TypicalStudents.getTypicalStudentBook;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
 import jarvis.model.Assessment;
@@ -8,15 +18,6 @@ import jarvis.model.Model;
 import jarvis.model.ModelManager;
 import jarvis.model.Student;
 import jarvis.model.UserPrefs;
-import org.junit.jupiter.api.Test;
-
-import static jarvis.logic.commands.CommandTestUtil.assertCommandFailure;
-import static jarvis.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static jarvis.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static jarvis.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static jarvis.testutil.TypicalStudents.getTypicalStudentBook;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GradeCommandTest {
 
@@ -37,8 +38,8 @@ class GradeCommandTest {
 
     @Test
     public void execute_invalidIndexValidGradeProfile_failure() {
-        GradeProfile validGradeProfile = new GradeProfile();
         Index outOfBoundsIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
+        GradeProfile validGradeProfile = new GradeProfile();
         GradeCommand gradeCommand = new GradeCommand(outOfBoundsIndex, validGradeProfile);
 
         assertCommandFailure(gradeCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);

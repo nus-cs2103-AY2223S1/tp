@@ -1,10 +1,12 @@
 package jarvis.model;
 
-import jarvis.logic.commands.exceptions.InvalidMarkException;
+import static jarvis.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
-import static jarvis.testutil.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.*;
+import jarvis.logic.commands.exceptions.InvalidMarkException;
 
 class GradeComponentTest {
 
@@ -26,8 +28,8 @@ class GradeComponentTest {
         gradeFourthComponent.setGrade(1);
 
         // Same assessments and marks return the same grade string
-        assertTrue(gradeFirstComponent.getGradeString().equals(gradeSecondComponent));
-        assertTrue(gradeThirdComponent.getGradeString().equals(gradeFourthComponent));
+        assertTrue(gradeFirstComponent.getGradeString().equals(gradeSecondComponent.getGradeString()));
+        assertTrue(gradeThirdComponent.getGradeString().equals(gradeFourthComponent.getGradeString()));
 
         gradeSecondComponent.setGrade(1);
         // Mastery check should not return same grade string as other assessment types despite same mark
@@ -36,7 +38,7 @@ class GradeComponentTest {
         gradeThirdComponent.setGrade(0);
         // Same assessment different mark should not return same grade string
         assertFalse(gradeFirstComponent.getGradeString().equals(gradeSecondComponent.getGradeString()));
-        assertFalse(gradeThirdComponent.getGradeString().equals(gradeFourthComponent));
+        assertFalse(gradeThirdComponent.getGradeString().equals(gradeFourthComponent.getGradeString()));
     }
 
     @Test

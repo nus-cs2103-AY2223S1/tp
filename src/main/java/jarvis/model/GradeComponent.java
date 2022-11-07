@@ -1,7 +1,10 @@
 package jarvis.model;
 
+import static java.util.Objects.requireNonNull;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jarvis.logic.commands.exceptions.InvalidMarkException;
 
 /**
@@ -18,6 +21,7 @@ public class GradeComponent {
      * @param assessment The assessment involved.
      */
     public GradeComponent(Assessment assessment) {
+        requireNonNull(assessment);
         this.assessment = assessment;
         isGraded = false;
         marks = 0;
