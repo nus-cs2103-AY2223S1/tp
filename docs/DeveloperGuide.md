@@ -750,8 +750,6 @@ testers are expected to do more *exploratory* testing.
     4. Test case: Missing JSON file<br>
        Expected: Creates a new addressbook.json file when there is a new command entered
 
-    5. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
 ### 7.4. Sorting Clients
 
 1. Sorting clients when client list has multiple clients in the list
