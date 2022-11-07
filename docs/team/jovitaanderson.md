@@ -22,7 +22,7 @@ Given below are my contributions to the project.
           users are able to efficiently copy and paste their planned anywhere for easier communication with their
           clients.
     * **New feature**: Add Light/Dark mode option
-        * What it does: allows the user to have the option to set FinBook to be light/dark mode
+        * What it does: allows the user to have the option to set FinBook to be light/dark mode.
         * Justification: This feature improves the user experience of FinBook as it gives users the option to
           personalize the application interface to their preference of color theme Light or Dark mode.  
     * **Enhance feature**: Allow multiple deletion of clients
@@ -34,7 +34,7 @@ Given below are my contributions to the project.
           find the best command to delete a specific set of clients. The several ways include: `delete [INDEX]`,
           ,`delete [INDEX1], [INDEX2] ,...`, `delete [START INDEX] - [END INDEX]`, `delete all`
     * **Update feature**: Add client to include income and meeting date attribute
-        * What is does: allow the user to add income and meeting date(optional) to the client
+        * What is does: allow the user to add income and meeting date(optional) to the client.
         * Justification: Important information that Financial Advisors take note of when engaging a client is their
           income and next potential meeting date. Hence, these attributes have been added to store these details in
           FinBook.
@@ -53,12 +53,12 @@ Given below are my contributions to the project.
         * Model diagram (created and updated).([#51](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/51))
         * Update user stories. ([#97](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/97))
         * Add test cases for deleting a client.
-        * Add Copy command in the implementation process
+        * Add Copy command in the implementation process.
         
 * **Contributions to team-based tasks**:
     * Managed releases [`v1.2.1`](https://github.com/AY2223S1-CS2103T-F11-3/tp/releases/tag/v1.2.1),
-      [`V1.3.1`](https://github.com/AY2223S1-CS2103T-F11-3/tp/releases/tag/v1.3.1) (2 releases) on GitHub
-    * Manage some issues bugs by assigning teammates to their respective feature contribution
+      [`V1.3.1`](https://github.com/AY2223S1-CS2103T-F11-3/tp/releases/tag/v1.3.1) (2 releases) on GitHub.
+    * Manage some issues bugs by assigning teammates to their respective feature contribution.
     * Update User Guide [product description](https://ay2223s1-cs2103t-f11-3.github.io/tp/UserGuide.html#11-what-is-finbook)
       to fit FinBook's target audience and purpose. 
     
@@ -75,12 +75,12 @@ Given below are my contributions to the project.
       [#82](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/82),
       [#92](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/92),
       [#105](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/105))
-    * Provided some feedback on UI design ([#46](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/46))
+    * Provided some feedback on UI design. ([#46](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/46))
 
 * **Contributions beyond the project team**:
     * Facilitated weekly meeting discussions as well as gave reminders of deadlines.
-    * Helped peers with code CheckStyle ([#55](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/55))
-    * Reported bugs and suggestions for other teams (Issues: 
+    * Helped peers with code CheckStyle. ([#55](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/55))
+    * Reported bugs and suggestions for other teams. (Issues: 
       [#138](https://github.com/AY2223S1-CS2103-F14-3/tp/issues/138),
       [#148](https://github.com/AY2223S1-CS2103-F14-3/tp/issues/148),
       [#153](https://github.com/AY2223S1-CS2103-F14-3/tp/issues/153),
