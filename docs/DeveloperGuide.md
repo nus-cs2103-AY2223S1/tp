@@ -334,6 +334,10 @@ Step 5. The user now decides that he wants to sort his list of trips, and he doe
         The `SortTripsCommandParser` firstly parses the command for optional parameters, which may contain the factor 
         to sort by and whether to sort in reverse order. Subsequently, the trips are sorted based on the parameters the 
         user supplied while keeping uncompleted trips ordered before completed trips.
+        
+The following sequence diagram shows how the `sort` command works:
+
+![SortingMechanismDiagram](images/SortingMechanism.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
