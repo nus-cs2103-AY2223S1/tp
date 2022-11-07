@@ -9,7 +9,7 @@ checkUp is a desktop patient medical record management system.
 The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 It is written in Java, and has about 15 kLoC.
 
-Given below are my contributions to the project.
+As the co-team lead, given below are my contributions to the project.
 
 #### Code contributed
 
