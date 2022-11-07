@@ -663,7 +663,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample data. The window size may not be optimum.
 
 2. Saving window preferences
 
@@ -690,13 +690,13 @@ Do the test cases sequentially to ensure correct expectation.
        Expected:  A new student is added to the student list. A success message containing details of the added student is shown in result display box and the list of students is shown.
 
     4. Test case: `add student n/Mary i/A0000000J ph/12345678 e/mary@example.com tele/mary m/CS2103T tut/W17`<br>
-       Expected: Conflicting student error message is shown.
+       Expected: Duplicate student error message is shown.
 
-    5. Test case: `add student n/John  i/A0000000B ph/87654321 e/john@example.com tele/john m/missing_module tut/W17`<br>
+    5. Test case: `add student n/John i/A0000000B ph/87654321 e/john@example.com tele/john m/missing_module tut/W17`<br>
        Expected: Error message is shown as module code is invalid. No student is added.
 
-    6. Test case: `add student n/John  i/A0000000B ph/87654321 e/john@example.com tele/john` <br>
-       Expected: Error message is shown as missing prefix. No student is added.
+    6. Test case: `add student n/John i/A0000000B ph/87654321 e/john@example.com tele/john` <br>
+       Expected: Error message is shown as there are missing prefixes. No student is added.
 
     7. Other incorrect add student commands to try: `add student`, `add student n/testing i/sususu ph/ e/ tele/ m/ tut/`, `...` <br>
        Expected: Error message is shown in the result display box.
@@ -705,10 +705,10 @@ Do the test cases sequentially to ensure correct expectation.
 
     1. Prerequisites: Switch to another tab that is not student, for example, using the `switch f/tutorial` command.
 
-    2. Test case: `add student n/Mary i/A123456789J ph/12345678 e/mary@example.com tele/mary m/CS2103T tut/W17`<br>
+    2. Test case: `add student n/Jack i/A123456789J ph/12345678 e/jack@example.com tele/jack m/CS2103T tut/W17`<br>
        Expected: Error message is shown as student id format is invalid. Main display remains the same.
 
-    3. Test case: `add student n/Mary i/A1234567J ph/12345678 e/mary@example.com tele/mary m/CS2103T tut/W17`<br>
+    3. Test case: `add student n/Jack i/A1234567J ph/12345678 e/jack@example.com tele/jack m/CS2103T tut/W17`<br>
        Expected:  A success message containing details of the added student is shown. Main display changes to student and student list is updated.
 
 #### 8.2.2 Editing a student
@@ -889,7 +889,7 @@ Do the test cases sequentially to ensure correct expectation.
 
     1. Prerequisites: Ensure reminder data are empty by using `clear f/reminder` (you may skip this if you do not have any reminders).
 
-    2. Test case: `add reminder n/Mark HW 1 D/2023-03-22 T/14:00 d/10 papers p/HIGH`<br>
+    2. Test case: `add reminder n/Mark HW1 D/2023-03-22 T/14:00 d/10 papers p/HIGH`<br>
        Expected:  A new reminder is added to the reminder list. A success message containing details of the added reminder is shown in result display box and the reminder list on the right is updated.
 
     3. Test case: `add reminder n/Mark HW1 D/2023-03-22 T/14:00 d/10 papers p/HIGH`<br>
@@ -936,7 +936,7 @@ Do the test cases sequentially to ensure correct expectation.
 
 1. Marking a reminder while all reminders are being shown.
 
-    1. Prerequisites: At least 1 incomplete reminder in the reminder list.
+    1. Prerequisites: At least 1 reminder in the reminder list and status of the first reminder is incomplete.
 
     2. Test case: `mark reminder 1`<br>
        Expected: The status of the first reminder will become completed. Reminder list will be updated and colour of reminder will turn from yellow to green. 
@@ -951,7 +951,7 @@ Do the test cases sequentially to ensure correct expectation.
 
 1. Unmarking a reminder while all reminders are being shown.
 
-    1. Prerequisites: At least 1 completed reminder in the reminder list.
+    1. Prerequisites: At least 1 reminder in the reminder list and status of the first reminder is completed.
 
     2. Test case: `unmark reminder 1`<br>
        Expected: The status of the first reminder will become incomplete. Reminder list will be updated and colour of reminder will turn from green to yellow.
@@ -1016,22 +1016,25 @@ Do the test cases sequentially to ensure correct expectation.
 Implementing ModQuik was not easy. We have summarised the difficulties and challenges our team have encountered when developing ModQuik and listed it below.
 
 ### 9.1 Code Design
-As we are creating a tool for TAs to manage all their teaching responsibilities, we have to implement several new classes to get the minimum viable product of ModQuik.
-We created `Tutorial`, `Consultation` and `Reminder` classes and its associated inner field classes. When applicable, we try to abstract out commonly reused classes.
-However, it was not easy to identify them, and we had to make many subsequent changes along the way to due to other design considerations such as the fact that tutorials are repeated on a weekly basis while consultations are usually a one-off thing.
-We also had to create Parser classes for each of the subsequent classes that we have created in order for our commands to work properly.
-As we use multi-word commands, this poses yet another challenge to implement a bug-free way of parsing inputs as it created a plethora of ways for invalid inputs to occur.
+As we are creating a tool for TAs to manage all their teaching responsibilities, we have to implement several new entities (`Tutorial`, `Consultation` and `Reminder`) for ModQuik as compared to AB-3 where there was only 1 entity type (`Person`).
+When applicable, we try to abstract out commonly reused classes.
+We also created multiple Parser classes for each of the subsequent classes that we have created in order for our commands to work properly.
+As we used multi-word commands, this poses yet another challenge to implement a bug-free way of parsing inputs as it created more ways for invalid inputs to occur.
 
-One major challenge that we faced was limiting the number of classes that a TA could add. In reality, TAs could only teach up to 2 modules every semester.
+One major challenge that we faced was limiting the number of classes that a TA could add. In reality, TAs could only teach up to 2 modules every semester. Though rare, a student may also end up having the same TA for 2 mods.
 However, this would require us to implement tight constraints on our user as we would have to validate the inputs every step along the way.
 The most inconvenient aspect is that editing any student entry that involves changing the module code will require user to first delete a module (if they are already capped at 2 modules) and then add the new module.
-This presents yet another dilemma, because if the TA deletes the module code, then by design all the student entries related to the module should be deleted as well.
-However, this would not be very viable as the TA might simply want to add another student into the list of students, and such design would not accomodate nicely to accidental errors as well.
-Moreover, if we were to link the module to the students, editing the tutorial module code will also edit all the affiliated student entries. However, this is not a desired behaviour. 
-For instance, though rare, a student may end up having the same TA for 2 mods. 
 
-There are many plausible arguments, and it also depends on how the user uses the product. If given more time...
+This presents yet another dilemma, because if the TA deletes the module code, then by design all the student entries related to the module should be deleted as well.
+Moreover, if we were to link the module to the students, editing the tutorial module code will also edit all the affiliated student entries, but this might not be the intended behaviour.
 
 ### 9.2 User Interface
-
-AB3 did not have any different tabs. There was only one page showing the Person’s contacts. By adding tabs, we could implement different UIs into each tab to give the user a better experience. In order to do so, it requires us to put in more thought on how to render the tabs. By default, JavaFx create tabs in horizontal order on the top of TabPane and changing the tabs at left will cause the headers be vertical. We had to tackle aspects regarding setting tabs placed at left and ensuring keeping the tab headers horizontal. Furthermore, having multiple tabs required us to manipulate the tab toggling for certain commands as our target user is fast-typists who prefer typing over other means of input. In addition, we encountered difficulties in creating a pie chart and customizing the chart legends to show the number of students in each category, which required much time. Finally, implementing and styling the UI was not easy. Changing layout and adding icons is important to provide a standardised and modern look to the application. In order to do so, it required us to overhaul the existing CSS file in AddressBook Level-3.
+AB3 did not have any different tabs. There was only one page showing the Person’s contacts.
+By adding tabs, we could implement different UIs into each tab to give the user a better experience.
+In order to do so, it requires us to put in more thought on how to render the tabs.
+By default, JavaFx create tabs in horizontal order on the top of TabPane and changing the tabs at left will cause the headers be vertical.
+We had to tackle aspects regarding setting tabs placed at left and ensuring keeping the tab headers horizontal.
+Furthermore, having multiple tabs required us to manipulate the tab toggling for certain commands as our target user is fast-typists who prefer typing over other means of input.
+In addition, we encountered difficulties in creating a pie chart and customizing the chart legends to show the number of students in each category, which required much time. 
+Finally, implementing and styling the UI was not easy. Changing layout and adding icons is important to provide a standardised and modern look to the application.
+In order to do so, it required us to overhaul the existing CSS file in AddressBook Level-3.
