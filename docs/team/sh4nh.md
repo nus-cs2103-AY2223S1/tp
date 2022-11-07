@@ -17,7 +17,7 @@ Given below are my contributions to the project.
     * Justification: The commands and their description in a tabular form that can be accessed at any time just by
      entering help command as opposed to reading through the user guide greatly improves the user experience of our 
     app.
-    * Credits: [Tex](https://github.com/Tex-Tang) helped change the font of the commands in the help page 
+    * Credits: [Tex](https://github.com/Tex-Tang) helped change the font of the command in the help page 
    and enable navigation between panels in the app.
 * **Enhancements to existing features**: Added the ability to find contacts by `name`, `address`, `role`, `github user` 
 and `tags` and also implemented fuzzy search which is immune to minor spelling errors for the find command.
