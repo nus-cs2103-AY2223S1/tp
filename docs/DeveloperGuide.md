@@ -302,6 +302,8 @@ This feature uses the following methods from the `Model` interface:
 * `Model#updateFilteredTaskList`: Updates the current task list by applying a filter as indicated by the given predicate `Predicate<Task>`. The GUI will be updated accordingly to display the filtered task list.
 * `Model#updateFilterStatus`: Updates the list of filters that have been applied to the current task list displayed. This will be reflected on the GUI.
 
+<div style="page-break-after: always;"></div>
+
 #### 5.3.2 Usage scenario
 
 Given below is an example usage scenario and how the mechanism behaves at each step to execute the `ls -u --module CS2103T` command. 
@@ -324,6 +326,8 @@ Below is the sequence diagram for the partial execution of `ls -u --module CS210
 
 ![Partial sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram1-0.png)
 
+<div style="page-break-after: always;"></div>
+
 **Step 8.** `LogicManager` calls the `ListCommand#execute()` method.
 
 **Step 9.** The two predicates passed in are reduced into one `predicate`. The current `taskList` is updated by calling `Model#updateFilteredTaskList(predicate)`.
@@ -335,10 +339,6 @@ Below is the sequence diagram for the partial execution of `ls -u --module CS210
 Below is the sequence diagram for the partial execution of `ls -u --module CS2103T` from **Step 8** to **Step 11**.
 
 ![Partial sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram2.png)
-
-Below is the sequence diagram for the complete execution of `ls -u --module CS2103T`.
-
-![Sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram.png)
 
 <div style="page-break-after: always;"></div>
 
@@ -352,6 +352,8 @@ any task name that contains the keyword(s) and any tags that match the keyword(s
 This feature uses the following methods from the `Model` interface:
 * `Model#updateFilteredTaskList`: Updates the current task list by applying a filter as indicated by the given predicate `Predicate<Task>`. The GUI will be updated accordingly to display the filtered task list.
 * `Model#updateFilterStatus`: Updates the list of filters that have been applied to the current task list displayed. This will be reflected on the GUI.
+
+<div style="page-break-after: always;"></div>
 
 #### 5.4.1 Usage Scenario
 
@@ -397,6 +399,8 @@ Additionally, it implements the following operations:
 * `CommandHistory#up()` – Traverses upwards through the history and restores the previously entered command.
 * `CommandHistory#down()` – Traverses downwards through the history and restores the command.
 
+<div style="page-break-after: always;"></div>
+
 #### 5.5.2 Usage scenario
 
 Given below is an example usage scenario and how the command history traversal mechanism behaves at each step.
@@ -419,6 +423,8 @@ and feeds this String `ls -u` back to the command box.
 
 ![State diagram 2 of up/down key](images/UpDownState2.png)
 
+<div style="page-break-after: always;"></div>
+
 **Step 4.** The user enters another command `mark 1`. Through the same mechanism as in Step 1, this command will be stored into `previousCommands`.
 `pointer` will be reset to the last position. 
 
@@ -433,6 +439,8 @@ Hence, the command box will be cleared.
 The following activity diagram summarizes what happens when a user clicks on the `up`/`down` keys.
 
 ![Activity diagram of up/down key](images/UpDownKeyActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### 5.5.3 Design considerations:
 
@@ -479,6 +487,8 @@ This closes the popup.
 
 **Step 4.** The user adds the required additional information if required and then hits `Enter` to perform the command as per normal.
 
+<div style="page-break-after: always;"></div>
+
 Below is an activity diagram to display how the feature works:
 
 ![AutocompleteActivityDiagram](images/AutocompleteActivityDiagram.png)
@@ -522,6 +532,8 @@ provides 20/11, the date should be parsed as 20 November 2022.
 The following sequence diagram shows what will happen with the proposed implementation of multiple date formats:
 
 ![ProposedDeadlineSequenceDiagram](images/ProposedDeadlineSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 #### 5.7.3 Alternative Implementations
 
@@ -579,6 +591,8 @@ command to check whether it is an alias. If it is, the alias will be replaced wi
 Below is the sequence diagram for an execution of `a Project -m CS2103T`, with `a` being an alias for `add -n`.
 
 ![ProposedAliasSequenceDiagram](images/ProposedAliasSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 To prevent the `alias` and `unalias` commands from being inaccessible due to a bad alias, eg `alias alias -c bad`, those
 two commands cannot be aliased.
