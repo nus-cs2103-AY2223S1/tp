@@ -13,8 +13,7 @@ title: User Guide
 ## Introduction
 
 EZLead is a **desktop app for tech leads to manage teams optimized for use via a Command Line Interface (CLI)**.
-As a tech lead, you will be able to easily keep track of all the teams under you as well as each team's current and
-future tasks. With our app, teams management would be easier than ever.
+As a tech lead, you will be able to easily keep track of all the teams under you as well as each team's current and future tasks. With our app, teams management would be easier than ever.
 
 --------------------------------------------------------------------------------------------------------------------  
 
@@ -76,7 +75,7 @@ Take note of the following symbols and formatting used in this document:
   e.g. You cannot enter HeLp instead of help
 
 * The command keyword (e.g. `add`, `create`, `taskedit` etc.) and parameters without a prefix must be put in front (i.e. follow the format given). 
-  However, parameters with a prefix can be placed in any order (i.e. for `edit`, `edit 1 n/John p/12345678` and `edit 1 p/12345678 n/John` gives the same result) .
+  However, parameters with a prefix can be placed in any order (i.e. for `edit`, `edit 1 n/John p/12345678` and `edit 1 p/12345678 n/John` gives the same result).
 
 </div>
 
@@ -367,6 +366,5 @@ to load in an EMPTY state.
 | **Task Mark**       | `taskmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskmark t/1 task/1`                                                                                        |
 | **Task unMark**     | `taskunmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskunmark t/1 task/1`                                                                                    |
 | **Task Edit**       | `taskedit t/TEAM-INDEX task/TASK-INDEX [n/TASK-NAME] [d/DEADLINE]` <br> e.g. `taskedit t/1 task/1 n/Finish assignment d/12-12-2022`                            |
-
 
 [Back to Top ↑](#introduction)
