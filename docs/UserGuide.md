@@ -881,7 +881,7 @@ Note that the current list is the student list , so `find n/john` returns the st
 
 </p>
 
-Note that the current list is the tutor lsit, so `find i/NUS q/Bachelor of Computing` returns the tutors graduated from NUS with a Bachelor of Computing qualification.
+Note that the current list is the tutor list, so `find i/NUS q/Bachelor of Computing` returns the tutors graduated from NUS with a Bachelor of Computing qualification.
 
 * `find d/monday #/hard`
 

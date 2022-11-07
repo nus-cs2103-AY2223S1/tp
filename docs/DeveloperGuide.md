@@ -1235,29 +1235,389 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a student
+1. Test case: `add student n/John Doe p/98765432 e/johndoe@example.com a/John street, block 123, #01-01 s/Example Primary School l/Primary 3 #/badBoy`<br>
+   Expected: A message stating that student with name `John Doe`, phone number `98765432`, email `johndoe@example.com`, 
+   address `John street, block 123, #01-01`, school `Example Primary School`, level `Primary 3` and tag `badBoy` has been 
+   added will appear in the feedback box. The added student will also appear in the student list in the list display panel.
 
-### Deleting a person
+2. Test case: `add student n/John Doe`
+   Expected: A error message stating that it is invalid command format as well as valid add command format will appear 
+   in the feedback box. There will also not be any student added to the list.
 
-1. Deleting a person while all persons are being shown
+3. Test case: `add student n/John Doe p/9876543q e/johndoe@example.com a/John street, block 123, #01-01 s/Example Primary School l/Primary 3 #/badBoy`<br>
+   Expected: A error message stating that phone number should only contain numbers will appear in the feedback box. 
+   There will also not be any student added to the list.
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+### Adding a tutor
+1. Test case: `add tutor n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate st, block 123, #01-01 q/MSc, 
+Master of Science i/National University of Singapore #/mostLiked`<br>
+   Expected: A message stating that tutor with name `Betsy Crowe`, phone number `1234567`, email `betsycrowe@example.com`,
+   address `Newgate st, block 123, #01-01`, qualification `MSc, Master of Science`, institution `National University of Singapore` 
+   and tag `mostLiked` has been added will appear in the feedback box. The added tutor will also appear in the tutor 
+   list in the list display panel.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+2. Test case: `add tutor n/Betsy Crowe p/1234567`
+   Expected: A error message stating that it is invalid command format as well as valid add command format will appear
+   in the feedback box. There will also not be any tutor added to the list. 
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+3. Test case: `add tutor n/Betsy Crowe p/1234567 e/betsycroweexample.com a/Newgate st, block 123, #01-01 q/MSc,
+   Master of Science i/National University of Singapore #/mostLiked`<br>
+   Expected: A error message stating that the email format is invalid will appear in the feedback box.
+   There will also not be any tutor added to the list.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+### Adding a tuition class
+
+1. Test case: `add class n/P2MATHF12 s/Math l/Primary 2 d/Friday t/12:00 - 14:00`<br>
+   Expected: A message stating that tuition class with name `P2MATHF12`, subject `Mathematics`, level `Primary 2`, 
+   day `Friday` and time `12:00-14:00` has been added will appear in the feedback box. The added tuition class will also 
+   appear in the tuition class list in the list display panel.
+
+2. Test case: `add class n/P2MATHF12`
+   Expected: A error message stating that it is invalid command format as well as valid add command format will appear
+   in the feedback box. There will also not be any tuition class added to the list.
+
+3. Test case: `add class n/P2MATHF12 s/Cooking l/Primary 2 d/Friday t/12:00 - 14:00`<br>
+   Expected: A error message stating that the subject is invalid and list of all valid subjects will appear in the 
+   feedback box. There will also not be any tuition class to the list.
+
+
+### Deleting a student
+
+1. Deleting a student while all students are being shown
+
+    1. Prerequisites: List all students using the `list student` command. Multiple students in the list.
+
+    2. Test case: `delete 1`<br>
+       Expected: First student is deleted from the list. Details of the deleted student shown in the feedback box.
+
+    3. Test case prerequisites: There are only 3 students in the list.
+       Test case: `delete 5`<br>
+       Expected: No student is deleted. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Deleting a tutor
+
+1. Deleting a tutor while all tutors are being shown
+
+    1. Prerequisites: List all tutors using the `list tutor` command. Multiple tutors in the list.
+
+    2. Test case: `delete 1`<br>
+       Expected: First tutor is deleted from the list. Details of the deleted tutor shown in the feedback box. 
+
+    3. Test case prerequisites: There are only 3 tutors in the list.
+       Test case: `delete 10`<br>
+       Expected: No tutor is deleted. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Deleting a tuition class
+
+1. Deleting a tuition class while all tuition classes are being shown
+
+    1. Prerequisites: List all tuition classes using the `list tuition class` command. Multiple tuition classes in the list.
+
+    2. Test case: `delete 1`<br>
+       Expected: First tuition class is deleted from the list. Details of the deleted tuition class shown in the feedback box. 
+
+    3. Test case prerequisites: There are only 3 tuition classes in the list.
+       Test case: `delete 50`<br>
+       Expected: No tuition class is deleted. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Editing a student
+1. Editing a student while all students are being shown
+
+    1. Prerequisites: List all students using the `list student` command. Multiple students in the list.
+
+    2. Test case: `edit 1 n/Alice`<br>
+       Expected: The name of the first student in the list will be change to `Alice`. A message showing the new 
+       particulars of the edited student will appear in the feedback box.
+
+    3. Test case prerequisites: There are only 3 students in the list.
+       Test case: `edit 3 n/Alice`<br>
+       Expected: No student is edited. Error details shown in the status message.
+   
+    4. Test case: `edit 1 p/w1234567`<br>
+       Expected: No student is edited. An error message stating that phone number should only contain numbers will appear 
+       in the feedback box
+
+### Editing a tutor
+1. Editing a tutor while all tutors are being shown
+
+    1. Prerequisites: List all tutors using the `list tutor` command. Multiple tutors in the list.
+
+    2. Test case: `edit 1 n/Alice`<br>
+       Expected: The name of the first tutor in the list will be change to `Alice`. A message showing the new
+       particulars of the edited tutor will appear in the feedback box.
+
+    3. Test case prerequisites: There are 3 tutors in the list.
+       Test case: `edit 4 n/Alice`<br>
+       Expected: No tutor is edited. Error details shown in the status message.
+
+    4. Test case: `edit 1 p/w1234567`<br>
+       Expected: No tutor is edited. An error message stating that phone number should only contain numbers will appear
+       in the feedback box
+
+### Editing a tuition class
+1. Editing a tuition class while all tuition classes are being shown
+
+    1. Prerequisites: List all tuition classes using the `list class` command. Multiple tuition classes in the list.
+
+    2. Test case: `edit 1 n/P3ENGT12`<br>
+       Expected: The name of the first tuition class in the list will be change to `Alice`. A message showing the new
+       particulars of the edited tuition class will appear in the feedback box.
+
+    3. Test case prerequisites: There are 3 tuition classes in the list.
+       Test case: `edit 100 n/P3ENGT12`<br>
+       Expected: No tuition class is edited. Error details shown in the status message.
+
+    4. Test case: `edit 1 d/funday`<br>
+       Expected: No tuition class is edited. An error message stating that the day is not valid will appear
+       in the feedback box
+
+### Listing all student/tutor/tuition class
+
+1. Test case: `list student`<br>
+   Expected: A message stating that the all the students are listed will appear in the feedback box. The list tab will 
+   be changed to Student and list of students will be displayed.
+
+2. Test case: `list tutor`<br>
+   Expected: A message stating that the all the tutors are listed will appear in the feedback box. The list tab will
+   be changed to Student and list of tutors will be displayed.
+
+3. Test case: `list class`<br>
+   Expected: A message stating that the all the tuition classes are listed will appear in the feedback box. The list tab will
+   be changed to Class and list of tuition classes will be displayed.
+
+4. Test case: `list`<br>
+   Expected: A message stating the command format is invalid will appear in the feedback box. There will be no change to
+   list tab and the current list that is being displayed.
+
+5. Test case: `list all`<br>
+   Expected: A message stating the entity type is invalid and list of valid entity type will appear in the feedback box. There will be no change to
+   list tab and the current list that is being displayed.
+
+### Assigning a tuition class to a student
+1. Assigning a tuition class to a student while all students are being shown
+    1. Prerequisites: List all students using the `list student` command. Multiple students in the list. There are 
+       tuition classes available in the tuition class list.
+    
+        1. Test case prerequisites: The first student in the list is yet to be assigned to tuition class with the name `P2MATHSF12`.<br>
+           Test case: `assign 1 n/P2MATHSF12`<br>
+           Expected: A message stating that student has been assigned will appear in the feedback box. There will also 
+           be a green tag with the name `P2MATHSF12` appearing in the class field of the student.
+       
+        2. Test case prerequisites: The first student in the list has been assigned to tuition class with the name `P2MATHSF12`.<br>
+           Test case: `assign 1 n/P2MATHSF12`<br>
+           Expected: The student will not be assigned to any tuition class. An error message stating that the student has 
+           been assigned to this class will appear in the feedback box.
+       
+        3. Test case prerequisites: The tuition class with name `P3MATHSF11` does not exist in the tuition class list.<br>
+           Test case: `assign 1 n/P3MATHSF11`<br>
+           Expected: The student will not be assigned to any tuition class. An error message stating that the tuition class does not exist.
+
+### Assigning a tuition class to a tutor
+1. Assigning a tuition class to a tutor while all tutors are being shown
+    1. Prerequisites: List all tutors using the `list tutor` command. Multiple tutors in the list. There are
+       tuition classes available in the tuition class list.
+
+        1. Test case prerequisites: The first tutor in the list is yet to be assigned to tuition class with the name `P2MATHSF12`.<br>
+           Test case: `assign 1 n/P2MATHSF12`<br>
+           Expected: A message stating that tutor has been assigned will appear in the feedback box. There will also
+           be a green tag with the name `P2MATHSF12` appearing in the class field of the tutor.
+
+        2. Test case prerequisites: The first tutor in the list has been assigned to tuition class with the name `P2MATHSF12`.<br>
+           Test case: `assign 1 n/P2MATHSF12`<br>
+           Expected: The tutor will not be assigned to any tuition class. An error message stating that the tutor has
+           been assigned to this class will appear in the feedback box.
+
+        3. Test case prerequisites: The tuition class with name `P3MATHSF11` does not exist in the tuition class list.<br>
+           Test case: `assign 1 n/P3MATHSF11`<br>
+           Expected: The tutor will not be assigned to any tuition class. An error message stating that the tuition class does not exist.
+
+### Unassigning a tuition class from a student
+1. Unassigning a tuition class from a student while all students are being shown
+    1. Prerequisites: List all students using the `list student` command. Multiple students in the list. There are
+       tuition classes available in the tuition class list.
+
+        1. Test case prerequisites: The first student in the list has been assigned to tuition class with the name `P2MATHSF12`.<br>
+           Test case: `unassign 1 n/P2MATHSF12`<br>
+           Expected: A message stating that student has been unassigned will appear in the feedback box. The green tag 
+           with the name `P2MATHSF12` will disappear from the class field of the student.
+
+        2. Test case prerequisites: The first student in the list has not been assigned to tuition class with the name `P2MATHSF12`.<br>
+           Test case: `unassign 1 n/P2MATHSF12`<br>
+           Expected: The student will not be unassigned from any tuition class. An error message stating that the student is not
+           assigned to this class will appear in the feedback box.
+
+        3. Test case prerequisites: The tuition class with name `P3MATHSF11` does not exist in the tuition class list.<br>
+           Test case: `unassign 1 n/P3MATHSF11`<br>
+           Expected: The student will not be unassigned from any tuition class. An error message stating that the tuition class does not exist.
+
+### Unassigning a tuition class from a tutor
+1. Unassigning a tuition class from a tutor while all tutors are being shown
+    1. Prerequisites: List all tutors using the `list tutor` command. Multiple tutors in the list. There are
+       tuition classes available in the tuition class list.
+
+        1. Test case prerequisites: The first tutor in the list has been assigned to tuition class with the name `P2MATHSF12`.<br>
+           Test case: `unassign 1 n/P2MATHSF12`<br>
+           Expected: A message stating that tutor has been unassigned will appear in the feedback box. The green tag
+           with the name `P2MATHSF12` will disappear from the class field of the tutor.
+
+        2. Test case prerequisites: The first tutor in the list has not been assigned to tuition class with the name `P2MATHSF12`.<br>
+           Test case: `unassign 1 n/P2MATHSF12`<br>
+           Expected: The tutor will not be unassigned from any tuition class. An error message stating that the tutor is not
+           assigned to this class will appear in the feedback box.
+
+        3. Test case prerequisites: The tuition class with name `P3MATHSF11` does not exist in the tuition class list.<br>
+           Test case: `unassign 1 n/P3MATHSF11`<br>
+           Expected: The tutor will not be unassigned from any tuition class. An error message stating that the tuition class does not exist.
+
+### Adding next of kin to Student
+1. Adding next of kin to a student while all students are being shown
+
+    1. Prerequisites: List all students using the `list student` command. Multiple students in the list.
+
+        1. Test case prerequisites: Next of kin has not been added to the first student in the list.<br>
+           Test case: `nok 1 n/Eddy Doe p/86758594 e/eddydoe@example.com a/John street, block 123, #01-01 r/Father`<br>
+           Expected: A message stating the next of kin has been added and details of next of kin will appear in the feedback box. 
+           `Eddy doe` and his details will be added to the next of kin section of the first student in the list.
+       
+        2. Test case prerequisites: The first student in the list already has a next of kin.<br>
+            Test case: `nok 1 n/Eddy Doe p/86758594 e/eddydoe@example.com a/John street, block 123, #01-01 r/Father`<br>
+            Expected: A message stating the next of kin has been added and details of next of kin will appear in the feedback box.
+            Existing next of kin details for the first student in the list will be replaced with `Eddy Doe` and his details.
+        
+        3. Test case: `nok 1 n/Eddy ?oe p/86758594 e/eddydoe@example.com a/John street, block 123, #01-01 r/Father`<br>
+           Expected: No changes will be made to the next of kin section for the first student in the list. A message stating 
+           that name should only contain alphanumeric character and space will appear in the feedback box.
+
+### Clear the list of students
+1. Prerequisites: List all students using the `list student` command.
+    1. Test case: `clear`
+       Expected: All the students in the list of students will be removed. A message stating the list is cleared will 
+       appear in the feedback box. 
+
+### Clear the list of tutors
+1. Prerequisites: List all tutors using the `list tutor` command.
+    1. Test case: `clear`
+       Expected: All the tutors in the list of tutors will be removed. A message stating the list is cleared will
+       appear in the feedback box.
+
+### Clear the list of tuition classes
+1. Prerequisites: List all tuition classes using the `list class` command.
+    1. Test case: `clear`
+       Expected: All the tuition classes in the list of tuition classes will be removed. A message stating the list is cleared will
+       appear in the feedback box.
+
+### Sort the list of students/tutors/tuition classes
+1. Test case: `sort reverse`
+   Expected: The order of the current list that is being displayed will be reversed. A message stating the list has been 
+   reversed will appear in the feedback box.
+
+2. Test case: `sort`, `sort x`, ... (where x is anything other alpha, default, reverse)
+   Expected: The order of the current list will remain the same. A message stating the command format 
+   is invalid and a list of valid command format will appear in the feedback box.
+
+### Seeing all the particulars of a student
+
+1. Seeing all the particulars of a student while all students are being shown
+
+    1. Prerequisites: List all student using the `list student` command. Multiple students in the list.
+
+    2. Test case: `show 1`<br>
+       Expected: All the particular of the first student will appear in the description panel.
+
+    3. Test case prerequisites: There are 3 students in the list.
+       Test case: `show 10`<br>
+       Expected: No particulars of student is shown. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `show`, `show x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Seeing all the particulars of a tutor
+
+1. Seeing all the particulars of a tutor while all tutors are being shown
+
+    1. Prerequisites: List all tutors using the `list tutor` command. Multiple tutors in the list.
+
+    2. Test case: `show 1`<br>
+       Expected: All the particular of the first tutor will appear in the description panel.
+
+    3. Test case prerequisites: There are 3 tutors in the list.
+       Test case: `show 43`<br>
+       Expected: No particulars of tutor is shown. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `show`, `show x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Finding students
+1. Finding students while all students are being shown
+
+    1. Prerequisites: List all students using the `list student` command. Multiple students in the list.
+
+    2. Test case: `find n/john`
+       Expected: All the students whose name contains the keyword `john` will appear in the list display panel. A message
+       stating the number of students found and listed will appear in the feedback box.
+    3. Test case: `find q/Bachelor of Computing`
+       Expected: A message stating the prefix is invalid will appear in the feedback box. No searching will be done.
+
+### Finding tutors
+1. Finding tutors while all tutors are being shown
+
+    1. Prerequisites: List all tutors using the `list tutor` command. Multiple tutors in the list.
+
+    2. Test case: `find n/john`
+       Expected: All the tutors whose name contains the keyword `john` will appear in the list display panel. A message
+       stating the number of tutors found and listed will appear in the feedback box.
+    3. Test case: `find t/12:00-14:00`
+       Expected: A message stating the prefix is invalid will appear in the feedback box. No searching will be done.
+
+### Finding tuition classes
+1. Finding tuition classes while all tuition classes are being shown
+
+    1. Prerequisites: List all tuition classes using the `list class` command. Multiple tuition classes in the list.
+
+    2. Test case: `find n/P3MATH`
+       Expected: All the tuition classes whose name contains the keyword `P3MATH` will appear in the list display panel. A message
+       stating the number of tuition classes found and listed will appear in the feedback box.
+    3. Test case: `find q/Bachelor of Computing`
+       Expected: A message stating the prefix is invalid will appear in the feedback box. No searching will be done.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Head to the home folder of `myStudent` application and delete all the .json files in the `data` folder.
+    2. Relaunch the `myStudent` application.
+       Expected: New set of .json files with no data will be created in the same `data` folder in the home folder. 
 
-1. _{ more test cases …​ }_
+2. _Dealing with corrupted data files
+    1. Head to the home folder of `myStudent` application and open any one of the .json files.
+    2. Corrupt the file by deleting a part of the data in the file. (Delete the )
+    3. Relaunch the `myStudent` application.
+       Expected: A new .json files with no data will be created to replace the corrupted .json file in the same `data` 
+       folder in the home folder.
+   
+
+--------------------------------------------------------------------------------------------------------------------
+## **Appendix: Effort**
+
+This project had a higher difficulty level than AB3 as we had to deal with 3 entity types which are Student, Tutor and 
+TuitionClass while AB3 had only one entity type. We had to tweak a lot of the existing variables and methods to ensure that
+existing commands works for each of the entity types we were implementing as well as fixing the broken test cases and 
+implementing new ones.
+
+We also put in more effort in improving the find feature such that now the find command is able to search for multiples
+fields compared to previously where AB3 only allow searching by name. We also add the ability to allow user to be able
+to export the address books in myStudent to .csv files which took a considerable amount of research and time for the
+implementation to ensure it is working.
+
+Significant time and effort was also put in on designing and implementing the UI part of the project such as adding an 
+introduction and ending screen and the ability for user to change themes.
