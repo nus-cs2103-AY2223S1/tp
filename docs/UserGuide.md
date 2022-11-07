@@ -10,9 +10,7 @@ PetCode is a desktop app that helps <b>store and manage contact information for 
 </div>
 
 {:refdef: style="text-align: center;"}
-
 ![PetCode Logo](images/PetCode Logo.png)
-
 {: refdef}
 
 #### Using this guide
@@ -352,7 +350,7 @@ Check out [Add Command using the popup window](#adding-a-contact-with-a-popup-wi
 
 To help you better understand the hierarchy of the second sample command, we illustrate its structure as follows:
 
-<img src="images/AddBuyerCommandIllustration.png" alt="drawing" width="250"/>
+<img src="images/AddBuyerCommandIllustration.png" alt="drawing" width="350"/>
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -418,7 +416,7 @@ Check out [Add Command using the popup window](#adding-a-contact-with-a-popup-wi
 
 To help you better understand the hierarchy of the second sample command, we illustrate its structure as follows:
 
-<img src="AddSupplierCommandIllustration.png" alt="drawing" width="250"/>
+<img src="AddSupplierCommandIllustration.png" alt="drawing" width="350"/>
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
