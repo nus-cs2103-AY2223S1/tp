@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HealthContactParser" as HealthContactParser LOGIC_COLOR
+participant "r:RedoCommand" as RedoCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+
+end box
+[-> LogicManager : execute(Redo)
+activate LogicManager
+
+LogicManager -> HealthContactParser : parseCommand(Redo)
+activate HealthContactParser
+
+create RedoCommand
+HealthContactParser -> RedoCommand
+activate RedoCommand
+
+RedoCommand --> HealthContactParser
+deactivate RedoCommand
+
+HealthContactParser --> LogicManager : r
+deactivate HealthContactParser
+
+LogicManager -> RedoCommand : execute()
+activate RedoCommand
+
+RedoCommand -> Model : redo()
+
+
+Model --> RedoCommand
+deactivate Model
+
+RedoCommand --> LogicManager : result
+deactivate RedoCommand
+RedoCommand -[hidden]-> LogicManager : result
+destroy RedoCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

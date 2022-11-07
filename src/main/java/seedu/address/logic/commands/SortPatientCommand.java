@@ -73,7 +73,7 @@ public class SortPatientCommand extends Command {
     public class PhoneComparator implements Comparator<Patient> {
         @Override
         public int compare(Patient first, Patient second) {
-            return first.getPhone().toString().compareTo(second.getPhone().toString());
+            return first.getPhone().toString().compareToIgnoreCase(second.getPhone().toString());
         }
     }
 

@@ -1,0 +1,38 @@
+@startuml
+!include style.puml
+
+
+participant "e:EditXXXCommand" as EditCommand LOGIC_COLOR
+
+participant ":Model" as Model MODEL_COLOR
+
+[-> EditCommand : execute()
+
+
+activate EditCommand
+
+EditCommand -> Model: hasXXX(oldXXX)
+activate Model
+Model -> EditCommand
+deactivate Model
+
+EditCommand -> EditCommand : createEditedXXX(oldXXX, editXXXDescriptor)
+activate EditCommand
+EditCommand --> EditCommand
+deactivate EditCommand
+
+alt XXX is already in the HealthContact and edited XXX will not cause duplicate
+    EditCommand -> Model : setXXX(oldXXX, EditedXXX)
+    activate Model
+
+    Model --> EditCommand
+    deactivate Model
+end
+
+
+[<--EditCommand : result
+deactivate EditCommand
+[<-[Hidden]- EditCommand
+destroy EditCommand
+
+@enduml

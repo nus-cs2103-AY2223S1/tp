@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HealthContactParser" as HealthContactParser LOGIC_COLOR
+participant "s:SortAppointmentCommand" as SortAppointmentCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":HealthContact" as HealthContact MODEL_COLOR
+participant ":UniqueAppointmentList" as UniqueAppointmentList MODEL_COLOR
+end box
+
+[-> LogicManager : execute(soa c/name o/asc)
+activate LogicManager
+
+LogicManager -> HealthContactParser : parseCommand(soa c/name o/asc)
+activate HealthContactParser
+
+create SortAppointmentCommand
+HealthContactParser -> SortAppointmentCommand
+activate SortAppointmentCommand
+
+SortAppointmentCommand --> HealthContactParser
+deactivate SortAppointmentCommand
+
+HealthContactParser --> LogicManager : s
+deactivate HealthContactParser
+
+LogicManager -> SortAppointmentCommand : execute()
+activate SortAppointmentCommand
+
+SortAppointmentCommand -> Model : sortAppointments(Comparator<Appointment> comparator, boolean isAscending)
+activate Model
+
+Model -> HealthContact: sortAppointments(Comparator<Appointment> comparator, boolean isAscending)
+activate HealthContact
+
+HealthContact -> UniqueAppointmentList : sort(Comparator<Appointment> comparator, boolean isAscending)
+activate UniqueAppointmentList
+
+UniqueAppointmentList --> HealthContact : sortedAppointmentList
+deactivate UniqueAppointmentList
+
+HealthContact --> Model : sortedAppointmentList
+deactivate HealthContact
+
+Model --> SortAppointmentCommand
+deactivate Model
+
+SortAppointmentCommand --> LogicManager : result
+deactivate SortAppointmentCommand
+SortAppointmentCommand -[hidden]-> LogicManager : result
+destroy SortAppointmentCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

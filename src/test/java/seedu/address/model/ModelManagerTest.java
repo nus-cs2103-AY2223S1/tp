@@ -14,16 +14,21 @@ import static seedu.address.testutil.TypicalBills.BILL_1;
 import static seedu.address.testutil.TypicalBills.BILL_2;
 import static seedu.address.testutil.TypicalPatients.ALICE;
 import static seedu.address.testutil.TypicalPatients.BENSON;
+import static seedu.address.testutil.TypicalPatients.CARL;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.FindAppointmentCommand;
+import seedu.address.logic.commands.FindBillCommand;
+import seedu.address.logic.commands.FindPatientCommand;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Name;
-import seedu.address.model.patient.NameContainsKeywordsPredicatePatient;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.HealthContactBuilder;
 
@@ -163,14 +168,44 @@ public class ModelManagerTest {
         for (int i = 1; i < patientKeywords.length; i++) {
             predicateName += " " + patientKeywords[i];
         }
-
-        modelManager.updateFilteredPatientList(
-                new NameContainsKeywordsPredicatePatient(predicateName));
+        String finalPredicateName = predicateName;
+        Optional<Predicate<Name>> namePredicate = Optional.of(name -> name.fullName.toLowerCase()
+                .contains(finalPredicateName.toLowerCase()));
+        FindPatientCommand command = new FindPatientCommand(namePredicate, Optional.empty(),
+                Optional.empty(), Optional.empty(), Optional.empty(),
+                Optional.empty());
+        modelManager.updateFilteredPatientList(command.getPredicate());
         assertFalse(modelManager.equals(new ModelManager(healthContact, userPrefs)));
 
-        // different filteredAppointmentList -> returns false TODO
+        // different filteredAppointmentList -> returns false
+        String[] appointmentKeywords = CARL.getName().fullName.split("\\s+");
 
-        // different filteredBillList -> returns false TODO
+        String secondPredicateName = appointmentKeywords[0];
+        for (int i = 1; i < appointmentKeywords.length; i++) {
+            predicateName += " " + appointmentKeywords[i];
+        }
+        String finalNamePredicate = secondPredicateName;
+        Optional<Predicate<Name>> namePredicate2 = Optional.of(name -> name.fullName.toLowerCase()
+                .contains(finalNamePredicate.toLowerCase()));
+        FindAppointmentCommand command2 = new FindAppointmentCommand(namePredicate2, Optional.empty(),
+                Optional.empty(), Optional.empty());
+        modelManager.updateFilteredAppointmentList(command2.getPredicate());
+        assertFalse(modelManager.equals(new ModelManager(healthContact, userPrefs)));
+
+        // different filteredBillList -> returns false
+        String[] billKeywords = BENSON.getName().fullName.split("\\s+");
+
+        String thirdPredicateName = billKeywords[0];
+        for (int i = 1; i < billKeywords.length; i++) {
+            predicateName += " " + billKeywords[i];
+        }
+        String finalPredicate = thirdPredicateName;
+        Optional<Predicate<Name>> namePredicate3 = Optional.of(name -> name.fullName.toLowerCase()
+                .contains(finalPredicate.toLowerCase()));
+        FindBillCommand command3 = new FindBillCommand(namePredicate2, Optional.empty(),
+                Optional.empty(), Optional.empty());
+        modelManager.updateFilteredBillList(command3.getPredicate());
+        assertFalse(modelManager.equals(new ModelManager(healthContact, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
