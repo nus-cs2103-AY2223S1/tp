@@ -287,11 +287,11 @@ Below is the sequence diagram for the execution of `ls -u --module CS2103T`.
 
 ![Partial sequence diagram when command `ls -u --module CS2103T` is executed]
 
-![Partial sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram1.png)
+![Partial sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram1-0.png)
 
 ![Partial sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram2-0.png)
 
-![Sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram-0.png)
+![Sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram.png)
 
 ### 5.4 Returning to a previous command
 
@@ -684,7 +684,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with corrupted data files
 
-    1. Open `/data/addressbook.json`
+    1. Open `/data/addressbook.json`. There are some pre-loaded tasks in this file. 
 
     2. In line 2, change `tasks` to `task`. This corrupts the file and system will recognise the mismatch. 
 
@@ -694,6 +694,14 @@ testers are expected to do more *exploratory* testing.
     4. Add a new task by entering 'add -n Tutorial 1 -m CS2100' <br>
        Expected: Task will be added into empty task list. Now, task list contains 1 task.
 
-    5. 
+    5. Open `/data/addressbook.json` again. 
+       Expected: Tasks that were present prior to the corruption are now gone. Task list contains only one task (`Tutorial 1`).
 
-3. _{ more test cases …​ }_
+2. Dealing with missing data files
+
+    1. Open `/data/addressbook.json`. There are some pre-loaded tasks in this file.
+
+    2. In line 2, change `tasks` to `task`. This corrupts the file and system will recognise the mismatch.
+
+    3. Launch NotionUS by double-clicking the jar file. <br>
+       Expected: No tasks will be shown on the GUI.

@@ -7,8 +7,8 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":TaskListParser" as TaskListParser LOGIC_COLOR
 participant ":ListCommandParser" as ListCommandParser LOGIC_COLOR
 participant "t:TaskIsDonePredicate" as TaskIsDonePredicate LOGIC_COLOR
-participant ":ListModuleCommandParser" as ListModuleCommandParser LOGIC_COLOR
-participant "m:ModuleContainsKeywordsPredicate" as ModuleContainsKeywordsPredicate LOGIC_COLOR
+participant ":ListModule\nCommandParser" as ListModuleCommandParser LOGIC_COLOR
+participant "m:ModuleContains\nKeywordsPredicate" as ModuleContainsKeywordsPredicate LOGIC_COLOR
 participant ":ParserUtil" as ParserUtil LOGIC_COLOR
 participant "d:ListCommand" as ListCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
@@ -18,10 +18,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("ls -u --module CS2103T")
+[-> LogicManager : execute(\n"ls -u --module CS2103T")
 activate LogicManager
 
-LogicManager -> TaskListParser : parseCommand("ls -u --module CS2103T")
+LogicManager -> TaskListParser : parseCommand(\n"ls -u --module CS2103T")
 activate TaskListParser
 
 create ListCommandParser
@@ -31,7 +31,7 @@ activate ListCommandParser
 ListCommandParser --> TaskListParser
 deactivate ListCommandParser
 
-TaskListParser -> ListCommandParser : parse("-u --module CS2103T")
+TaskListParser -> ListCommandParser : parse(\n"-u --module CS2103T")
 activate ListCommandParser
 
 ListCommandParser -> ListCommandParser : getPredicate("-u")
@@ -46,7 +46,7 @@ deactivate TaskIsDonePredicate
 
 deactivate ListCommandParser
 
-ListCommandParser -> ListCommandParser : getPredicate("--module CS2103T")")
+ListCommandParser -> ListCommandParser : getPredicate(\n"--module CS2103T")
 activate ListCommandParser
 
 create ListModuleCommandParser
@@ -117,7 +117,7 @@ activate Model
 Model --> ListCommand
 deactivate Model
 
-ListCommand -> Model : updateFilterStatus("Modules containing "CS2103T")
+ListCommand -> Model : updateFilterStatus(\n"Modules containing "CS2103T")
 activate Model
 
 Model --> ListCommand
