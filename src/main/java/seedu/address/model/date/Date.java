@@ -16,7 +16,7 @@ import java.time.format.DateTimeFormatter;
 public class Date implements Comparable<Date> {
     public static final String MESSAGE_CONSTRAINTS = "Dates must be in format: DD/MM/YYYY";
 
-    public static final String MESSAGE_CONSTRAINTS_DOB = "Date must be before current date for date of birth";
+    public static final String MESSAGE_CONSTRAINTS_DOB = "Date of birth cannot be set to after the current date.";
 
     public static final String MESSAGE_VALUE_CONSTRAINTS = "%s exceeds the range of valid date values.";
     private static final String DATE_DELIMITER = "/";
