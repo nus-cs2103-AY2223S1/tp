@@ -118,19 +118,19 @@ Upon completing this section, you should be able to explore SoConnect on your ow
 
 ![SoConnect GUI](images/SoConnectGUI.png)
 
-When you launch SoConnect, SoConnect will appear in the form of Graphical User Interface (<a href="#gui">GUI</a>). Let's look at the layout of the different components in SoConnect.
+When you launch SoConnect, SoConnect will appear as a of Graphical User Interface [(GUI)](#gui). Let's look at the layout of the different components in SoConnect.
 
 **SoConnect's GUI Components:**
 
 ![SoConnect GUI With Label](images/SoConnectGUIWithLabel.png)
 
-#### 6.1.1 Command Box
+#### 6.1.1. Command Box
 
 ![Command Box](images/CommandBox.png)
 
-* Command box allows you to enter commands for actions that you wish to perform. Try typing `help` in the command box and see what happens!
+* Command Box allows you to enter commands for actions that you wish to perform. Try typing `help` in the command box and see what happens!
 
-#### 6.1.2 Result Box
+#### 6.1.2. Result Box
 
 **Success message**:
 ![Result Box Success](images/ResultBoxSuccess.png)
@@ -138,16 +138,16 @@ When you launch SoConnect, SoConnect will appear in the form of Graphical User I
 **Error message**:
 ![Result Box Error](images/ResultBoxError.png)
 
-* The result box provides a feedback message after a command is entered.
+* The Result Box provides a feedback message after a command is entered.
 * The feedback message will either be a success message to indicate that the command has successfully executed or an error message to inform you that there is an error with the command that you just entered.
 
-#### 6.1.3 Contact List
+#### 6.1.3. Contact List
 
 ![Contact List With Label](images/ContactListWithLabel.png)
 
 * Contact list displays the contacts with their information in the contact card.
 
-#### 6.1.4 Todo List
+#### 6.1.4. Todo List
 
 ![Todo List With Label](images/TodoListWithLabel.png)
 
@@ -346,7 +346,7 @@ To edit the tags of a contact, you can refer to [adding a tag](#744-adding-a-tag
 
 **Example Input in Command Box:**
 ```
-`edit 7 p/91234567 e/johndoe@example.com`
+edit 7 p/91234567 e/johndoe@example.com
 ```
 
 **Example Result:**
@@ -375,20 +375,22 @@ You can easily find the contacts that you are interested in using the `search` c
 
 **1. `and` Condition Search:**
 
-If you are looking for a very specific search, you can use `and` condition search to search for contacts that have information matches **all** the given parameter.
+If you are looking for a very specific search result, you can use `and` condition search to search for contacts with information matching **all** of your given parameters.
 
 **Format:** `search [and] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
 * The search using `n/NAME` is case-insensitive. (e.g. `hans` will match `Hans`).
 * At least 1 of the optional parameters must be provided.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br/>
-The preamble `and` is optional, so you can perform `and` condition search without including the word `and`, i.e. `search n/Alex p/12345678` gives the same result as `search and n/Alex p/12345678`.
+<div markdown="block" class="alert alert-success">
+
+:bulb: **Tip:**<br/>
+The word `and` is optional, so you can perform `and` condition search without including the word `and`, i.e. `search n/Alex p/12345678` gives the same result as `search and n/Alex p/12345678`.
 </div>
 
 **Example Input in Command Box:**
 ```
-`search and n/Bernice t/cs2100 t/friends`
+search and n/Bernice t/cs2100 t/friends
 ```
 
 **Example Result:**
@@ -397,7 +399,7 @@ The preamble `and` is optional, so you can perform `and` condition search withou
 
 **2. `or` Condition Search:**
 
-If you wish to broaden your search result, you can use `or` condition search to search for contacts that have information matches **at least one** of the parameters given.
+If you wish to broaden your search result, you can use `or` condition search to search for contacts with information matching **at least one** of your given parameters.
 
 Format: `search or [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
@@ -406,7 +408,7 @@ Format: `search or [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
 **Example Input in Command Box**
 ```
-`search or n/Bernice t/cs2100 t/friends`
+search or n/Bernice t/cs2100 t/friends
 ```
 
 **Example Result**
@@ -416,14 +418,14 @@ Format: `search or [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 Notice there are more contacts listed as compared to `search and n/Bernice t/cs2100 t/friends`.
 
 <div markdown="block" class="alert alert-primary">
-**:memo: Note:**<br/>
-For both `and` and `or` condition search, you still get a list of relevant contacts related to your search query if no search result available. This is useful as you might still get the contacts that you are searching for when you entered some characters wrongly.<br/><br/>A contact is considered relevant if there are high matches of characters between the contact information and search parameters. For example, the information `David Li` and `Charlotte` are relevant to `search n/al` because these names contain characters `a` and `l` in it.
+**:memo: Note**<br/>
+For both `and` and `or` condition search, you still get a list of relevant contacts related to your search query if there are no search results available. This is useful as you might still get the contacts that you are searching for when you entered some characters wrongly.<br/><br/>A contact is considered relevant if there are high matches of characters between the contact information and search parameters. For example, the information `David Li` and `Charlotte` are relevant to `search n/al` because these names contain characters `a` and `l` in it.
 </div>
 
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Note:**<br>
+**:information_source: Info:**<br>
 Autocomplete:
 
 ![Autocomplete With Label](images/AutocompleteWithLabel.png)
@@ -486,7 +488,7 @@ sort n/!
 
 **Example Input in Command Box:**
 ```
-`sort t/cs2100 n/`
+sort t/cs2100 n/
 ```
 
 **Example Result:**
@@ -553,7 +555,7 @@ You can add a todo using the `todo add` command as shown below. While the `DESCR
 
 **Example Input in Command Box:**
 ```
-`todo add d/cs2103 UG date/07-11-2022 pr/high t/cs2103`
+todo add d/cs2103 UG date/07-11-2022 pr/high t/cs2103
 ```
 
 **Example Result:**
@@ -574,7 +576,7 @@ You can update the information of a todo easily using the `todo edit` command as
 
 <div markdown="block" class="alert alert-primary">
 **:memo: Note:**<br/>
-[Tags](#tag) have to be created first before you can add them to a contact.
+[Tags](#tag) have to be created first before you can add them to a todo.
 
 * Refer to [`Creating a Tag`](#741-creating-a-tag-tag-create) on how to create a tag.
 </div>
@@ -592,7 +594,7 @@ You can update the information of a todo easily using the `todo edit` command as
 **Example Input in Command Box:**
 
 ```
-`todo edit 2 pr/medium t/cs2103 t/cs2100`
+todo edit 2 pr/medium t/cs2103 t/cs2100
 ```
 
 **Example Result:**
@@ -609,7 +611,7 @@ After:
 
 #### 7.3.3. Deleting a todo : `todo delete`
 
-You can delete a particular todo after you have completed the todo or you no longer wish to keep it. This can be done easily using the `todo delete` command. All you need is the `INDEX` of the contact!
+You can delete a particular todo after you have completed the todo or you no longer wish to keep it. This can be done easily using the `todo delete` command. All you need is the `INDEX` of the todo!
 
 **Format:** `todo delete INDEX`
 
@@ -647,7 +649,7 @@ Todo header tells you the todos that are shown in the todo list.
 **Example Input in Command Box:**
 
 ```
-`todo show pr/medium`
+todo show pr/medium
 ```
 
 **Example Result:**
