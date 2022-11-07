@@ -368,7 +368,7 @@ Here is an activity diagram showing the process and error handling when the user
 
 * The File Chooser ensures that Users can only upload `.png` or `.jpg` files, so we need not handle the case where the image is of the
 wrong format.
-* By default, the image is saved in `data/images` and renamed with default name `[property/client]-[nameInLowerCamelCase]`. This is to prevent users from uploading images with conflicting names.
+* By default, the image is saved in `data/images` and renamed with default name `[property/client]-[EXACT_NAME]`. This is to prevent users from uploading images with conflicting names.
 
 The Image object is not initialized until the PropertyCard/ClientCard of the UI is rendered. This is to save memory
 consumption and rely on the Lazy Loading of Observable List. We need to inject the UserPrefs into the Property/Client
