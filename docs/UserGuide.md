@@ -398,6 +398,8 @@ Examples:
 * `unplan 2.1` would unschedule the 1st item in the Day 2 item list.
 * `unplan 4.5` would unschedule the 5th item in the Day 4 item list.
 
+<div style="page-break-after: always"></div>
+
 ### Copying to clipboard : `copy`
 
 Copies the itinerary in a text format onto your device's clipboard so you can paste it anywhere.
@@ -416,6 +418,8 @@ Here's an example of how the copied text would look like:
 * The generated text does not include the items in the Wishlist. For items to be reflected in the generated text, they must be planned.<br>
 
 </div>
+
+<div style="page-break-after: always"></div>
 
 ### Exporting as PDF file : `pdf`
 
