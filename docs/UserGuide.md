@@ -99,8 +99,9 @@ Basic Instructions:
 - Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g., in `add n/NAME`, `NAME` is a parameter
   which can be used as `add n/John Doe`.
 - Items in square brackets are optional. e.g., `n/NAME [t/TAG]` can be used as `n/John Doe t/python` or as `n/John Doe`.
-- Items with `…` after them can be used multiple times including zero times. e.g., `[t/TAG]…` can be used as ` ` (e.g.
-  0 times), `t/python`, `t/javascript t/react` etc.
+- Items with `…` after them can be used multiple times including zero times. e.g., If you see `[t/TAG]…`, you can choose 
+not to provide a tag by not using the `t/` prefix, provide one tag like `t/python` or provide multiple tags
+like `t/javascript t/react` etc.
 - Parameters with a prefix can be in any order. e.g., if the command specifies `n/NAME p/CONTACT_NUMBER`, `p/CONTACT_NUMBER n/NAME`
   is also acceptable.
 - If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence
