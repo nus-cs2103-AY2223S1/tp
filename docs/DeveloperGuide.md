@@ -1561,12 +1561,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should be a result of evolving AB3 code base.
-5. Should be for a single user.
-6. Should not use any Database Management System.
-7. Should be platform independent and work on Windows, Linus and OS-X.
-8. Should work without an installer and without approved third-party frameworks/libraries/services.
-9. Should be able to package into a single JAR file.
-10. JAR file size should not exceed 100MB and Documents should not exceed 15 MB per file.
+5. Should not use any Database Management System.
+6. Should be platform independent and work on Windows, Linus and OS-X.
+7. Should work without an installer and without approved third-party frameworks/libraries/services.
+8. Should be able to package into a single JAR file.
+9. JAR file size should not exceed 100MB and Documents should not exceed 15 MB per file.
 
 [Scroll back to top](#table-of-contents)
 
