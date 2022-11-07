@@ -74,6 +74,8 @@ CommandResult --> DeletePersonCommand
 deactivate CommandResult
 
 DeletePersonCommand --> LogicManager : result
+deactivate DeletePersonCommand
+DeletePersonCommand -[hidden]-> LogicManager
 destroy DeletePersonCommand
 
 [<--LogicManager
