@@ -144,7 +144,7 @@ Adds a patient into idENTify.
   names must have different phone numbers in order to identify them. So you cannot add a patient who has both the
   same name and phone number as some existing patient.
 
-Format: `Format: add n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [t/TAG]…​`
 
 <div markdown="block" class="alert alert-primary">
 
