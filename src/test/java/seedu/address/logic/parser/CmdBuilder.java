@@ -8,6 +8,7 @@ import seedu.address.commons.util.FunctionalInterfaces.Getter;
 import seedu.address.commons.util.FunctionalInterfaces.Retriever;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.tasks.MarkTaskCommand;
 import seedu.address.model.group.Group;
 import seedu.address.model.item.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -134,5 +135,9 @@ public class CmdBuilder {
         return new FindCommandParser<>(G_CHANGER, G_SIZE);
     }
 
+        // =========================== task ===============================
 
+    public static final MarkTaskCommand makeMarkTask(Index index) {
+        return new MarkTaskCommand(index);
+    }
 }
