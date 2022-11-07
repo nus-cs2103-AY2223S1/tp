@@ -216,6 +216,8 @@ Exits the program.
 
 Format: `exit`
 
+<div style="page-break-after: always;"></div>
+
 ### 3.2. Student Features
 
 #### 3.2.1. Adding students FYP: `add -s`
@@ -377,6 +379,8 @@ Examples:
 * `edit A0234567H n/John Hoe p/Food Genetics` sets the name of the student with student ID `A0123456G` into
   `John Hoe` and at the same time sets the project name into `Food Genetics`.
 
+<div style="page-break-after: always;"></div>
+
 ### 3.3. Deadline Features
 
 #### 3.3.1. Adding a deadline to a student's FYP: `add -d`
@@ -425,6 +429,8 @@ the data of your previous FypManager home folder.
 **A**: Although extremely discouraged, the application will start with an empty data.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## 5. Command summary
 

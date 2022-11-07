@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes help command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([valid format])
+    :Parser parses help parameters;
+    :Logic executes command;
+else ([else])
+    :UI shows error message;
+endif
+stop
+@enduml

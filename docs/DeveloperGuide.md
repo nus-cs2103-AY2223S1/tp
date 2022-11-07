@@ -174,29 +174,57 @@ The following sequence diagram shows how the add student command works:
 
 <img src="images/AddStudentSequenceDiagram.png" width="550" />
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The following activity diagram summarizes what happens when a user executes an add student command.
-
-<img src="images/AddStudentActivityDiagram.png" width="550" />
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddStudentCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### Design considerations
 An add student command is designed to add a single student along with its detail particulars such as one's student ID, student name, project name, and email. These details are the important details every professor needs from a student so that the professor can understand the work of the student and is able to contact the student when needed.
 
+</div>
+
+### Adding a deadline to a student in the FYP manager
+This feature allows professors as users to keep track of students deadlines that are supervised under.
+
+#### Implementation details
+The add student feature is facilitated by `AddDeadlineCommandParser` and `AddDeadlineCommand`. The operation is exposed in the `Model` interface as `Model#addDeadline()`.
+
+Given below is an example usage scenario and how the add deadline mechanism behaves at each step:
+1. The user enters the add deadline command and provides the name of the deadline, the student ID, and deadline date(optional parameter).
+2. `FypManagerParser` creates a new `AddDeadlineCommandParser` after preliminary processing of user input.
+3. `AddDeadlineCommandParser` then processes the input again and creates an `AddDeadlineCommand`.
+4. `LogicManager` executes the `AddDeadlineCommand` using the `LogicManager#execute()` method.
+5. `AddDeadlineCommand` gets student using StudentID via `Model#getStudentByStudentId(studentId)`.
+6. `AddDeadlineCommand` checks if the deadline has existed before using `Model#hasDeadline()`.
+7. `AddDeadlineCommand` checks if the project is done using `Student#getProjectStatus().equals(new ProjectStatus("DONE"))`.
+8. If the deadline is not inside the student deadline list yet, `AddDeadlineCommand` calls `Model#addDeadline()` and passes the student and deadline as the parameter.
+9. Finally, `AddDeadlineCommand` creates a `CommandResult` and returns it to `LogicManager` to complete the command.
+
+The following sequence diagram shows how the add deadline command works:
+
+<img src="images/AddDeadlineSequenceDiagram.png" width="550" />
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddDeadlineCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes an add deadline command.
+
+<img src="images/AddDeadlineActivityDiagram.png" width="550" />
+
+#### Design considerations
+
+An add deadline command is designed to add a single deadline along with its deadline date to a particular student. This helps the professor to keep track of which deadline is assigned to which student easily.
 
 ### Deleting a student from the FYP manager
 This feature allows professors to delete students who have dropped their FYP
 
 #### Implementation details
 
-The borrow feature is facilitated by `DeleteStudentCommandParser` and `DeleteStudentCommand`. The operation is exposed in the `Model` interface as `Model#DeleteStudent()`.
+The delete student feature is facilitated by `DeleteStudentCommandParser` and `DeleteStudentCommand`. The operation is exposed in the `Model` interface as `Model#DeleteStudent()`.
 
-Given below is an example usage scenario and how the borrow mechanism behaves at each step:
-
+Given below is an example usage scenario and how the delete student mechanism behaves at each step:
 1. The user enters delete student command and provides the student ID of student to be deleted.
-2. `FYPManagerParser` creates a new `DeleteStudentCommandParser` after preliminary processing of user input.
+2. `FypManagerParser` creates a new `DeleteStudentCommandParser` after preliminary processing of user input.
 3. `DeleteStudentCommandParser` creates a new `DeleteStudentCommand` based on the processed input.
 4. `LogicManager` executes the `DeleteStudentCommand`.
 5. `DeleteStudentCommand` calls `Model#getFilteredStudentList()` to get the list of student with FYP, and then gets the student at the specified index using the unique studentId.
@@ -223,6 +251,44 @@ to find students taking machine learning projects before doing `delete -s i/A012
 
 This integration between delete student command with find student command is important because FYPManager can store large number of students with FYP, making it not fesiable for users to scroll through the list.
 By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student ID, users can delete the student from the FYPManager once he/she drops the FYP.
+
+
+#### Implementation details
+
+The delete deadline feature is facilitated by `DeleteDeadlineCommandParser` and `DeleteDeadlineCommand`. The operation is exposed in the `Model` interface as `Model#DeleteDeadline()`.
+
+Given below is an example usage scenario and how the delete deadline mechanism behaves at each step:
+
+1. The user enters delete deadline command and provides the student ID and rank of deadline to be deleted.
+2. `FYPManagerParser` creates a new `DeleteDeadlineCommandParser` after preliminary processing of user input.
+3. `DeleteDeadlineCommandParser` creates a new `DeleteDeadlineCommand` based on the processed input.
+4. `LogicManager` executes the `DeleteDeadlineCommand`.
+5. `DeleteCommand` calls `Model#getIndexByStudentId(index)` and passes the studentId, and gets the desired student.
+6. `DeleteCommand` calls `Student#getDeadlineList().getDeadlineByRank(rank - 1)` and passes the rank, and gets the deadline.
+7. `DeleteDeadlineCommand` calls `Model#deleteDeadline()` and passes the student, and deadline to be deleted.
+8. Finally, `DeleteDeadlineCommand` creates a `CommandResult` and returns it to `LogicManager` to complete the command.
+
+
+The following sequence diagram shows how delete deadline command works:
+
+<img src="images/DeleteDeadlineSequenceDiagram.png" width="550" />
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteDeadlineCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a delete deadline command.
+
+<img src="images/DeleteDeadlineActivityDiagram.png" width="550" />
+
+#### Design considerations
+
+The delete deadline command is designed to be used in conjunction with find student command. For instance, the user would first use find student using project name to find the student taking FYP using `find machine`
+to find students taking machine learning projects before doing `delete -d i/A0123456X r/1` to remove student from FYP Manager.
+
+This integration between delete deadline command with find student command is important because FYPManager can store large number of students with FYP, making it not fesiable for users to scroll through the list.
+By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student ID, users can delete the deadline from the FYPManager once he/she drops the deadline task.
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -362,6 +428,45 @@ is trying to find. Here we have made an assumption that there the StudentId uniq
     * Pros: Easier to implement.
     * Cons: No clear distinction between tags and project status
 
+#### Implementation details
+
+The edit student feature is facilitated by `EditCommandParser` and `EditCommand`. The operation is exposed in the `Model` interface as `Model#Edit()`.
+
+Given below is an example usage scenario and how the edit student mechanism behaves at each step:
+
+1. The user enters delete deadline command and provides the student ID and other parameters(eg: student name, project name) to be changed to.
+2. `FypManagerParser` creates a new `EditCommandParser` after preliminary processing of user input.
+3. `EditCommandParser` creates a new `EditCommand` based on the processed input.
+4. `LogicManager` executes the `EditCommand`.
+5. `EditCommand` calls `Model#getFilteredStudentList()` and gets the student list.
+6. `EditCommand` calls `Model#getIndexByStudentId(i)` and passes the studentId, and gets the desired student.
+7. `EditCommand` calls `EditCommand#createEditedStudent(student, parameters)` and passes the student and parameters to be edited to.
+8. `EditCommand` calls `EditCommand#setStudent(studentToEdit, editedStudent)` and passes the student and previous student object to be replaced.
+9. `EditCommand` calls `EditCommand#updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)` and updates the studentList.
+10. Finally, `EditCommand` creates a `CommandResult` and returns it to `LogicManager` to complete the command.
+
+
+The following sequence diagram shows how edit student command works:
+
+<img src="images/EditSequenceDiagram.png" width="550" />
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes am edit command.
+
+<img src="images/EditActivityDiagram.png" width="550" />
+
+#### Design considerations
+
+The edit deadline command is designed to be used in conjunction with find student command. For instance, the user would first use find student using project name to find the student taking FYP using `find machine`
+to find students taking machine learning projects before doing `edit A0123456X p/AI` to edit student from FYP Manager.
+
+This integration between edit command with find student command is important because FypManager can store large number of students with FYP, making it not fesiable for users to scroll through the list.
+By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student ID, users can edit the student attributes from the FypManager.
+
+
 ###  `Help` Feature
 #### Proposed Implementation
 The proposed `Help` Feature provides the professor or students with useful information on how to optimally make use of this Jeryl app.
@@ -386,8 +491,18 @@ Given below is an example usage scenario of `HelpCommand`:
 
 The following sequence diagram shows how the help command works:
 
-<img src="images/helpMessage.png" width="550" />
+<img src="images/HelpSequenceDiagram.png" width="550" />
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `HelpCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes am help command.
+
+<img src="images/HelpActivityDiagram.png" width="550" />
+
+
+<img src="images/helpMessage.png" width="550" />
 
 ###  `Exit` Feature
 #### Proposed Implementation
