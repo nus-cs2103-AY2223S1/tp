@@ -30,9 +30,12 @@ future tasks. With our app, teams management would be easier than ever.
 
 ## Quick Start
 
+Here is a quick overview of how to get our application started! Complete these few steps to get your EZLead journey 
+started!
+
 1. Ensure that you have Java `11` installed in your computer.
 2. Download the latest EZLead.jar from [here](https://github.com/AY2223S1-CS2103T-W09-3/tp/releases/download/v1.3.2/EzLead.jar).
-3. Copy the file to the folder you want to use as the home folder for your EZLead app.
+3. Create a home folder for your EZLead app wherever you wish to store it and copy the jar file to it.
 4. Double-click the file to start the app.
 5. Type the command in the command box and press Enter to execute it.<br>Some example commands you can try:
    * `userlist`: Shows the global list of all members and their details.
