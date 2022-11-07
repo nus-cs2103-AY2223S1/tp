@@ -274,7 +274,7 @@ The following sequence diagram shows the flow of the execution of the
 edit command. Some details related to the general parsing and execution of 
 commands are omitted as they have been explained under [logic](#logic-component).
 
-<img src="images/EditCommandSequenceDiagram.png" height="280"/>
+<img src="images/EditCommandSequenceDiagram.png" height="350"/>
 
 ### *Suggest a Friend*
 
