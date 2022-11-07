@@ -2,6 +2,9 @@
 Example of an [Item](#item):
 
 ![Item](images/ItemImage.png)
+{: style="margin-left: auto; margin-right: auto; padding: 20px; max-width: 50%; border: 1px solid black; border-radius: 4px" }
+
+{% include page-break.html %}
 
 #### Create a new item: `new`
 
@@ -48,12 +51,12 @@ FoodRem does not already contain an item with the name "Potato".
 
 **Format:** `find KEYWORD [KEYWORDS]...`
 
-> Finds all items in FoodRem whose names contain substrings of the KEYWORDS
+> Finds all items in FoodRem whose names contain [[ substring:substrings ]] of the KEYWORDS
 
 ```info
 * The notation `[KEYWORDS]...` means that we can take in multiple keywords. In this case, at least one `KEYWORD` is required.
 * The `KEYWORDS` are case-insensitive. (e.g. "apples" will match "Apples").
-* The result will be items where each of the `KEYWORDS` are present in the `ITEM_NAME` as a [[ substring ]]. (e.g. "c e" will match "Carrot Cake", "cereal", "Cold Escargo" and "eclairs")
+* The result will be items where each of the `KEYWORDS` are present in the `ITEM_NAME` as a substring. (e.g. "c e" will match "Carrot Cake", "cereal", "Cold Escargo" and "eclairs")
 ```
 
 ```tip
