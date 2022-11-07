@@ -2,7 +2,7 @@
 start
 :User enters mark [index] command;
 :Input is parsed;
-if () then ([index is not an interger])
+if () then ([index is not an integer])
     :ParseException is thrown;
     :Displays error message;
 else ([Else])

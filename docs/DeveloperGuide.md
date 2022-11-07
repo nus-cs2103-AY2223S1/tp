@@ -266,8 +266,6 @@ is called, parsing and validating the index.
 `MarkTaskCommand#createMarkedTask()` is called, creating a copy of the task to be marked with its `status` set to `true`.
 6. `Model#setTask()` is then called to replace the task to be marked with the marked copy.
 
-The following sequence diagram below shows the execution of the `mark` command.
-
 ![Interactions Inside the Logic Component for the `mark 1` Command](images/MarkTaskSequenceDiagram.png)
 <div style="text-align: center">Sequence diagram of mark command execution</div>
 
@@ -295,7 +293,8 @@ CodeConnect allows users to list all of their tasks with `list` and `list time` 
 #### Implementation flow
 
 Listing of tasks is facilitated by `ModelManager`. It contains `filteredTaskList` of type `FilteredList`. 
-It also contains `sortedTaskList` of type `SortedList` that wraps `filteredTaskList` in it. `SortedList` contains the
+It also contains `sortedTaskList` of type `SortedList` that wraps `filteredTaskList` in it. As any changes to `filteredTaskList`
+will be reflected in the `sortedTaskList`, the `Ui` displays `sortedTaskList` in the tasklist panel. SortedList` contains the
 method SortedList#setComparator(Comparator<? super E> comparator). The above method is called in 
 `ModelManager#updateSortedTaskList(Comparator<Task> comparator)` that allows for the sorting of `sortedTaskList` with a comparator.
 
@@ -310,8 +309,6 @@ Outline of how components work together when the user enters a list command:
 4. A new `ListTaskCommand` is created with `DeadlineComparator` passed as parameter. `ListTaskCommand` is returned to `LogicManager`.
 5. `LogicManager` calls `ListTaskCommand#execute()`. `Model#updateSortedTaskList()` is then called, setting the comparator 
    in `sortedTaskList` to `DeadlineComparator`. `Ui` then displays the tasks ordered by task with the earliest deadline on top.
-
-The following sequence diagram below shows the execution of the `list` command.
 
 ![Interactions Inside the Logic Component for the `list time` Command](images/ListTaskSequenceDiagram.png)
 <div style="text-align: center">Sequence diagram of list command execution</div>
