@@ -40,6 +40,7 @@ Given below are my contributions to the project.
 
 
 * **Project management**:
+  * Secondary Team Lead: In charge of deliverables, deadlines, and scheduling.
   * Used GitHub actions, projects, issues, tags, milestones, and assignees to complete tasks in an orderly manner.
   * Used Scrum methodology with weekly sprints/stand-ups.
   * Used a forking workflow.
