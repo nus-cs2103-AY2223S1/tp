@@ -824,6 +824,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes from step 2.
 
+<div style="page-break-after: always;"></div>
+
+
 * 1c. The given file has invalid value, incorrect format, and/or duplicate applicants.
 
     * 1c1. InternConnect wipes all data from the file.
@@ -867,8 +870,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 10. The data should be stored locally and should be in a human editable text file.
 11. The GUI should work well (i.e., should not cause any resolution-related inconveniences to the user) for
     standard screen resolutions 1920x1080 and higher, and for screen scales 100% and 125%. 
-
-    In addition, the GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for
+12. In addition, the GUI should be usable (i.e., all functions can be used even if the user experience is not optimal) for
     resolutions 1280x720 and higher, and for screen scales 150%.
 
 ### 6.5 Glossary
@@ -964,6 +966,9 @@ point for testers to work on; testers are expected to do more exploratory testin
 
 4. Other incorrect `view` commands to try: `view`, `view john`, `view x`(where `x` is larger than the list size)<br>
    Expected: No applicant is viewed. Error details shown in the status message.
+
+
+<div style="page-break-after: always;"></div>
 
 
 ### 7.4 Editing an applicant
@@ -1098,6 +1103,10 @@ point for testers to work on; testers are expected to do more exploratory testin
    2. Test case: `checkout FILE_NAME`
       Expected: The file `FILE_NAME.json` is created at `data/` folder and its sample data is loaded into the 
       application. Success message shown in the status message.
+
+
+<div style="page-break-after: always;"></div>
+
 
 3. Checkout to an existing file with invalid data or invalid format.
 

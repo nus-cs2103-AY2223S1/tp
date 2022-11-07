@@ -7,7 +7,7 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 This one-stop, convenient, and efficient platform empowers Internship Campus Recruiters to work with their applicants’ data. Say goodbye to opening multiple windows to retrieve the information you need and focus on what matters more: matching the right people for the right job.
 
-# Table of Contents
+## Table of Contents
 
 1. [Quick Start](#1-quick-start)
 2. [Fields](#2-fields)
@@ -31,7 +31,7 @@ This one-stop, convenient, and efficient platform empowers Internship Campus Rec
    14. [Editing the data file](#314-editing-the-data-file)
 4. [Command Summary](#4-command-summary)
 
---------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ## 1. Quick start
@@ -351,7 +351,7 @@ InternConnect data are saved in the hard disk automatically after any command th
 If your changes to the data file makes its format invalid, InternConnect will discard all data and start with an empty data file at the next run.
 </div>
 
------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
 ## 4. Command summary
