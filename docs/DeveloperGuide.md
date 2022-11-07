@@ -10,7 +10,12 @@ title: Developer Guide for bobaBot
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Original Source code from [AB3](https://se-education.org/addressbook-level3/).
+* UI components via [JavaFX](https://openjfx.io/).
+* Reused method to retrieve images as resources within JAR files was referenced from [mkyong](https://mkyong.com/java/java-read-a-file-from-resources-folder/).
+* Fuzzy search algorithm via Soundex referenced from [Wikipedia](https://en.wikipedia.org/wiki/Soundex) with minor modifications.
+* Incorporating Emojis in UI, referenced from [StackOverflow](https://stackoverflow.com/questions/22872484/javafx-how-can-i-display-emoji).
+* Calculator feature referenced from [DaniWeb](https://www.daniweb.com/programming/software-development/threads/442690/java-expression-parser-calculator).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -54,7 +59,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete p/87438807`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
