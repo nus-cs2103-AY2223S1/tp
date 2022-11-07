@@ -49,14 +49,14 @@ public class EditAppointmentDescriptor {
     }
 
     /**
-     * Creates and returns a {@code Appointment} with the details of {@code appointmentToEdit}
+     * Creates and returns a {@code Appointment} with the details of {@code apptToEdit}
      * edited with {@code editAppointmentDescriptor}.
      */
-    public Appointment createEditedAppointment(Appointment appointmentToEdit) {
-        assert appointmentToEdit != null;
+    public Appointment createEditedAppointment(Appointment apptToEdit) {
+        assert apptToEdit != null;
 
-        DateTime updatedDateTime = this.getDateTime().orElse(appointmentToEdit.getDateTime());
-        Location updatedLocation = this.getLocation().orElse(appointmentToEdit.getLocation());
+        DateTime updatedDateTime = this.getDateTime().orElse(apptToEdit.getDateTime());
+        Location updatedLocation = this.getLocation().orElse(apptToEdit.getLocation());
 
         return new Appointment(updatedDateTime, updatedLocation);
     }

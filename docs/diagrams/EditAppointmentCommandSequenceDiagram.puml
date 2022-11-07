@@ -65,7 +65,7 @@ deactivate AddressBookParser
 LogicManager -> EditAppointmentCommand : execute()
 activate EditAppointmentCommand
 
-EditAppointmentCommand -> EditAppointmentDescriptor : createEditedAppointment(appointmentToEdit)
+EditAppointmentCommand -> EditAppointmentDescriptor : createEditedAppointment(apptToEdit)
 activate EditAppointmentDescriptor
 
 create Appointment
