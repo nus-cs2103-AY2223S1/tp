@@ -1034,7 +1034,6 @@ testers are expected to do more *exploratory* testing.
    2. Test case: `clear`<br>
       Expected: All customers' data cleared.
 
-<div style="page-break-after: always;"></div>
 ### Calculating simple arithmetic
 
 1. Performs simple arithmetic calculation
@@ -1056,6 +1055,7 @@ testers are expected to do more *exploratory* testing.
    6. Other incorrect delete commands to try: `calc hello`, `calc 13//24*4^42` , `...`<br>
       Expected: Similar to previous.
 
+<div style="page-break-after: always;"></div>
 ### Viewing Help
 
 1. View Help
