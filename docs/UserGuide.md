@@ -341,7 +341,7 @@ Adds an entry to the specified list.
 #### Add an expense entry to the expenditure list
 
 - Example: `add t/e d/Lunch a/15.60 da/10-10-2022 c/Food`
-    - Here, we record our $15.60 **Lunch** expenses on 10th October 2022, and tag the entry under `Food`.
+    - Here, we record our $15.60 `Lunch` expenses on 10th October 2022, and tag the entry under `Food`.
 - Expected: `New entry added: Lunch; Date: 10-10-2022; Amount: 15.60; Tag: Food`
 
 ![AddCommandExpenditure](images/ug/AddCommandExpenditure.png)
@@ -349,7 +349,7 @@ Adds an entry to the specified list.
 #### Add an income entry to the income list
 
 - Example: `add t/i d/Tuition a/40.00 da/10-10-2022 c/Salary`
-    - Here, we record our $40.00 income from **Tuition** on 10th October 2022 and tag the entry under `Salary`.
+    - Here, we record our $40.00 income from `Tuition` on 10th October 2022 and tag the entry under `Salary`.
 - Expected: `New entry added: Tuition; Date: 10-10-2022; Amount: 40.00; Tag: Salary`
 
 ![AddCommandIncome](images/ug/AddCommandIncome.png)
