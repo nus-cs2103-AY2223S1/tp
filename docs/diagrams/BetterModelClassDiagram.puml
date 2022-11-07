@@ -27,5 +27,6 @@ Team *-down-> "1" TaskList
 TaskList *-down-> "*" Task
 UniqueLinkList *-down-> "*" Link
 Task *-down-> "1" TaskName
+Task *-right-> "*" Person : assigned to >
 Link *-down-> "1" LinkName
 @enduml

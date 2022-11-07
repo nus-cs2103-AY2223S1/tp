@@ -166,18 +166,29 @@ How the parsing works:
 
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png"/>
 
 The `Model` component,
 
-- stores the TruthTable data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which
-  is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to
+- stores the TruthTable data i.e., all `Person` objects (which are contained in a `UniquePersonList` object) and `Team`
+  objects (which are contained in a `UniqueTeamList` object) each of which containing `Task`, `Link` and `Person`
+  objects (see the section below regarding `Team`).
+- stores the currently 'selected' `Person` or `Team` objects (e.g., results of a search query) as a separate _filtered_ list which
+  is exposed to other classes as an unmodifiable `ObservableList<T>` where `T` is either `Person` or `Team` that can be 'observed' e.g. the UI can be bound to
   this list so that the UI automatically updates when the data in the list change.
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
   a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
+
+Each `Team` object,
+
+- stores a list of `Task` objects (in a `TaskList` object), list of team members (`Person` objects in a 
+  `UniquePersonList` object) and `Link` objects (in a `UniqueLinkList`).
+- exposes a list of `Person` or `Task` objects as a `DisplayList<T>`, which itself contains a `FilteredList<T>` (where 
+  `T` refers to either `Person` or `Task`). This `FilteredList` will store a 'filtered' view on the data (e.g., results 
+  of a search query) sorted in a particular manner. It can be 'observed' e.g. the UI can be bound to this list so that 
+  the UI automatically updates when the data (or its order) in the list changes.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TruthTable`, which `Person` references. This allows `TruthTable` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
@@ -189,7 +200,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W13-4/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="700" />
 
 The `Storage` component,
 
@@ -199,6 +210,15 @@ The `Storage` component,
   the functionality of only one is needed).
 - depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** Currently, as `Team`, `Task` and the overall `TruthTable` objects all have references to 
+`Person`, for ease of a copy of the entire `Person` object is stored within each of its `JsonAdaptedXYZ` parent objects 
+in the json file (where `XYZ` refers to `Team`, `Task` or `TruthTable`. An alternative (arguably better) implementation 
+would be to only store the name of each `Person` object and repopulate its fields from the `TruthTable` list of `Person`
+objects, which would reduce repetition.
+</div>
+
 
 ### Common classes
 
@@ -370,13 +390,13 @@ The `Team` will contain multiple `Person` objects (representing team members).
 
 Step 2. The user executes the command `assign random 1` to assign the first (and only) `Task` randomly to any team
 member. As none of the team members have been added, all of them are candidates for random assignment. One of them will
-be randomly assigned the task.
+be randomly assigned the task (see <span style="color:red">red arrow</span>).
 
 ![RandomlyAssignTaskState1](images/RandomlyAssignTaskState1.png)
 
 Step 3. The user may want to assign a second team member to the task, hence executing `assign random 1` again. The
 team member who has previously been allocated will not be considered. Similar to above, one more team member will be
-randomly allocated the task.
+randomly allocated the task (see <span style="color:red">red arrow</span>).
 
 ![RandomlyAssignTaskState2](images/RandomlyAssignTaskState2.png)
 
@@ -728,8 +748,6 @@ Preconditions: The current working team is set to the team that the link should 
 - **Repo**: A short-form for "repository" (usually on a platform such as GitHub or GitLab)
 - **Task**: Anything that needs to be completed for the project to move forward.
 - **Team Leader**: The person in-charge of a project, typically a software engineering project.
-
-_{More to be added along the way}_
 
 ---
 
