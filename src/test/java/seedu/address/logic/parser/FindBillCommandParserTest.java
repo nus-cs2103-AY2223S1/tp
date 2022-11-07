@@ -38,7 +38,7 @@ public class FindBillCommandParserTest {
     public void parse_validArgs_returnsFindBillCommand() throws ParseException {
         // no leading and trailing whitespaces
         String expectedMessage = String.format(MESSAGE_BILL_LISTED_OVERVIEW, 1);
-        FindBillCommand firstCommand = parser.parse(" n/Pauline");
+        FindBillCommand firstCommand = parser.parse(" n/" + BILL_1.getAppointment().getName().fullName);
 
         expectedModel.updateFilteredBillList(firstCommand.getPredicate());
         assertCommandSuccess(firstCommand, model, expectedMessage, expectedModel);
@@ -52,7 +52,8 @@ public class FindBillCommandParserTest {
         assertEquals(Arrays.asList(BILL_1), model.getFilteredBillList());
 
         // multiple fields
-        FindBillCommand thirdCommand = parser.parse(" d/2019 a/1000.23 ");
+        FindBillCommand thirdCommand = parser.parse(" d/" + BILL_1.getBillDate().toString().substring(0, 3)
+                + " a/" + BILL_1.getAmount().toString());
         expectedModel.updateFilteredBillList(thirdCommand.getPredicate());
         assertCommandSuccess(thirdCommand, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(BILL_1), model.getFilteredBillList());

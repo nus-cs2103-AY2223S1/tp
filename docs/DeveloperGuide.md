@@ -238,7 +238,7 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 **Aspect:**
 
-__How undo & redo executes:__
+How undo & redo executes:
 * **Alternative 1 (current choice):** Saves the entire HealthContact
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
@@ -284,10 +284,7 @@ The sequence diagram below shows how the add bill operation works:
 
 The add feature is now separated for the patients, appointments and bills sections.
 
-Design considerations:
-1. Length of command word
-2. Whether to use a prefix for the name of the patient
-3. Number of parameters for the command
+#### Design considerations:
 
 **Aspects:**
 
@@ -333,23 +330,20 @@ The sequence diagram below shows how the edit operation works:
 ![EditPatientSequenceDiagram](images/dg/EditCommandSequenceDiagram.png)
 
 The edit feature is now separated for the patients, appointments and bills sections. The steps for editing appointments and bills are similar.
-Design considerations:
-1. Length of command word
-2. Whether to use a prefix for the name of the patient
-3. Number of parameters for the command
+
+
+#### Design considerations:
 
 **Aspects:**
 
-__Command format__:
-1. Alternative 1 (Current choice): Use a shorter command word (eg. ep instead of editpatient)
-    - Pros: Easy to type
-    - Cons: Might be confusing for the user
-2. Use a prefix for the name of the patient (eg. n/ instead of just the name)
-    - Pros: Easier to implement
-    - Cons: Might be confusing for the user
-3. Combine edit feature for patients, appointments and bills into one command
-    - Pros: Easier to implement
-    - Cons: Might be confusing for the user
+Command format:
+1. __Alternative 1 (Current choice)__: Create separate commands for editing patients, appointments and bills
+   - Pros: Easier to implement
+   - Cons: Might be troublesome for user to remember the different commands
+
+2. __Alternative 2__: Create one command for editing patients, appointments and bills using the command word `edit`
+   - Pros: Easy to remember and type the command word
+   - Cons: Too many prefixes to type in one command, which can make the command very long
 
 ### Find Feature
 
@@ -393,10 +387,7 @@ The following sequence diagram shows how the `FindBillCommand` works:
 
 ![FindBillCommandSequenceDiagram](images/dg/FindBillCommandSequenceDiagram.png)
 
-Design considerations:
-1. Usage of command word
-2. Usage of prefixes for each field
-3. Usage of Optional predicates
+#### Design considerations:
 
 **Aspects:**
 
@@ -420,20 +411,68 @@ Creating predicates:
 
 ####Current Implementation
 
-The delete mechanism deletes a patient, appointment or bill identified by their index in the list. The deletion is done
-through the `deletePatient`, `deleteAppointment` and `deleteBill` functions in `ModelManager`.
+The delete feature is now separated for the patients, appointments and bills sections. Deleting a patient also deletes
+related appointments and bills. Deleting an appointment deletes its related bills.
 
-Given below is an example usage scenario and how the delete mechanism behaves at each step.
+The delete command deletes a patient, appointment or bill identified by their index in the list. The deletion is done
+through the `deletePatient`, `deleteAppointment`, and `deleteBill` functions in `ModelManager` respectively.
 
-Step 1. The user launches the application. All patients, appointments and bills are shown on different sections
+Given below is an example usage scenario for __DeletePatientCommand__ and how the delete mechanism behaves at each step.
+
+Step 1. The user launches the application. All patients, appointments, and bills are shown on different sections
 of the application as indexed lists.
 
-Step 2. The user executes `deletePatient 2` command to delete the patient at index 2 in the list.
-The `delete` command calls `Model#deletePatient` to delete the patient from the list of patients.
+Step 2. The user executes `deletePatient 2` command to delete the second patient in the list.
+The `delete` command calls `Model#deletePatient(Patient)` to delete the patient from the list of patients.
+
+The following sequence diagram shows how the `DeletePatientCommand` works:
+
+![DeletePatientSequenceDiagram](images/dg/DeletePatientSequenceDiagram.png)
+
+The `DeleteAppointmentCommand` and `DeleteBillCommand` works similar to the `DeletePatientCommand`
+
+The following sequence diagram shows how the `DeleteAppointmentCommand` works:
+
+![DeleteAppointmentSequenceDiagram](images/dg/DeleteAppointmentSequenceDiagram.png)
+
+The following sequence diagram shows how the `DeleteBillCommand` works:
+
+![DeleteBillSequenceDiagram](images/dg/DeleteBillSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspects:**
+
+The parameter for delete command:
+
+   1. __Alternative 1 (current choice)__: Uses index to identify patient to be deleted
+
+       - Pros: Easy to implement
+
+       - Cons: Less intuitive. User has to first find the patient and know the index of the patient in the list to delete.
+
+   2. __Alternative 2__: Uses the name of the patient to identify the patient to be deleted
+
+       - Pros: More intuitive. User can just enter the name of the patient.
+
+       - Cons: Worse run-time. Slightly difficult to implement.
+
+Command format:
+
+   1. __Alternative 1 (Current choice)__: Create separate commands for deleting patients, appointments and bills
+   
+       - Pros: Easier to implement
+   
+       - Cons: Might be troublesome for user to remember the different commands
+    
+   2. __Alternative 2__: Create one command for deleteing patients, appointments and bills using the command word `delete`
+   
+       - Pros: Easy to remember and type the command word
+      
+       - Cons: Too many prefixes to type in one command, which can make the command very long
 
 
-The delete feature is now seperated for the patients, appointments and bills sections. Deleting a patient also deletes
-related appointments and bills. Deleting an appointment deletes its related bills.
+
 
 ### Select Feature
 
@@ -476,8 +515,7 @@ the first patient on the patient list panel.
 
 The select feature is now separated for the patients and appointments sections.
 
-Design considerations:
-1. Length of command word
+#### Design considerations:
 
 **Aspects:**
 
@@ -514,8 +552,7 @@ The following sequence diagram shows how the `SetUnpaidCommand` works:
 
 ![SetUnpaidCommandSequenceDiagram](images/dg/SetUnpaidCommandSequenceDiagram.png)
 
-Design considerations:
-1. Whether to combine `SetPaidCommand` and `SetUnpaidCommand` into one command or split them
+#### Design considerations:
 
 **Aspects:**
 
@@ -553,17 +590,13 @@ Step 3. The application displays the list of patients sorted according to the pa
 
 #### Design considerations:
 
-1. Length of command word
-2. Criteria which the lists can be sorted by
-3. Order which the lists can be sorted by
-
 **Aspect:**
 
-__How sort executes__:
-* **Alternative 1 (current choice):** Saves the entire HealthContact.
+How sort executes:
+1. __Alternative 1 (current choice):__ Saves the entire HealthContact
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
-* **Alternative 2:** Individual command knows how to sort by itself.
+2. __Alternative 2:__ Individual command knows how to sort by itself
   * Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 

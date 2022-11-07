@@ -58,8 +58,8 @@ public class CommandTestUtil {
     public static final String VALID_SLOT_8 = "2023-05-10 09:15";
 
     public static final String VALID_AMOUNT_7 = "10";
-    public static final String VALID_BILL_DATE_7 = "2019-12-24";
-    public static final String VALID_BILL_DATE_8 = "2019-12-25";
+    public static final String VALID_BILL_DATE_7 = "2055-12-24";
+    public static final String VALID_BILL_DATE_8 = "2056-12-25";
     public static final String VALID_AMOUNT_8 = "11.00";
     public static final String VALID_PAYMENT_STATUS_7 = "PAID";
     public static final String VALID_PAYMENT_STATUS_8 = "UNPAID";
@@ -89,6 +89,8 @@ public class CommandTestUtil {
     public static final String AMOUNT_DESC_7 = " " + PREFIX_AMOUNT + VALID_AMOUNT_7;
     public static final String AMOUNT_DESC_8 = " " + PREFIX_AMOUNT + VALID_AMOUNT_8;
 
+
+    public static final String INVALID_BILL_DATE_7 = "1980-12-24";
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
