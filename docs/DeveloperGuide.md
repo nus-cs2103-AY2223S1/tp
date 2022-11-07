@@ -282,21 +282,19 @@ The following Sequence Diagram summarises the aforementioned steps.
 #### Design considerations
 
 **Aspect: Should we allow users to determine the examinations**
-* **Alternative 1 (current choice): Fix the examinations in the list of grades for every student**
-  * Pros: Standardised for every student, without the need to check, create or delete examinations for every student, and easy to implement.
-  * Cons: Less freedom for users. Unaccounted for unforeseen circumstances (e.g. There is a change in the assessments for the CS1101S module).
-* **Alternative 2: Allow users to create and delete their own examinations**
-  * Pros: Provides freedom for users and flexibility for changes in the grading system of the module.
-  * Cons: Not standardised for every student, and more prone to user error, as each examination will thus need to create new unique prefixes and identity to know which examination it is referring to.
+
+|                                                                                                 | **Pros**                                                                                                                           | **Cons**                                                                                                                                                                                      |
+|-------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Option 1 (current choice)** <br> Fix the examinations in the list of grades for every student | Standardised for every student, without the need to check, create or delete examinations for every student, and easy to implement. | Less freedom for users. Unaccounted for unforeseen circumstances (e.g. There is a change in the assessments for the CS1101S module).                                                          | 
+| **Option 2** <br> Allow users to create and delete their own examinations                       | Provides freedom for users and flexibility for changes in the grading system of the module.                                        | Not standardised for every student, and more prone to user error, as each examination will thus need to create new unique prefixes and identity to know which examination it is referring to. |
 
 **Aspect: Should we allow users to set the scores of each grade in their own way (e.g. "99%", "A", "65/70", etc.)**
-* **Alternative 1 (current choice): Standardise scoring of each grade in terms of percentage:**
-  * Pros: Standardised and neat for every assessment and for every student, applicable for the 5 assessments in the CS1101S module, and easy to implement.
-  * Cons: Less flexible for assessments whereby percentage scores are not applicable. (e.g. Pass/Fail assessments, alphabetical grading, etc.), and the possible need to manually calculate the percentage.
 
-* **Alternative 2: Users can input the scores in any String they desire:**
-  * Pros: More flexibility and freedom for user
-  * Cons: Very difficult to check for valid scores due to large number of possibility, not standardised for every student and grade, less able to compare the students' strengths and weaknesses in certain assessments, and difficult to implement.
+|                                                                                             | **Pros**                                                                                                                                         | **Cons**                                                                                                                                                                                                                                   |
+|---------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Option 1 (current choice)** <br> Standardise scoring of each grade in terms of percentage | Standardised and neat for every assessment and for every student, applicable for the 5 assessments in the CS1101S module, and easy to implement. | Less flexible for assessments whereby percentage scores are not applicable. (e.g. Pass/Fail assessments, alphabetical grading, etc.), and the possible need to manually calculate the percentage.                                          | 
+| **Option 2** <br> Users can input the scores in any String they desire                      | More flexibility and freedom for user                                                                                                            | Very difficult to check for valid scores due to large number of possibility, not standardised for every student and grade, less able to compare the students' strengths and weaknesses in certain assessments, and difficult to implement. |
+
 
 ### Find feature
 FRIDAY allows the user to search through all the fields entered for any student and outputs a modified list of students that match the criteria. This list can then be modified and the changes will be reflected in the storage used.
