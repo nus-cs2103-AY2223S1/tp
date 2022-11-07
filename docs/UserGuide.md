@@ -136,8 +136,8 @@ The app comes with some sample patients by default. Type `clear` in the command 
 {: refdef}
 <div align="center"><i> UniNurse user interface </i></div>
 
-<br>
 <div style="page-break-after: always;"></div>
+<br>
 
 5. Type your command in the command box and hit `Enter` to execute the command. Here are some example commands
    you can try:
@@ -1131,8 +1131,6 @@ Format: **`find`** `[KEYWORD]… [xyz/XYZ_KEYWORD]…`
 
 </div>
 
-<div style="page-break-after: always;"></div>
-
 Examples:
 * `find key n/John n/Betsy n/Charlie e/@example.com e/@u.nus.edu` displays all patients who fulfill all conditions below:
     * The patient's name must contain either `John` or `Betsy` or `Charlie`.
@@ -1140,6 +1138,8 @@ Examples:
     * At least one of the patient's details must contain `key` (e.g., one of their tags contains `key`).
 * `find jo` displays patients with names `Joe` and `John`, patients with emails `jo@example.com`, and patients with tag `joints`.
 * `find n/alice n/meier` displays patients `Alice Tan` and `Benson Meier`.
+
+<div style="page-break-after: always;"></div>
 
 {:refdef: style="text-align: center;"}
 ![result for 'find alice meier'](images/findAliceMeierResult.png)
@@ -1182,8 +1182,6 @@ Examples:
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
-
-<div style="page-break-after: always;"></div>
 
 ### Viewing all tasks for today: `view` `--today`
 
@@ -1240,6 +1238,8 @@ Examples:
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
+
+<div style="page-break-after: always;"></div>
 
 ### Viewing all tasks of all patients: `view` `-p` `--all`
 
@@ -1317,8 +1317,6 @@ Example:
 
 <br>
 
-<div style="page-break-after: always;"></div>
-
 ### Clearing all entries: `clear`
 
 You can clear all patient entries in the displayed patient list with the `clear` command.
@@ -1363,8 +1361,6 @@ You do not need to save manually.
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
-
-<div style="page-break-after: always;"></div>
 
 ### Editing the data file
 
