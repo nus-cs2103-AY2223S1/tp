@@ -26,6 +26,8 @@ Given below are my contributions to the project:
   * Created new `GradeLessThanMeanPredicate` and `GradeComparator` classes as part of the ViewStatsCommand features.
   * See PR [#149](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/149)
 
+<div style="page-break-after: always;"></div>
+
 #### Contributions to the UG
 * [Finding a student record](https://ay2223s1-cs2103t-t15-2.github.io/tp/UserGuide.html#433-finding-a-student-record--find)
 * [Calculating exam statistics](https://ay2223s1-cs2103t-t15-2.github.io/tp/UserGuide.html#441-calculating-exam-statistics-viewstats)
