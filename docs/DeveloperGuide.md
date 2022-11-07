@@ -785,7 +785,7 @@ testers are expected to do more *exploratory* testing.
     
 4. Editing contacts
 
-    1. Prerequisites: A contact with the name "John Doe" exists. (if you're following this guide, there will be one)
+    1. Prerequisites: Contacts with the name "John Doe" and "James Doe" exist. (if you're following this guide, there will be one)
 
     1. Run `findc n/John Doe`
 
