@@ -178,6 +178,8 @@ We will attempt to resolve these issues in a future version.
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="block" class="alert alert-info">
 
 :bulb: Flexible Module Format
@@ -187,7 +189,6 @@ As a user, you might find yourself adding tasks that don't exactly belong to a m
 However, only alphanumeric characters are allowed! (i.e. no spaces, special characters, etc.)
 
 </div>
-<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-info">
 
