@@ -301,7 +301,7 @@ While the `ModuleClass` object for the module "CS1231S" might be saved in `modul
 ```
 
 #### Design considerations
-* **Alternative 1 (current choice)**: The `StudentModuleData` and `SessionData` objects only save the `ModuleClass` name and
+* **Alternative 1 (Current Choice)**: The `StudentModuleData` and `SessionData` objects only save the `ModuleClass` name and
 `Session` name respectively. Because in any of their functionality, we do not need to know the list of `Sessions` in the
 `ModuleClass` object or the `Date` of the `Session` object. 
   * **Pros**:
@@ -334,25 +334,37 @@ While the `ModuleClass` object for the module "CS1231S" might be saved in `modul
       objects are referencing the same object.
 
 ### Assigning students to module classes
+Each student object contains a collection of `StudentModuleData` where module classes and the grades the student 
+obtained for the sessions of the module classes are stored. When the user assigns students to a module class, a new 
+`StudentModuleData` object is created and added to the collection for each student. 
 <img class="center" src="images/AssignCommandSequenceDiagram.png" />
-
-Each student object contains a collection of `StudentModuleData` where module classes and the grades the student obtained for the sessions of the module classes are stored. When the user assigns students to a module class, a new `StudentModuleData` object is created and added to the collection for each student.
 
 Given below are the different steps taken when the user assigns students to a module class.
 
-**Step 1**: The user enters the command keyword `assign`, followed by the indices of the students he want to assign module classes to, and the names of the module classes that he wants to assign to the students. Example: `assign 1 2 3 c/CS1101S`.
+**Step 1**: The user input is [parsed similar to other commands](#parsing) and an `AssignCommand` object is created 
+using the given the student indices and the module class to assign them to.
 
-**Step 2**: The program makes use of the `TAAssistParser` to make sense of the keyword, and determine which parser to use to parse the arguments. In this case, the `AssignCommandParser` is used.
+**Step 2**: The `AssignCommand` object is executed. The student indices are used to retrieve the `Student` objects 
+from the list of students captured by the `Model`. For each student, steps 3 and 4 are repeated. 
 
-**Step 3**: The `AssignCommandParser` makes sense of the arguments, and creates an `AssignCommand` object with the student indices and the module classes to assign them to.
+**Step 3**: The `Student#addModuleClass` method is used to create a new `Student` object from the old `Student` object.
+The method returns the old `Student` if the student is already assigned to the module class. Otherwise, a new `Student` object
+is created from the old one by copying over all the data fields. Then a new instance of `StudentModuleData` is created 
+with the given `ModuleClass` without any session information and added to the list of `StudentModuleData` of the new `Student`
+object. The new `Student` object is returned.
 
-**Step 4**: The `AssignCommand` object is executed. The student indices are be used to retrieve the `Student` objects from the list of students captured by the `Model` interface. For each student, the program creates a new `StudentModuleData` object for each module class that is not already assigned to the student. The `StudentModuleData` object only contains the module class name and not any session information. The `StudentModuleData` objects created for the student are added to the student object's collection of `StudentModuleData`.
+**Step 4**: The `Model#setStudent` method is used to replace the old `Student` object with the updated one in the model. 
 
-**Step 5**: The execution ends and returns a `CommandResult` object containing the success message to be displayed by the GUI to the user.
+**Step 5**: The execution ends and returns a `CommandResult` object containing the success message to be displayed by 
+the GUI to the user.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The sequence diagram above doesn't show the case where the student is already assigned to the module class.
+</div>
 
 #### Design considerations:
 
-* **Alternative 1 (current choice)**: Let each student maintain a collection of module classes that the student is being assigned to.
+* **Alternative 1 (Current Choice)**: Let each student maintain a collection of module classes that the student is being assigned to.
   * **Pros**: Only captures necessary information, and easier to implement. This structure is also easier to capture session information for the students.
   * **Cons**: Will be creating multiple `StudentModuleData` objects for a module class when multiple students are assigned to the module class. This may cause performance issues from the large number of objects created.
   
@@ -375,7 +387,7 @@ the given grade.
 
 Given bellow are the steps taken when the user gives grade to a student for a session: 
 
-**Step 1**: The user input is [parsed similar to other commands](#parsing)) and a `GradeCommand` object is created using the given 
+**Step 1**: The user input is [parsed similar to other commands](#parsing) and a `GradeCommand` object is created using the given 
 student indices, session name, and grade. 
 
 **Step 2**: The `GradeCommand` object is executed. The given indices are used to retrieve the `Student` objects from the 
@@ -394,7 +406,7 @@ updated grade for the session. The method first creates a new `StudentModuleData
 object with the given grade and adds it to the list of `SessionData` in the new `StudentModuleData` object. 
 
 **Step 5**: After finishing steps 3-4, the `GradeCommand` will have an updated student. Then the `Model#setStudent` method
-is used to replace the old `Student` object with the updated one in our model. 
+is used to replace the old `Student` object with the updated one in the model. 
 
 **Step 6**: The execution ends and returns a `CommandResult` object containing the success message to be displayed by the GUI
 to the user. 
