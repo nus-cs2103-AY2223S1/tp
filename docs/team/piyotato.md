@@ -15,7 +15,7 @@ title: Sheyuan's Project Portfolio Page
     * Features hinging on this infrastructure include attendance/participation/assignment tracking, and new fields added to `Student`, including Telegram Handle, GitHub username.
     * This infrastructure also eased the deletion of unneeded features, such as the `Address` field in `Student`.
   * Planned and wrote the abstraction of student editing via multiple abstract classes, including `IndexCommand`, `EditStudentCommand`, and `StudentEditor` in order to unify behaviour. 
-    * Features hinging on this infrastructure include the commands `edit`, `mark`, `unmark`, `grade`, `ungrade`, `participate`, `unparticipate`.
+    * Features hinging on this infrastructure include the commands `edit`, `mark`, `unmark`, `grade`, `ungrade`, `participate`, `unparticipate`, `delete`.
   * Abstracted the idea of commands that require parsing an `index` in `IndexCommand`, so that all index-related behaviour can be changed in one place.
     * This allowed the syntax of `all` to be used in all such commands, including those mentioned above.
     * This improved the extensibility of the code to possibly support more sophisticated syntax for specifying `index` in commands without major refactors.
@@ -29,5 +29,6 @@ title: Sheyuan's Project Portfolio Page
   * Did general formatting of both User Guide and Developer Guide.
 
 * **Community**:
-  * Reviewed 36 pull requests from team members.
+  * Reviewed most functional pull requests from team members.
+  * Ensured good code quality by suggesting appropriate implementation strategies.
 
