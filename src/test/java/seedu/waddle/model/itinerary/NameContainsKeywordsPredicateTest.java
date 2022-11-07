@@ -43,34 +43,34 @@ public class NameContainsKeywordsPredicateTest {
         // One keyword
         NameContainsKeywordsPredicate predicate =
                 new NameContainsKeywordsPredicate(Collections.singletonList("Summer"));
-        assertTrue(predicate.test(new ItineraryBuilder().withName("Summer Winter").build()));
+        assertTrue(predicate.test(new ItineraryBuilder().withDescription("Summer Winter").build()));
 
         // Multiple keywords
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Summer", "Winter"));
-        assertTrue(predicate.test(new ItineraryBuilder().withName("Summer Winter").build()));
+        assertTrue(predicate.test(new ItineraryBuilder().withDescription("Summer Winter").build()));
 
         // Only one matching keyword
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Winter", "Carol"));
-        assertTrue(predicate.test(new ItineraryBuilder().withName("Summer Carol").build()));
+        assertTrue(predicate.test(new ItineraryBuilder().withDescription("Summer Carol").build()));
 
         // Mixed-case keywords
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("sUMmer", "winTEr"));
-        assertTrue(predicate.test(new ItineraryBuilder().withName("Summer Winter").build()));
+        assertTrue(predicate.test(new ItineraryBuilder().withDescription("Summer Winter").build()));
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new ItineraryBuilder().withName("Summer").build()));
+        assertFalse(predicate.test(new ItineraryBuilder().withDescription("Summer").build()));
 
         // Non-matching keyword
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new ItineraryBuilder().withName("Summer Winter").build()));
+        assertFalse(predicate.test(new ItineraryBuilder().withDescription("Summer Winter").build()));
 
         // Keywords match phone, email and address, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Singapore", "2023-06-30", "2023-07-30", "5"));
-        assertFalse(predicate.test(new ItineraryBuilder().withName("Summer").withCountry("Singapore")
+        assertFalse(predicate.test(new ItineraryBuilder().withDescription("Summer").withCountry("Singapore")
                 .withStartDate("2023-06-30").withDuration("20").withPeople("5").build()));
     }
 }

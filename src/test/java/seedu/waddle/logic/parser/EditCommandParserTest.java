@@ -121,7 +121,8 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_SECOND_ITINERARY;
         String userInput = targetIndex.getOneBased() + COUNTRY_DESC_SUMMER + PEOPLE_DESC_SUMMER
                 + START_DATE_DESC_SUMMER + DURATION_DESC_SUMMER + ITINERARY_DESC_DESC_SUMMER + BUDGET_DESC_SUMMER;
-        EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder().withName(VALID_ITINERARY_DESC_SUMMER)
+        EditItineraryDescriptor descriptor =
+                new EditItineraryDescriptorBuilder().withDescription(VALID_ITINERARY_DESC_SUMMER)
                 .withCountry(VALID_COUNTRY_SUMMER).withStartDate(VALID_START_DATE_SUMMER)
                 .withDuration(VALID_DURATION_SUMMER).withPeople(VALID_PEOPLE_SUMMER)
                 .withBudget(VALID_BUDGET_SUMMER).build();
@@ -147,7 +148,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_ITINERARY;
         String userInput = targetIndex.getOneBased() + ITINERARY_DESC_DESC_SUMMER;
         EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder()
-                .withName(VALID_ITINERARY_DESC_SUMMER).build();
+                .withDescription(VALID_ITINERARY_DESC_SUMMER).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

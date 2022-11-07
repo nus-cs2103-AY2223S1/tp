@@ -18,7 +18,7 @@ public class SampleDataUtil {
         return new Itinerary[]{
             new Itinerary(new Description("Graduation Trip"), new Country("Singapore"), new Date("2025-07-30"),
                     new ItineraryDuration("30"), new People("5"), new Budget("1000")),
-            new Itinerary(new Description("Winter Trip"), new Country("Sweden"), new Date("2022-11-15"),
+            new Itinerary(new Description("Winter Trip"), new Country("Sweden"), new Date("2025-11-15"),
                     new ItineraryDuration("7"), new People("3"), new Budget("5000")),
         };
     }

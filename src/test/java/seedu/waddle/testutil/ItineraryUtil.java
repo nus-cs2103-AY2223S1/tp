@@ -41,7 +41,8 @@ public class ItineraryUtil {
      */
     public static String getEditItineraryDescriptorDetails(EditItineraryDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_DESCRIPTION).append(name.description).append(" "));
+        descriptor.getDescription().ifPresent(
+                name -> sb.append(PREFIX_DESCRIPTION).append(name.description).append(" "));
         descriptor.getCountry().ifPresent(phone -> sb.append(PREFIX_COUNTRY).append(phone).append(" "));
         descriptor.getStartDate().ifPresent(email -> sb.append(PREFIX_START_DATE).append(email).append(" "));
         descriptor.getDuration().ifPresent(address -> sb.append(PREFIX_ITINERARY_DURATION).append(address).append(" "));
