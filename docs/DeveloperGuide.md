@@ -53,8 +53,6 @@ title: Developer Guide
   * [Unlinking an exam](#unlinking-an-exam)
   * [Showing tasks of an exam](#showing-tasks-of-an-exam)
   * [Clearing all lists](#clearing-all-lists)
-  * [Saving data](#saving-data)
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -459,18 +457,18 @@ The following activity diagram summarizes what happens when EditTaskCommand is e
 
 ### Delete Task Command
 
-####Command Format
+#### Command Format
 `t del INDEX` where `INDEX` is the index (shown in the displayed task list) of the task to be deleted.
 
-####What is the feature about
+#### What is the feature about
 The `t del` command allows users to delete a specific task from the displayed task list.
 
-####How does the feature work
+#### How does the feature work
 The delete task feature is currently implemented through the `DeleteTaskCommand` which extends the abstract class `Command`.
 The task to be deleted will be retrieved from the `Model` based on the `INDEX` given. This task will then be deleted from the
 the `DistinctTaskList`.
 
-####UML diagrams
+#### UML diagrams
 Shown below is a sequence diagram of what occurs when the execute method of LogicManager is invoked.
 
 | ![DeleteTaskSequenceDiagram](images/DeleteTaskSequenceDiagram.png) |
@@ -600,24 +598,24 @@ Shown below is a sequence diagram of what occurs when the execute method of Logi
 |:------------------------------------------------------------:|
 |              Sequence diagram of AddExamCommand              |
 
-Step 1. The user types an `e add m/cs2030s ex/midterms ed/20-12-2022` command. 
+1. The user types an `e add m/cs2030s ex/midterms ed/20-12-2022` command. 
 
-Step 2. The command calls `LogicManager#execute()` with 
+2. The command calls `LogicManager#execute()` with 
 the command input as the argument, which then calls `AddressBookParser#parseCommand() ` 
 with command input as the argument. 
 
-Step 3. `AddressBookParser#parseCommand()` matches the command to be 
+3. `AddressBookParser#parseCommand()` matches the command to be 
 an add exam command through the command word and the feature type, which then calls `AddExamCommandParser#parse()`.
 
-Step 4. `AddExamCommandParser#parse()` then parses `m/cs2030s ex/midterms ed/20-12-2022` to get `Module`, `ExamDescription` 
+4. `AddExamCommandParser#parse()` then parses `m/cs2030s ex/midterms ed/20-12-2022` to get `Module`, `ExamDescription` 
 and the `ExamDate` objects of the exam by calling their respective `ParserUtil` parse methods.
 Then, an `Exam` object is created with the three objects as arguments. 
 
-Step 5. `AddExamCommandParser#parse()` returns a new `AddExamCommand` object created with the `Exam`
+5. `AddExamCommandParser#parse()` returns a new `AddExamCommand` object created with the `Exam`
 object created previously as the argument in the constructor. `LogicManager` object will call 
 `AddExamCommand#execute()` with a `Model` object as the argument. 
 
-Step 6. `AddExamCommand#execute()` will check if model already contains the module of the exam 
+6. `AddExamCommand#execute()` will check if model already contains the module of the exam 
 through `Model#hasModule()`. If it does not contain the module, an exception will be thrown to 
 indicate the module is not found. It will also check if the model already contains the exam 
 through `Model#hasExam()`. If it contains the exam, an exception will be thrown 
@@ -711,21 +709,21 @@ Shown below is a sequence diagram of what occurs when the execute method of Logi
 |:----------------------------------------------------------------:|
 |               Sequence diagram of FindTasksCommand               |
 
-Step 1. The user types an `t find task` command.
+1. The user types an `t find task` command.
 
-Step 2. The command calls `LogicManager#execute()` with
+2. The command calls `LogicManager#execute()` with
 the command input as the argument, which then calls `AddressBookParser#parseCommand() `
 with command input as the argument.
 
-Step 3. `AddressBookParser#parseCommand()` matches the command to be
+3. `AddressBookParser#parseCommand()` matches the command to be
 a find tasks command through the command word and the feature type, which then calls `FindTasksCommandParser#parse()` which takes in `task` as its argument.
 
-Step 4. `FindTasksCommandParser#parse()` will create a `DescriptionContainsKeywordsPredicate` object which is a predicate that takes in the keyword inputted by user and
+4. `FindTasksCommandParser#parse()` will create a `DescriptionContainsKeywordsPredicate` object which is a predicate that takes in the keyword inputted by user and
 tests if the task description matches the keyword- `task`
 Then it will create and return  `FindTasksCommand` object,that takes in a single argument-the `DescriptionContainsKeywordsPredicate` object, 
  to `LogicManager` object.
 
-Step 5.  `LogicManager` object will call `FindTasksCommand#execute()` with a `Model` object as the argument.
+5.  `LogicManager` object will call `FindTasksCommand#execute()` with a `Model` object as the argument.
 `FindTasksCommand#execute()` will call `Model#updateFilteredTaskList` to update the filtered task list
 by the predicate (which is the `DescriptionContainsKeywordsPredicate` object created previously) to only 
 display the tasks which match the keyword. Then, a `CommandResult` object is returned to the `LogicManager` object.
@@ -807,7 +805,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | NUS student | find a module by module code through a command                    | quickly locate the module instead of having to go through the whole list of modules just to find it. |
 | `* *`    | NUS student | edit the exams in the exam list                                   | change and correct the exam details easily if I input the wrong details.                             |
 | `* *`    | NUS student | indicate a task is not completed                                  | continue working on the task.                                                                        |
-| `* *`    | NUS student | edit the tasks in my task list                                    | easily change and correct the details of my tasks.                                                   |
+| `* *`    | NUS student | edit the tasks in my task list                                    | easily change and correct the details of my tasks.                                                    |
+| `* *`    | NUS student | view my progress for each module                                  | focus on the modules which currently have little progress.                                                              |
+| `* *`    | NUS student | view my progress for each exam                                    | focus on revising for the exams which currently have little progress.                                                  |
+
 
 
 ### Use cases
@@ -1791,12 +1792,3 @@ module code `cs2100` is added to the module list.
 1. Clear all module, task and exam lists.
    1. Test case: `clearall`<br>
       Expected: Module, task and exam lists cleared.
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-2. _{ more test cases …​ }_
-
