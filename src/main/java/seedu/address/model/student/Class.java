@@ -25,7 +25,7 @@ public class Class {
             "Time should be in a valid time in the range of 0000 - 2359";
     public static final String INVALID_DATETIME_ERROR_MESSAGE =
             INVALID_DATE_ERROR_MESSAGE + ".\n" + INVALID_TIME_ERROR_MESSAGE;
-    public static final String INVALID_DURATION_ERROR_MESSAGE = "EndTime must be after StartTime";
+    public static final String INVALID_DURATION_ERROR_MESSAGE = "End time must be after start time";
     public static final String INVALID_FULL_DAY_CLASS_ERROR_MESSAGE = "A class cannot be 24-hour long";
     public static final String VALIDATION_DATETIME_REGEX = "[0-9]{4}-[0-9]{2}-[0-9]{2}";
     public static final String VALIDATION_TIME_REGEX = "[0-9]{4}";

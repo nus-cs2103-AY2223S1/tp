@@ -442,6 +442,10 @@ Below is an example of the general flow of a find by address command.
 6. `filteredStudents` list will be updated accordingly in `ModelManager` and the list display in Teacher's Pet will be updated.
 7. `CommandResult` will eventually be returned and feedback will be given to the user.
 
+The following sequence diagram summarizes what happens when a user executes a find by address command:
+
+![FindByAddressSequenceDiagram](images/DG-images/FindByAddressSequenceDiagram.png)
+
 ___
 
 ### [Proposed] Next Available Class Feature
