@@ -39,7 +39,7 @@ public class Remark {
      */
     public static boolean isValidRemarkNonEmpty(String test) {
         assert test != null : "Remark to be tested should not be null";
-        return test.matches(VALIDATION_REGEX) && !test.trim().isEmpty();
+        return test.matches(VALIDATION_REGEX) && !test.isEmpty();
     }
 
     @Override
