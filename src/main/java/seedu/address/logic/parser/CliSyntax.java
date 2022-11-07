@@ -29,13 +29,34 @@ public class CliSyntax {
     public static final String FLAG_TAG_STR = "-t";
     public static final String FLAG_TAG_STR_LONG = "--tag";
 
+    /** Flag and parameter labels */
+    public static final String LABEL_PERSON_INDEX = "<person_index>";
+    public static final String LABEL_PERSON_NAME = "<person_name>";
+    public static final String LABEL_PERSON_EMAIL = "<person_email>";
+    public static final String LABEL_PERSON_PHONE = "<person_phone>";
+    public static final String LABEL_PERSON_TAGS = "<person_tags>";
+    public static final String LABEL_PERSON_NAME_KEYWORDS = "<person_name_keywords>";
+    public static final String LABEL_TEAM_NAME = "<team_name>";
+    public static final String LABEL_TEAM_DESCRIPTION = "<team_description>";
+    public static final String LABEL_TASK_INDEX = "<task_index>";
+    public static final String LABEL_TASK_NAME = "<task_name>";
+    public static final String LABEL_TASK_ASSIGNEES = "<task_assignees>";
+    public static final String LABEL_TASK_DEADLINE = "<task_deadline>";
+    public static final String LABEL_TASK_NAME_KEYWORDS = "<task_name_keywords>";
+    public static final String LABEL_MEMBER_INDEX = "<member_index>";
+    public static final String LABEL_MEMBER_NAME_KEYWORDS = "<member_name_keywords>";
+    public static final String LABEL_MEMBER_EMAIL_KEYWORDS = "<member_email_keywords>";
+    public static final String LABEL_LINK_INDEX = "<link_index>";
+    public static final String LABEL_LINK_NAME = "<link_name>";
+    public static final String LABEL_LINK_URL = "<link_url>";
+
     /* Descriptions for flags */
     public static final String FLAG_HELP_DESCRIPTION = "Shows this message";
     public static final String FLAG_PERSON_NAME_DESCRIPTION = "Name of person (e.g. \"John Doe\")";
     public static final String FLAG_PERSON_PHONE_DESCRIPTION = "Phone of person (e.g. 98765432)";
     public static final String FLAG_PERSON_EMAIL_DESCRIPTION = "Email of person (e.g. johnd@example.com)";
     public static final String FLAG_PERSON_INDEX_DESCRIPTION = "Index of person (must be a positive integer)";
-    public static final String FLAG_PERSON_TAGS_DESCRIPTION = "Tags of person (e.g. \"Frontend\" \"Backend\"";
+    public static final String FLAG_PERSON_TAGS_DESCRIPTION = "Tags of person (e.g. \"Frontend\" \"Backend\")";
     public static final String FLAG_LINK_NAME_DESCRIPTION = "Name of link (e.g. \"Meeting #1\")";
     public static final String FLAG_LINK_URL_DESCRIPTION = "URL of link (e.g. https://google.com)";
     public static final String FLAG_LINK_INDEX_DESCRIPTION = "Index of link (must be a positive integer)";
@@ -45,8 +66,7 @@ public class CliSyntax {
     public static final String FLAG_TASK_INDEX_DESCRIPTION = "Index of task (must be a positive integer)";
     public static final String FLAG_TASK_NAME_DESCRIPTION = "Name of task (e.g. \"merge PR#12\")";
     public static final String FLAG_TASK_DEADLINE_DESCRIPTION = "Deadline of task (e.g. 2023-02-25 23:59)";
-    public static final String FLAG_TASK_ASSIGNEES_DESCRIPTION = "Index of member in Team list "
-            + "(must be a positive integer)";
+    public static final String FLAG_TASK_ASSIGNEES_DESCRIPTION = "Index of members (must be positive integers)";
     public static final String FLAG_MEMBER_NAME_DESCRIPTION = "Name of member (e.g. \"John Doe\")";
     public static final String FLAG_MEMBER_INDEX_DESCRIPTION = "Index of person (must be a positive integer)";
     public static final String FLAG_NAME_SEARCH_KEYWORDS_DESCRIPTION = "Keywords to search for (e.g. Alice Bob)";
