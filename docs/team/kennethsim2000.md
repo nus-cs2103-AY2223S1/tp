@@ -50,9 +50,9 @@ Given below are my contributions to the project.
 **Documentation**:
   * User Guide:
     * Added documentation for the features `addTask`, `deleteTask`, `listTasks`, `Glossary`, `FAQ`, `filter`, `editTask` (Pull requests [\#13](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/13), [\#106](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/106), [\#178](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/178))
-    * Fix the following bugs: (Pull requests [\#165](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/165)).</br>
-    Issue 136: Inaccurate documentation for listTasks command</br>
-    Issue 130: Clear command clears the address book, not the task list.
+    * Fix the following bugs: (Pull requests [\#165](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/165)).\\
+      * Issue 136: Inaccurate documentation for listTasks command.
+      * Issue 130: Clear command clears the address book, not the task list.
  
   * Developer Guide:
     * Added implementation details of the `filter`, `addTask`, `deleteTask` feature (Pull requests [\#110](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/110), [\#196](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/196))
