@@ -5,8 +5,9 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":TaAssistParser" as TaAssistParser LOGIC_COLOR
 participant "e:ExportCommand" as ExportCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
 participant ":ExportCsvStorageAction" as ExportCsvStorageAction LOGIC_COLOR
+participant "finalResult:CommandResult" as CommandResult2 LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
@@ -59,7 +60,7 @@ create CommandResult
 ExportCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> ExportCommand
+CommandResult --> ExportCommand : result
 deactivate CommandResult
 
 ExportCommand --> LogicManager : result
@@ -83,17 +84,17 @@ activate Storage
 Storage --> ExportCsvStorageAction
 deactivate Storage
 
-create CommandResult
-ExportCsvStorageAction -> CommandResult
-activate CommandResult
+create CommandResult2
+ExportCsvStorageAction -> CommandResult2
+activate CommandResult2
 
-CommandResult --> ExportCsvStorageAction
-deactivate CommandResult
+CommandResult2 --> ExportCsvStorageAction
+deactivate CommandResult2
 
-ExportCsvStorageAction --> CommandResult : result
+ExportCsvStorageAction --> CommandResult : finalResult
 deactivate ExportCsvStorageAction
 
-CommandResult --> LogicManager : result
+CommandResult --> LogicManager : finalResult
 deactivate CommandResult
 
 [<--LogicManager
