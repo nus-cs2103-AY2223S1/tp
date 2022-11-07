@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
