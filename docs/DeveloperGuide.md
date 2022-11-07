@@ -925,71 +925,93 @@ testers are expected to do more *exploratory* testing.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.</div>
 
-   1. Prerequisites: No other client have the exact same name. The product `ProductTest` has not been added.
+1. Prerequisites: No other client have the exact same name.
 
-   2. Test case: `addClient n/John Tan p/89134083`
-       - Expected: A client named John Tan and phone number 89134083 is added and the view switches back to the list of client, where the list is updated with John Tan's newly added record.
+2. Add client with only essential information
+    * Test case: `addClient n/John Tan p/89134083`
+        * Expected: A client named John Tan and phone number 89134083 is added and the view switches back to the list of client, where the list is updated with John Tan's newly added record.
 
-   3. Test case: `addClient n/Trevor Tan p/89134083`
-       - Expected: A client named Trevor Tan and phone number 89134083 is added and the view switches back to the list of client, where the list is updated with Trevor Tan's newly added record. This test case focuses on the fact that the phone numbers are identical, which happens when parents buy policies for their child who does not have a cellular plan.
+3. Add client with same phone number as another client
+    * Test case: `addClient n/Trevor Tan p/89134083`
+        * Expected: A client named Trevor Tan and phone number 89134083 is added and the view switches back to the list of client, where the list is updated with Trevor Tan's newly added record. This test case focuses on the fact that the phone numbers are identical, which happens when parents buy policies for their child who does not have a cellular plan.
 
-   4. Test case: `addClient n/Trevor Tan p/89134083`
-       - Expected: No client is added and an error message is shown. This tests whether if the app allows clients of the same name, which is not allowed by design.
+4. Add duplicate client of the same name
+    * Test case: `addClient n/Trevor Tan p/89134083`
+        * Expected: No client is added and an error message is shown. This tests whether if the app allows clients of the same name, which is not allowed by design.
 
-   5. Test case: `addClient n/Justin Lim p/98120931 e/justinlim@gmail.com`
-       - Expected: A client named Justin Lim and phone number 98120931 is added and the view switches back to the list of client, where the list is updated with Justin Lim's newly added record. This test case focuses on the fact that an optional field is used.
-    
-   6. Test case: `addClient n/Tom p/90231494 pd/ProductTest`
-       - Expected: No client is added as the product `ProductTest` is not added beforehand.
-      
-   7. Test case: `addClient n/Tom p/90231494 pd/ProductTest`, suppose `ProductTest` is added.
-       - Expected: The client should now be added with the product as the product is added with the `addProduct` command.
+5. Add client with an optional field
+    * Test case: `addClient n/Justin Lim p/98120931 e/justinlim@gmail.com`
+        * Expected: A client named Justin Lim and phone number 98120931 is added and the view switches back to the list of client, where the list is updated with Justin Lim's newly added record. This test case focuses on the fact that an optional field is used.
 
-   8. Test case: `addClient Tom p/12345678`
-       - Expected: No client will be added. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect command format.
-   
-   9. Test case: `addClient n/Tom p/`
-       - Expected: No client will be added. Error details shown in the status message. Status bar remains the same. This test case focus on the missing values that should be accompanied after a parameter.
+6. Add client with a non-existent product
+    * Test case: `addClient n/Tom p/90231494 pd/ProductTest`
+        * Expected: No client is added as the product `ProductTest` is not added beforehand.
 
-   10. Test case: `addClient n/Tom p/12345`
-       - Expected: No client will be added. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect values that a parameter requires.
+7. Add client with an existing product
+    * Continuation: `addProduct pd/ProductTest`, then `addClient n/Tom p/90231494 pd/ProductTest` again.
+        * Expected: The client should now be added with the product as the product is added with the `addProduct` command.
+
+8. Add client with no name prefix, `/n`
+    * Test case:  `addClient Tom p/12345678`
+        * Expected:  No client will be added. Error regarding the command format will be shown.
+
+9. Add client with special character in name
+    * Test case: `addClient n/O'neal p/12345678`
+        * Expected: No client will be added. Error regarding the wrong name input will be shown.
+
+10. Add client with invalid phone number
+    * Test case: `addClient n/Tom p/12345`
+        * Expected: No client will be added. Error regarding the wrong phone input will be shown.
 
 ### 7.3 Viewing a client
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of clients using `listClient` where the index number of the client can be found.
+
+</div>
+
 1. Prerequisites: View a specific client's details using the `viewClient` command. There is exactly one client in the list.
 
-2. Test case: `viewClient i/1`
-   - Expected: The details of the client who is at the first index is shown.
+2. View client at index 1
+    * Test case: `viewClient i/1`
+        * Expected: The details of the client who is at the first index is shown.
 
-3. Test case: `viewClient i/a`
-   - Expected: The index is not numeric, so there will be an error.
+3. View client using non-numeric index
+    * Test case: `viewClient i/a`
+        * Expected: The index is not numeric, so there will be an error.
 
-4. Test case: `viewClient i/2`
-   - Expected: Index is larger than the size of client list, so there will be an error.
+4. View client using an index out of range
+    * Test case: `viewClient i/2`
+        * Expected: Index is larger than the size of client list, so there will be an error.
 
-5. Test case: `viewClient i/0`
-   - Expected: Index less than 1 is not allowed, therefore there will be an index error.
+5. View client using index 0
+    * Test case: `viewClient i/0`
+        * Expected: Index less than 1 is not allowed, therefore there will be an index error.
 
-6. Test case: `viewClient i/`
-   - Expected: Index is not provided, so there will be an error.
+6. View client without providing index
+    * Test case: `viewClient i/`
+        * Expected: Index is not provided, so there will be an error.
 
-7. Test case: `viewClient 1`
-   - Expected: Prefix for index is not provided, so there will be an invalid command format error.
+7. View client without using prefix
+    * Test case: `viewClient 1`
+        * Expected: Prefix for index is not provided, so there will be an invalid command format error.
 
 ### 7.4 Deleting a client
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of clients using `listClient` where the index number of the client can be found.</div>
 
-   1. Prerequisites: List all clients using the `listClient` command. At least one client is in the list.
+1. Prerequisites: Requires multiple clients in the list (more than 1, recommended to have 3).
 
-   2. Test case: `delClient i/1`
-      - Expected: First client is deleted from the list. Details of the deleted client shown in the status message. Timestamp in the status bar is updated.
+2. Delete client at index 1
+    * Test case: `delClient i/1`
+        * Expected: First client is deleted from the list. Details of the deleted client shown in the status message. Timestamp in the status bar is updated.
 
-   3. Test case: `delClient` OR `delClient 1`
-      - Expected: No client is deleted. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect format. 
+3. Delete client using index 0
+    * Test case: `delClient i/0`
+        * Expected: No client is deleted. Error regarding invalid index input will be shown.
 
-   4. Test case: `delClient i/-1`
-      - Expected: No client is deleted. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect index provided.
+4. Delete client without parameters
+    * Test case: `delClient`
+        * Expected: No client is deleted. Error regarding invalid command format will be shown.
 
 ### 7.5 Listing meetings
 
@@ -1001,20 +1023,25 @@ testers are expected to do more *exploratory* testing.
       2. `addMeeting i/1 dn/Test st/1200 et/1300 d/<date in the current week (but not tomorrow)>`
       3. `addMeeting i/1 dn/Test st/1200 et/1300 d/<date in the current month (but not tomorrow or the current week)>`
 
-2. Test case: `listMeeting`
-   - Expected: The view switches back to the list of meetings, and all three meetings are displayed.
+2. List all meetings
+    * Test case: `listMeeting`
+        * Expected: The view switches back to the list of meetings, and all three meetings are displayed.
 
-3. Test case: `listMeeting d/tomorrow`
-   - Expected: The view switches back to the list of meetings, and only the meeting tomorrow is displayed.
+3. List meetings happening tomorrow
+    * Test case: `listMeeting d/tomorrow`
+        * Expected: The view switches back to the list of meetings, and only the meeting tomorrow is displayed.
 
-4. Test case: `listMeeting d/week`
-   - Expected: The view switches back to the list of meetings, and the meetings tomorrow and in the next week are displayed.
+4. List meetings happening in the week
+    * Test case: `listMeeting d/week`
+        * Expected: The view switches back to the list of meetings, and the meetings tomorrow and in the next week are displayed.
 
-5. Test case: `listMeeting d/month`
-   - Expected: The view switches back to the list of meetings, and all three meetings are displayed.
+5. List meetings happening in the month
+    * Test case: `listMeeting d/month`
+        * Expected: The view switches back to the list of meetings, and all three meetings are displayed.
 
-6. Test case: `listMeeting adsfadsf`
-   - Expected: The view switches back to the list of meetings, and all three meetings are displayed. Extra parameters are ignored.
+6. List all meetings, with extra nonsensical parameters
+    * Test case: `listMeeting adsfadsf`
+        * Expected: The view switches back to the list of meetings, and all three meetings are displayed. Extra parameters are ignored.
 
 ### 7.6 Deleting a Meeting
 
@@ -1022,14 +1049,17 @@ Deleting a meeting while all meetings are being shown
 
 1. Prerequisites: List all meetings using the `listMeeting` command. At least one meeting in the list.
 
-2. Test case: `delMeeting i/1`
-    - Expected: First meeting is deleted from the list. Details of the deleted meeting shown in the status message. Timestamp in the status bar is updated.
+2. Delete meeting at index 1
+    * Test case: `delMeeting i/1`
+        * Expected: First meeting is deleted from the list. Details of the deleted meeting shown in the status message. Timestamp in the status bar is updated.
 
-3. Test case: `delMeeting` OR `delMeeting 1`
-    - Expected: No meeting is deleted. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect format.
+3. Delete meeting using index 0
+    * Test case: `delMeeting i/0`
+        * Expected: No meeting is deleted. Error regarding invalid index input will be shown.
 
-4. Test case: `delMeeting i/0` OR `delMeeting i/-1` OR `delMeeting i/` or `delMeeting i/x` (where x is larger than the list size).
-    - Expected: No meeting is deleted. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect index provided.
+4. Delete meeting without parameters
+    * Test case: `delMeeting`
+        * Expected: No meeting is deleted. Error regarding invalid command format will be shown.
 
 ### 7.7 Viewing a meeting
 
