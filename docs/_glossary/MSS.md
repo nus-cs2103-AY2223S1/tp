@@ -1,5 +1,5 @@
 ---
-name: MSS (Main Success Scenario)
+name: Main Success Scenario (MSS)
 show-in: [dg]
 ---
 

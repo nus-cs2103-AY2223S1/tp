@@ -12,72 +12,75 @@ title: Mai Ting Kai's Project Portfolio Page
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to undo/redo previous commands.
+* **New Feature**: Statistics feature
 
-  * What it does: allows the user to undo all previous commands one at a time. Preceding undo commands can be reversed by using the redo command.
-  * Justification: This feature improves the product significantly because a user can make mistakes in commands and the app should provide a convenient way to rectify them.
-  * Highlights: This enhancement affects existing commands and commands to be added in future. It required an in-depth analysis of design alternatives. The implementation too was challenging as it required changes to existing commands.
-  * Credits: _{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}_
+  * What it does: Calculates some statistics regarding the Items and Tags in FoodRem's inventory, and displays them to the user. Statistics include: Top three most commonly used tags, top three most expensive items in inventory, total cost accrued due to food waste. 
+  * Highlights: These statistics were chosen after discussion as they were determined to be most useful and provided a high degree of flexibility. It was not easy to choose the statistics. 
+  * Credits: N/A
+   
+* **New Feature**: `Item` class
 
-* **New Feature**: Added a history command that allows the user to navigate to previous commands using up/down keys.
+  * What it does: Provides an internal representation of an `Item` in FoodRem. Adapted from the original AB3's `Person` class, I laid the foundation by adding the necessary attributes to represent an `Item`. I also wrote test cases for the `Item` class.
+  * Justification: Represent the `Item` to be stored in a restaurant's inventory. It is necessary as it represents the business logic of the program.
+  * Highlights: Improvements were made over the original `Person` class, where SWE principles, like the Open-Closed principle, was used to refactor and design new code.Notably, an `Item` was designed to reference one or more `Tag`s, together which formed the main features in FoodRem.
+  * Credits: AddressBook - Level 3's original codebase, where we adapted the `Person` class and other relevant classes.
 
-* **Code contributed**: [RepoSense link]()
+* **New Feature**: `inc`, `dec`, `view` commands
+
+  * What it does: `inc` allows the user to increment a chosen item by a specified quantity. `dec` allows the user to decrement a chosen item by a specified quantity. `view` displays all relevant information about an `Item`, such as the quantity, name, tags, to the user.
+  * Justification: These are key features for FoodRem. 
+
+* **New Feature**: `sort` command
+
+  * What it does: This command allows users to sort the currently displayed `Item` list by a specified criteria. This facilitates the display of statistics to the user.
+  * Justification: One of the key features for FoodRem.
+  * Highights: Faced complexity as it initially allowed sorting by multiple criteria, such as by name and quantity. Eventually refactored to only sort by one criteria.
+  * Credits: N/A
+
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=Ferusel&tabRepo=AY2223S1-CS2103T-W16-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
-
-  * Managed releases `v1.3` - `v1.5rc` (3 releases) on GitHub
+  * Add PPP skeleton at start of project [[PR#64]]
 
 * **Enhancements to existing features**:
-
-  * Updated the GUI color scheme (Pull requests [\#33](), [\#34]())
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+  * Add Item Unit Tests [[PR#155]]
 
 * **Documentation**:
 
   * User Guide:
-    * Added documentation for the features `delete` and `find` [\#72]()
-    * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+    * Add User Guide section [[PR#82]]
+    * Add Acknowledgements section to User Guide [[PR#162]]
+    * Add Glossary section to User Guide [[PR#163]]
+    * Consolidate UG v1.3 [[PR#264]]
+    * Update UG with v1.3 Features [[PR#258]]
+    * Update README with v1.3 items [[PR#311]]
+    * Update UG after Refactoring [[PR#318]]
+    * Improve UG for v1.3 [[PR#335]]
+    * Fix UG after Peer Review [[PR#351]]
+    * Fix find command description in Command Summary [[PR#324]]
+   
   * Developer Guide:
-    * Added implementation details of the `delete` feature.
+    * Add Glossary, UC3, UC4 to Developer Guide [[PR#87]]
+    * Add Glossary section to Developer Guide [[PR#164]]
+    * Add Sorting user stories to DG [[PR#210]]
+    * Add Sort Command UML [[PR#232]]
+    * Update Developer Guide with v1.3  [[PR#295]]
 
-* **Community**:
-
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-* \_{you can add/remove categories in the list above}
-
-* **PRs**:
-  * Add PPP skeleton [[PR#64]]
-  * Add profile picture [[PR#67]]
-  * Add User Guide section [[PR#82]]
-  * Rename ferusel.jpg to ferusel.png [[PR#85]]
-  * Add Glossary, UC3, UC4 to Developer Guide [[PR#87]]
-  * Add Ting Kai information to AboutUs [[PR#98]]
+* ** Features**:
   * Add Item model [[PR#143]]
-  * Add Item Unit Tests [[PR#155]]
   * Add Sort Command [[PR#158]]
   * Add Increment and Decrement Command [[PR#161]]
-  * Add Acknowledgements section to User Guide [[PR#162]]
-  * Add Glossary section to User Guide [[PR#163]]
-  * Add Glossary section to Developer Guide [[PR#164]]
   * Add View command [[PR#209]]
-  * Add Sorting user stories to DG [[PR#210]]
-  * Add Sort Command UML [[PR#232]]
-  * Update UG with v1.3 Features [[PR#258]]
-  * Consolidate UG v1.3 [[PR#264]]
-  * Update Developer Guide with v1.3  [[PR#295]]
-  * Update README with v1.3 items [[PR#311]]
-  * Update UG after Refactoring [[PR#318]]
-  * Fix find command description in Command Summary [[PR#324]]
-  * Improve UG for v1.3 [[PR#335]]
-  * Fix UG after Peer Review [[PR#351]]
   * Add Statistics Command [[PR#360]]
   * Update find command [[PR#367]]
-  * Website Hot Fix [[PR#369]]
   * Fix stats command [[PR#372]]
+ 
+* **Community**:
+
+  * Created [forum discussion](https://github.com/nus-cs2103-AY2223S1/forum/issues/413) 
+
+* **Misc PRs**:
+  * Add profile picture [[PR#67]]
+  * Rename ferusel.jpg to ferusel.png [[PR#85]]
+  * Add Ting Kai information to AboutUs [[PR#98]]
+  * Website Hot Fix [[PR#369]]
