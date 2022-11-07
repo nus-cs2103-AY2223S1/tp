@@ -195,7 +195,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `PrimaryParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddUserCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `PrimaryParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `PrimaryParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddUserCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddUserCommand`) which the `PrimaryParser` returns back as a `Command` object.
 * Commands can be decomposed into subcommands. For example, to parse `delete user 1`, `PrimaryParser` calls `DeleteCommandParser`. `DeleteCommandParser` then parses `user 1` and returns a `DeleteUserCommand`.
 * All `XYZCommandParser` classes (e.g., `AddUserommandParser`, `DeleteUserCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
@@ -210,6 +210,7 @@ The `Model` component,
 * stores BookFace data i.e., all `Person` objects and all `Book` objects (which are contained in a `UniquePersonList` object and a `BookList` object respectively).
 * stores the currently 'selected' `Person` and `Book` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` or `ObservableList<Book>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
+* has a bidirectional association between a `Book` and a `Person`, where a `Book` can only have 0 or 1 loanee `Person`, but a Person can loan 0 or more `Books`
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `BookFace`, which `Person` references. This allows `BookFace` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
@@ -243,19 +244,17 @@ This section describes some noteworthy details on how certain features are imple
 ### Command Parsing
 The [**Logic**](#logic-component) section briefly explains how the user's input is broken down, but the process is explained more thoroughly here.
 
-Parsing of commands is a three-step process - processing the first command word, then the arguments (if any), and constructing the Command instance.
+This process works by handling the parsing of commands and arguments separately. The first word in the user input is taken to be the command, and the rest of the input to be arguments. A `Command` object is then generated.
 
-The `add`, `edit`, `find`, `list`, and `delete` commands can apply to either users or books. These commands need additional subcommands and additional parsers to handle the different execution logic and command-line flags for users and books. Thus, the arguments to these commands are actually subcommands.
+One feature is that a command can recursively contain another command as a subcommand. We chose this approach as the `add`, `edit`, `find`, `list`, and `delete` commands can apply to either users or books. These commands need additional subcommands and additional parsers to handle the different execution logic and command-line flags for users and books. Thus, a recursive structure allows for easy extensibility and to share code via parent classes.
 
-Compare the commands `loan 1 1` with `delete user 1`. `loan 1 1` has two integer arguments, which cannot be broken down further. However, the arguments `user 1` for `delete` can be treated as a single self-complete subcommand on their own.
-
-These commands (and subcommands) are represented as enums to associate each possible command from the user with a parser.
+Compare the command `loan 1 1` with `delete user 1`. `loan 1 1` has two integer arguments, which cannot be broken down further. However, the arguments `user 1` for `delete` can be treated as a single self-complete subcommand on their own.
 
 #### Design consideration:
 
-This approach was chosen to reduce code duplication, and to manage the complexity of `PrimaryParser`. Now, `DeleteUserCommand` (`delete user`) and `DeleteBookCommand` (`delete book`) can share similar code through a common parent `DeleteCommand` (`delete`).
+This approach was chosen to reduce code duplication and to manage the complexity of `PrimaryParser`. For example, `DeleteUserCommand` (`delete user`) and `DeleteBookCommand` (`delete book`) can share similar code through a common parent `DeleteCommand` (`delete`). Such commands which can contain subcommands like `add` or `delete` also inherit from the abstract `CommandParser`, which has a shared `parse()` method. This proved to be useful, as the `list` command in particular has many subcommands.
 
-Enums were chosen, as they use less memory (as enums are `final` subclasses of java.lang.Enum) than HashMap for key-value storage, and are easy to modify. Furthermore, they help to ensure type-checking during compile-time, preventing bugs. They also have a semantic value; they represent to both readers and future developers the current allowed constants.
+These commands (and subcommands) are represented as enums to associate each possible command from the user with a `Parser` specific to that command. Enums were chosen, as they use less memory (as enums are `final` subclasses of `java.lang.Enum`) than `HashMap` for key-value storage, and are easy to modify. Furthermore, they help to ensure type-checking during compile-time, preventing bugs. They also have a semantic value; they represent to both us developers and to readers of the code the current allowed constants.
 
 ### Add feature
 #### Adding a book/user
@@ -712,10 +711,6 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-3. _{ more test cases …​ }_
-
-
-
 ### Adding a book
 1. Adding a book while all books are being shown
    1. Prequisites: List all books using the `list books` or `list all` command.
@@ -892,9 +887,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. Prerequisites: have the data file `bookface.json` (if the app has not been launched at least once, this file may be missing)
+   2. Test case: change one of the JSON key fields to be incorrect, such as by replacing `name` with `nme`.<br>
+      Upon launching the application, the application will log an error message and will load without any data at all.
 
 ## **Appendix: Effort**
 

@@ -27,7 +27,8 @@ PrimaryParser .down.> XYZCommandParser: creates >
 XYZCommandParser ..> XYZCommand : creates >
 PrimaryParser ..> Command : returns >
 CommandParser .up.|> Parser
-XYZCommandParser .up.|> CommandParser
+PrimaryParser .up.|> CommandParser
+XYZCommandParser .up.|> Parser
 XYZCommandParser ..> ArgumentMultimap
 XYZCommandParser ..> ArgumentTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap

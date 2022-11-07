@@ -5,7 +5,7 @@ import bookface.model.person.Person;
 import javafx.collections.ObservableList;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of BookFace
  */
 public interface ReadOnlyBookFace {
 

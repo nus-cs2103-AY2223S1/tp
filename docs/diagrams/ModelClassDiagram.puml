@@ -5,24 +5,29 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
+together {
 Class "<<interface>>\nReadOnlyBookFace" as ReadOnlyBookFace
-Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
+Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
+}
 Class BookFace
 Class ModelManager
 Class UserPrefs
 
+Package LibraryUser <<Rectangle>> {
 Class UniquePersonList
 Class Person
 Class Email
 Class Name
 Class Phone
 Class Tag
+}
+Package Book <<Rectangle>> {
 Class BookList
 Class Book
 Class Title
 Class Author
-
+}
 }
 
 Class HiddenOutside #FFFFFF
@@ -31,25 +36,27 @@ HiddenOutside ..> Model
 BookFace .up.|> ReadOnlyBookFace
 
 ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyBookFace
-ModelManager -left-> "1" BookFace
-ModelManager -right-> "1" UserPrefs
+Model ..> ReadOnlyUserPrefs
+Model ..> ReadOnlyBookFace
+ModelManager -right-> "1" BookFace
+ModelManager -left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 BookFace *--> "1" UniquePersonList
 BookFace *--> "1" BookList
-UniquePersonList ---> "~* all" Person
-BookList ---> "~* all" Book
-Person *--> Name
-Person *--> Phone
-Person *--> Email
+UniquePersonList ---> "~*" Person : contains all >
+BookList ---> "~*" Book : contains all >
+Person *--> "1" Name
+Person *--> "1" Phone
+Person *--> "1" Email
 Person *--> "*" Tag
-Book *--> Title
-Book *--> Author
+Book *--> "1" Title
+Book --> "0..1" Person
+Person --> "*" Book
+Book *--> "1"Author
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Email
 
-ModelManager --> "~* filtered" Person
-ModelManager --> "~* filtered" Book
+ModelManager --> "~*" Person : shows filtered >
+ModelManager --> "~*" Book : shows filtered >
 @enduml
