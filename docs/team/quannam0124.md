@@ -28,7 +28,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=quannam0124&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other')
 
 * **Project management**:
-  * To be added soon
+  * Opened 17 issues and closed some
 
 * **Enhancements to existing features**:
   * Added additional test cases for existing model (calculate total transactions in Transaction model)
@@ -52,5 +52,6 @@ Given below are my contributions to the project.
     * [#282](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/282)
     * [#286](https://github.com/AY2223S1-CS2103T-T09-1/tp/pull/286)
   * Contributed to forum discussions: [1](https://github.com/nus-cs2103-AY2223S1/forum/issues/115)
-  * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/AY2223S1-CS2103T-W13-1/tp/issues/146), [2](https://github.com/AY2223S1-CS2103T-W13-1/tp/issues/138), [3](https://github.com/AY2223S1-CS2103T-W13-1/tp/issues/130))
+  * Reported bugs and suggestions for other teams in the class: [1](https://github.com/AY2223S1-CS2103T-W13-1/tp/issues/146), [2](https://github.com/AY2223S1-CS2103T-W13-1/tp/issues/138), [3](https://github.com/AY2223S1-CS2103T-W13-1/tp/issues/130)
+
 
