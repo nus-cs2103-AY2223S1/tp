@@ -241,7 +241,7 @@ New client added: [details of the newly added client]
 ```
 
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format]() section here.
+   [Command Format](#command-format) section here.
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
 Back to [Table of Contents](#table-of-contents)<br>
@@ -279,7 +279,7 @@ Deleted Client: [details of the deleted client]
 2. `findC Betsy` followed by `delC 1` deletes the 1st client in the results of the `findC` command.
 
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format]() section here.
+   [Command Format](#command-format) section here.
 
 Back to [Table of Contents](#table-of-contents)<br>
 Back to [Managing Clients](#managing-clients)
@@ -329,7 +329,7 @@ Edited Client: [newly updated details of client]
 
 **Help:**
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format]() section here. 
+   [Command Format](#command-format) section here. 
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
 Back to [Table of Contents](#table-of-contents)<br>
@@ -375,7 +375,7 @@ The list of clients in the Client Box is updated to a list of all matches from t
 
 **Help:**
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format]() section here.
+   [Command Format](#command-format) section here.
 
 Back to [Table of Contents](#table-of-contents)<br>
 Back to [Managing Clients](#managing-clients)
@@ -429,18 +429,18 @@ _Success_
 ```text
 addO l/BEDOK_NORTH_BLK123_12 n/John Doe o/2000000
 ```
-[screenshots to be added]<br>
+![addOfferSuccess](images/AddOfferSuccess.png)<br>
 _Failure_
 ```text
 Missing fields:
-add0 l/BEDOK_NORTH_BLK123_12 n/John Doe
+addO l/BEDOK_NORTH_BLK123_12 n/John Doe
 ```
-[screenshots to be added]<br>
+![addOfferFailure1](images/AddOfferFailure1.png)<br>
 ```text
 Invalid offer price:
 addO l/BEDOK_NORTH_BLK123_12 n/John Doe o/-1
 ```
-[screenshots to be added]<br>
+![addOfferFailure2](images/AddOfferFailure2.png)<br>
 **Expected Success Output:**<br>
 A new offer is added to Real-Time<br>
 
@@ -451,7 +451,7 @@ New offer added: [offer details]
 
 **Help:**
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format]() section here.
+   [Command Format](#command-format) section here.
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
 Back to [Table of Contents](#table-of-contents)<br>
@@ -470,17 +470,17 @@ _Success_
 ```text
 delO 2 
 ```
-[screenshots to be added]<br>
+![DeleteOfferSuccess](images/DeleteOfferSuccess.png)<br>
 _Failure_
 ```text
 Invalid index:
 delO 0
 ```
-[screenshots to be added]<br>
+![DeleteOfferInvalid1](images/DeleteOfferInvalid1.png)<br>
 ```text
 delO
 ```
-[screenshots to be added]<br>
+![DeleteOfferInvalid2](images/DeleteOfferInvalid2.png)<br>
 **Expected Success Output:**<br>
 The offer at `INDEX` 2 is deleted from Real-Time.<br>
 
@@ -490,7 +490,7 @@ Deleted Offer: [details of the deleted offer]
 ```
 **Help:**
 1. If you have any confusion of the notation, you can refer to the 
-[Command Format]() section here.
+[Command Format](#command-format) section here.
 
 Back to [Table of Contents](#table-of-contents)<br>
 Back to [Managing Offers](#managing-offers)
@@ -508,18 +508,18 @@ _Success_
 ```text
 editO 2 n/Betsy Crower o/200000
 ```
-[screenshots to be added]<br>
+![EditOfferSuccess](images/EditOfferSuccess.png)<br>
 _Failure_
 ```text
 Invalid index:
 editO -1 n/Betsy Crower o/200000
 ```
-[screenshots to be added]<br>
+![EditOfferInvalidIndex](images/EditOfferInvalidIndex.png)<br>
 ```text
 Invalid client name:
 editO 2 n/Betsy Cr@wer o/200000
 ```
-[screenshots to be added]<br>
+![EditOfferInvalidName](images/EditOfferInvalidName.png)<br>
 **Expected Success Output:**<br>
 The offer at `INDEX` 2 is edited according to the fields provided.<br>
 
@@ -535,7 +535,7 @@ Edited Offer: [newly updated details of offer]
 
 **Help:**
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format]() section here.
+   [Command Format](#command-format) section here.
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
 Back to [Table of Contents](#table-of-contents)<br>
@@ -588,7 +588,7 @@ New listing added: [listing details]
 
 **Help:**
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format]() section here.
+   [Command Format](#command-format) section here.
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
 Back to [Table of Contents](#table-of-contents)<br>
@@ -623,7 +623,7 @@ Deleted Listing: [details of the deleted listing]
 ```
 **Help:**
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format]() section here.
+   [Command Format](#command-format) section here.
 
 Back to [Table of Contents](#table-of-contents)<br>
 Back to [Managing Listings](#managing-listings)
@@ -674,7 +674,7 @@ Edited Client: [newly updated details of client]
 
 **Help:**
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format]() section here.
+   [Command Format](#command-format) section here.
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
 Back to [Table of Contents](#table-of-contents)<br>
@@ -738,7 +738,7 @@ addM id/007 n/Joke Peralta d/tomorrow 12pm
 
 **Help:**
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format]() section here.
+   [Command Format](#command-format) section here.
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
 Back to [Table of Contents](#table-of-contents)<br>
@@ -773,7 +773,7 @@ Deleted Meeting: [details of the deleted listing]
 ```
 **Help:**
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format]() section here.
+   [Command Format](#command-format) section here.
 
 Back to [Table of Contents](#table-of-contents)
 Back to [Managing Meetings](#managing-meetings)
@@ -818,7 +818,7 @@ Edited Meeting: [newly updated details of meeting]
 
 **Help:**
 1. If you have any confusion of the notation, you can refer to the
-   [Command Format]() section here.
+   [Command Format](#command-format) section here.
 2. If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
 Back to [Table of Contents](#table-of-contents)<br>
@@ -908,8 +908,8 @@ Back to [General](#general)
 |  Term   |                                Description                                 |
 |:-------:|:--------------------------------------------------------------------------:|
 | **OS**  | The operating system is the software that is used to run in your computer. |
-| **CLI** |                                To be added                                 |
-| **GUI** |                                To be added                                 |
+| **CLI** |            Interface that takes in text commands from the user             |
+| **GUI** |  A form of user interface that allows users to interact through graphics   |
 
 Back to [Introduction](#introduction)<br>
 Back to [Table of Contents](#table-of-contents)
