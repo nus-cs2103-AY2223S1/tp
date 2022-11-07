@@ -63,7 +63,8 @@ public class WelcomePanel extends UiPart<Region> {
 class ReminderListViewCell extends ListCell<Reminder> {
     private final StackPane pane;
 
-    // code adapted from https://ciruman.wordpress.com/2015/04/08/javafx-listview-without-horizontal-scroll/
+    // Workaround to make list view not scrollable horizontally
+    // Solution adapted from https://ciruman.wordpress.com/2015/04/08/javafx-listview-without-horizontal-scroll/
     public ReminderListViewCell() {
         pane = new StackPane();
         pane.setMinWidth(0);
