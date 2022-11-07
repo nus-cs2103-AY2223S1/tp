@@ -714,6 +714,7 @@ The general difficulty level of TaskBook was medium. As the project direction wa
 * Implementing inheritance structure for Sorting commands.
 * Parsing all fields in `task find` to create one comparator that searches all fields.
 * Implementing `VersionedTaskBook` to support `undo` and `redo` functionality.
+* Integrating tags for tasks 
 
 **Model**
 * Implementing Sorting and Filtering of tasks and contacts.
@@ -742,12 +743,16 @@ Mark and unmark command was a challenge because the models were implemented with
 Having a mutable boolean field in a task model resulted in misbehavior with the GUI and storage.
 We opted to create a new task object entirely when a mark or unmark command is executed as a workaround to this problem.
 
+Integrating tags for tasks was also a challenge as many classes across the different components of the app (`Logic`, `Model`, `Storage`) 
+had to be refactored slightly to accommodate a new tag field in a task. The parser classes also had to be changed and it was tricky 
+figuring out how some of the parser methods could be modified to parse and return the set of tags.
+
 Trying to parse the arguments for `task find` was also a big challenge, because there was a lot of possible combinations of fields we could use, but we managed to break up the command's execute method into several smaller methods that could be reused, thus not only saving lines of code and increasing code readability, but also applying SLAP.
 Adding the SortedList components to the task list and contact list in `ModelManager` was also a challenge due to lack of information on the existence of such a class. Until that point, we did not know how to implement a sorting feature to our contact and task lists. However, upon learning of Observer design patterns, we found another project that used SortedList and understood what to do from there.
 
 A significant part of the effort in storing and loading of Tasks was saved using Jackson's `@JsonTypeInfo` and `@JsonSubTypes` annotations. This allowed for Tasks in the `TaskList` to be saved and loaded in their actual subtypes.
 
-Much effort was required to create `VersionedTaskBook` for the `undo` and `redo` functionality. Despite AB-3 having a proposed implementation of it, a substantial amount of effort was put it to ensure that it was durable and can withstand any possible commit. Extra effort was put in to ensure that commits to the version history are capped at a certain capacity and yet are fast.
+Much effort was required to create `VersionedTaskBook` for the `undo` and `redo` functionality. Despite AB-3 having a proposed implementation of it, a substantial amount of effort was put in to ensure that it was durable and can withstand any possible commit. Extra effort was put in to ensure that commits to the version history are capped at a certain capacity and yet are fast.
 
 Quality of life features like command history navigation and help command also took some effort. Effort had to be put in to ensure that these features are consistent and work as intended in various different scenarios. Even though these features are not core, they elevate the experience of the user.
 
