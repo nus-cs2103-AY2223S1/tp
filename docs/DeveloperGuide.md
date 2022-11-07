@@ -826,7 +826,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Finds all contacts. Details of the find command are shown in the status message.
 
    1. Test Case: `find n/[VALID NAME] t/[VALID TAG]`<br>
-      Expected: Finds contacts that match all the details giving. Details of the find command are shown in the status message. Multiple field search.
+      Expected: Find command fails. Error details are shown in the status message.
 
 1. Find contacts while persons are being shown unsuccessfully
 
