@@ -62,6 +62,7 @@ This section introduces the different components of Class-ify's application wind
 | 4   | Result Box            | Displays the system message after the execution of a command. The system message describes the outcome of the entered command. |
 | 5   | Command Box           | Type in your commands here.                                                                                                    |
 | 6   | Storage File Location | Displays the location of the data file on your computer.                                                                       |
+
 <div style="page-break-after: always;"></div>
 
 ## 3. **Quick Start**
