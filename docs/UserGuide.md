@@ -24,29 +24,7 @@ can also serve as a reference for experienced users, with a convenient [Command 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
 
-1. Please ensure you have installed the app. If you haven't, please refer to the [Installation Guide](#installation-guide).
-
-2. Type your desired command into the command box and press `<Enter>` to execute it. e.g. typing **`help`** and pressing
-   `<Enter>` will open the help window.<br>
-   Some example commands you can try:
-
-    * **`add`**`n/Amy Toh p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/inpatient hw/south fn/3 wn/D690
-      m/panadol m/ibuprofen` : Adds a contact named `Amy Toh` to checkUp. 
-
-    * **`delete`** `3` : Deletes the 3rd contact shown in the current patient list panel.
-
-    * **`get`** `/n Alex`: Retrieve contact's information based on the prefix you provided. In this case, patients
-    with the name `Alex` will be displayed.
-
-    * **`view`** `1` : Views the 1st contact shown in the current patient list panel by displaying it on the patient details panel.
-
-3. Refer to the [Features](#features) below for details of each command.
-
-<sup><sub>[back to top](#back-to-topt)</sub></sup>
-
----
 ## Installation Guide
 
 ### System Requirements
@@ -73,7 +51,29 @@ To tell if you already have the correct version of Java installed on your system
 <sub><sup>[back to top](#back-to-topt)</sup></sub>
 
 ---
+## Quick start
 
+1. Please ensure you have installed the app. If you haven't, please refer to the [Installation Guide](#installation-guide).
+
+2. Type your desired command into the command box and press `<Enter>` to execute it. e.g. typing **`help`** and pressing
+   `<Enter>` will open the help window.<br>
+   Some example commands you can try:
+
+    * **`add`**`n/Amy Toh p/98765432 e/johnd@example.com nok/Jane Doe, Wife, 82858285 pt/inpatient hw/south fn/3 wn/D690
+      m/panadol m/ibuprofen` : Adds a contact named `Amy Toh` to checkUp.
+
+    * **`delete`** `3` : Deletes the 3rd contact shown in the current patient list panel.
+
+    * **`get`** `/n Alex`: Retrieve contact's information based on the prefix you provided. In this case, patients
+      with the name `Alex` will be displayed.
+
+    * **`view`** `1` : Views the 1st contact shown in the current patient list panel by displaying it on the patient details panel.
+
+3. Refer to the [Features](#features) below for details of each command.
+
+<sup><sub>[back to top](#back-to-topt)</sub></sup>
+
+---
 ## Glossary
 
 | Term              | Definition                                                                                |
