@@ -43,7 +43,7 @@ public class AppointmentByDatePredicate implements Predicate<Person> {
     }
 
     private boolean isPresentUpcomingAppointment(Person person) {
-        return !person.getUpcomingAppointment().get().value.isEmpty();
+        return person.getUpcomingAppointment().get().getDate() != null;
     }
 
     private boolean isPresentPastAppointment(Person person) {
