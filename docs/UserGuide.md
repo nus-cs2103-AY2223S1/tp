@@ -400,7 +400,6 @@ The full list of clients appears in the Client Box.<br>
 Listed all clients
 ```
 
-[Screenshots to be added]<br>
 
 Back to [Table of Contents](#table-of-contents)<br>
 Back to [Managing Clients](#managing-clients)
@@ -694,7 +693,7 @@ ___
 **Expected Success Output:**<br>
 The full list of listings appears in the Client Box.<br>
 
-[screenshots to be added]<br>
+![ListLSuccess](images/listL.png)
 
 **Feedback Box:**
 ```text
