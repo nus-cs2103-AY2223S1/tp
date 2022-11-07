@@ -8,7 +8,6 @@ if () then ([is at home page]
 )
 :Filter module list to show all modules;
 :Show success message;
-:Show not at home page error message;
 else ([else]
 )
 :Show error message with valid command format;
