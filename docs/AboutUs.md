@@ -1,7 +1,7 @@
 # About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
-Our team followed an egoless team structure 
+Our team followed an egoless team structure
 
 ## Project team
 
@@ -13,9 +13,10 @@ Our team followed an egoless team structure
 [[portfolio](team/avock.md)]
 
 * Role: Developer
-* Responsibilities: UI, Application Logic, Testing, Documentation
+* Responsibilities: UI/UX Designer, Application Logic, Testing, Documentation
 
 ### Xu Daofu
+
 <img src="images/therealdaofu.png" width="200px">
 
 [[github](https://github.com/therealdaofu)]
@@ -25,12 +26,12 @@ Our team followed an egoless team structure
 * Responsibilities: Application Logic, Testing, Documentation
 
 ### Sun Yu Ting
+
 <img src="images/effixion.png" width="200px">
 
 
 [[github](http://github.com/effixion)]
 [[portfolio](team/effixion.md)]
-
 
 * Role: Developer
 * Responsibilities: Application Logic, Testing, Documentation
