@@ -19,8 +19,8 @@ public class FocusCommand extends Command {
     public static final String MESSAGE_USAGE = "> Enters focus mode for the specified class.\n"
             + "Parameters: "
             + PREFIX_MODULE_CLASS + "CLASS_NAME\n"
-            + "Example: " + COMMAND_WORD
-            + PREFIX_MODULE_CLASS + " CS1101S";
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_MODULE_CLASS + "CS1101S";
     public static final String MESSAGE_ENTERED_FOCUS_MODE = "Entered focus mode for [ %s ].";
 
     private final ModuleClass targetClass;
