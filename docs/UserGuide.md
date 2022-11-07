@@ -61,7 +61,6 @@ Welcome HR executives and Department Heads! Coydir is a desktop app to efficient
 
 ## Using this Guide
 
-
 ### Navigating the User Guide
 This document might look daunting at first! But fear not, in this section, you will learn how to use 
 this user guide like a professional.
@@ -74,6 +73,14 @@ You can head over to [Quick Start](#quick-start) to install and run Coydir.
 
 You can head over to [Features](#features) to learn how to use the features 
 offered in Coydir.
+
+####Have some questions that you are unsure of?
+You can head over to [FAQ](#faq) to view some frequently asked questions to get your answer. 
+However, if your question is not answered in the _FAQ_, you can always contact us at _coydir@gmail.com_, and 
+we will be happy to answer you.
+
+####Just want a quick overview of all the features Coydir can offer?
+You can head over to [Command Summary](#command-summary) for a quick look of all the commands you can use.
 
 Here are some symbols to look out for while using this guide:
 
