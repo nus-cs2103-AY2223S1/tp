@@ -15,7 +15,22 @@ rectangle NotionUS {
   usecase "Show archived tasks" as UC10
   usecase "Clear all tasks" as UC11
   usecase "Autocompleting commands" as UC12
-}
+  usecase "Display empty screen" as emptyScreen #line:gray;text:gray
+  usecase "Display error" as error #line:gray;text:gray
+  usecase "Notes that nothing has changed" as noChange #line:gray;text:gray
+    UC1 <-- error #line:gray;line.dashed;text:gray  : <<extends>>
+    UC2 <-- error #line:gray;line.dashed;text:gray  : <<extends>>
+    UC2 <-- noChange #line:gray;line.dashed;text:gray  : <<extends>>
+    UC3 <-- error #line:gray;line.dashed;text:gray  : <<extends>>
+    UC4 <-- error #line:gray;line.dashed;text:gray  : <<extends>>
+    UC5 <-- error #line:gray;line.dashed;text:gray  : <<extends>>
+    UC6 <-- error #line:gray;line.dashed;text:gray  : <<extends>>
+    UC7 <-- emptyScreen #line:gray;line.dashed;text:gray  : <<extends>>
+    UC8 <-- emptyScreen #line:gray;line.dashed;text:gray  : <<extends>>
+    UC9 <-- error #line:gray;line.dashed;text:gray  : <<extends>>
+    UC10 <-- emptyScreen #line:gray;line.dashed;text:gray  : <<extends>>
+
+  }
 user --> UC1
 user --> UC2
 user --> UC3
@@ -28,4 +43,5 @@ user --> UC9
 user --> UC10
 user --> UC11
 user --> UC12
+
 @enduml
