@@ -1,52 +1,78 @@
 @startuml
 !include style.puml
+skinparam ParticipantPadding 5
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
+
+note left MainWindow
+input is "switch f/grade"
+end note
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant "s:ShowGradeCommand" as ShowGradeCommand LOGIC_COLOR
+participant ":ModQuikParser" as ModQuikParser LOGIC_COLOR
+participant "s:SwitchCommand" as SwitchCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":ModelManager" as ModelManager MODEL_COLOR
-participant ":AddressBook" as AddressBook MODEL_COLOR
+participant ":ModQuik" as ModQuik MODEL_COLOR
 end box
-[-> LogicManager : execute(show grade)
+
+[-> MainWindow : executeCommand(input)
+activate MainWindow
+
+MainWindow -> LogicManager: execute(input)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(show grade))
-activate AddressBookParser
+LogicManager -> ModQuikParser : parseCommand(input)
+activate ModQuikParser
 
-create ShowGradeCommand
-AddressBookParser -> ShowGradeCommand
-activate ShowGradeCommand
+create SwitchCommand
+ModQuikParser -> SwitchCommand
+activate SwitchCommand
 
-ShowGradeCommand --> AddressBookParser
-deactivate ShowGradeCommand
+SwitchCommand --> ModQuikParser : s
+deactivate SwitchCommand
 
-AddressBookParser --> LogicManager : s
-deactivate AddressBookParser
+ModQuikParser --> LogicManager : s
+deactivate ModQuikParser
 
-LogicManager -> ShowGradeCommand : execute()
-activate ShowGradeCommand
+LogicManager -> SwitchCommand : execute()
+activate SwitchCommand
 
-ShowGradeCommand -> ModelManager : getStudentGradeChartData()
+create CommandResult
+SwitchCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SwitchCommand
+deactivate CommandResult
+
+SwitchCommand --> LogicManager
+deactivate SwitchCommand
+
+LogicManager --> MainWindow
+deactivate LogicManager
+
+MainWindow -> MainWindow : handleShowChart()
+activate MainWindow
+
+MainWindow -> ModelManager : getStudentGradeChartData()
 activate ModelManager
 
-ModelManager -> AddressBook : getGradeData()
-activate AddressBook
+ModelManager -> ModQuik : getGradeData()
+activate ModQuik
 
-AddressBook --> ModelManager :
-deactivate AddressBook
+ModQuik --> ModelManager
+deactivate ModQuik
 
-ModelManager --> ShowGradeCommand
+ModelManager --> MainWindow
 deactivate ModelManager
+deactivate MainWindow
 
-ShowGradeCommand --> LogicManager : result
-deactivate ShowGradeCommand
-ShowGradeCommand -[hidden]-> LogicManager : result
-destroy ShowGradeCommand
-
-[<--LogicManager
-deactivate LogicManager
+[<--MainWindow
+deactivate MainWindow
 @enduml

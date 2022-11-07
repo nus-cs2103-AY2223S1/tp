@@ -3,12 +3,12 @@ layout: page
 title: User Guide
 ---
 ## 1. Introduction
-Are you a Teaching Assistant (Teaching Assistant) struggling to monitor your classes and what tasks you have to complete?
-Tired of having to use multiple applications (such as LumiNUS and Todoist) to keep track of all your responsibilities? <br>
-<br>
+Are you a Teaching Assistant (TA) struggling to monitor your classes and what tasks you have to complete?
+Tired of having to use multiple applications (such as LumiNUS and Todoist) to keep track of all your responsibilities?<br>
+
 Introducing ModQuik, a Teaching Assistant tool made for you!
 
-ModQuik is a convenient tool that allows you to keep track of your classes, monitor your students' grades and set up reminders for your tasks(such as creating tutorial slides or marking homework). 
+ModQuik is a convenient tool that allows you to keep track of your classes, monitor your students' grades and set up reminders for your tasks (such as creating tutorial slides or marking homework). 
 ModQuik is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, ModQuik can get your lesson management tasks done faster than traditional GUI apps.
 
@@ -58,40 +58,48 @@ This guide aims to
 ### 3.1 Navigating the User Guide
 **Information Box**
 <div markdown="block" class="alert alert-info">
-**:information_source: Info:** Provides useful information
+**:information_source: Info:** I am an example info box! I provide useful information.
 </div>
 
 **Tip Box**
 <div markdown="block" class="alert alert-success">
-**:bulb: Tip:** Provides pointers to enhance your experience
+**:bulb: Tip:** I am an example tip box! I provide pointers to advanced users to enhance experience.
+</div>
+
+**Warning Box**
+<div markdown="block" class="alert alert-danger">
+**:exclamation: Warning:** I am an example warning box! I show important messages to take note to avoid any unintended effects.
 </div>
 
 **Highlights** <br>
-[`commands`](#glossary) or [`PARAMETERS`](#glossary) are inputs by users
+Highlighted text refers to commands, parameters, fields values or any user inputs.
+e.g. [`commands`](#glossary) [`PARAMETERS`](#glossary)
 
-### 3.2 Navigating the GUI
-![GUI](images/AnnotatedUi.png)
-
-**Command Box**
-Enter your command here.
-
-**Result Display Box**
-Displays a feedback message after a command is executed.
-
-**Navigation Tab**
-Panel displaying the tabs you can navigate to.
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Clicking on a button in the panel will allow you to switch tabs. 
-</div>
-
-**Main Display**
-Displays the list of your chosen tab.
-
-**Reminder List**
-Displays your list of reminders.
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. Features
+## 4. GUI overview
+
+![GUI](images/AnnotatedUi.png)
+
+**<span style="color:red;">Command Box</span>**<br>
+Enter your command here.
+
+**<span style="color:mediumseagreen;">Result Display Box</span>**<br>
+Displays a feedback message after a command is executed.
+
+**<span style="color:dodgerblue;">Navigation Tab</span>**<br>
+Displays the tabs that you can navigate to.
+
+**<span style="color:grey;">Main Display</span>**<br>
+Displays the list of your chosen tab.
+
+**<span style="color:purple;">Reminder List</span>**<br>
+Displays your list of reminders.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 5. Features
+
 
 <div markdown="block" class="alert alert-info">
 
@@ -112,27 +120,18 @@ Displays your list of reminders.
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g., if you specify `ph/12341234 ph/56785678`, only `ph/56785678` will be taken.
 
-* The following prefix parameters, `D/` and `T/`, have more than 1 definition, depending on the type of command inputted.<br>
-    - `D/` stands for `DAY` in `tutorial` commands, and `DATE` in `consultation` and `reminder` commands.<br>
-      Format of `DAY` is an integer from 1 (Monday) to 7 (Sunday).<br>
-      Format of `DATE` should be yyyy-MM-dd. e.g., 2022-02-24
-    - `T/` stands for `TIMESLOT` in `tutorial` and `consultation` commands, and `TIME` in `reminder` commands.<br>
-      Format of `TIMESLOT` should be HH:mm-HH:mm. e.g. 08:00-09:00</br>
-      Format of `TIME` should be HH:mm. e.g., 13:00.
-
 * Inapplicable parameters for commands that do not take in parameters (such as [`help`] and [`exit`]) will be ignored.<br>
   e.g., if the command specifies `help 123`, it will be interpreted as `help`.
-
-* To make it convenient for you, you could click on `Tab` button to switch between the different tabs (`Student`, `Grade Chart`, `Consultation`, `Tutorial`) and the command box.
- Alternatively, you can use the [`switch`] command.
 
 
 </div>
 
-### 4.1 Student Features
+### 5.1 Student Features
+
+![Student](images/AnnotatedStudent.png)
 
 <a name="add-student"></a>
-#### 4.1.1 Adding a student: `add student`
+#### 5.1.1 Adding a student: `add student`
 
 Adds a student to the specified module.
 
@@ -141,31 +140,56 @@ Format: `add student n/NAME i/STUDENT_ID ph/PHONE e/EMAIL tele/TELEGRAM_HANDLE m
 * `PHONE` should be 8 digits long as per standard telephone numbers in Singapore.
 * `STUDENT_ID` should follow the following format AXXXXXXXY, where X is a number, and Y is an alphabet.
 * `ATTENDANCE` and `PARTICIPATION` can only take in integers greater than 0. If a value is not given, they will automatically be set to 0.
-* `GRADE` can take in `A+`, `A`, `A-`, `B+`, `B`, `B-`, `C+`, `C`, `D+`, `D`, `F`. If a value is not given, it will automatically be set to `PENDING...`.
+* `GRADE` can take in `A`, `B`, `C`, `D`, `F`. If a value is not given, it will automatically be set to `PENDING...`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0).
 </div>
 
 Examples:
-* `add student n/John Doe i/A0232123X ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17`
 * `add student n/Betsy Crowe i/A0000000B t/struggling e/betsycrowe@example.com ph/91234567 tele/betsy_crowe m/CS2105 tut/G03 att/3 part/1 g/C t/quiet`
+* `add student n/John Doe i/A0232123X ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17`
+
+<table>
+  <tr>
+    <td>Before executing add student command</td>
+    <td>After executing example command to add John Doe</td>
+  </tr>
+  <tr>
+    <td><img src="images/Student.png" width=350></td>
+    <td><img src="images/AddStudent.png" width=350></td>
+  </tr>
+ </table>
 
 <a name="list"></a>
-#### 4.1.2 Listing all students: `list`
+#### 5.1.2 Listing all students: `list`
 
 Shows a list of all students in ModQuik.
 
-* Command will only display the list if you navigate to the `Student` tab
+* If the list of students is not currently active, it may appear that the command does not have any effect. Navigate to the `Student` tab to see the list of students.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To switch between tabs, you can click on `Tab` button to switch between the different tabs (`Student`, `Grade Chart`, `Consultation`, `Tutorial`) and the command box.
+Alternatively, you can use the [`switch`] command if you would like to only use the keyboard.
+</div>
 
 Format: `list`
 
 <a name="edit-student"></a>
-#### 4.1.3 Editing a student: `edit student`
+#### 5.1.3 Editing a student: `edit student`
 
 Edits an existing student in a specified module.
 
 Format: `edit student INDEX [n/NAME] [i/STUDENT_ID] [ph/PHONE] [e/EMAIL] [tele/TELEGRAM_HANDLE] [m/MODULE] [tut/TUTORIAL] [g/GRADE] [att/ATTENDANCE] [part/PARTICIPATION] [t/TAG]…`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You may want to use this command to:
+<ul>
+  <li>Update your student's grade after an assessment</li>
+  <li>Update your student's attendance and participation score after a lesson</li>
+  <li>Update your student's particulars</li>
+</ul>
+</div>
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …
 * At least one of the optional fields must be provided.
@@ -179,11 +203,24 @@ Format: `edit student INDEX [n/NAME] [i/STUDENT_ID] [ph/PHONE] [e/EMAIL] [tele/T
 
 Examples:
 * `edit student 1 ph/91234567 e/jameslee@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `jameslee@example.com` respectively.
-* `edit student 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
-* [`find`] `m/CS2103T` followed by `edit student 2 n/Betsy Crower` Edits the name of the 2nd student to be `Betsy Crower` in the results of the [`find`] command.
+* `edit student 2 g/A t/` Edits the grade of the 2nd student to be `A` and clears all existing tags.
+
+<table>
+  <tr>
+    <td>Before executing edit student command</td>
+    <td>After executing example command to edit 2nd student</td>
+  </tr>
+  <tr>
+    <td><img src="images/AddStudent.png" width=350></td>
+    <td><img src="images/EditStudent.png" width=350></td>
+  </tr>
+ </table>
+
+* [`find`] `m/CS2103T` followed by `edit student 2 g/A` Edits the grade of the 2nd student to be `A` in the results of the [`find`] command.
+
 
 <a name="find"></a>
-#### 4.1.4 Locating students by their attributes: `find`
+#### 5.1.4 Locating students by their attributes: `find`
 
 Finds students by names, student ID, module or tutorial, by checking if respective attribute contains any of the given keywords.
 
@@ -203,12 +240,18 @@ It will first display all students matching `John`, then display all students in
 
 Examples:
 * `find n/John` returns `john` and `John Doe`
-* `find m/CS2103T` returns list of students in CS2103T<br>
+* `find m/CS2103T` returns list of students in CS2103T
+
+![Find Student](images/FindStudent.png)
 
 <a name="delete-student"></a>
-#### 4.1.5 Deleting a student: `delete student`
+#### 5.1.5 Deleting a student: `delete student`
 
 Deletes the specified student from the list of students.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You may want to use this command if any students drop out of the module or change tutorial groups.
+</div>
 
 Format: `delete student INDEX`
 
@@ -222,38 +265,74 @@ Examples:
 * [`find`] `m/CS2103T` followed by `delete student 2` deletes the 2nd student in the results of the [`find`] command.
 
 <a name="extract-emails"></a>
-#### 4.1.6 Extracting student's emails: `extract emails`
+#### 5.1.6 Extracting student's emails: `extract emails`
 
 Copies all emails in the displayed student list onto the clipboard.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You may want to use this command to email a student or a selected group of students (e.g. those with grade C).
+</div>
+
 Format: `extract emails`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Paste the link in the address bar of a browser and a pop-up will appear, prompting you to open up your email apps e.g. Outlook !
+<div markdown="span" class="alert alert-primary">:information_source: **How to use:**
+    <ol>
+        <li> Execute the `extract emails` command in the ModQuik command box. The following message will be displayed in the Results Display Box: <br>
+            <img src="images/ExtractEmails1.png">
+            All the emails will be copied onto your clipboard.
+        </li>
+        <li> Go to your web browser and paste the emails onto your address bar. Your mail app will be prompted to open.</li>
+        <li> Open your mail app and all the emails should be pasted as shown: <br>
+            <img src="images/ExtractEmails3.png">
+        </li>
+    </ol>
+</div>
+
+<div markdown="span" class="alert alert-primary">:warning: **Warning:**
+If your mail app does not open, you can paste your clipboard directly into your email recipient box but remember to delete "mailto:" in front of the emails.<br>
+You may also be required to separate the emails.
+    <img src="images/ExtractEmails4.png">
 </div>
 
 Examples:
 * [`find`] `m/CS2103T` followed by `extract emails` copies all the emails of the students in the results of the [`find`] command.
 
 
-### 4.2 Tutorial Features
+### 5.2 Tutorial Features
+
+![Tutorial](images/AnnotatedTutorial.png)
 
 <a name="add-tutorial"></a>
-#### 4.2.1 Adding a tutorial: `add tutorial`
+#### 5.2.1 Adding a tutorial: `add tutorial`
 
 Adds a tutorial to ModQuik.
 
 Format: `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`
-* `DAY` should take in a number from 1 (Monday) to 7 (Sunday).
-* `TIMESLOT` should take in a start time to end time in the format HH:mm-HH:mm, e.g., 18:00-20:00.
+* `DAY` takes in a number from 1 (Monday) to 7 (Sunday).
+* `TIMESLOT` takes in a start time to end time in the format HH:mm-HH:mm, e.g., 18:00-20:00.
 
 Examples:
 * `add tutorial n/T23 m/CS2103T v/COM1-0205 T/18:00-20:00 D/1`
 
-<a name="edit-tutorial"></a>
-#### 4.2.2 Editing a tutorial: `edit tutorial`
+<table>
+  <tr>
+    <td>Before executing add tutorial command</td>
+    <td>After executing example command to add T23</td>
+  </tr>
+  <tr>
+    <td><img src="images/Tutorial.png" width=350></td>
+    <td><img src="images/AddTutorial.png" width=350></td>
+  </tr>
+</table>
 
-Edits an existing student in ModQuik.
+<a name="edit-tutorial"></a>
+#### 5.2.2 Editing a tutorial: `edit tutorial`
+
+Edits an existing tutorial in ModQuik.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You may want to use this command to update your tutorials when there are changes in venue e.g., from zoom to offline or vice versa.
+</div>
 
 Format: `edit tutorial INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/DAY]`
 
@@ -263,11 +342,21 @@ Format: `edit tutorial INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/DAY]`
 * When editing the timeslot or the day, both fields must be given.
 
 Examples:
-* `edit tutorial 1 n/G08 m/CS1101S` Edits the tutorial name and module of the 1st tutorial to be `G08` and `CS1101S` respectively.
-* `edit tutorial 2 T/14:00-16:00 D/2` Edits the timeslot of the 2nd tutorial to be `14:00 to 16:00` and sets tutorial day to `Tue`.
+* `edit tutorial 2 v/Zoom T/14:00-16:00 D/5` Edits the venue of the 2nd tutorial to be `Zoom`, sets tutorial time to be `14:00 to 16:00` and sets tutorial day to be `Fri`.
+
+<table>
+  <tr>
+    <td>Before executing edit tutorial command</td>
+    <td>After executing example command to edit 2nd tutorial</td>
+  </tr>
+  <tr>
+    <td><img src="images/AddTutorial.png" width=350></td>
+    <td><img src="images/EditTutorial.png" width=350></td>
+  </tr>
+ </table>
 
 <a name="delete-tutorial"></a>
-#### 4.2.3 Deleting a tutorial: `delete tutorial`
+#### 5.2.3 Deleting a tutorial: `delete tutorial`
 
 Deletes a specified tutorial from ModQuik.
 
@@ -280,24 +369,52 @@ Format: `delete tutorial INDEX`
 Examples:
 * `delete tutorial 3`
 
-### 4.3 Consultation Features
+### 5.3 Consultation Features
+
+![Consultation](images/AnnotatedConsultation.png)
 
 <a name="add-consultation"></a>
-#### 4.4.1 Adding a consultation: `add consultation`
+#### 5.3.1 Adding a consultation: `add consultation`
 
 Adds a consultation to ModQuik.
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+```Name``` can be anything e.g., Past Year Papers, and does not have to be the student's name.
+</div>
+
 Format: `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`
-* `DATE` should take in a date in the format yyyy-MM-dd, e.g. 2022-10-24.
-* `TIMESLOT` should take in a start time to end time in the format HH:mm-HH:mm, e.g., 18:00-20:00.
+* `DATE` should be given in the format yyyy-MM-dd, e.g. 2022-10-24.
+* `TIMESLOT` takes in a start time to end time in the format HH:mm-HH:mm, e.g., 18:00-20:00.
+* You can add consultations from the past to keep track of all your consultations and progress throughout the semester.
+* In rare cases, ModQuik will autocorrect invalid dates. See [here](#notes-autocorrect-dates) for more details.
 
 Examples:
-* `add consultation n/JakeKim m/CS2103T D/2023-10-24 T/18:00-20:00 v/COM1-0205 d/past year papers`
+* `add consultation n/Jake Kim m/CS2103T D/2023-11-24 T/18:00-20:00 v/COM1-0205 d/Review past year paper`
+
+<table>
+  <tr>
+    <td>Before executing add consultation command</td>
+    <td>After executing example command to add consultation with Jake Kim</td>
+  </tr>
+  <tr>
+    <td><img src="images/Consultation.png" width=350></td>
+    <td><img src="images/AddConsultation.png" width=350></td>
+  </tr>
+ </table>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+On a closer look, consultation 1 and 4 are both from the same module and wish to go through the same thing!<br>
+You can combine the consultations and meet both students together to make it easier for you.
+</div>
 
 <a name="edit-consultation"></a>
-#### 4.4.2 Editing a consultation: `edit consultation`
+#### 5.3.2 Editing a consultation: `edit consultation`
 
 Edits an existing consultation in ModQuik.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You may want to use this command to edit the date and time of your consultation, or add in questions your student want to ask you in the description closer to the date of consultation.
+</div>
 
 Format: `edit consultation INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/DATE] [d/DESCRIPTION]`
 
@@ -305,13 +422,25 @@ Format: `edit consultation INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/D
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing the timeslot or the date, both fields must be given.
+* In rare cases, ModQuik will autocorrect invalid dates. See [here](#notes-autocorrect-dates) for more details.
 
 Examples:
-* `edit consultation 1 n/G08 m/CS1101S` Edits the tutorial name and module of the 1st tutorial to be `G08` and `CS1101S` respectively.
-* `edit consultation 2 T/14:00-16:00 D/2023-10-10` Edits the timeslot of the 2nd consultation to be `14:00 to 16:00` and sets consultation date to `2023 Oct 10`.
+* `edit consultation 2 T/14:00-16:00 D/2023-11-21` Edits the timeslot of the 2nd consultation to be `14:00 to 16:00` and sets consultation date to `2023 Nov 21`.
+* `edit consultation 1 d/Review past year paper; Go through object and class diagrams` Edits the description of the 1st consultation to be `Review past year paper; Go through object and class diagrams`.
+
+<table>
+  <tr>
+    <td>Before executing edit consultation command</td>
+    <td>After executing example command to edit 1st consultation</td>
+  </tr>
+  <tr>
+    <td><img src="images/AddConsultation.png" width=350></td>
+    <td><img src="images/EditConsultation.png" width=350></td>
+  </tr>
+</table>
 
 <a name="delete-consultation"></a>
-#### 4.4.3 Deleting a consultation: `delete consultation`
+#### 5.3.3 Deleting a consultation: `delete consultation`
 
 Deletes a specified consultation from ModQuik.
 
@@ -324,29 +453,53 @@ Format: `delete consultation INDEX`
 Examples:
 * `delete consultation 3`
 
-### 4.4 Reminder Features
+### 5.4 Reminder Features
+
+![Reminder](images/AnnotatedReminder.png)
 
 <a name="add-reminder"></a>
-#### 4.4.1 Adding a reminder: `add reminder`
+#### 5.4.1 Adding a reminder: `add reminder`
 
-Adds a reminder to ModQuik. Users can add reminders such as "Mark Assignment 1" by a specified deadline.
+Adds a reminder to ModQuik.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You can add reminders such as "Mark Assignment 1" by a specified deadline.
+</div>
 
 Format: `add reminder n/NAME T/TIME D/DATE p/PRIORITY d/DESCRIPTION `
 
 * `PRIORITY` is case-insensitive and can only be either `HIGH`, `MEDIUM` or `LOW`.
-* `DATE` and `TIME` inputted must be after the current date and time as shown in your local PC.
+* `DATE` should be given in the format yyyy-MM-dd, e.g. 2022-10-24.
+* `TIME` should be given in the format HH:mm, e.g., 18:00.
+* You can add reminders from the past to keep track of all your tasks and progress throughout the semester.
 * You cannot add 2 reminders of the same name, date, time and description as they are considered duplicate.
-* Whenever a reminded is added, it will be automatically sorted by priority, just like when `sort reminder by/priority` is used so that the tasks deemed most important are shown at the top of the list.
+* Whenever a reminded is added, it will be **automatically sorted by priority**, just like when `sort reminder by/priority` is used so that the tasks deemed most important are shown at the top of the list.
+* In rare cases, ModQuik will autocorrect invalid dates. See [here](#notes-autocorrect-dates) for more details.
 
 
 Examples:
-* `add reminder n/Mark Midterms D/2023-01-01 T/15:00 d/300 papers to mark p/HIGH`
-* `add reminder n/update grades T/16:00 D/2023-01-01 d/20 students to update p/MEDIUM`
+* `add reminder n/Mark Midterms D/2023-01-01 T/15:00 d/30 papers to mark p/HIGH`
+* `add reminder n/Update Grades T/16:00 D/2023-01-01 d/20 students to update p/MEDIUM`
+
+<table>
+  <tr>
+    <td>Before executing add reminder command</td>
+    <td>After executing example command to add reminder to update grades</td>
+  </tr>
+  <tr>
+    <td><img src="images/Reminder.png" width=350></td>
+    <td><img src="images/AddReminder.png" width=350></td>
+  </tr>
+</table>
 
 <a name="edit-reminder"></a>
-#### 4.4.2 Editing a reminder: `edit reminder`
+#### 5.4.2 Editing a reminder: `edit reminder`
 
-Edits an existing reminder in ModQuik. Users would be able to edit any field of an existing reminder in the event that there are changes, such as extension of a deadline.
+Edits an existing reminder in ModQuik.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+You may want to add this command to edit any field of an existing reminder in the event that there are changes, such as extension of a deadline.
+</div>
 
 Format: `edit reminder INDEX [n/NAME] [T/TIME] [D/DATE] [p/PRIORITY] [d/DESCRIPTION] `
 
@@ -354,18 +507,33 @@ Format: `edit reminder INDEX [n/NAME] [T/TIME] [D/DATE] [p/PRIORITY] [d/DESCRIPT
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * `PRIORITY` is case-insensitive and can only be either `HIGH`, `MEDIUM` or `LOW`.
-* `DATE` and `TIME` inputted must be after the current date and time as shown in your local PC.
 * When editing the `DATE` or `TIME`, both fields must be given.
+* In rare cases, ModQuik will autocorrect invalid dates. See [here](#notes-autocorrect-dates) for more details.
 
 
 Examples:
 * `edit reminder 1 p/LOW` Edits the priority of the 1st reminder to be `LOW`.
-* `edit reminder 2 T/14:00 D/2023-10-10` Edits the deadline time of the 2nd reminder to be `14:00` and sets deadline date to `2023 Oct 10`.
+* `edit reminder 2 T/14:00 D/2023-11-17` Edits the time of the 2nd reminder to be `14:00` and the date to `2023 Nov 17`.
+
+<table>
+  <tr>
+    <td>Before executing edit reminder command</td>
+    <td>After executing example command to edit 2nd reminder</td>
+  </tr>
+  <tr>
+    <td><img src="images/AddReminder.png" width=350></td>
+    <td><img src="images/EditReminder.png" width=350></td>
+  </tr>
+</table>
 
 <a name="mark-reminder"></a>
-#### 4.4.3 Mark a reminder: `mark reminder`
+#### 5.4.3 Mark a reminder: `mark reminder`
 
-Marks a reminder as complete.
+Sets the reminder status as _completed_.
+
+<div markdown="span" class="alert alert-primary">:information_source: **Info:**
+Reminders that have been completed have a green sidebar and a tick on the left of their name. Reminders that are yet to be done have a yellow sidebar.
+</div>
 
 Format: `mark reminder INDEX`
 
@@ -375,18 +543,18 @@ Examples:
 <table>
   <tr>
     <td>Before executing mark command</td>
-    <td>After executing mark command</td>
+    <td>After executing command to mark 2nd reminder</td>
   </tr>
   <tr>
-    <td><img src="images/UnmarkedReminder.png" width=350></td>
+    <td><img src="images/EditReminder.png" width=350></td>
     <td><img src="images/MarkedReminder.png" width=350></td>
   </tr>
  </table>
 
 <a name="unmark-reminder"></a>
-#### 4.4.4 Unmark a reminder: `unmark reminder`
+#### 5.4.4 Unmark a reminder: `unmark reminder`
 
-Unmarks a reminder as incomplete.
+Sets a reminder status as _incomplete_.
 
 Format: `unmark reminder INDEX`
 
@@ -394,7 +562,7 @@ Examples:
 * `unmark reminder 3`
 
 <a name="delete-reminder"></a>
-#### 4.4.5 Deleting a reminder: `delete reminder`
+#### 5.4.5 Deleting a reminder: `delete reminder`
 
 Deletes the specified reminder from ModQuik. Users can delete a reminder if they think it is no longer relevant.
 
@@ -408,7 +576,7 @@ Examples:
 * `delete reminder 3`
 
 <a name="sort-reminder"></a>
-#### 4.4.6 Sort reminders: `sort reminder`
+#### 5.4.6 Sort reminders: `sort reminder`
 
 Sort reminders by a chosen criteria. Users would be able to view the list of reminders based on the criteria they want.
 
@@ -417,18 +585,25 @@ Format: `sort reminder by/SORT_CRITERIA`
 * `SORT_CRITERIA` must either be `priority` or `deadline`.
 * Specifying `priority` will sort reminders by their priority, with `HIGH` on top of the list, followed by `MEDIUM` and `LOW`.
   Reminders with the same priority will then be sorted by date, from earliest to latest chronologically.
+  At a glance, the user can see how many reminders are still pending or already completed for each priority.
 * Specifying `deadline` will sort reminders by their deadline, with the earliest date on top of the list.
   Reminders with the same deadline will then be sorted by descending priority level, with the same order as stated above.
-* Reminders with the same priority and deadline will then be sorted lexicographically. 
-* Sorting does not take reminders' status into account since users may mark or unmark tasks accidentally and editing reminders that are constantly jumping in order is inconvenient.
+* Reminders with the same priority and deadline will then be sorted lexicographically.
+* Sorting does not take reminders' status into account.
 
 Examples:
-* `sort reminder by/priority`
+* `sort reminder by/priority`:
+
+![Sorted reminder by priority](images/MarkedReminder.png)
+
+* `sort reminder by/deadline`:
+
+![Sorted reminder by deadline](images/ReminderDeadline.png)
 
 <a name="switch"></a>
-### 4.5 Switch tabs: `switch`
+### 5.5 Switch tabs: `switch`
 
-Switch the tabs displayed.
+Switch command allows users to navigate between different tabs without the mouse which is crucial for our application as the target user are fast-typists who prefer typing over other means of input.
 
 Format: `switch f/FIELD`
 
@@ -442,9 +617,11 @@ Examples:
 _Figure 2. Grade Chart Tab_
 
 <a name="clear"></a>
-### 4.6 Clearing all data: `clear`
+### 5.6 Clearing all data: `clear`
 
-Clears all data in a specific field or the entire app. For example, user might choose to reset the data when the semester ends to prepare for the upcoming semester.
+Clears all data in a specific field or the entire app.
+
+For example, user might choose to reset the data when the semester ends to prepare for the upcoming semester.
 
 Format: `clear f/FIELD`
 * `FIELD` including `all`, `student`, `tutorial`, `consultation`, `reminder`
@@ -453,41 +630,41 @@ Examples:
 * `clear f/all`
 
 <a name="help"></a>
-### 4.7 Viewing help: `help`
+### 5.7 Viewing help: `help`
 Shows a message explaining how to access the help page.
 
 Format: `help`
 
 <a name="edit"></a>
-### 4.8 Exiting the program: `exit`
+### 5.8 Exiting the program: `exit`
 
 Exits the program.
 
 Format: `exit`
 
-### 4.9 Saving the data
+### 5.9 Saving the data
 
 All data in ModQuik is saved in the hard disk automatically after executing any command that changes the data. There is no need to save manually.
 
-### 4.10 Editing the data file
+### 5.10 Editing the data file
 
 All data in ModQuik is saved as a JSON file `[JAR file location]/data/modquik.json`. Advanced users are welcome to update data directly by editing that data file.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-danger">:exclamation: **Warning:**
 If your changes to the data file makes its format invalid, ModQuik will discard all data and start with an empty data file at the next run.
 </div>
 
-### 4.11 Archiving data files `[coming in v2.0]`
+### 5.11 Archiving data files `[coming in v2.0]`
 
 _Details coming soon..._
 
-### 4.12 Add existing student into multiple modules `[coming in v2.0]`
+### 5.12 Add existing student into multiple modules `[coming in v2.0]`
 
 _Details coming soon..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. FAQ
+## 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ModQuik home folder.
@@ -498,7 +675,34 @@ _Details coming soon..._
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 6. Command summary
+## 7. Appendix
+
+### 7.1 Glossary
+
+| Term                               | Description                                                                                                                                                                                    |
+|------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Command Line Interface (CLI)**   | User interface that allows users to use text as commands to be executed by an application.                                                                                                     |
+| **Graphical User Interface (GUI)** | User interface that allows users to interact with an application through graphics and visuals                                                                                                  |
+| **Command**                        | User-specified instruction that ModQuik will execute.<br> e.g., `add student` and `find`                                                                                                       |
+| **Parameter**                      | A component of the command that the user will need to input.<br> e.g., `sort reminder by/deadline` where deadline is the parameter.                                                            |
+| **Prefix**                         | Abbreviation of the name of the parameter followed by a `/`. User will need to type the prefix before the parameter in ModQuik.<br> e.g., `sort reminder by/deadline` where by/ is the prefix. |
+| **Lexicographically**              | Generalization of the alphabetical order of the dictionaries                                                                                                                                   |
+
+### 7.2 Notes
+
+<a name="notes-autocorrect-dates"></a>
+#### 7.2.1 Note on autocorrecting invalid dates
+
+ModQuik will assume some invalid dates to be correct and autocorrect the date to the last valid day of that month. See the below examples for a better explanation.
+
+Examples:
+* `add reminder n/mark papers D/2022-11-31 T/13:00 p/HIGH d/300 papers to mark` will set a reminder on 2022 Nov 30 instead. ModQuik reasonably assumes that the user wishes to set the date on the last day of November.
+* `add reminder n/mark papers D/2023-02-29 T/13:00 p/HIGH d/300 papers to mark` will set a reminder on 2023 Feb 28 instead, since 2023 is not a leap year, with 2023 February having 28 days.
+* `add reminder n/mark papers D/2024-02-30 T/13:00 p/HIGH d/300 papers to mark` will set a reminder on 2024 Feb 29 instead, since 2024 is a leap year, with 2024 February having 29 days.
+* `add reminder n/mark papers D/2022-11-32 T/13:00 p/HIGH d/300 papers to mark` will show an error instead. This is because none of the months have 32 days, and the date is more likely to be a user typo.
+
+
+### 7.3 Command summary
 
 | Action                                           | Format, Examples                                                                                                                                                                                                                                           |
 |--------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -515,7 +719,7 @@ _Details coming soon..._
 | [**Edit Consultation**][`edit consultation`]     | `edit consultation INDEX`<br> e.g., `edit consultation 3 d/Review past year paper`                                                                                                                                                                         |
 | [**Delete Consultation**][`delete consultation`] | `delete consultation INDEX`<br> e.g., `delete consultation 3`                                                                                                                                                                                              |
 | [**Add Reminder**][`add reminder`]               | `add reminder n/NAME D/DATE T/TIME p/PRIORITY d/DESCRIPTION`<br> e.g., `add reminder n/mark papers D/2023-03-21 T/13:00 p/HIGH d/300 papers to mark`                                                                                                       |
-| [**Edit Reminder**][`edit reminder`]             | `edit reminder INDEX [n/NAME] [D/DATE] [T/TIME] [p/PRIORITY] [d/DESCRIPTION]`<br> e.g., `edit reminder 1 D/2023-01-01 T/14:00`                                                                                                                           |
+| [**Edit Reminder**][`edit reminder`]             | `edit reminder INDEX [n/NAME] [D/DATE] [T/TIME] [p/PRIORITY] [d/DESCRIPTION]`<br> e.g., `edit reminder 1 D/2023-01-01 T/14:00`                                                                                                                             |
 | [**Mark Reminder**][`mark reminder`]             | `mark reminder INDEX`<br> e.g., `mark reminder 3`                                                                                                                                                                                                          |
 | [**Unmark Reminder**][`unmark reminder`]         | `unmark reminder INDEX`<br> e.g., `unmark reminder 3`                                                                                                                                                                                                      |
 | [**Delete Reminder**][`delete reminder`]         | `delete reminder INDEX`<br> e.g., `delete reminder 3`                                                                                                                                                                                                      |
@@ -525,16 +729,17 @@ _Details coming soon..._
 | [**Help**][`help`]                               | `help`                                                                                                                                                                                                                                                     |
 | [**Exit**][`exit`]                               | `exit`                                                                                                                                                                                                                                                     |
 
---------------------------------------------------------------------------------------------------------------------
 
-## 7. Prefix summary
+### 7.4 Prefix summary
 
-| Prefix    | Symbolise        | Used in                                                                                                                                                                                    |
+* The prefixes `D/` and `T/`, have more than 1 definition, depending on the type of command inputted.
+
+| Prefix    | Symbolises       | Used in                                                                                                                                                                                    |
 |-----------|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **att/**  | attendance       | [`add student`]<br> [`edit student`]                                                                                                                                                       |
 | **by/**   | sorting criteria | [`sort reminder`]                                                                                                                                                                          |
 | **d/**    | description      | [`add consultation`]<br> [`edit consultation`]<br> [`add reminder`]<br> [`edit reminder`]                                                                                                  |
-| **D/**    | date or day      | [`add consultation`]<br> [`edit consultation`]<br> [`add reminder`]<br> [`edit reminder`]                                                                                                  |
+| **D/**    | date or day      | [`add consultation`] (`DATE`) <br> [`edit consultation`] (`DATE`)<br> [`add reminder`] (`DAY`)<br> [`edit reminder`] (`DAY`)                                                               |
 | **e/**    | email            | [`add student`]<br> [`edit student`]                                                                                                                                                       |
 | **f/**    | field            | [`switch`]<br> [`clear`]                                                                                                                                                                   |
 | **g/**    | grade            | [`add student`]<br> [`edit student`]                                                                                                                                                       |
@@ -545,7 +750,7 @@ _Details coming soon..._
 | **ph/**   | phone            | [`add student`]<br> [`edit student`]                                                                                                                                                       |
 | **part/** | participation    | [`add student`]<br> [`edit student`]                                                                                                                                                       |
 | **t/**    | tag              | [`add student`]<br> [`edit student`]                                                                                                                                                       |
-| **T/**    | time or timeslot | [`add student`]<br> [`edit student`]                                                                                                                                                       |
+| **T/**    | time or timeslot | [`add reminder`] (`TIME`)<br> [`edit reminder`] (`TIME`)<br> [`add consultation`] (`TIMESLOT`)<br> [`edit consultation`] (`TIMESLOT`)<br>                                                  |
 | **tut/**  | tutorial         | [`add student`]<br> [`edit student`]<br> [`find`]<br> [`add tutorial`]<br> [`edit tutorial`]                                                                                               |
 | **tele/** | Telegram handle  | [`add student`]<br> [`edit student`]                                                                                                                                                       |
 | **v/**    | venue            | [`add tutorial`]<br> [`edit tutorial`]<br> [`add consultation`]<br> [`edit consultation`]                                                                                                  |
@@ -573,15 +778,3 @@ _Details coming soon..._
 [`clear`]: #clear
 [`help`]: #help
 [`exit`]: #exit
-
---------------------------------------------------------------------------------------------------------------------
-
-## 8. Glossary
-| Term                               | Description                                                                                                                                                                                    |
-|------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Command Line Interface (CLI)**   | User interface that allows users to use text as commands to be executed by an application.                                                                                                     |
-| **Graphical User Interface (GUI)** | User interface that allows users to interact with an application through graphics and visuals                                                                                                  |
-| **Command**                        | User-specified instruction that MoqQuik will execute.<br> e.g., `add student` and `find`                                                                                                       |
-| **Parameter**                      | A component of the command that the user will need to input.<br> e.g., `sort reminder by/deadline` where deadline is the parameter.                                                            |
-| **Prefix**                         | Abbreviation of the name of the parameter followed by a `/`. User will need to type the prefix before the parameter in ModQuik.<br> e.g., `sort reminder by/deadline` where by/ is the prefix. |
-| **Lexicographically**              | Generalization of the alphabetical order of the dictionaries                                                                                                                                   |
