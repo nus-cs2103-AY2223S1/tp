@@ -1,5 +1,6 @@
 package seedu.uninurse.model.util;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +27,7 @@ import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
 
 /**
- * Contains utility methods for populating {@code UninurseBook} with sample data.
+ * Contains utility methods for populating UninurseBook with sample data.
  */
 public class SampleDataUtil {
     public static final ConditionList EMPTY_CONDITION_LIST = new ConditionList();
@@ -34,40 +35,65 @@ public class SampleDataUtil {
     public static final TaskList EMPTY_TASK_LIST = new TaskList();
     public static final RemarkList EMPTY_REMARK_LIST = new RemarkList();
 
-    public static Patient[] getSamplePersons() {
+    public static Patient[] getSamplePatients() {
         return new Patient[] {
-            new Patient(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"), getTagList("friends"),
+            new Patient(
+                new Name("Alex Yeoh"),
+                new Phone("87438807"),
+                new Email("alexyeoh@example.com"),
+                new Address("Blk 30 Geylang Street 29, #06-40"),
+                getTagList("friends"),
                 EMPTY_CONDITION_LIST, EMPTY_MEDICATION_LIST, EMPTY_TASK_LIST, EMPTY_REMARK_LIST),
-            new Patient(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
+            new Patient(
+                new Name("Bernice Yu"),
+                new Phone("99272758"),
+                new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagList("colleagues", "friends"), getConditionList("ACL tear"),
+                getTagList("colleagues", "friends"),
+                getConditionList("ACL tear"),
                 getMedicationList(new Medication("Amoxicillin", "0.5 g every 8 hours")),
-                getTaskList(new NonRecurringTask("Change dressing on right arm", new DateTime("16-10-22 1015"))),
+                getTaskList(new NonRecurringTask("Change dressing on right arm",
+                        new DateTime(LocalDateTime.now().plusDays(1)))),
                 getRemarkList("Allergic to Amoxicillin")),
-            new Patient(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), getTagList("neighbours"),
+            new Patient(
+                new Name("Charlotte Oliveiro"),
+                new Phone("93210283"),
+                new Email("charlotte@example.com"),
+                new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
+                getTagList("neighbours"),
                 getConditionList("Type I Diabetes", "Hypertension"),
                 getMedicationList(new Medication("Ampicillin", "0.5 IV every 6 hours")),
                 getTaskList(new NonRecurringTask("Check blood glucose level", new DateTime("25-11-22 1300")),
                         new NonRecurringTask("Administer insulin dose", new DateTime("30-12-22 1845"))),
                         getRemarkList("Requires wheelchair to move around")),
-            new Patient(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), getTagList("family"),
+            new Patient(
+                new Name("David Li"),
+                new Phone("91031282"),
+                new Email("lidavid@example.com"),
+                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                getTagList("family"),
                 EMPTY_CONDITION_LIST, EMPTY_MEDICATION_LIST, EMPTY_TASK_LIST, EMPTY_REMARK_LIST),
-            new Patient(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"), getTagList("classmates"),
+            new Patient(
+                new Name("Irfan Ibrahim"),
+                new Phone("92492021"),
+                new Email("irfan@example.com"),
+                new Address("Blk 47 Tampines Street 20, #17-35"),
+                getTagList("classmates"),
                 EMPTY_CONDITION_LIST, EMPTY_MEDICATION_LIST, EMPTY_TASK_LIST, EMPTY_REMARK_LIST),
-            new Patient(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"), getTagList("colleagues"),
+            new Patient(
+                new Name("Roy Balakrishnan"),
+                new Phone("92624417"),
+                new Email("royb@example.com"),
+                new Address("Blk 45 Aljunied Street 85, #11-31"),
+                getTagList("colleagues"),
                 EMPTY_CONDITION_LIST, EMPTY_MEDICATION_LIST, EMPTY_TASK_LIST, EMPTY_REMARK_LIST)
         };
     }
 
     public static ReadOnlyUninurseBook getSampleUninurseBook() {
         UninurseBook sampleUb = new UninurseBook();
-        for (Patient samplePerson : getSamplePersons()) {
-            sampleUb.addPerson(samplePerson);
+        for (Patient samplePatient : getSamplePatients()) {
+            sampleUb.addPatient(samplePatient);
         }
         return sampleUb;
     }
