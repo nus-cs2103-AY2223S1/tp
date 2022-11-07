@@ -23,7 +23,9 @@ Given below are my contributions to the project.
     * This feature converts the user input for buy/sell command to be create a corresponding buy/sell command.
     * Justification: This feature is essential for users to input transactions so that our application can keep track of them.
 
-* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=Joel&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16)
+* **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=Joel&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=AY2223S1-CS2103T-T09-1%2Ftp%5Bmaster%5D&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~test-code~functional-code~other&since=2022-09-16&tabOpen=true&isTabOnMergedGroup=true&tabType=authorship&tabAuthor=Jo3LW&tabRepo=AY2223S1-CS2103T-T09-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=true&authorshipFileTypes=docs~test-code~functional-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+
+
 
 * **Documentation**:
     * User Guide:
