@@ -3,8 +3,8 @@
 (*) --> "User enters a command"
 if "" then
   -->[Valid Command] "HackAssist executes the command"
-  --> "HackAssist converts each Task object in TaskList to JsonAdaptedTask"
-  --> "HackAssist saves a list of JsonAdaptedTask in AddressBook.json"
+  --> "HackAssist converts each Person object in UniquePersonList to JsonAdaptedPerson"
+  --> "HackAssist saves a list of JsonAdaptedPerson in AddressBook.json"
   -right-> (*)
 else
   -->[Invalid Command] (*)
