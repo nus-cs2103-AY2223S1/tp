@@ -16,9 +16,10 @@
   {%- if entry_keys contains key -%}
     {%- for entry in site.glossary -%}
       {%- if entry_keys[forloop.index0] == key -%}
+        {% assign entry_data = entry.content | split: newline | first | markdownify | strip_html %}
         <span class="def-tooltip">
-          <a href="#glossary-{{ key }}">{{ label }}</a>
-          <span class="popup">{{ entry.content | split: newline | first | markdownify | strip_html }}<br>
+          <a href="#glossary-{{ key }}" data-entry_data="{{ entry_data }}">{{ label }}</a>
+          <span class="popup">{{ entry_data }}<br>
             <i>Click to view glossary</i>
           </span>
         </span>{% break %}

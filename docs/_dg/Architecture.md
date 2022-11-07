@@ -29,6 +29,8 @@ The _Sequence Diagram_ below shows how the components interact with each other i
 
 ![](images/ArchitectureSequenceDiagram.png)
 
+{% include page-break.html %}
+
 Each of the four main components (also shown in the diagram above),
 
 * defines its _API_ in an `interface` with the same name as the Component.

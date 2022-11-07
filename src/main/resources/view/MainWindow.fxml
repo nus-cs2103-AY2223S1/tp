@@ -11,7 +11,7 @@
 <?import javafx.scene.Scene?>
 <?import javafx.stage.Stage?>
 <fx:root xmlns:fx="http://javafx.com/fxml/1" type="javafx.stage.Stage"
-         xmlns="http://javafx.com/javafx/8" title="FoodRem" minWidth="700" minHeight="450" onCloseRequest="#handleExit">
+         xmlns="http://javafx.com/javafx/8" title="FoodRem" minWidth="840" minHeight="600" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/foodrem.png"/>
   </icons>

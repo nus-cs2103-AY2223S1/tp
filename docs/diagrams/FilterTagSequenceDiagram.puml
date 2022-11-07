@@ -56,8 +56,9 @@ deactivate TagSetContainsTagPredicate
 FilterTagCommand --> FilterTagCommandParser :
 deactivate FilterTagCommand
 
-FilterTagCommand --> FoodRemParser :
+FilterTagCommandParser --> FoodRemParser :
 deactivate FilterTagCommandParser
+
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 FilterTagCommandParser -[hidden]-> FoodRemParser
 destroy FilterTagCommandParser

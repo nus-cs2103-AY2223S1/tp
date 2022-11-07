@@ -20,7 +20,7 @@ Restrictions for all attributes can be found in the [Placeholders](#placeholders
 
 #### Tag
 
-A Tag in FoodRem serves as a means to categorise items. These tags are also unique and case-sensitive.
+A Tag in FoodRem serves as a means to categorise and filter items. These tags are also unique and case-sensitive.
 
 We can tag multiple items with the same tag and each item can have multiple tags. These Tags are optional.
 
@@ -36,11 +36,18 @@ FoodRem Tags are unique by name and case-sensitive. This means you cannot add tw
 
 #### Flags
 
-Flags are [[ delimiter:delimiters ]] that enable FoodRem to distinguish different parameters without ambiguity.
+Flags are [[ delimiter:delimiters ]] that enable FoodRem to distinguish different [[ parameter:parameters ]] without ambiguity.
 
 You would put in the corresponding [Placeholder](#placeholders) immediately after each flag.
 
-Please refer to the [Command Format](#command-format) to see how Flags and Placeholders are used together.
+```tip
+You may find the following image taken from the subsequent [Command Format](#command-format) section helpful:
+
+![CommandExample](images/CommandExample.png)
+
+```
+
+Please refer to the subsequent [Command Format](#command-format) section to see how Flags and Placeholders are used together.
 
 | Flag | Corresponding Placeholder |
 |------|---------------------------|
@@ -54,9 +61,9 @@ Please refer to the [Command Format](#command-format) to see how Flags and Place
 
 #### Placeholders
 
-Placeholders show you what type of parameters you can supply to a command. These follow immediately after a [Flag](#flags).
+Placeholders in this User Guide refers to the UPPER_CASE words that can be replaced by valid user input supplied. These placeholders follow immediately after a [Flag](#flags).
 
-Please refer to the [Command Format](#command-format) to see how Flags and Placeholders are used together.
+Please refer to the subsequent [Command Format](#command-format) section to see how Flags and Placeholders are used together.
 
 ```note
 The placeholders `INDEX`, `COMMAND_WORD`, and `KEYWORD` do not have any corresponding flags. They are marked as "Not Applicable" in the table below.

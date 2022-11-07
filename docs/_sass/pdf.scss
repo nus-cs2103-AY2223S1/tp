@@ -19,6 +19,12 @@
     font-style: italic;
     margin-top: 1.5rem;
   }
+
+  @footnote {
+    border-top: 1px solid black;
+    border-clip: 5rem;
+    padding-top: 0.5rem;
+  }
 }
 
 @page :first {
@@ -33,6 +39,8 @@
       margin-top: 0;
       page-break-before: always;
     }
+
+    // TODO: Remove unnecessary spacing from H3 at the top of pages
 
     h2,
     h3:not(.glossary-heading) {
@@ -110,6 +118,20 @@
         // For PrinceXML compatibility
         text-decoration: underline;
         text-underline-style: dotted;
+
+        // Only works on PrinceXML
+        &::after {
+          content: attr(data-entry_data);
+          float: footnote page;
+          font-size: 0.6rem;
+          text-align: left;
+          color: black;
+          font-style: normal;
+          text-decoration: none;
+
+          // Make it look nice(r) on Chrome
+          vertical-align: top;
+        }
       }
     }
   }
@@ -118,7 +140,7 @@
     .command-container {
       page-break-before: avoid;
 
-      * + * {
+      > * + * {
         // Use old-style spacing due to unsupported
         // column-gap for flex items
         margin-left: 1rem;
