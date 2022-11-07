@@ -80,10 +80,17 @@ The sections below give more details of each component.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
+The UI consists of a `MainWindow` that is made up of 4 crucial parts:
+|                 |                                                                                |
+|-----------------|--------------------------------------------------------------------------------|
+|`PersonListPanel`| Displays a list of `TruncatedPatientListCard` that represent `Patient` objects |
+|`OutputPanel`    | Displays an output view based on the command executed                          |
+|`ResultDisplay`  | Displays the feedback of a command to the user                                 |
+|`CommandBox`     | A input field for the user to enter commands into                              |
 
+Other miscellaneous parts (such as `StatusBarFooter`, `HelpWindow`) are also included in the `MainWindow`.
 
-
-The UI consists of a `MainWindow` that is made up of parts e.g. `OutputPanel`,`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 Additionally, the structure of `OutputPanel` is as shown below:
 ![Structure of the OutputPanel Component](images/OutputPanelClassDiagram.png)
