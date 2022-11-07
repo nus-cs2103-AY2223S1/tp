@@ -1,4 +1,7 @@
-# Project Portfolio Page for Shawn Tan
+---
+layout: page
+title: Project Portfolio Page for Shawn Tan
+---
 
 ## Overview
 
