@@ -38,6 +38,7 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonFoodRemStorage .up.|> FoodRemStorage
 JsonFoodRemStorage ..> JsonSerializableFoodRem
 JsonSerializableFoodRem --> "*" JsonAdaptedItem
+JsonSerializableFoodRem --> "*" JsonAdaptedTag
 JsonAdaptedItem --> "*" JsonAdaptedTag
 
 @enduml
