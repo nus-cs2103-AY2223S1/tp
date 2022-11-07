@@ -7,6 +7,7 @@ import static seedu.realtime.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 import static seedu.realtime.testutil.Assert.assertThrows;
 import static seedu.realtime.testutil.TypicalClients.ALICE;
 import static seedu.realtime.testutil.TypicalClients.BENSON;
+import static seedu.realtime.testutil.TypicalOffers.AMY;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -89,6 +90,27 @@ public class ModelManagerTest {
     @Test
     public void getFilteredClientList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredClientList().remove(0));
+    }
+
+    @Test
+    public void hasOffer_nullOffer_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasOffer(null));
+    }
+
+    @Test
+    public void hasOffer_offerNotInRealTime_returnsFalse() {
+        assertFalse(modelManager.hasOffer(AMY));
+    }
+
+    @Test
+    public void hasOffer_offerInRealTime_returnsTrue() {
+        modelManager.addOffer(AMY);
+        assertTrue(modelManager.hasOffer(AMY));
+    }
+
+    @Test
+    public void getFilteredOfferList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredOfferList().remove(0));
     }
 
     @Test

@@ -112,7 +112,7 @@ public class EditClientCommandTest {
     public void execute_duplicateClientFilteredList_failure() {
         showClientAtIndex(model, FIRST_INDEX);
 
-        // edit client in filtered list into a duplicate in address book
+        // edit client in filtered list into a duplicate in realtime
         Client clientInList = model.getRealTime().getClientList().get(SECOND_INDEX.getZeroBased());
         EditClientCommand editClientCommand = new EditClientCommand(FIRST_INDEX,
                 new EditClientDescriptorBuilder(clientInList).build());
@@ -132,7 +132,7 @@ public class EditClientCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of realtime
      */
     @Test
     public void execute_invalidClientIndexFilteredList_failure() {

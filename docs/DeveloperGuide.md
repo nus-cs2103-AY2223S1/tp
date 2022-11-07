@@ -52,16 +52,21 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for
+the scenario where the user issues the command `delC 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API
+`interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality
+using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given
+component through its interface rather than the concrete class (reason: to prevent outside component's being coupled
+to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
@@ -73,16 +78,21 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`,
+`PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract
+`UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files
+that are in the `src/main/resources/view` folder. For example, the layout
+of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java)
+is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Client` object residing in the `Model`.
 
 ### Logic component
 
@@ -93,16 +103,20 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it usegit bs the `RealTimeParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+1. When `Logic` is called upon to execute a command, it uses the `RealTimeParser` class to parse the user command.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddClientCommand`)
+which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delC 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for
+`DeleteClientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline
+reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -110,8 +124,12 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `RealTimeParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `RealTimeParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `RealTimeParser` class creates an
+`XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddClientCommandParser`) which uses the
+other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddClientCommand`) which the
+`RealTimeParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddClientCommandParser`, `DeleteOfferCommandParser`, ...) inherit from
+the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -121,10 +139,16 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* stores the data in RealTime i.e., all `Client`, `Offer`, `Listing` and `Meeting` objects (which are contained in a
+`UniqueClientList`, `UniqueOfferList`, `UniqueListingList` and `UniqueMeetingList` object respectively).
+* stores the currently 'selected' `Client`, `Offer`, `Listing` and `Meeting` objects (e.g., results of a search query)
+as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Client>`,
+`ObservableList<Offer>`, `ObservableList<Listing>` and `ObservableList<Meeting>` that can be 'observed' e.g. the UI
+can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a
+`ReadOnlyUserPref` objects.
+* does not depend on any of the other three components (as the `Model` represents data entities of the domain,
+they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `RealTime`, which `Person` references. This allows `RealTime` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
@@ -140,7 +164,7 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
+* can save both RealTime data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `RealTimeStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -234,10 +258,136 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+### \[Implemented\] Add Offer feature
 
+#### Offers
+
+REal-Time manages **_Offers_** made by Clients that are interested when bidding for Listings. To model an
+
+#### Implementation
+
+To add an `Offer` object, the `AddOfferCommand` must be executed. This stores the `Offer` object into the
+`UniqueOfferList`. Following the command execution pathway, the implementation of adding offers uses the exposed
+`Model#addOffer(Offer)` method in the `Model` API.
+
+The `AddOfferCommand` is parsed by the `AddOfferCommandParser`.
+`AddOfferCommandParser#parse()` parses the user input to return a `AddOfferCommand` object that will be executed.
+
+Given below is an example usage scenario and how the add offers mechanism behaves at each step.
+
+Step 1. The user opens up the `REal-Time` application for the first time and observes that there are some sample data
+in the `UniqueOfferList`.
+
+Step 2. The user keys in the command word for adding an offer, `addO`, followed by the compulsory parameters needed to
+add an offer, namely the `Name` component prefixed by `n/`, `Price` component prefixed by `o/` and the `ListingId`
+component prefixed by `l/`. In this scenario, the user keys in `addO n/John Doe l/BEDOK_SOUTH o/600000` into the command box
+which will execute the `AddOfferCommandParser` to check through the arguments and ensure that the compulsory fields are
+present. It will then create the `Price`, `ListingId` and `Name` objects needed to instantiate an `Offer` object. The
+parser returns a `AddOfferCommand` object with the `Offer` object ready to be added into `Model`
+
+Step 3. The `AddOfferCommand` calls the `Model#addOffer(Offer)` to add the offer and its relevant attributes.
+
+Step 4. Depending on whether the `UniqueOfferList` already contains data or is an empty list, the added Offer will
+be sorted automatically by the `ListingId` in lexicographical order. This is done using the `Collections#sort()` method
+and implementing a natural order by implementing the `Comparable` interface and overriding the `Comparable#compareTo()`
+method.
+
+The sequence diagram below shows the add offer process.
+
+![addOfferSequenceDiagram](images/AddOfferSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for
+`AddOfferCommandParser` and `RealTimeParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline
+reaches the end of diagram.
+</div>
+
+#### Design considerations
+
+**Aspect: Client-Offer interaction**
+
+* **Alternative 1 (current choice):** Seperate Offers and Client objects
+  * Pros: Easier to maintain as they are seperate objects, less dependency between each other
+  * Cons: No reference between the `Client` and `Offer` objects
+* **Alternative 2:** Allow Clients to have an Offer attribute instead
+  * Pros: Easier to reference between `Client` and `Offer`
+  * Cons: Large dependency between the two.
+
+### \[Implemented\] Delete Offer feature
+
+The Delete Offer feature allows users to delete the specified `Offer` in the `UniqueOfferList`.
+
+#### Implementation
+
+To delete an `Offer` object, the `DeleteOfferCommand` must be executed. The `DeleteOfferCommand` extends the `Command`
+class.
+
+The `DeleteOfferCommand` is parsed by the `DeleteOfferCommandParser`. `DeleteOfferCommandParser#parse()` parses the user
+input to return a `DeleteOfferCommand` that will be executed.
+
+Given below is an example usage scenario and how the delete offer mechanism behaves at each step.
+
+Step 1. The user enters `delO 1` in the command box.  This calls the `LogicManager#execute()` method which calls the
+`RealTimeParser#parse` method to be executed and will determine that the command is a `DeleteOfferCommand` after parsing.
+
+Step 2. A `DeleteOfferCommandParser` object is instantiated with the necessary arguments. It will return a
+`DeleteOfferCommand` object with the specified `Index`.
+
+Step 3. The `DeleteOfferCommand#execute()` method is called which calls the `Model#deleteOffer(Offer)` method to delete
+the Offer at the specified `Index` in `Model`.
+
+The sequence diagram below shows the delete offer process.
+
+![deleteOfferSequenceDiagram](images/DeleteOfferSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for
+`DeleteOfferCommandParser` and `DeleteOfferCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline
+reaches the end of diagram.
+</div>
+
+#### Design considerations
+
+**Aspect: Using index specific or attribute specific deletion**
+
+* **Alternative 1 (current choice):** Index specific
+    * Pros: Easier implementation and more suited for fast-typing
+    * Cons: Might accidentally delete the wrong `Offer` if `Index` is mistyped
+* **Alternative 2:** Attribute specific
+    * Pros: User does not have to find for specific `Index`
+    * Cons: Many `Offer` objects might share same attribute such as `ListingId` and `Price`
+
+### \[Implemented\] Edit Offer feature
+
+The Edit Offer feature allows users to edit any attribute of an `Offer` in the `UniqueOfferList`.
+
+#### Implementation
+
+To edit an `Offer`, the `EditOfferCommand` is executed. The `EditOfferCommand` extends the `Command` class.
+
+The `EditOfferCommand` is parsed by the `EditOfferCommandParser`. `EditOfferCommandParser#parse()` parses the user input
+to return a `EditOfferCommand` that will be executed.
+
+Given below is an example usage scenario and how the edit offer mechanism behaves at each step.
+
+Step 1. The user enters `editO 1 l/Bukit_timah_rd o/1000000` in the command box. This calls the `LogicManager#execute()`
+method which calls the `RealTimeParser#parse` method to be executed and will determine that the command is a
+`EditOfferCommand` after parsing.
+
+Step 2. An `EditOfferCommandParser` object is instantiated with the necessary arguments. It returns a `EditOfferCommand`
+with the `Index` and `EditOfferDescriptor` as parameters. The `EditOfferDescriptor` contains the edited information that
+the edited `Offer` is supposed to be updated to. In this scenario, we are changing the `listingId` and `Price` attribute
+of the `Offer`. The `EditOfferDescriptor` is then updated through the `setListing()` and `setOfferPrice()` methods by
+the `EditOfferDescriptor`.
+
+Step 3. The `EditOfferCommand#execute()` method is called which creates the edited `Offer` using the `createEditedOffer`
+method which takes in the `Offer` to be edited and the `EditOfferDescriptor` that was created from the previous step.
+The edited `Offer` is then checked if it is a duplicate or already exists in the `UniqueOfferList` through the
+`Offer#isSameOffer()` and `Model#hasOffer()` methods.
+
+An `Offer` is the same if it contains the exact same `Name`, `Price` and `ListingId`.
+
+Step 4. The `Model#setOffer(Offer)` method is called to replace the target `Offer` at the specified `Index` from earlier.
+The `Model#updateFilteredOfferList()` is called to update the `UniqueOfferList`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -281,6 +431,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | add my client's offer        | track all my clients' current offers                                   |
 | `* * *`  | user                                       | delete a client              | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | find a client by name        | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | edit an offer                | update any changes to a client's offer                                 |
 | `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
 | `*`      | user with many persons in the address book | sort client by name          | locate a person easily                                                 |
 | `*`      | user with many offers in the address book  | sort offers by listings      | locate offers easily                                                   |
@@ -293,6 +444,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 ### Use cases
+
 
 (For all use cases below, the **System** is the `RealTime` and the **Actor** is the `user`, unless specified otherwise)
 
@@ -314,7 +466,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given index is invalid.
-
     * 3a1. RealTime shows an error message.
 
       Use case resumes at step 2.
@@ -338,7 +489,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   Use case ends.
 
 * 3a. The given index is invalid.
-
     * 3a1. RealTime shows an error message.
 
       Use case resumes at step 2.
@@ -355,7 +505,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. User enters invalid input
   * 1a1. RealTime shows an error message.
+
     Use case resumes at Step 1.
+
+**Use case: UC04 - Edit an offer**
+
+**MSS**
+1. User requests to edit an offer.
+2. REal-Time edits the offer.
+
+    Use case ends.
+
+**Extensions**
+* 1a. User enters invalid input
+  * 1a1. REal-Time shows an error message.
+ 
+    Use case resumes at Step 1.
+
+**Use case: UC05 - Delete an offer**
+
+**MSS**
+1. User requests to delete an offer.
+2. REal-Time deletes the offer.
+
+    Use case ends.
+
+**Extensions**
+* 1a. User enters invalid input
+  * 1a1. REal-Time shows an error message.
+
+    Use case resumes at Step 1
 
 *{More to be added}*
 
@@ -371,7 +550,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Client**: A person that is interested in purchasing or selling a property
+* **Offer**: A price that the purchaser is willing to pay for a property
+* **Listing**: A property that is being advertised
+* **Meeting**: A scheduled appointment between the Real-Estate agent and client
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -415,6 +597,7 @@ testers are expected to do more *exploratory* testing.
     3. Other incorrect delete commands to try: `listing id/... ap/.. n.. a/..`, `listing`, `...` <br>
         Expected: Error message to warn incorrect input format.
 2. _{ more test cases …​ }_
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -453,3 +636,39 @@ Timestamp in the status bar is updated.
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+
+### Adding an Offer
+
+1. Adding an offer while all offers are being shown
+   1. Prerequisites: The Offer being added must not exist in the current list.
+   2. Test case: `addO n/John Doe l/BEDOK_SOUTH o/700000`
+ 
+      Expected: An Offer with name John Doe, listing ID BEDOK_SOUTH and offer price of 700000 will be added to the list.
+
+   3. Test case: `addO n/Jackson Ang l/CALIFORNIA o/-10000`
+
+      Expected: No Offer will be added. Error message will appear in the response box.
+   4. Other incorrect commands to try: `addO n/Bruce Wayne l/YISHUN o/123p123`
+
+### Deleting an Offer
+
+1. Deleting an offer while all offers are being shown
+   1. Prerequisites: At least one Offer has to exist in the list.
+   2. Test case: `delO 1`
+
+      Expected: First Offer is deleted from the list. Details of the deleted offer shown in the status message.
+   3. Test case: `delO 0`
+
+      Expected: No Offer is deleted. Error details shown in the status message.
+   4. Other incorrect commands to try: `delO -1`, `delO a`
+
+### Editing an Offer
+
+1. Editing an offer while all offers are being shown
+   1. Prerequisites: At least one Offer must exist to be edited.
+   2. Test case: `editO 1 n/John Doe`<br>
+      Expected: First Offer has the name changed to John Doe.
+   3. Test case: `editO 1 o/-1000`<br>
+      Expected: No Offer is edited. Error details shown in the status message.
+
