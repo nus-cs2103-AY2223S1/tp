@@ -379,9 +379,9 @@ list to be displayed correctly on the user's screen.
 
 ### Internal implementations of Buyers and Properties
 
-Cobb allows functionality that performs operations on two distinct types of entries stored in the database: Potential property
+Cobb allows functionality that performs operations on two distinct types of entities stored in the database: Potential property
 buyers, as well as properties that are for sale. To allow for this functionality, two classes were created that represented each type
-of entry: `Buyer` and `Property`, respectively.
+of entity: `Buyer` and `Property`, respectively.
 
 The structure of a `Buyer` object can be viewed in the class diagram below.
 
@@ -449,7 +449,7 @@ denote his budget, requirements for the property, and buyer priority respectivel
 
 These three fields are all optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`.
 When the user chooses not to indicate a buyer priority, the buyer's priority will be set to the default priority as `NORMAL`.
-When the user creates a buyer, the entry time is also automatically stored as a `LocalDateTime`.
+When the user creates a buyer, the time of creation is also automatically stored as a `LocalDateTime`.
 
 The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide.
 
@@ -461,7 +461,7 @@ Originally, we disallowed creation of two buyers that have the same name. Howeve
 exist two distinct buyers that have the same name. Instead, we decided to make use of phone numbers and emails to identify identical buyers,
 as these fields should be unique to each person.
 
-The entry time field was added towards the later part of development to help facilitate a more flexible implementation of the `sortbuyers` command.  
+The time of creation field was added towards the later part of development to help facilitate a more flexible implementation of the `sortbuyers` command.  
 
 The activity diagram for the creation of a buyer can be seen below.
 
@@ -472,7 +472,7 @@ The activity diagram for the creation of a buyer can be seen below.
 The `Property` class represents a property with property-specific fields. `Price` and `Characteristics` denote the price and feature of the property respectively.
 
 The `price` field is mandatory while the `characteristics` field is optional. When the user chooses not to indicate a property's characteristics, the `characteristics` field of a property may be null. Hence, it has been implemented using `Optional<T>`.
-When the user creates a property, the entry time is also automatically stored as a `LocalDateTime`.
+When the user creates a property, the time of creation is also automatically stored as a `LocalDateTime`.
 
 The structure for executing an `addprop` command follows the flow as mentioned in the "Logic component" section of this guide.
 
@@ -484,7 +484,7 @@ Originally, we disallowed creation of two properties that have the same name and
 there could very well be two distinct properties that exist which have both the same name and price. Instead, we decided to make
 use of the property's address to distinguish it from another property, as the address of a property should be unique to it.
 
-The entry time was added towards the later part of development to help facilitate a more flexible implementation of the `sortprops` command.
+The time of creation field was added towards the later part of development to help facilitate a more flexible implementation of the `sortprops` command.
 
 The activity diagram for the creation of a property can be seen below.
 
@@ -538,7 +538,7 @@ being tested, consequently, they might give different outputs when applied to a 
 
 #### Design Considerations
 In order to allow for multiple-condition filtering, that is, the concatenation of multiple filter predicates, an abstract 
-`AbstractFilterXYZPredicate` class was created to employ polymorphic behaviour, where XYZ represents the entry type that
+`AbstractFilterXYZPredicate` class was created to employ polymorphic behaviour, where XYZ represents the entity type that
 we are working with, for example `AbstractFilterBuyersPredicate` or `AbstractFilterPropsPredicate`. 
 
 Additionally, since users
@@ -565,7 +565,7 @@ The below UML diagram represents the overall structure of the predicates for `Bu
 1. Filtering `Properties` by their prices takes in a `priceRange` instead of just a `Price` as it makes more sense for
    agents to want to identify properties that fit within a certain price range instead of a fixed price.
 2. For both `filterBuyers` and `filterProps`, the default concatenated predicate will be a logical **AND** of all individual
-   predicates, that is, all  predicates need to be satisfied in order for the entry to pass through the filter.
+   predicates, that is, all predicates need to be satisfied in order for the entry to pass through the filter.
 3. For both `filterBuyers` and `filterProps`, passing in the `-fuzzy` flag will change the final concatenated predicate to be
    a logical **OR** of all individual predicates, that is, only one of the predicates needs to be satisfied in order
    for the entry to pass through the filter.
