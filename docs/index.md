@@ -9,7 +9,7 @@ title: idENTify
 ![Ui](images/Ui.png)
 
 ## Description
-**idENTify is an all in one desktop application for managing your patients and their appointments.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+idENTify is an **all in one desktop application made for Ear, Nose and Throat (ENT) administrative staff to manage their patients and their appointments.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 ## Features at a glance
 
