@@ -39,15 +39,15 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String ADD_DEMO_INPUT_PATIENT = "add c/P n/John Doe g/M p/98765432 e/johnd@example.com "
             + "a/311, Clementi Ave 2, #02-25 t/asthma ds/2022-11-11,2";
     private static final String ADD_DEMO_OUTPUT_PATIENT = "New Patient added: Category: P; Uid: 9; Name: John Doe;"
-            + " Phone: 98765432; Email: johnd@example.com; Gender: M; Address: 311, Clementi Ave 2, #02-25;;"
+            + " Phone: 98765432; Email: johnd@example.com; Gender: M; Address: 311, Clementi Ave 2, #02-25;"
             + " Tags: [asthma] Home Visits Date and Time: [ ] [ ] 11/11/2022 12:00;";
     private static final String NURSE_SEARCH_TEXT = "Add Nurse";
     private static final String ADD_DEMO_INPUT_NURSE = "add c/N n/Cola t/pediatric e/cola@example.com g/F p/98345432"
             + " a/Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03 t/heartDiseaseSpecialist ud/2022-12-12";
-    private static final String ADD_DEMO_OUTPUT_NURSE = "New person added: Category: N Uid: 3; Name: Cola;"
-            + " Gender: F; Phone: 98345432; Email: cola@example.com; "
-            + "Address: Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03; Tags: [heartDiseaseSpecialist][pediatric];"
-            + " Unavailable Date: 12/12/2022";
+    private static final String ADD_DEMO_OUTPUT_NURSE = "New Nurse added: Category: N; Uid: 10; Name: Cola;"
+            + " Phone: 98345432; Email: cola@example.com; Gender: F;"
+            + " Address: Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03;"
+            + " Tags: [heartDiseaseSpecialist][pediatric] Unavailable Dates: 12/12/2022; No home visit assigned yet.";
     private static final String ADD_PATIENT_USAGE_HELP = "Add Patient \n"
             + "add c/P n/Name g/Gender p/Phone e/Email a/Address "
             + "[t/tag] [ds/Date&Slot] *[] is optional. ";
@@ -59,46 +59,52 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String CLEAR_DEMO_OUTPUT = "Healthcare Xpress record system has been cleared!";
     private static final String DELETE_SEARCH_TEXT = "Delete via ID";
     private static final String DELETE_DEMO_INPUT = "delete id/3";
-    private static final String DELETE_DEMO_OUTPUT = "Deleted person: Category: N Uid: 3; Name: Cola; Gender: F;"
-            + " Phone: 98345432; Email: cola@example.com;"
-            + " Address: Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03; Tags: [heartDiseaseSpecialist][Pediatric]";
+    private static final String DELETE_DEMO_OUTPUT = "Deleted Nurse: Category: N; Uid: 3; Name: Cola;"
+            + " Phone: 98345432; Email: cola@example.com; Gender: F;"
+            + " Address: Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03;"
+            + " Tags: [heartDiseaseSpecialist][pediatric] Unavailable Dates: 12/12/2022; No home visit assigned yet.";
     private static final String EDIT_NAME_SEARCH_TEXT = "Edit Name";
     private static final String EDIT_NAME_DEMO_INPUT = "edit id/12 n/Kola";
-    private static final String EDIT_NAME_DEMO_OUTPUT = "Edited person: Category: N Uid: 12; Name: Kola; Gender: F;"
-            + " Phone: 98345432; Email: cola@example.com; Address: Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03;"
-            + " Tags: [heartDiseaseSpecialist][pediatric]; Unavailable Date: 12/12/2022";
+    private static final String EDIT_NAME_DEMO_OUTPUT = "Edited Nurse: Category: N; Uid: 12; Name: Kola;"
+            + " Phone: 98345432; Email: cola@example.com; Gender: F;"
+            + " Address: Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03;"
+            + " Tags: [heartDiseaseSpecialist][pediatric] Unavailable Dates: 12/12/2022; No home visit assigned yet.";
     private static final String EDIT_GENDER_SEARCH_TEXT = "Edit Gender";
     private static final String EDIT_GENDER_DEMO_INPUT = "edit id/12 g/M";
-    private static final String EDIT_GENDER_DEMO_OUTPUT = "Edited person: Category: N Uid: 12; Name: Kola;"
-            + " Gender: M; Phone: 98345432; Email: cola@example.com;"
+    private static final String EDIT_GENDER_DEMO_OUTPUT = "Edited Nurse: Category: N; Uid: 12; Name: Kola;"
+            + " Phone: 98345432; Email: cola@example.com; Gender: M;"
             + " Address: Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03;"
-            + " Tags: [heartDiseaseSpecialist][pediatric]; Unavailable Date: 12/12/2022";
+            + " Tags: [heartDiseaseSpecialist][pediatric] Unavailable Dates: 12/12/2022; No home visit assigned yet.";
     private static final String EDIT_PHONE_SEARCH_TEXT = "Edit Phone";
     private static final String EDIT_PHONE_DEMO_INPUT = "edit id/12 p/88888888";
-    private static final String EDIT_PHONE_DEMO_OUTPUT = "Edited person: Category: N Uid: 12; Name: Kola; Gender: M;"
-            + " Phone: 88888888; Email: cola@example.com; Address: Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03;"
-            + " Tags: [heartDiseaseSpecialist][pediatric]; Unavailable Date: 12/12/2022";
+    private static final String EDIT_PHONE_DEMO_OUTPUT = "Edited Nurse: Category: N; Uid: 12; Name: Kola;"
+            + " Phone: 88888888; Email: cola@example.com; Gender: M;"
+            + " Address: Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03;"
+            + " Tags: [heartDiseaseSpecialist][pediatric] Unavailable Dates: 12/12/2022; No home visit assigned yet.";
     private static final String EDIT_EMAIL_SEARCH_TEXT = "Edit Email";
     private static final String EDIT_EMAIL_DEMO_INPUT = "edit id/12 e/Kola@example.com";
-    private static final String EDIT_EMAIL_DEMO_OUTPUT = "Edited person: Category: N Uid: 12; Name: Kola; Gender: M;"
-            + " Phone: 88888888; Email: Kola@example.com; Address: Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03;"
-            + " Tags: [heartDiseaseSpecialist][pediatric]; Unavailable Date: 12/12/2022";
+    private static final String EDIT_EMAIL_DEMO_OUTPUT = "Edited Nurse: Category: N; Uid: 12; Name: Kola;"
+            + " Phone: 88888888; Email: Kola@example.com; Gender: M;"
+            + " Address: Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03;"
+            + " Tags: [heartDiseaseSpecialist][pediatric] Unavailable Dates: 12/12/2022; No home visit assigned yet.";
     private static final String EDIT_ADDRESS_SEARCH_TEXT = "Edit Address";
-    private static final String EDIT_ADDRESS_DEMO_INPUT = "edit id/12 a/Blk 768 Woodlands Ave 6,Singapore 730768 ";
-    private static final String EDIT_ADDRESS_DEMO_OUTPUT = "Edited person: Category: N Uid: 12; Name: Kola;"
-            + " Gender: M; Phone: 88888888; Email: Kola@example.com;"
-            + " Address: Blk 768 Woodlands Ave 6, Singapore 730768;"
-            + " Tags: [heartDiseaseSpecialist][pediatric]; Unavailable Date: 12/12/2022";
+    private static final String EDIT_ADDRESS_DEMO_INPUT = "edit id/12 a/Blk 768 Woodlands Ave 6,Singapore 730768";
+    private static final String EDIT_ADDRESS_DEMO_OUTPUT = "Edited Nurse: Category: N; Uid: 12; Name: Kola;"
+            + " Phone: 88888888; Email: Kola@example.com; Gender: M;"
+            + " Address: Blk 768 Woodlands Ave 6,Singapore 730768;"
+            + " Tags: [heartDiseaseSpecialist][pediatric] Unavailable Dates: 12/12/2022; No home visit assigned yet.";
     private static final String EDIT_TAG_SEARCH_TEXT = "Edit Tag";
     private static final String EDIT_TAG_DEMO_INPUT = "edit id/12 t/pediatric";
-    private static final String EDIT_TAG_DEMO_OUTPUT = "Edited person: Category: N Uid: 12; Name: Kola; Gender: M;"
-            + " Phone: 88888888; Email: Kola@example.com; Address: Blk 768 Woodlands Ave 6, Singapore 730768;"
-            + " Tags: [pediatric]; Unavailable Date: 12/12/2022";
+    private static final String EDIT_TAG_DEMO_OUTPUT = "Edited Nurse: Category: N; Uid: 12; Name: Kola;"
+            + " Phone: 88888888; Email: Kola@example.com; Gender: M;"
+            + " Address: Blk 768 Woodlands Ave 6,Singapore 730768;"
+            + " Tags: [pediatric] Unavailable Dates: 12/12/2022; No home visit assigned yet.";
     private static final String ADD_UNAVAILABLE_DATE_SEARCH_TEXT = "Edit Unavailable Date (add)";
     private static final String ADD_UNAVAILABLE_DATE_DEMO_INPUT = "edit id/12 ud/2022-12-14";
-    private static final String ADD_UNAVAILABLE_DATE_DEMO_OUTPUT = "Edited person: Category: N Uid: 12; Name: Kola; "
-            + "Gender: M; Phone: 88888888; Email: Kola@example.com; Address: Blk 768 Woodlands Ave 6, Singapore 730768;"
-            + " Tags: [pediatric]; Unavailable Date: 12/12/2022, 14/12/2022";
+    private static final String ADD_UNAVAILABLE_DATE_DEMO_OUTPUT = "Edited Nurse: Category: N; Uid: 12; Name: Kola;"
+            + " Phone: 88888888; Email: Kola@example.com; Gender: M;"
+            + " Address: Blk 768 Woodlands Ave 6,Singapore 730768;"
+            + " Tags: [pediatric] Unavailable Dates: 12/12/2022, 14/12/2022; No home visit assigned yet.";
     private static final String EDIT_UNAVAILABLE_DATE_SEARCH_TEXT = "Edit Unavailable Date "
             + "(edit specific Unavailable Date)";
     private static final String EDIT_UNAVAILABLE_DATE_DEMO_INPUT = "edit id/12 ud/2022-12-13 udi/2";
@@ -143,15 +149,16 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String EDIT_MIX_SEARCH_TEXT = "Edit Mix";
     private static final String EDIT_MIX_DEMO_INPUT = "edit id/12 g/F p/98345432 "
             + "a/Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03";
-    private static final String EDIT_MIX_DEMO_OUTPUT = "Edited person: Category: N Uid: 12; Name: Kola; Gender: F;"
-            + " Phone: 98345432; Email: Kola@example.com; Address: Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03;"
-            + " Tags: [pediatric]; Unavailable Date: 12/12/2022";
+    private static final String EDIT_MIX_DEMO_OUTPUT = "Edited Nurse: Category: N; Uid: 12; Name: Kola;"
+            + " Phone: 98345432; Email: Kola@example.com; Gender: F;"
+            + " Address: Blk 431 Ang Mo Kio Ave 10, Singapore 560431 #01-03;"
+            + " Tags: [pediatric] Unavailable Dates: 12/12/2022, 14/12/2022; No home visit assigned yet.";
     private static final String EXIT_SEARCH_TEXT = "Exit Program";
     private static final String EXIT_DEMO_INPUT = "exit";
     private static final String EXIT_DEMO_OUTPUT = "Thank you for using Healthcare Xpress!";
     private static final String FIND_SEARCH_TEXT = "Find via Name";
     private static final String FIND_DEMO_INPUT = "find Kola";
-    private static final String FIND_DEMO_OUTPUT = "1 patients and nurses listed!";
+    private static final String FIND_DEMO_OUTPUT = "2 persons listed!";
     private static final String HELP_SEARCH_TEXT = "Help";
     private static final String HELP_DEMO_INPUT = "help";
     private static final String HELP_DEMO_OUTPUT = "*Brings you to this window*";
@@ -172,7 +179,7 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String LIST_GENDER_DEMO_OUTPUT = "Listed all persons with specifications: "
             + "ADDRESS: NIL, CATEGORY: NIL, GENDER: F, TAG: NIL";
     private static final String LIST_TAG_SEARCH_TEXT = "List all with X Tag";
-    private static final String LIST_TAG_DEMO_INPUT = "list t/Pediatric";
+        private static final String LIST_TAG_DEMO_INPUT = "list t/Pediatric";
     private static final String LIST_TAG_DEMO_OUTPUT = "Listed all persons with specifications: "
             + "ADDRESS: NIL, CATEGORY: NIL, GENDER: NIL, TAG: Pediatric";
     private static final String LIST_MIX_SEARCH_TEXT = "List (Mix)";
@@ -191,7 +198,7 @@ public class HelpWindow extends UiPart<Stage> {
     private static final String FIND_USAGE_HELP = "Find a person from the list that contains keyword\n"
             + "find KEYWORD";
     private static final String HELP_USAGE_HELP = "";
-    private static final String LIST_USAGE_HELP = "List all that meets the critiera:\n"
+    private static final String LIST_USAGE_HELP = "List all that meets the criteria:\n"
             + "list [c/Category] [g/Gender] [a/Address] [t/Tag]\n"
             + "*[] is optional";
     private static final String UPCOMING_FEATURE = "This is a upcoming feature "
@@ -429,7 +436,7 @@ public class HelpWindow extends UiPart<Stage> {
         dictionaryForUsageHelp.put(DEASSIGN_ALL_PATIENT_SEARCH_TEXT, DEASSIGN_USAGE_HELP);
         dictionaryForUsageHelp.put(DEASSIGN_SPECIFIC_PATIENT_SEARCH_TEXT, DEASSIGN_USAGE_HELP);
         dictionaryForUsageHelp.put(DEASSIGN_ALL_NURSE_SEARCH_TEXT, DEASSIGN_USAGE_HELP);
-        dictionaryForUsageHelp.put(DEASSIGN_SPECIFIC_PATIENT_SEARCH_TEXT, DEASSIGN_USAGE_HELP);
+        dictionaryForUsageHelp.put(DEASSIGN_SPECIFIC_NURSE_SEARCH_TEXT, DEASSIGN_USAGE_HELP);
         dictionaryForUsageHelp.put(UNMARK_SEARCH_TEXT, UNMARK_USAGE_HELP);
         dictionaryForUsageHelp.put(UNDO_UNMARK_SEARCH_TEXT, UNDO_UNMARK_USAGE_HELP);
         dictionaryForUsageHelp.put(CHECK_SIMILAR_SEARCH_TEXT, CHECK_SIMILAR_USAGE_HELP);
