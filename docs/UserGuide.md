@@ -54,10 +54,10 @@ This user guide also provides comprehensive explanations so that you know how to
 
 4. Double-click the file to start the app. The GUI, as shown in the image below, should appear in a few seconds. Note how the app contains some sample data.<br>
 
-<figure>
-<img src="images/QuickStart.png" alt="QuickStart" style="width:100%">
-<figcaption align = "center"><i>Fig.1 - App UI</i></figcaption>
-</figure>
+    <figure>
+    <img src="images/QuickStart.png" alt="QuickStart" style="width:100%">
+    <figcaption align = "center"><i>Fig.1 - App UI</i></figcaption>
+    </figure>
 
 5. Try out some commands from the [Sample Usage](#sample-usage) section.
 
@@ -110,7 +110,7 @@ To better understand the usage of YellowBook, we have provided a usage scenario 
     <figcaption align = "center"><i>Fig.6 - Result of clear command</i></figcaption>
     </figure>
 
-YellowBook's commands are mnemonically named. A [Command Summary](#command-summary) with these helpful tips can be found below.
+7. YellowBook's commands are mnemonically named. A [Command Summary](#command-summary) with these helpful tips can be found below.
 
 [[Back to Table of Contents](#table-of-contents)]
 
