@@ -19,8 +19,8 @@ public class HelpUtil {
     public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t10-3.github.io/tp/UserGuide.html";
     public static final String URL_MESSAGE = "Refer to the user guide for more information: " + USERGUIDE_URL;
 
-    /*
-     * Contains all {@code commands} supported by WB.
+    /**
+     * Contains all commands supported by WB.
      */
     public enum Command {
         ADD, EDIT, DELETE, CLEAR, LIST, FIND, UNDO, REDO, EXIT,
