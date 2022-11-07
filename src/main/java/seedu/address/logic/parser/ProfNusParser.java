@@ -38,7 +38,6 @@ import seedu.address.logic.parser.schedule.AddScheduleCommandParser;
 import seedu.address.logic.parser.schedule.ClearScheduleCommandParser;
 import seedu.address.logic.parser.schedule.DeleteScheduleCommandParser;
 import seedu.address.logic.parser.schedule.EditScheduleCommandParser;
-import seedu.address.logic.parser.schedule.ViewScheduleCommandParser;
 import seedu.address.logic.parser.schedule.ViewTimeTableCommandParser;
 
 /**
@@ -115,7 +114,7 @@ public class ProfNusParser {
             return new FindCommandParser().parse(arguments);
 
         case ViewScheduleCommand.COMMAND_WORD:
-            return new ViewScheduleCommandParser().parse(arguments);
+            return new ViewScheduleCommand();
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

@@ -23,7 +23,7 @@ activate ViewTimetableCommandParser
 ViewTimetableCommandParser --> ProfNusParser
 deactivate ViewTimetableCommandParser
 
-ProfNusParser -> ViewTimetableCommandParser : parse("tview v")
+ProfNusParser -> ViewTimetableCommandParser : parse("v")
 activate ViewTimetableCommandParser
 
 create ViewScheduleCommand

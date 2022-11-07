@@ -7,6 +7,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
+
 /**
  * Views all schedules which satisfies selection requirements.
  */
@@ -15,13 +16,14 @@ public class ViewScheduleCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views all schedules"
             + "requirements.\n"
-            + "Format: view schedule\n"
+            + "Format: sview\n"
             + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Showed all schedules";
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+
         model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
         return new CommandResult(MESSAGE_SUCCESS, false, false, false, false, false, false, true, false, false);
     }
