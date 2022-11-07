@@ -37,8 +37,7 @@ If you can type fast, FRIDAY can get your student management tasks done faster t
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-
-## Features
+## A guide to using FRIDAY's CLI
 
 <div markdown="block" class="alert alert-info">
 
@@ -68,16 +67,18 @@ If you can type fast, FRIDAY can get your student management tasks done faster t
 
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* `INDEX` is used in commands to refer to a specific student by their index number on the currently displayed list, 
-   so it ` **must be a positive integer** 1, 2, 3, …​
+* `INDEX` is used in commands to refer to a specific student by their index number on the currently displayed list,
+  so it ` **must be a positive integer** 1, 2, 3, …​
 
 </div>
 
-### Clearing all existing data: `clear`
 
-On your first launch of FRIDAY, a sample list of students is displayed. The `clear` command allows you to clear this and any other existing data in FRIDAY, resulting in an empty Student list.
+## Features
 
-Format: `clear`
+
+## Student management
+
+Overview: These features allow you to add, delete and edit your students' details.
 
 ### Adding a student: `add`
 
@@ -113,7 +114,7 @@ Outcome: a student named Alex Yeoh is added.
 
 ### Deleting a student: `delete`
 
-Deletes the student at the given index from FRIDAY. 
+Deletes the student at the given index from FRIDAY.
 
 Format: `delete INDEX`
 
@@ -148,12 +149,12 @@ optional fields, but there should be at least one field specified for the `edit`
 
 Example: `edit 1 n/Alex Yap t/AlexYap tag/Experienced coder tag/Intern m/2022-11-06 c/2022-10-10`
 
-Initial: A student with name "Alex Yeoh", with the following details: Telegram handle as "@al3xx", Mastery Check date 
+Initial: A student with name "Alex Yeoh", with the following details: Telegram handle as "@al3xx", Mastery Check date
 on 2022-08-16, consultation date on 2022-11-11, and a tag "Colour blind".
 
 ![EditCommandInitial.png](images/EditCommandInitial.png)
 
-Outcome: Student's name changed to "Alex Yap", along with the following changed details: Telegram handle as "@AlexYap", 
+Outcome: Student's name changed to "Alex Yap", along with the following changed details: Telegram handle as "@AlexYap",
 Mastery Check date as 2022-11-06, consultation date as 2022-10-10, and tags as "Experienced coder" and "Intern".
 
 ![EditCommandOutcome.png](images/EditCommandOutcome.png)
@@ -182,63 +183,9 @@ Outcome: The student at the 1st index (Alex Yap) will have the remark "Aspiring 
 
 ![RemarkCommandOutcome.png](images/RemarkCommandOutcome.png)
 
-### Recording grades for a student: `grade`
+## Organizing students
 
-Records the grades of the assessments and examinations for a specified student.
-
-Format: `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MID_TERM_SCORE] [ft/FINALS_SCORE]`
-
-* The examinations and their associated prefixes are:
-  * Reading Assessment 1 - `ra1`
-  * Reading Assessment 2 - `ra2`
-  * Practical Assessment - `pa`
-  * Midterm Test - `mt`
-  * Final Test `ft`
-
-<div markdown="block" class="alert alert-info">
-**:information_source: Note:** <br>
-* The index of the student must be specified and there should be exactly one INDEX parameter.
-* The scores of the assessments must be numerical as percentages, i.e. between 0% and 100% inclusive, with up to 2
-decimal places allowed. `0`, `100.00` and `69.1` are examples of valid scores.
-</div>
-
-<div markdown="block" class="alert alert-primary">
-**:bulb: Tip:** <br>
-* The index of the student can be seen from the student list.
-* The scores are optional, but there should be at least one score specified for `grade` command to be valid.
-</div>
-
-Example:`grade 1 ra1/90 ra2/80.1 pa/100.00 mt/85.23 ft/78`
-
-Outcome: The student at the 1st index (Alex Yap) will have their grades updated.
-
-![GradeCommand.png](images/GradeCommand.png)
-
-### Finding individual student details: `find`
-
-Searches for a particular student by their name, Telegram Handle, consultation date, Mastery Check date, remark or grades.
-
-Format: `find KEYWORDS`
-
-<div markdown="block" class="alert alert-info">
-**:information_source: Note:** <br>
-* When searching by an exam grade, use the format `find [exam_name:EXAM_SCORE]`
-* Multiple keywords can be entered and each keyword is separated by a space.
-</div>
-
-Example:
-
-![FindCommand.png](images/FindCommand.png)
-
-Outcome:
-
-![FindCommandOutcome.png](images/FindCommandOutcome.png)
-
-### Viewing all students: `list`
-
-Lists all students in FRIDAY. This command helps you to reset the sorting and finding done by the `sort` and `find` commands respectively.
-
-Format: `list`
+Overview: These features allow you to organize your students to suit your needs.
 
 ### Sorting students: `sort`
 
@@ -246,19 +193,19 @@ Sorts all students in FRIDAY with the given criteria, in ascending or descending
 
 Format: `sort CRITERIA/ORDER`
 
-* `CRITERIA` can be 
-  * `n` (name) 
-  * `t` (Telegram handle)
-  * `c` (consultation)
-  * `m` (Mastery Check)
-  * `ra1` (Reading Assessment 1)
-  * `ra2` (Reading Assessment 2)
-  * `pa` (Practical Assessment)
-  * `mt` (Midterm Test)
-  * `ft` (Final Examination)
-* `ORDER` can be 
-  * `a` (ascending)
-  * `d` (descending)
+* `CRITERIA` can be
+    * `n` (name)
+    * `t` (Telegram handle)
+    * `c` (consultation)
+    * `m` (Mastery Check)
+    * `ra1` (Reading Assessment 1)
+    * `ra2` (Reading Assessment 2)
+    * `pa` (Practical Assessment)
+    * `mt` (Midterm Test)
+    * `ft` (Final Examination)
+* `ORDER` can be
+    * `a` (ascending)
+    * `d` (descending)
 
 How criteria are sorted:
 * Names and Telegram handles - alphabetical order
@@ -280,6 +227,70 @@ Example: enter `sort m/a` with an unsorted list of students.
 Outcome: students are sorted by Mastery Check date, from earliest to latest.
 
 ![SortCommandOutcome.png](images/SortCommandOutcome.png)
+
+### Finding individual student details: `find`
+
+View a particular student's details.
+
+Format: `find KEYWORDS`
+
+<div markdown="span" class="alert alert-primary">
+**:bulb: Tip:** <br>
+Use student name/telegram handle/consultation/mastery check date/remark to search up a particular student.
+Note: Multiple keywords can be entered and each keyword is separated by a space.
+Note: when searching for exam grade use format `find [exam_name:EXAM_SCORE]`
+</div>
+
+Example:
+
+![FindCommand.png](images/FindCommand.png)
+
+Outcome:
+
+![FindCommandOutcome.png](images/FindCommandOutcome.png)
+
+### Viewing all students: `list`
+
+Lists all students in FRIDAY. This command helps you to reset the sorting and finding done by the `sort` and `find` commands respectively.
+
+Format: `list`
+
+## Grading students
+
+Overview: These features allow you to record your students grades.
+
+### Recording grades for a student: `grade`
+
+Records the grades of the assessments and examinations for a specified student.
+
+Format: `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MID_TERM_SCORE] [ft/FINALS_SCORE]`
+
+* The examinations and their associated prefixes are:
+  * Reading Assessment 1 - `ra1`
+  * Reading Assessment 2 - `ra2`
+  * Practical Assessment - `pa`
+  * Midterm Test - `mt`
+  * Final Test `ft`
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** <br>
+* The index of the student must be specified and there should be exactly one INDEX parameter.
+* The scores of the assessments must be numerical as percentages, i.e. between 0% and 100% inclusive, with up to 2
+decimal places allowed. `0`, `100.00` and `69.1` are examples of valid scores.
+</div>
+
+<div markdown="span" class="alert alert-primary">
+**:bulb: Tip:** <br>
+* The index of the student can be seen from the student list.
+* The scores are optional, but there should be at least one score specified for `grade` command to be valid.
+</div>
+
+Example:`grade 1 ra1/90 ra2/80.1 pa/100.00 mt/85.23 ft/78`
+
+Outcome: The student at the 1st index (Alex Yap) will have their grades updated.
+
+![GradeCommand.png](images/GradeCommand.png)
+
 
 ### Marking a student's Mastery Check as passed: `mark`
 
@@ -310,10 +321,10 @@ Unmarks the Mastery Check of a specified student and removes its "(passed)" stat
 
 Format: `unmark INDEX`
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="span" class="alert alert-primary">
 **:bulb: Tip:** <br>
-* The index of the student must be specified and there should be exactly one INDEX parameter.<br>
-* The index of the student can be seen from the student list.<br>
+The index of the student must be specified and there should be exactly one INDEX parameter.<br>
+The index of the student can be seen from the student list.<br>
 </div>
 
 Example before entering `unmark 1` (Assuming student 1's Mastery Check has previously been marked as passed):
@@ -325,6 +336,39 @@ Example after entering `unmark 1`:
 ![UnmarkCommandOutcome.png](images/UnmarkCommandOutcome.png)
 
 As you can see, the "(passed)" status has been removed from student 1's Mastery Check after the `unmark` command is run.
+
+## Miscellaneous features
+
+Overview: Other features that aid you in using FRIDAY.
+
+### Getting User Guide link: `guide`
+
+If you ever need to refer to our User Guide while using FRIDAY, use this command to obtain the link to FRIDAY's User Guide.
+
+Format: `guide`
+
+### Getting help: `help`
+
+Shows a summary of commands along with their command word used in FRIDAY. This allows you to have an easily accessible summary when using FRIDAY.<br>
+It also includes a link to this User Guide if needed.
+
+Format: `help`
+
+### Clearing all existing data: `clear`
+
+On your first launch of FRIDAY, a sample list of students is displayed. The `clear` command allows you to clear this and any other existing data in FRIDAY, resulting in an empty Student list.
+
+Format: `clear`
+
+### Exiting FRIDAY : `exit`
+
+Exits FRIDAY. See you again soon!
+
+Format: `exit`
+
+## Features for advanced users
+
+Overview: These features help you personalize your FRIDAY experience and improve your productivity when using FRIDAY.
 
 ### Adding aliases: `alias`
 
