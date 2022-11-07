@@ -10,8 +10,8 @@ title: HealthcareXpress
 
 **HealthcareXpess is a desktop application for medical administrators to manage patients and nurses.** While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
-* If you are interested in using HealthcareXpress, head over to the [_Quick Start_ section of the **User Guide**]([UserGuide.html#quick-start](https://ay2223s1-cs2103-f13-4.github.io/tp/UserGuide.html)).
-* If you are interested about developing HealthcareXpress, the [**Developer Guide**]([DeveloperGuide.html](https://ay2223s1-cs2103-f13-4.github.io/tp/DeveloperGuide.html)) is a good place to start.
+* If you are interested in using HealthcareXpress, head over to the [_Quick Start_ section of the **User Guide**](https://ay2223s1-cs2103-f13-4.github.io/tp/UserGuide.html)).
+* If you are interested about developing HealthcareXpress, the [**Developer Guide**](https://ay2223s1-cs2103-f13-4.github.io/tp/DeveloperGuide.html)) is a good place to start.
 
 
 **Acknowledgements**
