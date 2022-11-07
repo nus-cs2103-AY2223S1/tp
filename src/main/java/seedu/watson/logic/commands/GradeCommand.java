@@ -5,6 +5,7 @@ import static seedu.watson.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import seedu.watson.model.Model;
 import seedu.watson.model.student.Student;
 
