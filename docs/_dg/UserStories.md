@@ -1,8 +1,15 @@
 <!-- markdownlint-disable-file first-line-h1 -->
+```info
+The following legend describes the symbols used in this section:
 
-Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+| Priority | Symbol  |     Meaning      |
+|:--------:|:-------:|:----------------:|
+|   High   | `* * *` |    Must have     |
+|  Medium  |  `* *`  |   Nice to have   |
+|   Low    |   `*`   | Unlikely to have |
+```
 
-| Priority | As a               | I can                                       | So that                                                                                                                          |
+| Priority | As a...            | I can...                                    | So that...                                                                                                                       |
 |:--------:|--------------------|---------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
 | `* * *`  | purchasing manager | add a new item to my inventory              | I can keep track of the data related to the new item                                                                             |
 | `* * *`  | purchasing manager | delete an item from my inventory            | remove an inventory item that I no longer need to track                                                                          |
@@ -28,4 +35,3 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | purchasing manager | add a tag to an item                        | I can classify an item via this certain tag                                                                                      |
 | `* * *`  | purchasing manager | remove a tag from an item                   | I can choose not to classify an item via this certain tag                                                                        |
 | `* * *`  | purchasing manager | view statistics of my inventory             | I can have an overview of important data related to my inventory that can help me in my decision making in managing my inventory |
-
