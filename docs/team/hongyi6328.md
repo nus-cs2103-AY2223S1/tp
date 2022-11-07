@@ -4,12 +4,6 @@ title: Huang Hongyi's Project Portfolio Page
 ---
 
 ### Project: PetCode
-
-PetCode is a software app that aims to facilitate better working experience and boost business management efficiency for
-pet sale coordinators.
-
-Given below are my contributions to the project.
-
 * **New Feature**: Extended the add person command to three categories: add buyer, deliverer command and supplier command.
     * What it does: allows the user to add persons according to their roles.
     * Justification: This feature is the core feature of this app since all other features are based on it. The user
@@ -49,7 +43,6 @@ Given below are my contributions to the project.
     * Justification: Without these data models, it would be extremely troublesome to manipulate data.
     * Highlights: The SOLID principles and OOP were employed thoroughly.
 * **Functionality**: Added the unique ID system.
-
 * **Functionality**: Discovered a variety of bugs and fixed them. For
   examples, [\#308](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/308)
   , [\#304](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/304)
@@ -58,18 +51,16 @@ Given below are my contributions to the project.
 * **Code
   contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=totalCommits%20dsc&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=zoom&zA=Hongyi6328&zR=AY2223S1-CS2103T-T09-2%2Ftp%5Bmaster%5D&zACS=215.92310030395137&zS=2022-09-16&zFS=&zU=2022-11-01&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
 * **Project management**:
-    * Managed releases `v1.2` - `v1.3(trial)` (2 releases) on GitHub
-    * Assigned teammates to different issues and kept track of their progress
-    * Maintained and updated the official and unofficial meeting minutes after every meeting
+    * Managed releases `v1.2` - `v1.3(trial)` (2 releases) on GitHub.
+    * Assigned teammates to different issues and kept track of their progress.
+    * Maintained and updated the official and unofficial meeting minutes after every meeting.
     * Managed milestones, changed their due dates, and closed them to wrap-up.
     * Did final submission of the JAR file, the UG, the DG, and the PPP.
 
 * **Enhancements to existing features**:
     * Let the GUI window fit different screen sizes (Pull
       requests [\#296](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/296))
-    * Added test cases (the coverage increment is hard to calculate as functionality code was added along with test
-      code.)
-    * Deleted useless classes like AddCommandParser and decoupled some classes for higher robustness.
+    * Deleted useless classes like `AddCommandParser` and decoupled some classes for higher robustness.
 
 * **Documentation**:
     * User Guide:
