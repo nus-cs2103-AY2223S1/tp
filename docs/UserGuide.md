@@ -20,12 +20,17 @@ Be sure to check out the [key definitions](#key-definitions) section of the guid
 by any of the terms used!
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+
+## Table of Contents
+
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
+[Back to top](#table-of-contents)
 
 1. Ensure you have Java `11` or above installed in your Computer. This [link](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A)
    (external link to Oracle) provides a step-by-step installation guide for Java, if needed.
@@ -49,7 +54,10 @@ by Cobb to store its data. **Edit these at your own risk**, as Cobb will start w
 error in the formatting of the data in these files.
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Key definitions
+[Back to top](#table-of-contents)
 
 This section aims to define some terms that pop up throughout the user guide. These terms are used often, so it would be 
 good to take note of them before continuing.
@@ -86,8 +94,10 @@ and `Tim` is the input.
 7. **Owner Phone**: The phone number of the owner of the property.
 8. **Entry Time**: The time at which the property was added to the database with `addprop`.
 
+--------------------------------------------------------------------------------------------------------------------
 
 ## Interface Layout
+[Back to top](#table-of-contents)
 
 When you launch Cobb, Cobb will appear on your screen as a window. Let's take a look at the 4 different components
 that make up this window.
@@ -155,6 +165,7 @@ It appears when you execute the [Help Command](#viewing-help-help).
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
+[Back to top](#table-of-contents)
 
 Take a look at the [command summary](#command-summary) for a quick summary of the features below!
 
@@ -251,11 +262,6 @@ You cannot add duplicate properties that have the same address.
 </div>
 
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-The characteristics field are optional.
-That is, it is perfectly okay to try and add a property that does not have this field.
-</div>
-
 Examples: <br>
 `addprop -n Peak Residences -a 333 Thompson Road -p 1000000 -d long property description -o Bob -ph 91234567 -c Toa Payoh; Bright`: 
 Adds a property called "Peak Residences" owned by Bob with a phone number of 91234567.
@@ -346,11 +352,10 @@ Syntax: `listprops`
 <div markdown="span" class="alert alert-primary">:exclamation: **Note:**
 These commands cause the [Buyer List](#2-buyer-list) and [Property List](#3-property-list) to only show a portion of 
 buyers and properties in the database! Use the [List Commands](#list-commands) to show all buyers and properties again.
+
+Also, no flags are used for these commands and so the search word(s) are to be supplied directly.
 </div>
 
-<div markdown="span" class="alert alert-primary">:bulb: **Note:**
-No flags are used for these commands and the search word(s) are to be supplied directly.
-</div>
 
 #### Find buyer entry in database: `findbuyers`
 
@@ -373,7 +378,7 @@ Examples:<br>
 ### Filter Commands
 
 <div markdown="span" class="alert alert-primary">:exclamation: **Note:**
-These commands cause the [Buyer List](#2-buyer-list) and [Property List](#3-property-list) to only show a portion of 
+These commands might cause the [Buyer List](#2-buyer-list) and [Property List](#3-property-list) to only show a portion of 
 buyers and properties in the database! Use the [List Commands](#list-commands) to show all buyers and properties again.
 </div>
 
@@ -520,8 +525,9 @@ If your changes to the data file makes its format invalid, Cobb will discard all
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+[Back to top](#table-of-contents)
 
-**Q**: Why am I not seeing some properties and buyers in my property and buyer lists?
+**Q**: Why am I not seeing some properties and buyers in my property and buyer lists?<br>
 **A**: You might be looking at a filtered portion of the database. This is because you previously executed a 
 [Filter Command](#filter-commands) or a [Find Command](#find-commands). To view all buyers and properties again, 
 use the [List Commands](#list-commands).
@@ -549,6 +555,7 @@ If the problem persists, please report the bug to us.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
+[Back to top](#table-of-contents)
 
 | Action                                                                            | Format, Examples                                                                                                                                                                                                                                    |
 |-----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|

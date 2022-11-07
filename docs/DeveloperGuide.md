@@ -2,6 +2,7 @@
 layout: page
 title: Developer Guide
 ---
+
 * Table of Contents
 {:toc}
 
@@ -195,58 +196,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Creating a buyer: `addbuyer`
-
-The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide.
-
-The `Buyer` class represents a buyer with buyer-specific fields. `PriceRange`, `Characteristics`, and `Priority`
-denote his budget, requirements for the property, and buyer priority respectively.
-
-These three fields are all optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`.
-When the user chooses not to indicate a buyer priority, the buyer's priority will be set to the default priority as `NORMAL`.
-When the user creates a buyer, the entry time is also automatically stored as an `LocalDateTime`.
-
-This is the class diagram of a `Buyer`.
-
-![BuyerClassDiagram](images/BuyerClassDiagram.png)
-
-The object diagram below shows the new objects in the internal state when a valid `addbuyer` command `addbuyer -n Jane -ph 89991237 -e jane@gmail.com -a Bishan Street 12 -r 2000-5000` is input by the user.
-Note that a new `LocalDateTime` object is created by default and a new `Priority` object is also created albeit the user did not specify the priority parameter in the command.
-In addition, a new `Optional<PriceRange>` object containing a new `PriceRange` object is created since the user specified a price range parameter while a new `Optional<Characteristics>` containing null is created since the user did not specify the characteristics parameter.
-The latter is omitted from the diagram for simplicity purposes.
-
-![BuyerObjectDiagram](images/AddBuyerObjectDiagram-Final_state.png)
-
-#### Design considerations:
-No duplicate buyers can be added to the buyer list. This means that no two buyers with the same phone or email can exist. We considered using only name to identify a buyer, so that two people with the name but different contact numbers can be added. However, we decided against it as there could be two people with the exact same name. Therefore, we decided to use phone or email since these should be unique to every person.
-The entry time is added towards later of the development to help facilitate a more flexible implementation of the `sortbuyers` command.
-We considered whether to allow the user to specify a date and time by adding an additional `-d` flag, but later decided against it since we see little value for allowing such feature.  
-
-### Creating a property: `addprop`
-
-The structure for executing an `addprop` command follows the flow as mentioned in the "Logic component" section of this guide.
-
-The `Property` class represents a property with property-specific fields. `Price` and `Characteristics` denote the price and feature of the property respectively.
-
-The `price` field is mandatory while the `characteristics` field is optional. When the user chooses not to indicate a property's characteristics, the `characteristics` field of a property may be null. Hence, it has been implemented using `Optional<T>`.
-When the user creates a property, the entry time is also automatically stored as an `LocalDateTime`.
-
-This is the class diagram of a `Property`.
-
-![PropertyClassDiagram](images/PropertyClassDiagramNew.png)
-
-The object diagram below shows the new objects in the internal state when a valid `addprop` command `addprop -n Peak Residences -a 333 Thompson Road -p 1000000 -d long property description -owner Bob -ph 91234567` is input by the user.
-Note that a new `LocalDateTime` object is created by default.
-In addition, a new `Optional<Characteristics>` containing null is created since the user did not specify the characteristics parameter.
-It is omitted from the diagram for simplicity purposes.
-
-![PropertyObjectDiagram](images/AddPropertyObjectDiagram-Final_state.png)
-
-#### Design considerations:
-No duplicate properties can be added to the property list. This means that no two properties with the same address can exist. We used name and price to identify a property in previous iterations, but later decided against it since in real life there could be identical properties with the exact same name and price. The only thing unique to the property would be the unit number recorded in the address.
-The entry time is added towards later of the development to help facilitate a more flexible implementation of the `sortprops` command.
-We considered whether to allow the user to specify a date and time by adding an additional `-d` flag, but later decided against it since we see little value for allowing such feature.
-
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -412,61 +361,93 @@ From the diagram, it can be seen that a `Property` object consists of the follow
 
 ![Alternative Property and Buyer implementation](images/AlternativeBuyerAndProperty.png)
 
+### Creating a buyer: `addbuyer`
 
-### Creating a buyer
+The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide.
 
 The `Buyer` class represents a buyer with buyer-specific fields. `PriceRange`, `Characteristics`, and `Priority`
-denote his budget, requirements for the property, and buyer priority respectively.  
+denote his budget, requirements for the property, and buyer priority respectively.
 
-These three fields are all optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`.
-When the user chooses not to indicate a buyer priority, the buyer's priority will be set to the default priority as `NORMAL`.
-
-When the user creates a buyer, the time of creation is also automatically stored as an `LocalDateTime`. 
+These three fields are all optional:<br>
+- When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`.<br>
+- When the user chooses not to indicate a buyer priority, the buyer's priority will be set to the default priority as `NORMAL`.
+- When the user creates a buyer, the time of creation is also automatically stored as an `LocalDateTime`.
 
 This is the class diagram of a `Buyer`.
 
 ![BuyerClassDiagram](images/BuyerClassDiagram.png)
 
+Following the execution of this sample `addbuyer` command:
+`addbuyer -n Jane -ph 89991237 -e jane@gmail.com -a Bishan Street 12 -r 2000-5000`, the following object diagram represents
+the internal state of the newly created `Buyer`.
 
-The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide.
+![BuyerObjectDiagram](images/AddBuyerObjectDiagram-Final_state.png)
+
+Note that the following objects are created by default:
+1. A new `LocalDateTime` object.
+2. A new `Priority` object, representing *NORMAL* priority.
+3. A new `Optional<PriceRange>` object. In this context, since a price range was specified in the command, this `Optional<PriceRange>` contains a `PriceRange` object.
+4. A new `Optional<Characteristics>` object containing a null pointer, as no characteristics flag was specified in the command above.
+
+The `Optional<Characteristics>` object has been omitted from the object diagram for brevity.
 
 #### Design considerations:
-Duplicate buyers should not be able to be added into the buyer list. This means that we need some sort of criterion to differentiate
-between buyers.
+The buyer list should not allow for creation of duplicate buyers. This means that some condition(s) defining equality
+between two separate `Buyer` objects should be specified.
 
-Originally, we disallowed creation of two buyers that have the same name. However, we found this to be too rigid as there could very well
-exist two distinct buyers that have the same name. Instead, we decided to make use of phone numbers and emails to identify identical buyers,
-as these fields should be unique to each person.
+Originally, a buyer's `Name` was used to distinguish a singular buyer from others. However, this was changed
+in later iterations as it was realised that there could very well exist two unique buyers with similar names.
 
-The time of creation field was added towards the later part of development to help facilitate a more flexible implementation of the `sortbuyers` command.  
+Instead, the `Phone` and `Email` of the `Buyer` are used to distinguish a buyer, as there cannot be two buyers that have
+the exact same phone numbers and email addresses.
+
+The entry time was added towards later parts of development to help facilitate a more flexible implementation of the `sortbuyers` command.
+Early discussions allowed a user to provide the date and time manually using a `-d` flag, but this feature was scrapped as
+it was found to provide little to no value.
 
 The activity diagram for the creation of a buyer can be seen below.
 
 ![Add buyer activity diagram](images/AddBuyerActivityDiagram.png)
 
-### Creating a property
+### Creating a property: `addprop`
+
+The structure for executing an `addprop` command follows the flow as mentioned in the "Logic component" section of this guide.
 
 The `Property` class represents a property with property-specific fields. `Price` and `Characteristics` denote the price and feature of the property respectively.
 
 The `price` field is mandatory while the `characteristics` field is optional. When the user chooses not to indicate a property's characteristics, the `characteristics` field of a property may be null. Hence, it has been implemented using `Optional<T>`.
-
-When the user creates a property, the time of creation is also automatically stored as an `LocalDateTime`.
+When the user creates a property, the entry time is also automatically stored as an `LocalDateTime`.
 
 This is the class diagram of a `Property`.
 
 ![PropertyClassDiagram](images/PropertyClassDiagramNew.png)
 
-The structure for executing an `addprop` command follows the flow as mentioned in the "Logic component" section of this guide.
+Following the execution of this sample `addprop` command:
+`addprop -n Peak Residences -a 333 Thompson Road -p 1000000 -d long property description -owner Bob -ph 91234567`, the following
+object diagram represents the internal state of the newly created `Property`.
+
+![PropertyObjectDiagram](images/AddPropertyObjectDiagram-Final_state.png)
+
+Note that the following objects are created by default:
+1. A new `LocalDateTime` object.
+2. A new `Optional<Characteristics>` object containing a null pointer, as no characteristics flag was specified in the command.
+
+The `Optional<Characteristics>` object has been omitted form the object diagram for brevity.
+
 
 #### Design considerations:
-No duplicate properties can be added to the property list. This means that we need some sort of criterion to differentiate between
-properties.
+The property list should not allow for creation of duplicate properties. This means that some condition(s) defining equality
+between two separate `Property` objects should be specified.
 
-Originally, we disallowed creation of two properties that have the same name and price. However, we found this to be to rigid as
-there could very well be two distinct properties that exist which have both the same name and price. Instead, we decided to make
-use of the property's address to distinguish it from another property, as the address of a property should be unique to it.
+Originally, `PropertyName` and `Price` were used to distinguish a singular property from others. However, this was changed
+in later iterations as it was realised that there could very well exist two entirely separate properties with identical names and prices.
 
-The time of creation field was added towards the later part of development to help facilitate a more flexible implementation of the `sortprops` command.
+Instead, the `Address` of the `Property` is used to distinguish a property, as there cannot be two properties existing at the exact
+same address.
+
+The entry time was added towards later parts of development to help facilitate a more flexible implementation of the `sortprops` command.
+Early discussions allowed a user to provide the date and time manually using a `-d` flag, but this feature was scrapped as
+it was found to provide little to no value.
 
 The activity diagram for the creation of a property can be seen below.
 
