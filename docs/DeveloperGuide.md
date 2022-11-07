@@ -803,6 +803,32 @@ testers are expected to do more *exploratory* testing.
     1. Test case: `listdebtors m/1000`<br>
        Expected: Similar to expected outcome of negative test case above.
 
+### Find
+
+1. The expected behaviour of the `find` command is documented in detail in the UG, please refer to it for example test cases to try.
+
+### Find debts
+
+1. Finding debts with single keyword
+
+    1. Prerequisites: One or more persons has a debt whose description contains the word `burger`.
+
+    1. Test cases: `finddebt burger`, `finddebt Burger`, `finddebt BURGER`<br>
+       Expected: All person(s) who have a debt whose description contains the word `burger` (ignoring capitalisation) are listed.
+
+    1. Test cases: `finddebt n/burger`, `finddebt debt/Burger`<br>
+       Expected: PayMeLah warns that command format is incorrect.
+
+1. Finding debts with multiple keywords
+
+    1. Prerequisites: One or more persons has a debt whose description contains the word `burger`. Same for `chicken`.
+
+    1. Test cases: `finddebt chicken burger`, `finddebt Chicken Burger`, `finddebt CHICKEN BURGER`<br>
+       Expected: All person(s) who have a debt whose description contains the word `burger`, or a debt whose description contains the word `chicken` (ignoring capitalisation), or both are listed.
+
+    1. Test cases: `finddebt n/chicken burger`, `finddebt debt/Chicken Burger`<br>
+       Expected: PayMeLah warns that command format is incorrect.
+
 ### Undo
 
 1. Successful undo of a command
@@ -813,7 +839,7 @@ testers are expected to do more *exploratory* testing.
     1. Test cases: Enter `add n/newPerson`, then filter the persons list using commands such as `find` and `listdebtors`, then `undo`<br>
        Expected: Similar to above, but filter on persons list is reset and all persons are displayed.
 
-2. Unsuccessful undo of a command
+1. Unsuccessful undo of a command
 
     1. Prerequisites: PayMeLah has just been launched, no command has been entered yet.
 
