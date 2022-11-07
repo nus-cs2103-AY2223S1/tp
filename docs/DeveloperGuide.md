@@ -798,11 +798,11 @@ Deleting a property while all properties are being shown
 
 Prerequisites: Property List must contain at least one property.
 
-- Test case (Valid index): `delete 1`
+- Test case (Valid index): `delete -p 1`
   - Expected: First property in the list will be deleted from the list of properties. Property list will reflect the status of the deleted property
-- Test case (Invalid index): `delete 0`
+- Test case (Invalid index): `delete -p 0`
   - Expected: No property will be deleted from the list of properties and input text will turn red to indicate there is an error in the input. Result display will output a correct example command and error message.
-- Test case (missing index): `delete`
+- Test case (missing index): `delete-p `
   - Expected: No property will be deleted from the list of properties and input text will turn red to indicate there is an error in the input. Result display will output a correct example command and error message.
 
 ### Editing a property
@@ -863,7 +863,7 @@ Finding all properties in the Property List with specified price range
    - Test case (Negative number given): `range -p l/-999 u/99999`
      - Expected: Property List will display an error message stating only positive numbers are accepted
    - Test case (Invalid input): `range -p l/abc u/99999`
-     - Expected: Property List will display an error message stating that invalid input was give, only positive integers are accepted
+     - Expected: Property List will display an error message stating that invalid input was given, only positive integers are accepted
 
 ### Filtering properties by status
 Finding all properties in the Property List with the specified Property Status
@@ -890,21 +890,27 @@ Finding all properties in the Property List with the specified Property Type
 ### Adding a client to the Client List
    Prerequisites: Application must be in main window
    - Test cases (specifying compulsory inputs only): `add -c n/James a/123, Clementi Rd, 1234665`
-     - Expected: A new client is added to the Client List. Client List panel will update to display all the clients in the client directory. The compulsory parameters will be set to what was specified in the command. Result display will output the message: `New property added: PINNACLE@DUXTON; Address: SG, Cantonment Rd, #1G, 085301; Price: 1000000; Property Type: HDB; Property Status: AVAILABLE`
+     - Expected: A new client is added to the Client List. 
+     Client List panel will update to display all the clients in the client directory. 
+     The compulsory parameters will be set to what was specified in the command. 
+     Result display will output the message: 
+     `New client added: James; Address: 123, Clementi Rd, 1234665`
    - Test case (missing a compulsory input (n/NAME)): `add -c a/123, Clementi Rd, 1234665`
-     - Expected: No client will be added to the Client List and input text will turn red to signal an error. Result display will indicate that an invalid command format has been specified.
+     - Expected: No client will be added to the Client List and input text will turn red to signal an error. 
+     Result display will indicate that an invalid command format has been specified.
    - Test case (Interested Property does not exist): `add -c n/James a/123, Clementi Rd, 1234665 t/friend t/colleague ip/PINNACLE@DUXTON`
-     - Expected: No client added to the Client List and input text will turn red to signal an error. Result display will indicate that a property of PINNACLE@DUXTON was not found in the property directory.
+     - Expected: No client added to the Client List and input text will turn red to signal an error. 
+     Result display will indicate that a property of `PINNACLE@DUXTON` was not found in the property directory.
    
 ### Deleting a client
    Deleting a client while all clients are being shown
 
    Prerequisites: Client List must contain at least one client.
-   - Test case (Valid index): `delete 1`
+   - Test case (Valid index): `delete -c 1`
      - Expected: First client in the list will be deleted from the list of clients. Client list will reflect the status of the deleted client
-   - Test case (Invalid index): `delete 0`
+   - Test case (Invalid index): `delete -c 0`
      - Expected: No client will be deleted from the list of clients and input text will turn red to indicate there is an error in the input. Result display will output a correct example command and error message.
-   - Test case (missing index): `delete`
+   - Test case (missing index): `delete -c`
      - Expected: No client will be deleted from the list of clients and input text will turn red to indicate there is an error in the input. Result display will output a correct example command and error message.
 
 ### Editing a client
@@ -912,7 +918,8 @@ Editing a client while there are properties shown in the Client List
 
 Prerequisites: Client List must contain at least one Client .
 - Test case (editing one field of a Client ): `edit -c 1 n/ John Lee`
-  - Expected: The Client Name of the client with index 1 in the Client List will be modified to become `John Lee`. The remaining fields of this Client will remain the same. Result display will output the modified Client and its details.
+  - Expected: The Client Name of the client with index 1 in the Client List will be modified to become `John Lee`. 
+  The remaining fields of this Client will remain the same. Result display will output the modified Client and its details.
 - Test case (Invalid index given): `edit -c 0 n/John Lee`
   - Expected: No client will be edited. Invalid command format error will be displayed due to invalid index input.
 - Test case (`-c` flag not provided): `edit 1 n/John Lee`
