@@ -109,8 +109,8 @@ which contains `workday-nus`, `edu`, and `sg` as `DOMAIN_LABEL` separated by `.`
 | **Major**           | `m`       | 50           | Can only contain alphanumeric characters and spaces                                    |
 | **Job Title**       | `jt`      | 100          | Can only contain alphanumeric characters, `SPECIAL_PUNCTUATIONS` and spaces            |
 
-* `CURRENT_CAP` must be a positive value (more than `0.0`)
 * `CURRENT_CAP` value must be smaller than or equal to `MAX_CAP`
+* `MAX_CAP` and `CURRENT_CAP` must be a positive value (more than `0.0`)
 * `MAX_CAP` and `CURRENT_CAP` values should not exceed `100.0`
 * `MAX_CAP` and `CURRENT_CAP` will be rounded to 2 decimal places, e.g. `3.99999` will be rounded to `4.00`
 * `SPECIAL_PUNCTUATIONS` include `-` `#` `,` `:` `&` `(` `)` `"` `'` `/` `[` `]`
@@ -137,7 +137,7 @@ which contains `workday-nus`, `edu`, and `sg` as `DOMAIN_LABEL` separated by `.`
   e.g., in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Bobby Doe`.
 
 * Items with `...` after them can be used multiple times including zero times.
-  e.g. `[t/TAG]...` can be used as ` ` (i.e. 0 times), `t/KIV`, `t/KIV t/offered` etc.
+  e.g. `[t/TAG]...` can be used as nothing (i.e. 0 times), `t/KIV`, `t/KIV t/offered` etc.
 
 * Curly brackets represent a set of at least 1 parameter, and each of them is mandatory.
   e.g., `{mandatory_field_parameter/FIELD_DETAIL}`, all fields that belong to mandatory fields must be listed.
@@ -255,7 +255,7 @@ Format: `find parameter/KEYWORD [parameter/KEYWORD]...`
 Search Types:
 1. Matching word: Keywords will only match if there is a full matching word. E.g., `Bobby` will not match `Bobbys`.
 2. Substring: Keywords will match as long as a substring match exists. E.g., `@gmail.com` will match `jason@gmail.com` and `CS2103@gmail.com`
-3. Numeric: Search will search by its numeric value, rounded to 2 decimal places. E.g., Both `3` and `3.00000001` will match `3.00`
+3. Numeric: Keywords will match by its numeric value, rounded to 2 decimal places. E.g., Both `3` and `3.00000001` will match `3.00`
 
 | Field               | Search Type               |
 |---------------------|---------------------------|
