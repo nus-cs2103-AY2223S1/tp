@@ -885,7 +885,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `listEvents 123`<br>
        Expected: Current event list remains the same and no events are sorted. Error message is shown in the result display.
 
-    4. Other incorrect listEvent commands to try: `LISTEVENTS s/d`, `listEvents s/d e`, `listEvents s/n`<br>
+    4. Other incorrect listEvents commands to try: `LISTEVENTS s/d`, `listEvents s/d e`, `listEvents s/n`<br>
        Expected: Similar to previous test case.
 
     5. `listEvents s/d` lists and sorts all events by their dates even if the event list does not display all events due to the `findEvents` command.
@@ -940,7 +940,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `untagEvent 0 p/1`<br>
        Expected: No person is untagged from an event. Error message is shown in the result display.
 
-    5. Other incorrect tagEvent commands to try: `untagEvent x p/y` (where either x is larger than the size of the current event list or y is
+    5. Other incorrect untagEvent commands to try: `untagEvent x p/y` (where either x is larger than the size of the current event list or y is
        larger than the size of the current person list), `UNTAGEVENT 1 p/1`, `untagEvent 1 p/x` (where x is the index of a person that is not tagged in the first event
        in the current event list).<br>
        Expected: Similar to previous test case.
@@ -959,7 +959,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `untagEvent 0 p/1 2`<br>
        Expected: No person is untagged from an event. Error message is shown in the result display.
 
-    5. Other incorrect tagEvent commands to try: `untagEvent x p/y z` (where either x is larger than the size of the current event list or y or z is
+    5. Other incorrect untagEvent commands to try: `untagEvent x p/y z` (where either x is larger than the size of the current event list or y or z is
        larger than the size of the current person list), `UNTAGEVENT 1 p/1 2`, `untagEvent 1 p/x y` (where either x or y is the index of a person that is not tagged in the first event
        in the current event list).<br>
        Expected: Similar to previous test case.
@@ -989,7 +989,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `mailEvent 0`<br>
        Expected: No CSV files are created. Error message is shown in the result display.
 
-    4. Other incorrect makeStats commands to try: `MAILEVENT 1`, `mailEvent x` (where x is larger than the size of the displayed event list)<br>
+    4. Other incorrect mailEvent commands to try: `MAILEVENT 1`, `mailEvent x` (where x is larger than the size of the displayed event list)<br>
        Expected: Similar to previous test case.
 
 ### Saving data
