@@ -27,12 +27,12 @@ OutputPanel --> "0..1" UndoCard
 OutputPanel --> "0..1" RedoCard
 OutputPanel --> "0..1" ModifiedPatientCard
 OutputPanel --> "0..1" ScheduleListPanel
-OutputPanel -->  UpdatedPersonListPanel
+OutputPanel --> "0..1" UpdatedPersonListPanel
 OutputPanel --> "0..1" UpdatedPatientCard
 OutputPanel --> "0..1" TruncatedTaskListPanel
 
-UndoCard -->  UpdatedPersonListPanel
-RedoCard -->  UpdatedPersonListPanel
+UndoCard -left->   "1..2" UpdatedPersonListPanel
+RedoCard -->  "1..2" UpdatedPersonListPanel
 UpdatedPersonListPanel --> "*" UpdatedPatientCard
 
 ScheduleListPanel --> "*" ScheduleListCard
