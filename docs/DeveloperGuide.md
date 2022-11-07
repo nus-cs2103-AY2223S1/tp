@@ -85,7 +85,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<img src="images/UiClassDiagram.png" width="90%" />
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TutorListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -135,7 +135,6 @@ How the parsing works:
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
-
 
 The `Model` component,
 
@@ -281,7 +280,7 @@ Step 5: This causes the `TutorDetailsPanel` of the `tutor` to be set as visible,
 
 The following sequence diagram demonstrates the above operations (excluding the parsing details):
 
-![ViewSequenceDiagram](./images/ViewSequenceDiagram.png)
+<img src="images/ViewSequenceDiagram.png" width="80%"/>
 
 <ins>Design Considerations</ins>
 
