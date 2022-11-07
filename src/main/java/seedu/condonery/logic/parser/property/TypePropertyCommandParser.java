@@ -1,17 +1,14 @@
 package seedu.condonery.logic.parser.property;
 
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PROPERTY_TYPE;
 
 import java.util.Arrays;
-import java.util.Locale;
 
 import seedu.condonery.logic.commands.property.TypePropertyCommand;
 import seedu.condonery.logic.parser.Parser;
 import seedu.condonery.logic.parser.ParserUtil;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.property.PropertyTypeContainsKeywordsPredicate;
-import seedu.condonery.model.tag.PropertyTypeEnum;
 
 /**
  * Parses input arguments and creates a new TypePropertyCommand object
