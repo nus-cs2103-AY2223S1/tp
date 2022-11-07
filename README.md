@@ -19,4 +19,4 @@ PennyWise is a work-in-progress. Check out our [Developer Guide](https://ay2223s
 
 ## Acknowledgements
 
-This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+This project is based on the [AddressBook-Level3 project](https://github.com/se-edu/addressbook-level3) created by the [SE-EDU initiative](https://se-education.org).

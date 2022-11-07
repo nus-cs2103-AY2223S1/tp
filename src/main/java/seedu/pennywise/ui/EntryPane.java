@@ -52,6 +52,7 @@ public class EntryPane extends UiPart<Region> {
      */
     public void showExpenseEntryPanel() {
         logger.info("Showing expenses entry panel");
+        expenses.setUserData(true); // indicates that this action is from PennyWise instead of user action
         tabPane.getSelectionModel().select(expenses);
     }
 
@@ -60,6 +61,7 @@ public class EntryPane extends UiPart<Region> {
      */
     public void showIncomeEntryPanel() {
         logger.info("Showing income entry panel");
+        income.setUserData(true); // indicates that this action is from PennyWise instead of user action
         tabPane.getSelectionModel().select(income);
     }
 

@@ -1,0 +1,53 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":GraphPanel" as GraphPanel UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+
+[-> MainWindow: executeCommand("view t/e")]
+activate MainWindow
+
+MainWindow -> LogicManager : execute("view t/e")
+activate LogicManager
+
+
+LogicManager --> MainWindow : commandResult
+deactivate LogicManager
+
+alt should update graph
+MainWindow -> MainWindow : updateGraph()
+activate MainWindow
+
+MainWindow -> LogicManager : getExpensePieChartData()
+activate LogicManager
+
+LogicManager -> ModelManager : getExpensePieChartData()
+activate ModelManager
+
+ModelManager -> LogicManager
+deactivate ModelManager
+
+LogicManager -> MainWindow
+
+create GraphPanel
+MainWindow -> GraphPanel
+activate GraphPanel
+GraphPanel --> MainWindow
+deactivate GraphPanel
+end
+deactivate LogicManager
+deactivate MainWindow
+
+[<--MainWindow
+deactivate MainWindow
+@enduml
