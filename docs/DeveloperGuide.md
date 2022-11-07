@@ -5,9 +5,9 @@ title: Developer Guide
 
 # **SoCompiler Developer Guide**
 
-SoCompiler is a **desktop app for managing contacts and module information, optimized for use via a [Command Line Interface](#command-line-interface) 
-(CLI)** while still having the benefits of a [Graphical User Interface](#graphical-user-interface) (GUI). 
-It is built specifically for [School of Computing](#school-of-computing) (SOC) students in NUS but can also be used by other students from NUS.
+SoCompiler is a **desktop app for managing contacts and module information, optimized for use via a [Command Line Interface](#command-line-interface-cli) 
+(CLI)** while still having the benefits of a [Graphical User Interface](#graphical-user-interface-gui) (GUI). 
+It is built specifically for [School of Computing](#school-of-computing-soc) (SOC) students in NUS but can also be used by other students from NUS.
 
 This developer guide will expose the architecture behind SoCompiler and showcase the specifics of how commands are handled by the application.
 
