@@ -565,6 +565,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+**Extensions**
+
+* 1a. The given `order` is invalid.
+    * 1a1. Tuthub displays an error message.
+    * Step 1a1 is repeated until the proper `order` ("`a`" or "`d`") is entered.
+
+      Use case resumes from step 1.
+
+* 1b. The given `prefix` is invalid.
+    * 1a1. Tuthub displays an error message.
+    * Step 1a1 is repeated until the proper `prefix` ("`r/`" or "`tn/`") is entered.
+
+      Use case resumes from step 1.
 
 **Use case: UC7 - Contacting tutors by email**
 
