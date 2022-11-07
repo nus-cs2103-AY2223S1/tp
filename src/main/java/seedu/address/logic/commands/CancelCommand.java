@@ -14,7 +14,7 @@ import seedu.address.model.person.Person;
  */
 public class CancelCommand extends SelectAppointmentCommand {
     public static final String COMMAND_WORD = "cancel";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Cancels an appointment in the appointment list."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Cancels an appointment in the appointment list.\n"
             + "Parameters: APPOINTMENT_INDEX (must be a valid appointment index and positive integer)\n"
             + "Example: " + COMMAND_WORD + " 2";
 
