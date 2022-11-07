@@ -11,7 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new MakeStatsCommand object.
  */
-public class MakeStatsCommandParser {
+public class MakeStatsCommandParser implements Parser<MakeStatsCommand> {
 
     private static final String TYPE_GENDER = "g";
     private static final String TYPE_AGE = "a";

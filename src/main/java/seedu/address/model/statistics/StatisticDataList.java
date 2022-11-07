@@ -15,7 +15,6 @@ import seedu.address.model.statistics.exceptions.DuplicateDataException;
  * Supports a minimal set of list operations.
  */
 public class StatisticDataList {
-
     //ObservableList of StatisticData points
     private final ObservableList<StatisticData> chartDataList = FXCollections.observableArrayList();
     /**
@@ -58,7 +57,7 @@ public class StatisticDataList {
                 return;
             }
         }
-        this.addStatistic(new StatisticData(name, 1));
+        this.addStatistic(new StatisticData(name, 1.0));
     }
     /**
      * Converts the ObservableList of StatisticData to an ObservableList of PieChart.Data.
@@ -70,7 +69,20 @@ public class StatisticDataList {
         }
         return pieChartData;
     }
+
     public ObservableList<Data> asUnmodifiableObservableList() {
         return FXCollections.unmodifiableObservableList(this.toPieChartData());
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (other instanceof StatisticDataList) {
+            return this.getChartDataList()
+                    .equals(((StatisticDataList) other).getChartDataList());
+        }
+        return false;
     }
 }

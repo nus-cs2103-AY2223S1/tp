@@ -5,9 +5,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DOB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EVENT_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PURPOSE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -22,6 +27,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.event.EventTitleContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditEventDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -43,6 +49,10 @@ public class CommandTestUtil {
     public static final String VALID_GENDER_AMY = "Female";
 
     public static final String VALID_GENDER_BOB = "Male";
+
+    public static final String VALID_GENDER_TYPE = "g";
+
+    public static final String VALID_AGE_TYPE = "a";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -66,12 +76,45 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_GENDER_DESC = " " + PREFIX_GENDER + "unknown";
+    public static final String INVALID_TYPE_DESC = " " + PREFIX_TYPE + "c";
+
+    public static final String TYPE_DESC_GENDER = " " + PREFIX_TYPE + VALID_GENDER_TYPE;
+
+    public static final String TYPE_DESC_AGE = " " + PREFIX_TYPE + VALID_AGE_TYPE;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
     public static final EditPersonCommand.EditPersonDescriptor DESC_AMY;
     public static final EditPersonCommand.EditPersonDescriptor DESC_BOB;
+
+    // Values used by Event Methods
+    public static final String VALID_EVENT_TITLE_CHOCOLATE = "Chocolate Sale";
+    public static final String VALID_DATE_CHOCOLATE = "10/10/2022";
+    public static final String VALID_START_TIME_CHOCOLATE = "13:30";
+    public static final String VALID_PURPOSE_CHOCOLATE = "$10 off any 2 boxes of chocolates";
+    public static final String VALID_EVENT_TITLE_SOCKS = "Socks Sale";
+    public static final String VALID_DATE_SOCKS = "12/12/2022";
+    public static final String VALID_START_TIME_SOCKS = "09:30";
+    public static final String VALID_PURPOSE_SOCKS = "$1 off any pair of socks";
+
+    public static final String EVENT_TITLE_DESC_CHOCOLATE = " " + PREFIX_EVENT_TITLE + VALID_EVENT_TITLE_CHOCOLATE;
+    public static final String DATE_DESC_CHOCOLATE = " " + PREFIX_START_DATE + VALID_DATE_CHOCOLATE;
+    public static final String START_TIME_DESC_CHOCOLATE = " " + PREFIX_START_TIME + VALID_START_TIME_CHOCOLATE;
+    public static final String PURPOSE_DESC_CHOCOLATE = " " + PREFIX_PURPOSE + VALID_PURPOSE_CHOCOLATE;
+
+    public static final String EVENT_TITLE_DESC_SOCKS = " " + PREFIX_EVENT_TITLE + VALID_EVENT_TITLE_SOCKS;
+    public static final String DATE_DESC_SOCKS = " " + PREFIX_START_DATE + VALID_DATE_SOCKS;
+    public static final String START_TIME_DESC_SOCKS = " " + PREFIX_START_TIME + VALID_START_TIME_SOCKS;
+    public static final String PURPOSE_DESC_SOCKS = " " + PREFIX_PURPOSE + VALID_PURPOSE_SOCKS;
+
+    // '$' not allowed in eventTitle
+    public static final String INVALID_EVENT_TITLE_DESC = " " + PREFIX_EVENT_TITLE + "$$Car Sale";
+    public static final String INVALID_DATE_DESC = " " + PREFIX_START_DATE + "0/1/1/1"; // invalid value for date
+    public static final String INVALID_START_TIME_DESC = " " + PREFIX_START_TIME + "13212:30"; // invalid time > 24:00
+    public static final String INVALID_PURPOSE_DESC = " " + PREFIX_PURPOSE; // empty string not allowed for purpose
+    public static final EditEventCommand.EditEventDescriptor DESC_CHOCOLATE;
+    public static final EditEventCommand.EditEventDescriptor DESC_SOCKS;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -80,6 +123,12 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withGender(VALID_GENDER_BOB).build();
+        DESC_CHOCOLATE = new EditEventDescriptorBuilder().withEventTitle(VALID_EVENT_TITLE_CHOCOLATE)
+                .withDate(VALID_DATE_CHOCOLATE).withStartTime(VALID_START_TIME_CHOCOLATE)
+                .withPurpose(VALID_PURPOSE_CHOCOLATE).build();
+        DESC_SOCKS = new EditEventDescriptorBuilder().withEventTitle(VALID_EVENT_TITLE_SOCKS)
+                .withDate(VALID_DATE_SOCKS).withStartTime(VALID_START_TIME_SOCKS)
+                .withPurpose(VALID_PURPOSE_SOCKS).build();
     }
 
     /**
@@ -137,16 +186,15 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
-
     /**
-     * Updates {@code model}'s filtered list to show only the event at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the events at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showEventAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredEventList().size());
 
         Event event = model.getFilteredEventList().get(targetIndex.getZeroBased());
-        final String[] splitEventTitle = event.getEventTitle().toString().split("\\s+");
+        final String[] splitEventTitle = event.getEventTitle().eventTitle.split("\\s+");
         model.updateFilteredEventList(new EventTitleContainsKeywordsPredicate(Arrays.asList(splitEventTitle[0])));
 
         assertEquals(1, model.getFilteredEventList().size());

@@ -10,13 +10,12 @@ import javafx.scene.chart.PieChart.Data;
  * Guarrantees: Immutable, data points are not null.
  */
 public class StatisticData {
-    private final Data chartData;
-
+    public final Data chartData;
     /**
      * Constructs a {@code StatisticData} with the given {@code name} and {@code value}.
      * {@code name} and {@code value} must not be null.
      */
-    public StatisticData(String name, double value) {
+    public StatisticData(String name, Double value) {
         requireAllNonNull(name, value);
         this.chartData = new Data(name, value);
     }
@@ -51,5 +50,25 @@ public class StatisticData {
     public void updateValueByOne() {
         double initialValue = this.getValue();
         this.chartData.setPieValue(initialValue + 1);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        //short-circuit if same object
+        if (this == other) {
+            return true;
+        }
+        if (other instanceof StatisticData) {
+            StatisticData otherData = (StatisticData) other;
+            if (this.getName().equals(otherData.getName()) & this.getValue() == otherData.getValue()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getName().hashCode();
     }
 }

@@ -14,11 +14,11 @@ skinparam PackageBackgroundColor #FFFFFF
 ' Class definitions
 Class ListPersonsCommand LOGIC_COLOR
 
-Class SortField MODEL_COLOR {
+Class PersonSortField MODEL_COLOR {
     -comp : Comparator<Person>
 }
 
-Class "<<enumeration>>\nSortFieldType" as SortFieldType MODEL_COLOR {
+Class "<<enumeration>>\nPersonSortFieldType" as PersonSortFieldType MODEL_COLOR {
     NAME
     DATE_OF_BIRTH
     GENDER
@@ -32,7 +32,7 @@ package Model{
 
 ' Arrow definitions
 ListPersonsCommand .right[LOGIC_COLOR_T4].> Model
-ListPersonsCommand -[LOGIC_COLOR_T4]-> "1" SortField
-SortField *-[MODEL_COLOR]-> "1" SortFieldType
+ListPersonsCommand -[LOGIC_COLOR_T4]-> "1" PersonSortField
+PersonSortField *-[MODEL_COLOR]-> "1" PersonSortFieldType
 
 @enduml

@@ -5,6 +5,8 @@ import seedu.address.model.event.Event;
 import seedu.address.model.event.EventTitle;
 import seedu.address.model.event.Purpose;
 import seedu.address.model.event.StartTime;
+import seedu.address.model.event.UidList;
+import seedu.address.model.person.Uid;
 
 /**
  * A utility class to help with building Event objects.
@@ -20,6 +22,7 @@ public class EventBuilder {
     private Date date;
     private StartTime startTime;
     private Purpose purpose;
+    private UidList uids;
 
     /**
      * Creates a {@code EventBuilder} with the default details.
@@ -29,6 +32,7 @@ public class EventBuilder {
         date = new Date(DEFAULT_DATE);
         startTime = new StartTime(DEFAULT_TIME);
         purpose = new Purpose(DEFAULT_PURPOSE);
+        uids = new UidList();
     }
 
     /**
@@ -39,6 +43,7 @@ public class EventBuilder {
         date = eventToCopy.getStartDate();
         startTime = eventToCopy.getStartTime();
         purpose = eventToCopy.getPurpose();
+        uids = eventToCopy.getUids();
     }
 
     /**
@@ -73,7 +78,16 @@ public class EventBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code uids} of the {@code Event} that we are building.
+     */
+    public EventBuilder withUid(Uid uid) {
+        this.uids = new UidList();
+        this.uids.add(uid);
+        return this;
+    }
+
     public Event build() {
-        return new Event(eventTitle, date, startTime, purpose);
+        return new Event(eventTitle, date, startTime, purpose, uids);
     }
 }
