@@ -584,7 +584,7 @@ Iterations stored in ArtBuddy have the following details:
 | Description | Describes the progress that was made in the iteration ([case sensitive, and must be unique](#unique-iteration)) | See [Appendix: Limitations of no-constraint text inputs](#limitations-of-no-constraint-text-inputs)                                                             |
 | Date        | Records the date tied to the iteration (for instance, when the iteration was created)                           | In <code>YYYY-MM-DD</code> format (four-digit year, followed by a 2-digit month, and 2-digit day number; so "7 November 2022" should be passed as `2022-11-07`) |
 | Image       | A picture that captures how the commission looks like in the current iteration                                  | File path (Refer to [Appendix](#what-are-file-paths-and-root-directories) for more info)                                                                        |
-| Feedback    | Feedback attached to the current iteration (for instance, areas for improvement)                                | See [Appendix: Limitations of no-constraint text inputs](#limitations-of-no-constraint-text-inputs)                                                             |                                                                                         |
+| Feedback    | Feedback attached to the current iteration (for instance, areas for improvement)                                | See [Appendix: Limitations of no-constraint text inputs](#limitations-of-no-constraint-text-inputs)                                                             |
 
 ### Adding an iteration to a commission: `additer`
 Adds an iteration to the currently selected commission. This can be done either by the

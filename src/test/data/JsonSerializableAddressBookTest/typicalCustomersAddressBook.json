@@ -5,7 +5,7 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -23,7 +23,7 @@
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "owesMoney", "friends", "rich" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -35,12 +35,18 @@
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
-    "tagged" : [ ]
+    "tagged" : [ "friends", "artist" ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
     "tagged" : [ ]
+  }, {
+    "name" : "Mona Lisa",
+    "phone" : "91756294",
+    "email" : "fakemail@example.com",
+    "address" : "east coast park",
+    "tagged" : [ "vip" ]
   } ]
 }
