@@ -83,7 +83,7 @@ Track the internships you're interested in and all the relevant information -- t
 # 2. How to use this User Guide?
 
 We have created this user manual for new users who want to use our app and returning users who need a reference to the command summary. 
-For new users you can proceed to our [Quick start](#3-quick-start) while returning users can skip to our [Command summary](#6-command-summary).
+For new users you can proceed to our [Quick start](#3-quick-start) while returning users can skip to our [Command summary](#7-command-summary).
 
 
 ## 2.1. Icons and symbols
@@ -159,14 +159,13 @@ The UI components description:
 
 5. The screen should appear in a few seconds when the app first launches as shown in the figure below. Note how the app contains some sample data.
 
-|  ![Ui](images/darktheme.png)  |
-|:-----------------------------:|
-| InterNUS GUI with sample data |
+  |  ![Ui](images/darktheme.png)  |
+  |:-----------------------------:|
+  | InterNUS GUI with sample data |
 
-<ol start="6">
-    <li>Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.</li>
-    <li>Refer to the [Features](#4-features) below for details of each command.</li>
-</ol>
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.
+
+7. Refer to the [Features](#4-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
