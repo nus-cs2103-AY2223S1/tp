@@ -633,8 +633,6 @@ Use case ends.
 
 **Extensions**
 
-
-
 * 2a. HealthContact detects an error in the format of the command entered.
     * 2a1. HealthContact shows an error message.
     * 2a2. User enters the command again.
@@ -925,6 +923,79 @@ Use case ends.
     * 2a1. HealthContact shows an error message.
     * 2a2. User enters the command again.
     * Steps 2a1-2a2 are repeated until the keyword entered is valid.
+    * Use case resumes from step 3.
+
+**Use case: Set a bill as PAID**
+
+**MSS**
+
+1. Doctor calls the clinic to set a bill as PAID.
+2. User enters setpaid command with the index of the bill to be set as PAID.
+3. HealthContact sets the bill as PAID
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. HealthContact detects that the bill index is invalid.
+    * 2a1. HealthContact shows an error message.
+    * 2a2. User enters the command again.
+    * Steps 2a1-2a2 are repeated until the bill index entered is valid.
+    * Use case resumes from step 3.
+
+**Use case: Set a bill as UNPAID**
+
+**MSS**
+
+1. Doctor calls the clinic to set a bill as UNPAID.
+2. User enters setunpaid command with the index of the bill to be set as UNPAID.
+3. HealthContact sets the bill as UNPAID
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. HealthContact detects that the bill index is invalid.
+    * 2a1. HealthContact shows an error message.
+    * 2a2. User enters the command again.
+    * Steps 2a1-2a2 are repeated until the bill index entered is valid.
+    * Use case resumes from step 3.
+
+
+**Use case: Select a patient**
+
+**MSS**
+
+1. Doctor calls the clinic to select a patient to get his/her personal information.
+2. User enters select command with the index of the patient to be selected.
+3. HealthContact selects the patient
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. HealthContact detects that the patient index is invalid.
+    * 2a1. HealthContact shows an error message.
+    * 2a2. User enters the command again.
+    * Steps 2a1-2a2 are repeated until the patient index entered is valid.
+    * Use case resumes from step 3.
+
+**Use case: Select an appointment**
+
+**MSS**
+
+1. Doctor calls the clinic to select an appointment to get its information.
+2. User enters select command with the index of the appointment to be selected.
+3. HealthContact selects the appointment
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. HealthContact detects that the appointment index is invalid.
+    * 2a1. HealthContact shows an error message.
+    * 2a2. User enters the command again.
+    * Steps 2a1-2a2 are repeated until the appointment index entered is valid.
     * Use case resumes from step 3.
 
 **Use case: Undoing a command**

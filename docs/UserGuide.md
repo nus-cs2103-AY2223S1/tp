@@ -212,6 +212,20 @@ Edits a patient's information, such as name, phone number, address, email, remar
 
 `ep INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​`
 
+#### Parameter List
+
+
+|       | Prefix | Meaning          | Input Constraint                                                                            |
+|-------|--------|------------------|---------------------------------------------------------------------------------------------|
+| `**`  | NA     | Index of patient | 1. Positive integer <br/> 2. Appears in the patient list                                    |
+| `*`   | `n/`   | Name             | 1. Non-empty alphanumeric characters and spaces<br/> 2. Must not be existing patient's name |
+| `*`   | `p/`   | Phone            | Numbers with at least 3 digits                                                              |
+| `*`   | `e/`   | Email address    | `local-part@domain`                                                                         |
+| `*`   | `a/`   | Home address     | Non-empty characters                                                                        |
+|       | `r/`   | Remark           | Any characters                                                                              |
+| `+`   | `t/`   | Tag              | One alphanumeric word                                                                       |
+
+
 * Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list.
   The index **must be a positive integer** 1, 2, 3, …​
 * User input should be different from the previous information that the patient has.
@@ -241,6 +255,18 @@ Edits an appointment of a patient, such as name, medical test, slot, and doctor.
 
 `ea INDEX [n/NAME] [t/MEDICAL_TEST] [s/SLOT<yyyy-MM-dd HH:mm>] [d/DOCTOR]`
 
+#### Parameter List
+
+
+|       | Prefix | Meaning              | Input Constraint                                                                        |
+|-------|--------|----------------------|-----------------------------------------------------------------------------------------|
+| `**`  | NA     | Index of appointment | 1. Positive integer <br/> 2. Appears in the appointment list                            |
+| `*`   | `n/`   | Name                 | 1. Non-empty alphanumeric characters and spaces<br/> 2. must be existing patient's name |
+| `*`   | `s/`   | Slot                 | Valid date and time in format `yyyy-MM-dd HH:mm`                                        |
+| `*`   | `d/`   | Doctor name          | Non-empty alphanumeric characters and spaces                                            |
+| `*`   | `t/`   | Medical test         | Non-empty characters                                                                    |
+
+
 * Edits the appointment at the specified `INDEX`.
   The index refers to the index number shown in the displayed appointment list.
 * The index **must be a positive integer** 1, 2, 3, …​
@@ -264,9 +290,17 @@ Edits a bill of an appointment.
 
 `eb INDEX [a/amount] [d/bill date]`
 
+#### Parameter List
+
+|        | Prefix  | Meaning       | Input Constraint                                           |
+|--------|---------|---------------|------------------------------------------------------------|
+| `**`   | NA      | Index of bill | 1. Positive integer <br/> 2. Appears in the bill list<br/> |
+| `*`    | `a/`    | Amount        | Positive number with at most 2 decimal place               |
+| `*`    | `d/`    | Bill Date     | Valid date in format `yyyy-MM-dd`                          |
+
+
 * Edits the bill at the specified `INDEX`. The index refers to the index number shown in the displayed bill list.
   The index **must be a positive integer** 1, 2, 3, …​
-* User input should be different from the previous information that the bill has.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
