@@ -232,10 +232,6 @@ public class IssueCommandParser implements Parser<IssueCommand> {
         return new FindIssueCommand(predicate);
     }
 
-    private FindIssueCommand parseFindIssueCommand(String flag, String arguments) throws ParseException {
-        return parseFindIssueCommand(arguments);
-    }
-
     private DeleteIssueCommand parseDeleteIssueCommand(String arguments) throws ParseException {
         try {
             Index index = ParserUtil.parseIndex(arguments);
