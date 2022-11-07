@@ -155,7 +155,7 @@ Developer Guide.
     </td>
   </tr>
   <tr>
-    <td><strong>Private contact detail</strong></td>
+    <td><strong>Private Contact Detail</strong></td>
     <td>
       A contact detail that is not meant to be shared with others.
     </td>
@@ -212,6 +212,12 @@ Developer Guide.
     <td><strong>Use Case</strong></td>
     <td>
       Describes an interaction between the user and the system for a specific functionality of the system.
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Teaching Assistant</strong></td>
+    <td>
+      Employed staff by NUS who teach tutorials for specific modules for undergraduates. They will be guided by the module coordinators or instructors.
     </td>
   </tr>
 </table>
@@ -454,7 +460,7 @@ Removal of modules does not check the module lists to see if the module is prese
 ### Checking Modules Left
 
 This feature compares the user's current and previous modules list with a fixed list of CS Core Requirements or focus area
-modules. The program then finds the difference between the user's lists and the fixed list and outputs it onto the ResultDisplay.
+modules. The program then finds the difference between the user's lists and the fixed list and outputs it onto the `ResultDisplay`.
 
 #### Implementation Flow
 
@@ -535,7 +541,7 @@ Given below is an activity diagram to illustrate the behaviour of adding a Lesso
 * **Alternative 1 (current choice):** No dependency on `CurrentModule` i.e. moduleName is a `String`.
   * Pros:
     * Faster as there is no need to check through set of `CurrentModule`s before adding lesson.
-    * More flexible as user is able to add lessons or activities that are not in the list of `CurrentModule` e.g. if contact is a TA.
+    * More flexible as user is able to add lessons or activities that are not in the list of `CurrentModule` e.g. if contact is a teaching assistant.
   * Cons: Lack of input validation - user may input invalid lessons that he/she is not taking.
 
 
@@ -546,7 +552,7 @@ Given below is an activity diagram to illustrate the behaviour of adding a Lesso
     * Unable to accommodate alternative activities being added in the timetable.
 
 
-* **Decision:** Alternative 1 as speed is important. There are a lot of lessons are expected to be added, since there is about 15 lessons a week per person,
+* **Decision:** We chose Alternative 1 as speed is important. There are a lot of lessons are expected to be added, since there is about 15 lessons a week per person,
 that has to be multiplied by the number of contacts in ConnectNUS.
 
 **Aspect 2: How to implement the day in `Lesson` Class:**
@@ -569,7 +575,7 @@ that has to be multiplied by the number of contacts in ConnectNUS.
     * Slower sorting as `DayOfWeek` has to be converted to `int` to sort.
     * Does not address issue of unintuitive input for day in command.
 
-* **Decision:** Alternative 1 as speed is important as mentioned in Aspect 1.
+* **Decision:** We chose Alternative 1 as speed is important as mentioned in Aspect 1.
 
 
 **Aspect 3: Data Structure to store all `Lesson`s:**
@@ -584,7 +590,7 @@ that has to be multiplied by the number of contacts in ConnectNUS.
   * Cons: No removal of duplicates
 
 
-* **Decision:** Alternative 1 for fewer bugs due to duplicates that may fall through our checks. As sorting is only done
+* **Decision:** We chose Alternative 1 to reduce the chances of bugs occuring due to duplicates that may fall through our checks. As sorting is only done
 during `timetable` commands which will be called significantly fewer times than `lesson` commands, speed of sorting is not
 as significant of an issue.
 
@@ -636,23 +642,22 @@ sorted and converted to `String` which is displayed in the `TimetableWindow` whi
   * Pros: User does not have to run a command to see his/her and his/her contact's timetable.
   * Cons: User may have to scroll if there is insufficient space to see the full timetable.
 
-* **Alternative 2:** User runs a command to display his/her and his/her contact's timetable which creates a new window.
+* **Alternative 2 (current choice):** User runs a command to display his/her and his/her contact's timetable which creates a new window.
   * Pros: User will have a larger space to see the timetable.
   * Cons: We must ensure the implementation of the additional commands are correct and the UI displays correctly.
 
-* **Decision:** Since we expect the timetable feature to not be used often (only when arranging meetings), we chose alternative 1
-to reduce the clutter on the main window.
+* **Decision:** We chose Alternative 2 to reduce the clutter on the main window since we expect the timetable feature to not be used often but only when arranging meetings or when user needs to view the timetable.
 
-Possible Extensions:
+<div markdown="span" class="alert alert-info">:information_source: **Note:** When a new `Lesson` is added, User has to run the command to show the timetable again to view the updated timetable with the newly added `Lesson`.
 
-1. Adding a `Link` field to allow Users to keep track of important links such as Coursemology, Microsoft Teams, Zoom
-   lecture and project documents (ie. Google Docs) for each module to increase accessibility and convenience since there
-   are many links to keep track off.
+</div>
 
-2. Allow User to sort his/her classes from all modules in chronological order or by modules depending on the User's
+#### Possible Extensions
+
+1. Allow User to sort his/her classes from all modules in chronological order or by modules depending on the User's
    preference to view his/her timetable.
 
-3. Improving the GUI of the `Timetable` pop-up window for more visually pleasing user experience.
+2. Improving the GUI of the `Timetable` pop-up window for more visually pleasing user experience.
 
 [Scroll back to top](#table-of-contents)
 
@@ -734,6 +739,7 @@ Here's what a typical Object Diagram may look like for an Address Book State:
 ![UndoRedoObjectDiagram](images/UndoRedoObjectDiagram.png)
 - In this diagram, `ab0` is the initial AddressBookstate that contains two contact, `bob0` and `alice0`.
 - After the user makes a change to the contact `bob0`, we have to save a new `AddressBook` into our `VersionedAddressBook`, with a new `bob1` Object that embodies the changed `bob0` Object, instead of just making the change to the `bob0` Object directly.
+
 #### New Classes/Methods
 
 Given below are the new Classes implemented:
@@ -800,14 +806,14 @@ The `PersonListPanel` in the `MainWindow` UI is then updated accordingly.
 **Aspect: The implementation of the various filter features ie. filtering by Tag, filtering by Current Module, filtering by Previous Module and filtering by Planned Module:**
 
 * **Alternative 1:** Creating a common filter parent class with each specific filter function extending from the parent filter class.
-* Pros: Since all filter functions require the same methods, it would be easier to implement filter functions with the different specifications in ConnectNUS. Furthermore, it allows developers to create new filter functions for future features that may be added to the application in future iterations.
+  * Pros: Since all filter functions require the same methods, it would be easier to implement filter functions with the different specifications in ConnectNUS. Furthermore, it allows developers to create new filter functions for future features that may be added to the application in future iterations.
   * Cons: the different filtering features would have to access different classes located in different packages to filter the contact list
 
-* **Alternative 2:** Abstracting out each filter feature as a different class which directly extends the command class.
+* **Alternative 2 (current choice):** Abstracting out each filter feature as a different class which directly extends the command class.
   * Pros: Less confusing for developers as each filtering feature would have to access different classes depending on the feature that is being filtered. Furthermore, each filter feature's classes would belong in different packages within the programme due to the fact that it filters different features.
   * Cons: Future implementations of filter functions for new features that may be added to the programme would have to be created from scratch.
 
-* **Decision:** We decided to use alternative 2 as we do not foresee new features being added to the programme which would require filtering functions in the new feature based on the current purpose of our app. Furthermore, it would not be difficult to implement a parent abstract filter class for the filter function in future iterations should we need to do so.
+* **Decision:** We decided to use Alternative 2 as we do not foresee new features being added to the programme which would require filtering functions in the new feature based on the current purpose of our app. Furthermore, it would not be difficult to implement a parent abstract filter class for the filter function in future iterations should we need to do so.
 
 [Scroll back to top](#table-of-contents)
 
