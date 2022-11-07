@@ -3,7 +3,21 @@ layout: page
 title: Developer Guide
 ---
 
+**Teacher’s Pet** is a desktop application that empowers private tutors to manage their students and schedule their classes.
+
+This Developer Guide provides an in-depth documentation on how **Teacher’s Pet** is designed and implemented.
+It covers the architecture of **Teacher’s Pet** and provides detailed description regarding the implementation design.
+
+You can use this guide to maintain, upgrade, and evolve **Teacher’s Pet**.
+
 ## Table of contents
+
+* [Design](#design)
+  * [Architecture](#architecture)
+  * [UI](#ui-component)
+  * [Logic](#logic-component)
+  * [Model](#model-component)
+  * [Storage](#storage-component)
 * [Implementation](#implementation)
   * [Edit Class Feature](#edit-class-feature)
   * [Next Available Class Feature](#next-available-class-feature)
@@ -31,6 +45,9 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 ## Design
+
+This section gives you a high-level overview of how **Teacher’s Pet** is structured and how the main components interact with one another.
+
 ### Architecture
 
 <img src="images/DG-images/ArchitectureDiagram.png" width="280" />
@@ -73,7 +90,6 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 The sections below give more details of each component.
 
 ### UI component
-[//]: # (TODO: The UI component needs to be updated)
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -150,6 +166,27 @@ The `Storage` component,
 * inherits from both `TeachersPetStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+#### ClassStorage
+
+![ClassStorageDiagram](images/DG-images/ClassStorageDiagram.png)
+
+The `ClassStorage` component,
+* is a mini database, storing all the upcoming classes of the students in the form of a HashMap
+* contains attributes such as
+    1. `Model`
+    2. `TeachersPet`
+    3. `HashMap<LocalDate, List<Student>>`
+       1. Maps a list of Student objects to a LocalDate object.
+       2. Example: A list of all Students with classes on 19 April 2022 will
+          be mapped to a LocalDate object (19 April 2022).
+* contains main methods such as
+    1. `initialiseClass`
+       1. Initialises the HashMap when the application opens up
+    2. `saveClass`
+       1. Stores the new class and the student in the HashMap
+    3. `refresh`:
+       1. Re-initialises the HashMap in `ClassStorage`
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
@@ -166,7 +203,7 @@ The features covered in this guide are:
 * [Mark Student Feature](#mark-student-feature)
 * [Sort-by feature](#sort-by-feature)
 * [Undo Command Feature](#undo-command-feature)
-* [[Proposed] Find-by feature](#proposed-find-by-feature)
+* [Find-by feature](#find-by-feature)
 
 ### Edit Class Feature
 
@@ -198,7 +235,7 @@ save both the new class and student.
 
 The following sequence diagram shows how the edit class operation works:
 
-<img src="images/DG-images/EditClassSequenceDiagram.png" width="1100" />
+![EditClassSequenceDiagram](images/DG-images/EditClassSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a teacher executes an edit class command:
 
@@ -534,8 +571,10 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **MSS**
 
-1. Teacher requests to edit contact number of a specific student in the list.
-2. Teacher’s Pet updates the student with the new contact number.
+1. Teacher requests to list students.
+2. Teacher’s Pet shows a list of students.
+3. Teacher requests to edit contact number of a specific student in the list.
+4. Teacher’s Pet updates the student with the new contact number.
 
    Use case ends.
 
@@ -555,8 +594,10 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **MSS**
 
-1. Teacher requests to edit class date of a specific student in the list.
-2. Teacher’s Pet updates the student with the new class date.
+1. Teacher requests to list students.
+2. Teacher’s Pet shows a list of students.
+3. Teacher requests to edit class date of a specific student in the list.
+4. Teacher’s Pet updates the student with the new class date.
 
    Use case ends.
 
@@ -609,7 +650,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **MSS**
 
-1. Teacher requests to find a student by address.
+1. Teacher requests to find all the students with address matching the keywords.
 2. Teacher’s Pet shows a list of filtered students according to their provided query.
 
    Use case ends.
@@ -630,10 +671,9 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **MSS**
 
-1. Teacher requests to list students.
-2. Teacher’s Pet shows a list of students.
-3. Teacher requests to mark a specific student in the list as present for class.
-4. Teacher’s Pet marks the student as present for class.
+1. Teacher requests to mark a specific student in the list as present for class.
+2. Teacher’s Pet marks the student as present for class.
+3. A cross will be displayed beside the student on the schedule list panel.
 
     Use case ends.
 
@@ -684,12 +724,13 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 ### Glossary
 
-| Terms         | Definition                                             |
-|---------------|--------------------------------------------------------|
-| Mainstream OS | Windows, Linux, Unix, OS-X                             |
-| CLI           | Command Line Interface                                 |
-| Class         | The 1-1 tutoring time slot of a student                |
-| Day-of-Week   | 3-letter Abbreviation; case-insensitive e.g., Mon, MON |
+| Terms         | Definition                                                                                              |
+|---------------|---------------------------------------------------------------------------------------------------------|
+| Mainstream OS | Windows, Linux, Unix, OS-X                                                                              |
+| CLI           | Command Line Interface                                                                                  |
+| Class         | The 1-1 tutoring time slot of a student                                                                 |
+| Day-of-Week   | 3-letter Abbreviation; case-insensitive e.g., Mon, MON                                                  |
+| Use case      | It describes an interaction between the user and the system for a specific functionality of the system. |
 
 Note:
 - Command Line Interface: Text based user interface for the user to interact with, by passing in single line commands.
