@@ -54,7 +54,7 @@ This section gives you a high-level overview of how **Teacher’s Pet** is struc
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
-Given below is a quick overview of main components and how they interact with each other.
+Given below is a quick overview of the main components and how they interact with each other.
 
 **Main components of the architecture**
 
