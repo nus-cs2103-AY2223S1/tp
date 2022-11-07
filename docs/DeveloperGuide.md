@@ -205,8 +205,6 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.phu.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
-
 <div style="page-break-after: always;"></div>
 
 ## **Implementation**
@@ -250,6 +248,8 @@ The following sequence diagram shows how the add command works.
     * Pros: Easier to implement
     * Cons: Lengthy command
 
+<div style="page-break-after: always;"></div>
+
 ### Delete feature
 
 #### Proposed Implementation
@@ -268,6 +268,8 @@ The following sequence diagram shows how the delete command works.
 * **Alternative 2** Use `java.util.Set`
   * Pros: Easier to implement
   * Cons: Harder to maintain in the future
+
+<div style="page-break-after: always;"></div>
 
 ### Edit feature
 
@@ -300,7 +302,9 @@ The following sequence diagram shows how the edit command works
 * **Alternative 2**: Edit command will not create a new internship. It will directly edit the selected internship
     * Pros: More efficient, both time and space wise, than the previous alternative
     * Cons: `Internship` class won't be immutable, which reduces the defensiveness of the program
-  
+
+<div style="page-break-after: always;"></div>
+
 ### List feature
 
 #### Proposed Implementation
@@ -324,9 +328,7 @@ The following sequence diagram shows how the find command works.
     * Pros: Easier to implement
     * Cons: Command is longer and more cumbersome to type
     
-    
-
-    
+<div style="page-break-after: always;"></div>
 
 ### Find feature
 
@@ -364,6 +366,8 @@ The following sequence diagram shows how the find command works.
 * **Alternative 2** Users have to input all parameters
     * Pros: Easier to implement
     * Cons: Command is longer and more cumbersome to type
+
+<div style="page-break-after: always;"></div>
 
 ### Undo/redo feature
 
@@ -450,6 +454,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the internship being deleted).
   * Cons: Quite hard to implement as we must ensure that the implementation of each individual command are correct
 
+<div style="page-break-after: always;"></div>
 
 ### View feature
 
@@ -487,6 +492,8 @@ The following sequence diagram shows how the view command works.
     * Pros: User can view multiple details at once
     * Cons: Makes `view` UI panel large, difficult to implement
 
+<div style="page-break-after: always;"></div>
+
 ### Copy feature
 
 #### Proposed Implementation
@@ -515,7 +522,9 @@ The following sequence diagram shows how the copy command works.
 **Parameters for copy command**:
 * `INDEX` parameter only takes in one index
     * Pros: Easier to implement, makes more sense
-
+    * 
+<div style="page-break-after: always;"></div>
+    
 ### Bar Chart
 
 #### Implementation
@@ -546,8 +555,6 @@ The following sequence diagram shows how the Bar Chart works when a change is tr
 
 _{To be updated in v2.0}_
 
-
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -608,7 +615,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *  `  | Visual user     | View my internship application process tag with color                     | I can easily identify which stage I have reached |
 | `*   `   | Visual user     | View the count of internships application at each stages                  | See the success rate of my applications          |
 
-*{More to be added}*
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
