@@ -7,6 +7,7 @@ import static seedu.hrpro.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.hrpro.logic.commands.CommandTestUtil.STAFFNAME_DESC_JAY;
 import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_STAFFNAME_JAY;
+import static seedu.hrpro.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.hrpro.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.hrpro.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -40,7 +41,7 @@ public class DeleteStaffCommandParserTest {
         assertParseFailure(parser, "1", expectedMessage);
 
         // Have project name prefix but no project name
-        assertParseFailure(parser, "1 pn/", inValidInputMessage);
+        assertParseFailure(parser, "1 " + PREFIX_PROJECT_NAME, inValidInputMessage);
 
         // Have project name but no prefix
         assertParseFailure(parser, "1" + VALID_NAME_BOB, expectedMessage);

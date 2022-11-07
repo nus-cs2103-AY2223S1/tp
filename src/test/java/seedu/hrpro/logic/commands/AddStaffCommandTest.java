@@ -89,7 +89,6 @@ public class AddStaffCommandTest {
     @Test
     public void equals() {
         final Staff staff = new StaffBuilder().build();
-        final ProjectName projectName = new ProjectName(VALID_NAME_AMY);
         final AddStaffCommand addStaffCommand = new AddStaffCommand(staff, INDEX_FIRST_PROJECT);
 
         // same object -> returns true
