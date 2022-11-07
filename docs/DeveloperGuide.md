@@ -198,7 +198,7 @@ For `list appts`, it follows a similar
 process as well, but with `updateFilteredAppointmentList()` instead. For `list all`, you can think of the
 behaviour as executing both `list patients` and `list appts`.
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How the command is implemented:**
 * **Alternative 1 (current choice):** `list patients`, `list appts` and `list all` as a command word `list` with
@@ -232,7 +232,7 @@ first appointment (index 1) in the appointment list:
 
 ![Cancel Command](images/CancelSequenceDiagram.png)
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How we decided to choose the user command:**
 
@@ -275,7 +275,7 @@ The activity diagram below will illustrate a hide patient process. A similar pro
 ![Hide Patients](images/HidePatientsActivityDiagram.png)
 
 
-#### Design considerations:
+#### Design considerations
 **Aspect: How hide patient/appointment executes:**
 
 * **Current choice:** Making use of a singleton class to capture the state of the patient/appointment list at all times.
@@ -326,7 +326,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/GroupPatientCommand.png" width="1000" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How group patients executes:**
 
@@ -359,7 +359,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/GroupAppointmentCommand.png" width="1000" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How group appointments executes:**
 
@@ -402,7 +402,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/UngroupCommand.png" width="1000" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How ungroup executes:**
 
@@ -465,7 +465,7 @@ The following Class diagram shows how serializing `Appointment` objects into JSO
 `Appointment` objects are mapped to `JsonAdaptedAppointment` objects, so that they contain only relevant fields to store and works easier with Jackson.
 These objects are stored in a list field of the `JsonAdaptedPerson` and are stored together in a single JSON file, for easier retrival and assignment when starting up the application.
 
-#### Design Considerations:
+#### Design Considerations
 
 **Aspect: Where to assign Appointment objects:**
 
@@ -529,7 +529,7 @@ and how the `mark` mechanism behaves at each step.
 The `unmark` sequence diagram is identical to the `mark` sequence diagram but lacks the `opt` frame.
 It also contains the `UnmarkCommandParser` and `UnmarkCommand` classes in place of `MarkCommandParser` and `MarkCommand` respectively.
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How mark & unmark executes:**
 * **Alternative 1 (current choice):** `MarkCommand` and `UnmarkCommand` takes in an `Index` denoting the appointment to
@@ -578,7 +578,7 @@ Ultimately, this ensures that for an entry to be displayed:
 * An appointment must satisfy all appointment search terms and belong to a patient that satisfies all the patient search terms.
 * The entry must also exist in the list prior to the execution of the find command.
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How to pass in search terms to `FindCommand`:**
 * **Alternative 1:** Store all search terms in `FindCommand` and use `Predicate#and` to combine the
