@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.condonery.commons.core.GuiSettings;
 import seedu.condonery.logic.commands.Command;
-import seedu.condonery.logic.commands.CommandQueue;
 import seedu.condonery.logic.commands.exceptions.EmptyQueueException;
 import seedu.condonery.model.client.Client;
 import seedu.condonery.model.client.ReadOnlyClientDirectory;
