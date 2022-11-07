@@ -4,8 +4,8 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ProfNusParser" as ProfNusParser LOGIC_COLOR
-participant ":ViewScheduleCommandParser" as ViewScheduleCommandParser LOGIC_COLOR
-participant "v:ViewScheduleCommand" as ViewScheduleCommand LOGIC_COLOR
+participant ":ClearScheduleCommandParser" as ClearScheduleCommandParser LOGIC_COLOR
+participant "v:ClearScheduleCommand" as ClearScheduleCommand LOGIC_COLOR
 participant "result:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -13,57 +13,57 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("sview")
+[-> LogicManager : execute("sclear")
 activate LogicManager
 
-LogicManager -> ProfNusParser : parseCommand("sview")
+LogicManager -> ProfNusParser : parseCommand("sclear")
 activate ProfNusParser
 
-create ViewScheduleCommandParser
-ProfNusParser -> ViewScheduleCommandParser
-activate ViewScheduleCommandParser
+create ClearScheduleCommandParser
+ProfNusParser -> ClearScheduleCommandParser
+activate ClearScheduleCommandParser
 
-ViewScheduleCommandParser --> ProfNusParser
-deactivate ViewScheduleCommandParser
+ClearScheduleCommandParser --> ProfNusParser
+deactivate ClearScheduleCommandParser
 
-ProfNusParser -> ViewScheduleCommandParser : parse("")
-activate ViewScheduleCommandParser
+ProfNusParser -> ClearScheduleCommandParser : parse("")
+activate ClearScheduleCommandParser
 
-create ViewScheduleCommand
-ViewScheduleCommandParser -> ViewScheduleCommand
-activate ViewScheduleCommand
+create ClearScheduleCommand
+ClearScheduleCommandParser -> ClearScheduleCommand
+activate ClearScheduleCommand
 
-ViewScheduleCommand --> ViewScheduleCommandParser : v
-deactivate ViewScheduleCommand
+ClearScheduleCommand --> ClearScheduleCommandParser : v
+deactivate ClearScheduleCommand
 
-ViewScheduleCommandParser --> ProfNusParser: v
-deactivate ViewScheduleCommandParser
+ClearScheduleCommandParser --> ProfNusParser: v
+deactivate ClearScheduleCommandParser
 
 ProfNusParser --> LogicManager : v
-destroy ViewScheduleCommandParser
+destroy ClearScheduleCommandParser
 deactivate ProfNusParser
 
-LogicManager -> ViewScheduleCommand : execute()
-activate ViewScheduleCommand
+LogicManager -> ClearScheduleCommand : execute()
+activate ClearScheduleCommand
 
-ViewScheduleCommand -> Model : updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES)
+ClearScheduleCommand -> Model : clearSchedules(modulesToClear)
 activate Model
 
-Model --> ViewScheduleCommand
+Model --> ClearScheduleCommand
 deactivate Model
 
 create CommandResult
-ViewScheduleCommand -> CommandResult
+ClearScheduleCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> ViewScheduleCommand : result
+CommandResult --> ClearScheduleCommand : result
 deactivate CommandResult
 
-ViewScheduleCommand --> LogicManager : result
-deactivate ViewScheduleCommand
+ClearScheduleCommand --> LogicManager : result
+deactivate ClearScheduleCommand
 
-ViewScheduleCommand -[hidden]-> LogicManager : result
-destroy ViewScheduleCommand
+ClearScheduleCommand -[hidden]-> LogicManager : result
+destroy ClearScheduleCommand
 
 [<--LogicManager
 deactivate LogicManager

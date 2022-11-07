@@ -505,13 +505,21 @@ The proposed ViewTimetable functionality is accomplished by `ViewTimetableComman
 
 - `ViewTimetableCommand#execute(Model model)` — Executes the command and displays the timetables in vertical or horizontal verson.
 
-The following sequence diagram shows how view schedule operation works with input command `tview v`.
+The following sequence diagram shows how view timetable operation works with input command `tview v`.
 
 
-![ViewTimetableSequence](images/tview_v_Sequence.png)
+![ViewTimetableSequence](images/final_tview_v.png)
 
 
+### 5.12. Clearing Schedules feature
 
+The proposed Clear schedules functionality is accomplished by `ClearScheduleCommand` which extends the `Command` class. The `ClearScheduleCommand` overrides the following method:
+
+- `ClearScheduleCommand#execute(Model model)` — Executes the command and displays the remaining schedules.
+
+The following sequence diagram shows how clear schedules operation works with input command `sclear`.
+
+![ViewTimetableSequence](images/sclear_diagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
