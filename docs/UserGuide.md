@@ -182,7 +182,7 @@ incomes, you need to tell PennyWise the following:
 * Category: how this entry is classified
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
-In PennyWise, there is an upper limit $1 000 000 for amounts.
+In PennyWise, there is an upper limit of $1 000 000 for amounts.
 </div>
 
 ### Familiarising yourself with the interface
