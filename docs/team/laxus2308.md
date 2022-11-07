@@ -23,6 +23,8 @@ Given below are my contributions to the project.
   * What it does: Display the description, timing and students involved for lessons and description and deadline for tasks. Using of tick and cross to show whether the task/lesson has been completed.
   * Justification: Original design was simply a checkbox like `[X]` or `[ ]`, which is rather small and unintuitive. 
   
+* **Testing**: Wrote tests for features to increase coverage by 14.68% [#148](https://github.com/AY2223S1-CS2103T-T11-3/tp/pull/148)
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=laxus2308&breakdown=true)
 
 * **Project management**:
@@ -32,12 +34,12 @@ Given below are my contributions to the project.
     * User Guide:
         * Update documentation for features' usage examples #155.
     * Developer Guide:
-        * Added user stories #108, #37.
-        * Added use cases #49, #62, #114.
-        * Added implementation details for adding lessons commands and parsers to JARVIS #94.
+        * Added user stories [#108](https://github.com/AY2223S1-CS2103T-T11-3/tp/pull/108).
+        * Added use cases [#114](https://github.com/AY2223S1-CS2103T-T11-3/tp/pull/114).
+        * Added implementation details for adding lessons commands and parsers to JARVIS [#94](https://github.com/AY2223S1-CS2103T-T11-3/tp/pull/94).
 
 * **Community**:
-    * PRs reviewed #106, #72, #66.
+    * PRs reviewed [#106](https://github.com/AY2223S1-CS2103T-T11-3/tp/pull/106), [#66](https://github.com/AY2223S1-CS2103T-T11-3/tp/pull/66).
     * Helped Team CS2103-F13-1 find bugs during PE-D.
     
 

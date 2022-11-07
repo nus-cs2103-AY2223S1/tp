@@ -98,7 +98,7 @@ public class AddStudioCommand extends Command {
         if (studioDesc == null) {
             studioDescEquality = sc.studioDesc == null;
         } else {
-            studioDescEquality = sc.equals(sc.studioDesc);
+            studioDescEquality = studioDesc.equals(sc.studioDesc);
         }
 
         return studioDescEquality && studioPeriod.equals(sc.studioPeriod);

@@ -45,6 +45,7 @@ public class Consult extends Lesson {
         return consultDescEquality
                 && otherConsult.startDateTime().equals(startDateTime())
                 && otherConsult.endDateTime().equals(endDateTime())
+                && otherConsult.getStudentList().equals(getStudentList())
                 && otherConsult.getAttendance().equals(getAttendance());
     }
 

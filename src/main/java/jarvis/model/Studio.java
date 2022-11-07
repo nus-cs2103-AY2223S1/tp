@@ -49,6 +49,10 @@ public class Studio extends Lesson {
         return resMap;
     }
 
+    public StudioParticipation getStudioParticipation() {
+        return participation;
+    }
+
     @Override
     public void setStudent(Student targetStudent, Student editedStudent) {
         super.setStudent(targetStudent, editedStudent);
@@ -81,6 +85,7 @@ public class Studio extends Lesson {
         return studioDescEquality
                 && otherStudio.startDateTime().equals(startDateTime())
                 && otherStudio.endDateTime().equals(endDateTime())
+                && otherStudio.getStudentList().equals(getStudentList())
                 && otherStudio.getAttendance().equals(getAttendance())
                 && otherStudio.getParticipation().equals(getParticipation());
     }
