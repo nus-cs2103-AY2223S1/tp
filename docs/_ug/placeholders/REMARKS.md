@@ -14,4 +14,4 @@ The REMARKS of an item is a note that you can add to an item.
 
 **INVALID EXAMPLES:**
 
-* 多10个
+* Одноразовый
