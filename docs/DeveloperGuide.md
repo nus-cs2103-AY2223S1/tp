@@ -179,7 +179,7 @@ More about our `Ui` design decisions [can be found here](#ui-component)
 
 <img src="images/ModelClassDiagram.png" width="750" />
 
-*Figure 8. Class diagram showing the classes in the `Model`*
+*Figure 9. Class diagram showing the classes in the `Model`*
 The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
@@ -194,7 +194,7 @@ The `Model` component,
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 <br>
-*Figure 8. Improved class diagram showing the classes in the `Model`*
+*Figure 10. Improved class diagram showing the classes in the `Model`*
 </div>
 
 
@@ -204,7 +204,7 @@ The `Model` component,
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
-*Figure 9. Class diagram showing the classes in the `Storage`*
+*Figure 11. Class diagram showing the classes in the `Storage`*
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -276,7 +276,7 @@ This is shown in the diagram below:
 <br>
 ![Add Sequence Diagram](images/AddCommandSequenceDiagram.png)
 <br>
-*Figure 10: Sequence Diagram showing the execution of an `add` (Add) command*
+*Figure 12: Sequence Diagram showing the execution of an `add` (Add) command*
 
 #### Edit Command
 
@@ -303,7 +303,7 @@ This is shown in the diagram below:
 <br>
 ![Edit Sequence Diagram](images/EditCommandSequenceDiagram.png)
 <br>
-*Figure 11: Sequence Diagram showing the execution of an `edit` (Edit) command for name*
+*Figure 13: Sequence Diagram showing the execution of an `edit` (Edit) command for name*
 
 #### Delete Command
 
@@ -325,7 +325,7 @@ This is shown in the diagram below:
 <br>
 ![Delete Sequence Diagram](images/DeleteSequenceDiagram.png)
 <br>
-*Figure 6: Sequence Diagram showing the execution of an `d 1` (Delete Appointment) command*
+*Figure 14: Sequence Diagram showing the execution of an `d 1` (Delete Appointment) command*
 
 ### Special Tag feature
 This feature allows users to record key information about clients as special tag, which are colour coded to make it easier to interpret at a glance. 
@@ -437,7 +437,7 @@ This is shown in the diagram below:
 
 </div>
 
-*Figure 12: Sequence Diagram showing the execution of an `aa` (Add Appointment) command*
+*Figure 15: Sequence Diagram showing the execution of an `aa` (Add Appointment) command*
 
 #### Design Considerations
 **Aspect: How many `Appointments` can be added for each command**
@@ -482,7 +482,7 @@ This is shown in the diagram below:
 <br>
 ![Edit Appointment Sequence Diagram](images/EditAppointmentCommandSequenceDiagram.png)
 <br>
-*Figure 13: Sequence Diagram showing the execution of an `ea` (Edit Appointment) command*
+*Figure 16: Sequence Diagram showing the execution of an `ea` (Edit Appointment) command*
 
 #### Design Considerations
 **Aspect: How many `Appointments` can be edited for each command?**
@@ -521,7 +521,7 @@ This is shown in the diagram below:
 <br>
 ![Delete Appointment Sequence Diagram](images/DeleteAppointmentCommandSequenceDiagram.png)
 <br>
-*Figure 14: Sequence Diagram showing the execution of an `da` (Delete Appointment) command*
+*Figure 17: Sequence Diagram showing the execution of an `da` (Delete Appointment) command*
 
 #### Design Considerations
 **Aspect: How many `Appointments` can be deleted for each command**
@@ -573,13 +573,13 @@ This is shown in the diagram below:
 
 ![Sort Command Sequence Diagram](images/SortCommandSequenceDiagram.png)
 
-*Figure 15: Sequence Diagram showing the execution of an `sort` command*
+*Figure 18: Sequence Diagram showing the execution of an `sort` command*
 
 The following activity diagram summarizes what happens when a user executes the Sort Command:
 
 ![Sort Command Activity Diagram](images/SortCommandActivityDiagram.png)
 
-*Figure 16: Activity Diagram showing the execution of an `sort` command*
+*Figure 19: Activity Diagram showing the execution of an `sort` command*
 
 #### Design Considerations
 
@@ -631,7 +631,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![Find Command Activity Diagram](images/FindCommandActivityDiagram.png)
 
-*Figure 17: Activity Diagram showing the execution of an `find` command*
+*Figure 20: Activity Diagram showing the execution of an `find` command*
 
 #### Design Considerations
 
@@ -666,12 +666,12 @@ and also manages the writing and reading of commands to and from the command his
 
 ![Add to command history storage](images/AddToCommandHistorySequenceDiagram.png)
 
-*Figure 16: Sequence Diagram showing how a valid command is saved in TextCommandHistoryStorage*
+*Figure 21: Sequence Diagram showing how a valid command is saved in TextCommandHistoryStorage*
 <br><br>
 
 ![Navigate command history](images/NavigateCommandHistorySequenceDiagram.png)
 
-*Figure 17: Sequence Diagram showing how an up arrow key navigates to the previous command*
+*Figure 22: Sequence Diagram showing how an up arrow key navigates to the previous command*
 
 ### Calendar features
 The calendar feature allows a calendar to display with the corresponding appointments of the month in a calendar format. The feature consists of the following features:
@@ -688,7 +688,7 @@ Upon initialisation of the `CalendarDisplay`, it will display the current month 
 
 ![Calendar Class Diagram](images/CalendarUiClassDiagram.png)
 
-*Figure 18. Class diagram showing the classes for the Calendar in the `Ui`*
+*Figure 23. Class diagram showing the classes for the Calendar in the `Ui`*
 
 **Calendar Display**
 
@@ -704,7 +704,7 @@ The following is a more detailed explanation on how `Calendar Display` is implem
 
 ![Calendar Display Activity](images/CalendarDisplayActivityDiagram.png)
 
-*Figure 19. Activity diagram showing what happens when a user selects the Calendar tab*
+*Figure 24. Activity diagram showing what happens when a user selects the Calendar tab*
 
 **Calendar Navigation**
 
@@ -720,7 +720,7 @@ These are the ways that a user can use the `Calendar Navigation` feature.
 
 ![Calendar Navigation Activity](images/CalendarNavigationActivityDiagram.png)
 
-*Figure 20. Activity diagram showing what happens  when a user selects a navigation feature*
+*Figure 25. Activity diagram showing what happens  when a user selects a navigation feature*
 
 #### Calendar Pop-up
 The calendar Pop-up allows user to view the details of the appointment in the calendar
@@ -734,7 +734,7 @@ These are the ways that a user can use the `Calendar Pop-up` feature.
 
 ![Calendar Pop-Up Activity](images/CalendarPopUpActivityDiagram.png)
 
-*Figure 21. Activity diagram showing what happens  when a user selects an appointment in the calendar tab*
+*Figure 26. Activity diagram showing what happens  when a user selects an appointment in the calendar tab*
 
 ### \[Proposed\] Undo/redo feature
 
