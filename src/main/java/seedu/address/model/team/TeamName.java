@@ -1,10 +1,9 @@
 package seedu.address.model.team;
 
-import seedu.address.model.common.Name;
-import seedu.address.model.task.TaskName;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import seedu.address.model.common.Name;
 
 /**
  * Represents a Team's name in the
@@ -30,6 +29,12 @@ public class TeamName extends Name {
         super(name);
     }
 
+    /**
+     * A factory method to produce {@code TeamName}
+     *
+     * @param name A valid name.
+     * @return A {@code TeamName} with specified name.
+     */
     public static TeamName of(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);

@@ -12,8 +12,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonName;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskName;
-import seedu.address.model.team.TeamName;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.TeamName;
 
 /**
  * The API of the Model component.

@@ -4,8 +4,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
-import seedu.address.model.team.TeamName;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.TeamName;
 
 /**
  * A utility class to help with building Team objects.

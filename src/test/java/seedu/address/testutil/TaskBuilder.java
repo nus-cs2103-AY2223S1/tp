@@ -3,8 +3,8 @@ package seedu.address.testutil;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import seedu.address.model.task.TaskName;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskName;
 import seedu.address.model.util.SampleDataUtil;
 
 /**

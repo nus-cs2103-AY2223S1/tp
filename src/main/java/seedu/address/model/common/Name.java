@@ -1,7 +1,8 @@
 package seedu.address.model.common;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Abstract class for all Name objects.
+ */
 public abstract class Name {
 
     public final String fullName;
@@ -21,7 +22,7 @@ public abstract class Name {
     }
 
     @Override
-    abstract public boolean equals(Object other);
+    public abstract boolean equals(Object other);
 
     @Override
     public int hashCode() {

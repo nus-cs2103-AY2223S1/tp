@@ -13,9 +13,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonName;
-import seedu.address.model.team.TeamName;
 import seedu.address.model.team.Team;
-
+import seedu.address.model.team.TeamName;
 
 /**
  * Adds a person to the address book.

@@ -7,10 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM_NAME;
 
 import seedu.address.logic.commands.CreateTeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.team.TeamName;
 import seedu.address.model.team.Team;
-
-
+import seedu.address.model.team.TeamName;
 
 /**
  * Parses input arguments and creates a new CreateTeamCommand object

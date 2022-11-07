@@ -12,8 +12,8 @@ import java.time.LocalDate;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.TaskAddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.TaskName;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskName;
 
 /**
  * Parses input arguments and creates a new TaskAddCommand object

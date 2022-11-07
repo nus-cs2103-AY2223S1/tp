@@ -12,9 +12,8 @@ import java.time.format.ResolverStyle;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.common.Name;
-import seedu.address.model.task.TaskName;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskName;
 import seedu.address.model.team.TeamName;
 
 

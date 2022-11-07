@@ -1,10 +1,9 @@
 package seedu.address.model.task;
 
-import seedu.address.model.common.Name;
-import seedu.address.model.person.PersonName;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import seedu.address.model.common.Name;
 
 /**
  * Represents a Task's name in the address book.
@@ -30,6 +29,12 @@ public class TaskName extends Name {
         super(name);
     }
 
+    /**
+     * Factory method to produce a {@code TaskName}
+     *
+     * @param name A valid name.
+     * @return A {@code TaskName} with specified name.
+     */
     public static TaskName of(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);

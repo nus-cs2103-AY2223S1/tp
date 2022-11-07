@@ -25,8 +25,8 @@ import static seedu.address.testutil.TypicalTasks.STUDY;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.TaskAddCommand;
-import seedu.address.model.task.TaskName;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskName;
 import seedu.address.testutil.TaskBuilder;
 
 public class TaskAddCommandParserTest {

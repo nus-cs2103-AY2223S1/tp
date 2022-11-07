@@ -10,10 +10,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
-import seedu.address.model.team.TeamName;
 import seedu.address.model.team.Team;
-
-
+import seedu.address.model.team.TeamName;
 
 /**
  * Jackson-friendly version of {@link Team}.
@@ -73,7 +71,8 @@ public class JsonAdaptedTeam {
      */
     public Team toModelType() throws IllegalValueException {
         if (teamName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TeamName.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TeamName.class.getSimpleName()));
         }
 
         if (!TeamName.isValidName(teamName)) {

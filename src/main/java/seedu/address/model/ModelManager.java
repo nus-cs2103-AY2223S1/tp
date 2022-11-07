@@ -20,8 +20,8 @@ import seedu.address.model.person.PersonName;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskName;
-import seedu.address.model.team.TeamName;
 import seedu.address.model.team.Team;
+import seedu.address.model.team.TeamName;
 import seedu.address.model.team.exceptions.TeamNotFoundException;
 
 /**

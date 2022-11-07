@@ -1,9 +1,9 @@
 package seedu.address.model.person;
 
-import seedu.address.model.common.Name;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import seedu.address.model.common.Name;
 
 /**
  * Represents a Person's name in the address book.
@@ -36,6 +36,12 @@ public class PersonName extends Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     *  A factory method for {@code PersonName}.
+     *
+     * @param name A valid name.
+     * @return A {@code PersonName} with specified name.
+     */
     public static PersonName of(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
