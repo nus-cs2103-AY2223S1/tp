@@ -21,8 +21,9 @@ Given below are my contributions to the project.
     * Justification: This feature is highly relevant to the product because it supports an important aspect of being a teaching assistant—managing consultations with students. 
     Users are able to add in new consultations, which can be used for organizing schedule and providing overview of students' doubts. 
     For instance, this feature prevents user from forgetting their scheduled consultation with their student. 
-    Also, by seeing all students' question at one glance, user can easily spot the common questions among all students.
-  
+    Also, by seeing all students' question at one glance, user can easily spot the common questions among all students. 
+    * Highlight: `add consultation` requires a unique list for storage, separate classes for its fields and parsers for all these fields.
+
   * **New feature** `delete consultation`
     * What is does: deletes a specified consultation with given index
     * Justification: The user should be able to remove consultations in case they made mistakes, the consultations are cancelled or no longer relevant.
@@ -44,8 +45,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Product introduction
-    * Add feature: add & delete consultation to the feature list
+    * Completed documentation for assignments features:
   * Developer Guide:
     * to be added soon
 
