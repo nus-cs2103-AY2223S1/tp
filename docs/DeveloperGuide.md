@@ -700,16 +700,19 @@ to occur would likely give the user more matches that were irrelevant instead of
 **Target user profile**:
 * property agent
 * needs to manage a significant number of buyers and properties concurrently
-* often overwhelmed by a disorganised information
+* often overwhelmed by the large amount of disorganised information
 * wants to keep track of all information neatly categorised in one place
 * takes too long to manually go through each property to find one that matches a buyer's requirements
 * can type fast and prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
 **Value proposition**: <br>
-Improves efficiency and convenience by allowing quick text-based inputs --
-use of commands to quickly execute functionalities such as adding, deleting, and filtering entries. Coupled with the
-automation of matching between suitable properties and buyers.
+Property agents can make use of Cobb’s flexible filtering and sorting systems to understand key demographics of their customer base. 
+They can also leverage on Cobb’s finding system to quickly locate buyers that they want to retrieve information about. 
+Finally, they can make use of Cobb’s matching systems to match-make buyers and properties or vice-versa, boosting sales potential.
+These features allow them to manage their database easily and replace tedious manual searching work with a quick command.
+Quick text-based inputs also allow them to save time.
+Cobb's GUI layout also neatly categorises buyers and properties and their respective details, making it easy to take in at a glance. 
 
 ### User stories
 
