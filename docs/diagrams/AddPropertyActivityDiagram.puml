@@ -1,0 +1,26 @@
+
+@startuml
+start
+:User executes add property command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([User provided all required parameters])
+:Property's name, price, address, description,\n ownerName and ownerPhone are parsed;
+:New entryTime is created for the property;
+if () then ([characteristics provided])
+:Property's characteristics is parsed;
+note left
+    For a property, only its
+    characteristics are optional.
+end note
+else([else])
+endif
+#palegreen:New Property is returned;
+stop
+else([User failed to provide required parameters correctly])
+#pink:Cobb displays an error;
+end
+@enduml
+

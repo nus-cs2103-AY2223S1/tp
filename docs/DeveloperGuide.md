@@ -7,8 +7,8 @@ title: Developer Guide
 
 ## **Introduction**
 
-Cobb is a JavaFX application that helps property agents manage their database of buyers and properties using a
-command-line interface. 
+Cobb is a brownfield software project based off of [AddressBook3](https://se-education.org/addressbook-level3/). It is a 
+JavaFX application that helps property agents manage their database of buyers and properties using a command-line interface.
 
 ### **Purpose**
 
@@ -27,7 +27,8 @@ of the guide.
 --------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
 
-* [AddressBook-Level3](https://github.com/se-edu/addressbook-level3)
+Libraries used: [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [JavaFX](https://openjfx.io),
+[PlantUML](https://plantuml.com).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -347,6 +348,118 @@ list to be displayed correctly on the user's screen.
         * Users might be able to execute commands on entries in the list that are not currently visible, which might lead
           to confusion.
 
+### Internal implementations of Buyers and Properties
+
+Cobb allows functionality that performs operations on two distinct types of entities stored in the database: Potential property
+buyers, as well as properties that are for sale. To allow for this functionality, two classes were created that represented each type
+of entity: `Buyer` and `Property`, respectively.
+
+The structure of a `Buyer` object can be viewed in the class diagram below.
+
+![BuyerClassDiagram](images/BuyerClassDiagram.png)
+
+From the diagram, it can be seen that a `Buyer` object consists of the following attributes:
+- A `Name`, representing the name of the buyer.
+- A `Phone`, representing the phone number of the buyer.
+- An `Address`, representing the address of the buyer.
+- An `Email`, representing the email address of the buyer.
+- An `entryTime`, representing the creation time of the buyer (created and accessed internally).
+- A `Priority`, representing the priority of the buyer - High, Normal or Low.
+- A `PriceRange`, representing the price range of properties that a buyer is willing to consider.
+- A `Characteristics`, representing the characteristics of a property that a buyer is looking for.
+
+On the other hand, the structure of a `Property` object can be viewed in the class diagram below.
+
+![PropertyClassDiagram](images/PropertyClassDiagramNew.png)
+
+From the diagram, it can be seen that a `Property` object consists of the following attributes:
+- A `PropertyName`, representing the name of the property.
+- An `Address`, representing the address of the property.
+- A `Description`, representing a short description of the property.
+- An `Owner`, representing the Owner of the property. An owner has an `ownerName` and an `ownerPhone`.
+- A `propertyEntryTime`, representing the creation time of the property (created and accessed internally).
+- A `Price`, representing the price of the property.
+- A `Characteristics`, representing the characteristics that a property possesses.
+
+#### Design Considerations
+
+**Aspect: How `Buyer` and `Property` objects are stored internally**
+
+* **Alternative 1 (current choice)**: Individual classes are created for each of the attributes related to `Buyer` and `Property`
+  objects.
+  * Pros:
+    * Reduces piling up of functionality within the `Buyer` and `Property` classes by abstracting out behaviour related to each
+      individual attribute to its own component class.
+    * Adheres more to the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single-responsibility_principle)
+      through aforementioned abstraction of functionality.
+    * Makes the code neater and easier to follow.
+    * Makes individual components of code easier to test and easier to re-use.
+  * Cons:
+    * Increases coupling of different classes.
+    * Increases the number of classes in the codebase.
+    
+  
+* **Alternative 2**: All individual attributes are stored directly in the `Property` or `Buyer` classes, with all related
+  functionality also implemented within them. This would result in `Buyer` and `Property` objects similar to that in the 
+  UML diagram below.
+  * Pros:
+    * No extra classes are required, as all attributes are stored directly in the component classes.
+    * All functionality is executed by the singular component class, so there is no confusion.
+  * Cons:
+    * Very bloated component classes with a lot of functionality.
+    * Difficult to abstract and test each functionality of the class separately.
+
+
+![Alternative Property and Buyer implementation](images/AlternativeBuyerAndProperty.png)
+
+
+### Creating a buyer
+
+The `Buyer` class represents a buyer with buyer-specific fields. `PriceRange`, `Characteristics`, and `Priority`
+denote his budget, requirements for the property, and buyer priority respectively.  
+
+These three fields are all optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`.
+When the user chooses not to indicate a buyer priority, the buyer's priority will be set to the default priority as `NORMAL`.
+When the user creates a buyer, the time of creation is also automatically stored as a `LocalDateTime`.
+
+The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide.
+
+#### Design considerations:
+Duplicate buyers should not be able to be added into the buyer list. This means that we need some sort of criterion to differentiate
+between buyers.
+
+Originally, we disallowed creation of two buyers that have the same name. However, we found this to be too rigid as there could very well
+exist two distinct buyers that have the same name. Instead, we decided to make use of phone numbers and emails to identify identical buyers,
+as these fields should be unique to each person.
+
+The time of creation field was added towards the later part of development to help facilitate a more flexible implementation of the `sortbuyers` command.  
+
+The activity diagram for the creation of a buyer can be seen below.
+
+![Add buyer activity diagram](images/AddBuyerActivityDiagram.png)
+
+### Creating a property
+
+The `Property` class represents a property with property-specific fields. `Price` and `Characteristics` denote the price and feature of the property respectively.
+
+The `price` field is mandatory while the `characteristics` field is optional. When the user chooses not to indicate a property's characteristics, the `characteristics` field of a property may be null. Hence, it has been implemented using `Optional<T>`.
+When the user creates a property, the time of creation is also automatically stored as a `LocalDateTime`.
+
+The structure for executing an `addprop` command follows the flow as mentioned in the "Logic component" section of this guide.
+
+#### Design considerations:
+No duplicate properties can be added to the property list. This means that we need some sort of criterion to differentiate between
+properties.
+
+Originally, we disallowed creation of two properties that have the same name and price. However, we found this to be to rigid as
+there could very well be two distinct properties that exist which have both the same name and price. Instead, we decided to make
+use of the property's address to distinguish it from another property, as the address of a property should be unique to it.
+
+The time of creation field was added towards the later part of development to help facilitate a more flexible implementation of the `sortprops` command.
+
+The activity diagram for the creation of a property can be seen below.
+
+![Add property activity diagram](images/AddPropertyActivityDiagram.png)
 
 
 ### Editing of buyers and properties
@@ -415,8 +528,10 @@ This is the class diagram showing the full `Property` class diagram, with the `O
 The `Owner` class enacts the Composition relationship, as the `Property` class contains the `Owner` object. Hence, if the property is deleted, it's associated owner will also be deleted.
 The tradeoffs for this approach is examined below:
 
-#### Design considerations
-**Aspect: How the owner class associates with the property class:**
+#### Design considerations:
+
+**Aspect: How the owner class associates with the property class**
+
 
 * **Alternative 1 (current choice):** Owner class is coupled together with the property class.
     * Pros:
@@ -443,9 +558,10 @@ In order to filter `Buyers` and `Properties`, a `Predicate` needs to be passed i
 references to these objects and displays them on the user's screen. These predicates can differ in the conditions that are
 being tested, consequently, they might give different outputs when applied to a given list.
 
-#### Design Considerations:
-In order to allow for multiple-condition filtering, that is, the composition of multiple filter predicates, an abstract 
-`AbstractFilterXYZPredicate` class was created to employ polymorphic behaviour, where XYZ represents the entry type that
+
+#### Design Considerations
+In order to allow for multiple-condition filtering, that is, the concatenation of multiple filter predicates, an abstract 
+`AbstractFilterXYZPredicate` class was created to employ polymorphic behaviour, where XYZ represents the entity type that
 we are working with, for example `AbstractFilterBuyersPredicate` or `AbstractFilterPropsPredicate`. 
 
 As `Property` has a single specific `Price`, it is much less useful to filter the list using one price value as it is
@@ -464,8 +580,9 @@ concrete predicate classes were implemented:
 4. `FilterPropsContainingAnyCharacteristicsPredicate`
 5. `FilterPropsByOwnerNamePredicate`
 
-Based on command parameters passed in by the user, these predicates are constructed and composed together to form a single
-`Predicate`, which is then used to filter the `ObservableList` directly.
+Based on command parameters passed in by the user, these predicates are constructed and concatenated together to form a single
+`Predicate`, which is then used to filter the `ObservableArrayList` directly. More specifics regarding concatenation behaviour
+can be found in the [filter-specific design considerations](#filter-specific-design-considerations) section located below.
 
 The UML diagram below represents the overall structure of the predicates for `Buyers` and `Properties`.
 
@@ -474,13 +591,15 @@ The UML diagram below represents the overall structure of the predicates for `Bu
 #### Filter-specific design considerations
 1. Filtering `Properties` by their prices takes in a `priceRange` instead of just a `Price` as it makes more sense for
    agents to want to identify properties that fit within a certain price range instead of a fixed price.
-2. For both `filterBuyers` and `filterProps`, passing in the `-fuzzy` flag will change the final composed predicate to be
+2. For both `filterBuyers` and `filterProps`, the default concatenated predicate will be a logical **AND** of all individual
+   predicates, that is, all predicates need to be satisfied in order for the entry to pass through the filter.
+3. For both `filterBuyers` and `filterProps`, passing in the `-fuzzy` flag will change the final concatenated predicate to be
    a logical **OR** of all individual predicates, that is, only one of the predicates needs to be satisfied in order
    for the entry to pass through the filter.
-3. If the `-c` flag is specified, that is, desired characteristics are supplied as filter conditions, the default behaviour
+4. If the `-c` flag is specified, that is, desired characteristics are supplied as filter conditions, the default behaviour
    is for Cobb to filter out entries that contain **ALL** of the given characteristics. The `-fuzzy` flag changes this behaviour
    to filter out entries that contain *at least one* of the given characteristics.
-4. Filtering entries by name - that is, providing the `-n` flag to the filter command, will filter all entries whose names
+5. Filtering entries by name - that is, providing the `-n` flag to the filter command, will filter all entries whose names
    contain the parameter provided to `-n` as a *substring*.
 
 ### Sorting buyers and properties
