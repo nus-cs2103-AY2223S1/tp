@@ -652,7 +652,52 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 12. The documentation should not exceed 15MB per file.
 13. The software and documentation should be accessible for users who have a basic command of the English language.
 
-## Glossary
+---
+
+# Appendix: Instructions for manual testing
+
+Given below are instructions to test the app manually.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+testers are expected to do more *exploratory* testing.
+
+</div>
+
+## Launch and shutdown
+
+1. Initial launch
+
+   a. Download the jar file and copy into an empty folder
+
+   b. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
+   optimum.
+
+2. Saving window preferences
+
+   a. Resize the window to an optimum size. Move the window to a different location. Close the window.
+
+   b. Re-launch the app by double-clicking the jar file.<br>
+   Expected: The most recent window size and location is retained.
+
+## Deleting a student
+
+1. Deleting a student while all students are being shown.
+
+   a. Prerequisites: List all students using the `list` command. Multiple students in the list.<br><br>
+
+   b. Test case: `delete 1`<br>
+   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+   Timestamp in the status bar is updated.<br><br>
+
+   c. Test case: `delete 0`<br>
+   Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.<br><br>
+
+   d. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   Expected: Similar to previous.<br><br>
+
+---
+
+# Glossary
 
 ### TA
 
@@ -688,46 +733,3 @@ A label for students defined by the user, possibly shared by multiple students.
 ### Attribute
 
 Characteristics of students that all students have.
-
----
-
-# Appendix: Instructions for manual testing
-
-Given below are instructions to test the app manually.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
-
-</div>
-
-## Launch and shutdown
-
-1. Initial launch
-
-   a. Download the jar file and copy into an empty folder
-
-   b. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be
-   optimum.
-
-2. Saving window preferences
-
-   a. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   b. Re-launch the app by double-clicking the jar file.<br>
-   Expected: The most recent window size and location is retained.
-
-## Deleting a student
-
-1. Deleting a student while all students are being shown
-
-   a. Prerequisites: List all students using the `list` command. Multiple students in the list.
-
-   b. Test case: `delete 1`<br>
-   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-   Timestamp in the status bar is updated.
-
-   c. Test case: `delete 0`<br>
-   Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
-
-   d. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-   Expected: Similar to previous.
