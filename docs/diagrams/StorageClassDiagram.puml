@@ -21,6 +21,7 @@ Class JsonSerializableFriday
 Class JsonAdaptedAlias
 Class JsonAdaptedStudent
 Class JsonAdaptedTag
+Class JsonAdaptedGrade
 }
 
 }
@@ -40,6 +41,7 @@ JsonFridayStorage .up.|> FridayStorage
 JsonFridayStorage ..> JsonSerializableFriday
 JsonSerializableFriday --> "*" JsonAdaptedStudent
 JsonSerializableFriday --> "*" JsonAdaptedAlias
+JsonAdaptedStudent --> "5" JsonAdaptedGrade
 JsonAdaptedStudent --> "*" JsonAdaptedTag
 
 @enduml

@@ -241,10 +241,10 @@ for an alias-keyword mapping. As there is a mapping of `ls` to `list`, `Model#ge
 
 **Aspect: How `Alias` is stored in `AliasMap`:**
 
-|                                                                                                                          | **Pros**                       | **Cons**                                                                                                                                                                                 |
-|--------------------------------------------------------------------------------------------------------------------------|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Option 1 (current choice)** <br> Stored as an Alias-ReservedKeyword mapping in a Map                                   | Fast with O(1) time complexity | At high capacity, there might be complications due to collision in Map                                                                                                                   |
-| **Option 2** <br> Alias and ReservedKeyword stored within an association class in a List | Can store more Aliases         | To get an Alias, iteration through the whole list must be done causing the time complexity to be at O(Number of Aliases) and this might cause performance issues when there are many aliases |
+|                                                                                            | **Pros**                       | **Cons**                                                                                                                                                                                 |
+|--------------------------------------------------------------------------------------------|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Option 1 (current choice)** <br> Stored as an Alias-ReservedKeyword mapping in a Map     | Fast with O(1) time complexity | At high capacity, there might be complications due to collision in Map                                                                                                                   |
+| **Option 2** <br> Alias and ReservedKeyword stored within an association class in a List   | Can store more Aliases         | To get an Alias, iteration through the whole list must be done causing the time complexity to be at O(Number of Aliases) and this might cause performance issues when there are many aliases |
 _
 
 ### Grade Feature

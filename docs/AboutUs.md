@@ -16,7 +16,7 @@ You can reach us at the consultation `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/Yuvaraj0702)]
 [[portfolio](team/yuvaraj0702.md)]
 
-* Role: Project Advisor
+* Role: Team Lead
 * Responsibilities: Data
 
 ### Darren Teo Zhi Jie
@@ -26,8 +26,8 @@ You can reach us at the consultation `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/darrtzj)]
 [[portfolio](team/darrtzj.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Dev ops, Data
 
 ### Tan How Suen
 
