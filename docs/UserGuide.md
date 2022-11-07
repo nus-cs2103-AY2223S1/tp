@@ -406,7 +406,7 @@ Format: `edit consultation INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/D
 
 Examples:
 1. `edit consultation 2 T/14:00-16:00 D/2023-11-21` Edits the timeslot of the 2nd consultation to be `14:00 to 16:00` and sets consultation date to `2023 Nov 21`.
-2. `edit consultation 1 d/Review past year paper; Go through object and class diagrams` Edits the description of the 1st consultation to be `Review past year paper; Go through object and class diagrams`.
+2. `edit consultation 1 v/Zoom` Edits the venue of the 1st consultation to be `Zoom`.
 
 <table>
   <tr>
