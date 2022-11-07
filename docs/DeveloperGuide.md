@@ -107,9 +107,9 @@ on how you can perform testing on the features in ConnectNUS. In this section, y
 
 You can jump into the various sections from the Table of Contents to view different sections of the Developer Guide, and
 click on [Scroll back to top](#table-of-contents), which can be found at the end of every section, to access the Table
-of Contents to quickly jump to another section without manually scrolling through the Developer Guide.
+of Contents to quickly jump to another section.
 
-we would recommend you to read the [Glossary](#glossary) section next.
+We would recommend you to read the [Glossary](#glossary) section next.
 
 [Scroll back to top](#table-of-contents)
 
