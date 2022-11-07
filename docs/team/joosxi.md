@@ -32,7 +32,8 @@ Given below are my contributions to the project.
     and the one-liner command makes it faster than a 
     similar GUI interface.
 
-* **Code contributed**:
+* **Code contributed**: 
+[RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=joosxi&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
   * `Pull Requests`:
     * (#67): Find command with prefix v1.3
     * (#76): Update Developer Guide for 
@@ -43,6 +44,8 @@ Given below are my contributions to the project.
     * (#100): Update Developer Guide for edit command
     * (#190): Enhancements to User Interface
     * (#197): Add test cases for FindCommandTest
+    * (#216): Update User Guide for attendance command and step-by-step example for multiple commands
+    * (#219): Update User Guide by resizing big images
 
 * **Project management**:
   * `to be added soon`
@@ -56,10 +59,10 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * `Edit command`
+    * Documentation of `Edit command`
   * Developer Guide:
-    * `Find command (Finding by class prefix)`
-    * `Edit command`
+    * Documentation of `Find command (Finding by class prefix)`
+    * Documentation of `Edit command`
 
 * **Community**:
   * `to be added soon`
