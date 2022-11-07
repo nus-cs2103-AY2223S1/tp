@@ -399,14 +399,8 @@ The following activity diagram summarises what happens when LinkExamCommand is e
 |              Activity diagram of LinkExamCommand               |
 
 
-### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
-![UndoRedoState0](images/UndoRedoState0.png)
-
-
-
-### Add Exam Command
+### Add Exam Feature
 
 #### Command Format: 
 `e add m/MODULE ex/EXAM DESCRIPTION ed/EXAM DATE`
@@ -475,7 +469,7 @@ The following activity diagram summarises what happens when AddExamCommand is ex
 |               Activity diagram of AddExamCommand              |
 
   
-### Find Tasks Command
+### Find Tasks Feature
 
 #### Command Format:
 `t find KEYWORD` where `KEYWORD` is the keyword inputted by user.
