@@ -74,6 +74,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ## **UI component**
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/ui/Ui.java)
@@ -97,6 +99,8 @@ There are 3 main columns, which from left to right are for `Task`, `Project` and
 Directly adding or removing `Project`, `Task`, or `Staff` would update the `ProjectListPanel`, `TaskListPanel` and `StaffListPanel` to show their respective `ProjectCard`, `StaffCard` and `TaskCard` respectively.
 Each of the `ProjectCard`, `StaffCard` and `TaskCard` would display the fields under the corresponding `Project`, `Staff` and `Task` objects as discussed under [Model Component](#model-component).
 
+
+<div style="page-break-after: always;"></div>
 
 ## **Logic component**
 
@@ -128,6 +132,8 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 * Note that the `XYZCommandParser` is only created for commands that require additional parameters to be taken in. 
 Other commands (e.g., `ListCommand`, `Sort TaskCommand`) do not require any additional parameters and thus their parsing is handled by the `HrProParser` itself.
+
+<div style="page-break-after: always;"></div>
 
 ## **Model component**
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/model/Model.java)
@@ -174,6 +180,8 @@ The `Task` class,
 
 * stores the details of a particular task (i.e. `TaskDescription`, `TaskDeadline`).
 
+<div style="page-break-after: always;"></div>
+
 ## **Storage component**
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/storage/Storage.java)
@@ -189,8 +197,8 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.hrpro.commons` package.
 
-<div style="page-break-after: always;"></div>
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # **Implementation**
 
@@ -274,6 +282,8 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delproj`, just save the project being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
+<div style="page-break-after: always;"></div>
+
 ## **View Command**
 
 ### Implementation
@@ -293,6 +303,8 @@ The following sequence diagram shows how the view command works.
 * Initially, we decided to create a target project attribute in `Model` that keeps track of the `Project` object being viewed, but we realised that this design exposes the `UniqueStaffList` attribute of the project to other components like UI. Also, other commands could potentially mutate this target project which would result in a lot of bugs.
 * The last viewed staff list would also be saved in `Storage` for convenience to users.
 
+<div style="page-break-after: always;"></div>
+
 ## **Find Task**
 
 ### Implementation
@@ -311,6 +323,8 @@ The following sequence diagram shows how the `findTask` command will run through
       they want to find.
     * Cons: More tasks will be displayed to the users as there may be more `TaskDescription` that partially matches the keyword.
 
+
+<div style="page-break-after: always;"></div>
 
 ## **Mark and unmark task**
 
@@ -335,6 +349,8 @@ The following sequence diagram shows how the mark command will run throughout HR
 ### Design Considerations
 * We decided to add visual indicators to the `Task` card in the GUI to show the completion status of the `Task`,
 so as to make it easier for the user to identify the completion status of the `Task` at a glance.
+
+<div style="page-break-after: always;"></div>
 
 ## **Sort task**
 
@@ -362,6 +378,8 @@ sorting tasks by alphabetical order.
 * Sorting tasks is an irreversible process. The user will not be able to undo the sorting of tasks.
     * Pros: Less memory required and simpler implementation as there is no need to store the original order of the tasks.
     * Cons: Some users might want to undo the sorting to view the tasks in the original order.
+
+<div style="page-break-after: always;"></div>
 
 ## **Delete Staff from a project**
 
@@ -424,6 +442,8 @@ An alternative implementation of the `delstaff` command could be to implement it
   * Pros: Easier to implement then the current implementation
   * Cons: Does not require Staff to be displayed to be deleted, user would be able to randomly delete Staff, and may lose track of where they are deleting Staff from.
 
+<div style="page-break-after: always;"></div>
+
 ## **Add Staff to Project**
 
 ### Implementation
@@ -475,6 +495,7 @@ Sequence diagram for the execution of `AddStaffCommand`
   - Cons: Users will have to know the full name of the project, and this approach does not allow rooms for typos, so a careless
     user might add a staff member to the wrong project.
 
+<div style="page-break-after: always;"></div>
 
 ## **Edit Staff in Project**
 
@@ -535,6 +556,8 @@ Sequence diagram for the `EditStaffCommand`
     - Cons: Users who are careless might accidentally perform an irreversible edit onto a given staff. Since HR Pro Max++ has yet to
     ship an `undo` command, users might permanently affect the database and if this is a mistake, would be very hard to recover from.
 
+<div style="page-break-after: always;"></div>
+
 ## **Find Staff in Project**
 ### Implementation
 
@@ -586,8 +609,10 @@ Activity diagram for the `FindStaffCommand`
   `findstaff Alex Lau` will either return no staff if there is no staff in the staff list with the name "Alex Lau", or only the staff "Alex Lau"
   - Cons: Users who want to perform search queries on the staff list such as finding all Jareds and all Laus, will have to do two separate
   `findstaff` calls when they could just call `findstaff Jared Lau` in an implementation that supports searching multiple keywords.
-<div style="page-break-after: always"></div>
+
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 # **Documentation, logging, testing, configuration, dev-ops**
 
@@ -596,8 +621,9 @@ Activity diagram for the `FindStaffCommand`
 * [Logging guide](Logging.md)
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
-<div style="page-break-after: always"></div>
+
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # **Appendix: Requirements**
 
@@ -628,6 +654,8 @@ in our application to keep track of them.
 know who to find and how to contact them.
 * Team leads can record down different tasks that need to be done for their various projects
 
+
+<div style="page-break-after: always;"></div>
 
 ## **User stories**
 
@@ -819,6 +847,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
+<div style="page-break-after: always;"></div>
+
 ## **Non-Functional Requirements**
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to run without any additional installations beyond Java 11.
@@ -836,6 +866,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 14. The fields in the GUI should be clearly labelled such that the user can easily understand what they are for.
 15. The User Guide and Developer Guide should be clearly written and easy to understand.
 
+<div style="page-break-after: always;"></div>
+
 ## **Glossary**
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
@@ -846,8 +878,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **JAR** Stands for Java Archive, and is a file format used to aggregate many Java class files and associated metadata and resources (text, images, etc.) into one file for distribution.
 * **Prefix** A prefix is a short string of characters that is used to identify a command parameter. It is always ended by a backslash (`/`).
 * **Parameter** A parameter is a value in a command that is used to specify the behaviour of the command. Parameters are information to be supplied by the user.
-<div style="page-break-after: always"></div>
+
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # **Appendix: Instructions for manual testing**
 
@@ -873,6 +906,8 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
+
+<div style="page-break-after: always;"></div>
 
 ## Deleting a Project
 
@@ -909,6 +944,8 @@ testers are expected to do more *exploratory* testing.
 
     6. `sortproj` should work on all Projects even if the Project list has been filtered using `findproj` command.
 
+<div style="page-break-after: always;"></div>
+
 ## Viewing the Staff list of a Project
 
 1. Viewing the Staff list while all projects are being shown
@@ -936,6 +973,8 @@ testers are expected to do more *exploratory* testing.
 
    4. Other incorrect view commands to try: `view`, `view x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+<div style="page-break-after: always;"></div>
 
 ## Marking a Task
 
@@ -987,6 +1026,8 @@ testers are expected to do more *exploratory* testing.
     5. Command should be case-insensitive. Other correct mark commands to try: `MARKTASK 1`, `markTask 1`, `MarkTask 1`<br>
        Expected: Similar to first test case.
 
+<div style="page-break-after: always;"></div>
+
 ## Unmarking a Task
 
 1. Unmarking a task in an unsorted Task list
@@ -1037,6 +1078,8 @@ testers are expected to do more *exploratory* testing.
     5. Command should be case-insensitive. Other correct unmark commands to try: `UNMARKTASK 1`, `unmarkTask 1`, `unMarkTask 1`<br>
       Expected: Similar to first test case.
 
+<div style="page-break-after: always;"></div>
+
 ## Finding a Task
 
 1. Finding a Task while all Tasks are being shown
@@ -1066,6 +1109,8 @@ testers are expected to do more *exploratory* testing.
    4. Command should be case-insensitive and allow for partial matching. Other correct find commands to try: `FINDTASK download`, `findtask down`, `FindTask d`<br>
       Expected: Similar to first test case.
 
+<div style="page-break-after: always;"></div>
+
 ## Sorting Tasks by completion status
 
 1. Sorting Tasks by completion status
@@ -1094,6 +1139,7 @@ testers are expected to do more *exploratory* testing.
       Expected: HR Pro Max++ launches with no data. Any further changes you make (eg: adding a Project) will be reflected in the new data file.
 
 <div style="page-break-after: always"></div>
+
 # **Appendix: Effort**
 
 We felt that our group has placed more than the average effort needed into this group project, just in case.

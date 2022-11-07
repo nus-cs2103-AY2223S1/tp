@@ -84,5 +84,5 @@ resultDisplay --> mainWindow
 deactivate resultDisplay
 
 mainWindow --> user : s
-
+deactivate mainWindow
 @enduml

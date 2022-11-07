@@ -14,13 +14,16 @@ Here are some shortcuts to get help:
 * If you are unsure of the terminology, check our [Glossary section](#glossary).
 * To see how all our commands work, head to our [Features section](#features).
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **Table of Contents**
 
 * Table of Contents
 {:toc}
-<div style="page-break-after: always;"></div>
 
 -------------------------------------------------------------------------------------------------------------------- 
+<div style="page-break-after: always;"></div>
+
 ## **Glossary**
 In this User Guide, there might some terms unknown to you. We have provided elaboration on some
 of these terms in the hopes that it will clear your doubts.
@@ -32,9 +35,9 @@ of these terms in the hopes that it will clear your doubts.
 | **Prefix**    | Prefix is the placeholder to indicate the type of information inputted. Here is a [list of all the prefixes](#prefix-summary).      |
 | **Parameter** | Parameters are the information that are needed to be passed together with the command such that it can be executed.                 |
 
+--------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
 ## **Quick start**
 
 1. Ensure you have Java `11` or above is installed in your Computer. Please kindly refer to [this guide](https://blog.hubspot.com/website/check-java-verison) for further instructions on how to do so.
@@ -50,15 +53,17 @@ of these terms in the hopes that it will clear your doubts.
    start the app.
 
    In that case, you can either right click the jar file and run it from the drop-down 
-   menu, or run the following command in the terminal: java -jar HR_Pro_Max++.jar
+   menu, or run the following command in the terminal:java -jar HR_Pro_Max++.jar
    ```
    ![Ui](images/Ui.png)
 6. You can proceed to the next section for a quick [overview of the user interface](#user-interface).
 7. Refer to the [Features](#features) below for details of the commands you can use.
 
 [Back to top](#table-of-contents)
-<div style="page-break-after: always"></div>
+
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **User Interface**
 Our app's user interface is divided into 5 main parts:
 1. [Command Box](#command-box)
@@ -68,6 +73,8 @@ Our app's user interface is divided into 5 main parts:
 5. [Staff Panel](#staff-panel)
 
 ![Ui](images/UiLabelled.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Command Box
 The command box is where you can type in your commands.
@@ -84,11 +91,15 @@ Some example commands you can try:
 
 * **`exit`** : Exits the app.
 
+<div style="page-break-after: always;"></div>
+
 ### Result Display
 The result display is where the output of your commands will be shown.
 For example, entering an incorrect `addproj` command like shown below will cause an error message to be displayed in the result display.
 
 ![Result Display](images/ResultDisplay.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Task Panel
 This section in the user interface displays the list of Tasks that you have entered into the app.
@@ -96,12 +107,16 @@ For information on all commands that are related to Tasks, refer to the [Task Co
 
 ![Task Panel](images/TaskPanel.png)
 
+<div style="page-break-after: always;"></div>
+
 ### Project Panel
 This section in the user interface displays the list of Projects that you have entered into the app.
 When first starting the program, the `Project` list will contain some sample data as shown.
 For information on all commands that are related to Projects, refer to the [Project Commands](#project-commands) section.
 
 ![Project Panel](images/ProjectPanel.png)
+
+<div style="page-break-after: always;"></div>
 
 ### Staff Panel
 This section in the user interface displays the list of Staff that you have entered into the app.
@@ -112,8 +127,10 @@ For information on all commands that are related to Staff, refer to the [Staff C
 ![Staff Panel](images/StaffPanel.png)
 
 [Back to top](#table-of-contents)
-<div style="page-break-after: always"></div>
+
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 # **Features**
 
 <div markdown="block" class="alert alert-info">
@@ -148,8 +165,10 @@ For information on all commands that are related to Staff, refer to the [Staff C
 
 
 [Back to top](#table-of-contents)
-<div style="page-break-after: always"></div>
+
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **Project Commands**
 This section contains information regarding all the commands that can be used to manage Projects.
 
@@ -164,8 +183,10 @@ This is a description of the different parameters for Projects.
 | **TAG**              | _Field for additional information_ <br> - Only alphanumeric characters are allowed. <br> - Tags are optional, allow multiple words and have a limit of 50 characters. <br> - Spaces are allowed but not an empty tag unless you are using the edit commands.                                                                                      |
 
 [Back to top](#table-of-contents)
-<div style="page-break-after: always"></div>
+
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### Adding a Project : `addproj`
 
 Adds a Project to Project list.
@@ -201,6 +222,8 @@ Format: `list`
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### Finding Projects : `findproj`
 
 Finds all Projects whose names match any of the specified keywords (case-insensitive) and displays them as a list with INDEX numbers.
@@ -241,6 +264,8 @@ Warning !!!:
 [Back to Project Glossary](#project-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### Editing a Project : `editproj`
 
 Edits the Project at the specified `INDEX` in the currently displayed Project list. Existing values will be updated to the input values.
@@ -290,9 +315,10 @@ Examples:
 
 [Back to top](#table-of-contents)<br>
 [Back to Project Glossary](#project-glossary)
-<div style="page-break-after: always"></div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **Staff Commands**
 
 Since each Project contains a list of Staff, we recommend that before using Staff commands on any Project,
@@ -316,9 +342,8 @@ Warning !!!:
 | **TAG**              | _Field for additional information_ <br> - Only alphanumeric characters are allowed. <br> - Tags are optional, allow multiple words and have a limit of 50 characters. Spaces are allowed but not an empty tag unless you are using the edit commands. |
 
 [Back to top](#table-of-contents)
-<div style="page-break-after: always"></div>
 --------------------------------------------------------------------------------------------------------------------
- 
+<div style="page-break-after: always;"></div>
 
 ### Adding a Staff member to Project : `addstaff`
 
@@ -348,6 +373,8 @@ Examples:
 [Back to Staff Glossary](#staff-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### Deleting a Staff member from Project : `delstaff`
 
 Deletes a Staff member and all their info from the Project which has its name specified.
@@ -382,6 +409,8 @@ Examples:
 [Back to Staff Glossary](#staff-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### View the Staff list within a Project : `view`
 
 Views the Staff list of the Project at the specified `INDEX`.
@@ -435,6 +464,8 @@ Examples:
 [Back to Staff Glossary](#staff-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### Finding a Staff member within a Project : `findstaff`
 
 Changes the displayed Staff list to contain only Staff members with names that match any of the keywords.
@@ -458,8 +489,10 @@ Staff whose name contains `Adrian` or `Lam` are also listed.
 
 [Back to top](#table-of-contents)<br>
 [Back to Staff Glossary](#staff-glossary)
-<div style="page-break-after: always"></div>
+
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **Task Commands**
 This section contains information on all the commands related to Tasks.
 
@@ -471,8 +504,10 @@ This section contains information on all the commands related to Tasks.
 | **TASK_DEADLINE**    | _Deadline of Task_ <br> - TASK_DEADLINE should be entered in the YYYY-MM-DD format.                                                                                                                                                                                                                                                                   |                                                                                                                                                              |
 
 [Back to top](#table-of-contents)
-<div style="page-break-after: always"></div>
+
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### Adding a Task : `addtask`
 
 Adds a Task to the Task list.
@@ -513,6 +548,8 @@ Examples:
 [Back to Task Glossary](#task-glossary)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### Finding a Task : `findtask`
 
 Finds all Tasks which have descriptions matching any of the KEYWORDS.
@@ -550,6 +587,8 @@ Format: `sorttask`
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### Sorting the Task list by whether its complete : `sortcomplete`
 
 ```yaml
@@ -582,6 +621,8 @@ Examples:
 [Back to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### Marking a Task as incomplete : `unmarktask`
 
 Marks the Task at the specified `INDEX` in the displayed Task list as incomplete.
@@ -596,8 +637,10 @@ Examples:
 * `unmarktask 2` Marks the second Task as not incomplete.
 
 [Back to top](#table-of-contents)
-<div style="page-break-after: always"></div>
+
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **General Commands**
 This section contains information on all the commands that are not related to any specific feature.
 
@@ -640,8 +683,10 @@ HR Pro Max++ data is saved in the hard disk automatically after any command that
 There is no need to save manually.
 
 [Back to top](#table-of-contents)
-<div style="page-break-after: always"></div>
+
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 # **Summary**
 This section contains a summary of all the commands and prefixes in HR Pro Max++.
 
@@ -722,8 +767,10 @@ The prefix `t/` is for tags that are used for Projects and Staff only.
 | **t/**     | Tag                | t/TAG                  |
 
 [Back to top](#table-of-contents)
-<div style="page-break-after: always"></div>
+
 -------------------------------------------------------------------------------------------------------------------- 
+<div style="page-break-after: always;"></div>
+
 # **FAQ**
 
 **Q**: How do I transfer my data to another Computer?<br>
