@@ -130,7 +130,7 @@ A parameter has a prefix and information which are written together without a sp
 
 e.g. `n/NAME`
 
-#### 6.3. Command Format
+### 6.3. Command Format
 
 In the command box, you need to type the [command](#621-command) along with the required [parameters](#622-parameter). You can leave the parameter field empty if it is optional, which is indicated by wrapped square brackets in the command format, e.g. `search [e/EMAIL]` <br>
 The parameters required for each command can be found in [Command Summary](#9-command-summary) and [Commands](#7-commands).
@@ -158,7 +158,7 @@ The parameters required for each command can be found in [Command Summary](#9-co
 
 </div>
 
-#### 6.4. How to Use the CLI
+### 6.4. How to Use the CLI
 
 If you already know about [Command Line Interface (CLI)](#CLI), you can skip this part and read the [Commands](#7-commands).
 
