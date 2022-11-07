@@ -5,17 +5,13 @@ title: Ervin Kin's Project Portfolio Page
 
 ### Project: Gim
 
-* Gim is a **desktop app for managing gym exercises, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Gim allows you to keep track your exercises and Personal Records in a efficient way.
-  Example usages:
-  * as a tracking tool to keep track of completed exercises
-  * as a tracking tool to keep track of your personal records
-  * as a workout generator to generate exercises based on your personal records
+* Gim is a **desktop app for managing gym exercises, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Gim allows you to keep track your exercises and Personal Records in an efficient way.
 
 Given below are my contributions to the project.
 
 * **New Feature**: Recognised Exercises list in bottom right of the GUI ([PR #107](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/107))
-  * What it does: Provides User with an idea of what unique exercises they have inputted in the system.
-  * Justification: This is especially important when the exercise list is populated/ the user has been using the app for a long time. He may accidentally misspell an exercise name when keying it in, causing the system to miss out on a potential personal record/entry. It also provides the user a guide to which exercises they can filter out. This list is updated in real time, implemented with the Observer pattern. 
+  * What it does: Provides User with an idea of what unique exercises they have inputted in the system, updated in real time.
+  * Justification: This is especially important when the exercise list is populated/ the user has been using the app for a long time. He may accidentally misspell an exercise name when keying it in, causing the system to miss out on a potential personal record/entry. 
   * Highlights:
     * Added Exercise Keys Class which handles logic behind ExerciseHashMap keys. 
     * Used Observer Pattern design in facilitating real time interaction between ExerciseHashMap and UI.
@@ -48,8 +44,7 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Standardised pictures in User guide, included callouts for important information in each picture. ([PR #202](https://github.com/AY2223S1-CS2103T-T15-4/tp/pull/202)).
-    * Wrote entire section for GUI orientation. 
-    * Crafting of tips for user and formatting of the User Guide.
+    * Wrote entire section for GUI orientation.
     * Helped with formatting of commands (placement of tips, phrasing of parameter constraints).
 
   * Developer Guide:
@@ -59,9 +54,7 @@ Given below are my contributions to the project.
 
 * **Contribution to team-based tasks**:
   * Reviewed Team Member's PRs and provided feedback where appropriate.
-  * PED bugs triaging. 
-  * Participated and contributed to weekly team meetings.
-
+  * PED bugs triaging.
 
 * **Tools**:
   * PlantUML: Creating UML diagrams. 
