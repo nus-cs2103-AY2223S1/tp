@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 import swift.commons.core.LogsCenter;
 import swift.logic.commands.CommandResult;
 import swift.logic.commands.CommandSuggestor;
@@ -107,20 +108,22 @@ public class CommandBox extends UiPart<Region> {
      * Auto-completes user input when the user presses the Tab key.
      */
     public void handleKeyPressed(KeyEvent e) {
-        String userInput = commandTextField.getText();
-        if (e.getCode() == KeyCode.TAB) {
-            String commandSuggestion = commandSuggestionTextField.getText();
-            String autocompletedCommand = commandSuggestor.autocompleteCommand(userInput, commandSuggestion);
-            if (!autocompletedCommand.equals("")) {
-                commandTextField.setText(autocompletedCommand);
-                commandTextField.end();
+        try {
+            String userInput = commandTextField.getText();
+            if (e.getCode() == KeyCode.TAB) {
+                String commandSuggestion = commandSuggestor.suggestCommand(userInput);
+                String autocompletedCommand = commandSuggestor.autocompleteCommand(userInput, commandSuggestion);
+                if (!autocompletedCommand.equals("")) {
+                    commandTextField.setText(autocompletedCommand);
+                    commandTextField.end();
+                }
+                updateCommandSuggestion(commandTextField.getText());
+                e.consume();
             }
-            updateCommandSuggestion(commandTextField.getText());
+        } catch (CommandException ce) {
+            logger.info("Invalid Command Entered");
+            setStyleToIndicateCommandFailure();
             e.consume();
-        } else if (e.getCode() != KeyCode.LEFT && e.getCode() != KeyCode.RIGHT) {
-            commandTextField.setText(userInput);
-            commandTextField.end();
-            updateCommandSuggestion(commandTextField.getText());
         }
     }
 
@@ -128,7 +131,7 @@ public class CommandBox extends UiPart<Region> {
      * Updates the command suggestion text field.
      */
     private void updateCommandSuggestion(String commandText) {
-        if (commandText.equals("")) {
+        if (commandText.equals("") || isOverflow()) {
             commandSuggestionTextField.setText("");
             return;
         }
@@ -140,6 +143,13 @@ public class CommandBox extends UiPart<Region> {
             commandSuggestionTextField.setText(commandText);
             setStyleToIndicateCommandFailure();
         }
+    }
+
+    public boolean isOverflow() {
+        Text t = new Text(commandTextField.getText() + "12345" ); // `12345` is used to pad the text
+        t.setFont(commandTextField.getFont());
+        double width = t.getLayoutBounds().getWidth();
+        return width > commandTextField.getWidth();
     }
 
 }
