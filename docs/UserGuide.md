@@ -262,7 +262,7 @@ Format: `addm m/MODULE_CODE [l/LECTURE_DETAILS] [t/TUTORIAL_DETAILS] [lz/LECTURE
 * The `MODULE_CODE` field is mandatory while all other fields are optional (click [here](#module-fields) for more details on each individual field). If you attempt to add a module without a module code, it will result in an error!
 * A module can have any number of `ASSIGNMENT_DETAILS` (including 0)
 
-<div markdown="span" class="alert alert-primary"> **Tip:** 
+<div markdown="span" class="alert alert-primary"> :bulb: **Tip:** 
 You can add the module code first and leave other fields blank. Other fields can be added later using the editm command! 
 </div>
 
@@ -386,7 +386,8 @@ Examples:
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: 1. Install the app in the other computer.
+**A**: 
+1. Install the app in the other computer.
 2. Go to the location where your current app is in, there should be a file called `data` in the same location.
 3. Copy the entire file and either email yourself the file or use a thumb-drive to transfer it to the other computer.
 4. Move the copied file to the same location you placed the [jar file](#jar-file) in the new computer.
