@@ -40,7 +40,7 @@ Around 4.5k lines of code according to the [RepoSense Link](https://nus-cs2103-a
 - Added all screenshots and labels.
 
 ### Contributions to the DG
-- Added implementation details and UML diagrams for UI component and `view` command.
+- Added implementation details and UML diagrams for UI component as well as the `view` and `edit` commands.
 - Updated use cases, user stories, glossary, product scope and instructions for manual testing.
 
 ### Reviewing contributions

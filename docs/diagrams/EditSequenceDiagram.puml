@@ -1,0 +1,76 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TuthubParser" as TuthubParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant ":EditCommand" as EditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "editedTutor:Tutor" as Tutor MODEL_COLOR
+participant ":ModelManager" as ModelManager MODEL_COLOR
+end box
+
+[-> LogicManager: execute("edit 1 n/John Doe")
+activate LogicManager
+
+create TuthubParser
+LogicManager -> TuthubParser : parseCommand("edit 1 n/John Doe")
+activate TuthubParser
+
+create EditCommandParser
+TuthubParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> TuthubParser
+deactivate EditCommandParser
+
+TuthubParser -> EditCommandParser: parse("1 n/John Doe")
+activate EditCommandParser
+
+create EditCommand
+EditCommandParser -> EditCommand:EditCommand(tutor, editTutorDescriptor)
+activate EditCommand
+
+EditCommand --> EditCommandParser
+deactivate EditCommand
+
+EditCommandParser --> TuthubParser
+deactivate EditCommandParser
+
+TuthubParser --> LogicManager
+deactivate TuthubParser
+
+LogicManager -> EditCommand : execute()
+activate EditCommand
+
+create Tutor
+EditCommand -> Tutor : createEditedTutor(tutor, editTutorDescriptor)
+activate Tutor
+
+Tutor --> EditCommand
+deactivate Tutor
+
+EditCommand -> ModelManager : setTutor(tutor, editedTutor)
+activate ModelManager
+
+ModelManager --> EditCommand
+deactivate ModelManager
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditCommand
+deactivate CommandResult
+
+EditCommand --> LogicManager
+deactivate EditCommand
+
+LogicManager -->[
+deactivate LogicManager
+
+@enduml
