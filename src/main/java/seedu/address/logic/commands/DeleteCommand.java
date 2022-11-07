@@ -84,7 +84,7 @@ public class DeleteCommand extends Command {
             throws CommandException {
         boolean hasDeleted = false;
         List<DateSlot> dateSlotList = ((Patient) person).getDatesSlots();
-        if (dateSlotList.size() == 0) {
+        if (dateSlotList.isEmpty()) {
             return hasDeleted;
         } else {
             for (DateSlot dateSlot : dateSlotList) {
@@ -101,7 +101,7 @@ public class DeleteCommand extends Command {
             throws CommandException {
         boolean hasUnmarked = false;
         List<HomeVisit> homeVisitList = ((Nurse) person).getHomeVisits();
-        if (homeVisitList.size() == 0) {
+        if (homeVisitList.isEmpty()) {
             return hasUnmarked;
         } else {
             for (HomeVisit homevisit : homeVisitList) {

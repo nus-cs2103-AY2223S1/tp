@@ -92,9 +92,9 @@ public class EditCommand extends Command {
     public static final String MESSAGE_OUT_OF_BOUND_DATESLOTINDEX = "The dateSlot index given is out of bounds "
             + "of the existing list." + "Please retype another index that is within the range or left it empty.";
 
-    public static final String MESSAGE_INVALID_NUMBERS_OF_UNAVAILABLEDATES_AND_UNAVAILABLEDATESINDEX =
-            "The unavailable date index " + "provided is more than the unavailable date provided."
-                + "Please remove the unavailable date index or add more unavailable date.";
+    public static final String MESSAGE_INVALID_NUMBERS_OF_UNAVAILABLEDATES_AND_UNAVAILABLEDATESINDEX = "The unavailable date index "
+            + "provided is more than the unavailable date provided."
+            + "Please remove the unavailable date index or add more unavailable date.";
 
     public static final String MESSAGE_OUT_OF_BOUND_UNAVAILABLEDATESINDEX = "The unavailable date index "
             + "given is out of bounds of the existing list."
@@ -134,14 +134,11 @@ public class EditCommand extends Command {
         boolean hasUnavailableDateIndexes = editPersonDescriptor.getDateIndexes().isPresent();
         boolean isNurse = editPersonDescriptor.getCategory().equals("N") || confirmedPersonToEdit.isNurse();
 
-        if (isNurse) {
-            if (hasDateSlotIndexes || hasDatesSlots) {
-                throw new CommandException(MESSAGE_NURSE_INVALID_DATESLOT_EDIT);
-            }
-        } else {
-            if (hasUnavailableDates || hasUnavailableDateIndexes) {
-                throw new CommandException(MESSAGE_PATIENT_INVALID_UNAVAILABLE_DATE_EDIT);
-            }
+        if (isNurse && (hasDateSlotIndexes || hasDatesSlots)) {
+            throw new CommandException(MESSAGE_NURSE_INVALID_DATESLOT_EDIT);
+        }
+        if (hasUnavailableDates || hasUnavailableDateIndexes) {
+            throw new CommandException(MESSAGE_PATIENT_INVALID_UNAVAILABLE_DATE_EDIT);
         }
 
         Person editedPerson = createEditedPerson(model, lastShownList, confirmedPersonToEdit, editPersonDescriptor);
@@ -155,7 +152,6 @@ public class EditCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS,
                 confirmedPersonToEdit.getCategoryIndicator(), editedPerson));
-
     }
 
     /**
@@ -227,9 +223,8 @@ public class EditCommand extends Command {
 
             return new Nurse(uid, updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress, updatedTags,
                     updatedUnavailableDate, updatedHomeVisitList, updatedFullyScheduledDateList);
-        } else {
-            throw new IllegalArgumentException(Category.MESSAGE_CONSTRAINTS);
         }
+        throw new IllegalArgumentException(Category.MESSAGE_CONSTRAINTS);
     }
 
     private List<DateSlot> createEditedDateSlotList(List<DateSlot> originalDateSlot,
@@ -423,32 +418,16 @@ public class EditCommand extends Command {
     private Boolean deleteRespectiveHomeVisit(List<DateSlot> dateSlotList, Model model, List<Person> personList)
             throws CommandException {
         boolean hasDeleted = false;
-        if (dateSlotList.size() == 0) {
+        if (dateSlotList.isEmpty()) {
             return hasDeleted;
-        } else {
-            for (DateSlot dateSlot : dateSlotList) {
-                if (dateSlot.getHasAssigned()) {
-                    removeHomeVisit(model, dateSlot, personList);
-                    hasDeleted = true;
-                }
+        }
+        for (DateSlot dateSlot : dateSlotList) {
+            if (dateSlot.getHasAssigned()) {
+                removeHomeVisit(model, dateSlot, personList);
+                hasDeleted = true;
             }
         }
         return hasDeleted;
-    }
-
-    private boolean unmarkRespectiveDateSlot(Model model, Person person, List<Person> personList)
-            throws CommandException {
-        List<HomeVisit> homeVisitList = ((Nurse) person).getHomeVisits();
-        if (homeVisitList.size() == 0) {
-            return false;
-        } else {
-            for (HomeVisit homevisit : homeVisitList) {
-                Long patientUidNo = homevisit.getHomeVisitPatientUidNo();
-                DateSlot dateSlot = homevisit.getDateSlot();
-                unmarkDateSlot(model, dateSlot, patientUidNo, personList);
-            }
-            return true;
-        }
     }
 
     private void removeAndUnmarkRepectiveHomeVisitAndDateSlot(Model model, Person nurse,

@@ -117,7 +117,7 @@ public class ListCommand extends Command {
         Predicate<Person> categoryMatch = x -> x.getCategory().equalsIgnoreCase(category.orElse(x.getCategory()));
         Predicate<Person> genderMatch = x -> x.getGender().equalsIgnoreCase(gender.orElse(x.getGender()));
         Predicate<Person> tagMatch = x -> {
-            if (x.getTags().size() == 0) {
+            if (x.getTags().isEmpty()) {
                 return tag.isEmpty();
             } else {
                 Predicate<Tag> tagPredicate = y -> {

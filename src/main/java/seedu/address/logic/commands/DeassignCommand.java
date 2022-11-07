@@ -114,7 +114,7 @@ public class DeassignCommand extends Command {
             for (HomeVisit homeVisit : updatedHomeVisitList) {
                 unmarkActionForNurse(model, homeVisit, personList,
                         updatedHomeVisitList, updatedFullyScheduledDatesList);
-                if (updatedHomeVisitList.size() == 0) {
+                if (updatedHomeVisitList.isEmpty()) {
                     break;
                 }
             }
