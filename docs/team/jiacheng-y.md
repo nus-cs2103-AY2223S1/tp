@@ -76,6 +76,7 @@ CLI, and the application responds with its GUI, created with JavaFX.
 * **Contributions to team-based tasks**: 
   * Managed release of final `.jar` file for 
   [`v1.3.1`](https://github.com/AY2223S1-CS2103T-W15-3/tp/releases/tag/v0.3) 
+  and [`v1.4`](https://github.com/AY2223S1-CS2103T-W15-3/tp/releases/tag/v0.5)
   * Offered insights on implementation and design alternatives during team discussions
   * Offered alternative suggestions to phrasing in documentation: 
   [#217](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/217), 
