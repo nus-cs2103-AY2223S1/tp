@@ -43,5 +43,6 @@ CommandResult --> ViewCommand
 deactivate CommandResult
 
 ViewCommand -->[: result
+deactivate ViewCommand
 
 @enduml

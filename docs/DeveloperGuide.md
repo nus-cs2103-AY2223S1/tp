@@ -11,7 +11,8 @@ title: Developer Guide
 We'd like to thank:
 * The [CS2103/T teaching team](https://nus-cs2103-ay2223s1.github.io/website/admin/instructors.html) for guiding us throughout the development of this project.
 * [SE-Edu's AddressBook-Level3](https://github.com/se-edu/addressbook-level3) for laying the foundations on which our (brownfield) project is built upon.
-* The [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), and [JUnit](https://junit.org/junit5/) project teams for their awesome work on which our product is built upon!
+* The [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit](https://junit.org/junit5/), and [Lato font](https://latofonts.github.io/lato-source/) project teams for their awesome work
+on which our product is built upon!
 
 --------------------------------------------------------------------------------------------------------------------
 

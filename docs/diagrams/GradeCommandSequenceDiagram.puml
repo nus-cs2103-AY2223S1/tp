@@ -50,5 +50,6 @@ CommandResult --> GradeCommand
 deactivate CommandResult
 
 GradeCommand -->[: result
+deactivate GradeCommand
 
 @enduml
