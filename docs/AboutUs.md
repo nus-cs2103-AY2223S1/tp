@@ -56,4 +56,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [portfolio](team/dreammac3816547290.md)
 
 * Role: Developer
-* Responsibilities: Deliverables and deadlines
+* Responsibilities: Testing, Code Quality, UI
