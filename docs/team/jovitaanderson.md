@@ -63,7 +63,7 @@ Given below are my contributions to the project.
       to fit FinBook's target audience and purpose. 
     
 * **Review/mentoring contributions**:
-    * PRs reviewed (with non-trivial review comments): ([#40](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/40),
+    * PRs reviewed: ([#40](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/40),
       [#42](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/40),
       [#50](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/50),
       [#52](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/52),
