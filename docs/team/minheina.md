@@ -17,7 +17,7 @@ Given below are my contributions to the project.
   
 
 * **Enhancement:** Modified `Person` class in model to `Stall` in breath-first approach
-    * First, data classes of `Person` that does not fit the application needs are removed and affected code and tests refactored. ([#86](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/86))
+    * First, data classes of `Person` that do not fit the application needs are removed and affected code and tests refactored. ([#86](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/86))
     * Next, `Person` class is modified to `Stall` and affected functional code and tests in the codebase are refactored. ([#92](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/92))
     * Finally, reference to new data class `Review` is added and wrote test cases related to `Review` data class. ([#110](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/110), [#140](https://github.com/AY2223S1-CS2103-W14-2/tp/pull/140))
   
