@@ -15,6 +15,7 @@ package JeeqTracker{
         usecase "Delete Transaction" as UC6
         usecase "Edit Transaction" as UC7
         usecase "Sort Transactions" as UC11
+        usecase "Filter Transactions" as UC13
     }
     package "Remark"{
         usecase "Add Remark" as UC8
@@ -35,6 +36,7 @@ user ----> UC9
 user ----> UC10
 user ----> UC11
 user ----> UC12
+user ----> UC13
 
 
 @enduml
