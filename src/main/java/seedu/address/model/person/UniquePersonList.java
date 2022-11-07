@@ -13,11 +13,10 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
- *
+ * A person is considered unique by comparing using {@code Person#isSamePerson(Person)} and {@code Job#isSameJob(Job)}.
+ * As such, adding and updating of persons uses Person#isSamePerson(Person) for equality so as to ensure that the person
+ * being added or updated is unique in terms of identity in the UniquePersonList. However, the removal of a person uses
+ * Person#equals(Object) so as to ensure that the person with exactly the same fields will be removed.
  * Supports a minimal set of list operations.
  *
  * @see Person#isSamePerson(Person)
@@ -34,6 +33,19 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSamePerson);
+    }
+
+    /**
+     * Returns true if the list contains any equivalent person in the given list.
+     */
+    public boolean containsSome(List<Person> toCheck) {
+        requireNonNull(toCheck);
+        for (Person personToCheck : toCheck) {
+            if (contains(personToCheck)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -95,6 +107,21 @@ public class UniquePersonList implements Iterable<Person> {
         }
 
         internalList.setAll(persons);
+    }
+
+    /**
+     * Appends the contents of {@code persons} to this list
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void appendList(List<Person> persons) {
+        requireAllNonNull(persons);
+        if (!personsAreUnique(persons)) {
+            throw new DuplicatePersonException();
+        }
+
+        for (Person person : persons) {
+            add(person);
+        }
     }
 
     /**

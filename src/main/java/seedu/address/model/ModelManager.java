@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.predicates.SamePersonPredicate;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Person> viewedPerson;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,6 +36,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        viewedPerson = new FilteredList<>(this.addressBook.getPersonList(), PREDICATE_SHOW_NO_PERSONS);
     }
 
     public ModelManager() {
@@ -94,14 +97,22 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPersons(AddressBook other) {
+        requireNonNull(other);
+        return addressBook.hasPersons(other);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
+        requireNonNull(person);
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateViewedPersonList(new SamePersonPredicate(person));
     }
 
     @Override
@@ -109,6 +120,11 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void appendAddressBook(AddressBook other) {
+        addressBook.appendAddressBook(other);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -126,6 +142,22 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    //=========== Viewed Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of a {@code Person} to be viewed.
+     */
+    @Override
+    public ObservableList<Person> getViewedPersonList() {
+        return viewedPerson;
+    }
+
+    @Override
+    public void updateViewedPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        viewedPerson.setPredicate(predicate);
     }
 
     @Override

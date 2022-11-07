@@ -3,11 +3,25 @@
     "name": "Valid Person",
     "phone": "9482424",
     "email": "hans@example.com",
-    "address": "4th street"
+    "address": "4th street",
+    "gender": "Male",
+    "graduationDate": "05-2024",
+    "cap": "4.0/5.0",
+    "university": "NUS",
+    "major": "Computer Science",
+    "id": "178426",
+    "title": "Software Engineer Intern"
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
     "email": "hans@example.com",
-    "address": "4th street"
+    "address": "4th street",
+    "gender": "Female",
+    "graduationDate": "05-2024",
+    "cap": "3.9/4.0",
+    "university": "NTU",
+    "major": "Computer Engineering",
+    "id": "178426",
+    "title": "Software Engineer Intern"
   } ]
 }

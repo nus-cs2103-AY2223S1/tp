@@ -20,6 +20,13 @@ public class AddressTest {
     }
 
     @Test
+    public void isWithinLengthLimit() {
+        assertTrue(Address.isWithinLengthLimit("A".repeat(Address.LENGTH_LIMIT - 1)));
+        assertTrue(Address.isWithinLengthLimit("A".repeat(Address.LENGTH_LIMIT)));
+        assertFalse(Address.isWithinLengthLimit("A".repeat(Address.LENGTH_LIMIT + 1)));
+    }
+
+    @Test
     public void isValidAddress() {
         // null address
         assertThrows(NullPointerException.class, () -> Address.isValidAddress(null));

@@ -10,8 +10,11 @@ public class FileUtilTest {
 
     @Test
     public void isValidPath() {
-        // valid path
+        // valid path without space
         assertTrue(FileUtil.isValidPath("valid/file/path"));
+
+        // valid path with space
+        assertTrue(FileUtil.isValidPath("valid/file/path with space"));
 
         // invalid path
         assertFalse(FileUtil.isValidPath("a\0"));

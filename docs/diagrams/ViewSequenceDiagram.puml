@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ViewCommandParser" as ViewCommandParser LOGIC_COLOR
+participant ":ViewCommand" as ViewCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":SamePersonPredicate" as SamePersonPredicate MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("view 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("view 1")
+activate AddressBookParser
+
+create ViewCommandParser
+AddressBookParser -> ViewCommandParser
+activate ViewCommandParser
+
+ViewCommandParser --> AddressBookParser
+deactivate ViewCommandParser
+
+AddressBookParser -> ViewCommandParser : parse("1")
+activate ViewCommandParser
+
+create ViewCommand
+ViewCommandParser -> ViewCommand
+activate ViewCommand
+
+ViewCommand --> ViewCommandParser
+deactivate ViewCommand
+
+ViewCommandParser --> AddressBookParser
+deactivate ViewCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ViewCommandParser -[hidden]-> AddressBookParser
+destroy ViewCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> ViewCommand : execute()
+activate ViewCommand
+
+create SamePersonPredicate
+ViewCommand -> SamePersonPredicate : personToView
+activate SamePersonPredicate
+
+SamePersonPredicate --> ViewCommand : predicate
+deactivate SamePersonPredicate
+
+ViewCommand -> Model : updateViewedPersonList(predicate)
+activate Model
+
+Model --> ViewCommand
+deactivate Model
+
+create CommandResult
+ViewCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ViewCommand
+deactivate CommandResult
+
+ViewCommand --> LogicManager : result
+deactivate ViewCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

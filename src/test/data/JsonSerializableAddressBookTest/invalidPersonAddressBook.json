@@ -3,6 +3,13 @@
     "name": "Hans Muster",
     "phone": "9482424",
     "email": "invalid@email!3e",
-    "address": "4th street"
+    "address": "4th street",
+    "gender": "Male",
+    "graduationDate": "05-2024",
+    "cap": "3.9/4.0",
+    "university": "NUS",
+    "major": "Computer Science",
+    "id": "178426",
+    "title": "Software Engineer Intern"
   } ]
 }

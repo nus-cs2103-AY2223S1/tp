@@ -20,6 +20,13 @@ public class NameTest {
     }
 
     @Test
+    public void isWithinLengthLimit() {
+        assertTrue(Name.isWithinLengthLimit("A".repeat(Name.LENGTH_LIMIT - 1)));
+        assertTrue(Name.isWithinLengthLimit("A".repeat(Name.LENGTH_LIMIT)));
+        assertFalse(Name.isWithinLengthLimit("A".repeat(Name.LENGTH_LIMIT + 1)));
+    }
+
+    @Test
     public void isValidName() {
         // null name
         assertThrows(NullPointerException.class, () -> Name.isValidName(null));
@@ -36,5 +43,25 @@ public class NameTest {
         assertTrue(Name.isValidName("peter the 2nd")); // alphanumeric characters
         assertTrue(Name.isValidName("Capital Tan")); // with capital letters
         assertTrue(Name.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+    }
+
+    @Test
+    public void equals() {
+        Name alice = new Name("Alice Chan");
+        Name aliceCopy = new Name("Alice Chan");
+        Name aliceWithoutSpace = new Name("AliceChan");
+        Name aliceLowerCase = new Name("alice chan");
+
+        // same values -> returns true
+        assertTrue(alice.equals(aliceCopy));
+
+        // same object -> returns true
+        assertTrue(alice.equals(alice));
+
+        // different case but same value -> returns true
+        assertTrue(aliceLowerCase.equals(alice));
+
+        // different values -> returns false
+        assertFalse(aliceWithoutSpace.equals(alice));
     }
 }

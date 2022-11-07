@@ -14,6 +14,11 @@ import seedu.address.model.UserPrefs;
  */
 public interface Storage extends AddressBookStorage, UserPrefsStorage {
 
+    /**
+     * Replaces addressBookStorage data with the data in {@code addressBookStorage}.
+     */
+    void setAddressBookStorage(AddressBookStorage addressBookStorage);
+
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
 
@@ -29,4 +34,12 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     @Override
     void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
 
+    /**
+     * Exports the given {@link ReadOnlyAddressBook} as a JSON file to the storage at filePathString.
+     * @param displayedListAddressBook cannot be null.
+     * @param filePathString cannot be null.
+     * @throws IOException if there is any problem writing to the file.
+     */
+    void exportDisplayedListAddressBook(ReadOnlyAddressBook displayedListAddressBook, String filePathString)
+            throws IOException;
 }

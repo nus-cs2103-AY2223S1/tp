@@ -7,6 +7,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.job.Id;
+import seedu.address.model.job.Job;
+import seedu.address.model.job.Title;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -16,23 +19,53 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
-    private final Name name;
-    private final Phone phone;
     private final Email email;
+    private final Job job;
 
     // Data fields
+    private final Name name;
+    private final Phone phone;
     private final Address address;
+    private final Gender gender;
+    private final GraduationDate graduationDate;
+    private final Cap cap;
+    private final University university;
+    private final Major major;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email,
+                  Address address,
+                  Gender gender,
+                  GraduationDate graduationDate,
+                  Cap cap,
+                  University university,
+                  Major major,
+                  Id id,
+                  Title title,
+                  Set<Tag> tags) {
+        requireAllNonNull(name, phone, email,
+            address,
+            gender,
+            graduationDate,
+            cap,
+            university,
+            major,
+            id,
+            title,
+            tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.gender = gender;
+        this.graduationDate = graduationDate;
+        this.cap = cap;
+        this.university = university;
+        this.major = major;
+        this.job = new Job(id, title);
         this.tags.addAll(tags);
     }
 
@@ -50,6 +83,30 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public GraduationDate getGraduationDate() {
+        return graduationDate;
+    }
+
+    public Cap getCap() {
+        return cap;
+    }
+
+    public University getUniversity() {
+        return university;
+    }
+
+    public Major getMajor() {
+        return major;
+    }
+
+    public Job getJob() {
+        return job;
     }
 
     /**
@@ -70,7 +127,8 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getEmail().equals(getEmail())
+                && otherPerson.getJob().isSameJob(getJob());
     }
 
     /**
@@ -92,13 +150,26 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getGender().equals(getGender())
+                && otherPerson.getGraduationDate().equals(getGraduationDate())
+                && otherPerson.getCap().equals(getCap())
+                && otherPerson.getUniversity().equals(getUniversity())
+                && otherPerson.getMajor().equals(getMajor())
+                && otherPerson.getJob().equals(getJob())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address,
+                gender,
+                graduationDate,
+                cap,
+                university,
+                major,
+                job,
+                tags);
     }
 
     @Override
@@ -110,7 +181,19 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Gender: ")
+                .append(getGender())
+                .append("; Graduation Date: ")
+                .append(getGraduationDate())
+                .append("; CAP: ")
+                .append(getCap())
+                .append("; University: ")
+                .append(getUniversity())
+                .append("; Major: ")
+                .append(getMajor())
+                .append("; Job ID: ")
+                .append(getJob());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
