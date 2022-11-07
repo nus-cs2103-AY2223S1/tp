@@ -422,33 +422,27 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-3. Adding a Task
+### Adding a Task or Deadline
 
-4. Adding a Deadline
+1. Adding a Task
 
-5. Completing a Task or Deadline
+2. Adding a Deadline
 
-6. Switching Lists
+### Completing a Task or Deadline
 
-7. Viewing Task, Deadline and Contact Assocation
+1. Completing a Task or Deadline
 
-8. Finding Task, Deadline or Contact
+### Switching Lists
 
-9. Deleting a Task, Deadlines or Contact
+1. Switching to the Task List
 
-10. Editing a Task, Deadline or Contact
+### Viewing Task, Deadline and Contact Assocation
 
-11. Clearing all entries
+1. Example
 
-12. Saving data
+### Finding Task, Deadline or Contact
 
-    1. Shutdown the app by typing `exit` into the command box.
-    2. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent state is saved.
-
-13. Viewing Help
-
-### Deleting a person / task
+### Deleting a Task, Deadline or Contact
 
 1. Deleting a person / task while all persons / task are being shown
 
@@ -463,15 +457,21 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `delete_contact` / `delete_task`, `delete_contact x` / `delete_task x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
+### Editing a Task, Deadline or Contact
+
+### Clearing all entries
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1.  Shutdown the app by typing `exit` into the command box.
+1.  Re-launch the app by double-clicking the jar file.<br>
+    Expected: The most recent state is saved.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+1.  Dealing with missing/corrupted data files
 
-2. _{ more test cases …​ }_
+    1.  _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+
+### Viewing Help
 
 ---
 
