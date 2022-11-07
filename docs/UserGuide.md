@@ -166,7 +166,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL]`
 Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* Editing of Tags and Position are not allowed
+* Editing of Tags and Position are not allowed.
 
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
@@ -252,7 +252,7 @@ Roles are case-insensitive
 *  Each professor may only have 1 role
 
 Examples:
-*  `roles 1 roles/Coordinator` edits the roles of the 1st person to be `Coordinator`.
+*  `roles 1 roles/Coordinator` edits the roles of the 1st person(must be a professor) to be `Coordinator`.
 
 
 ### Locating persons by name: `find`
