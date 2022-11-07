@@ -120,12 +120,14 @@ public class EditCommand extends Command {
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_STUDENTS);
-        if (editedStudent.hasSharedPhone()) {
+        if (editedStudent.hasSharedPhone() && editStudentDescriptor.isAnyPhoneFieldsEdited()) {
             return new CommandResult(MESSAGE_PHONE_SAME_AS_NOK_PHONE
                     + String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
         }
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent));
     }
+
+
 
     /**
      * Creates and returns a {@code Student} with the details of {@code studentToEdit}.
@@ -218,11 +220,29 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns true if at least one field is edited.
+         * Checks if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, nokPhone, email, address, aClass, moneyOwed, moneyPaid,
                     ratesPerClass, additionalNotes, appendedAdditionalNotes, tags);
+        }
+
+        /**
+         * Checks if user is editing one of the phone fields.
+         *
+         * @return true if at least one of the phone fields is edited.
+         */
+        public boolean isAnyPhoneFieldsEdited() {
+            return CollectionUtil.isAnyNonNull(phone, nokPhone);
+        }
+
+        /**
+         * Checks if class is empty.
+         *
+         * @return true if class is empty.
+         */
+        public boolean hasEmptyClass() {
+            return getAClass().get().isEmpty();
         }
 
         public void setName(Name name) {
@@ -332,15 +352,6 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-
-        /**
-         * Checks if class is empty.
-         *
-         * @return true if class is empty.
-         */
-        public boolean hasEmptyClass() {
-            return getAClass().get().isEmpty();
         }
 
         @Override
