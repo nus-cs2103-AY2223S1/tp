@@ -11,8 +11,8 @@ Waddle allows you to plan your travels in **3 simple steps**.
 3. Make a schedule for your trip
 
 **It's that simple**.
-<div style="page-break-before: always"></div>
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div>
 
 ## Table of Contents
 
@@ -49,8 +49,8 @@ Waddle allows you to plan your travels in **3 simple steps**.
    1. [**Home page commands**](#home-page-commands)
    2. [**Item planning page commands**](#item-planning-page-commands)
 
-<div style="page-break-before: always"></div>
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always"></div>
 
 ## Quick start
 
@@ -175,6 +175,7 @@ alphanumeric characters, spaces and these following special characters: `()&!':.
   - e.g. `b/1000.505` will be reflected as $1,000.51.
 
 </div>
+<div style="page-break-after: always"></div>
 
 ### Listing all itineraries : `list`
 
