@@ -1,5 +1,6 @@
 package longtimenosee.model.event;
 
+
 import static java.util.Objects.requireNonNull;
 import static longtimenosee.commons.util.AppUtil.checkArgument;
 
@@ -8,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.FormatStyle;
 import java.time.temporal.ChronoUnit;
-
+import java.util.regex.PatternSyntaxException;
 
 
 /**
@@ -43,6 +44,24 @@ public class Duration {
     }
 
     /**
+     * Parses the string value and checks if each value follows "HH:MM"
+     * @param time in format: "HH
+     * @return
+     */
+    public static boolean isValidFormat(String time) {
+        try {
+            String[] timeInput = time.split("__");
+            String startTime = timeInput[0];
+            String endTime = timeInput[1];
+            return isValidTime(startTime) && isValidTime(endTime);
+        } catch (PatternSyntaxException pse) {
+            return false;
+        } catch (IndexOutOfBoundsException ibe) {
+            return false;
+        }
+    }
+
+    /**
      * Used for validation purposes in ParserUtil, to check if each individual date given can be parsed
      * Will be used to parse both start and end times (individually)
      * @param time
@@ -50,7 +69,7 @@ public class Duration {
      */
     public static boolean isValidTime(String time) {
         try {
-            LocalTime verifiedTime = LocalTime.parse(time);
+            LocalTime.parse(time, DateTimeFormatter.ofPattern("HH:mm"));
         } catch (DateTimeParseException dte) {
             return false;
         }
@@ -116,9 +135,9 @@ public class Duration {
     @Override
     public String toString() {
         return "Start: " + startTime.format(DateTimeFormatter
-                .ofLocalizedTime(FormatStyle.MEDIUM))
+                .ofLocalizedTime(FormatStyle.SHORT))
                 + " || End: " + endTime.format(DateTimeFormatter
-                .ofLocalizedTime(FormatStyle.MEDIUM));
+                .ofLocalizedTime(FormatStyle.SHORT));
     }
 
     public LocalTime getStartTime() {
