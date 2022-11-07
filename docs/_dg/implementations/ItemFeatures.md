@@ -17,15 +17,38 @@
 
 #### General Implementation Details
 
-<!-- TODO: ADD ITEM CLASS DIAGRAM -->
+![model_diagram](images/ItemClassDiagram.png)
 
-#### General Design Considerations
+Items are composed of classes representing the fields available in them. Items are stored in a `UniqueItemList` while tags are stored in a `UniqueTagList`. These lists restrict the maximum number of items and tags in FoodRem.
+
+![model_diagram](images/ItemFieldClassDiagram.png)
+
+Each field in `Item` is dependent on a respective `Validator` and `ItemComparator`. `Validator` is an interface that facilitates validation of fields when `Item` is created. `ItemComparator` is `Comparator` that facilitates sorting of items by its respective fields.
 
 #### Creating an Item
 <!-- TODO: Fill up -->
 
 #### Editing an Item
 <!-- TODO: Fill up -->
+
+#### Incrementing and Decrementing the quantity of an Item
+
+##### Overview
+
+The `inc` and `dec` feature increments or decrements the quantity of an item. 
+
+##### Feature Details
+
+![HelpActivityDiagram](images/DecrementActivityDiagram.png)
+
+1. The user can specify to increment or decrement the quantity of an item by a specific quantity.
+1. The user can also specify to increment or decrement without a provided quantity.
+
+##### Feature Considerations
+
+When implementing this feature, we realised that it is common to increment or decrement just by one unit. We thus decided to provide a default behaviour when incrementing or decrementing an item quantity. 
+
+Another command that have such default behaviour is the `rmk` (remark) feature, where users will delete a current remark if one is not provided. 
 
 #### Sorting an Item
 
