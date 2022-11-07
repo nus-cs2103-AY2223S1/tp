@@ -291,7 +291,7 @@ This section explains the implementation of the `view` feature. The command take
 
 Below is a sequence diagram and explanation of how `view` is executed.
 
-![BatchAdd](images/diagrams/ViewCommandSequenceDiagram.png)
+![View](images/diagrams/ViewCommandSequenceDiagram.png)
 
 Step 1. The use enters the command `view 1`.
 
@@ -307,7 +307,7 @@ This section explains the implementation of the `view-department` feature. The c
 
 Below is a sequence diagram and explanation of how `view-department` is executed.
 
-![BatchAdd](images/diagrams/ViewDepartmentCommandSequenceDiagram.png)
+![ViewDepartment](images/diagrams/ViewDepartmentCommandSequenceDiagram.png)
 
 Step 1. The use enters the command `view-department Finance`.
 
