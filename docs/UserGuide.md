@@ -437,8 +437,10 @@ Deletes all contacts.
 
 Format: `clear`
 
-<div markdown="block" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+
 Deleted contacts are **unrecoverable**!
+
 </div>
 
 Click [here](#introduction) to return to the top of the page.
