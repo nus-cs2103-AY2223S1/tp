@@ -131,6 +131,8 @@ Format: `delete book INDEX`
 Examples:
 * `delete book 99`
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a user: `delete user`
 
 Deletes a user from the library. If the user has any loans, they must be returned before deletion.
