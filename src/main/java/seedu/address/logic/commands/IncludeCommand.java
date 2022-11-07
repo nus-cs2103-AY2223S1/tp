@@ -134,7 +134,7 @@ public class IncludeCommand extends Command {
         }
         include(personToEdit, socialToEdit); //Includes the new social to the person to edit.
 
-        UndoCommand.prepareSaveModelBefore(this, model);
+        UndoCommand.prepareSaveModelBefore(this, model, 3);
         model.setPerson(personToEdit, personToEdit);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         UndoCommand.saveBeforeMod(model);

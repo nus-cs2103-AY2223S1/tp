@@ -60,7 +60,7 @@ public class AddCommand extends Command {
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-        UndoCommand.prepareSaveModelBefore(this, model);
+        UndoCommand.prepareSaveModelBefore(this, model, 1);
         model.addPerson(toAdd);
         UndoCommand.saveBeforeMod(model);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

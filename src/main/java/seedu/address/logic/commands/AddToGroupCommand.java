@@ -70,7 +70,7 @@ public class AddToGroupCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        UndoCommand.prepareSaveModelBefore(this, model);
+        UndoCommand.prepareSaveModelBefore(this, model, 3);
         model.setPerson(personToGroup, groupedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         UndoCommand.saveBeforeMod(model);

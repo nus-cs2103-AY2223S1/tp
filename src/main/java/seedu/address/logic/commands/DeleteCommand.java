@@ -70,7 +70,7 @@ public class DeleteCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        UndoCommand.prepareSaveModelBefore(this, model);
+        UndoCommand.prepareSaveModelBefore(this, model, 15);
 
         if (isNull(field)) {
             model.deletePerson(personToDelete);

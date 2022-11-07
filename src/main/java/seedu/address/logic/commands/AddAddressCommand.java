@@ -73,7 +73,7 @@ public class AddAddressCommand extends Command {
         if (!personToAddAddress.isSamePerson(addressedPerson) && model.hasPerson(addressedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-        UndoCommand.prepareSaveModelBefore(this, model);
+        UndoCommand.prepareSaveModelBefore(this, model, 3);
         model.setPerson(personToAddAddress, addressedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         UndoCommand.saveBeforeMod(model);

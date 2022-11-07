@@ -52,7 +52,7 @@ public class GroupCommand extends Command {
             throw new CommandException(MESSAGE_SHOW_GROUP_FAIL);
         }
 
-        UndoCommand.prepareSaveModelBefore(this, model);
+        UndoCommand.prepareSaveModelBefore(this, model, 8);
         model.updateGroupedPersonList(predicate);
         UndoCommand.saveBeforeMod(model);
 

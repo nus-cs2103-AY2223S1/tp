@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 
 import javafx.collections.FXCollections;
@@ -55,13 +56,30 @@ public class UndoCommand extends Command {
      * Saves the previous state of the model before it changes.
      * @param lastCommand The command that potentially modifies the model.
      * @param model The model itself.
+     * @param mask A bitmask of the parts of the model that may change.
      */
-    public static void prepareSaveModelBefore(Command lastCommand, Model model) {
+    public static void prepareSaveModelBefore(Command lastCommand, Model model, int mask) {
         prepareLastCommand = lastCommand;
-        prepareAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
-        prepareFilteredPersons = FXCollections.observableArrayList(model.getFilteredPersonList());
-        prepareSortedPersons = new SortedList<>(model.getSortedPersonList());
-        prepareGroupedPersons = FXCollections.observableArrayList(model.getGroupedPersonList());
+        if ((mask & 1) == 1) {
+            prepareAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
+        } else {
+            prepareAddressBook = undoAddressBook;
+        }
+        if ((mask & 2) == 2) {
+            prepareFilteredPersons = FXCollections.observableArrayList(model.getFilteredPersonList());
+        } else {
+            prepareFilteredPersons = undoFilteredPersons;
+        }
+        if ((mask & 4) == 4) {
+            prepareSortedPersons = new SortedList<>(model.getSortedPersonList());
+        } else {
+            prepareSortedPersons = undoSortedPersons;
+        }
+        if ((mask & 8) == 8) {
+            prepareGroupedPersons = FXCollections.observableArrayList(model.getGroupedPersonList());
+        } else {
+            prepareGroupedPersons = undoGroupedPersons;
+        }
     }
     /**
      * Checks if a command modifies the {@code AddressBook} and saves it if
@@ -69,7 +87,11 @@ public class UndoCommand extends Command {
      * @param model The model after modification.
      */
     public static void saveBeforeMod(Model model) {
-        if (prepareAddressBook.equals(model.getAddressBook()) &&
+        if (isNull(prepareAddressBook) ||
+            isNull(prepareFilteredPersons) ||
+            isNull(prepareSortedPersons) ||
+            isNull(prepareGroupedPersons) ||
+            prepareAddressBook.equals(model.getAddressBook()) &&
             prepareFilteredPersons.equals(model.getFilteredPersonList()) &&
             prepareSortedPersons.equals(model.getSortedPersonList()) &&
             prepareGroupedPersons.equals(model.getGroupedPersonList())) {
@@ -88,7 +110,7 @@ public class UndoCommand extends Command {
         if (undoAddressBook == null) {
             throw new CommandException(NO_ACTION_TO_UNDO);
         }
-        prepareSaveModelBefore(this, model);
+        prepareSaveModelBefore(this, model, 15);
         model.setAddressBook(undoAddressBook);
         saveBeforeMod(model);
         return new CommandResult(String.format(SHOWING_UNDO_MESSAGE,

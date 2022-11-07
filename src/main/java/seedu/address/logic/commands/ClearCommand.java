@@ -18,7 +18,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        UndoCommand.prepareSaveModelBefore(this, model);
+        UndoCommand.prepareSaveModelBefore(this, model, 15);
         model.setAddressBook(new AddressBook());
         UndoCommand.saveBeforeMod(model);
         return new CommandResult(MESSAGE_SUCCESS);
