@@ -198,7 +198,7 @@ Format: `view INDEX`
 
 * Views the applicant at the specified `INDEX`.
 * The index refers to the index number shown in the displayed applicants list.
-* The index **must be a positive integer** 1, 2, 3, ... and **not exceed the total records listed**
+* The index **must be a positive integer** 1, 2, 3, ... and not exceed the total records listed.
 
 <div style="page-break-after: always;"></div>
 
@@ -211,7 +211,7 @@ Format: `edit INDEX parameter/NEW_PARAMETER_DETAIL [parameter/NEW_PARAMETER_DETA
 * For `parameter` arguments, please refer to the `parameter` of each field in the [Fields](#2-fields) section above.
 * Edits the applicant at the specified `INDEX`.
 * The index refers to the index number shown in the displayed applicants list.
-* The index **must be a positive integer** 1, 2, 3, ... and **not exceed the total records listed**.
+* The index **must be a positive integer** 1, 2, 3, ... and not exceed the total records listed.
 * At least one of the parameter fields must be provided.
 * Existing values will be updated to the input values.
 * When modifying tags, the existing tags of the applicant will be removed i.e. adding of tags is not cumulative.
@@ -230,7 +230,7 @@ Format: `delete INDEX`
 
 * Deletes the applicant at the specified `INDEX`.
 * The index refers to the index number shown in the displayed applicants list.
-* The index **must be a positive integer** 1, 2, 3, ... and **not exceed the total records listed**
+* The index **must be a positive integer** 1, 2, 3, ... and not exceed the total records listed.
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd applicant in the address book.
