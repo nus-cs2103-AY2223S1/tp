@@ -6,6 +6,7 @@ import java.util.Arrays;
 
 import seedu.condonery.logic.commands.property.StatusPropertyCommand;
 import seedu.condonery.logic.parser.Parser;
+import seedu.condonery.logic.parser.ParserUtil;
 import seedu.condonery.logic.parser.exceptions.ParseException;
 import seedu.condonery.model.property.PropertyStatusContainsKeywordsPredicate;
 
@@ -27,6 +28,11 @@ public class StatusPropertyCommandParser implements Parser<StatusPropertyCommand
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
+
+        for (int i = 0; i < nameKeywords.length; i++) {
+            ParserUtil.parsePropertyStatus(
+                    nameKeywords[i]);
+        }
 
         return new StatusPropertyCommand(new PropertyStatusContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
