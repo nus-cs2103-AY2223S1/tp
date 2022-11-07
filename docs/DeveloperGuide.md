@@ -210,7 +210,7 @@ Consider an example of a valid `splitdebt` command, `splitdebt 0 1 2 d/pizza m/3
 ### Clear debts feature: `cleardebts`
 
 #### Implementation
-This feature is facilitated by `ClearDebtsCommand` and `ClearDebtsCommandParser` in the `Logic` component, and work as per described above.
+This feature is facilitated by `ClearDebtsCommand` and `ClearDebtsCommandParser` in the `Logic` component, and work as per [described above](#logic-component).
 
 When given a valid user input, the `ClearDebtsCommandParser` will construct a `ClearDebtsCommand` object with the parsed `Index` representing the position of the `Person` in the `Model` component to have his/her debts cleared.
 
@@ -218,15 +218,20 @@ Receiving the `Index` of the specified `Person` from the `ClearDebtsCommandParse
 The `ClearDebtsCommand` object will create a new `Person` object with identical fields from the `Person` object previously obtained except for a new empty `DebtList`.
 This new `Person` object replaces the original `Person` object in the `Model` component.
 
+Consider an example of a valid `cleardebts` command `cleardebts 1`. The objects in the internal state after this example has been parsed, and after the constructed `ClearDebtsCommand` has been executed, is given by the object diagrams below.
+
+<img src="images/ClearDebtsObjectDiagram.png" width="450" />
+<img src="images/ClearDebtsObjectDiagramAfter.png" width="300" />
 
 ### Delete debt feature: `deletedebt`
 
 #### Implementation
-This feature is facilitated by `DeleteDebtCommand` and `DeleteDebtCommandParser` in the `Logic` component, and work as per described above.
+This feature is facilitated by `DeleteDebtCommand` and `DeleteDebtCommandParser` in the `Logic` component, and work as per [described above](#logic-component).
 
 When given a valid user input, the `DeletDebtCommandParser` will create a set with the `Index` object that represents the position of the `Debt` object to be removed from the `DebtList` of the specified `Person`.
+The `DeleteDebtCommandParser` will construct a `DeleteDebtCommand` object with this set of `Index` objects and the parsed `Index` representing the position of the `Person` in the `Model` component to have his/her debts cleared.
 
-To speed up deleting multiple `Debt` objects (for example, when multiple debts of a person contain incorrect details) from the `DebtList` of the specified `Person`, the `DeleteDebtCommandParser` can take in multiple indices such that the set with the `Index` object contains multiple `Index` objects that each represent the position of the `Debt` object to be removed.
+Consider a scenario where the user wishes to delete multiple debts from a person, such as when multiple debts were added to him/her incorrectly. To speed up deleting multiple `Debt` objects from the `DebtList` of the specified `Person`, the `DeleteDebtCommandParser` can take in multiple indices such that the set with the `Index` object contains multiple `Index` objects that each represent the position of the `Debt` object to be removed.
 
 Receiving this set of `Index` objects, and the `Index` of the specified `Person` from the `DeleteDebtCommandParser`, the `DeleteDebtCommand` object obtains the `Person` object and the `Debt` objects specified by the set from the `Model` component when executed.
 The `DeleteDebtCommand` object will create a new `Person` object with identical fields from the `Person` object previously obtained except for a new `DebtList` that does not contain the previously obtained `Debt` objects to be removed.
@@ -239,10 +244,10 @@ The sequence diagram below details such behaviour of PayMeLah when a user enters
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteDebtCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-An example of the new objects in the internal state when a valid `deletedebt` command parsed from the user, `deletedebt 1 debt/2 3`, has been executed is given by the object diagrams below.
+Consider an example of a valid `deletedebt` command `deletedebt 1 debt/2 3`. The new objects in the internal state after this example has been parsed, and after the constructed `DeleteDebtCommand` has been executed, is given by the object diagrams below.
 
 <img src="images/DeleteDebtObjectDiagram.png" width="450" />
-<img src="images/DeleteDebtAfterObjectDiagram.png" width="450" />
+<img src="images/DeleteDebtAfterObjectDiagram.png" width="280" />
 
 
 

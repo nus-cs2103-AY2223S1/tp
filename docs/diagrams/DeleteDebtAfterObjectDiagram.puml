@@ -7,36 +7,15 @@ hide empty methods
 hide empty members
 
 
-title Final state
+title Final state after executing the <plain><font:monospaced><back:lightgray>DeleteDebtCommand</back></font></plain>
 
-class DeleteDebtCommand as "__:DeleteDebtCommand__"
-together {
-class PersonIndex1 as "__1:Index__"
-class DebtIndex2 as "__2:Index__"
-class DebtIndex3 as "__3:Index__"
+
+
+Package Model {
+    class NewPerson as "__newPerson1:Person__"
+        class DebtList as "__newList:DebtList__"
+        class Debt1Copy as "__copyOf1:Debt__"
 }
-
-
-package Person {
-
-class NewPerson as "__newPerson1:Person__"
-    package Debt {
-    class DebtList as "__newList:DebtList__"
-    class Debt1Copy as "__copyOf1:Debt__"
-    }
-}
-
-
-DeleteDebtCommand -l-> "person index" PersonIndex1
-DeleteDebtCommand ----> "debt index" DebtIndex2
-DeleteDebtCommand ----> "debt index" DebtIndex3
-PersonIndex1 -[hidden]-> DebtIndex2
-DebtIndex2 -[hidden]-> DebtIndex3
-
-
-
-DeleteDebtCommand ---right[hidden]-> "updated debtor" NewPerson
-
 
 
 NewPerson --> DebtList
