@@ -1011,14 +1011,14 @@ This term is short for JavaScript Object Notation. It is a common file type that
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 
-## Authors
+## **Authors**
 
 This User Guide was co-written by Alvin, Jordan, Neale, Nicholas, and Naren, the developers behind RC4HDB.
 For more information, please refer to our [about us](AboutUs.md) page.
 
 ---
 
-## Command summary
+## **Command summary**
 
 We understand that you might be overwhelmed by the number of commands available to you. Though we have provided a
 summary table of contents in the Help Window in **RC4HDB**, that table contains only our most basic and commonly used
