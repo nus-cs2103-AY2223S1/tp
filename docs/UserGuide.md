@@ -33,7 +33,7 @@ Interface (GUI). If you can type fast, Duke The Market can help you organise you
 
    * **`deletePerson`**`3` : Deletes the 3rd person shown in the current persons list.
 
-   * **`clear`** : Deletes all persons.
+   * **`clear`** : Deletes all persons and events.
 
    * **`exit`** : Exits the app.
 
@@ -225,7 +225,7 @@ Edits an existing event in the application.
 Format: `editEvent INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`
 
 * Edits the event at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed event list.
-  The `INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer. 
+  The `INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * Only alphanumeric characters are allowed for event title (`e`).
@@ -235,15 +235,13 @@ Format: `editEvent INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`
 * Any character is allowed for purpose (`p`).
 
 Examples:
-*  `editEvent 1 e/Toy Dinosaur Sale t/10:10` Edits the event title and time of the 1st event to be
-   `Toy Dinosaur Sale` and `10:10` respectively.
+*  `editEvent 1 e/Toy Dinosaur Sale t/10:10` Edits the event title and time of the 1st event to be `Toy Dinosaur Sale` and `10:10` respectively.
 *  `editEvent 2 e/Pillow Sale` Edits the event title of the 2nd event to be `Pillow Sale`.
-*  `editEvent 3 d/10/10/2022 p/20 dollars off bottles` Edits the 3rd event’s date and purpose to be `10/10/2022` and ,
-   `20 dollars off bottles` respectively.
+*  `editEvent 3 d/10/10/2022 p/20 dollars off bottles` Edits the 3rd event’s date and purpose to be `10/10/2022` and `20 dollars off bottles` respectively.
 
 ### Locating events by event title: `findEvents`
 
-Finds events whose event titles contain any of the given keywords.
+Finds all events whose event titles contain any of the given keywords.
 
 Format: `findEvents KEYWORD [MORE_KEYWORDS]`
 
@@ -271,7 +269,7 @@ Format: `deleteEvent INDEX`
 * The `INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
 
 Examples:
-* `deleteEvent 2` after listing all events with `listEvents` deletes the event at index 2
+* `listEvents` followed by `deleteEvent 2` deletes the 2nd event in the application.
 
 
 ### Listing all events: `listEvents`
@@ -312,12 +310,12 @@ Format: `tagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES] ...`
 * The `PERSON_INDEX` refers to the index number shown in the displayed person list.
 * The `PERSON_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the person list index.
 * The `PERSON_INDEX` must refer to a person that is not currently tagged to the event.
-* Multiple `PERSON_INDEX` should be separated by white space. At least one `PERSON_INDEX` must be provided.
-* Duplicates of any `PERSON_INDEX` is not allowed.
+* Multiple `PERSON_INDEX`s should be separated by white space. At least one `PERSON_INDEX` must be provided.
+* Duplicate `PERSON_INDEX`s are not allowed.
 
 Example:
 * `tagEvent 1 p/2` tags the 2nd person in the person list to the 1st event in the event list.
-* `tagEvent 2 p/2 4 5` tags the 2nd, 4th, 5th person to in the person list the 2nd event in the event list.
+* `tagEvent 2 p/2 4 5` tags the 2nd, 4th, 5th person in the person list to the 2nd event in the event list.
 
 ### Untagging persons from an event : `untagEvent`
 
@@ -328,8 +326,8 @@ Format: `untagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES] ...`
 * The `PERSON_INDEX` refers to the index number shown in the displayed person list.
 * The `PERSON_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the person list index.
 * The `PERSON_INDEX` must refer to a person that is currently tagged to the event.
-* Multiple `PERSON_INDEX` should be separated by white space. At least one `PERSON_INDEX` must be provided.
-* Duplicates of any `PERSON_INDEX` is not allowed.
+* Multiple `PERSON_INDEX`s should be separated by white space. At least one `PERSON_INDEX` must be provided.
+* Duplicate `PERSON_INDEX`s are not allowed.
 
 Example:
 * `untagEvent 1 p/2` untags the 2nd person in the person list from the 1st event in the event list.
@@ -341,11 +339,11 @@ Format: `mailEvent INDEX`
 
 * The `INDEX` refers to the index number shown in the displayed event list.
 * The `INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
-* The mailing list is saved as a CSV file at the following location: <br><br> `[JAR file location]/data/EVENT_TITLE.csv`. 
-  The CSV file has 2 columns: `Name` and `Email`, representing the name and email for every person in the event.
+* The mailing list is saved as a CSV file at the following location: <br><br> `[JAR file location]/data/EVENT_TITLE.csv`.
+  The CSV file has 2 columns: `Name` and `Email`, representing the name and email for every person tagged to the event.
 
 Example:
-* `mailEvent 2` creates mailing list as a CSV file, the name of the csv file is the same as the title of 2nd event
+* `mailEvent 2` creates the mailing list as a CSV file, the name of the CSV file is the same as the title of the 2nd event
 in the event list.
 
 ### Generating pie chart statistic of the tagged persons of an event : `makeStats`
@@ -353,11 +351,10 @@ in the event list.
 Format: `makeStats INDEX t/STATISTIC_TYPE`
 
 * The `INDEX` refers to the index number shown in the displayed event list.
-* The `INDEX` must be a positive integer 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
-* The `STATISTIC_TYPE` refers to the type of statistical data being generated.
-* The `STATISTIC_TYPE` must be either `a` or `g`, where `a` stands for age and is specified to generate a pie chart showcasing
-the distribution of ages across age groups, while `g` stands for gender and is specified to generate a pie chart showcasing
-the distribution of genders.
+* The `INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
+* The `STATISTIC_TYPE` refers to the type of statistical data being generated and it must take one of the following values:
+  * `a` generate a pie chart showing the distribution of ages across age groups
+  * `g` generate a pie chart showing the distribution of genders
 
 Example:
 * `makeStats 1 t/g` generates gender statistics of the persons tagged to the 1st event in the event list
@@ -373,7 +370,7 @@ This issue is a bug pertaining to the JavaFX library.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the application.
+Clears all persons and events from the application.
 
 Format: `clear`
 
@@ -385,24 +382,20 @@ Format: `exit`
 
 ### Editing the data file
 
-The application's data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+The application's data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing the data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, the application will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: How do I transfer my data to another computer?<br>
+**A**: Launch the app in the other computer and overwrite the empty data file it creates with your existing data file.
 
-**Q**: What should I do I am still unable to input a starting time for my event using the format specified?<br>
+**Q**: I am unable to input a starting time for my event using the format specified. What should I do?<br>
 **A**: Change the language settings within your computer to a language that supports the "hh:mm" format.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -412,18 +405,18 @@ _Details coming soon ..._
 | Action           | Format, Examples                                                                                                                                                                      |
 |------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **AddPerson**    | `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER d/DOB` <br> e.g., `addPerson n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20/03/2002` |
-| **Clear**        | `clear`                                                                                                                                                                               |
 | **DeletePerson** | `deletePerson INDEX`<br> e.g., `deletePerson 3`                                                                                                                                       |
 | **EditPerson**   | `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB]`<br> e.g.,`editPerson 2 n/James Lee e/jameslee@example.com`                                             |
 | **FindPersons**  | `findPersons KEYWORD [MORE_KEYWORDS]`<br> e.g., `findPersons James Jake`                                                                                                              |
 | **ListPersons**  | `listPersons [s/FIELD]` <br> e.g., `listPersons s/n`                                                                                                                                  |
 | **AddEvent**     | `addEvent e/EVENT_TITLE d/DATE t/TIME p/PURPOSE`<br> e.g.,`addEvent e/Shoe Sale d/30/05/2022 t/11:00 p/30 dollar discount on all shoes`                                               |
 | **DeleteEvent**  | `deleteEvent INDEX`<br> e.g., `deleteEvent 2`                                                                                                                                         |
-| **EditEvent**    | `editEvent INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`<br> e.g., `editEvent 2 e/Chocolate Sale p/10 dollar off all chocolates`                                               |
+| **EditEvent**    | `editEvent INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`<br> e.g., `editEvent 2 e/Chocolate Sale p/10 dollars off all chocolates`                                               |
 | **FindEvents**   | `findEvents KEYWORD [MORE_KEYWORDS]`<br> e.g., `findEvents Sale Discount`                                                                                                             |
 | **ListEvents**   | `listEvents [s/FIELD]`<br> e.g., `listEvents s/e`                                                                                                                                     |
 | **MakeStats**    | `makeStats INDEX t/STATISTIC_TYPE`<br> e.g., `makeStats 1 t/g`                                                                                                                        |
 | **MailEvent**    | `mailEvent INDEX`<br> e.g., `mailEvent 3`                                                                                                                                             |
 | **TagEvent**     | `tagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `tagEvent 2 p/1 3`                                                                                             |
 | **UntagEvent**   | `untagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `untagEvent 3 p/4 5`                                                                                         |
+| **Clear**        | `clear`                                                                                                                                                                               |
 | **Help**         | `help`                                                                                                                                                                                |
