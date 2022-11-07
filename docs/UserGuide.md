@@ -97,6 +97,7 @@ The table explains the general syntax and common occurrences throughout the user
 | CAPITALIZED TEXT               | Indicates a parameter that follows the first word of a command                                                      |
 | **:information_source: Info:** | The icon indicates a section of increased importance and provides essential information to the smooth use of FRIDAY |
 | **:bulb: Tip:**                | A quick memorable form of advice to the user to make their friday experience enjoyable                              |
+| **:exclamation: Caution:**     | A warning sign indicating that the following text is important                                                      |
 
 #### Understanding command terms and general information
 
@@ -489,11 +490,21 @@ Format: `alias a/ALIAS k/COMMAND_KEYWORD`
 * `COMMAND_KEYWORD` must be a default command keyword (e.g. `add` in Adding students)
 * `ALIAS` must not be a default command keyword and contain exactly one word
 
-Example:
-* `alias a/ls k/list` adds an alias `ls` for the viewing all students command `list`.<br>
-Now, typing `ls` into the command box will execute the `list` command.
-* `alias a/a k/add` adds an alias `a` for the adding a student command `add`.<br>
-Now, typing `a n/John Doe` will add a student named John Doe into FRIDAY.
+Example: Enter `alias a/ls k/list`
+
+![AliasCommandBefore.png](images/AliasCommandBefore.png)
+
+Outcome: The alias `ls` is added for the viewing all students command `list`.
+
+![AliasCommandAfter.png](images/AliasCommandAfter.png)
+
+Now, typing `ls` into the command box.
+
+![UsingAliasBefore.png](images/UsingAliasBefore.png)
+
+Will execute the `list` command.
+
+![UsingAliasAfter.png](images/UsingAliasAfter.png)
 
 
 ### Deleting aliases: `unalias`
@@ -502,8 +513,13 @@ Deletes an existing [alias](#glossary), which is no longer needed, in FRIDAY.
 
 Format: `unalias a/ALIAS`
 
-Example:
-* `unalias a/ls` will delete the alias `ls` if it exists in FRIDAY.
+Example: Enter `unalias a/ls`
+
+![UnaliasCommandBefore.png](images/UnaliasCommandBefore.png)
+
+Outcome: The alias `ls` will be deleted from FRIDAY.
+
+![UnaliasCommandAfter.png](images/UnaliasCommandAfter.png)
 
 ### Viewing aliases: `aliaslist`
 
