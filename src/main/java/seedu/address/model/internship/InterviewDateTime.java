@@ -111,7 +111,7 @@ public class InterviewDateTime {
      * @param interviewDateTime2 Second InterviewDateTime.
      * @return true if both are equal.
      */
-    public static boolean bothNullOrEqual(InterviewDateTime interviewDateTime1, InterviewDateTime interviewDateTime2) {
+    public static boolean isBothNullOrEqual(InterviewDateTime interviewDateTime1, InterviewDateTime interviewDateTime2) {
         if (interviewDateTime1 == null) {
             return null == interviewDateTime2;
         } else {
