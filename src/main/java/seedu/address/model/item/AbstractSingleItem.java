@@ -33,6 +33,7 @@ public abstract class AbstractSingleItem extends AbstractDisplayItem {
         return getTitle(new ArrayList<String>(), null);
     }
 
+    // @@author mohamedsaf1
     @Override
     public void setParent(DisplayItem o) {
         if (o == null) {
@@ -61,6 +62,7 @@ public abstract class AbstractSingleItem extends AbstractDisplayItem {
     public void removeParent(DisplayItem o) {
         parent = null;
     }
+    // @@author
 
     @Override
     public String toString() {
