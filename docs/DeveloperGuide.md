@@ -370,9 +370,10 @@ The following sequence diagram shows how the FindModule operation works:
 
 SoCompiler is built-upon [AddressBook-Level3](https://github.com/se-edu/addressbook-level3/tree/master/docs), a sample project that serves as a base for Computer Science students to work on.
 
-### Credit for code adapted from external sources
+### Credit for code adapted/materials obtained from external sources
 
-Code to read a file from resources folder is adapted from this thread on [mkyong.com](https://mkyong.com/java/java-read-a-file-from-resources-folder/)
+* Code to read a file from resources folder is adapted from this thread on [mkyong.com](https://mkyong.com/java/java-read-a-file-from-resources-folder/)
+* Font used for the GUI were obtained from [Google Fonts](https://fonts.google.com/), where all fonts are under open source licenses and can be used in commercial and non-commercial products.
 
 --------------------------------------------------------------------------------------------------------------------
 
