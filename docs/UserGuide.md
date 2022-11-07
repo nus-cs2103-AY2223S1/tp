@@ -376,7 +376,7 @@ Contacts can be found by their names, or by the modules that they take. Finding 
 
 :bulb: Note on searching by name or module
 
-Refer to the note at [searching for tasks](#finding-tasks-find) for more information on how
+Refer to the note at [find tasks command](#finding-tasks-find) for more information on how
 CodeConnect searches by name or module.
 
 </div>
@@ -404,7 +404,7 @@ Example:
 
 :question: What if I need help with a task that isn't index 1?
 
-There's a command for that! See [finding contacts](#finding-contacts-findc).
+There's a command for that! See [find contacts command](#finding-contacts-findc).
 
 </div>
 
