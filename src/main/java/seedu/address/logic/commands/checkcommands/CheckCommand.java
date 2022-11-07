@@ -5,7 +5,7 @@ import seedu.address.logic.commands.Command;
 
 
 /**
- * Checks a selected Buyer/Supplier/Deliverer/Order/Pet.
+ * Checks a Buyer/Supplier/Deliverer/Order/Pet at the specified index.
  */
 public abstract class CheckCommand extends Command {
 

@@ -58,7 +58,7 @@ create CommandResult
 DeleteBuyerCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteBuyerCommand
+CommandResult --> DeleteBuyerCommand : result
 deactivate CommandResult
 
 DeleteBuyerCommand --> LogicManager : result

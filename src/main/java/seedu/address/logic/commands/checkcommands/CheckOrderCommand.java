@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 
 /**
- * Checks the buyer of an order.
+ * Checks who is the buyer of an order.
  */
 public class CheckOrderCommand extends CheckCommand {
     public static final String MESSAGE_SUCCESS = "Checking order %1$s";

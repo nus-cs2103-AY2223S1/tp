@@ -140,12 +140,12 @@ Given below is a partial class diagram of the `Ui` component.
 <img src="images/UiClassDiagram.png" width="700"/>
 
 The UI consists of a `MainWindow` that is made up of parts including `CommandBox`, `ResultDisplay`, `StatusBarFooter`.
-The `mainWindow` also has `HelpWindow` and `AddCommandPopupWindow` that will be shown to the user when required.
+The `MainWindow` also has `HelpWindow` and `AddCommandPopupWindow` that will be shown to the user when required.
 Detailed implementation of the `AddCommandPopupWindow` is written [here](#pop-up-window-for-add-command).
 All these UI components, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between
 classes that represent parts of the visible GUI.
 
-Furthermore, the `MainWindow` can be filled by **one** list panel, such as `BuyerListPanel` and `PetListPanel`, for display.
+Furthermore, the `MainWindow` can be filled by **one** list panel, such as `BuyerListPanel` or `PetListPanel`, for display.
 The list panel displayed depends on the input `Command`.
 Each list panel can have any number of the corresponding card. For example, `BuyerListPanel` can have any number
 of `BuyerCard`.
@@ -209,23 +209,23 @@ Given below is a diagram showing some other classes in `Logic` (omitted from the
 
 :information_source: **Different commands have different ways of implementing their respective parsers.**<br><br>
 
-**Some parsers can return different `Command` objects.**<br>
+**Some parsers can return different `Command` objects.**<br><br>
 The `SortCommandParser` returns one of `SortCommand`'s subclasses -- `SortBuyerCommand`,
-`SortDelivererCommand`, `SortSupplierCommand`, `SortOrderCommand`, and `SortPetCommand`.<br>
+`SortDelivererCommand`, `SortSupplierCommand`, `SortOrderCommand`, and `SortPetCommand`.<br><br>
 The implementation of `SortCommandParser` was done such that the `SortCommand` is able to accept multiple inputs for the
 `LIST_TYPE` and `ATTRIBUTES` parameters. Hence, the `SortCommandParser` makes use of `SortCommandParserUtil`
 and `CommandUtil` classes which help to parse the multiple valid parameters and return the correct `SortCommand`
-subclass.<br>
+subclass.<br><br>
 Given below is the Parser classes diagram for the `SortCommand`.<br>
 <img src="images/SortCommandParserClasses.png" width="600" /> <br><br>
 
-**Some `Command` objects are similar but have their own parsers and behave distinctly.**<br>
+**Some `Command` objects are similar but have their own parsers and behave distinctly.**<br><br>
 The `AddressBookParser` creates `DeleteBuyerCommandParser`, `DeleteSupplierCommandParser`,
 `DeleteDelivererCommandParser`, `DeleteOrderCommandParser`, or a `DeletePetCommandParser` depending on the user's input.
 Each `DeleteCommand` parser then returns the respective `DeleteCommand` to `AddressBookParser` for execution,
-i.e `DeleteBuyerCommandParser` parse method returns a `DeleteBuyerCommand` object.<br>
+i.e `DeleteBuyerCommandParser` parse method returns a `DeleteBuyerCommand` object.<br><br>
 This way of implementation is done for commands that are very similar but have different `COMMAND_WORD`s, such as the
-AddCommand, DeleteCommand, EditCommand, FilterCommand, and FindCommand.<br>
+AddCommand, DeleteCommand, EditCommand, FilterCommand, and FindCommand.<br><br>
 Given below is the Parser classes diagram for the `DeleteCommand`.
 **`ParserUtil` and `Index` classes are omitted from the diagram to reduce graph complexity.**<br>
 <img src="images/DeleteCommandParserClasses.png" width="1500" height="250"/>

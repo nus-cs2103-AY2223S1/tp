@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Deliverer;
 
 /**
- * Checks the orders of a deliverer.
+ * Checks which orders belong to a deliverer.
  */
 public class CheckDelivererCommand extends CheckCommand {
     public static final String MESSAGE_SUCCESS = "Checking deliverer %1$s";
