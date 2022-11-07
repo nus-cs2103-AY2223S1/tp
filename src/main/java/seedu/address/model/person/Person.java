@@ -93,9 +93,21 @@ public class Person {
         }
 
         return otherPerson != null
-                && (otherPerson.getName().equals(getName())
-                || otherPerson.getEmail().equals(getEmail())
-                || otherPerson.getPhone().equals(getPhone()));
+                && otherPerson.getName().equals(getName());
+    }
+
+    /**
+     * Returns true if both persons have the same phone.
+     */
+    public boolean hasSamePhone(Person otherPerson) {
+        return phone.equals(otherPerson.getPhone());
+    }
+
+    /**
+     * Returns true if both persons have the same email.
+     */
+    public boolean hasSameEmail(Person otherPerson) {
+        return email.equals(otherPerson.getEmail());
     }
 
     /**
