@@ -259,8 +259,8 @@ Edits an existing student in the list.
 4. Amount Owed (`owed/`):
     - Amount Owed stands for the amount that has been owed by the student.
     - Format: `owed/` must be followed by an integer.
-    - Amount owed can only be an integer.
-    - Amount owed must be non-negative.
+    - Amount Owed can only be an integer.
+    - Amount Owed must be non-negative.
 
 5. Rates per Class (`rate/`):
     - Rates per Class stands for the amount of charge per Class for the student.
@@ -271,8 +271,8 @@ Edits an existing student in the list.
       independent of each other.</div>
 
 6. Additional Notes (`nt/`):
-    - Additional notes can be left empty.
-    - Additional notes can take in any types of character.
+    - Additional Notes can be left empty.
+    - Additional Notes can take in any types of character.
     - Use `nt/` to set the additional notes.
     - Use `nt-a/` to append the additional notes.
     

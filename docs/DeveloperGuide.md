@@ -6,7 +6,7 @@ title: Developer Guide
 **Teacher’s Pet** is a desktop application that empowers private tutors to manage their students and schedule their classes.
 
 This Developer Guide provides an in-depth documentation on how **Teacher’s Pet** is designed and implemented.
-It covers the architecture of **Teacher’s Pet** and provides detailed description regarding the implementation design.
+It covers the architecture of **Teacher’s Pet** and provides detailed descriptions regarding the implementation design.
 
 You can use this guide to maintain, upgrade, and evolve **Teacher’s Pet**.
 
@@ -54,13 +54,13 @@ This section gives you a high-level overview of how **Teacher’s Pet** is struc
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
-Given below is a quick overview of main components and how they interact with each other.
+Given below is a quick overview of the main components and how they interact with each other.
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
-* At shut down: Shuts down the components and invokes cleanup methods where necessary.
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). They are responsible for,
+* At app launch: Initializing the components in the correct sequence, and connecting them up with each other.
+* At shut down: Shutting down the components and invoking cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
@@ -144,7 +144,7 @@ How the parsing works:
 The `Model` component,
 
 * stores the teacher's pet data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
-* stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
