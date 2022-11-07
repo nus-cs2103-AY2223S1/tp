@@ -23,7 +23,9 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        return new FindCommand(new PersonMatchesKeywordsPredicate(trimmedArgs));
+        PersonMatchesKeywordsPredicate predicate = new PersonMatchesKeywordsPredicate();
+        predicate.setKeywords(trimmedArgs);
+        return new FindCommand(predicate);
     }
 
 }
