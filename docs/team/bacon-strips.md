@@ -42,5 +42,6 @@ Given below are my contributions to the project:
 #### User Guide
 - Added documentation for `sort` command
 - Added documentation for `sort-e` command
+
 #### Developer Guide
 - Added use cases for `sort` command
