@@ -522,7 +522,7 @@ The following sequence diagram shows how the copy command works.
 **Parameters for copy command**:
 * `INDEX` parameter only takes in one index
     * Pros: Easier to implement, makes more sense
-    * 
+  
 <div style="page-break-after: always;"></div>
     
 ### Bar Chart
