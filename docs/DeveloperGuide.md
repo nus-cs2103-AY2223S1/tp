@@ -2,14 +2,68 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-  {:toc}
+
+## Table of Contents
+* [Acknowledgements](#acknowledgements)
+* [Overview](#overview)
+* [Setting up, getting started](#setting-up-getting-started)
+* [Design](#design)
+  * [Architecture](#architecture)
+  * [UI Component](#ui-component)
+  * [Logic Component](#logic-component)
+  * [Model Component](#model-component)
+  * [Storage Component](#storage-component)
+* [Properties Objects](#properties-objects)
+  * [Properties of Person Objects](#properties-of-person-objects)
+  * [Properties of Note Objects](#properties-of-note-objects)
+* [Implementation](#implementation)
+  * [Person Features](#person-features)
+    * [Edit Feature](#edit-feature)
+    * [Delete Person](#delete-person)
+    * [Find Person](#find-person)
+    * [Edit Loan Feature](#edit-loan-value-and-history-of-person-by-editloan-feature)
+    * [Find by Tag Feature](#find-persons-and-notes-by-tag-featured)
+  * [Notes Features](#notes-features)
+    * [Add Note Feature](#addnote-feature)
+    * [Delete Note Feature](#deletenote-feature)
+    * [Edit Note Feature](#editnote-feature)
+  * [UI Features](#ui-features)
+    * [General UI Design and Mechanism](#general-ui-design-and-mechanism)
+    * [Inspect Feature](#inspect-feature)
+    * [Showing and Hiding Panel Feature](#showing-and-hiding-the-notes-panel-feature)
+  * [[Proposed] Undo redo feature](#proposed-undoredo-feature)
+* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+* [Appendix](#appendix-requirements)
+  * [Requirements](#appendix-requirements)
+    * [Product scope](#product-scope)
+    * [User stories](#user-stories)
+    * [Use Cases](#use-cases)
+    * [Non-Functional Requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+  * [Instructions for manual testing](#appendix-instructions-for-manual-testing)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+The background of the program is a large-scale city, attributed to [GiulioDesign94](https://www.deviantart.com/giuliodesign94)'s [Big City](https://www.deviantart.com/giuliodesign94/art/Big-City-198672166).
+
+The icon of this program is an edited image from DepositPhotos, found [here](https://depositphotos.com/471137460/stock-illustration-book-yellow-glowing-neon-icon.html).
+
+This team recognises the rights to the images go to their respective owners.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Overview**
+
+SectresBook helps secretaries to maintain all the information of the members of their club by collating a list of identifiable information, past loan records and future tasks.
+
+Our main target audience is secretaries, but this may be expanded to any person in need of loan tracking and task tracking features provided by our software.
+
+This Developer Guide is written for maintainers of SectresBook.
+
+Designers and developers who wish to extend or morph this product may also use this documentation to gain a better understanding of the design of this software.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -214,7 +268,7 @@ During instantiation, a note object can be declared with any of these properties
 
 -------------------
 
-## **Implementation**
+## Implementation
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -738,11 +792,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -1092,13 +1141,13 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
     2. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the result display is updated.
+       Expected: First contact is deleted from the list. Result display shows details of the deleted contact.
 
     3. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Result display remains the same.
+       Expected: No person is deleted. Result display shows error message stating non-positive indices not allowed.
 
     4. Test case: `delete Charlotte`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
-       Expected: Person with name `Charlotte` is deleted from the list. Details of the deleted contact shown in the status message.
+       Expected: Person with name `Charlotte` is deleted from the list. Result display shows details of the deleted contact.
    
     5. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
@@ -1108,128 +1157,106 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List a subset of persons using the `find` command. At least 1 person in the list.
    
     2. Test case: `delete 1`, assuming there is more than or equal to 1 person in the Sectresbook.<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+       Expected: First contact is deleted from the list. Result display shows details of the deleted contact.
    
     3. Test case: `delete -1`<br>
-       Expected: No person is deleted from the list. Error details shown in the status message. Result display remains the same.
+       Expected: No person is deleted from the list. Result display shows error message stating non-positive indices not allowed.
    
     4. Test case: `delete Charlotte`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
-       Expected: Person with name `Charlotte` is deleted from the list. Details of the deleted contact shown in the status message.
+       Expected: Person with name `Charlotte` is deleted from the list. Result display shows details of the deleted contact shown.
    
     5. Test case: `delete Sean`, assuming there is more than 1 person with the name `Sean` in the Sectresbook.<br>
-       Expected: No person is deleted from the list. Sectresbook lists the contacts with `Sean` in their name. Error details shown in the status message.
+       Expected: No person is deleted from the list. Sectresbook lists the contacts with `Sean` in their name. Result display shows error message stating more than one person with that name.
 
     6. Other incorrect delete commands to try: `delete`, `delete phone/PHONE_NUMBER`, `...` (where `PHONE_NUMBER` is a phone number of a person).<br>
-       Expected: No person is deleted from the list. Error details shown the status message. Result display remains the same.
+       Expected: No person is deleted from the list. Result display shows error message stating invalid command format.
 
 ### Editing a person
 
 1. Editing a person after listing all persons or after finding a list of persons (list should contain more than 0 people).
 
    1. Test case: `edit 1 phone/98112233`, assuming there is more than or equal to 1 person in the Sectresbook.<br>
-      Expected: Phone number of the first contact in the list is edited. Details of the edited contact shown in the status message.
+      Expected: Phone number of the first contact in the list is edited. Result display shows details of the edited contact.
    
    2. Test case: `edit 5 tag/Friend`, assuming there is less than 5 people currently displayed in the Sectresbook.<br>
-      Expected: No person is edited. Error details shown in the status message. Result display remains the same.
+      Expected: No person is edited. Result display shows error message stating invalid index.
    
    3. Test case: `edit Charlotte tag/Friend`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
-      Expected: The tag of the Person with the name `Charlotte` is edited. Details of the edited contact shown in the status message.
+      Expected: The tag of the Person with the name `Charlotte` is edited. Result display shows details of the edited contact.
    
    4. Test case: `edit Sean tag/Colleague`, assuming there is more than 1 person with the name `Sean` in the Sectresbook.<br>
-      Expected: No person is edited from the list. Sectresbook shows the list of persons with `Sean` in their name. Error details shown the status message. Result display remains the same.
+      Expected: No person is edited from the list. Sectresbook shows the list of persons with `Sean` in their name. Result display shows error message stating more than one person with that name.
    
    5. Other incorrect edit commands to try: `edit`, `edit 2 phone/TEXT`, `...` (where `TEXT` is an input with only alphabets). <br>
-      Expected: No person is edited in the list. Error details shown in the status message. Result display remains the same.
+      Expected: No person is edited in the list. Result display shows error message stating phone number should be only contain numbers and at least 3 digits.
 
 ### Editing a loan of a person
 
 1. Editing a loan of a person after listing all persons or after finding a list of persons (list should contain more than 0 people).
 
    1. Test case: `editLoan 1 amt/10 reason/Logistics`, assuming there is more than or equal to 1 person in the Sectresbook.<br>
-      Expected: Loan amount and history of the first contact is updated. Details of the edited contact shown in the status message.
+      Expected: Loan amount and history of the first contact is updated. Result display shows details of the edited contact.
    
    2. Test case: `editLoan 5 amt/100 reason/Logistics`, assuming there is less than 5 people currently displayed in the Sectresbook.<br>
-      Expected: No person is edited. Error details shown in the status message. Result display remains the same.
+      Expected: No person is edited. Result display shows error message stating invalid index provided.
    
-   3. Test case: `edit Charlotte amt/10 reason/Test`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
-      Expected: Loan amount and history of the Person with the name `Charlotte` is edited. Details of the edited contact shown in the status message.
+   3. Test case: `editLoan Charlotte amt/10 reason/Test`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
+      Expected: Loan amount and history of the Person with the name `Charlotte` is edited. Result display shows details of the edited contact.
    
-   4. Test case: `edit Sean amt/10 reason/Test`, assuming there is more than 1 person with the name `Sean` in the Sectresbook.<br>
-      Expected: No person is edited from the list. Sectresbook shows the list of persons with `Sean` in their name. Error details shown the status message. Result display remains the same.
+   4. Test case: `editLoan Sean amt/10 reason/Test`, assuming there is more than 1 person with the name `Sean` in the Sectresbook.<br>
+      Expected: No person is edited from the list. Sectresbook shows the list of persons with `Sean` in their name. Result display shows error message stating more than one person with that name.
    
    5. Other incorrect editLoan commands to try: `editLoan`, `editLoan amt/`,`editLoan 1 amt/TEXT reason/TEXT`, `...` (where `TEXT` is an input with only alphabets). <br>
-      Expected: No person is edited in the list. Error details shown in the status message. Result display remains the same.
+      Expected: No person is edited in the list. Result display shows error message stating invalid command format.
 
 ### Finding a person
 
 1. Finding a person with the given keyword.
 
    1. Test case: `find Ryan`, assuming there is at least 1 person with the substring `Ryan` in the Sectresbook.<br>
-      Expected: Person list is updated with contacts that contain the substring `Ryan`. Details of the number of persons listed shown in status message.
+      Expected: Person list is updated with contacts that contain the substring `Ryan`. Result display shows the number of persons listed.
 
    2. Test case: `find Jack`, assuming there is no one with the substring `Jack`.<br>
-      Expected: Person list is updated, showing nobody in the list. Details of the number of persons listed shown in status message.
+      Expected: Person list is updated, showing nobody in the list. Result display shows the number of persons listed.
    
    3. Test case: `find 8445`, assuming there is at least 1 person with phone number starting with `8445` in the Sectresbook.<br>
-      Expected: Person list is updated with contacts with phone number starting with `8445`. Details of the number of persons listed shown in status message.
+      Expected: Person list is updated with contacts with phone number starting with `8445`. Result display shows the number of persons listed.
    
    4. Test case: `find 8445 Ryan`, assuming there is at least 1 person with phone number starting with `8445` and substring `Ryan` in their name in the Sectresbook.<br>
-      Expected: Person list is updated with contacts that contain the substring `Ryan` and phone number starting with `8445`. Details of the number of persons listed shown in status message.
+      Expected: Person list is updated with contacts that contain the substring `Ryan` and phone number starting with `8445`. Result display shows the number of persons listed.
    
    5. Incorrect editLoan command to try: `editLoan`. <br>
-      Expected: No change in the list shown. Error details shown in the status message. Result display remains the same.
+      Expected: No change in the list shown. Result display shows message stating invalid command format.
 
 ### Listing a person
 
 1. Listing all persons in the Sectresbook. 
 
    1. Test case: `list`<br>
-      Expected: Person list is updated to show all persons in the Sectresbook. Success message is shown as the status message.
+      Expected: Person list is updated to show all persons in the Sectresbook. Result display shows success message.
    
    2. Test case: `list TEXT`, where `TEXT` is any string input.<br>
-      Expected: Person list is updated to show all persons in the Sectresbook. Success message is shown as the status message.
+      Expected: Person list is updated to show all persons in the Sectresbook. Result display shows success message.
 
 ### Inspecting a person
 
 1. Inspecting a person while all persons are shown.
 
    1. Test case: `inspect 1`, assuming there is at least 1 person shown in the person list. <br>
-      Expected: Displays the information of the contact with index 1 in the person list. Success message is shown as the status message.
+      Expected: Displays the information of the contact with index 1 in the person list. Result display shows success message.
    
    2. Test case: `inspect Charlotte`, assuming there is only 1 person with the name `Charlotte` in the Sectresbook.<br>
-      Expected: Displays the information of the contact with name `Charlotte` in the person list. Success message is shown as the status message.
+      Expected: Displays the information of the contact with name `Charlotte` in the person list. Result display shows success message.
    
    3. Test case: `inspect -1`<br>
-      Expected: No change in the person being inspected. Error details shown in the status message. Result display remains the same.
+      Expected: No change in the person being inspected. Result display shows error message stating inspection failed, name should be alphanumeric characters only.
    
    4. Test case: `inspect Jack`, assuming there is more than 1 person with the name `Jack` in the person list.<br>
-      Expected: No change in the person currently being inspected. Error details shown in the status message. Result display remains the same.
+      Expected: No change in the person currently being inspected. Result display shows error message stating more than one person with that name.
    
    5. Other incorrect inspect commands to try: `inspect`.<br>
-      Expected: No change in the person currently being inspected. Error details shown in the status message. Result display remains the same.
-
-### Viewing Help
-
-1. Viewing help bar.
-
-   1. Test case: `help`<br>
-      Expected: The help popup screen is shown.
-
-### Clearing all data
-
-1. Clearing all data
-
-    1. Test case: `clear`<br>
-       Expected: Clears all data from the Sectresbook.
-        
-
-### Exiting program
-
-1. Exitting the Sectresbook
-
-   1. Test case: `exit`<br>
-      Expected: The program closes. 
-
+      Expected: No change in the person currently being inspected. Result display shows error message stating nothing to inspect.
+   
 
 ### Adding a note
 
@@ -1241,7 +1268,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Result display shows message stating new note is added. Notes display panel shows new note.
    
    3. Test case: incorrect `addNote` commands (e.g. `addNote`, `addNote title/event`, `addNote content/groceries`)<br>
-      Expected: No new note is added to notes list. Result display shows error message stating incorrect command format.
+      Expected: No new note is added to notes list. Result display shows error message stating invalid command format.
    
 2. Adding a note with a duplicate title
    1. Test case: `addNote title/event content/november 3rd 4pm`<br>
@@ -1321,5 +1348,24 @@ testers are expected to do more *exploratory* testing.
       Expected: Persons list display persons tagged with `cs2103`. Notes display panel displays notes tagged with `cs2103`. Result display shows message stating number of people listed in the persons list.<br>
                 If there is no person tagged with `cs2103`, the persons list will be empty.<br>
                 If there is no note tagged with `cs2103`, the notes display panel will be empty.
+   
+### Viewing Help
 
+1. Viewing help bar.
 
+    1. Test case: `help`<br>
+       Expected: The help popup screen is shown.
+
+### Clearing all data
+
+1. Clearing all data
+
+    1. Test case: `clear`<br>
+       Expected: Clears all data from the Sectresbook.
+    
+### Exiting program
+
+1. Exitting the Sectresbook
+
+    1. Test case: `exit`<br>
+       Expected: The program closes. 
