@@ -1,59 +1,57 @@
 ---
-layout: page
-title: About Us
+layout: page title: About Us
 ---
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Dilys Pang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/dilysss.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[github](https://github.com/Dilysss)
+[portfolio](team/dilysss.md)
 
 * Role: Project Advisor
+* Responsibilities: Student Functions
 
-### Jane Doe
+### Lim Qiao En
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/qiaoen17.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[github](http://github.com/qiaoen17)
+[portfolio](team/qiaoen17.md)
 
-* Role: Team Lead
+* Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
+### Leong Yu Xuan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yuxuanleong.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[github](http://github.com/yuxuanleong)
+[portfolio](team/yuxuanleong.md)
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Yang Xiang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/shawn532.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[github](http://github.com/shawn532)
+[portfolio](team/shawn532.md)
 
 * Role: Developer
 * Responsibilities: Dev Ops + Threading
 
-### James Doe
+### Tan Cheong Hsien Ryan
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/ketamethane.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[github](https://github.com/ketamethane)
+[portfolio](team/ketamethane.md)
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Question Class

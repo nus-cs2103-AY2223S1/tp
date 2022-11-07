@@ -1,38 +1,69 @@
 ---
-layout: page
+layout: page 
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+SETA is a **desktop application for CS2103T Teaching Assistants** to track their students’ and tutorials’ details, and
+questions asked by students. SETA is optimized for use via a Command Line Interface (CLI) while still having the
+benefits of a Graphical User Interface (GUI). If you can type fast, SETA enables you to track your students. manage your
+tutorials and note down questions more effectively than traditional GUI apps.
 
 * Table of Contents
-{:toc}
+    * **[Quick Start](#quick-start)**
+    * **[Features](#features)**
+        * **[Students](#students)**
+            * Adding a student: [`addstu`](#adding-a-student--addstu)
+            * Editing a student: [`editstu`](#editing-a-student-editstu)
+            * Adding student's attendance: [`attendance`](#adding-students-attendance--attendance)
+            * Adding student’s response: [`addresponse`](#adding-students-response-addresponse)
+            * Adding help tag to a student: [`helpstu`](#adding-help-tag-helpstu)
+            * Removing help tag from a student: [`unhelpstu`](#removing-help-tag-unhelpstu)
+            * Deleting a student: [`deletestu`](#deleting-a-student-deletestu)
+            * Finding a student: [`findstu`](#finding-a-student-findstu)
+            * Listing all students: [`liststu`](#listing-all-students-liststu)
+        * **[Questions](#questions)**
+            * Adding a question: [`addq`](#adding-a-question--addq)
+            * Marking a question: [`markq`](#marking-a-question--markq)
+            * Unmarking a question: [`unmarkq`](#unmarking-a-question--unmarkq)
+            * Deleting a question: [`deleteq`](#deleting-a-question--deleteq)
+        * **[Tutorials](#tutorials)**
+            * Adding a tutorial: [`addtut`](#adding-a-tutorial--addtut)
+            * Deleting a tutorial: [`deletetut`](#deleting-a-tutorial--deletetut)
+            * Marking a tutorial: [`marktut`](#marking-a-tutorial-marktut)
+            * Unmarking a tutorial: [`unmarktut`](#unmarking-a-tutorial-unmarktut)
+        * **Clear**: [`clear`](#clearing-all-entries-clear)
+        * **Exiting the program**: [`exit`](#exiting-the-program--exit)
+    * **[FAQ](#faq)**
+    * **[Command Summary](#command-summary)**
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `SETA.jar` from [here](https://github.com/AY2223S1-CS2103T-T08-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your SETA.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app.
+    1. If double-clicking does not work, you can go to the directory containing the SETA.jar file through your terminal
+       and run `java -jar SETA.jar` to launch the application.
+5. The GUI similar to the below should appear in a few seconds. Note how the app
+   contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`liststu`** and pressing Enter will
+   list all the students in the 'Student' column.<br>
 
-   * **`list`** : Lists all contacts.
+Some example commands you can try:
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+* **`addstu`**`n/John Lim Jun Jie h/@johnlimjj e/johnlim@example.com` : Adds a student named `John Lim Jun Jie` to the
+  student list.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+* **`deletestu`**`3` : Deletes the 3rd student shown in the current list.
 
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
+* **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -45,108 +76,342 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addstu n/NAME`, `NAME` is a parameter which can be used as `addstu n/John Lim`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `n/NAME [h/TELEGRAM_HANDLE]` can be used as `n/John Lim h/@johnlim` or as `n/John Lim`.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME e/EMAIL`, `e/EMAIL n/NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of
+  the parameter will be taken.<br>
+  e.g. if you specify `h/@johnlim h/@johnlimjj`, only `h/@johnlimjj` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `liststu` and `exit`) will be ignored.<br>
+  e.g. if the command specifies `liststu 123`, it will be interpreted as `liststu`.
 
 </div>
 
-### Viewing help : `help`
+### Students
 
-Shows a message explaning how to access the help page.
+Each student contains details such as their name, telegram handle and email. The latter two are there for you to
+contact the student if necessary. You can also track each student's attendance and include the number of messages
+he has sent on Zoom to note down his participation.
 
-![help message](images/helpMessage.png)
+### Adding a student : `addstu`
 
-Format: `help`
+Adds a student to the student list.
 
+Format: `addstu n/NAME h/TELEGRAM_HANDLE e/EMAIL`
 
-### Adding a person: `add`
-
-Adds a person to the address book.
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+* Telegram handle must start with a '@', followed by an alphanumeric character.
+* After the first character, telegram handle can only contain alphanumeric character or underscore.
+* Email can only contain alphanumeric characters and must contain a top level domain with at least 2 characters
+  (E.g. of top level domain: `.com`, `.co`, `.edu`).
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Listing all persons : `list`
+* `addstu n/John Lim Jun Jie h/@johnlimjj e/johnlim@example.com`
+* `addstu n/Mary Tan Xiao Li h/@marytxl e/marytxl@example.edu`
 
-Shows a list of all persons in the address book.
+<img src="images/ug-screenshots/addstu.png" alt="addstu n/John Lim Jun Jie h/@johnlimjj e/johnlim@example.com" width="1100">
 
-Format: `list`
+### Editing a student: `editstu`
 
-### Editing a person : `edit`
+Edits an existing student in the student list.
 
-Edits an existing person in the address book.
+Format: `editstu INDEX [n/NAME] [h/TELEGRAM_HANDLE] [e/EMAIL] [a/ATTENDANCE]`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
-### Locating persons by name: `find`
-
-Finds persons whose names contain any of the given keywords.
-
-Format: `find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* Edits the student at the specified INDEX. The index represents the index number of the student in the student list.
+  The index must be a positive integer 1, 2, 3...
+* At least one of the fields (E.g. [n/NAME] or [e/EMAIL]) must be provided.
+* Existing fields will be updated to the input values.
+* Editing a student with the same details as the student's original details will be accepted.
+  (E.g. executing `editstu 1 h/@test` when student 1's telegram handle is already `@test`, will still be accepted as an
+  edit.)
+* Input attendance value without any extra '0's before and after the intended attendance value. (E.g. '0' instead of '
+  0000' and '3' instead of '003').
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+* `editstu 1 h/@johnlim e/jljj@example.com` Edits the telegram handle and email of the 1st student to @johnlim and
+  jljj@example.com respectively.
+* `editstu 3 n/Mary Lee Jing Yi` Edits the name of the 3rd student to Mary Lee Jing Yi.
+* `editstu 2 a/5` Edits the attendance number of the 2nd student to 5.
 
-Deletes the specified person from the address book.
+<img src="images/ug-screenshots/editstu.png" alt="editstu 1 h/@johnlim e/jljj@example.com" width="1100">
 
-Format: `delete INDEX`
+### Adding student's attendance : `attendance`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+Increases student's attendance by 1.
+
+Format: `attendance INDEX`
+
+* Increment attendance to the student at the specified INDEX.
+* The index refers to the index number shown in the displayed student list.
+* The index must be a positive integer 1, 2, 3...
+
+Example:
+
+* `attendance 1`
+
+<img src="images/ug-screenshots/attendance.png" alt="attendance 1" width="1100">
+
+### Adding student's response: `addresponse`
+
+Edits the number of messages a specified student sent during tutorial.
+
+Format: `addresponse INDEX m/MESSAGE_COUNT`
+
+* Edits response count of the student at the specified INDEX.
+    * If `addresponse 1 m/7` is keyed in after `addresponse 1 m/2`, the response count for the first
+      student in the student list will be 7 instead of 2.
+* The `INDEX` refers to the index number shown in the displayed student list.
+* The `INDEX` must be a positive integer 1, 2, 3...
+* The `MESSAGE_COUNT` must be a positive integer 1, 2, 3...
+* If `m\0000000000` is given as an input, 0s will not be truncated and response will be displayed as
+  `response: 000000000`
+
+Example:
+
+* `addresponse 1 m/7`
+
+<img src="images/ug-screenshots/addresponse.png" alt="addresponse 1 m/7" width="1100">
+
+### Adding help tag: `helpstu`
+
+Adds a help tag to an existing student.
+
+Format: `helpstu INDEX`
+
+* Adds a help tag to the student at the specified INDEX.
+* The index refers to the index number shown in the displayed student list.
+* The index must be a positive integer 1, 2. 3...
+* Adding help tag to a student who is already tagged with help tag will not change anything.
+
+Example:
+
+* `helpstu 1`
+
+<img src="images/ug-screenshots/helpstu.png" alt="helpstu 1" width="1100">
+
+### Removing help tag: `unhelpstu`
+
+Removes help tag from an existing student.
+
+Format: `unhelpstu INDEX`
+
+* Removes help tag to the student at the specified INDEX.
+* The index refers to the index number shown in the displayed student list.
+* The index must be a positive integer 1, 2. 3...
+* Removing help tag from a student who does not have a help tag will not change anything.
+
+Example:
+
+* `unhelpstu 1`
+
+<img src="images/ug-screenshots/unhelpstu.png" alt="unhelpstu 1" width="1100">
+
+### Deleting a student: `deletestu`
+
+Removes a specific student.
+
+Format: `deletestu INDEX`
+
+* Deletes the student at the specified INDEX.
+* The index refers to the index number shown in the displayed student list.
+* The index must be a positive integer 1, 2. 3...
+
+Example:
+
+* `deletestu 1`
+
+<img src="images/ug-screenshots/deletestu.png" alt="deletestu 1" width="1100">
+
+### Finding a student: `findstu`
+
+Finds one or more specific students.
+
+Format: `findstu KEYWORD [MORE_KEYWORDS]`
+
+* Finds student(s) with specified KEYWORD [MORE_KEYWORDS] in their name(s).
+* The keyword is case-insensitive.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
-### Clearing all entries : `clear`
+* `findstu john mary`
+* `findstu john`
 
-Clears all entries from the address book.
+<img src="images/ug-screenshots/findstu.png" alt="findstu 1" width="1100">
+
+### Listing all students: `liststu`
+
+Lists all students in the student list.
+
+Format: `liststu`
+
+* Lists all students after student list is filtered upon finding a student or students.
+
+Example:
+
+* `liststu`
+
+<img src="images/ug-screenshots/liststu.png" alt="liststu 1" width="1100">
+
+### Questions
+
+Sometimes, you may receive questions that you may not have the answer to or you may not have enough time to answer
+all of them during the tutorial. SETA allows you to track these questions. Furthermore, if you find a question that
+requires urgent clarification or critical thinking, you can indicate on the user interface that these questions are
+important. For questions requiring critical thinking, it would be also good to share them with other TAs so that the
+rest of the module's students can benefit from knowing this question.
+
+### Adding a question : `addq`
+
+Adds a question to the question list.
+
+Format: `addq QUESTION_DESCRIPTION`
+
+Example:
+
+* `addq what is the difference between self-invocation and call-backs for sequence diagrams?`
+
+<img src="images/ug-screenshots/addq.png" alt="addq what is the difference between self-invocation and call-backs for sequence diagrams?" width="1100">
+
+### Marking a question : `markq`
+
+Marks a question as important.
+
+Format: `markq INDEX`
+
+* Marks the question at the specified INDEX as important.
+* The index refers to the index number shown in the displayed question list.
+* The index must be a positive integer 1, 2, 3...
+* The index must be within the number of questions in the question list (E.g. There are 4 questions. The possible
+  indexes are 1, 2, 3 and 4.).
+* Note: Marking a question that is already marked will not change anything.
+
+Example:
+
+* `markq 1` marks the first question in the question list as important
+
+<img src="images/ug-screenshots/markq.png" alt="markq 1" width="1100">
+
+### Unmarking a question : `unmarkq`
+
+Marks a question as unimportant. (If the question was previously or mistakenly marked as important)
+
+Format: `unmarkq INDEX`
+
+* Marks the question at the specified INDEX as unimportant.
+* The index refers to the index number shown in the displayed question list.
+* The index must be a positive integer 1, 2, 3...
+* The index must be within the number of questions in the question list. E.g. There are 4 questions. The possible
+  indexes are 1, 2, 3 and 4.
+* Note: Unmarking a question that is already unmarked will not change anything.
+
+Example:
+
+* `unmarkq 1` marks the first question in the question list as unimportant
+
+<img src="images/ug-screenshots/unmarkq.png" alt="unmarkq 1" width="1100">
+
+### Deleting a question : `deleteq`
+
+Deletes a question in the question list.
+
+Format: `deleteq INDEX`
+
+* The index refers to the index number shown in the displayed question list.
+* The index must be a positive integer 1, 2, 3...
+* The index must be within the number of questions in the question list. E.g. There are 4 questions. The possible
+  indexes are 1, 2, 3 and 4.
+
+Example:
+
+* `deleteq 1` deletes the first question from the question list
+
+<img src="images/ug-screenshots/deleteq.png" alt="deleteq 1" width="1100">
+
+### Tutorials
+
+Each tutorial has a group number, a topic to focus on and a date and time. These correspond to the `GROUP_NUMBER`,
+`CONTENT` and `DATE TIME` parameters accordingly.
+
+### Adding a tutorial : `addtut`
+
+Adds a tutorial to the tutorial list.
+
+Format: `addtut g/GROUP_NUMBER c/CONTENT t/DATE TIME`
+
+* The format of the date must be `YYYY-MM-DD`.
+* The format of the time must be in 24h format without semicolon: `HHmm` (E.g. `0120`, `1830`).
+* Special cases for `DATE`:
+    * Input: `2022-02-29`, `2022-02-30` and `2022-02-31`
+    * Shown: `28 Feb 2022`
+
+Example:
+
+* `addtut g/T08 c/UML diagrams t/2022-10-01 1400`
+
+<img src="images/ug-screenshots/addtut.png" alt="addtut g/T08 c/UML diagrams t/2022-10-01 1400" width="1100">
+
+### Deleting a tutorial : `deletetut`
+
+Deletes a tutorial in the tutorial list.
+
+Format: `deletetut INDEX`
+
+* Deletes the tutorial at the specified INDEX.
+* The index refers to the index number shown in the displayed tutorial list.
+* The index must be a positive integer 1, 2. 3...
+
+Example:
+
+* `deletetut 1`deletes the first tutorial from the tutorial list
+
+<img src="images/ug-screenshots/deletetut.png" alt="deletetut 1" width="1100">
+
+### Marking a tutorial: `marktut`
+
+Marks content in the tutorial as done.
+
+Format: `marktut INDEX`
+
+* Marks the tutorial at the specified `INDEX`.
+* The index refers to the index number shown in the displayed tutorial list.
+* The index must be a positive integer 1, 2, 3, ... .
+
+Example:
+
+* `marktut 1` marks the first tutorial from the tutorial list as done.
+
+<img src="images/ug-screenshots/marktut.png" alt="marktut 1" width="1100">
+
+### Unmarking a tutorial: `unmarktut`
+
+Marks content in the tutorial as undone.
+
+Format: `unmarktut INDEX`
+
+* Unmarks the tutorial at the specified `INDEX`.
+* The index refers to the index number shown in the displayed tutorial list.
+* The index must be a positive integer 1, 2, 3, ...
+
+Example:
+
+* `unmarktut 1` marks the first tutorial from the tutorial list as undone.
+
+<img src="images/ug-screenshots/unmarktut.png" alt="unmarktut 1" width="1100">
+
+### Clearing all entries: `clear`
+
+Clears all entries.
 
 Format: `clear`
+
+<img src="images/ug-screenshots/clear.png" alt="clear" width="1100">
 
 ### Exiting the program : `exit`
 
@@ -156,37 +421,42 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+SETA data are saved in the hard disk automatically after any command that changes the data. There is no need to save
+manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+SETA data are saved as a JSON file `[JAR file location]/data/SETA.json`. Advanced users are welcome to update data
+directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, SETA will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
 
-_Details coming soon ..._
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
+the data of your previous SETA home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action         | Format, Examples                           |
+|----------------|--------------------------------------------|
+| **Add**        | `addstu`, `addq`, `addtut`                 |
+| **Attendance** | `attendance`, `addresponse`                |
+| **Delete**     | `deletestu`, `deleteq`, `deletetut`        |
+| **Edit**       | `editstu`                                  |
+| **Find**       | `findstu`                                  |
+| **List**       | `liststu`                                  |
+| **Mark**       | `markq`, `unmarkq`, `marktut`, `unmarktut` |
+| **Tag**        | `helpstu`, `unhelpstu`                     |
+| **Clear**      | `clear`                                    |
+| **Exit**       | `exit`                                     |

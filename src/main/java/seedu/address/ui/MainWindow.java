@@ -31,7 +31,9 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
+    private QuestionListPanel questionListPanel;
+    private TutorialListPanel tutorialListPanel;
+    private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -43,6 +45,15 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane questionListPanelPlaceholder;
+
+    @FXML
+    private StackPane tutorialListPanelPlaceholder;
+
+    @FXML
+    private StackPane studentListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -110,8 +121,17 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        //personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        //personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        questionListPanel = new QuestionListPanel(logic.getFilteredQuestionList());
+        questionListPanelPlaceholder.getChildren().add(questionListPanel.getRoot());
+
+        tutorialListPanel = new TutorialListPanel(logic.getFilteredTutorialList());
+        tutorialListPanelPlaceholder.getChildren().add(tutorialListPanel.getRoot());
+
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -163,8 +183,17 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+
+    public QuestionListPanel getQuestionListPanel() {
+        return questionListPanel;
+    }
+
+    public StudentListPanel getStudentListPanel() {
+        return studentListPanel;
+    }
+
+    public TutorialListPanel getTutorialListPanel() {
+        return tutorialListPanel;
     }
 
     /**
