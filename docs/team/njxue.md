@@ -28,15 +28,17 @@ Given below are my contributions to the project.
 * **Enhancements to existing features**:
   * Extended the grading feature to grade multiple students at once.
   * Extended the `adds` command to add multiple sessions at once.
+  * Changed `list` command to list only students in the focused class when in focus mode.
   * Standardised command result messages.
   * Reduced code duplication with utility methods in `CommandUtil`.
-  * Set module names to be upper-cased and session names to be capitalised.
+  * Set module names to be upper-cased and session names to be capitalised so that their names
+    in the CLI and GUI match.
 
 * **Documentation**:
   * Modified the pre-existing UML and sequence diagrams from AB3 to TA-Assist.
-  * Added implementation details for focus mode.
-  * Extended the description for the Model component.
-  * Added sequence diagrams for `assign` and `focus` command.
+  * Added implementation details for focus mode in Developer Guide.
+  * Extended the description for the Model component in Developer Guide.
+  * Added sequence diagrams for `assign` and `focus` command in Developer Guide.
   * Added UI snapshots to User Guide.
   * Created custom call-outs for User Guide.
-  * Added description of the focus mode and sessions.
+  * Added description of the focus mode and sessions in User Guide.
