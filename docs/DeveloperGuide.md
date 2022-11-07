@@ -42,6 +42,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
+<div style="page-break-after: always;"></div>
+
 Given below is a quick overview of main components and how they interact with each other.
 
 **Main components of the architecture**
@@ -71,11 +73,14 @@ Each of the four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+<div style="page-break-after: always;"></div>
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. 
+Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -93,6 +98,7 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person`, `Task`, and `Tag` objects residing in the `Model`.
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -107,6 +113,7 @@ How the `Logic` component works:
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+<div style="page-break-after: always;"></div>
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deleteC 1")` API call.
 
@@ -114,6 +121,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteContactCommandParser`, `DeleteContactCommand` and `CommandResult` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+<div style="page-break-after: always;"></div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -122,6 +130,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddContactCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddContactCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddContactCommandParser`, `DeleteContactCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+<div style="page-break-after: always;"></div>
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-4/tp/blob/2da571e65f2e2ae194a9176540e47967a6402ac8/src/main/java/seedu/address/model/Model.java)
@@ -137,6 +146,7 @@ all `Task` objects (which are contained in a `TaskList` object), and all `Tag` o
 The same goes for `Task` and `Tag`.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+<div style="page-break-after: always;"></div>
 
 
 ### Storage component
@@ -149,6 +159,7 @@ The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+<div style="page-break-after: always;"></div>
 
 ### Common classes
 
@@ -208,6 +219,7 @@ Tags, unlike Persons and Tasks, do not have an Id. This is because Tags should n
 Tags also include a count field. Each tag keeps track of the total number of times it is applied to either a contact or a task.
 This count updates dynamically in response to user input.
 For example, if a contact with multiple tags is deleted, the count in each of these tags will be decremented by one.
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -266,6 +278,7 @@ The following sequence diagram shows how the add tag operation works:
 * **Alternative 2:** Use the existing EditContact and EditTask classes.
     * Pros: Requires no additional code.
     * Cons: Increases coupling. Will fail if the associated classes stop working.
+<div style="page-break-after: always;"></div>
 
 ### Add/delete task feature
 
@@ -324,6 +337,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Use the existing AddressBook class to store the Tasks.
     * Pros: Does not require implementation of a new class.
     * Cons: Increases complexity and length of code in AddressBook.
+<div style="page-break-after: always;"></div>
 
 ### Find contact feature
 
@@ -364,6 +378,7 @@ The find task feature uses the same mechanism as the find contact feature, excep
     * Pros: Allow more precise searches.
     * Cons: User needs to remember additional syntax.
     * Cons: More complex implementation.
+<div style="page-break-after: always;"></div>
 
 ### Mark/unmark task feature
 
@@ -415,6 +430,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Change the boolean variable of `Task` object directly.
     * Pros: Will be more efficient without needing to create new `Task` object and only needing to update the `isDone` variable of `Task` object.
     * Cons: GUI only reflects the change after the task list is update by another command.
+<div style="page-break-after: always;"></div>
 
 ### Sort feature
 
@@ -455,6 +471,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Don't save the sorting status and just sort once
   * Pros: Easy to implement.
   * Cons: Need to type a sort command each time the list is changed to preserve sorting order.
+<div style="page-break-after: always;"></div>
 
 ### Undo/redo feature
 
@@ -533,6 +550,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command is correct.
+<div style="page-break-after: always;"></div>
 
 ### Reminder feature
 
@@ -566,6 +584,7 @@ Step 2. The user executes `remindT 12-09-2022` command to list tasks with deadli
 * **Alternative 2:** Modify the PersonContainsKeywordsPredicate class to handle deadlines as well.
     * Pros: Does not require implementation of a new class.
     * Cons: The FilterTaskCommand and ReminderCommand classes become dependent on the modified PersonContainsKeywordsPredicate class. This increases coupling.
+<div style="page-break-after: always;"></div>
 
 ### Task progress feature
 
@@ -602,6 +621,7 @@ Step 3. The user executes `listT` command to list all tasks.
 * **Alternative 2:** Check each task of the task list to see if it needs to be counted.
     * Pros: Reduces coupling.
     * Cons: This is inefficient and performance is likely to worsen as the task list grows in size.
+<div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -635,6 +655,7 @@ Step 3. The user executes `listT` command to list all tasks.
 * manage many group projects at the same time
 * provide a central location for managing project contacts and tasks together
 * track progress on various tasks to ensure milestones are met
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -681,6 +702,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | student who is bad with names                                | see the person’s first name emphasized                                                | know how to address the person                   |
 | `*`      | student with poor eyesight                                   | ensure that my software have big fonts and large buttons                              | distinguish all elements                         |
 | `*`      | animal loving person                                         | have some cute animals in the background                                              | feel entertained while managing my tasks         |
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -941,6 +963,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3b1. YellowBook shows an error message.
 
       Use case resumes at step 2.
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
@@ -969,6 +992,7 @@ most of the tasks faster using commands than using the mouse.
 * **Regular text**: English words, excluding code and system admin commands
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
