@@ -1,0 +1,68 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":BobaBotParser" as BobaBotParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "command:AddCommand" as AddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box BobaBotModel MODEL_COLOR_T1
+participant ":BobaBotModel" as BobaBotModel MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add n/Bob p/12345678...")
+activate LogicManager
+
+LogicManager -> BobaBotParser : parseCommand("add n/Bob p/12345678...")
+activate BobaBotParser
+
+create AddCommandParser
+BobaBotParser -> AddCommandParser
+activate AddCommandParser
+return
+
+BobaBotParser -> AddCommandParser : parse("n/Bob p/12345678...")
+activate AddCommandParser
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+return command
+
+deactivate AddCommand
+
+AddCommandParser --> BobaBotParser : command
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser -[hidden]-> BobaBotParser
+destroy AddCommandParser
+
+BobaBotParser --> LogicManager : command
+deactivate BobaBotParser
+
+LogicManager -> AddCommand : execute()
+activate AddCommand
+
+AddCommand -> BobaBotModel : addPerson(personToAdd)
+activate BobaBotModel
+
+BobaBotModel --> AddCommand
+deactivate BobaBotModel
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager : commandResult
+deactivate AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

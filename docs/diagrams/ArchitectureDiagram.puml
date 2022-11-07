@@ -8,7 +8,7 @@ Package " "<<Rectangle>>{
     Class UI UI_COLOR
     Class Logic LOGIC_COLOR
     Class Storage STORAGE_COLOR
-    Class Model MODEL_COLOR
+    Class BobaBotModel MODEL_COLOR
     Class Main #grey
     Class Commons LOGIC_COLOR_T2
 }
@@ -18,16 +18,16 @@ Class "<$documents>" as File UI_COLOR_T1
 
 
 UI -[#green]> Logic
-UI -right[#green]-> Model
+UI -right[#green]-> BobaBotModel
 Logic -[#blue]-> Storage
-Logic -down[#blue]-> Model
+Logic -down[#blue]-> BobaBotModel
 Main -[#grey]-> UI
 Main -[#grey]-> Logic
 Main -[#grey]-> Storage
-Main -up[#grey]-> Model
+Main -up[#grey]-> BobaBotModel
 Main -down[hidden]-> Commons
 
-Storage -up[STORAGE_COLOR].> Model
+Storage -up[STORAGE_COLOR].> BobaBotModel
 Storage .right[STORAGE_COLOR].>File
 User ..> UI
 @enduml

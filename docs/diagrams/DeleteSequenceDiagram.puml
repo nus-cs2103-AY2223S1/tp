@@ -1,58 +1,67 @@
 @startuml
 !include style.puml
 
+skinparam SequenceBoxBorderColor red
+skinparam arrowColor red
+skinparam ArrowThickness 1.5
+skinparam sequence {
+    ParticipantBorderColor red
+    ParticipantBorderThickness 1.5
+    LifeLineBorderColor red
+}
+
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":BobaBotParser" as BobaBotParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant "command:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
-box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
+box BobaBotModel MODEL_COLOR_T1
+participant ":BobaBotModel" as BobaBotModel MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("delete p/12345678")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("delete 1")
-activate AddressBookParser
+LogicManager -> BobaBotParser : parseCommand("delete p/12345678")
+activate BobaBotParser
 
 create DeleteCommandParser
-AddressBookParser -> DeleteCommandParser
+BobaBotParser -> DeleteCommandParser
 activate DeleteCommandParser
 
-DeleteCommandParser --> AddressBookParser
+DeleteCommandParser --> BobaBotParser
 deactivate DeleteCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse("1")
+BobaBotParser -> DeleteCommandParser : parse("p/12345678")
 activate DeleteCommandParser
 
 create DeleteCommand
 DeleteCommandParser -> DeleteCommand
 activate DeleteCommand
 
-DeleteCommand --> DeleteCommandParser : d
+DeleteCommand --> DeleteCommandParser : command
 deactivate DeleteCommand
 
-DeleteCommandParser --> AddressBookParser : d
+DeleteCommandParser --> BobaBotParser : command
 deactivate DeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> AddressBookParser
+DeleteCommandParser -[hidden]-> BobaBotParser
 destroy DeleteCommandParser
 
-AddressBookParser --> LogicManager : d
-deactivate AddressBookParser
+BobaBotParser --> LogicManager : command
+deactivate BobaBotParser
 
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePerson(1)
-activate Model
+DeleteCommand -> BobaBotModel : deletePerson(personToDelete)
+activate BobaBotModel
 
-Model --> DeleteCommand
-deactivate Model
+BobaBotModel --> DeleteCommand
+deactivate BobaBotModel
 
 create CommandResult
 DeleteCommand -> CommandResult
@@ -61,7 +70,7 @@ activate CommandResult
 CommandResult --> DeleteCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
+DeleteCommand --> LogicManager : commandResult
 deactivate DeleteCommand
 
 [<--LogicManager

@@ -1,0 +1,156 @@
+@startuml
+'!include style.puml
+'skinparam arrowThickness 1.1
+'skinparam arrowColor UI_COLOR_T4
+'skinparam classBackgroundColor UI_COLOR
+skinparam classAttributeIconSize 0
+hide circle
+hide empty method
+hide empty attribute
+
+skinparam activityBorderThickness 1.5
+skinparam class {
+    BorderColor #7F5539
+    BackgroundColor #EDE0D4
+    arrowColor #7F5539
+}
+
+abstract "{abstract}\nCommand" as Command {
+    {abstract} +execute(model: BobaBotModel): CommandResult
+}
+
+package Commands <<Rectangle>>{
+    Class EditCommand
+    Class IncreaseCommand
+    Class DecreaseCommand
+    Class AddCommand
+    Class DeleteCommand
+    Class FindCommand
+    Class ListCommand
+    Class UndoCommand
+    Class RedoCommand
+    Class CalculateCommand
+    Class CalculatorGuiCommand
+    Class ExitCommand
+    Class HelpCommand
+    Class ClearCommand
+}
+
+package Parsers <<Rectangle>> {
+    Class AddCommandParser
+    Class EditCommandParser
+    Class IncreaseCommandParser
+    Class DecreaseCommandParser
+    Class DeleteCommandParser
+    Class FindCommandParser
+    Class CalculateCommandParser
+}
+
+package BobaBotModel/Customer <<Rectangle>> {
+    Class MultiSearchPredicate
+    Class AllInfoContainsKeywordsPredicate
+    Class NameSoundsSimilarPredicate
+}
+class EditCommand {
+    -phoneIdentifier
+    -emailIdentifier
+    -editCommandDescriptor
+}
+
+class DeleteCommand {
+    -deleteCommandDescriptor
+}
+
+class FindCommand {
+    -predicate: Predicate<Customer>
+    -findCustomerDescriptor
+}
+
+class IncreaseCommand {
+    -phoneIdentifier
+    -emailIdentifier
+    -rewardPoints
+}
+
+class DecreaseCommand {
+    -phoneIdentifier
+    -emailIdentifier
+    -rewardPoints
+}
+
+class CalculateCommand {
+    -exp
+}
+
+class AllInfoContainsKeywordsPredicate {
+    -keyWords: List<String>
+    +test(customer: Customer): boolean
+}
+
+class NameSoundsSimilarPredicate {
+    {static} -soundexMapping: List<List<String>>
+    -keyWords: List<String>
+    {static} -dropHwy(name: String): String
+    {static} -applySoundexMapping(strippedName: String): String
+    {static} -combineAdjacentDigits(code: String): String
+    {static} -trimSoundexCode(code: String): String
+    -hasMatch(name: String): boolean
+    +test(customer: Customer): boolean
+}
+
+class CommandResult {
+    -feedbackToUser: String
+}
+
+AddCommand --> "1 toAdd" Customer
+
+
+BobaBotParser ..|> EditCommandParser: creates >
+BobaBotParser ..|> AddCommandParser: creates >
+BobaBotParser ..|> DeleteCommandParser: creates >
+BobaBotParser ..|> FindCommandParser: creates >
+BobaBotParser ..|> IncreaseCommandParser: creates >
+BobaBotParser ..|> DecreaseCommandParser: creates >
+BobaBotParser ..|> UndoCommandParser: creates >
+BobaBotParser ..|> RedoCommandParser: creates >
+BobaBotParser ..|> CalculateCommandParser: creates >
+
+BobaBotParser ..|> ListCommand: creates >
+BobaBotParser ..|> ClearCommand: creates >
+BobaBotParser ..|> HelpCommand: creates >
+BobaBotParser ..|> ExitCommand: creates >
+BobaBotParser ..|> CalculatorGuiCommand: creates >
+
+
+FindCommandParser .....|> FindCommand : creates >
+EditCommandParser ....|> EditCommand: creates >
+DeleteCommandParser ....|> DeleteCommand: creates >
+AddCommandParser ....|> AddCommand: creates >
+IncreaseCommandParser ....|> IncreaseCommand: creates >
+DecreaseCommandParser ....|> DecreaseCommand: creates >
+UndoCommandParser ....|> UndoCommand: creates >
+RedoCommandParser ....|> RedoCommand: creates >
+CalculateCommandParser ....|> CalculateCommand: creates >
+
+FindCommandParser ..|> MultiSearchPredicate : uses >
+MultiSearchPredicate --> "0..1 matchPredicate" AllInfoContainsKeywordsPredicate
+MultiSearchPredicate --> "0..1 fuzzyPredicate" NameSoundsSimilarPredicate
+
+AddCommand --|> Command
+EditCommand --|> Command
+IncreaseCommand --|> Command
+DecreaseCommand --|> Command
+DeleteCommand --|> Command
+FindCommand --|> Command
+ListCommand --|> Command
+UndoCommand --|> Command
+RedoCommand --|> Command
+CalculateCommand --|> Command
+CalculatorGuiCommand --|> Command
+ClearCommand --|> Command
+HelpCommand --|> Command
+ExitCommand --|> Command
+
+Command ..|> CommandResult: returns >
+
+@enduml

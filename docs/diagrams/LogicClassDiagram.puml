@@ -6,7 +6,7 @@ skinparam classBackgroundColor LOGIC_COLOR
 
 package Logic {
 
-Class AddressBookParser
+Class BobaBotParser
 Class XYZCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
@@ -16,7 +16,7 @@ Class "<<interface>>\nLogic" as Logic
 Class LogicManager
 }
 
-package Model{
+package BobaBotModel{
 Class HiddenModel #FFFFFF
 }
 
@@ -27,17 +27,17 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .right.|> Logic
-LogicManager -right->"1" AddressBookParser
-AddressBookParser ..> XYZCommand : creates >
+LogicManager -right->"1" BobaBotParser
+BobaBotParser ..> XYZCommand : creates >
 
 XYZCommand -up-|> Command
 LogicManager .left.> Command : executes >
 
-LogicManager --> Model
+LogicManager --> BobaBotModel
 LogicManager --> Storage
-Storage --[hidden] Model
+Storage --[hidden] BobaBotModel
 Command .[hidden]up.> Storage
-Command .right.> Model
+Command .right.> BobaBotModel
 note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 
 Logic ..> CommandResult

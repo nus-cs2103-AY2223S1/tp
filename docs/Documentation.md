@@ -1,7 +1,6 @@
----
-layout: page
-title: Documentation guide
----
+<link rel="shortcut icon" type="image/x-icon" href="favicon.png">
+
+# Documentation Guide
 
 **Setting up and maintaining the project website:**
 

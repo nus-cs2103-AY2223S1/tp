@@ -1,0 +1,9 @@
+.background {
+  -fx-background-color: #DDB892;
+}
+.button {
+  -fx-background-color: derive(#AB8C6B, 10%);
+}
+.display {
+  -fx-background-color: derive(#EDE0D4, 20%);
+}

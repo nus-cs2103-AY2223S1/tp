@@ -39,7 +39,7 @@ In our case, we would want to begin the tracing at the very point where the App 
 
 <img src="../images/ArchitectureSequenceDiagram.png" width="550" />
 
-According to the sequence diagram you saw earlier (and repeated above for reference), the `UI` component yields control to the `Logic` component through a method named `execute`. Searching through the code base for an `execute()` method that belongs to the `Logic` component yields a promising candidate in `seedu.address.logic.Logic`.
+According to the sequence diagram you saw earlier (and repeated above for reference), the `UI` component yields control to the `Logic` component through a method named `execute`. Searching through the code base for an `execute()` method that belongs to the `Logic` component yields a promising candidate in `seedu.boba.logic.Logic`.
 
 <img src="../images/tracing/searchResultsForExecuteMethod.png" />
 
@@ -48,7 +48,7 @@ According to the sequence diagram you saw earlier (and repeated above for refere
 :bulb: **Intellij Tip:** The ['**Search Everywhere**' feature](https://www.jetbrains.com/help/idea/searching-everywhere.html) can be used here. In particular, the '**Find Symbol**' ('Symbol' here refers to methods, variables, classes etc.) variant of that feature is quite useful here as we are looking for a _method_ named `execute`, not simply the text `execute`.
 </div>
 
-A quick look at the `seedu.address.logic.Logic` (an extract given below) confirms that this indeed might be what we’re looking for.
+A quick look at the `seedu.boba.logic.Logic` (an extract given below) confirms that this indeed might be what we’re looking for.
 
 ```java
 public interface Logic {
@@ -122,12 +122,12 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
         //Parse user input from String to a Command
         Command command = addressBookParser.parseCommand(commandText);
         //Executes the Command and stores the result
-        commandResult = command.execute(model);
+        commandResult = command.execute(bobaBotModel);
 
         try {
-            //We can deduce that the previous line of code modifies model in some way
+            //We can deduce that the previous line of code modifies bobaBotModel in some way
             // since it's being stored here.
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveAddressBook(bobaBotModel.getAddressBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -187,26 +187,26 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
    **`EditCommand#execute()`:**
    ``` java
    @Override
-   public CommandResult execute(Model model) throws CommandException {
+   public CommandResult execute(Model bobaBotModel) throws CommandException {
        ...
-       Person personToEdit = lastShownList.get(index.getZeroBased());
-       Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-       if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+       Person customerToEdit = lastShownList.get(index.getZeroBased());
+       Person editedCustomer = createEditedPerson(customerToEdit, editPersonDescriptor);
+       if (!customerToEdit.isSamePerson(editedCustomer) && bobaBotModel.hasPerson(editedCustomer)) {
            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
        }
-       model.setPerson(personToEdit, editedPerson);
-       model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-       return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+       bobaBotModel.setPerson(customerToEdit, editedCustomer);
+       bobaBotModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+       return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedCustomer));
    }
    ```
 
-1. As suspected, `command#execute()` does indeed make changes to the `model` object. Specifically,
-   * it uses the `setPerson()` method (defined in the interface `Model` and implemented in `ModelManager` as per the usual pattern) to update the person data.
-   * it uses the `updateFilteredPersonList` method to ask the `Model` to populate the 'filtered list' with _all_ persons.<br>
-     FYI, The 'filtered list' is the list of persons resulting from the most recent operation that will be shown to the user immediately after. For the `edit` command, we populate it with all the persons so that the user can see the edited person along with all other persons. If this was a `find` command, we would be setting that list to contain the search results instead.<br>
-     To provide some context, given below is the class diagram of the `Model` component. See if you can figure out where the 'filtered list' of persons is being tracked.
+1. As suspected, `command#execute()` does indeed make changes to the `bobaBotModel` object. Specifically,
+   * it uses the `setPerson()` method (defined in the interface `Model` and implemented in `ModelManager` as per the usual pattern) to update the customer data.
+   * it uses the `updateFilteredPersonList` method to ask the `Model` to populate the 'filtered list' with _all_ customers.<br>
+     FYI, The 'filtered list' is the list of customers resulting from the most recent operation that will be shown to the user immediately after. For the `edit` command, we populate it with all the customers so that the user can see the edited customer along with all other customers. If this was a `find` command, we would be setting that list to contain the search results instead.<br>
+     To provide some context, given below is the class diagram of the `Model` component. See if you can figure out where the 'filtered list' of customers is being tracked.
      <img src="../images/ModelClassDiagram.png" width="450" /><br>
-   * :bulb: This may be a good time to read through the [`Model` component section of the DG](../DeveloperGuide.html#model-component)
+   * :bulb: This may be a good time to read through the [`Model` component section of the DG](../DeveloperGuide.html#bobaBotModel-component)
 
 1. As you step through the rest of the statements in the `EditCommand#execute()` method, you'll see that it creates a `CommandResult` object (containing information about the result of the execution) and returns it.<br>
    Advancing the debugger by one more step should take you back to the middle of the `LogicManager#execute()` method.<br>
@@ -217,7 +217,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. Similar to before, you can step over/into statements in the `LogicManager#execute()` method to examine how the control is transferred to the `Storage` component and what happens inside that component.
 
-   <div markdown="span" class="alert alert-primary">:bulb: **Intellij Tip:** When trying to step into a statement such as `storage.saveAddressBook(model.getAddressBook())` which contains multiple method calls, Intellij will let you choose (by clicking) which one you want to step into.
+   <div markdown="span" class="alert alert-primary">:bulb: **Intellij Tip:** When trying to step into a statement such as `storage.saveAddressBook(bobaBotModel.getAddressBook())` which contains multiple method calls, Intellij will let you choose (by clicking) which one you want to step into.
    </div>
 
 1.  As you step through the code inside the `Storage` component, you will eventually arrive at the `JsonAddressBook#saveAddressBook()` method which calls the `JsonSerializableAddressBook` constructor, to create an object that can be _serialized_ (i.e., stored in storage medium) in JSON format. That constructor is given below (with added line breaks for easier readability):
@@ -231,7 +231,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
      * {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(
+        customers.addAll(
             source.getPersonList()
                   .stream()
                   .map(JsonAdaptedPerson::new)
