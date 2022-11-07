@@ -35,7 +35,7 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
     6. [Email all persons in a group](#f-email-all-persons-in-a-group--emailall) : `emailall`
     7. [Add a person's social](#g-add-a-persons-socials--include) : `include`
     8. [Delete a person's social](#h-delete-a-persons-socials--exclude) : `exclude`
-    9. [Set a person's preferred social media](#i-set-a-persons-preferred-social-media--prefer)
+    9. [Set a person's preferred social media](#i-set-a-persons-preferred-social-media--prefer) : `prefer`
     10. [Open a person's social media](#j-open-a-persons-social-media--open) : `open`
     11. [Find persons with a preferred social media](#k-find-persons-with-a-preferred-social-media--social) : `social`
   * [General App Features](#general-app-features):
