@@ -9,6 +9,9 @@ title: User Guide
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ## 1. Introducing WorkBook
 
 Welcome to WorkBook! :wave:
@@ -49,6 +52,8 @@ It consists of a step-by-step installation guide and an explanation of the key G
 5. Tell WorkBook what you want to do by typing your command in `Enter command here...` at the top of the application and pressing <kbd>Enter</kbd> on your keyboard to execute it.
 
 6. Before diving right into using WorkBook, familiarise yourself with the [things to note](#4-things-to-note) to not hinder your tracking process!
+
+<div style="page-break-after: always;"></div>
 
 ### 2.1 Understanding WorkBook's GUI
 
