@@ -43,7 +43,7 @@ public class EditPersonDescriptorBuilder {
      * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withName(String name) {
-        descriptor.setName(new PersonName(name));
+        descriptor.setName(PersonName.of(name));
         return this;
     }
 

@@ -28,22 +28,22 @@ import seedu.address.model.team.TeamName;
 public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
-            new Person(new PersonName("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
+            new Person(PersonName.of("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("friends")),
-            new Person(new PersonName("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
+            new Person(PersonName.of("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("colleagues", "friends")),
-            new Person(new PersonName("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
+            new Person(PersonName.of("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getTagSet("neighbours")),
-            new Person(new PersonName("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
+            new Person(PersonName.of("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getTagSet("family")),
-            new Person(new PersonName("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
+            new Person(PersonName.of("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
                 getTagSet("classmates")),
-            new Person(new PersonName("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
+            new Person(PersonName.of("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"))
         };
@@ -51,22 +51,22 @@ public class SampleDataUtil {
 
     public static Team[] getSampleTeams() {
         return new Team[] {
-            new Team(new TeamName("Frontend")),
-            new Team(new TeamName("Backend"))
+            new Team(TeamName.of("Frontend")),
+            new Team(TeamName.of("Backend"))
         };
     }
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new Task(new TaskName("Create GUI for the app"),
+            new Task(TaskName.of("Create GUI for the app"),
                 LocalDate.of(2022, 12, 1), true),
-            new Task(new TaskName("Beginning of year meeting"),
+            new Task(TaskName.of("Beginning of year meeting"),
                 LocalDate.of(2023, 1, 5)),
-            new Task(new TaskName("Meeting with Client A"),
+            new Task(TaskName.of("Meeting with Client A"),
                 LocalDate.of(2022, 12, 20)),
-            new Task(new TaskName("Implement a payment system"),
+            new Task(TaskName.of("Implement a payment system"),
                 null),
-            new Task(new TaskName("Implement Feature A using javascript"),
+            new Task(TaskName.of("Implement Feature A using javascript"),
                 null)
         };
     }

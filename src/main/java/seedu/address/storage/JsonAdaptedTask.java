@@ -60,6 +60,6 @@ public class JsonAdaptedTask {
             throw new IllegalValueException(Task.MESSAGE_INVALID_DATE_VALUE);
         }
 
-        return new Task(new TaskName(name), deadline, isDone);
+        return new Task(TaskName.of(name), deadline, isDone);
     }
 }

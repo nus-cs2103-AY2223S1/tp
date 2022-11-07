@@ -26,9 +26,8 @@ public class TaskName extends Name {
      *
      * @param name A valid name.
      */
-    public TaskName(String name) {
+    private TaskName(String name) {
         super(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
     }
 
     public static TaskName of(String name) {

@@ -46,7 +46,7 @@ public class TaskTest {
     @Test
     public void editTaskDesc_success() {
         Task editedStudy = new TaskBuilder(STUDY).build();
-        TaskName newTaskName = new TaskName("SLEEP");
+        TaskName newTaskName = TaskName.of("SLEEP");
         LocalDate newDeadline = STUDY.getDeadline().get();
         editedStudy.editTaskDesc(newTaskName, newDeadline);
         assertEquals(newTaskName, editedStudy.getName());

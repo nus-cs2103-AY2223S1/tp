@@ -10,13 +10,13 @@ public class PersonTaskTeamNameTest {
 
     @Test
     public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new TaskName(null));
+        assertThrows(NullPointerException.class, () -> TaskName.of(null));
     }
 
     @Test
     public void constructor_invalidName_throwsIllegalArgumentException() {
         String invalidName = "";
-        assertThrows(IllegalArgumentException.class, () -> new TaskName(invalidName));
+        assertThrows(IllegalArgumentException.class, () -> TaskName.of(invalidName));
     }
 
     @Test

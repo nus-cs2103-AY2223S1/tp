@@ -1,10 +1,10 @@
 package seedu.address.model.team;
 
-        import seedu.address.model.common.Name;
-        import seedu.address.model.task.TaskName;
+import seedu.address.model.common.Name;
+import seedu.address.model.task.TaskName;
 
-        import static java.util.Objects.requireNonNull;
-        import static seedu.address.commons.util.AppUtil.checkArgument;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Team's name in the
@@ -26,9 +26,8 @@ public class TeamName extends Name {
      *
      * @param name A valid name.
      */
-    public TeamName(String name) {
+    private TeamName(String name) {
         super(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
     }
 
     public static TeamName of(String name) {

@@ -80,7 +80,7 @@ public class JsonAdaptedTeam {
             throw new IllegalValueException(TeamName.MESSAGE_CONSTRAINTS);
         }
 
-        final TeamName modelTeamName = new TeamName(teamName);
+        final TeamName modelTeamName = TeamName.of(teamName);
 
         final List<Task> modelTasks = new ArrayList<>();
 

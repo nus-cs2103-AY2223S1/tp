@@ -22,14 +22,14 @@ public class TeamBuilder {
      * Creates a {@code TeamBuilder} with the default details.
      */
     public TeamBuilder() {
-        teamName = new TeamName(DEFAULT_TEAM_NAME);
+        teamName = TeamName.of(DEFAULT_TEAM_NAME);
     }
 
     /**
      * Creates a {@code TeamBuilder} with the details of teamToCopy.
      */
     public TeamBuilder(Team teamToCopy) {
-        teamName = new TeamName(teamToCopy.getName().toString());
+        teamName = TeamName.of(teamToCopy.getName().toString());
 
         UniquePersonList newMembers = new UniquePersonList();
         for (Person p : teamToCopy.getMembers()) {
@@ -48,7 +48,7 @@ public class TeamBuilder {
      * Sets the {@code Name} of the {@code Team} that we are building.
      */
     public TeamBuilder withName(String name) {
-        this.teamName = new TeamName(name);
+        this.teamName = TeamName.of(name);
         return this;
     }
 

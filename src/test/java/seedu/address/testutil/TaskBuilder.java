@@ -24,7 +24,7 @@ public class TaskBuilder {
      * Creates a {@code TaskBuilder} with the default details.
      */
     public TaskBuilder() {
-        taskName = new TaskName(DEFAULT_NAME);
+        taskName = TaskName.of(DEFAULT_NAME);
         deadline = DEFAULT_DEADLINE;
         isDone = DEFAULT_IS_DONE;
     }
@@ -42,7 +42,7 @@ public class TaskBuilder {
      * Sets the {@code Name} of the {@code Task} that we are building.
      */
     public TaskBuilder withName(String name) {
-        this.taskName = new TaskName(name);
+        this.taskName = TaskName.of(name);
         return this;
     }
 

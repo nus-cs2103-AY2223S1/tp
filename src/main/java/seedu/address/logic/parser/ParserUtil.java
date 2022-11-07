@@ -61,7 +61,7 @@ public class ParserUtil {
         if (!PersonName.isValidName(trimmedName)) {
             throw new ParseException(PersonName.MESSAGE_CONSTRAINTS);
         }
-        return new PersonName(trimmedName);
+        return PersonName.of(trimmedName);
     }
 
     /**
@@ -148,7 +148,7 @@ public class ParserUtil {
         if (!TaskName.isValidName(trimmedName)) {
             throw new ParseException(TaskName.MESSAGE_CONSTRAINTS);
         }
-        return new TaskName(trimmedName);
+        return TaskName.of(trimmedName);
     }
 
     /**
@@ -163,7 +163,7 @@ public class ParserUtil {
         if (!TeamName.isValidName(trimmedName)) {
             throw new ParseException(TeamName.MESSAGE_CONSTRAINTS);
         }
-        return new TeamName(trimmedName);
+        return TeamName.of(trimmedName);
     }
 
     /**

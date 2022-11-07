@@ -70,14 +70,13 @@ class JsonAdaptedPerson {
             personTags.add(tag.toModelType());
         }
 
-
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PersonName.class.getSimpleName()));
         }
         if (!PersonName.isValidName(name)) {
             throw new IllegalValueException(PersonName.MESSAGE_CONSTRAINTS);
         }
-        final PersonName modelPersonName = new PersonName(name);
+        final PersonName modelPersonName = PersonName.of(name);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));

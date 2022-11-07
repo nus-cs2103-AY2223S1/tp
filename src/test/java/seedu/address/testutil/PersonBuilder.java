@@ -31,7 +31,7 @@ public class PersonBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
-        personName = new PersonName(DEFAULT_NAME);
+        personName = PersonName.of(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
@@ -53,7 +53,7 @@ public class PersonBuilder {
      * Sets the {@code Name} of the {@code Person} that we are building.
      */
     public PersonBuilder withName(String name) {
-        this.personName = new PersonName(name);
+        this.personName = PersonName.of(name);
         return this;
     }
 

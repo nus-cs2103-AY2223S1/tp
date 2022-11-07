@@ -26,7 +26,7 @@ public class TeamTest {
 
     @Test
     public void emptyTeamConstructor() {
-        TeamName db = new TeamName("Database");
+        TeamName db = TeamName.of("Database");
         Team team = new Team(db);
         assertEquals(team.getName(), db);
     }

@@ -25,14 +25,8 @@ public class PersonName extends Name {
      *
      * @param name A valid name.
      */
-    public PersonName(String name) {
+    private PersonName(String name) {
         super(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-    }
-
-    public static PersonName of(String name) {
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        return new PersonName(name);
     }
 
     /**
@@ -42,6 +36,11 @@ public class PersonName extends Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    public static PersonName of(String name) {
+        requireNonNull(name);
+        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        return new PersonName(name);
+    }
 
     @Override
     public boolean equals(Object other) {

@@ -82,14 +82,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        PersonName expectedPersonName = new PersonName(VALID_NAME);
+        PersonName expectedPersonName = PersonName.of(VALID_NAME);
         assertEquals(expectedPersonName, ParserUtil.parseName(VALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        PersonName expectedPersonName = new PersonName(VALID_NAME);
+        PersonName expectedPersonName = PersonName.of(VALID_NAME);
         assertEquals(expectedPersonName, ParserUtil.parseName(nameWithWhitespace));
     }
 
@@ -220,14 +220,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseTaskName_validValueWithoutWhitespace_returnsName() throws Exception {
-        TaskName expectedTaskName = new TaskName(VALID_TASK_NAME);
+        TaskName expectedTaskName = TaskName.of(VALID_TASK_NAME);
         assertEquals(expectedTaskName, ParserUtil.parseTaskName(VALID_TASK_NAME));
     }
 
     @Test
     public void parseTaskName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_TASK_NAME + WHITESPACE;
-        TaskName expectedTaskName = new TaskName(VALID_TASK_NAME);
+        TaskName expectedTaskName = TaskName.of(VALID_TASK_NAME);
         assertEquals(expectedTaskName, ParserUtil.parseTaskName(nameWithWhitespace));
     }
 
@@ -243,14 +243,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseTeamName_validValueWithoutWhitespace_returnsName() throws Exception {
-        TeamName expectedTeamName = new TeamName(VALID_TEAM_NAME);
+        TeamName expectedTeamName = TeamName.of(VALID_TEAM_NAME);
         assertEquals(expectedTeamName, ParserUtil.parseTeamName(VALID_TEAM_NAME));
     }
 
     @Test
     public void parseTeamName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_TEAM_NAME + WHITESPACE;
-        TeamName expectedTeamName = new TeamName(VALID_TEAM_NAME);
+        TeamName expectedTeamName = TeamName.of(VALID_TEAM_NAME);
         assertEquals(expectedTeamName, ParserUtil.parseTeamName(nameWithWhitespace));
     }
 

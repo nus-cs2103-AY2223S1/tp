@@ -272,13 +272,13 @@ The following sequence diagram shows how the mark task operation works:
 
 #### Implementation
 
-The edit task feature updates the personName of the task to the new personName given by the user and this change is reflected in the Graphical User Interface.
+The edit task feature updates the personName of the task to the PersonName.of given by the user and this change is reflected in the Graphical User Interface.
 
 Given below is an example usage scenario:
 
 Step 1. The user creates the task and assign it to a team using `taskadd` command. The personName of the task provided by the user is stored as Name in the Task class.
 
-Step 2. The user might want to update the personName of the task in the future. The user then executes `taskedit t/1 task/1 n/update GUI` to update the personName of the task from the previous personName to the new personName provided by the user. The `taskedit` command will call `Model#getFilteredTeamList()`, which then gets the specified task from the `UniqueTaskList`. The specified task in team 1 would be updated to the new personName by keeping all the other task feature as same. `Model#updateFilterPersonList` is called to update the team with the new task personName and this would be reflected in the gui.
+Step 2. The user might want to update the personName of the task in the future. The user then executes `taskedit t/1 task/1 n/update GUI` to update the personName of the task from the previous personName to the PersonName.of provided by the user. The `taskedit` command will call `Model#getFilteredTeamList()`, which then gets the specified task from the `UniqueTaskList`. The specified task in team 1 would be updated to the PersonName.of by keeping all the other task feature as same. `Model#updateFilterPersonList` is called to update the team with the new task personName and this would be reflected in the gui.
 
 The following sequence diagram shows how the edit task operation works:
 ![TaskEditSequenceDiagram](images/TaskEditSequenceDiagram.png)
@@ -359,7 +359,7 @@ Given below is an example usage scenario and how the Edit Team mechanism behaves
 
 Step 1. The user executes `editteam t/1 n/Team1` to change the personName of first team to Team1.
 
-Step 2. The `editTeam` command is created by the parser using the given team index and new personName. It calls
+Step 2. The `editTeam` command is created by the parser using the given team index and PersonName.of. It calls
 `Model#setTeamName`to change the personName of the required team.
 
 The following sequence diagram shows how the edit team operation works:
@@ -561,7 +561,7 @@ Step 1 and 2 is repeated until all members have been added
 
       Use case ends.
 
-* 1c. New personName is already used by another team.
+* 1c. PersonName.of is already used by another team.
 
     * 1c1. EZLead displays an error message.
 
