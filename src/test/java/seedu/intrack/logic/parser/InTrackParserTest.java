@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.intrack.commons.core.index.Index;
 import seedu.intrack.logic.commands.AddCommand;
-import seedu.intrack.logic.commands.AddTagCommand;
 import seedu.intrack.logic.commands.AddTaskCommand;
 import seedu.intrack.logic.commands.ClearCommand;
 import seedu.intrack.logic.commands.DeleteCommand;
@@ -46,7 +45,6 @@ import seedu.intrack.model.internship.Status;
 import seedu.intrack.model.internship.StatusIsKeywordPredicate;
 import seedu.intrack.model.internship.TagsContainKeywordsPredicate;
 import seedu.intrack.model.internship.Task;
-import seedu.intrack.model.tag.Tag;
 import seedu.intrack.testutil.EditInternshipDescriptorBuilder;
 import seedu.intrack.testutil.InternshipBuilder;
 import seedu.intrack.testutil.InternshipUtil;
