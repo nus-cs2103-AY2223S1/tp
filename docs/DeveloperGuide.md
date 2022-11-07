@@ -450,7 +450,7 @@ ___
 
 ### [Proposed] Next Available Class Feature
 
-This feature allows the teacher to find then next available class by specifying the time range and the duration that
+This feature allows the teacher to find the next available class by specifying the time range and the duration that
 he or she is looking at. For example, if the teacher wants to have a 1-hour class in the range of 1000-1600, but is not
 sure when is the next available date, he or she can simply run `avail 1000-1600 60` and the first available class would
 be output to the teacher.
