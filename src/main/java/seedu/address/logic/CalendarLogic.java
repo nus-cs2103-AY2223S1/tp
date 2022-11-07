@@ -29,6 +29,8 @@ import seedu.address.ui.NextButton;
 import seedu.address.ui.PreviousButton;
 import seedu.address.ui.TextValidation;
 
+//@@author wongyewjon
+//Solution below adapted from http://www.java2s.com/ref/java/javafx-gridpane-layout-calendar.html
 /**
  * The manager of the logic for the Calendar.
  */
@@ -62,6 +64,7 @@ public class CalendarLogic {
     private CalendarMonth calendarMonth;
     private ObservableList<CalendarEvent> filteredCalendarEventList;
 
+    //@@author wongyewjon
     /**
      * Constructs a {@code CalendarLogic} with the given {@code Logic}, {@code Stage}
      * {@code GridPane} and {@code HBox}.
@@ -80,6 +83,7 @@ public class CalendarLogic {
         filteredCalendarEventList.addListener(temp);
     }
 
+    //@@author wongyewjon
     /**
      * Initialises the logic components for the Calendar.
      */
@@ -89,6 +93,7 @@ public class CalendarLogic {
         currentMonth.set(Calendar.DAY_OF_MONTH, 1);
     }
 
+    //@@author wongyewjon
     /**
      * Draws the Ui for the Calendar.
      */
@@ -97,10 +102,12 @@ public class CalendarLogic {
         drawBody();
     }
 
+    //@@author wongyewjon
     public JumpBox getJumpBox() {
         return jumpBox;
     }
 
+    //@@author wongyewjon
     private void drawHeader() {
         Text textHeader = getTextHeader();
         topCalendar.getChildren().addAll(textHeader, prevButton.getRoot(), nextButton.getRoot(),
@@ -108,6 +115,7 @@ public class CalendarLogic {
         topCalendar.setMargin(textHeader, new Insets(0, 50, 0, 0));
     }
 
+    //@@author wongyewjon
     private void drawBody() {
         // Draw days of the week
         for (int day = 1; day <= 7; day++) {
@@ -139,14 +147,17 @@ public class CalendarLogic {
         }
     }
 
+    //@@author wongyewjon
     private String getDayName(int n) {
         return DAY_NAMES[n - 1];
     }
 
+    //@@author wongyewjon
     private String getMonthName(int n) {
         return MONTH_NAMES[n];
     }
 
+    //@@author wongyewjon
     private Text getTextHeader() {
         String monthString = getMonthName(currentMonth.get(Calendar.MONTH));
         String yearString = String.valueOf(currentMonth.get(Calendar.YEAR));
@@ -156,6 +167,7 @@ public class CalendarLogic {
         return header;
     }
 
+    //@@author wongyewjon
     /**
      * Refreshes the CalendarEvents.
      */
@@ -166,6 +178,7 @@ public class CalendarLogic {
         drawCalendar();
     }
 
+    //@@author wongyewjon
     /**
      * Displays the CalendarEvents in the previous month.
      */
@@ -176,6 +189,7 @@ public class CalendarLogic {
         updateCalendarMonth();
     }
 
+    //@@author wongyewjon
     /**
      * Displays the CalendarEvents in the next month.
      */
@@ -185,6 +199,8 @@ public class CalendarLogic {
         textValidation.setTextValidation(EMPTY_MESSAGE);
         updateCalendarMonth();
     }
+
+    //@@author wongyewjon
     /**
      * Displays the CalendarEvents given by the user input.
      */
@@ -194,6 +210,7 @@ public class CalendarLogic {
         updateCalendarMonth();
     }
 
+    //@@author wongyewjon
     private GregorianCalendar getJumpMonth(Calendar cal) throws DateTimeParseException {
 
         String inputDate = jumpBox.getText();
@@ -218,6 +235,7 @@ public class CalendarLogic {
         return new GregorianCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), 1);
     }
 
+    //@@author wongyewjon
     private void updateCalendarMonth() {
         Text newMonthHeader = getTextHeader();
         topCalendar.getChildren().set(0, newMonthHeader);
@@ -226,6 +244,7 @@ public class CalendarLogic {
         drawBody();
     }
 
+    //@@author wongyewjon
     private GregorianCalendar getPreviousMonth(Calendar cal) {
         int prevMonth;
         int prevYear;
@@ -241,6 +260,7 @@ public class CalendarLogic {
         return new GregorianCalendar(prevYear, prevMonth, 1);
     }
 
+    //@@author wongyewjon
     private GregorianCalendar getNextMonth(Calendar cal) {
         int futureMonth;
         int futureYear;
@@ -256,6 +276,7 @@ public class CalendarLogic {
         return new GregorianCalendar(futureYear, futureMonth, 1);
     }
 
+    //@@author wongyewjon
     private void resetGridPane() {
         topCalendar.getChildren().clear();
         Node node = calendarGrid.getChildren().get(0);
@@ -263,6 +284,7 @@ public class CalendarLogic {
         calendarGrid.getChildren().add(0, node);
     }
 
+    //@@author wongyewjon
     private void resetCalendarBody() {
         Node node = calendarGrid.getChildren().get(0);
         calendarGrid.getChildren().clear();
