@@ -1,4 +1,3 @@
-## Project: Cobb
 ---
 layout: page
 title: Chrysline Lim's Project Portfolio Page
