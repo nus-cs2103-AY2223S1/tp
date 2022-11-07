@@ -11,6 +11,7 @@ The JAR file not launching even after double-clicking the file.
     * Mac:
         * Use <kbd>Cmd</kbd>+<kbd>Space</kbd> to open Spotlight Search
         * Search for "terminal" and click it to launch.
+1. Navigate to the location where "foodrem.jar" is stored within your terminal.
 1. On your terminal, run `java -jar "foodrem.jar"`
 
 If the issue still persists it might be due to the following errors:
