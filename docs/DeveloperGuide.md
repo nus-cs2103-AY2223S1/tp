@@ -466,7 +466,7 @@ The following activity diagram summarizes what happens when a user executes a li
   as a FypManager tool.
 
 * We have allowed the user to be able to search using different keywords (so long as they are separated by ***/*** ),
-  which lets the user be more stringent in his/her search criteria.
+  which lets the user be more flexible in his/her search criteria.
 
 * Furthermore, we have made the input more flexible by making it case-insensitive, helping users who are not particularly
   careful with their input of capital-cases or lower-cases. This also mimics real-life query engines, which usually
@@ -475,11 +475,11 @@ The following activity diagram summarizes what happens when a user executes a li
 
 **Other Alternatives:**
 
-***v1.3 update: the following has been achieved as of this update. :)***
-
 * **Alternative 1:** Extend the FindCommand by allowing the user to search by fields other than project name
     * Pros: Allows the users to search using more fields instead of ProjectName alone.
     * Cons: Harder to implement. And requires inclusion of a suffix.
+
+***[v1.3 update: the above has been achieved as of this update. :) ]***
 
 * **Alternative 2:** Allow the user to search for their keywords across all fields without specifying a field
     * Pros: More comprehensive search for projects with the required keyword.
