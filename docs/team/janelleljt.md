@@ -26,6 +26,9 @@ illustration of my contributions as well as the relevant documentation I have ad
     ordered (PR #66), the find order command was enhanced by adding the functionality of searching by more than one field at a time. 
     This enhancement was added in PR #125 and now allows users to search by payment and delivery status as well as by other relevant fields
     such as customer name, address and name of item ordered. 
+      - Highlights: The implementation of the enhancement to the find order command was challenging to implement. Prior to implementation, 
+      the team had decided upon the fields that the user should be able to search by. However, implementing a versatile predicate 
+      was challenging as I needed to take into account the different fields and consider each possible case for the find order command.
     - Implications: This provides a more robust search functionality which allows the user to 
     better manage their orders.
     - Relevant pull request(s): [#66](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/66), [#125](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/125)
@@ -39,8 +42,7 @@ illustration of my contributions as well as the relevant documentation I have ad
   - Features added:
     - Listing all orders
     - Finding order(s)
-  - Wrote **Using this guide** portion of User Guide.
-  - Wrote **Tutorial** portion of the User Guide.
+  - Wrote **Using this guide** and **Tutorial** portion of User Guide with the intention of it being as user-friendly as possible.
   - Relevant pull request(s): [#39](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/39), [#136](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/136), [#199](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/199) <br/>
 
 - **Contributions to the Developer Guide**:
@@ -69,7 +71,8 @@ illustration of my contributions as well as the relevant documentation I have ad
     - Relevant pull request(s): [#209](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/209) <br/>
 
 - **Review/mentoring contributions**:
-  - Provided timely feedback and suggestions to the pull requests of teammates.
+  - Provided timely feedback and suggestions to the pull requests of teammates
+    - Relevant pull requests: [#211](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/211), 
   - Suggested alternative implementation details. <br/>
             
 - **Contributions beyond the project team**:
