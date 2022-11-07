@@ -1,7 +1,8 @@
 package tracko.logic.parser;
 
 /**
- * Wrapper class for tokens which signal argument inputs from user inputs
+ * Wrapper interface for tokens which signal argument inputs from user inputs
  */
-public class ArgumentToken {
+public interface ArgumentToken {
+    String getToken();
 }
