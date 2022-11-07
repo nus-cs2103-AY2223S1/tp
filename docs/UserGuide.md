@@ -593,13 +593,19 @@ Format: `sort reminder by/SORT_CRITERIA`
 * Sorting does not take reminders' status into account.
 
 Examples:
-* `sort reminder by/priority`:
+* `sort reminder by/priority`
+* `sort reminder by/deadline`
 
-![Sorted reminder by priority](images/MarkedReminder.png)
-
-* `sort reminder by/deadline`:
-
-![Sorted reminder by deadline](images/ReminderDeadline.png)
+<table>
+  <tr>
+    <td>Sort reminder by priority</td>
+    <td>Sort reminder by deadline</td>
+  </tr>
+  <tr>
+    <td><img src="images/MarkedReminder.png" width=350></td>
+    <td><img src="images/ReminderDeadline.png" width=350></td>
+  </tr>
+ </table>
 
 <a name="switch"></a>
 ### 5.5 Switch tabs: `switch`
