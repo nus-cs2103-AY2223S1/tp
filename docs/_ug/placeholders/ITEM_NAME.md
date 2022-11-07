@@ -16,4 +16,4 @@ The ITEM_NAME is the name we use to identify an item.
 
 **Invalid Examples:**
 
-* 黃瓜
+* огурец
