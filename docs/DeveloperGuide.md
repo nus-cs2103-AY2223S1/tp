@@ -811,7 +811,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
 
 <div style="page-break-after: always;"></div>
 ### Adding a customer
