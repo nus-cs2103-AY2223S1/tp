@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/hoodineee.png" width="200px">
 
 [[github](http://github.com/Hoodineee)]]
-[[portfolio](team/Hoodineee.md)]
+[[portfolio](team/hoodineee.md)]
 
 * Role: Scheduling and Tracking, Feature Developer
 * Responsibilities: X

@@ -22,14 +22,14 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=xiaoying1129&breakdown=true)
   * `Pull Requests`:
-    * [#32]: Added a skeletal Personal Portfolio Page
-    * [#36]: Update add, list and edit in User Guide
-    * [#56]: Add find by subject, personality, class
-    * [#81]: Update Developer Guide for sort and add assertions
-    * [#87]: Add sort command
-    * [#90]: Add remark command
-    * [#101]: Update Developer Guide and User Guide for find, sort and remark command
-    * [#191]: Fix User Guide issues from PE dry run
+    * (#32): Added a skeletal Personal Portfolio Page
+    * (#36): Update add, list and edit in User Guide
+    * (#56): Add find by subject, personality, class
+    * (#81): Update Developer Guide for sort and add assertions
+    * (#87): Add sort command
+    * (#90): Add remark command
+    * (#101): Update Developer Guide and User Guide for find, sort and remark command
+    * (#191): Fix User Guide issues from PE dry run
 
 * **Project management**:
     * `to be added soon`
@@ -39,9 +39,9 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for find, sort and remark command [#101]
+        * Added documentation for find, sort and remark command (#101)
     * Developer Guide:
-        * Added documentation for find, sort and remark command [#101]
+        * Added documentation for find, sort and remark command (#101)
 
 * **Community**:
     * `to be added soon`

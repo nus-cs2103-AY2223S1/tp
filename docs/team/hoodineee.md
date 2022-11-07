@@ -21,17 +21,17 @@ Given below are my contributions to the project.
 
 * **Code contributed**:
     * `Pull Requests`:
-        * [#15]: Added a skeletal Personal Portfolio Page
-        * [#37], [#41]: Updated User Guide
-        * [#49]: Added Subject and Grades class for Person
-        * [#72]: Added to Developer Guide
-        * [#84]: Fixed json to store and read Subject and Grades in a Person
-        * [#102]: Updated User Guide
-        * [#106], [#107]: Changed format for Subject, Grades and Attendance in the GUI
-        * [#109]: Modifications to the Sort Command
-        * [#119]: Refactored various classes in the Person model
-        * [#187]: Added constraints to the Grades class
-        * [#192], [#195]: Fixed some issues with Subject and Grades
+        * (#15): Added a skeletal Personal Portfolio Page
+        * (#37), (#41): Updated User Guide
+        * (#49): Added Subject and Grades class for Person
+        * (#72): Added to Developer Guide
+        * (#84): Fixed json to store and read Subject and Grades in a Person
+        * (#102): Updated User Guide
+        * (#106), (#107): Changed format for Subject, Grades and Attendance in the GUI
+        * (#109): Modifications to the Sort Command
+        * (#119): Refactored various classes in the Person model
+        * (#187): Added constraints to the Grades class
+        * (#192), (#195): Fixed some issues with Subject and Grades
 
 * **Project management**:
     * Group Allocator 
@@ -41,9 +41,9 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * [#37], [#41], [#102]: Updated and added to the User Guide. 
+        * (#37), (#41), (#102): Updated and added to the User Guide. 
     * Developer Guide:
-        * [#72]: Added to the Developer Guide
+        * (#72): Added to the Developer Guide
 * **Community**:
     * `to be added soon`
 
