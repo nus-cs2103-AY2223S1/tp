@@ -34,6 +34,7 @@ For a full list of commands and detailed instructions, head to the [Features](#f
       * [Find by Next of Kin's Contact Number](#find-by-next-of-kins-contact-number)
       * [Find by Class Date](#find-by-class-date)
       * [Find by Tag](#find-by-tag)
+    * [Next available class: `avail`](#next-available-class)
     * [Sort displayed students: `sort`](#sort-the-displayed-students-sort)
       * [Sort by Name](#sort-by-name)
       * [Sort by Class](#sort-by-class-date)
@@ -98,17 +99,17 @@ Basic Instructions:
 - Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g., in `add n/NAME`, `NAME` is a parameter
   which can be used as `add n/John Doe`.
 - Items in square brackets are optional. e.g., `n/NAME [t/TAG]` can be used as `n/John Doe t/python` or as `n/John Doe`.
-- Items with `…` after them can be used multiple times including zero times. e.g., If you see `[t/TAG]…`, you can choose 
-not to provide a tag by not using the `t/` prefix, provide one tag like `t/python` or provide multiple tags
-like `t/javascript t/react` etc.
+- Items with `…` after them can be used multiple times including zero times. e.g., If you see `[t/TAG]…`, you can choose
+  not to provide a tag by not using the `t/` prefix, provide one tag like `t/python` or provide multiple tags
+  like `t/javascript t/react` etc.
 - Parameters with a prefix can be in any order. e.g., if the command specifies `n/NAME p/CONTACT_NUMBER`, `p/CONTACT_NUMBER n/NAME`
   is also acceptable.
 - If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence
   of the parameter will be taken. e.g., if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will
   be ignored. e.g., if the command specifies `help 123`, it will be interpreted as `help`.
-- Commands that require the use of index from the Schedule List (right side) will be represented as `INDEX-s`,
-  while index from the Student List (left side) will be represented as `INDEX`.
+- Commands that require the use of index from the [Schedule List](#ui-overview) (right side) will be represented as `INDEX-s`,
+  while index from the [Student List](#ui-overview) (left side) will be represented as `INDEX`.
 
 ### Callouts:
 
@@ -144,8 +145,8 @@ Format: `help`
 Adds a student to the Teacher’s Pet.
 
 ##### Student’s Name:
-    - Student’s Name must not be empty.
-    - Student’s Name must only contain alphanumeric characters.
+- Student’s Name must not be empty.
+- Student’s Name must only contain alphanumeric characters.
     
 <div markdown="span" class="alert alert-info">ℹ **Note:** Multiple students may share the same name.
 </div>
@@ -159,37 +160,36 @@ Adds a student to the Teacher’s Pet.
 </div>
 
 ##### Next of Kin’s Contact Number:
-    - Next of Kin’s contact number must not be empty.
-    - Next of Kin’s contact number must only contain numerical digits
-      between `0` and `9`.
-    - Next of Kin’s contact number must begin with `6`, `8` or `9`.
+- Next of Kin’s contact number must not be empty.
+- Next of Kin’s contact number must only contain numerical digits between `0` and `9`.
+- Next of Kin’s contact number must begin with `6`, `8` or `9`.
 
 <div markdown="span" class="alert alert-info">ℹ **Note:** Next of Kin’s contact number must contain exactly 8 digits.
 </div>
 
 ##### Address:
-    - Address must not be empty.
-    - Address may contain any kinds of character.
+- Address must not be empty.
+- Address may contain any kinds of character.
 
 <div markdown="span" class="alert alert-info">ℹ **Note:** Address cannot be empty. It must contain at least 1 character.
 </div>
 
 ##### Email:
-    - Email must not be empty. 
-    - Email should be in the format of `local@domain`, where:
-      - Local address should only contain alphanumeric characters and
-        these special characters `+_.-`.
-      - Consecutive special characters are not supported.
-      - The domain name must:
-        1. End with a domain label at least 2 characters long.
-        2. Have each domain label start and end with alphanumeric characters.
-        3. Have each domain label consist of alphanumeric characters,
-           separated only by hyphens, if any.
+- Email must not be empty. 
+- Email should be in the format of `local@domain`, where:
+  - Local address should only contain alphanumeric characters and these special characters
+    `+_.-`.
+  - Consecutive special characters are not supported.
+  - The domain name must:
+    1. End with a domain label at least 2 characters long.
+    2. Have each domain label start and end with alphanumeric characters.
+    3. Have each domain label consist of alphanumeric characters, separated only by hyphens,
+       if any.
 
 ##### Tags:
-    - Tags are optional.
-    - A student can have any number of tags (including 0).
-    - Tags must only contain alphanumeric characters.
+- Tags are optional.
+- A student can have any number of tags (including 0).
+- Tags must only contain alphanumeric characters.
     
 <div markdown="span" class="alert alert-info">ℹ **Note:** Tags must contain at least 1 alphanumeric character, cannot contain spacings and limited to `40` characters long.
 </div>
@@ -200,7 +200,8 @@ Example:
 
 - `add n/Ben Tan p/87201223 np/90125012 e/BenTan@gmail.com a/Avenue 712`
 
-![Add](images/UG-screenshots/UiAdd.png)
+![Add](images/UG-screenshots/UiAddBefore.png)
+![Add](images/UG-screenshots/UiAddAfter.png)
 
 <div markdown="span" class="alert alert-info">ℹ **Note:** Amount paid, Amount owed, Rates per Class, and Additional notes fields are to be updated via `edit` command.
 </div>
@@ -241,12 +242,10 @@ Edits an existing student in the list.
       in the following week.
     - Examples: `2022-10-09 1100-1230`, `MON 1100-1230`, `Mon 1100-1230`
     - Invalid inputs: `2022-10-9 1100-1230`, `2022-10-09 1100-1000`
-
-<div markdown="span" class="alert alert-info">ℹ **Note:** If the end time is 12AM, it is referring to 12AM of the next day.
-</div>
-
-<div markdown="span" class="alert alert-danger">❗ **Caution:** If a chosen date is occupied by another student, a class conflict error will arise.
-</div>
+    <div markdown="span" class="alert alert-info">ℹ **Note:** If the end time is 12AM, it is referring to 12AM of the next day.
+    </div>
+    <div markdown="span" class="alert alert-danger">❗ **Caution:** If a chosen date is occupied by another student, a class conflict error will arise.
+    </div>
 
 3. Amount Paid (`paid/`):
     - Amount Paid stands for the amount that has been paid by the Student.
@@ -282,11 +281,15 @@ Format: `edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] 
 
 Examples:
 
-- `edit 1 e/Ben2022@gmail.com`
+- `edit 7 e/Ben2022@gmail.com`
 
-![UiEdit](images/UG-screenshots/UiEdit.png)
+![UiEdit](images/UG-screenshots/UiEditBefore.png)
+![UiEdit](images/UG-screenshots/UiEditAfter.png)
 
-- `edit 1 dt/tue 1100-1200`
+- `edit 7 dt/2022-11-07 1200-1300`
+
+![UiEdit](images/UG-screenshots/UiEditBefore2.png)
+![UiEdit](images/UG-screenshots/UiEditAfter2.png)
 
 [↑ Back to top](#table-of-contents)
 
@@ -302,16 +305,17 @@ A cross will be displayed beside the student's name indicating that the student 
 Format: `mark INDEX-s`
 
 - Marks the student as present at the specified `INDEX-s`.
-- The `INDEX-s` refers to the index number shown in the Schedule list (bottom right).
+- The `INDEX-s` refers to the index number shown in the [Schedule List](#ui-overview) (bottom right).
 - The `INDEX-s` must be a positive integer. e.g., `1, 2, 3, ...`.
 
 <div markdown="span" class="alert alert-success">💡 **Tip:** If you want to unmark a student, you may do so via the `undo` command.
 </div>
 
 Example:
-- `mark 1` marks the 1st student in the Schedule List.
+- `mark 1` marks the 1st student in the [Schedule List](#ui-overview).
 
-![UiMark](images/UG-screenshots/UiMark.png)
+![UiMark](images/UG-screenshots/UiMarkBefore.png)
+![UiMark](images/UG-screenshots/UiMarkAfter.png)
 
 <div markdown="span" class="alert alert-info">ℹ **Note:** Notice how the student's name changed to red? This is because the student now owes money!
 </div>
@@ -329,14 +333,15 @@ The application will reduce the student's owed amount by the amount paid.
 Format: `pay INDEX-s AMOUNT_PAID`
 
 - Indicates that the student at a specified `INDEX-s` has paid.
-- The `INDEX-s` refers to the index number shown in the Schedule List (bottom right).
+- The `INDEX-s` refers to the index number shown in the [Schedule List](#ui-overview) (bottom right).
 - The `INDEX-s` must be a positive integer. e.g., `1, 2, 3, ...`.
 - The `AMOUNT_PAID` must be an integer and cannot be negative. e.g., `0, 1, 2, ...`.
 
 Example:
-- `pay 2 40` indicates that the 2nd student in the Schedule List has paid $40.
+- `pay 1 40` indicates that the 2nd student in the [Schedule List](#ui-overview) has paid $40.
 
-![UiPay](images/UG-screenshots/UiPay.png)
+![UiPay](images/UG-screenshots/UiPayBefore.png)
+![UiPay](images/UG-screenshots/UiPayAfter.png)
 
 <div markdown="span" class="alert alert-info">ℹ **Note:** The student cannot pay more than what he/she owes. There is also a maximum cap of
   $2147483647 for every payment.
@@ -363,7 +368,8 @@ Allows the user to view students and their information which includes:
 
 Format: `list`
 
-![UiUList](images/UG-screenshots/UiList.png)
+![UiUList](images/UG-screenshots/UiListBefore.png)
+![UiUList](images/UG-screenshots/UiListAfter.png)
 
 [↑ Back to top](#table-of-contents)
 
@@ -399,9 +405,10 @@ Format: `find n/KEYWORD [MORE_KEYWORDS]`
 
 Example:
 
-`find n/alex` returns `Alex Yeoh`.
+`find n/Yeoh` returns `Alex Yeoh`.
 
-![UiFindName](images/UG-screenshots/UiFindName.png)
+![UiFindName](images/UG-screenshots/UiFindNameBefore.png)
+![UiFindName](images/UG-screenshots/UiFindNameAfter.png)
 
 #### Find by Email:
 
@@ -482,8 +489,8 @@ Formats:
 
 Examples:
 
-`find dt/2022-10-15` returns all students with classes on 15 October 2022.
-`find dt/Mon` returns all students with classes on the coming monday.
+* `find dt/2022-10-15` returns all students with classes on 15 October 2022.
+* `find dt/Mon` returns all students with classes on the coming monday.
 
 [↑ Back to top](#table-of-contents)
 
@@ -511,10 +518,22 @@ other tags on top of the two tags.
 [↑ Back to top](#table-of-contents)
 
 ---
+### Next available class:
+
+While there is no available command at the moment, you can find the next available class through a series of steps.
+
+1. Use [find command](#finding-a-student-find), to find a specific day: `find dt/2022-11-07` will find the students
+   who have classes on `2022-11-07`
+2. Use [sort command](#sort-the-displayed-students-sort), to sort by class: `sort class asc`.
+3. View each class for the student under the [Student List](#ui-overview) until you find the slot you want.
+
+[↑ Back to top](#table-of-contents)
+
+---
 
 ### Sort the displayed students: `sort`
 
-Sorts the list of students in the Student List by the specified `TYPE` and `ORDER`.
+Sorts the list of students in the [Student List](#ui-overview) by the specified `TYPE` and `ORDER`.
 
 Format: `sort TYPE [ORDER]`
 
@@ -533,7 +552,7 @@ Format: `sort TYPE [ORDER]`
 
 #### Sort by Name
 
-Sorts the list of students in the Student List by `name` and given `ORDER`.
+Sorts the list of students in the [Student List](#ui-overview) by `name` and given `ORDER`.
 
 If `ORDER` is left blank, it will be `asc` by default.
 
@@ -547,7 +566,7 @@ Examples:
 
 #### Sort by Class Date
 
-Sorts the list of students in the Student List by `CLASS` and given `ORDER`.
+Sorts the list of students in the [Student List](#ui-overview) by `CLASS` and given `ORDER`.
 
 If `ORDER` is left blank, it will be `ASC` by default.
 
@@ -561,7 +580,7 @@ Examples:
 
 #### Sort by Money Owed
 
-Sorts the list of students in the Student List by `OWED`(Amount of Money Owed) and given `ORDER`.
+Sorts the list of students in the [Student List](#ui-overview) by `OWED`(Amount of Money Owed) and given `ORDER`.
 
 If `ORDER` is left blank, it will be `DESC` by default.
 
@@ -582,12 +601,12 @@ Deletes the specified student(s) from the student list.
 Format: `delete INDEX [MORE_INDEXES]`
 
 - Deletes the student(s) at the specified `INDEX(ES)`.
-- The `INDEX(ES)` refers to the index numbers shown in the Student List (bottom left section of the display).
-- The `INDEX(ES)` must be a positive integer within the size of the Student List. e.g., `1, 2, 3, ...`.
+- The `INDEX(ES)` refers to the index numbers shown in the [Student List](#ui-overview) (bottom left section of the display).
+- The `INDEX(ES)` must be a positive integer within the size of the displayed student list. e.g., `1, 2, 3, ...`.
 
 Examples:
-- `list` followed by `delete 1 2` deletes the 1st and 2nd student in the Student List.
-- `find Betsy` followed by `delete 1` deletes the 1st student in the Student List.
+- `list` followed by `delete 1 2` deletes the 1st and 2nd student in the [Student List](#ui-overview).
+- `find Betsy` followed by `delete 1` deletes the 1st student in the [Student List](#ui-overview).
 
 <div markdown="span" class="alert alert-success">💡 **Tip:** Deleting a student by mistake can be reversed by 
 <a href="#undo-the-last-command-undo">undo</a> command!
@@ -652,7 +671,7 @@ Students' data is saved as a JSON file `[JAR file location]/data/teachersPet.jso
 <div markdown="span" class="alert alert-danger">❗ **Caution:** If your changes to the data file makes its format invalid,
 Teacher’s Pet will not be able to load any data into the app. Do not worry that your data file will be discarded!
 To proceed, you will need to correct any changes you made in order to load the data.
-You may also delete the JSON file to have a new set of generated sample data.
+You may also delete the JSON file o have a new set of generated sample data.
 </div>
 
 [↑ Back to top](#table-of-contents)
@@ -670,14 +689,14 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 ---
 ## Glossary
 
-| Terms       | Definition                                                                                              |
-|-------------|---------------------------------------------------------------------------------------------------------|
-| Class Date  | The 1-1 tutoring time slot of a student                                                                 |
-| Day-of-Week | 3-letter Abbreviation; case-insensitive e.g., Mon, MON                                                  |
-| INDEX       | The index number shown in the Student List                                                              |
-| INDEX-s     | The index number shown in the Schedule List                                                             |
-| Prefix      | e.g., `n/`, `p/`, `np/`                                                                                 |
-| Parameter   | The values passed into your Commands e.g., when calling `edit 1 n/NAME` , the parameter here is `NAME`  |
+| Terms       | Definition                                                  |
+|-------------|-------------------------------------------------------------|
+| Class Date  | The 1-1 tutoring time slot of a student                     |
+| Day-of-Week | 3-letter Abbreviation; case-insensitive e.g., Mon, MON      |
+| INDEX       | The index number shown in the [Student List](#ui-overview)  |
+| INDEX-s     | The index number shown in the [Schedule List](#ui-overview) |
+| Prefix      | e.g., `n/`, `p/`, `np/`                                     |
+| Parameter   | e.g., `NAME`, `EMAIL`, `ADDRESS`                            |
 
 [↑ Back to top](#table-of-contents)
 
@@ -692,7 +711,7 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 | Receive money from a student      | pay INDEX-s AMOUNT_PAID e.g., `pay 2 300`                                                                                                                                                                                                                |
 | List all students                 | `list`                                                                                                                                                                                                                                                   |
 | Find a student                    | find n/NAME e.g., `find n/John Doe` or other supported fields                                                                                                                                                                                            |
-| Find available time slots         | avail TIME_RANGE DURATION e.g., `avail 1000-1200 30`                                                                                                                                                                                                     |
+| Find available time slots         | refer to [avail command](#next-available-class)                                                                                                                                                                                                          |
 | Sort students in particular order | sort TYPE [ORDER] e.g., `sort NAME ASC`                                                                                                                                                                                                                  |
 | Delete a student                  | delete INDEX e.g., `delete 2`                                                                                                                                                                                                                            |
 | Clear all students                | `clear`                                                                                                                                                                                                                                                  |
