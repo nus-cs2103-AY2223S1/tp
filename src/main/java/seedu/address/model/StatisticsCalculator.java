@@ -47,7 +47,7 @@ public class StatisticsCalculator {
         } catch (ArithmeticException e) {
             return "Owed amount too large to calculate.";
         }
-        return "$" + String.valueOf(moneyOwed);
+        return "$" + moneyOwed;
     }
 
     /**
@@ -65,7 +65,7 @@ public class StatisticsCalculator {
         } catch (ArithmeticException e) {
             return "Paid amount too large to calculate.";
         }
-        return "$" + String.valueOf(moneyPaid);
+        return "$" + moneyPaid;
     }
 
     @Override

@@ -40,8 +40,6 @@ public class MarkCommand extends Command {
 
     public static final String MESSAGE_CLEAR_STUDENT_DEBT = "\nPlease clear the debt of the student first.";
 
-    public static final int DAYS_IN_A_WEEK = 7;
-
     private final Index targetIndex;
 
     /**
@@ -84,7 +82,7 @@ public class MarkCommand extends Command {
     static Student createMarkedStudent(Student studentToMark) throws CommandException {
         assert studentToMark != null;
 
-        if (studentToMark.getMarkStatus().isMarked() == true) {
+        if (studentToMark.getMarkStatus().isMarked()) {
             return studentToMark;
         }
 
