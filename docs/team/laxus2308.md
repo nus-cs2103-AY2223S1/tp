@@ -1,21 +1,20 @@
 ---
 layout: page
-title: laxus2308's Project Portfolio Page
+title: Mok Yao Hui's Project Portfolio Page
 ---
 
 ### Project: JARVIS
 
-JARVIS is a desktop application that allows a CS1101S TA to manage his/her students and tasks in an organised manner.
-The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java,
-and has about 10 kLoC.
+JARVIS is a desktop application that allows a CS1101S TA to manage his/her students, tasks and lessons in an organised manner.
+The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to delete task from JARVIS
-  * What it does: Allow JARVIS to parse user input and allow user to delete tasks from task list
+* **New Feature**: Added the ability to delete task from JARVIS.
+  * What it does: Allow JARVIS to parse user input and allow user to delete tasks from task list.
   * Justification: Completed tasks that are deemed redundant by the user can be deleted to avoid cluttering of tasks. This also allow users to delete tasks that are wrongfully added because they might make a mistake in either description or deadline.
     
-* **New Feature**: Added lesson list to JARVIS, the ability to add the 3 subtypes of lessons and remove a lesson from JARVIS
+* **New Feature**: Added lesson list to JARVIS, the ability to add the 3 subtypes of lessons and remove a lesson from JARVIS.
   * What it does: Allow JARVIS to parse user input and allow user to add MasteryCheck, Studio and Consult to lesson list, and to delete any lesson from the lesson list. Lessons to be added will be checked against current list of lessons for any conflicting schedules.
   * Justification: This helps the TA to keep track of his/her schedule, remembering who to meet for what lesson on which day and time. JARVIS also helps to check for timing conflicts to ensure there will be no 2 lessons occurring at the same time as the TA may accidentally forget about prior scheduled lessons.
 
@@ -32,7 +31,7 @@ Given below are my contributions to the project.
     
 * **Documentation**:
     * User Guide:
-        * Update documentation for features' usage examples #155.
+        * Update documentation for features' usage examples [#155](https://github.com/AY2223S1-CS2103T-T11-3/tp/pull/155).
     * Developer Guide:
         * Added user stories [#108](https://github.com/AY2223S1-CS2103T-T11-3/tp/pull/108).
         * Added use cases [#114](https://github.com/AY2223S1-CS2103T-T11-3/tp/pull/114).
