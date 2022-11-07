@@ -46,10 +46,8 @@ Given below are my contributions to the project.
 
 ### Project management:
 * Called meetings to discuss plans.
-* Provided feedback on Github PRs.
-* Organised issues and distributed them to group members.
+* Provided feedback on Github PRs and organised issues with tags.
 * Created milestones and description of milestones.
-* Applied strong version control through the use of Pull Requests and merging into an upstream repo.
 
 ### Contributions to team-based tasks:
 
@@ -57,8 +55,7 @@ Given below are my contributions to the project.
 * Changed the product icon to the current version (ledger with pen) using GIMP
 * Managed the usage of fonts (Bender and MinionPro)
 * Maintaining the issue tracker, marked duplicate bugs after the PE-D, separated true bugs from feature flaws, and trimmed the bug count to related to unique issues only.
-* Released version v1.3.1 for PE-D
-* Fixed 16 bugs after PE-D
+* Released version v1.3.1 for PE-D and fixed 16 bugs after PE-D
 
 ### Review/mentoring contributions:
 
