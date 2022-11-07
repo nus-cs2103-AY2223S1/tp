@@ -15,6 +15,7 @@ package Student <<Rectangle>> {
     class Student extends Person {
         studentModuleInfo: Set<ModuleCode>
         teachingAssistantInfo: Set<ModuleCode>
+        classGroups: Set<String>
     }
 
     class TelegramHandle {
