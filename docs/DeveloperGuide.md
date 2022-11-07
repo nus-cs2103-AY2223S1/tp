@@ -496,7 +496,7 @@ The proposed view schedule functionality is accomplished by `ViewScheduleCommand
 
 The following sequence diagram shows how view schedule operation works :
 
-![EditScheduleSequence](images/ViewScheduleSequenceDiagram.png)
+![sviewSequence](/Users/mr.yueng/Library/CloudStorage/OneDrive-NationalUniversityofSingapore/2022_fall_sem_NUS/CS2103T Software Engineering/tp/docs/images/sviewSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 

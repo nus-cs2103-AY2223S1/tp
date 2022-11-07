@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("view m/CS2103T w/Friday")
+[-> LogicManager : execute("sview m/CS2103T w/Friday")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("view m/CS2103T w/Friday")
+LogicManager -> AddressBookParser : parseCommand("sview m/CS2103T w/Friday")
 activate AddressBookParser
 
 create ViewScheduleCommandParser
