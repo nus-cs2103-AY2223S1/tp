@@ -17,9 +17,9 @@ FindCommand - allows users to search for the desired FYP projects with specified
   (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/118)
   * What it does: Professors can search for the projects that they are interested in using keywords. More specifically,
   they can search via any one of the following fields of a student:
-    1) Name
-    2) Student ID
-    3) Project Title
+    1) Name,
+    2) Student ID,
+    3) Project Title,
     4) Tags
 
   * Justifications: Originally meant to find names in AB3, the enhanced FindCommand now allows users to search with more
@@ -40,10 +40,12 @@ FindCommand - allows users to search for the desired FYP projects with specified
     deadlines on time. These were also communicated via the meeting minutes as well.
 
 * **Enhancements to existing features**:
-  * See "New Feature" above for more details on contributions to FindCommand.
+  * See "New Feature" above for more details on my contributions to FindCommand.
   * Made an overhaul to the naming (from Person -> Student) to better fit the theme of a FYP Manager
   * Added a new student attribute for studentID, and removed the phone attribute
     (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/87)
+  * Added more than 20 test cases to FindCommand to boost test coverage
+    (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/229)
 
 * **Documentation**:
     * User Guide:
