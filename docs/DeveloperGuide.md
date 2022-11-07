@@ -466,7 +466,7 @@ After the ProfNUS receives the instruction to edit a target `Schedule` (indicate
 
 During the execution, the following validity checks will be conducted:
 
-- Index validity check — The model will check if the index is valid. More specifically, the index should be within the range of $$1$$ to $$n$$ where $$n$$ is the total number of schedules. If the index is invalid, then a `CommandException` will be thrown.
+- Index validity check — The model will check if the index is valid. More specifically, the index should be within the range of 1 to n where n is the total number of schedules. If the index is invalid, then a `CommandException` will be thrown.
 - Schedule conflict check — The model will check if the edited schedule conflicts with any existing schedules that the user has. If conflict happens, then a `CommandException` will be thrown.
 - Optional parameters check — The parser will check if at least one of fields of the `Schedule` is edited. If no modification exists, then a `ParserException` will be thrown.
 
