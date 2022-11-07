@@ -75,6 +75,15 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
+At any time, the `MainWindow` displays 1 of the following 4 lists: default list, expanded student list, expanded task list or expanded lesson list. Each of these lists are made up of different parts. For example, the `ExpandedStudentCard` builds the expanded student list while the `StudentCard` builds the default list.
+
+In the class diagram above, the parts used to build the expanded lists i.e. `ExpandedStudentList`, `ExpandedTaskList` and `ExpandedLessonList` have been abstracted out into the `ExpandedLists` package due to space constraints. Instead, it displays the parts used to build the default list only.
+
+<br>
+<img src="images/ExpandedListClassDiagram.png" width="550">
+
+In the class diagram above, the parts used to build the expanded lists that were abstracted out previously are shown.
+
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/java/jarvis/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
@@ -164,13 +173,27 @@ Classes used by multiple components are in the `jarvis.commons` package.
 This section describes some noteworthy details on how certain features are implemented.
 
 ### List Students / Tasks / Lessons
-To see the full list of students, tasks or lessons, the user keys in the valid command (`liststudent`, `listtask` or `listlesson`). As an example, the user keys in "`liststudent`". Parsing of the user input is done and a `ListStudentCommand` is then generated. The following sequence diagram shows what happens when the `ListStudentCommand` is executed.
 
-<img src="images/ListStudentSequenceDiagram.png" width="550"/>
+For the implementation of the `liststudent`, `listtask` and `listlesson` commands, it is important to explain the layout of the `MainWindow` component of the UI.
 
-1. The list of students in the model is updated to display all students.
+The `MainWindow` contains a `StackPane` which stacks 1 `SplitPane` component and 3 `VBox` components. The `SplitPane` component is a container for the default view of JARVIS, where all 3 lists (i.e. student/task/lesson list) are displayed side by side. Each `VBox` component is a container for the expanded version of one of the 3 lists (i.e. expanded student/task/lesson list). 
 
-The implementation for listing tasks and lessons is similar.
+Upon initialising the app, all 3 `VBox` components are set to "not visible". The `SplitPane` component remains visible, which displays the default view of the app.
+
+For the command, we'll use the example of `liststudent` though the same applies for `listtask` and `listlesson`. 
+
+To see the expanded version of the student list, the user keys in the valid command (`liststudent`). The `MainWindow` passes the command text to `LogicManager`, which then sends it to the parser to generate a `ListStudentCommand`. The `ListStudentCommand` is then executed to produce a `CommandResult` object. This `CommandResult` is returned to `MainWindow` and supplied as an argument to the `handleList` method, which then sets all content of the `StackPane` to "not visible" except for the `VBox` container of the expanded student list.
+
+The following sequence diagram shows what happens after `MainWindow` receives the command text by the user:
+
+<img src="images/ListStudentSequenceDiagram.png" width="800"/>
+
+1. `MainWindow` receives the command text and supplies it as an argument to the `execute` method of `LogicManager` 
+2. The command text is parsed and `LogicManager` executes the command, producing a `CommandResult`
+3. The `CommandResult` is successively returned to `MainWindow`
+4. `MainWindow` calls its own `handleList` method with the `CommandResult` as an argument
+
+The implementation for `listtask` and `listlesson` is similar to this.
 
 ### Mark Task as done / not done
 In order to mark a task as completed, the user keys in a valid command (e.g. `marktask 2`). Parsing of the user input is done (see the sequence diagram for deleting a student in the [Logic component](#logic-component) for a similar parsing sequence) and a `MarkTaskCommand` is then generated. The following sequence diagram shows what happens when the `MarkTaskCommand` is executed.
