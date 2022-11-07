@@ -23,6 +23,8 @@ import seedu.address.model.question.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.question.Question;
 import seedu.address.model.student.StuNameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
+import seedu.address.model.tutorial.TutNameContainsKeywordsPredicate;
+import seedu.address.model.tutorial.Tutorial;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 
 /**
@@ -40,7 +42,7 @@ public class CommandTestUtil {
 
     public static final String VALID_GROUP_TUTORIAL1 = "T08";
     public static final String VALID_GROUP_TUTURIAL2 = "T09";
-    public static final String VALID_CONTENT_TUTORIAL1 = "UML";
+    public static final String VALID_CONTENT_TUTORIAL1 = "UML Diagrams";
     public static final String VALID_CONTENT_TUTORIAL2 = "Developer Guide";
     public static final String VALID_TIME_TUTORIAL1 = "2022-10-01 0800";
     public static final String VALID_TIME_TUTORIAL2 = "2022-10-01 1600";
@@ -73,12 +75,22 @@ public class CommandTestUtil {
 
     public static final String ATTENDANCE_DESC_AMY = " " + PREFIX_ATTENDANCE + VALID_ATTENDANCE_AMY;
     public static final String ATTENDANCE_DESC_BOB = " " + PREFIX_ATTENDANCE + VALID_ATTENDANCE_BOB;
+    public static final String GROUP_DESC_TUTORIAL1 = " " + PREFIX_GROUP + VALID_GROUP_TUTORIAL1;
+    public static final String GROUP_DESC_TUTORIAL2 = " " + PREFIX_GROUP + VALID_GROUP_TUTURIAL2;
+    public static final String CONTENT_DESC_TUTORIAL1 = " " + PREFIX_CONTENT + VALID_CONTENT_TUTORIAL1;
+    public static final String CONTENT_DESC_TUTORIAL2 = " " + PREFIX_CONTENT + VALID_CONTENT_TUTORIAL2;
+    public static final String TIME_DESC_TUTORIAL1 = " " + PREFIX_TIME + VALID_TIME_TUTORIAL1;
+    public static final String TIME_DESC_TUTORIAL2 = " " + PREFIX_TIME + VALID_TIME_TUTORIAL2;
+
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM + "James&"; // Missing '@' before handle
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ATTENDANCE_DESC = " " + PREFIX_ATTENDANCE + "a"; // 'a' not allowed in attendance
-
+    public static final String INVALID_TIME_DESC = " " + PREFIX_TIME + "2022"; // the time format is not correct
+    public static final String INVALID_GROUP_DESC = " " + PREFIX_GROUP + "T08*"; // contains non-alphanumeric characters
+    public static final String INVALID_CONTENT_DESC = " " + PREFIX_CONTENT + "uml*";
+    // contains non-alphanumeric characters
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -100,7 +112,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -115,7 +127,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -149,6 +161,20 @@ public class CommandTestUtil {
         model.updateFilteredStudentList(new StuNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredStudentList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the tutorial at the given {@code targetIndex} in the
+     * {@code model}'s tutorial list.
+     */
+    public static void showTutorialAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTutorialList().size());
+
+        Tutorial tutorial = model.getFilteredTutorialList().get(targetIndex.getZeroBased());
+        final String[] splitContent = tutorial.getContent().content.split("\\s+");
+        model.updateFilteredTutorialList(new TutNameContainsKeywordsPredicate(Arrays.asList(splitContent[0])));
+
+        assertEquals(1, model.getFilteredTutorialList().size());
     }
 
     /**

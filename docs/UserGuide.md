@@ -45,12 +45,12 @@ tutorials and note down questions more effectively than traditional GUI apps.
 
 3. Copy the file to the folder you want to use as the _home folder_ for your SETA.
 
-4. Double-click the file to start the app. 
-   1. If double-clicking does not work, you can go to the directory containing the SETA.jar file through your terminal 
-   and run `java -jar SETA.jar` to launch the application.
+4. Double-click the file to start the app.
+    1. If double-clicking does not work, you can go to the directory containing the SETA.jar file through your terminal
+       and run `java -jar SETA.jar` to launch the application.
 5. The GUI similar to the below should appear in a few seconds. Note how the app
-      contains some sample data.<br>
-      ![Ui](images/Ui.png)
+   contains some sample data.<br>
+   ![Ui](images/Ui.png)
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`liststu`** and pressing Enter will
    list all the students in the 'Student' column.<br>
@@ -93,6 +93,7 @@ Some example commands you can try:
 </div>
 
 ### Students
+
 Each student contains details such as their name, telegram handle and email. The latter two are there for you to
 contact the student if necessary. You can also track each student's attendance and include the number of messages
 he has sent on Zoom to note down his participation.
@@ -125,9 +126,11 @@ Format: `editstu INDEX [n/NAME] [h/TELEGRAM_HANDLE] [e/EMAIL] [a/ATTENDANCE]`
   The index must be a positive integer 1, 2, 3...
 * At least one of the fields (E.g. [n/NAME] or [e/EMAIL]) must be provided.
 * Existing fields will be updated to the input values.
-* Editing a student with the same details as the student's original details will be accepted. 
-  (E.g. executing `editstu 1 h/@test` when student 1's telegram handle is already `@test`, will still be accepted as an edit.)
-* Input attendance value without any extra '0's before and after the intended attendance value. (E.g. '0' instead of '0000' and '3' instead of '003').
+* Editing a student with the same details as the student's original details will be accepted.
+  (E.g. executing `editstu 1 h/@test` when student 1's telegram handle is already `@test`, will still be accepted as an
+  edit.)
+* Input attendance value without any extra '0's before and after the intended attendance value. (E.g. '0' instead of '
+  0000' and '3' instead of '003').
 
 Examples:
 
@@ -150,7 +153,9 @@ Format: `attendance INDEX`
 
 Example:
 
-* `attendance 1` 
+* `attendance 1`
+
+<img src="images/ug-screenshots/attendance.png" alt="attendance 1" width="1100">
 
 <img src="images/ug-screenshots/attendance.png" alt="attendance 1" width="1100">
 
@@ -161,13 +166,13 @@ Edits the number of messages a specified student sent during tutorial.
 Format: `addresponse INDEX m/MESSAGE_COUNT`
 
 * Edits response count of the student at the specified INDEX.
-  * If `addresponse 1 m/7` is keyed in after `addresponse 1 m/2`, the response count for the first
-    student in the student list will be 7 instead of 2.
+    * If `addresponse 1 m/7` is keyed in after `addresponse 1 m/2`, the response count for the first
+      student in the student list will be 7 instead of 2.
 * The `INDEX` refers to the index number shown in the displayed student list.
-* The `INDEX` must be a positive integer 1, 2, 3... 
+* The `INDEX` must be a positive integer 1, 2, 3...
 * The `MESSAGE_COUNT` must be a positive integer 1, 2, 3...
 * If `m\0000000000` is given as an input, 0s will not be truncated and response will be displayed as
-`response: 000000000`
+  `response: 000000000`
 
 Example:
 
@@ -247,7 +252,7 @@ Lists all students in the student list.
 
 Format: `liststu`
 
-* Lists all students after student list is filtered upon finding a student or students. 
+* Lists all students after student list is filtered upon finding a student or students.
 
 Example:
 
@@ -256,6 +261,7 @@ Example:
 <img src="images/ug-screenshots/liststu.png" alt="liststu 1" width="1100">
 
 ### Questions
+
 Sometimes, you may receive questions that you may not have the answer to or you may not have enough time to answer
 all of them during the tutorial. SETA allows you to track these questions. Furthermore, if you find a question that
 requires urgent clarification or critical thinking, you can indicate on the user interface that these questions are
@@ -330,6 +336,7 @@ Example:
 <img src="images/ug-screenshots/deleteq.png" alt="deleteq 1" width="1100">
 
 ### Tutorials
+
 Each tutorial has a group number, a topic to focus on and a date and time. These correspond to the `GROUP_NUMBER`,
 `CONTENT` and `DATE TIME` parameters accordingly.
 
@@ -342,8 +349,8 @@ Format: `addtut g/GROUP_NUMBER c/CONTENT t/DATE TIME`
 * The format of the date must be `YYYY-MM-DD`.
 * The format of the time must be in 24h format without semicolon: `HHmm` (E.g. `0120`, `1830`).
 * Special cases for `DATE`:
-  * Input: `2022-02-29`, `2022-02-30` and `2022-02-31` 
-  * Shown: `28 Feb 2022`
+    * Input: `2022-02-29`, `2022-02-30` and `2022-02-31`
+    * Shown: `28 Feb 2022`
 
 Example:
 

@@ -3,6 +3,7 @@ package seedu.address.model.tutorial;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CONTENT_TUTORIAL1;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CONTENT_TUTORIAL2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_TUTORIAL1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GROUP_TUTURIAL2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TIME_TUTORIAL2;
@@ -60,7 +61,7 @@ public class TutorialTest {
         assertFalse(TUTORIAL1.equals(editedTutorial1));
 
         // different content -> returns false
-        editedTutorial1 = new TutorialBuilder(TUTORIAL1).withContent(VALID_CONTENT_TUTORIAL1).build();
+        editedTutorial1 = new TutorialBuilder(TUTORIAL1).withContent(VALID_CONTENT_TUTORIAL2).build();
         assertFalse(TUTORIAL1.equals(editedTutorial1));
 
     }
