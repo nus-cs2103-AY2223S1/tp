@@ -129,8 +129,8 @@ Exits the Waddle program.
 Format: `exit`
 
 <div style="page-break-after: always"></div>
-### The main page
 
+### The main page
 The main page, or home page, of Waddle displays the list of itineraries you have created and stored in the app.
 
 [Commands exclusive to the main page](#commands-on-the-main-page) can help you:
