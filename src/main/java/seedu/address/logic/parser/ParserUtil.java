@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_INDEXES;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_INDEX_VALUE;
 import static seedu.address.model.event.StartTime.MESSAGE_FORMAT_CONSTRAINTS;
 import static seedu.address.model.event.StartTime.MESSAGE_VALUE_CONSTRAINTS;
 
@@ -29,9 +31,6 @@ import seedu.address.model.person.Phone;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "%s is not a valid index,"
-            + " index should be a non-zero unsigned integer.";
-
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -40,7 +39,7 @@ public class ParserUtil {
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_INVALID_INDEX_VALUE);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
@@ -178,13 +177,11 @@ public class ParserUtil {
     public static Date parseDate(String date, boolean isFutureDateAllowed) throws ParseException {
         requireNonNull(date);
         String trimmedDate = date.trim();
-
-        //Check if date format is valid.
-
         if (!Date.isValidDateFormat(trimmedDate)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        } else if (!Date.isValidDateValue(trimmedDate)) {
+            throw new ParseException(String.format(Date.MESSAGE_VALUE_CONSTRAINTS, trimmedDate));
         }
-
         //Check if date is after current date and if it is allowed.
 
         if (Date.isAfterCurrentDate(trimmedDate) & !isFutureDateAllowed) {
@@ -230,9 +227,13 @@ public class ParserUtil {
         List<Index> indexList = new ArrayList<>();
         for (String index : strIndexes) {
             if (!StringUtil.isNonZeroUnsignedInteger(index)) {
-                throw new ParseException(String.format(MESSAGE_INVALID_INDEX, index));
+                throw new ParseException(String.format(MESSAGE_INVALID_INDEX_VALUE, index));
             }
-            indexList.add(Index.fromOneBased(Integer.parseInt(index)));
+            Index parsedIndex = Index.fromOneBased(Integer.parseInt(index));
+            if (indexList.contains(parsedIndex)) {
+                throw new ParseException(String.format(MESSAGE_DUPLICATE_INDEXES, index));
+            }
+            indexList.add(parsedIndex);
         }
         return indexList;
     }
