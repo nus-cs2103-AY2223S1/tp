@@ -178,6 +178,17 @@ The **right half** of each student card contains module information related to y
 | Ungraded Assignments     | Number of ungraded assignments (assignments marked as **received**) that you yet to have graded.                                                                                                                                                                                                                      |
 | Assignment Status        | {::nomarkdown} Detailed record of assignments for your student. Each box represents one assignment: <ul><li>the text in the box indicates the name of the assignment</li><li>the colour indicates assignment status (There are 3 assignment status: Green for graded, Red for received, Yellow for new)</li></ul>{:/} |
 
+<div markdown="block" class="alert alert-info">
+:information_source: **Note 1:** Each student is uniquely identified by their **name, student ID and module** combined.
+This means that two students with the same name and module are considered **distinct** if they have different student IDs.
+</div>
+
+<div markdown="block" class="alert alert-info">
+:information_source: **Note 2:** Each student in StudMap can only be attached to **one module**. If you are tutoring a student
+for more than one module, you will have to create separate entries for that student, each with a different module. This ensures
+that data from one module (e.g. Attendance for CS2103T) **will not be mixed** with that from another module (e.g. Attendance for CS2040).
+</div>
+
 ## 4.3 Understanding Commands
 
 Now that you understand the User Interface of StudMap, what can you do to interact with it?
@@ -214,19 +225,28 @@ To learn more about parameters, do check out the section on [Parameters](#52-inf
 
 ### Example Commands
 
+With the power of commands, you can now truly wield StudMap to organize your students and accomplish your TA responsibilities. 
+Commands will allow you to add new students to the list, append assignments to be graded or attendances that have been marked, and so much more!
+
 Let’s try out some commands! Type or copy a command into the Command Box and press Enter to execute it.
 
 * `list`
     * This updates the Student List with all the students you have.
-* `n/John Doe m/CS2103T id/E1234567`
+* `add n/John Doe m/CS2103T id/E1234567`
     * This adds a student named John Doe with student ID `E1234567` into StudMap, who is taking the module `CS2103T`
       .
       This is one of the ways you can add a new student into StudMap.
+* `mark 1 present c/Tut5`
+    * This marks the 1st student currently shown in the Student List as present for the class "Tut5".
 * `delete 3`
     * This deletes the 3rd student currently shown in the Student List.
 * `clear`
     * This deletes all the students, so you can start with a clean slate!
       <br><br>
+
+This is just a short preview of the features that StudMap has to offer. The [Features](#5-features) section 
+will guide you through all available commands in greater detail!
+
 
 ## 4.4 Migrating to StudMap
 
@@ -237,6 +257,7 @@ and you certainly don’t want to transfer all this data manually to StudMap! We
    out this [Example Template](files/example_template.csv), or check out
    [Import Command](#534-importing-students-from-csv-file-import) for more details.
 
+<br/><br/>
 
 That’s all for the tutorial! Check out the [Features](#5-features) section for more detailed information about each command. We hope you enjoy using StudMap!
 
@@ -291,27 +312,38 @@ This will help you understand the guide better!
 </div>
 
 Throughout this section, you will see numerous parameters being used by different commands. Here is a consolidated summary of
-the parameters and any remarks that might be of relevance.
+the parameters and any remarks (e.g. **constraints**) that might be of relevance.
 
 
-| Parameter    | Remarks                                                                                                               |
-|--------------|-----------------------------------------------------------------------------------------------------------------------|
-| INDEX        | Used to specify the student you wish to target. Can be replaced with ALL to target all students in displayed list     |
-| KEYWORD      | Used in [`filter`](#538-filtering-the-students-filter)                                                                |
-| ORDER        | Used in [`sort`](#537-sorting-the-students-sort), can take two values: asc or dsc                                     |
-| STATUS       | Used to represent status of assignments (new/received/marked), attendance (present/absent) and participation (yes/no) |
-| a/ASSIGNMENT | Assignment to be recorded for your student                                                                            |
-| a/ATTRIBUTE  | Attribute to be used for [`sorting`](#537-sorting-the-students-sort)                                                  |
-| c/CLASS      | Class to be recorded for your student                                                                                 |
-| e/EMAIL      | Email for your student. Must be of the format local-part@domain                                                       |
-| g/GITNAME    | GitHub Username for your student                                                                                      |
-| h/TELEHANDLE | Telegram Handle for your student                                                                                      |
-| id/ID        | Student ID for your student                                                                                           |
-| m/MODULE     | Module for your student                                                                                               |
-| n/NAME       | Name for your student                                                                                                 |
-| p/COMPONENT  | Participation component to be recorded for your student                                                               |
-| t/TAG        | Tag for your student                                                                                                  |
+| Parameter    | Remarks                                                                                                                                                              |
+|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| INDEX        | Number used to specify the student you wish to target. Can be replaced with ALL to target all students in displayed list                                             |
+| KEYWORD      | Used in [`filter`](#538-filtering-the-students-filter)                                                                                                               |
+| ORDER        | Used in [`sort`](#537-sorting-the-students-sort), can take two values: asc or dsc                                                                                    |
+| STATUS       | Used to represent status of assignments (new/received/marked), attendance (present/absent) and participation (yes/no)                                                |
+| a/ASSIGNMENT | Assignment to be recorded for your student. <br/>**Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only                 |
+| a/ATTRIBUTE  | Attribute to be used for [`sorting`](#537-sorting-the-students-sort)                                                                                                 |
+| c/CLASS      | Class to be recorded for your student <br/>**Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only                       |
+| e/EMAIL      | Email for your student. <br/>**Constraint:** Must be of the format local-part@domain                                                                                 |
+| g/GITNAME    | GitHub Username for your student                                                                                                                                     |
+| h/TELEHANDLE | Telegram Handle for your student. <br/>**Constraint:** Must have `@` before the handle e.g. @handle                                                                  |
+| id/ID        | Student ID for your student                                                                                                                                          |
+| m/MODULE     | Module for your student. <br/>**Constraint:** Must follow NUS Module naming convention: letters, then 4 digits, and finally an optional letter suffix (i.e. CS2103T) |
+| n/NAME       | Name for your student                                                                                                                                                |
+| p/COMPONENT  | Participation component to be recorded for your student. <br/>**Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only    |
+| p/PHONE      | Phone number for your student. <br/>**Constraint:** Must consist of only numbers, and an optional `+` at the beginning. Must have at least 3 digits                  |
+| t/TAG        | Tag for your student <br/>**Constraint:** Must be only [alphanumeric](#alphanumeric)                                                                                 |
 
+<div markdown="block" class="alert alert-info">
+:information_source: Here are some explanations about the format constraints for certain parameters that you may 
+find too restrictive.
+
+* **PHONE:** StudMap currently only allows you to record one phone number for each student, as supporting multiple
+numbers (i.e. Home number) for your student is considered Out of Scope.
+
+* **MODULE:** StudMap is designed as a tool for NUS TAs, and thus StudMap currently only supports the code format 
+for NUS modules. Future plans for StudMap include expanding this format to more universities. 
+</div>
 
 ## 5.3 Student List Management
 
@@ -597,9 +629,12 @@ shown in the displayed student list.
 The index **must be a positive integer** 1, 2, 3, …​
 * `ALL`: You can mark attendance for all students currently displayed.
 * Status accepts two values only: `present` and `absent`
-* :exclamation: Class names should only consist of alphanumerics, spaces, dashes and underscores! Using any other
-  character will lead to your class name being **rejected**
 * Marking an **existing class** as either `present` or `absent` will **overwrite** the existing record
+
+<div markdown="block" class="alert alert-warning">
+:exclamation: **Caution:** Class names should only consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores! Using any other
+  character will lead to your class name being **rejected**
+</div>
 
 **Examples:**
 
@@ -898,3 +933,9 @@ advanced users can edit their student data easily if they wish.
 
 Each module of study has a unique module code consisting of a two- or three-letter prefix that generally denotes the
 discipline, and four digits, and sometimes a suffix. e.g. `CS2101`, `CS2103T`.
+
+### Alphanumeric
+
+An alphanumeric character is one that is either a number (0-9) or a letter (any alphabet, lower or upper case).
+An input described as alphanumeric means that all the characters of the input must follow these constraints (i.e. 
+composed only of letters and/or numbers)

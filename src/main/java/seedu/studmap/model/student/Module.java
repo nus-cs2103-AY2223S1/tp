@@ -9,7 +9,7 @@ import static seedu.studmap.commons.util.AppUtil.checkArgument;
  */
 public class Module {
 
-    public static final String MESSAGE_CONSTRAINTS = "Module must start with capital letters and contain "
+    public static final String MESSAGE_CONSTRAINTS = "Module must start with letters and contain "
             + "4 numbers after, with an optional character prefix.";
 
     public static final String VALIDATION_REGEX = "[A-Z]+\\d{4}[A-Z]?";
