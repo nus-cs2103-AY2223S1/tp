@@ -425,14 +425,14 @@ a server address e.g. `111.111.111.111`
 This is much less user-friendly as compared to the new representation
 where users are able to remember various servers by their server names,
 and distinguish servers with the same names by their server addresses
-e.g. `Mineplex @ 111.111.111.111`
+e.g. `Mineplex@111.111.111.111`
 
 #### Implementation
 
 The server class currently only allows the server to be documented in the
 format of an IP address.
 
-With the input `ms/ 111.111.111.111`, <br>
+With the input `ms/111.111.111.111`, <br>
 1) The `Parse` method in `AddCommandParser` will recognize the `prefix_minecraft_server`.<br>
 2) The method will then call `parseServers` method of `ParserUtil`. <br>
 3) `parseServers` method of `ParserUtil` will examine the validity of the
