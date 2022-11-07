@@ -9,34 +9,30 @@ NUSEatWhere is a Command Line (CLI) application which helps you search for the a
 
 Given below are my contributions to the project.
 
-* **New Feature**: to be added soon
+* **New Features**:
+ * added the ability to search a randomised lis tof eatries when using the findLocation command.  
+ * added the ability to search a randomised lis tof eatries when using the findCuisinse command.  
+ * findPrice commamd, added the abilty to search for an eatery using the 
 
-* **New Feature**: to be added soon
+* **Code contributed**: 
+     * Can be found on the [team project code dashboard](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=debwy&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
-* **Code contributed**: to be added soon
-
-* **Project management**:
-    * to be added soon
+* **Team Tasks**:
+    * Updated the sample data util under model to include the list of all the eatries in NUS, this is the data 
+    to be loaded when the application first starts up. 
+    * helped test new features implemented while also approving and merge pull requests. 
 
 * **Enhancements to existing features**:
-    * to be added soon
-    * to be added soon
+    * Update the find command to allow for the ability to search using substring, previouly it matched keyword exactly, 
+    * Updade findLocation command to allow for search using substring to imporve bug encountered when match keyword exactly. 
+    * Updated the look of GUI to enhance the look of the dark theme to better fit the application. 
 
 * **Documentation**:
-    * to be added soon
-        * to be added soon
-        * to be added soon
-    * to be added soon
-        * to be added soon
+    * Updated the documentation for the find command to reflect the use of the random generator 
+    * Updated the documentation for the findLocation commamd to reflect the use of the random generator feature, 
+    * Updated the documentation for the findCuisine command to reflect the use of the random gernator feature. 
+    * Updated the userguide to relflect the implementation of the new findPrice command. 
 
 * **Community**:
-    * to be added soon
-    * to be added soon
-    * to be added soon
-    * to be added soon
+    * helped review PRs.
 
-* **Tools**:
-    * to be added soon
-    * to be added soon
-
-* _to be added soon_

@@ -22,22 +22,29 @@ With `Food Guide`, you can search for the available food options in NUS and make
 ## Table of Contents
 * [Introduction](#introduction)
 * [Table of Contents](#table-of-contents)
+* [Using the User Guide](#using-the-user-guide)
+* [First Glance](#first-glance)
 * [Quick Start](#quick-start)
 * [Features](#features)
+  * [Introduction to Our Features](#introduction-to-our-features)
   * [Help](#help-command--help)
   * [List](#listing-all-eateries--list)
-  * [Find](#finding-eateries-by-name--find) / [FindTag](#finding-eateries-by-tag--findtag) /
-    [FindLocation](#finding-eateries-by-location--findlocation) / [FindCuisine](#finding-eateries-by-cuisine--findcuisine)
+  * [Exit](#exit-command--exit)
+  * [Find](#find-eateries-by-name--find) / [FindLocation](#find-eateries-by-location--findlocation) /
+    [FindCuisine](#find-eateries-by-cuisine--findcuisine) / [FindPrice](#find-eateries-by-price--findprice) /
+    [FindTag](#find-eateries-by-tag--findtag)
   * [Tag](#add-tag-to-eatery--tag) / [Untag](#remove-tag-from-eatery--untag)
-  * [Add](#add-eatery--add) / [Delete](#delete-eatery--delete) / [Edit](#edit-eatery--edit)
   * [Fav](#favourite-eatery--fav) / [Unfav](#unfavourite-eatery--unfav)
+  * [Add](#add-eatery--add) / [Delete](#delete-eatery--delete) / [Edit](#edit-eatery--edit)
+  * [Clear](#clear-food-guide--clear)
+
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
 ## Using the User Guide
 This user guide aims to orientate users (such as _you!_) on how to install, use, and troubleshoot `Food Guide`.
 
-For all new users, we highly recommend you check out the [Quick Start](#Quick-start) section, which covers the
+For all new users, we highly recommend you check out the [Quick Start](#quick-start) section, which covers the
 installation instructions and the basic features of our application.
 
 After getting acquainted with `Food Guide`, you should take a look at our [Features](#features) section, which
@@ -59,7 +66,7 @@ The following image describes how `Food Guide` looks like upon opening the appli
 
 ![Ui](images/user-guide/UgGuiGuide.png)
 
-## Quick start
+## Quick Start
 
 1. First, start by installing `Java 11` from 
 [here](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html).
@@ -86,7 +93,9 @@ e.g. typing `help` and pressing Enter will open the help window. <br>
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Introduction to Features
+## Features
+
+### Introduction to Our Features
 
 This section summarizes all the commands supported in the `Food Guide`. 
 We highly recommend you read this section before jumping into all the features below!
@@ -138,8 +147,8 @@ This may be useful to include eateries near NUS (such as Supper Stretch!).
   e.g. `help 123` will be interpreted as `help`.
 
 * The special `-h` parameter will provide a useful help message for how to use the command. 
-  This overrides the existing command behaviour. All other parameters will be ignored.
-  Additionally, inputs that contain `-h` 
+  To avoid any unforeseen behaviour, remove your other inputs when using `-h`.
+  e.g. `find -h` or `add -h`. 
 
 <br>
 </div>
@@ -467,7 +476,7 @@ Do make a backup as an invalid data file will cause `Food Guide` to override it 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command Summary
 
 | Command Word    | Action                                  | Format                                                                                |
 |:----------------|:----------------------------------------|:--------------------------------------------------------------------------------------|
