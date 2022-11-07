@@ -135,12 +135,12 @@ and other module related information such as your teaching schedule for the modu
 Before you get started with this feature, have a look at the common parameters we have used. Take a look before you
 continue!
 
-| Parameter            | Description & Restriction                                                                                                                                                                         | Example                                                          |
-|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
-| `MODULE_NAME`        | This parameter represents the name of the module you are adding into ProfNUS.<br/>The name should be alphanumeric.<br/>Modules in ProfNUS are allowed to have the same names.                     | `Software Engineering`                                           |
-| `MODULE_CODE`        | This parameter represents the module code of a module in ProfNUS. Using module code can uniquely determine a module. The format should abide by the Module Code Format of NUS.                    | `CS2030S`                                                        |
+| Parameter            | Description & Restriction                                                                                                                                                                         | Example                                                         |
+|----------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|
+| `MODULE_NAME`        | This parameter represents the name of the module you are adding into ProfNUS.<br/>The name should be alphanumeric.<br/>Modules in ProfNUS are allowed to have the same names.                     | `Software Engineering`                                          |
+| `MODULE_CODE`        | This parameter represents the module code of a module in ProfNUS. Using module code can uniquely determine a module. The format should abide by the Module Code Format of NUS.                    | `CS2030S`                                                       |
 | `MODULE_DESCRIPTION` | This parameter represents the description of the module you are adding into ProfNUS.<br/>The description should be alphanumeric.<br/>Modules in ProfNUS are allowed to have the same description. | `This module teaches you about software engineering principles.` |
-| `TAG`                | This parameter represents the tag you want to attach to the module.<br/>It must be a single word consisting of alphanumeric characters.                                                           | `Module Coordinator`                                             |
+| `TAG`                | This parameter represents the tag you want to attach to the module.<br/>It must be a single word consisting of alphanumeric characters.                                                           | `ModuleCoordinator`                                             |
 
 #### 4.2.2. Adding a module: `madd`
 
@@ -568,16 +568,17 @@ As a professor in SoC, you must be busy with teaching. ProfNUS is here to help y
 
 In this section, we list all the parameters you will encounter of following commands. Take a look before you continue.
 
-| Parameter     | Description & Restriction                                    | Example       |
-| ------------- | ------------------------------------------------------------ | ------------- |
-| `MODULE_CODE` | This parameter represents the code of a module. Using module code can uniquely determine a module. The format should abide by the  [Module Code Format of NUS](https://www.nus.edu.sg/registrar/docs/info/nusbulletin/AY201213_GeneralInformation.pdf). | `CS2103T`     |
-| `WEEKDAY`     | This parameter represents the day in a week. We provide seven options for you: `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`, `Sunday`. <br/>Please take note that this parameter is **case sensitive**. Weekdays in lower case will not be accepted. | `Monday`      |
+| Parameter     | Description & Restriction                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | Example       |
+|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| `MODULE_CODE` | This parameter represents the code of a module. Using module code can uniquely determine a module. The format should abide by the  [Module Code Format of NUS](https://www.nus.edu.sg/registrar/docs/info/nusbulletin/AY201213_GeneralInformation.pdf).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | `CS2103T`     |
+| `WEEKDAY`     | This parameter represents the day in a week. We provide seven options for you: `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`, `Sunday`. <br/>Please take note that this parameter is **case sensitive**. Weekdays in lower case will not be accepted.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | `Monday`      |
 | `PERIOD`      | This parameter represents the time slot of your schedule. Your `PERIOD` should follow the format of `HH:MM-HH:MM`. To be consistent with NUS regular class duration, we  have set the following **restrictions** to this parameter:                                                                                                                  <br/>1. No class should start before `07:00` or end after `10:00`.                                <br/>2. The time should be on the whole or half hour.                                                   <br/>3. The duration should be longer than or equal to one hour, and shorter than or equal to three hours.                                                                                                             <br/>Please take note that ProfNUS adopts 24-hour clock, so `02:00` will be treated as 2am. | `10:00-12:00` |
-| `CLASS_TYPE`  | This parameter represents the class category. We provide four types of classes for you: `lec`, `tut`, `lab`, `rec`, representing Lecture, Tutoria, Lab, and Reflection, respectively. <br/> Please take note that this parameter is **case sensitive**. Any uppercase character will not be accepted. | `lec`         |
-| `CLASS_GROUP` | This parameter represents the group label if there are multiple lecture, tutorial, lab, or reflection groups. | `L1`          |
-| `VENUE`       | This parameter represents the venue of a class.              | `LT16`        |
-| `INDEX`       | This parameter represents the index of a schedule in the displayed list. Indices are **one-based**. | `1`           |
-| `...`         | This symbol means the parameter before it can appear multiple times. For example, `param...` means you can type `param1 param2 param3 ...` | `...`         |
+| `CLASS_TYPE`  | This parameter represents the class category. We provide four types of classes for you: `lec`, `tut`, `lab`, `rec`, representing Lecture, Tutoria, Lab, and Reflection, respectively. <br/> Please take note that this parameter is **case sensitive**. Any uppercase character will not be accepted.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | `lec`         |
+| `CLASS_GROUP` | This parameter represents the group label if there are multiple lecture, tutorial, lab, or reflection groups.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     | `L1`          |
+| `VENUE`       | This parameter represents the venue of a class.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | `LT16`        |
+| `INDEX`       | This parameter represents the index of a schedule in the displayed list. Indices are **one-based**.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | `1`           |
+| `MODE`        | This parameter represents the mode of the timetable. `MODE` can only be `v` or `h`.   <br/> Please take note that this parameter is **case sensitive**. Any uppercase character will not be accepted.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | `v`           |
+| `...`         | This symbol means the parameter before it can appear multiple times. For example, `param...` means you can type `param1 param2 param3 ...`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | `...`         |
 
 #### 4.4.2. Add your schedule: `sadd`
 
@@ -693,7 +694,8 @@ Now, let's use `sdelete` command and delete the first schedule in your schedule 
 
 #### 4.4.5. Clear your schedule: `sclear`
 
-This command helps you clear all schedules/all schedules of selected modules.
+Clears all the schedules or all schedules of selected modules.
+
 **Format:** `sclear [c/MODULE_CODE]...`
 
 <div markdown="block" class="alert alert-info">
@@ -701,7 +703,7 @@ This command helps you clear all schedules/all schedules of selected modules.
 **:information_source: Note**<br>
 
 - Refer to section [Schedule Manager Command Parameters](#441-schedule-manager-command-parameters) for more information about the parameters
-- If no optional `MODULE_CODE` is given, all schedules will be cdeleted
+- If no optional `MODULE_CODE` is given, all schedules will be cleared.
 
 </div>
 
@@ -709,16 +711,31 @@ This command helps you clear all schedules/all schedules of selected modules.
 
 :exclamation: **Caution:**
 
-- If the `MODULE_CODE` you type in doesn't exist, ProfNUS will report an error and  **will not** clear any schedule you have.
+- If any one of `MODULE_CODE` you type in doesn't exist, ProfNUS will report an error and  **will not** clear any schedule you have.
 
 </div>
 
-**Example:** `sclear m/CS2103T m/CS2103`
+**Example:** `sclear c/CS2101 c/CS2103T`
 
-#### 4.4.6. View your schedule: `view`
+Now, let's use `sclear` to clear all schedules of CS2101 and CS2103T in the schedule lists.
 
-You can use this command to view the list of selected/all schedules.
-**Format:** `view [c/MODULE_CODE]... [w/WEEKDAY]...`
+`c/CS2101 c/CS2103T`
+
+**Step 1:** type command `sclear c/CS2101 c/CS2103T` in the command text box.
+
+![sclear_step1](images/userguide/sclear_step1.png)
+
+**Step 2:** Press enter, then you can see the remaining schedules without those cleared.
+
+![sclear_step2](images/userguide/sclear_step2.png)
+
+
+
+#### 4.4.6. View your schedule: `sview`
+
+Views the list of selected/all schedules.
+
+**Format:** `sview [c/MODULE_CODE]... [w/WEEKDAY]...`
 
 <div markdown="block" class="alert alert-info">
 
@@ -726,39 +743,82 @@ You can use this command to view the list of selected/all schedules.
 
 - Refer to section [Schedule Manager Command Parameters](#441-schedule-manager-command-parameters) for more information about the parameters
 - Schedules matching at least one keyword will be returned to you.
-- You can view all your schedules by typing `view` without any parameter.
+- You can view all your schedules by typing `sview` without any parameter.
 
 </div>
 
 <div markdown="span" class="alert alert-warning">
 
-
 :exclamation: **Caution:**
 
-- If the `MODULE_CODE` you type in doesn't exist, ProfNUS will report an error and **will not** show any schedule.
+- If any one of `MODULE_CODE` you type in doesn't exist, ProfNUS will report an error and **will not** show any schedule.
 
 </div>
 
-**Example:** `view c/CS2030S w/Monday`
+**Example:** `sview c/CS2040S w/Monday`
 
 Now, let's view your schedules of CS2030S and schedules on Monday.
 
-**Step 1:** Type the command `view c/CS2030S w/Monday` in the command box.
+**Step 1:** Type the command `sview c/CS2040S w/Monday` in the command box.
 
-![ ](images/userguide/view_step1.png)
+![sview_step1](images/userguide/sview_step1.png)
 
-**Step 2:** Press enter, you will see all schedules related to CS2030S and Monday.
+**Step 2:** Press enter, you will see all schedules of CS2040S(highlighted in blue block) and all schedules on Monday(highlighted in yellow box).
 
-![view by module](images/userguide/view.png)
+![sview_step2](images/userguide/sview_step2.png)
+
 
 #### 4.4.7. View your timetable: `tview`
 
-Want to make your own timetable? Use `tview` command! It helps you creates your own weekly timetable.
+Views the Timetable of all schedules 
 
-**Format:** `tview`
-**Example:** `tview`
+**Format:** `tview [MODE]`
 
-![tview](images/userguide/tview.png)
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note**<br>
+
+- `MODE` can only be `v`(for vertical mode) or `h`(for horizontal mode).
+
+- The default value of `MODE` is `h`.
+
+- You can view the vertical schedules by typing `tview v`.
+
+- You can view the horizontal schedules by typing `tview h` or `tview`.
+
+</div>
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Caution:**
+
+- If there are other parameters/words after `sview` instead of `v` or `h`, ProfNUS will report an error.
+
+</div>
+
+**Example:** `tview h`
+
+Now, let's view our timetable in horizontal mode.
+
+**Step 1:** Type the command `tview h` in the command box.
+
+![tview_h_step1](images/userguide/tview_h_step1.png)
+
+**Step 2:** Press enter, you will see the horizontal timetable with all schedules.
+
+![tview_h_step2](images/userguide/tview_h_step2.png)
+
+**Example:** `tview v`
+
+If the command is `tview v` in previous example step 1, the vertical timetable will be display.
+
+![tview_v_step2](images/userguide/tview_v_step2.png)
+
+
+
+
+
+
 
 ### 4.5. Clearing all entries: `clear`
 
@@ -832,14 +892,14 @@ _Details coming soon ..._
 
 ### 6.4 Schedule Manager Command Summary
 
-| Action                                                    | Format                                                       | Example                                                      |
-|-----------------------------------------------------------| ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [Add your schedule](#442-add-your-schedule-sadd)          | `sadd m/MODULE_CODE w/WEEKDAY ct/PERIOD cc/CLASS_TYPE cg/CLASS_GROUP cv/VENUE` | `sadd m/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD` |
-| [Edit your schedule](#443-edit-your-schedule-sedit)       | `sedit INDEX [m/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cg/CLASS_GROUP] [cv/VENUE]` | `sedit 1 w/Monday ct/09:00-10:00 cc/tut cv/COM1-B103`        |
-| [Delete your schedule](#444-delete-your-schedule-sdelete) | `sdelete INDEX`                                              | `sdelete 1`                                                  |
-| [Clear your schedule](#445-clear-your-schedule-sclear)    | `sclear [m/MODULE_CODE]...`                                  | `sclear m/CS2103T m/CS1101S`                                 |
-| [View your schedule list](#446-view-your-schedule-view)   | `view [m/MODULE_CODE]... [w/WEEKDAY]...`                     | `view m/CS2103T w/Monday`                                    |
-| [View your timetable](#447-view-your-timetable-tview)     | `tview`                                                      | `tview`                                                      |
+| Action                                                    | Format                                                                                            | Example                                                          |
+|-----------------------------------------------------------|---------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
+| [Add your schedule](#442-add-your-schedule-sadd)          | `sadd m/MODULE_CODE w/WEEKDAY ct/PERIOD cc/CLASS_TYPE cg/CLASS_GROUP cv/VENUE`                    | `sadd m/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD` |
+| [Edit your schedule](#443-edit-your-schedule-sedit)       | `sedit INDEX [m/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cg/CLASS_GROUP] [cv/VENUE]` | `sedit 1 w/Monday ct/09:00-10:00 cc/tut cv/COM1-B103`            |
+| [Delete your schedule](#444-delete-your-schedule-sdelete) | `sdelete INDEX`                                                                                   | `sdelete 1`                                                      |
+| [Clear your schedule](#445-clear-your-schedule-sclear)    | `sclear [m/MODULE_CODE]...`                                                                       | `sclear m/CS2103T m/CS1101S`                                     |
+| [View your schedule list](#446-view-your-schedule-view)   | `sview [m/MODULE_CODE]... [w/WEEKDAY]...`                                                         | `sview m/CS2103T w/Monday`                                       |
+| [View your timetable](#447-view-your-timetable-tview)     | `tview [MODE]`                                                                                    | `tview v`                                                        |
 
 ### 6.5 Miscellaneous Command Summary
 
