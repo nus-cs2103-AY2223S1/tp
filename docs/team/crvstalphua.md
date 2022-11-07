@@ -56,6 +56,12 @@ Given below are my contributions to the project.
     * Design considerations for Edit Command Feature (Pull requests: [\#116](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/116))
     * Write-up and UML Diagram for Mark Issue Command Feature and Unmark Issue Command Feature (Pull requests: [\#242](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/242), [\#245](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/245))
     * Design considerations for Mark Issue Command Feature (Pull requests: [\#242](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/242))
+    * Edited Model Component and Model Class Diagram (Pull requests: [\#245](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/245))
 
 * **Contributions to the team-based tasks**: 
   * Reviewed some team pull requests (Pull requests: [\#83](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/83), [\#132](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/132)) 
+  * Completed all issues assigned to me each week
+  * Occasionally helped to manage weekly meetings by taking notes or setting up zoom links
+
+* **Community**:
+  * Reported bugs as well as provided suggestions for other teams during PED ([PED_ISSUES](https://github.com/crvstalphua/ped/issues))
