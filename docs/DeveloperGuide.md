@@ -95,7 +95,7 @@ the `LogicManager.java` class which follows the `Logic` interface. Other compone
 through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the
 implementation of a component), as illustrated in the (partial) class diagram below.
 
-![Component Managers](images/diagrams/ComponentManagers.png)){: diagram}
+![Component Managers](images/diagrams/ComponentManagers.png){: diagram}
 
 The sections below give more details of each component.
 
