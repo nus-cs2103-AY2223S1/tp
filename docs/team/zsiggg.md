@@ -47,6 +47,8 @@ Given below are my contributions to the project.
     * https://github.com/AY2223S1-CS2103T-F12-1/tp/pull/146
     * https://github.com/AY2223S1-CS2103T-F12-1/tp/pull/145
     * https://github.com/AY2223S1-CS2103T-F12-1/tp/pull/147
+  * Add test cases for sort and filter commands
+  * Refactor test cases that previously failed due to updates in code base
   * Refactor `ArgumentTokenizer` and test cases to require a whitespace after the flag, to allow for flags with similar
   prefixes (e.g. `-ph` and `-p`)
   * Refactoring of `personModel` to `personBook` to `buyerBook` 
