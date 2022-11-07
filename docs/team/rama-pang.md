@@ -11,8 +11,6 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 
 ## Contributions to project
 
-#### New features
-
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=rama-pang&breakdown=true).
 
 * **New feature**: Added the ability to undo or redo a command.
