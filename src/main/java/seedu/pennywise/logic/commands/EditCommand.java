@@ -47,6 +47,8 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_ENTRY_SUCCESS = "Edited Entry: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+
+    public static final String MESSAGE_NO_ENTRY_TYPE = "An entry type must be provided (e.g t/e)";
     public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the PennyWise application.";
 
     private final Index index;
