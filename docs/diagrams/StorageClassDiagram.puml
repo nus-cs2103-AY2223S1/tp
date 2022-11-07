@@ -22,6 +22,11 @@ Class JsonAdaptedPerson
 Class JsonAdaptedTag
 }
 
+package "CommandHistory Storage" #F4F6F6{
+Class "<<interface>>\nCommandHistoryStorage" as CommandHistoryStorage
+Class TextCommandHistoryStorage
+}
+
 }
 
 Class HiddenOutside #FFFFFF
@@ -30,14 +35,22 @@ HiddenOutside ..> Storage
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
 StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" CommandHistoryStorage
 
-Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Storage --|> AddressBookStorage
+Storage --|> UserPrefsStorage
+Storage --|> CommandHistoryStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonAddressBookStorage .up.|> AddressBookStorage
 JsonAddressBookStorage ..> JsonSerializableAddressBook
 JsonSerializableAddressBook --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
+
+TextCommandHistoryStorage .up.|> CommandHistoryStorage
+
+Storage -[hidden]-> StorageManager
+UserPrefsStorage -[hidden]right-> CommandHistoryStorage
+CommandHistoryStorage -[hidden]right-> UserPrefsStorage
 
 @enduml

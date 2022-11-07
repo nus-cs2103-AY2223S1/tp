@@ -1,10 +1,14 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Person;
 
 /**
@@ -57,6 +61,8 @@ public interface Model {
      */
     boolean hasPerson(Person person);
 
+    boolean hasPersonWithSameAppointmentDateTime(Appointment appointment);
+
     /**
      * Deletes the given person.
      * The person must exist in the address book.
@@ -84,4 +90,21 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
+
+    void updateFilteredPersonList(List<? extends Predicate<Person>> predicates);
+
+    void sortPerson(Comparator<Person> comparator);
+
+    ObservableList<CalendarEvent> getFilteredCalendarEventList();
+
+
+    ReadOnlyCommandHistory getCommandHistory();
+
+    void addToCommandHistory(String commandInput);
+
+    String getNextCommand();
+
+    String getPrevCommand();
+
+    void updateCalendarEventList();
 }

@@ -52,6 +52,9 @@ DeleteCommand -> Model : deletePerson(1)
 activate Model
 
 Model --> DeleteCommand
+
+DeleteCommand -> Model : updateCalendarEventList()
+Model --> DeleteCommand
 deactivate Model
 
 create CommandResult

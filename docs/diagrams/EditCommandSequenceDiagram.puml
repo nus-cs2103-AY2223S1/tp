@@ -1,0 +1,104 @@
+@startuml
+!include style.puml
+
+skinparam ParticipantFontSize 25
+
+skinparam Sequence {
+    ArrowFontSize 20
+}
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditCommandParser " as EditCommandParser  LOGIC_COLOR
+participant "ec:EditCommand" as EditCommand LOGIC_COLOR
+participant "epd:EditPersonDescriptor" as EditPersonDescriptor LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":UniquePersonList" as UniquePersonList MODEL_COLOR
+participant "p:Person" as Person MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit 1 n\ Musab")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("edit 1 n\ Musab")
+activate AddressBookParser
+
+create EditCommandParser
+AddressBookParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser  --> AddressBookParser
+deactivate EditCommandParser
+
+AddressBookParser -> EditCommandParser  : parse("edit 1 n\ Musab")
+activate EditCommandParser
+
+create EditPersonDescriptor
+EditCommandParser -> EditPersonDescriptor :
+activate EditPersonDescriptor
+
+EditPersonDescriptor --> EditCommandParser : epd
+deactivate EditPersonDescriptor
+
+create EditCommand
+EditCommandParser  -> EditCommand
+activate EditCommand
+
+EditCommand --> EditCommandParser  : ec
+deactivate EditCommand
+
+
+EditCommandParser  --> AddressBookParser : ec
+deactivate EditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser  -[hidden]-> AddressBookParser
+destroy EditCommandParser
+
+AddressBookParser --> LogicManager : ec
+deactivate AddressBookParser
+
+LogicManager -> EditCommand : execute()
+activate EditCommand
+
+EditCommand -> EditPersonDescriptor : createEditedPerson(personToEdit, epd)
+activate EditPersonDescriptor
+
+create Person
+EditPersonDescriptor -> Person : Person(updatedName)
+activate Person
+
+Person --> EditPersonDescriptor : p
+deactivate Person
+
+EditPersonDescriptor --> EditCommand : p
+deactivate EditPersonDescriptor
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditPersonDescriptor  -[hidden]-> EditCommand
+destroy EditPersonDescriptor
+
+EditCommand -> UniquePersonList : remove(persontoEdit)
+activate UniquePersonList
+UniquePersonList --> EditCommand
+EditCommand -> UniquePersonList : add(p)
+UniquePersonList --> EditCommand
+deactivate UniquePersonList
+
+
+
+create CommandResult
+EditCommand -> CommandResult : CommandResult(successMsg)
+activate CommandResult
+
+CommandResult --> EditCommand
+deactivate CommandResult
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

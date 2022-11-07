@@ -1,0 +1,90 @@
+@startuml
+!include style.puml
+
+skinparam ParticipantFontSize 20
+
+skinparam Sequence {
+    ArrowFontSize 20
+}
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddAppointmentCommandParser " as AddAppointmentCommandParser  LOGIC_COLOR
+participant "a:AddAppointmentCommand" as AddAppointmentCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Appointment" as Appointment MODEL_COLOR
+participant ":MaximumSortedList" as MaximumSortedList MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute(command_details)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(command_details)
+activate AddressBookParser
+
+create AddAppointmentCommandParser
+AddressBookParser -> AddAppointmentCommandParser
+activate AddAppointmentCommandParser
+
+AddAppointmentCommandParser  --> AddressBookParser
+deactivate AddAppointmentCommandParser
+
+AddressBookParser -> AddAppointmentCommandParser  : parse(command_values)
+activate AddAppointmentCommandParser
+
+create Appointment
+AddAppointmentCommandParser -> Appointment : Appointment(dateTime, location)
+activate Appointment
+
+Appointment --> AddAppointmentCommandParser :
+deactivate Appointment
+
+create AddAppointmentCommand
+AddAppointmentCommandParser  -> AddAppointmentCommand
+activate AddAppointmentCommand
+
+AddAppointmentCommand --> AddAppointmentCommandParser  : a
+deactivate AddAppointmentCommand
+
+AddAppointmentCommandParser  --> AddressBookParser : a
+deactivate AddAppointmentCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddAppointmentCommandParser  -[hidden]-> AddressBookParser
+destroy AddAppointmentCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddAppointmentCommand : execute()
+activate AddAppointmentCommand
+
+AddAppointmentCommand -> MaximumSortedList : add(appointment)
+activate MaximumSortedList
+
+MaximumSortedList --> AddAppointmentCommand
+deactivate MaximumSortedList
+
+AddAppointmentCommand -> Model : updateCalendarEventList
+activate Model
+
+Model --> AddAppointmentCommand
+deactivate Model
+
+create CommandResult
+AddAppointmentCommand -> CommandResult : CommandResult(successMsg)
+activate CommandResult
+
+CommandResult --> AddAppointmentCommand
+deactivate CommandResult
+
+AddAppointmentCommand --> LogicManager : result
+deactivate AddAppointmentCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

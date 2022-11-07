@@ -1,0 +1,88 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
+participant "sby:SortByIncome" as SortByIncome LOGIC_COLOR
+participant "sc:SortCommand" as SortCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
+participant ":UniquePersonList" as UniquePersonList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("sort income")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("sort income")
+activate AddressBookParser
+
+create SortCommandParser
+AddressBookParser -> SortCommandParser
+activate SortCommandParser
+
+SortCommandParser --> AddressBookParser
+deactivate SortCommandParser
+
+AddressBookParser -> SortCommandParser : parse("income")
+activate SortCommandParser
+
+create SortByIncome
+SortCommandParser -> SortByIncome
+activate SortByIncome
+
+SortByIncome --> SortCommandParser : sby
+deactivate SortByIncome
+
+create SortCommand
+SortCommandParser -> SortCommand : SortCommand(sby, "income")
+activate SortCommand
+
+SortCommand --> SortCommandParser : sc
+deactivate SortCommand
+
+SortCommandParser --> AddressBookParser : sc
+deactivate SortCommandParser
+'Hidden arrow
+SortCommandParser -[hidden]-> AddressBookParser
+destroy SortCommandParser
+
+AddressBookParser --> LogicManager : sc
+deactivate AddressBookParser
+
+LogicManager -> SortCommand : execute()
+activate SortCommand
+
+SortCommand -> Model : sortPersons(sby)
+activate Model
+
+Model --> AddressBook : sortPersons(sby)
+activate AddressBook
+
+AddressBook --> UniquePersonList : sortPersons(sby)
+activate UniquePersonList
+
+UniquePersonList --> AddressBook
+deactivate UniquePersonList
+
+AddressBook --> Model
+deactivate AddressBook
+
+Model --> SortCommand
+deactivate Model
+
+create CommandResult
+SortCommand -> CommandResult : CommandResult(successMsg, "income")
+activate CommandResult
+
+CommandResult --> LogicManager
+deactivate CommandResult
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

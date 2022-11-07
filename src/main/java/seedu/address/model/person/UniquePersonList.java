@@ -3,11 +3,13 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -34,6 +36,21 @@ public class UniquePersonList implements Iterable<Person> {
     public boolean contains(Person toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSamePerson);
+    }
+
+    /**
+     * Returns true if the list contains a person with an appointment with the same date time as the given argument.
+     */
+    public boolean containsPersonWithSameAppointmentDateTime(Appointment toCheck) {
+        requireNonNull(toCheck);
+        for (Person person:internalUnmodifiableList) {
+            for (Appointment appointment: person.getAppointments().getObservableList()) {
+                if (appointment.getDateTime().equals(toCheck.getDateTime())) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /**
@@ -133,5 +150,9 @@ public class UniquePersonList implements Iterable<Person> {
             }
         }
         return true;
+    }
+
+    public void sortPersons(Comparator<Person> comparator) {
+        internalList.sort(comparator);
     }
 }

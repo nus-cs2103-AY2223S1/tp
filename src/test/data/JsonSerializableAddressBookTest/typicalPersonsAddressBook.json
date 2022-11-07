@@ -5,42 +5,92 @@
     "phone" : "94351253",
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
+    "riskTag": "LOW",
+    "planTag": "Savings Plan",
+    "clientTag": "POTENTIAL",
+    "income": "1000",
+    "monthly": "200",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
+    "riskTag": "HIGH",
+    "planTag": "Savings Plan",
+    "clientTag": "POTENTIAL",
+    "income": "1000",
+    "monthly": "100",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
+    "riskTag": "LOW",
+    "planTag": "Savings Plan",
+    "clientTag": "CURRENT",
+    "income": "1000",
+    "monthly": "200",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "address" : "10th street",
+    "riskTag": "LOW",
+    "planTag": "Savings Plan",
+    "clientTag": "CURRENT",
+    "income": "1000",
+    "monthly": "300",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "address" : "michegan ave",
-    "tagged" : [ ]
+    "riskTag": "MEDIUM",
+    "planTag": "Savings Plan",
+    "clientTag": "POTENTIAL",
+    "income": "6000",
+    "monthly": "250",
+    "tagged" : [ ],
+    "appointments" : [ {
+      "appointmentDateTime" : "22-01-2023 01:00",
+      "appointmentLocation" : "Jurong Point"
+    } ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "address" : "little tokyo",
-    "tagged" : [ ]
+    "riskTag": "MEDIUM",
+    "planTag": "Savings Plan",
+    "clientTag": "CURRENT",
+    "income": "2000",
+    "monthly": "500",
+    "tagged" : [ ],
+    "appointments" : [ {
+      "appointmentDateTime" : "23-03-2024 01:00",
+      "appointmentLocation" : "West Mall"
+    } ]
   }, {
     "name" : "George Best",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "address" : "4th street",
-    "tagged" : [ ]
+    "riskTag": "LOW",
+    "planTag": "Savings Plan",
+    "clientTag": "POTENTIAL",
+    "income": "10000",
+    "monthly": "400",
+    "tagged" : [ ],
+    "appointments" : [ {
+      "appointmentDateTime" : "21-01-2023 01:00",
+      "appointmentLocation" : "NUS"
+    }, {
+      "appointmentDateTime" : "23-03-2024 01:00",
+      "appointmentLocation" : "NUS"
+    } ]
   } ]
 }

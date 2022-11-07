@@ -12,7 +12,8 @@ public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
-
+    public static final String MESSAGE_USAGE = "clear: Clear all persons in the address book."
+            + "\nExample: clear";
 
     @Override
     public CommandResult execute(Model model) {

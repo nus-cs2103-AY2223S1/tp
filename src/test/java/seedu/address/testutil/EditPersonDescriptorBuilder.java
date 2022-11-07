@@ -4,13 +4,18 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.parser.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Income;
+import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.tag.ClientTag;
+import seedu.address.model.tag.NormalTag;
+import seedu.address.model.tag.PlanTag;
+import seedu.address.model.tag.RiskTag;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -72,11 +77,50 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code RiskTag} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withRiskTag(String riskTag) {
+        descriptor.setRiskTag(new RiskTag(riskTag));
+        return this;
+    }
+
+    /**
+     * Sets the {@code PlanTag} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withPlanTag(String planTag) {
+        descriptor.setPlanTag(new PlanTag(planTag));
+        return this;
+    }
+    /**
+     * Sets the {@code ClientTag} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withClientTag(String clientTag) {
+        descriptor.setClientTag(new ClientTag(clientTag));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Income} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withIncome(String income) {
+        descriptor.setIncome(new Income(income));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Monthly} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withMonthly(String monthly) {
+        descriptor.setMonthly(new Monthly(monthly));
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
+        Set<NormalTag> tagSet = Stream.of(tags).map(NormalTag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
         return this;
     }

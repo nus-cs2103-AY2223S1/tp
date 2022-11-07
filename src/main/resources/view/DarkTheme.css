@@ -1,13 +1,13 @@
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    -fx-background-color: transparent;
+    background-color: transparent; /* Used in the default.html file */
 }
 
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #555555;
-    -fx-opacity: 0.9;
+    -fx-text-fill: #ffffff;
+    -fx-opacity: 1;
 }
 
 .label-bright {
@@ -18,7 +18,7 @@
 }
 
 .label-header {
-    -fx-font-size: 32pt;
+    -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-opacity: 1;
@@ -90,7 +90,7 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #191b1d;
 }
 
 .list-cell {
@@ -100,15 +100,15 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #191b1d;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #515658;
+    -fx-background-color: #3d4247;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #424d5f;
+    -fx-background-color: #24b3a8;
 }
 
 .list-cell:filled:selected #cardPane {
@@ -133,21 +133,26 @@
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: #0e1011;
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: #0e1011;
      -fx-border-color: derive(#1d1d1d, 10%);
      -fx-border-top-width: 1px;
 }
 
+.gridStyle Line {
+  -fx-stroke: red;
+}
+
+
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(#0e1011, 10%);
 }
 
 .result-display {
-    -fx-background-color: transparent;
+    -fx-background-color: #0e1011;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
@@ -207,6 +212,18 @@
     -fx-background-color: black;
 }
 
+.tab-pane .tab-header-area .tab-header-background {
+   -fx-background-color: #0e1011;
+}
+
+.tab-pane:focused>.tab-header-area>.headers-region>.tab:selected .focus-indicator {
+   -fx-border-color: orange;
+}
+
+.tab-label {
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+}
 /*
  * Metro style Push Button
  * Author: Pedro Duque Vieira
@@ -333,8 +350,13 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: #0e1011;
     -fx-background-radius: 0;
+}
+
+#specialTags {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
 }
 
 #tags {
@@ -345,8 +367,8 @@
 #tags .label {
     -fx-text-fill: white;
     -fx-background-color: #3e7b91;
-    -fx-padding: 1 3 1 3;
+    -fx-padding: 4 3 4 3;
     -fx-border-radius: 2;
-    -fx-background-radius: 2;
+    -fx-background-radius: 8;
     -fx-font-size: 11;
 }

@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +14,9 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.AddressBook;
+import seedu.address.model.CommandHistory;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyCommandHistory;
 import seedu.address.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -25,8 +29,10 @@ public class StorageManagerTest {
     @BeforeEach
     public void setUp() {
         JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        Path tempchPath = getTempFilePath("ch");
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        TextCommandHistoryStorage commandHistoryStorage = new TextCommandHistoryStorage(tempchPath);
+        storageManager = new StorageManager(addressBookStorage, userPrefsStorage, commandHistoryStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -58,6 +64,25 @@ public class StorageManagerTest {
         storageManager.saveAddressBook(original);
         ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
         assertEquals(original, new AddressBook(retrieved));
+    }
+
+    @Test
+    public void commandHistoryReadSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link TextCommandHistoryStorage} class.
+         * More extensive testing of CommandHistory saving/reading
+         * is done in {@link TextCommandHistoryStorageTest} class.
+         */
+        CommandHistory original = new CommandHistory();
+        List<String> commandHistoryList = new ArrayList<>();
+        commandHistoryList.add("list");
+        commandHistoryList.add("find alex");
+        original.setCommandHistoryList(commandHistoryList);
+        storageManager.saveCommandHistory(original);
+        ReadOnlyCommandHistory retrieved = storageManager.readCommandHistory();
+        System.out.println(original.equals(new CommandHistory(retrieved)));
+        assertEquals(original, new CommandHistory(retrieved));
     }
 
     @Test

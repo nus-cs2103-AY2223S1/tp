@@ -20,10 +20,48 @@ checkstyle {
     toolVersion = '10.2'
 }
 
+run {
+    enableAssertions = true
+}
+
+task(guiTests)
+guiTests {
+    dependsOn test
+}
+
 test {
     useJUnitPlatform()
+
+    systemProperty 'testfx.setup.timeout', '60000'
+
+    doFirst {
+        boolean runGuiTests = gradle.taskGraph.hasTask(guiTests)
+
+        if (!runGuiTests) {
+            exclude 'seedu/address/ui/**'
+        }
+    }
+
     finalizedBy jacocoTestReport
 }
+
+task headless {
+    doFirst {
+        println 'Setting headless mode properties.'
+        test {
+            systemProperties = [
+                    'java.awt.headless': 'true',
+                    'testfx.robot': 'glass',
+                    'testfx.headless': 'true',
+                    'prism.order': 'sw',
+                    'prism.text': 't2k',
+            ]
+        }
+    }
+}
+
+// Makes sure that headless properties are set before running tests
+test.mustRunAfter headless
 
 task coverage(type: JacocoReport) {
     sourceDirectories.from files(sourceSets.main.allSource.srcDirs)
@@ -39,9 +77,12 @@ task coverage(type: JacocoReport) {
         xml.required = true
     }
 }
+run {
+    enableAssertions = true
+}
 
 dependencies {
-    String jUnitVersion = '5.4.0'
+    String jUnitVersion = '5.9.0'
     String javaFxVersion = '11'
 
     implementation group: 'org.openjfx', name: 'javafx-base', version: javaFxVersion, classifier: 'win'
@@ -63,10 +104,14 @@ dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
 
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
+
+    testImplementation "org.testfx:testfx-core:4.0.16-alpha"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:5.5.1"
+    testImplementation "org.testfx:testfx-junit5:4.0.16-alpha"
 }
 
 shadowJar {
     archiveFileName = 'addressbook.jar'
 }
 
-defaultTasks 'clean', 'test'
+defaultTasks 'clean', 'test', 'headless'

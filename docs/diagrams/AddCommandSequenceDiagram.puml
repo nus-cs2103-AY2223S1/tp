@@ -1,0 +1,87 @@
+@startuml
+!include style.puml
+
+skinparam ParticipantFontSize 25
+
+skinparam Sequence {
+    ArrowFontSize 20
+}
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddCommandParser " as AddCommandParser  LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Person" as Person MODEL_COLOR
+participant ":UniquePersonList" as UniquePersonList MODEL_COLOR
+end box
+
+[-> LogicManager : execute(command_details)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(command_details)
+activate AddressBookParser
+
+create AddCommandParser
+AddressBookParser -> AddCommandParser
+activate AddCommandParser
+
+AddCommandParser  --> AddressBookParser
+deactivate AddCommandParser
+
+AddressBookParser -> AddCommandParser  : parse(name, phone, email, \n address, income, monthly, \n risk, plan, client, [tag]...)
+activate AddCommandParser
+
+create Person
+AddCommandParser -> Person : Person(person_details)
+activate Person
+
+Person --> AddCommandParser :
+deactivate Person
+
+create AddCommand
+AddCommandParser  -> AddCommand
+activate AddCommand
+
+
+
+AddCommand --> AddCommandParser  : a
+deactivate AddCommand
+
+AddCommandParser  --> AddressBookParser : a
+deactivate AddCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddCommandParser  -[hidden]-> AddressBookParser
+destroy AddCommandParser
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddCommand : execute()
+activate AddCommand
+
+AddCommand -> UniquePersonList : add(Person)
+activate UniquePersonList
+
+UniquePersonList --> AddCommand
+deactivate UniquePersonList
+
+
+create CommandResult
+AddCommand -> CommandResult : CommandResult(successMsg)
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager : result
+deactivate AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml

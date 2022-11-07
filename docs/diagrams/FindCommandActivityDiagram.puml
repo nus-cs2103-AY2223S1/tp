@@ -1,0 +1,19 @@
+@startuml
+start
+:User enters Find command;
+:User input is parsed;
+
+if () then ([user input is valid])
+    :Create and execute Find command;
+    if () then ([keyword(s) match the field of \n at least one existing client's])
+        :Display the matching client(s) in the client list;
+    else ([else])
+        :Show an empty client list;
+
+    endif
+
+else ([else])
+    : Show error message;
+endif
+stop
+@enduml

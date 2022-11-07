@@ -15,6 +15,10 @@ Class PersonListPanel
 Class PersonCard
 Class StatusBarFooter
 Class CommandBox
+
+package Calendar <<Rectangle>> {
+Class HiddenCalendar #FFFFFF
+}
 }
 
 package Model <<Rectangle>> {
@@ -24,6 +28,8 @@ Class HiddenModel #FFFFFF
 package Logic <<Rectangle>> {
 Class HiddenLogic #FFFFFF
 }
+
+
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Ui
@@ -35,10 +41,11 @@ MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" PersonListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
+MainWindow *-down-> Calendar
 
-PersonListPanel -down-> "*" PersonCard
+PersonListPanel -left> "*" PersonCard
 
-MainWindow -left-|> UiPart
+MainWindow -down-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
@@ -46,15 +53,19 @@ PersonListPanel --|> UiPart
 PersonCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
+Calendar --|> UiPart
 
 PersonCard ..> Model
+Calendar ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
+Calendar -[hidden]left- PersonListPanel
 PersonListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
+
 
 MainWindow -[hidden]-|> UiPart
 @enduml
