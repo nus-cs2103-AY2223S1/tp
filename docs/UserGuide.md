@@ -63,32 +63,6 @@ However, you may also choose to head over to the relevant sections as described 
 
 CodeConnect has 2 main sets of commands, one set to manage your contacts and one set to manage your tasks.
 
-Here are some notations that are used in this section:
-
-**Tips**
-
-<div markdown="block" class="alert alert-info">
-
-:bulb: Tips are useful suggestions on what is allowed and not allowed for some features.
-
-</div>
-
-**Questions**
-
-<div markdown="block" class="alert alert-info">
-
-:question: Questions are further explanations on things that might be confusing.
-
-</div>
-
-**Cautions**
-
-<div markdown="span" class="alert alert-warning">
-
-:exclamation: **Caution:** Cautions warns you of any potential pitfall when using the feature.
-
-</div>
-
 ### Notes about the command format:
 
 * Words in `{curly_braces}` are the parameters to be supplied by the user.<br>
