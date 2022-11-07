@@ -512,7 +512,8 @@ public class ParserUtil {
                 //Do nothing because it will eventually throw an exception if no formats match
             }
         }
-        throw new ParseException("The date should be in this format: " + PREFERRED_DATE_FORMAT);
+        throw new ParseException("The date should be in this format: " + PREFERRED_DATE_FORMAT
+                + ". And also check any out-of-range date.");
     }
 
     /**

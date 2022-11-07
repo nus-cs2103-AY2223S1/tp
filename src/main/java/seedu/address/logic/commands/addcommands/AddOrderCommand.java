@@ -100,7 +100,7 @@ public class AddOrderCommand extends Command {
         associatedBuyer.addOrders(Collections.singletonList(toAdd.getId()));
         toAdd.setBuyer(associatedBuyer);
         model.addOrder(toAdd);
-        model.switchToOrderList();
+        model.switchToBuyerList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 }

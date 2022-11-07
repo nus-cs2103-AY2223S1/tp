@@ -80,6 +80,7 @@ Given below are my contributions to the project.
     * Added test cases (the coverage increment is hard to calculate as functionality code was added along with test
       code.)
     * Deleted useless classes like AddCommandParser and decoupled some classes for higher robustness.
+    * Did a comprehensive manual testing for the final product.
 
 * **Documentation**:
     * User Guide:

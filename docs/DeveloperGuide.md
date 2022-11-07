@@ -722,11 +722,8 @@ suppliers.
 * Coordinators who run their business online need delivery. Given the location (country) of the client and the supplier,
   our app will generate a list of deliverers who have a service over the line, based on records.
 * Unlike other products, pets need a certificate to be legally sold - including photos of the animals, whether they are
-  purebred etc. Our app will also help manage certificates.
-* Pets, especially younger ones, grow very fast. After a short period of time they may look very different. Their traits
-  may change rapidly, too. As such, we will build a notification system that reminds the user to update the information
-  of pets regularly. Updating information about a pet on time is useful for coordinators to keep looking for the client
-  who has the strongest willingness to buy it.
+  pure-bred etc. Our app will also help manage certificates.
+
 
 ### User stories
 
