@@ -541,7 +541,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Student Feedback Points**: A way the National University of Singapore (NUS) assess tutors and professors' performances by gathering feedback from students.
+* **Student Feedback Points/Ratings**: A way the National University of Singapore (NUS) assess tutors and professors' performances by gathering feedback from students.
 * **Teaching Assistant (TA)**: A part-time tutor who supports professors in teaching a module by conducting tutorial/lab sessions.
 * **Teaching Nominations**: Number of nominations submitted by students for a teaching excellence award in NUS. 
 * **Tutor Profile**: A profile containing the tutor's details, such as `NAME`, `PHONE_NUMBER`, `EMAIL`, etc.
@@ -615,7 +615,10 @@ testers are expected to do more *exploratory* testing.
 ### Saving data
 
 1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Test Case
+    2. Test Case: Before starting Tuthub, delete `tuthub.json` from the `./data/` directory.<br/>
+       Expected: Tuthub will start with a sample list of tutors. A new `tuthub.json` file containing the sample data will be created in the `./data/` directory.
+    3. Test Case: While Tuthub is running, delete `tuthub.json`. Try carrying out a valid command, e.g. `view 1`.<br/>
+       Expected: Command works as per usual. Upon carrying out the command, a new `tuthub.json` file will be created in the `./data/` directory.
 
 1. _{ more test cases …​ }_
