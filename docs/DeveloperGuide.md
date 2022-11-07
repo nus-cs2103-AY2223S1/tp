@@ -301,7 +301,7 @@ Step 3. The user executes the 'editTagType Grade-Score grdt-scrt' to edit the ex
 
 Step 4. The user executes the `deleteTagType Score` to delete the Score Tag Type and all Tags of Score Tag Type for all person in CLInkedIn. The `deleteTagType` command calls the `UniqueTagTypeMap#removeExistingTagType()` to remove the scrt/ — Score key-value pair from the `prefixMap`. Furthermore, it also calls the `Model#deleteTagTypeForAllPerson()` to delete the Score Tag Type and the Tags assigned to the Score Tag TYpe for each person having Tags of Score Tag Type.
 
-The following sequence diagram shows how the createTagType operation works:
+The following sequence diagram shows how the `createTagType` command operation works:
 
 ![CreateTagTypeSequenceDiagram](images/CreateTagTypeSequenceDiagram.png)
 
@@ -466,6 +466,10 @@ Step 3. The user clicks on the icon with the `Github` logo for the person at ind
 Step 3. The user executes the `edit 4 l/https://google.com` to replace the existing set of links for the person with a single link. Do note, since google is not a recognised platform by CLInkedIn, it will be displayed with a general link icon in the GUI.
 
 Step 4. The user executes the `deleteLink 4` to delete all the links of the person at index 4.
+
+The following sequence diagram shows how the `addLink` command operation works:
+
+![AddLinkSequenceDiagram](images/AddLinkSequenceDiagram.png)
 
 ### Undo/redo feature
 
