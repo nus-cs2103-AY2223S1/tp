@@ -28,12 +28,12 @@ Given below are my contributions to the project.
     * Added the `findEvents` command [\#128](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/128)
         * What it does: Displays all events that match the keywords that have been inputted.
         * Justification: This feature helps the user to better locate the events that they are looking for if they are already managing many events.
-    * Implemented automated testing for `DateTest`, `StartTimeTest`, `FindEventCommandTest`, `ListEventCommandTest` and `DeleteEventTest` [\#231](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/231),
+    * Implemented automated testing for `DateTest`, `StartTimeTest`, `FindEventsCommandTest`, `ListEventsCommandTest` and `DeleteEventTest` [\#231](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/231),
 
 * **Documentation**:
     * User Guide:
         * Added documentation for the `findEvents` command.
-        * Removed documentation for the `tag` feature.
+        * Removed documentation for the `tag` field in `addPerson` and `editPerson` features.
         * Updated documentation for `findPersons` command.
         * Standardised the overall user guide for V1.4.
     * Developer Guide:
