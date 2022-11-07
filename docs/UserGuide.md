@@ -178,11 +178,11 @@ Format: `m add c/MODULE_CODE m/MODULE_NAME mc/MODULE_CREDIT`
 Parameters:
 * `MODULE_CODE` refers to the module code of the module being added.
 * `MODULE_NAME` refers to the name of the module.
-* `MODULE_CREDIT` refers to the number of module credits that the module has
+* `MODULE_CREDIT` refers to the number of module credits that the module has.
 
 Restrictions:
 * `MODULE_CODE` must be at least 6 characters long , the first two characters of the module code must be an alphabetical character and the rest of the characters should be alphanumeric characters.
-* `MODULE_NAME` must not be empty
+* `MODULE_NAME` must not be empty.
 * `MODULE_CREDIT` must be at least 0 and not more than 45.
 
 <div markdown="span" class="alert alert-info">
@@ -192,9 +192,9 @@ Restrictions:
 
 Examples:
 
-`m add c/cs2100 m/computer organisation mc/4` adds a module with the module code cs2100, the module name computer organisation and the module credit 4
+`m add c/cs2100 m/computer organisation mc/4` adds a module with the module code cs2100, the module name computer organisation and the module credit 4.
 
-`m add c/cs2105 m/networking mc/3 adds a module` with the module code cs2105, the module name networking and the module credit 3
+`m add c/cs2105 m/networking mc/3 adds a module` with the module code cs2105, the module name networking and the module credit 3.
 
 | ![AddModuleCommand](images/AddModuleCommandDemo.png) |
 |:----------------------------------------------------:|
@@ -221,9 +221,9 @@ Parameters:
 
 Examples:
 
-`m find CS` finds modules whose module code contains the `KEYWORD` 'CS' such as 'CS2030S', 'CS2040S'
+`m find CS` finds modules whose module code contains the `KEYWORD` 'CS' such as 'CS2030S', 'CS2040S'.
 
-`m find 30` finds modules whose module code contains the `KEYWORD` '30' such as 'CS2030S'
+`m find 30` finds modules whose module code contains the `KEYWORD` '30' such as 'CS2030S'.
 
 ### Deleting a module
 Deletes the specified module according to the index given.
@@ -235,7 +235,7 @@ Parameter:
 
 Restrictions:
 * `INDEX`
-  * `INDEX` should be an integer greater than 0 and less than 2147483648
+  * `INDEX` should be an integer greater than 0 and less than 2147483648.
   * `INDEX` should not be greater than the number of modules in the displayed module list.
 
 Example:
@@ -330,7 +330,7 @@ Parameter:
 
 Restrictions:
 * `INDEX`
-  * `INDEX` should be an integer greater than 0 and less than 2147483648
+  * `INDEX` should be an integer greater than 0 and less than 2147483648.
   * `INDEX` should not be greater than the number of tasks in the displayed task list.
 
 Examples:
@@ -434,7 +434,7 @@ Examples:
 
 
 ### Listing the tasks
-Lists all tasks in the stored task list
+Lists all tasks in the stored task list.
 
 Format: `t list`
 
