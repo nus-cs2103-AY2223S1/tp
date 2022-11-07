@@ -85,7 +85,7 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` objects and `Event` objects residing in the `Model`,
-and may display statistics for `Event` objects as well.
+and can display statistics of `Persons` objects tagged to `Event` objects as well.
 
 ### Logic component
 
@@ -229,9 +229,9 @@ Additionally, saving of the updated events list has been excluded from this diag
 ### Editing Events
 
 The Edit Event feature that is accessed through the `editEvent` command allows users to edit existing marketing campaigns of
-the `event` class in the application.
+the `Event` class in the application.
 
-The `event`edited by the user allows the user to edit any combination of the 4 existing fields:
+The `event`edited by the user allows the user to edit one or more of the 4 existing fields:
 - Title of the `event`
 - Date of the `event`
 - Time of the `event`
@@ -239,7 +239,7 @@ The `event`edited by the user allows the user to edit any combination of the 4 e
 
 The `editEvent` operation is facilitated by `EditEventCommand` which extends from `Command`. If the users' input matches
 the `COMMAND_WORD` of `EditEventCommand` in `AddressBookParser#parseCommand()`, `EditEventCommandParser#parse()` will
-process the additional user inputs which constitute any combination of the 4 fields and return a `EditEventCommand`.
+process the additional user inputs which include one or more of the 4 fields and return a `EditEventCommand`.
 
 Executing this Command object through the `EditEventCommand#execute()` triggers the `Model` interface's
 `Model#setEvent()`. This operation subsequently calls upon the `AddressBook#setEvent()` operation which in turn calls
@@ -479,7 +479,7 @@ thrown if the person to add already exists in the addressbook. Error message is 
 
 The Edit Person feature that is accessed through the `editPerson` command allows users to edit persons of the `Person` class in the contact list of the application.
 
- The `person` edited by the user allows the user to edit any combination of the 6 existing fields:
+ The `person` edited by the user allows the user to edit one or more of the 6 existing fields:
 - Name of the `person`
 - Phone number of the `person`
 - Email of the `person`
@@ -534,7 +534,7 @@ The following activity diagram shows what happens when a user executes a new edi
 ![EditPersonDobActivityDiagram](images/EditPersonDobActivityDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Only the
-activities related to date of birth field are considered and shown in this activity diagram. The edit person command only requires at least one of the optional fields to be given, all of the fields are optional, therefore, it is not compulsory that a date of birth field must be provided.
+activities related to date of birth field are considered and shown in this activity diagram.
 </div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
@@ -547,17 +547,17 @@ addressbook. Error message is displayed on the GUI subsequently.
 
 ### Make Statistics
 
-The Make Statistics feature that is accessed through the `makeStats` command allows users to generate statistics of the persons of the `Person` class that are tagged to an event of the `Event` class, and show a piechart of the statistics in a new window.
+The Make Statistics feature that is accessed through the `makeStats` command allows users to generate statistics of the persons of the `Person` class that are tagged to an event of the `Event` class, and shows a piechart of the statistics in a new window.
 
 There are 2 types of statistics that can be generated:
 * Age: Shows the proportion of age groups of the `persons` tagged to the `event`. Each age group has a 5-year age range.
-* Gender: Shows the proportion of genders of the `persons` tagged to the `event`, seperating them into either `Male` or `Female`.
+* Gender: Shows the proportion of genders of the `persons` tagged to the `event`, seperating them into either `Male` or `Female` categories.
 
-Users specify the type by specifying the 2 fields below:
+Users will specify the following fields for the makeStats command below:
 - Index of the `event`
 - Type of statistic to generate from the `event`
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Age is generated using the date of birth of the persons tagged to the event and is calculated from the current real-time date.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Age is generated using the date of birth of the persons tagged to the event and is calculated with respect to the real-time date when the application is run.
 </div>
 
 The `makeStats` operation is facilitated by `MakeStatsCommand` which extends from `Command`. If the users' input matches
