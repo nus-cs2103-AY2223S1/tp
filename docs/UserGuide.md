@@ -277,7 +277,7 @@ Format: `extract emails`
     1. Execute the `extract emails` command in the ModQuik command box. The following message will be displayed in the Results Display Box: <br>
     <img src="images/ExtractEmails1.png">
     <br><br>
-    2. A link will be copied onto your clipboard. Go to your web browser and paste the emails onto your address bar. Your mail app will be prompted to open.</li>
+    2. A link will be copied onto your clipboard. Go to your web browser and paste the emails onto your address bar. Your mail app will be prompted to open.
     <img src="images/ExtractEmails2.png">
     <br><br>
     3. All the emails should be pasted as shown:<br>
