@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class ModuleName {
     public static final String MODULE_NAME_CONSTRAINTS =
-            "The name of the module should not be empty and should be less than 80 characters";
+            "The name of the module should not be empty.";
 
     public final String moduleName;
 

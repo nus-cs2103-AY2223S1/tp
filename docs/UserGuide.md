@@ -2,7 +2,8 @@
 layout: page
 title: User Guide
 ---
-###Introduction
+##Introduction
+
 Welcome to the User Guide of MODPRO!
 
 MODPRO is a desktop application which helps NUS students track the progress of their modules.
@@ -15,6 +16,7 @@ MODPRO helps you…
 It is highly optimised for students who prefer Command Line Interface (CLI) by allowing those who type fast to key in commands to track their modules. If you struggle to type fast, we also provide a Graphical User interface (GUI) to assist you in using MODPRO.
 
 ###The Graphical User Interface (GUI)
+
 To give you a quick overview of MODPRO, the following image shows you the main components of the GUI.
 ![Ui](images/)
 
@@ -29,22 +31,24 @@ The table below summarises the function of each component.
 | Module List               | To view your modules                                         |
 | Exam List                 | To view your exams                                           |
 
+
 ###Icons and formatting used in the guide
 
 This guide uses icons and formatting to differentiate between the different types of information so that it is comprehensible. The following table summarises the icons and formatting used, along with their meaning.
 
-| **Icon/Formatting**     | **Meaning**                                                       |
-|-------------------------|-------------------------------------------------------------------|
-| :information_source:    | Extra Information to take note of when navigating through MODPRO  |
-| :exclamation:           | Warnings to take note of when navigating through MODPRO           |
-| :bulb:                  | Tips that we provide                                              |
-| `WORD HIGHLIGHTED GREY` | Words that you can type into the Command Input                    |
+| **Icon/Formatting**      | **Meaning**                                                       |
+|--------------------------|-------------------------------------------------------------------|
+| :information_source:     | Extra Information to take note of when navigating through MODPRO  |
+| :exclamation:            | Warnings to take note of when navigating through MODPRO           |
+| :bulb:                   | Tips that we provide                                              |
+| `WORDS HIGHLIGHTED GREY` | Words that you can type into the Command Input                    |
 
 ###Purpose of the guide
+
 This document is to assist you in using MODPRO smoothly and effectively to track your tasks and progress.
 
-* For first-time users, you can proceed to [Quick Start](#quick-start) for a guide on how to set up MODPRO and a short tutorial on the basic commands. Once you are familiar with the interface, you can start exploring our extensive list of features [here](#features)
-* For the experienced users, you can learn more about these unique features that can help you manage your tasks better: [adding tags to your tasks](#adding-a-tag-to-a-task), [sorting your list](#sorting-the-task-list), [filtering your list](#filtering-the-task-list), [linking an exam to a task](#linking-an-exam)
+* For **first-time users**, you can proceed to [Quick Start](#quick-start) for a guide on how to set up MODPRO and a short tutorial on the basic commands. Once you are familiar with the interface, you can start exploring our extensive list of features [here](#features)
+* For the **experienced users**, you can learn more about these unique features that can help you manage your tasks better: [adding tags to your tasks](#adding-a-tag-to-a-task), [sorting your list](#sorting-the-task-list), [filtering your list](#filtering-the-task-list), [linking an exam to a task](#linking-an-exam)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Table of Contents
@@ -52,8 +56,8 @@ This document is to assist you in using MODPRO smoothly and effectively to track
 - [Features](#features)
   - [Modules-Related Features](#modules-related-features)
     - [Adding a module](#adding-a-module)
-    - [Listing the modules](#listing-modules)
-    - [Finding a module](#finding-modules)
+    - [Listing the modules](#listing-the-modules)
+    - [Finding a module](#finding-a-module)
     - [Deleting a module](#deleting-a-module)
     - [Editing a module](#editing-a-module)
   - [Tasks-Related Features](#tasks-related-features)
@@ -62,9 +66,9 @@ This document is to assist you in using MODPRO smoothly and effectively to track
     - [Editing a task](#editing-a-task)
     - [Marking a task](#marking-a-task)
     - [Unmarking a task](#unmarking-a-task)
-    - [Listing the tasks](#listing-tasks)
+    - [Listing the tasks](#listing-the-tasks)
     - [Filtering the task list](#filtering-the-task-list)
-    - [Finding a task](#finding-tasks)
+    - [Finding a task](#finding-a-task)
     - [Sorting the task list](#sorting-the-task-list)
     - [Adding the tags to a task](#adding-a-tag-to-a-task)
     - [Editing the tags of a task](#editing-the-tags-of-a-task)
@@ -101,13 +105,13 @@ This document is to assist you in using MODPRO smoothly and effectively to track
 4. Double-click the file to start the app. The GUI similar to the image below should appear in a few seconds. <br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. </br>
-   e.g. typing help and pressing Enter will open the help window. </br>
+5. Type the command in the command box and press Enter to execute it. <br>
+   e.g. typing help and pressing Enter will open the help window. <br>
    Here are some commands you can try:
-   * m add c/CS2100 m/Computer Organisation mc/4 : Adds the module called Computer Organisation with the module code CS2100 into the module list.
-   * m delete 1 : Deletes the 1st module shown in the displayed module list.
-   * m list : Lists all modules stored in the module list.
-   * exit : Exits the app.
+   * `m add c/CS2100 m/Computer Organisation mc/4` : Adds the module called Computer Organisation with the module code CS2100 into the module list
+   * `m delete 1` : Deletes the first module shown in the displayed module list
+   * `m list` : Lists all modules stored in the module list
+   * `exit` : Exits the app
 
 
 6. Refer to the [Features](#features) below for details of each command.
@@ -117,7 +121,7 @@ This document is to assist you in using MODPRO smoothly and effectively to track
 ## Features
 
 <div markdown="block" class="alert alert-info">
-**:information_source: How to read the command format:**</br>
+**:information_source: How to read the command format:**<br>
   
 * Command words are case-insensitive.<br>
   e.g. `t add` is the same as `T add` for command words
@@ -165,28 +169,29 @@ Examples:
 `m add c/cs2100 m/computer organisation mc/4` adds a module with the module
 code `cs2100`, the module name `computer organisation` and the modular credit `4`
 
-### Listing Modules
-Lists modules stored in module list.
+### Listing the modules
+Lists all modules in stored module list.
 
 Format: `m list`
-* Displays modules that are stored in the module list.
 
-Example:
-
-`m list` displays modules that are stored in the module list.
-
-### Finding module(s)
-Finds modules stored in the module list by the module code.
+### Finding a module
+Finds modules in the stored module list whose module code matches the `KEYWORD` partially or fully.
 
 Format: `m find KEYWORD`
-* Finds all modules whose module code contains the `KEYWORD` inputted by the user partially or fully and displays them as a list.
-* The `KEYWORD` is case-insensitive. For example, one can find a module with the module code of 'cs2030s' even if the `KEYWORD` inputted is ‘CS2030S’
+
+Parameters:
+* `KEYWORD` refers to the keyword inputted by the user.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** `KEYWORD` is case-insensitive.
+</div>
 
 Examples:
 
-`m find cs` finds modules whose module code contains the `KEYWORD` 'cs' such as 'cs2030s', 'cs2040s'
+`m find CS` finds modules whose module code contains the `KEYWORD` 'CS' such as 'CS2030S', 'CS2040S'
 
-`m find 30` finds modules whose module code contains the `KEYWORD` '30' such as 'cs2030s'
+`m find 30` finds modules whose module code contains the `KEYWORD` '30' such as 'CS2030S'
 
 ### Deleting a module
 Deletes the specified module according to the index given.
@@ -276,64 +281,97 @@ Examples:
 Edits the specified task, by updating the existing values to the input values.
 
 Format: `t edit INDEX [m/MODULE]* [d/DESCRIPTION]*`
-* Edits the task at the specified `INDEX` in the task list. 
-* At least one of the optional fields must be provided.
-* The input values should not be the same as existing values.
-* If `INDEX` is non-positive or more than the number of tasks in the list, an error message will be displayed.
 
-Examples:
+Parameters:
+* `INDEX` refers to the index number (shown in the displayed task list) of the task to be edited.
+* `MODULE` refers to the module code of the module that will replace the existing module of the task specified.
+* `DESCRIPTION` refers to the description that will replace the existing description of the task specified.
 
-`t edit 1 d/Assignment 2` changes the description of the first task in the task list to 'Assignment 2'.
-
-`t edit 2 m/CS2040 d/tutorial 2` changes the module and description of the second task in the task list to 'CS2040' and 'tutorial 2' respectively.
 <div markdown="span" class="alert alert-info">
 
-:information_source: **Note:** If a task is linked to an exam, and its module is changed, the task will be unlinked from the exam.
+:information_source: **Note:** MODULE is case-insensitive.
+</div>  
+
+Restrictions:
+* `INDEX`
+  * `INDEX` should be an integer greater than 0 and less than 2147483648
+  * `INDEX` should not be greater than the number of tasks in the displayed task list.
+* `MODULE`
+  * `MODULE` should be at least 6 characters long. 
+  * The first two characters of `MODULE` should be alphabetical and the remaining characters should be alphanumeric.
+  * `MODULE` should be the module code of an existing module in the stored module list. 
+* `DESCRIPTION` should not be empty.
+* The input values should not be the same as existing values. 
+* The edited task should not be the same as any existing task in the stored task list.
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Warning:** If a task is linked to an exam, and its module is changed, the task will be unlinked from the exam.
 </div>
+
+Examples:
+
+`t edit 1 d/Assignment 2` changes the description of the first task in the displayed task list to 'Assignment 2'.
+
+`t edit 2 m/CS2040 d/tutorial 2` changes the module and description of the second task in the displayed task list to 'CS2040' and 'tutorial 2' respectively.
+
 
 ### Marking a task
-Indicates the specified task is completed
+Indicates the specified task is completed.
 
 Format: `t mark INDEX`
-* Indicates the task at the specified `INDEX` in the task list is completed. 
-* The `INDEX` refers to the index number shown in the task list. 
-* The `INDEX` must be a positive integer 1, 2, 3, …​
-* If the `INDEX` is non-positive or more than the number of tasks in the list, an error message will be displayed.
 
+Parameter:
+`INDEX` refers to the index number (shown in the displayed task list) of the task to be marked.
+
+Restrictions:
+* `INDEX`
+  * `INDEX` should be an integer greater than 0 and less than 2147483648
+  * `INDEX` should not be greater than the number of tasks in the displayed task list.
+* The task specified should not be already marked.
+  
 Examples:
 
-`t mark 1` indicates the first task in the task list is completed.
+`t mark 1` indicates the first task in the displayed task list is completed.
 
-`t mark 3` indicates the third task in the task list is completed.
+`t mark 3` indicates the third task in the displayed task list is completed.
 
-### Unmarking a task
-Indicates the specified task is not completed
-
-Format: `t unmark INDEX`
-* Indicates the task at the specified `INDEX` in the task list is not completed. 
-* The `INDEX` refers to the index number shown in the task list. 
-* The `INDEX` must be a positive integer 1, 2, 3, …​
-* If the index is non-positive or more than the number of tasks in the list, an error message will be displayed.
-
-Examples:
-
-`t unmark 1` indicates the first task in the task list is not completed.
-
-`t unmark 3` indicates the third task in the task list is not completed.
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** You can sort and filter tasks based on their completion status. The percentage of completed tasks are also shown for each exam and module. 
+:bulb: **Tip:** You can sort and filter tasks based on their completion status. The percentage of completed tasks are also shown for each exam and module.
 </div>
 
-### Listing Tasks
-Lists tasks stored in task list
+
+| ![MarkTaskCommand](images/MarkTask.png) |
+|:---------------------------------------:|
+|    Demonstration of MarkTaskCommand     |
+
+### Unmarking a task
+Indicates the specified task is not completed.
+  
+Format: `t unmark INDEX`
+  
+Parameter:
+* `INDEX` refers to the index number (shown in the displayed task list) of the task to be unmarked.
+
+Restrictions:
+* `INDEX` 
+  * `INDEX` should be an integer greater than 0 and less than 2147483648
+  * `INDEX` should not be greater than the number of tasks in the displayed task list.
+* The task specified should not be already unmarked.
+    
+Examples:
+
+`t unmark 1` indicates the first task in the displayed task list is not completed.
+
+`t unmark 3` indicates the third task in the displayed task list is not completed.
+
+
+### Listing the tasks
+Lists all tasks in the stored task list
 
 Format: `t list`
-* Displays tasks that are stored in the task list
 
-Example:
-
-`t list` displays tasks that are stored in the task list
 
 ### Filtering the task list
 Filters the task list based on module code, completion status, and/or link status.
@@ -351,19 +389,28 @@ Examples:
 
 `t filter l/n` filters out all tasks that are currently not linked to any exam.
 
-### Finding task(s)
-Finds tasks stored in the task list by the task's description.
+### Finding a task
+Finds tasks in the stored task list whose task description matches the `KEYWORD` partially or fully.
 
 Format: `t find KEYWORD`
-* Finds all tasks whose task description contains the `KEYWORD` inputted by the user partially or fully and displays them as a list.
-* The `KEYWORD` is case-insensitive. For example, one can find a task with the task description of 'homework1' even if the `KEYWORD` inputted is ‘HOMEWORK1’
+
+Parameters:
+* `KEYWORD` refers to the keyword inputted by the user.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** `KEYWORD` is case-insensitive.
+</div>
 
 Examples:
 
-`t find work` finds tasks that contain the `KEYWORD` 'work' such as 'homework1', 'homework2', 'worktodo'
+`t find work` finds tasks that contain the `KEYWORD` 'work' such as 'homework', 'work to do'
 
-`t find do paper` finds tasks that contain the `KEYWORD` 'do paper', such as 'do paper 1', 'do paper 2'
+`t find do paper` finds tasks that contain the `KEYWORD` 'do paper', such as 'do paper one', 'do paper two'
 
+| ![FindCommand](images/FindCommandImage.png) |
+|:-------------------------------------------:|
+|      Demonstration of FindTasksCommand      |
 ### Sorting the task list
 Sorts the tasks in the task list based on the criteria specified
 
@@ -481,52 +528,80 @@ Example:
 ## Exams-related Features
 
 ### Adding an exam
-Adds exam into exam list. 
+Adds an exam into the stored exam list.
 
 Format: `e add m/MODULE ex/EXAM_DESCRIPTION ed/EXAM_DATE`
 
-* Adds an exam to the exam list.
-* `MODULE` refers to the module code of the module of the exam
-* `EXAM_DESCRIPTION` refers to the description of the exam
-* `EXAM_DATE` refers to the date of the exam
-* The exam cannot be added if it is the same exam as an existing exam in the exam list. Otherwise, an error message will be displayed.
-* `MODULE` has to exist in the module list and be a valid module code with at least 6 characters long with the first two being alphabetic characters. Otherwise, an error message will be displayed. 
-* `EXAM_DESCRIPTION` should not be empty. Otherwise, an error message will be displayed to the user. 
-* `EXAM_DATE` must be in the format `DD-MM-YYYY`, otherwise an error message will be shown. For example, 2022-12-28, 20-13-2022 are not in `DD-MM-YYYY` format
-* `EXAM_DATE` must not be earlier than today's date, otherwise an error message will be shown. For example, 20-08-2022 is an invalid input if the current date is 26-10-2022.
+Parameters:
+* `MODULE` refers to the module code of the module of the exam to be added.
+* `EXAM_DESCRIPTION` refers to the description of the exam to be added.
+* `EXAM_DATE` refers to the date of the exam to be added.
 
-Examples:
+<div markdown="span" class="alert alert-info">
 
-`e add m/cs2030s ex/midterms ed/20-11-2022` adds the exam with the exam module as 'cs2030s',
+:information_source: **Note:** `MODULE` is case-insensitive.
+</div>
+
+Restrictions:
+* `MODULE`
+  * `MODULE` should be at least 6 characters long.  
+  * The first two characters of `MODULE` should be alphabetical and the remaining characters should be alphanumeric. 
+  * `MODULE` should be the module code of an existing module in the stored module list.
+* `EXAM_DESCRIPTION` should not be empty.
+* `EXAM_DATE` should be in the format DD-MM-YYYY and not earlier than the current date
+* The exam to be added should not be the same as any existing exam in the stored exam list.
+
+Example:
+
+`e add m/CS2030S ex/midterms ed/20-11-2022` adds the exam with the exam module as 'CS2030S',
 exam description as 'midterms', exam date as '20-11-2022' into the exam list. 
 
+| ![AddExamCommand](images/AddExamImage.png) |
+|:------------------------------------------:|
+|      Demonstration of AddExamCommand       |
 
 ### Editing an exam
-Edits the specified exam by updating the existing values to the input values.
+Edits the specified exam, by updating the existing values to the input values.
    
-Format: `e edit INDEX (must be a positive integer) [m/MODULE]* [ex/EXAM_DESCRIPTION]* [ed/EXAM_DATE]*`
-* Edits the exam at the specified INDEX in the exam list.
-* `MODULE` refers to the module code of the module of the exam 
-* `EXAM_DESCRIPTION` refers to the description of the exam
-* `EXAM_DATE` refers to the date of the exam
-* `INDEX` must be a positive integer 1, 2, 3, … 
-* If `INDEX` is a non-positive or more than the number of exams in the exam list, an error message will be displayed. 
-* The exam cannot be edited if it is the same exam as an existing exam in the exam list. An error message will be displayed to inform the user that the exam already exists in the exam list. 
-* At least one optional field of the exam to edit must be provided. Otherwise, an error message will be shown.
-* `MODULE` has to exist in the module list and be a valid module code with at least 6 characters long with the first two being alphabetic characters. Otherwise, an error message will be displayed.
-* `EXAM_DESCRIPTION` should not be empty. Otherwise, an error message will be displayed to the user. 
-* `EXAM_DATE` must be in the format `DD-MM-YYYY`, otherwise an error message will be shown. For example, 2022-12-28, 20-13-2022 are not in `DD-MM-YYYY` format
-* `EXAM_DATE` must not be earlier than today's date, otherwise an error message will be shown. For example, 20-08-2022 is an invalid input if the current date is 26-10-2022.
+Format: `e edit INDEX [m/MODULE]* [ex/EXAM_DESCRIPTION]* [ed/EXAM_DATE]*`
+
+Parameters
+* `INDEX` refers to the index number (shown in the displayed exam list) of the exam to be edited.
+* `MODULE` refers to the module code of the module that will replace the existing module of the exam specified.
+* `EXAM_DESCRIPTION` refers to the exam description that will replace the existing exam description of the exam specified.
+* `EXAM_DATE` refers to the exam date that will replace the existing exam date of the exam specified.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** `MODULE` is case-insensitive.
+</div>
+
+Restrictions:
+* `INDEX`
+   * `INDEX` should be an integer greater than 0 and less than 2147483648 
+   * `INDEX` should not be more than the number of exams in the stored exam list.
+* `MODULE`
+   * `MODULE` should be at least 6 characters long. 
+   * The first two characters of `MODULE` should be alphabetical and the remaining characters should be alphanumeric.
+   * `MODULE` should be the module code of an existing module in the stored module list.
+* `EXAM_DESCRIPTION` should not be empty.
+* `EXAM_DATE` should be in the format DD-MM-YYYY and not earlier than the current date 
+* The input values should not be the same as existing values. 
+* The edited exam should not be the same as any existing exam in the stored exam list.
+
+<div markdown="span" class="alert alert-warning">
+
+:exclamation: **Warning:** If the exam is linked to some tasks, and the module of the exam is changed, the tasks will be unlinked from the exam.
+</div>
 
 Examples:
 
 `e edit 1 ex/finals ed/20-12-2022` changes the exam description of the first exam in the exam list to ‘finals’ and the exam date to ‘20-12-2022’.
 
-`e edit 2 m/cs2030s ex/midterms ed/22-12-2022` changes the exam description of the second exam in the exam list to ‘midterms’, the exam module to ‘cs2030s’ and the exam date as ‘22-12-2022’.
-<div markdown="span" class="alert alert-info">
+`e edit 2 m/CS2030S ex/midterms ed/22-12-2022` changes the exam description of the second exam in the exam list to ‘midterms’, the exam module to ‘CS2030S’ and the exam date as ‘22-12-2022’.
 
-:information_source: **Note:** If the module of the exam is edited, and the exam is linked to some tasks, the tasks would be unlinked to the exam.
-</div>
+
+
 
 
 ### Deleting an exam
@@ -638,9 +713,9 @@ MODPRO will discard all data stored and start with an empty data file.
 --------------------------------------------------------------------------
 ## FAQ
 
-1. What is the difference between the stored task list and the displayed task list 
+1. What is the difference between the stored task list and the displayed task list? 
    * The stored task list is the list containing all the tasks you created, whereas the displayed task list is the one shown on your screen. 
-   * The stored task list and displayed task list could be different after the filter or find commands
+   * The stored task list and displayed task list could be different after the filter or find command
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -669,7 +744,7 @@ MODPRO will discard all data stored and start with an empty data file.
 | **t tagedit** | **Format**: `t tagedit INDEX [p/PRIORITY_STATUS]* [dl/DEADLINE]*`<br/> **Example**: `t tagedit 1 p/medium`                        |
 | **t clear**   | **Format**: `t clear`<br/> **Example**: `t clear`                                                                                 |
 | **Exam**      |                                                                                                                                   |
-| **e add**     | **Format**: `e add m/MODULE ex/EXAM_DESCRIPTION ed/EXAM_DATE`<br/> **Example**: `e add m/cs2013t ex/practical ed/29-10-2022`      |
+| **e add**     | **Format**: `e add m/MODULE ex/EXAM_DESCRIPTION ed/EXAM_DATE`<br/> **Example**: `e add m/cs2013t ex/practical ed/29-10-2023`      |
 | **e edit**    | **Format**: `e edit INDEX [m/MODULE]* [ex/EXAM_DESCRIPTION]* [ed/EXAM_DATE]*`<br/> **Example**: `e edit 1 m/cs2040`               |
 | **e del**     | **Format**: `e del INDEX`<br/> **Example**: `e del 1`                                                                             |
 | **e link**    | **Format**: `e link e/EXAM_INDEX t/TASK_INDEX`<br/> **Example**: `e link e/1 t/2`                                                 |

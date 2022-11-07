@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showTaskAtIndex;
+import static seedu.address.testutil.TypicalIndexes.FIRST_INDEX;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_LINKED_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
@@ -36,7 +37,7 @@ public class UnlinkExamCommandTest {
         assertTrue(taskToUnlink.isLinked());
 
         UnlinkExamCommand unlinkExamCommand = new UnlinkExamCommand(INDEX_LINKED_TASK);
-        String expectedMessage = String.format(unlinkExamCommand.EXAM_UNLINKED_SUCCESS, taskToUnlink);
+        String expectedMessage = String.format(unlinkExamCommand.MESSAGE_EXAM_UNLINKED_SUCCESS, taskToUnlink);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         Task editedTask = new TaskBuilder(taskToUnlink).withNoExam().build();
@@ -51,7 +52,8 @@ public class UnlinkExamCommandTest {
         // index "size of list + 1" chosen as boundary value for partition [size of list + 1...INT_MAX]
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTaskList().size() + 1);
         UnlinkExamCommand unlinkExamCommand = new UnlinkExamCommand(outOfBoundIndex);
-        String expectedMessage = String.format(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        String expectedMessage = String.format(
+                Messages.MESSAGE_INVALID_TASK_INDEX_TOO_LARGE, model.getFilteredTaskList().size() + 1);
 
         assertCommandFailure(unlinkExamCommand, model, expectedMessage);
     }
@@ -60,7 +62,7 @@ public class UnlinkExamCommandTest {
     public void execute_invalidTaskUnfilteredList_throwsCommandException() {
         // unlinked task -> throws error
         UnlinkExamCommand unlinkExamCommand = new UnlinkExamCommand(INDEX_UNLINKED_TASK);
-        String expectedMessage = unlinkExamCommand.TASK_ALREADY_UNLINKED;
+        String expectedMessage = unlinkExamCommand.MESSAGE_TASK_ALREADY_UNLINKED;
 
         assertCommandFailure(unlinkExamCommand, model, expectedMessage);
     }
@@ -74,7 +76,7 @@ public class UnlinkExamCommandTest {
         assertTrue(taskToUnlink.isLinked());
 
         UnlinkExamCommand unlinkExamCommand = new UnlinkExamCommand(INDEX_FIRST_TASK);
-        String expectedMessage = String.format(UnlinkExamCommand.EXAM_UNLINKED_SUCCESS, taskToUnlink);
+        String expectedMessage = String.format(UnlinkExamCommand.MESSAGE_EXAM_UNLINKED_SUCCESS, taskToUnlink);
 
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         Task editedTask = new TaskBuilder(taskToUnlink).withNoExam().build();
@@ -93,9 +95,18 @@ public class UnlinkExamCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTaskList().size());
 
         UnlinkExamCommand unlinkExamCommand = new UnlinkExamCommand(outOfBoundIndex);
-        String expectedMessage = String.format(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+        String expectedMessage = String.format(
+                Messages.MESSAGE_INVALID_TASK_INDEX_TOO_LARGE, model.getFilteredTaskList().size() + 1);
 
         assertCommandFailure(unlinkExamCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_noTaskInList_throwsCommandException() {
+        model.updateFilteredTaskList(t -> false);
+        UnlinkExamCommand unlinkExamCommand = new UnlinkExamCommand(FIRST_INDEX);
+
+        assertCommandFailure(unlinkExamCommand, model, UnlinkExamCommand.MESSAGE_NO_TASK_IN_LIST);
     }
 
     @Test

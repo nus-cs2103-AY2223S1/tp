@@ -61,7 +61,16 @@ public class ListExamTasksCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredExamList().size() + 1);
         ListExamTasksCommand listExamTasksCommand = new ListExamTasksCommand(outOfBoundIndex);
 
-        assertCommandFailure(listExamTasksCommand, model, Messages.MESSAGE_INVALID_EXAM_DISPLAYED_INDEX);
+        assertCommandFailure(listExamTasksCommand, model, String.format(
+                Messages.MESSAGE_INVALID_EXAM_INDEX_TOO_LARGE, model.getFilteredExamList().size() + 1));
+    }
+
+    @Test
+    public void execute_noExamInList_throwsCommandException() {
+        model.updateFilteredExamList(e -> false);
+        ListExamTasksCommand listExamTasksCommand = new ListExamTasksCommand(FIRST_INDEX);
+
+        assertCommandFailure(listExamTasksCommand, model, ListExamTasksCommand.MESSAGE_NO_EXAM_IN_LIST);
     }
 
     @Test
