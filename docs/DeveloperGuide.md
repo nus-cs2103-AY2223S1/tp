@@ -769,9 +769,42 @@ testers are expected to do more *exploratory* testing.
    3. Test case: `deletestudent 0`<br>
       Expected: No student is deleted. Error details shown in the status message.
 
-   4. Other incorrect delete commands to try: `deletestudent`, `deletestudent x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete student commands to try: `deletestudent`, `deletestudent x`, `...` (where x is larger than the list size) <br>
       Expected: Similar to previous.
 
+### Editing a student
+
+1. Edit a student to change name and/or matric number
+
+    1. Prerequisites: List all students using the `liststudent` or `listall` command. There must be at least one student in the list. 
+
+    2. Test case: `editstudent 1 s/John` <br>
+       Expected: First student's name is changed to John for all instances. Matric number remains the same. Details of the new student name is shown in the status message.
+
+    3. Test case: `editstudent 0 s/John` <br>
+       Expected: No student's details is changed. Error details shown in the status message.
+
+    4. Other incorrect edit student commands to try: `editstudent x s/John`, editstudent 1 s/John m/B1234567A`, `...` (where x is larger than the list size) <br>
+       Expected: Similar to previous.
+ 
+### Finding a student
+
+1. Find a student based on their names
+
+    1. Prerequisites: List all students using the `liststudent` or `listall` command. There must be at least one student in the list.
+   
+    2. Test case: `findstudent yeoh` <br>
+       Expected: Students' whose name contains `yeoh` regardless of capitalisation will be shown in the student list. Number of students listed is shown in the status message.
+   
+    3. Test case: `findstudent` <br>
+       Expected: No student is found. Error details shown in the status message.
+   
+    4. Test case: `findstudent x` (where x does not exist in any students' name in student list) <br> 
+       Expected: No student is found. Student list will be empty. Zero students listed is shown in the status message.
+
+    5. Other incorrect find student commands to try: `findstudent`
+       Expected: No student is found. Error details shown in the status message.
+    
 ### Adding a grade to a student
 
 1. Adding a grade to a student while the expanded student list is being shown
@@ -802,6 +835,7 @@ testers are expected to do more *exploratory* testing.
    4. Test case: `mc 1 num/1 r/p` <br>
       Expected: Similar to previous.
 
+
 ### Adding a task
 
 1. Adding a task while task list is being shown
@@ -816,27 +850,128 @@ testers are expected to do more *exploratory* testing.
    
     4. Test case: `addtask t/ d/2022-10-09` <br>
        Expected: Similar to previous. 
+    
 
 ### Deleting a task
 
 1. Deleting a task while task list is being shown
 
-   1. Prerequisites: List all tasks using the `listtask` or `listall` command. There are existing tasks in the task list.
-   
+   1. Prerequisites: List all tasks using the `listtask` or `listall` command. There must be at least one task in the list.
+
    2. Test case: `deletetask 1` <br>
       Expected: The first task at the top of the list is deleted. Details of the deleted task are shown in the status message. 
    
    3. Test case: `deletetask 0` <br>
       Expected: No task is deleted. Error details shown in status message.
    
-   4. Other incorrect delete commands to try: `deletetask`, `deletetask x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete task commands to try: `deletetask`, `deletetask x`, `...` (where x is larger than the list size) <br>
       Expected: Similar to previous.
+
+
+### Adding a Mastery Check
+
+1. Adding a mastery check while lesson list is being shown
+
+   1. Prerequisites: List all lessons using the `listlesson` or `listall` command. 
+
+   2. Test case: `addmc sd/2022-12-12 st/10:00 et/12:00 si/1 si/2` <br>
+      Expected: Mastery Check with no description on Dec-12-2022 from 10:00 to 12:00 with 1st and 2nd student in student list is added. Details of the mastery check added shown in status message.
+
+   3. Test case: `addmc sd/12-12-2022 st/10:00 et/12:00 si/1 si/2` <br>
+      Expected: No lesson is added. Error details are shown in status message.
+
+   4. Other incorrect add mastery check commands to try: `addmc sd/2022-12-12 si/1`, `addmc sd/2022-12-12 st/10:00`, `addmc si/`, `...` <br>
+      Expected: Similar to previous.
+
+### Adding a Consult
+
+Refer to Adding a Mastery Check, with the only difference being `addconsult` instead of `addmc`.
+
+### Adding a Studio
+
+1. Adding a Studio while lesson list is being shown
+
+    1. Prerequisites: List all lessons using the `listlesson` or `listall` command.
+
+    2. Test case: `addstudio sd/2022-11-11 st/10:00 et/12:00` <br>
+       Expected: Studio with no description on Nov-11-2022 from 10:00 to 12:00 with all students in student list is added. Details of the studio added shown in status message.
+
+    3. Test case: `addstudio sd/12-12-2022 st/10:00 et/12:00` <br>
+       Expected: No lesson is added. Error details are shown in status message.
+
+    4. Other incorrect add studio commands to try: `addstudio sd/2022-12-12`, `addstudio sd/2022-12-12 st/10:00`, `addstudio ed/`, `...` <br>
+       Expected: Similar to previous.
+
+### Deleting a Lesson
+
+1. Deleting a lesson while lesson list is being shown
+
+    1. Prerequisites: List all lessons using the `listlesson` or `listall` command. There must be at least one lesson in the list.
+
+     2. Test case: `deletelesson 1` <br>
+       Expected: The first lesson at the top of the list is deleted. Details of the deleted lesson are shown in the status message.
+
+    3. Test case: `deletelesson 0` <br>
+       Expected: No lesson is deleted. Error details shown in status message.
+
+    4. Other incorrect delete lesson commands to try: `deletelesson`, `deletelesson x`, `...` (where x is larger than the list size) <br>
+       Expected: Similar to previous.
+   
+### Mark Task
+
+1. Mark a task as done while task list is being shown
+
+    1. Prerequisites: List all tasks using the `listtask` or `listall` command. There must be at least one task in the list.
+
+     2. Test case: `marktask 1` <br>
+       Expected: The task that was originally at the top of the list will now have a green tick at the side and shifted below tasks that are not done yet. Details of the marked task are shown in the status message.
+    
+    3. Test case: `marktask 0` <br>
+       Expected: No task is marked. Error details shown in status message.
+   
+    4. Other incorrect mark task commands to try: `marktask`, `marktask x`, `...` (where x is larger than the list size) <br>
+          Expected: Similar to previous.
+
+### Mark Lesson
+
+1. Mark a lesson as completed while lesson list is being shown
+
+   1. Prerequisites: List all tasks using the `listlesson` or `listall` command. There must be at least one lesson in the list.
+
+   2. Test case: `marklesson 1` <br>
+      Expected: The lesson that was originally at the top of the list will now have a green tick at the side and shifted below lessons that are not yet completed. Details of the marked lesson are shown in the status message.
+
+   3. Test case: `marklesson 0` <br>
+      Expected: No lesson is marked. Error details shown in status message.
+
+   4. Other incorrect mark lesson commands to try: `marklesson`, `marklesson x`, `...` (where x is larger than the list size) <br>
+      Expected: Similar to previous.
+
+### Mark Student
+
+1. Mark a student in a lesson as present
+    
+    1. Prerequisites: List all lessons in expanded lesson list using the `listlesson` command. There must be at least one lesson in the list with at least one student.
+
+     2. Test case: `markstudent li/1 si/1` <br>
+       Expected: The first student in the student list of the first lesson in lesson list is marked as present. Details of the marked student in the lesson are shown in the status message.
+   
+    3. Test case: `markstudent si/1` <br>
+       Expected: No student is marked. Error details shown in status message.
+
+    4. Other incorrect mark student commands to try: `markstudent li/x si/1`, `markstudent li/1 si/x`, `...` (where x is larger than the list size) <br>
+       Expected: Similar to previous.
+
+### Unmark Task/Lesson/Student
+
+Refer to Mark Task/Lesson/Student respectively, with the only difference being unmark command words instead of mark command words.
 
 ### Adding a note to a lesson
 
 1. Adding a note to a lesson while expanded lesson list is being shown
 
     1. Prerequisites: List all lessons using the `listlesson` command. There must be at least one lesson existing in the lesson list.
+
    
     2. Test case: `addnote n/Get back to jeff on streams li/1 si/1` <br>
        Expected: A note is added for the first student in the first lesson in the lesson list. Details of the note that was added, student and lesson are shown in the status message.
@@ -882,11 +1017,13 @@ testers are expected to do more *exploratory* testing.
 1. Dealing with missing data file(s).
 
    1. Prerequisites: If there exists studentbook.json, taskbook.json and/or lessonbook.json file(s) in the data folder at the root of the application directory, delete the file(s).
-   2. Test case: Double-click on the jar file to run the application.
+   
+   2. Test case: Double-click on the jar file to run the application. <br>
       Expected: Application runs and loads the sample data from `SampleStudentUtil#getSampleStudentBook`, `SampleTaskUtil#getSampleTaskBook` and/or `SampleLessonUtil#getSampleLessonBook`.
 
 2. Dealing with corrupted data file(s).
 
    1. Prerequisites: Modify the studentbook.json, taskbook.json and/or lessonbook.json file(s) to be an illegal format, such as deleting the “name” field of a student, the "taskDesc" field of a task, and/or the "attendance" field of a lesson.
-   2. Test case: Double-click on the jar file to run the application.
+   
+   2. Test case: Double-click on the jar file to run the application. <br>
       Expected: Application runs and has no data on initial load. Running the next command overwrites the current corrupted json file(s).
