@@ -803,7 +803,7 @@ you include any lower case in the assignment name, it will be automatically conv
 
 * `unparticipate all p/wrongcomponent` removes participation component `wrongcomponent` from all students in the
   currently displayed list. In this case, 5 students have such a record.<br><br>
-  [Unparticipate Command](images/ui/ui-unparticipate.png)
+  ![Unparticipate Command](images/ui/ui-unparticipate.png)
   <br><br>
 * `unparticipate 1 p/P01` removes participation component `P01` from the first student in the currently displayed list.
 * `unparticipate all p/P03` removes participation component `P03` from all students in the currently displayed list.
