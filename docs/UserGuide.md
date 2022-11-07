@@ -121,16 +121,16 @@ pay attention to. </div>
 
 Here is a quick guide on how to get a working copy of RC4HDB on your computer.
 
-### 1. Setup
+#### 1. Setup
 
 Ensure you have [*Java 11*](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) or
 above installed on your Computer.
 
-### 2. Install
+#### 2. Install
 
 Visit this [link](https://github.com/AY2223S1-CS2103T-W12-3/tp/releases/). Click on `rc4hdb.jar` to download the latest `rc4hdb.jar`. Move the `rc4hdb.jar` file to the folder you want to use as the _home folder_ for RC4HDB. The home folder is the folder from which the application will run, save data to, and retrieve data from.
 
-### 3. Running RC4HDB
+#### 3. Running RC4HDB
 
 Double-click the file to start the app. The **Graphical User Interface (GUI)** similar to the one shown
 below should appear in a few seconds.
@@ -144,7 +144,7 @@ delete the folder called `data` as this would cause all your data to be deleted!
 
 ![Ui](images/Ui.png)
 
-### 4. Try it out!
+#### 4. Try it out!
 
 Try typing `help` into the command box where it says "Enter Command here..." and pressing the Enter/Return key on your keyboard to execute it! This command will open a help window which shows you a quick summary of our available commands.
 
