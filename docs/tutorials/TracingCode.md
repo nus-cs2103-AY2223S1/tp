@@ -16,7 +16,7 @@ When trying to understand an unfamiliar code base, one common strategy used is t
 
 Before we jump into the code, it is useful to get an idea of the overall structure and the high-level behavior of the application. This is provided in the 'Architecture' section of the developer guide. In particular, the architecture diagram (reproduced below), tells us that the App consists of several components.
 
-![ArchitectureDiagram](../images/ArchitectureDiagram.png)
+![ArchitectureDiagram](../images/diagrams/ArchitectureDiagram.png)
 
 It also has a sequence diagram (reproduced below) that tells us how a command propagates through the App.
 

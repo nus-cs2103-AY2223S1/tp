@@ -19,8 +19,7 @@ to the project. You can also use this as a reference, if you are interested in d
 
 ---
 
-* Table of Contents
-{:toc}
+* Table of Contents{:toc}
 
 ---
 
@@ -56,7 +55,7 @@ and edit diagrams.
 Given below is an **Architecture Diagram**. It explains the high-level design of StudMap. Below the diagram is a quick
 overview of main components and how they interact with each other.
 
-![Architecture](images/ArchitectureDiagram.png){: diagram}
+![Architecture](images/diagrams/ArchitectureDiagram.png){: diagram}
 
 ### Main components of the architecture
 
@@ -82,7 +81,7 @@ The rest of StudMap consists of four components.
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
 the command `delete 1`.
 
-![Sequence Diagram](images/ArchitectureSequenceDiagram.png){: diagram}
+![Sequence Diagram](images/diagrams/ArchitectureSequenceDiagram.png){: diagram}
 
 Each of the four main components (also shown in the diagram above)
 
@@ -95,7 +94,7 @@ the `LogicManager.java` class which follows the `Logic` interface. Other compone
 through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the
 implementation of a component), as illustrated in the (partial) class diagram below.
 
-![Component Managers](images/ComponentManagers.png)){: diagram}
+![Component Managers](images/diagrams/ComponentManagers.png)){: diagram}
 
 The sections below give more details of each component.
 
@@ -104,7 +103,7 @@ The sections below give more details of each component.
 The **API** of this component is specified
 in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/ui/Ui.java).
 
-![Structure of the UI Component](images/UiClassDiagram.png){: diagram}
+![Structure of the UI Component](images/diagrams/UiClassDiagram.png){: diagram}
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`
 , `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
@@ -130,7 +129,7 @@ The `UI` component
 
 Here's a (partial) class diagram of the `Logic` component:
 
-![Logic Class Diagram](images/LogicClassDiagram.png){: diagram}
+![Logic Class Diagram](images/diagrams/LogicClassDiagram.png){: diagram}
 
 How the `Logic` component works:
 
@@ -143,7 +142,7 @@ How the `Logic` component works:
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
 call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png){: diagram}
+![Interactions Inside the Logic Component for the `delete 1` Command](images/diagrams/DeleteSequenceDiagram.png){: diagram}
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -166,7 +165,7 @@ How the parsing works:
 **API:**
 [`Model.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/model/Model.java)
 
-![Model Class Diagram](images/ModelClassDiagram.png){: diagram}
+![Model Class Diagram](images/diagrams/ModelClassDiagram.png){: diagram}
 
 The `Model` component
 
@@ -181,7 +180,7 @@ The `Model` component
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `StudMap`, which `Student` references. This allows `StudMap` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
-![More OOP Model](images/BetterModelClassDiagram.png)
+![More OOP Model](images/diagrams/BetterModelClassDiagram.png)
 
 </div>
 
@@ -190,7 +189,7 @@ The `Model` component
 **API:**
 [`Storage.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/storage/Storage.java)
 
-![Storage Class Diagram](images/StorageClassDiagram.png){: diagram}
+![Storage Class Diagram](images/diagrams/StorageClassDiagram.png){: diagram}
 
 The `Storage` component
 
@@ -218,7 +217,7 @@ This section describes some noteworthy details on how certain features are imple
 The `filter` feature is implemented by the `FilterCommand` class which extends its parent `Command` class. The structure
 of the `filter` feature can be summarized via the sequence diagram shown below.
 
-![Filter Sequence Diagram](images/FilterCommandSequenceDiagram.png){: diagram}
+![Filter Sequence Diagram](images/diagrams/FilterCommandSequenceDiagram.png){: diagram}
 
 This method is implemented to support the feature of filtering students by the tags that is assigned to them.
 
@@ -267,7 +266,7 @@ brief summary of the class structure is illustrated in the class diagram below, 
 Since all concrete implementations of the `EditStudentCommand` share the same class structure, the example
 of `MarkCommand` will also be used to explain the implementation details.
 
-![MarkCommandClassDiagram](images/MarkCommandClassDiagram.png){: diagram}
+![MarkCommandClassDiagram](images/diagrams/MarkCommandClassDiagram.png){: diagram}
 
 `IndexListGenerator` is an abstract class representing the list of indexes to modify.
 The instance of `IndexListGenerator` can be either
@@ -284,7 +283,7 @@ and passed them to the constructor of the respective command (`MarkCommand` in t
 using `MarkCommandParser` is illustrated in the class diagram
 below.
 
-![MarkCommandParserClassDiagram](images/MarkCommandParserClassDiagram.png){: diagram}
+![MarkCommandParserClassDiagram](images/diagrams/MarkCommandParserClassDiagram.png){: diagram}
 
 ### General flow for `EditStudentCommand`
 
@@ -296,7 +295,7 @@ Given below is the typical flow for `EditStudentCommand` such as the  `MarkComma
 
 Below is a more detailed sequence diagram for the execution of the command using the same example of `MarkCommand`.
 
-![MarkCommandSequenceDiagram](images/MarkCommandSequenceDiagram.png){: diagram}
+![MarkCommandSequenceDiagram](images/diagrams/MarkCommandSequenceDiagram.png){: diagram}
 
 ### Additional Notes
 
@@ -349,7 +348,7 @@ This operation is exposed in the `Model` interface as `sortFilteredStudentList()
 
 The following sequence diagram shows how the sort operation works:
 
-![SortSequenceDiagram](images/SortCommandSequenceDiagram.png){: diagram}
+![SortSequenceDiagram](images/diagrams/SortCommandSequenceDiagram.png){: diagram}
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -381,7 +380,7 @@ Given below is an example usage scenario and how the sort mechanism behaves at e
 
 7. The sorted list is displayed to the user.
 
-### Design considerations:
+### Design Considerations
 
 **Aspect: How sort executes:**
 
@@ -419,19 +418,19 @@ Given below is an example usage scenario and how the undo/redo mechanism behaves
 Step 1. The user launches the application for the first time. The `VersionedStudMap` will be initialized with the
 initial student map state, and the `currentStatePointer` pointing to that single student map state.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+![UndoRedoState0](images/diagrams/undo-redo/UndoRedoState0.png){: diagram}
 
 Step 2. The user executes `delete 5` command to delete the 5th student in the student map. The `delete` command
 calls `Model#commitStudMap()`, causing the modified state of the student map after the `delete 5` command executes
 to be saved in the `studMapStateList`, and the `currentStatePointer` is shifted to the newly inserted student map
 state.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+![UndoRedoState1](images/diagrams/undo-redo/UndoRedoState1.png){: diagram}
 
 Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitStudMap()`
 , causing another modified student map state to be saved into the `studMapStateList`.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+![UndoRedoState2](images/diagrams/undo-redo/UndoRedoState2.png){: diagram}
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitStudMap()`, so the student map state will not be saved into the `studMapStateList`.
 
@@ -441,7 +440,7 @@ Step 4. The user now decides that adding the student was a mistake, and decides 
 the `undo` command. The `undo` command will call `Model#undoStudMap()`, which will shift the `currentStatePointer`
 once to the left, pointing it to the previous student map state, and restores the student map to that state.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+![UndoRedoState3](images/diagrams/undo-redo/UndoRedoState3.png){: diagram}
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial StudMap state, then there are no previous StudMap states to restore. The `undo` command uses `Model#canUndoStudMap()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
@@ -450,7 +449,7 @@ than attempting to perform the undo.
 
 The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+![UndoSequenceDiagram](images/diagrams/undo-redo/UndoSequenceDiagram.png){: diagram}
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -467,20 +466,20 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 as `list`, will usually not call `Model#commitStudMap()`, `Model#undoStudMap()` or `Model#redoStudMap()`.
 Thus, the `studMapStateList` remains unchanged.
 
-![UndoRedoState4](images/UndoRedoState4.png)
+![UndoRedoState4](images/diagrams/undo-redo/UndoRedoState4.png){: diagram}
 
 Step 6. The user executes `clear`, which calls `Model#commitStudMap()`. Since the `currentStatePointer` is not
 pointing at the end of the `studMapStateList`, all student map states after the `currentStatePointer` will be
 purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern
 desktop applications follow.
 
-![UndoRedoState5](images/UndoRedoState5.png)
+![UndoRedoState5](images/diagrams/undo-redo/UndoRedoState5.png){: diagram}
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-### Design considerations:
+### Design Considerations
 
 **Aspect: How undo & redo executes:**
 
@@ -494,7 +493,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 --------------------------------------------------------------------------------------------------------------------
 
-# **Documentation, logging, testing, configuration, dev-ops**
+# Documentation, logging, testing, configuration, dev-ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
