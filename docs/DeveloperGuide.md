@@ -212,7 +212,7 @@ through the `Model#setPerson` method.
 
 The sequence diagram below illustrates how the command to add attendance works:
 
-![AttendanceCommandSequence](images/AttendanceCommandSequence.png)
+![AddAttendanceSequenceDiagram](images/AddAttendanceSequenceDiagram.png)
 
 ### Adding assignments to all students
 
