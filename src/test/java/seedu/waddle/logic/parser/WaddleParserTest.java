@@ -6,29 +6,21 @@ import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.waddle.commons.core.Messages.MESSAGE_UNAVAILABLE_COMMAND_HOME;
 import static seedu.waddle.commons.core.Messages.MESSAGE_UNAVAILABLE_COMMAND_ITINERARY;
 import static seedu.waddle.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.waddle.logic.commands.CommandTestUtil.COST_DESC_BREAKFAST;
 import static seedu.waddle.logic.commands.CommandTestUtil.COST_DESC_SHOPPING;
 import static seedu.waddle.logic.commands.CommandTestUtil.DAY_NUMBER_DESC;
-import static seedu.waddle.logic.commands.CommandTestUtil.ITEM_DESC_DESC_BREAKFAST;
 import static seedu.waddle.logic.commands.CommandTestUtil.ITEM_DESC_DESC_SHOPPING;
-import static seedu.waddle.logic.commands.CommandTestUtil.ITEM_DURATION_DESC_BREAKFAST;
 import static seedu.waddle.logic.commands.CommandTestUtil.ITEM_DURATION_DESC_SHOPPING;
-import static seedu.waddle.logic.commands.CommandTestUtil.PRIORITY_DESC_BREAKFAST;
 import static seedu.waddle.logic.commands.CommandTestUtil.PRIORITY_DESC_SHOPPING;
 import static seedu.waddle.logic.commands.CommandTestUtil.START_TIME_DESC_1200;
-import static seedu.waddle.logic.commands.CommandTestUtil.START_TIME_DESC_1715;
-import static seedu.waddle.logic.commands.CommandTestUtil.START_TIME_DESC_2300;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DAY_NUMBER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_ITEM_DESC_SHOPPING;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_TIME_1200;
 import static seedu.waddle.testutil.Assert.assertThrows;
 import static seedu.waddle.testutil.TypicalIndexes.INDEX_FIRST_ITINERARY;
-import static seedu.waddle.testutil.TypicalItems.getBreakfast;
 import static seedu.waddle.testutil.TypicalItems.getShopping;
 import static seedu.waddle.testutil.TypicalItineraries.getAutumn;
 import static seedu.waddle.testutil.TypicalItineraries.getGraduation;
 
-import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -57,7 +49,6 @@ import seedu.waddle.logic.commands.PdfCommand;
 import seedu.waddle.logic.commands.PlanCommand;
 import seedu.waddle.logic.commands.UnplanCommand;
 import seedu.waddle.logic.parser.exceptions.ParseException;
-import seedu.waddle.model.item.Day;
 import seedu.waddle.model.itinerary.DayNumber;
 import seedu.waddle.model.itinerary.Itinerary;
 import seedu.waddle.model.itinerary.NameContainsKeywordsPredicate;
@@ -184,7 +175,7 @@ public class WaddleParserTest {
         StageManager.getInstance().setHomeStage();
 
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+                -> parser.parseCommand(""));
 
         // switch to itinerary page
         StageManager.getInstance().setWishStage(getGraduation());
@@ -199,7 +190,7 @@ public class WaddleParserTest {
         StageManager.getInstance().setHomeStage();
 
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, ()
-            -> parser.parseCommand("unknownCommand"));
+                -> parser.parseCommand("unknownCommand"));
 
         // switch to itinerary page
         StageManager.getInstance().setWishStage(getGraduation());
@@ -311,7 +302,7 @@ public class WaddleParserTest {
     }
 
     @Test
-    public void parseCommand_Pdf() throws Exception {
+    public void parseCommand_pdf() throws Exception {
         // switch to itinerary page
         StageManager.getInstance().setWishStage(getGraduation());
 
