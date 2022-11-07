@@ -26,7 +26,7 @@ It is written in Java and has about 10 kLoC.
     * **Finding contacts**
         * Added functionality for the `find` command to find contacts based off name, phone, email, birthday, address fields.
         * Refactored the parsing of the `find` command to accept prefixes for the different field to find by. This was difficult because there was a lot of code and test cases that had to be refactored after the parsing of the `find` command was changed.
-        * Wrote tests for the `find` command based off different fields. 
+        * Wrote tests for the `find` command based off different fields.
         * Implemented input checking and error checking for the `find` command. A different parsing of the `find` command created bugs when the find command was parsed. Therefore, I had to use assertions and exceptions to ensure the `find` command accepted valid user inputs.
 
 
@@ -55,6 +55,6 @@ It is written in Java and has about 10 kLoC.
     * Merged PR's that have been reviewed by other teammates
     * Reported bugs and provided suggestions on how to fix them
 
-    
+
 
 

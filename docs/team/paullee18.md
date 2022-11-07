@@ -14,9 +14,9 @@ Given below are my contributions to the project.
 
 * **Code contributed**: https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=paullee18&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other
 
-* **Enhancements implemented**:</br> 
+* **Enhancements implemented**:</br>
   * ***`Birthday`*** - Added functionality for `Person` to store `Birthday` as a field. `Birthday` are implemented as a class which stores a `LocalDate` as the birthday value. Also did testing of `Birthday`.
-  
+
   * ***`Insurance`*** - Added functionality for `Person` to store four `Insurance` objects as fields. This represents the four main types of insurance our application wishes to display, namely critical illness insurance, health insurance, life insurance and disability insurance. Implemented `InsuranceCommand` in order for users to update the insurances of their contacts. Also did testing of `Insurance` objects as well as the `InsuranceCommand`.
 
 * **Contributions to the UG**:

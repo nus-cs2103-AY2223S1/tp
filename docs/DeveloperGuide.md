@@ -448,7 +448,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 3a. The input information does follow the correct format.
-  
+
     * 3a1. Friendnancial displays an error message indicating the correct format for the user to follow.
 
       Use case resumes at step 2.
@@ -603,7 +603,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **UML**: Unified Modelling Language - A Language based on drawing diagrams to describe models of the codebase
 * **UML Sequence Diagram**: Sequence diagrams model the interactions between various entities in a system, in a specific scenario.
   Modelling such scenarios is useful, for example, to verify the design of the internal interactions is able to provide the expected outcomes.
-* **UML Activity Diagram**: activity diagrams (AD) can model workflows.  Flow charts are another type of diagram that can model workflows. 
+* **UML Activity Diagram**: activity diagrams (AD) can model workflows.  Flow charts are another type of diagram that can model workflows.
 Activity diagrams are the UML equivalent of flow charts.
 --------------------------------------------------------------------------------------------------------------------
 
