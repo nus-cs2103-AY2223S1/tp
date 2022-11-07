@@ -7,7 +7,7 @@ ModQuik is optimised for use via a Command Line Interface (CLI) while still havi
 ModQuik can get one's lesson management tasks done faster than traditional GUI apps if one is a fast typist.
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -46,7 +46,7 @@ e.g. [`commands`](#glossary) [`PARAMETERS`](#glossary)
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-W17-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-### 4.1 Architecture
+### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -87,7 +87,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### 4.2 UI component
+### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W17-3/tp/tree/master/src/main/java/seedu/modquik/ui/Ui.java)
 
@@ -104,7 +104,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Student`, `Reminder`, `Tutorial`, `Consultation` object residing in the `Model`.
 
-### 4.3 Logic component
+### Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W17-3/tp/tree/master/src/main/java/seedu/modquik/logic/Logic.java)
 
@@ -133,7 +133,7 @@ How the parsing works:
 * When called upon to parse a user command, the `ModQuikParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddStudentCommand`) which the `ModQuikParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddStudentCommandParser`, `DeleteStudentCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### 4.4 Model component
+### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W17-3/tp/tree/master/src/main/java/seedu/modquik/model/Model.java)
 
 ![ModelClassDiagram](images/ModelClassDiagram.png)
@@ -157,7 +157,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-### 4.5 Storage component
+### Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W17-3/tp/blob/master/src/main/java/seedu/modquik/storage/Storage.java)
 
@@ -168,7 +168,7 @@ The `Storage` component,
 * inherits from both `ModQuikStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### 4.6 Common classes
+### Common classes
 
 Classes used by multiple components are in the `seedu.modquik.commons` package.
 
@@ -178,7 +178,7 @@ Classes used by multiple components are in the `seedu.modquik.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### 5.1 Add Student Feature
+### Add Student Feature
 
 This feature allows a TA to add a student to the student list.
 
@@ -219,7 +219,7 @@ The following activity diagram illustrates what happens when the `add student` c
 Referencing the above activity diagram, ModQuik will first check that all prefixes are present and formatted correctly. It will then proceed to check if all fields provided are formatted correctly. After that, it creates a Student object using the provided fields and then check if there is a duplicate student inside ModQuik. If there are no duplicate student inside ModQuik, it will check across every student in ModQuik to see if the provided student id already exists inside ModQuik. If the provided student id does not belong to any student inside ModQuik already, the created student is then added into ModQuik and a message is returned indicating success. The new student will appear in the ModQuik.
 
 
-### 5.2 Edit Student Feature
+### Edit Student Feature
 
 This feature allows a TA to edit a student in the displayed student list.
 
@@ -251,7 +251,7 @@ The following sequence diagram shows how the `edit student` command works:
 `edit tutorial`, `edit consultation` and `edit reminder` commands work similar to the above but have different fields.
 </div>
 
-### 5.3 Delete Student Feature
+### Delete Student Feature
 
 This feature allows a TA to delete a student in the displayd student list.
 
@@ -270,7 +270,7 @@ The following activity diagram illustrates what happens when the `delete student
 `delete tutorial`, `delete consultation` and `delete reminder` commands work similar to the above.
 </div>
 
-### 5.4 Find Student Feature
+### Find Student Feature
 
 The implementation of the `find` command to find students, allows the user to see a filtered list of students.
 The filtering is based on an AND search, for example, `find n/John m/CS2103T` will show only students that have "John" in their name and are also from the CS2103T module.
@@ -294,7 +294,7 @@ The predicate, henceforth referred as `predC`, is stored passed to `FindCommand`
 When the `FindCommand` is executed, it calls the updates the model using `predC`. Hence, the model's student list
 now only contains selected students.
 
-### 5.5 Grade Chart Feature
+### Grade Chart Feature
 
 This feature allows a TA to navigate to view the grade chart of students without the use of a mouse. This is crucial as our target users are fast typists who prefer typing to other means of input.
 
@@ -309,7 +309,7 @@ The `SwitchCommand#execute()` returns the `CommandResult(MESSAGE_SUCCESS_GRADE, 
 `GRADE_CHART` is an element in enumeration `ModelType` which determines what content is displayed in main screen.
 
 
-### 5.6 Extract emails
+### Extract emails
 
 This feature allows a TA to easily mass email a selected group of students. A typical workflow is as such:
 1. Use the `find` command to show a selected group of students of interest.
@@ -331,7 +331,7 @@ an instance of Clipboard's method `setContent`.
 An alternative is to generate a [mailto:](https://en.wikipedia.org/wiki/Mailto) link instead of deep links. However, it seems that Outlook Online
 does not attach itself as a mailto: handler.
 
-### 5.7 Sort reminder
+### Sort reminder
 This feature allows a TA to sort the list of reminders by a given criteria. TA could either choose to sort by
 * priority
 * deadline
@@ -339,9 +339,9 @@ This feature allows a TA to sort the list of reminders by a given criteria. TA c
 If priority is chosen, reminders will be sorted from `HIGH` to `MEDIUM` to `LOW`, whereas if deadline is chosen, reminders will be sorted chronologically from earliest to latest.
 
 #### Current Implementation
- It is implemented by the SortReminderCommandParser and SortReminderCommand classes.<br>
+It is implemented by the SortReminderCommandParser and SortReminderCommand classes.<br>
 `SortReminderCommandParser` is responsible for parsing and validating the parameters inputted by the user while `SortReminder` class is responsible for sorting the reminders in the reminder list.<br>
- The following sequence diagram shows how the `sort reminder` works.
+The following sequence diagram shows how the `sort reminder` works.
 
 ![ExtractEmailsSequenceDiagram](images/ExtractEmailsSequenceDiagram.png)
 
@@ -367,12 +367,12 @@ If priority is chosen, reminders will be sorted from `HIGH` to `MEDIUM` to `LOW`
 
 ## **7. Appendix: Requirements**
 
-### 7.1 Product scope
+### Product scope
 
 **Target user profile**: NUS teaching assistants (TAs).
 
 **Value proposition**: we want to evolve AB3 such that the fast-typist TAs are able to manage all the information of their teaching modules in one place including students' information, grade summary, tutorials, consultations and reminders. This allows TAs to keep track of their responsibilities, students’ progress and schedules for the ongoing semester.
-### 7.2 User stories
+### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -412,7 +412,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `   | fast-typing user   | type a command to switch between different tabs | do not need to use my mouse                                                              |
 | `* *`    | fast-typing user   | type a command to exit Modquik                  | do not need to use my mouse                                                              |
 
-### 7.3 Use Cases
+### Use Cases
 
 (For all use cases below, the **System** is the `ModQuik`, the **Actor** is the `user`, and **entries** can be either of type `student`, `tutorial`, `consultation` or `reminder`, unless specified otherwise)
 
@@ -422,23 +422,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to add an entry.
 2. System adds the entry.
-3. System displays the success message. 
-   
-    Use case ends.
+3. System displays the success message.
+
+   Use case ends.
 
 **Extensions**
 
 * 1a. The input does not follow the format.
 
     * 1a1. System shows an error message.
-      
-        Use case ends.
+
+      Use case ends.
 
 * 1b. The input does not include all required parameters.
 
     * 1b1. System shows an error message.
-      
-        Use case ends.
+
+      Use case ends.
 
 **Use case: Edit an entry**
 
@@ -446,9 +446,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to edit a specific entry in the list.
 2. System edits the entry.
-3. System shows the updated entry. 
-   
-    Use case ends.
+3. System shows the updated entry.
+
+   Use case ends.
 
 **Extensions**
 
@@ -460,15 +460,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. The given index is invalid.
 
-    * 1b1. System shows an error message that the index of the entry is invalid. 
-      
-        Use case ends.
+    * 1b1. System shows an error message that the index of the entry is invalid.
+
+      Use case ends.
 
 * 1c. The input did not include any parameter.
 
-    * 1c1. System shows an error message that at least one field to edit must be provided. 
-      
-        Use case ends.
+    * 1c1. System shows an error message that at least one field to edit must be provided.
+
+      Use case ends.
 
 **Use case: Delete an entry**
 
@@ -476,32 +476,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to delete a specific entry in the list.
 2. System deletes the entry.
-3. System shows updated list. 
-   
-    Use case ends.
+3. System shows updated list.
+
+   Use case ends.
 
 **Extensions**
 
 * 1a. The given index is invalid.
 
-    * 1a1. System shows an error message that the index of the entry is invalid. 
-      
-        Use case ends.
+    * 1a1. System shows an error message that the index of the entry is invalid.
+
+      Use case ends.
 
 **Use case: List all students**
 
 **MSS**
 
 1. User requests to list all existing students.
-2. System shows the list of all students. 
-   
-    Use case ends.
+2. System shows the list of all students.
+
+   Use case ends.
 
 **Extensions**
 
-* 1a. The list is empty. 
-  
-    Use case ends.
+* 1a. The list is empty.
+
+  Use case ends.
 
 
 **Use case: Find students**
@@ -518,8 +518,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The user enters an invalid command format.
 
     * 1a1. System shows an error message that command is invalid.
-      
-        Use case ends.
+
+      Use case ends.
 
 * 1b. The input did not include any parameter.
 
@@ -536,17 +536,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to mark a reminder.
-2. System updates the completion status of the reminder as complete. 
-   
-    Use case ends.
+2. System updates the completion status of the reminder as complete.
+
+   Use case ends.
 
 **Extensions**
 
 * 1a. The reminder is already marked as done.
 
-    * 1a1. System shows an error message that the reminder is already completed. 
-      
-        Use case ends.
+    * 1a1. System shows an error message that the reminder is already completed.
+
+      Use case ends.
 
 * 1b. The given index is invalid.
 
@@ -559,17 +559,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to unmark a reminder.
-2. System updates the completion status of the reminder as incomplete. 
-   
-    Use case ends.
+2. System updates the completion status of the reminder as incomplete.
+
+   Use case ends.
 
 **Extensions**
 
 * 1a. The reminder is not yet done.
 
-    * 1a1. System shows an error message that the reminder is already incomplete. 
-      
-        Use case ends.
+    * 1a1. System shows an error message that the reminder is already incomplete.
+
+      Use case ends.
 
 * 1b. The given index is invalid.
 
@@ -584,16 +584,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to sort the reminder.
 2. User chooses the sorting criteria.
 3. System sort the reminders by the given criteria.
-   
+
    Use case ends.
 
 **Extensions**
 
 * 2a. The sorting criteria is invalid.
 
-    * 2a1. System shows an error message. 
-      
-        Use case ends.
+    * 2a1. System shows an error message.
+
+      Use case ends.
 
 **Use case: Clear entries**
 
@@ -626,11 +626,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to exit the application.
-2. System exist. 
-   
-    Use case ends.
+2. System exist.
 
-### 7.4 Non-Functional Requirements
+   Use case ends.
+
+### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
@@ -648,6 +648,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Prefix**: Abbreviation of the name of the parameter followed by a `/`. User will need to type the prefix before the parameter in ModQuik. e.g., `sort reminder by/deadline` where by/ is the prefix.<br>
 **Lexicographically**: Generalization of the alphabetical order of the dictionaries<br>
 **Mainstream OS**: Windows, Linux, Unix, OS-X
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **8. Appendix: Instructions for manual testing**
@@ -659,25 +660,25 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### 8.1 Launch and shutdown
+### Launch and shutdown
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample data. The window size may not be optimum.
+    2. Double-click the jar file Expected: Shows the GUI with a set of sample data. The window size may not be optimum.
 
 2. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   2. Re-launch the app by double-clicking the jar file.<br>
+    2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 
-### 8.2 Student
+### Student
 
-#### 8.2.1 Adding a student
+#### Adding a student
 
 Do the test cases sequentially to ensure correct expectation.
 
@@ -713,7 +714,7 @@ Do the test cases sequentially to ensure correct expectation.
     3. Test case: `add student n/Jack i/A1234567J ph/12345678 e/jack@example.com tele/jack m/CS2103T tut/W17`<br>
        Expected:  A success message containing details of the added student is shown. Main display changes to student and student list is updated.
 
-#### 8.2.2 Editing a student
+#### Editing a student
 
 1. Editing a student while student tab is being shown.
 
@@ -725,12 +726,12 @@ Do the test cases sequentially to ensure correct expectation.
     3. Test case: `edit student 0`<br>
        Expected: No student is edited. Error message shown in result display box.
 
-#### 8.2.3 Finding a student
+#### Finding a student
 
 1. Finding a student while student tab is being shown.
 
     1. Prerequisites: Switch to student tab using the `switch f/student` command (you may skip this if the main display is already student).
-       Ensure student existing by using `clear f/student` then `add student n/Mary i/A0000000B ph/87654321 e/john@example.com tele/mary m/CS2103T tut/W17` 
+       Ensure student existing by using `clear f/student` then `add student n/Mary i/A0000000B ph/87654321 e/john@example.com tele/mary m/CS2103T tut/W17`
 
     2. Test case: `find n/John`<br>
        Expected: No student is listed. Details of the find command shown in the status message.
@@ -739,7 +740,7 @@ Do the test cases sequentially to ensure correct expectation.
        Expected: 1 student is listed. Details of the find command shown in the status message.
 
 
-#### 8.2.4 Deleting a student
+#### Deleting a student
 
 1. Deleting a student while all students are being shown
 
@@ -754,43 +755,43 @@ Do the test cases sequentially to ensure correct expectation.
     4. Other incorrect delete commands to try: `delete student`, `delete student x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-### 8.3 Tutorial
+### Tutorial
 
-#### 8.3.1 Adding a tutorial
+#### Adding a tutorial
 
 Do the test cases sequentially to ensure correct expectation.
 
 1. Adding a tutorial while tutorial tab is being shown.
 
-   1. Prerequisites: Switch to tutorial tab using the `switch f/tutorial` command. Ensure tutorials data are empty by using `clear f/tutorial` (you may skip this if you do not have any tutorials).
+    1. Prerequisites: Switch to tutorial tab using the `switch f/tutorial` command. Ensure tutorials data are empty by using `clear f/tutorial` (you may skip this if you do not have any tutorials).
 
-   2. Test case: `add tutorial n/G08 m/CS2101 v/COM2-0209 T/16:00-18:00 D/2`<br>
-      Expected:  A new tutorial is added to the tutorial list. A success message containing details of the added tutorial is shown in result display box and the list of tutorials is shown.
+    2. Test case: `add tutorial n/G08 m/CS2101 v/COM2-0209 T/16:00-18:00 D/2`<br>
+       Expected:  A new tutorial is added to the tutorial list. A success message containing details of the added tutorial is shown in result display box and the list of tutorials is shown.
 
-   3. Test case: `add tutorial n/G02 m/CS2101 v/COM2-0209 T/15:00-17:00 D/2`<br>
-      Expected: Conflicting tutorial error message is shown.
+    3. Test case: `add tutorial n/G02 m/CS2101 v/COM2-0209 T/15:00-17:00 D/2`<br>
+       Expected: Conflicting tutorial error message is shown.
 
-   4. Test case: `add tutorial n/G02 m/CS2101 v/COM2-0209 T/19:00-17:00 D/2`<br>
-      Expected: Error message is shown as time range is invalid. No tutorial is added.
+    4. Test case: `add tutorial n/G02 m/CS2101 v/COM2-0209 T/19:00-17:00 D/2`<br>
+       Expected: Error message is shown as time range is invalid. No tutorial is added.
 
-   5. Test case: `add tutorial n/G02 m/CS2101`<br>
-      Expected: Error message is shown as missing prefix. No tutorial is added.
+    5. Test case: `add tutorial n/G02 m/CS2101`<br>
+       Expected: Error message is shown as missing prefix. No tutorial is added.
 
-   6. Other incorrect add tutorial commands to try: `add tutorials`, `add tutorial n/G01 m/sususu v/ T/ D/`, `...` <br>
-      Expected: Error message is shown in the result display box.
+    6. Other incorrect add tutorial commands to try: `add tutorials`, `add tutorial n/G01 m/sususu v/ T/ D/`, `...` <br>
+       Expected: Error message is shown in the result display box.
 
 2. Adding a tutorial while tutorial tab is not being shown.
 
-   1. Prerequisites: Switch to another tab that is not tutorial, for example, using the `switch f/student` command.
+    1. Prerequisites: Switch to another tab that is not tutorial, for example, using the `switch f/student` command.
 
-   2. Test case: `add tutorial n/TW08 m/GEC1027 v/AS1-0203 T/10:00-11:00 D/10`<br>
-      Expected:  Error message is shown as day is invalid. Main display remains the same.
+    2. Test case: `add tutorial n/TW08 m/GEC1027 v/AS1-0203 T/10:00-11:00 D/10`<br>
+       Expected:  Error message is shown as day is invalid. Main display remains the same.
 
-   3. Test case: `add tutorial n/TW08 m/GEC1027 v/AS1-0203 T/10:00-11:00 D/1`<br>
-      Expected:  A success message containing details of the added tutorial is shown. Main display changes to tutorial and tutorial list is updated.
+    3. Test case: `add tutorial n/TW08 m/GEC1027 v/AS1-0203 T/10:00-11:00 D/1`<br>
+       Expected:  A success message containing details of the added tutorial is shown. Main display changes to tutorial and tutorial list is updated.
 
 
-#### 8.3.2 Editing a tutorial
+#### Editing a tutorial
 
 1. Editing a tutorial while tutorial tab is being shown.
 
@@ -801,8 +802,8 @@ Do the test cases sequentially to ensure correct expectation.
 
     3. Test case: `edit tutorial 0`<br>
        Expected: No tutorial is edited. Error message shown in result display box.
-       
-#### 8.3.3 Deleting a tutorial
+
+#### Deleting a tutorial
 
 1. Deleting a tutorial while tutorial tab is being shown
 
@@ -817,9 +818,9 @@ Do the test cases sequentially to ensure correct expectation.
     4. Other incorrect delete tutorial commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-### 8.4 Consultation
+### Consultation
 
-#### 8.4.1 Adding a consultation
+#### Adding a consultation
 
 Do the test cases sequentially to ensure correct expectation.
 
@@ -853,7 +854,7 @@ Do the test cases sequentially to ensure correct expectation.
        Expected:  A success message containing details of the added consultation is shown. Main display changes to consultation and consultation list is updated.
 
 
-#### 8.4.2 Editing a consultation
+#### Editing a consultation
 
 1. Editing a consultation while consultation tab is being shown.
 
@@ -866,7 +867,7 @@ Do the test cases sequentially to ensure correct expectation.
        Expected: No consultation is edited. Error message shown in result display box.
 
 
-#### 8.4.3 Deleting a consultation
+#### Deleting a consultation
 
 1. Deleting a consultation while consultation tab is being shown
 
@@ -881,9 +882,9 @@ Do the test cases sequentially to ensure correct expectation.
     4. Other incorrect delete consultation commands to try: `delete`, `delete x`, `...` (where x is larger than the consultation list size)<br>
        Expected: Similar to previous.
 
-### 8.5 Reminder
+### Reminder
 
-#### 8.5.1 Adding a reminder
+#### Adding a reminder
 
 Do the test cases sequentially to ensure correct expectation.
 
@@ -907,7 +908,7 @@ Do the test cases sequentially to ensure correct expectation.
        Expected: Error message is shown in the result display box.
 
 
-#### 8.5.2 Editing a reminder
+#### Editing a reminder
 
 1. Editing a reminder while all reminders are being shown.
 
@@ -919,7 +920,7 @@ Do the test cases sequentially to ensure correct expectation.
     3. Test case: `edit reminder 0`<br>
        Expected: No reminder is edited. Error message shown in result display box.
 
-#### 8.5.3 Deleting a reminder
+#### Deleting a reminder
 
 1. Deleting a reminder while all reminders are being shown.
 
@@ -934,22 +935,22 @@ Do the test cases sequentially to ensure correct expectation.
     4. Other incorrect delete reminder commands to try: `delete`, `delete reminders`, `delete reminder x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-#### 8.5.4 Marking a reminder
+#### Marking a reminder
 
 1. Marking a reminder while all reminders are being shown.
 
     1. Prerequisites: At least 1 reminder in the reminder list and status of the first reminder is incomplete.
 
     2. Test case: `mark reminder 1`<br>
-       Expected: The status of the first reminder will become completed. Reminder list will be updated and colour of reminder will turn from yellow to green. 
-       
+       Expected: The status of the first reminder will become completed. Reminder list will be updated and colour of reminder will turn from yellow to green.
+
     3. Test case: `mark reminder 0`<br>
        Expected: No reminder is marked as completed. Error details shown in the result display box. Reminder list remains the same.
 
     4. Other incorrect mark reminder commands to try: `mark`, `mark reminders`, `mark reminder x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-#### 8.5.5 Unmarking a reminder
+#### Unmarking a reminder
 
 1. Unmarking a reminder while all reminders are being shown.
 
@@ -964,7 +965,7 @@ Do the test cases sequentially to ensure correct expectation.
     4. Other incorrect unmark reminder commands to try: `unmark`, `unmark reminders`, `unmark reminder x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-#### 8.5.6 Sorting reminders
+#### Sorting reminders
 
 1. Sorting all reminders while all reminders are being shown.
 
@@ -979,12 +980,12 @@ Do the test cases sequentially to ensure correct expectation.
     1. Other incorrect sort reminder commands to try: `sort`, `sort reminders`, `...`<br>
        Expected: Similar to previous.
 
-### 8.6 Switch tabs
+### Switch tabs
 
 1. View different content.
 
     1. Test case: `switch f/student`<br>
-        Expected: A success message shown and the main display shows student's content.
+       Expected: A success message shown and the main display shows student's content.
 
     2. Test case: `switch f/tutorial`<br>
        Expected: A success message shown and the main display shows tutorial's content.
@@ -1003,11 +1004,11 @@ Do the test cases sequentially to ensure correct expectation.
     2. Test case: `switchs f/tutorial`<br>
        Expected: Error message shown as the command has a typo error.
 
-### 8.7 Saving data
+### Saving data
 
 1. Dealing with missing/corrupted data files
 
-2. Test case: Missing JSON file. 
+2. Test case: Missing JSON file.
    Expected: Sample data will be populated on startup.
 
 3. Test case: Corrupted JSON file.
@@ -1017,7 +1018,7 @@ Do the test cases sequentially to ensure correct expectation.
 
 Implementing ModQuik was not easy. We have summarised the difficulties and challenges our team have encountered when developing ModQuik and listed it below.
 
-### 9.1 Code Design
+### Code Design
 As we are creating a tool for TAs to manage all their teaching responsibilities, we have to implement several new entities (`Tutorial`, `Consultation` and `Reminder`) for ModQuik as compared to AB-3 where there was only 1 entity type (`Person`).
 When applicable, we try to abstract out commonly reused classes.
 We also created multiple Parser classes for each of the subsequent classes that we have created in order for our commands to work properly.
@@ -1030,13 +1031,13 @@ The most inconvenient aspect is that editing any student entry that involves cha
 This presents yet another dilemma, because if the TA deletes the module code, then by design all the student entries related to the module should be deleted as well.
 Moreover, if we were to link the module to the students, editing the tutorial module code will also edit all the affiliated student entries, but this might not be the intended behaviour.
 
-### 9.2 User Interface
+### User Interface
 AB3 did not have any different tabs. There was only one page showing the Person’s contacts.
 By adding tabs, we could implement different UIs into each tab to give the user a better experience.
 In order to do so, it requires us to put in more thought on how to render the tabs.
 By default, JavaFx create tabs in horizontal order on the top of TabPane and changing the tabs at left will cause the headers be vertical.
 We had to tackle aspects regarding setting tabs placed at left and ensuring keeping the tab headers horizontal.
 Furthermore, having multiple tabs required us to manipulate the tab toggling for certain commands as our target user is fast-typists who prefer typing over other means of input.
-In addition, we encountered difficulties in creating a pie chart and customizing the chart legends to show the number of students in each category, which required much time. 
+In addition, we encountered difficulties in creating a pie chart and customizing the chart legends to show the number of students in each category, which required much time.
 Finally, implementing and styling the UI was not easy. Changing layout and adding icons is important to provide a standardised and modern look to the application.
 In order to do so, it required us to overhaul the existing CSS file in AddressBook Level-3.
