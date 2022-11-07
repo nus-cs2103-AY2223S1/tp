@@ -603,7 +603,7 @@ Format: `delete INDEX [MORE_INDEXES]`
 
 - Deletes the student(s) at the specified `INDEX(ES)`.
 - The `INDEX(ES)` refers to the index numbers shown in the [Student List](#ui-overview) (bottom left section of the display).
-- The `INDEX(ES)` must be a positive integer within the size of the displayed student list. e.g., `1, 2, 3, ...`.
+- An index must be a positive integer within the size of the displayed student list.
 
 Examples:
 - `list` followed by `delete 1 2` deletes the 1st and 2nd student in the [Student List](#ui-overview).
