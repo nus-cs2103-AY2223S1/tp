@@ -43,7 +43,7 @@ Given below are my contributions to the project.
 * Added the __Target User Group__ and __Value Proposition__ descriptions
 * Added the __FAQ__ section
 * Added Navigation for __Features__ list
-* Modified and standardised headings, screenshot descriptions and spacing for consistency
+* Modified and standardised headings, command word section, format section and screenshot descriptions for consistency
 
 ### Contributions to the Developer Guide:
 * Added the __Find Feature__ section with 3 Sequence diagrams

@@ -44,67 +44,25 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
         }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-
-            checkNumberOfPrefixes(PREFIX_NAME, argMultimap);
-
-            String trimmedArgs = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()).toString().trim();
-
-            final String finalPredicateString = createPredicateString(trimmedArgs);
-
-            Predicate<Name> namePredicate = (name -> name.fullName.toLowerCase()
-                    .contains(finalPredicateString.toLowerCase()));
-
-            this.namePredicate = namePredicate;
+            createNamePredicate(argMultimap);
         }
 
         Optional<Predicate<Name>> finalNamePredicate = Optional.ofNullable(this.namePredicate);
 
         if (argMultimap.getValue(PREFIX_MEDICAL_TEST).isPresent()) {
-
-            checkNumberOfPrefixes(PREFIX_MEDICAL_TEST, argMultimap);
-
-            String trimmedArgs = ParserUtil.parseMedicalTest(argMultimap.getValue(PREFIX_MEDICAL_TEST).get())
-                    .toString().trim();
-
-            final String finalPredicateString = createPredicateString(trimmedArgs);
-
-            Predicate<MedicalTest> testPredicate = (test -> test.toString().toLowerCase()
-                    .contains(finalPredicateString.toLowerCase()));
-
-            this.testPredicate = testPredicate;
+            createMedicalTestPredicate(argMultimap);
         }
 
         Optional<Predicate<MedicalTest>> finalTestPredicate = Optional.ofNullable(this.testPredicate);
 
         if (argMultimap.getValue(PREFIX_SLOT).isPresent()) {
-
-            checkNumberOfPrefixes(PREFIX_SLOT, argMultimap);
-
-            String trimmedArgs = argMultimap.getValue(PREFIX_SLOT).get().trim();
-
-            if (!trimmedArgs.matches("^[0-9 :-]+$")) {
-                throw new ParseException("Only numbers, - and : and spaces are allowed as input for finding by slot");
-            }
-
-            Predicate<Slot> slotPredicate = (slot -> slot.toString().contains(trimmedArgs.toLowerCase()));
-
-            this.slotPredicate = slotPredicate;
+            createSlotPredicate(argMultimap);
         }
 
         Optional<Predicate<Slot>> finalSlotPredicate = Optional.ofNullable(this.slotPredicate);
 
         if (argMultimap.getValue(PREFIX_DOCTOR).isPresent()) {
-
-            checkNumberOfPrefixes(PREFIX_DOCTOR, argMultimap);
-
-            String trimmedArgs = ParserUtil.parseDoctor(argMultimap.getValue(PREFIX_DOCTOR).get()).toString().trim();
-
-            final String finalPredicateString = createPredicateString(trimmedArgs);
-
-            Predicate<Doctor> doctorPredicate = (doctor -> doctor.toString().toLowerCase()
-                    .contains(finalPredicateString.toLowerCase()));
-
-            this.doctorPredicate = doctorPredicate;
+            createDoctorPredicate(argMultimap);
         }
 
         Optional<Predicate<Doctor>> finalDoctorPredicate = Optional.ofNullable(this.doctorPredicate);
@@ -150,5 +108,80 @@ public class FindAppointmentCommandParser implements Parser<FindAppointmentComma
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FindAppointmentCommand.MESSAGE_USAGE));
         }
+    }
+
+    /**
+     * Creates the predicate for the name field.
+     * @param argMultimap The argument multimap to get the input from.
+     * @throws ParseException If the prefix is present more than once.
+     */
+    public void createNamePredicate(ArgumentMultimap argMultimap) throws ParseException {
+        checkNumberOfPrefixes(PREFIX_NAME, argMultimap);
+
+        String trimmedArgs = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()).toString().trim();
+
+        final String finalPredicateString = createPredicateString(trimmedArgs);
+
+        Predicate<Name> namePredicate = (name -> name.fullName.toLowerCase()
+                .contains(finalPredicateString.toLowerCase()));
+
+        this.namePredicate = namePredicate;
+    }
+
+    /**
+     * Creates the predicate for the medical test field.
+     * @param argMultimap The argument multimap to get the input from.
+     * @throws ParseException If the prefix is present more than once.
+     */
+    public void createMedicalTestPredicate(ArgumentMultimap argMultimap) throws ParseException {
+        checkNumberOfPrefixes(PREFIX_MEDICAL_TEST, argMultimap);
+
+        String trimmedArgs = ParserUtil.parseMedicalTest(argMultimap.getValue(PREFIX_MEDICAL_TEST).get())
+                .toString().trim();
+
+        final String finalPredicateString = createPredicateString(trimmedArgs);
+
+        Predicate<MedicalTest> testPredicate = (test -> test.toString().toLowerCase()
+                .contains(finalPredicateString.toLowerCase()));
+
+        this.testPredicate = testPredicate;
+    }
+
+    /**
+     * Creates the predicate for the slot field.
+     * @param argMultimap The argument multimap to get the input from.
+     * @throws ParseException If the prefix is present more than once.
+     */
+    public void createSlotPredicate(ArgumentMultimap argMultimap) throws ParseException {
+        checkNumberOfPrefixes(PREFIX_SLOT, argMultimap);
+
+        String trimmedArgs = argMultimap.getValue(PREFIX_SLOT).get().trim();
+
+        if (!trimmedArgs.matches("^[0-9 :-]+$")) {
+            throw new ParseException("Only numbers, -, : and spaces are allowed as input for finding by slot");
+        }
+
+        Predicate<Slot> slotPredicate = (slot -> slot.toString().contains(trimmedArgs.toLowerCase()));
+
+        this.slotPredicate = slotPredicate;
+    }
+
+    /**
+     * Creates the predicate for the doctor field.
+     * @param argMultimap The argument multimap to get the input from.
+     * @throws ParseException If the prefix is present more than once.
+     */
+    public void createDoctorPredicate(ArgumentMultimap argMultimap) throws ParseException {
+
+        checkNumberOfPrefixes(PREFIX_DOCTOR, argMultimap);
+
+        String trimmedArgs = ParserUtil.parseDoctor(argMultimap.getValue(PREFIX_DOCTOR).get()).toString().trim();
+
+        final String finalPredicateString = createPredicateString(trimmedArgs);
+
+        Predicate<Doctor> doctorPredicate = (doctor -> doctor.toString().toLowerCase()
+                .contains(finalPredicateString.toLowerCase()));
+
+        this.doctorPredicate = doctorPredicate;
     }
 }
