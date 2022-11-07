@@ -586,7 +586,7 @@ input to return a `DeleteListingCommand` that will be executed.
 
 Given below is an example usage scenario and how the delete listing mechanism behaves at each step.
 
-Step 1. The user enters `delO 1` in the command box.  This calls the `LogicManager#execute()` method which calls the
+Step 1. The user enters `delL 1` in the command box.  This calls the `LogicManager#execute()` method which calls the
 `RealTimeParser#parse` method to be executed and will determine that the command is a `DeleteListingCommand` after parsing.
 
 Step 2. A `DeleteListingCommandParser` object is instantiated with the necessary arguments. It will return a
@@ -628,7 +628,7 @@ to return a `EditListingCommand` that will be executed.
 
 Given below is an example usage scenario and how the edit listing mechanism behaves at each step.
 
-Step 1. The user enters `editO 1 l/Bukit_timah_rd o/1000000` in the command box. This calls the `LogicManager#execute()`
+Step 1. The user enters `editL 1 l/Bukit_timah_rd ap/1000000` in the command box. This calls the `LogicManager#execute()`
 method which calls the `RealTimeParser#parse` method to be executed and will determine that the command is a
 `EditListingCommand` after parsing.
 
@@ -643,11 +643,141 @@ method which takes in the `Listing` to be edited and the `EditListingDescriptor`
 The edited `Listing` is then checked if it is a duplicate or already exists in the `UniqueListingList` through the
 `Listing#isSameListing()` and `Model#hasListing()` methods.
 
-An `Listing` is the same if it contains the exact same `Name`.
+An `Listing` is the same if it contains the exact same `Listing Id` and `Address`.
 
 Step 4. The `Model#setListing(Listing)` method is called to replace the target `Listing` at the specified `Index` from earlier.
 The `Model#updateFilteredListingList()` is called to update the `UniqueListingList`.
 
+### \[Implemented\] Add Meeting feature
+
+#### Meeting
+REal-Time manages **_Meetings_** with Clients.
+
+#### Implementation
+
+To add an `Meeting` object, the `AddMeetingCommand` must be executed. This stores the `Meeting` object into the
+`UniqueMeetingList`. Following the command execution pathway, the implementation of adding listings uses the exposed
+`Model#addMeeting(Meeting)` method in the `Model` API.
+
+The `AddMeetingCommand` is parsed by the `AddMeetingCommandParser`.
+`AddMeetingCommandParser#parse()` parses the user input to return a `AddMeetingCommand` object that will be executed.
+
+Given below is an example usage scenario and how the add listings mechanism behaves at each step.
+
+Step 1. The user opens up the `REal-Time` application for the first time and observes that there are some sample data
+in the `UniqueMeetingList`.
+
+Step 2. The user keys in the command word for adding a listing, `addM`, followed by the compulsory parameters needed to
+add a listing, namely the `ListingId` component prefixed by `l/`, `Name` component prefixed by `n/`and the `Date and Time`
+component prefixed by `d/`. In this scenario, the user keys in
+`addM l/007 n/John Doe d/2022-10-20 12:00` into the command box
+which will execute the `AddMeetingCommandParser` to check through the arguments and ensure that the compulsory fields are
+present. It will then create the `ListingId`, `Name` and `LocalDateTime` objects needed to instantiate an `Meeting` object. The
+parser returns a `AddMeetingCommand` object with the `Meeting` object ready to be added into `Model`
+
+Step 3. The `AddMeetingCommand` calls the `Model#addMeeting(Meeting)` to add the listing and its relevant attributes.
+
+Step 4. Depending on whether the `UniqueMeetingList` already contains data or is an empty list, the added Meeting will
+be sorted automatically by the `LocalDateTime` in lexicographical order. This is done using the `Collections#sort()` method
+and implementing a natural order by implementing the `Comparable` interface and overriding the `Comparable#compareTo()`
+method.
+
+The sequence diagram below shows the add listing process.
+
+![addMeetingSequenceDiagram](images/AddMeetingSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for
+`AddMeetingCommandParser` and `RealTimeParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline
+reaches the end of diagram.
+</div>
+
+#### Design considerations
+
+**Aspect: Meeting-Listing interaction**
+
+* **Alternative 1 (current choice):** Separate Meeting and Listing objects
+  * Pros: Easier to maintain as they are separate objects, less dependency between each other
+  * Cons: `Offer` references the `ListingId` instead of `Listing` objects.
+* **Alternative 2:** Allow Offers to have a Listing attribute instead
+  * Pros: Easier to reference between `Listing` and `Meeting`
+  * Cons: Large dependency between the two.
+
+
+### \[Implemented\] Delete Meeting feature
+
+The Delete Meeting feature allows users to delete the specified `Meeting` in the `UniqueMeetingList`.
+
+#### Implementation
+
+To delete an `Meeting` object, the `DeleteMeetingCommand` must be executed. The `DeleteMeetingCommand` extends the `Command`
+class.
+
+The `DeleteMeetingCommand` is parsed by the `DeleteMeetingCommandParser`. `DeleteMeetingCommandParser#parse()` parses the user
+input to return a `DeleteMeetingCommand` that will be executed.
+
+Given below is an example usage scenario and how the delete listing mechanism behaves at each step.
+
+Step 1. The user enters `delM 1` in the command box.  This calls the `LogicManager#execute()` method which calls the
+`RealTimeParser#parse` method to be executed and will determine that the command is a `DeleteMeetingCommand` after parsing.
+
+Step 2. A `DeleteMeetingCommandParser` object is instantiated with the necessary arguments. It will return a
+`DeleteMeetingCommand` object with the specified `Index`.
+
+Step 3. The `DeleteMeetingCommand#execute()` method is called which calls the `Model#deleteMeeting(Meeting)` method to delete
+the Meeting at the specified `Index` in `Model`.
+
+The sequence diagram below shows the delete listing process.
+
+![deleteMeetingSequenceDiagram](images/DeleteMeetingSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for
+`DeleteMeetingCommandParser` and `DeleteMeetingCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline
+reaches the end of diagram.
+</div>
+
+#### Design considerations
+
+**Aspect: Using index specific or attribute specific deletion**
+
+* **Alternative 1 (current choice):** Index specific
+  * Pros: Easier implementation and more suited for fast-typing
+  * Cons: Might accidentally delete the wrong `Meeting` if `Index` is mistyped
+* **Alternative 2:** Attribute specific
+  * Pros: User does not have to find for specific `Index`
+  * Cons: Many `Meeting` objects might share same attribute such as `Listing Id` and `Name`.
+
+### \[Implemented\] Edit Meeting feature
+
+The Edit Meeting feature allows users to edit any attribute of an `Meeting` in the `UniqueMeetingList`.
+
+#### Implementation
+
+To edit an `Meeting`, the `EditMeetingCommand` is executed. The `EditMeetingCommand` extends the `Command` class.
+
+The `EditMeetingCommand` is parsed by the `EditMeetingCommandParser`. `EditMeetingCommandParser#parse()` parses the user input
+to return a `EditMeetingCommand` that will be executed.
+
+Given below is an example usage scenario and how the edit listing mechanism behaves at each step.
+
+Step 1. The user enters `editM 1 l/Bukit_timah_rd d/2022-10-20 23:59` in the command box. This calls the `LogicManager#execute()`
+method which calls the `RealTimeParser#parse` method to be executed and will determine that the command is a
+`EditMeetingCommand` after parsing.
+
+Step 2. An `EditMeetingCommandParser` object is instantiated with the necessary arguments. It returns a `EditMeetingCommand`
+with the `Index` and `EditMeetingDescriptor` as parameters. The `EditMeetingDescriptor` contains the edited information that
+the edited `Meeting` is supposed to be updated to. In this scenario, we are changing the `listingId` and `Time` attribute
+of the `Meeting`. The `EditMeetingDescriptor` is then updated through the `setMeeting()` and `setMeetingPrice()` methods by
+the `EditMeetingDescriptor`.
+
+Step 3. The `EditMeetingCommand#execute()` method is called which creates the edited `Meeting` using the `createEditedMeeting`
+method which takes in the `Meeting` to be edited and the `EditMeetingDescriptor` that was created from the previous step.
+The edited `Meeting` is then checked if it is a duplicate or already exists in the `UniqueMeetingList` through the
+`Meeting#isSameMeeting()` and `Model#hasMeeting()` methods.
+
+An `Meeting` is the same if it contains the exact same `LocalDateTime`.
+
+Step 4. The `Model#setMeeting(Meeting)` method is called to replace the target `Meeting` at the specified `Index` from earlier.
+The `Model#updateFilteredMeetingList()` is called to update the `UniqueMeetingList`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -684,21 +814,24 @@ The `Model#updateFilteredListingList()` is called to update the `UniqueListingLi
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                 | So that I can…​                                                        |
-|----------|--------------------------------------------|------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                   | see usage instructions       | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new client             | see all my clients in one list                                         |
-| `* * *`  | user                                       | add my client's offer        | track all my clients' current offers                                   |
-| `* * *`  | user                                       | delete a client              | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a client by name        | locate details of persons without having to go through the entire list |
-| `* * *`  | user                                       | edit an offer                | update any changes to a client's offer                                 |
-| `* *`    | user                                       | hide private contact details | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort client by name          | locate a person easily                                                 |
-| `*`      | user with many offers in the address book  | sort offers by listings      | locate offers easily                                                   |
-| `*`      | intermediate user                          | view reminders               | be informed of urgent meetings                                         |
-| `*`      | intermediate user                          | reorder the list             | place important contacts near the top                                  |
-| `*`      | user                                       | save my data                 | store my data for future use                                           |
-| `*`      | intermediate user                          | filter the list              | easily view clients of a specific type                                 |
+| Priority | As a …​                                    | I want to …​            | So that I can…​                                                        |
+|----------|--------------------------------------------|-------------------------|------------------------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions  | refer to instructions when I forget how to use the App                 |
+| `* * *`  | user                                       | add a new client        | see all my clients in one list                                         |
+| `* * *`  | user                                       | add a new listing       | see all my listings in one list                                        |
+| `* * *`  | user                                       | add my client's offer   | track all my clients' current offers                                   |
+| `* * *`  | user                                       | add my client's meeting | track all my meetings with clients                                     |
+| `* * *`  | user                                       | delete a client         | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | delete a listing        | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | delete an offer         | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | delete a meeeting       | remove entries that I no longer need                                   |
+| `* * *`  | user                                       | find a client by name   | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | edit an client          | update any changes to a client's details                               |
+| `* * *`  | user                                       | edit an listing         | update any changes to a listing's details                              |
+| `* * *`  | user                                       | edit an offer           | update any changes to a client's offer                                 |
+| `* * *`  | user                                       | edit an meeting         | update any changes to a client's meeting                               |
+| `*`      | user with many clients in the address book | sort client by name     | locate a person easily                                                 |
+| `*`      | user                                       | save my data            | store my data for future use                                           |
 
 
 *{More to be added}*

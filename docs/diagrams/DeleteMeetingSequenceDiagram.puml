@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":RealTimeParser" as RealTimeParser LOGIC_COLOR
+participant ":DeleteMeetingCommandParser" as DeleteMeetingCommandParser LOGIC_COLOR
+participant "m:DeleteMeetingCommand" as DeleteMeetingCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+-> LogicManager : execute("delM 1")
+activate LogicManager
+
+LogicManager -> RealTimeParser : parseCommand("delM 1")
+activate RealTimeParser
+
+create DeleteMeetingCommandParser
+RealTimeParser -> DeleteMeetingCommandParser
+activate DeleteMeetingCommandParser
+
+DeleteMeetingCommandParser --> RealTimeParser
+deactivate DeleteMeetingCommandParser
+
+RealTimeParser -> DeleteMeetingCommandParser : parse("1")
+activate DeleteMeetingCommandParser
+
+create DeleteMeetingCommand
+DeleteMeetingCommandParser -> DeleteMeetingCommand
+activate DeleteMeetingCommand
+
+DeleteMeetingCommand --> DeleteMeetingCommandParser : m
+deactivate DeleteMeetingCommand
+
+DeleteMeetingCommandParser --> RealTimeParser : m
+deactivate DeleteMeetingCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteMeetingCommandParser -[hidden]-> RealTimeParser
+destroy DeleteMeetingCommandParser
+
+RealTimeParser --> LogicManager : m
+deactivate RealTimeParser
+
+LogicManager -> DeleteMeetingCommand : execute()
+activate DeleteMeetingCommand
+
+DeleteMeetingCommand -> Model : deleteMeeting(1)
+activate Model
+
+Model --> DeleteMeetingCommand
+deactivate Model
+
+create CommandResult
+DeleteMeetingCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteMeetingCommand
+deactivate CommandResult
+
+DeleteMeetingCommand --> LogicManager : result
+deactivate DeleteMeetingCommand
+
+
+[<--LogicManager
+deactivate LogicManager
+destroy DeleteMeetingCommand
+@enduml
