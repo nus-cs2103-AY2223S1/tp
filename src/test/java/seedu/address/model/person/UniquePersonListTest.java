@@ -167,4 +167,13 @@ public class UniquePersonListTest {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniquePersonList.asUnmodifiableObservableList().remove(0));
     }
+
+    @Test
+    public void addAnotherPersonWithSameMinecraftName_throwsDuplicatePersonException() {
+        Person personWithSameMinecraftNameAsAlice
+                = new PersonBuilder().withMinecraftName("Alice123").build();
+        List<Person> listWithDuplicatePersons = Arrays.asList(ALICE, personWithSameMinecraftNameAsAlice);
+        // Two people with the same MinecraftName are considered duplicate persons
+        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPersons(listWithDuplicatePersons));
+    }
 }
