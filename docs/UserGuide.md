@@ -716,7 +716,7 @@ Examples:
 
 :information_source: **Notes**: <br>
 
- * Only **one** attribute is allowed. For example, `find a/6th College Ave West ph/98986668` and `find ph/98986668 ph/98986677` are not allowed.
+ * Only **one** attribute is allowed. For example, `find a/6th College Ave West ph/98986668` and `find ph/98986668 ph/98986677` are not allowed.<br>
  * This command is case-insensitive, meaning `find a/Wall Street` is equivalent to `find a/wall street`. <br>
  * The above principles also apply to the sub-commands of `find` given below.
 
@@ -795,7 +795,7 @@ Please provide **at least one** attribute when using this command.
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: Notes: <br>
+:information_source: **Notes**: <br>
 
  * This command is case-insensitive, meaning `filter-o o_st/Pending` is equivalent to `filter-o o_st/pending`. <br>
  * Having multiple prefixes of the same type is allowed, but only the latest input will be taken.
@@ -819,7 +819,7 @@ Format: `filter-o PREFIX/ATTRIBUTE [PREFIX/ATTRIBUTE]…​`
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: **Caution**: Order status can only be one of the following three: `pending`, `negotiating`, `delivering`.
+:exclamation: **Caution**: Order status can only be one of the following three: `Pending`, `Negotiating`, `Delivering`.
 
 </div>
 
