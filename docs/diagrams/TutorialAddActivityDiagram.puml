@@ -1,0 +1,21 @@
+@startuml
+start
+:User enters a TutorialAddCommand;
+:TutorialAddCommandParser parses for valid format;
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([tutorial add command is valid])
+    :Create new tutorial add command which is executed by LogicManager;
+    :Search the model for the tutorial group names;
+    if () then  ([tutorial group name already exists])
+    :Show error message;
+    else ([else])
+    :Create a tutorial group with the given name;
+    :UI displays added tutorial group in the Command Output box;
+    endif
+else ([else])
+    :Show error message;
+endif
+stop
+@enduml

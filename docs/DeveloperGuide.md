@@ -193,6 +193,24 @@ Step 3. The user executes `tutorialAdd g/T03` command to add a new tutorial grou
 
 Step 4. The user executes `studentEdit 1 g/T03` command to assign the first student to the newly created tutorial group.
 
+#### Design Considerations
+
+The implementation for tutorial group is quite similar to what was done for the base AB3.
+
+Show below is an activity diagram of how a tutorial group is added.
+
+![Tutorial Add Activity Diagram](images/TutorialAddActivityDiagram.png)
+
+However, the main difference comes with the ability to enroll a student in a tutorial group. In `TutorialGroup`, we had to 
+use a list of students to represent the students enrolled in this tutorial group.
+However, we couldn't create new Student and TutorialGroup when we enroll a student.
+Therefore, we decided to use a isSameTutorialGroup method to look for the target tutorial group, and update the tutorial 
+group field of the target student.
+
+Show below is an activity diagram of how a student is enrolled in a tutorial group.
+
+![Student Enroll Activity Diagram](images/StudentEnrollActivityDiagram.png)
+
 ### Task feature
 
 #### Description

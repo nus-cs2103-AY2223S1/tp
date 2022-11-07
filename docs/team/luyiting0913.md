@@ -42,6 +42,7 @@ Given below are my contributions to the project.
 
   - Developer Guide:
     - Add user stories and user stories [#98](https://github.com/AY2223S1-CS2103T-T13-1/tp/pull/98)
+
     - Update UML Diagrams [#130](https://github.com/AY2223S1-CS2103T-T13-1/tp/pull/130)
 
   - **Reviewing/mentoring contributions**:
