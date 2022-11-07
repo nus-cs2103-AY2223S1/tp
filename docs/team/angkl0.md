@@ -32,7 +32,11 @@ Given below are my contributions to the project.
         * Added sequence and activity diagrams for `mark` 
       * `list` `list time` 
         * Added sequence diagram for `list` 
-    * Added details on testing the saving of data under Appendix: Instructions for manual testing
+    * Added section on `managing contacts` and `saving of data` under Appendix: Instructions for manual testing
+
+* **Contribution to team-based tasks**:
+  * Frequent testing and debugging of product
 
 * **Community**: 
   * Primary reviewer of songivan00's PRs
+  
