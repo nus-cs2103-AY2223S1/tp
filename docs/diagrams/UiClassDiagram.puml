@@ -1,7 +1,7 @@
 @startuml
 !include style.puml
 skinparam arrowThickness 1.1
-skinparam arrowColor UI_COLOR_T4
+skinparam arrowColor BLACK
 skinparam classBackgroundColor UI_COLOR
 
 package UI <<Rectangle>>{
@@ -39,7 +39,7 @@ MainWindow *--> "0..1" HelpWindow
 
 VenueTabView *-down-> "1" BookingTableView
 VenueTabView *-down-> "1" VenueListView
-VenueListView *-down-> "0..*" VenueListCard
+VenueListView *-down-> "*" VenueListCard
 
 UiManager -right-> Logic
 MainWindow -right-> Logic

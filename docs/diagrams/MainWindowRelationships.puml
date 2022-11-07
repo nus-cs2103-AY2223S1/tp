@@ -1,5 +1,7 @@
 @startuml
-!include ../style.puml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor BLACK
 
 package UI {
 Class MainWindow UI_COLOR
@@ -14,15 +16,10 @@ package Model {
 Class ModelManager MODEL_COLOR
 }
 
-'Class MainWindow UI_COLOR
-'Class LogicManager LOGIC_COLOR
-'Class ModelManager MODEL_COLOR
-'Class ResidentTableView UI_COLOR
 
 MainWindow --> LogicManager
 MainWindow --> ResidentTableView
 LogicManager --> ModelManager
 
-'ResidentTableView -[hidden]right-> ModelManager
 
 @enduml

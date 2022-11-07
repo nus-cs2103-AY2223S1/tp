@@ -1,0 +1,106 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor BLACK
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":Rc4hdbParser" as Rc4hdbParser LOGIC_COLOR
+participant ":VenueCommandParser" as VenueCommandParser LOGIC_COLOR
+participant "vac:VenueAddCommand" as VenueAddCommand LOGIC_COLOR
+participant "res:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "model:ModelManager" as ModelManager MODEL_COLOR
+participant "venue:Venue" as Venue MODEL_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant ":StorageManager" as StorageManager STORAGE_COLOR
+end box
+
+[-> LogicManager : execute("venue add Hall")
+activate LogicManager
+
+LogicManager -> Rc4hdbParser : parseCommand("venue add Hall")
+activate Rc4hdbParser
+
+create VenueCommandParser
+Rc4hdbParser -> VenueCommandParser
+activate VenueCommandParser
+
+create VenueAddCommand
+VenueCommandParser -> VenueAddCommand
+activate VenueAddCommand
+
+VenueAddCommand --> VenueCommandParser : vac
+deactivate VenueAddCommand
+
+VenueCommandParser --> Rc4hdbParser : vac
+deactivate VenueCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+VenueCommandParser -[hidden]-> Rc4hdbParser
+destroy VenueCommandParser
+
+Rc4hdbParser --> LogicManager : vac
+deactivate Rc4hdbParser
+
+LogicManager -> LogicManager : execute(vac)
+activate LogicManager
+
+
+LogicManager -> VenueAddCommand : execute(model)
+activate VenueAddCommand
+
+create Venue
+VenueAddCommand -> Venue
+activate Venue
+
+Venue --> VenueAddCommand : venue
+deactivate Venue
+
+VenueAddCommand -> ModelManager : addVenue(venue)
+activate ModelManager
+
+ModelManager --> VenueAddCommand
+deactivate ModelManager
+
+create CommandResult
+VenueAddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> VenueAddCommand : res
+deactivate CommandResult
+
+VenueAddCommand --> LogicManager : res
+deactivate LogicManager
+deactivate VenueAddCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+VenueAddCommand -[hidden]-> LogicManager
+destroy VenueAddCommand
+
+LogicManager -> ModelManager : getResidentBook()
+activate ModelManager
+ModelManager --> LogicManager : residentBook
+deactivate ModelManager
+
+LogicManager -> StorageManager : saveResidentBook(residentBook)
+activate StorageManager
+StorageManager --> LogicManager
+deactivate StorageManager
+
+LogicManager -> ModelManager : getVenueBook()
+activate ModelManager
+ModelManager --> LogicManager : venueBook
+deactivate ModelManager
+
+LogicManager -> StorageManager : saveVenueBook(venueBook)
+activate StorageManager
+StorageManager --> LogicManager
+deactivate StorageManager
+
+LogicManager -->[ : res
+deactivate LogicManager
+
+@enduml
