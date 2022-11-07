@@ -142,7 +142,8 @@ The `UI` component,
 
 ### 3.3. Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+**
+API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -179,9 +180,10 @@ How the parsing works:
 
 ### 3.4. Model component
 
-**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**
+API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/UpdatedModelClassDiagramWithPortfolio.png" width="450" />
+<img src="images/UpdatedModelClassDiagramWithNoteAndMeeting.png" width="450" />
 
 
 The `Model` component,
@@ -203,7 +205,8 @@ The `Model` component,
 
 ### 3.5. Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**
+API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
 ![StorageClassDiagram](images/StorageClassDiagram.png)
 
@@ -258,8 +261,10 @@ The import command mainly relies on the following classes:
     * If the path is to a `JSON` file, `ImportCommand` creates a new `JsonAddressBookStorage` using the path, then uses
       it to read and add `Person`s to the `Model`.
     * If the path is to a `CSV` file, `ImportCommand` creates a new `CsvToBeanBuilder` using the path, then uses it to
-      obtain a list of `CsvAdaptedPerson`s. `StringToTag`, `StringToPlan` and `StringToNote` are used by `CsvToBeanBuilder` to convert
-      strings from the `CSV` file to the corresponding `CsvAdaptedPerson` fields. `CsvAdaptedPerson#toModelType()` is called to convert
+      obtain a list of `CsvAdaptedPerson`s. `StringToTag`, `StringToPlan` and `StringToNote` are used
+      by `CsvToBeanBuilder` to convert
+      strings from the `CSV` file to the corresponding `CsvAdaptedPerson` fields. `CsvAdaptedPerson#toModelType()` is
+      called to convert
       each `CsvAdaptedPerson` to a `Person` before adding them to the `Model`.
 
 The following sequence diagrams show how the import command works:
@@ -292,7 +297,8 @@ The view command mainly relies on the following classes:
 5. `ViewCommand#execute()` is called.
     1. `ViewCommand#execute()` will get the updated client list using `model#getFilteredPersonList()`.
     2. `ViewCommand#execute()` will get the specific client using the index given as the parameter.
-    3. `ViewCommand#execute()` then calls `CommandResult` which calls the `Message` to return the success message after each successful execution.
+    3. `ViewCommand#execute()` then calls `CommandResult` which calls the `Message` to return the success message after
+       each successful execution.
 
 Design considerations:
 
@@ -347,13 +353,15 @@ The copy command mainly relies on the following classes:
 1. The user executes the `copy` command while providing an index of the client as an argument.
 2. `AddressBookParser#parseCommand` is called, which creates and returns a new `CopyCommandParser` that parses the
    provided index.
-3. `CopyCommandParser#parse()` is called, which calls `ParserUtil#parseIndex` with index as an argument to check if it is valid.
+3. `CopyCommandParser#parse()` is called, which calls `ParserUtil#parseIndex` with index as an argument to check if it
+   is valid.
 4. `CopyCommandParser` creates and returns a new `CopyCommand` with the index of client.
 5. `CopyCommand#execute()` is called.
     1. `CopyCommand#execute()` will get the updated client list using `model#getFilteredPersonList()`.
     2. `CopyCommand#execute()` will get the specific client using the index given as the parameter.
     3. `CopyCommand#execute()` will set `stringSelection` with clients details by calling `person#toClipboardString()`.
-    4. `Toolkit#getDefaultToolkit()#getSystemClipboard()` is called to is initialized `clipboard` to the system's clipboard.
+    4. `Toolkit#getDefaultToolkit()#getSystemClipboard()` is called to is initialized `clipboard` to the system's
+       clipboard.
     5. `clipboard#setContents()` is called with `stringSelection` as parameter.
 
 #### Design considerations:
@@ -380,7 +388,8 @@ The lock feature mainly relies on the following classes:
 6. FinBook unlocks and the user resumes using FinBook.
 7. The user executes the `lock` command.
 8. `AddressBookParser` creates and returns a new `LockCommand`.
-9. `LockCommand` is executed and returns a `CommandResult` that tells `MainWindow` to display the password dialog box. Go to step 3.
+9. `LockCommand` is executed and returns a `CommandResult` that tells `MainWindow` to display the password dialog box.
+   Go to step 3.
 
 Password verification is handled by the Password4j library.
 
