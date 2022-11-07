@@ -28,6 +28,7 @@ FindMyIntern helps you to
 - Easily visualise different application statuses
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Table of Contents
 
@@ -88,6 +89,7 @@ This section contains the formats of all commands in FindMyIntern.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Special formats
 
@@ -148,25 +150,26 @@ Simply type in:
 3. The field to be added or updated
     * Enter directly after the prefix
     * Example: For `c/TikTok`, `Tiktok` represents the actual `company` field to be added.
-4. Repeat steps 3 and 4 to add or update more fields in a single command
+4. Repeat steps 2 and 3 to add or update more fields in a single command
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Quick Start
 
 ### Setting up
 
-1. Ensure you have Java 11 or above installed in your Computer: 
+1. Ensure you have **Java 11** or above installed in your Computer: 
    1. Open up the command prompt/Terminal in your respective OS:
-      1. For **Windows**: <br>
-         Open up the command prompt by pressing the **Windows** key and searching **Command Prompt**.
-      2. For **Mac**: <br>
-         Click on **Finder**, then open the `/Application/Utilities` folder by pressing **Command + Shift + U**, and finally open the **Terminal** application.
-      3. For **Linux**: <br>
+      * For <i class="bi bi-microsoft ms-1 me-2" style="font-size: .9rem"></i>**Windows**: <br>
+         Open up the command prompt by pressing the **Windows** key <code><i class="bi bi-microsoft"></i></code> and searching **Command Prompt**.
+      * For <i class="bi bi-apple ms-1 me-2"></i>**Mac**: <br>
+        Click on **Finder**, then open the `/Application/Utilities` folder by pressing <br>**Command + Shift + U** <code><i class="bi bi-command"></i> + <i class="bi bi-shift"></i> + U</code>, and finally open the **Terminal** application.
+      * For <i class="bi bi-ubuntu ms-1 me-2"></i>**Linux**: <br>
          Open up the command prompt by pressing **Ctrl + Alt + T**.
    2. Once the command prompt/Terminal is opened, type in `java -version`.
    3. It should look similar to this:
@@ -176,7 +179,7 @@ Simply type in:
         </p>
 
    4. If your version starts with `"11.*.*.*"` where `*` represents any number, you are good to go!
-   5. Otherwise, you can download Java 11 [here](https://www.oracle.com/java/technologies/downloads/#java11). 
+   5. Otherwise, you can download Java 11 [here](https://www.oracle.com/java/technologies/downloads/#java11).<br><br> 
 
 2. Download the latest `findmyintern.jar` from [here](https://github.com/AY2223S1-CS2103T-T14-1/tp/releases).
 
@@ -184,9 +187,11 @@ Simply type in:
 
 4. Double-click the file to start the application.
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Adding your first internship application
 
@@ -195,7 +200,6 @@ Now that you've downloaded FindMyIntern, you can start managing your internship 
 1. Open FindMyIntern by double-clicking `findmyintern.jar` if you have not already done so.
 
 2. The GUI similar to the below should appear in a few seconds. FindMyIntern will load some sample data.<br>
-
    <p align="center">
        <img src="images/AnnotatedUi.png" />
    </p>
@@ -203,6 +207,7 @@ Now that you've downloaded FindMyIntern, you can start managing your internship 
 3. Let's add your first internship application with the [`add` command](#adding-an-internship-application-add)!
 
 4. Type `add c/Shopee l/careers.shopee.sg d/My first internship application a/27 Oct` and press Enter to execute it.
+   <div style="page-break-after: always;"></div><br>
 
 5. Congratulations! You have just added your first internship application to FindMyIntern! A message like the one below showing the result of your command should appear in the result box.
    
@@ -219,6 +224,7 @@ Now that you've downloaded FindMyIntern, you can start managing your internship 
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -269,6 +275,8 @@ To navigate to a specific command, you can just click on any of the commands to 
 - [Viewing help: `help`](#viewing-help-help)
 - [Exiting the program: `exit`](#exiting-the-program-exit)
 
+<div style="page-break-after: always;"></div>
+
 #### Adding an internship application: `add`
 
 Adds an internship application to FindMyIntern.
@@ -313,7 +321,7 @@ To change [application status](#application-status), see [`mark` command](#marki
 </div>
 </div>
 
-<div class="d-flex alert alert-warning">
+<div class="d-flex alert alert-warning mb-1">
 <div class="me-3">
   <span class="badge text-bg-warning">WARNING</span>
 </div>
@@ -332,16 +340,18 @@ See [Appendix: Link formats](#link-formats) for the link formats allowed. Not fo
 See [Appendix: Date/time formats](#datetime-formats) for the date/time formats allowed. Not following these formats will result in an error.
 </div>
 </div>
-
+<div style="page-break-after: always;"></div>
 Examples:
 * `add c/Apple l/https://jobs.apple.com/en-sg d/Software engineering internship a/11/10/2022` - Adds an internship application for `Apple` into the list 
 * `add c/Grab l/https://grab.careers/teams/campus d/Marketing internship a/11 Oct i/23 Nov, 3:00 pm` - Adds an internship application for `Grab` into the list
 * `add c/Shopee l/careers.shopee.sg/students d/Data analyst internship a/20 Oct 2022 i/28 Nov 16:00 t/data analyst t/summer` - Adds an internship application for `Shopee` into the list
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### Editing an internship application: `edit`
 
@@ -406,10 +416,12 @@ Examples:
 * `edit 3 t/frontend t/summer` - Edits the tags of the 3rd internship application, removing existing tags and
   adding `frontend` and `summer` tags
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### Marking an internship application status: `mark`
 
@@ -437,7 +449,7 @@ Examples:
 * `mark 2 s/Accepted` - Marks the 2nd internship application status as `accepted`
 * `mark 4 s/rejecteD` - Marks the 4th internship application status as `rejected`
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
@@ -457,7 +469,7 @@ Shows a list of all internship applications.
     </div>
 </div>
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
@@ -484,10 +496,12 @@ Deletes an internship application.
 Examples:
 *  `delete 4` - Deletes the 4th internship application in the list.
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### Finding for internship applications or tags: `find`
 
@@ -525,12 +539,16 @@ Examples:
     <img src="images/findGoogleBackendResult.png" width="600" />
 </p>
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### Filtering for internship applications of a specific status: `filter`
+
+Filters for internship applications of the specified [application status](#application-status).
 
 <div class="d-flex alert alert-secondary">
     <div class="me-3">
@@ -543,7 +561,6 @@ Examples:
     </div>
 </div>
 
-* Filters for internship applications of the specified [`APPLICATION_STATUS`](#application-status).
 * `APPLICATION_STATUS` is case-insensitive.
 
 <div class="d-flex alert alert-info">
@@ -578,10 +595,12 @@ Examples:
 * `filter accepted` - Shows a list of internship applications marked as `accepted`
 * `filter Rejected` - Shows a list of internship applications marked as `rejected`
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### Sorting the list of internship applications: `sort`
 
@@ -616,7 +635,7 @@ Applications without interview date will remain at the bottom in the original or
 </div>
 </div>
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
@@ -646,10 +665,12 @@ This command will clear the entire list of internships without warning. This com
 </div>
 </div>
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### Viewing help: `help`
 
@@ -672,7 +693,7 @@ Shows a message with a link to the user guide, and the data file location.
     <img src="images/helpMessage.png" width="500"/>
 </p>
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
@@ -692,10 +713,12 @@ Exits the program.
     </div>
 </div>
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Saving and Editing
 
@@ -719,9 +742,11 @@ If your changes to the data file makes its format invalid, FindMyIntern will **d
 </div>
 </div>
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### UI Elements
 
@@ -750,19 +775,20 @@ A tooltip containing the additional tags is shown when the count is hovered.
     <img src="images/additionalTagsTooltip.png" />
 </p>
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
 
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous FindMyIntern home folder.
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
 
@@ -818,10 +844,12 @@ There are no constraints for a field if the constraints box is empty for that fi
   </tbody>
 </table>
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#appendix" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to appendix</a>
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Application Status
 
@@ -867,10 +895,12 @@ Application status as an input field **must be one of the following**:
   </tbody>
 </table>
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#appendix" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to appendix</a>
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Link Formats
 
@@ -922,6 +952,8 @@ The constraints are:
 <a href="#appendix" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to appendix</a>
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Date/Time Formats
 
@@ -990,29 +1022,30 @@ The year `yyyy` can be omitted when entering `APPLIED_DATE` or `INTERVIEW_DATE_T
 </div>
 </div>
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#appendix" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to appendix</a>
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command Summary
 
 Action | Format, Examples
 --------|------------------
-**Help** | `help`
 **Add** | `add c/COMPANY l/LINK d/DESCRIPTION a/APPLIED_DATE [i/INTERVIEW_DATE_TIME] [t/TAG]…` <br> e.g., `add c/Apple l/https://jobs.apple.com/en-sg d/Software engineering internship a/11/10/2022`
 **Edit** | `edit INDEX [c/COMPANY] [l/LINK] [d/DESCRIPTION] [a/APPLIED_DATE] [i/INTERVIEW_DATE_TIME] [t/TAG]…` <br> e.g., `edit 1 d/Data analyst intern`
 **Mark** | `mark INDEX s/APPLICATION_STATUS` <br> e.g., `mark 3 s/interviewed`
 **List** | `list`
 **Delete** | `delete INDEX` <br> e.g., `delete 4`
-**Filter** | `filter APPLICATION_STATUS` <br> e.g., `filter accepted`
 **Find** | `find KEYWORD [MORE_KEYWORDS]…`<br> e.g., `find google`
+**Filter** | `filter APPLICATION_STATUS` <br> e.g., `filter accepted`
 **Sort** | `sort CRITERIA`<br> e.g., `sort applied`
 **Clear** | `clear`
+**Help** | `help`
 **Exit** | `exit`
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>

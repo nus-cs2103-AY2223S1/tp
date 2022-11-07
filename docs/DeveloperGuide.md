@@ -47,11 +47,12 @@ IBM Plex Sans Open Font License: [https://github.com/IBM/plex/blob/master/LICENS
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -75,6 +76,7 @@ Given below is a quick overview of main components and how they interact with ea
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
+<div style="page-break-after: always;"></div>
 
 The rest of the App consists of four components.
 
@@ -101,9 +103,11 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -122,9 +126,11 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Internship` object residing in the `Model`.
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -139,6 +145,8 @@ How the `Logic` component works:
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add an internship).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+
+<div style="page-break-after: always;"></div>
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -155,9 +163,11 @@ How the parsing works:
 * When called upon to parse a user command, the `FindMyInternParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `FindMyInternParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T14-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
@@ -178,9 +188,11 @@ The `Model` component,
 
 </div>
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -193,7 +205,7 @@ The `Storage` component,
 * inherits from both `FindMyInternStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
 
@@ -202,6 +214,7 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -227,6 +240,8 @@ The following activity diagram summarizes what happens when a user executes an a
 
 <img src="images/AddCommandActivityDiagram.png" width="650" />
 
+<div style="page-break-after: always;"></div>
+
 #### Design Considerations
 
 - **Adding of internships with same company name:**
@@ -237,7 +252,7 @@ The following activity diagram summarizes what happens when a user executes an a
     - Pros: Allow multiple internships with the same company
     - Cons: Need to check for both duplicate company names and duplicate tags
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
 
@@ -253,6 +268,8 @@ The following activity diagram summarizes what happens when a user executes an a
 The Sequence Diagram below illustrates the interactions within the Logic component as explained above.
 
 <img src="images/FindSequenceDiagram.png" width="850" />
+
+<div style="page-break-after: always;"></div>
 
 #### Design Considerations
 
@@ -272,7 +289,7 @@ The Sequence Diagram below illustrates the interactions within the Logic compone
       - Pros: Allow quick searching for company or tag
       - Cons: Less specific internship list
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
 
@@ -291,6 +308,8 @@ There are some similarities between how the filter feature and the find feature 
   * `InternshipHasApplicationStatusPredicate` implements `Predicate<Internship>`, and holds the `ApplicationStatus` that the user is filtering for.
 * It also calls `Model#updateFilteredInternshipList(Predicate<Internship>)` which filters the `Internship` list with the user-specified `ApplicationStatus`.
 
+<div style="page-break-after: always;"></div>
+
 #### Command execution
 
 1. User enters filter command with valid application status.
@@ -308,6 +327,8 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 <img src="images/FilterSequenceDiagram.png" width="1000" />
 
+<div style="page-break-after: always;"></div>
+
 #### Design Considerations
 
 * The implementation is similar to `FindCommand` as both have the same idea of filtering/finding something in the list.
@@ -317,7 +338,7 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
   * This is in contrast to `mark` command which requires and takes in both `Index` and `ApplicationStatus`, and therefore requires the `PREFIX_APPLICATION_STATUS` to correctly parse input.
   * While having `PREFIX_APPPLICATION_STATUS` would be more consistent, it is redundant and unintuitive since the command only takes in one input, `ApplicationStatus`.
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
 
@@ -366,9 +387,11 @@ The following activity diagram summarizes what happens when a user executes a ma
     - Pros: Allow easy filtering by `ApplicationStatus`
     - Cons: Fixed variation of `applicationStatus`
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Sort `Internships` feature
 	
@@ -398,11 +421,12 @@ The following sequence diagram illustrates how the list is updated when the user
         - Pros: Allow user to view internship applications in the original order it was added 
         - Cons: Have to re-enter the sort command when the reopens the application
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -428,9 +452,10 @@ The following sequence diagram illustrates how the list is updated when the user
 
 **Value proposition**: convenient and user-friendly app to manage and keep track of internship applications
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
+<div style="page-break-after: always;"></div>
 
 ### User stories
 
@@ -452,8 +477,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user      | sort the internships based on a sort criteria (applied date or interview date) | easily view my applications from latest date to earliest date     |
 | `* *`    | user      | clear all internship applications                                              | focus on my applications for a new internship application period  |
 
-
 <div class="btn-group btn-group-sm mt-2 mb-4">
+
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
 
@@ -504,6 +529,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 <br />
+
+<div style="page-break-after: always;"></div>
 
 **Use Case: UC3 - Mark application status of internship application**
 
@@ -593,6 +620,7 @@ Similar to use case 4 except that the filtering is done by application status in
    Use case ends.
   
 <div class="btn-group btn-group-sm mt-2 mb-4">
+
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
 
@@ -612,11 +640,12 @@ Similar to use case 4 except that the filtering is done by application status in
 * **GUI (Graphical User Interface)**: A system of interactive visual components for computer software for users to interact with.
 * **CLI (Command Line Interface)**: A text-based interface that communicate with users in the form of lines of text.
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Instructions for manual testing**
 
@@ -659,6 +688,8 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
    
+<div style="page-break-after: always;"></div>
+
 ### Saving data
 
 1. Dealing with missing data files
@@ -672,6 +703,6 @@ testers are expected to do more *exploratory* testing.
    2. Run `findmyintern.jar`. <br>
       Expected: The GUI will show an empty list of internship applications. A new empty `findmyintern.json` file is created.
 
-<div class="btn-group btn-group-sm mt-2 mb-4">
+<div class="btn-group btn-group-sm mt-2 mb-3">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>

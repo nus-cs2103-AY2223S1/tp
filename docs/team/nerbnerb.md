@@ -24,6 +24,8 @@ Given below are my contributions to the project.
   * Enhanced `add` feature to accept `InterviewDateTime`
     * What it does: Allows the user to include an optional interview date/time while adding internship applications
     * Automatically sets internship application status to "Shortlisted" instead of default "Applied"
+  * Helped rewrite sample data which appears on first startup of FindMyIntern
+    * Modified to be more realistic to how internship applications will be added
 
 * **Contributions to the UG**:
   * Integrated Bootstrap 5 into user guide
@@ -39,6 +41,7 @@ Given below are my contributions to the project.
     * Defines requirements about input fields for commands and explains certain fields
   * Improved navigability of user guide
     * Added "back to..." buttons
+  * Helped standardise user guide formatting
 
 * **Contributions to the DG**:
   * Added implementation details of `filter` feature
@@ -50,6 +53,7 @@ Given below are my contributions to the project.
   * Added GitHub issues and milestones
   * Tagged issues and PRs with relevant tags
   * Reviewed and fixed bugs submitted by testers
+  * Managed features demo screenshots for v1.2 and v1.3
 
 * **Review/mentoring contributions**:
   * Reviewed teammates' PRs and merged them
@@ -63,6 +67,8 @@ Given below are my contributions to the project.
     * [#81](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/81)
     * [#82](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/82)
     * [#154](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/154)
+    * [#199](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/199)
+    * [#200](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/200)
 
 * **Contributions beyond the project team**:
   * Reported bugs and provided suggestions for other teams: [Bugs](https://github.com/nerbnerb/ped/issues)
