@@ -251,15 +251,27 @@ Consider an example of a valid `deletedebt` command `deletedebt 1 debt/2 3`. The
 
 
 
-### \[Proposed\] Improved find command: `find`
+### Find-by-anything feature: `find`
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed improved find command shall use `ArgumentTokenizer` to get a list of fields to search by.
+This feature is facilitated by `FindCommand` and `FindCommandParser` in the `Logic` component, and works as per [described above](#logic-component).
 
-For each present prefix, the list of persons shall be filtered by the relevant field using a variety of additional `Predicate`s.
+`FindCommandParser` retrieves all prefixes supported by the command using `ArgumentTokenizer`.
+The resulting `ArgumentMultimap` is converted to a `PersonDescriptor`, which will hold the person-related fields to search for,
+and a `DebtsDescriptor`, which will hold the debt-related fields to search for, using `ParserUtil`'s `argumentMultimapToPersonDescriptor` and `argumentMultimapToDebtsDescriptor` respectively.
+A check ensures that at least one field to search for is specified.
+Then, the `PersonDescriptor` and `DebtsDescriptor` are used to construct a `PersonMatchesDescriptorPredicate`,
+which will return `true` if the given `Person` matches all the person-related fields in `PersonDescriptor` and all the debt-related fields in `DebtsDescriptor`.
 
-Finally, the user will be shown the filtered list of persons, like in the original find command.
+For example, suppose the user has multiple friends named Gary, and wants to find the one that owes money for a burger.
+The command `find n/gary d/burger` can be used to accomplish this. The sequence diagram below shows the basic events that take place.
+
+<img src="images/FindSequenceDiagram.png" width="600" />
+
+Note that due to the universal nature of find-by-anything, this command is dependent on lots of components:
+
+<img src="images/FindClassDiagram.png" width="600" />
 
 ### List debtors feature: `listdebtors`
 
