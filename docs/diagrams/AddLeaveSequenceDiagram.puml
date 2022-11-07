@@ -34,7 +34,7 @@ create AddLeaveCommand
 AddLeaveCommandParser -> AddLeaveCommand
 activate AddLeaveCommand
 
-AddLeaveCommand -> AddLeaveCommandParser
+AddLeaveCommand --> AddLeaveCommandParser
 deactivate AddLeaveCommand
 
 AddLeaveCommandParser --> DatabaseParser

@@ -34,7 +34,7 @@ create RateCommand
 RateCommandParser -> RateCommand
 activate RateCommand
 
-RateCommand -> RateCommandParser
+RateCommand --> RateCommandParser
 deactivate RateCommand
 
 RateCommandParser --> DatabaseParser

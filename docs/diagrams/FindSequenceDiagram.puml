@@ -34,7 +34,7 @@ create PersonMatchesKeywordsPredicate
 FindCommandParser -> PersonMatchesKeywordsPredicate
 activate PersonMatchesKeywordsPredicate
 
-PersonMatchesKeywordsPredicate -> FindCommandParser : p
+PersonMatchesKeywordsPredicate --> FindCommandParser : p
 deactivate PersonMatchesKeywordsPredicate
 
 create FindCommand
