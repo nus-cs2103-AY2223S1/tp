@@ -1,8 +1,8 @@
 @startuml
 start
 :User enters FindTask command;
-:HackAssist searches \n through the tasklist \n to find all tasks with \n matching keywords in their \n names and/or descriptions;
-:HackAssist updates tasklist \n to display the \n search result;
+:HackAssist searches through \n the tasklist to find all tasks with \n matching keywords in their \n names and/or descriptions;
+:HackAssist updates tasklist \n to display the search result;
 
 stop
 @enduml
