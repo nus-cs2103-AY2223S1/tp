@@ -2,6 +2,7 @@
 layout: page
 title: Developer Guide
 ---
+
 ## **Table of Contents**
 
 * Table of Contents
@@ -22,7 +23,7 @@ TAS presents the administrative staff with various options such as the ability t
 edit their details easily and find or filter for applicants with ease.
 
 TAS is optimised for use via a ***Command Line Interface (CLI)*** while simultaneously having the benefits of a ***Graphical User Interface
-(GUI)***. If you can type fast, TAS can handle your scholarship application process faster than conventional GUI apps.
+(GUI)***. If you can type fast, TAS can handle your scholarship application process faster than conventional _GUI_ apps.
 
 #### Who is this Developer Guide for?
 
@@ -112,10 +113,10 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* defines its _API_ in an `interface` with the same name as the Component.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding _API_ `interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
+For example, the `Logic` component defines its _API_ in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
@@ -127,11 +128,11 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/ui/Ui.java)
+The **_API_** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ApplicantListPanel`, `PinList` and `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -148,7 +149,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/logic/Logic.java)
+**_API_** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -160,7 +161,7 @@ How the `Logic` component works:
 3. The command can communicate with the `Model` when it is executed (e.g. to add an applicant).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` _API_ call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -183,7 +184,7 @@ How the parsing works:
 --------------------------------------------------------------------------------------------------------------------
 
 ### Model component
-**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/model/Model.java)
+**_API_** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="650" />
 
@@ -207,12 +208,12 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/storage/Storage.java)
+**_API_** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both TrackAScholar data and user preference data in json format, and read them back into corresponding objects.
+* can save both TrackAScholar data and user preference data in _json_ format, and read them back into corresponding objects.
 * inherits from both `TrackAScholarStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -232,7 +233,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add applicant feature
 
-#### Implementation
+**Implementation**
 
 The add operation is facilitated by `AddCommandParser`. `AddCommandParser` will map the creation of an
 `Applicant` based on the user input to be added to the applicant list in the `Model`.
@@ -274,7 +275,7 @@ The following activity diagram summarizes what happens when a user executes an a
 
 ### Edit applicant feature
 
-#### Implementation
+**Implementation**
 
 The edit operation is facilitated by `EditCommandParser`. `EditComamndParser` will map the creation of an
 `EditApplicantDescriptor` based on the input prefixes. `EditApplicantDescriptor` stores the details to edit the 
@@ -320,7 +321,7 @@ The following activity diagram summarizes what happens when a user executes a ed
 
 ### Remove applicants feature
 
-#### Implementation
+**Implementation**
 
 The remove operation is facilitated by `RemoveCommandParser`. `RemoveCommandParser` parses the user input into an
 `ApplicationStatus` to compare with and remove, hence assisting the deletion of applicants from the applicant list
@@ -349,7 +350,7 @@ The following sequence diagram shows how the remove operation works:
 
 ![Interactions Inside the Logic Component for the `remove` Command example](images/RemoveSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The GUI interactions when `RemoveCommand#execute()` calls `RemoveCommand#promptUserConfirmation()`
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The _GUI_ interactions when `RemoveCommand#execute()` calls `RemoveCommand#promptUserConfirmation()`
 is abstracted out as this sequence diagram aims only to demonstrate the interactions inside Logic Component for the `remove` command.
 
 </div>
@@ -364,7 +365,7 @@ The following activity diagram summarizes what happens when a user executes a re
 
 ### Find applicant feature
 
-#### Implementation
+**Implementation**
 
 The find operation is facilitated by `FindCommandParser`. `FindCommandParser` will map the creation of a
 `Predicate<Applicant>` based on the input prefixes. The following implementations support the creation of
@@ -416,7 +417,7 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 ### Filter applicants feature
 
-#### Implementation
+**Implementation**
 
 The filter operation is facilitated by `FilterCommandParser`. `FilterCommandParser` parses the user input into an
 `ApplicationStatusPredicate` which assist the filtering of applicant list in the `Model`.
@@ -455,7 +456,7 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 ### Sort applicants feature.
 
-#### Implementation
+**Implementation**
 
 The sort operation is facilitated by `SortCommandParser`. `SortCommandParser` will map the creation of a
 `Comparator<Applicant>` based on the user input which assist in the sorting of the applicant list in the `Model`.
@@ -488,13 +489,17 @@ The following activity diagram summarizes what happens when a user executes a so
 
 ![Filter command activity diagram](images/SortCommandActivityDiagram.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** There should only be one arrowhead at the end of every line
+in the Activity Diagram but due to limitation of PlantUML, the arrowhead converges on another.
+</div>
+
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ### Import feature
 
-#### Implementation
+**Implementation**
 
 [Return to top](#table-of-contents)
 
@@ -502,7 +507,7 @@ The following activity diagram summarizes what happens when a user executes a so
 
 ### Pin applicant feature
 
-#### Implementation
+**Implementation**
 
 The pin operation is facilitated by `PinCommandParser`. `PinCommandParser` parses the user input into an `Index` to
 assist in identifying the applicant to pin from the applicant list in the `Model`.
@@ -538,7 +543,7 @@ The following activity diagram summarizes what happens when a user executes a pi
 
 ### UnPin applicant feature
 
-#### Implementation
+**Implementation**
 
 The unpin operation is facilitated by `UnPinCommandParser`. `UnPinCommandParser` parses the user input into an `Name` to
 assist in identifying the applicant to unpin from the applicant list in the `Model`.
@@ -567,7 +572,7 @@ The following sequence diagram shows how the unpin operation works:
 
 The following activity diagram summarizes what happens when a user executes a unpin command:
 
-![Pin command activity diagram](images/UnPinCommandActivityDiagram.png) 
+![UnPin command activity diagram](images/UnPinCommandActivityDiagram.png) 
 
 [Return to top](#table-of-contents)
 
@@ -592,7 +597,7 @@ The following activity diagram summarizes what happens when a user executes a un
 NUS administrative staff in the Office of Admissions.
 
 **Value Proposition**: <br>
-Streamline the scholarship application process by organizing the scholarship applications into their corresponding types and status, thus supporting faster and easier identification of a student’s scholarship application progress with a GUI.
+Streamline the scholarship application process by organizing the scholarship applications into their corresponding types and status, thus supporting faster and easier identification of a student’s scholarship application progress with a _GUI_.
 
 [Return to top](#table-of-contents)
 
@@ -606,14 +611,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 |---------|------------------------------------------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
 | `* * *` | administrator (new user)                             | see usage instructions easily                                               | discover functionalities provided by the application                                        |
 | `* * *` | administrator (new user)                             | operate with clear and concise commands                                     | learn easily and grow proficiency with time                                                 |
-| `* * *` | administrator                                        | retrieve previously stored application data                                 | access stored database easily                                                               |
+| `* * *` | administrator                                        | retrieve previously stored application data                                 | access stored data easily                                                                   |
 | `* * *` | administrator                                        | save fresh data easily                                                      | avoid losing all my data                                                                    |
-| `* * *` | administrator                                        | add a new applicant to my database                                          | keep track of organize all the scholarship applications                                     |
-| `* * *` | administrator                                        | delete an applicant from my database                                        | remove data of scholarship applications that is no longer needed                            |
+| `* * *` | administrator                                        | add a new applicant to my app                                               | keep track of all the scholarship applications                                              |
+| `* * *` | administrator                                        | delete an applicant from my app                                             | remove data of scholarship applications that is no longer needed                            |
 | `* * *` | administrator                                        | edit the details of an applicant in my database                             | keep track of their most updated details                                                    |
-| `* * *` | administrator managing many scholarship applications | view the list of all applicants in my database                              | have an overview of all scholarship applicants in the list of applications                  |
+| `* * *` | administrator managing many scholarship applications | view the list of all applicants in my database                              | have an overview of all scholarship applicants in one go                                    |
 | `* * *` | administrator managing many scholarship applications | find applicants by their name                                               | retrieve details of an applicant without having to go through the entire list               |
-| `* * *` | administrator managing many scholarship applications | find applicants by the scholarship they applied for                         | retrieve details of all applicants who applied for the same scholarships                    |
+| `* * *` | administrator managing many scholarship applications | find applicants by the scholarship they applied for                         | retrieve details of all applicants who applied for the same scholarship                     |
 | `* * *` | administrator managing many scholarship applications | find applicants by their majors taken                                       | retrieve details of all applicants who has taken the specified majors                       |
 | `* *`   | administrator managing many scholarship applications | pinpoint applicants by their name, scholarship applied for and majors taken | identify and retrieve details of an exact applicant easily                                  |
 | `* *`   | administrator managing many scholarship applications | filter for applicants by status of their application                        | focus on the applicants whose application status is now of relevance to me                  |
@@ -621,9 +626,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`   | administrator managing many scholarship applications | sort the applicants by the scholarship they applied for                     | have an overview of all applicants with their scholarship applied for in alphabetical order |
 | `* *`   | administrator managing many scholarship applications | sort the applicants by status of their application                          | have an overview of all applicants grouped by their application status                      |
 | `* *`   | experienced administrator                            | remove all completed scholarship applications together                      | avoid clutter of data                                                                       |
-| `* *`   | experienced administrator                            | pin important applications that require further attention                   | refer to them easily when i need to                                                         |
-| `* *`   | experienced administrator                            | unpin applications that has been completed                                  | focus on the other important scholarship applications                                       |
-| `*`     | experienced administrator                            | run the application on different operating systems                          | access the same database/storage on different operating systems                             |
+| `* *`   | experienced administrator                            | pin important applicants that require further attention                     | refer to them easily when i need to                                                         |
+| `* *`   | experienced administrator                            | unpin applicants that has been completed                                    | focus on the other important scholarship applications                                       |
+| `*`     | experienced administrator                            | run the app on different operating systems                                  | access the same database/storage on different operating systems                             |
 | `*`     | experienced administrator                            | import scholarship application data easily                                  | combine scholarship application data from external sources with my own easily               |
 
 [Return to top](#table-of-contents)
@@ -680,6 +685,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 1c1 TrackAScholar displays an error message that applicant already exists. <br>
     Use case resumes at step 1.
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -752,6 +759,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
     Use case resumes at step 1.
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -847,6 +856,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
       Use case resumes at step 1.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 **Use case: UC10 - Sorts all applicants by name, scholarship or application status**
@@ -868,6 +879,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1b1. TrackAScholar displays an error message showing parameter requirements. <br>
       Use case resumes at step 1.
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -994,21 +1007,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 applicants without a noticeable sluggishness in performance for typical usage.
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Product should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Product should be able to hold up to 1000 applicants without a noticeable sluggishness in performance for typical usage.
+3. Product should respond within 2 seconds.
 4. Product should not be required to handle the contacting of applicants.
-5. Learning features of the product should be intuitive and easily acquired by new users.
-6. TrackAScholar should respond within 2 seconds.
-7. Storage stored should be easy to be shared and uploaded between different users.
+5. Product should still have data stored up to the last command sent in the event of a system failure.
+6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+7. Learning features of the product should be intuitive and easily acquired by new users.
+8. Storage stored should be easy to be shared and uploaded between different users.
 
-*{More to be added}*
+[Return to top](#table-of-contents)
+--------------------------------------------------------------------------------------------------------------------
 
 ### Glossary
 
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **GUI:** Graphical User Interface: Refers to the user interface through which users interact with via visual representations.
 * **CLI:** Command Line Interface: Refers to a user interface that receive commands from a user in the form of lines of text.
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **API:** Application Programming Interface: Refers to a software intermediary that allows two applications to talk to each other
+* **Json:** JavaScript Object Notation: A lightweight format for storing and transporting data.
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1027,7 +1046,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file. Expected: Shows the _GUI_ with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -1038,14 +1057,109 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+--------------------------------------------------------------------------------------------------------------------
+
+### Adding an applicant
+1. Adding an applicant to TrackAScholar while all applicants are displayed in GUI.
+   1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list. The list contains 
+      an applicant named `Alex Yeoh` but does not contain an applicant named `Benjamin Low`.
+   
+   1. Test case: 
+      ```
+      add n/Benjamin Low 
+      p/98765431 
+      e/benLow@gmail.com 
+      s/NUS Global Merit Scholarship 
+      as/pending 
+      m/Medicine 
+      m/Mathematics
+      ```
+      Expected: An applicant named `Benjamin Low` with the above characteristics
+                will be added to the applicant list and displayed on TrackAScholar GUI.
+      
+   1. Test case:
+      ```
+      add n/Alex Yeoh 
+      p/88712345 
+      e/alexYeoh@gmail.com 
+      s/NUS Merit Scholarship 
+      as/pending 
+      m/Computer Science
+      ```
+      Expected: No changes displayed on TrackAScholar GUI and an error message will be prompted,
+      indicating applicants with duplicate names are not allowed.
+
+   1. Test case:
+      ```
+      add n/Charles Shum
+      m/Computer Science
+      ```
+      Expected: No changes displayed on TrackAScholar GUI and an error message will be prompted,
+      indicating an applicant must have specified phone number, email, scholarship name, application status,
+      as represented by the prefixes `p/`, `e/`, `s/` and `as` respectively.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Editing an applicant
+1. Editing an applicant in TrackAScholar while all applicants are displayed in GUI.
+    1. Prerequisites: List all applicants using the `list` command. Two applicants in the list. The list contains
+       an applicant named `Alex Yeoh` with the following characteristics:
+       ```
+       Name: Alex Yeoh 
+       Major(s): Medicine
+       Application Status: pending
+       Scholarship Name: NUS Global Merit Scholarship
+       Email: alexyeoh@yahoo.com
+       Phone Number: 87438807
+       ``` 
+       and another applicant named `Shamus Lee` with the following characteristics:
+       ```
+       Name: Shamus Lee 
+       Major(s): Business
+       Application Status: pending
+       Scholarship Name: NUS Sports Scholarship
+       Email: shamusLee@yahoo.com
+       Phone Number: 87433287
+       ``` 
+
+    1. Test case: `edit 1 n/Samuel Low e/samuelLow@gmail.com` <br>
+       Expected: The name and email of the first applicant in the list will be modified to `Samuel Low` and `samuelLow@gmail.com`
+       respectively, while the rest of the characteristics remains the same.
+
+   1. Test case: `edit 1 n/Shamus Lee` <br>
+      Expected: No changes displayed on TrackAScholar GUI and an error message will be prompted,
+      indicating the first applicant's name cannot be changed to `Shamus Lee` since an applicant with 
+      name `Shamus Lee` exists in TrackAScholar.
+
+    1. Test case: `edit 1 m/` <br>
+       Expected: The major(s) of the first applicant in the list will be 
+       removed completely, while the rest of the characteristics remains the same.
+
+    1. Test case: `edit 1 m/Mathemetics m/Engineering` <br>
+       Expected: The major(s) of the first applicant in the list will be
+       replaced by `Mathematics` and `Engineering` completely , while the rest of the characteristics remains the same.
+   
+    1. Test case: `edit 0 n/Dexter` <br>
+     Expected: No changes displayed on TrackAScholar GUI and an error message will be prompted,
+     indicating that `0` is an invalid index
+
+    1. Test case: `edit 50 n/Eric` <br>
+      Expected: No changes displayed on TrackAScholar GUI and an error message will be prompted,
+      indicating that `50` is out of bounds since the list contains only one applicant.
+
+    1. Other incorrect edit commands to try: `edit p/88125671` and `edit` <br>
+      Expected: Similar to previous.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Deleting an applicant
 
-1. Deleting an applicant while all applicants are being shown
+1. Deleting an applicant while all applicants are being shown.
 
    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First applicant is deleted from the list. Details of the deleted applicant shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
       Expected: No applicant is deleted. Error details shown in the status message. Status bar remains the same.
@@ -1053,7 +1167,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+--------------------------------------------------------------------------------------------------------------------
 
 ### Import trackAScholarImport File
 
@@ -1063,12 +1177,153 @@ testers are expected to do more *exploratory* testing.
 
 [trackAScholarImport test files](https://github.com/AY2223S1-CS2103T-W10-3/tp/tree/master/src/test/data/JsonImportCommandTest)
 
+--------------------------------------------------------------------------------------------------------------------
 
+### Pinning an applicant
+
+1. Pinning an existing applicant while all applicants are being shown.
+
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list. 
+
+    1. Test case: `pin 1`<br>
+       Expected: First applicant in the list is pinned. Details of the pinned applicant shown in the status message. 
+       Pinned Applicant will be shown on the right list panel. Timestamp in the status bar is updated.
+    
+    1. Test case: `pin 1` followed by `pin 1` <br>
+       Expected: Same as previous for first command. However, on the second command, no changes displayed on TrackAScholar GUI and an error message will be prompted,
+       indicating that the first applicant has already been pinned.
+
+    1. Test case: `pin 0`<br>
+       Expected: No applicant is pinned. Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect pin commands to try: `pin`, `pin x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Unpinning an applicant
+
+1. Unpinning an existing applicant while all applicants are being shown
+
+    1. Prerequisites: List all applicants using the `list` command. One applicant in the list. The list contains
+       a pinned applicant named `Alex Yeoh`.
+
+    1. Test case: `unpin Alex Yeoh`<br>
+       Expected: Existing applicant with name `Alex Yeoh` in the list is unpinned. Applicant will be removed from
+       the right list panel. Details of the unpinned applicant shown in the status message. Timestamp in the status bar is updated.
+   
+   1. Test case: `unpin Alex Yeoh` followed by `unpin Alex Yeoh` <br>
+      Expected: Same as previous for first command. However, on the second command, no changes displayed on TrackAScholar GUI and an error message will be prompted,
+      indicating that the applicant named `Alex Yeoh` has already been unpinned.
+   
+    1. Test case: `unpin Benjamin Loy`<br>
+       Expected: No changes displayed on TrackAScholar GUI as the list does not contain an applicant with name `Benjamin Loy`.
+       Error details shown in the status message. Status bar remains the same.
+
+    1. Other incorrect unpin commands to try: `unpin` and `unpin 123` <br>
+       Expected: Similar to previous.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Removing applicants by application status
+
+1. Removing existing applicants with the specified application status while all applicants are being shown
+
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list. 
+
+    1. Test case: `remove ACCEPTED` followed by pressing `yes` on the alert box. <br>
+       Expected: All applicants with application status `ACCEPTED` will be removed, while the list of applicants only 
+       contains those applicants with application status `PENDING` or `REJECTED`.
+
+    1. Test case: `remove ACCEPTED` followed by pressing `no` on the alert box. <br>
+       Expected: No changes displayed on TrackAScholar GUI as the list of applicants remain unchanged.
+
+    1. Test case: `remove ACCEPTED` followed by closing the alert box. <br>
+       Expected: No changes displayed on TrackAScholar GUI as the list of applicants remain unchanged.
+   
+    1. Test case: `remove PENDING`. <br>
+       Expected: No changes displayed on TrackAScholar GUI since only applicants with application status `ACCEPTED` and
+       `REJECTED` can be removed. Error details shown in the status message
+   
+    1. Other incorrect remove commands to try: `remove` and `remove Alex Yeoh` <br>
+       Expected: Similar to previous.
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Filtering applicants by application status
+
+1. Filtering existing applicants based on the specified application status while all applicants are being shown
+
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+
+    1. Test case: `filter ACCEPTED` 
+       Expected: All applicants with application status `ACCEPTED` will be shown in TrackAScholar GUI.
+
+    1. Test case: `filter Bob` <br>
+       Expected: No changes displayed on TrackAScholar GUI since only applicants with application status `ACCEPTED`, `PENDING` and 
+       `REJECTED` can be filtered. Error details shown in the status message.
+
+    1. Other incorrect filter commands to try: `filter` and `filter Alex Yeoh` <br>
+       Expected: Similar to previous.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing files
+   1. Prerequisites: Delete `TrackAScholar.json` file in `data` folder and launch TrackAScholar again. <br>
+   Expected: TrackAScholar restarts with a default list of applicants and the missing data files are recovered.
+       
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+2. Saving data in TrackAScholar
+   1. Prerequisites: Some commands will modify the list of applicants permanently. <br>
+   1. Test case: `pin 1` follow by `exit` command and restart TrackAScholar <br>
+   Expected: Upon restarting, the first applicant will be shown on the right list panel.
 
-2. _{ more test cases …​ }_
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Effort**
+Given that the effort for creating AddressBook3(AB3) is rated as a 10, our team believes that the effort required to 
+build TrackAScholar is estimated around 12.
+
+Over the span of 1 month, my group has spent tremendous amount of time and energy in refactoring and transforming
+AB3's model, such that it fulfils the criterion and standards needed by TrackAScholar.
+
+Moreover, this is supported by the fact that our code contributions are approximated around 9k lines of code(LoC), emphasizing 
+our commitment to improving the features and testability of TrackAScholar and improving the overall experience for our users.
+
+
+### Outstanding features
+* Add
+* Edit
+* Remove
+* Clear
+* Find
+* Filter
+* Sort
+* Import
+* Pin / Unpin
+
+
+### Notable design principles used
+* Utilised Test Driven Development
+  * Every time our team puts in either a new feature or a new field to TrackAScholar, 
+  we strive to write JUnit test cases alongside the new functional code added,
+  thus minimising the chances of obtaining bugs at a later stage, where it might be too
+  late or difficult to fix such bugs.
+  * Moreover, we also took turns testing each other's features at various milestones, 
+  thus allowing us to identify and amend bugs much earlier.
+  * After PED, my team start rectifying and filtering the respective bugs immediately,
+  thus mitigating the number of bugs in TrackAScholar.
+
+* Maintaining high code quality and standards
+  * By following the large amount of abstraction possessed by AB3, we aim to minimise duplicability of code in TrackAScholar 
+  and thus reducing the amount of code written. This is evident from `Command` and `Ui` interfaces etc.
+  * Moreover, we adhered to the KISS principle and tried to keep our methods short and simple, thus
+  maintaining readability of our code. This is evident from the lack of long methods and nesting within TrackAScholar 
+  code base.
+
+[Return to top](#table-of-contents)
+

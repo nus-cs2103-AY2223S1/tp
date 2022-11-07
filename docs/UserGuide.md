@@ -22,7 +22,7 @@ TAS presents the administrative staff with various options such as the ability t
 edit their details easily and find or filter for applicants with ease. 
 
 TAS is optimised for use via a ***Command Line Interface (CLI)*** while simultaneously having the benefits of a ***Graphical User Interface
-(GUI)***. If you can type fast, TAS can handle your scholarship application process faster than conventional GUI apps.
+(GUI)***. If you can type fast, TAS can handle your scholarship application process faster than conventional _GUI_ apps.
 
 #### Who is this User Guide for?
 

@@ -13,7 +13,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant "predicate:ApplicationStatusPredicate" as ApplicationStatusPredicate MODEL_COLOR
+participant "p:ApplicationStatusPredicate" as ApplicationStatusPredicate MODEL_COLOR
 end box
 
 [-> LogicManager : execute("filter pending")
@@ -36,14 +36,14 @@ TrackAScholarParser -> FilterCommandParser : parse("pending")
 activate FilterCommandParser
 
 create ApplicationStatusPredicate
-FilterCommandParser -> ApplicationStatusPredicate:ApplicationStatusPredicate()
+FilterCommandParser -> ApplicationStatusPredicate : ApplicationStatusPredicate()
 activate ApplicationStatusPredicate
 
-ApplicationStatusPredicate --> FilterCommandParser
+ApplicationStatusPredicate --> FilterCommandParser : p
 deactivate ApplicationStatusPredicate
 
 create FilterCommand
-FilterCommandParser -> FilterCommand : FilterCommand(predicate)
+FilterCommandParser -> FilterCommand : FilterCommand(p)
 activate FilterCommand
 
 FilterCommand --> FilterCommandParser
@@ -61,7 +61,7 @@ deactivate TrackAScholarParser
 LogicManager -> FilterCommand : execute()
 activate FilterCommand
 
-FilterCommand -> Model : updateFilteredApplicantList(predicate)
+FilterCommand -> Model : updateFilteredApplicantList(p)
 activate Model
 
 Model --> FilterCommand
