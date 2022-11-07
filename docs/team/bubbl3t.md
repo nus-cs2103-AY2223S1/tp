@@ -19,7 +19,7 @@ Given below are my contributions to the project.
 * **Project management**:
   * Created and maintained project milestones.
   * Authored 26 issues to keep track of current issues and progress.
-  * Reviewed 58 pull requests to ensure quality and consistency across the project.
+  * Reviewed 65 pull requests to ensure quality and consistency across the project.
 * **Enhancements to existing features**:
   * Changed `Tag` to `ModuleClass`.
   * Make `Session` and `ModuleClass` case-insensitive.
