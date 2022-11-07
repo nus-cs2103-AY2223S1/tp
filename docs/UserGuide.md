@@ -258,7 +258,7 @@ Format: `filterC KEYWORD [MORE_KEYWORDS]...`
 
 :warning: There will be an error if you:<br>
 
-* Do not adhere to the name constraint for labels. Label names must be alphanumeric with no spaces.
+* Do not adhere to label name constraints. Label names must be alphanumeric with no spaces.
 
 </div>
 
