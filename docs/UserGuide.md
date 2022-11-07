@@ -31,12 +31,12 @@ If you would like to:
 
 ### Symbols and Syntax
 
-| Symbol                  | What it means                                                                |
-|-------------------------|------------------------------------------------------------------------------|
-| `highlights`            | Executable commands or possible parameters that can be entered into the CLI. |
-| :information_source:    | Additional information that may be useful to know                            |
-| :bulb:                  | Tips to improve the Tuthub experience                                        |
-| :exclamation:           | Things to be cautious of and should be followed closely                      |
+| Symbol                  | What it means                                                                                                        |
+|-------------------------|----------------------------------------------------------------------------------------------------------------------|
+| `highlights`            | Executable commands or possible parameters that can be entered into the CLI, or in some cases, some technical terms. |
+| :information_source:    | Additional information that may be useful to know                                                                    |
+| :bulb:                  | Tips to improve the Tuthub experience                                                                                |
+| :exclamation:           | Things to be cautious of and should be followed closely                                                              |
 
 ### Layout of Tuthub Application Window
 
@@ -48,8 +48,8 @@ The following table describes the sections in detail:
 
 | **No.**  | **Section**             | **Description**                                                                     |
 |----------|-------------------------|-------------------------------------------------------------------------------------|
-| 1        | `Toolbars`              | Click on the respective buttons to exit the app/view help.                          |
-| 2        | `Command Box`           | Type in your commands here.                                                         |
+| 1        | `Toolbars`              | Contains buttons to exit the app/view help.                                         |
+| 2        | `Command Box`           | Accepts text input for you to type in your commands.                                |
 | 3        | `Result Display Box`    | Displays various messages (e.g. success/error messages) after commands are entered. |
 | 4        | `Tutor List Card`       | Displays condensed information of a tutor saved in Tuthub.                          |
 | 5        | `Tutor List Panel`      | Displays the entire/filtered list of tutors saved in Tuthub.                        |
@@ -112,7 +112,7 @@ The following table describes the sections in detail:
 
 1. Copy the file to the folder you want to use as the _home folder_ for Tuthub.
 
-1. Double-click the file to start the app. The GUI below should appear within a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI should appear within a few seconds. Note how the app contains some sample data, as shown below:<br>
    ![Ui](images/user-guide/start.png)
 
 1. Type the command in the 'Command Box' and press Enter to execute it.<br>
@@ -122,7 +122,7 @@ The following table describes the sections in detail:
 
     * `view 3` : Displays full details of the 3rd tutor shown in the current list.
 
-    * `add n/John Doe p/98765432 e/e1234567 m/CS2100 y/3 s/A0123456X tn/1 r/5.0 t/senior` : Adds a tutor named `John Doe` to Tuthub.
+    * `add n/John Doe p/98765432 e/e1234567 m/CS2100 y/3 s/A0123456X tn/1 r/5.0` : Adds a tutor named `John Doe` to Tuthub.
 
     * `find n/alex` : Finds all tutors with names containing alex.
 
@@ -189,7 +189,7 @@ You may also click on a `Tutor List Card` to execute a `view` command instead
 
 ### Adding a tutor: `add`
 
-Adds a tutor to the Tuthub.
+Found a new tutor who's not already recorded in Tuthub? Simply add them in!
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL m/MODULE y/YEAR s/STUDENT_ID tn/TEACHING_NOMINATIONS r/RATING [t/TAG]…​`
 
@@ -218,8 +218,6 @@ Edits an existing tutor in Tuthub. This is useful for updating information of tu
 
 Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENT_ID] [tn/TEACHING_NOMINATIONS] [r/RATING] [t/TAG]…​`
 
-* Edits the tutor at the specified `INDEX`.
-
 <div markdown="block" class="alert alert-info">
 
 :information_source: **Note:**
@@ -239,7 +237,10 @@ Refer to [this section](#frequently-used-command-parameters) for more informatio
 
 Examples:
 * `edit 1 p/91234567 e/e7654321` Edits the phone number and email address of the 1st tutor to be 91234567 and e7654321@u.nus.edu respectively.
-* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd tutor to be Betsy Crower and clears all existing tags.
+* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd tutor to be Betsy Crower and clears all existing tags, as shown below:
+
+![edit](images/user-guide/edit.png)
+
 * `edit 3 m/CS2100 y/3 s/A0654729L` Edits the module code, year, and student id of the 3rd tutor to be CS2100, 3, and A0654729L respectively.
 * `edit 3 tn/2 r/4.58` Edits the number of teaching nominations and rating of the 3rd tutor to be 2 and 4.58 respectively.
 
@@ -399,21 +400,21 @@ Format: `exit`
 
 ## **Command Summary**
 
-| Action                     | Format                                                                                                                             | Examples (if any)                                                                                      |
-|----------------------------|------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| See **Help**               | `help`                                                                                                                             |                                                                                                        |
-| **List** All Tutors        | `list`                                                                                                                             |                                                                                                        |
-| **View** a Tutor           | `view`                                                                                                                             | `view 1`                                                                                               |
-| **Add** Tutor              | `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MODULE s/STUDENT_ID tn/TEACHING_NOMINATIONS r/RATING [t/TAG]…​`                        | `add n/Betsy Crowe t/  e/E1234567@u.nus.edu  p/1234567 m/CS1101S y/3 s/A0123456X tn/1 r/4.99 t/senior` |
-| **Comment** on a Tutor     | `comment INDEX c/COMMENT`                                                                                                          | `comment 1 c/Tasks not Finished`                                                                       |
-| **Delete** a _Comment_     | `deletecomment TUTORINDEX COMMENTINDEX` or `dc TUTORINDEX COMMENTINDEX`                                                            | `deletecomment 1 1`, `dc 1 1`                                                                          |
-| **Edit** a Tutor's Details | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENT_ID] [tn/TEACHING_NOMINATIONS] [r/RATING] [t/TAG]…​` | `edit 3 m/CS2100 y/3 s/A0654729L`                                                                      |
-| **Find** a Tutor           | `find PREFIX/KEYWORDS [KEYWORDS]`                                                                                                  | `find n/Alex`                                                                                          |
-| **Mail** Tutor(s)          | `mail INDEX or "all"`                                                                                                              | `mail 3`                                                                                               |
-| **Sort** Tutor List        | `sort ORDER PREFIX`                                                                                                                | `sort a r/`                                                                                            |
-| **Delete** a _Tutor_       | `delete INDEX`                                                                                                                     | `delete 3`                                                                                             |
-| **Clear** Tutor List       | `clear`                                                                                                                            |                                                                                                        |
-| **Exit** Tuthub            | `exit`                                                                                                                             |                                                                                                        |
+| Action                     | Format                                                                                                                             | Examples (if any)                                                                                  |
+|----------------------------|------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| See **Help**               | `help`                                                                                                                             |                                                                                                    |
+| **List** All Tutors        | `list`                                                                                                                             |                                                                                                    |
+| **View** a Tutor           | `view`                                                                                                                             | `view 1`                                                                                           |
+| **Add** Tutor              | `add n/NAME p/PHONE_NUMBER e/EMAIL y/YEAR m/MODULE s/STUDENT_ID tn/TEACHING_NOMINATIONS r/RATING [t/TAG]…​`                        | `add n/Betsy Crowe e/E1234567@u.nus.edu  p/1234567 m/CS1101S y/3 s/A0123456X tn/1 r/4.99 t/senior` |
+| **Comment** on a Tutor     | `comment INDEX c/COMMENT`                                                                                                          | `comment 1 c/Tasks not Finished`                                                                   |
+| **Delete** a _Comment_     | `deletecomment TUTORINDEX COMMENTINDEX` or `dc TUTORINDEX COMMENTINDEX`                                                            | `deletecomment 1 1`, `dc 1 1`                                                                      |
+| **Edit** a Tutor's Details | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MODULE] [y/YEAR] [s/STUDENT_ID] [tn/TEACHING_NOMINATIONS] [r/RATING] [t/TAG]…​` | `edit 3 m/CS2100 y/3 s/A0654729L`                                                                  |
+| **Find** a Tutor           | `find PREFIX/KEYWORDS [KEYWORDS]`                                                                                                  | `find n/Alex`                                                                                      |
+| **Mail** Tutor(s)          | `mail INDEX or "all"`                                                                                                              | `mail 3`, `mail all`                                                                               |
+| **Sort** Tutor List        | `sort ORDER PREFIX`                                                                                                                | `sort a r/`                                                                                        |
+| **Delete** a _Tutor_       | `delete INDEX`                                                                                                                     | `delete 3`                                                                                         |
+| **Clear** Tutor List       | `clear`                                                                                                                            |                                                                                                    |
+| **Exit** Tuthub            | `exit`                                                                                                                             |                                                                                                    |
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
