@@ -1114,11 +1114,11 @@ From there, we generated an extensive list of user stories to decide on the feat
 Our group morphed the model from `Person` to `Task`, the challenging part is to refactor all the various classes and fields. We also had to change of the various syntax of `module`, `Deadline` etc.
 This caused a lot of test cases to fail which we have to fix. For `Deadline`, we took the extra effort to make it optional to improve the usability for our users.
 
-Another challenge that was faced was understanding the `logicManager` and `modelManager` as we add in more commands. This requires us to apply the OOP principle and read up on the various APIs that we are 
+Another challenge that was faced was understanding the `LogicManager` and `ModelManager` as we add in more commands. This requires us to apply the OOP principle and read up on the various APIs that we are 
 not familiar with such as `ObservableList`.  
 
 While we were adding the archive command, we have added a separate storage file for the `ArchivedTaskList` to separate it from the current task list as we do not want it to be modified or changed at this stage. 
-A lot of time was taken to understand how the addressBook storage works such as how the JSON file was created and saved. Due to creation of the new `ArchiveTaskList` class, we have to add in new methods to `logicManager` and `modelManager` and 
+A lot of time was taken to understand how the addressBook storage works such as how the JSON file was created and saved. Due to creation of the new `ArchiveTaskList` class, we have to add in new methods to `LogicManager` and `ModelManager` and 
 the relevant interfaces, which resulted in many existing test cases to fail.  
 
 For the UI, we took the extra effort to change the appearance so that it is easy on the eyes. Since we did not have much experience dealing with CSS files and JavaFx, and on top of that it was different from what we have learnt, hence 
