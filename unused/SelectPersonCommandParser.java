@@ -19,9 +19,7 @@ public class SelectPersonCommandParser implements Parser<SelectPersonCommand> {
 
     @Override
     public SelectPersonCommand parse(String args) throws ParseException {
-        System.out.println(args);
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(args.trim());
-        System.out.println(matcher.matches());
 
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SelectPersonCommand.MESSAGE_USAGE));

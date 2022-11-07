@@ -64,7 +64,6 @@ public class CmpCommand extends Command {
             @Override
             public CmpCommand parse(String userInput) throws ParseException {
                 userInput = userInput.trim();
-                System.out.println(userInput);
                 if (userInput.length() == 0) {
                     throw new ParseException(INVALID_INPUT + "\n" + USE_MESSAGE);
                 }
