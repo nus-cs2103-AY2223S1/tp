@@ -46,7 +46,7 @@ Given below are my contributions to the project.
 * **Review/mentoring contributions:**: 
   * Reviewed PRs (Examples: [#86](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/86),
       [#118](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/118),
-      [#133](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/133))
+      [#133](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/133)).
 
 * **Contributions beyond the project team**:
   * Submitted [17](https://github.com/AY2223S1-CS2103T-W13-2/tp/issues?q=is%3Aissue+is%3Aclosed) issues during the 
