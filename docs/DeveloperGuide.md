@@ -708,6 +708,64 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Add an existing person in the contacts to a group**
+
+**MSS**
+
+1. User requests to list contacts.
+2. uNivUSal shows a list of contacts.
+3. User uses command to add a specific contact into a group.
+4. uNivUSal adds the contact to the specified group.
+
+   Use case ends.
+   <br>
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. uNivUSal shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given group name is invalid.
+
+    * 3b1. uNivUSal shows an error message.
+
+      Use case resumes at step 2.
+
+**Use case: Ungroup a person from a group**
+
+**MSS**
+
+1. User requests to list contacts.
+2. uNivUSal shows a list of contacts.
+3. User uses command to remove a specific contact from a group.
+4. uNivUSal removes the contact from the specified group.
+
+   Use case ends.
+   <br>
+
+**Extensions**
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. uNivUSal shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The contact is not currently in the specified group.
+
+    * 3b1. uNivUSal shows an error message.
+
+      Use case resumes at step 2.
+
 ### Non-Functional Requirements
 
 1.  The system should work in 64-bit environments.
@@ -832,5 +890,32 @@ testers are expected to do more *exploratory* testing.
     3. Testcase: Click on the Whatsapp social box of the second person in the contact list.
        Expected: Popup window with error details shown. No Social details change. Contacts remain the same. No links opened on default browser.
 
+## Grouping class tests
 
+### Adding a person to a group
+1. Adding an existing contact to a group.
+    1. Prerequisites: List all contacts using the list command. 
+    2. Test case: `addtogroup 1 friends` <br>
+       Expected: The person in index 1 of the list is added to the group "friends". Details of success command shown in status message.
+    3. Test case: `addtogroup 1 my friends` <br>
+       Expected: Invalid group name is detected. Error details shown in the status message. Contacts remain unchanged.
+    4. Other incorrect include commands to try: `addtogroup 0 friends`, `addtogroup 1 n/friends`.
+
+### Removing a person from a group
+1. Removing an existing contact from an existing group.
+    1. Prerequisites: List all contacts using the list command. First contact belongs to the group "friends".
+    2. Testcase: `ungroup 1 friends` <br>
+       Expected: The person in index 1 of the list is removed from the group "friends". Details of success command shown in status message.
+    3. Testcase: `ungroup 1 groupThatDoesntExist`<br>
+       Expected: Invalid group is detected as the person is not in the group. Error details shown in the status message. Contacts remain the same.
+    4. Other incorrect exclude commands to try: `ungroup 0 friends`
+
+### Opening a group window
+1. Opening the group window of an existing group.
+    1. Prerequisites: The uNivUSal application is open.
+    2. Testcase:`group friends` <br>
+       Expected: A new uNivUSal window opens, displaying all the members of the group "friends".
+    3. Testcase:`open groupThatDoesntExist` <br>
+       Expected: Invalid group is detected as the group does not exist. Error details shown in the status message. AddressBook remains unchanged.
+    4. Other incorrect open commands to try: `group g/friends`
 
