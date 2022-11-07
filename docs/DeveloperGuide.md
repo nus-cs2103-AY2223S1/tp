@@ -236,8 +236,9 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+**Aspect:**
 
+__How undo & redo executes:__
 * **Alternative 1 (current choice):** Saves the entire HealthContact.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
@@ -289,17 +290,15 @@ Design considerations:
 2. Whether to use a prefix for the name of the patient
 3. Number of parameters for the command
 
-Alternatives:
+**Aspects:**
 
-1. Use a shorter command word (eg. ap instead of addpatient)
-    - Pros: Easy to type
-    - Cons: Might be confusing for the user
-2. Use a prefix for the name of the patient (eg. n/ instead of just the name)
+Command format:
+1. __Alternative 1 (Current choice)__: Create separate commands for adding patients, appointments and bills
     - Pros: Easier to implement
-    - Cons: Might be confusing for the user
-3. Combine add feature for patients, appointments and bills into one command
-    - Pros: Easier to implement
-    - Cons: Might be confusing for the user
+    - Cons: Might be troublesome for user to remember the different commands
+2. __Alternative 2__: Create one command for adding patients, appointments and bills using the command word `add`
+    - Pros: Easy to remember and type the command word
+    - Cons: Too many prefixes to type in one command, which can make the command very long
 
 ### Edit Feature
 
@@ -340,8 +339,10 @@ Design considerations:
 2. Whether to use a prefix for the name of the patient
 3. Number of parameters for the command
 
-Alternatives:
-1. Use a shorter command word (eg. ep instead of editpatient)
+**Aspects:**
+
+__Command format__:
+1. Alternative 1 (Current choice): Use a shorter command word (eg. ep instead of editpatient)
     - Pros: Easy to type
     - Cons: Might be confusing for the user
 2. Use a prefix for the name of the patient (eg. n/ instead of just the name)
@@ -398,11 +399,21 @@ Design considerations:
 2. Usage of prefixes for each field
 3. Usage of Optional predicates
 
-Alternatives:
-1. Use `find` as the command word for patients, appointments and bills
+**Aspects:**
+
+Command format:
+1. __Alternative 1 (Current choice)__: Create separate commands for finding patients, appointments and bills
+    - Pros: Easier to implement
+    - Cons: Might be troublesome for user to remember the different commands
+2. __Alternative 2__: Create one command for finding patients, appointments and bills using the command word `find`
     - Pros: Easy to remember and type the command word
-    - Cons: Too many prefixes to type in one command if we want to search by multiple fields, which can make the command very long
-2. Create a new predicate class for each field instead of using Optional predicates
+    - Cons: Too many prefixes to type in one command if we want to find by multiple fields, which can make the command very long
+
+Creating predicates:
+1. __Alternative 1 (Current choice)__: Use Optional predicates and lambda functions
+    - Pros: Lesser classes to maintain
+    - Cons: Hard to debug
+2. __Alternative 2__: Create a new predicate class for each field
     - Pros: Predicates are more clearly separated and defined
     - Cons: More classes to maintain
 
@@ -469,11 +480,15 @@ The select feature is now separated for the patients and appointments sections.
 Design considerations:
 1. Length of command word
 
-Alternatives:
+**Aspects:**
 
-1. Use a shorter command word (e.g. slp instead of selectpatient, sla instead of selectappointment)
-    - Pros: Easy to type
-    - Cons: Easier to type the wrong short-form command as they differ by 1 letter
+Command format:
+1. __Alternative 1 (Current choice)__: Create separate commands for selecting patients and appointments
+    - Pros: Easier to implement
+    - Cons: Might be troublesome for user to remember the different commands
+2. __Alternative 2__: Create one command for adding patients, appointments and bills using the command word `add`
+    - Pros: Easy to remember and type the command word
+    - Cons: Too many prefixes to type in one command, which can make the command very long
 
 ### Set Payment Status Feature
 
@@ -503,10 +518,15 @@ The following sequence diagram shows how the `SetUnpaidCommand` works:
 Design considerations:
 1. Whether to combine `SetPaidCommand` and `SetUnpaidCommand` into one command or split them
 
-Alternatives:
-1. Combine `SetPaidCommand` and `SetUnpaidCommand` into one command
-    - Pros: Shorter command word, eg. `set`
-    - Cons: Use a prefix to indicate user's intention to set bill as paid or unpaid
+**Aspects:**
+
+Command format:
+1. __Alternative 1 (Current choice)__: Create separate commands for setting a bill as paid and unpaid
+    - Pros: Easier to implement
+    - Cons: More confusing for the user
+2. __Alternative 2__: Create one command for both using `set`
+    - Pros: Easy to remember and type the command word
+    - Cons: More room for error when entering the command
 
 ### Sort Feature
 
@@ -538,8 +558,9 @@ Step 3. The application displays the list of patients sorted according to the pa
 2. Criteria which the lists can be sorted by
 3. Order which the lists can be sorted by
 
-**Aspect: How sort executes:**
+**Aspect:**
 
+__How sort executes__:
 * **Alternative 1 (current choice):** Saves the entire HealthContact.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
