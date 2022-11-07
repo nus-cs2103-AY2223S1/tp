@@ -11,7 +11,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Sheyuan Yeo
 
-<img src="images/piyotato.png" width="200px">
+<img src="images/team/piyotato.png" width="200px">
 
 [[github](https://github.com/Piyotato)]
 [[portfolio](team/piyotato.md)]
@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Silas Yeo
 
-<img src="images/comicalromance.png" width="200px">
+<img src="images/team/comicalromance.png" width="200px">
 
 [[github](http://github.com/comicalromance)]
 [[portfolio](team/johndoe.md)]
@@ -31,7 +31,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Po Hsien
 
-<img src="images/lpohsien.png" width="200px">
+<img src="images/team/lpohsien.png" width="200px">
 
 [[github](http://github.com/lpohsien)]
 [[portfolio](team/lpohsien.md)]
@@ -41,7 +41,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Lin Zizheng
 
-<img src="images/dr-arrgghh.png" width="200px">
+<img src="images/team/dr-arrgghh.png" width="200px">
 
 [[github](http://github.com/dr-arrgghh)]
 [[portfolio](team/dr-arrgghh.md)]
@@ -51,7 +51,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Pang Bao Bin
 
-<img src="images/highorbit25.png" width="200px">
+<img src="images/team/highorbit25.png" width="200px">
 
 [[github](http://github.com/highorbit25)]
 [[portfolio](team/highorbit25.md)]
