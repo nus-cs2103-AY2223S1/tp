@@ -697,7 +697,7 @@ add, remove bookings for those venues.
 
 ### Viewing the bookings
 
-To view the bookings, you will have to click on the tab labelled as bookings.
+To view the bookings, you will have to **click on the tab labelled as bookings**.
 
 ![Booking tab](images/venue_tab_ui.png)
 
@@ -765,6 +765,10 @@ Displays all bookings for the specified venue.
 Format: `venue view VENUE_NAME`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The **VENUE_NAME** must follow this <a>[format](#format-for-venue-fields)</a>. </div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+To view all venues, switch over to the bookings tab and refer to the list on the right!
+</div>
 
 Examples:
 * `venue view Meeting Room` switches the current list of bookings displayed to the ones in `Meeting Room`.
