@@ -410,20 +410,51 @@ Alternatives:
 
 ####Current Implementation
 
-The delete mechanism deletes a patient, appointment or bill identified by their index in the list. The deletion is done
-through the `deletePatient`, `deleteAppointment` and `deleteBill` functions in `ModelManager`.
+The delete feature is now separated for the patients, appointments and bills sections. Deleting a patient also deletes
+related appointments and bills. Deleting an appointment deletes its related bills.
 
-Given below is an example usage scenario and how the delete mechanism behaves at each step.
+The delete command deletes a patient, appointment or bill identified by their index in the list. The deletion is done
+through the `deletePatient`, `deleteAppointment`, and `deleteBill` functions in `ModelManager` respectively.
 
-Step 1. The user launches the application. All patients, appointments and bills are shown on different sections
+Given below is an example usage scenario for __DeletePatientCommand__ and how the delete mechanism behaves at each step.
+
+Step 1. The user launches the application. All patients, appointments, and bills are shown on different sections
 of the application as indexed lists.
 
-Step 2. The user executes `deletePatient 2` command to delete the patient at index 2 in the list.
-The `delete` command calls `Model#deletePatient` to delete the patient from the list of patients.
+Step 2. The user executes `deletePatient 2` command to delete the second patient in the list.
+The `delete` command calls `Model#deletePatient(Patient)` to delete the patient from the list of patients.
+
+The following sequence diagram shows how the `DeletePatientCommand` works:
+
+![DeletePatientSequenceDiagram](images/dg/DeletePatientSequenceDiagram.png)
+
+The `DeleteAppointmentCommand` and `DeleteBillCommand` works similar to the `DeletePatientCommand`
+
+The following sequence diagram shows how the `DeleteAppointmentCommand` works:
+
+![DeleteAppointmentSequenceDiagram](images/dg/DeleteAppointmentSequenceDiagram.png)
+
+The following sequence diagram shows how the `DeleteBillCommand` works:
+
+![DeleteBillSequenceDiagram](images/dg/DeleteBillSequenceDiagram.png)
+
+Design considerations:
+
+Aspect: The parameter for delete command:
+
+1. Alternative 1 (current choice): Uses index to identify patient to be deleted.
+
+    - Pros: Easy to implement
+
+    - Cons: Less intuitive. User has to first find the patient and know the index of the patient in the list to delete.
 
 
-The delete feature is now seperated for the patients, appointments and bills sections. Deleting a patient also deletes
-related appointments and bills. Deleting an appointment deletes its related bills.
+2. Alternative 2: Uses the name of the patient to identify the patient to be deleted.
+
+    - Pros: More intuitive. User can just enter the name of the patient.
+
+    - Cons: Worse run-time. Slightly difficult to implement.
+
 
 ### Select Feature
 
