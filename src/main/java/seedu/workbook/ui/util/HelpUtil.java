@@ -36,9 +36,9 @@ public class HelpUtil {
     }
      
     /**
-     * Returns command example for a given command.
-     * @param command Command to return example for.
-     * @return Command example as String.
+     * Returns command header for a given command.
+     * @param command Command to return header for.
+     * @return Command header as String.
      */
     public static String getCommandHeader(Command command) {
         switch(command) {
