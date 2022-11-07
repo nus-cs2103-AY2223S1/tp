@@ -19,7 +19,7 @@ import seedu.address.model.UserPrefs;
 public class DeleteFieldCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-    @Test
+    /*@Test
     public void execute_validField_success() throws CommandException {
         AddFieldCommand addFieldCommand = new AddFieldCommand(INDEX_SECOND, "u", "p", "test");
         addFieldCommand.execute(model);
@@ -27,7 +27,7 @@ public class DeleteFieldCommandTest {
         deleteFieldCommand.execute(model);
         seedu.address.model.item.DisplayItem itemStub = model.getFromFilteredPerson(INDEX_SECOND);
         assertFalse(itemStub.getAttribute("p").isPresent());
-    }
+    }*/
 
     @Test
     public void execute_invalidFType_throwsCommandException() throws CommandException {

@@ -427,6 +427,33 @@ to delete the `Priority` field in the first task listed on the Contactmation dis
 
 As we can see, the `Priority High` field is now deleted from the `Do paperwork` task.
 
+### Rename the name of items on the screen
+
+If you want to rename any item in the app, this `rename` command is for you.
+
+**Format:**
+- `rename (g, u, t)/<INDEX> <new name>`
+- or `<type> select <INDEX> rename <new name>`
+
+**Example:**
+- rename g/1 newGroupName
+  - this will rename the first **group** in your list to 'newGroupName'
+- or u select 1 rename newUserName
+  - this will rename the first **user** in your list to 'newUserName'
+
+
+### Assign a user to a group: `assign`
+
+If you want to place an existing member into a group, you can use this command.
+
+**Format:**
+- `assign u/INDEX g/INDEX`
+
+**Example:**
+If you want to add the first user in your user list into the second group on your groups list,
+your command will be `assign u/1 g/2`.
+
+
 ## 2. Team/Group commands
 
 Contactmation allows you to group your contacts into teams. This section will showcase the different commands that
@@ -977,13 +1004,13 @@ Our future plans for Contactmation includes:
 
 ### General commands summary
 
-| Command                                                       | Format                                                                         |
-| ------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| Clear all items                                               | clear                                                                          |
-| Exit Contacmation                                             | exit                                                                           |
-| Resets filters and list all contents within the current scope | list                                                                           |
-| Rename the name of items on the screen                        | rename (g, u, t)/<INDEX> <new name> or <type> select <INDEX> rename <new name> |
-| Assigning user to a existing group                            | assign u/<INDEX> g/<INDEX>                                                     |
+| Command                                                       | Format                                                                        |
+| ------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| Clear all items                                               | `clear`                                                                         |
+| Exit Contacmation                                             | `exit`                                                                          |
+| Resets filters and list all contents within the current scope | `list`                                                                         |
+| Rename the name of items on the screen                        | `rename (g, u, t)/<INDEX> <new name> or <type> select <INDEX> rename <new name>` |
+| Assigning user to a existing group                            | `assign u/<INDEX> g/<INDEX>`                                                  |
 
 ### Group commands summary
 
