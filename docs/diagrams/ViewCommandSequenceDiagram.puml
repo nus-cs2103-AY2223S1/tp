@@ -1,0 +1,58 @@
+@startuml
+
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":DatabaseParser" as DatabaseParser LOGIC_COLOR
+participant ":ViewCommandParser" as ViewCommandParser LOGIC_COLOR
+participant ":ViewCommand" as ViewCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+
+[-> LogicManager: execute("view 1")
+activate LogicManager
+
+LogicManager -> DatabaseParser : parseCommand("view 1")
+activate DatabaseParser
+
+create ViewCommandParser
+DatabaseParser->ViewCommandParser
+activate ViewCommandParser
+
+ViewCommandParser --> DatabaseParser
+deactivate ViewCommandParser
+
+DatabaseParser -> ViewCommandParser : parse("1")
+activate ViewCommandParser
+
+create ViewCommand
+ViewCommandParser -> ViewCommand : ViewCommand("1")
+activate ViewCommand
+
+ViewCommand --> ViewCommandParser
+deactivate ViewCommand
+
+ViewCommandParser --> DatabaseParser
+deactivate ViewCommandParser
+
+DatabaseParser --> LogicManager
+deactivate DatabaseParser
+
+LogicManager -> ViewCommand : execute()
+activate ViewCommand
+
+create CommandResult
+ViewCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ViewCommand
+deactivate CommandResult
+
+ViewCommand --> LogicManager
+deactivate ViewCommand
+
+LogicManager -->[
+
+@enduml

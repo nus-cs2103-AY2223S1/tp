@@ -291,7 +291,7 @@ This section explains the implementation of the `view` feature. The command take
 
 Below is a sequence diagram and explanation of how `view` is executed.
 
-<img class="centerImage" src="images/diagrams/ViewCommandUML.png" width="550" /><br>
+![View](images/diagrams/ViewCommandSequenceDiagram.png)
 
 Step 1. The use enters the command `view 1`.
 
@@ -299,7 +299,23 @@ Step 2. The method `LogicManager#execute` is called on the user input, prompting
 
 Step 3. The `execute` method of `ViewCommand` is then called on the object, which returns a `CommandResult` object.
 
-Step 4. This finds the `person` from the list from the `model#getFilteredPersonList` by its index which is `1` in this case. If there does not exist a `person` object with index `1`, a `CommandException` will be thrown and a messafe indicating invalid index given will be shown. If the `person` object exists, then the `MainWindow#handleView` will be trigger, which results in the panel being updated with the correct `person` information.
+Step 4. This finds the `person` from the list from the `model#getFilteredPersonList` by its index which is `1` in this case. If there does not exist a `person` object with index `1`, a `CommandException` will be thrown and a message indicating invalid index given will be shown. If the `person` object exists, then the `MainWindow#handleView` will be triggered, which results in the panel on the right being updated with the correct `person` information.
+
+### View Department feature
+
+This section explains the implementation of the `view-department` feature. The command takes in one parameter which is the name of the department. Executing the command leads to the more detailed information of the specified department to be shown on the right panel.
+
+Below is a sequence diagram and explanation of how `view-department` is executed.
+
+![ViewDepartment](images/diagrams/ViewDepartmentCommandSequenceDiagram.png)
+
+Step 1. The use enters the command `view-department Finance`.
+
+Step 2. The method `LogicManager#execute` is called on the user input, prompting for `ViewDepartmentCommandParser` to parse the user input and create the `ViewDepartmentCommand` object.
+
+Step 3. The `execute` method of `ViewDepartmentCommand` is then called on the object, which returns a `CommandResult` object.
+
+Step 4. This checks if the department exist using the `department#isValidDepartmnet` by the department name which is `Finance` in this case. If there does not exist such `department` in the standardized list of departments in `departments#VALID_DEPARTMENTS`, a `CommandException` will be thrown and a message indicating invalid department will be shown. If the `department` exists, then the `MainWindow#handleViewDepartment` will be trigger, which results in the panel on the right being updated with the correct `department` information.
 
 ### Rate feature
 
