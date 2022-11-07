@@ -59,8 +59,6 @@ The rest of the App consists of four components.
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `deletei 1`.
 
-<div style="page-break-after: always;"></div>
-
 ![ArchitectureSequenceDiagram](images/developer-guide/ArchitectureSequenceDiagram.png)
 
 Each of the four main components (also shown in the diagram above),
