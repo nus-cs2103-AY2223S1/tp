@@ -16,6 +16,8 @@ Additionally, OmniHealth's **appointment tracker** allows users to tag upcoming 
 
 This Developer Guide explains in detail how OmniHealth is developed and implemented. It begins with an overview of OmniHealth's **system architecture**, then breaks it down into *smaller components* and provides detailed descriptions for each component, and ultimately explains the reasoning behind how key functionalities of this application are implemented. As a developer, you can utilise this guide to maintain and update OmniHealth.
 
+<div style="page-break-after: always;"></div>
+
 ## Table of Contents
 - [**Acknowledgements**](#acknowledgements)
 - [**Setting up, getting started**](#setting-up-getting-started)
@@ -60,6 +62,8 @@ This Developer Guide explains in detail how OmniHealth is developed and implemen
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Acknowledgements**
 
 * Adapted from AB3 https://github.com/nus-cs2103-AY2223S1/tp
@@ -72,6 +76,8 @@ This Developer Guide explains in detail how OmniHealth is developed and implemen
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Design**
 
@@ -123,6 +129,8 @@ The sections below give more details of each component.
 
 [<*Back to ToC*>](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -141,6 +149,8 @@ The `UI` component,
 * depends on some classes in the `Model` component, as it displays `Person` and `Record` object residing in the `Model`.
 
 [<*Back to ToC*>](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -173,6 +183,8 @@ How the parsing works:
 
 [<*Back to ToC*>](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -197,6 +209,8 @@ The `Model` component,
 
 [<*Back to ToC*>](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -215,6 +229,8 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 

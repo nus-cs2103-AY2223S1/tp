@@ -263,7 +263,11 @@ public class ParserUtil {
      */
     public static String parseDateKeyword(String dateToParse) throws ParseException {
         String trimmedArgs = dateToParse.trim();
+
+        //@@author ljxsean-reused
+        //Reused from https://stackoverflow.com/questions/49012633/java-regular-expression-for-digits-and-dashes
         boolean matcher = trimmedArgs.matches("^(?=(?:[^-]*-){1}[^-]*$)(?=(?:\\D*\\d){6}\\D*$).*$");
+        //@@author
 
         if (trimmedArgs.equals(FindRecordCommandParser.PREFIX_NOT_SPECIFIED)) {
             return "";
