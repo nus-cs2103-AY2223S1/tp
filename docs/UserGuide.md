@@ -190,7 +190,7 @@ TrackO's functionalities!
 
          <img src="./images/user-guide/Tutorial2.png" alt="Tutorial2">
     
-         <div markdown="span" class="alert alert-primary">:bulb: **Note:**
+         <div markdown="block" class="alert alert-info">:information_source: **Note:**
          If an item is not in your inventory, TrackO does not allow you to add that item to an order!
          </div>
 
@@ -265,14 +265,6 @@ Format: `addi n/ITEM_NAME q/QUANTITY d/DESCRIPTION sp/SELL_PRICE cp/COST_PRICE [
 - `COST_PRICE` is the amount that it costs to produce per unit of the item
 - `SELL_PRICE` and `COST_PRICE` should be given as a number rounded to the nearest cent
 - TrackO allows items to have a larger `COST_PRICE` than `SELL_PRICE`, where items can be sold at a loss
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An inventory item's name must be more than 1 character long.
-</div>
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An inventory item can have 0 or more tags. A tag should only consist of 1 word. A tag **cannot** have more than 30 characters.
-</div>
 
 <div markdown="block" class="alert alert-info">
 
@@ -716,7 +708,7 @@ Format: `marko INDEX [-p] [-d]`
 * When an order is completed (marked as both `paid` and `delivered`), 
 the colour of the particular order's card will be in a darker shade than an uncompleted order. 
 
-<div markdown="block" class="alert alert-info">:bulb: **Note:**
+<div markdown="block" class="alert alert-info">:information_source: **Note:**
 You can mark an order with insufficient stock as paid (to record payments for pre-orders) but you **cannot** 
 mark an order as **delivered** if there is **insufficient stock** of the item(s) involved in the order.
 </div>
