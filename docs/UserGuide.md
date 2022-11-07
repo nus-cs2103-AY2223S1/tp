@@ -591,7 +591,7 @@ Alternatively, you can click on the **Help button** in the top toolbar.
 **Format:** `clear`
 
 <div markdown="span" class="alert alert-warning">:warning: **Caution** <br>
-Executing the `clear` command would cause all of your existing data to be discarded forever and start with an empty data file.
+Executing the `clear` command would cause all of your existing data to be discarded forever and start with an empty data file. There will be no prompt for confirmation before clearing data.
 </div>
 
 #### Exiting the program : `exit`
