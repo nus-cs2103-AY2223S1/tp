@@ -364,7 +364,7 @@ Java `Clipboard` API is used as it implements a mechanism to transfer data using
 
 #### Current Implementation
 
-The import command mainly relies on the following classes:
+The lock feature mainly relies on the following classes:
 
 * `CommandResult`
 * `LockCommand`
