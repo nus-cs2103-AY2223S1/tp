@@ -9,7 +9,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Based on the AddressBook-Level 3 project created by the [SE-EDU initiative](https://se-education.org/)
+* Libraries Used: [JavaFX](https://openjfx.io/),  [JUnit5](https://github.com/junit-team/junit5), [Jackson](https://github.com/FasterXML/jackson)
+* Implementation for `Event` class is heavily influenced from the [Independent Project (Week 4)](https://nus-cs2103-ay2223s1.github.io/website/se-book-adapted/projectDuke/index.html#level-4-todos-events-deadlines)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -357,10 +359,10 @@ Given below is an example usage scenario and how the `AddEventCommand` behaves a
 <B>Step 1</B>. The user launches the application for the first time. The` AddressBook` model is initialized with both the appropriate `UniquePersonList` and `UniqueEventList`. The lists are empty, with a person named `John Williams`.
 
 
-<B>Step 2</B>. The user adds an event `newEvent desc/ Star Wars Soundtrack n/ John Williams, date/2020-01-01, st/12:00 et/13:00`. The event is added successfully.
+<B>Step 2</B>. The user adds an event `addEvent desc/ Star Wars Soundtrack n/ John Williams date/2020-01-01 st/12:00 et/13:00`. The event is added successfully.
 
 
-<B>Step 3</B>. The user then adds a new event `newEvent desc JurassicWorld Soundtrack  n/ John Williams, date/2020-01-01, st/12:30 et/13:00`. 
+<B>Step 3</B>. The user then adds a new event `addEvent desc/ JurassicWorld Soundtrack  n/ John Williams date/2020-01-01 st/12:30 et/13:00`. 
 
 * This time window of this event overlaps with the previous event, and the Event List is no longer updated. An `OverlapEventException` is thrown by the parser.
 
@@ -869,7 +871,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. Find more test cases for [Client](#testing-client-functions),[Policy](#testing-policy-functions), [Event](#testing-event-functions).
 
 ### Testing client functions
 
