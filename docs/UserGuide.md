@@ -21,11 +21,11 @@ In this guide, you will be introduced to the various features of Travelr, which 
 5. Type the command in the input box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * `list-e` : Lists all events.
+   * `list-e` : Lists events in the bucket list.
 
-   * `add-e n/Sightseeing d/Visit Mountains` : Adds an event with the respective title and description into your event list.
+   * `add-e n/Sightseeing d/Visit Mountains` : Adds an event with the respective title and description into your bucket list.
 
-   * `delete-e 3` : Deletes the 3rd event shown in the current event list.
+   * `delete-e 3` : Deletes the 3rd event in the bucket list.
 
    * `exit` : Exits the app.
 6. Refer to the [Features](#features) below for details of each command.
