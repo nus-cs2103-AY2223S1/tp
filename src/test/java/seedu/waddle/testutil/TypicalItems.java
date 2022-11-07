@@ -27,6 +27,9 @@ import seedu.waddle.model.item.Item;
  * A utility class containing a list of {@code Itinerary} objects to be used in tests.
  */
 public class TypicalItems {
+    private TypicalItems() {
+    } // prevents instantiation
+
     public static Item getShopping() {
         return new ItemBuilder().withDesc(VALID_ITEM_DESC_SHOPPING)
                 .withDuration(VALID_DURATION_SHOPPING).withCost(VALID_COST_SHOPPING)
@@ -50,9 +53,6 @@ public class TypicalItems {
                 .withDuration(VALID_DURATION_ART).withCost(VALID_COST_ART)
                 .withPriority(VALID_PRIORITY_ART).build();
     }
-
-    private TypicalItems() {
-    } // prevents instantiation
 
     public static List<Item> getTypicalItems() {
         return new ArrayList<>(Arrays.asList(getShopping(), getSkinny(), getBeach(), getArt()));

@@ -7,7 +7,6 @@ import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COST_SKINNY;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_SKINNY;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_ITEM_DESC_SKINNY;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PRIORITY_SKINNY;
-import static seedu.waddle.testutil.TypicalItems.getArt;
 import static seedu.waddle.testutil.TypicalItems.getShopping;
 import static seedu.waddle.testutil.TypicalItems.getSkinny;
 

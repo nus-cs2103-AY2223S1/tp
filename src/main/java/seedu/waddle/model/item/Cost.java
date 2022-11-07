@@ -3,8 +3,6 @@ package seedu.waddle.model.item;
 import static java.util.Objects.requireNonNull;
 import static seedu.waddle.commons.util.AppUtil.checkArgument;
 
-import seedu.waddle.model.itinerary.Itinerary;
-
 /**
  * Represents the estimated cost of an Item in the Itinerary.
  */
