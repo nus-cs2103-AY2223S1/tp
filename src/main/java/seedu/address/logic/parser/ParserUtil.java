@@ -238,7 +238,7 @@ public class ParserUtil {
      *
      * @param remarks The remarks to be parsed.
      * @return A list of remarks.
-     * @throws ParseException if any {@code remark} is invalid.
+     * @throws ParseException if any {@code remark} is invalid or is empty.
      */
     public static List<Remark> parseRemarks(String remarks) throws ParseException {
         requireNonNull(remarks);
@@ -246,8 +246,8 @@ public class ParserUtil {
         String[] remarkArr = trimmedRemarks.split(" ");
         ArrayList<Remark> remarkList = new ArrayList<>();
         for (String remark : remarkArr) {
-            if (!Remark.isValidRemark(remark)) {
-                throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+            if (!Remark.isValidRemarkNonEmpty(remark)) {
+                throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
             }
             remarkList.add(new Remark(remark));
         }
