@@ -8,6 +8,7 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
@@ -69,7 +70,8 @@ public class ResultDisplay extends UiPart<Region> {
             pieChartData.forEach(data ->
                     data.nameProperty().bind(
                             Bindings.concat(
-                                    String.format("%s (%.2f%%)", data.getName(), data.getPieValue() / total * 100)
+                                    String.format("%s (%.0f, %.0f%%)", data.getName(), data.getPieValue(),
+                                            data.getPieValue() / total * 100)
                             )
                     )
             );
@@ -80,14 +82,18 @@ public class ResultDisplay extends UiPart<Region> {
             pieChart.setLabelsVisible(true);
             pieChart.setStartAngle(180);
 
-            placeHolder.alignmentProperty().setValue(javafx.geometry.Pos.BOTTOM_CENTER);
+            if (placeHolder.getHeight() > 525) {
+                placeHolder.alignmentProperty().setValue(javafx.geometry.Pos.CENTER);
+            } else {
+                placeHolder.alignmentProperty().setValue(Pos.BOTTOM_CENTER);
+            }
             placeHolder.getChildren().add(pieChart);
 
             // Event Listener for PieChart alignment
             // Automatically aligns the pie chart to the center of the screen when the
             // window height is resized to a size of greater than 550 pixels
             ChangeListener<Number> windowResizeListener = (observable, oldHeight, newHeight) -> {
-                if (newHeight.doubleValue() > 550) {
+                if (newHeight.doubleValue() > 525) {
                     placeHolder.alignmentProperty().setValue(javafx.geometry.Pos.CENTER);
                 } else {
                     placeHolder.alignmentProperty().setValue(javafx.geometry.Pos.BOTTOM_CENTER);
