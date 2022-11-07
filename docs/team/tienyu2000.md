@@ -79,7 +79,6 @@ to restore any desired state of your WorkBook.
    * When you perform an <em>undoable</em> command, it will be stacked on top of the
      previous <em>undoable</em> command in the stack. The `undo` command will undo the first <em>undoable</em> command at the
      top of the stack.
-
    * If you have not executed an <em>undoable</em> command previously, the WorkBook will remain in its current version
      and return an error message: "No previous changes to undo!".
    
