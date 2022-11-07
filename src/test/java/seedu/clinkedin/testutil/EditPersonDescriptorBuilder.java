@@ -1,10 +1,9 @@
 package seedu.clinkedin.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.List;
 
 import seedu.clinkedin.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.clinkedin.logic.parser.Prefix;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;
 import seedu.clinkedin.model.person.Name;
@@ -15,6 +14,7 @@ import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
 import seedu.clinkedin.model.tag.Tag;
+import seedu.clinkedin.model.tag.TagType;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -87,9 +87,23 @@ public class EditPersonDescriptorBuilder {
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        //        descriptor.setTags(tagSet);
+    public EditPersonDescriptorBuilder withTags(List<List<String>> oldTags, List<List<String>> newTags) {
+        UniqueTagTypeMap oldMap = new UniqueTagTypeMap();
+        for (List<String> tag: oldTags) {
+            TagType tagType = new TagType(tag.get(0), new Prefix(tag.get(1)));
+            for (String t: tag.subList(2, tag.size())) {
+                oldMap.mergeTag(tagType, new Tag(t));
+            }
+        }
+        descriptor.setOldTagTypeMap(oldMap);
+        UniqueTagTypeMap newMap = new UniqueTagTypeMap();
+        for (List<String> tag: newTags) {
+            TagType tagType = new TagType(tag.get(0), new Prefix(tag.get(1)));
+            for (String t: tag.subList(2, tag.size())) {
+                newMap.mergeTag(tagType, new Tag(t));
+            }
+        }
+        descriptor.setNewTagTypeMap(newMap);
         return this;
     }
 
