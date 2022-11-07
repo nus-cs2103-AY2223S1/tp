@@ -33,6 +33,7 @@ Given below are my contributions to the project.
     * This enhancement meant that users have the choice to add only the fields that they want to include.
     * Edited existing test cases 
   * Fixed any bugs detected
+  * Improved code quality of model and storage
 
 * **Contributions to Documentation**:
   * User Guide:
@@ -44,6 +45,7 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added Non-Functional Requirements
     * Worked on the implementation of the proposed edit task feature in v1.3
+    * Worked on the overall formatting and vetting of the DG
     
 * **Contributions to team-based tasks**:
   * Submitted product name, target user profile and value proposition via TEAMMATES

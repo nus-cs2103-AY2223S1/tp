@@ -1,7 +1,7 @@
 @startuml
 start
 
-:User enters "findc [prefix] [terms]" command;
+:User enters "findc {field_prefix +  keyword}" command;
 
 if () then ([invalid arguments])
     :Display error message;

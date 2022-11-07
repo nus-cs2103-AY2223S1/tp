@@ -63,7 +63,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delc 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -105,11 +105,11 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `CodeConnectParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddContactCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delc 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
@@ -121,8 +121,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `CodeConnectParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `CodeConnectParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `CodeConnectParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddContactCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddContactCommand`) which the `CodeConnectParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddContactCommandParser`, `DeleteTaskCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -175,25 +175,28 @@ CodeConnect has features that allow you to search for tasks and contacts. The fi
 * `find m/` —  Finds tasks in the TaskList by their module
 * `findc n/` —  Finds contacts in the AddressBook by their name
 * `findc m/` —  Finds contacts in the AddressBook by their module
+* `findc ts/` —  Finds contacts in the AddressBook by the module of the task at the given index
 
 Examples of command use:
 - `find n/ quiz` - Find all tasks containing the word "quiz"
 - `find m/ CS1101S` - Find all tasks belonging to CS1101S
 - `findc n/ Tan` - Find all contacts with names containing "Tan"
 - `findc m/ CS1101S` - Find all contacts taking CS1101S
+- `findc ts/ 3` - Find all contacts taking the module of the task at index 3
 
-![Sample result of a find command](images/FindContactExample.png)
+![Sample result of a find command](images/findTask.png)
 
 #### Implementation Flow
 
 Outline of how components work together when the user enters a find command:
 1. User enters `findc m/ CS1101S` into the command prompt box
-2. User input `m/ CS1101S` is sent to the `FindContactCommandParser`
-3. `FindContactCommandParser` determines the user's input to be valid
-4. `FindContactCommandParser` creates a `ModuleTakenPredicate`
+2. The user input will be sent to `CodeConnectParser`
+3. `CodeConnectParser` send the argument `m/CS1101S` to `FindContactCommandParser`
+4. `FindContactCommandParser` determines the user's input to be valid
+5. `FindContactCommandParser` creates a `ModuleTakenPredicate`
    - This `Predicate` is used by the `Model` to filter for contacts that take the queried module
-5. A `FindContactCommand` command created and executed by the `Model`
-6. The result of the find command is displayed to the user
+6. A `FindContactCommand` command created and executed by the `Model`
+7. The result of the find command is displayed to the user
 
 ![Activity diagram for execution of a findc command](images/FindContactActivityDiagram.png)
 <div style="text-align: center">Activity diagram of findc command execution</div>
@@ -220,19 +223,29 @@ This was done so that it would be easy for the user to remember what command to 
 - The only difference when finding contacts is that there is a c after the find for contacts
 - Both use the same prefixes
 
-### Add task feature
+### Adding features
 
 #### About
 
-CodeConnect has features that allow you to add and track your tasks and annotate them with modules, so that you can search for matching people. The `add` command, implemented in [`AddTaskCommand`](https://github.com/AY2223S1-CS2103T-T14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/AddTaskCommand.java) and [`AddTaskCommandParser`](https://github.com/AY2223S1-CS2103T-T14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/AddTaskCommandParser.java), is how you add new tasks.
+CodeConnect has features that allow you to add and track your contacts and tasks. The adding features use the following commands:
+
+* `addc n/{name} p/{phone_number} [e/{email}] [a/{address}] [t/{tag}]... [m/{module}...] [gh/{github}] [tele/{telegram}]` - Adds a contact with the given field description
+* `add {task_name} by/{deadline} [m/{module_code}]` - Adds a task with the given field description
 
 Examples of command use:
-- `add Lab2 by/2022-02-02 23:59 m/CS2030S`
-- `add Add error handling by/next thursday m/CS2103T`
+* `add Lab2 by/2022-02-02 23:59 m/CS2030S` - Adds a task with the given field description
+* `addc n/Bob Martin p/98765432 tele/bobmartin00 m/CS1101S CS1231S t/friend` - Adds a contact with the given field description
 
 #### Implementation flow
 
-The `add` command follows the [general command implementation flow](#logic-component). The `AddTaskCommandParser` uses `NaturalDateParser`, a thin wrapper over [`JChronic`](https://github.com/samtingleff/jchronic0), to parse the given deadline.
+Outline of how components work together when the user enters an add command:
+
+1. User enters `add Finish Lab3 by/tomorrow m/CS2030S` into the command prompt box
+2. The user input will be sent to `CodeConnectParser`
+3. `CodeConnectParser` send the argument `Finish Lab3 by/tomorrow m/CS2030S` to `AddTaskCommandParser`
+4. `AddTaskCommandParser` will call its `parse` method to get the details of the task
+5. A new `task` instance is created with the fields which is passed into a new `AddTaskCommand` object
+6. The `model` will then update the `taskList` with the new Task
 
 ![Interactions Inside the Logic Component for the `add Add error handling by/next thursday m/CS2103T` Command](images/AddTaskCommandSequenceDiagram.png)
 <div style="text-align: center">Sequence diagram of add command execution</div>
@@ -251,43 +264,51 @@ The `add` command follows the [general command implementation flow](#logic-compo
   * The `by/` prefix is chosen for the deadline, as it is a good compromise between brevity and comprehensibility ("do this *by* a certain date").
 
 
-### Edit task feature
+### Editing feature
 
 #### About
 
-CodeConnect will allow the user to edit an existing task in the task list.
+CodeConnect has features that allow you to edit tasks and contacts. The editing feature use the following commands:
+
+* `edit {task_index} {field prefix + field description}` - Edits the task at the specified index
+* `editc {contact_index} {field_prefix + field_description}` - Edits the contact at the specified index
 
 Example of command use:
-- `edit 1 m/CS1101S`
+* `edit 1 m/CS1101S` - Changes the module of the task at index 1 to be "CS1101S"
+* `editc 2 p/91919100` - Changes the phone number of the contact at index 2 to "91919100"
 
-#### Proposed Implementation flow
+#### Implementation flow
 
-Outline of how components work together when the user enters a `edit` task command:
-1. The user input will be sent to `CodeConnectParser`
-2. `CodeConnectParser` will take note of the command word and argument of the user input and create a `EditTaskComanndParser` instance.
-3. The `EditTaskCommandParser` will call its `parse` method to get the index and create a `EditTaskDescriptor` instance that stores the edited field
-4. A new `EditTaskCommand` will then be created with the parsed index and `EditTaskDescriptor` object
-5. That `EditTaskCommand` object will execute and a new `Task` will be created with the new fields
-6. The `model` will then be updated accordingly with the new Edited Task.
+Outline of how components work together when the user enters an edit command:
+1. User enters `edit 3 m/CS1101S` into the command prompt box
+2. The user input will be sent to `CodeConnectParser`
+3. `CodeConnectParser` send the argument `3 m/CS1101S` to `EditTaskCommandParser`
+4. `EditTaskCommandParser` will call its `parse` method to get the index and create a `EditTaskDescriptor` instance that stores the edited field
+5. A new `EditTaskCommand` will then be created with the parsed index and `EditTaskDescriptor` object
+6. That `EditTaskCommand` object will execute and a new `Task` will be created with the new fields
+7. The `model` will then be updated accordingly with the new Edited Task.
+
 
 ![Activity Diagram](images/EditTaskActivityDiagram.png)
-<div style="text-align: center">Activity diagram of editc command execution</div>
+<div style="text-align: center">Activity diagram of edit command execution</div>
 
 #### Design Considerations
 
-Initially we felt that being able to edit more than 1 field per edit task command was not as important, as
+* Initially we felt that being able to edit more than 1 field per edit task command was not as important, as
 a task object does not have that many fields to begin with. However, we felt that implementing it will still
 make it a lot easier in the event that a user want to have multiple changes to a task.
 
-### Marking and unmarking of tasks
+### Marking features
 
 #### About
 
-CodeConnect has features that allow you to mark and unmark your tasks as complete and incomplete respectively.
+CodeConnect has features that allow you to mark and unmark your tasks as complete and incomplete respectively. The marking features use the following commands:
+* mark {task_index} - Marks task at specified index as completed
+* unmark {task_index} - Unmarks task at specified index as incomplete
 
 Examples of command use:
-* `mark 1`: marks the task at index 1 as complete
-* `unmark 1`: unmarks the task at index 1 as incomplete
+* `mark 1` -  Marks the task at index 1 as complete
+* `unmark 1` - Unmarks the task at index 1 as incomplete
 
 #### Implementation flow
 Both the `mark` and `unmark` commands follow [general command implementation flow](#logic-component).
@@ -503,8 +524,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
+   
 
 ### Deleting a person
 
