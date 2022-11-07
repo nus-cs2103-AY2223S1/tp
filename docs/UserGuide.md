@@ -731,9 +731,9 @@ Restrictions:
 Example:
 
 `e del 1` deletes the first exam in the exam list.
-<div markdown="span" class="alert alert-info">
+<div markdown="span" class="alert alert-warning">
 
-:information_source: **Note:** All tasks currently linked to the exam will be unlinked after the exam is deleted.
+:exclamation: **Warning:** All tasks currently linked to the exam will be unlinked after the exam is deleted.
 </div>
 
 ### Linking an exam
