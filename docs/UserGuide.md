@@ -156,9 +156,8 @@ You can enter the following command:
 delL 2
 ```
 **Note:**
-1. `INDEX` refers to the index number shown in each of the box. Below is an example:
-
-![Index](images/OfferIndex.png)
+1. `INDEX` refers to the index number shown in each of the box. Below is an example:<br>
+![Index](images/OfferIndex.png)<br>
 2. `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 ## 3. `edit`
@@ -219,18 +218,18 @@ _Success_
 addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01
 addC n/Betsy Crowe t/friend e/betsy@example.com a/Newgate Prison p/1234567 t/criminal
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 _Failure_
 ```text
 Invalid client name:
 addC n/John D@e p/98765432 e/johnd@example.com a/John street, block 123, #01-01
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 ```text
 Missing fields:
 addC n/John Doe a/John street, block 123, #01-01
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 **Expected Success Output:**<br>
 A new client is added to RealTime.<br>
 
@@ -258,13 +257,13 @@ _Success_
 ```text
 delC 1
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 _Failure_
 ```text
 Invalid index:
 delC -1
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 **Expected Success Output:**<br>
 The client at `INDEX` 1 is deleted from Real-Time.<br>
 
@@ -295,18 +294,18 @@ _Success_
 editC 1 p/91234567 e/johndoe@example.com
 editC 2 n/Betsy Crower t/
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 _Failure_
 ```text
 Invalid index:
 editC 0 p/12345678
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 ```text
 Missing fields:
 editC 1
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 **Expected Success Output:**<br>
 The client at the specified `INDEX` is edited according to the fields provided.<br>
 
@@ -344,13 +343,13 @@ _Success_
 ```text
 findC John
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 _Failure_
 ```text
 No keywords provided:
 findC
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 **Expected Success Output:**<br>
 The list of clients in the Client Box is updated to a list of all matches from the findC command.
 
@@ -385,14 +384,14 @@ ___
 
 **Expected Success Output:**<br>
 The full list of clients appears in the Client Box.<br>
-[screenshots to be added]
+[screenshots to be added]<br>
 
 **Feedback Box:**
 ```text
 Listed all clients
 ```
 
-[Screenshots to be added]
+[Screenshots to be added]<br>
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -423,18 +422,18 @@ _Success_
 ```text
 addO l/BEDOK_NORTH_BLK123_12 n/John Doe o/2000000
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 _Failure_
 ```text
 Missing fields:
 add0 l/BEDOK_NORTH_BLK123_12 n/John Doe
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 ```text
 Invalid offer price:
 addO l/BEDOK_NORTH_BLK123_12 n/John Doe o/-1
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 **Expected Success Output:**<br>
 A new offer is added to Real-Time<br>
 
@@ -464,17 +463,17 @@ _Success_
 ```text
 delO 2 
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 _Failure_
 ```text
 Invalid index:
 delO 0
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 ```text
 delO
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 **Expected Success Output:**<br>
 The offer at `INDEX` 2 is deleted from Real-Time.<br>
 
@@ -503,18 +502,18 @@ _Success_
 ```text
 editO 2 n/Betsy Crower o/200000
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 _Failure_
 ```text
 Invalid index:
 editO -1 n/Betsy Crower o/200000
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 ```text
 Invalid client name:
 editO 2 n/Betsy Cr@wer o/200000
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 **Expected Success Output:**<br>
 The offer at `INDEX` 2 is edited according to the fields provided.<br>
 
@@ -678,7 +677,7 @@ ___
 **Expected Success Output:**<br>
 The full list of listings appears in the Client Box.<br>
 
-[screenshots to be added]
+[screenshots to be added]<br>
 
 **Feedback Box:**
 ```text
@@ -706,13 +705,13 @@ _Success_
 ```text
 addM id/007 n/Joke Peralta d/2022-10-20 12:00
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 _Failure_ 
 ```text
 Wrong date format:
 addM id/007 n/Joke Peralta d/tomorrow 12pm
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 **Note:**
 1. DATE_TIME must be in this format, yyyy-MM-dd HH:mm
 
@@ -736,13 +735,13 @@ _Success_
 ```text
 delM 1 
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 _Failure_
 ```text
 Invalid index:
 delM -1
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 
 **Expected Success Output:**<br>
 The meeting at `INDEX` 1 is deleted from Real-Time.<br>
@@ -770,18 +769,18 @@ _Success_
 ```text
 `editM 1 n/Joke Peralta d/2022-10-20 23:59`
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 _Failure_
 ```text
 Invalid index:
 editM -1 n/Joke Peralta
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 ```text
 Missing fields:
 editM 1
 ```
-[screenshots to be added]
+[screenshots to be added]<br>
 
 **Expected Success Output:**<br>
 The meeting at the specified `INDEX` is edited according to the fields provided.<br>
@@ -894,7 +893,7 @@ discard all data and start with an empty data file at the next run.
 |     [**Clear**](#clearing-all-entries--clear)     |                                      `clear`                                       |                                               `clear`                                               |
 |   [**Delete Client**](#deleting-a-client--delc)   |                                    `delC INDEX`                                    |                                              `delC 3`                                               |
 |  [**Delete Listing**](#deleting-a-listing--dell)  |                                    `delL INDEX`                                    |                                              `delL 1`                                               |
-| [**Delete Meeting**](#deleting-an-meeting--delm)  |                                    `delM INDEX`                                    |                                              `delM 4`                                               |
+|  [**Delete Meeting**](#deleting-a-meeting--delm)  |                                    `delM INDEX`                                    |                                              `delM 4`                                               |
 |   [**Delete Offer**](#deleting-an-offer--delo)    |                                    `delO INDEX`                                    |                                              `delO 2`                                               |
 |    [**Edit Client**](#editing-a-client--editc)    |      `editC INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`       |                            `editC 2 n/James Lee e/jameslee@example.com`                             |
 |   [**Edit Listing**](#editing-a-listing--editl)   | `editL INDEX [l/LISTING_ID][a/ADDRESS] [n/OWNER_NAME] [ap/ASKING_PRICE] [t/TAG]…​` |                                        `editL 4 ap/1234567`                                         |
