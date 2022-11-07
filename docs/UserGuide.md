@@ -61,9 +61,37 @@ Welcome HR executives and Department Heads! Coydir is a desktop app to efficient
 
 ## Using this Guide
 
-### Navigating the User Guide
+###Symbols and Syntax
+Here are some symbols to look out for while using this guide:
 
-**[To be updated]**
+| Symbol               | Meaning                                      | 
+|----------------------|----------------------------------------------|
+| `code`               | Text relevant to commands or name of a file. |
+| :information source: | Information that is useful to take note of.  |
+| :bulb:               | Tips for Coydir Users.                       |
+| :exclamation:        | Be wary and proceed with caution.            |
+
+### Navigating the User Guide
+This document might look daunting at first! But fear not, in this section, you will learn how to use 
+this user guide like a professional.
+
+####Interested in how to setup? 
+
+You can head over to [Quick Start](#quick-start) to install and run Coydir.
+
+####Interested in what Coydir can do?
+
+You can head over to [Features](#features) to learn how to use the features 
+offered in Coydir.
+
+####Have some questions that you are unsure of?
+You can head over to [FAQ](#faq) to view some frequently asked questions to get your answer. 
+However, if your question is not answered in the _FAQ_, you can always contact us at _coydir@gmail.com_, and 
+we will be happy to answer you.
+
+####Just want a quick overview of all the features Coydir can offer?
+You can head over to [Command Summary](#command-summary) for a quick look of all the commands you can use.
+
 
 ### The User Interface
 
@@ -125,7 +153,7 @@ The top section displays relevant messages/errors after the command is entered.
 
 4. Double-click the file to start the app. A GUI similar to below should appear in a few seconds. Note how the app contains some sample data.<br>
 
-  <img src="./images/ui-screenshots/Ui.png"/>
+  <img class="centerImage" src="./images/Ui.png"/>
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -177,7 +205,10 @@ We will explore each of these fields in great detail as we continue along, but b
 - Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-:warning: **Integer input values cannot be too large**: any values greater than $2^{31}-1$ is not supported.
+- If a parameter is provided, anything after the prefix for that parameter until the end, or until the next parameter, will be taken as the value for the parameter.<br>
+  e.g. if you specify `n/John 91234567 a/Little India`, the entire length of "John 91234567" will be taken as the name.
+
+:warning: **Integer input values cannot be too large**: any values greater than 2<sup>31</sup>-1, or 2147483647, is not supported.
 
 ### Managing Employee Profiles
 
@@ -226,7 +257,7 @@ The complete employee profile allows you to specify _a fair amount_ of details f
 
 Adds an employee to Coydir.
 
-Format: `add n/NAME [p/PHONE] [e/EMAIL] j/POSITION d/DEPARTMENT [a/ADDRESS] [l/LEAVE] [t/TAG]…​`
+Format: `add n/NAME j/POSITION d/DEPARTMENT [p/PHONE] [e/EMAIL] [a/ADDRESS] [l/LEAVE] [t/TAG]…​`
 
 | Field        | TAG | Description                     | Requirement    | Default Value |
 | ------------ | --- | ------------------------------- | -------------- | ------------- |
@@ -603,6 +634,7 @@ The individual rating values will be displayed beside each node in the performan
 **:information_source: Note:** You can only rate the performance of an employee once per day.<br><br>
 
 - Rating an employee who already has a `Rating` with `timestamp` of that same day with the `rate` command will throw a `employee already rated` error.
+
 - This is to prevent multiple ratings per day, and avoid a distorted performance history graph.
 
 </div>
@@ -641,7 +673,7 @@ View the summarized details of a department given the name of the department.
 Details include the number of employee in that particular department, employees who are currently available, employees who are currently on leave, and a table of employees in that department with their corresponding performance ratings and availability.
 
 <p align="center">
-  <img src="images/ui-screenshots/view_department.png"></img>
+  <img src="images/ui-screenshots/view_department.png" />
   <br><em>Result of view-department on General Management</em>
 </p>
 
@@ -710,7 +742,8 @@ Coydir data are saved in the hard disk automatically after any command that chan
 
 Coydir data are saved as a JSON file `[JAR file location]/data/database.json`.
 It is possible to manipulate data by editing the data file directly, but even for advanced users, we **strongly discourage** making any changes to the data file.
-If you still choose to do so, we cannot guarantee that Coydir continues to support your HR operations smoothly.
+
+If you still choose to do so, we **cannot guarantee** that Coydir continues to support your HR operations smoothly.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, Coydir will discard all data and start with an empty data file at the next run.
@@ -749,4 +782,3 @@ If your changes to the data file makes its format invalid, Coydir will discard a
 | **Help**            | `help`                                                                                                                                                                               |
 | **Exit**            | `exit`                                                                                                                                                                               |
 | **Clear**           | `clear`                                                                                                                                                                              |
-

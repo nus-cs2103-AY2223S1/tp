@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("add-leave id/1 sd/01-01-2022 ed/01-01-2022")
+[-> LogicManager : execute("add-leave id/1 \nsd/01-01-2022 ed/01-01-2022")
 activate LogicManager
 
-LogicManager -> DatabaseParser : parseCommand("add-leave id/1 sd/01-01-2022 ed/01-01-2022")
+LogicManager -> DatabaseParser : parseCommand("add-leave id/1 \nsd/01-01-2022 ed/01-01-2022")
 activate DatabaseParser
 
 create AddLeaveCommandParser
@@ -27,14 +27,14 @@ activate AddLeaveCommandParser
 AddLeaveCommandParser --> DatabaseParser
 deactivate AddLeaveCommandParser
 
-DatabaseParser -> AddLeaveCommandParser : parse("id/1 sd/01-01-2022 ed/01-01-2022")
+DatabaseParser -> AddLeaveCommandParser : parse("id/1 \nsd/01-01-2022 ed/01-01-2022")
 activate AddLeaveCommandParser
 
 create AddLeaveCommand
 AddLeaveCommandParser -> AddLeaveCommand
 activate AddLeaveCommand
 
-AddLeaveCommand -> AddLeaveCommandParser
+AddLeaveCommand --> AddLeaveCommandParser
 deactivate AddLeaveCommand
 
 AddLeaveCommandParser --> DatabaseParser

@@ -6,6 +6,7 @@ import static coydir.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static coydir.testutil.TypicalIndexes.ID_FIRST_EMPLOYEE;
 import static coydir.testutil.TypicalIndexes.ID_SECOND_EMPLOYEE;
 import static coydir.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static coydir.testutil.TypicalPersons.CARL;
 import static coydir.testutil.TypicalPersons.getTypicalDatabase;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -30,7 +31,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(new EmployeeId("1"));
+        DeleteCommand deleteCommand = new DeleteCommand(personToDelete.getEmployeeId());
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
@@ -42,10 +43,9 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        EmployeeId outOfBoundId = new EmployeeId(Integer.toString(model.getFilteredPersonList().size() + 1));
+        EmployeeId outOfBoundId = new EmployeeId(Integer.toString(EmployeeId.getCount() + 1));
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundId);
-
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_DISPLAYED_ID);
     }
 
     @Test
@@ -53,7 +53,7 @@ public class DeleteCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Person personToDelete = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(new EmployeeId("1"));
+        DeleteCommand deleteCommand = new DeleteCommand(personToDelete.getEmployeeId());
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
@@ -65,15 +65,20 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
+    public void execute_validIndexPeopleOutOfFilteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         // ensures that outOfBoundIndex is still in bounds of database list
         assertTrue(2 < model.getDatabase().getPersonList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(new EmployeeId("2"));
+        DeleteCommand deleteCommand = new DeleteCommand(new EmployeeId("3"));
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, CARL);
+        Model expectedModel = new ModelManager(model.getDatabase(), new UserPrefs());
+        showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
+        expectedModel.deletePerson(CARL);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

@@ -53,7 +53,7 @@ public class DeleteLeaveCommandTest {
             .withPhone("94351253").withRating("3").withTags("friends").withTotalLeave(0)
             .withLeavePeriod(new Leave("01-01-2022", "01-01-2022")).withEmployeeId("1").build();
         model.addPerson(person);
-        assertCommandFailure(deleteLeaveCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteLeaveCommand, model, Messages.MESSAGE_INVALID_DISPLAYED_ID);
     }
 
     @Test

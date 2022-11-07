@@ -49,7 +49,7 @@ public class RateCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getDatabase().getPersonList();
         Person targetPerson = null;
         for (Person person : lastShownList) {
             if (person.getEmployeeId().equals(targetId)) {
@@ -58,7 +58,7 @@ public class RateCommand extends Command {
             }
         }
         if (targetPerson == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_DISPLAYED_ID);
         }
 
         for (Rating ratinglist : targetPerson.getRatingHistory()) {

@@ -47,7 +47,7 @@ public class ViewCommandTest {
 
         model.addPerson(personToView);
         ViewCommand viewCommand = new ViewCommand(INDEX_SECOND_PERSON);
-        String expectedMessage = String.format(Messages.MESSAGE_INVALID_PERSON_INDEX);
+        String expectedMessage = String.format(Messages.MESSAGE_INVALID_DISPLAYED_INDEX);
         assertCommandFailure(viewCommand, model, expectedMessage);
     }
 }
