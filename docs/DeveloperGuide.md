@@ -40,7 +40,8 @@ PetCode is a desktop app that helps <b>store and manage contact information for 
     * [Motivation](#motivation-for-match-feature)
     * [Implementation of scoring system](#implementation-of-the-score-system)
     * [Sample calculation of the score](#sample-calculation-of-the-score)
-    * [Finding the best fit pet](#finding-the-best-fit-pet)
+    * [How the match feature works](#how-the-match-feature-works)
+    * [Example of how the match feature works](#example-of-how-the-match-command-works)
     * [Areas for improvement](#areas-for-improvement-for-match-feature)
   * [[Proposed] Undo/Redo feature](#proposed-undoredo-feature)
 - **[Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)**
@@ -53,6 +54,7 @@ PetCode is a desktop app that helps <b>store and manage contact information for 
 - **[Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)**
   * [Launch and shutdown](#launch-and-shutdown)
   * [Delete a buyer](#deleting-a-buyer)
+  * [Matching a pet to an order](#matching-a-pet-to-an-order)
   * [Saving data](#saving-data)
 - **[Appendix: Effort](#appendix-effort)**
 
@@ -547,7 +549,7 @@ are **lower-priority attributes** and thus the indicators for these attributes a
 
 Based on the table above, the total score for this pet is 0 + 0 + 0 + 500 - 195 = **305**.
 
-#### Finding the best fit pet
+#### How the match feature works
 
 With the scoring system, we calculate the score of all pets against an order and sort these pets in descending order of
 their calculated score. This is sorted list of pets is then displayed to the user in the MainWindow.
@@ -579,15 +581,9 @@ Given below are the sequence diagrams when `match 1` is executed.
 9. The `MatchCommand` then calls on the method `switchToPetList` in `Model` to display the sorted `Pet` list to the user.
 10. A `CommandResult` object is then created in the `MatchCommand` and passed back to the `LogicManager`, to display the success message.
 
-#### Areas for improvement for Match feature
-
-At this stage, the weights are pre-set and fixed, so the score may not truly reflect how important each attribute is from
-a buyer's or a sale coordinator's perspective. In future implementations, we will allow users to configure these weights,
-if they don't want to use the default weights.
-
-#### Example
-To have a deeper understanding of what it does, take a look at the two illustrations below. Take the four pets Shiro,
-Ashy, Page and Snowy as examples. Plum and Buddy are ignored fore simplicity.
+#### Example of how the match command works
+To have a deeper understanding of what it does, take a look at the two diagrams below. Take the four pets Shiro,
+Ashy, Page and Snowy as examples. Plum and Buddy are ignored for simplicity.
 
 **We assign a score to each pet according to how many attributes they have are the same as requested, and how much
 deviation, if they don’t fit, the attributes have from expected values.** The higher the score, the more suitable the pet.
@@ -603,6 +599,12 @@ The next thing our app will do is sort the pets by their scores. This sorted lis
 as a smart pet sale coordinator who wants to maximise utility and profit, you may want to sell Snowy to this customer.
 
 ![img.png](images/MatchCommandIllustration2.png)
+
+#### Areas for improvement for Match feature
+
+At this stage, the weights are pre-set and fixed, so the score may not truly reflect how important each attribute is from
+a buyer's or a sale coordinator's perspective. In future implementations, we will allow users to configure these weights,
+if they don't want to use the default weights.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -995,6 +997,18 @@ testers are expected to do more *exploratory* testing.
 
     4. Other incorrect delete commands to try: `delete`, `delete-b x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
+
+### Matching a pet to an order
+
+1. Matching a pet with the exact same attributes as the order's requests
+   1. Change the display list to be the buyer list by using `list buyer`.
+   2. Add a new order by using this command `add-o 1 o_st/Pending o_r/add-r o_a/1 o_sp/Shiba Inu o_c/White o_cp/None o_pr/600, 1000 o_d/2022-10-20`.
+   3. Change the display list to be the supplier list by using `list supplier`.
+   4. Add a new pet by using this command `add-p 1 p_n/Kuro p_d/2021-11-10 p_c/White p_cp/None p_h/50 p_w/20 p_s/Shiba Inu p_v/true p_p/700`.
+   5. Add another pet using this command `add-p 1 p_n/Aki p_d/2021-11-10 p_c/Black p_cp/None p_h/50 p_w/20 p_s/Shiba Inu p_v/true p_p/700`.
+   6. Use the list command `list order` to view all orders and get the index of the order you have just added, it should be at the bottom of the order list.
+   7. Next, use `match INDEX_OF_ORDER`, where the `INDEX_OF_ORDER` is the index of the order you have just added.
+      Expected: The display list should show that `Kuro` at the top of the pets list and `Aki` ranked below `Kuro`.
 
 ### Saving data
 

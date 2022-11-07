@@ -431,7 +431,7 @@ To help you better understand the hierarchy of the second sample command, we ill
 
 Adds an order to a buyer contact. This is especially useful when an existing buyer has a new order, or when the buyer confirms the order some time after being added to the contacts.
 
-Format: `add-o INDEX_OF_BUYER o_st/STATUS o_r/add-r o_a/AGE o_sp/SPECIES o_c/COLOR o_cp/COLOR_PATTERN [o_p/PRICE] o_pr/PRICE_RANGE o_d/DATE [o_ar/ADDITIONAL_REQUEST]…​`
+Format: `add-o INDEX_OF_BUYER o_st/STATUS o_r/add-r o_a/AGE o_sp/SPECIES o_c/COLOR o_cp/COLOR_PATTERN o_p/PRICE o_pr/PRICE_RANGE o_d/DATE [o_ar/ADDITIONAL_REQUEST]…​`
 
 <div markdown="span" class="alert alert-warning">
 
