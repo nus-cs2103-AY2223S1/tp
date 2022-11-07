@@ -5,39 +5,48 @@ title: Colin's Project Portfolio Page
 
 ### Project: LongTimeNoSee(LTNS)
 
-Long Time No See (LTNS) is a desktop task tracking app made for student financial advisors to manage their contact base and stay connected with their clients. Made simpler with an intuitive and minimalistic graphical user interface (GUI) and customised functionalities to pinpoint your needs, LTNS will enable you to stay close to your dearest clients!
+Long Time No See (LTNS) is a desktop task tracking app made for financial advisors to manage their contact base and stay connected with their clients. Made simpler with an intuitive and minimalistic graphical user interface (GUI) and customised functionalities to pinpoint your needs, LTNS will enable you to stay close to your dearest clients!
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the main representation of our user's patrons, i.e: The `client` class.
-  * Justification: This feature is required to use our application.
+* **New Feature**: Added the main representation of our user's patrons, i.e: The `Client` class.
+  * Justification: This feature allows the user to store information specific to financial advisors.
   * Highlights:  It encapsulates extensions from the original AB3's person model. You can store birthdays, add income, RiskAppetite levels etc.
+      * Updated Commands to add/edit/delete a new client
   * Credits: `LocalDate` Library of Java: https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html
 
 
-* **New Feature**: Added a new `Event` model to encapsulate meetings a  Financial Advisor wll have with clients.
-  * Justification: This feature is one of the new models of the application
-  * Highlights: Meetings with a client are recording as an `Event`. Includes a `Description` and a day with start and end time.
+* **New Feature**: Added the main representation of a meeting with the user and his `Client` i.e: The `Event` class.
+  * Justification: This feature allows the user to keep track of his meetings with his clients.
+  * Highlights: Meetings with a client are recording as an `Event`. Includes a `Description` and `Date` with start and end times.
     * Used by Reuben to make the `calendar` feature of the app.
   * Credits: `LocalTime` library of Java: https://docs.oracle.com/javase/8/docs/api/java/time/LocalTime.html
 
 * **Code contributed**: [https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=cowlinn&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other]()
 
+<div style="page-break-after: always;"></div>
+
 * **Project management**:
+  * Number of PRs reviewed and merged: 18
+  * Main reviewer for Marcus
   * Helped to maintain issue tracker
-  * Helped to organize group meetings, with agenda (together with Marcus)
+  * Helped to organize group meetings, with agenda
 
 * **Enhancements to existing features**:
   * `Add/Delete/Edit` a Client
   * `Add/Delete` an Event
-  * Saving both `Person` and `Event` into LTNS
-  * Updates to Parser Conditions
+  * Save functionality for both `Person` and `Event` 
+  * Updates to Parser to parse inputs for both
 
 * **Documentation**:
   * User Guide:
     * Ported over original UG from Google Docs to Markdown, including cosmetic tweaks
-    * Updated segments on adding a person into an AddressBook
+    * Updated segments on adding/deleting/editting a person.
+    * Added segments on adding/deleting events
+    * Updated segments on viewing a complete list/filtered list for both event and client
     * Edited command summary
+    * Added FAQs for issues regarding save
+    
   * Developer Guide:
     * Added Activity diagrams for an execution of adding an event 
     * Added Extensions for existing class diagram of a person.
@@ -45,12 +54,14 @@ Given below are my contributions to the project.
     * Updated Feature Summary for `Add/Delete` for Client / Event
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): 8
-  * Reported bugs and suggestions for other teams in the class: Mainly for UserGuide
+  * PRs reviewed (with non-trivial review comments): 6
+    * Specific PR examples: #193, #81, #203, #172
+  * Bugs reported: Mainly for UserGuide / Developer Guide / Testing SUTs
   * Gave more than average comments for all peer-review related activites: E.g: PE-D, iP feedback etc.
 
 * **Tools**:
   * Git / Github
   * Intelli-J
+  * SourceTree
 
 

@@ -14,36 +14,36 @@ This document is the official user guide of the Long Time No See (LTNS) app. Thi
 # Table of Contents
 1. [Quickstart](#quick-start)
 2. [Features](#features)<br>
-   1. [Common Features](#common-features)<br>
-      1. [Viewing Help](#viewing-help--help)
-      2. [Clearing Entries](#clearing-all-entries--clear)
-      3. [Exiting the Program](#exiting-the-program--exit)
-      4. [Saving Data](#saving-the-data)
-      5. [Manually Editing Data File](#editing-the-data-file)
-   2. [Client Features](#client-features)<br>
-      1. [Adding a Client](#adding-a-client--addclient)
-      2. [Switching to Client View](#switching-to-the-view-of-currently-listed-clients--clients)
-      3. [Listing all Clients](#listing-all-clients--allclients)
-      4. [Editing a Client](#editing-a-client--editclient)
-      5. [Searching for a Client](#searching-for-clients--findclient)
-      6. [Deleting a Client](#deleting-a-client--deleteclient)
-      7. [Sorting all Clients](#sorting-all-clients--sort)
-      8. [Pin a Client](#pin-a-client-pin)
-   3. [Policy Features](#policy-features)<br>
-      1. [Adding a Policy](#adding-a-policy--addpolicy)
-      2. [Switching to Policy View](#switching-to-the-view-of-currently-listed-policies--policies)
-      3. [Listing all Policies](#viewing-all-policies-allpolicies)
-      4. [Deleting a Policy](#deleting-a-policy--deletepolicy)
-      5. [Searching for a Policy](#searching-for-a-policy--findpolicy)
-      6. [Assigning a Policy to a Client](#assigning-a-policy-to-a-client--assign)
-      7. [Listing all Assigned Policies](#listing-out-policies-assigned-to-a-client--listassigned)
-      8. [Deleting Assigned Policies from a Client](#deleting-assigned-policies-from-a-client--deleteassigned)
-      9. [Tracking your Income](#tracking-your-income---viewincome)
-   4. [Event Features](#event-features)
-      1. [Adding an Event](#adding-an-event-addevent)
-      2. [Listing all Events](#viewing-all-events--allevents)
-      3. [Searching for an Event](#searching-for-an-event--findevent)
-      4. [Viewing all Events in the next 7 days](#viewing-all-events-in-the-next-7-days--calendar)
+    * [Common Features](#common-features)<br>
+        * [Viewing Help](#viewing-help--help)
+        * [Clearing Entries](#clearing-all-entries--clear)
+        * [Exiting the Program](#exiting-the-program--exit)
+        * [Saving Data](#saving-the-data)
+        * [Manually Editing Data File](#editing-the-data-file)
+    * [Client Features](#client-features)<br>
+        * [Adding a Client](#adding-a-client--addclient)
+        * [Listing all Clients](#listing-all-clients--allclients)
+        * [Editing a Client](#editing-a-client--editclient)
+        * [Searching for a Client](#searching-for-clients--findclient)
+        * [Deleting a Client](#deleting-a-client--deleteclient)
+        * [Sorting all Clients](#sorting-all-clients--sort)
+        * [Pin a Client](#pin-a-client-pin)
+    * [Policy Features](#policy-features)<br>
+        * [Adding a Policy](#adding-a-policy--addpolicy)
+        * [Switching to Policy View](#switching-to-the-view-of-currently-listed-policies--policies)
+        * [Listing all Policies](#viewing-all-policies-allpolicies)
+        * [Deleting a Policy](#deleting-a-policy--deletepolicy)
+        * [Searching for a Policy](#searching-for-a-policy--findpolicy)
+        * [Assigning a Policy to a Client](#assigning-a-policy-to-a-client--assign)
+        * [Listing all Assigned Policies](#listing-out-policies-assigned-to-a-client--listassigned)
+        * [Deleting Assigned Policies from a Client](#deleting-assigned-policies-from-a-client--deleteassigned)
+        * [Tracking your Income](#tracking-your-income---viewincome)
+    * [Event Features](#event-features)
+        * [Adding an Event](#adding-an-event-addevent)
+        * [Switching to Event View](#switching-to-the-view-of-currently-listed-events--events)
+        * [Listing all Events](#viewing-all-events--allevents)
+        * [Searching for an Event](#searching-for-an-event--findevent)
+        * [Viewing all Events in the next 7 days](#viewing-all-events-in-the-next-7-days--calendar)
 3. [Frequently Asked Questions](#faq)
 4. [Command Summary](#command-summary)
 5. [Glossary](#glossary)
@@ -587,6 +587,19 @@ Format: `deleteEvent EVENT_INDEX`
 * Example Usage: `deleteEvent 2`
 * Example Result: deletes the 2nd event from the list.
 
+### Switching to the view of currently listed events : `events`
+Switches the display to show the current list of events
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you previously filtered the event list and switched to view policy/income, this command will allow you to return to the filtered list of events. 
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+If you wish to view the **full** list of events, you may do so with the command `allEvents`. 
+</div>
+
+Format: `events`
+
+Example Usage: `events`
 
 ### Viewing all Events : `allEvents`
 
@@ -598,6 +611,8 @@ Example Usage: `allEvents` <br>
 Example Results: Lists all events added to the app, automatically sorted in chronological order.
 
 ![result for 'allEventsSample'](images/allEventsSample.png)
+
+
 
 ### Searching for an Event : `findEvent`
 
