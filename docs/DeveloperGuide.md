@@ -401,7 +401,7 @@ A professor is more highly likely to remember the module codes of the modules th
 
 #### Implementation
 
-The proposed view more information about a target functionality is facilitated by `ViewTargetModuleCommand`. It extends `Command` and overrides the method `Command#execute(Model model)`.
+The proposed view more details about a target module functionality is facilitated by `ViewTargetModuleCommand`. It extends `Command` and overrides the method `Command#execute(Model model)`.
 
 The following sequence diagram shows how viewing more details about a module works:
 
