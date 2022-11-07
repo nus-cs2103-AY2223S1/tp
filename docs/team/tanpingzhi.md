@@ -33,12 +33,11 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=tanpingzhi)
 
-* **Project management**:
-
 * **Documentation**:
     * User Guide:
         * Add documentation for the `target` and `locate` features.
     * Developer Guide:
         * Add implementation details for `target` and `locate` features, together with activity and sequence diagrams.
 * **Community**:
-* **Tools**:
+  * Fix bugs
+  * Tested and merged multiple PRs.
