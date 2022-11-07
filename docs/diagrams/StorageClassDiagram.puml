@@ -20,6 +20,8 @@ Class JsonDatabaseStorage
 Class JsonSerializableDatabase
 Class JsonAdaptedPerson
 Class JsonAdaptedTag
+Class JsonAdaptedLeave
+Class JsonAdaptedRating
 }
 }
 
@@ -38,5 +40,7 @@ JsonDatabaseStorage .up.|> DatabaseStorage
 JsonDatabaseStorage ..> JsonSerializableDatabase
 JsonSerializableDatabase --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonAdaptedPerson --> "*" JsonAdaptedLeave
+JsonAdaptedPerson --> "*" JsonAdaptedRating
 
 @enduml

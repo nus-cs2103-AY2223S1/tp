@@ -1,15 +1,14 @@
 @startuml
 !include Style.puml
 title BatchAddCommand
-skinparam sequenceMessageAlign center
-box Logic LOGIC_COLOR_T2
+
+box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":DatabaseParser" as DatabaseParser LOGIC_COLOR
 participant ":BatchAddCommandParser" as BatchAddCommandParser LOGIC_COLOR
 participant "b:BatchAddCommand" as BatchAddCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
-
 
 [-> LogicManager: execute("batch-add coydir.csv")
 activate LogicManager
@@ -61,7 +60,6 @@ BatchAddCommand --> BatchAddCommand
 deactivate BatchAddCommand
 |||
 
-
 loop #white AddCommands  in  list
 ref over BatchAddCommand
 AddCommand.execute(model)
@@ -77,8 +75,5 @@ deactivate CommandResult
 
 BatchAddCommand --> LogicManager
 deactivate BatchAddCommand
-
-
-
 
 @enduml
