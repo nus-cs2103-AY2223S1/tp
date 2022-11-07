@@ -156,6 +156,7 @@ public class BookFace implements ReadOnlyBookFace {
         CollectionUtil.requireAllNonNull(person, book, returnDate);
         assert !book.isLoaned();
         books.loan(person, book, returnDate);
+        persons.loan(person, book);
     }
 
     /**
