@@ -1,16 +1,24 @@
 ---
 layout: page 
 title: Developer Guide
+---
+
+## **Overview**
+
+TruthTable is a **desktop app for managing software engineering teams, optimized for use via a Command Line Interface**
+(CLI) while still having the benefits of a Graphical User Interface (GUI). 
+
+This Developer Guide will help you get familiar with the architecture of TruthTable and understand the design choices 
+and implementations of key features in TruthTable, in case you are interested in contributing to this project.
 
 ---
 
-- Table of Contents 
+## **Table of Contents**
+
+- Table of Contents
 {:toc}
 
 ---
-
-TruthTable is a **desktop app for managing software engineering teams, optimized for use via a Command Line Interface**
-(CLI) while still having the benefits of a Graphical User Interface (GUI). This guide will help you get familiar with TruthTable and understand the implementations of some of our features.
 
 ## **Acknowledgements**
 
@@ -22,7 +30,7 @@ TruthTable is a **desktop app for managing software engineering teams, optimized
 
 ---
 
-## **Setting up, getting started**
+## **Setting Up / Getting Started**
 
 If this is your first time contributing to our application, please take a look at the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -247,7 +255,7 @@ Precondition: Team name is valid (it cannot be empty or begin with a space)
 If the team name provided is invalid, an appropriate exception will be thrown and the respective error message will be
 shown to the user.
 
-The following activity diagram summarises the action taken when the `AddTeamCommand` is executed.
+The following activity diagram summarizes the action taken when the `AddTeamCommand` is executed.
 ![AddTeamActivityDiagram](images/AddTeamActivityDiagram.png)
 
 ### Add Task Feature
@@ -265,7 +273,7 @@ Precondition: Task name is valid (it cannot be empty or have quotation marks).
 If the task name provided is invalid, an appropriate exception will be thrown and the respective error message will be
 shown to the user.
 
-The following activity diagram summarises the action taken when `AddTaskCommand` is executed:
+The following activity diagram summarizes the action taken when `AddTaskCommand` is executed:
 ![AddTaskActivityDiagram](images/AddTaskActivityDiagram.png)
 
 _Activity diagram of adding a task_
@@ -458,7 +466,7 @@ executed:
 
 - Users can collate different project-related information (e.g. Github project PRs, issues, links to Zoom meetings, and
   Google Docs)
-- Users can visualise teams’ progress easily
+- Users can visualize teams’ progress easily
 - Users can delegate tasks to their teammates conveniently
 - CLI interface to manage project tasks much more quickly than GUI based products
 
@@ -798,8 +806,8 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-## Testing Commands to Manage Persons
-### Adding a person
+### Testing Commands to Manage Persons
+#### Adding a person
 1. Adding a person to TruthTable 
 
     1. Test case: `add person -n John Doe -p 98765432 -e johnd@example.com -t developer designer` <br>
@@ -820,7 +828,7 @@ testers are expected to do more *exploratory* testing.
        are missing in the command)<br>
        Expected: An error message of `Invalid command format` will be displayed in the output box.
 
-### Editing a person
+#### Editing a person
 1. Editing a person while all persons are being shown
 
     1. Prerequisites: List all persons using the `list persons` command. Person list is not empty.
@@ -836,7 +844,7 @@ testers are expected to do more *exploratory* testing.
        (where X is a positive integer larger than the displayed persons list size)<br>
        Expected: Similar to previous.
 
-### Deleting a person
+#### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
@@ -852,7 +860,7 @@ testers are expected to do more *exploratory* testing.
        (where X is a positive integer larger than the persons list size)<br>
        Expected: Similar to previous.
 
-### Finding a person
+#### Finding a person
 
 1. Finding all persons whose names contain any of the given keywords
 
@@ -870,15 +878,15 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `find person`<br>
        Expected: An error message of `Invalid command format` will be displayed in the output box.
 
-### Listing all persons
+#### Listing all persons
 
 1. Listing all persons in TruthTable
 
    1. Test case: `list persons`<br>
       Expected: All persons stored in TruthTable are displayed.
 
-## Testing Commands to Manage Members
-### Adding a member
+### Testing Commands to Manage Members
+#### Adding a member
 1. Adding a member to the currently selected team
     1. Prerequisites: List all persons using the `list persons` command. Person list is not empty.
    
@@ -894,7 +902,7 @@ testers are expected to do more *exploratory* testing.
        (where X is a positive integer larger than the displayed persons list size)<br>
        Expected: Similar to previous.
 
-### Deleting a member
+#### Deleting a member
 
 1. Deleting a member to the currently selected team
 
@@ -910,7 +918,7 @@ testers are expected to do more *exploratory* testing.
        (where X is a positive integer larger than the displayed members list size)<br>
        Expected: Similar to previous.
 
-### Finding a member
+#### Finding a member
 
 1. Finding all members whose names or emails contain any of the given keywords
 
@@ -928,14 +936,14 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `find member`<br>
        Expected: An error message of `Invalid command format` will be displayed in the output box.
 
-### Listing all members
+#### Listing all members
 
 1. Listing all members in the currently selected team
 
     1. Test case: `list members`<br>
        Expected: All members in the currently selected team in TruthTable are displayed.
 
-### Sorting members
+#### Sorting members
 
 1. Sorting members in the currently selected team
     1. Test case: `sort members asc`<br>
@@ -950,8 +958,8 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `sort members`<br>
        Expected: An error message of `Invalid command format` will be displayed in the output box.
 
-## Testing Commands to Manage Teams
-### Adding a team
+### Testing Commands to Manage Teams
+#### Adding a team
 1. Creating a team on TruthTable
 
     1. Test case: `add team CS2102 -d "Database Systems"` <br>
@@ -970,7 +978,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `add team`<br>
        Expected: An error message of `Invalid command format` will be displayed in the output box.
 
-### Editing a team
+#### Editing a team
 1. Editing the current team on TruthTable
 
     1. Prerequisites: The current working team is set to the team to be edited
@@ -979,7 +987,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Edits the team name and team description of the current team to be `CS2102` and `Database Systems`
        respectively.
 
-### Deleting a team
+#### Deleting a team
 
 1. Deleting an existing team from TruthTable
 
@@ -989,7 +997,7 @@ testers are expected to do more *exploratory* testing.
        Expected: If there is no team named `CS2103T`, an error message is displayed in the output box and no team will
        be deleted. Otherwise, the team with name `CS2103T` will be deleted from TruthTable
 
-### Setting a team
+#### Setting a team
 
 1. Sets the current working team to the target team
 
@@ -998,8 +1006,8 @@ testers are expected to do more *exploratory* testing.
         displayed in the output box and the current working team will not be changed.
         Otherwise, the team with name `CS2103T` will be set as the current working team.
 
-## Testing Commands to Manage Tasks
-### Adding a task
+### Testing Commands to Manage Tasks
+#### Adding a task
 1. Adding a task to TruthTable
 
     1. Test case: `add task "Create PR"` <br>
@@ -1015,7 +1023,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `add task -a 1 3 -d 2022-12-02 23:59`<br>
        Expected: No task is added as no task name is provided. Error details shown in the message displayed in the output box.
 
-### Editing a task
+#### Editing a task
 1. Editing a task while all tasks are being shown
 
     1. Prerequisites: List all tasks in the current team using the `list tasks` command. Task list is not empty.
@@ -1032,7 +1040,7 @@ testers are expected to do more *exploratory* testing.
        (where X is a positive integer larger than the displayed tasks list size)<br>
        Expected: Similar to previous.
 
-### Deleting a task
+#### Deleting a task
 
 1. Deleting a task while all tasks are being shown
 
@@ -1048,7 +1056,7 @@ testers are expected to do more *exploratory* testing.
        (where X is a positive integer larger than the displayed tasks list size)<br>
        Expected: Similar to previous.
 
-### Finding a task
+#### Finding a task
 
 1. Finding all tasks whose names contain any of the given keywords
 
@@ -1066,14 +1074,14 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `find task`<br>
        Expected: An error message of `Invalid command format` will be displayed in the output box.
 
-### Listing all tasks
+#### Listing all tasks
 
 1. Listing all tasks in the current team
 
     1. Test case: `list tasks`<br>
        Expected: All tasks in the current team are displayed.
 
-### Mark tasks as done
+#### Mark tasks as done
 
 1. Marking a specified task as done
     1. Prerequisites: Task list is not empty.
@@ -1089,7 +1097,7 @@ testers are expected to do more *exploratory* testing.
        (where X is a positive integer larger than the displayed tasks list size)<br>
        Expected: Similar to previous.
 
-### Unmark tasks as done
+#### Unmark tasks as done
 
 1. Undoing the mark command to mark specified task as incomplete
     1. Prerequisites: Task list is not empty.
@@ -1105,7 +1113,7 @@ testers are expected to do more *exploratory* testing.
        (where X is a positive integer larger than the displayed tasks list size)<br>
        Expected: Similar to previous.
 
-### Setting Deadline for task
+#### Setting Deadline for task
 
 1. Setting a deadline for an existing task
     1. Prerequisites: Task list is not empty.
@@ -1120,7 +1128,7 @@ testers are expected to do more *exploratory* testing.
        (where X is a positive integer larger than the displayed tasks list size)<br>
        Expected: Similar to previous.
 
-### Assigning a task to team member
+#### Assigning a task to team member
 
 1. Assign an existing task to a team member in the current team.
     1. Prerequisites: Task list is not empty. Multiple tasks in task list. Member list is not empty. Multiple tasks
@@ -1141,7 +1149,7 @@ testers are expected to do more *exploratory* testing.
        than the displayed members list size)<br>
        Expected: Similar to previous.
 
-### Assigning a task to random team member
+#### Assigning a task to random team member
 
 1. Assign an existing task to a random team member in the current team.
     1. Prerequisites: Task list is not empty. Multiple tasks in task list. Member list is not empty. Task is not
@@ -1157,7 +1165,7 @@ testers are expected to do more *exploratory* testing.
        (where X is a positive integer larger than the displayed tasks list size)<br>
        Expected: Similar to previous.
 
-### Filtering tasks by team member
+#### Filtering tasks by team member
 
 1. Find all tasks that have been assigned to a particular member in the currently selected team.
     1. Prerequisites: Member list is not empty.
@@ -1172,7 +1180,7 @@ testers are expected to do more *exploratory* testing.
        (where X is a positive integer larger than the displayed members list size)<br>
        Expected: Similar to previous.
 
-### Sorting members
+#### Sorting members
 
 1. Sorting tasks in the currently selected team
     1. Test case: `sort tasks asc`<br>
@@ -1187,15 +1195,15 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `sort tasks`<br>
        Expected: An error message of `Invalid command format` will be displayed in the output box.
 
-### View summary of task assignments in team
+#### View summary of task assignments in team
 
 1. Viewing the number of tasks assigned to each member in the team.
 
     1. Test case: `summary`<br>
        Expected: The number of tasks assigned to each member in the team is displayed in the output box.
 
-## Testing Commands to Manage Links
-### Adding a new link
+### Testing Commands to Manage Links
+#### Adding a new link
 1. Add a new link to the currently selected team
 
     1. Test case: `add link -n google -l https://google.com` <br>
@@ -1209,7 +1217,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `add link`<br>
        Expected: An error message of `Invalid command format` will be displayed in the output box.
 
-### Editing a link
+#### Editing a link
 1. Editing an existing link in the team
 
     1. Prerequisites: Task list is not empty.
@@ -1229,7 +1237,7 @@ testers are expected to do more *exploratory* testing.
        (where X is a positive integer larger than the displayed links list size)<br>
        Expected: Similar to previous.
 
-### Deleting a link
+#### Deleting a link
 
 1. Deleting an existing link from the team
 
@@ -1237,3 +1245,69 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case: `delete link 1`<br>
        Expected: The first link will be deleted from the link list
+   
+    3. Test case: `delete link 0`<br>
+       Expected: No link is deleted. Error details shown in the output box.
+
+    4. Other incorrect delete commands to try: `delete link`, `delete link X`, `...`
+       (where X is a positive integer larger than the link list size)<br>
+       Expected: Similar to previous.
+
+## Effort
+
+TruthTable was a project of high complexity and required extensive effort by all team
+members to create the product
+
+### Going beyound our limits
+Here are some features and aspects of our project that really makes our project distinct,
+unique and high quality.
+
+#### Using Picocli as our parsing library
+As our product is catered for Software Engineering team leads, we want our product to feel
+exactly like how CLI should be like. Software Engineering team leads are generally proficient
+with using the terminal to get things done, such as using git and most have good familiarity with
+Linux OS systems. Hence, we decided that the original AB3 parser was not going to make it as the
+parsing is unintuitive and hard to write, and increases the learning difficulty of our target users.
+We opted to scrape the parsers and used Picocli as our parsing library, which enabled things like
+subcommands (using commands like `add person` instead of `add_person`) and flags to specify options,
+which generally reduces the number of keystrokes and makes it **extremely intuitive** for users to use
+our proudct
+
+#### Multiple Classes
+As our product primary function is to assign tasks to team members, we have to introduce new classes like
+Teams, Tasks and Links. This added a high degree of complexity to our project as entities can be tied to each
+other in multiple ways, such as enabling tasks to have multiple assignees. This made our product very useful
+and unique, and offered a good variety of functions that make our product useful for Software Engineering
+team leads.
+
+This resulted in the number of commands increasing from **9** (in AB3) to **42** (in TruthTable), which meant
+that more classes has to be written to accommodate the wide variety of commands, and more testing has to be done
+to enable our product works as intended.
+
+#### Improved UI
+The original AB3 only displays the list of persons which is limiting and not very useful. To make our product
+effective, we created displays for teams, members, tasks and links which really made it easy for the user to
+track the outcomes of their commands. We thought that the dark theme of AB3 was uninspiring and made use of
+own light theme to give this product a nice, warm and welcoming feel.
+
+#### Extensive Testing
+The use of picocli means that all parser classes has to be removed, and the way the commands are generated is
+different. Hence, all commands and parser tests in AB3 has to be removed, so they have to be reimplemented.
+Furthermore, the increased number of classes, along with all the commands means that more testing has to be done
+and code coverage is likely to decrease.
+
+Hence, we took it as an opportunity to do extensive testing for our application through writing effective unit tests  
+for our commands, parsers and model objects. We redesigned how testing is done for commands and manage to cover
+all commands successfully. We maintained a **~73%** code coverage from the original **~72%** in AB3, increased the
+number of tests cases from **248** (in AB3) to **527** (in TruthTable). There is a high quality assurance that comes
+with our product which makes our product high quality.
+
+### Remarks
+Overall, this project has been extremely fulfilling and our team has managed to create something novel and unique.
+We pushed our limits and picked up skills that was extremely valuable in writing software and good quality code.
+This section only scratches the surface of the level of effort that we put into this project, and there was many
+other things like discussion and documentation. The additional challenges that we overcome as a team is not included
+to keep things concise.
+
+Hopefully, we hope that this developer guide will help you to understand more about this novel product and we welcome
+anyone to try, maintain or even extend our product for better use.
