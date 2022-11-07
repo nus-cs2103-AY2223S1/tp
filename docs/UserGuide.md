@@ -152,17 +152,17 @@ Adds a student to the Teacher’s Pet.
 </div>
 
 ##### Student’s Contact Number:
-   - Student’s contact number must not be empty. 
-   - Student’s contact number must only contain numerical digits between `0` and `9`.
-   - Student's contact number must begin with `6`, `8` or `9`.
+   - Student’s Contact Number must not be empty. 
+   - Student’s Contact Number must only contain numerical digits between `0` and `9`.
+   - Student's Contact Number must begin with `6`, `8` or `9`.
 
 <div markdown="span" class="alert alert-info">ℹ **Note:** Contact number must contain exactly 8 digits. Contact number must be unique.
 </div>
 
 ##### Next of Kin’s Contact Number:
-- Next of Kin’s contact number must not be empty.
-- Next of Kin’s contact number must only contain numerical digits between `0` and `9`.
-- Next of Kin’s contact number must begin with `6`, `8` or `9`.
+- Next of Kin’s Contact Number must not be empty.
+- Next of Kin’s Contact Number must only contain numerical digits between `0` and `9`.
+- Next of Kin’s Contact Number must begin with `6`, `8` or `9`.
 
 <div markdown="span" class="alert alert-info">ℹ **Note:** Next of Kin’s contact number must contain exactly 8 digits.
 </div>
@@ -249,14 +249,14 @@ Edits an existing student in the list.
 
 3. Amount Paid (`paid/`):
     - Amount Paid stands for the amount that has been paid by the Student.
-    - Amount paid can only be an integer.
-    - Amount paid must be non-negative.
+    - Amount Paid can only be an integer.
+    - Amount Paid must be non-negative.
 
 4. Amount Owed (`owed/`):
     - Amount Owed stands for the amount that has been owed by the Student.
     - Format: `owed/` must be followed by an integer.
-    - Amount owed can only be an integer.
-    - Amount owed must be non-negative.
+    - Amount Owed can only be an integer.
+    - Amount Owed must be non-negative.
 
 5. Rates per Class (`rate/`):
     - Rates per Class stands for the amount of charge per Class for the Student.
@@ -267,8 +267,8 @@ Edits an existing student in the list.
       independent of each other.</div>
 
 6. Additional Notes (`nt/`):
-    - Additional notes can be left empty.
-    - Additional notes can take in any types of character.
+    - Additional Notes can be left empty.
+    - Additional Notes can take in any types of character.
     - Use `nt/` to set the additional notes.
     - Use `nt-a/` to append the additional notes.
     
