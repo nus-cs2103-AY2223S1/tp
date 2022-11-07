@@ -16,7 +16,7 @@ The first word of every command allows FoodRem to distinguish different commands
 * [Flags](#flags) such as `n/` and `qty/` are [[ delimiter:delimiters ]] that enable FoodRem to distinguish different parameters supplied by you without ambiguity
 * [Placeholders](#placeholders) such as `ITEM_NAME` and `QUANTITY` shows you what you should place in each portion of the command
 
-Notice that there is a pair of square brackets `[]` surrounding some parameters like `qty/QUANTITY` in the format. This indicates that the parameter is **optional**. Each of these placeholders have a default value based on the commands. These are documented in the [Commands](#commands) section for each command.
+Notice that there is a pair of square brackets `[]` surrounding some [[ parameter:parameters ]] like `qty/QUANTITY` in the format. This indicates that the parameter is **optional**. Each of these [[ placeholder:placeholders ]] in the [[ parameter:parameters ]] have a default value based on the commands. These are documented in the [Commands](#commands) section for each command.
 
 ```note
 The [Placeholder](#placeholders) section covers the restrictions for respective placeholders. For example, the date format of BOUGHT_DATE, certain characters you cannot use and the limit and precision of numbers.
@@ -82,10 +82,10 @@ Suppose the `INDEX` for potatoes is `1` in the application, the command you woul
 
 You should now have a better understanding of how commands are formatted and used. All commands are consolidated in the [Command Summary](#command-summary).
 
-Here is a checklist you can use before running a command:
+Here is a checklist you can use before running a [[ command ]]:
 
-* [ ] I know the restrictions of the command
+* [ ] I know the restrictions of the command 
 * [ ] I know what [[ parameter:parameters ]] are supplied to the command
 * [ ] I know the [[ flag:flags ]] for each parameter to be supplied
-* [ ] I know the restrictions of each [[ placeholder ]]
+* [ ] I know the restrictions of each parameter
 * [ ] I know the effects of not specifying each optional flag.
