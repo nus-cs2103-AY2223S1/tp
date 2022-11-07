@@ -196,7 +196,7 @@ The `Model` component,
 * stores the UniNurse book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object) and all of its saved versions.
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* depends on the other three components in the following manner: `UninurseBookSnapshot` stores a copy of the `CommandResult` after a snapshot is made, to be retrieved by the `Ui` component when an `undo`/`redo` command is executed.
 * each patient has a `TaskList`, which holds `Task` which can be NonRecurringTasks or RecurringTasks. The below Class diagram illustrates their relationship.
   
 <img src="images/TaskClassDiagram.png" width="450" />
@@ -389,6 +389,8 @@ The sequence diagram below shows the interactions within the Logic component tha
 
 ### Undo/redo feature
 
+#### Implementation
+
 The undo/redo mechanism is facilitated by `PersistentUninurseBook`. It consists of a list of `UninurseBookSnapshot`, which itself consists of a `UninurseBook` and a `CommandResult`. `PersistentUninurseBook` stores the saved versions of all `UninurseBook`s, stored internally as:
 * `workingCopy`, which is the current (possibly unsaved) version of `UninurseBook`.
 * `uninurseBookVersions` and `currentVersion`, which are the saved versions of `UninurseBook`s and which version we last replaced `workingCopy` with.
@@ -453,20 +455,18 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire Uninurse book.
+* **Alternative 1 (current implementation):** Saves the entire Uninurse book.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
+* **Alternative 2:** Individual command knows how to undo/redo by itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
 
 ### Display added/edited/deleted patient feature
 
