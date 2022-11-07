@@ -354,6 +354,32 @@ The following sequence diagram demonstrates the above operations:
     - Pros: Idea is more simply understood. Serves the main purpose of `sort` if implemented correctly.
     - Cons: Complicated to implement and possibility of many bugs. Poor OOP practice as it may require reassigning of the `FilteredList` and `SortedList` variables.
 
+### Mail Feature
+
+This command allows users to easily contact tutors from `Tuthub`'s displayed list. Users can mail a specific tutor (by `INDEX`) or **all** the currently displayed tutors.
+
+<ins>Implementation</ins>
+
+The `mail` command involves the logic and model part of Tuthub. Other than that, it relies on the `Java` classes, [`java.awt.Desktop`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/Desktop.html) and [`java.net.URI`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/net/URI.html).
+
+Given below is an example usage scenario when the user enters a `mail` command in the command box.
+
+Step 1: The user enters the command `mail all`.
+
+Step 2: The `TuthubParser` verifies the `MailCommand#COMMAND_WORD`, and requests `MailCommandParser` to parse. The `MailCommandParser` verifies the appropriateness of the user input (in this case, the valid inputs are `INDEX` or "`all`").
+
+Step 3: Upon parsing, a new `MailCommand` is created based on the target, which is `all`.
+
+Step 4: In the `MailCommand` execution, the `URI` message is created by getting the emails (`Tutor#getEmail()`) of each tutor in the currently displayed list. The emails are combined in the `message` variable, which is then used as an argument in `URI#create(String)`. 
+
+Step 5: The user's default mail client is accessed by calling `Desktop#mail(URI)` with the recently created `uri` as the argument. Then, a new `CommandResult` is created and stored in `LogicManager`.
+
+Step 6: Upon recognising the `CommandResult`, `MainWindow` displays the resulting `CommandResult`.
+
+The following sequence diagram demonstrates the above operations (excluding [`java.awt.Desktop`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/Desktop.html), [`java.net.URI`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/net/URI.html), and obtaining `Tutor` email data):
+
+![MailSequenceDiagram](./images/MailSequenceDiagram.png)
+
 ### Comment feature
 
 This command adds a comment to a tutor in `Tuthub`'s displayed list.
@@ -395,32 +421,40 @@ Step 6: The `Comment` stored in the `CommentCommand` is then added to the `Comme
     - Pros: Easier to implement.
     - Cons: It is harder to add and remove comments from each tutor, as the previous comments need to be copied and then added manually by the user.
 
-### Mail Feature
+### Delete Comment feature
 
-This command allows users to easily contact tutors from `Tuthub`'s displayed list. Users can mail a specific tutor (by `INDEX`) or **all** the currently displayed tutors.
+This command deletes a comment from a tutor in `Tuthub`'s displayed list.
 
 <ins>Implementation</ins>
 
-The `mail` command involves the logic and model part of Tuthub. Other than that, it relies on the `Java` classes, [`java.awt.Desktop`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/Desktop.html) and [`java.net.URI`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/net/URI.html).
+The `deletecomment` command involves the logic and model part of Tuthub.
+This involves the updating of the `CommentList` of the tutor via:
+- `CommentList#deleteComment(int index)` - Deletes the `Comment` at the `index` of the `CommentList`
 
-Given below is an example usage scenario when the user enters a `mail` command in the command box.
+Given below is an example usage scenario when the user enters a `deletecomment` command in the command box and how the comment is removed from the tutor.
 
-Step 1: The user enters the command `mail all`.
+Step 1: The user enters the command `deletecomment 1 1`.
 
-Step 2: The `TuthubParser` verifies the `MailCommand#COMMAND_WORD`, and requests `MailCommandParser` to parse. The `MailCommandParser` verifies the appropriateness of the user input (in this case, the valid inputs are `INDEX` or "`all`").
+Step 2: The `TuthubParser` verifies the `DeleteCommentCommand#COMMAND_WORD`, and requests `DeleteCommentCommandParser` to parse.
+The `DeleteCommentCommandParser` verifies the appropriateness of the user input (`tutorIndex` and `commentIndex`).
 
-Step 3: Upon parsing, a new `MailCommand` is created based on the target, which is `all`.
+Step 3: Upon parsing, a new `DeleteCommentCommand` is created based on the `tutorIndex` and the `commentIndex`.
+Both indexes are converted to 0 based indexing.
+In this case, the `tutorIndex` and `commentIndex` are both set to `0`.
 
-Step 4: In the `MailCommand` execution, the `URI` message is created by getting the emails (`Tutor#getEmail()`) of each tutor in the currently displayed list. The emails are combined in the `message` variable, which is then used as an argument in `URI#create(String)`. 
+Step 4: In the `DeleteCommentCommand` execution, the `model#getFilteredTutorList` is called upon to retrieve the list of displayed tutors.
+The `Tutor` whose index matches the `tutorIndex` is then stored. 
+In this case, the first `Tutor` is selected.
 
-Step 5: The user's default mail client is accessed by calling `Desktop#mail(URI)` with the recently created `uri` as the argument. Then, a new `CommandResult` is created and stored in `LogicManager`.
+Step 5: For this `Tutor`, the `tutor#getComments` is called upon to retrieve the `CommentList` of the `Tutor`. 
 
-Step 6: Upon recognising the `CommandResult`, `MainWindow` displays the resulting `CommandResult`.
+Step 6: The `CommentList` retrieves the `Comment` that is at the index specified by `commentIndex`.
+This `Comment` is then deleted from the `CommentList`.
+In this case, the first `Comment` of the first `Tutor` is deleted.
 
-The following sequence diagram demonstrates the above operations (excluding [`java.awt.Desktop`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/Desktop.html), [`java.net.URI`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/net/URI.html), and obtaining `Tutor` email data):
+The following sequence diagram demonstrates the above operations (excluding the parsing details):
 
-![MailSequenceDiagram](./images/MailSequenceDiagram.png)
-
+![DeleteCommentSequenceDiagram](./images/DeleteCommentSequenceDiagram.png)
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
