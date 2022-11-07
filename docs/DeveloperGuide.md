@@ -563,28 +563,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `TaskBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TaskBook` and the **Actor** is the `student`, unless specified otherwise)
 
-**Use case: Add a contact**
+**1. Use case UC01: Add a contact**
 
 **MSS**
 
-1. User requests to add a person in the list
+1. Student requests to add a person in the list
 2. TaskBook adds the person
 
-    Use case ends.
+   Use case ends.
 
-**Use case: Delete a contact**
+**2. Use case UC02: Delete a contact**
 
 **MSS**
 
-1. User requests to list persons
+1. Student requests to list persons
 2. TaskBook shows a list of persons
-3. User requests to delete a specific person in the list
+3. Student requests to delete a specific person in the list
 4. TaskBook deletes the person
 
-    Use case ends.
-   
+   Use case ends.
+
 **Extensions**
 
 * 2a. The list is empty.
@@ -594,27 +594,97 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given index is invalid.
 
     * 3a1. TaskBook shows an error message.
+    * 3a2. Student enters a new delete request.
 
-      Use case resumes at step 2.
+  Steps 3a1 - 3a2 are repeated until the request entered is valid.
 
-**Use case: Add a task**
+  Use case resumes at step 4.
+
+**3. Use case UC03: Add a todo**
 
 **MSS**
 
-1. User requests to list persons
+1. Student requests to list persons
 2. TaskBook shows a list of persons
-3. User requests to add a task to a person in the list
-4. TaskBook adds the task
+3. Student requests to add a todo to a person in the list
+4. TaskBook adds the todo
 
    Use case ends.
 
-**Use case: Delete a task**
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given todo is invalid due to wrong parameters.
+
+    * 3a1. TaskBook shows an error message.
+    * 3a2. Student enters a new todo request.
+
+  Steps 3a1 - 3a2 are repeated until the request entered is valid.
+
+  Use case resumes at step 4.
+
+**4. Use case UC04: Add a deadline**
 
 **MSS**
 
-1.  User requests to list tasks
+1. Student requests to list persons
+2. TaskBook shows a list of persons
+3. Student requests to add a deadline to a person in the list
+4. TaskBook adds the deadline
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given deadline is invalid due to wrong parameters.
+
+    * 3a1. TaskBook shows an error message.
+    * 3a2. Student enters a new deadline request.
+
+  Steps 3a1 - 3a2 are repeated until the request entered is valid.
+
+  Use case resumes at step 4.
+
+**5. Use case UC05: Add an event**
+
+**MSS**
+
+1. Student requests to list persons
+2. TaskBook shows a list of persons
+3. Student requests to add an event to a person in the list
+4. TaskBook adds the event
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given event is invalid due to wrong parameters.
+
+    * 3a1. TaskBook shows an error message.
+    * 3a2. Student enters a new event request.
+
+  Steps 3a1 - 3a2 are repeated until the request entered is valid.
+
+  Use case resumes at step 4.
+
+**6. Use case UC06: Delete a task**
+
+**MSS**
+
+1.  Student requests to list tasks
 2.  TaskBook shows a list of tasks
-3.  User requests to delete a specific task in the list
+3.  Student requests to delete a specific task in the list
 4.  TaskBook deletes the task
 
     Use case ends.
@@ -628,8 +698,190 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given index is invalid.
 
     * 3a1. TaskBook shows an error message.
+    * 3a2. Student enters a new delete request.
 
-      Use case resumes at step 2.
+  Steps 3a1 - 3a2 are repeated until the request entered is valid.
+
+  Use case resumes at step 4.
+
+**7. Use case UC07: Find a task**
+
+**MSS**
+
+1.  Student requests to list tasks
+2.  TaskBook shows a list of tasks
+3.  Student requests to find a specific task in the list
+4.  TaskBook displays a list of tasks matching the request
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given query, assignment or done status is invalid.
+
+    * 3a1. TaskBook shows an error message.
+    * 3a2. Student enters a new find request.
+
+  Steps 3a1 - 3a2 are repeated until the request entered is valid.
+
+  Use case resumes at step 4.
+
+**8. Use case UC08: Find a contact**
+
+**MSS**
+
+1.  Student requests to list contacts
+2.  TaskBook shows a list of contacts
+3.  Student requests to find a specific contact in the list
+4.  TaskBook displays a list of contacts matching the request
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given query is invalid.
+
+    * 3a1. TaskBook shows an error message.
+    * 3a2. Student enters a new find request.
+
+  Steps 3a1 - 3a2 are repeated until the request entered is valid.
+
+  Use case resumes at step 4.
+
+**9. Use case UC09: Sort tasks**
+
+**MSS**
+
+1.  Student requests to list tasks
+2.  TaskBook shows a list of tasks
+3.  Student requests to sort the list of tasks in some order
+4.  TaskBook displays a list of tasks in the requested order
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given sorting order is invalid.
+
+    * 3a1. TaskBook shows an error message.
+    * 3a2. Student enters a new sort request.
+
+  Steps 3a1 - 3a2 are repeated until the request entered is valid.
+
+  Use case resumes at step 4.
+
+**10. Use case UC10: Sort contacts**
+
+**MSS**
+
+1.  Student requests to list contacts
+2.  TaskBook shows a list of contacts
+3.  Student requests to sort the list of contacts in some order
+4.  TaskBook displays a list of contacts in the requested order
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given sorting order is invalid.
+
+    * 3a1. TaskBook shows an error message.
+    * 3a2. Student enters a new sort request.
+
+  Steps 3a1 - 3a2 are repeated until the request entered is valid.
+
+  Use case resumes at step 4.
+
+**11. Use case UC11: Edit a task**
+
+**MSS**
+
+1.  Student requests to list tasks
+2.  TaskBook shows a list of tasks
+3.  Student requests to edit one task
+4.  TaskBook edits the task
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given edit request is invalid.
+
+    * 3a1. TaskBook shows an error message.
+    * 3a2. Student enters a new edit request.
+
+  Steps 3a1 - 3a2 are repeated until the request entered is valid.
+
+  Use case resumes at step 4.
+
+**12. Use case UC12: Edit a contact**
+
+**MSS**
+
+1.  Student requests to list contacts
+2.  TaskBook shows a list of contacts
+3.  Student requests to edit one contact
+4.  TaskBook edits the contact
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given edit request is invalid.
+
+    * 3a1. TaskBook shows an error message.
+    * 3a2. Student enters a new edit request.
+
+  Steps 3a1 - 3a2 are repeated until the request entered is valid.
+
+  Use case resumes at step 4.
+
+**13. Use case UC13: Navigating command history**
+
+**Precondition: TaskBook must have a previous state**
+
+**MSS**
+
+1. Student requests TaskBook to revert to previous state.
+2. TaskBook reverts to previous state.
+3. Student requests TaskBook to go back to next state.
+4. TaskBook goes back to next state.
+
+   Use case ends.
+
+**14. Use case UC14: Exiting TaskBook**
+
+**MSS**
+
+1. Student requests exit TaskBook.
+2. TaskBook application is closed.
+
+   Use case ends.
+
 
 ### Non-Functional Requirements
 
