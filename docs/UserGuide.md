@@ -213,41 +213,56 @@ Example:
 
 ### Finding a contact: `findC`
 
-Finds a contact using one or more information fields (e.g. name, mobile number, email, address, and/or remark)
+Finds a contact using one or more information fields (e.g. name, phone number, email, address, and/or remark).
 
 Format: `findC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]`
 
-* At least one information field has to be provided.
-
-* The search is case-insensitive, e.g. `dr doofenshmirtz` will match `Dr Doofenshmirtz`.
+* The search is case-insensitive. e.g. `dr doofenshmirtz` will match `Dr Doofenshmirtz`.
 
 * Only full words will be matched. e.g. `John` will not match `Johnny`.
 
 * Contacts matching at least one keyword will be returned. e.g. `n/Perry Dr`
   will match contacts with name `Perry the Platypus` and `Dr Doofenshmirtz`.
 
+<div markdown="block" class="alert alert-warning">
+
+:warning: There will be an error if you:<br>
+
+* Do not adhere to the [constraints](#section-1-contacts) for each field.<br>
+
+* Do not provide at least one information field.<br>
+
+</div>
+
 Examples:
 
-* `findC n/john p/81113210 e/john@gmail.com a/123` will return a contact whose name contains the word `john`, phone number `81113210`, email `john@gmail.com`, and address containing `123`.
+* `findC n/john p/81113210 e/john@gmail.com a/123` will return `Candace Flynn` and `Phineas Flynn`.
 
-* `findC n/flynn` will return `Candace Flynn` and `Phineas Flynn`.
-
+* `findC n/john p/12345678 e/john@gmail.com a/123` will return contacts with name containing the word `john`, phone number `12345678`, email `john@gmail.com`, and address containing `123`.
 
 ### Filtering contacts by label: `filterC`
 
-Filters contacts whose label(s) contain any of the given keywords.
+Filters contact whose label(s) contain any of the given keywords.
 
-Format: `filterC KEYWORD [MORE_KEYWORDS]`
+Format: `filterC KEYWORD [MORE_KEYWORDS]...`
 
-* The filter is case-sensitive, e.g. `cs2103t` will not match `CS2103T`.
+* The filter is case-sensitive. e.g. `cs2103t` will not match `CS2103T`.
 
-* Only the contact's label is filtered.
+* Only full words will be matched. e.g. `math` will not match `mathematics`.
 
-* Only full words will be matched. e.g. `cs2103t` will not match `cs2103`.
+<div markdown="block" class="alert alert-warning">
+
+:warning: There will be an error if you:<br>
+
+* Do not adhere to the name constraint for labels. Label names must be alphanumeric with no spaces.
+
+</div>
 
 Example:
 
-* `filterC cs2103t` will return a contact with label `cs2103t`.
+* `filterC cs2103t` will return contacts with label `cs2103t`.
+
+* `filterC cs2103t cs2101` will return contacts with label `cs2103t` or `cs2101.
 
 ### Copying contact emails by label: `copyC`
 
@@ -314,21 +329,33 @@ Shows all (non-archived) tasks stored in the task list.
 
 Format: `listT`
 
-* Tasks are marked as unarchived when they are first added by default.
+* Newly added tasks are marked as unarchived by default.
 
-* Archived tasks can be viewed using the [`listAT`](#listing-all-archived-tasks-listat) command.
+<div markdown="span" class="alert alert-info">
+
+:bulb:<br>
+
+* Archived tasks can be viewed using the [`listAT`](#listing-all-archived-tasks-listat) command.<br>
 
 * Task can be archived using the [`archiveT`](#archiving-a-task-archivet) command.
 
+</div>
+
 ### Listing all archived tasks: `listAT`
 
-Shows all archived tasks stored in the task list. Tasks can be unarchived
+Shows all archived tasks stored in the task list.
 
 Format: `listAT`
 
-* Unarchived tasks can be viewed using the [`listAT`](#listing-all-non-archived-tasks-listt) command.
+<div markdown="span" class="alert alert-info">
+
+:bulb:<br>
+
+* Unarchived tasks can be viewed using the [`listT`](#listing-all-non-archived-tasks-listt) command.
 
 * Task can be unarchived using the [`unarchiveT`](#unarchiving-a-task-unarchivet) command.
+
+</div>
 
 <figure>
 <img src="images/listAT.png" alt="listAT" style="width:100%">
@@ -371,11 +398,9 @@ Example:
 
 ### Finding a task: `findT`
 
-Finds a task using one or more information fields (e.g. description, deadline, and/or completion status)
+Finds a task using one or more information fields (e.g. description, deadline, and/or completion status).
 
-Format: `findT [d/DESCRIPTION] [D/DEADLINE (dd-mm-yyyy)] [s/STATUS (complete / incomplete)]`
-
-* At least one information field has to be provided.
+Format: `findT [d/DESCRIPTION] [D/DEADLINE] [s/STATUS]`
 
 * Task status must be either `complete` or `incomplete`.
 
@@ -386,25 +411,37 @@ Format: `findT [d/DESCRIPTION] [D/DEADLINE (dd-mm-yyyy)] [s/STATUS (complete / i
 * Task descriptions matching at least one keyword will be returned. e.g. `d/cs2103t cs2101` will match
   `cs2103t tutorial` and `cs2101 reflection`.
 
+<div markdown="block" class="alert alert-warning">
+
+:warning: There will be an error if you:<br>
+
+* Do not adhere to the [constraints](#section-2-tasks) for each field.<br>
+
+* Do not provide at least one information field.<br>
+
+</div>
+
 Examples:
 
-* `findT d/cs2103t D/25-12-2022 s/complete` will return tasks with descriptions containing `cs2103t`, deadline `25th December 2022` and completion status `complete`.
+* `findT s/incomplete` will return tasks that are not complete.
 
-* `findT s/incomplete` will return task(s) that are not complete.
+* `findT d/cs2103t D/25-12-2022 s/complete` will return tasks with descriptions containing `cs2103t`, deadline `25th December 2022`, and completion status `complete`.
 
 ### Filtering tasks by label: `filterT`
 
 Filters tasks whose label(s) contain any of the given keywords.
 
-Format: `filterT KEYWORD [MORE_KEYWORDS]`
+Format: `filterT KEYWORD [MORE_KEYWORDS]...`
 
-* The filter is case-sensitive, e.g. `cs2103t` will not match `CS2103T`.
+* The filter is case-sensitive. e.g. `cs2103t` will not match `CS2103T`.
 
-* Only full words will be matched. e.g. `cs2103t` will not match `cs2103`.
+* Only full words will be matched. e.g. `math` will not match `mathematics`.
 
 Example:
 
-* `filterT cs2103t` will return a tasks with label `cs2103t`.
+* `filterC cs2103t` will return tasks with label `cs2103t`.
+
+* `filterC cs2103t cs2101` will return tasks with label `cs2103t` or `cs2101`.
 
 ### Marking task as completed: `markT`
 
@@ -445,19 +482,51 @@ Examples:
 
 ### Archiving a task: `archiveT`
 
-Archives a task in the task list, removing it from main task list.
-
-* Archived task list will be displayed after executing this command.
+Archives a task in the displayed task list, removing it from main (unarchived) task list.
 
 Format: `archiveT INDEX`
 
+* Archived task list will be displayed after executing this command.
+
+<div markdown="block" class="alert alert-warning">
+
+:warning: There will be an error if you:<br>
+
+* Enter 0 or a negative number as `INDEX`.<br>
+
+* Enter a number greater than the size of displayed task list as `INDEX`.<br>
+
+</div>
+
+Examples:
+
+* `listT` followed by `archiveT 1` archives the first task in the displayed task list.
+
+* `findT d/book` followed by `archiveT 1` archives the first result of the `findT` command.
+
 ### Unarchiving a task: `unarchiveT`
 
-Unarchives a task in the task list, adding it to the main task list.
+Unarchives a task in the displayed task list, adding it to the main (unarchived) task list.
+
+Format: `unarchiveT INDEX`
 
 * Main (unarchived) task list will be displayed after executing this command.
 
-Format: `unarchiveT INDEX`
+<div markdown="block" class="alert alert-warning">
+
+:warning: There will be an error if you:<br>
+
+* Enter 0 or a negative number as `INDEX`.<br>
+
+* Enter a number greater than the size of displayed task list as `INDEX`.<br>
+
+</div>
+
+Examples:
+
+* `listAT` followed by `unarchiveT 1` unarchives the first task in the displayed task list.
+
+* `findT d/book` followed by `unarchiveT 1` unarchives the first result of the `findT` command.
 
 ### Listing tasks with deadlines up to and including the specified date: `remindT`
 
