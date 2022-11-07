@@ -325,7 +325,9 @@ Month, Day, Hour, Minutes can only take in a 2 digit number
 Year can only take in a 4 digit number <br>
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Input DATE_AND_TIME must be valid in order for the command to be executed
+<div markdown="span" class="alert alert-info">:information_source: **Note:** 
+<br>  
+Input DATE_AND_TIME must be valid in order for the command to be executed
 <br>
 Each client can have a maximum of 3 appointments, and there cannot be appointments with the same DATE_AND_TIME in the overall list of appointments.
 <br>
