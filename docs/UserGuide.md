@@ -431,13 +431,13 @@ ArtBuddy offers the following commands to help you manage your customers:
 
 Customers stored in ArtBuddy have the following details:
 
-| Detail           | Explanation                                                                                                        | Constraints                                            |
-|------------------|--------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|
-| Name             | The name of the customer ([case sensitive, and must be unique](#unique-customer))                                  | Alphanumeric and space characters                      |
-| Phone number     | The phone number of the customer                                                                                   | At least 3 digits                                      |
-| Email            | The email of the customer                                                                                          | Email format with at sign and domain name              |
-| Optional address | The address of the customer                                                                                        |                                                        |
-| Optional tags    | A customer may be tagged with any number of tags (including 0) which can be used to help categorise your customers | Each tag at most 25 alphanumeric and space characters  |                                        
+| Detail           | Explanation                                                                                                        | Constraints                                                                                         |
+|------------------|--------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| Name             | The name of the customer ([case sensitive, and must be unique](#unique-customer))                                  | Alphanumeric and space characters                                                                   |
+| Phone number     | The phone number of the customer                                                                                   | At least 3 digits                                                                                   |
+| Email            | The email of the customer                                                                                          | Email format with at sign and domain name                                                           |
+| Optional address | The address of the customer                                                                                        | See [Appendix: Limitations of no-constraint text inputs](#limitations-of-no-constraint-text-inputs) |
+| Optional tags    | A customer may be tagged with any number of tags (including 0) which can be used to help categorise your customers | Each tag at most 25 alphanumeric and space characters                                               |                                        
 
 ### Viewing a customer: `opencus`
 
