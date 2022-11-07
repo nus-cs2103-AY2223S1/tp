@@ -42,7 +42,11 @@ Given below are my contributions to the project.
 
 * **Project management**:
   * Reviewed the following PRs
-    * [PR #219](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/219),
+    * [PR #259](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/259),
+      [PR #253](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/253),
+      [PR #250](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/250),
+      [PR #246](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/246),
+      [PR #219](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/219),
       [PR #137](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/137),
       [PR #90](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/90),
       [PR #76](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/76),
@@ -69,11 +73,11 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features `calc` and `calc-gui` [\#164](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/164)
+    * Added documentation for the features `calc` and `calc-gui` [PR \#164](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/164)
   * Developer Guide:
-    * Draw overall class diagram for commands using plantUML
+    * Draw overall class diagram for commands using plantUML [PR \#116](https://github.com/AY2223S1-CS2103T-W09-1/tp/pull/116)
 
 * **Community**:
   * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2223S1/forum/issues/261), 
                                                 [2](https://github.com/nus-cs2103-AY2223S1/forum/issues/25))
-  * Reported bugs and suggestions for other teams in the class during PE dry run
+  * Reported bugs and suggestions for other teams in the class during PE dry run. [\#Bugs Reported](https://github.com/WuHaohui1231/ped/issues)
