@@ -356,7 +356,7 @@ Sets a target calorie intake for the current day.
 Format: `target CALORIE`
 
 * `CALORIE` can only take on integer values between 0 and 2147483647.
-* The initial target calorie intake is set at 2000 calories.
+* The default target calorie intake is set at 2000 calories (this is based on the average Daily Recommended Calorie Intake across both genders).
 
 Example:
 
