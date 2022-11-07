@@ -1,0 +1,19 @@
+@startuml
+skinparam conditionStyle diamond
+
+start
+:User initiates a find valid order command with order data;
+note :Valid Input Format: \n"findo [-d OR -D] [-p OR -P]\n[i/ITEM_KEYWORD [MORE_ITEM_KEYWORDS]]\n[a/ADDRESS_KEYWORD [MORE_ADDRESS_KEYWORDS]] \n[n/NAME_KEYWORD [MORE_NAME_KEYWORDS]]"
+:System defines search parameters from flags, prefixes and keywords;
+repeat
+    :System checks if order corresponds to the search parameters;
+        if () then ([order corresponds to the search parameters])
+            :Order is displayed in order list;
+        else ([order does not correspond to the search parameters])
+            :Order is hidden from order list;
+        endif
+repeat while ([there are orders which have not been\nchecked against search parameters])
+-> [All orders have been checked against search parameters];
+stop
+
+@enduml

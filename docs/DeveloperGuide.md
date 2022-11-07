@@ -322,10 +322,10 @@ The find item feature allows the user to find `InventoryItem`(s) by keyword(s) g
 
 The find item command is supported by `FindItemCommand`. It extends `Command`.
 
-Given below is an example usage scenario and how the find order mechanism behaves at each step.
+Given below is an example usage scenario and how the find item mechanism behaves at each step.
 
-Step 1. The user executes `findi chair mattress` command to find the orders containing items with the keywords
-keychain or apple. The `findi` command calls `FindItemCommandParser` which checks for the correct command
+Step 1. The user executes `findi chair mattress` command to find the items with the keywords
+chair or mattress. The `findi` command calls `FindItemCommandParser` which checks for the correct command
 syntax and separates the keywords, utilising each space as a delimiter.
 
 Step 2. The keywords are then passed into a constructor for `ItemContainsKeywordsPredicate`,
@@ -523,7 +523,6 @@ The following activity diagram below illustrates the general flow of the user's 
   * Pros: Better user experience. Users can be sure that any previously entered input is already validated by the application, making it less overwhelming to input large amounts of information.
   * Cons: Harder to implement as it deviates from the original command execution structure (where one instance of user input relates to one full command execution).
 
-
 ### Find Order Feature
 
 The find order feature allows the user to find an `Order` to be tracked by the system.
@@ -550,8 +549,17 @@ that will filter the items according to the keywords. The predicate is passed in
 `FindOrderCommandParser` will throw a `ParseException`.
 </div>
 
-The following sequence diagram shows how the find order operation works:
+The following sequence diagram shows how the find order command works:
+
 ![FindOrderSequenceDiagram](images/FindOrderSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindItemCommandParser`
+and `FindItemCommand` should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline 
+reaches the end of diagram.
+</div>
+
+The following activity diagram summarizes what happens when a user executes a valid find order command:
+![FindOrderActivityDiagram](images/FindOrderActivityDiagram.png)
 
 #### Design considerations
 
@@ -922,47 +930,88 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   i. Download the jar file and copy into an empty folder
 
-   2. Double-click the jar file Expected: Shows the GUI with a set of sample orders and items. 
+   ii. Double-click the jar file Expected: Shows the GUI with a set of sample orders and items. 
    The window automatically expands to occupy the entire screen.
+
 
 ### Adding an inventory item
 1. Adding an inventory item
    1. Prerequisites: None
    2. Test case: `addi i/Chair q/100 d/Wooden Chair sp/50 cp/10 t/Fragile` <br>
-      Expected: Inventory item is added to the inventory list. Details of the added inventory item shown in the status message.
+  Expected: Inventory item is added to the inventory list. Details of the added inventory item shown in the status message.
    3. Test case: `addi i/Chair d/Wooden Chair sp/50 cp/10 t/Fragile` <br>
-      Expected: No inventory item is added. Error details shown in the status message.
+  Expected: No inventory item is added. Error details shown in the status message.
    4. Other incorrect addi commands to try: `addi`, `addi x`, `...`(where x is a string containing the inventory item details but is missing a required parameter) <br>
-      Expected: similar to previous.
+  Expected: similar to previous.
 
 ### Listing all inventory items
 1. Display all inventory items of a populated inventory list
    1. Prerequisites: Have an inventory list containing 1 or more inventory items
    2. Test case: `listi` <br>
-      Expected: All inventory items are displayed.
+  Expected: All inventory items are displayed.
 
 2. Display all inventory items of an empty inventory list
    1. Prerequisites: Have an inventory list containing 0 inventory items
    2. Test case: `listi` <br>
-      Expected: No inventory items are displayed.
+  Expected: No inventory items are displayed.
 
 ### Finding an inventory item
 1. Finding an inventory item that exists in the inventory list
    1. Prerequisites: Have an inventory list containing only inventory items with the item names `Chair`, `Table`, `Bed`.
    2. Test case: `findi Chair` <br>
-      Expected: Only the inventory item with the item name `Chair` is displayed. Number of inventory items
-      found shown in the status message.
+  Expected: Only the inventory item with the item name `Chair` is displayed. Number of inventory items
+  found shown in the status message.
    4. Test case: `findi` <br>
-      Expected: No inventory item is found, no change to current displayed inventory item list.
-      Error details shown in the status message.
+  Expected: No inventory item is found, no change to current displayed inventory item list.
+  Error details shown in the status message.
 
 2. Finding an inventory item that does not exist in the inventory list
    1. Prerequisites: Have an inventory list containing only inventory items with the item names `Chair`, `Table`, `Bed`.
    2. Test case: `findi pen` <br>
-      Expected: No inventory item is displayed in the inventory list. 0 inventory items
-      found shown in the status message.
+  Expected: No inventory item is displayed in the inventory list. 0 inventory items
+  found shown in the status message.
+
+### Listing all orders
+
+1. Listing all orders after calling `findo`
+* Prerequisites: List all orders using the `listo` command. There are already multiple existing orders.
+  Of these orders, there exist 2 orders made by customers with `Chan` in their names. Before testing, enter `findo n/Chan`<br/>
+  Expected: Order list displays 2 orders by customers with `Chan` in their name.
+* Test case: Enter `listo` into the command box.<br/>
+  Expected: ALl orders listed in the order list.
+* Other incorrect `listo` commands to try: Enter `listO` into the command box.<br/>
+  Expected: Result display shows `Unknown command`.
+
+### Finding order(s)
+
+1. Finding an order while all orders are being shown
+* Prerequisites: List all orders using the `listo` command. Multiple orders in the list.
+* Test case: Enter `findo -d` into the command box.</br>
+  Expected: Orders which have been delivered are displayed. The number of orders which
+  correspond to the search parameters is displayed in the result display.
+* Test case: Enter `findo n/Alex a/Geylang` into the command box.<br/>
+  Expected: Orders which have a customer name `Alex` and address containing the word
+  `Geylang` will be displayed. The number of orders which correspond to the search
+  parameters is displayed in the result display.
+* Test case: Enter `findo Alex` into the command box.<br/>
+  Expected: Result display displays an invalid command format message with the
+  specifications of the correct `findo` command format.
+* Other incorrect `findo` commands to try: `findo`, `findo -e`.
+  Expected: Similar to previous.
+
+### Sorting orders by time created
+
+1. Sorting orders by time created while all orders are being shown
+* Prerequisites: List all orders using the `listo` command. Multiple orders in the order list.
+* Test case: Enter `sorto old` into the command box.<br/>
+  Expected: Orders in the order card will be displayed from oldest to newest.
+* Test case: Enter `sorto new` into the command box.<br/>
+  Expected: Orders in the order card will be displayed from newest to oldest.
+* Test case: Enter `sorto hello` into the command box.<br/>
+  Expected: Result display displays an invalid command format message with the
+  specifications of the correct `sorto` command format.
 
 ### Deleting an order
 
