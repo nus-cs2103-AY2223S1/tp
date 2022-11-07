@@ -210,8 +210,8 @@ The examples in this guide are formatted with the following conventions:
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `task list`, `contact list` and `exit`) will be ignored.<br>
-  e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
+* Extraneous parameters for commands that do not take in parameters (such as `task list`, `contact list` and `bye`) will be ignored.<br>
+  e.g. if the command specifies `bye 123`, it will be interpreted as `bye`.
 
 </div>
 
