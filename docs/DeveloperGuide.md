@@ -58,7 +58,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 Each of the four main components (also shown in the diagram above),
 
-* defines its *API* in an `interface` with the same personName as the Component.
+* defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
@@ -110,7 +110,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command personName e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -272,16 +272,17 @@ The following sequence diagram shows how the mark task operation works:
 
 #### Implementation
 
-The edit task feature updates the personName of the task to the PersonName.of given by the user and this change is reflected in the Graphical User Interface.
+The edit task feature updates the name of the task to the name.of given by the user and this change is reflected in the Graphical User Interface.
 
 Given below is an example usage scenario:
 
-Step 1. The user creates the task and assign it to a team using `taskadd` command. The personName of the task provided by the user is stored as Name in the Task class.
+Step 1. The user creates the task and assign it to a team using `taskadd` command. The name of the task provided by the user is stored as Name in the Task class.
 
-Step 2. The user might want to update the personName of the task in the future. The user then executes `taskedit t/1 task/1 n/update GUI` to update the personName of the task from the previous personName to the PersonName.of provided by the user. The `taskedit` command will call `Model#getFilteredTeamList()`, which then gets the specified task from the `UniqueTaskList`. The specified task in team 1 would be updated to the PersonName.of by keeping all the other task feature as same. `Model#updateFilterPersonList` is called to update the team with the new task personName and this would be reflected in the gui.
+Step 2. The user might want to update the name of the task in the future. The user then executes `taskedit t/1 task/1 n/update GUI` to update the name of the task from the previous name to the name.of provided by the user. The `taskedit` command will call `Model#getFilteredTeamList()`, which then gets the specified task from the `UniqueTaskList`. The specified task in team 1 would be updated to the name.of by keeping all the other task feature as same. `Model#updateFilterPersonList` is called to update the team with the new task name and this would be reflected in the gui.
 
 The following sequence diagram shows how the edit task operation works:
 ![TaskEditSequenceDiagram](images/TaskEditSequenceDiagram.png)
+
 
 ### Delete Task Feature
 
@@ -353,14 +354,14 @@ The following sequence diagram shows how the delete team operation works:
 
 #### Implementation
 
-The Edit Team Feature allows the user to edit the personName of a pre-existing team in EZLead.
+The Edit Team Feature allows the user to edit the name of a pre-existing team in EZLead.
 
 Given below is an example usage scenario and how the Edit Team mechanism behaves at each step.
 
-Step 1. The user executes `editteam t/1 n/Team1` to change the personName of first team to Team1.
+Step 1. The user executes `editteam t/1 n/Team1` to change the name of first team to Team1.
 
-Step 2. The `editTeam` command is created by the parser using the given team index and PersonName.of. It calls
-`Model#setTeamName`to change the personName of the required team.
+Step 2. The `editTeam` command is created by the parser using the given team index and name.of. It calls
+`Model#setTeamName`to change the name of the required team.
 
 The following sequence diagram shows how the edit team operation works:
 ![EditTeamSequenceDiagram](images/EditTeamSequenceDiagram.png)
@@ -441,14 +442,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | tech lead | change the team structure                  | manage the teams (EPIC)                            |
 | `* * *`  | tech lead | create a new team                          |                                                    |
 | `* * *`  | tech lead | delete a team                              | remove unwanted teams                              |
-| `* * *`  | tech lead | edit the personName of the team                  | keep the team information up to date               |
+| `* * *`  | tech lead | edit the name of the team                  | keep the team information up to date               |
 | `* * *`  | tech lead | add members to a team                      | update the team when a new member joins            |
 | `* * *`  | tech lead | remove members from a team                 | keep the team information up to date               |
 | `* * *`  | tech lead | edit the information of members            | update their information when there is a change    |
 | `* * *`  | tech lead | manage the tasks for the company           | have an overview of the task in the company (EPIC) |
 | `* * *`  | tech lead | create a task                              |                                                    |
 | `* * *`  | tech lead | delete a task                              | remove unwanted tasks                              |
-| `* * *`  | tech lead | update a task personName                         | respond to changes in the requirements             |
+| `* * *`  | tech lead | update a task name                         | respond to changes in the requirements             |
 | `* *  `  | tech lead | set the status of the task to complete     | know which task is completed                       |
 | `* *  `  | tech lead | set the status of the task to not complete | know which task is not completed                   |
 | `* *  `  | tech lead | set a deadline for the task                | know when the task should be completed             |
@@ -466,14 +467,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. Team Lead specifies the personName of the team
+1. Team Lead specifies the name of the team
 2. EZLead create a new team object with the specified team
 
 **Extensions**
 
-* 1a. Team with the same personName already exists.
+* 1a. Team with the same name already exists.
 
-    * 1a1. EZLead throws an error signifying duplicate personName.
+    * 1a1. EZLead throws an error signifying duplicate name.
 
       Use case resumes from step 1.
 
@@ -485,22 +486,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. Team Lead specified the personName of the member to add into the team and personName of team
+1. Team Lead specified the name of the member to add into the team and name of team
 2. EZLead add that member to the team.
 
 Step 1 and 2 is repeated until all members have been added
 
 **Extensions:**
 
-* 1a. Member with the same personName already exists
+* 1a. Member with the same name already exists
 
-    * 1a1. EZLead throws an error signifying duplicate personName
+    * 1a1. EZLead throws an error signifying duplicate name
 
       Use case continues at step 1.
 
-* 1b. Member with specified personName does not exist
+* 1b. Member with specified name does not exist
 
-    * 1b1. EZLead throws an error signifying personName does not exist
+    * 1b1. EZLead throws an error signifying name does not exist
 
       Use case continues at step 1
 
@@ -515,7 +516,7 @@ Step 1 and 2 is repeated until all members have been added
 
 **MSS**
 
-1. Team Lead specify the personName of the team being deleted.
+1. Team Lead specify the name of the team being deleted.
 2. Team Deleted from EZLead’s database.
 
 
@@ -534,18 +535,18 @@ Step 1 and 2 is repeated until all members have been added
       Use case ends
 
 
-**Use case: UC4 - Renaming a team's personName**
+**Use case: UC4 - Renaming a team's name**
 
 **Actor: Team Lead**
 
 **Prerequisites: A team exists**
 
-**Guarantee: Selected team is renamed to the new given personName**
+**Guarantee: Selected team is renamed to the new given name**
 
 **MSS**
 
-1. Team Lead specifies the old team and the new team personName.
-2. EZLead updates the personName of the team.
+1. Team Lead specifies the old team and the new team name.
+2. EZLead updates the name of the team.
 
 **Extensions:**
 
@@ -555,13 +556,13 @@ Step 1 and 2 is repeated until all members have been added
 
       Use case ends.
 
-* 1b. Old team personName does not exist in EZLead's database.
+* 1b. Old team name does not exist in EZLead's database.
 
     * 1b1. EZLead displays an error message.
 
       Use case ends.
 
-* 1c. PersonName.of is already used by another team.
+* 1c. name.of is already used by another team.
 
     * 1c1. EZLead displays an error message.
 
@@ -578,7 +579,7 @@ Step 1 and 2 is repeated until all members have been added
 
 **MSS**
 
-1. Team Lead specifies the personName of the team and personName of the team member to be removed.
+1. Team Lead specifies the name of the team and name of the team member to be removed.
 2. EZLead removes the team member from the team.
 
 **Extensions:**
@@ -641,7 +642,7 @@ Step 1 and 2 is repeated until all members have been added
       Use case ends.
 
 
-**Use case: UC8 - Editing a task personName**
+**Use case: UC8 - Editing a task name**
 
 **Actor: Team Lead**
 
@@ -649,8 +650,8 @@ Step 1 and 2 is repeated until all members have been added
 
 **MSS**
 
-1. Team Lead specifies the team, the task and the new task personName.
-2. EZLead updates task personName associated to specified task of the team.
+1. Team Lead specifies the team, the task and the new task name.
+2. EZLead updates task name associated to specified task of the team.
 
 **Extensions:**
 

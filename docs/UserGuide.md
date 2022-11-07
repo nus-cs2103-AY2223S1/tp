@@ -85,16 +85,16 @@ Here is a summary of all the parameters used in EZLead commands:
 
 | Parameter               | Refers to                                                                           | Required format                                                                                                                                                     |
 |-------------------------|-------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **NAME**                | The personName of the member.                                                             | It should only contain alphanumeric characters and spaces, and should not be blank.                                                                                 |
+| **NAME**                | The name of the member.                                                             | It should only contain alphanumeric characters and spaces, and should not be blank.                                                                                 |
 | **PHONE-NUMBER**        | The phone number of the member.                                                     | It should only contain numbers, is exactly 8 numbers long, and should not be blank.                                                                                 |
 | **EMAIL**               | The email of the member.                                                            | It should follow the _local-part@domain_ format and should not be blank.                                                                                            | 
 | **ADDRESS**             | The address of the member.                                                          | It can take any value, but it should not be blank.                                                                                                                  | 
 | **TAG**                 | Additional information about the member.                                            | It should only contain alphanumeric characters, or it can be blank.                                                                                                 |
 | **GLOBAL-PERSON-INDEX** | The index number of the member as shown in the **userlist window**.                 | It must be a **positive integer** (e.g. 1, 2, 3, ...) and cannot be more than the maximum integer value (i.e 2147483647). Otherwise it will be considered invalid.  |
 | **MEMBER-INDEX**        | The index number of the member as shown in the **userlist window**                  | It must be a **positive integer** (e.g. 1, 2, 3, ...) and cannot be more than the maximum integer value (i.e 2147483647). Otherwise it will be considered invalid.  |
-| **TEAM-NAME**           | The personName of the team.                                                               | It should only contain alphanumeric characters, spaces, and parentheses. But it should not be blank.                                                                | 
+| **TEAM-NAME**           | The name of the team.                                                               | It should only contain alphanumeric characters, spaces, and parentheses. But it should not be blank.                                                                | 
 | **TEAM-INDEX**          | The index of the team as shown in the **main window**.                              | It must be a **positive integer** (e.g. 1, 2, 3, ...) and cannot be more than the maximum integer value (i.e 2147483647). Otherwise it will be considered invalid.  |
-| **TASK-NAME**           | The personName of the task.                                                               | It should only contain alphanumeric characters, spaces, parentheses, and the apostrophe. But it should not be blank.                                                |
+| **TASK-NAME**           | The name of the task.                                                               | It should only contain alphanumeric characters, spaces, parentheses, and the apostrophe. But it should not be blank.                                                |
 | **DEADLINE**            | The deadline of the task.                                                           | It should be a valid date in `DD-MM-YYYY` format.                                                                                                                   |
 | **TASK-INDEX**          | The index of the task as shown in the task list of the team in the **main window**. | It must be a **positive integer** (e.g. 1, 2, 3, ...) and cannot be more than the maximum integer value (i.e 2147483647). Otherwise it will be considered invalid.  |
 
@@ -177,12 +177,12 @@ Examples:
 
 #### 2.1 Adding a team: `create`
 
-Adds a team with the given personName to EZLead.
+Adds a team with the given name to EZLead.
 
 Format: `create n/TEAM-NAME`
 
 Examples:
-* `create n/Team1` Adds a team with the personName Team1.
+* `create n/Team1` Adds a team with the name Team1.
 
 <div markdown="block" class="alert alert-info">
 
@@ -207,12 +207,12 @@ Examples:
 
 #### 2.3 Changing a team's name: `editteam`
 
-Changes a team's personName (specified by index) to the given personName.
+Changes a team's name (specified by index) to the given name.
 
 Format: `editteam t/TEAM-INDEX n/TEAM-NAME`
 
 Examples:
-* `editteam t/1 n/TEAMNEW` Changes the first team's personName to 'TEAMNEW'.
+* `editteam t/1 n/TEAMNEW` Changes the first team's name to 'TEAMNEW'.
 
 #### 2.4 Assigning a member to a team: `assign`
 
