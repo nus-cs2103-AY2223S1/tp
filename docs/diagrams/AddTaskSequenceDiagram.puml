@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("addtask 1 Technical Interview /at 25-10-2022 12:00")
+[-> LogicManager : execute("addtask Technical Interview /at 25-10-2022 12:00")
 activate LogicManager
 
-LogicManager -> InTrackParser : parseCommand("addtask 1 Technical Interview /at 25-10-2022 12:00")
+LogicManager -> InTrackParser : parseCommand("addtask Technical Interview /at 25-10-2022 12:00")
 activate InTrackParser
 
 create AddTaskCommandParser
@@ -26,7 +26,7 @@ activate AddTaskCommandParser
 AddTaskCommandParser --> InTrackParser
 deactivate AddTaskCommandParser
 
-InTrackParser -> AddTaskCommandParser : parse("1 Technical Interview /at 25-10-2022 12:00")
+InTrackParser -> AddTaskCommandParser : parse("Technical Interview /at 25-10-2022 12:00")
 activate AddTaskCommandParser
 
 create AddTaskCommand
@@ -48,7 +48,7 @@ deactivate InTrackParser
 LogicManager -> AddTaskCommand : execute()
 activate AddTaskCommand
 
-AddTaskCommand -> Model : getFilteredInternshipList()
+AddTaskCommand -> Model : getSelectedInternship()
 activate Model
 
 Model --> AddTaskCommand

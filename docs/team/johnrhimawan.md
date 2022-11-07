@@ -56,7 +56,7 @@ Given below are my contributions to the project.
         the different internships they have applied to. One factor is salary, and this would allow users to make a more informed decision on which internship to prioritize or accept.
       * Highlights: Implementing this feature requires in-depth understanding how the various components in the
         application function and interact. It also requires significantly more modifications to the existing model and OOP.
-    * New feature: `mail` command (PR: [#140](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/146))
+    * New feature: `mail` command (PR: [#146](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/146))
       * What it does: Launches the default mail app of the user and initializes a new email with the recipient email address being the email address of the company applied.
       * Justification: InTrack already has an email field. If the user wants to contact the company for updates, they
         would have to manually copy the email address to email the relevant person. It would be more convenient for the
@@ -69,6 +69,7 @@ Given below are my contributions to the project.
   * Updated the missing features in the command summary
 * **Contributions to the DG**:
   * Added explanation, implementation, diagrams and design considerations for the following feature: `addtask`.
+  * Added explanation, implementation, diagrams and design considerations for the following feature: `sort`.
 * **Contributions to team-based tasks**:
   * Maintained the issue tracker and milestones for the team
   * Created the feature demo for v1.4

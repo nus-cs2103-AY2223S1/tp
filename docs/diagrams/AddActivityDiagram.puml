@@ -20,18 +20,18 @@ else ([else])
             error message;
 
         else ([else])
-            if () then ([phone number is invalid])
-                :Show invalid phone number
+            if () then ([email is invalid])
+                :Show invalid email
                 error message;
 
             else ([else])
-                if () then ([email is invalid])
-                    :Show invalid email
+                if () then ([website is invalid])
+                    :Show invalid website
                     error message;
 
                 else ([else])
-                    if () then ([address is invalid])
-                        :Show invalid address
+                    if () then ([salary is invalid])
+                        :Show invalid salary
                         error message;
 
                         else ([else])
