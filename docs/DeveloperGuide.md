@@ -228,7 +228,8 @@ Below is the activity diagram that illustrates the process of validating birthda
 ![BirthdayActivityDiagram](images/BirthdayActivityDiagram.png)
 
 We decided to set these 2 constraints on birthday:
-1) Birthday should not be in the future
+<br>
+1) Birthday should not be in the future.
 2) Birthday should not be more than 100 years ago as we feel that client would not be able to buy product due to age limit.
 
 #### 4.1.3 View client
