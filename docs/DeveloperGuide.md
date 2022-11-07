@@ -9,6 +9,7 @@ title: Developer Guide
 * Table of Contents
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 1. **Introduction**
 
@@ -35,6 +36,7 @@ This developer guide covers the architecture, design choices and implementation 
 Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 2. **Acknowledgements**
 
@@ -52,6 +54,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 4. **Design and Implementation**
 
@@ -538,6 +541,7 @@ Sorting the list of students according to grade
 Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## 5. **Documentation, logging, testing, configuration, dev-ops**
 
