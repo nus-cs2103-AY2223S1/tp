@@ -384,14 +384,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**UC02: Add a debt**
+**UC02: List persons**
 
 **MSS**
 
 1.  User requests to list persons
 1.  PayMeLah shows a list of persons
-1.  User requests to add a debt to a specific person in the list
-1.  PayMeLah adds the debt to the person
 
     Use case ends.
 
@@ -400,133 +398,125 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The given input is invalid.
 
     * 1a1. PayMeLah shows an error message.
-
+  
       Use case ends.
 
-* 3a. The given input is invalid.
-
-    * 3a1. PayMeLah shows an error message.
-
-      Use case resumes at step 2.
-
-**UC03: Split a debt**
+**UC03: Add a debt**
 
 **MSS**
 
-1.  User requests to list persons
-1.  PayMeLah shows a list of persons
+1.  User requests to list persons as per _UC02: List persons_
+1.  User requests to add a debt to specific persons in the list
+1.  PayMeLah adds the debt to the persons and displays the result
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The given input is invalid.
+
+    * 2a1. PayMeLah shows an error message.
+
+      Use case resumes at step 2.
+
+**UC04: Split a debt**
+
+**MSS**
+
+1.  User requests to list persons as per _UC02: List persons_
 1.  User requests to split a debt among several persons in the list
-1.  PayMeLah adds the split debt to the persons
+1.  PayMeLah adds the split debt to the persons and displays the result
 
     Use case ends.
 
 **Extensions**
 
-* 1a. The given input is invalid.
-
-    * 1a1. PayMeLah shows an error message.
-
-      Use case ends.
-
-* 3a. The given input is invalid.
-
-    * 3a1. PayMeLah shows an error message.
-
-      Use case resumes at step 2.
-
-**UC04: Mark debts as paid**
-
-**MSS**
-
-1.  User requests to list persons
-1.  PayMeLah shows a list of persons
-1.  User requests to mark specific debts from a specific person in the list as paid.
-1.  PayMeLah marks the debts as paid.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given indexes are invalid.
+* 2a. The given input is invalid.
 
-    * 3a1. PayMeLah shows an error message.
+    * 2a1. PayMeLah shows an error message.
 
       Use case resumes at step 2.
 
-**UC05: Delete a person**
+**UC05: Mark debts as paid**
 
 **MSS**
 
-1.  User requests to list persons
-1.  PayMeLah shows a list of persons
+1.  User requests to list persons as per _UC02: List persons_
+1.  User requests to mark specific debts from a specific person in the list as paid
+1.  PayMeLah marks the debts as paid and displays the result
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The given input is invalid.
+
+    * 2a1. PayMeLah shows an error message.
+
+      Use case resumes at step 2.
+
+**UC06: Delete a person**
+
+**MSS**
+
+1.  User requests to list persons as per _UC02: List persons_
 1.  User requests to delete a specific person in the list
-1.  PayMeLah deletes the person
+1.  PayMeLah deletes the person and displays the result
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 2a. The given input is invalid.
 
-    * 3a1. PayMeLah shows an error message.
+    * 2a1. PayMeLah shows an error message.
 
       Use case resumes at step 2.
 
-**UC06: Delete debts**
+**UC07: Delete debts**
 
 **MSS**
 
-1.  User requests to list persons
-1.  PayMeLah shows a list of persons
+1.  User requests to list persons as per _UC02: List persons_
 1.  User requests to delete specific debts from a specific person in the list
-1.  PayMeLah deletes these debts
+1.  PayMeLah deletes these debts and displays the result
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The list is empty.
 
   Use case ends.
 
-* 3a. The given indexes are invalid.
+* 2a. The given input is invalid.
 
-    * 3a1. PayMeLah shows an error message.
+    * 2a1. PayMeLah shows an error message.
 
       Use case resumes at step 2.
-
-**UC07: Clear debts**
-
-**MSS**
-
-1.  User requests to list debtors
-1.  PayMeLah shows a list of debtors
-1.  User requests to clear the debts of a specific debtor in the list
-1.  PayMeLah clears the debts of that person
-1.  PayMeLah displays that the person’s debts are cleared
-
-**Extensions**
-
-* 3a. The given index is invalid.
-
-    * 3a1. PayMeLah shows an error message
-
-      Use case resumes at step 3.
 
 **UC08: List persons with debts**
 
 **MSS**
 
 1.  User requests to list persons with debts
-1.  PayMeLah shows the list of persons
+1.  PayMeLah shows the list of persons with debts
 
     Use case ends.
 
@@ -536,7 +526,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**UC09: Find a person by name**
+**UC09: Clear debts**
+
+**MSS**
+
+1.  User requests to list debtors as per _UC08: List persons with debts_
+1.  User requests to clear the debts of a specific debtor in the list
+1.  PayMeLah clears the debts of that person and displays the result
+
+**Extensions**
+
+* 2a. The given input is invalid.
+
+    * 2a1. PayMeLah shows an error message
+
+      Use case resumes at step 2.
+
+**UC10: Find a person by name**
 
 **MSS**
 
@@ -552,7 +558,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**UC10: Find a person by debt description**
+**UC11: Find a person by debt description**
 
 **MSS**
 
@@ -568,12 +574,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**UC11: Get debt overview**
+**UC12: Get debt overview**
 
 **MSS**
 
 1. User requests to get overview of all debts
-1. PayMeLah shows the total sum of debts the user is owed.
+1. PayMeLah shows the total sum of debts the user is owed
 
    Use case ends.
 
