@@ -2,6 +2,7 @@ package seedu.intrack.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.intrack.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.intrack.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.intrack.logic.commands.SortSalaryCommand.MESSAGE_SUCCESS_A;
 import static seedu.intrack.logic.commands.SortSalaryCommand.MESSAGE_SUCCESS_D;
@@ -9,6 +10,8 @@ import static seedu.intrack.testutil.TypicalInternships.getTypicalInTrack;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.intrack.commons.core.Messages;
+import seedu.intrack.commons.core.index.Index;
 import seedu.intrack.model.Model;
 import seedu.intrack.model.ModelManager;
 import seedu.intrack.model.UserPrefs;
@@ -58,5 +61,14 @@ public class SortSalaryCommandTest {
         Model expectedModel = new ModelManager();
         String expectedMessage = String.format(MESSAGE_SUCCESS_D, model.getFilteredInternshipList().size());
         assertCommandSuccess(sortSalaryCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    void execute_invalidOrderType_throwsCommandException() {
+        String orderType = "e";
+        SortSalaryCommand sortSalaryCommand = new SortSalaryCommand(orderType);
+
+        assertCommandFailure(sortSalaryCommand, model, SortSalaryCommand.SORT_COMMAND_CONSTRAINTS);
+
     }
 }
