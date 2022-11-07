@@ -53,8 +53,8 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (toAdd.getInterviewDateTime() != null &&
-                toAdd.getAppliedDate().getLocalDate().compareTo(toAdd.getInterviewDateTime().getLocalDate()) > 0) {
+        if (toAdd.getInterviewDateTime() != null
+                && toAdd.getAppliedDate().getLocalDate().compareTo(toAdd.getInterviewDateTime().getLocalDate()) > 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_INTERVIEW_DATE);
         }
 

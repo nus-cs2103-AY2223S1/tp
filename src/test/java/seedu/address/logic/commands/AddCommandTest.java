@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalDateTimes.EARLIER_VALID_DATE;
+import static seedu.address.testutil.TypicalDateTimes.FIRST_VALID_TIME;
+import static seedu.address.testutil.TypicalDateTimes.LATER_VALID_DATE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -24,10 +27,6 @@ import seedu.address.model.ReadOnlyFindMyIntern;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.internship.Internship;
 import seedu.address.testutil.InternshipBuilder;
-import static seedu.address.testutil.TypicalDateTimes.EARLIER_VALID_DATE;
-import static seedu.address.testutil.TypicalDateTimes.FIRST_VALID_TIME;
-import static seedu.address.testutil.TypicalDateTimes.LATER_VALID_DATE;
-
 public class AddCommandTest {
 
     @Test

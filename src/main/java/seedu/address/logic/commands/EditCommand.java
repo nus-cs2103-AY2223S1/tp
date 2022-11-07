@@ -80,8 +80,8 @@ public class EditCommand extends Command {
         Internship internshipToEdit = lastShownList.get(index.getZeroBased());
         Internship editedInternship = createEditedInternship(internshipToEdit, editInternshipDescriptor);
 
-        if (editedInternship.getInterviewDateTime() != null &&
-                editedInternship.getAppliedDate().getLocalDate()
+        if (editedInternship.getInterviewDateTime() != null
+                && editedInternship.getAppliedDate().getLocalDate()
                         .compareTo(editedInternship.getInterviewDateTime().getLocalDate()) > 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_INTERVIEW_DATE);
         }
