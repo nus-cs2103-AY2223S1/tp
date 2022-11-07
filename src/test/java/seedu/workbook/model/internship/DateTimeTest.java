@@ -15,31 +15,31 @@ public class DateTimeTest {
     @Test
     public void isValidDateTime() {
         // null DateTime
-        assertThrows(NullPointerException.class, () -> DateTime.isValidDate(null));
+        assertThrows(NullPointerException.class, () -> DateTime.isValidDateTime(null));
 
         // blank DateTime
-        assertFalse(DateTime.isValidDate(" ")); // spaces only
+        assertFalse(DateTime.isValidDateTime(" ")); // spaces only
 
         // missing parts to DateTime input
-        assertFalse(DateTime.isValidDate("20-Nov-2022")); // missing time
-        assertFalse(DateTime.isValidDate("20 Nov 2022")); // missing hyphen
-        assertFalse(DateTime.isValidDate("18:00")); // no date provided only time
+        assertFalse(DateTime.isValidDateTime("20-Nov-2022")); // missing time
+        assertFalse(DateTime.isValidDateTime("20 Nov 2022")); // missing hyphen
+        assertFalse(DateTime.isValidDateTime("18:00")); // no date provided only time
 
         // invalid parts
-        assertFalse(DateTime.isValidDate("20 18:00")); // missing full date
-        assertFalse(DateTime.isValidDate("20-Oct-2022 18-00")); // hyphen when putting in time
-        assertFalse(DateTime.isValidDate("20Oct2022 18:00")); // missing hyphens in the date
-        assertFalse(DateTime.isValidDate("20-Ja-2022 17:00")); // only two letters in month
-        assertFalse(DateTime.isValidDate("20--Oct-2022 19:00")); // double '-' symbol
-        assertFalse(DateTime.isValidDate("20--Oct-2022-19:00")); // '-' symbol used in the wrong part
-        assertFalse(DateTime.isValidDate("-20-Oct-2022 19:00")); // date starts with a hyphen
-        assertFalse(DateTime.isValidDate("-20-Oct-2022 19:00-")); // DateTime ends with a hyphen
-        assertFalse(DateTime.isValidDate("20:Oct:2022 19:00")); // Date uses ':' as separator instead of '-'
-        assertFalse(DateTime.isValidDate("2-Nov-20 19:00")); // year part of the date only has two chars
+        assertFalse(DateTime.isValidDateTime("20 18:00")); // missing full date
+        assertFalse(DateTime.isValidDateTime("20-Oct-2022 18-00")); // hyphen when putting in time
+        assertFalse(DateTime.isValidDateTime("20Oct2022 18:00")); // missing hyphens in the date
+        assertFalse(DateTime.isValidDateTime("20-Ja-2022 17:00")); // only two letters in month
+        assertFalse(DateTime.isValidDateTime("20--Oct-2022 19:00")); // double '-' symbol
+        assertFalse(DateTime.isValidDateTime("20--Oct-2022-19:00")); // '-' symbol used in the wrong part
+        assertFalse(DateTime.isValidDateTime("-20-Oct-2022 19:00")); // date starts with a hyphen
+        assertFalse(DateTime.isValidDateTime("-20-Oct-2022 19:00-")); // DateTime ends with a hyphen
+        assertFalse(DateTime.isValidDateTime("20:Oct:2022 19:00")); // Date uses ':' as separator instead of '-'
+        assertFalse(DateTime.isValidDateTime("2-Nov-20 19:00")); // year part of the date only has two chars
 
 
         // valid email
-        assertTrue(DateTime.isValidDate("02-Feb-2022 18:00")); // follows the correct dd-mmm-yyyy hh:mm format
+        assertTrue(DateTime.isValidDateTime("02-Feb-2022 18:00")); // follows the correct dd-mmm-yyyy hh:mm format
     }
 }
 

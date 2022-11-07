@@ -16,6 +16,7 @@ import java.util.stream.Stream;
 
 import seedu.workbook.logic.commands.AddCommand;
 import seedu.workbook.logic.parser.exceptions.ParseException;
+import seedu.workbook.logic.parser.util.CheckedFunction;
 import seedu.workbook.model.internship.Company;
 import seedu.workbook.model.internship.DateTime;
 import seedu.workbook.model.internship.Email;
@@ -46,14 +47,9 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Company company = ParserUtil.parseCompany(argMultimap.getValue(PREFIX_COMPANY).get());
         Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
-        Email email = argMultimap.getValue(PREFIX_EMAIL).isPresent()
-                ? ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get())
-                : EMPTY_EMAIL;
+        Email email = parseOptionalEmail(PREFIX_EMAIL, argMultimap, ParserUtil::parseEmail);
         Stage stage = ParserUtil.parseStage(argMultimap.getValue(PREFIX_STAGE).get());
-        // todo extract method out to parse optional and parse mandatory
-        DateTime dateTime = argMultimap.getValue(PREFIX_DATETIME).isPresent()
-                ? ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATETIME).get())
-                : EMPTY_DATETIME;
+        DateTime dateTime = parseOptionalDateTime(PREFIX_DATETIME, argMultimap, ParserUtil::parseDateTime);
         Set<Tag> languageTagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_LANGUAGE_TAG));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
@@ -68,6 +64,26 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    // Adapted and changed from CS2103T-T10-4
+    // https://github.com/AY2223S1-CS2103T-T10-4/tp/commit/118c73f20a9eac789f37778a2f05e225f76a1110
+    private DateTime parseOptionalDateTime(Prefix prefix, ArgumentMultimap argMultimap,
+                                         CheckedFunction<String, DateTime> parserFn) throws ParseException {
+        if (argMultimap.getValue(prefix).isPresent()) {
+            return parserFn.apply(argMultimap.getValue(prefix).get());
+        }
+        return EMPTY_DATETIME;
+    }
+
+    // Adapted and changed from CS2103T-T10-4
+    // https://github.com/AY2223S1-CS2103T-T10-4/tp/commit/118c73f20a9eac789f37778a2f05e225f76a1110
+    private Email parseOptionalEmail(Prefix prefix, ArgumentMultimap argMultimap,
+                                           CheckedFunction<String, Email> parserFn) throws ParseException {
+        if (argMultimap.getValue(prefix).isPresent()) {
+            return parserFn.apply(argMultimap.getValue(prefix).get());
+        }
+        return EMPTY_EMAIL;
     }
 
 }

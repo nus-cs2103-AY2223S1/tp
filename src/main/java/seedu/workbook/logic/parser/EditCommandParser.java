@@ -60,7 +60,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
-            editInternshipDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATETIME).get()));
+            editInternshipDescriptor.setDate(ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get()));
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_LANGUAGE_TAG))
