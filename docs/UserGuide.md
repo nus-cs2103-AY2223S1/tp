@@ -258,7 +258,7 @@ Format: `findC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]`
 
 :warning: There will be an error if you:<br>
 
-* Do not adhere to the [field constraints](#section-1-contacts) for each field.<br>
+* Do not adhere to the [field constraints](#section-1-contacts).<br>
 
 * Do not provide at least one optional field.<br>
 
@@ -480,7 +480,7 @@ Format: `findT [d/DESCRIPTION] [D/DEADLINE] [s/STATUS]`
 
 :warning: There will be an error if you:<br>
 
-* Do not adhere to the [field constraints](#section-2-tasks) for each field.<br>
+* Do not adhere to the [field constraints](#section-2-tasks).<br>
 
 * Do not provide at least one optional field.<br>
 
@@ -571,9 +571,9 @@ Format: `archiveT INDEX`
 
 :warning: There will be an error if you:<br>
 
-* Enter 0 or a negative number as `INDEX`.<br>
+* Enter 0 or a negative number as INDEX.<br>
 
-* Enter a number greater than the size of displayed task list as `INDEX`.<br>
+* Enter a number greater than the size of displayed task list as INDEX.<br>
 
 </div>
 
@@ -595,9 +595,9 @@ Format: `unarchiveT INDEX`
 
 :warning: There will be an error if you:<br>
 
-* Enter 0 or a negative number as `INDEX`.<br>
+* Enter 0 or a negative number as INDEX.<br>
 
-* Enter a number greater than the size of displayed task list as `INDEX`.<br>
+* Enter a number greater than the size of displayed task list as INDEX.<br>
 
 </div>
 
@@ -872,8 +872,9 @@ YellowBook data are saved as a JSON file `[JAR file location]/data/yellowbook.js
 
 Advanced users who wish to edit the data file should note the following:
 
-- The id field of a contact is unique and should comply with the string representation of [Java UUID](https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html#toString--)
-- The id field of a task is unique and should be an number greater than zero
+- `Id` field of a `Contact` is unique and should comply with the string representation of [Java UUID](https://docs.oracle.com/javase/8/docs/api/java/util/UUID.html#toString--)
+- `Id` field of a `Task` is unique and should be an number greater than zero
+- Fields for [`Contacts`](#section-1-contacts), [`Tasks`](#section-2-tasks) and [`Labels`](#section-3-labels) should comply with the respective field constraints. 
 
 <div markdown="block" class="alert alert-warning">:exclamation:
 If your changes to the data file makes its format invalid, YellowBook will discard all data and start with an empty data file at the next run.
