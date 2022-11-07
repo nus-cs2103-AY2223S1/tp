@@ -31,17 +31,17 @@ Given below are my contributions to the project.
 
 **Tests:**
 
-* **Commands Test**: Writes test for FilterTaskCommand, FindTaskCommand, ListTaskCommand (Pull requests [\#159](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/159))
+* **Commands Test**: Writes test for FilterTaskCommand, FindTaskCommand, ListTaskCommand (Pull requests [\#159](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/159)).
   * What it does: Performs automated testing to check if the commands work as expected.
   * Justification: This helps to eliminate bugs for task commands.
   * Highlights: Increased code coverage by 6%.
 
-* **Sort Test**: Writes test for SortByCategory, SortByDeadline, SortByPriority, SortByStatus (Pull requests [\#159](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/159))
+* **Sort Test**: Writes test for SortByCategory, SortByDeadline, SortByPriority, SortByStatus (Pull requests [\#159](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/159)).
   * What it does: Performs automated testing to check if the sorting predicate is accurate.
   * Justification: This helps to eliminate bugs for commands that uses this predicates.
   * Highlights: Increased code coverage by 6%.
 
-* **Attributes Test**: Writes test for Priority, TaskCategory, TaskDate, TaskDeadline,Task (Pull requests [\#177](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/177))
+* **Attributes Test**: Writes test for Priority, TaskCategory, TaskDate, TaskDeadline,Task (Pull requests [\#177](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/177)).
   * What it does: Performs automated testing to check if the attributes are valid.
   * Justification: This helps to ensure that invalid inputs for these attributes are handled appropriately, and that there will not be a case where a valid input is treated as an invalid input.
   * Highlights: Increased code coverage by 6%.
@@ -49,16 +49,16 @@ Given below are my contributions to the project.
 
 **Documentation**:
   * User Guide:
-    * Added documentation for the features `addTask`, `deleteTask`, `listTasks`, `Glossary`, `FAQ`, `filter`, `editTask` (Pull requests [\#13](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/13), [\#106](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/106), [\#178](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/178))
-    * Fix the following bugs: (Pull requests [\#165](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/165)).</br>
-    Issue 136: Inaccurate documentation for listTasks command</br>
-    Issue 130: Clear command clears the address book, not the task list.
+    * Added documentation for the features `addTask`, `deleteTask`, `listTasks`, `Glossary`, `FAQ`, `filter`, `editTask` (Pull requests [\#13](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/13), [\#106](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/106), [\#178](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/178)).
+    * Fix the following bugs: (Pull requests [\#165](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/165)).
+      * Issue 136: Inaccurate documentation for listTasks command.
+      * Issue 130: Clear command clears the address book, not the task list.
  
   * Developer Guide:
-    * Added implementation details of the `filter`, `addTask`, `deleteTask` feature (Pull requests [\#110](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/110), [\#196](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/196))
+    * Added implementation details of the `filter`, `addTask`, `deleteTask` feature (Pull requests [\#110](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/110), [\#196](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/196)).
     * Added sequence and activity diagrams for addTask and deleteTask.
 
-* **Community**:
+**Community**:
   * PRs reviewed (with non-trivial review comments): (Pull requests [\#55](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/55), [\#63](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/63), [\#72](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/72), [\#75](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/75), [\#84](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/84), [\#98](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/98)).
 
 
