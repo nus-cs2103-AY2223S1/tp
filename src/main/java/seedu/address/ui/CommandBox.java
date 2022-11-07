@@ -159,7 +159,16 @@ public class CommandBox extends UiPart<Region> {
                 .filter(a -> a.startsWith(currentText.toLowerCase().trim()))
                 .collect(Collectors.toCollection(LinkedList::new));
     }
+    /**
+     * Calculates the position of the autocomplete popup
+     * @param len of the current test input
+     * @return the position of the popup
+     */
+    private int getPosition(int len) {
+        return 10 + len * 10;
+    }
 
+    // Solution below adapted from https://gist.github.com/floralvikings/10290131
     /**
      * Handles the autocomplete function by filtering the command list.
      */
@@ -177,7 +186,7 @@ public class CommandBox extends UiPart<Region> {
             } else if (searchResult.size() > 0) {
                 populatePopup(searchResult);
                 suggestionsList.hide();
-                suggestionsList.show(commandTextField, Side.BOTTOM, 10 + currentText.length() * 10, -10);
+                suggestionsList.show(commandTextField, Side.BOTTOM, getPosition(currentText.length()), -10);
             } else {
                 suggestionsList.hide();
             }

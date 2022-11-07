@@ -100,7 +100,7 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
 
-    void updateFilteredPersonList(Predicate<Task> predicate);
+    void updateFilteredTaskList(Predicate<Task> predicate);
 
     /**
      * Updates filter status of the tasklist view.

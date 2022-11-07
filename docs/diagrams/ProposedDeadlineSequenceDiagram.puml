@@ -1,0 +1,46 @@
+@startuml
+!include style.puml
+
+
+participant "<<class>>\nDeadline" as Deadline MODEL_COLOR
+participant "<<class>>\nLocalDate" as LocalDate MODEL_COLOR
+participant "<<class>>\nMonthDay" as MonthDay MODEL_COLOR
+
+[-> Deadline : parse(str)
+activate Deadline
+
+Deadline -> LocalDate : parse(str)
+activate LocalDate
+
+Deadline <-- LocalDate
+deactivate LocalDate
+
+opt Not ISO 8601 format
+
+    loop Until tried all formats or success
+        Deadline -> LocalDate : parse(str, format)
+        activate LocalDate
+
+        Deadline <-- LocalDate
+        deactivate LocalDate
+    end
+
+    opt No LocalDate parse was successful
+        loop Until tried all formats or success
+            Deadline -> MonthDay : parse(str, format)
+            activate MonthDay
+            Deadline <-- MonthDay
+            deactivate MonthDay
+        end
+
+        opt Successful MonthDay parse
+            Deadline -> LocalDate
+            activate LocalDate
+            Deadline <-- LocalDate
+            deactivate LocalDate
+        end
+    end
+end
+
+[<-- Deadline
+@enduml

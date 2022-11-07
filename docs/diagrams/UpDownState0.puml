@@ -1,0 +1,18 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title Initial previousCommands
+
+package previousCommands {
+    class PreviousCommand1 as " "
+    class PreviousCommand2 as " "
+}
+
+PreviousCommand1 -[hidden]right-> PreviousCommand2
+hide PreviousCommand1
+
+class Pointer as "pointer" #FFFFFF
+Pointer -up-> PreviousCommand2
+@enduml

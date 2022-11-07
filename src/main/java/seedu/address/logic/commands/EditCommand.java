@@ -78,7 +78,7 @@ public class EditCommand extends Command {
         }
 
         model.setTask(taskToEdit, editedTask);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilterStatus("Showing all tasks", true);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedTask));
     }

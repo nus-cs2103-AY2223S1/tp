@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TaskListParser" as TaskListParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":AliasList" as AliasList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("a Project -m CS2103T")
+activate LogicManager
+
+LogicManager -> TaskListParser : parseCommand("a Project -m CS2103T")
+activate TaskListParser
+
+TaskListParser -> Model : getCommand("a")
+activate Model
+
+Model -> AliasList : getCommand("a")
+activate AliasList
+
+AliasList --> Model : "add -n"
+deactivate AliasList
+
+Model --> TaskListParser : "add -n"
+deactivate Model
+
+
+create AddCommandParser
+TaskListParser -> AddCommandParser
+activate AddCommandParser
+AddCommandParser --> TaskListParser
+deactivate AddCommandParser
+
+TaskListParser -> AddCommandParser : parse("add -n Project -m CS2103T")
+activate AddCommandParser
+AddCommandParser --> TaskListParser
+deactivate AddCommandParser
+
+AddCommandParser -[hidden]-> TaskListParser
+destroy AddCommandParser
+
+TaskListParser --> LogicManager
+deactivate TaskListParser
+
+[<--LogicManager
+@enduml

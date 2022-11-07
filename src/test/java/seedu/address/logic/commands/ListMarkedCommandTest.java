@@ -56,7 +56,7 @@ public class ListMarkedCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 4);
         TaskIsDonePredicate predicate = preparePredicate("true");
         ListMarkedCommand command = new ListMarkedCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredTaskList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(List.of(GEORGE, BENSON, DANIEL, CARL), model.getFilteredPersonList());
     }

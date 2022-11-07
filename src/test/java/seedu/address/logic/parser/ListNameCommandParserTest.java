@@ -27,11 +27,11 @@ public class ListNameCommandParserTest {
     public void parse_validArgs_returnsListNameCommand() {
         // no leading and trailing whitespaces
         ListNameCommand expectedListNameCommand =
-                new ListNameCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedListNameCommand);
+                new ListNameCommand(new NameContainsKeywordsPredicate(Arrays.asList("Tutorial", "1")));
+        assertParseSuccess(parser, "Tutorial 1", expectedListNameCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedListNameCommand);
+        assertParseSuccess(parser, " \n Tutorial \n \t 1  \t", expectedListNameCommand);
     }
 
     @Test
@@ -48,9 +48,9 @@ public class ListNameCommandParserTest {
     public void getPredicate_validArgs_returnsPredicate() {
         // no leading and trailing whitespaces
         NameContainsKeywordsPredicate expectedNameContainsKeywordPredicate = new NameContainsKeywordsPredicate(
-                Arrays.asList("Alice", "Bob"));
+                Arrays.asList("Tutorial", "1"));
         try {
-            NameContainsKeywordsPredicate predicate = parser.getPredicate("Alice Bob");
+            NameContainsKeywordsPredicate predicate = parser.getPredicate("Tutorial 1");
             assertEquals(expectedNameContainsKeywordPredicate, predicate);
         } catch (ParseException pe) {
             throw new IllegalArgumentException("Invalid userInput.", pe);
@@ -58,7 +58,7 @@ public class ListNameCommandParserTest {
 
         // multiple whitespaces between keywords
         try {
-            NameContainsKeywordsPredicate predicate = parser.getPredicate(" \n Alice \n \t Bob  \t");
+            NameContainsKeywordsPredicate predicate = parser.getPredicate(" \n Tutorial \n \t 1  \t");
             assertEquals(expectedNameContainsKeywordPredicate, predicate);
         } catch (ParseException pe) {
             throw new IllegalArgumentException("Invalid userInput.", pe);
