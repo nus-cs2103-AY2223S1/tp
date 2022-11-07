@@ -9,11 +9,16 @@ uNivUSal is a desktop application used to link CS2103T users to all the modes of
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to sort entries.
+* **New Feature**: Added the ability to **sort** entries.
     * What it does: allows the user to sort all persons in uNivUSal
     * Commands: `sort`
     * Justification: This feature improves the navigability for users to traverse through their contacts. It can also be
   integrated with other fields to support future implementation.
+
+* **New Feature**: Added the ability to filter entries by preferred social media.
+  * What it does: allows the user to list contacts with a specific preferred social media
+  * Commands: `social SOCIAL`
+  * Justification: This feature improves the navigability for users to filter through their contacts based on their preferred socials. It is also an elaboration on the preferred social feature implemented.
 
 * **New Feature**: Added a tutorial field for a person.
   * Justification: Supports the aim of the app to cater it to CS2103T students and TAs. This field would allow TAs to
@@ -30,24 +35,18 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * Updated add person to include tutorial (Pull requests [\#100](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/100), [\#178](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/178))
-    * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
+    * Wrote additional tests for features.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `sort`, `fav`, `tut`
-        * Added documentation for the features `delete` and `find` [\#72]()
-        * Did cosmetic tweaks to existing documentation of features `clear`, `exit`: [\#74]()
+        * Revamped User Guide for better navigation by segmentation and add in links. [#110](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/110)
+        * Added documentation for the `person fields`, and features `sort`, `fav`, `social`
+        * Did cosmetic tweaks and bug fixes to existing documentation of features. [#31](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/31), [#125](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/125)
     * Developer Guide:
-        * Added implementation details of the `delete` feature.
+        * Added implementation details of the `sort` feature.
+          * Complete use cases for features `sort`, `social`.
 
 * **Community**:
-    * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-    * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-    * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-    * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-    * Integrated a third party library (Natty) to the project ([\#42]())
-    * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+    * PRs reviewed (with non-trivial review comments) examples: [\#40](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/40)
+    * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2223S1/forum/issues/190))
+    * Reported bugs and suggestions for other teams in the class (examples: [1](https://github.com/liviamil/ped/issues/1), [2](https://github.com/liviamil/ped/issues/2), [3](https://github.com/liviamil/ped/issues/3), [4](https://github.com/liviamil/ped/issues/4))
