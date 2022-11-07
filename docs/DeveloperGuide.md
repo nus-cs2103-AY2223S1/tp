@@ -286,9 +286,12 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### \[Proposed\] Adding a Task into the TaskList.
+### Adding a Task into the TaskList.
 
-#### Proposed Implementation
+#### Motivation
+Allows insertion of new task into the tasklist 
+
+#### Implementation
 
 The proposed insertion mechanism allows a `Task` to be added into the tasklist. A task consists of attributes such as its **name**, **description**, **priority level**, **category**, **deadline** and **email** of person assigned. The command is executed using the `AddTaskCommand`class which extends the `Command` class and the respective attributes of a task is determined from the `AddTaskCommandParser` class which parses the user input.
 
@@ -309,9 +312,24 @@ The following sequence diagram shows how the AddTask operation works:
 The following activity diagram summarizes what happens when a user executes a AddTask command:
 ![AddTaskActivityDiagram](images/AddTaskCommandActivityDiagram.png)
 
-### \[Proposed\] Deleting a Task into the TaskList.
+#### Design considerations:
 
-#### Proposed Implementation
+**Aspect: How addTask executes:**
+
+* **Alternative 1 (current choice):** Assigns a task based on person's email
+  * Pros: Person's email is unique. Avoid confusion of task being assigned to two different people with the same email.
+  * Cons: Not intuitive.
+
+* **Alternative 2:** Assigns a task based on person's name
+  * Pros: Much more intuitive for a task to be assigned to a person name than person email.
+  * Cons: This reduces the flexibility of having two person with the same full name.
+
+### Deleting a Task into the TaskList.
+
+#### Motivation
+Allows removal of task from tasklist based on the index of the task.
+
+#### Implementation
 
 The proposed deletion mechanism allows a `Task` to be deleted from the tasklist based on its index. The command is executed using the `DeleteTaskCommand`class which extends the `Command` class and the index of the task to be deleted is determined from the `DeleteTaskCommandParser` class which parses the user input
 
@@ -335,6 +353,20 @@ The following sequence diagram shows how the DeleteTask operation works:
 
 The following activity diagram summarizes what happens when a user executes a DeleteTask command:
 ![AddTaskActivityDiagram](images/DeleteTaskCommandActivityDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How deleteTask executes:**
+
+* **Alternative 1 (current choice):** Deletes task based on index.
+  * Pros: O(1) time of deletion as we retrieve from the list based on index.
+  * Cons: None
+
+* **Alternative 2:** Deletes task based on taskName.
+  itself.
+  * Pros: Easier to delete task in the case where we have a lot of tasks, where we do not have to scroll to find the 
+  task index.
+  * Cons: O(n) time to deletion as we need to search the tasklist based on taskName.
 
 ### Edit Task Feature
 
