@@ -9,6 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.clinkedin.logic.commands.FindCommand;
+import seedu.clinkedin.logic.parser.exceptions.ParseException;
 import seedu.clinkedin.model.person.DetailsContainGeneralKeywordsPredicate;
 
 public class FindCommandParserTest {
@@ -31,4 +32,14 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
     }
 
+    @Test
+    void parse_validPrefixedArgs_returnsFindCommand() throws ParseException {
+        // no leading and trailing whitespaces
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(" n/Alice", CliSyntax.getPrefixes());
+
+        FindCommand expectedFindCommand =
+                parser.prefixPresentParser(argMultimap);
+        assertParseSuccess(parser, " n/Alice", expectedFindCommand);
+    }
 }

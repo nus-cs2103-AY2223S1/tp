@@ -44,6 +44,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException If the user input does not conform the expected format.
      */
     public FindCommand parse(String args) throws ParseException {
+        System.out.println(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, CliSyntax.getPrefixes());
 
@@ -81,7 +82,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @return A FindCommand object for execution.
      * @throws ParseException If the user input does not conform the expected format.
      */
-    private FindCommand prefixPresentParser(ArgumentMultimap argMultimap) throws ParseException {
+    public FindCommand prefixPresentParser(ArgumentMultimap argMultimap) throws ParseException {
         assert arePrefixesPresent(argMultimap, CliSyntax.getPrefixes());
         Set<Name> nameList = ParserUtil.parseNames(argMultimap.getAllValues(PREFIX_NAME));
         Set<Phone> phoneList = ParserUtil.parsePhones(argMultimap.getAllValues(PREFIX_PHONE));

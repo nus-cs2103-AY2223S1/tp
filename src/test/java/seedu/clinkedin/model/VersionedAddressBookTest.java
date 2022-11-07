@@ -58,4 +58,13 @@ class VersionedAddressBookTest {
     void canRedo_initialState_returnsFalse() {
         assertEquals(addressBook.canRedo(), false);
     }
+
+    @Test
+    void getCount() {
+        // empty address book
+        assertEquals(0, addressBook.getCount());
+        // address book with 1 person
+        addressBook.addPerson(getTypicalAddressBook().getPersonList().get(0));
+        assertEquals(1, addressBook.getCount());
+    }
 }
