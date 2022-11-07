@@ -19,7 +19,8 @@ to the project. You can also use this as a reference, if you are interested in d
 
 ---
 
-* Table of Contents{:toc}
+* Table of Contents
+{:toc}
 
 ---
 
@@ -31,13 +32,13 @@ to the project. You can also use this as a reference, if you are interested in d
 * StudMap's Developer Guide is adapted
   from [AB3's Developer Guide](https://se-education.org/addressbook-level3/DeveloperGuide.html);
 
---------------------------------------------------------------------------------------------------------------------
+---
 
-# Setting up, getting started
+# Setting Up and Getting Started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 # Design
 
@@ -57,7 +58,7 @@ overview of main components and how they interact with each other.
 
 ![Architecture](images/diagrams/ArchitectureDiagram.png){: diagram}
 
-### Main components of the architecture
+### Main Components of the Architecture
 
 **`Main`** has two classes
 called [`Main`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/Main.java)
@@ -76,7 +77,7 @@ The rest of StudMap consists of four components.
 * [**`Model`**](#model-component): Holds the data of StudMap in memory.
 * [**`Storage`**](#storage-component): Reads data from and writes data to the hard disk.
 
-### How the architecture components interact with each other
+### How Architecture Components Interact
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
 the command `delete 1`.
@@ -122,7 +123,7 @@ The `UI` component
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Student` object residing in the `Model`.
 
-## Logic component
+## Logic Component
 
 **API:**
 [`Logic.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/logic/Logic.java)
@@ -142,7 +143,8 @@ How the `Logic` component works:
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
 call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/diagrams/DeleteSequenceDiagram.png){: diagram}
+![Interactions Inside the Logic Component for the `delete 1` Command](images/diagrams/DeleteSequenceDiagram.png){:
+diagram}
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -160,7 +162,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g. `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
 
-## Model component
+## Model Component
 
 **API:**
 [`Model.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/model/Model.java)
@@ -184,7 +186,7 @@ The `Model` component
 
 </div>
 
-## Storage component
+## Storage Component
 
 **API:**
 [`Storage.java`](https://github.com/AY2223S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/studmap/storage/Storage.java)
@@ -200,11 +202,11 @@ The `Storage` component
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
 
-## Common classes
+## Common Classes
 
 Classes used by multiple components are in the `seedu.studmap.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 # Implementation
 
@@ -227,7 +229,7 @@ The `FilterCommand` supports one operation:
   operation to be executed. This will update the filtered list in the dashboard shown to the user based on the tag set
   by the user
 
-### General flow for `FilterCommand`
+### General Flow for `FilterCommand`
 
 The flow for `FilterCommand#execute` is as such:
 
@@ -310,19 +312,46 @@ Some attributes of a `Student` can have multiple states and can be represented b
 the `MultiStateTag<S, T>` generic class, where `S` is the type of the identifier (e.g. `String`), while `T` is the type
 of the state, typically some `enum`.
 
-`mark` /`unmark` : This command adds/modifies/removes a student's attendances that are represented by the `Attendance`
-class and include a `Status` enumeration containing `ATTENDED` and `NOT_ATTENDED`.
+1. `mark` /`unmark` : This command adds/modifies/removes a student's attendances that are represented by
+   the `Attendance`
+   class. `Attendance` is a `MultiStateAttribute<String, Attendance.Status>` which includes a `Status` enumeration
+   containing `ATTENDED` and `NOT_ATTENDED`.<br><br>
 
-`grade` /`ungrade` : This command adds/modifies/removes a student's assignment grading record that are represented by
-the `Assigment` class and include a `Status` enumeration containing `NEW`, `RECEIVED`, and `MARKED`.
+2. `grade` /`ungrade` : This command adds/modifies/removes a student's assignment grading record that are represented by
+   the `Assigment` class. `Assignment` is a `MultiStateAttribute<String, Assignment.Status>` which includes a `Status`
+   enumeration containing `NEW`, `RECEIVED`, and `MARKED`.<br><br>
 
-`participate` /`unparticipate` : This command adds/modifies/removes a student's participation record that are
-represented by the `Participation` class and include a `Status` enumeration containing `PARTICIPATED`
-and `NOT_PARTICIPATED`.
+3. `participate` /`unparticipate` : This command adds/modifies/removes a student's participation record that are
+   represented by the `Participation` class. `Participation` is a `MultiStateAttribute<String, Participation.Status>`
+   which includes a `Status` enumeration containing `PARTICIPATED` and `NOT_PARTICIPATED`.<br><br>
 
 ### Design Considerations:
 
-**Aspect: How mark command executes:**
+**Aspect: Abstraction of the generic `EditStudentCommand`:**
+
+* **Common behaviours**
+    1. Parse some indices of students to mutate in some way
+    2. Parse some potential mutations to students
+    3. Return immediately if no mutations are parsed
+    4. Perform mutation on students
+    5. Replace original students in StudMap
+    6. Phrase command result in terms of the edits that were made
+
+These behaviours have been abstracted into `IndexCommandParser`, `EditStudentCommandParser` and `EditStudentCommand`.
+
+**Aspect: Abstraction of the generic `MultiStateAttribute`:**
+
+* **Common behaviours**
+    1. Have a field for identifying it (`identifier`) and also a value (`status`).
+    2. Need equality defined by `identifier` but not `status` since they are used in a `HashMap`
+    3. Need strong equality sometimes desired where `identifier` and `status` must both be equal, such as when
+       determining
+       whether a `Student` has been edited.
+
+These behaviours have been abstracted into `MultiStateAttribute`. Due to the way it is implemented as a generic class,
+you can reasonably extend it to create attributes that use non-string identifiers and non-enum states (e.g. `Integer`).
+
+**Aspect: How command executes:**
 
 * **Alternative 1 (current choice):** Update the students using StudentEditor.
     * Pros: Easy to extend functionality to other classes, more OOP-oriented
@@ -354,7 +383,7 @@ The following sequence diagram shows how the sort operation works:
 
 </div>
 
-### General flow for `SortCommand`
+### General Flow for `SortCommand`
 
 Given below is an example usage scenario and how the sort mechanism behaves at each step.
 
@@ -477,7 +506,7 @@ desktop applications follow.
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+![CommitActivityDiagram](images/diagrams/undo-redo/CommitActivityDiagram.png){: diagram}
 
 ### Design Considerations
 
@@ -491,7 +520,32 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
---------------------------------------------------------------------------------------------------------------------
+# \[Proposed\] Better Index Parsing
+
+## Proposed Implementation
+
+Necessary generic classes have already been created for this purpose. In `IndexCommandParser`, you can attempt to parse
+the given `preamble` in more detail, such as by identifying other common indexing syntax (e.g. `2..5`) to represent
+indices between `2` and `5` inclusive. After parsing, you can then write a `IndexListGenerator`, which is a
+functional interface that produces a list of `Index` for StudMap to perform operations on.
+
+Due to the OOP design of StudMap, you only need to implement it correctly once. All parsers that inherit
+from `IndexCommandParser`, including
+
+* `EditCommandParser`
+* `MarkCommandParser`
+* `UnmarkCommandParser`
+* `GradeCommandParser`
+* `UngradeCommandParser`
+* `ParticipateCommandParser`
+* `UnparticipateCommandParser`
+* `TagCommandParser`
+* `UntagCommandParser`
+* `DeleteCommandParser`
+
+will immediately work with the new syntax.
+
+---
 
 # Documentation, logging, testing, configuration, dev-ops
 
@@ -501,7 +555,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * [Configuration guide](Configuration.md)
 * [DevOps guide](DevOps.md)
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 # Appendix: Requirements
 
@@ -614,7 +668,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Tag:** A label for students defined by the user, possibly shared by multiple students.
 * **Attribute:** Characteristics of students that all students have.
 
---------------------------------------------------------------------------------------------------------------------
+---
 
 # Appendix: Instructions for manual testing
 
