@@ -58,6 +58,7 @@ Given below are my contributions to the project.
         * Updated documentation for features `addC`, `editC`
         [#128](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/128),
         [#192](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/192)
+        * Added introduction and purpose section [#265](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/265)
     * Developer Guide:
         * Added use case for mark task [#75](https://github.com/AY2223S1-CS2103T-F11-4/tp/pull/75)
         * Added implementation details of `markT` and `unmarkT` features
