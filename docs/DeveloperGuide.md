@@ -750,8 +750,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. Should be able to hold up to 1000 guests without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. The response to any use action should become visible within 5 seconds.
-8. Data should be saved into a JSON file before exiting the program.
-9. The project is expected to adhere to a schedule that delivers a feature set every two weeks.
+8. Data should be saved into a local JSON file before exiting the program.
+9. The product should be a for a single user (i.e. not a multi-user product where different users can run the application at different times on a shared computer)
 
 
 ### Glossary
@@ -854,6 +854,44 @@ Prerequisite: Only 1 guest to be edited. The guest's index should exist.
    3. Other incorrect edit commands to try: `edit`, `edit x`, `edit 1 rc/hi`, `edit ...`, `edit 1 n/Jo@`<br>
       Expected: No guest is edited, because the **parameters are invalid**. Error details shown in the result display.
 
+
+### Marking all guests' rooms as unclean
+
+Prerequisite: All guests room cleaning status will be edited.
+
+   1. Test case: `markroomsunclean`<br>
+      Expected: All guests' room clean statuses are marked as unclean and the icon representing `isRoomClean` will change to red for all the guests.
+   2. Test case: `markroomunclean`<br>
+      Expected: No guest's room clean status is changed. The command is invalid as it is missing a "s" after the "room".
+   3. Test case: `markRoomsUnclean`<br>
+      Expected: No guest's room clean status is changed. The command is invalid as it capitalised the "R" and "U" when they should have been lower case.
+
+### Changing guest's bill value
+
+Prerequisite: Only one guest's bill will be edited.
+The guest should exist in GuestBook. The format and content of the command should be valid.
+The bill value cannot exceed 999,999,999,999.99.
+The test cases must be executed in succession as stated below for the intended outcome.
+
+We assume that there is only one guest in the list.
+
+   1. Test case: `bill 1 b/10`
+      Expected: The bill for the first guest in the current list will be incremented by 10.
+   2. Test case: `bill 1 b/-10`
+      Expected: The bill for the first guest in the current list will be decremented by 10.
+   3. Test case: `bill 2 b/10`
+      Expected: No guest's bill is edited, because the input index **does not exist**. Error details shown in the result display."
+   4. Test case: `bill 1 b/9999999999999`
+      Expected: No guest's bill is edited, because **the bill value exceeds 999,999,999,999.99**. Error details shown in the result display.
+   5. Test case: `bill 1 b/-10`
+      Expected: No guest's bill is edited, because the total bill value **cannot be negative**. Error details shown in the result display.
+
+### Clearing all guests from GuestBook
+Prerequisite: all guests in GuestBook will be deleted.
+This command is irreversible.
+
+   1. Test case: `clear`
+      Expected: All guests in GuestBook will be deleted.
 
 ### Saving data
 

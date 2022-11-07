@@ -16,11 +16,11 @@ This project is based off AddressBook - Level 3.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added isRoomClean field.
+* **New Feature**: Added `isRoomClean` field.
   * This field indicates if a room has been cleaned or not.
 
 
-* **New Feature**: Added markroomsunclean command.
+* **New Feature**: Added `markroomsunclean` command.
   * Allows the user to set the room clean status of all the guest in the hotel to `no` in a single command.
   * This feature greatly aids with GuestBook's efficiency. Typing in one command to change all guests' room
 clean statuses saves the user an incredible amount of time compared to individually editing each guest's
@@ -38,12 +38,14 @@ details.
 
 * **Documentation**:
   * User Guide:
-    * Did final checks to ensure consistency of UG (pull request #142).
+    * Did final checks to ensure consistency of UG (pull request #225).
+    * Revised languages and structure for better readability (pull request #142).
     * Added the glossary section (pull request #129).
     * Updated introduction and subheadings (pull request #148).
     * Updated `add` guest in user guide (pull request #122).
   * Developer Guide:
-    * Did final checks to ensure consistency of DG (pull request #142).
+    * Did final checks to ensure consistency of DG (pull request #225).
+    * Revised languages and structure for better readability (pull request #142).
     * Added implementation of `markroomsunclean` command (pull request #113).
     * Updated user profile, value proposition, use cases, NFR (pull request #47).
     * Added UML diagrams (pull request #113 and #112).
@@ -53,17 +55,18 @@ details.
   * Filmed and submitted demo v1.2.
   * Filmed and submitted demo v1.3.
   * Released v1.2 of GuestBook.
+  * Added and reviewed test cases to improve code coverage
 
 
 * **Project management**:
-  * Added GitHub tags, milestones, assignee.
+  * Used GitHub actions, projects, issues, tags, milestones, and assignees to complete tasks in an orderly manner.
   * Used GitHub issue tracker.
   * Followed the forking workflow.
   * Contributed to meetings by sharing screen and facilitating discussions.
 
 
 * **Review/mentoring contributions**:
-  * Team members' PR reviews (with non-trivial review comments): pull request #148, #147, #139, #134, #133, #132
+  * Team members' PR reviews (with non-trivial review comments): pull request #223, #148, #147, #139, #134, #133, #132
 ,#126, #119, #117, #116, #109, #102, #100, #70, #68, #65
   * Reported bugs for other teams [ped](https://github.com/bryanhce/ped).
 
