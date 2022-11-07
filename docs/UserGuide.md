@@ -66,11 +66,11 @@ Waddle is a **simple, no-frills travel planning application catered to people wh
 
    * **`list`** : Lists all itineraries.
 
-   * **`add`**`d/My Japan Trip du/14 sd/2023-04-01` : Adds an itinerary for a 14-day trip named "My Japan Trip", which starts on the 1st of April 2023.
+   * **`add`** `d/My Japan Trip du/14 sd/2023-04-01` : Adds an itinerary for a 14-day trip named "My Japan Trip", which starts on the 1st of April 2023.
    
-   * **`select`**`1` : Brings you into [the planning page](#the-planning-page) for the 1st itinerary shown in the current list.
+   * **`select`** `1` : Brings you into [the planning page](#the-planning-page) for the 1st itinerary shown in the current list.
 
-   * **`delete`**`1` : Deletes the 1st itinerary shown in the current list.
+   * **`delete`** `1` : Deletes the 1st itinerary shown in the current list.
 
    * **`exit`** : Exits the app.
 
@@ -142,8 +142,9 @@ Adds an itinerary to Waddle.
 
 Format: `add d/DESCRIPTION sd/START_DATE du/DURATION [c/COUNTRY] [p/NUMBER_OF_WADDLERS] [b/BUDGET]`
 
-* Adds a new itinerary named `DESCRIPTION` to the itinerary list.
-* `START_DATE` is the date of the first day in the itinerary. It must be given in the format `yyyy-mm-dd`.
+* Adds a new itinerary named `DESCRIPTION` to the itinerary list. It cannot be blank and must only contain
+alphanumeric characters, spaces and these following special characters: `()&!':.,-`.
+* `START_DATE` is the date of the first day in the itinerary. It must be given in the format `yyyy-mm-dd` and is a valid future date.
 * `DURATION` will determine the number of days in the itinerary, and must be between 1 and 365 days.
   - e.g. `sd/2022-12-10 du/3` would mean that the trip is from 10 Dec 2022 to 12 Dec 2022.
 * `BUDGET` is the budget for the itinerary in dollars, or dollars and cents, and must be between 0 and 1,000,000.
@@ -156,8 +157,8 @@ Format: `add d/DESCRIPTION sd/START_DATE du/DURATION [c/COUNTRY] [p/NUMBER_OF_WA
 
 * You cannot add an itinerary with the same description as an existing itinerary.<br>
 
-* Waddle only accepts english letters and spaces for `DESCRIPTION` and `COUNTRY`, special characters like `'`, `&`, `!` are not allowed.<br>
-  - Example of invalid input: `d/My Trip!!`, `c/Côte d'Ivoire`, `c/中国`
+* Waddle only accepts english letters and spaces for `COUNTRY`, special characters like `'`, `&`, `!` are not allowed.<br>
+  - Example of invalid input: `c/Côte d'Ivoire`, `c/中国`
 * The budget input should only contain numbers and one decimal point.<br>
   - Example of invalid input: `b/1,000,000`
 * If more than 2 decimal places are provided for the budget, Waddle rounds it up to 2 decimal places.<br>
@@ -165,9 +166,6 @@ Format: `add d/DESCRIPTION sd/START_DATE du/DURATION [c/COUNTRY] [p/NUMBER_OF_WA
 
 </div>
 
-Examples:
-* `add d/My Japan Trip sd/2022-12-12 du/6`
-* `add d/Germanyyyy c/Germany du/14 s/05-10-22 b/1000 p/4`
 
 ### Listing all itineraries : `list`
 
@@ -215,7 +213,7 @@ Format: `edit INDEX [d/DESCRIPTION] [c/COUNTRY] [sd/START_DATE] [du/DURATION] [p
 </div>
 
 Examples:
-* `edit 1 du/15 sd/2022-10-04` Edits the duration and start date of the first itinerary to be `15` and `2022-10-04` respectively.
+* `edit 1 du/15 sd/2023-11-03` Edits the duration and start date of the first itinerary to be `15` and `2023-11-03` respectively.
 * `edit 2 c/India` Edits the country of the second itinerary to be `India`.
 
 ### Deleting an itinerary : `delete`
@@ -279,6 +277,7 @@ Adds an item to the wishlist without a scheduled day and time.
 
 Format: `add d/DESCRIPTION du/DURATION [p/PRIORITY] [c/COST] `
 
+* `DESCRIPTION` cannot be blank and must only contain alphanumeric characters, spaces and these following special characters: `()&!':.,-`.
 * `DURATION` is the time taken for the item in _minutes_. The duration must be more than 0 minutes and shorter than 1440 minutes (1 day).
     - e.g. `du/100` is 100 minutes (or 1 hour and 40 minutes).
 
@@ -295,8 +294,6 @@ Format: `add d/DESCRIPTION du/DURATION [p/PRIORITY] [c/COST] `
 * If no `PRIORITY` or `COST` is provided, Waddle assigns them a default value as follows:
   * The default `PRIORITY` is 1.<br>
   * The default `COST` is $0.<br>
-* Waddle only accepts english letters and spaces for `DESCRIPTION`, special characters like `'`, `&`, `!` are not allowed.<br>
-  - Example of invalid input: `d/Visit Saint-Tropez`
 * The cost input should only contain numbers and one decimal point.<br>
   - Example of invalid input: `c/1,000,000`
 * If more than 2 decimal places are provided for the cost, Waddle rounds it up to 2 decimal places.<br>
@@ -423,6 +420,7 @@ Here's an example of how the generated PDF would look like:
 **:information_source: Note:** <br>
 
 * The generated PDF file does not contain the items in the Wishlist. For items to be reflected in the generated PDF file, they must be planned.<br>
+* PDF can only display up to 35 characters for itinerary description and 50 characters for activity description.
 
 </div>
 
@@ -466,11 +464,11 @@ If your changes to the data file makes its format invalid, Waddle will discard a
 ### Home page commands
 
 | Action                                                           | Format, Examples                                                                                                                                                  |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ------------------------------------------------------------------ |-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [**Help**](#viewing-help--help)                                  | `help`                                                                                                                                                            |
-| [**Add Itinerary**](#creating-a-new-itinerary--add)              | `add d/DESCRIPTION sd/START DATE du/DURATION [c/COUNTRY] [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g., `add d/Germanyyyy sd/2022-05-10 du/14 c/Germany p/4 b/7500` |
+| [**Add Itinerary**](#creating-a-new-itinerary--add)              | `add d/DESCRIPTION sd/START DATE du/DURATION [c/COUNTRY] [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g., `add d/Germanyyyy sd/2025-05-10 du/14 c/Germany p/4 b/7500` |
 | [**List Itineraries**](#listing-all-itineraries--list)           | `list`                                                                                                                                                            |
-| [**Edit Itinerary**](#editing-the-details-of-an-itinerary--edit) | `edit INDEX [n/NAME] [c/COUNTRY] [du/DURATION] [s/START DATE] [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g.,`edit 1 du/15 sd/2022-04-10`                            |
+| [**Edit Itinerary**](#editing-the-details-of-an-itinerary--edit) | `edit INDEX [n/NAME] [c/COUNTRY] [du/DURATION] [s/START DATE] [p/NUMBER OF WADDLERS] [b/BUDGET]`<br> e.g.,`edit 1 du/15 sd/2025-04-10`                            |
 | [**Delete Itinerary**](#deleting-an-itinerary--delete)           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                               |
 | [**Clear Itineraries**](#clearing-itineraries--clear)            | `clear`                                                                                                                                                           |
 | [**Find Itinerary**](#locating-itineraries-by-name--find)        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find India Trip`                                                                                                        |
