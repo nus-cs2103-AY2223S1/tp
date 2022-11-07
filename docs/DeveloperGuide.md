@@ -304,6 +304,8 @@ The `ListRecordCommand` object then communicates with the `Model` API when it is
 
 At the final step of the execution of the `ListRecordCommand` object, a `CommandResult` object is returned.
 
+<div style="page-break-after: always;"></div>
+
 The Sequence Diagram below shows how the list record operation works:
 
 <img src="images/ListRecordSequenceDiagram.png" width="650" />
@@ -406,6 +408,8 @@ Given below is an example usage and how the find record mechanism works at each 
 The following sequence diagram demonstrates how the find record mechanism works:
 
 <img src="images/FindRecordSequenceDiagram.png" width="650" />
+
+<div style="page-break-after: always;"></div>
 
 The following activity diagram demonstrates what happens when a find record command is used:
 
@@ -534,11 +538,15 @@ Given below is an example usage scenario for the command.
 
 **Step 3:** The patient's appointment(if any) will be cleared. 
 
+<div style="page-break-after: always;"></div>
+
 Below is an activity diagram illustrating an example process of how the `Appointment` commands can be utilised.
 
 ![AppointmentActivityDiagram](images/AppointmentActivityDiagram.png)
 
 [<*Back to ToC*>](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### [Proposed] Upcoming appointment tracker feature
 
@@ -556,7 +564,6 @@ Given below is an example usage scenario for the command.
 [<*Back to ToC*>](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
