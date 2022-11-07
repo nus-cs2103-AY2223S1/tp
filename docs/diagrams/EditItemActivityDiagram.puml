@@ -15,7 +15,6 @@ if () then ([else])
   :Error: Item already exists in the Item List;
    stop
  else ([Edited item does not share a name with any other Items])
-endif
   :edit command successfully executes.
 Item is edited.;
 stop
