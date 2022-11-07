@@ -285,7 +285,7 @@ _Activity diagram of adding a task_
     - Pros: A single list of tasks makes it easier to list all the tasks associated with all teams.
     - Cons: Does not accurately model how teams actually work in terms of task distribution.
 - **Alternative 2**: Each team stores a list of tasks that are associated with it.
-    - Pros: Better modularisation since a team contains all the information related to itelf, including the tasks
+    - Pros: Better modularization since a team contains all the information related to itself, including the tasks
       associated with it.
     - Cons: It is slightly more complicated to find the list of all tasks associated with a person if the person belongs
       to multiple teams since there multiple task lists.
@@ -441,7 +441,7 @@ executed:
 ![AddLinkSequenceDiagram](images/AddLinkSequenceDiagram.png)
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **Documentation, Logging, Testing, Configuration, DevOps**
 
 - [Documentation guide](Documentation.md)
 - [Testing guide](Testing.md)
@@ -459,12 +459,12 @@ executed:
 
 - Tech-savvy university student leading teams in software engineering modules to build software projects
 - Having trouble keeping track of the team’s progress and delegating tasks effectively
-- Student who prefers CLI to GUI for appivity’s sake
+- Student who prefers CLI to GUI for productivity’s sake
 - Desperate for a single source of truth on who is doing what and by when
 
 **Value proposition**:
 
-- Users can collate different project-related information (e.g. Github project PRs, issues, links to Zoom meetings, and
+- Users can collate different project-related information (e.g. GitHub project PRs, issues, links to Zoom meetings, and
   Google Docs)
 - Users can visualize teams’ progress easily
 - Users can delegate tasks to their teammates conveniently
@@ -475,7 +475,7 @@ executed:
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a ...              | I want to ...                                                                            | So that I can...                                                                                     |
-| -------- | --------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+|----------|-----------------------|------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
 | `* * *`  | New User              | See usage instructions                                                                   | Refer to instructions when I forget how to use the App                                               |
 | `* * *`  | Team Leader           | View completed tasks                                                                     | Track the status of the project                                                                      |
 | `* * *`  | Team Leader           | Add new tasks                                                                            | Track things my team needs to do                                                                     |
@@ -792,7 +792,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the latest _truthtable.jar_ file from [latest release](https://github.com/AY2223S1-CS2103T-W13-4/tp/releases)
+    1. Download the latest _truthtable.jar_ file from the [latest release](https://github.com/AY2223S1-CS2103T-W13-4/tp/releases)
    and copy into an empty folder
 
     2. Double-click the jar file<br>
