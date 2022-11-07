@@ -313,7 +313,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseDate_invalidArgs_throwsParseException() {
-        String expected = "The date should be in this format: " + PREFERRED_DATE_FORMAT;
+        String expected = "The date should be in this format: " + PREFERRED_DATE_FORMAT
+                + ". And also check any out-of-range date.";
         assertThrows(ParseException.class, expected, () -> ParserUtil.parseDate("10-02-2002"));
     }
 

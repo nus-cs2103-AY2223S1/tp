@@ -68,9 +68,6 @@ public class Price implements Comparable<Price> {
 
     @Override
     public int compareTo(Price other) {
-        if (other.price == NOT_APPLICABLE_PRICE || this.price == NOT_APPLICABLE_PRICE) {
-            return -1;
-        }
         return Double.compare(this.price, other.price);
     }
 }

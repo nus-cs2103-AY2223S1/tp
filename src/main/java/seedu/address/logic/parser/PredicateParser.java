@@ -235,7 +235,7 @@ public class PredicateParser {
             }
             throw new ParseException(FilterOrderCommand.MESSAGE_INVALID_OS);
         case PRICE_RANGE_PREFIX:
-            final Pattern format = Pattern.compile("(?<lower>.\\S+)-(?<upper>.\\S+)");
+            final Pattern format = Pattern.compile("(?<lower>.\\S+),(?<upper>.\\S+)");
             final Matcher matcher = format.matcher(input);
             if (!matcher.matches()) {
                 throw new ParseException(

@@ -118,7 +118,7 @@ public class AddPetCommand extends Command {
         associatedSupplier.addPets(Collections.singletonList(toAdd.getId()));
         toAdd.setSupplier(associatedSupplier);
         model.addPet(toAdd);
-        model.switchToPetList();
+        model.switchToSupplierList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
