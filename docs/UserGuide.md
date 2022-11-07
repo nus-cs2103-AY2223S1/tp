@@ -175,7 +175,7 @@ Format: `addresponse INDEX m/MESSAGE_COUNT`
 
 Example:
 
-* `addresponse 1 m/7![img.png](img.png)`
+* `addresponse 1 m/7`
 
 <img src="images/ug-screenshots/addresponse.png" alt="addresponse 1 m/7" width="1100">
 
@@ -395,7 +395,7 @@ Marks content in the tutorial as undone.
 
 Format: `unmarktut INDEX`
 
-* Marks the tutorial at the specified `INDEX`.
+* Unmarks the tutorial at the specified `INDEX`.
 * The index refers to the index number shown in the displayed tutorial list.
 * The index must be a positive integer 1, 2, 3, ...
 
