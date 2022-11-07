@@ -19,12 +19,14 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String HELP_URL = "The full user guide can be found at:\n " + USERGUIDE_URL + "\n\n";
 
     public static final String COMMAND_USAGE = "List of commands:\n\n"
-            + "help - List out all available commands\n"
+            + "help - Opens this help window\n"
             + "Usage: help\n\n"
             + "list - List out all eateries in the database\n"
             + "Usage: list [-h]\n\n"
+            + "exit - Exits the app\n"
+            + "Usage: exit\n\n"
             + "find - Search for eateries by name\n"
-            + "Usage: find NAME... [-r NUMBER] [-h]\n\n"
+            + "Usage: find KEYWORD... [-r NUMBER] [-h]\n\n"
             + "findTag - Search for eateries by tag\n"
             + "Usage: findTag TAGNAME... [-r NUMBER] [-h]\n\n"
             + "findLocation - Search for eateries by location\n"
@@ -34,17 +36,22 @@ public class HelpWindow extends UiPart<Stage> {
             + "findPrice - Search for eateries by price\n"
             + "Usage: findPrice PRICE... [-r NUMBER] [-h]\n\n"
             + "tag - Add tag(s) to an eatery\n"
-            + "Usage: tag INDEX -t TAGNAME... [-h]\n\n"
+            + "Usage: tag INDEX -t TAGNAME1 [-t TAGNAME2]... [-h]\n\n"
             + "untag - Removes tag(s) from an eatery\n"
-            + "Usage: untag INDEX -t TAGNAME... [-h]\n\n"
-            + "add - Add an eatery to the database\n"
-            + "Usage: add -n NAME -l LOCATION -c CUISINE [-p PRICE] [-t TAGNAME]... [-h]\n\n"
-            + "delete - Delete an eatery from the database\n"
-            + "Usage: delete INDEX [-h]\n\n"
+            + "Usage: untag INDEX -t TAGNAME1 [-t TAGNAME2]... [-h]\n\n"
             + "fav - Favorites an eatery\n"
             + "Usage: fav INDEX [-h]\n\n"
             + "unfav - Unfavorites an eatery\n"
-            + "Usage: unfav INDEX [-h]";
+            + "Usage: unfav INDEX [-h]"
+            + "add - Add an eatery\n"
+            + "Usage: add -n NAME -l LOCATION -c CUISINE -p PRICE [-t TAGNAME]... [-h]\n\n"
+            + "delete - Delete an eatery\n"
+            + "Usage: delete INDEX [-h]\n\n"
+            + "edit - Edits an eatery\n"
+            + "Usage: edit [-n NAME] [-l LOCATION] [-c CUISINE] [-p PRICE] [-t TAGNAME]... [-h]\n\n"
+            + "clear - Clears the database\n"
+            + "Usage: clear";
+
 
     public static final String HELP_MESSAGE = HELP_URL + COMMAND_USAGE;
 

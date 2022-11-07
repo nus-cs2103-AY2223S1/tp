@@ -143,9 +143,10 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add an eatery).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
-
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+<p align="center">
+<img src="images/DeleteSequenceDiagram.png" /> <br>
+*The* ***Sequence Diagram*** *illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.*
+</p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -227,96 +228,106 @@ The detection of `PREFIX_HELP` is as follows:
 
 The detection rules limit false-positives from stray `-h`s in names of eateries, locations, etc.
 
-For supported commands, the following activity diagram summarizes what happens when a user executes a command:
+<p align="center">
+<img src="images/CommandDisplayHelpActivityDiagram.png" /> <br>
+*For supported commands, the* ***activity diagram*** *summarizes what happens when a user executes a command.*
+</p>
 
-<img src="images/CommandDisplayHelpActivityDiagram.png" />
+### Favourite/Unfavourite feature
+The favourite/unfavourite commands were introduced as a way to standardize how "favourite eateries" are tagged.
+In a way, `fav`/`unfav` is a shortcut for `tag`/`untag`. The "`<3`" favourite tag is implemented in such a way in the interest of time, and the fact that
+it can be searched up with other tags via `findTag`, hence proving to be more useful at the project's current iteration.
 
-### \[Proposed\] Undo/redo feature
+#### Implementation
+Currently, `FavouriteCommand`/`UnfavouriteCommand` is similar to the other commands available for use, with the exception that it 
+_extends_ `TagCommand`/`UntagCommand` and not `Command`. Since `FavouriteCommand` and `UnfavouriteCommand` are both implemented
+in a similar way, this section will be focusing mainly on `FavouriteCommand` for ease of explanation.
 
-#### Proposed Implementation
+<p align="center">
+<img src="images/FavouriteSequenceDiagram.png" /> <br>
+*The* ***Sequence Diagram*** *shows the interactions within the Logic component when `fav` is called.*
+</p>
 
-The proposed undo/redo mechanism is facilitated by `VersionedFoodGuide`. It extends `FoodGuide` with an undo/redo history, stored internally as an `addressBookfoodGuideStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+As can be seen by the above diagram, most function calls to `FavouriteCommand` is directed to TagCommand, though there are some points to note:
+* The fixed "`<3`" tag should be made into a tag in the `FavouriteCommand` class rather than in the `TagCommand` class. This is because `FavouriteCommand` is the subclass, hence `TagCommand` should have no dependencies on `FavouriteCommand`.
+* Using the above-mentioned `-h` help command should show a custom message for `FavouriteCommand`, since it's command `fav` is different from `tag`.
+* Upon successfully favouriting an eatery, the user should receive a message indicating the "`<3`" is a tag, and can be searched up and used as a criteria for the `-r` randomizer feature via the `findTag` command.
 
+Through a comparison with the sequence diagram found in the [logic component section](#logic-component) that bears the shape of most of the default commands, it can be seen in exactly which function calls `FavouriteCommand` differs.
+<br>
 
-* `VersionedFoodGuide#commit()` — Saves the current food guide state in its history.
-* `VersionedFoodGuide#undo()` — Restores the previous food guide state from its history.
-* `VersionedFoodGuide#redo()` — Restores a previously undone food guide state from its history.
+When `FavouriteCommand` is first initialized, it initializes `TagCommand` via a `super()` method call. Hence, the process of turning "`<3`" into a tag acceptable by `TagCommand` has to be streamlined, such that prefixes in `FavouriteCommand` are used.
+Additionally, the `execute()` call to `FavouriteCommand` is passed onto `TagCommand` whereby `TagCommand` then normally interacts with the `Model` class as other commands do.
 
-These operations are exposed in the `Model` interface as `Model#commitFoodGuide()`, `Model#undoFoodGuide()` and `Model#redoFoodGuide()` respectively.
+This unique implementation of `FavouriteCommand` and `UnfavouriteCommand` is especially important to keep in mind if future modifications (e.g. keeping favourited eateries at the top of the list) are implemented.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+### Optional fields in Eateries _(currently not in use)_
+The ability to keep some fields optional is very useful as the user is less inclined to use a dummy input when seeking to decide on the contents on fields later.
+Hence, this works with the `edit` command to give the user even more flexibility.
+Due to the importance of the `price` field, this option is removed and no longer presented to the user in the current iteration of our product. However, it is still feasible to implement should the need for it arise.
 
-Step 1. The user launches the application for the first time. The `VersionedFoodGuide` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+#### Implementation
 
-![UndoRedoState0](images/UndoRedoState0.png)
+<p align="center">
+<img src="images/OptionalFieldActivityDiagram.png" /> <br>
+*The* ***Activity Diagram*** *shows how different the AddCommandParser and Eatery classes operate with different inputs.*
+</p>
 
-Step 2. The user executes `delete 5` command to delete the 5th eatery in the address book. The `delete` command calls `Model#commitFoodGuide()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `foodGuideStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+_(Note: This diagram omits references to `-h` help as it is presented on its own. For more information about help, you can refer to the
+[section about the -h command](#displaying-command-help) above.)_
 
-![UndoRedoState1](images/UndoRedoState1.png)
+As seen from the diagram, the compulsory fields are always checked first to ensure that the argument map does not contain null values.
+Thereafter, the call to the optional field's constructor is handled within the `Eatery` object.
+The optional field should be able to receive both null and non-null values (or by using 2 different constructors), with the input left empty indicating that there is currently no value for the optional field.
+At the end, a complete eatery is returned to be added, with other classes having no idea whether the Eatery contains the optional field or not.
+<br>
 
-Step 3. The user executes `add n/David …​` to add a new eatery. The `add` command also calls `Model#commitFoodGuide()`, causing another modified address book state to be saved into the `foodGuideStateList`.
+Since null values may cause NullPointerException errors, it is important that all data relating to this field is kept within the class itself.
+Hence, heavy abstraction should be used here. Such examples include:
+* Not giving public direct access to the value (e.g. `toString()` returns `" "` instead of null)
+* Keeping the parsing of the data files to the related optional field class only
+<br>
 
-![UndoRedoState2](images/UndoRedoState2.png)
+There are several ways to deal with storing this optional value, but the one that was used for this particular implementation was storing the optional field as an empty `""` string. This is because the optional field constructor with a value did not allow null values. Hence, any empty strings appearing in the json save file must have been due to the use of the default constructor.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitFoodGuide()`, so the address book state will not be saved into the `foodGuideStateList`.
+### Searching through Food Guide
 
-</div>
+Users are currently able to search individual fields of eateries in `Food Guide` by the following commands:
+* `find`: search by `Name`
+* `findLocation`: search by `Location`
+* `findCuisine`: search by `Cuisine`
+* `findPrice`: search by `Price`
+* `findTags`: search by `Tags`
 
-Step 4. The user now decides that adding the eatery was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoFoodGuide()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+#### Implementation
 
-![UndoRedoState3](images/UndoRedoState3.png)
+<p align="center">
+<img src="images/FindPriceSequenceDiagram.png" /> <br>
+The Sequence diagram *illustrates the interactions within the `Logic` component for the `execute("findPrice $")` API call.*
+</p>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial FoodGuide state, then there are no previous FoodGuide states to restore. The `undo` command uses `Model#canUndoFoodGuide()` to check if this is the case. If so, it will return an error to the user rather
+Augmenting `AB3`'s current implementation of `find`, each `find` command currently has its own `CommandParser` 
+which returns its respective `Command`. To execute the command `"findPrice $"`, `FoodGuideParser` creates 
+a `FindPriceCommandParser` to parse the user command and create a `findPriceCommand` object. 
 
-than attempting to perform the undo.
+In order to keep track of the user's inputted search terms, we utilize `XYZContainsKeywordsPredicate` 
+(XYZ is a placeholder for the field being searched, e.g. `LocationContainsKeywordsPredicate`). 
+`XYZContainsKeywordsPredicate` implements the Java functional interface `Predicate<Eatery>`, 
+taking in an `Eatery` object while containing the user's inputted search terms in the form of a list.
 
-</div>
+The `Predicate` returns `True` if, for the field being searched, 
+ANY of the search terms in said `Predicate`'s list matches the value stored in an eatery's field. 
 
-The following sequence diagram shows how the undo operation works:
+In particular, the current implementation of `find` and `findLocation`, we perform a case-insensitive substring search. 
+For each respective `Predicate` object, it tests `True` if _any_ of the user's inputted search terms 
+is a substring of the eatery's stored name or location respectively. For example, given an eatery with the location
+`"(Frontier, Air-Con)"`, `LocationContainsKeywordsPredicate` will test `True` for any of (but not limited to) 
+the following search terms:
+* `"("` and `")"`, 
+* `"-"` and `","`,
+* `"Front",` `"Frontier,"` and `"air-con"`
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoFoodGuide()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `foodGuideStateList.size() - 1`, pointing to the latest address book state, then there are no undone FoodGuide states to restore. The `redo` command uses `Model#canRedoFoodGuide()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitFoodGuide()`, `Model#undoFoodGuide()` or `Model#redoFoodGuide()`. Thus, the `foodGuideStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitFoodGuide()`. Since the `currentStatePointer` is not pointing at the end of the `foodGuideStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-
-* Pros: Easy to implement.
-* Cons: May have performance issues in terms of memory usage.
-
-
-
-
-
-* **Alternative 2:** Individual command knows how to undo/redo by itself.
-
-* Pros: Will use less memory (e.g. for `delete`, just save the eatery being deleted).
-* Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
+Each `XYZContainsKeywordsPredicate` is then used by `ModelManager` to update the current list of displayed eateries.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -334,9 +345,8 @@ _{more aspects and alternatives to be added}_
 
 ### Product scope
 
-**Target user profile**:
-
-* This product is for NUS students/staff who prefer CLI over GUI
+**Target user profile**: This product is for ...
+* NUS students/staff who prefer CLI over GUI
 * want to keep track of the various food options in NUS.
 
 **Value proposition**: This application summarizes the various food options available in NUS, and allows users to make an informed choice as to what to eat.
