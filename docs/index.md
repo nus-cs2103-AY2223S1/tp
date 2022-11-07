@@ -7,7 +7,7 @@ title: NutriGoals
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-T17-2/tp/branch/master/graph/badge.svg?token=993105K3SO)](https://codecov.io/gh/AY2223S1-CS2103T-T17-2/tp)
 ![Ui](./images/Ui.png)
 
-* **NutriGoals** is a desktop application catered for fitness enthusiasts to manage their diet.<br>
+* **NutriGoals** is a desktop application catered for NUS students who wish to get started on their fitness journey and manage their diet.<br>
 * Usages:
     * Keep track of meals consumed
     * Calculate calorie consumption

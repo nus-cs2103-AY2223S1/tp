@@ -5,7 +5,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg)!
 
-We are developing NutriGoals - a free-to-use CLI nutritional tracker for beginners who are getting started on their fitness journey!
+We are developing NutriGoals - a free-to-use CLI nutritional tracker for NUS students who wish to get started on their fitness journey and manage their diet!<br>
 
 ## Project team
 
