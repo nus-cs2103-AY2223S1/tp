@@ -1,5 +1,5 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-This section provides you with instructions to test the app manually. It also covers how to launch and shut the application down.
+This section provides you with instructions to test the app manually. It also covers how to launch and shut down the application.
 
 ```note
 These instructions only provide a starting point for testers to work on; testers are expected to do more _exploratory_ testing.
@@ -9,8 +9,8 @@ These instructions only provide a starting point for testers to work on; testers
 
 #### Initial launch
 
-1. Download the jar file and copy into an empty folder
-1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+1. Download the jar file and copy it into an empty folder
+1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimal.
 
 ### Items
 

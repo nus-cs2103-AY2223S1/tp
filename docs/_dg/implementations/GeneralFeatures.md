@@ -26,6 +26,10 @@ The `help` feature provides the user with instructions of how to use a specified
 
 ![HelpSequenceDiagram](images/HelpSequenceDiagram.png)
 
+```note
+The lifeline for `HelpCommandParser` and `HelpCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of the diagram.
+```
+
 In the above diagram, only methods relevant to showing the HelpWindow was shown. Other methods such as `setFeedbackToUser` and `isShowHelp` is not shown.
 
 ##### Feature Considerations
