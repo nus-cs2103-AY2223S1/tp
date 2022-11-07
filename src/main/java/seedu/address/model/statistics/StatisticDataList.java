@@ -31,7 +31,9 @@ public class StatisticDataList {
         requireNonNull(toCheck);
         return chartDataList.stream().anyMatch(toCheck::isSameStatisticData);
     }
-
+    public ObservableList<StatisticData> getChartDataList() {
+        return this.chartDataList;
+    }
     /**
      * Adds a StatisticData point to the ObservableList.
      * The StatisticData point must not already exist in the list.

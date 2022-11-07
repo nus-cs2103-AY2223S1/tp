@@ -14,20 +14,20 @@ public class StatisticsDataTest {
     }
 
     @Test
-    public void isSameName() {
+    public void isSameStatisticData() {
         StatisticData modelData = new StatisticData("Test", 5.0);
 
         //null StatisticData
-        assertThrows(NullPointerException.class, () -> modelData.isSameName(new StatisticData(null, null)));
+        assertThrows(NullPointerException.class, () -> modelData.isSameStatisticData(new StatisticData(null, null)));
 
         //different StatisticData
-        assertFalse(modelData.isSameName(new StatisticData("Not test", 1.0)));
-        assertFalse(modelData.isSameName(new StatisticData("Not test 2", 5.0)));
+        assertFalse(modelData.isSameStatisticData(new StatisticData("Not test", 1.0)));
+        assertFalse(modelData.isSameStatisticData(new StatisticData("Not test 2", 5.0)));
 
         //same StatisticData
-        assertTrue(modelData.isSameName(modelData));
-        assertTrue(modelData.isSameName(new StatisticData("Test", 1.0)));
-        assertTrue(modelData.isSameName(new StatisticData("Test", 5.0)));
+        assertTrue(modelData.isSameStatisticData(modelData));
+        assertTrue(modelData.isSameStatisticData(new StatisticData("Test", 1.0)));
+        assertTrue(modelData.isSameStatisticData(new StatisticData("Test", 5.0)));
     }
 
 }
