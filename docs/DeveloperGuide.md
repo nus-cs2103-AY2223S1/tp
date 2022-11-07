@@ -722,23 +722,23 @@ testers are expected to do more *exploratory* testing.
 
     1. Download the jar file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample persons and events. The window size may not be optimum.
+    2. Double-click the jar file Expected: Shows the GUI with a set of sample persons and events. The window size may not be optimum.
 
 1. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+    2. Re-launch the app by double-clicking the jar file.<br>
+        Expected: The most recent window size and location is retained.
 
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
-    1. Prerequisites: List all persons using the `listPersons` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `listPersons` command. Multiple persons in the person list.
 
     2. Test case: `deletePerson 1`<br>
-       Expected: First person is deleted from the person list. Details of the deleted person shown in the result display.
+       Expected: First person is deleted from the person list. Details of the deleted person are shown in the result display.
 
     3. Test case: `deletePerson 0`<br>
        Expected: No person is deleted. Error message is shown in the result display.
@@ -751,7 +751,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: List only some persons using the `findPersons` command and specify certain keywords.
 
     2. Test case: `deletePerson 1`<br>
-       Expected: First person is deleted from the current displayed person list. Details of the deleted person shown in the result display.
+       Expected: First person is deleted from the current displayed person list. Details of the deleted person are shown in the result display.
 
     3. Test case: `deletePerson 0`<br>
        Expected: No person is deleted from the current displayed person list. Error message is shown in the result display.
@@ -763,10 +763,11 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a person
 
-    1. Prerequisites: The name of the newly added person should not exist in any of the current persons stored in the application.
+    1. Prerequisites: The name of the newly added person should not be the same as the names of any persons
+    stored in the person list of the application correctly.
 
     2. Test case: `addPerson n/person a/street e/person@gmail.com p/12345678 d/01/01/2000 g/m`<br>
-       Expected: A person is added to the end of the person list. Details of the added person shown in the result display.
+       Expected: A person is added to the end of the person list. Details of the added person are shown in the result display.
 
     3. Test case: `addPerson n/person`<br>
        Expected: No person is added. Error message is shown in the result display.
@@ -780,8 +781,8 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: Multiple events in the event list.
 
     2. Test case: `listEvents s/d`<br>
-       Expected: All events are listed and sorted by their dates from oldest event date to newest event date.
-       A success message is shown in the result display. The top event has the oldest event date.
+       Expected: All events are listed and sorted by their dates from oldest event to the newest event. If two events have the same date, they are sorted by oldest to newest time.
+       A success message is shown in the result display. The first event has the oldest event date.
 
     3. Test case: `listEvents 123`<br>
        Expected: Current event list remains the same and no events are sorted. Error message is shown in the result display.
@@ -799,13 +800,13 @@ testers are expected to do more *exploratory* testing.
 
     3. Test case: `tagEvent 1 p/1`<br>
        Expected: The first person in the current person list is tagged to the first event in the current event list. A success message is shown in the
-       result display, indicating that the name of the first person has been tagged to the event title of the first event.
+       result display, indicating that the first person has been tagged to the first event.
 
     4. Test case: `tagEvent 0 p/1`<br>
        Expected: No person is tagged to an event. Error message is shown in the result display.
 
     5. Other incorrect tagEvent commands to try: `tagEvent x p/y` (where either x is larger than the size of the current event list or y is
-       larger than the size of the current person list), `TAGEVENT 1 p/1`, `tagEvent 1 p/x` (where x is the index of a person that is already tagged in the first event
+       larger than the size of the current person list), `TAGEVENT 1 p/1`, `tagEvent 1 p/x` (where x is the index of a person that is already tagged to the first event
        in the current event list).<br>
        Expected: Similar to previous test case.
 
@@ -816,14 +817,14 @@ testers are expected to do more *exploratory* testing.
 
     3. Test case: `tagEvent 1 p/1 2`<br>
        Expected: The first and second person in the current person list is tagged to the first event in the current event list. A success message
-       is shown in the result display, indicating that the name of the first and second person has been tagged to the event title of the first event.
+       is shown in the result display, indicating that the first and second person has been tagged to the first event.
 
     4. Test case: `tagEvent 0 p/1 2`<br>
        Expected: No persons are tagged to an event. Error message is shown in the result display.
 
     5. Other incorrect tagEvent commands to try: `tagEvent x p/y z` (where either x is larger than the size of the current event list or y or z is
        larger than the size of the current person list), `TAGEVENT 1 p/1 2`. `tagEvent 1 p/x y` (where either x or y is the index of a person that is already tagged in the
-       first event in the current event list)<br>
+       first event in the current event list), `tagEvent 1 p/1 1`<br>
        Expected: Similar to previous test case.
 
 ### Untagging Person(s) from an Event
@@ -884,10 +885,10 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: An event in the current event list should have at least 1 tagged person.
 
     2. Test case: `mailEvent 1`<br>
-       Expected: A CSV file with the name of the first event title of the first event is created in the /data folder.
+       Expected: A CSV file with the name of the event title of the first event is created in the /data folder.
        Success message is shown in the result display.
 
-    3. Test case: `mailEventStats 0`<br>
+    3. Test case: `mailEvent 0`<br>
        Expected: No CSV files are created. Error message is shown in the result display.
 
     4. Other incorrect makeStats commands to try: `MAILEVENT 1`, `mailEvent x` (where x is larger than the size of the displayed event list)<br>
