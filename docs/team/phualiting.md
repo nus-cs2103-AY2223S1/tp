@@ -14,7 +14,7 @@ Given below are my contributions to the project.
   * Justification: Allows users to track their progress of tasks
   * Credits: Referenced AB3 implementation for adding a person
 
-* **New Feature**: Added the ability to filter tasks by module, completion status and link status
+* **New Feature**: Added the ability to filter tasks by module, completion status and link status.
   * What it does: Allows users to see tasks that fulfil the one or more filter constraints
   * Justification: Easier for users to look for a specific task
 
@@ -48,7 +48,8 @@ Given below are my contributions to the project.
     * User Guide:
         * Added documentation for all new features stated above
     * Developer Guide:
-        * Added implementation details and diagrams for the filter tasks feature.
+        * Added implementation details and diagrams for the filter tasks feature and unlink exam feature
+        * Added use cases, user stories and manual testing for all new features stated above
 
 * **Community**:
     * PRs reviewed
