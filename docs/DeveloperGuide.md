@@ -365,7 +365,7 @@ to the `ResidentTableView` class that is observing it (i.e. observing the field 
 
 One interesting point to note is that there is a need to hold a reference to these unmodifiable `ObservableList<String>`
 instances in `ModelManager`. This is because the `unmodifiableObservableList` method of `FXCollections` creates a wrapper 
-and adds a *weak listener* to the original, backing `ObservableList`. If no reference to this wrapped 
+and adds a *weak listener* to the original, backing `ObservableList`. If no reference to this wrapper 
 (unmodifiable) list is held, it would end up being garbage collected, and the automatic UI updates would not work 
 correctly. More information can be found [here](https://stackoverflow.com/questions/44341400/whats-the-purpose-of-fxcollections-unmodifiableobservablelist).
 
