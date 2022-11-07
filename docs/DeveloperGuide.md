@@ -934,31 +934,31 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: No other client have the exact same name. The product `ProductTest` has not been added.
 
    2. Test case: `addClient n/John Tan p/89134083`
-      - Expected: A client named John Tan and phone number 89134083 is added and the view switches back to the list of client, where the list is updated with John Tan's newly added record.
+       - Expected: A client named John Tan and phone number 89134083 is added and the view switches back to the list of client, where the list is updated with John Tan's newly added record.
 
    3. Test case: `addClient n/Trevor Tan p/89134083`
-      - Expected: A client named Trevor Tan and phone number 89134083 is added and the view switches back to the list of client, where the list is updated with Trevor Tan's newly added record. This test case focuses on the fact that the phone numbers are identical, which happens when parents buy policies for their child who does not have a cellular plan.
+       - Expected: A client named Trevor Tan and phone number 89134083 is added and the view switches back to the list of client, where the list is updated with Trevor Tan's newly added record. This test case focuses on the fact that the phone numbers are identical, which happens when parents buy policies for their child who does not have a cellular plan.
 
    4. Test case: `addClient n/Trevor Tan p/89134083`
-      - Expected: No client is added and an error message is shown. This tests whether if the app allows clients of the same name, which is not allowed by design.
+       - Expected: No client is added and an error message is shown. This tests whether if the app allows clients of the same name, which is not allowed by design.
 
    5. Test case: `addClient n/Justin Lim p/98120931 e/justinlim@gmail.com`
-      - Expected: A client named Justin Lim and phone number 98120931 is added and the view switches back to the list of client, where the list is updated with Justin Lim's newly added record. This test case focuses on the fact that an optional field is used.
+       - Expected: A client named Justin Lim and phone number 98120931 is added and the view switches back to the list of client, where the list is updated with Justin Lim's newly added record. This test case focuses on the fact that an optional field is used.
     
    6. Test case: `addClient n/Tom p/90231494 pd/ProductTest`
-      - Expected: No client is added as the product `ProductTest` is not added beforehand.
+       - Expected: No client is added as the product `ProductTest` is not added beforehand.
       
    7. Test case: `addClient n/Tom p/90231494 pd/ProductTest`, suppose `ProductTest` is added.
-      - Expected: The client should now be added with the product as the product is added with the `addProduct` command.
+       - Expected: The client should now be added with the product as the product is added with the `addProduct` command.
 
    8. Test case: `addClient Tom p/12345678`
-      - Expected: No client will be added. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect command format.
+       - Expected: No client will be added. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect command format.
    
    9. Test case: `addClient n/Tom p/`
-      - Expected: No client will be added. Error details shown in the status message. Status bar remains the same. This test case focus on the missing values that should be accompanied after a parameter.
+       - Expected: No client will be added. Error details shown in the status message. Status bar remains the same. This test case focus on the missing values that should be accompanied after a parameter.
 
    10. Test case: `addClient n/Tom p/12345`
-      - Expected: No client will be added. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect values that a parameter requires.
+       - Expected: No client will be added. Error details shown in the status message. Status bar remains the same. This test case focus on the incorrect values that a parameter requires.
 
 ### 7.3 Viewing a client
 
