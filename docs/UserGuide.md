@@ -136,6 +136,7 @@ While the _Command Box_ is in focus, use the `Up` and `Down` arrow keys on your 
 Click to return to: [GUI Features](#gui-features), [Back to Top](#)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Command Features
 
@@ -224,6 +225,8 @@ Shortcut key: <kbd>F1</kbd>
 
 Click to return to: [Command Features](#command-features), [Back to Top](#)
 
+<div style="page-break-after: always;"></div>
+
 ### Task Management
 
 We have the following commands in this section:
@@ -301,6 +304,8 @@ Examples:
 ![Before image of Delete Command](images/user-guide/DeleteCommandBefore.png)
 ![After image of Delete Command](images/user-guide/DeleteCommandAfter.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Marking a task as complete: `mark`
 
 Mark a task as complete.
@@ -322,6 +327,8 @@ Note: Using `unmark` on a task that is not complete will not change its completi
 Format: `unmark TASK_NUMBER`
 
 Example: `unmark 2`
+
+<div style="page-break-after: always;"></div>
 
 #### Tagging a task: `tag`
 
@@ -496,6 +503,7 @@ This command is irreversible!
 
 </div>
 
+<div style="page-break-after: always;"></div>
 
 #### View archived tasks : `showarchive`
 
