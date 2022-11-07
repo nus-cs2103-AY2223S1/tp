@@ -33,6 +33,7 @@ Given below are my contributions to the project.
     - Added activity diagrams for `Calendar` features section.
     - Added Use Cases for Display appointments of the current month in a calendar view and Display appointments of a new month in a calendar view.
     - Updated the ModelCLassDiagram and UiClassDiagram, added CalendarUiClassDiagram.
+    - Added Test cases for Add a client and Edit a client.
   - ### Contributions to team-based tasks
     - Reported bugs as issues for better tracking.
   - ### Review/mentoring contributions:
