@@ -10,8 +10,7 @@ pet sale coordinators.
 
 Given below are my contributions to the project.
 
-* **New Feature**: Extended the add person command to three categories: add buyer command, add deliverer command and add
-  supplier command.
+* **New Feature**: Extended the add person command to three categories: add buyer, deliverer command and supplier command.
     * What it does: allows the user to add persons according to their roles.
     * Justification: This feature is the core feature of this app since all other features are based on it. The user
       cannot do further manipulation of data without adding it.
@@ -49,7 +48,6 @@ Given below are my contributions to the project.
       objects and provide computational paradigms to mimic their interactions.
     * Justification: Without these data models, it would be extremely troublesome to manipulate data.
     * Highlights: The SOLID principles and OOP were employed thoroughly.
-
 * **Functionality**: Added the unique ID system.
 
 * **Functionality**: Discovered a variety of bugs and fixed them. For
