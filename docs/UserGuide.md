@@ -460,11 +460,19 @@ Example after entering `help`:
 
 ![help message](images/helpMessage.png)
 
-#### Clearing all food items: `clear`
+#### Clearing all stored data: `clear`
 
-Clears all food items on all days from NutriGoals.
+Clears all stored data _(excluding gym locations)_ on all days from NutriGoals.
 
 Format: `clear`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+When using the `clear` command, the target calorie intake will be reset to the default 2000 calories.
+
+</div>
 
 #### Exiting the program: `exit`
 
@@ -567,16 +575,16 @@ More default food items will be added.
 
 ## Glossary
 
-| Term                                       | Definition                                                                                                                                                                                                   |
-|--------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Calories**                               | Unit of measurement for the amount of energy contained in a food item.                                                                                                                                       |
-| **Daily Recommended Calorie Intake** | The amount of calories recommended by experts for an individual to consume daily. According to Health Promotion Board Singapore, adult males and females should consume 2200 and 1800 calories respectively. |
-| **Deficit**                                | The negative difference between the calories consumed in a day and the target daily intake. These calories are _not_ consumed to facilitate weight loss and fat burn.                                        |
-| **Surplus**                                | The positive difference between the calories consumed in a day and the target daily intake. These calories are consumed to facilitate weight gain and muscle growth.                                         |
-| **Food item**                              | Refers to an individual item of food that is consumed.                                                                                                                                                       |
-| **Meal**                                   | Comprises of multiple food items that is consumed at a particular time (e.g. breakfast, lunch, dinner, ...).                                                                                                  |
-| **Ideal weight**                           | The self-defined weight that users want to achieve for themselves.                                                                                                                                           |
-| **Gym**                                    | For this user guide, gym refers to a gymnasium used for weight training. Other sports facilities will be considered for future updates.                                                                      |
+| Term                                   | Definition                                                                                                                                                                                                   |
+|----------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Calories**                           | Unit of measurement for the amount of energy contained in a food item.                                                                                                                                       |
+| **Daily Recommended Calorie Intake**   | The amount of calories recommended by experts for an individual to consume daily. According to Health Promotion Board Singapore, adult males and females should consume 2200 and 1800 calories respectively. |
+| **Deficit**                            | The negative difference between the calories consumed in a day and the target daily intake. These calories are _not_ consumed to facilitate weight loss and fat burn.                                        |
+| **Surplus**                            | The positive difference between the calories consumed in a day and the target daily intake. These calories are consumed to facilitate weight gain and muscle growth.                                         |
+| **Food item**                          | Refers to an individual item of food that is consumed.                                                                                                                                                       |
+| **Meal**                               | Comprises of multiple food items that is consumed at a particular time (e.g. breakfast, lunch, dinner, ...).                                                                                                 |
+| **Ideal weight**                       | The self-defined weight that users want to achieve for themselves.                                                                                                                                           |
+| **Gym**                                | For this user guide, gym refers to a gymnasium used for weight training. Other sports facilities will be considered for future updates.                                                                      |
 
 
 </div>
