@@ -5,13 +5,14 @@ import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.commons.exceptions.IllegalValueException;
+import seedu.waddle.logic.commands.AddCommand;
 import seedu.waddle.logic.commands.SelectCommand;
 import seedu.waddle.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new SelectCommand object
  */
-public class SelectCommandParser {
+public class SelectCommandParser implements Parser<SelectCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the SelectCommand
      * and returns a SelectCommand object for execution.

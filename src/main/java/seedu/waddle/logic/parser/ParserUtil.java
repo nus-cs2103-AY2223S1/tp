@@ -12,6 +12,7 @@ import seedu.waddle.logic.parser.exceptions.ParseException;
 import seedu.waddle.model.item.Cost;
 import seedu.waddle.model.item.Duration;
 import seedu.waddle.model.item.Priority;
+import seedu.waddle.model.item.StartTime;
 import seedu.waddle.model.itinerary.Budget;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
@@ -228,7 +229,7 @@ public class ParserUtil {
         try {
             time = LocalTime.parse(startTime);
         } catch (DateTimeParseException e) {
-            throw new ParseException("Start time should be written in HH:MM:SS format. For example, 10:15 or 10:15:30");
+            throw new ParseException(StartTime.MESSAGE_CONSTRAINTS);
         }
         return time;
     }

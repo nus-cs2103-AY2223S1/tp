@@ -9,6 +9,7 @@ import java.time.LocalTime;
 import java.util.stream.Stream;
 
 import seedu.waddle.commons.core.index.Index;
+import seedu.waddle.logic.commands.AddCommand;
 import seedu.waddle.logic.commands.PlanCommand;
 import seedu.waddle.logic.parser.exceptions.ParseException;
 import seedu.waddle.model.itinerary.DayNumber;
@@ -16,7 +17,7 @@ import seedu.waddle.model.itinerary.DayNumber;
 /**
  * Parses input arguments and creates a new PlanCommand object
  */
-public class PlanCommandParser {
+public class PlanCommandParser implements Parser<PlanCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the PlanCommand

@@ -12,8 +12,8 @@ import java.time.format.DateTimeParseException;
  */
 public class StartTime {
     public static final String MESSAGE_CONSTRAINTS =
-            "Cost should be written as HHmm in 24H format. For example, 3:25pm is 1525.";
-    private static final String timePattern = "HHmm";
+            "Start time should be written as HH:mm in 24H format. For example, 3:25pm is 15:25.";
+    private static final String timePattern = "HH:mm";
     private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(timePattern);
     private final LocalTime startTime;
 
