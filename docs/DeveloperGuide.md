@@ -47,7 +47,9 @@ This developer guide is optimized for TrackAScholar's most recent version, v1.4.
 
 Here are certain indicators explained so that the user may better comprehend the documentation.
 
-:information_source: **Notes:** Notes are placed in this guide to specify extra details and elaboration.
+:information_source: **Notes:** Notes are placed in this guide to provide more information.
+
+:bulb: **Tip:** Tips are placed in this guide to provide a suggestion.
 
 [Return to top](#table-of-contents)
 
@@ -804,6 +806,7 @@ be able to view the applicant from the list.
 8. Storage stored should be easy to be shared and uploaded between different users.
 
 [Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Glossary
@@ -843,6 +846,8 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -884,6 +889,8 @@ testers are expected to do more *exploratory* testing.
       Expected: No changes displayed on TrackAScholar GUI and an error message will be prompted,
       indicating an applicant must have specified phone number, email, scholarship name, application status,
       as represented by the prefixes `p/`, `e/`, `s/` and `as` respectively.
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -937,6 +944,8 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect edit commands to try: `edit p/88125671` and `edit` <br>
       Expected: Similar to previous.
 
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Deleting an applicant
@@ -954,6 +963,55 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Removing applicants by application status
+
+1. Removing existing applicants with the specified application status while all applicants are being shown
+
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+
+    1. Test case: `remove ACCEPTED` followed by pressing `yes` on the alert box. <br>
+       Expected: All applicants with application status `ACCEPTED` will be removed, while the list of applicants only
+       contains those applicants with application status `PENDING` or `REJECTED`.
+
+    1. Test case: `remove ACCEPTED` followed by pressing `no` on the alert box. <br>
+       Expected: No changes displayed on TrackAScholar GUI as the list of applicants remain unchanged.
+
+    1. Test case: `remove ACCEPTED` followed by closing the alert box. <br>
+       Expected: No changes displayed on TrackAScholar GUI as the list of applicants remain unchanged.
+
+    1. Test case: `remove PENDING`. <br>
+       Expected: No changes displayed on TrackAScholar GUI since only applicants with application status `ACCEPTED` and
+       `REJECTED` can be removed. Error details shown in the status message
+
+    1. Other incorrect remove commands to try: `remove` and `remove Alex Yeoh` <br>
+       Expected: Similar to previous.
+
+[Return to top](#table-of-contents)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Filtering applicants by application status
+
+1. Filtering existing applicants based on the specified application status while all applicants are being shown
+
+    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+
+    1. Test case: `filter ACCEPTED`
+       Expected: All applicants with application status `ACCEPTED` will be shown in TrackAScholar GUI.
+
+    1. Test case: `filter Bob` <br>
+       Expected: No changes displayed on TrackAScholar GUI since only applicants with application status `ACCEPTED`, `PENDING` and
+       `REJECTED` can be filtered. Error details shown in the status message.
+
+    1. Other incorrect filter commands to try: `filter` and `filter Alex Yeoh` <br>
+       Expected: Similar to previous.
+
+[Return to top](#table-of-contents)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ### Import trackAScholarImport File
@@ -963,6 +1021,8 @@ testers are expected to do more *exploratory* testing.
 3. Insert the trackAScholarImport.json file here (Note that the name needs to be exactly as stated)
 
 [trackAScholarImport test files](https://github.com/AY2223S1-CS2103T-W10-3/tp/tree/master/src/test/data/JsonImportCommandTest)
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -985,6 +1045,8 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect pin commands to try: `pin`, `pin x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
+
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1010,48 +1072,7 @@ testers are expected to do more *exploratory* testing.
     1. Other incorrect unpin commands to try: `unpin` and `unpin 123` <br>
        Expected: Similar to previous.
 
---------------------------------------------------------------------------------------------------------------------
-
-### Removing applicants by application status
-
-1. Removing existing applicants with the specified application status while all applicants are being shown
-
-    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list. 
-
-    1. Test case: `remove ACCEPTED` followed by pressing `yes` on the alert box. <br>
-       Expected: All applicants with application status `ACCEPTED` will be removed, while the list of applicants only 
-       contains those applicants with application status `PENDING` or `REJECTED`.
-
-    1. Test case: `remove ACCEPTED` followed by pressing `no` on the alert box. <br>
-       Expected: No changes displayed on TrackAScholar GUI as the list of applicants remain unchanged.
-
-    1. Test case: `remove ACCEPTED` followed by closing the alert box. <br>
-       Expected: No changes displayed on TrackAScholar GUI as the list of applicants remain unchanged.
-   
-    1. Test case: `remove PENDING`. <br>
-       Expected: No changes displayed on TrackAScholar GUI since only applicants with application status `ACCEPTED` and
-       `REJECTED` can be removed. Error details shown in the status message
-   
-    1. Other incorrect remove commands to try: `remove` and `remove Alex Yeoh` <br>
-       Expected: Similar to previous.
-
---------------------------------------------------------------------------------------------------------------------
-
-### Filtering applicants by application status
-
-1. Filtering existing applicants based on the specified application status while all applicants are being shown
-
-    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
-
-    1. Test case: `filter ACCEPTED` 
-       Expected: All applicants with application status `ACCEPTED` will be shown in TrackAScholar GUI.
-
-    1. Test case: `filter Bob` <br>
-       Expected: No changes displayed on TrackAScholar GUI since only applicants with application status `ACCEPTED`, `PENDING` and 
-       `REJECTED` can be filtered. Error details shown in the status message.
-
-    1. Other incorrect filter commands to try: `filter` and `filter Alex Yeoh` <br>
-       Expected: Similar to previous.
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1067,7 +1088,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `pin 1` follow by `exit` command and restart TrackAScholar <br>
    Expected: Upon restarting, the first applicant will be shown on the right list panel.
 
-
+[Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1113,4 +1134,3 @@ our commitment to improving the features and testability of TrackAScholar and im
   code base.
 
 [Return to top](#table-of-contents)
-
