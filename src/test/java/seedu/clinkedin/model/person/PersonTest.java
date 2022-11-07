@@ -114,6 +114,7 @@ public class PersonTest {
         String person2Str = person2.getDetailsAsString();
         String person3Str = person3.getDetailsAsString();
 
+        assertTrue(person1.equals(person1));
         assertTrue(person1.equals(person2));
         assertFalse(person1.equals(person3));
         assertFalse(person1.equals(null));
@@ -145,6 +146,10 @@ public class PersonTest {
             }
         }
 
+        assertEquals(person1.getName().toString(), list1.get(0)[1]);
+        assertEquals(person1.getPhone().toString(), list1.get(1)[1]);
+        assertEquals(person1.getEmail().toString(), list1.get(2)[1]);
+        assertEquals(person1.getAddress().toString(), list1.get(3)[1]);
     }
 
 }
