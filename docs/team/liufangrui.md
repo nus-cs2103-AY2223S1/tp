@@ -35,6 +35,7 @@ Given below are my contributions to the project.
   [#61](https://github.com/AY2223S1-CS2103T-F11-1/tp/pull/61), 
   * Reported [bugs and made suggestions](https://github.com/liufangrui/ped/issues)
 
+--------------------------------------------------------------------------------------------------------------------
 * **Documentation**:
   * User Guide:
     * Added "Linking a person and an internship"
