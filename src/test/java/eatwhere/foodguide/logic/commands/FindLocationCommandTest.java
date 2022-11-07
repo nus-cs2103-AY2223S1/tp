@@ -127,7 +127,7 @@ public class FindLocationCommandTest {
     }
 
     @Test
-    public void execute_Keyword_searchesSubstrings() {
+    public void execute_keyword_searchesSubstrings() {
         String expectedMessage;
         FindLocationCommand command;
 
