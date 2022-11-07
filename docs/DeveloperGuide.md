@@ -17,15 +17,15 @@ title: Developer Guide
   * [Properties of Note Objects](#properties-of-note-objects)
 * [Implementation](#implementation)
   * [Person Features](#person-features)
-    * [Edit Feature](#edit-feature)
+    * [Edit Person](#edit-person)
     * [Delete Person](#delete-person)
     * [Find Person](#find-person)
-    * [Edit Loan Feature](#edit-loan-value-and-history-of-person-by-editloan-feature)
-    * [Find by Tag Feature](#find-persons-and-notes-by-tag-featured)
+    * [Edit Loan](#edit-loan-value-and-history-of-person-by-editloan-feature)
+    * [Find by Tag](#find-persons-and-notes-by-tag)
   * [Notes Features](#notes-features)
-    * [Add Note Feature](#addnote-feature)
-    * [Delete Note Feature](#deletenote-feature)
-    * [Edit Note Feature](#editnote-feature)
+    * [Add Note](#add-note)
+    * [Delete Note](#delete-note)
+    * [Edit Note](#edit-note)
   * [UI Features](#ui-features)
     * [General UI Design and Mechanism](#general-ui-design-and-mechanism)
     * [Inspect Feature](#inspect-feature)
@@ -233,7 +233,7 @@ And a non-editable properties:
 
 During instantiation, a person object can be declared with all fields, but during editing, Loan must use a specialised command `editLoan` to transform its data.
 
-## Properties of Note Objects
+### Properties of Note Objects
 
 This section explains the components of a note object and how they can be used to track information.
 
@@ -255,11 +255,9 @@ During instantiation, a note object can be declared with any of these properties
 
 This section describes some noteworthy details on how certain features are implemented.
 
-## Person Features
+### Person Features
 
-### Edit Feature
-
-#### Implementation
+#### Edit Person
 
 The Edit Person feature is facilitated by the `EditCommand` which utilises the `FindCommand`. It allows users to edit any editable field of a person given the index of the person, or the name of the person.
 
@@ -287,9 +285,7 @@ The following sequence diagram shows how the `edit` feature works.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/EditSequenceDiagram.png)
 
-### Delete Person
-
-#### Implementation
+#### Delete Person
 
 The delete person feature is facilitated by `DeleteCommand`. It allows users to delete a person from the SectresBook that match the full
 First name or Last name of the person.
@@ -309,7 +305,7 @@ The following sequence diagram shows how the delete command works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) 
 but due to a limitation of PlantUML, the lifeline reaches the end of diagram. </div>
 
-#### Design Considerations:
+##### Design Considerations:
 
 **Aspect: How delete executes:**
 
@@ -321,9 +317,7 @@ but due to a limitation of PlantUML, the lifeline reaches the end of diagram. </
   * Cons: Longer input required for the same output.
 
 
-### Find Person
-
-#### Implementation
+#### Find Person
 
 The Find Person feature is facilitated by 'FindCommand'. It allows users to find all Persons with names that are matching or phone number starting with any of the keywords.
 
@@ -343,7 +337,7 @@ The following sequence diagram shows how the find command works:
 
 </div>
 
-#### Design considerations:
+##### Design considerations:
 
 **Aspect: How find executes:**
 
@@ -355,9 +349,7 @@ The following sequence diagram shows how the find command works:
     * Pros: Easier to find person.
     * Cons: Persons list may show other persons that are not desired by the user.
 
-### Edit loan value and history of Person by EditLoan feature
-
-#### Implementation
+#### Edit loan value and history of Person by EditLoan feature
 
 The Edit Loan feature is facilitated by the `EditLoanCommand` which utilises the `FindCommand`. It allows users to edit the loan value and update the loan history of a person given the index of the person, or the name of the person.
 
@@ -385,9 +377,7 @@ The following sequence diagram shows how the `editLoan` feature works with index
 
 <img src="images/EditLoanSequenceDiagram.png" width="740"/>
 
-### Find Persons and Notes by Tag feature
-
-#### Implementation
+#### Find Persons and Notes by Tag
 
 The find Persons and Notes by Tag feature (called `findTag`) is facilitated by `FindTagCommand`. It allows users to find all Persons and Notes with the given Tags.
 
@@ -407,7 +397,7 @@ The following sequence diagram shows how the findTag command works:
 
 </div>
 
-#### Design considerations:
+##### Design considerations:
 
 **Aspect: How findTag executes:**
 
@@ -420,11 +410,9 @@ The following sequence diagram shows how the findTag command works:
     * Cons: Implementation would be more complicated.
 
 
-## Notes Features
+### Notes Features
 
-### addNote feature
-
-#### Implementation
+#### Add Note
 
 The addNote mechanism is facilitated by `AddNoteCommand`. It extends `Command` and overrides `Command#execute()` to implement the following operation:
 - `AddNoteCommand#execute()` : adds the specified note with its associated title and content into the list of notes to be kept track of.
@@ -450,7 +438,7 @@ The following sequence diagram shows how the addNote operation works:
 
 ![AddNoteSequenceDiagram](images/AddNoteSequenceDiagram.png)
 
-#### Design considerations
+##### Design considerations
 
 **Aspect: How Title and Content are represented:**
 
@@ -462,9 +450,7 @@ The following sequence diagram shows how the addNote operation works:
     * Pros: Will use less memory (Fewer objects created).
     * Cons: Harder to validate Title/Content. Better OOP(Object-oriented programming) design.
 
-### deleteNote feature
-
-#### Implementation
+#### Delete Note
 
 The deleteNote mechanism is facilitated by `DeleteNoteCommand`. It extends `Command` and overrides `Command#execute()` to implement the following operation:
 - `DeleteNoteCommand#execute()` : deletes the note at the specified index from the note list.
@@ -493,7 +479,7 @@ The following sequence diagram shows how the addNote operation works:
 
 ![DeleteNoteSequenceDiagram](images/DeleteNoteSequenceDiagram.png)
 
-#### Design considerations
+##### Design considerations
 
 **Aspect: How the note to be deleted is specified:**
 
@@ -505,9 +491,7 @@ The following sequence diagram shows how the addNote operation works:
     * Pros: Would be more precise (Title of notes are unique).
     * Cons: Long command would be needed to delete a note with a long Title.
 
-### editNote feature
-
-#### Implementation
+#### Edit Note
 
 The editNote mechanism is facilitated by `EditNoteCommand` and utilises the `FindNoteCommand`. It extends `Command` and overrides `Command#execute()` to implement the following operation:
 - `EditNoteCommand#execute()` : edits the note at the specified index (or with matching title) from the note list.
@@ -549,7 +533,7 @@ The following activity diagram shows the workflow of `editNote` feature.
 
 ![EditNoteActivityDiagram](images/EditNoteActivityDiagram.png)
 
-#### Design considerations
+##### Design considerations
 
 **Aspect: How the note to be edited is specified:**
 
@@ -562,11 +546,9 @@ The following activity diagram shows the workflow of `editNote` feature.
     * Cons: Not flexible for users.
 
 
-## UI Features
+### UI Features
 
-### General UI Design and Mechanism
-
-#### Implementation
+#### General UI Design and Mechanism
 
 During the creation of the new UI, a lot of the FXML structure and the relationships between containers of the UI had to be refactored.
 
@@ -604,7 +586,7 @@ This activity diagram details how interactions with the UI is controlled
 
 ![](images/UIActivityDiagram.png)
 
-#### Design Considerations
+##### Design Considerations
 
 As the main window of the application is resizable, the ratio of the anchors maintains the aspect of each panel with respect to the window size (unlike constant values which will not change according to window size).
 
@@ -618,9 +600,7 @@ A padding of around 200px was used to help `WindowAnchorPane` displace it's top 
 
 A visual defect exists when the screen size exceeds 1080p, as the Inspection Panel is no longer able to stay attached to the anchor point at the bottom of the screen. This defect worsens as the window gets taller.
 
-### Inspect Feature
-
-#### Implementation
+#### Inspect Feature
 
 The inspect command is a UI-Centric command that controls which person's details are currently shown in the inspection panel.
 
@@ -650,7 +630,7 @@ The following sequence diagram shows how the find command works:
 
 </div>
 
-#### Design considerations:
+##### Design considerations:
 
 **Aspect: How to design a UI command**
 
@@ -662,9 +642,7 @@ Inspiration was taken from the execution flow of `handleExit` and `handleHelp` p
 
 The procedures for `handleExit` and `handleHelp` were changed by refactoring `CommandResult` to carry an ideal state that the UI is expected to be in by the end of the execution. A switch statement was added to the bottom of the `executeCommand` function, much like how the normal commands are parsed, to deal with UI-Centric commands like `help`, `exit` and `inspect`.
 
-### Showing and Hiding the Notes Panel Feature
-
-#### Implementation
+#### Showing and Hiding the Notes Panel Feature
 
 Here are the anchor points of the three major panes within the `WindowAnchorPane`:
 
@@ -685,7 +663,7 @@ The time interval set for this transition is `0.3` seconds.
 The `showNotes` implementation is exactly the inverse of the `hideNotes` implementation across time.
 
 
-#### Design considerations:
+##### Design considerations:
 
 **Aspect: Challenges related to resizing**
 
@@ -697,7 +675,7 @@ The padding of the `InspectionPanel` also causes an issue if the right anchor of
 
 ### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+##### Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -760,7 +738,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+##### Design considerations:
 
 **Aspect: How undo & redo executes:**
 
