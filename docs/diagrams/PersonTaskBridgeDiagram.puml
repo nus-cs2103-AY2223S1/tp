@@ -12,7 +12,7 @@ Package Model <<Rectangle>> {
     Class Person
     Class PersonTaskBridge
     Class PersonTaskBridgeList
-    
+
     Task -d- Person : > assigned to
     (Person, Task) .. PersonTaskBridge
     PersonTaskBridgeList "*" *-up-> PersonTaskBridge
