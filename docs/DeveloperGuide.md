@@ -398,7 +398,7 @@ The following class diagram shows the relationship between the classes in the UI
 
 #### Design Considerations:
 
-#### 1. Which user information should be shown as tags?
+#### Which user information should be shown as tags?
 
 * **Alternative 1 (current choice):** Only in-game preferences (such as preferred game types and Minecraft servers) and social handles. 
   * Pros:
