@@ -48,6 +48,7 @@ public class ListCommandParser implements Parser<ListCommand> {
     }
     
     private Optional<Category> getFilteredCategory(ArgumentMultimap argumentMultimap) {
+
         List<Optional<Category>> category = new ArrayList<>();
         argumentMultimap.getValue(PREFIX_CATEGORY).ifPresentOrElse(
                 x -> {

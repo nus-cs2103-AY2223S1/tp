@@ -16,8 +16,8 @@ import seedu.address.model.tag.Tag;
 
 public class Nurse extends Person {
 
-    private static final String MESSAGE_FOR_EMPTY_HOMEVISITLIST = "No home visit assigned yet.";
-    private static final String MESSAGE_FOR_EMPTY_UNAVAILABLEDATE = "No unavailable date.";
+    private static final String MESSAGE_FOR_EMPTY_HOME_VISIT_LIST = "No home visit assigned yet.";
+    private static final String MESSAGE_FOR_EMPTY_UNAVAILABLE_DATE = "No unavailable date.";
     private final List<HomeVisit> homeVisitList = new ArrayList<>();
     private final List<Date> unavailableDateList = new ArrayList<>();
     private final List<Date> fullyScheduledDateList = new ArrayList<>();
@@ -31,6 +31,24 @@ public class Nurse extends Person {
         this.unavailableDateList.addAll(unavailableDates);
         this.homeVisitList.addAll(homeVisits);
         this.fullyScheduledDateList.addAll(fullyScheduledDates);
+    }
+
+    /**
+     * Nurse Constructor used when first creating the nurse object
+     *
+     * @param uid              The nurse's uid
+     * @param name             The nurse's name
+     * @param gender           The nurse's gender
+     * @param phone            The nurse's phone number
+     * @param email            The nurse's email
+     * @param address          The nurse's address
+     * @param tags             The nurse's tags
+     * @param unavailableDates The nurse's unavailable dates
+     */
+    public Nurse(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address, Set<Tag> tags,
+            List<Date> unavailableDates) {
+        super(uid, name, gender, phone, email, address, tags);
+        this.unavailableDateList.addAll(unavailableDates);
     }
 
     public Category getCategory() {
@@ -76,7 +94,7 @@ public class Nurse extends Person {
         String homeVisitsString = getHomeVisits().stream()
                 .map(x -> x.toString()).collect(Collectors.joining(", "));
         if (homeVisitsString.length() == 0) {
-            return MESSAGE_FOR_EMPTY_HOMEVISITLIST;
+            return MESSAGE_FOR_EMPTY_HOME_VISIT_LIST;
         }
         return String.format("Home Visits: %s;", homeVisitsString);
     }
@@ -85,26 +103,27 @@ public class Nurse extends Person {
         String unavailableString = getUnavailableDates().stream()
                 .map(x -> x.toString()).collect(Collectors.joining(", "));
         if (unavailableString.length() == 0) {
-            return MESSAGE_FOR_EMPTY_UNAVAILABLEDATE;
+            return MESSAGE_FOR_EMPTY_UNAVAILABLE_DATE;
         }
         return String.format("Unavailable Dates: %s;", unavailableString);
     }
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getCategory().toFormattedString())
-                .append(" ")
-                .append(super.toString())
-                .append(" ")
-                .append(getUnavailableDatesInString())
-                .append(" ")
-                .append(getHomesVisitsInString());
-
-        return builder.toString();
+        return String.format(
+                "%s %s %s %s",
+                getCategory().toFormattedString(),
+                super.toString(),
+                getUnavailableDatesInString(),
+                getHomesVisitsInString());
     }
 
     public boolean isNurse() {
         return true;
     }
+
+    public String toLiteString() {
+        return String.format("Nurse [Uid:%s]", getUid());
+    }
+
 }

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_SLOT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
 
@@ -49,9 +50,7 @@ public class AssignCommand extends Command {
      * Creates an AssignCommand to assgin specific patient's date slot to a nurse.
      */
     public AssignCommand(Uid uid1, Uid uid2, List<Index> dateslotIndex) {
-        requireNonNull(uid1);
-        requireNonNull(uid2);
-        requireNonNull(dateslotIndex);
+        requireAllNonNull(uid1, uid2, dateslotIndex);
         this.uid1 = uid1;
         this.uid2 = uid2;
         this.dateslotIndex = new ArrayList<>();
@@ -70,52 +69,52 @@ public class AssignCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_UID);
         }
 
-        Person personToBeEdit1 = person1.get();
-        Person personToBeEdit2 = person2.get();
-        Person patient = getPatient(personToBeEdit1, personToBeEdit2);
-        Person nurse = getNurse(personToBeEdit1, personToBeEdit2);
+        Person firstPerson = person1.get();
+        Person secondPerson = person2.get();
+        Patient patient = getPatient(firstPerson, secondPerson);
+        Nurse nurse = getNurse(firstPerson, secondPerson);
         markAssign(model, patient, nurse);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getUid().getUid(), nurse.getUid().getUid()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, patient.toLiteString(), nurse.toLiteString()));
     }
 
-    private Person getPatient(Person person1, Person person2) throws CommandException {
+    private Patient getPatient(Person person1, Person person2) throws CommandException {
         Boolean isPerson1Patient = person1.isPatient();
         Boolean isPerson2Patient = person2.isPatient();
 
         if (isPerson1Patient && isPerson2Patient) {
             throw new CommandException(MESSAGE_BOTH_PATIENT);
-        } else if (isPerson1Patient) {
-            return person1;
-        } else if (isPerson2Patient) {
-            return person2;
-        } else {
-            throw new CommandException(MESSAGE_BOTH_NURSE);
         }
+        if (isPerson1Patient || isPerson2Patient) {
+            return isPerson1Patient
+                    ? (Patient) person1
+                    : (Patient) person2;
+        }
+        throw new CommandException(MESSAGE_BOTH_NURSE);
     }
 
-    private Person getNurse(Person person1, Person person2) throws CommandException {
+    private Nurse getNurse(Person person1, Person person2) throws CommandException {
         Boolean isPerson1Nurse = person1.isNurse();
         Boolean isPerson2Nurse = person2.isNurse();
 
         if (isPerson1Nurse && isPerson2Nurse) {
             throw new CommandException(MESSAGE_BOTH_NURSE);
-        } else if (isPerson1Nurse) {
-            return person1;
-        } else if (isPerson2Nurse) {
-            return person2;
-        } else {
-            throw new CommandException(MESSAGE_BOTH_PATIENT);
         }
+        if (isPerson1Nurse || isPerson2Nurse) {
+            return isPerson1Nurse
+                    ? (Nurse) person1
+                    : (Nurse) person2;
+        }
+        throw new CommandException(MESSAGE_BOTH_PATIENT);
     }
 
-    private void markAssign(Model model, Person patient, Person nurse) throws CommandException {
+    private void markAssign(Model model, Patient patient, Nurse nurse) throws CommandException {
         Long patientUidNo = patient.getUid().getUid();
         Long nurseUidNo = nurse.getUid().getUid();
-        List<DateSlot> patientDateSlotList = ((Patient) patient).getDatesSlots();
-        List<HomeVisit> nurseHomeVisitList = ((Nurse) nurse).getHomeVisits();
-        List<Date> nurseFullyScheduledList = ((Nurse) nurse).getFullyScheduledDates();
-        List<Date> nurseUnavailableDates = ((Nurse) nurse).getUnavailableDates();
+        List<DateSlot> patientDateSlotList = patient.getDatesSlots();
+        List<HomeVisit> nurseHomeVisitList = nurse.getHomeVisits();
+        List<Date> nurseFullyScheduledList = nurse.getFullyScheduledDates();
+        List<Date> nurseUnavailableDates = nurse.getUnavailableDates();
 
         DateSlotManager marker = new DateSlotManager(patientDateSlotList, this.dateslotIndex);
         List<DateSlot> updatedDateSlotList = marker.markAssigned(nurseHomeVisitList, nurseUnavailableDates, nurseUidNo);
@@ -129,9 +128,14 @@ public class AssignCommand extends Command {
         editor.editNurse(nurse, updatedHomeVisitList, updatedFullyScheduledList);
     }
 
-
     @Override
     public boolean equals(Object other) {
+        if (other instanceof AssignCommand) {
+            AssignCommand o = (AssignCommand) other;
+            System.out.println(uid1.equals(o.uid1));
+            System.out.println(uid2.equals(o.uid2));
+            System.out.println(dateslotIndex.equals(o.dateslotIndex));
+        }
         return other == this // short circuit if same object
                 || (other instanceof AssignCommand // instanceof handles nulls
                         && uid1.equals(((AssignCommand) other).uid1)
@@ -140,7 +144,3 @@ public class AssignCommand extends Command {
     }
 
 }
-
-
-
-

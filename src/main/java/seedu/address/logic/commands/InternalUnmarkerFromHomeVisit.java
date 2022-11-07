@@ -56,7 +56,6 @@ public class InternalUnmarkerFromHomeVisit {
     public void unmarkDateSlotForHomeVisit() {
         if (nurseHomeVisitIndex.isEmpty()) {
             unmarkDateSlotFromAllHomeVisit();
-
         } else {
             unmarkDateSlotFromSpecificHomeVisit();
         }
