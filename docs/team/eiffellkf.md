@@ -4,14 +4,10 @@ title: Eiffel Leo's Project Portfolio Page
 ---
 ### Project: OmniHealth
 
-## Overview
-
 OmniHealth is a **Patient Management System** tailored to private clinicians to manage patients' details, records and upcoming appointments.
 As a private clinician, you can manage and monitor your patient database all in one location.
 
-OmniHealth aims to bring convenience into the lives of its users with its many features. 
-
-## Summary of Contributions
+OmniHealth aims to bring convenience into the lives of its users with its many features.
 
 Given below are my contributions to the project.
 

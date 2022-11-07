@@ -2,7 +2,7 @@
 layout: page
 title: Sean Lam's Project Portfolio Page
 ---
-### Project: Omnihealth
+### Project: OmniHealth
 
 OmniHealth is a **Patient Management System** tailored to private clinicians to manage patients' details, records and upcoming appointments.
 As a private clinician, you can manage and monitor your patient database all in one location.

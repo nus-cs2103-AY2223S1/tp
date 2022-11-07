@@ -2,17 +2,12 @@
 layout: page
 title: Lai Han Wen's Project Portfolio Page
 ---
-
 ### Project: OmniHealth
-
-## Overview
 
 OmniHealth is a **Patient Management System** tailored to private clinicians to manage patients' details, records and upcoming appointments.
 As a private clinician, you can manage and monitor your patient database all in one location.
 Utilise OmniHealth's **sorting and filtering system** to help you easily manage and find your patients' details and records of past visits.
 Also, OmniHealth's **appointment tracker** allows you to tag upcoming appointments for each patient.
-
-## Summary of Contributions
 
 Given below are my contributions to the project.
 
