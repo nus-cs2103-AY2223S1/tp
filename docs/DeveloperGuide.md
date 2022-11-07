@@ -412,11 +412,30 @@ The task unmark command follows a similar sequence diagram.
     * Pros: Less overhead as it will only involve changing the isDone field in the object.
     * Cons: Mutable field may result in regression with other components such as Storage and UI.
 
-### \[Proposed\] Tagging/Untagging tasks
+### Tagging/Untagging tasks
 
-#### Proposed Implementation
+#### Implementation
 
-The tag and untag task mechanism is facilitated by `TaskTagCommand`, which extends from `Command`.
+The tagging feature is implemented through integrating the `Tag` class into the `Task` classes, as well as their 
+command classes and parser classes. 
+
+The `Parser` classes are modified to resolve for tags through the `ArgumentTokenizer.tokenize()` and `ParserUtil.parseTags()` 
+methods to obtain `Set<Tag>`.
+
+Each of the task command classes (`TaskAddCommand`, `TaskDeleteCommand`, `TaskEditCommand` etc.) accept the parsed set 
+of `Tag` objects when initialized.
+
+The task classes (`Todo` etc.) are also created with the set of `Tag` objects.
+
+To locally store information about the tags, the `Set<Tag>` object is passed into a `JSONAdaptedTask` and stored
+as individual `JSONAdaptedTag` objects. To load the tags into the application, the `JSONAdaptedTag`s are iterated through
+and recreated into objects in memory through the `toModelType()` method.
+
+#### Alternative Implementation 
+
+An alternative implementation to consider may be through the use of individual commands to tag/untag a task.
+
+In such a case, the tag and untag task mechanism is facilitated by `TaskTagCommand`, which extends from `Command`.
 
 It implements the following operations:
 
