@@ -119,7 +119,7 @@ Adds a project, client, or issue to the project book. A unique ID will be automa
 <img src="images/AddIssueCommand1.png" width="500" />
 
 <img src="images/AddIssueCommand2.png" width="500" />
-
+<div style="page-break-after: always;"></div>
 
 Format: 
 * Project: `project -a n/PROJECT_NAME [r/REPOSITORY] [c/CLIENT_ID] [d/DEADLINE]`
@@ -144,7 +144,7 @@ Edits the specified existing project, client or issue.
 <img src="images/EditProjectCommand1.png" width="500" />
 
 <img src="images/EditProjectCommand2.png" width="500" />
-
+<div style="page-break-after: always;"></div>
 
 Format: 
 * Project: `project -e p/PROJECT_ID [n/PROJECT_NAME] [r/REPOSITORY] [c/CLIENT_ID] [d/DEADLINE]`
@@ -173,7 +173,7 @@ Removes the specified existing project, client or issue.
 <img src="images/DeleteClientCommand1.png" width="500" />
 
 <img src="images/DeleteClientCommand2.png" width="500" />
-
+<div style="page-break-after: always;"></div>
 
 Format: 
 * Project: `project -d PROJECT_ID`
@@ -209,7 +209,7 @@ Finds and lists all the projects, clients or issues matching the search criteria
 <img src="images/FindProjectCommand1.png" width="500" />
 
 <img src="images/FindProjectCommand2.png" width="500" />
-
+<div style="page-break-after: always;"></div>
 
 Format: 
 * Project: `project -f [n/PROJECT_NAME] [p/PROJECT_ID] [r/REPOSITORY] [l/CLIENT_LABEL] [c/CLIENT_ID]`
@@ -251,7 +251,7 @@ Pins a project, client, or issue to the top of the project list, client list or 
 <img src="images/PinIssueCommand1.png" width="500" />
 
 <img src="images/PinIssueCommand2.png" width="500" />
-
+<div style="page-break-after: always;"></div>
 
 Format: 
 * Project: `project -p PROJECT_ID`
