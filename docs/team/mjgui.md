@@ -68,4 +68,4 @@ Given below are my contributions to the project.
       , [\#95](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/95)
       , [\#100](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/100)
     * Contributed to forum discussions and helped peers with debugging (examples:
-      [\#404](https://github.com/nus-cs2103-AY2223S1/forum/issues/404)
+      [\#404](https://github.com/nus-cs2103-AY2223S1/forum/issues/404))
