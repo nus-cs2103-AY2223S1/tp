@@ -1,0 +1,10 @@
+{
+  "properties": [
+    {
+      "name": "",
+      "address": "4th street",
+      "price": "400000",
+      "propertyType": "HDB"
+    }
+  ]
+}

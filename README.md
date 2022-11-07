@@ -1,14 +1,21 @@
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
+[![CI Status](https://github.com/AY2223S1-CS2103-W14-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103-W14-1/tp/actions)
 
 ![Ui](docs/images/Ui.png)
 
-* This is **a sample project for Software Engineering (SE) students**.<br>
-  Example usages:
-  * as a starting point of a course project (as opposed to writing everything from scratch)
-  * as a case study
-* The project simulates an ongoing software project for a desktop application (called _AddressBook_) used for managing contact details.
-  * It is **written in OOP fashion**. It provides a **reasonably well-written** code base **bigger** (around 6 KLoC) than what students usually write in beginner-level SE modules, without being overwhelmingly big.
-  * It comes with a **reasonable level of user and developer documentation**.
-* It is named `AddressBook Level 3` (`AB3` for short) because it was initially created as a part of a series of `AddressBook` projects (`Level 1`, `Level 2`, `Level 3` ...).
-* For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
-* This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+* Condonery is a Condonery is a desktop app made for property agents primarily used for managing client contacts and condo listings. It is optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Condonery can get your contact management tasks done faster than traditional GUI apps.
+
+
+Example usages:
+  * managing multiple property listings
+  * storing client contact details
+
+Getting started:
+  * This project uses gradle as a build tool, to get started:
+```bash
+> ./gradlew clean run
+```
+  * The project is a desktop application used for managing contact details.
+    * It is **written in OOP fashion**. It provides a **reasonably well-written** code base(around 6 KLoC), without being overwhelmingly big.
+    * It comes with a **reasonable level of user and developer documentation**.
+  * It is named `Condonery` and was evolved from `AddressBook` project.
+  * For the detailed documentation of this project, see the **[Condonery Product Website](https://ay2223s1-cs2103-w14-1.github.io/tp/)**.

@@ -1,0 +1,73 @@
+{
+  "_comment": "PropertyDirectory save file which contains the same Property values as in TypicalProperties#getTypicalPropertyDirectory()",
+  "properties": [
+    {
+      "name": "Pinnacle@Duxton",
+      "address": "123, Jurong West Ave 6, #08-111",
+      "price": "1,000,000",
+      "tagged": [
+        "friends"
+      ],
+      "propertyType" : "CONDO",
+      "propertyStatus" : "AVAILABLE"
+    },
+    {
+      "name": "Oasis",
+      "address": "311, Clementi Ave 2, #02-25",
+      "price": "2,000,000",
+      "tagged": [
+        "owesMoney",
+        "friends"
+      ],
+      "propertyType" : "CONDO",
+      "propertyStatus" : "PENDING"
+    },
+    {
+      "name": "Carl Kurz",
+      "address": "wall street",
+      "price": "3,000,000",
+      "tagged": [],
+      "propertyType" : "CONDO",
+      "propertyStatus" : "PENDING"
+
+    },
+    {
+      "name": "Daniel Meier",
+      "address": "10th street",
+      "price": "4,000,000",
+      "tagged": [
+        "friends"
+      ],
+      "propertyType" : "CONDO",
+      "propertyStatus" : "PENDING"
+
+    },
+    {
+      "name": "Elle Meyer",
+      "address": "michegan ave",
+      "price": "5,000,000",
+      "tagged": [],
+      "propertyType" : "CONDO",
+      "propertyStatus" : "PENDING"
+
+    },
+    {
+      "name": "Fiona Kunz",
+      "address": "little tokyo",
+      "price": "6,000,000",
+      "tagged": [],
+      "propertyType" : "CONDO",
+      "propertyStatus" : "SOLD"
+
+    },
+    {
+      "name": "George Best",
+      "address": "4th street",
+      "price": "7,000,000",
+      "tagged": [],
+      "propertyType" : "CONDO",
+      "propertyStatus" : "SOLD"
+
+    }
+  ]
+}
