@@ -350,7 +350,7 @@ Check out [Add Command using the popup window](#adding-a-contact-with-a-popup-wi
 
 To help you better understand the hierarchy of the second sample command, we illustrate its structure as follows:
 
-<img src="images/AddBuyerCommandIllustration.png" alt="drawing" width="450"/>
+<img src="images/AddBuyerCommandIllustration.png" alt="drawing" width="550"/>
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -416,7 +416,7 @@ Check out [Add Command using the popup window](#adding-a-contact-with-a-popup-wi
 
 To help you better understand the hierarchy of the second sample command, we illustrate its structure as follows:
 
-<img src="AddSupplierCommandIllustration.png" alt="drawing" width="450"/>
+<img src="AddSupplierCommandIllustration.png" alt="drawing" width="550"/>
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]

@@ -51,14 +51,6 @@ Given below are my contributions to the project.
     * Highlights: The SOLID principles and OOP were employed thoroughly.
 
 * **Functionality**: Added the unique ID system.
-    * What it does: it gives each `Order` and `Pet` object a unique ID, and it is not bounded by the max value of
-      integer.
-    * Justification: Initially, `Buyer` has reference to `Order` and `Order` also has reference to `Buyer`. The same
-      for `Supplier` and `Pet`. This kind of bidirectional navigation makes it difficult to implement some JSON-related
-      classes and methods, since the JSON-adapted date models will infinitely recursively write the references into
-      the `.json` file.
-    * Highlights: This implementation solves the storage problem, making it for objects to mutually reference each
-      other.
 
 * **Functionality**: Discovered a variety of bugs and fixed them. For
   examples, [\#308](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/308)
@@ -67,7 +59,6 @@ Given below are my contributions to the project.
   , [\#296](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/296)
 * **Code
   contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=totalCommits%20dsc&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=zoom&zA=Hongyi6328&zR=AY2223S1-CS2103T-T09-2%2Ftp%5Bmaster%5D&zACS=215.92310030395137&zS=2022-09-16&zFS=&zU=2022-11-01&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
-
 * **Project management**:
     * Managed releases `v1.2` - `v1.3(trial)` (2 releases) on GitHub
     * Assigned teammates to different issues and kept track of their progress
@@ -81,21 +72,19 @@ Given below are my contributions to the project.
     * Added test cases (the coverage increment is hard to calculate as functionality code was added along with test
       code.)
     * Deleted useless classes like AddCommandParser and decoupled some classes for higher robustness.
-    * Did a comprehensive manual testing for the final product.
 
 * **Documentation**:
     * User Guide:
         * Adding a buyer, Adding a deliverer, Adding a supplier, Adding a pet to a supplier, Adding an order to a buyer,
           Prefix Summary, FAQs, Other miscellaneous parts and proofreading
-      * Developer Guide: 
-          * Target user profile, Value proposition, User stories, Use cases, Match command implementation, Unique ID
-            implementation, Other miscellaneous parts and proofreading
+    * Developer Guide:
+        * Target user profile, Value proposition, User stories, Use cases, Match command implementation, Unique ID
+          implementation, Other miscellaneous parts and proofreading
 
 * **Community**:
     * Created the team's organization and team repo
     * Managed issues and allocated tasks to members
     * Set up CodeCov repo
-
     * PRs reviewed (with non-trivial review comments): [\#145](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/145)
       , [\#174](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/115)
     * Contributed to forum discussions (examples: [\#153](https://github.com/nus-cs2103-AY2223S1/forum/issues/153)
@@ -108,4 +97,3 @@ Given below are my contributions to the project.
 
 * **Tools**:
     * Used JavaFX to develop the UI.
-
