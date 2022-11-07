@@ -20,7 +20,7 @@ to the project. You can also use this as a reference, if you are interested in d
 ---
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 ---
 
