@@ -259,9 +259,9 @@ step-by-step!
 
 - PennyWise will **IGNORE** any extra words or characters present after the following commands:
 
- [`summary`](#summary-of-entries) (except [`summary [mo/MONTH]`](#summary-of-all-entries-in-the-specified-month)),
- [`help`](#command-summary-table), [`clear`](#clearing-all-entries) and [`exit`](#exiting-the-program).
-  e.g. `summary abcdefg` will be interpreted as `summary` and `help 123456` will also be interpreted as `help`.
+  - [`summary`](#summary-of-entries) (except [`summary [mo/MONTH]`](#summary-of-all-entries-in-the-specified-month)),
+   [`help`](#command-summary-table), [`clear`](#clearing-all-entries) and [`exit`](#exiting-the-program).
+    e.g. `summary abcdefg` will be interpreted as `summary` and `help 123456` will also be interpreted as `help`.
 
 - Words in `UPPER_CASE` are the parameters that you must supply<br>
   e.g. In `delete INDEX_OF_ENTRY t/ENTRY_TYPE`, `INDEX_OF_ENTRY` is a parameter which can be used as `delete 10 t/e`.
@@ -306,8 +306,7 @@ Having them differentiated will make it easier for you to recall what you spent 
 If you want to log similar entries, you can simply use the [edit](#editing-entries)
 command to alter the original entry's specifications.
 
-For example, when executing the following [add commands](#adding-entries) one after another, PennyWise will recognise (
-2), which is the second `Teh Beng` added as a duplicate entry.
+For example, when executing the following [add commands](#adding-entries) one after another, PennyWise will recognise (2), which is the second `Teh Beng` added as a duplicate entry.
 
 <pre>
     <code>
@@ -357,7 +356,7 @@ Adds an entry to the specified list.
 |---------------------|----------------------------------------------------------------------------------------------|
 | **`t/ENTRY_TYPE`**  | An entry type refers to either `e` for "Expenditure" or `i` for "Income"                     |
 | **`d/DESCRIPTION`** | Description for the entry that you are adding                                                |
-| **`a/AMOUNT`**      | Amount of the entry, formatted to 2 decimal places                                           |
+| **`a/AMOUNT`**      | Amount of the entry, formatted up to 2 decimal places                                        |
 | **`da/DATE`**       | Date where the entry is added in `dd-mm-YYYY` format, e.g. `01-01-2022` for 1st January 2022 |
 | **`c/CATEGORY`**    | [Category](#categorising-your-expenses-and-income) that the entry belongs to                 |
 
@@ -396,7 +395,7 @@ Edits an entry, where at least **1** of the optional fields description/amount/d
 |------------------------------|------------------------------------------------------------------------------------------------------|
 | **`t/ENTRY_TYPE`**           | An entry type refers to either `e` for "Expenditure" or `i` for "Income"                             |
 | **`[d/EDITED_DESCRIPTION]`** | Updated description for the entry that you are editing                                               |
-| **`[a/EDITED_AMOUNT]`**      | Updated amount of the entry, formatted to 2 decimal places                                           |
+| **`[a/EDITED_AMOUNT]`**      | Updated amount of the entry, formatted up to 2 decimal places                                        |
 | **`[da/EDITED_DATE]`**       | Updated date where the entry is added in `dd-mm-YYYY` format, e.g. `01-01-2022` for 1st January 2022 |
 | **`[c/EDITED_CATEGORY]`**    | Updated [category](#categorising-your-expenses-and-income) that the entry belongs to                 |
 
@@ -411,7 +410,7 @@ Edits an entry, where at least **1** of the optional fields description/amount/d
 #### Edits income with specified fields
 
 - Example: `edit 2 t/i a/150.00 da/22-10-2022`
-    - The income at the 2nd position will have its amount and date edited
+    - The income at the 2nd position will have its amount and date edited.
 - Expected: `Edited Entry: Monthly Allowance; Date: 02-01-2022; Amount: 150.00; Tag: Allowance`
 
 ![EditCommandIncome](images/ug/EditCommandIncome.png)
