@@ -39,11 +39,16 @@ Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=Ferusel&tabRepo=AY2223S1-CS2103T-W16-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
-* **Project management**:
-  * Add PPP skeleton at start of project [[PR#64]]
-
 * **Enhancements to existing features**:
+ 
   * Add Item Unit Tests [[PR#155]]
+  * Add Item model [[PR#143]]
+  * Add Sort Command [[PR#158]]
+  * Add Increment and Decrement Command [[PR#161]]
+  * Add View command [[PR#209]]
+  * Add Statistics Command [[PR#360]]
+  * Update find command [[PR#367]]
+  * Fix stats command [[PR#372]]
 
 * **Documentation**:
 
@@ -65,26 +70,6 @@ Given below are my contributions to the project.
     * Add Glossary section to Developer Guide [[PR#164]]
     * Add Sorting user stories to DG [[PR#210]]
     * Add Sort Command UML [[PR#232]]
-    * Update Developer Guide with v1.3  [[PR#295]]
     * Update Developer Guide ([PR#528](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/528))
 
-* ** Features**:
-  * Add Item model [[PR#143]]
-  * Add Sort Command [[PR#158]]
-  * Add Increment and Decrement Command [[PR#161]]
-  * Add View command [[PR#209]]
-  * Add Statistics Command [[PR#360]]
-  * Update find command [[PR#367]]
-  * Fix stats command [[PR#372]]
- 
-* **Community**:
-
-  * Created [forum discussion](https://github.com/nus-cs2103-AY2223S1/forum/issues/413) 
-
-* **Misc PRs**:
-  * Add profile picture [[PR#67]]
-  * Rename ferusel.jpg to ferusel.png [[PR#85]]
-  * Add Ting Kai information to AboutUs [[PR#98]]
-  * Website Hot Fix [[PR#369]]
-  * Update PPP for ferusel ([PR#459](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/459))
-  * Update PPP for ferusel ([PR#536](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/536))
+  
