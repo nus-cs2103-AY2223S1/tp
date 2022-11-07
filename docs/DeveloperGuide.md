@@ -2,7 +2,7 @@
 layout: page
 title: Developer Guide
 ---
-* ModQuik of Contents
+* Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
