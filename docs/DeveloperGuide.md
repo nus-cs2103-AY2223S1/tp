@@ -889,7 +889,8 @@ testers are expected to do more *exploratory* testing.
       Expected: `Math: A` will be added to the grade progress of the student in the first index in the list.
    3. Test case: `grade g/Math: A` <br>
       Expected: Grade is not added to any persons. Error details shown in the status message.
-   4. Other incorrect commands to try: `grade` , `grade 1 g/`
+   4. Other incorrect commands to try: `grade` , `grade 1 g/`<br>
+      Expected: Similar to previous.
 
 ### Adding homework to a student
 
@@ -990,13 +991,15 @@ testers are expected to do more *exploratory* testing.
       Expected: First homework is marked as completed in the homework list of the person displayed.
    3. Test case: `mark g/1` <br>
       Expected: No field is marked. Error details shown in the status message.
-   4. Other incorrect mark commands to try: `mark` , `mark a/x`, `mark h/x` and `mark 1242`  (where x is larger than the list size)
+   4. Other incorrect mark commands to try: `mark` , `mark a/x`, `mark h/x` and `mark 1242`  (where x is larger than the list size)<br>
+      Expected: Similar to previous.
 
 2. Marking a student in `Pupilist`
    1. Prerequisite: List all persons using the `list` command. Multiple persons in the list.
    2. Test case: `mark h/1`<br>
       Expected: No person is marked. Error details shown in the status message. Status bar remains the same.
-   3. Other incorrect unmark commands to try: `mark a/y` , `mark h/y` (y can be any integer or string)
+   3. Other incorrect unmark commands to try: `mark a/y` , `mark h/y` (y can be any integer or string)<br>
+      Expected: Similar to previous.
  
 ### Unmarking a student
 
@@ -1006,13 +1009,15 @@ testers are expected to do more *exploratory* testing.
       Expected: First homework is marked as uncompleted in the homework list of the person displayed.
    3. Test case: `unmark g/1` <br>
       Expected: No field is marked. Error details shown in the status message.
-   4. Other incorrect unmark commands to try: `unmark` , `unmark a/x`, `unmark h/x` and `unmark 1242`  (where x is larger than the list size)
+   4. Other incorrect unmark commands to try: `unmark` , `unmark a/x`, `unmark h/x` and `unmark 1242`  (where x is larger than the list size)<br>
+      Expected: Similar to previous.
 
 2. Unmarking a student in `Pupilist`
    1. Prerequisite: List all persons using the `list` command. Multiple persons in the list.
    2. Test case: `unmark h/1` <br>
       Expected: No person is unmarked. Error details shown in the status message. Status bar remains the same.
-   3. Other incorrect unmark commands to try: `unmark a/y` , `unmark h/y` (y can be any integer or string)
+   3. Other incorrect unmark commands to try: `unmark a/y` , `unmark h/y` (y can be any integer or string)<br>
+      Expected: Similar to previous.
 
 ### Deleting a student
 
