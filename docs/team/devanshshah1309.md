@@ -11,22 +11,18 @@ software engineering modules to build projects. It helps track the team's progre
 Given below are my contributions to the project.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=DevanshShah1309&tabRepo=AY2223S1-CS2103T-W13-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
-
 * **New Feature**: Added functionality to add, delete and list tasks. ([PR #23](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/23), [PR #46](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/46))
     * What it does: Allows the user to create, delete and view the tasks for a given team. It also stores the tasks automatically in a local file.
     * Justification: This feature is very important to the user as it empowers him/her to better manage the team's tasks using our application.
     * Highlights: Implementing this feature required an in-depth understanding of the execution pipeline for commands and making the right design decisions for associating tasks with a team. It also required knowledge on how the `Storage` component works.
-
 * **UI Changes**: Revamped the existing UI to make it more user-friendly and allow the user to view all relevant information on the same screen, at a glance. ([PR #55](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/55), [PR #95](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/95), [PR #110](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/110))
   * What it does: Splits the screen into different panels that allow the user to view teams, tasks, members, and contacts. The color scheme and font also makes it more inviting for users to use the application.
   * Justification: Since our application focuses on productivity in managing tasks for teams, it was important for us to be able to show all the necessary data while making sure the screen does not look too cluttered. The new UI makes this possible.
-  * Highlights: Implementing this UI change required a detailed knowledge of `JavaFX` and `CSS`, and how the UI updates when a command is executed. 
-
+  * Highlights: Implementing this UI change required a detailed knowledge of `JavaFX` and `CSS`, and how the UI updates when a command is executed.
 * **New Feature**: Allowing users to toggle between light theme and dark theme.
   * What it does: Gives users the option to change the application's theme.
   * Justification: We understand that different users have different preferences, and we wanted our users to be able to choose between a light theme and dark theme depending on their preference.
   * Highlights: Implementing this required a thorough understanding of how `CSS` styling can be modified on-the-fly and a good design sense.
-
 * **Enhancements to existing features**:
     * Fixed bugs related to deleting of members from TruthTable ([PR #111](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/111))
     * Refactored the application to use `TruthTable` instead of `AddressBook` ([PR #179](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/179))
