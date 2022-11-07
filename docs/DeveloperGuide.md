@@ -3,23 +3,55 @@ layout: page
 title: Developer Guide
 ---
 
-- Table of Contents
-  {:toc}
+## Table of Contents
+1. [Overview](#overview)
+2. [Acknowledgements](#acknowledgements)
+3. [Setting up, getting started](#setting-up-getting-started)
+4. [Design](#design)
+   * [Architecture](#architecture)
+   * [UI Component](#ui-component)
+   * [Logic Component](#logic-component)
+   * [Model component](#model-component)
+   * [Storage component](#storage-component)
+   * [Common classes](#common-classes)
+5. [Implementation](#implementation)
+   * [Edit Feature](#edit-feature)
+   * [Sort Feature](#sort-feature)
+   * [Grade Feature](#grade-feature)
+   * [(Proposed) Undo/redo Feature](#proposed-undoredo-feature)
+6. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+7. [Appendix: Requirements](#appendix-requirements)
+   * [Product Scope](#product-scope)
+   * [User Stories](#user-stories)
+   * [Use Cases](#use-cases)
+   * [Non-Functional Requirements](#non-functional-requirements)
+   * [Glossary](#glossary)
+8. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing) 
+
+---
+
+## **Overview**
+
+Watson is a powerful **desktop database application** that reduces the administrative workload of **primary/secondary school teachers** greatly. 
+
+It provides a **centralized** platform for teachers to handle and retrieve student data **conveniently**, namely: 
+* student particulars 
+* student grades
+* student attendance
+
+It is optimised for use via a **Command Line Interface (CLI)** while still having the benefits of a
+Graphical User Interface (GUI).
+
+This Developer Guide provides general information for developers interested in understanding
+the design implementation of Watson for further development.
 
 ---
 
 ## **Acknowledgements**
 
-- {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
 | Code Author | Code Used    | Reason               |
 |-------------|--------------|----------------------|
 | e1010101    | [DateUtil](https://github.com/e1010101/ip/blob/master/src/main/java/util/DateUtils.java) | Ease of date parsing |
-|             |              |                      |
-|             |              |                      |
-|             |              |                      |
-|             |              |                      |
-|             |              |                      |
 
 ---
 
@@ -199,7 +231,7 @@ The command will be used as such:
 - Words in `UPPER_CASE` are the inputs to be supplied by the user.
 - Words in square brackets are optional, but at least one of them must be present.
 
-### \[Implemented\] Sort feature
+### Sort feature
 
 #### current Implementation
 
@@ -214,7 +246,7 @@ The command will be used as such:
 - sort by grade in ascending order - e.g.`sort asc`
 - sort by grade in descending order - e.g. `sort desc`
 
-### \[Implemented\] Grade feature
+### Grade feature
 
 #### current Implementation
 
@@ -309,12 +341,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   - Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
   - Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 ---
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -333,33 +359,101 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-- has a need to manage a significant number of people and their details
+- are primary/secondary school teachers
+- has a need to manage a significant number of students and their details
 - prefer desktop apps over other types
 - can type fast
 - prefers typing to mouse interactions
 - is reasonably comfortable using CLI apps
-- needs to retrieve information quickly
+- needs to retrieve information of students quickly
 
-**Value proposition**: manage and retrieve people's information faster than a typical mouse/GUI driven app
+**Value proposition**: manage and retrieve information of students faster than a typical mouse/GUI driven app
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a ... | I want to ... | so that I can ... |
-| -------- | -------------------------------------- | -------------------------------------------- | ------------------------------------------------------- |
-| `* * *`  | policeman                              | find a student using part of their ID or name | I can retrieve the student's details quickly             |
-| `* * *`  | backend law enforcement staff          | add people and their details into Watson   | these information can be quickly and easily accessible  |
-| `* * *`  | policeman                              | see a student's full criminal history         |                                                         |
-| `* * *`  | detective                              | edit a student's details in Watson          | I can update the system with new information            |
-| `* *`    | law enforcement security officer       | allow only specific users into the system    | the information stored in Watson remains confidential |
-| `*`      | law enforcement administrative officer | import information from existing databases   | I can set up Watson quickly                           |
-
-_{User Stories to be updated according to new project direction}_
+| Priority | As a ... | I want to ...                                           | so that I can ...                                     |
+|----------|----------|---------------------------------------------------------|-------------------------------------------------------|
+| `* * *`  | teacher  | add students and their particulars to the app           | keep track of the student's details                   |
+| `* * *`  | teacher  | edit student's details                                  | update or make changes with new information if needed |
+| `* * *`  | teacher  | search for certain students based on name/class/subject | retrieve student's information quickly                |
+| `* * *`  | teacher  | view the list of all students and their details         | see all information stored clearly                    |
+| `* * *`  | teacher  | grade my students                                       | keep track of their grades for each assessment        |
+| `* * *`  | teacher  | mark students attendance                                | keep track of their daily attendance easily           |
+| `* *`    | teacher  | allow only specific users into the system               | the information stored in Watson remains confidential |
+| `* *`    | teacher  | add remarks to students                                 | remember important details about my students          |
+| `* *`    | teacher  | sort my students by grade                               | see student's performance at a glance                 |
+| `*`      | teacher  | import information from existing databases              | I can set up Watson quickly                           |
 
 ### Use cases
 
 (For all use cases below, the **System** is the `Watson` and the **Actor** is the `user`, unless specified otherwise)
+
+**Use case: View all students**
+
+**Preconditions: User is logged in**
+
+**MSS**
+
+1.  User requests to list all students.
+2.  Watson shows a list of all students.
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+
+    - 2a1. Watson displays an empty list.
+
+      Use case ends.
+
+**Use case: Add a student**
+
+**Preconditions: User is logged in**
+
+**MSS**
+
+1.  User requests to add a student and specifies details of the student.
+2.  Watson adds a student.
+3.  Student is added to the displayed list.
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. Missing required details of the student to be added.
+
+    - 2a1. Watson shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Edit a student**
+
+**Preconditions: User is logged in**
+
+**MSS**
+
+1.  User requests to edit a student and specifies the index and parameters to edit.
+2.  Watson edits a student and overwrites the parameters with the updated information.
+3.  Student is updated in the displayed list.
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. Missing required parameters of the student to be edited.
+
+    - 2a1. Watson shows an error message.
+
+      Use case resumes at step 1.
+
+- 2b. The given index is invalid.
+
+    - 2b1. Watson shows an error message.
+
+      Use case resumes at step 1.
 
 **Use case: Delete a student**
 
@@ -382,17 +476,18 @@ _{User Stories to be updated according to new project direction}_
 
 - 3a. The given index is invalid.
 
-  - 3a1. AddressBook shows an error message.
+  - 3a1. Watson shows an error message.
 
     Use case resumes at step 2.
 
 **Use case: Find a student**
+
 **Preconditions: User is logged in**
 
 **MSS**
 
-1.  User enters a student's partial/full ID or name.
-2.  Watson shows a list of students with names/IDs corresponding to what was entered.
+1.  User enters a student's name and/or class and/or subject.
+2.  Watson shows a list of students with name and/or class and/or subject corresponding to what was entered.
 3.  User selects the student that he/she is looking for.
 4.  Watson displays the full details of the student.
 
@@ -404,7 +499,82 @@ _{User Stories to be updated according to new project direction}_
 
   Use case ends.
 
-_{Use Cases to be updated according to new project direction}
+**Use case: Add remarks to a student**
+
+**Preconditions: User is logged in**
+
+**MSS**
+
+1.  User requests to add a remark to a student.
+2.  Watson adds a remark to the specified student.
+3.  Student is updated in the displayed list.
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. Missing remark.
+
+    - 2a1. Watson shows an error message.
+
+      Use case resumes at step 1.
+
+- 2b. The given index is invalid.
+
+    - 2b1. Watson shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Grade students**
+
+**Preconditions: User is logged in**
+
+**MSS**
+
+1. User requests to add grade of an assessment to students.
+2. Watson shows window for user to enter grade for the specified assessment.
+3. User enters grade for each student.
+4. Students' grades are updated in the displayed list.
+
+    Use case ends.
+
+**Extensions**
+
+- 2a. Invalid command given by user.
+
+    - 2a1. Watson shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Predicting a student's grade**
+
+**Preconditions: User is logged in**
+
+**MSS**
+
+1. User requests to predict a student's grade.
+2. Watson shows prediction of student's grade.
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. Missing/incorrect name/subject/difficulty entered by user.
+
+    - 2a1. Watson shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Sorting students by grades**
+
+**Preconditions: User is logged in**
+
+**MSS**
+
+1. User requests to sort students by grade in ascending/descending order.
+2. Watson shows list of students sorted by grades in ascending/descending order.
+
+   Use case ends.
 
 ### Non-Functional Requirements
 
@@ -412,8 +582,9 @@ _{Use Cases to be updated according to new project direction}
 2. Should be able to hold up to 1000 students without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Non-authenticated users should not be able to access the system.
-
-_{More to be added}_
+5. The data should be saved everytime a command alters the data. 
+6. Should work without an internet connection.
+7. The User Guide and Developer Guide should be PDF-friendly.
 
 ### Glossary
 
