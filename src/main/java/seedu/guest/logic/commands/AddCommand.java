@@ -38,9 +38,9 @@ public class AddCommand extends Command {
             + PREFIX_NUMBER_OF_GUESTS + "1 "
             + PREFIX_REQUEST + "Apply for room service";
 
-    public static final String MESSAGE_SUCCESS = "New guest added: %1$s";
-    public static final String MESSAGE_DUPLICATE_GUEST = "This guest already exists in the guest book";
-    public static final String MESSAGE_ROOM_OCCUPIED = "Each guest is required to have a unique room";
+    public static final String MESSAGE_SUCCESS = "New guest added: %1$s.";
+    public static final String MESSAGE_DUPLICATE_GUEST = "This guest already exists in the guest book.";
+    public static final String MESSAGE_ROOM_OCCUPIED = "Each guest is required to have a unique room.";
 
     private final Guest toAdd;
 
