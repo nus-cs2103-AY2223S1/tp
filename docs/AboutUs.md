@@ -14,29 +14,29 @@ You can reach us at the email `e0773695@u.nus.edu`
 <img src="images/team-photos/piyotato.png" width="200px">
 
 [[github](https://github.com/Piyotato)]
-[[portfolio](team-photos/piyotato.md)]
+[[portfolio](team/piyotato.md)]
 
 * Role: Developer
 * Responsibilities: Code Quality, Testing, Design expert
 * In Charge of: `EditStudentCommand`, `EditStudentCommandParser`, `IndexCommandParser`, `MultiStateAttribute`
 
-### Silas Yeo
+### Silas Yeo Shuen Yu
 
 <img src="images/team-photos/comicalromance.png" width="200px">
 
 [[github](http://github.com/comicalromance)]
-[[portfolio](team-photos/comicalromance.md)]
+[[portfolio](team/comicalromance.md)]
 
 * Role: Developer
 * Responsibilities: JavaFX integration, Scheduling and Tracking
 * In Charge of: `Import`, `Mark`, `Module`
 
-### Po Hsien
+### Li, Po-Hsien
 
 <img src="images/team-photos/lpohsien.png" width="200px">
 
 [[github](http://github.com/lpohsien)]
-[[portfolio](team-photos/lpohsien.md)]
+[[portfolio](team/lpohsien.md)]
 
 * Role: Developer
 * Responsibilities: Code Quality, Testing
@@ -47,7 +47,7 @@ You can reach us at the email `e0773695@u.nus.edu`
 <img src="images/team-photos/dr-arrgghh.png" width="200px">
 
 [[github](http://github.com/dr-arrgghh)]
-[[portfolio](team-photos/dr-arrgghh.md)]
+[[portfolio](team/dr-arrgghh.md)]
 
 * Role: Developer
 * Responsibilities: Deliverables and deadlines, Scheduling and tracking
@@ -58,7 +58,7 @@ You can reach us at the email `e0773695@u.nus.edu`
 <img src="images/team-photos/highorbit25.png" width="200px">
 
 [[github](http://github.com/highorbit25)]
-[[portfolio](team-photos/highorbit25.md)]
+[[portfolio](team/highorbit25.md)]
 
 * Role: Developer
 * Responsibilities: Integration, Code Quality
