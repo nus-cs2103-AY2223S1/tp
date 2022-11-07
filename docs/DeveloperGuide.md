@@ -552,19 +552,23 @@ Use case ends.
 **Extensions**
 
 1a. The given input is missing a required argument
-1a1. Condonery shows an error message with an example of correct input with all the required arguments
+
+- 1a1. Condonery shows an error message with an example of correct input with all the required arguments
 Use case resumes at step 1.
 
 1b. The given input is missing a required prefix
-1b1. Condonery shows an error message with an example of correct input with all the required arguments
+
+- 1b1. Condonery shows an error message with an example of correct input with all the required arguments
 Use case resumes at step 1.
 
 1c. The given Property Name already exists in the Property Directory
-1c1. Condonery shows an error message stating that the property already exists in the Property Directory.
+
+- 1c1. Condonery shows an error message stating that the property already exists in the Property Directory.
 Use case resumes at step 1.
 
 1d. The given Property Price parameter exceeds the MAX_INT
-1d1. Condonery shows an error message stating that the price is invalid.
+
+- 1d1. Condonery shows an error message stating that the price is invalid.
 Use case resumes at step 1.
 
 
@@ -582,15 +586,18 @@ Use case ends.
 **Extensions**
 
 3a. The input did not specify a index
-3a1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+
+- 3a1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 Use case resumes at step 2.
 
 3b. The input's specified index does not exist in the Property Directory
-3b1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
-Use case resumes at step 2.
+
+- 3b1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+    Use case resumes at step 2.
 
 3c. The input's specified index is in the wrong format.
-3c1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+
+- 3c1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 Use case resumes at step 2.
 
 #### Use Case 4: Editing a Property
@@ -611,27 +618,27 @@ Use Case ends.
 
 3a. The given input is missing a required parameter
 
-3a1. Condonery shows an error message with an example of correct input with all the required arguments
+- 3a1. Condonery shows an error message with an example of correct input with all the required arguments
 Use case resumes at step 3.
 
 3b. The given input is missing a required prefix
 
-3b1. Condonery shows an error message with an example of correct input with all the required arguments
+- 3b1. Condonery shows an error message with an example of correct input with all the required arguments
 Use case resumes at step 3.
 
 3c. The input did not specify a index
 
-3c1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+- 3c1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 Use case resumes at step 3.
 
 3d. The input's specified index does not exist in the Property Directory
 
-3d1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+- 3d1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 Use case resumes at step 3.
 
 3e. The input's specified index is in the wrong format.
 
-3e1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+- 3e1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 Use case resumes at step 3.
 
 #### Use Case 5: Filtering a property by Property Type
@@ -647,7 +654,7 @@ Use case ends
 
 1a. Specified type is not one of `HDB`, `CONDO`, or `LANDED`
 
-1a1. Condonery shows an error message stating that only `HDB`, `CONDO`, or `LANDED` values are accepted.
+- 1a1. Condonery shows an error message stating that only `HDB`, `CONDO`, or `LANDED` values are accepted.
 Use case resumes at step 1.
 
 #### Use Case 6: Filtering a property by Property Status
@@ -663,7 +670,7 @@ Use case ends
 
 1a. Specified type is not one of `AVAILABLE`, `PENDING`, or `SOLD`
 
-1a1. Condonery shows an error message stating that only `AVAILABLE`, `PENDING`, or `SOLD` values are accepted.
+- 1a1. Condonery shows an error message stating that only `AVAILABLE`, `PENDING`, or `SOLD` values are accepted.
 Use case resumes at step 1.
 
 #### Use Case 7: Linking an Interested Client to a Property
@@ -677,11 +684,11 @@ Use case resumes at step 1.
 
 1a. Specified client name does not exist in the Client Directory
 
-1a1. Condonery shows an error message
+- 1a1. Condonery shows an error message
 
 1b. Specified index does not exist in the Property Directory
 
-1b1. Condonery shows an error message stating that the property index is invalid
+- 1b1. Condonery shows an error message stating that the property index is invalid
 
 #### Use Case 8: Finding a Property by name
 
@@ -719,11 +726,11 @@ Use case ends.
 
 1a. Specified index does not exist in the Property Directory
 
-1a1. Condonery shows an error message stating that the property index is invalid
+- 1a1. Condonery shows an error message stating that the property index is invalid
 
 1b. The input did not specify a index
 
-1b1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
+- 1b1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 
 #### Use Case 12: Filtering properties within a price range
 
@@ -736,11 +743,11 @@ Use case ends.
 
 1a. Specified upper price range is lower than the lower price range
 
-1a1. Condonery shows an error message stating that an invalid price range was given
+- 1a1. Condonery shows an error message stating that an invalid price range was given
 
 1b. Negative numbers were given
 
-1b1. Condonery shows an error message stating that an invalid price range was given
+- 1b1. Condonery shows an error message stating that an invalid price range was given
 
 
 ### Non-Functional Requirements
