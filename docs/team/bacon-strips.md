@@ -6,7 +6,7 @@ bucket list, travel dates, locations, and itineraries, all within the same app!
 
 ## Contributions
 Given below are my contributions to the project:
-- **New feature:** Added the ability to sort trips in Travelr.
+- **New feature:** Added the `sort` command to sort trips in Travelr.
   - **What it does:** Allows the user to sort the trips within Travelr based off of a given factor. 
     The finished and unfinished trips are sorted separately.
   - **Justification:** This will help the user better organise the trips by sorting them in an orderly fashion.
@@ -23,8 +23,9 @@ Given below are my contributions to the project:
 - **Enhancements**
   - Created Event model for use in project
   - Added a class that stores various Comparators for trips
-  - Modified the AddCommand to automatically sort the trips by completion,
-    with unfinished trips above the finished trips
+  - Modified `add` command to automatically sort the trips by completion with unfinished trips above the finished trips
+  - Modified `mark` command to automatically sort the trips by completion with unfinished trips above the finished trips
+  - Modified `unmark` command to automatically sort thr trips by completion with unfinished trips above the finished trips
   - Modified the models to allow sorting of elements in their ObservableList
   - Modified the UI to highlight the event count
 - **Code contributed:** https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=bacon-strips&breakdown=true
