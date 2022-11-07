@@ -39,6 +39,7 @@ title: Developer Guide
     * [File management](#file-management)
     * [Venue management](#venue-management)
     * [Quality-of-life](#quality-of-life)
+* [**Appendix: Effort**](#appendix-effort)
 
 ---
 
@@ -255,7 +256,7 @@ Here is a list of the details discussed:
 
 ---
 
-### Resident class
+### **Resident class**
 
 `RC4HDB` seeks to serve as a housing management database, and as such, one of the first tasks at hand was to modify the
 existing `AddressBook` application to one that makes use of the `Resident` class, which contains much more useful information as compared to the current fields that are supported by `Person`. `Person` contained the fields `Name`,
@@ -271,7 +272,7 @@ Refactoring of classes to make use of `Resident` related fields and information 
 
 ---
 
-### Displaying resident data
+### **Displaying resident data**
 
 There are two main types of data that is stored and displayed, the `Resident`, and the `Venue`. As such, we have naturally separated the display of the two. The `MainWindow` contains two components, a `ResidentTabView` and a `VenueTabView`, which are responsible for displaying the respective information.
 
@@ -355,7 +356,7 @@ of any sizeable overhead.
 
 ---
 
-### Showonly and Hideonly commands
+### **Showonly and Hideonly commands**
 
 #### Changes to Model component:
 
@@ -460,7 +461,7 @@ that the user did not have to re-specify columns that were already hidden.
 
 ---
 
-### Filter command
+### **Filter command**
 
 The previous AddressBook implementation only had a find command to search for specific residents according to the field.
 Thus, a new command has been implemented to have an additional feature to filter the list of residents using every field
@@ -520,7 +521,7 @@ that contain the attributes instead of having it to be exactly equal.
 
 ---
 
-### Multiple data files
+### **Multiple data files**
 
 #### Motivation
 
@@ -572,7 +573,7 @@ Due to file switching requiring an update to not only `Storage`, but also `Model
 
 ---
 
-### Command history
+### **Command history**
 
 The command history functionality allows the user to access past successfully executed commands by using the `UP_ARROW_KEY` and `DOWN_ARROW_KEY`.
 The functionality consists of four classes, `CommandHistoryParser`, `CommandHistory`, `ForwardHistory` and `BackwardHistory`.
@@ -600,7 +601,7 @@ The activity diagram for the `DOWN_ARROW_KEY` is largely similar to the one abov
 
 ---
 
-### Venue and booking
+### **Venue and booking**
 
 #### Motivation
 
@@ -1743,6 +1744,22 @@ We recommend viewing the [Quality-of-life](UserGuide.md#quality-of-life) section
 
 ## **Appendix: Effort**
 
-[Comment]: <> (To add effort component here)
+The effort required for our application is very high. By building upon AddressBook-Level3, we implemented many new features for RC4HDB, which include:
+
+1) the filter feature, which was refined to support more complex filter operations (OR and AND search)
+2) the find feature, which was refined to allow for substring search
+3) the remove feature, for users to delete residents by field
+4) the column hiding feature, for users to de-clutter their screen
+5) the file management system, for users to work with multiple data files easily
+6) the venue booking feature, for users to manage bookings from residents easily
+7) the command history feature, plus the use of key bindings as quality-of-life features for the users
+
+In particular, the venue booking feature was a substantially big feature added to RC4HDB, which involved many classes and components that mirrored the complexity of our Resident class. It could be argued that the Venue feature is, perhaps, even more complex than the Resident class, as the relationships between Booking instances had to managed properly for the feature to work as intended.  There were no such dependencies between the Resident fields.
+
+The file management and column hiding features were also sizeable features that took a lot of time and many design considerations to implement correctly.
+
+We did not solely focus on adding functional code, as many test cases were written for these features as well.
+
+We are proud to say that we have produced a product with cohesive features that can readily be adopted by our target audience.
 
 ---
