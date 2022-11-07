@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -71,7 +71,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/java/jarvis/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<img src="images/UiClassDiagram.png" width="800"/>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -132,7 +132,7 @@ Similar analogues exist for task and lesson data. The class diagram is similar a
 
 In particular, the following class diagram shows how a lesson is represented in the `Model` component.
 
-<img src="images/LessonClassDiagram.png" width="450" />
+<img src="images/LessonClassDiagram.png" width="600" />
 
 Note that the 3 Lesson subtypes (`Studio`, `MasteryCheck` and `Consult`) inherit from the abstract `Lesson` class. Each lesson consists of smaller components such as `LessonAttendance`, `TimePeriod` etc.
 
@@ -140,11 +140,11 @@ Note that the 3 Lesson subtypes (`Studio`, `MasteryCheck` and `Consult`) inherit
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/java/jarvis/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="650" />
 
 The above diagram only shows the UserPrefs and StudentBook Storage in full. TaskBook Storage is done similarly to StudentBook Storage. The only difference is the name of the classes (`JsonTaskBookStorage` instead of `JsonStudentBookStorage`, `JsonAdaptedTask` instead of `JsonAdaptedStudent` etc.)
 
-<img src="images/LessonStorageClassDiagram.png" width="550" />
+<img src="images/LessonStorageClassDiagram.png" width="500" />
 
 The LessonBook Storage is slightly different from the StudentBook and TaskBook Storages.
 
@@ -678,7 +678,6 @@ Use case ends.
 7.  The product is intended only for a single user (i.e. not a multi-user product)
 8.  The system is not required to handle the actual grading of student's works
 
-*{More to be added}*
 
 ### Glossary
 * **Mastery check**: An assessment where students in pairs must present what they have learnt in the module to their TA, and the TA will assess the students’ understanding of the concepts.
@@ -722,7 +721,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a student while student list is being shown
 
-   1. Prerequisites: List all student using the `lists` command. Multiple students in the list.
+   1. Prerequisites: List all students using the `liststudent` command. Multiple students in the list.
 
    1. Test case: `deletestudent 1`<br>
       Expected: First student is deleted from the list. Details of the deleted student shown in the status message. Timestamp in the status bar is updated.
