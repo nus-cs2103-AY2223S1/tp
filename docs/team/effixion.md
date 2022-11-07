@@ -44,7 +44,10 @@ Given below are my contributions to the project.
 * **Bugs Fixed**:
   * Found a bug relating to the edit module command while testing the application. Created issue [#121](https://github.com/AY2223S1-CS2103T-W12-1/tp/issues/121).
   Fixed this bug after posting the issue onto GitHub. (Pull request [#143](https://github.com/AY2223S1-CS2103T-W12-1/tp/pull/143))
-  * 
+  * Fixed documentation errors. (Pull requests [#270](https://github.com/AY2223S1-CS2103T-W12-1/tp/pull/270), 
+  [#272](https://github.com/AY2223S1-CS2103T-W12-1/tp/pull/272))
+  * Fixed `Tag` and `AssignmentDetails` to accept non-alphanumerics. (Pull requests [#249](https://github.com/AY2223S1-CS2103T-W12-1/tp/pull/249), 
+  [#255](https://github.com/AY2223S1-CS2103T-W12-1/tp/pull/255))
 
 * **Code contributed**:
   [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=effixion&breakdown=true)
@@ -53,7 +56,7 @@ Given below are my contributions to the project.
   * Helped to approve and merge Pull Requests by my team mates.
   * Did some light debugging and to create the issues on GitHub.
   * Made sure our team adheres to deadlines.
-  * Managed the release of v1.3 of SoCompiler.
+  * Managed the release of `v1.3` of SoCompiler.
 
 * **Enhancements to existing features**:
   * Users can now add a `Module` to our application to keep track of details related to their modules that they are currently taking.
@@ -61,7 +64,7 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-      * Did the v1.3 iteration of the UG. (Pull request [#122](https://github.com/AY2223S1-CS2103T-W12-1/tp/pull/122))
+      * Did the `v1.3` iteration of the UG. (Pull request [#122](https://github.com/AY2223S1-CS2103T-W12-1/tp/pull/122))
     * Developer Guide:
         * Did the `Module` Class Section in the DG.
         * Updated the `Model` Component in the DG.
