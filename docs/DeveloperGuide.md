@@ -577,6 +577,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 ### Glossary
+
 | Terms              | Meaning                                                                                             |
 |--------------------|-----------------------------------------------------------------------------------------------------|
 | **Mainstream OS**  | Windows, Linux, Unix, OS-X                                                                          |
