@@ -253,6 +253,8 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 Given below is a quick overview of main components and how they interact with each other.
 
+<div style="page-break-after: always;"></div>
+
 **Main components of the architecture**
 
 **`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
@@ -279,6 +281,8 @@ Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+
+<div style="page-break-after: always;"></div>
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -357,6 +361,8 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
+<div style="page-break-after: always;"></div>
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects. Similarly, there is a `CurrentModule`, `PlannedModule` and `PreviousModule` lists and each unique instance has its own object. <br>
 
 ![Better Model Class Diagram](images/BetterModelClassDiagram.png)
@@ -412,6 +418,8 @@ All `Person` have a `Name`, `Email`, `Address` and `Phone` and a set of `Tag`, `
 `User` has a `Name`, `Email`, `Address` and `Phone` and a set of `CurrentModule`, `PreviousModule`, `PlannedModule`, and `Lesson`.
 `User` can have a `Github` URL to their profile added, and as many `Modules` and `Lessons` as desired.
 
+<div style="page-break-after: always;"></div>
+
 #### Design Considerations
 
 The `User` class is implemented as an abstract class with 2 inheritors, `EmptyUser` and `ExistingUser`. This is so that `User`
@@ -463,6 +471,8 @@ Given below is a sequence diagram to illustrate how the module lists are updated
 
 ![Module Command Sequence Diagram](images/ModuleCommandSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 Given below is an activity diagram to illustrate the behaviour of editing Modules within `Logic`.
 
 ![Module Activity Diagram](images/ModuleActivityDiagram.png)
@@ -484,7 +494,7 @@ modules. The program then finds the difference between the user's lists and the 
 
 #### Implementation Flow
 
-Given below is an activity diagram to illustrate the behaviour of checking Modules left within `Logic`.
+Below is an activity diagram to illustrate the behaviour of checking Modules left within `Logic`.
 
 ![Modules Left Activity Diagram](images/ModulesLeftActivityDiagram.png)
 
@@ -561,6 +571,8 @@ Given below is an activity diagram to illustrate the behaviour of adding a Lesso
 
 ![LessonActivityDiagram](images/LessonActivityDiagram-0.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Design Considerations
 **Aspect 1: How to implement the `Lesson` Class:**
 
@@ -603,6 +615,7 @@ that has to be multiplied by the number of contacts in ConnectNUS.
 
 * **Decision:** We chose Alternative 1 as speed is important as mentioned in Aspect 1.
 
+<div style="page-break-after: always;"></div>
 
 **Aspect 3: Data Structure to store all `Lesson`s:**
 
@@ -634,7 +647,7 @@ The command has the prefix `timetable` and has the parameters
 
 When the user executes the timetable command, a window will pop up which will display the timetable of the user or the specified index in the user's contacts, similar to the window shown below.
 
-![Timetable window](images/TimetableWindow.png)
+<img src="images/TimetableWindow.png" width="200">
 
 The timetable will display the lists of all lessons added to the user or user's contacts of the specified index in
 chronological order.
@@ -649,6 +662,8 @@ Given below are some examples of a user command to show a `Timetable`.
 3. Example 3 : Command to show the timetable of the user's tenth contact,
 - `timetable 10`
 
+<div style="page-break-after: always;"></div>
+
 #### Implementation flow
 
 Given below is a sequence diagram to illustrate how the timetable is displayed after the user attempts to show his/her
@@ -661,6 +676,8 @@ that is being shown in the Timetable Window.
 
 Before `UI` shows the `TimetableWindow` to the user, the `timetable:HashSet` is obtained from `Logic` and `Model` and then
 sorted and converted to `String` which is displayed in the `TimetableWindow` which is now made visible.
+
+<div style="page-break-after: always;"></div>
 
 #### Design Considerations
 
@@ -709,6 +726,8 @@ Step 1. The user launches the application for the first time. The `VersionedAddr
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
+<div style="page-break-after: always;"></div>
+
 Step 2. The user executes `user n/Silas p/98765432 e/silastay@gmail.com a/Kent Ridge Drive g/SilasTSL curr/CS2100 prev/CS1101S plan/CS2109` command to add a new User to the address book. The "Add User" command calls `Model#commitAddressBook()`, causing the modified state of the address book after the "Add User" command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
@@ -748,7 +767,9 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 4. The user now decides that the undo was a mistake, and decides to redo that action by executing the `redo` command. The `redo` command will call `Model#redoAddressBook()`, which will shift the `currentStatePointer` once to the right, pointing it to the forward address book state, and restores the address book to that state.
+<div style="page-break-after: always;"></div>
+
+Step 6. The user now decides that the undo was a mistake, and decides to redo that action by executing the `redo` command. The `redo` command will call `Model#redoAddressBook()`, which will shift the `currentStatePointer` once to the right, pointing it to the forward address book state, and restores the address book to that state.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -769,6 +790,8 @@ Here's what a typical Object Diagram may look like for an Address Book State:
 ![UndoRedoObjectDiagram](images/UndoRedoObjectDiagram.png)
 - In this diagram, `ab0` is the initial AddressBookstate that contains two contact, `bob0` and `alice0`.
 - After the user makes a change to the contact `bob0`, we have to save a new `AddressBook` into our `VersionedAddressBook`, with a new `bob1` Object that embodies the changed `bob0` Object, instead of just making the change to the `bob0` Object directly.
+
+<div style="page-break-after: always;"></div>
 
 #### New Classes/Methods
 
@@ -796,6 +819,8 @@ Given below are the new Methods implemented:
   * `Model#undoAddressBook()` - Changes the current Model to read from the previous `AddressBook` state
   * `Model#redoAddressBook()` - Changes the current Model to read from the next `AddressBook` state
   * `Model#commitAddressBook()` - Saves current `AddressBook` state into `addressBookStateList`
+
+<div style="page-break-after: always;"></div>
 
 #### Design Considerations
 
@@ -832,6 +857,8 @@ that is shown in the `MainWindow` class as a `PersonListPanel`. When a `filterTa
 `filterPrevModCommand` or `filterPlanModCommand` is given by the user, `Model`
 updates it's `filteredPersons` attribute to only contain `Person`s with any of the `Tag`s specified by the user.
 The `PersonListPanel` in the `MainWindow` UI is then updated accordingly.
+
+<div style="page-break-after: always;"></div>
 
 #### Design Considerations
 
@@ -957,6 +984,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Steps 3a1-3a2 are repeated until the data entered are correct.
       Use case resumes at step 4.
 
+<div style="page-break-after: always;"></div>
+
 **System: ConnectNUS**
 
 **Use case: UC3 - Edit user profile**
@@ -1010,6 +1039,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Steps 1a1-1a2 are repeated until the data entered are correct.
       Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
+
 **System: ConnectNUS**
 
 **Use case: UC5 - Save a new contact**
@@ -1062,6 +1093,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Steps 3a1-3a2 are repeated until the data entered are correct.
       Use case resumes at step 4.
 
+<div style="page-break-after: always;"></div>
+
 **System: ConnectNUS**
 
 **Use case: UC7 - Delete a contact**
@@ -1098,6 +1131,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
     Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 **System: ConnectNUS**
 
@@ -1143,6 +1178,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * User enters a new command in the correct format.
     Step 1a1 is repeated until the data entered are correct.
     Use case resumes at step 2.
+
+<div style="page-break-after: always;"></div>
 
 **System: ConnectNUS**
 
@@ -1202,6 +1239,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * Steps 3a1-3a2 are repeated until the data entered are correct.
     Use case resumes at step 4.
 
+<div style="page-break-after: always;"></div>
+
 **System: ConnectNUS**
 
 **Use case: UC13 - Add lesson to user**
@@ -1255,6 +1294,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Steps 1b1 and 1b2 are repeated until the lesson entered does not have an invalid timing.
     Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
 
 **System: ConnectNUS**
 
@@ -1309,6 +1349,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Steps 1b1 and 1b2 are repeated until the lesson entered exists.
     Use case resumes at step 2.
 
+<div style="page-break-after: always;"></div>
 
 **System: ConnectNUS**
 
@@ -1359,6 +1400,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. ConnectNUS informs user of missing data.
     * Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 **System: ConnectNUS**
 
@@ -1405,6 +1447,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. No current modules for user and all persons in the contact list.
   * Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 **System: ConnectNUS**
 
@@ -1453,6 +1496,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty.
   Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 **System: ConnectNUS**
 
@@ -1501,6 +1545,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty.
   Use case ends.
 
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
