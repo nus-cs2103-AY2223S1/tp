@@ -9,12 +9,10 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import jeryl.fyp.commons.core.GuiSettings;
 import jeryl.fyp.commons.core.LogsCenter;
 import jeryl.fyp.commons.core.index.Index;
 import jeryl.fyp.model.student.Deadline;
-import jeryl.fyp.model.student.DeadlineList;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
 
@@ -27,11 +25,6 @@ public class ModelManager implements Model {
     private final FypManager fypManager;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
-    private final SortedList<Student> sortedByProjectNameUncompletedStudents;
-    private final SortedList<Student> sortedByProjectStatusUncompletedStudents;
-    private final SortedList<Student> sortedCompletedStudents;
-    private final FilteredList<Student> completedStudents;
-    private final FilteredList<Student> uncompletedStudents;
 
     /**
      * Initializes a ModelManager with the given fypManager and userPrefs.
@@ -44,14 +37,6 @@ public class ModelManager implements Model {
         this.fypManager = new FypManager(fypManager);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.fypManager.getStudentList());
-        completedStudents = new FilteredList<>(this.fypManager.getCompletedStudentList());
-        uncompletedStudents = new FilteredList<>(this.fypManager.getUncompletedStudentList());
-        sortedByProjectNameUncompletedStudents =
-                new SortedList<>(this.fypManager.getSortedByProjectNameUncompletedStudentList());
-        sortedByProjectStatusUncompletedStudents =
-                new SortedList<>(this.fypManager.getSortedByProjectStatusUncompletedStudentList());
-        sortedCompletedStudents =
-                new SortedList<>(this.fypManager.getSortedCompletedStudentList());
     }
 
     public ModelManager() {
@@ -188,7 +173,8 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Student> getUncompletedStudentList() {
-        return uncompletedStudents;
+        return new FilteredList<>(filteredStudents,
+                student -> !student.getProjectStatus().projectStatus.equals("DONE"));
     }
 
     /**
@@ -197,7 +183,8 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Student> getCompletedStudentList() {
-        return completedStudents;
+        return new FilteredList<>(filteredStudents,
+                student -> student.getProjectStatus().projectStatus.equals("DONE"));
     }
 
     /**
@@ -207,7 +194,7 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Student> getSortedByProjectNameUncompletedStudentList() {
-        return sortedByProjectNameUncompletedStudents;
+        return fypManager.getSortedByProjectNameUncompletedStudentList();
     }
 
     /**
@@ -217,7 +204,7 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Student> getSortedByProjectStatusUncompletedStudentList() {
-        return sortedByProjectStatusUncompletedStudents;
+        return fypManager.getSortedByProjectStatusUncompletedStudentList();
     }
 
     /**
@@ -227,19 +214,14 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Student> getSortedCompletedStudentList() {
-        return sortedCompletedStudents;
+        return fypManager.getSortedCompletedStudentList();
     }
     @Override
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
-        completedStudents.setPredicate(predicate);
-        uncompletedStudents.setPredicate(predicate);
     }
-    @Override
-    public DeadlineList listDeadlineUnderStudent(Student student) {
-        return fypManager.getDeadlineList(student);
-    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object

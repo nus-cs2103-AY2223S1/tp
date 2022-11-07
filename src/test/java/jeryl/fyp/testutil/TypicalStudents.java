@@ -40,10 +40,11 @@ public class TypicalStudents {
     public static final Student DANIEL = new StudentBuilder().withStudentName("Daniel Meier")
             .withStudentId("A1652533D").withEmail("cornelia@example.com")
             .withProjectName("Mathematics in Games")
+            .withProjectStatus("DONE")
             .withDeadlines(new String[]{"game theory reading, deadline: 2022-10-06 23:59"})
             .withTags("friends").build();
     public static final Student ELLE = new StudentBuilder().withStudentName("Elle Meyer").withStudentId("A1482224E")
-            .withEmail("werner@example.com").withProjectName("AB3 in a Nutshell")
+            .withEmail("werner@example.com").withProjectName("AB3 in a Nutshell").withProjectStatus("DONE")
             .withDeadlines(new String[]{"Use cases, deadline: 2022-10-26 05:21"}).build();
     public static final Student FIONA = new StudentBuilder().withStudentName("Fiona Kunz").withStudentId("A1482427F")
             .withEmail("lydia@example.com").withProjectName("Hello World in 42 Languages")

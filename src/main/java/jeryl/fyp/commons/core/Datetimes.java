@@ -6,14 +6,14 @@ package jeryl.fyp.commons.core;
 public class Datetimes {
 
     public static final String[] ACCEPTABLE_DATETIME_FORMATS = {
-        "MMM dd yyyy HHmm", "MMM dd yyyy HH:mm",
-        "dd/MM/yyyy HHmm", "dd/MM/yyyy HH:mm",
-        "dd-MM-yyyy HHmm", "dd-MM-yyyy HH:mm",
-        "yyyy/MM/dd HHmm", "yyyy/MM/dd HH:mm",
-        "yyyy/MM/dd'T'HHmm", "yyyy/MM/dd'T'HH:mm",
-        "yyyy-MM-dd HHmm", "yyyy-MM-dd HH:mm",
-        "dd MMM yyyy HHmm", "dd MMM yyyy HH:mm",
-        "MMM dd, yyyy HHmm", "MMM dd, yyyy HH:mm"
+        "MMM dd uuuu HHmm", "MMM dd uuuu HH:mm",
+        "dd/MM/uuuu HHmm", "dd/MM/uuuu HH:mm",
+        "dd-MM-uuuu HHmm", "dd-MM-uuuu HH:mm",
+        "uuuu/MM/dd HHmm", "uuuu/MM/dd HH:mm",
+        "uuuu/MM/dd'T'HHmm", "uuuu/MM/dd'T'HH:mm",
+        "uuuu-MM-dd HHmm", "uuuu-MM-dd HH:mm",
+        "dd MMM uuuu HHmm", "dd MMM uuuu HH:mm",
+        "MMM dd, uuuu HHmm", "MMM dd, uuuu HH:mm"
     };
 
 }

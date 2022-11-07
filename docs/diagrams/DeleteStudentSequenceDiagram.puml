@@ -48,7 +48,22 @@ deactivate FypManagerParser
 LogicManager -> DeleteStudentCommand : execute()
 activate DeleteStudentCommand
 
-DeleteStudentCommand -> Model : deleteStudent(A0123456X)
+DeleteStudentCommand -> Model :getIndexByStudentId(studentId)
+activate Model
+
+Model --> DeleteStudentCommand : i
+deactivate Model
+
+alt student does not exist
+
+DeleteStudentCommand -> Model : i >= studentList.size()
+activate Model
+
+Model --> DeleteStudentCommand : CommandException
+deactivate Model
+
+else else
+DeleteStudentCommand -> Model : deleteStudent(i)
 activate Model
 
 Model --> DeleteStudentCommand
@@ -60,6 +75,7 @@ activate CommandResult
 
 CommandResult --> DeleteStudentCommand
 deactivate CommandResult
+end
 
 DeleteStudentCommand --> LogicManager : result
 deactivate DeleteStudentCommand

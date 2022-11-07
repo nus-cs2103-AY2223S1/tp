@@ -1,6 +1,7 @@
 package jeryl.fyp.model.student;
 
 import static java.util.Objects.requireNonNull;
+import static jeryl.fyp.commons.core.Messages.MESSAGE_STUDENT_NOT_FOUND;
 import static jeryl.fyp.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Comparator;
@@ -27,8 +28,6 @@ import jeryl.fyp.model.student.exceptions.StudentNotFoundException;
  */
 public class UniqueStudentList implements Iterable<Student> {
 
-    private static final String MESSAGE_STUDENT_NOT_EXIST = "This student specified is not in the student list "
-            + "currently, Please retry with another student ID. ";
     private final ObservableList<Student> internalList = FXCollections.observableArrayList();
     private final ObservableList<Student> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -166,7 +165,7 @@ public class UniqueStudentList implements Iterable<Student> {
             }
         }
         if (student == null) {
-            throw new StudentNotFoundException(MESSAGE_STUDENT_NOT_EXIST);
+            throw new StudentNotFoundException(MESSAGE_STUDENT_NOT_FOUND);
         } else {
             return student;
         }

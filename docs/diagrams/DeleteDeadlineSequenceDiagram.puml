@@ -1,0 +1,94 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FypManagerParser" as FypManagerParser LOGIC_COLOR
+participant ":DeleteDeadlineCommandParser" as DeleteDeadlineCommandParser LOGIC_COLOR
+participant "d:DeleteDeadlineCommand" as DeleteDeadlineCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("delete -d i/A0123456G r/1")
+activate LogicManager
+
+LogicManager -> FypManagerParser : parseCommand("delete -d i/A0123456G r/1")
+activate FypManagerParser
+
+create DeleteDeadlineCommandParser
+FypManagerParser -> DeleteDeadlineCommandParser
+activate DeleteDeadlineCommandParser
+
+DeleteDeadlineCommandParser --> FypManagerParser
+deactivate DeleteDeadlineCommandParser
+
+FypManagerParser -> DeleteDeadlineCommandParser : parse("i/A0123456G r/1")
+activate DeleteDeadlineCommandParser
+
+create DeleteDeadlineCommand
+DeleteDeadlineCommandParser -> DeleteDeadlineCommand
+activate DeleteDeadlineCommand
+
+DeleteDeadlineCommand --> DeleteDeadlineCommandParser : d
+deactivate DeleteDeadlineCommand
+
+DeleteDeadlineCommandParser --> FypManagerParser : d
+deactivate DeleteDeadlineCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteDeadlineCommandParser -[hidden]-> FypManagerParser
+destroy DeleteDeadlineCommandParser
+
+FypManagerParser --> LogicManager : d
+deactivate FypManagerParser
+
+LogicManager -> DeleteDeadlineCommand : execute()
+activate DeleteDeadlineCommand
+
+DeleteDeadlineCommand -> Model :getStudentByStudentId(studentId)
+activate Model
+
+Model --> DeleteDeadlineCommand : s
+deactivate Model
+
+alt student does not exist
+
+DeleteDeadlineCommand -> Model : s == Null
+activate Model
+
+Model --> DeleteDeadlineCommand : CommandException
+deactivate Model
+
+alt rank < 1 or rank geater than StudentDeadlineList
+
+DeleteDeadlineCommand -> Model : (r < 1) || r > student.getDeadlineList().size())
+activate Model
+
+Model --> DeleteDeadlineCommand : CommandException
+deactivate Model
+
+else else
+DeleteDeadlineCommand -> Model : deleteDeadline(s, deadlineToDelete)
+activate Model
+
+Model --> DeleteDeadlineCommand
+deactivate Model
+
+create CommandResult
+DeleteDeadlineCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteDeadlineCommand
+deactivate CommandResult
+end
+end
+
+DeleteDeadlineCommand --> LogicManager : result
+deactivate DeleteDeadlineCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

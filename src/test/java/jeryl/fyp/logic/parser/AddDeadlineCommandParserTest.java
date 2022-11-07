@@ -1,6 +1,7 @@
 package jeryl.fyp.logic.parser;
 
 import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static jeryl.fyp.commons.core.Messages.MESSAGE_INVALID_DATETIME;
 import static jeryl.fyp.logic.commands.CommandTestUtil.DEADLINE_DATETIME_DESC_IP;
 import static jeryl.fyp.logic.commands.CommandTestUtil.DEADLINE_DATETIME_DESC_TP;
 import static jeryl.fyp.logic.commands.CommandTestUtil.DEADLINE_NAME_DESC_IP;
@@ -19,7 +20,6 @@ import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_DEADLINE_NAME_TP;
 import static jeryl.fyp.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BOB;
 import static jeryl.fyp.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static jeryl.fyp.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static jeryl.fyp.logic.parser.ParserUtil.MESSAGE_INVALID_DATETIME;
 
 import org.junit.jupiter.api.Test;
 
