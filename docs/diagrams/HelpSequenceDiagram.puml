@@ -1,0 +1,65 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FypManagerParser" as FypManagerParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "h:EditCommand" as EditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("help add -s")
+activate LogicManager
+
+LogicManager -> FypManagerParser : parseCommand("help add -s")
+
+activate FypManagerParser
+
+create EditCommandParser
+FypManagerParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> FypManagerParser
+deactivate EditCommandParser
+
+FypManagerParser -> EditCommandParser : parse("add -s")
+activate EditCommandParser
+
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
+
+EditCommand --> EditCommandParser : h
+deactivate EditCommand
+
+EditCommandParser --> FypManagerParser : h
+deactivate EditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> FypManagerParser
+destroy EditCommandParser
+
+FypManagerParser --> LogicManager : a
+deactivate FypManagerParser
+
+LogicManager -> EditCommand : execute()
+activate EditCommand
+
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditCommand
+deactivate CommandResult
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -1,0 +1,82 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FypManagerParser" as FypManagerParser LOGIC_COLOR
+participant ":AddDeadlineCommandParser" as AddDeadlineCommandParser LOGIC_COLOR
+participant "a:AddDeadlineCommand" as AddDeadlineCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add -d i/A0123456G n/Random Task d/23-10-2022 23:59")
+activate LogicManager
+
+LogicManager -> FypManagerParser : parseCommand("add -d i/A0123456G n/Random Task d/23-10-2022 23:59")
+
+activate FypManagerParser
+
+create AddDeadlineCommandParser
+FypManagerParser -> AddDeadlineCommandParser
+activate AddDeadlineCommandParser
+
+AddDeadlineCommandParser --> FypManagerParser
+deactivate AddDeadlineCommandParser
+
+FypManagerParser -> AddDeadlineCommandParser : parse("i/A0123456G n/Random Task d/23-10-2022 23:59")
+activate AddDeadlineCommandParser
+
+create AddDeadlineCommand
+AddDeadlineCommandParser -> AddDeadlineCommand
+activate AddDeadlineCommand
+
+AddDeadlineCommand --> AddDeadlineCommandParser : a
+deactivate AddDeadlineCommand
+
+AddDeadlineCommandParser --> FypManagerParser : a
+deactivate AddDeadlineCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddDeadlineCommandParser -[hidden]-> FypManagerParser
+destroy AddDeadlineCommandParser
+
+FypManagerParser --> LogicManager : a
+deactivate FypManagerParser
+
+LogicManager -> AddDeadlineCommand : execute()
+activate AddDeadlineCommand
+
+AddDeadlineCommand -> Model : hasDeadline(student, toAdd)
+activate Model
+
+alt is a duplicate deadline
+Model --> AddDeadlineCommand : CommandException
+deactivate Model
+
+else else
+Model --> AddDeadlineCommand : hasDeadline
+deactivate Model
+
+AddDeadlineCommand -> Model : hasDeadline(student, toAdd)
+activate Model
+
+Model --> AddDeadlineCommand
+deactivate Model
+
+create CommandResult
+AddDeadlineCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddDeadlineCommand
+deactivate CommandResult
+end
+
+AddDeadlineCommand --> LogicManager : result
+deactivate AddDeadlineCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
