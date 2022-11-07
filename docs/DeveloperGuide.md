@@ -412,7 +412,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `   | fast-typing user   | type a command to switch between different tabs | do not need to use my mouse                                                              |
 | `* *`    | fast-typing user   | type a command to exit Modquik                  | do not need to use my mouse                                                              |
 
-### 7.3 Use cases
+### 7.3 Use Cases
 
 (For all use cases below, the **System** is the `ModQuik`, the **Actor** is the `user`, and **entries** can be either of type `student`, `tutorial`, `consultation` or `reminder`, unless specified otherwise)
 
@@ -548,11 +548,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
         Use case ends.
 
-* 1b. The reminder does not exist.
+* 1b. The given index is invalid.
 
-    * 1b1. System shows an error message that the reminder does not exist. 
-      
-        Use case ends.
+    * 1b1. System shows an error message that the index of the entry is invalid.
+
+      Use case ends.
 
 **Use case: Unmark a reminder**
 
@@ -571,11 +571,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       
         Use case ends.
 
-* 1b. The reminder does not exist.
+* 1b. The given index is invalid.
 
-    * 1b1. System shows an error message that the reminder does not exist. 
-      
-        Use case ends.
+    * 1b1. System shows an error message that the index of the entry is invalid.
+
+      Use case ends.
 
 **Use case: Sort reminder**
 
@@ -691,7 +691,7 @@ Do the test cases sequentially to ensure correct expectation.
     2. Test case: `add student n/John Doe i/A0000000J ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17`<br>
        Expected:  A new student is added to the student list. A success message containing details of the added student is shown in result display box and the list of students is shown.
 
-    3. Test case: `add student n/Mary i/A0000000B ph/87654321 e/john@example.com tele/john m/missing_module tut/W17 g/A`<br>
+    3. Test case: `add student n/Mary i/A0000000B ph/87654321 e/john@example.com tele/john m/CS2103T tut/W17 g/A`<br>
        Expected:  A new student is added to the student list. A success message containing details of the added student is shown in result display box and the list of students is shown.
 
     4. Test case: `add student n/Mary i/A0000000J ph/12345678 e/mary@example.com tele/mary m/CS2103T tut/W17`<br>
@@ -733,7 +733,7 @@ Do the test cases sequentially to ensure correct expectation.
 1. Finding a student while student tab is being shown.
 
     1. Prerequisites: Switch to student tab using the `switch f/student` command (you may skip this if the main display is already student).
-       Ensure student existing by using `clear f/student` then `add student n/Mary i/A0000000B ph/87654321 e/john@example.com tele/mary m/missing_module tut/W17` 
+       Ensure student existing by using `clear f/student` then `add student n/Mary i/A0000000B ph/87654321 e/john@example.com tele/mary m/CS2103T tut/W17` 
 
     2. Test case: `find n/John`<br>
        Expected: No student is listed. Details of the find command shown in the status message.
@@ -748,13 +748,13 @@ Do the test cases sequentially to ensure correct expectation.
 
     1. Prerequisites: List all students using the `list` command. Multiple students in the list.
 
-    2. Test case: `delete 1`<br>
+    2. Test case: `delete student 1`<br>
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-    3. Test case: `delete 0`<br>
+    3. Test case: `delete student 0`<br>
        Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
 
-    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    4. Other incorrect delete commands to try: `delete student`, `delete student x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 ### 8.3 Tutorial
@@ -979,7 +979,7 @@ Do the test cases sequentially to ensure correct expectation.
     1. Test case: `sort reminder by/deadline`<br>
        Expected: Reminders are first sorted by deadline. If the reminders have the same deadline, it will be sorted by priority. If the reminders have the same priority and deadline, it will be sorted lexicographically.
 
-    1. Other incorrect sort reminder commands to try: `sort`, `sort reminders`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect sort reminder commands to try: `sort`, `sort reminders`, `...`<br>
        Expected: Similar to previous.
 
 ### 8.6 Switch tabs

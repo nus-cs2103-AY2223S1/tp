@@ -147,13 +147,13 @@ A student can have any number of tags (including 0).
 </div>
 
 Examples:
-* `add student n/Betsy Crowe i/A0000000B t/struggling e/betsycrowe@example.com ph/91234567 tele/betsy_crowe m/CS2105 tut/G03 att/3 part/1 g/C t/quiet`
-* `add student n/John Doe i/A0232123X ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17`
+1. `add student n/Betsy Crowe i/A0000000B t/struggling e/betsycrowe@example.com ph/91234567 tele/betsy_crowe m/CS2105 tut/G03 att/3 part/1 g/C t/quiet`
+2. `add student n/John Doe i/A0232123X ph/98765432 e/johnd@example.com tele/johnDoe m/CS2103T tut/W17`
 
 <table>
   <tr>
-    <td>Before executing add student command</td>
-    <td>After executing example command to add John Doe</td>
+    <td>Before (example 2)</td>
+    <td>After (example 2)</td>
   </tr>
   <tr>
     <td><img src="images/Student.png" width=350></td>
@@ -200,13 +200,13 @@ You may want to use this command to:<br>
 * If nothing is given to `PARTICIPATION` even though `part/` is typed into the command box, it will automatically be set to `0`.
 
 Examples:
-* `edit student 1 ph/91234567 e/jameslee@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `jameslee@example.com` respectively.
-* `edit student 2 g/A t/` Edits the grade of the 2nd student to be `A` and clears all existing tags.
+1. `edit student 1 ph/91234567 e/jameslee@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `jameslee@example.com` respectively.
+2. `edit student 2 g/A t/` Edits the grade of the 2nd student to be `A` and clears all existing tags.
 
 <table>
   <tr>
-    <td>Before executing edit student command</td>
-    <td>After executing example command to edit 2nd student</td>
+    <td>Before (example 2)</td>
+    <td>After (example 2)</td>
   </tr>
   <tr>
     <td><img src="images/AddStudent.png" width=350></td>
@@ -237,8 +237,8 @@ e.g. `find n/John` followed by find `find m/CS2103` will not find students match
 It will first display all students matching `John`, then display all students in `CS2103`.
 
 Examples:
-* `find n/John` returns `john` and `John Doe`
-* `find m/CS2103T` returns list of students in CS2103T
+1. `find n/John` returns `john` and `John Doe`
+2. `find m/CS2103T` returns list of students in CS2103T
 
 ![Find Student](images/FindStudent.png)
 
@@ -258,9 +258,9 @@ Format: `delete student INDEX`
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* [`list`] followed by `delete student 2` deletes the 2nd student in the list of people.
-* [`find`] `n/Betsy` followed by `delete student 1` deletes the 1st student in the results of the [`find`] command.
-* [`find`] `m/CS2103T` followed by `delete student 2` deletes the 2nd student in the results of the [`find`] command.
+1. [`list`] followed by `delete student 2` deletes the 2nd student in the list of people.
+2. [`find`] `n/Betsy` followed by `delete student 1` deletes the 1st student in the results of the [`find`] command.
+3. [`find`] `m/CS2103T` followed by `delete student 2` deletes the 2nd student in the results of the [`find`] command.
 
 <a name="extract-emails"></a>
 #### 5.1.6 Extracting student's emails: `extract emails`
@@ -283,7 +283,7 @@ Format: `extract emails`
 </div>
 
 Examples:
-* [`find`] `m/CS2103T` followed by `extract emails` copies all the emails of the students in the results of the [`find`] command.
+1. [`find`] `m/CS2103T` followed by `extract emails` copies all the emails of the students in the results of the [`find`] command.
 
 
 ### 5.2 Tutorial Features
@@ -301,12 +301,12 @@ Format: `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`
 * The system does not allow adding duplicate tutorials - as defined as the tutorial having the same name and same module, ignoring case.
 
 Examples:
-* `add tutorial n/T23 m/CS2103T v/COM1-0205 T/18:00-20:00 D/1`
+1. `add tutorial n/T23 m/CS2103T v/COM1-0205 T/18:00-20:00 D/1`
 
 <table>
   <tr>
-    <td>Before executing add tutorial command</td>
-    <td>After executing example command to add T23</td>
+    <td>Before</td>
+    <td>After</td>
   </tr>
   <tr>
     <td><img src="images/Tutorial.png" width=350></td>
@@ -331,12 +331,12 @@ Format: `edit tutorial INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/DAY]`
 * When editing the timeslot or the day, both fields must be given.
 
 Examples:
-* `edit tutorial 2 v/Zoom T/14:00-16:00 D/5` Edits the venue of the 2nd tutorial to be `Zoom`, sets tutorial time to be `14:00 to 16:00` and sets tutorial day to be `Fri`.
+1. `edit tutorial 2 v/Zoom T/14:00-16:00 D/5` Edits the venue of the 2nd tutorial to be `Zoom`, sets tutorial time to be `14:00 to 16:00` and sets tutorial day to be `Fri`.
 
 <table>
   <tr>
-    <td>Before executing edit tutorial command</td>
-    <td>After executing example command to edit 2nd tutorial</td>
+    <td>Before</td>
+    <td>After</td>
   </tr>
   <tr>
     <td><img src="images/AddTutorial.png" width=350></td>
@@ -356,7 +356,7 @@ Format: `delete tutorial INDEX`
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `delete tutorial 2`
+1. `delete tutorial 2`
 
 ### 5.3 Consultation Features
 
@@ -374,12 +374,12 @@ Format: `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTIO
 * In rare cases, ModQuik will autocorrect invalid dates. See [here](#notes-autocorrect-dates) for more details.
 
 Examples:
-* `add consultation n/Review past year paper m/CS2103T v/COM2-0109 D/2022-12-12 T/16:00-18:00 d/AY2019-2020 Question 3,6,8`
+1. `add consultation n/Review past year paper m/CS2103T v/COM2-0109 D/2022-12-12 T/16:00-18:00 d/AY2019-2020 Question 3,6,8`
 
 <table>
   <tr>
-    <td>Before executing add consultation command</td>
-    <td>After executing example command to add consultation of Review past year paper</td>
+    <td>Before</td>
+    <td>After</td>
   </tr>
   <tr>
     <td><img src="images/Consultation.png" width=350></td>
@@ -405,13 +405,13 @@ Format: `edit consultation INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/D
 * In rare cases, ModQuik will autocorrect invalid dates. See [here](#notes-autocorrect-dates) for more details.
 
 Examples:
-* `edit consultation 2 T/14:00-16:00 D/2023-11-21` Edits the timeslot of the 2nd consultation to be `14:00 to 16:00` and sets consultation date to `2023 Nov 21`.
-* `edit consultation 1 d/Review past year paper; Go through object and class diagrams` Edits the description of the 1st consultation to be `Review past year paper; Go through object and class diagrams`.
+1. `edit consultation 2 T/14:00-16:00 D/2023-11-21` Edits the timeslot of the 2nd consultation to be `14:00 to 16:00` and sets consultation date to `2023 Nov 21`.
+2. `edit consultation 1 d/Review past year paper; Go through object and class diagrams` Edits the description of the 1st consultation to be `Review past year paper; Go through object and class diagrams`.
 
 <table>
   <tr>
-    <td>Before executing edit consultation command</td>
-    <td>After executing example command to edit the venue of the 1st consultation</td>
+    <td>Before</td>
+    <td>After (example 2)</td>
   </tr>
   <tr>
     <td><img src="images/AddConsultation.png" width=350></td>
@@ -431,7 +431,7 @@ Format: `delete consultation INDEX`
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `delete consultation 3`
+1. `delete consultation 3`
 
 ### 5.4 Reminder Features
 
@@ -454,13 +454,13 @@ Format: `add reminder n/NAME T/TIME D/DATE p/PRIORITY d/DESCRIPTION `
 
 
 Examples:
-* `add reminder n/Mark Midterms D/2023-01-01 T/15:00 d/30 papers to mark p/HIGH`
-* `add reminder n/Update Grades T/16:00 D/2023-01-01 d/20 students to update p/MEDIUM`
+1. `add reminder n/Mark Midterms D/2023-01-01 T/15:00 d/30 papers to mark p/HIGH`
+2. `add reminder n/Update Grades T/16:00 D/2023-01-01 d/20 students to update p/MEDIUM`
 
 <table>
   <tr>
-    <td>Before executing add reminder command</td>
-    <td>After executing example command to add reminder to update grades</td>
+    <td>Before</td>
+    <td>After (example 2)</td>
   </tr>
   <tr>
     <td><img src="images/Reminder.png" width=350></td>
@@ -488,13 +488,13 @@ Format: `edit reminder INDEX [n/NAME] [T/TIME] [D/DATE] [p/PRIORITY] [d/DESCRIPT
 
 
 Examples:
-* `edit reminder 1 p/LOW` Edits the priority of the 1st reminder to be `LOW`.
-* `edit reminder 2 T/14:00 D/2023-11-17` Edits the time of the 2nd reminder to be `14:00` and the date to `2023 Nov 17`.
+1. `edit reminder 1 p/LOW` Edits the priority of the 1st reminder to be `LOW`.
+2. `edit reminder 2 T/14:00 D/2023-11-17` Edits the time of the 2nd reminder to be `14:00` and the date to `2023 Nov 17`.
 
 <table>
   <tr>
-    <td>Before executing edit reminder command</td>
-    <td>After executing example command to edit 2nd reminder</td>
+    <td>Before</td>
+    <td>After (example 2)</td>
   </tr>
   <tr>
     <td><img src="images/AddReminder.png" width=350></td>
@@ -514,12 +514,12 @@ Reminders that have been completed have a green sidebar and a tick on the left o
 Format: `mark reminder INDEX`
 
 Examples:
-* `mark reminder 2`
+1. `mark reminder 2`
 
 <table>
   <tr>
-    <td>Before executing mark command</td>
-    <td>After executing command to mark 2nd reminder</td>
+    <td>Before</td>
+    <td>After</td>
   </tr>
   <tr>
     <td><img src="images/EditReminder.png" width=350></td>
@@ -535,7 +535,7 @@ Sets a reminder status as _incomplete_.
 Format: `unmark reminder INDEX`
 
 Examples:
-* `unmark reminder 3`
+1. `unmark reminder 3`
 
 <a name="delete-reminder"></a>
 #### 5.4.5 Deleting a reminder: `delete reminder`
@@ -549,7 +549,7 @@ Format: `delete reminder INDEX`
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `delete reminder 3`
+1. `delete reminder 3`
 
 <a name="sort-reminder"></a>
 #### 5.4.6 Sort reminders: `sort reminder`
@@ -568,13 +568,16 @@ Format: `sort reminder by/SORT_CRITERIA`
 * Sorting does not take reminders' status into account.
 
 Examples:
+1. `sort reminder by/priority`
+2. `sort reminder by/deadline`
+
 <table>
   <tr>
-    <td>1. `sort reminder by/priority`</td>
-    <td><img src="images/MarkedReminder.png" width=350></td>
+    <td>Sort reminder by priority</td>
+    <td>Sort reminder by deadline</td>
   </tr>
   <tr>
-    <td>2. `sort reminder by/deadline`</td>
+    <td><img src="images/MarkedReminder.png" width=350></td>
     <td><img src="images/ReminderDeadline.png" width=350></td>
   </tr>
  </table>
