@@ -506,6 +506,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 #### Use Case 1: Listing all Properties
 
 **MSS**
+
 1. User requests to list all properties
 2. Condonery shows a list of all the properties
 
@@ -606,9 +607,7 @@ Use case resumes at step 3.
 3e1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 Use case resumes at step 3.
 
-=====================================================
-
-Use Case 5: Filtering a property by Property Type
+#### Use Case 5: Filtering a property by Property Type
 
 **MSS**
 
@@ -623,7 +622,7 @@ Use case ends
 1a1. Condonery shows an error message stating that only `HDB`, `CONDO`, or `LANDED` values are accepted.
 Use case resumes at step 1.
 
-#### Use Case 5: Filtering a property by Property Status
+#### Use Case 6: Filtering a property by Property Status
 
 **MSS**
 
@@ -638,7 +637,7 @@ Use case ends
 1a1. Condonery shows an error message stating that only `AVAILABLE`, `PENDING`, or `SOLD` values are accepted.
 Use case resumes at step 1.
 
-#### Use Case 6: Linking an Interested Client to a Property
+#### Use Case 7: Linking an Interested Client to a Property
 
 **MSS**
 
@@ -653,20 +652,23 @@ Use case resumes at step 1.
 1b. Specified index does not exist in the Property Directory
 1b1. Condonery shows an error message stating that the property index is invalid
 
-#### Use Case 7: Finding a Property by name
+#### Use Case 8: Finding a Property by name
 
 **MSS**
 
 1. User requests to search a property by name
 2. Properties that match the user specified name are displayed
 
-#### Use Case 8: Clearing all Properties
+#### Use Case 9: Clearing all Properties
+
+**MSS**
+
 1. User requests to clear all properties in the Property List
 2. Condonery removes all the properties listen in the Property List and displays a success message
 
 Use case ends.
 
-#### Use Case 9: Help List
+#### Use Case 10: Help List
 
 **MSS**
 
@@ -675,7 +677,7 @@ Use case ends.
 
 Use case ends.
 
-#### Use Case 10: Selecting a Property
+#### Use Case 11: Selecting a Property
 
 **MSS**
 
@@ -690,7 +692,8 @@ Use case ends.
 1b. The input did not specify a index
 1b1. Condonery shows an error message stating that an invalid command was provided with an example of correct input.
 
-#### Use Case 11: Filtering properties within a price range
+#### Use Case 12: Filtering properties within a price range
+
 **MSS**
 
 1. User requests to view properties between a certain price range
