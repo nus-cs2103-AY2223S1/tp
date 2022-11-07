@@ -51,18 +51,18 @@ public class DeleteCommand extends Command {
         }
         Person confirmedPersonToDelete = personToDelete.get();
 
-        Boolean haveDeleted = false;
-        Boolean haveUnmark = false;
+        Boolean hasBeenDeleted = false;
+        Boolean hasBeenUnmark = false;
         if (confirmedPersonToDelete.isPatient()) {
-            haveDeleted = deleteRespectiveHomeVisit(model, confirmedPersonToDelete, lastShownList);
+            hasBeenDeleted = deleteRespectiveHomeVisit(model, confirmedPersonToDelete, lastShownList);
         } else {
-            haveUnmark = unmarkRespectiveDateSlot(model, confirmedPersonToDelete, lastShownList);
+            hasBeenUnmark = unmarkRespectiveDateSlot(model, confirmedPersonToDelete, lastShownList);
         }
         String extraMessage = "";
-        if (haveDeleted) {
+        if (hasBeenDeleted) {
             extraMessage = "The respective home visit has also been deleted.";
         }
-        if (haveUnmark) {
+        if (hasBeenUnmark) {
             extraMessage = "The respective date slot has also been unmarked.";
         }
         model.deletePerson(confirmedPersonToDelete);
