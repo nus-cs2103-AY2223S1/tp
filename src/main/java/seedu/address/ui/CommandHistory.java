@@ -64,4 +64,3 @@ public class CommandHistory {
         pointer = previousCommands.size();
     }
 }
-
