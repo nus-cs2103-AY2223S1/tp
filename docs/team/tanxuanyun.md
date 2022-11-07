@@ -32,7 +32,7 @@ Users will be able to save contact person information to manage them more conven
   * Allow contact person company to be stored with add -p command
   * Allow linking of contact person and internship in add -p command
 
---------------------------------------------------------------------------------------------------------------------
+ <div style="page-break-after: always;"></div>
 
 * **Documentation**:
   * User Guide:
