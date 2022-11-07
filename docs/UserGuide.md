@@ -134,7 +134,7 @@ Upon launching the application, some files responsible for the storage of your d
 * The parameters can be in any order.
   * E.g. `add n/bubble tea c/200 t/dinner` is the same as `add c/200 n/bubble tea t/dinner`.
 * Commands that require an `INDEX` will only accept positive integer values as the `INDEX`.
-  * Positive integer values refers to any value between 1 and 2147483647.
+  * Positive integer values refers to any whole number between 1 and 2147483647.
   * E.g. `edit 2147483648` is an invalid command regardless of the inputs provided.
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.
   * E.g. `help 123` will be interpreted as `help`.
@@ -356,7 +356,7 @@ Sets a target calorie intake for the current day.
 Format: `target CALORIE`
 
 * `CALORIE` can only take on integer values between 0 and 2147483647.
-* The initial target calorie intake is set at 2000 calories.
+* The default target calorie intake is set at 2000 calories (this is based on the average Daily Recommended Calorie Intake across both genders).
 
 Example:
 
@@ -567,12 +567,16 @@ More default food items will be added.
 
 ## Glossary
 
-| Term                                       | Definition                                                                                                                                                                                                    |
-|--------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Calories**                               | Unit of measurement for the amount of energy contained in a food item.                                                                                                                                        |
-| **Daily Recommended <br/> Calorie Intake** | The amount of calories recommended by experts for an individual to consume daily. According to Health Promotion Board Singapore, adult males and females should consume 2200 and 1800 calories respectively.  |
-| **Deficit**                                | The negative difference between the calories consumed in a day and the recommended daily intake. These calories are _not_ consumed to facilitate weight loss and fat burn.                                    |
-| **Surplus**                                | The positive difference between the calories consumed in a day and the recommended daily intake. These calories are consumed to facilitate weight gain and muscle growth.                                     |
+| Term                                       | Definition                                                                                                                                                                                                   |
+|--------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Calories**                               | Unit of measurement for the amount of energy contained in a food item.                                                                                                                                       |
+| **Daily Recommended Calorie Intake** | The amount of calories recommended by experts for an individual to consume daily. According to Health Promotion Board Singapore, adult males and females should consume 2200 and 1800 calories respectively. |
+| **Deficit**                                | The negative difference between the calories consumed in a day and the target daily intake. These calories are _not_ consumed to facilitate weight loss and fat burn.                                        |
+| **Surplus**                                | The positive difference between the calories consumed in a day and the target daily intake. These calories are consumed to facilitate weight gain and muscle growth.                                         |
+| **Food item**                              | Refers to an individual item of food that is consumed.                                                                                                                                                       |
+| **Meal**                                   | Comprises of multiple food items that is consumed at a particular time (e.g. breakfast, lunch, dinner, ...).                                                                                                  |
+| **Ideal weight**                           | The self-defined weight that users want to achieve for themselves.                                                                                                                                           |
+| **Gym**                                    | For this user guide, gym refers to a gymnasium used for weight training. Other sports facilities will be considered for future updates.                                                                      |
 
 
 </div>
