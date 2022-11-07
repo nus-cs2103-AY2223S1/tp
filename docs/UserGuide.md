@@ -471,7 +471,7 @@ you can type in `TEAM NAME`.
 
 ![Create Team Screenshot](images/user-guide-img/CreateTeamScreenshot.png)
 
-### Delete a team
+### Delete a team: `team delete`
 
 To delete a team from Contactmation, you can use the `team delete` command followed by the team number seen in
 the current display of the team list.
@@ -483,7 +483,7 @@ the current display of the team list.
 - `team delete 1`
     - The above command deletes team number 1 in the list of teams.
     
-### Navigate to a team
+### Navigate to a team: `cg`
 
 To perform commands specific to a team, you will have to navigate first to that specific team. You can use the `cg`
 command to navigate to a specified team. This command updates the group scope that is currently being displayed in
@@ -548,7 +548,7 @@ the application window.
 Contactmation allows the creation and deletion of a subteam within a team using the same command as
 [creating a team](#create-a-team) and [deleting a team](#delete-a-team).
 
-### Finding a team: 
+### Finding a team: `find`
 
 Contactmation allows for searching of teams with the [find command](#find-command-find).
 
