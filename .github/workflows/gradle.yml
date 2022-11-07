@@ -41,6 +41,7 @@ jobs:
       - uses: codecov/codecov-action@v2
         if: runner.os == 'Linux'
         with:
+          token: cfaa373b-2c7a-40b1-a4c1-11023db5e91f
           directory: ${{ github.workspace }}/build/reports/jacoco/coverage
           files: coverage.xml
           fail_ci_if_error: true
