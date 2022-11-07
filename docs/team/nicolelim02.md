@@ -5,7 +5,7 @@ title: Nicole's Project Portfolio Page
 
 ### Project: NutriGoals
 
-NutriGoals is a desktop app that tracks a user’s diet and calorie consumption. By offering users recommendations on exercise and healthier eating selections, NutriGoals also aids in the adoption of a healthy lifestyle. 
+NutriGoals is a desktop app that tracks a user’s diet and calorie consumption. By offering users recommendations on exercise and healthier eating options, NutriGoals also aids in the adoption of a healthy lifestyle. 
 
 Given below are my contributions to the project.
 
