@@ -39,28 +39,6 @@ public class LoanCommandTest {
         CommandTestUtil.assertCommandFailure(loanCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
-
-    // For this, it shows "Book is already loaned out." instead of MESSAGE_LOAN_SUCCESS, but I'm not sure why this
-    // is happening?
-
-    /*
-    @Test
-    public void execute_success() {
-        Person personToLoan = model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
-        Book bookToLoan = model.getFilteredBookList().get(TypicalIndexes.INDEX_FIRST_BOOK.getZeroBased());
-
-        LoanCommand loanCommand = new LoanCommand(TypicalIndexes.INDEX_FIRST_PERSON,
-                TypicalIndexes.INDEX_FIRST_BOOK, TYPICAL_DATE);
-
-        String expectedMessage = String.format(LoanCommand.MESSAGE_LOAN_SUCCESS,
-                personToLoan, bookToLoan, TYPICAL_DATE);
-
-        Model expectedModel = new ModelManager(model.getBookFace(), new UserPrefs());
-        expectedModel.loan(personToLoan, bookToLoan, TYPICAL_DATE);
-        assertCommandSuccess(loanCommand, model, expectedMessage, expectedModel);
-    }
-     */
-
     @Test
     public void execute_invalidIndexUnfilteredBookList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredBookList().size() + 1);

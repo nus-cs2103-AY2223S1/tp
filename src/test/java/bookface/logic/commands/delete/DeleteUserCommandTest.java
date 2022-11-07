@@ -23,22 +23,6 @@ public class DeleteUserCommandTest {
 
     private final Model model = new ModelManager(getTypicalBookFaceData(), new UserPrefs());
 
-    //Displays error "Person cannot be deleted; there are loans that are not settled!" but why?
-    /*
-    @Test
-    public void execute_validIndexUnfilteredList_success() {
-        Person personToDelete = model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
-        DeleteUserCommand deleteUserCommand = new DeleteUserCommand(TypicalIndexes.INDEX_FIRST_PERSON);
-
-        String expectedMessage = String.format(DeleteUserCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
-
-        ModelManager expectedModel = new ModelManager(model.getBookFace(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
-
-        assertCommandSuccess(deleteUserCommand, model, expectedMessage, expectedModel);
-    }
-     */
-
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
@@ -47,24 +31,6 @@ public class DeleteUserCommandTest {
         CommandTestUtil.assertCommandFailure(deleteUserCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
-    //Displays error "Person cannot be deleted; there are loans that are not settled!" but why?
-    /*
-    @Test
-    public void execute_validIndexFilteredList_success() {
-        CommandTestUtil.showPersonAtIndex(model, TypicalIndexes.INDEX_FIRST_PERSON);
-
-        Person personToDelete = model.getFilteredPersonList().get(TypicalIndexes.INDEX_FIRST_PERSON.getZeroBased());
-        DeleteUserCommand deleteUserCommand = new DeleteUserCommand(TypicalIndexes.INDEX_FIRST_PERSON);
-
-        String expectedMessage = String.format(DeleteUserCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
-
-        Model expectedModel = new ModelManager(model.getBookFace(), new UserPrefs());
-        expectedModel.deletePerson(personToDelete);
-        showNoPerson(expectedModel);
-
-        assertCommandSuccess(deleteUserCommand, model, expectedMessage, expectedModel);
-    }
-     */
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         CommandTestUtil.showPersonAtIndex(model, TypicalIndexes.INDEX_FIRST_PERSON);
@@ -98,14 +64,5 @@ public class DeleteUserCommandTest {
 
         // different person -> returns false
         assertNotEquals(deleteFirstCommand, deleteSecondCommand);
-    }
-
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoPerson(Model model) {
-        model.updateFilteredPersonList(p -> false);
-
-        assertTrue(model.getFilteredPersonList().isEmpty());
     }
 }

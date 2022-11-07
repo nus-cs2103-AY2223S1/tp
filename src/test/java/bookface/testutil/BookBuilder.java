@@ -31,14 +31,6 @@ public class BookBuilder {
     }
 
     /**
-     * Initializes the BookBuilder with the data of {@code bookToCopy}.
-     */
-    public BookBuilder(Book bookToCopy) {
-        title = bookToCopy.getTitle();
-        author = bookToCopy.getAuthor();
-    }
-
-    /**
      * Sets the {@code Title} of the {@code Book} that we are building.
      */
     public BookBuilder withTitle(String title) {
