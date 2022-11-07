@@ -563,32 +563,45 @@ testers are expected to do more *exploratory* testing.
 
     1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+3. Sample Data
+   1. Sample Data for both Properties and Clients should be shown
+   2. User can choose to either clear the data with `clear -p` and `clear -c` respectively, or use the existing data to test the app.
 
-### Deleting a person
+### Create, Read, Update and Delete Properties
 
-1. Deleting a person while all persons are being shown
+2. Creating a new property
+   1. Prerequisites: The user should prepare an image to upload, in `.png` or `.jpg` file format. 
+   2. Test case: `add -p n/Test Property a/Test Property Address p/100,000 h/HDB -i`<br>
+      Expected: The application should show a FileChooser, prompting the user to upload an image of their property. You may upload any image you like to test, or close the FileChooser if you do not have an image ready.
+   3. Test case: `add -p n/Test Property a/Test Property Address p/Invalid Price h/HDB`<br>
+      Expected: No property is added. Error details shown in the status message for Invalid Price.
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+3. Deleting a property while all properties are being shown
+    1. Prerequisites: List all properties using the `list -p` command. Multiple properties in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete -p 1`<br>
+       Expected: First property is deleted from the list. Details of the deleted property shown in the status message. Timestamp in the status bar is updated.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete -p 0`<br>
+       Expected: No property is deleted. Error details shown in the status message. Status bar remains the same.
 
     1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
+4. Editing a property while all properties are being shown
+    1. Prerequisites: List all properties using the `list -p` command. Multiple properties in the list.
+    2. Test case: `edit -p 1 n/New name`<br>
+       Expected: First property in the list is updated with a new name. If the property initially had an image, the image should remain the same.
+    3. Test case: `edit -p 1`
+       Expected: No property is edited, Error details shown in the status message as user did not change any fields.
+  
 ### Saving data
 
 1. Dealing with missing/corrupted data files
@@ -596,3 +609,17 @@ testers are expected to do more *exploratory* testing.
     1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 2. _{ more test cases …​ }_
+ 
+## **Appendix: Effort**
+Majority of the complexity faced in building our app came from dealing with multiple entities, namely Property and Client.
+Our group faced trouble in implementing a 2-way association between Clients and Properties. 
+
+* For example, editing a `Client` with an association should update all references to the `Client`. As previously AB3 relied on an immutable implementation of editing entities, we had to do heavy testing to make sure that the information between all associations are synced.
+* Moreover, we had to ensure that storage of the 2-way association is feasible. Currently, our `Property` entities store a list of Interested Clients. Along the way, we realised that we are unable to store a list of Properties in a `Client` entity, as this resulted in our serialised storage being circular. We had to change a lot of our code to fix this, as we realised our previous implementation could not handle the storage requirement.
+
+Our group also tried to implement image storage for user's to upload their own pictures of Properties/Clients
+Here are some design considerations we had to deal with:
+* Initially, we wanted our `Logic` layer to handle the image uploading command. However, we soon realised this was unfeasible we as needed user input through the `Ui` layer, as we had to show a File Chooser, and only then handle the checking of file type. This problem was made more complicated
+as our storage location depended on the `UserPrefs`, which was stored in the `Model` layer. As much as possible, we didn't want the `Ui` layer to directly access the `Model` layer.<br>
+* The final solution our group came up with was to store the file name and file directory of each image in its respective entity (Property/Client). This allowed the `Ui` layer to directly source the image without accessing the `Model` layer, and instead accessing the individual entities in the `ObservableList`.
+The image uploading was left to the `Ui` layer, and the `Logic` layer used the `CommandResult` to signal to the `Ui` layer to accept an image upload, similar to how the Help command is implemented.
