@@ -211,6 +211,7 @@ SortCommand Parser will determine the field that users want to sort, retrieve th
 
 The below activity diagram shows what happens when a user uses the `sort` command.
 
+![SortActivityDiagram](images/SortActivityDiagram.png)
 
 
 ### \[Proposed\] Undo/redo feature
