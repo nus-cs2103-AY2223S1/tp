@@ -33,7 +33,7 @@ Given below are my contributions to the project.
     * **New Feature**: `find` command
         * What it does: Finds items on the list that match the user's search criteria on various attributes and
           displays the corresponding filtered list. It matches keywords with targets on an exact-word basis such
-          that at least one word form the target must match exactly with at least one word from the keyword
+          that at least one word form the target must match exactly with at least one word from the keyword. 
         * Justification: The developer may want to filter and find items on the list based on various parameters.
         * Highlights: The find command
         * Credits: The `find` command builds on the AB3 `find` functionality.
@@ -43,12 +43,14 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * Contributions to the UG
+        + Help set up the initial UG with content for commands as planned in first iteration
     * Contributions to the DG
         * Write-up for Delete Command Feature consisting of Delete Project Command, Delete Issue Command, and Delete
           Client Command
-        * UML Sequence Diagram for deleting a client from the app.
+        * UML Sequence Diagram for deleting a client from the app
+        * UML Sequence Diagram for finding a client in the app
         * Design considerations for Delete Command Feature
-        * Design considerations for Add Command Feature
+        * Design considerations for Find Command Feature
 
 * **Contributions to team-based tasks**:
     * (to be added soon)
