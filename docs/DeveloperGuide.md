@@ -165,7 +165,7 @@ The `Model` component:
 
 * stores NutriGoals' data, which includes the following:
   * a `FoodList` object that contains all `Food` objects
-  * a `List` of `Location` object that represents the locations of NUS gyms
+  * a `List` of `Location` objects, each representing a NUS gym location
   * a `User` object that contains the user's profile details (e.g. height, weight, ideal weight, gender, age, BMI)
   * a `Calorie` object that represents the target calorie intake
   * a `FoodCalorieList` object that contains information about the calorie contents of default food items
