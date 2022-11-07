@@ -230,6 +230,9 @@ The `Storage` component,
 * inherits from both `TrackAScholarStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
+--------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.trackascholar.commons` package.
@@ -279,6 +282,8 @@ The following sequence diagram shows how the add operation works:
 
 ![Interactions Inside the Logic Component for the `add` Command example](images/AddSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 The following activity diagram summarizes what happens when a user executes an add command:
 
 ![Add command activity diagram](images/AddCommandActivityDiagram.png)
@@ -326,6 +331,8 @@ The following sequence diagram shows how the edit operation works:
 
 ![Interactions Inside the Logic Component for the `edit` Command example](images/EditSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 The following activity diagram summarizes what happens when a user executes a edit command:
 
 ![Edit command activity diagram](images/EditCommandActivityDiagram.png)
@@ -362,6 +369,8 @@ Given below is an example usage scenario and how the remove operation is handled
 
 5. `RemoveCommand#execute()` finishes with returning a `CommandResult` containing information of the successful removal.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the remove operation works:
 
 ![Interactions Inside the Logic Component for the `remove` Command example](images/RemoveSequenceDiagram.png)
@@ -370,6 +379,8 @@ The following sequence diagram shows how the remove operation works:
 is abstracted out as this sequence diagram aims to only demonstrate the interactions inside Logic Component for the `remove` command.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 The following activity diagram summarizes what happens when a user executes a remove command:
 
@@ -424,6 +435,8 @@ The following sequence diagram shows how the find operation works:
 
 ![Interactions Inside the Logic Component for the `find` Command example](images/FindSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 The following activity diagram summarizes what happens when a user executes a find command:
 
 ![Find command activity diagram](images/FindCommandActivityDiagram.png)
@@ -459,6 +472,8 @@ Given below is an example usage scenario and how the filter operation is handled
    is called to retrieve the filtered list, such that TrackAScholar can count the total number of applicants in that particular list.
 
 5. `FilterCommand#execute()` finishes with returning a `CommandResult` containing details of how many applicants were found with a matching scholarship application status.
+
+<div style="page-break-after: always;"></div>
 
 The following sequence diagram shows how the filter operation works:
 
@@ -500,9 +515,13 @@ Given below is an example usage scenario and how the sort operation is handled b
 
 5. `SortCommand#execute()` finishes with returning a `CommandResult` containing information of the successful sorting.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the sort operation works:
 
 ![Interactions Inside the Logic Component for the `sort` Command example](images/SortSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 The following activity diagram summarizes what happens when a user executes a sort command:
 
@@ -586,9 +605,13 @@ Given below is an example usage scenario and how the pin operation is handled by
 
 5. `PinCommand#execute()` finishes with returning a `CommandResult` containing information of the successful pinning of an applicant.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how the pin operation works:
 
 ![Interactions Inside the Logic Component for the `pin` Command example](images/PinSequenceDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 The following activity diagram summarizes what happens when a user executes a pin command:
 
@@ -884,7 +907,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 **Use case: UC08 - Finds applicants by name, scholarship or major**
 
@@ -929,7 +951,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 **Use case: UC10 - Sorts all applicants by name, scholarship or application status**
 
@@ -1128,7 +1149,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file [here]() and copy into an empty folder
+   1. Download the jar file [here](https://github.com/AY2223S1-CS2103T-W10-3/tp/releases/tag/v1.4) and copy into an empty folder
 
    1. For ***macOS*** system:
        * Open terminal and navigate to the folder where the jar file is located at.
@@ -1192,8 +1213,9 @@ testers are expected to do more *exploratory* testing.
 
 [Return to top](#table-of-contents)
 
---------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ### Editing an applicant
 1. Editing an applicant in TrackAScholar while all applicants are displayed in GUI.
