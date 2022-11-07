@@ -2,6 +2,8 @@ package seedu.address.model.tuitionclass;
 
 import seedu.address.model.tuitionclass.exceptions.InvalidSubjectException;
 
+// Solution below adapted from:
+// https://github.com/dextertanyj/tp/blob/master/src/main/java/tutorspet/model/lesson/Day.java
 /**
  * Represents the subject of the tuition class.
  */
