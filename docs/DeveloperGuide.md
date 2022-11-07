@@ -216,12 +216,20 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Current Implementation
 
-The `filter` feature is implemented by the `FilterCommand` class which extends its parent `Command` class. The structure
+The `filter` feature is implemented by the `FilterCommand` class which extends its parent `Command` class. The implementation
 of the `filter` feature can be summarized via the sequence diagram shown below.
 
 ![Filter Sequence Diagram](images/diagrams/FilterCommandSequenceDiagram.png){: diagram}
 
-This method is implemented to support the feature of filtering students by the tags that is assigned to them.
+The implementation of the `execute` method in filter is done within the class `FilterCommand#execute()`.
+The `execute` method will in turn call the `filterPersonListWithPredicate` method of the corresponding
+`ModelManager`. A brief summary of the class structure is illustrated in the class diagram below, using
+`FilterCommand` as an example. 
+
+![Filter Class Diagram](images/diagrams/FilterCommandClassDiagram.png){: diagram}
+
+
+This method is implemented to support the feature of filtering students by the attributes that are assigned to them.
 
 The `FilterCommand` supports one operation:
 
@@ -233,14 +241,38 @@ The `FilterCommand` supports one operation:
 
 The flow for `FilterCommand#execute` is as such:
 
-1. The tag to be used for filtering is retrieved from the user input
+1. The attributes to be used for filtering is retrieved from the user input
 
-2. The tag input will then be parsed into the filter parser which will then return a new Filter Command
+2. The attribute input will then be parsed into the filter parser which will then return a new Filter Command
 
 3. The filter command will then be immediately executed to filter the current list of students via their assigned
-   tags
+   attributes
 
 4. The result list of students will then be shown back to the user via the dashboard
+
+###Design Consideration
+
+**Common Behaviours**
+1. Parse certain attribute to filter
+2. Parse certain keyword to filter
+3. Return immediately if attribute is valid and list 
+do not contain keyword
+4. Return immediately if attribute is valid and list
+contain keyword
+5. Exception thrown immediately if attribute is invalid
+    
+
+**Aspect: How filter executes:**
+* **Alternative 1 (current choice):** Update the list of students using ModelManager
+  * Pros: Extension to more classes allowing the program to be conducted with 
+  more OOP hence providing a more stable structure
+  * Cons: It can be a hassle for users to read the code as they will have to take into
+  account multiple classes that contributes to the function
+* **Alternative 2:** Update the list of students within FilterCommand
+  * Pros: Increase code readability for users 
+  * Cons: Increase code duplication due to lesser OOP.
+
+
 
 ## Student Editing
 
