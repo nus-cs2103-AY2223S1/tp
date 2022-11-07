@@ -1,5 +1,7 @@
 package seedu.address.model.person.nextofkin;
 
+// Solution below adapted from:
+// https://github.com/dextertanyj/tp/blob/master/src/main/java/tutorspet/model/lesson/Day.java
 /**
  * Represents the relationship that the next of kin has with a student.
  */

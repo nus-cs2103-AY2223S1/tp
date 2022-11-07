@@ -3,7 +3,7 @@ layout: page
 title: Ong Wen Pin's Project Portfolio Page
 ---
 
-### Project: myStudents
+### Project: myStudent
 
 myStudent is **an easy-to-use, portable and aesthetically-pleasing desktop application for tuition centre admins
 for managing the students, tutors and tuition classes of a tuition center**.
@@ -51,6 +51,7 @@ Given below are my contributions to the project.
         * Added implementation details and designed Sequences Diagram for `Assign` and `Unassign` features. (Pull request [#96](https://github.com/AY2223S1-CS2103T-F12-4/tp/pull/96))
         * Update the UML class diagram for `model` component. (Pull request [#230](https://github.com/AY2223S1-CS2103T-F12-4/tp/pull/230))
         * Responsible for user stories, use cases, glossary and non-functional requirements for developer guide. (Pull request [#230](https://github.com/AY2223S1-CS2103T-F12-4/tp/pull/230))
+        * Added instruction for manual testing and effort sections. (Pull request [#263](https://github.com/AY2223S1-CS2103T-F12-4/tp/pull/263))
 
 * **Community**:
     * Reported bugs and suggestions for other team during PE-D ([Here](https://github.com/ongwenpin/ped/issues)).

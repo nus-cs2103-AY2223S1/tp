@@ -71,18 +71,25 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component](images/UiClassDiagram1.png)
+![Structure of the UI Component](images/UiClassDiagram2.png)
+![Structure of the UI Component](images/UiClassDiagram3.png)
+![Structure of the UI Component](images/UiClassDiagram4.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The class diagram of Ui is split into the above four diagrams to make it look more organised.
+</div>
+
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StudentDescription` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
+* depends on the `CommandResult` returned by the executed commands to handle the Ui change for different commands.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Student`, `Tutor` and `TuitionClass` object residing in the `Model`.
 
 ### Logic component
 
@@ -98,11 +105,14 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call. 
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The delete command deletes the specified entity in the current list, which is `Student`, `Tutor` or `TuitionClass` list. Here we assume that the current list is the `Student` list.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -117,11 +127,11 @@ How the parsing works:
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 The class diagram below shows a broad overview of the model component. 
-The certain details and dependencies between the `Student`, `Tutor` and `Tuition Classes` has been omitted for simplicity.
-The class diagram for `Student`, `Tutor` and `Tuition Classes` can be found right after model class diagram.
+The certain details and dependencies between the `Student`, `Tutor` and `TuitionClass` has been omitted for simplicity.
+The class diagram for `Student`, `Tutor` and `TuitionClass` can be found right after model class diagram.
 <img src="images/ModelClassDiagram.png" width="650" />
 
-This is the full class diagram for `Student`, `Tutor` and `Tuition Classes`.
+This is the full class diagram for `Student`, `Tutor` and `TuitionClass`.
 
 <img src="images/ClassDiagram.png" width="650" />
 
@@ -138,11 +148,11 @@ can be 'observed' e.g. the UI can be bound to this list so that the UI automatic
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model 
-is given below. It has a `Tag` list in the `AddressBook`, which `Student`, `Tutor` and `Tuition Classes` references. 
+is given below. It has a `Tag` list in the `AddressBook`, which `Student`, `Tutor` and `TuitionClass` references. 
 This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each , `Tutor` and 
-`Tuition Classes` needing their own `Tag` objects respectively. Again certain details and dependencies between the 
-`Student`, `Tutor` and `Tuition Classes` has been omitted for simplicity. The class diagram between `Student`, `Tutor` 
-and `Tuition Classes` can be found above. <br>
+`TuitionClass` needing their own `Tag` objects respectively. Again certain details and dependencies between the 
+`Student`, `Tutor` and `TuitionClass` has been omitted for simplicity. The class diagram between `Student`, `Tutor` 
+and `TuitionClass` can be found above. <br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -208,7 +218,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 **Aspect: How to handle the adding of class and person separating:**
 
-* **Alternative 1 (current choice):** An `AddCommand` instance has both `Person` and `Class` fields but only atmost one can be non-null at a time.
+* **Alternative 1 (current choice):** An `AddCommand` instance has both `Person` and `TuitionClass` fields but only atmost one can be non-null at a time.
     * Pros: Less cluttered.
     * Cons: Harder to implement.
 * **Alternative 2:** Separate classes that extend `Command` for adding of class and person separately.
@@ -343,7 +353,7 @@ Step 7. In the `FindCommand`, a `TutorContainsKeywordsPredicate<Tutor>` is creat
 
 Step 8. Afterwards, the `filteredList` of tutors is updated with that `TutorContainsKeywordsPredicate<Tutor>` in the `ModelManager`. A new `CommandResult` is then returned and a list of tutors with that predicate is then shown.
 
-Step 9. The user now decides he wants to be more specific with his search, and decides to execute `find n/John Doe q/bachelor of computing i/nus` to find all tutors who are named John Doe, and have graduated from NUS with a bachelor's degree in computing. A more specific list of students is then shown.
+Step 9. The user now decides he wants to be more specific with his search, and decides to execute `find n/John Doe q/bachelor of computing i/nus` to find all tutors who are named John Doe, and have graduated from NUS with a bachelor's degree in computing. A more specific list of students is will be shown.
 
 The following sequence diagram shows how the `find` operation works:
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
@@ -371,18 +381,18 @@ Alternatively, the filter feature can be implemented as a separate feature altog
 
 #### 2. Add more fields for find feature ####
 
-The find feature currently doesn't allow users to search by the following critera:
+The find feature currently doesn't allow users to search by the following criteria:
 
 Student:
 1. Details of `NextOfKins`
-2. Details of `TuitionClasses` that they are attending
+2. Details of `TuitionClass` that they are attending
 
 Tutor:
-1. Details of `TuitionClasses` that they are teaching
+1. Details of `TuitionClass` that they are teaching
 
 TuitionClass:
-1. Details of `Students` that are attending
-2. Details of `Tutors` that are teaching
+1. Details of `Student` that are attending
+2. Details of `Tutor` that are teaching
 
 These could be added in future iterations to give users more flexibility in their search.
 
@@ -398,54 +408,97 @@ Therefore, there is a lot of potential for UI to be integrated with the find fea
 
 #### Implementation
 
-The list type feature is motivated by the existence of the three different entities that are manipulated by myStudent, namely `Student`, `Tutor` and `TuitionClass`. It is implemented as an enum class `ListType` in `Model` which includes three types - `STUDENT_LIST`, `TUTOR_LIST` and `TUITIONCLASS_LIST` (PERSON_LIST is to be removed in future version). 
+The list type feature is motivated by the existence of the three different entities that are monitored by myStudent, namely `Student`, `Tutor` and `TuitionClass`. 
+It is implemented as an enum class `ListType` in the `Model` which includes three values: `STUDENT_LIST`, `TUTOR_LIST` and `TUITIONCLASS_LIST`. 
 
-The current list type is kept as a `ListType` field `type` in `ModelManager` which implements `Model`. As `Student`, `Tutor` and `TuitionClass` instances are stored in `FilteredList` `filteredStudent`, `filterdTutors` and `filterdTuitionClass` in `ModelManager`, `ListType` `type` would indicate which of the three would be operated on by the `Logic` component. Additionally, to allow access by the `Logic` component, `Model` implements setter and getter methods for the `type`:
+The current list type is kept as a `ListType` field `type` in the `ModelManager` which implements the `Model`. 
+The `Student`, `Tutor` and `TuitionClass` instances are stored in the `filteredStudent`, `filterdTutors` and `filterdTuitionClass` respectively in the `ModelManager`, and the `type` field in the `ModelManager` indicates which of the three would be operated on by the `Logic` component when a certain command is executed. 
+Additionally, to allow access by the `Logic` component, the `Model` implements setter and getter methods for the `type`:
 
 * `Model#updateCurrentListType()` - Updates the `type` to the specified list type.
-* `Model#getCurrentListType()` - Returns the `ListType` `type` that the `ModelManager` currently stores.
-* Model#getCurrentList()` - Returns the current filtered list from `filteredStudents`, `filteredTutors` and `filteredTuitionClass` directly according to the current list type.
+* `Model#getCurrentListType()` - Returns the `type` that the `ModelManager` currently stores.
+* `Model#getCurrentList()` - Returns the current filtered list from the `filteredStudents`, `filteredTutors` and `filteredTuitionClass` directly according to the current list type.
 
-The operations are exposed to `Logic` interface as `Logic#updateCurrentListType()`, `Logic#getCurrentListType()` and `Logic#getCurrentList()` respectively. Since `Ui` keeps a reference to `Logic`, these operations can be accessed by `Ui` as well.
+The operations are exposed to the `Logic` interface as `Logic#updateCurrentListType()`, `Logic#getCurrentListType()` and `Logic#getCurrentList()` respectively. Since the `Ui` keeps a reference to the `Logic`, these operations can be accessed by the `Ui` as well.
 
-`ListType` `type` is referred to by any method that need to access to the current list. Given below is an example usage scenario including `ListTuitionClassCommand` and how the list type mechanism behaves in each step.
+The `ListType` field `type` in the `ModelManager` is referred to by any method that needs to access to the type of the current list. Given below is an example usage scenario including the `ListTutorCommand` and how the list type mechanism behaves in each step.
 
-Step 1. The user launches the application for the first time. The `ModelManager` would be initialised and the `type` is set to the default list type which is `STUDENT_LIST`.
+Step 1. The user launches the application for the first time. The `ModelManager` would be initialised and the `type` is set to the default list type which is the `STUDENT_LIST`.
 
-Step 2. The user execute `list c` command to list out tuition classes by ccalling `ListTuitionClassCommand`. The `ListTuitionClassCommand` calls `Model#updateCurrentListType()` with `TUITIONCLASS_LIST` being the parameter, causing the type in `ModelManager` to update to `TUITIONCLASS_LIST`. 
+Step 2. The user executes `list tutor` command to list out tuition classes by calling `ListTutorCommand`. The `ListTutorCommand` calls `Model#updateCurrentListType()` with the `TUTOR_LIST` being the parameter, causing the `type` field in the `ModelManager` to update to the `TUTOR_LIST`. 
 
 Step 3. The command then returns a `commandResult` with its `commandType` field being `LIST`. This will cause calling `commandResult.isList()` to return true. 
 
-Step 4. The `commandResult` is then returned to the `commandResult` in the `executeCommand()` method in `MainWindow`. The `executeCommand()` method then checks that `commandResult.isList()` returns true and calls `MainWindow#handleList()`.
+Step 4. The `commandResult` is then returned to the `commandResult` in the `executeCommand()` method in the `MainWindow`. The `executeCommand()` method then checks that `commandResult.isList()` returns true and calls `MainWindow#handleList()`.
 
-Step 5. The `handleList()` method checks the `type` in `ModelManager` with `Logic#getCurrentListType()`. Since the `type` is set to `TUITIONCLASS_LIST`, it will change the children of `entityListPanelPlaceholder` to `tuitionClassListPanel`, which holds the list of tuition classes.
+Step 5. The `handleList()` method checks the `type` in the `ModelManager` with `Logic#getCurrentListType()`. Since the `type` is set to the `TUTOR_LIST`, `MainWindow#handleList()` will clear the children of the `entityListPanelPlaceholder`, and add the `tutorListPanel` to it, which holds the `Tutor` list. 
+This will update the Ui to display the `Tutor` list.
 
-Step 6. The `handleList()` method then calls `setLabelStyle()`. Similar to `handleList()`, `setLabelStyle()` calls `Logic#getCurrentListType()` to get the `type` in `ModelManager` and set the style class of the `tuitionClassLabelPanel` to `SELECTED_CLASS_LABEL_STYLE_CLASS`, and the `studentLabelPanel` along with the `tutorLabelPanel` to `UNSELECETED_LABEL_STYLE_CLASS`. 
+Step 6. The `handleList()` method then calls `setLabelStyle()`. Similar to `handleList()`, `setLabelStyle()` calls `Logic#getCurrentListType()` to get the `type` in the `ModelManager` and set the style class of the `tutorLabelPanel` to `SELECTED_CLASS_LABEL_STYLE_CLASS`, and the `studentLabelPanel` along with the `tuitionClassLabelPanel` to `UNSELECETED_LABEL_STYLE_CLASS`. 
+This will update the Ui such that the `List Tabs` on top of the `List Display Panel` in Ui will highlight the current displayed list, the `Tutor` list.
 
-Another example that makes use of the list type is the `DeleteCommand`. Since the `delete` command deletes the entity with the specified index in the current list, it needs to access to the current list type. Below are the steps of how list type mechanism behaves.
-
-Step 1. The user launches the application for the first time. The `ModelManager` would be initialised and the `type` is set to the default list type which is `STUDENT_LIST`.
-
-Step 2. The user executes `delete 1` command to delete the 1th student in the list. The `delete` command calls `Model#getCurrentListType` and gets `STUDENT_LIST` as the current list type. 
-
-Step 3. The `delete` command then deletes the student by calling `Model#deletePerson` with the student to be deleted being the parameter.
+The following sequence diagram shows how the `list` operation works:
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
 ### \[Implemented\] Sort Command
 The sort command allows users to sort the respective list from Oldest to the Newest entry, Alphabetically or in Reverse order.  
 Sorting by default means sorting by oldest to newest updated entry. Editing an entry is considered updating it.  
-*(To be added)*: sort by class timings, level.
+__Proposed implementation__: sort by class timings and levels.
 
 #### Implementation
-Since the list displayed is directly linked to each `Student`, `Tutor` and `TuitionClass` internal list, we can just sort it and the displayed list will be updated. The list to be sorted will be the list that is currently displayed in the UI. `SortCommand` will know this using `ModelManager::getCurrentListType`.  
-Sorting by default and alphabetical order is done using the `.sort(Comparator<? super E>)` method of a list, and sorting in reverse is done using `java.util.Collections`.  
-** *TODO: add PlantUML diagram* ** 
 
+<img src="images/SortSequenceDiagram.png">
+The above is the sequence diagram for the case where the user inputs `sort alpha` in the command box.
 
-| Sort by 	     | methods 	|
-|---------------|---	|
-| Default 	     | Comparator.compare(Student::getUniqueId) 	|
-| Alphabetical 	 | Comparator.compare(Tutor::getName) 	|
-| Reverse 	     | Collections.reverse(internalList) 	|
+Since the list displayed is linked to each `Student`, `Tutor` and `TuitionClass` internal list through an observer, we can just sort it and the displayed list will be updated accordingly. The list to be sorted will be the one that is currently displayed in the UI. `SortCommand` will know this using `ModelManager::getCurrentListType`.  
+Sorting by default and alphabetical order is done using the `.sort(Comparator<? super E>)` method of a list, where default uses a custom-defined comparator, and sorting in reverse is done using `java.util.Collections`.
+
+<table>
+<tr>
+<td>Sort by</td> <td>Method</td> <td>Remarks</td>
+</tr>
+
+<tr>
+<td>Default</td>
+<td markdown="block">
+
+```java
+(first, second) -> {
+            HashMap<Integer, Object> a = first.getUniqueId();
+            HashMap<Integer, Object> b = second.getUniqueId();
+            Instant t = (Instant) a.get(0);
+            int result = t.compareTo((Instant) b.get(0));
+            if (result == 0) {
+                return ((int) a.get(1)) - ((int) b.get(1));
+            }
+            return result;
+        }
+```
+</td>
+<td markdown="block">
+
+`uniqueId` has 2 parts, the time when the entry was added, and the sequence number it was added in. This was done because myStudent loads  data from the .json files instantly during startup i.e. `Instant.now()` is not precise enough, thus their sequence number is used instead to sort. 
+</td>
+</tr>
+
+<tr>
+<td>Alphabetical</td>
+<td markdown="block">
+
+`Comparator.compare(Tutor::getName)`
+</td>
+<td>For the  case where the tutor list is the one currently being displayed.</td>
+</tr>
+
+<tr>
+<td>Reverse</td>
+<td markdown="block">
+
+`Collections.reverse(internalList)`
+</td>
+<td></td>
+</tr>
+</table>
 
 #### Design considerations:
 
@@ -460,12 +513,8 @@ Sorting by default and alphabetical order is done using the `.sort(Comparator<? 
 
 * **Alternative 2:** Store the order of entries as a field in their respective objects.
     - Have a static field to count the number of `Student`, `Tutor` and `TuitionClass` instances.
-    - When a new entry is added, it'll contain a `uniqueId` field, which is the order the entry was added in.
+    - When a new entry is added, it'll contain a `uniqueId` field, which contains the time and the order the entry was added in.
     - When the user wants to sort by default, the comparator can use this `uniqueId` to compare 2 instances.
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -736,14 +785,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Guarantees:**
 
-- A list of students whose names match the keyword input will be displayed if at least one of such entity exists and 
-there is no syntax error.
+- A list of students whose fields match the respective keyword inputs will be displayed if at least one of such student exists and 
+the command format is valid.
 
 **MSS**
 
 1. User get <ins>list of Students (UC8)<ins>.
-2. User requests to find students based on keyword input.
-3. myStudent shows a list of all students whose names match the keyword input.
+2. User requests to find students based on keyword inputs that matches multiple fields of a student.
+3. myStudent shows a list of all students whose fields match the respective keyword inputs.
 
     Use case ends.
 
@@ -763,13 +812,14 @@ there is no syntax error.
 
 **Guarantees:**
 
-- A list of tutors whose names match the keyword input will be displayed if at least one of such entity exists.
+- A list of tutors whose fields match the respective keyword inputs will be displayed if at least one of such tutor exists and
+  the command format is valid.
 
 **MSS**
 
 1. User get <ins>list of tutors (UC9)<ins>.
-2. User requests to find tutors based on keyword input.
-3. myStudent shows a list of all tutors whose names match the keyword input.
+2. User requests to find tutors based on keyword inputs that matches multiple fields of a tutor.
+3. myStudent shows a list of all tutors whose fields match the respective keyword inputs.
 
     Use case ends.
 
@@ -789,13 +839,14 @@ there is no syntax error.
 
 **Guarantees:**
 
-- A list of tuition classes whose names match the keyword input will be displayed if at least one of such entity exists.
+- A list of tuition classes whose fields match the respective keyword inputs will be displayed if at least one of such tuition classes exists and
+  the command format is valid.
 
 **MSS**
 
 1. User get <ins>list of tuition classes (UC10)<ins>.
-2. User requests to find tuition classes based on keyword input.
-3. myStudent shows a list of all tuition classes whose names match the keyword input.
+2. User requests to find tuition classes based on keyword inputs that matches multiple fields of a tuition class.
+3. myStudent shows a list of all tuition classes whose fields match the respective keyword inputs.
 
     Use case ends.
 
@@ -1256,29 +1307,389 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Adding a student
+1. Test case: `add student n/John Doe p/98765432 e/johndoe@example.com a/John street, block 123, #01-01 s/Example Primary School l/Primary 3 #/badBoy`<br>
+   Expected: A message stating that student with name `John Doe`, phone number `98765432`, email `johndoe@example.com`, 
+   address `John street, block 123, #01-01`, school `Example Primary School`, level `Primary 3` and tag `badBoy` has been 
+   added will appear in the feedback box. The added student will also appear in the student list in the list display panel.
 
-### Deleting a person
+2. Test case: `add student n/John Doe`
+   Expected: A error message stating that it is invalid command format as well as valid add command format will appear 
+   in the feedback box. There will also not be any student added to the list.
 
-1. Deleting a person while all persons are being shown
+3. Test case: `add student n/John Doe p/9876543q e/johndoe@example.com a/John street, block 123, #01-01 s/Example Primary School l/Primary 3 #/badBoy`<br>
+   Expected: A error message stating that phone number should only contain numbers will appear in the feedback box. 
+   There will also not be any student added to the list.
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+### Adding a tutor
+1. Test case: `add tutor n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate st, block 123, #01-01 q/MSc, 
+Master of Science i/National University of Singapore #/mostLiked`<br>
+   Expected: A message stating that tutor with name `Betsy Crowe`, phone number `1234567`, email `betsycrowe@example.com`,
+   address `Newgate st, block 123, #01-01`, qualification `MSc, Master of Science`, institution `National University of Singapore` 
+   and tag `mostLiked` has been added will appear in the feedback box. The added tutor will also appear in the tutor 
+   list in the list display panel.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+2. Test case: `add tutor n/Betsy Crowe p/1234567`
+   Expected: A error message stating that it is invalid command format as well as valid add command format will appear
+   in the feedback box. There will also not be any tutor added to the list. 
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+3. Test case: `add tutor n/Betsy Crowe p/1234567 e/betsycroweexample.com a/Newgate st, block 123, #01-01 q/MSc,
+   Master of Science i/National University of Singapore #/mostLiked`<br>
+   Expected: A error message stating that the email format is invalid will appear in the feedback box.
+   There will also not be any tutor added to the list.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+### Adding a tuition class
+
+1. Test case: `add class n/P2MATHF12 s/Math l/Primary 2 d/Friday t/12:00 - 14:00`<br>
+   Expected: A message stating that tuition class with name `P2MATHF12`, subject `Mathematics`, level `Primary 2`, 
+   day `Friday` and time `12:00-14:00` has been added will appear in the feedback box. The added tuition class will also 
+   appear in the tuition class list in the list display panel.
+
+2. Test case: `add class n/P2MATHF12`
+   Expected: A error message stating that it is invalid command format as well as valid add command format will appear
+   in the feedback box. There will also not be any tuition class added to the list.
+
+3. Test case: `add class n/P2MATHF12 s/Cooking l/Primary 2 d/Friday t/12:00 - 14:00`<br>
+   Expected: A error message stating that the subject is invalid and list of all valid subjects will appear in the 
+   feedback box. There will also not be any tuition class to the list.
+
+
+### Deleting a student
+
+1. Deleting a student while all students are being shown
+
+    1. Prerequisites: List all students using the `list student` command. Multiple students in the list.
+
+    2. Test case: `delete 1`<br>
+       Expected: First student is deleted from the list. Details of the deleted student shown in the feedback box.
+
+    3. Test case prerequisites: There are only 3 students in the list.
+       Test case: `delete 5`<br>
+       Expected: No student is deleted. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Deleting a tutor
+
+1. Deleting a tutor while all tutors are being shown
+
+    1. Prerequisites: List all tutors using the `list tutor` command. Multiple tutors in the list.
+
+    2. Test case: `delete 1`<br>
+       Expected: First tutor is deleted from the list. Details of the deleted tutor shown in the feedback box. 
+
+    3. Test case prerequisites: There are only 3 tutors in the list.
+       Test case: `delete 10`<br>
+       Expected: No tutor is deleted. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Deleting a tuition class
+
+1. Deleting a tuition class while all tuition classes are being shown
+
+    1. Prerequisites: List all tuition classes using the `list tuition class` command. Multiple tuition classes in the list.
+
+    2. Test case: `delete 1`<br>
+       Expected: First tuition class is deleted from the list. Details of the deleted tuition class shown in the feedback box. 
+
+    3. Test case prerequisites: There are only 3 tuition classes in the list.
+       Test case: `delete 50`<br>
+       Expected: No tuition class is deleted. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Editing a student
+1. Editing a student while all students are being shown
+
+    1. Prerequisites: List all students using the `list student` command. Multiple students in the list.
+
+    2. Test case: `edit 1 n/Alice`<br>
+       Expected: The name of the first student in the list will be change to `Alice`. A message showing the new 
+       particulars of the edited student will appear in the feedback box.
+
+    3. Test case prerequisites: There are only 3 students in the list.
+       Test case: `edit 3 n/Alice`<br>
+       Expected: No student is edited. Error details shown in the status message.
+   
+    4. Test case: `edit 1 p/w1234567`<br>
+       Expected: No student is edited. An error message stating that phone number should only contain numbers will appear 
+       in the feedback box
+
+### Editing a tutor
+1. Editing a tutor while all tutors are being shown
+
+    1. Prerequisites: List all tutors using the `list tutor` command. Multiple tutors in the list.
+
+    2. Test case: `edit 1 n/Alice`<br>
+       Expected: The name of the first tutor in the list will be change to `Alice`. A message showing the new
+       particulars of the edited tutor will appear in the feedback box.
+
+    3. Test case prerequisites: There are 3 tutors in the list.
+       Test case: `edit 4 n/Alice`<br>
+       Expected: No tutor is edited. Error details shown in the status message.
+
+    4. Test case: `edit 1 p/w1234567`<br>
+       Expected: No tutor is edited. An error message stating that phone number should only contain numbers will appear
+       in the feedback box
+
+### Editing a tuition class
+1. Editing a tuition class while all tuition classes are being shown
+
+    1. Prerequisites: List all tuition classes using the `list class` command. Multiple tuition classes in the list.
+
+    2. Test case: `edit 1 n/P3ENGT12`<br>
+       Expected: The name of the first tuition class in the list will be change to `Alice`. A message showing the new
+       particulars of the edited tuition class will appear in the feedback box.
+
+    3. Test case prerequisites: There are 3 tuition classes in the list.
+       Test case: `edit 100 n/P3ENGT12`<br>
+       Expected: No tuition class is edited. Error details shown in the status message.
+
+    4. Test case: `edit 1 d/funday`<br>
+       Expected: No tuition class is edited. An error message stating that the day is not valid will appear
+       in the feedback box
+
+### Listing all student/tutor/tuition class
+
+1. Test case: `list student`<br>
+   Expected: A message stating that the all the students are listed will appear in the feedback box. The list tab will 
+   be changed to Student and list of students will be displayed.
+
+2. Test case: `list tutor`<br>
+   Expected: A message stating that the all the tutors are listed will appear in the feedback box. The list tab will
+   be changed to Student and list of tutors will be displayed.
+
+3. Test case: `list class`<br>
+   Expected: A message stating that the all the tuition classes are listed will appear in the feedback box. The list tab will
+   be changed to Class and list of tuition classes will be displayed.
+
+4. Test case: `list`<br>
+   Expected: A message stating the command format is invalid will appear in the feedback box. There will be no change to
+   list tab and the current list that is being displayed.
+
+5. Test case: `list all`<br>
+   Expected: A message stating the entity type is invalid and list of valid entity type will appear in the feedback box. There will be no change to
+   list tab and the current list that is being displayed.
+
+### Assigning a tuition class to a student
+1. Assigning a tuition class to a student while all students are being shown
+    1. Prerequisites: List all students using the `list student` command. Multiple students in the list. There are 
+       tuition classes available in the tuition class list.
+    
+        1. Test case prerequisites: The first student in the list is yet to be assigned to tuition class with the name `P2MATHSF12`.<br>
+           Test case: `assign 1 n/P2MATHSF12`<br>
+           Expected: A message stating that student has been assigned will appear in the feedback box. There will also 
+           be a green tag with the name `P2MATHSF12` appearing in the class field of the student.
+       
+        2. Test case prerequisites: The first student in the list has been assigned to tuition class with the name `P2MATHSF12`.<br>
+           Test case: `assign 1 n/P2MATHSF12`<br>
+           Expected: The student will not be assigned to any tuition class. An error message stating that the student has 
+           been assigned to this class will appear in the feedback box.
+       
+        3. Test case prerequisites: The tuition class with name `P3MATHSF11` does not exist in the tuition class list.<br>
+           Test case: `assign 1 n/P3MATHSF11`<br>
+           Expected: The student will not be assigned to any tuition class. An error message stating that the tuition class does not exist.
+
+### Assigning a tuition class to a tutor
+1. Assigning a tuition class to a tutor while all tutors are being shown
+    1. Prerequisites: List all tutors using the `list tutor` command. Multiple tutors in the list. There are
+       tuition classes available in the tuition class list.
+
+        1. Test case prerequisites: The first tutor in the list is yet to be assigned to tuition class with the name `P2MATHSF12`.<br>
+           Test case: `assign 1 n/P2MATHSF12`<br>
+           Expected: A message stating that tutor has been assigned will appear in the feedback box. There will also
+           be a green tag with the name `P2MATHSF12` appearing in the class field of the tutor.
+
+        2. Test case prerequisites: The first tutor in the list has been assigned to tuition class with the name `P2MATHSF12`.<br>
+           Test case: `assign 1 n/P2MATHSF12`<br>
+           Expected: The tutor will not be assigned to any tuition class. An error message stating that the tutor has
+           been assigned to this class will appear in the feedback box.
+
+        3. Test case prerequisites: The tuition class with name `P3MATHSF11` does not exist in the tuition class list.<br>
+           Test case: `assign 1 n/P3MATHSF11`<br>
+           Expected: The tutor will not be assigned to any tuition class. An error message stating that the tuition class does not exist.
+
+### Unassigning a tuition class from a student
+1. Unassigning a tuition class from a student while all students are being shown
+    1. Prerequisites: List all students using the `list student` command. Multiple students in the list. There are
+       tuition classes available in the tuition class list.
+
+        1. Test case prerequisites: The first student in the list has been assigned to tuition class with the name `P2MATHSF12`.<br>
+           Test case: `unassign 1 n/P2MATHSF12`<br>
+           Expected: A message stating that student has been unassigned will appear in the feedback box. The green tag 
+           with the name `P2MATHSF12` will disappear from the class field of the student.
+
+        2. Test case prerequisites: The first student in the list has not been assigned to tuition class with the name `P2MATHSF12`.<br>
+           Test case: `unassign 1 n/P2MATHSF12`<br>
+           Expected: The student will not be unassigned from any tuition class. An error message stating that the student is not
+           assigned to this class will appear in the feedback box.
+
+        3. Test case prerequisites: The tuition class with name `P3MATHSF11` does not exist in the tuition class list.<br>
+           Test case: `unassign 1 n/P3MATHSF11`<br>
+           Expected: The student will not be unassigned from any tuition class. An error message stating that the tuition class does not exist.
+
+### Unassigning a tuition class from a tutor
+1. Unassigning a tuition class from a tutor while all tutors are being shown
+    1. Prerequisites: List all tutors using the `list tutor` command. Multiple tutors in the list. There are
+       tuition classes available in the tuition class list.
+
+        1. Test case prerequisites: The first tutor in the list has been assigned to tuition class with the name `P2MATHSF12`.<br>
+           Test case: `unassign 1 n/P2MATHSF12`<br>
+           Expected: A message stating that tutor has been unassigned will appear in the feedback box. The green tag
+           with the name `P2MATHSF12` will disappear from the class field of the tutor.
+
+        2. Test case prerequisites: The first tutor in the list has not been assigned to tuition class with the name `P2MATHSF12`.<br>
+           Test case: `unassign 1 n/P2MATHSF12`<br>
+           Expected: The tutor will not be unassigned from any tuition class. An error message stating that the tutor is not
+           assigned to this class will appear in the feedback box.
+
+        3. Test case prerequisites: The tuition class with name `P3MATHSF11` does not exist in the tuition class list.<br>
+           Test case: `unassign 1 n/P3MATHSF11`<br>
+           Expected: The tutor will not be unassigned from any tuition class. An error message stating that the tuition class does not exist.
+
+### Adding next of kin to Student
+1. Adding next of kin to a student while all students are being shown
+
+    1. Prerequisites: List all students using the `list student` command. Multiple students in the list.
+
+        1. Test case prerequisites: Next of kin has not been added to the first student in the list.<br>
+           Test case: `nok 1 n/Eddy Doe p/86758594 e/eddydoe@example.com a/John street, block 123, #01-01 r/Father`<br>
+           Expected: A message stating the next of kin has been added and details of next of kin will appear in the feedback box. 
+           `Eddy doe` and his details will be added to the next of kin section of the first student in the list.
+       
+        2. Test case prerequisites: The first student in the list already has a next of kin.<br>
+            Test case: `nok 1 n/Eddy Doe p/86758594 e/eddydoe@example.com a/John street, block 123, #01-01 r/Father`<br>
+            Expected: A message stating the next of kin has been added and details of next of kin will appear in the feedback box.
+            Existing next of kin details for the first student in the list will be replaced with `Eddy Doe` and his details.
+        
+        3. Test case: `nok 1 n/Eddy ?oe p/86758594 e/eddydoe@example.com a/John street, block 123, #01-01 r/Father`<br>
+           Expected: No changes will be made to the next of kin section for the first student in the list. A message stating 
+           that name should only contain alphanumeric character and space will appear in the feedback box.
+
+### Clear the list of students
+1. Prerequisites: List all students using the `list student` command.
+    1. Test case: `clear`
+       Expected: All the students in the list of students will be removed. A message stating the list is cleared will 
+       appear in the feedback box. 
+
+### Clear the list of tutors
+1. Prerequisites: List all tutors using the `list tutor` command.
+    1. Test case: `clear`
+       Expected: All the tutors in the list of tutors will be removed. A message stating the list is cleared will
+       appear in the feedback box.
+
+### Clear the list of tuition classes
+1. Prerequisites: List all tuition classes using the `list class` command.
+    1. Test case: `clear`
+       Expected: All the tuition classes in the list of tuition classes will be removed. A message stating the list is cleared will
+       appear in the feedback box.
+
+### Sort the list of students/tutors/tuition classes
+1. Test case: `sort reverse`
+   Expected: The order of the current list that is being displayed will be reversed. A message stating the list has been 
+   reversed will appear in the feedback box.
+
+2. Test case: `sort`, `sort x`, ... (where x is anything other alpha, default, reverse)
+   Expected: The order of the current list will remain the same. A message stating the command format 
+   is invalid and a list of valid command format will appear in the feedback box.
+
+### Seeing all the particulars of a student
+
+1. Seeing all the particulars of a student while all students are being shown
+
+    1. Prerequisites: List all student using the `list student` command. Multiple students in the list.
+
+    2. Test case: `show 1`<br>
+       Expected: All the particular of the first student will appear in the description panel.
+
+    3. Test case prerequisites: There are 3 students in the list.
+       Test case: `show 10`<br>
+       Expected: No particulars of student is shown. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `show`, `show x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Seeing all the particulars of a tutor
+
+1. Seeing all the particulars of a tutor while all tutors are being shown
+
+    1. Prerequisites: List all tutors using the `list tutor` command. Multiple tutors in the list.
+
+    2. Test case: `show 1`<br>
+       Expected: All the particular of the first tutor will appear in the description panel.
+
+    3. Test case prerequisites: There are 3 tutors in the list.
+       Test case: `show 43`<br>
+       Expected: No particulars of tutor is shown. Error details shown in the status message.
+
+    4. Other incorrect delete commands to try: `show`, `show x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+
+### Finding students
+1. Finding students while all students are being shown
+
+    1. Prerequisites: List all students using the `list student` command. Multiple students in the list.
+
+    2. Test case: `find n/john`
+       Expected: All the students whose name contains the keyword `john` will appear in the list display panel. A message
+       stating the number of students found and listed will appear in the feedback box.
+    3. Test case: `find q/Bachelor of Computing`
+       Expected: A message stating the prefix is invalid will appear in the feedback box. No searching will be done.
+
+### Finding tutors
+1. Finding tutors while all tutors are being shown
+
+    1. Prerequisites: List all tutors using the `list tutor` command. Multiple tutors in the list.
+
+    2. Test case: `find n/john`
+       Expected: All the tutors whose name contains the keyword `john` will appear in the list display panel. A message
+       stating the number of tutors found and listed will appear in the feedback box.
+    3. Test case: `find t/12:00-14:00`
+       Expected: A message stating the prefix is invalid will appear in the feedback box. No searching will be done.
+
+### Finding tuition classes
+1. Finding tuition classes while all tuition classes are being shown
+
+    1. Prerequisites: List all tuition classes using the `list class` command. Multiple tuition classes in the list.
+
+    2. Test case: `find n/P3MATH`
+       Expected: All the tuition classes whose name contains the keyword `P3MATH` will appear in the list display panel. A message
+       stating the number of tuition classes found and listed will appear in the feedback box.
+    3. Test case: `find q/Bachelor of Computing`
+       Expected: A message stating the prefix is invalid will appear in the feedback box. No searching will be done.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Head to the home folder of `myStudent` application and delete all the .json files in the `data` folder.
+    2. Relaunch the `myStudent` application.
+       Expected: New set of .json files with no data will be created in the same `data` folder in the home folder. 
 
-1. _{ more test cases …​ }_
+2. _Dealing with corrupted data files
+    1. Head to the home folder of `myStudent` application and open any one of the .json files.
+    2. Corrupt the file by deleting a part of the data in the file. (Delete the )
+    3. Relaunch the `myStudent` application.
+       Expected: A new .json files with no data will be created to replace the corrupted .json file in the same `data` 
+       folder in the home folder.
+   
+
+--------------------------------------------------------------------------------------------------------------------
+## **Appendix: Effort**
+
+This project had a higher difficulty level than AB3 as we had to deal with 3 entity types which are Student, Tutor and 
+TuitionClass while AB3 had only one entity type. We had to tweak a lot of the existing variables and methods to ensure that
+existing commands works for each of the entity types we were implementing as well as fixing the broken test cases and 
+implementing new ones.
+
+We also put in more effort in improving the find feature such that now the find command is able to search for multiples
+fields compared to previously where AB3 only allow searching by name. We also add the ability to allow user to be able
+to export the address books in myStudent to .csv files which took a considerable amount of research and time for the
+implementation to ensure it is working.
+
+Significant time and effort was also put in on designing and implementing the UI part of the project such as adding an 
+introduction and ending screen and the ability for user to change themes.
