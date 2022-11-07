@@ -61,8 +61,9 @@ public class EditCommandParserTest {
         assertParseFailure(parser, VALID_DESC_LUNCH, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, "1", EditCommand.MESSAGE_NO_ENTRY_TYPE);
 
+        assertParseFailure(parser, "1 t/e", EditCommand.MESSAGE_NOT_EDITED);
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
