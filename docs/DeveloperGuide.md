@@ -1908,6 +1908,16 @@ Remember to perform a backup before deletion if necessary. Then, open Plannit.
         Expected:
          * Same as previous.
 
+<!-- @@author cheeheng -->
+### Clear data
+
+1. Test case: `clear`<br>
+   Expected:
+    * Module list becomes empty and remains empty after restart.
+    * Person list becomes empty and remains empty after restart.
+    * Result display shows all data successfully cleared.
+
+<!-- @@author Tan-Jia-Rong -->
 ### Viewing help
 
 1. Test case: `help`<br>
