@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 
 public class ServerTest {
 
+    public static final Server VALID_TEST_SERVER = new Server("test@123.456");
+
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Server(null));
@@ -26,5 +28,11 @@ public class ServerTest {
         // Valid server names
         assertTrue(Server.isValidServerName("server@111.222.333"));
         assertTrue(Server.isValidServerName("server_name@server_address"));
+    }
+
+    @Test
+    public void isEqualServer() {
+        Server testServer = new Server("test@123.456");
+        assertTrue(VALID_TEST_SERVER.equals(testServer));
     }
 }
