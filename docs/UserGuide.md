@@ -126,35 +126,35 @@ e.g. `help`
 
 ### 6.2.2 Parameter
 
-A parameter has a prefix and information which are written together without a space in between. The information are words in `UPPER_CASE` and are to be provided by you. The prefix, which ends with a `/`, is specified before the information and is what specifies what type of information you are providing SoConnect with. Do note that some commands only requires the prefix as a parameter.  <br>
+A parameter has a prefix and information which are written together without a space in between. The information are words in `UPPER_CASE` and are to be provided by you. The prefix, which ends with a `/`, is specified before the information and determines the information type. Do note that some commands only require the prefix as a parameter.  <br>
 
 e.g. `n/NAME`
 
 ### 6.3. Command Format
 
-To use SoConnect features, you would need to type the [command](#621-command) that you would like to use along with the [parameters](#622-parameter) it requires. If a parameter is optional, it will be wrapped with square brackets. e.g. `[e/EMAIL]` <br>
-The [parameters](#622-parameter) required for each feature can be found in [Command Summary](#9-command-summary) and [Commands](#7-commands).
+In the command box, you need to type the [command word](#621-command) along with the required [parameters](#622-parameter). You can leave the parameter field empty if it is optional, which is indicated by wrapped square brackets in the command format, e.g. `search [e/EMAIL]` <br>
+The [parameters](#622-parameter) required for each command can be found in [Command Summary](#9-command-summary) and [Commands](#7-commands).
 
-<div markdown="block" class="alert alert-info"> 
+<div markdown="block" class="alert alert-primary"> 
 
-**:information_source: Note:**<br>
+**:memo: Note**<br>
 
 * Words in `UPPER_CASE` are the information to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is an information which can be used as `add n/John Doe`.
+  e.g. if the format is `add n/NAME`, you can type `add n/John Doe` to use the command.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+* Items with `…`​ after them can be used multiple times, including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family`, etc.
 
 * [Parameters](#622-parameter) can be in any order unless explicitly stated otherwise.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a [parameter](#622-parameter) is expected only once in the [command](#621-command), but you specified it multiple times, only the last occurrence of the [parameter](#622-parameter) will be taken.<br>
+* If a [parameter](#622-parameter) is expected only once in the [command](#621-command), but you specify it multiple times, only the last occurrence of the [parameter](#622-parameter) will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
 * Irrelevant [parameters](#622-parameter) for [commands](#621-command) that do not take in [parameters](#622-parameter) (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  e.g. if you type `help 123`, it will be interpreted as `help`.
 
-* `INDEX` is used in [commands](#621-command) to refer to a specific contact or todo by their index number on the currently displayed contact list and todo list. The `INDEX` **must be a positive non-zero integer** 1, 2, 3, …​ <a id="command-format-index"></a>
+* `INDEX` is used in [commands](#621-command) to refer to a specific contact or todo by their index number on the currently displayed list. The `INDEX` **must be a positive non-zero integer** 1, 2, 3, …​ <a id="command-format-index"></a>
 
 ### 6.4. How to Use the CLI
 
@@ -175,7 +175,6 @@ If you already know about [Command Line Interface (CLI)](#CLI), you can skip thi
 
 #### 7.1.1. Viewing help : `help`
 
-Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
@@ -532,34 +531,32 @@ Example:
 
 ### 7.5. Customisation Commands
 
-You can use the customisation features to customise the displayed information in the contact list.
-
 #### 7.5.1. Customising order of details: `customise order`
 
-You can customise the order of information shown in all contacts shown.
+You can customise the order of information shown for all contacts.
 
 Format: `customise order [t/] [p/] [e/] [a/]`
 
-* You will always see the name of contact at the top of each contact.
+* You will always see the contact's name at the top of each card.
 * You can change the order of the following information: Tags, Phone Number, Email, Address.
-* Information that you do not specify will be ordered last and follow the default order. (Tags > Phone Number > Email > Address)
+* Unspecified information will be ordered last according to the default order (Tags > Phone Number > Email > Address).
 
 Example:
 
-* `customise order a/ e/ p/` SoConnect will show address first, followed by email, phone number, then tags.
-* `customise order a/` SoConnect will show address first. The rest of the information will follow the default order. Therefore, address will be followed by tags, phone number and then email.
+* `customise order a/ e/ p/` SoConnect will show address first, followed by email, phone number and tags.
+* `customise order a/` SoConnect will show address first. The rest of the information will follow the default order. Therefore, address will be followed by tags, phone number and email.
 
 <br>
 
 #### 7.5.2. Hiding contact details: `customise hide`
 
-You can hide certain information of all contacts displayed.
+You can hide certain information fields from all contacts.
 
 Format: `customise hide [t/] [p/] [e/] [a/]`
 
 * You can hide the following information: Tags, Phone Number, Email, Address.
 * After you use this command, the information specified is hidden.
-* If the information that you specified is already hidden, it will stay hidden.
+* If the information that you specify is already hidden, it will stay hidden.
 
 Example:
 * `customise hide e/` SoConnect no longer shows emails in the list of contacts.
@@ -569,13 +566,13 @@ Example:
 
 #### 7.5.3. Showing contact details: `customise show`
 
-You can show certain information of all contacts displayed.
+You can show certain information fields for all contacts.
 
 Format: `customise show [t/] [p/] [e/] [a/]`
 
 * You can show the following information: Tags, Phone Number, Email, Address.
 * After you use this command, the information specified is shown.
-* If the information that you specified is already shown, it will stay shown.
+* If the information that you specify is already shown, it will stay shown.
 * `Coming soon in v1.5`, we will include `customise show all`, a shortcut to show all information.
 
 Example:
