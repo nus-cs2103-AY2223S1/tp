@@ -4,23 +4,17 @@ title: Zhehao's Project Portfolio Page
 ---
 
 #### Project: CS2103 tP
-
-#### Overview
-
-checkUp is a desktop patient medical record management system. The user interacts with it using a CLI, and it has a GUI
+__Overview__: checkUp is a desktop patient medical record management system. The user interacts with it using a CLI, and it has a GUI
 created with JavaFX. It is written in Java, and has about 15 kLoC.
 
 #### Summary of contributions
-
-##### Code contributed
-All my code contribution can be viewed here:
+__Code Contributed__: All my code contribution can be viewed here:
 [RepoSense Report](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=charles1026&breakdown=true)
 
 ##### Enhancements implemented
-
 - Updating `Person` class to support patient specific fields
-  - Description: `Person` now supports `Name`, `Phone`, `Email`, `NextOfKin`, `PatientType`, `HospitalWing`, 
-    `FloorNumber`, `WardNumber`, `Medication`, `UpcomingAppointment` and `PastAppointment` fields
+  - Description: `Person` now configured to support `NextOfKin`, `PatientType`, `HospitalWing`, 
+    `FloorNumber`, `WardNumber` and `Medication` fields
   - Justification: Allows medical staff to store personal information needed for patients.
 - Creating new patient profiles: `add`
   - Description: Adds new patients with their all their personal particulars.
@@ -59,7 +53,6 @@ All my code contribution can be viewed here:
     multiple commands.
   
 ##### Other code contributions
-
 - Fixed Patient Details Panel display bugs.
 - Fixed `UpcomingAppointment` and `PastAppointment` date parsing bugs.
 - Fixed `Person` duplicate check not case sensitive bug.
@@ -67,7 +60,6 @@ All my code contribution can be viewed here:
 - Added unit tests for all the enhancements in the section above.
 
 ##### Contributions to the UG
-
 - Updated documentation for `add` and `edit` commands to reflect changes made to them.
 - Documented `view`, `delappt` and `consult` commands.
 - Documented the Patient Details Panel, clickability and keyboard shortcuts enhancements.
@@ -86,12 +78,10 @@ All my code contribution can be viewed here:
 - Added user stories, use cases and manual testing for all the above-mentioned features.
 
 ##### Contributions to team-based tasks
-
 - Ensured team was on schedule to meet deadlines and milestone submissions.
 - Split and planned tasks for team members.
 - Checked for code quality and adherence to coding standards.
 
 ##### Review/mentoring contributions
-
 - Reviewed PRs for team members through the SDLC versions.
 - Aided teammates with debugging and highlighted errors / potential coding standards breaches to teammates.
