@@ -10,7 +10,7 @@ import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
 /**
- * Represents a Date in WorkBook.
+ * Represents a DateTime in WorkBook.
  * Guarantees: immutable; name is valid as declared in {@link #isValidDateTime(String)}
  */
 public class DateTime {
