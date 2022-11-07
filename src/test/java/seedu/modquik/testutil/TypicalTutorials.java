@@ -46,8 +46,6 @@ public class TypicalTutorials {
     public static final Tutorial TU2 = new TutorialBuilder().withName(VALID_NAME_TUT2).withModule(VALID_MODULE_TUT2)
             .withVenue(VALID_VENUE_TUT2).withTimeslot(VALID_TIMESLOT_TUT2_START, VALID_TIMESLOT_TUT2_END).build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
-
     private TypicalTutorials() {} // prevents instantiation
 
     /**
