@@ -57,15 +57,11 @@ FinBook is optimized for use via a Command Line Interface (CLI), which means mos
     * Updated the acknowledgements section.
     * Updated the storage component section.
     * Added implementation details of the following: import command, lock feature
-    * Updated user stories
-    * Updated use cases
-    * Updated glossary
+    * Updated user stories, use cases and glossary
     * Helped to fix bugs such as inconsistent formatting, broken links and outdated carryovers from AB3.
 
 * **Contributions to team-based tasks**:
-    * Set up the GitHub team organization.
-    * Set up the GitHub team repository.
-    * Set up the issue tracker.
+    * Set up the GitHub team organization, team repository and issue tracker.
     * Set up GitHub Project Boards to manage user stories and issues.
     * Set up master branch protection rules.
     * Maintained the issue tracker and milestones.
@@ -91,8 +87,6 @@ Created the following diagrams:
 
 ### Contributions to the User Guide (Extracts)
 
----
-
 ### 4.2.1. Locking the application : `lock`
 
 Locks the application.
@@ -114,8 +108,6 @@ The following dialog box will be displayed:
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 The lock feature only serves to prevent unauthorized usage of FinBook. Anyone with access to your PC is still able to view and edit the `JSON` files containing your data.
 </div>
-
----
 
 ### 4.3.3. Importing data : `import`
 
