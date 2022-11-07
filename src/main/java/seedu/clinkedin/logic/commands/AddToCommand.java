@@ -38,22 +38,24 @@ public class AddToCommand extends Command {
     public static final String COMMAND_WORD = "addto";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Add additional attributes to an existing person in the address book.\n"
+            + ": Adds additional attributes to an existing person in the address book.\n"
             + "Parameters: "
+            + "INDEX (must be a positive integer) "
             + "[" + PREFIX_TAG + "TAG] "
-            + "[" + PREFIX_NOTE + "NOTE]"
-            + "[" + PREFIX_RATING + "RATING]"
+            + "[" + PREFIX_NOTE + "NOTE] "
+            + "[" + PREFIX_RATING + "RATING] "
             + "[" + PREFIX_LINK + "LINK]...\n"
-            + "Example: " + COMMAND_WORD + "2 "
+            + "Example: " + COMMAND_WORD + " 2 "
             + PREFIX_SKILLTAG + "java "
             + PREFIX_SKILLTAG + "python "
-            + PREFIX_NOTE + "Can do administrative work."
-            + PREFIX_RATING + "4"
+            + PREFIX_NOTE + "Can do administrative work. "
+            + PREFIX_RATING + "4 "
             + PREFIX_LINK + "https://github.com/unknown-person";
 
     public static final String MESSAGE_SUCCESS = "New Attributes added to person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
-    public static final String MESSAGE_NO_ATTRIBUTE_TO_ADD = "Attributes to add should not be empty!";
+    public static final String MESSAGE_NO_ATTRIBUTE_TO_ADD = "Only tag, rating, note, and link"
+            + "attributes should be added and attributes to be added should not be empty!";
 
     private final Index index;
     private final UpdatePersonDescriptor updatePersonDescriptor;
@@ -107,7 +109,7 @@ public class AddToCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createUpdatedPerson(Person personToUpdate,
+    static Person createUpdatedPerson(Person personToUpdate,
                                               AddToCommand.UpdatePersonDescriptor updatePersonDescriptor)
             throws TagTypeNotFoundException, TagNotFoundException, DuplicateTagException, RatingAlreadyExistsException {
         assert personToUpdate != null;
@@ -127,7 +129,7 @@ public class AddToCommand extends Command {
 
         Optional<Rating> ratingToAdd = updatePersonDescriptor.getRating();
         Rating updatedRating = personToUpdate.getRating();
-        if (!updatedRating.toString().equals("0")) {
+        if (!updatedRating.toString().equals("0") && ratingToAdd.isPresent()) {
             throw new RatingAlreadyExistsException();
         } else if (ratingToAdd.isPresent()) {
             updatedRating = ratingToAdd.get();

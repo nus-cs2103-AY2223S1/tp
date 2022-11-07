@@ -301,7 +301,7 @@ Step 3. The user executes the 'editTagType Grade-Score grdt-scrt' to edit the ex
 
 Step 4. The user executes the `deleteTagType Score` to delete the Score Tag Type and all Tags of Score Tag Type for all person in CLInkedIn. The `deleteTagType` command calls the `UniqueTagTypeMap#removeExistingTagType()` to remove the scrt/ — Score key-value pair from the `prefixMap`. Furthermore, it also calls the `Model#deleteTagTypeForAllPerson()` to delete the Score Tag Type and the Tags assigned to the Score Tag TYpe for each person having Tags of Score Tag Type.
 
-The following sequence diagram shows how the createTagType operation works:
+The following sequence diagram shows how the `createTagType` command operation works:
 
 ![CreateTagTypeSequenceDiagram](images/CreateTagTypeSequenceDiagram.png)
 
@@ -361,22 +361,36 @@ The proposed `Note` feature is added as an optional attribute under the `Person`
 A `Note` class is created, and is implemented via a `String`. The String can take in any input, including a blank string.
 
 The `Note` attribute is mainly implemented by the following methods:
-- `Note` can be added via the `AddCommand`
-- `Note` can be edited via the `EditCommand`.
+- `AddNoteCommand` - Adds a note to a candidate **by appending the new note to the end of the candidate's current list of notes**, eg: `addnote 4 note/Strong at Java` adds a `Note` of `Strong at Java` to the 4th candidate in CLInkedIn. 
+- `DeleteNoteCommand` - Deletes **all notes** of a candidate, eg: `deletenote 1` deletes all notes of the 1st candidate in CLInkedIn.
+- `AddCommand` - Adds a new candidate with note, eg: `add n/John Doe e/john@mail.com p/10384280 s/Application Received rate/9 note/Has applied twice` adds a new candidate with name `John Doe`, email `john@mail.com`, phone number `10384280`, status of `Application Received`, rating of `9` with a note of `Has applied twice`. 
+- `EditCommand` - Edits the note of a candidate by **overwriting their existing notes with the new inputted note**, eg: `edit 2 note/Has a dog` edits `Note` of the 2nd candidate in CLInkedIn to `Has a dog` by overwriting any existing notes of the 2nd candidate.
 
 It is also additionally facilitated by these methods:
-- `AddNoteCommandParser#parse()` - Checks the input for the Note prefix, only adds a candidate into CLInkedIn if the entry has a `Note` prefix and a valid `Note` input
+- `AddNoteCommandParser#parse()` - Checks the input for the Note prefix, only adds a candidate into CLInkedIn if the entry has a `Note` prefix and a valid `Note` input.
 - `AddressBookParser#parseCommand()` - Checks the input for `AddCommand` or `EditCommand`
 
-Here is an example of what happens when the recruiter attempts to add a candidate to CLInkedIn:
-1. Recruiter enters the command `add n/John Doe p/999 e/john@mail/com a/singapore note/Strong in Python.`
+Here is an example of what happens when the recruiter attempts to add a note to a candidate in CLInkedIn:
+1. Recruiter enters the command `addNote 1 note/Good at Java`.
+2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command.
+3. Since this is an `AddNoteCommand`, the remaining arguments are passed into `AddNoteCommandParser#parse()`.
+4. The index of the candidate and the note to be added are parsed by `AddNoteCommandParser#parse()`. It calls `ParserUtil#parseIndex()` to parse the index and `ParserUtil#parseNote()` to parse the note.
+5. If the index is invalid, the command will fail its execution and `ParseException` will be thrown.
+6. Else, an `AddNoteCommand` object is generated with `Index` 1 and `Note` "Good at Java".
+7. Next, the `AddNoteCommand#execute()` is called, which adds the note to the candidate using `Person#mergeNote(note)` and returns a `CommandResult`.
+
+The following sequence diagram shows how the add note operation via `AddNoteCommand` works:
+![AddNoteSequenceDiagram](images/AddNoteSequenceDiagram.png)
+
+Here is an example of what happens when the recruiter attempts to add a candidate with a note to CLInkedIn:
+1. Recruiter enters the command `add n/John Doe p/999 e/john@mail/com a/singapore rate/9 note/Strong in Python.`
 2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command.
 3. Since this is an `AddCommand`, the remaining arguments are passed into `AddCommandParser#parse()`
-4. Each of the different arguments of a candidate (name, phone, email, address, Status) are parsed by `AddCommandParser#parse()`
-5. If any of the compulsory arguments of a candidate (name, phone, email, address, Status) are not present, the command will fail its execution and `ParseException` will be thrown.
+4. Each of the different arguments of a candidate (name, phone, email, address, rating, status, note, tags, links) are parsed by `AddCommandParser#parse()`
+5. If any of the compulsory arguments of a candidate (name, phone, email, address, status) are not present, the command will fail its execution and `ParseException` will be thrown.
 6. Next, the `AddCommand#execute()` is called, which triggers the `Model#addPerson(Person)` command and a `CommandResult` is returned
 
-Here is an example of what happens when the recruiter attempts to edit a candidate's Note  CLInkedIn:
+Here is an example of what happens when the recruiter attempts to edit a candidate's Note in CLInkedIn:
 1. Recruiter enters the command `edit 1 note/Missed 2 interviews`
 2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command.
 3. Since this is an `EditCommand`, the remaining arguments are passed into `EditCommandParser#parse()`
@@ -470,6 +484,45 @@ The following sequence diagram shows how the `Import` command operation works fo
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the user executes the `import` or `export` command through the GUI Window, internally the `import` or `export` command is invoked, by appending `import ` or `export ` before the file path specified in the GUI Window respectively, and then passing the resultant `String` as an argument while invoking the `MainWindow#executeCommand()` method.
 </div>
     
+
+### Link Feature
+
+#### Implementation
+
+The proposed `Link` feature is added as an optional attribute under the `Person` class. A `Person` can have 0 or more links added to it and it stores all the links as a `Set` of `Link`.
+
+This feature is facilitated by `Link` class. The `Link` class uses an external Java library for `URL` to store the links so that it can use the library to identify and generate the host platform for the link to display an appropriate icon for the link in the UI.
+
+If a user doesn't provide links for a candidate while adding the candidate to the list then they can choose to add/update existing links using the `addLink` command. Moreover, the user can also replace/delete the entire list of existing links for a candidate using the `edit`/`delete` command.
+These features are implemented using the following class/methods:
+- `AddLinkCommandParser#parse()` - Extracts the index and all the links to be added to the candidate at the given index from the user input and calls `ParserUtil.parseLinks()` to get a `Set` of valid `Link`.
+- `ParserUtil#parseLinks()` - It further calls the `parseLink()` method that parses the link, generates a valid `URL` and returns the URl after wrapping it using the `Link` data type.
+- `Link#generatePlatform()` - It extracts the host from the given URL and generates the platform for the icon to be displayed in the UI as `linkedin`, `telegram`, `github`, `instagram`, `snapchat`, `discord`, `twitter`, or `facebook` if it is one of them or as `general` if it is not recognised.
+- `AddLinkCommand` - After doing all the relevant checks it adds the `Set` of `Link` passed to it as a parameter to the person at the given index when its `execute()` method is called.
+- `DeleteLinkCommandParser#parse()` - Parses the index of the candidate whose links are to be deleted.
+- `DeleteLinkCommand` - Creates a copy of the person at the provided index but with no links and sets the person at the given index as the new person in the address book. 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Since, while instantiating a `URL` in the `ParserUtil` the `URL` class throws an exception if the link is not in the correct format, we do not have an explicit method `isValidLink()` in the `Link` class to check for the validity of the link.<br>
+</div>
+
+Given below is an example usage scenario and how the add/edit/delete links mechanism behaves at each step:
+
+Assume, currently there are 3 people in the address book.
+
+Step 1. The user executes `add n/John p/12345678 a/21 College Road e/john@gmail.com s/Application received rate/4 l/https://telegram.com` command to add a person the address book with a single link at index 4.
+
+Step 2. The user executes `addLink 4 l/https://github.com l/https://linkedin.com` command to add 2 more links to person. Now, the person at index 4 will have a total for 3 links attached to it.
+
+Step 3. The user clicks on the icon with the `Github` logo for the person at index 4 to view the Github link added for the person.
+
+Step 3. The user executes the `edit 4 l/https://google.com` to replace the existing set of links for the person with a single link. Do note, since google is not a recognised platform by CLInkedIn, it will be displayed with a general link icon in the GUI.
+
+Step 4. The user executes the `deleteLink 4` to delete all the links of the person at index 4.
+
+The following sequence diagram shows how the `addLink` command operation works:
+
+![AddLinkSequenceDiagram](images/AddLinkSequenceDiagram.png)
+
 ### Undo/redo feature
 
 #### Implementation
@@ -580,9 +633,50 @@ This is because the recruiter would have no opinion about candidates with no rat
 
 The purpose of this feature is such that recruiters can view candidates based on order of desirability, and they would not need to look at candidates with no rating and they do not know their desirability yet. 
 
+### View feature
+
+#### Implementation
+
+The proposed `View` feature allows the user to view the full details of a selected candidate. 
+
+It is mainly implemented by the `ViewCommand` method. The `ViewCommand` method takes in an index of the candidate to be viewed. Eg: Executing `view 1` will view the first candidate in the list. 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `ViewCommand` may also be executed directly from the UI by clicking on the candidate card in the `PersonCard` component in CLInkedIn. Eg: Clicking on the first candidate card in the list will execute `view 1`.
+</div>
+
+Here is an example of what happens when the recruiter attempts to view a candidate on CLInkedIn:
+
+1. The user enters the command `view 1` to view the first candidate in the list.
+2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command.
+3. Since this is a `ViewCommand`, the `ViewCommandParser` is called to parse the remaining arguments.
+4. The `ViewCommandParser` then calls `ParserUtil#parseIndex("1")` which parses the index of the candidate to be viewed. If the index is not a positive unsigned integer, a `ParseException` is thrown. If the index is valid, the index is returned to the `ViewCommandParser`.
+4. The `ViewCommandParser` then creates a `ViewCommand` object with the index of the candidate to be viewed.
+5. Next, the `ViewCommand#execute()` is called, which extracts the details of the candidate to be viewed from the `Model` using `Person#toString()`.
+6. Lastly, a `CommandResult` is returned with the details of the Candidate to be viewed.
+
+The following sequence diagram shows how the view operation works:
+
+![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+
+#### Design Considerations
+
+The `ViewCommand` is able to show the full details of a candidate in the result display window. This allows the user to view the full details of a candidate without having to scroll through the entire list of candidates. Additionally, this allows the person cards in the list to show only essential details, reducing clutter in the UI.
+
+The user is also able to view the full details of a candidate by clicking on the candidate card in the `PersonCard` component in CLInkedIn. This allows the user to view the full details of a candidate without having to type in the command.
+
+### Add feature
+
+#### Implementation
+
+The proposed `Add` feature allows the user to add a candidate to CLInkedIn. It is mainly implemented by the `AddCommand` method.
+
+Here is an example of what happens when the recruiter attempts to add a candidate to CLInkedIn:
+
+1. The user enters the command `add n/John Doe p/98765432
+
 ### \[Proposed\] Data archiving
 
-_{Explain here how the data archiving feature will be implemented}_
+Data archiving will be implemented to allow the user to archive candidates that are no longer relevant to the current job opening. This will allow the user to keep track of candidates that have been rejected in the past, and also allow the user to view the full details of the candidate. This is a proposed feature and will be implemented in a future release.
 
 --------------------------------------------------------------------------------------------------------------------
 
