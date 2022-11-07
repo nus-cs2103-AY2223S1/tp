@@ -48,7 +48,7 @@ deactivate TravelrParser
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePerson(1)
+DeleteCommand -> Model : deleteTrip(tripToDelete)
 activate Model
 
 Model --> DeleteCommand
