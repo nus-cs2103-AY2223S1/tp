@@ -182,6 +182,12 @@ Appointments added are sorted according to their date.
 
 Format: `book INDEX r/REASON d/DATE [pe/TIME_PERIOD] [t/TAG]…​`
 
+<div markdown="block" class="alert alert-primary">
+
+**:bulb: Tip:** An appointment can have up to 3 different tags.
+  
+</div>
+
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
 * Default time period is set to 0Y0M0D if no time period is inputted.
