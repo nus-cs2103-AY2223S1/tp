@@ -232,7 +232,9 @@ commission list directly, due to our method of storing commissions (inside their
 
 1. DeleteCommissionCommand#execute() will then get the currently shown list of commissions and identify the target commission to delete.
 
-1. This commission is passed into Customer#removeCommission to be removed directly from the customer's commission list.
+1. The customer is retrieved from the reference stored in the Commission object.
+
+1. This customer and target commission is passed into Model#removeCommission to be removed directly from the customer's commission list.
 
 1. Model updates the GuiTab to show the Commission tab and selectedCommission to not show the deletedCommission and these changes are observed by the UI.
 
