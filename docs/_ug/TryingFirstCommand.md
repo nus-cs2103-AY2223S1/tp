@@ -2,7 +2,7 @@
 
 To let you become more familiar with FoodRem, let's practice executing some [[ command:commands ]].
 
-To start off, let's try out the `new` command! This command lets you add an [[item:Item]]to FoodRem.
+To start off, let's try out the `new` command! This command lets you add an [Item](#item) to FoodRem.
 
 One of the available commands in FoodRem is the command to create a new item.
 
