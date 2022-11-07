@@ -197,6 +197,8 @@ In addition to the main UI components in the `MainWindow` class, these are other
   List of TaskCards contained in the TaskListPanel.
 * `HelpWindow` - Pop-up window containing the link the User Guide, as well as a (proposed) list of all the commands in the application.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -1236,6 +1238,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. ModtRekt shows all modules, including those marked as done.
 
    Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
