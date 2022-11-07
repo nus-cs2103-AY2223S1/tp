@@ -49,7 +49,7 @@ public class TutorCard extends UiPart<Region> {
         super(FXML);
         this.tutor = tutor;
         id.setText(displayedIndex + ". ");
-        name.setText(tutor.getName().fullName);
+        name.setText(tutor.getName().fullName.substring(0, Math.min(tutor.getName().fullName.length(), 50)));
         address.setText("Address: " + tutor.getAddress().value);
         email.setText("Email: " + tutor.getEmail().value);
         contactInfo.setText("Phone: " + tutor.getPhone().value + " Telegram: " + tutor.getTelegramHandle());

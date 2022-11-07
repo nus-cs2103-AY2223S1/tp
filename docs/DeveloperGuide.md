@@ -132,7 +132,7 @@ How the parsing works:
 ### 4.4. Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="600" />
 
 
 The `Model` component,
@@ -177,12 +177,6 @@ The `Schedule` component
 
 - represents a schedule of its corresponding module
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative design is to make `Schedule` abstract class, and create `LectureSchedule`, `TutorialSchedule`, `LabSchedule`, `RefelectionSchedule` that extend the `Schedule` class. The diagram is as follows: <br>
-    <div align=center>
-        <img src="images/ScheduleAlt.png" alt="NewScheduleUML" width=450; />
-</div>
-
-
 ### 4.5. Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
@@ -211,7 +205,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The class diagram below shows out current implementation of the `Student` class 
+The class diagram below shows our current implementation of the `Student` class 
 which extends from the `Person` class.
 
 ![StudentClassDiagram](images/StudentClassDiagram.png)
@@ -222,6 +216,7 @@ Additionally, it will also contain these fields:
 - `TelegramHandle`: The student's telegram handle.
 - `studentModuleInfo`: A set of ModuleCode's that the student is taking.
 - `teachingAssistantInfo`: A set of ModuleCode's that the student is a teaching assistant for.
+- `classGroups`: A set of String's that represent the class groups the student is in.
 
 #### Design consideration:
 
@@ -264,14 +259,88 @@ Additionally, it will also contain these fields:
 #### Implementation
 
 The edit student mechanism is facilitated by `EditStuCommand`, `EditStuCommandParser` and `EditStudentDescriptor` 
-classes. The `EditStuCommandParser` is in charge of parsing the user's input which then creates a 
+classes. The `EditStuCommandParser` is in charge of parsing the user's input which then creates a
 `EditStudentDescriptor` and returns a `EditStuCommand`. When the `EditStuCommand` is executed, it modifies the student
 at the index provided by the user.
 
 The following sequence diagram shows how the `editstu` command works:
 ![EditStuCommandSequenceDisgram](./images/EditStuCommandSequenceDiagram.png)
 
-### 5.3. View module details feature
+After ProfNUS receives the command to edit a `Student` with the given index, it will find the corresponding
+`Student` and edit its details.
+
+During the execution, the following validity checks will be conducted:
+- Module existence check - The model will check if it can find the module's indicated as the student's modules
+  or, it's teaching modules. If any module specified is not found, then a `CommandException` will be thrown.
+- Duplicate Student check - The model will check if the edited student has the same `StudentId` as the
+  rest of the students in ProfNUS. If such a duplicate is found, then a `CommandException` will be thrown and
+  the student will not be edited.
+- Teaching conflict check - The model will check if the edited student is a teaching assistant and a student
+  of the same module. If a conflict occurs, then a `CommandException` will be thrown.
+
+The following activity diagram summarizes what happens when a user executes a `editstu` command.
+
+![EditStudentActivityDiagram](./images/EditStudentActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How editstu executes
+
+|                                                           | Pros                                                                         | Cons                                                                                               |
+|-----------------------------------------------------------|------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| **Option 1** <br/> Edit by StudentID                      | Allows convenience if the user has a list of StudentIDs                      | User might not have a list of StudentIDs and it would take a longer time to edit multiple students |
+| **Option 2** <br/> Edit by making use of indexing in list | Allows convenience if the user wants to edit multiple students from the list | Have to use other commands such as `find` to search through a large list of students               |
+
+Reason for choosing option 2:
+
+A professor is unlikely to remember a Student's Id and it would also be a hassle to type such a long Id as compared
+to just typing the index of the student. Additionally, with other commands to search through the list of students by module
+and name, it should be easy for a professor to find the desired student to edit. Therefore, option 2 is preferred.
+
+### 5.3. Module Class
+
+#### Implementation
+
+The class diagram below shows our current implementation of the `Module` class.
+![ModuleClassDiagram](images/ModuleClassDiagram.png)
+
+Each `Module` in ProfNUS will contain the following fields:
+- `ModuleName`: The name of the module.
+- `ModuleCode`: The unique module code used to identify the module. 
+- `ModuleDescription`: The description of the module.
+- `tags`: A set of string tags that describes the module.
+- `schedules`: A set of Schedule's that represent the classes and lectures the user has for the module.
+
+#### Design consideration:
+
+##### Aspect: How to ensure Module being added is unique
+
+* **Alternative 1 (current choice):** Ensure that the `ModuleCode` of each module is unique
+    * Pros:
+        * Convenient and easy to implement since all modules have a unique module code given by NUS.
+    * Cons:
+        * The `ModuleCode` field is an editable string, and we cannot ensure that the `ModuleCode` that is added is
+          a valid code in NUS.
+
+* **Alternative 2:** Ensure that the `ModuleName` of each module is unique
+  * Pros:
+      * `ModuleCode` would not be a necessary field, less information required. 
+  * Cons:
+      * NUS modules can share the same name. For example, CS2103 and CS2103T have the module name Software Engineering. Thus, with this implementation, you would not be able to add two Software Engineering modules.
+
+### 5.4. View module list feature
+
+#### Implementation
+
+The proposed view module list functionality is accomplished by `ListModuleCommand` which extends the `Command` class. The `ListModuleCommand` overrides the following method:
+
+- `ListModuleCommand#execute(Model model)` — Executes the command and displays all modules
+
+The following sequence diagram shows how view module operation works :
+
+![ListModuleSequence](images/ListModuleSequence.png)
+
+### 5.5. View students and tutors in module feature
 
 #### Implementation
 
@@ -281,8 +350,6 @@ The method updates the student and tutor list and filters it according to the gi
 
 The following sequence diagram shows how the find module by module code operation works:
 ![ViewModuleSequenceDiagram](./images/ViewModuleSequenceDiagram.png)
-
-<div style="page-break-after: always;"></div>
 
 The following activity diagram summarizes what happens when a user executes a `mview` command:
 
@@ -300,8 +367,9 @@ The following activity diagram summarizes what happens when a user executes a `m
 Reason for choosing option 1:
 Modules like CS2103T, CS2103R and CS2103 have the same module name "Software Engineering". If we allow searching by module name, the program would not know which "Software Engineering" module to display.
 This would mean that we would need to have unique module names. However, this is not possible if the professor is teaching modules that have the same name but different code.
+As module code is the only unique field Module has, we decided to view modules by module code only to avoid any errors.
 
-### 5.4. The edit a module feature
+### 5.6. The edit a module feature
 
 #### Implementation
 
@@ -329,7 +397,7 @@ The following activity diagram summarizes what happens when a user executes a `m
 Reason for choosing option 1:
 A professor is more highly likely to remember the module codes of the modules that he is teaching rather than the index in the list in our application. Hence, an additional step would be required of the professor if option 2 were to be chosen. Therefore, option 1 is preferred.
 
-###  5.5. AddSchedule feature
+###  5.7. AddSchedule feature
 
 #### Implementation
 
@@ -350,7 +418,7 @@ During the execution, the following validity checks will be conducted:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the command isn't executed successfully and a `CommandException` is thrown, then the new schedule won't be added to the ProfNUS.</div>
 
-### 5.6. EditSchedule feature
+### 5.8. EditSchedule feature
 
 #### Implementation
 
@@ -386,7 +454,7 @@ Reason for choosing Option 2:
 
 To locate a schedule uniquely with schedule, a user needs to know the module code, class type, and class group. For example, `CS2103T tut W11`. However, when there are too many groups, professors can easily forget which group he is looking for. Therefore, using the index is better in this case.
 
-### 5.7. ViewSchedule feature
+### 5.9. ViewSchedule feature
 
 #### Implementation
 
@@ -688,7 +756,6 @@ Given below are instructions to test the app manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### 8.1. Launch and shutdown
@@ -748,7 +815,6 @@ testers are expected to do more *exploratory* testing.
 
    4. Other incorrect delete commands to try: `add`, `add x` and `add n/John Doe p/98765432`<br>
       Expected: Similar to previous.
-
 2. Deleting a student while all students are being shown
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
@@ -761,6 +827,22 @@ testers are expected to do more *exploratory* testing.
 
    4. Other incorrect delete commands to try: `del`, `del x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+### 8.4 Add a schedule
+
+Adding a schedule to ProfNUS. 
+
+1. Prerequisites: Arguments are valid and all compulsory parameters are provided.
+
+2. Test case: `add c/CS2103T w/Friday ct/16:00-18:00 cc/lec cg/L1 cv/COM2 0217`<br>
+   Expected: Adds a new schedule with the module `CS2103T`, weekday `Friday`, class time `16:00-18:00`, class type `lec`, class group `L1`, class venue `COM2 0217`.
+
+3. Test case: `add c/CS2000 w/Thursday ct/16:00-18:00 cc/lec cg/L1 cv/COM2 0217`<br>
+   Expected: No schedule is added. Error details shown in the status message. Status bar remains the same.
+
+4. Test case: `add c/CS2030S w/Friday ct/15:00-17:00 cc/lab cg/L1 cv/COM1 0210`
+
+   Expected: No schedule is added. Error details shown in the status message. Status bar remains the same.
 
 ## **9. Appendix C: Effort**
 

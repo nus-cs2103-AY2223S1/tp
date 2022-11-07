@@ -347,7 +347,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleShowTabSchedule() {
-        scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
+        scheduleListPanel = new ScheduleListPanel(logic.getAllScheduleList());
         scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
         tabPane.getSelectionModel().select(SCHEDULE);
     }
@@ -429,31 +429,24 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
-
             if (commandResult.isExit()) {
                 handleExit();
             }
-
             if (commandResult.isShowModuleList()) {
                 handleShowTabModules();
             }
-
             if (commandResult.isShowStudentList()) {
                 handleShowTabStudents();
             }
-
             if (commandResult.isShowTargetModule()) {
                 handleShowTabModuleInfo();
             }
-
             if (commandResult.isShowModule()) {
                 handleShowTabModule();
             }
-
             if (commandResult.isShowScheduleList()) {
                 handleShowTabSchedule();
             }
@@ -465,17 +458,13 @@ public class MainWindow extends UiPart<Stage> {
                 timetableModel = 1;
                 handleShowTabScheduleGrid();
             }
-
             if (commandResult.isShowLight()) {
                 applyLightTheme();
             }
-
             if (commandResult.isShowDark()) {
                 applyDarkTheme();
             }
-
             return commandResult;
-
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());

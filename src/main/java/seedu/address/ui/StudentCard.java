@@ -54,7 +54,7 @@ public class StudentCard extends UiPart<Region> {
         super(FXML);
         this.student = student;
         id.setText(displayedIndex + ". ");
-        name.setText(student.getName().fullName);
+        name.setText(student.getName().fullName.substring(0, Math.min(student.getName().fullName.length(), 50)));
         address.setText("Address: " + student.getAddress().value);
         email.setText("Email: " + student.getEmail().value);
         studentID.setText("(" + student.getId() + ")");
