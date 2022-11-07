@@ -1,4 +1,4 @@
----
+**---
 layout: page title: PennyWise User Guide
 ---
 
@@ -31,7 +31,7 @@ Already set PennyWise up? Jump right straight to the [features](#features) secti
     * [Tip Box](#tip-box)
     * [Danger Box](#danger-box)
     * [Formatting](#formatting)
-* [Quick start](#quick-start)
+* [Quick Start](#quick-start)
 * [Before Using PennyWise](#before-using-pennywise)
   * [What is an Entry](#what-is-an-entry)
   * [Familiarising yourself with the interface](#familiarising-yourself-with-the-interface)
@@ -97,7 +97,7 @@ Danger zone! Do pay attention to the information here carefully.
     <a href="#top">Back to Top </a>
 </p>
 
-## Quick start
+## Quick Start
 
 If you are unfamiliar with using command prompt, head to
 this [link](https://www.freecodecamp.org/news/command-line-for-beginners/) to learn more.
@@ -151,7 +151,7 @@ Curious about the various commands? Refer to the [Features](#features) below to 
 ### What is an Entry
 
 Think of PennyWise as a helpful personal budgeting assistant. Whenever you spend or earn money, all you need to do is
-tell PennyWise and PennyWise will help you log and save it as a new Entry! An Entry is what PennyWise terms as a
+tell PennyWise and PennyWise will log it and save it! An Entry is what PennyWise terms as a
 particular expenditure or income logged into the application. PennyWise defines an expenditure and income as things that
 you spend money on, and things that make you money respectively! Not only that, PennyWise will help you
 analyse your data, so you can easily get an overview of your overall expenditure or income.
@@ -169,7 +169,7 @@ incomes, you need to tell PennyWise the following:
 
 Let's get acquainted with the application with the help of the following diagram!
 
-When you first open up the application, this is the *default view*, which shows the list of expenditures (or incomes):
+When you first open up the application, this is the *default view*, which shows the list of expenditures:
 
 ![UserInterfaceExplanation](images/ug/UserInterfaceExplanation.png)
 
@@ -216,11 +216,11 @@ step-by-step!
 |      Input       | `d/Lunch a/15.60 da/15-08-2022 c/Food` |
 |  Optional Input  |                  NIL                   |
 
-- Letters followed by a forward slash is called a prefix and will be used to specify a specific parameter<br>
+- Letters followed by a forward slash is called an identifier and will be used to specify a specific parameter<br>
   e.g. `t/ ` refers to the entry type parameter.
 
-- PennyWise will always take the **LAST OCCURRENCE** of a command prefix should there be more than 1 of the same command
-  prefix in a given command. <br/>
+- PennyWise will always take the **LAST OCCURRENCE** of a command identifier should there be more than 1 of the same command
+  identifier in a given command. <br/>
   e.g. PennyWise will add the following `Income` with the description: "October Allowance" upon running the following command.
   <pre>
     <code>
@@ -254,7 +254,7 @@ Adding identifiers that are not used in the command will result in an error.
 ### Categorising your expenses and income
 
 For **ALL** entries, categories are <ins>COMPULSORY</ins> and every entry can only contain <ins>one</ins> category. The
-following table lists the`Expenditure` and `Income` entries categories. The category names are <ins>
+following table lists the `Expenditure` and `Income` entries categories. The category names are <ins>
 case-insensitive</ins>. E.g. `Food` is same as `food`.
 
 |   `Expenditure`   |    `Income`     |
@@ -427,7 +427,7 @@ It's been a long month with its ups and down. You wonder how your finances did t
 find out!
 
 Format: `summary [mo/MONTH]` <br/>
-To summarise the entries in PennyWise, we compute 3 simple statistic to let you have a quick overview of your
+To summarise the entries in PennyWise, we compute 3 simple statistics to let you have a quick overview of your
 expenditure and income.
 
 | Statistic             | Explanation                                                 |
@@ -454,7 +454,7 @@ The command format is provided below:
 
 ![SummaryCommand](images/ug/SummaryCommand.png)
 
-#### Summary of all entries the specified month
+#### Summary of all entries in the specified month
 
 - Examples: `summary mo/2022-10`
 - Expected:
@@ -555,11 +555,11 @@ save manually.
 
 ### Editing the data file
 
-PennyWise data are saved as a file `[JAR file location]/data/pennywise.json`. Advanced users with knowledge about JSON
-file format are welcome to update data directly by editing that data file.
+PennyWise data are saved as a file `[JAR file location]/data/pennywise.json`. Advanced users with knowledge of JSON
+file format are welcomed to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, PennyWise will discard all data and start with an empty data file at the next run.
+If your changes to the data file violate the format, PennyWise will discard all data and start with an empty data file at the next run.
 </div>
 
 <p align="right">
@@ -615,4 +615,4 @@ out for our future software updates!
 
 <p align="right">
     <a href="#top">Back to Top </a>
-</p>
+</p>**
