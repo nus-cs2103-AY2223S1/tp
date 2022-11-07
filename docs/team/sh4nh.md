@@ -39,7 +39,7 @@ and `tags` and also implemented fuzzy search which is immune to minor spelling e
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=sh4nh&breakdown=true)
 * **Documentation**: 
   * User Guide: 
-    * Added documentation for the `find` feature
+    * Added documentation for the `find` feature.
   * Developer Guide: 
       * Added use cases for the `find` Page.
       * Wrote the implementation for the `find` command.
