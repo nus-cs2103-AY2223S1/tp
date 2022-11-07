@@ -46,7 +46,7 @@ public class PersonUtil {
         person.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
 
-        if (person instanceof Patient) {
+        if (person.isPatient()) {
             Patient patient = (Patient) person;
             patient.getDatesSlots().stream().forEach(
                     s -> sb.append(PREFIX_DATE_AND_SLOT).append(s.getString()).append(" "));

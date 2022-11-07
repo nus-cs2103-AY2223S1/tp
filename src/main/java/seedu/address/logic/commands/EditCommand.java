@@ -132,7 +132,7 @@ public class EditCommand extends Command {
         boolean haveDateSlotIndexes = editPersonDescriptor.getDateSlotIndexes().isPresent();
         boolean haveUnavailableDates = editPersonDescriptor.getUnavailableDates().isPresent();
         boolean haveUnavailableDateIndexes = editPersonDescriptor.getDateIndexes().isPresent();
-        boolean isNurse = editPersonDescriptor.getCategory().equals("N") || confirmedPersonToEdit instanceof Nurse;
+        boolean isNurse = editPersonDescriptor.getCategory().equals("N") || confirmedPersonToEdit.isNurse();
 
         if (isNurse) {
             if (haveDateSlotIndexes || haveDatesSlots) {
@@ -176,7 +176,7 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        if (personToEdit instanceof Patient && updatedCategory.isPatient()) {
+        if (personToEdit.isPatient() && updatedCategory.isPatient()) {
             Optional<Physician> updatedPhysician = editPersonDescriptor.getPhysician()
                     .orElse(((Patient) personToEdit).getAttendingPhysician());
             Optional<NextOfKin> updatedNextOfKin = editPersonDescriptor.getNextOfKin()
@@ -203,7 +203,7 @@ public class EditCommand extends Command {
                     updatedAddress, updatedTags, updatedDateSlot,
                     updatedPhysician, updatedNextOfKin);
 
-        } else if (personToEdit instanceof Nurse && updatedCategory.isNurse()) {
+        } else if (personToEdit.isNurse() && updatedCategory.isNurse()) {
             List<Date> originalDate = ((Nurse) personToEdit).getUnavailableDates();
             Optional<List<Date>> toBeUpdateDate = editPersonDescriptor.getUnavailableDates();
             Optional<List<Index>> toBeUpdateDateIndexes = editPersonDescriptor.getDateIndexes();

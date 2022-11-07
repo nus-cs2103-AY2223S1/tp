@@ -53,7 +53,7 @@ public class DeleteCommand extends Command {
 
         Boolean haveDeleted = false;
         Boolean haveUnmark = false;
-        if (confirmedPersonToDelete instanceof Patient) {
+        if (confirmedPersonToDelete.isPatient()) {
             haveDeleted = deleteRespectiveHomeVisit(model, confirmedPersonToDelete, lastShownList);
         } else {
             haveUnmark = unmarkRespectiveDateSlot(model, confirmedPersonToDelete, lastShownList);

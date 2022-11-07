@@ -43,7 +43,7 @@ public class AddCommandIntegrationTest {
     public void execute_duplicatePerson_throwsCommandException() {
         Person personInList = model.getAddressBook().getPersonList().get(0);
         String personIdentifier = "";
-        if (personInList instanceof Patient) {
+        if (personInList.isPatient()) {
             personIdentifier = PersonType.PATIENT.toString();
         } else {
             personIdentifier = "person";

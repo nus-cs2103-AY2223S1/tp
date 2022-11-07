@@ -70,7 +70,7 @@ public class UndoUnmarkCommand extends Command {
 
         Person personToUndoUnmark = targetPerson.get();
 
-        if (personToUndoUnmark instanceof Nurse) {
+        if (personToUndoUnmark.isNurse()) {
             throw new CommandException(MESSAGE_INVALID_NURSE_UID);
         }
 

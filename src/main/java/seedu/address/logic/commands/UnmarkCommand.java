@@ -67,7 +67,7 @@ public class UnmarkCommand extends Command {
 
         Person personToUnmark = targetPerson.get();
 
-        if (personToUnmark instanceof Nurse) {
+        if (personToUnmark.isNurse()) {
             throw new CommandException(MESSAGE_INVALID_NURSE_UID);
         }
 
