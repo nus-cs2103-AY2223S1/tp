@@ -91,13 +91,8 @@ This section summarizes all the commands supported in the `Food Guide`.
 We highly recommend you read this section before jumping into all the features below!
 
 1. When in doubt, you can always fall back on the `help` command.
-
-<div markdown="block" class="alert alert-info">
-
 You can also add `-h` to the back of any command to get `Food Guide` to generate 
-a help message on how to use the command (e.g. `find -h`)! 
-
-</div>
+a help message on how to use the command (e.g. `find -h`)!
 
 2. To reset the eateries in the list to its default state, use `list`.
 
@@ -107,6 +102,13 @@ to search for a specific eatery!
 4. Make use of our random generator by adding `-r NUMBER` after any `find` command. For example, run
 `find -r 1` to generate 1 random eatery to eat at.
 
+5. Customize `Food Guide` to suit your needs by adding tags to your eateries.
+You can use the `tag` and `untag` commands to manipulate tags attached to each eatery.
+
+6. Additionally, you can use the `fav` and `unfav` commands to mark some eateries as favourites!
+
+7. Lastly, we empower you to `add`, `edit` and `delete` eateries from `Food Guide`. 
+This may be useful to include eateries near NUS (such as Supper Stretch!).
 
 ## Features
 
