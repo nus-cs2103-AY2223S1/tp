@@ -303,7 +303,7 @@ Format: `addT d/DESCRIPTION D/DEADLINE`
 
 * Tasks that are past their deadline can still be added since overdue tasks might have to be completed still.
 
-<div markdown="span" class="alert alert-warning">:warning: There will be an error if you:<br>
+<div markdown="block" class="alert alert-warning">:warning: There will be an error if you:<br>
 
 * Add a task that is the same as one already in the address book. Two tasks are the same if they have the same description, deadline and labels.<br>
 
@@ -350,7 +350,7 @@ Format: `deleteT INDEX`
 
 * INDEX must be a positive integer more than 0.
 
-<div markdown="span" class="alert alert-warning">:warning: There will be an error if you:<br>
+<div markdown="block" class="alert alert-warning">:warning: There will be an error if you:<br>
 
 * Enter 0 or a negative number as INDEX.<br>
 
@@ -512,7 +512,7 @@ Format: `progressT KEYWORD [MORE_KEYWORDS]…`
 
 * Tasks with deadlines that are already past are also listed.
 
-<div markdown="span" class="alert alert-warning">:warning: There will be an error if you:<br>
+<div markdown="block" class="alert alert-warning">:warning: There will be an error if you:<br>
 
 * Do not adhere to label name constraints. Label names must be alphanumeric with no spaces.<br>
 
