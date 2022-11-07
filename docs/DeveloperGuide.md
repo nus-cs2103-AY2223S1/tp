@@ -11,11 +11,11 @@ title: Developer Guide
 
 ### 1.1 Introduction
 
-MyInsuRec is a desktop app for financial advisors. It provides financial advisors with clients, meetings and products management abilities to ease their mental load. It also provides some customer relations features such as the ability to look up clients with upcoming birthdays.
+_MyInsuRec_ is a desktop app for financial advisors. It provides financial advisors with clients, meetings and products management abilities to ease their mental load. It also provides some customer relations features such as the ability to look up clients with upcoming birthdays.
 
-This developer guide serves as a documentation to help future developers better understand the system design of MyInsuRec. The guide includes sections on architecture diagrams of MyInsuRec, rationale for feature implementation, product requirements as well as some test cases for manual testing, and more. 
+This developer guide serves as a documentation to help future developers better understand the system design of _MyInsuRec_. The guide includes sections on architecture diagrams of _MyInsuRec_, rationale for feature implementation, product requirements as well as some test cases for manual testing, and more. 
 
-Do look through this developer guide if you are interested in developing MyInsuRec further.
+Do look through this developer guide if you are interested in developing _MyInsuRec_ further.
 
 ### 1.2 Acknowledgements
 
@@ -31,11 +31,11 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## 2. How to use this Developer Guide
 
-Thank you for your interest in MyInsuRec!
+Thank you for your interest in _MyInsuRec_!
 
-This guide smooths the learning curve and helps you understand the internals of MyInsuRec.
+This guide smooths the learning curve and helps you understand the internals of _MyInsuRec_.
 
-If you are seeking to understand the internals of MyInsuRec, check out:
+If you are seeking to understand the internals of _MyInsuRec_, check out:
 * [3. Design](#3-design) 
 * [4. Implementation](#4-implementation) 
 * [5. Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)
@@ -50,13 +50,13 @@ If you want to test our product's features, check out:
 Lastly, we also share our difficulties and challenges faced under:
 * [8. Effort](#8-appendix-effort)
 
-We once again thank you for your interest in MyInsuRec. If you have any questions or feedback about MyInsuRec, feel free to reach out to us at [myinsurec@gmail.com](mailto:myinsurec@gmail.com).
+We once again thank you for your interest in _MyInsuRec_. If you have any questions or feedback about _MyInsuRec_, feel free to reach out to us at [myinsurec@gmail.com](mailto:myinsurec@gmail.com).
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Design
 
-This section gives you a high-level overview of the internal design of MyInsuRec, and goes lower-level as you move along the section.
+This section gives you a high-level overview of the internal design of _MyInsuRec_, and goes lower-level as you move along the section.
 
 <div markdown="span" class="alert alert-primary">
 
@@ -370,7 +370,7 @@ _The sequence diagram and activity diagram of `delMeeting` is similar to the dia
 - **Alternative Solution 2:** Allows multiple deletion
     - Pros: Convenient to delete multiple meetings when needed.
     - Cons: Complex to implement
-- Considering that the approach taken to develop MyInsuRec is a breath first approach, where we should only build to the point where every iteration is a working product, **Solution 1** is thus chosen as it is easier to implement. However, Solution 2 could be a possible implementation for future iteration.
+- Considering that the approach taken to develop _MyInsuRec_ is a breath first approach, where we should only build to the point where every iteration is a working product, **Solution 1** is thus chosen as it is easier to implement. However, Solution 2 could be a possible implementation for future iteration.
 
 #### 4.2.4 View meeting
 
@@ -435,7 +435,7 @@ Usage Scenario of `editMeeting`:
 1) User inputs `editMeeting i/1 d/09112023` to edit the first meeting in the `Model` by changing its date.
 
 Every `Meeting` is uniquely identified by a UUID in storage, so essentially all fields in a `Meeting` can be edited without loss of its uniqueness.
-Below is an activity diagram that summarizes how the updates are reflected in `MyInsuRec`.
+Below is an activity diagram that summarizes how the updates are reflected in _MyInsuRec_.
 `EditMeetingCommand#execute` caused the model to be updated first and then the storage.
 
 <img src="images/EditActivityDiagram.png" width="200" />
@@ -522,12 +522,12 @@ We chose to implement the changing of view panels through `CommandResult` due to
 #### 4.5.1 Multiple possible prefixes per command
 
 Purpose: With this proposed feature, users can have multiple possible prefixes for defining fields in a command.
-For example, currently in MyInsuRec we can define a client's birthday using the `b/` prefix only.
+For example, currently in _MyInsuRec_ we can define a client's birthday using the `b/` prefix only.
 However, since a birthday is essentially a date, a user may prefer to reuse the `d/` prefix instead for defining a client's birthday(see `addMeeting` command).
 
 ##### Proposed Implementation
 
-Currently, in MyInsuRec, `AddClientCommandParser` depends on multiple `Prefix` objects such as `PREFIX_BIRTHDAY`, and `PREFIX_DATE` to identify each field in an `AddClientCommand`.
+Currently, in _MyInsuRec_, `AddClientCommandParser` depends on multiple `Prefix` objects such as `PREFIX_BIRTHDAY`, and `PREFIX_DATE` to identify each field in an `AddClientCommand`.
 Also, the `Prefix` class stores the required prefix word as a `String`.
 
 In this proposed implementation, we instead change the prefix word stored in `Prefix` class to a `Pattern` which can be matched against using `Matcher` class.
@@ -1109,7 +1109,7 @@ Deleting a meeting while all meetings are being shown
 
 ## 8. Appendix: Effort
 
-MyInsuRec is a brown-field project that extends from AB3. It is developed to become a financial advisor's everyday companion app, used for its client contacts tracking, meetings scheduling and products management ability.
+_MyInsuRec_ is a brown-field project that extends from AB3. It is developed to become a financial advisor's everyday companion app, used for its client contacts tracking, meetings scheduling and products management ability.
 
 Our team has put in a substantial effort in developing this product. To date, we have over [12,000 lines of code](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=w16-4&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16). Over 380 automated tests were written, and many hours of writing code and testing them was spent on this.
 
