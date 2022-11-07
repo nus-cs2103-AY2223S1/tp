@@ -53,6 +53,8 @@ FoodRem does not already contain an item with the name "Potato".
 
 > Finds all items in FoodRem whose names contain [[ substring:substrings ]] of the KEYWORDS
 
+{% include page-break.html %}
+
 ```info
 * The notation `[KEYWORDS]...` means that we can take in multiple keywords. In this case, at least one `KEYWORD` is required.
 * The `KEYWORDS` are case-insensitive. (e.g. "apples" will match "Apples").
@@ -315,6 +317,8 @@ The currently displayed [[ item-list-box:Item List Box ]] in FoodRem shows the i
 %}
 
 ---
+
+{% include page-break.html %}
 
 #### Delete an item: `del`
 
