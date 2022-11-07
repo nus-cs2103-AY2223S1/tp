@@ -24,7 +24,7 @@ public class ViewCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Tutor tutorToView = model.getFilteredTutorList().get(INDEX_FIRST_TUTOR.getZeroBased());
+        Tutor tutorToView = model.getSortedFilteredTutorList().get(INDEX_FIRST_TUTOR.getZeroBased());
         ViewCommand viewCommand = new ViewCommand(INDEX_FIRST_TUTOR);
 
         String expectedMessage = String.format(MESSAGE_VIEW_TUTOR_SUCCESS, tutorToView);
@@ -37,7 +37,7 @@ public class ViewCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTutorList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getSortedFilteredTutorList().size() + 1);
         ViewCommand viewCommand = new ViewCommand(outOfBoundIndex);
 
         assertCommandFailure(viewCommand, model, Messages.MESSAGE_INVALID_TUTOR_DISPLAYED_INDEX);
@@ -47,7 +47,7 @@ public class ViewCommandTest {
     public void execute_validIndexFilteredList_success() {
         showTutorAtIndex(model, INDEX_FIRST_TUTOR);
 
-        Tutor tutorToView = model.getFilteredTutorList().get(INDEX_FIRST_TUTOR.getZeroBased());
+        Tutor tutorToView = model.getSortedFilteredTutorList().get(INDEX_FIRST_TUTOR.getZeroBased());
         ViewCommand viewCommand = new ViewCommand(INDEX_FIRST_TUTOR);
 
         String expectedMessage = String.format(ViewCommand.MESSAGE_VIEW_TUTOR_SUCCESS, tutorToView);

@@ -1,44 +1,84 @@
 @startuml
 !include style.puml
 
-box "Logic" LOGIC_COLOR_T1
+box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as logic LOGIC_COLOR
 participant ":TuthubParser" as parser LOGIC_COLOR
-participant ":CommentCommandParser" as ccp LOGIC_COLOR
-participant ":CommentCommand" as comment LOGIC_COLOR
+participant ":CommentCommandParser" as cp LOGIC_COLOR
+participant ":CommentCommand" as cc LOGIC_COLOR
 participant ":CommandResult" as result LOGIC_COLOR
 end box
 
-box "Model" MODEL_COLOR_T1
-participant "tutor:Tutor" as tutor MODEL_COLOR
+box Model MODEL_COLOR_T1
+participant ":Model" as model MODEL_COLOR
+participant ":Tutor" as tutor MODEL_COLOR
+participant ":CommentList" as comments MODEL_COLOR
+participant ":Comment" as comment MODEL_COLOR
 end box
 
---> logic: executeCommand(comment 1 c/Often late)
+[-> logic: execute("comment 1 c/Often late")
+
 activate logic
-logic -> parser: parseCommand(comment 1 c/Often late)
+logic -> parser: parseCommand("comment 1 c/Often late")
+
 activate parser
-parser -> ccp: parse(comment 1 c/Often late)
-activate ccp
-ccp -> comment
+create cp
+parser -> cp: parse("1 c/Often late")
+
+activate cp
+create cc
+cp -> cc
+
+activate cc
+create comment
+cc -> comment
+
 activate comment
-comment --> ccp
+comment --> cc: Comment
 deactivate comment
-ccp --> parser
-deactivate ccp
-parser --> logic
+
+cc --> cp: CommentCommand
+deactivate cc
+
+cp --> parser: CommentCommand
+destroy cp
+
+parser --> logic: CommentCommand
 deactivate parser
-logic -> comment
-activate comment
-comment -> tutor: setTutor
+
+logic -> cc: execute()
+activate cc
+cc -> model :getFilteredTutorList()
+
+activate model
+create tutor
+model -> tutor: get(1)
+
 activate tutor
-tutor --> comment
+create comments
+tutor -> comments: getComments()
+activate comments
+
+comments -> comments: addComment(Comment)
+
+comments --> tutor
+deactivate comments
+
+tutor --> model
 deactivate tutor
-comment -> result
+
+model --> cc
+deactivate model
+
+create result
+cc -> result
+
 activate result
-result --> comment
+result --> cc: result
 deactivate result
-comment --> logic
-deactivate comment
-<-- logic
-deactivate logic
+
+cc --> logic: result
+destroy cc
+
+[<-- logic: result
 @enduml

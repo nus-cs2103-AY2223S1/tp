@@ -238,7 +238,7 @@ The following methods in `tuthub` manage the finding of tutors:
 * `tuthub#FindByTagCommand(TagContainsKeywordsPredicate predicate)` - Finds and adds tutors with tags matching keywords to list of tutors displayed
 * `tuthub#FindByPrefixParser(String args)` - Parses the `find` command and determines the `prefix` corresponding to the attribute to search through to find matching tutors
 * `ModelManager#filteredTutors` - A `javafx.collections.transformation.FilteredList` that contains a list of filtered tutors according to a predicate
-* `ModelManager#getFilteredTutorList()` - Returns the `filteredTutors` list
+* `ModelManager#getSortedFilteredTutorList()` - Returns the `sortedFilteredTutors` list
 * `ModelManager#updateFilteredTutorList(Predicate<Tutor> predicate)` - Updates filtered list based on predicate
 
 Given below is an example usage scenario when the user is finding tutors whose names contain alex.
@@ -313,10 +313,10 @@ This command sorts `Tuthub`'s displayed list based on quantitative measures, suc
 
 The `sort` command involves the logic, model, and UI part of Tuthub. Most updates are made within the `ModelManager`, which are:
 - `ModelManager#sortedFilteredTutors` - A `javafx.collections.transformation.SortedList` that contains `ModelManager#filteredTutors`.
-- `ModelManager#getFilteredTutorList()` - Now returns the `sortedFilteredTutors` list.
+- `ModelManager#getSortedFilteredTutorList()` - Now returns the `sortedFilteredTutors` list.
 - `ModelManager#updateSortedTutorList(Comparator<Tutor>)` - Similar to `ModelManager#updateFilteredTutorList`, but updates the Comparator instead of predicate.
 
-Given below is an example usage scenario when the user enters a `view` command in the command box and how the sort mechanism behaves at each step.
+Given below is an example usage scenario when the user enters a `sort` command in the command box and how the sort mechanism behaves at each step.
 
 Step 1: The user enters the command `sort a r/`.
 
@@ -330,7 +330,7 @@ Step 5: Upon recognising the `CommandResult`, `MainWindow` calls `logic#getFilte
 
 Step 6: Then, the `TutorListPanel` sets the items to view as the new and updated `sortedFilteredTutors` list.
 
-The following sequence diagram demonstrates the above operations (excluding the parsing details):
+The following sequence diagram demonstrates the above operations:
 
 ![SortSequenceDiagram](./images/SortSequenceDiagram.png)
 
@@ -354,6 +354,32 @@ The following sequence diagram demonstrates the above operations (excluding the 
     - Pros: Idea is more simply understood. Serves the main purpose of `sort` if implemented correctly.
     - Cons: Complicated to implement and possibility of many bugs. Poor OOP practice as it may require reassigning of the `FilteredList` and `SortedList` variables.
 
+### Mail Feature
+
+This command allows users to easily contact tutors from `Tuthub`'s displayed list. Users can mail a specific tutor (by `INDEX`) or **all** the currently displayed tutors.
+
+<ins>Implementation</ins>
+
+The `mail` command involves the logic and model part of Tuthub. Other than that, it relies on the `Java` classes, [`java.awt.Desktop`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/Desktop.html) and [`java.net.URI`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/net/URI.html).
+
+Given below is an example usage scenario when the user enters a `mail` command in the command box.
+
+Step 1: The user enters the command `mail all`.
+
+Step 2: The `TuthubParser` verifies the `MailCommand#COMMAND_WORD`, and requests `MailCommandParser` to parse. The `MailCommandParser` verifies the appropriateness of the user input (in this case, the valid inputs are `INDEX` or "`all`").
+
+Step 3: Upon parsing, a new `MailCommand` is created based on the target, which is `all`.
+
+Step 4: In the `MailCommand` execution, the `URI` message is created by getting the emails (`Tutor#getEmail()`) of each tutor in the currently displayed list. The emails are combined in the `message` variable, which is then used as an argument in `URI#create(String)`. 
+
+Step 5: The user's default mail client is accessed by calling `Desktop#mail(URI)` with the recently created `uri` as the argument. Then, a new `CommandResult` is created and stored in `LogicManager`.
+
+Step 6: Upon recognising the `CommandResult`, `MainWindow` displays the resulting `CommandResult`.
+
+The following sequence diagram demonstrates the above operations (excluding [`java.awt.Desktop`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/Desktop.html), [`java.net.URI`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/net/URI.html), and obtaining `Tutor` email data):
+
+![MailSequenceDiagram](./images/MailSequenceDiagram.png)
+
 ### Comment feature
 
 This command adds a comment to a tutor in `Tuthub`'s displayed list.
@@ -361,7 +387,8 @@ This command adds a comment to a tutor in `Tuthub`'s displayed list.
 <ins>Implementation</ins>
 
 The `comment` command involves the logic and model part of Tuthub.
-Most updates are made within the `ModelManager`, which are:
+This involves the updating of the `CommentList` of the tutor via:
+- `CommentList#addComment(Comment comment)` - Adds the `Comment` to the `CommentList`
 
 Given below is an example usage scenario when the user enters a `comment` command in the command box and how the comment is added to the tutor.
 
@@ -370,11 +397,16 @@ Step 1: The user enters the command `comment 1 c/Often late`.
 Step 2: The `TuthubParser` verifies the `CommentCommand#COMMAND_WORD`, and requests `CommentCommandParser` to parse.
 The `CommentCommandParser` verifies the appropriateness of the user input (`index` and `comment`).
 
-Step 3: Upon parsing, a new `CommentCommand` is created based on the index and the comment.
+Step 3: Upon parsing, a new `CommentCommand` is created based on the `index` and the `comment`.
+A new `Comment` is created based on the `comment` parsed. 
 
-Step 4: In the `CommentCommand` execution, the `model#setTutor` is called upon with the `comment` added to the tutor. Then, a new `CommandResult` is created and stored in `LogicManager`.
+Step 4: In the `CommentCommand` execution, the `model#getFilteredTutorList` is called upon to retrieve the list of displayed tutors.
+The `Tutor` whose index matches the `index` is then stored (after accounting for 0 based indexing).
+In this case, the first `Tutor` is selected.
 
-The following sequence diagram demonstrates the above operations (excluding the parsing details):
+Step 5: For this `Tutor`, the `tutor#getComments` is called upon to retrieve the `CommentList` of the `Tutor`.
+
+Step 6: The `Comment` stored in the `CommentCommand` is then added to the `CommentList` through `CommentList#addComment`.
 
 ![CommentSequenceDiagram](./images/CommentSequenceDiagram.png)
 
@@ -389,6 +421,40 @@ The following sequence diagram demonstrates the above operations (excluding the 
     - Pros: Easier to implement.
     - Cons: It is harder to add and remove comments from each tutor, as the previous comments need to be copied and then added manually by the user.
 
+### Delete Comment feature
+
+This command deletes a comment from a tutor in `Tuthub`'s displayed list.
+
+<ins>Implementation</ins>
+
+The `deletecomment` command involves the logic and model part of Tuthub.
+This involves the updating of the `CommentList` of the tutor via:
+- `CommentList#deleteComment(int index)` - Deletes the `Comment` at the `index` of the `CommentList`
+
+Given below is an example usage scenario when the user enters a `deletecomment` command in the command box and how the comment is removed from the tutor.
+
+Step 1: The user enters the command `deletecomment 1 1`.
+
+Step 2: The `TuthubParser` verifies the `DeleteCommentCommand#COMMAND_WORD`, and requests `DeleteCommentCommandParser` to parse.
+The `DeleteCommentCommandParser` verifies the appropriateness of the user input (`tutorIndex` and `commentIndex`).
+
+Step 3: Upon parsing, a new `DeleteCommentCommand` is created based on the `tutorIndex` and the `commentIndex`.
+Both indexes are converted to 0 based indexing.
+In this case, the `tutorIndex` and `commentIndex` are both set to `0`.
+
+Step 4: In the `DeleteCommentCommand` execution, the `model#getFilteredTutorList` is called upon to retrieve the list of displayed tutors.
+The `Tutor` whose index matches the `tutorIndex` is then stored. 
+In this case, the first `Tutor` is selected.
+
+Step 5: For this `Tutor`, the `tutor#getComments` is called upon to retrieve the `CommentList` of the `Tutor`. 
+
+Step 6: The `CommentList` retrieves the `Comment` that is at the index specified by `commentIndex`.
+This `Comment` is then deleted from the `CommentList`.
+In this case, the first `Comment` of the first `Tutor` is deleted.
+
+The following sequence diagram demonstrates the above operations (excluding the parsing details):
+
+![DeleteCommentSequenceDiagram](./images/DeleteCommentSequenceDiagram.png)
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
@@ -539,7 +605,53 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC6 - Exit the program**
+**Use case: UC6 - Sorting the tutor list**
+
+**MSS**
+
+1. User requests to sort the currently displayed tutor list.
+2. Tuthub sorts the list of tutors based on a prefix (`Rating` or `TeachingNomination`) in a specific order (ascending or descending).
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given `order` is invalid.
+    * 1a1. Tuthub displays an error message.
+    * Step 1a1 is repeated until the proper `order` ("`a`" or "`d`") is entered.
+
+      Use case resumes from step 1.
+
+* 1b. The given `prefix` is invalid.
+    * 1a1. Tuthub displays an error message.
+    * Step 1a1 is repeated until the proper `prefix` ("`r/`" or "`tn/`") is entered.
+
+      Use case resumes from step 1.
+
+**Use case: UC7 - Contacting tutors by email**
+
+**MSS**
+
+1. User requests to mail a single tutor or all tutors.
+2. Tuthub opens the user's default mail client with the "to" specified.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given input is invalid.
+    * 1a1. Tuthub displays an error message.
+    * Step 1a1 is repeated until the proper input (a valid index or "all") is entered.
+      
+      Use case resumes from step 1.
+
+* 2a. The user's default mail client is not found or fails to be launched.
+    * 2a1. Tuthub displays an error message.
+    * Step 2a1 is repeated until the user's default mail client can be accessed.
+      
+      Use case ends.
+
+**Use case: UC8 - Exit the program**
 
 **MSS**
 
@@ -646,6 +758,63 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+### Sorting the tutor list
+
+1. Sorting the tutor list while all tutors are being shown
+
+    1. Prerequisites: List all tutors using the `list` command. Multiple tutors in the list.
+
+    2. Test case: `sort a r/`<br>
+       Expected: The tutor list should be sorted by rating in ascending order (low to high). This can be seen by viewing tutor profiles.
+
+    3. Test case: `sort d tn/`<br>
+       Expected: The tutor list should be sorted by teaching nominations in descending order (high to low). This can be seen by viewing tutor profiles.
+
+    4. Test case: `sort m r/`<br>
+       Expected: No sorting occurs. Error details shown in the status message (`order` is invalid).
+
+    5. Test case: `sort a n/`<br>
+       Expected: No sorting occurs. Error details shown in the status message (`prefix` is invalid).
+
+    6. Test case: `sort a`<br>
+       Expected: No sorting occurs. Error details shown in the status message (Wrong command format).
+
+    7. Other incorrect sort commands to try: `sort`, `sort x p`, `...` (where x is any character other than `a` and `d`, and p is any prefix other than `r/` and `tn/`)<br>
+       Expected: Similar to 4 and 5.
+
+2. Sorting the tutor list after a filter (`find`)
+   1. Prerequisites: Filter the tutor list by executing a `find` command. 
+
+   2. Test case: `sort a r/`<br>
+      Expected: The currently displayed tutor list should be sorted by rating in ascending order (low to high). This can be seen by viewing tutor profiles. 
+
+   3. Test case: `sort d tn/`<br>
+      Expected: The currently displayed tutor list should be sorted by teaching nominations in descending order (high to low). This can be seen by viewing tutor profiles.
+
+   4. Incorrect sort commands from first case.
+      Expected: Same expected results as the first case.
+
+### Mailing tutor(s)
+
+1. Mailing the tutor list while all tutors are being shown
+
+    1. Prerequisites: List all tutors using the `list` command. Multiple tutors in the list.
+
+    2. Test case: `mail 1`<br>
+       Expected: The user's default mail client should be launched with the "to" specified as the first tutor's email.
+
+    3. Test case: `mail all`<br>
+       Expected: The user's default mail client should be launched with the "to" specified as the all tutor emails in this list.
+
+    4. Test case: `mail 0`<br>
+       Expected: User's default mail client not displayed. Error details shown in the status message.
+
+    5. Test case: `mail a`<br>
+       Expected: User's default mail client not displayed. Error details shown in the status message. 
+   
+    6. Other incorrect mail commands to try: `mail`, `mail x`, `mail c` (where x is larger than the current list size, and c is any word excluding `all`)<br>
+       Expected: Similar to 4 and 5.
 
 ### Saving data
 

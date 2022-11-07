@@ -155,24 +155,24 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         Tuthub expectedTuthub = new Tuthub(actualModel.getTuthub());
-        List<Tutor> expectedFilteredList = new ArrayList<>(actualModel.getFilteredTutorList());
+        List<Tutor> expectedFilteredList = new ArrayList<>(actualModel.getSortedFilteredTutorList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedTuthub, actualModel.getTuthub());
-        assertEquals(expectedFilteredList, actualModel.getFilteredTutorList());
+        assertEquals(expectedFilteredList, actualModel.getSortedFilteredTutorList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the tutor at the given {@code targetIndex} in the
      * {@code model}'s tuthub.
      */
     public static void showTutorAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredTutorList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getSortedFilteredTutorList().size());
 
-        Tutor tutor = model.getFilteredTutorList().get(targetIndex.getZeroBased());
+        Tutor tutor = model.getSortedFilteredTutorList().get(targetIndex.getZeroBased());
         final String[] splitName = tutor.getName().fullName.split("\\s+");
         model.updateFilteredTutorList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredTutorList().size());
+        assertEquals(1, model.getSortedFilteredTutorList().size());
     }
 
 }
