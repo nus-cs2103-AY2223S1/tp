@@ -5,7 +5,10 @@ title: Guo Wei's Project Portfolio Page
 
 ### Project: TAB
 
-TAB is a desktop address book application used for helping Professors and TAs in their daily tasks. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+Teacher’s Address Book (TAB) is a **desktop app made for teachers, teaching assistants(TA) and professors for managing
+contacts of each other, as well as their students, optimized for use via a Command Line Interface** (CLI) while still
+having the benefits of a Graphical User Interface (GUI). If you can type fast, TAB can get your contact management tasks
+done faster than traditional GUI apps.
 
 Given below are my contributions to the project.
 
