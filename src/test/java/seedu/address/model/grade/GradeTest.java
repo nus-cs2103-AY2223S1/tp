@@ -24,6 +24,36 @@ class GradeTest {
     }
 
     @Test
+    void truthyExpression_isValidDescription() {
+        assertFalse(Grade.isValidDescription("1"));
+    }
+
+    @Test
+    void whitespace_isValidDescription() {
+        assertFalse(Grade.isValidDescription(" "));
+    }
+
+    @Test
+    void null_isValidDescription() {
+        assertThrows(NullPointerException.class, () -> Grade.isValidDescription(null));
+    }
+
+    @Test
+    void lowercaseT_isValidDescription() {
+        assertFalse(Grade.isValidDescription("t"));
+    }
+
+    @Test
+    void lowercaseF_isValidDescription() {
+        assertFalse(Grade.isValidDescription("f"));
+    }
+
+    @Test
+    void emptyString_isValidDescription() {
+        assertFalse(Grade.isValidDescription(""));
+    }
+
+    @Test
     void stringOther_isValidDescription() {
         String testString = Long.toHexString(new Random().nextLong());
         while (testString.equals("T") || testString.equals("F")) {
