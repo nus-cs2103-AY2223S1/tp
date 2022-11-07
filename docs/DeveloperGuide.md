@@ -1202,7 +1202,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    - **v1.4** by 3 November 2022, Thursday, Week 12
 
-2- Rapportbook code should follow the Object-oriented paradigm primarily.
+2. Rapportbook code should follow the Object-oriented paradigm primarily.
 
 **Quality requirements**
 
