@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes editstu command;
+
+if () then ([invalid index provided or
+parameters violate given
+restrictions]
+)
+:Show error message;
+
+else ([else])
+:Select student to edit;
+:Edits the student with
+new details specified;
+endif
+stop
+@enduml

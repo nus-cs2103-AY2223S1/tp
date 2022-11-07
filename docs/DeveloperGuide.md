@@ -132,7 +132,7 @@ How the parsing works:
 ### 4.4. Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="600" />
 
 
 The `Model` component,
@@ -222,6 +222,7 @@ Additionally, it will also contain these fields:
 - `TelegramHandle`: The student's telegram handle.
 - `studentModuleInfo`: A set of ModuleCode's that the student is taking.
 - `teachingAssistantInfo`: A set of ModuleCode's that the student is a teaching assistant for.
+- 'classGroups': A set of String's that represent the class groups the student is in.
 
 #### Design consideration:
 
@@ -270,6 +271,38 @@ at the index provided by the user.
 
 The following sequence diagram shows how the `editstu` command works:
 ![EditStuCommandSequenceDisgram](./images/EditStuCommandSequenceDiagram.png)
+
+After ProfNUS receives the command to edit a `Student` with the given index, it will find the corresponding 
+`Student` and edit its details.
+
+During the execution, the following validity checks will be conducted:
+- Module existence check - The model will check if it can find the module's indicated as the student's modules
+or, it's teaching modules. If any module specified is not found, then a `CommandException` will be thrown.
+- Duplicate Student check - The model will check if the edited student has the same `StudentId` as the
+rest of the students in ProfNUS. If such a duplicate is found, then a `CommandException` will be thrown and 
+the student will not be edited.
+- Teaching conflict check - The model will check if the edited student is a teaching assistant and a student 
+of the same module. If a conflict occers, then a `CommandException` will be thrown.
+
+The following activity diagram summarizes what happens when a user executes a `editstu` command.
+
+![EditStudentActivityDiagram](./images/EditStudentActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How editstu executes
+
+|                                                           | Pros                                                                         | Cons                                                                                               |
+|-----------------------------------------------------------|------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| **Option 1** <br/> Edit by StudentID                      | Allows convenience if the user has a list of StudentIDs                      | User might not have a list of StudentIDs and it would take a longer time to edit multiple students |
+| **Option 2** <br/> Edit by making use of indexing in list | Allows convenience if the user wants to edit multiple students from the list | Have to use other commands such as `find` to search through a large list of students               |
+
+Reason for choosing option 2:
+
+A professor is unlikely to remember a Student's Id and it would also be a hassle to type such a long Id as compared
+to just typing the index of the student. Additionally, with other commands to search through the list of students by module
+and name, it should be easy for a professor to find the desired student to edit. Therefore, option 2 is preferred.
+
 
 ### 5.3. View module details feature
 
