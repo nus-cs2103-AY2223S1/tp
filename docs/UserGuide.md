@@ -83,10 +83,10 @@ Please make yourself familiar with the content here before moving to other secti
 
 #### Understanding the GUI
 
-Figure 2 depicts the [GUI](#glossary) of FRIDAY which is annotated with a description of each GUI component
+Below depicts the [GUI](#glossary) of FRIDAY which is annotated with a description of each GUI component
 
 ![Layout](images/layout.png)
-<i> Figure 2 Layout</i>
+<i> GUI Layout</i>
 
 #### Understanding Symbols and Syntax
 
@@ -109,9 +109,9 @@ and hyperlinks to the first occurrence of the word in each section of the User g
 
 **:information_source: Notes about CLI:**<br>
 
-* ![Layout](images/layout.png)
-  <i> Figure 3 Layout</i>
-* In this image above we have a labelled box in red called the command box. CLI or command line interface refers to
+![Layout](images/layout.png)
+  <i> GUI Layout</i><br>
+In this image above we have a labelled box in red called the command box. CLI or command line interface refers to
   <b>commands</b> in the form of text/<b>lines</b> that you as a user enter in the command box to create a response
   in the result display which is your <b> interface </b>. 
 </div>
@@ -210,6 +210,7 @@ Example: `add n/Alex Yeoh t/al3xx c/2022-10-25 m/2022-08-16 tag/cool guy tag/qui
 Outcome: a student named Alex Yeoh is added.
 
 ![AddCommandOutcome.png](images/AddCommandOutcome.png)
+<i> Outcome of add command</i>
 
 ### Deleting a student: `delete`
 
@@ -246,11 +247,13 @@ Initial: A student with name "Alex Yeoh", with the following details: Telegram h
 on 2022-08-16, consultation date on 2022-11-11, and a tag "Colour blind".
 
 ![EditCommandInitial.png](images/EditCommandInitial.png)
+<i> Before edit command</i>**
 
 Outcome: Student's name changed to "Alex Yap", along with the following details: Telegram handle as "@AlexYap",
 Mastery Check date as 2022-11-06, consultation date as 2022-10-10, and tags as "Experienced coder" and "Intern".
 
 ![EditCommandOutcome.png](images/EditCommandOutcome.png)
+<i> Outcome of edit command</i>
 
 ### Editing a remark for a student: `remark`
 
@@ -274,6 +277,7 @@ Example: `remark 1 r/Aspiring to be a CS1101S TA for next year`
 Outcome: The student at the 1st index (Alex Yap) will have the remark "Aspiring to be a CS1101S TA for next year".
 
 ![RemarkCommandOutcome.png](images/RemarkCommandOutcome.png)
+<i> Outcome of remark command</i>
 
 [Table of Contents](#table-of-contents)
 
@@ -332,10 +336,12 @@ Criteria are sorted in the following order:
 Example: Enter `sort m/a` with an unsorted list of students.
 
 ![SortCommand.png](images/SortCommand.png)
+<i> Before sort command</i>
 
 Outcome: Students are sorted by Mastery Check date, from earliest to latest.
 
 ![SortCommandOutcome.png](images/SortCommandOutcome.png)
+<i> Outcome of sort command</i>
 
 ### Finding individual student details: `find`
 
@@ -353,10 +359,12 @@ Format: `find KEYWORDS`
 Example: Enter `find alex`
 
 ![FindCommand.png](images/FindCommand.png)
+<i> Before find command</i>
 
 Outcome: The only student in the list whose details match the keyword "alex" is shown.
 
 ![FindCommandOutcome.png](images/FindCommandOutcome.png)
+<i> Outcome of find command</i>
 
 ### Viewing all students: `list`
 
@@ -414,6 +422,7 @@ Example: Enter `grade 1 ra1/90 ra2/80.1 pa/100.00 mt/85.23 ft/78`.
 Outcome: The student at the 1st index (Alex Yap) will have their grades updated.
 
 ![GradeCommand.png](images/GradeCommand.png)
+<i> Outcome of grade command</i>
 
 
 ### Marking a student's Mastery Check as passed: `mark`
@@ -435,11 +444,13 @@ Format: `mark INDEX`
 Example: Enter `mark 1`.
 
 ![MarkCommandBefore.png](images/MarkCommandBefore.png)
+<i> Before mark command</i>
 
 
 Outcome: The Mastery Check of the first student in the list has been marked as passed.
 
 ![MarkCommandOutcome.png](images/MarkCommandOutcome.png)
+<i> Outcome of mark command</i>
 
 As you can see, a "(passed)" status is added to student 1's Mastery Check after the `mark` command is run.
 
@@ -460,10 +471,12 @@ Format: `unmark INDEX`
 Example before entering `unmark 1` (Assuming student 1's Mastery Check has previously been marked as passed):
 
 ![UnmarkCommandBefore.png](images/UnmarkCommandBefore.png)
+<i> Before unmark command</i>
 
 Example after entering `unmark 1`:
 
 ![UnmarkCommandOutcome.png](images/UnmarkCommandOutcome.png)
+<i> Outcome of unmark command</i>
 
 As you can see, the "(passed)" status has been removed from student 1's Mastery Check after the `unmark` command is run.
 
@@ -494,18 +507,22 @@ Format: `alias a/ALIAS k/COMMAND_KEYWORD`
 Example: Enter `alias a/ls k/list`
 
 ![AliasCommandBefore.png](images/AliasCommandBefore.PNG)
+<i>Before alias command</i>
 
 Outcome: The alias `ls` is added for the viewing all students command `list`.
 
 ![AliasCommandAfter.png](images/AliasCommandAfter.PNG)
+<i> Outcome of alias command</i>
 
 Now, typing `ls` into the command box.
 
 ![UsingAliasBefore.png](images/UsingAliasBefore.PNG)
+<i> Before using alias</i>
 
 Will execute the `list` command.
 
 ![UsingAliasAfter.png](images/UsingAliasAfter.PNG)
+<i> Outcome of using alias</i>
 
 
 ### Deleting aliases: `unalias`
@@ -517,10 +534,12 @@ Format: `unalias a/ALIAS`
 Example: Enter `unalias a/ls`
 
 ![UnaliasCommandBefore.png](images/UnaliasCommandBefore.PNG)
+<i> Before unalias command</i>
 
 Outcome: The alias `ls` will be deleted from FRIDAY.
 
 ![UnaliasCommandAfter.png](images/UnaliasCommandAfter.PNG)
+<i> Outcome of unalias command</i>
 
 ### Viewing aliases: `aliaslist`
 
