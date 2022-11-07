@@ -956,12 +956,12 @@ testers are expected to do more *exploratory* testing.
          Expected: The PDF file is opened.
    
    3. Test case: `filepath INDEX f/RELATIVE FILEPATH` where `RELATIVE FILEPATH` is the file path of the PDF relative to the directory of FABook.
-      Expected: PDF file not assigned. Error details shown in the command display.
+      Expected: PDF File is assigned. Client details shown in the command display.
       
       1. Click on the client in the result display.
       
       2. Scroll down the contact information window.<br>
-         Expected: `Client Information` button greyed out and unclickable.
+         Expected: `Client Information` button in high-contrast white borders and is clickable.
 
    4. Other incorrect inputs to try: Incorrect filepaths, filepaths for other file types (e.g. .doc)<br>
       Expected: PDF file not assigned. Error details shown in the command display. See previous.
@@ -986,7 +986,7 @@ testers are expected to do more *exploratory* testing.
          Expected: The new PDF file is opened.
    
    3. Test case: `filepath INDEX f/RELATIVE FILEPATH` where `RELATIVE FILEPATH` is the file path of the PDF relative to the directory of FABook.
-      Expected: new PDF file not assigned. Error details shown in the command display.
+      Expected: PDF file assigned. Client details shown in the command display.
       
       1. Click on the client in the result display.
       
@@ -994,7 +994,7 @@ testers are expected to do more *exploratory* testing.
          Expected: `Client Information` button in high-contrast white borders and is clickable.
       
       3. Click on the `Client Information` button<br>
-         Expected: The old PDF file from step 1 is opened.
+         Expected: The new PDF file is opened.
 
    4. Other incorrect inputs to try: Incorrect filepaths, filepaths for other file types (e.g. .doc)<br>
       Expected: new PDF file not assigned. Error details shown in the command display. See previous.
@@ -1038,9 +1038,20 @@ testers are expected to do more *exploratory* testing.
       Expected: No file opened. No message shown.
    
    5. Test case: `file INDEX` where INDEX is the index of the new client on the list.<br>
-      Expected: No file opened. Error details shown in the command display. 
-   
-   
+      Expected: No file opened. Error details shown in the command display.
+
+2. Filepath is assigned
+
+   1. Add a new client using `create` command.
+
+   2. Assign a PDF file to a person - See [Assigning a PDF file to a person](#assigning-a-pdf-file-to-a-person) for examples on how to assign PDFs.
+
+   3. Test case: `file INDEX` where INDEX is the index of the new client on the list.<br>
+      Expected: The PDF file is opened. 
+
+   4. Test case; Click on the `Client Information` button<br>
+      Expected: The PDF file is opened.
+
 1. Dealing with invalid filepaths
    
    1. Create a PDF file on your computer.
