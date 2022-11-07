@@ -103,7 +103,7 @@ will not run and will output the error message `This person already exists in th
 </div>
 
 <div markdown ="span" class="alert alert-info">
-:information_source: **Note:** The year "0000" is an invalid input for all persons and events.
+:information_source: **Note:** The year "0000" is an invalid input for all persons.
 </div>
 
 ### Listing all persons : `listPersons`
@@ -172,7 +172,7 @@ Format: `findPersons KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `findPersons John` returns `john` and `John Doe`
 * `findPersons alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'findPersons alex david'](images/findPersonsAlexDavidResult.png)
+
 
 ### Deleting a person : `deletePerson`
 
@@ -216,6 +216,9 @@ will not run and will output the error message `This event already exists in the
 :information_source: **Note:** To add an event with the time of 12am, only input `t/00:00` is allowed. Meanwhile, the input of `t/24:00` is not allowed.
 </div>
 
+<div markdown ="span" class="alert alert-info">
+:information_source: **Note:** The year "0000" is an invalid input for all events.
+</div>
 
 
 ### Editing an event : `editEvent`
@@ -255,7 +258,6 @@ Format: `findEvents KEYWORD [MORE_KEYWORDS]`
 Examples:
 * `findEvents Sale` returns `sale` and `Marketing Sale`
 * `findEvents sports car` returns `Sports Festival`, `Car Sale`<br>
-  ![result for 'findEvents Sports Car'](images/findEventsSportsCar.png)
 
 
 ### Deleting an event: `deleteEvent`
