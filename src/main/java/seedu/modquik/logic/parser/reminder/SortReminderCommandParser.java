@@ -1,5 +1,6 @@
 package seedu.modquik.logic.parser.reminder;
 
+import static seedu.modquik.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.modquik.logic.parser.CliSyntax.PREFIX_SORT_CRITERIA;
 
 import seedu.modquik.commons.core.Messages;
@@ -25,6 +26,9 @@ public class SortReminderCommandParser implements Parser<SortReminderCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_SORT_CRITERIA);
         ParserUtil.assertAllPrefixesPresent(argMultimap, SortReminderCommand.MESSAGE_USAGE, PREFIX_SORT_CRITERIA);
         ParserUtil.assertPrefixesPresentNotEmpty(argMultimap, SortReminderCommand.MESSAGE_USAGE, PREFIX_SORT_CRITERIA);
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortReminderCommand.MESSAGE_USAGE));
+        }
 
         String criteria = argMultimap.getValue(PREFIX_SORT_CRITERIA).get();
         if (!criteria.equals(SortReminderCommand.CRITERIA_PRIORITY)
