@@ -18,8 +18,10 @@ package "RealTime Storage" #F4F6F6{
 Class "<<interface>>\nRealTimeStorage" as RealTimeStorage
 Class JsonRealTimeStorage
 Class JsonSerializableRealTime
-Class JsonAdaptedPerson
+Class JsonAdaptedClient
 Class JsonAdaptedTag
+Class JsonAdaptedOffer
+Class JsonAdaptedListing
 }
 
 }
@@ -37,7 +39,10 @@ Storage -right-|> RealTimeStorage
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonRealTimeStorage .up.|> RealTimeStorage
 JsonRealTimeStorage ..> JsonSerializableRealTime
-JsonSerializableRealTime --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonSerializableRealTime --> "*" JsonAdaptedClient
+JsonSerializableRealTime --> "*" JsonAdaptedOffer
+JsonSerializableRealTime --> "*" JsonAdaptedListing
+JsonAdaptedClient --> "*" JsonAdaptedTag
+JsonAdaptedListing --> "*" JsonAdaptedTag
 
 @enduml

@@ -13,7 +13,7 @@ and track client offers and listings.
 
 _[More to be added]_
 
-## About
+## About REal-Time
 
 It is optimized for use via a Command Line Interface ([CLI](#Glossary)) while still having the
 benefits of a Graphical User Interface ([GUI](#Glossary)).
@@ -24,7 +24,13 @@ The **"REa"** in **REal-Time** stands for _Real-Estate agents_, which is the int
 
 ## Using this guide
 
-_[More to be added]_
+Now that you have read the introduction and learnt about what our product does, get started in using REal-Time by
+following the guide provided in the [Quick Start](#quick-start) section. Otherwise,
+* If you are still unsure of the commands used in REal-Time, the [Command Summary](#command-summary) is a good place to
+start.
+* The [Prefix Summary](#prefix-summary) and [Glossary](#glossary) are also great places to understand REal-Time
+better.
+* If you are a developer and would like to help improve our product, take a look at our [Developer Guide](https://ay2223s1-cs2103t-w15-2.github.io/tp/DeveloperGuide.html).
 
 # Table of Contents
 {: .no_toc}
@@ -40,13 +46,18 @@ _[More to be added]_
 1. Ensure you have `Java 11` or above installed in your Computer. To install `Java 11`,
 click [here](https://www.oracle.com/sg/java/technologies/downloads/#java11) and download the appropriate file depending
 on your Operating System ([OS](#Glossary)) (_e.g, Linux, Windows, macOS_).
-2. Download the latest `REal-Time.jar` file from [here](https://github.com/AY2223S1-CS2103T-W15-2/tp/releases).
-3. Go to your Downloads folder 
-4. Double-click the `REal-Time.jar` to start the app. The window similar to the one below should appear in a few seconds.
+
+2. Download the latest `REal-Time.jar` file from [here](https://github.com/AY2223S1-CS2103T-W15-2/tp/releases). The
+`REal-Time.jar` file is located in the "Assets" section as shown below.
+![downloadRelease](./images/downloadRelease.png)
+
+3. Copy the file to the folder you want to use as the _home folder_ for REal-Time.
+
+4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds.
 Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Refer to the [Layout](#layout) section to understand the layout better.
+5. Refer to the [Layout](#layout) if you are still unsure in navigating REal-Time's interface.
 
 6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and
 pressing Enter will open the help window.<br>
@@ -60,8 +71,11 @@ pressing Enter will open the help window.<br>
 
    * **`exit`** : Exits the app.
 
-7. Refer to the [Features](#features) below for details of each command.
+8. Refer to the [Features](#features) below for details of each command.
 
+[Back to Table of Contents](#table-of-contents)
+
+___
 
 # Layout
 
@@ -72,6 +86,10 @@ pressing Enter will open the help window.<br>
 `Offers` - All offers in Real-Time will appear here.<br>
 `Listings` - All listings in Real-Time will appear here.<br>
 `Meetings` - All meetings in Real-Time will appear here.
+
+[Back to Table of Contents](#table-of-contents)
+
+___
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -109,6 +127,9 @@ want to (0 or more times). For example, if you want to tag `John Doe` as `Friend
 4. If a field is expected only once in the command, but you specified it multiple times, only the last occurrence 
 will be taken. If you specify `n/John Dough n/John Doe`, only `n/John Doe` will be taken.
 
+[Back to Table of Contents](#table-of-contents)
+
+___
 
 Let's try another example for another type of command:
 ```text
@@ -124,6 +145,68 @@ This command edits a listing in Real-Time at the specified `INDEX`.
 # Features
 
 <div markdown="block" class="alert alert-info">
+
+### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+Format - `help`
+
+![help message](images/helpMessage.png)
+
+[Back to Table of Contents](#table-of-contents)
+
+___
+
+### Clearing all entries : `clear`
+
+Clears all entries in REal-Time.
+
+Format - `clear`
+
+[Back to Table of Contents](#table-of-contents)
+
+___
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format - `exit`
+
+[Back to Table of Contents](#table-of-contents)
+
+___
+
+### Saving the data
+
+REal-Time data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+[Back to Table of Contents](#table-of-contents)
+
+___
+
+### Editing the data file
+
+REal-Time data are saved as a JSON file `[JAR file location]/data/realtime.json`.
+Advanced users are welcome to update data directly by editing that data file.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If your changes to the data file makes its format invalid,
+REal-Time will discard all data and start with an empty data file at the next run.
+</div>
+
+[Back to Table of Contents](#table-of-contents)
+
+___
+
+### Archiving data files `[coming in v2.0]`
+
+_Details coming soon ..._
+
+[Back to Table of Contents](#table-of-contents)
+
+___
 
 ## Managing Clients
 
@@ -142,10 +225,14 @@ addC n/Betsy Crowe t/friend e/betsy@example.com a/Newgate Prison p/1234567 t/cri
 **Expected output:**<br>
 A new client is added to RealTime.<br>
 
+
 Feedback Box:
 ```text
 New client added: John Doe; Phone: 98765432; Email: johnd@example.com; Address: John street, block 123, #01-01
 ```
+  
+[Back to Table of Contents](#table-of-contents)
+
 ___
 
 ### Deleting a client : `delC`
@@ -164,6 +251,8 @@ Deleted Client: [details of the deleted client]
 ###Note
 1. `listC` followed by `delC 2` deletes the 2nd client in the Real-Time.
 2. `findC Betsy` followed by `delC 1` deletes the 1st client in the results of the `findC` command.
+
+[Back to Table of Contents](#table-of-contents)
 
 ___
 
@@ -193,7 +282,11 @@ Edited Client: [newly updated details of client]
 4. When editing tags, the existing tags of the client will be removed i.e adding of tags is not cumulative.
 5. You can remove all the client’s tags by typing `t/` without
    specifying any tags after it.
+
+[Back to Table of Contents](#table-of-contents)
+
 ___
+
 ### Finding clients by name: `findC`
 
 Finds clients whose names contain any of the given keywords.
@@ -222,6 +315,8 @@ FeedBack Box:
 5. Clients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
+[Back to Table of Contents](#table-of-contents)
+
 ___
 
 ### Listing Clients: `listC`
@@ -238,6 +333,9 @@ Feedback Box:
 Listed all clients
 ```
 [Screenshots to be added]
+
+[Back to Table of Contents](#table-of-contents)
+
 ___
 
 ## Managing Offers
@@ -251,9 +349,12 @@ We are also planning to introduce 2 new features in the future, namely [finding]
 **If this is not the section you are looking for**, click [here](#table-of-contents) to go back to the **Table of Contents**.
 
 ___
+
 ### Adding an offer: `addO`
 
-Adds an offer in REal-Time.
+Adds an offer in REal-Time, with the given **_Name_** of the Client, **_Listing ID_** of the Listing and the
+**_Offer_** made by the client.
+
 
 Format - `addO l/LISTING_ID n/NAME o/OFFER_PRICE`
 
@@ -262,6 +363,11 @@ If you are still unsure of the **prefixes**, click [here](#prefix-summary) to fi
 Examples:
 * `addO l/BEDOK_NORTH_BLK123_12 n/John Doe o/2000000`
 * `addO l/BUKIT_PANJANG_RD_BLK456_10 n/Betsy Crowe o/2500000`
+
+[Back to Table of Contents](#table-of-contents)
+
+[Back to Managing Offers](#managing-offers)
+
 ___
 
 ### Deleting an offer : `delO`
@@ -279,7 +385,11 @@ Deletes the specified offer in REal-Time.
 Format - `delO INDEX`
 
 Examples:
-* `delO 2` deletes the 2nd offer in the address book.
+* `delO 2` deletes the 2nd offer in REal-Time.
+
+[Back to Table of Contents](#table-of-contents)
+
+[Back to Managing Offers](#managing-offers)
 
 ___
 
@@ -296,14 +406,26 @@ Examples:
 * `editO 2 n/Betsy Crower o/123456` Edits the name and offer price of the 2nd offer to be `Betsy Crower` and `123456`
   respectively.
 
+[Back to Table of Contents](#table-of-contents)
+
+[Back to Managing Offers](#managing-offers)
+
 ___
 
 
 ### Finding an offer : `[Coming soon]`
 
+[Back to Table of Contents](#table-of-contents)
+
+[Back to Managing Offers](#managing-offers)
+
 ___
 
 ### Listing Offers: `[Coming Soon]`
+
+[Back to Table of Contents](#table-of-contents)
+
+[Back to Managing Offers](#managing-offers)
 
 ___
 
@@ -337,7 +459,8 @@ _Failure_
 
 ![addL Missing Parameter example](images/addLMissingParam.png)
 
-[Back to top](#features).
+[Back to Table of Contents](#table-of-contents)
+
 ___
 
 ### Deleting a listing : `delL`
@@ -361,6 +484,8 @@ _Failure_
 * `delL l/2356739457` Fails as the Index provided does not exist.
 
 ![deleteL Invalid ListingId example](images/deleteLInvalidId.png)
+
+[Back to Table of Contents](#table-of-contents)
 
 ___
 
@@ -390,11 +515,13 @@ _Failure_
 
 ![editL No Change example](images/editLNoChange.png)
 
-[Back to top](#features).
+[Back to Table of Contents](#table-of-contents)
 
 ___
 
 ### Finding a listing : `[Coming soon]`
+
+[Back to Table of Contents](#table-of-contents)
 
 ___
 
@@ -405,6 +532,8 @@ Shows the full list of listings.
 Format - `listL`
 
 [Screenshots to be added]
+
+[Back to Table of Contents](#table-of-contents)
 
 ___
 
@@ -423,6 +552,8 @@ Examples:
 * `addM id/1 a/John street, block 123, #01-01 d/2022-10-20 12:00`
 * `addM id/abc a/Changi Prison d/2022-10-21 14:00`
 
+[Back to Table of Contents](#table-of-contents)
+
 ___
 
 ### Deleting an meeting : `delM`
@@ -433,6 +564,8 @@ Format - `delM INDEX`
 
 Examples:
 * `delM 2` deletes the 2nd meeting in the address book.
+
+[Back to Table of Contents](#table-of-contents)
 
 ___
 
@@ -445,6 +578,8 @@ Format - `editM INDEX [n/OWNER_NAME] [d/DATE_TIME]`
 Examples:
 * `editM 1 n/Betsy Crowe d/2022-10-20 17:00`
 * `editM 2 n/Johnny Sins d/2022-10-22 12:00`
+
+[Back to Table of Contents](#table-of-contents)
 
 ___
 
@@ -492,11 +627,16 @@ exit
 **Expected output:**<br>
 
 The Real-Time window closes.
+
+[Back to Table of Contents](#table-of-contents)
+
 ___
 
 ### Saving the data
 
 REal-Time data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+[Back to Table of Contents](#table-of-contents)
 
 ___
 
@@ -512,40 +652,46 @@ REal-Time will discard all data and start with an empty data file at the next ru
 
 
 # Glossary
+
 |  Term   |                                Description                                 |
 |:-------:|:--------------------------------------------------------------------------:|
 | **OS**  | The operating system is the software that is used to run in your computer. |
 | **CLI** |                                To be added                                 |
 | **GUI** |                                To be added                                 |
 
-[Go back to [top](#introduction)]
+[Back to Introduction](#introduction)
+
+[Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
 # Command Summary
 
-|                      Action                       |                                       Format                                       |                                              Examples                                              |
-|:-------------------------------------------------:|:----------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------:|
-|     [**Add Client**](##adding-a-client-addc)      |              `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`               | `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-|     [**Add Listing**](#adding-a-listing-addl)     |        `addL l/LISTING_ID a/ADDRESS n/OWNER_NAME ap/ASKING_PRICE [t/TAG]…​`        |                                          **to be filled**                                          |
-|     [**Add Meeting**](#adding-a-meeting-addm)     |                   `addM id/Listing_ID n/CLIENT_NAME d/DATE_TIME`                   |                                          **to be filled**                                          |
-|      [**Add Offer**](#adding-an-offer-addo)       |                    `addoffer l/LISTING_ID n/NAME o/OFFER_PRICE`                    |                        `addoffer l/30_SERGARDENS_LOR23_0718 n/Bob o/600000`                        |
-|     [**Clear**](#clearing-all-entries--clear)     |                                      `clear`                                       |                                                                                                    |
-|   [**Delete Client**](#deleting-a-client--delc)   |                                    `delC INDEX`                                    |                                             `delete 3`                                             |
-|  [**Delete Listing**](#deleting-a-listing--dell)  |                                    `delL INDEX`                                    |                                          **to be filled**                                          |
-| [**Delete Meeting**](#deleting-an-meeting--delm)  |                                    `delM INDEX`                                    |                                          **to be filled**                                          |
-|   [**Delete Offer**](#deleting-an-offer--delo)    |                                    `delO INDEX`                                    |                                            `deleteO 2`                                             |
-|    [**Edit Client**](#editing-a-client--editc)    |      `editC INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`       |                            `edit 2 n/James Lee e/jameslee@example.com`                             |
-|   [**Edit Listing**](#editing-a-listing--editl)   | `editL INDEX [l/LISTING_ID][a/ADDRESS] [n/OWNER_NAME] [ap/ASKING_PRICE] [t/TAG]…​` |                                          **to be filled**                                          |
-|   [**Edit Meeting**](#editing-a-meeting--editm)   |                     `editM INDEX [n/OWNER_NAME] [d/DATE_TIME]`                     |                                          **to be filled**                                          |
-|    [**Edit Offer**](#editing-an-offer--edito)     |               `editO INDEX [n/NAME] [o/OFFER_PRICE] [l/LISTING_ID]`                |                                 `editO 2 n/Betsy Crower o/123456`                                  |
-| [**Find Client**](#finding-clients-by-name-findc) |                          `findC KEYWORD [MORE_KEYWORDS]`                           |                                         `findC James Jake`                                         |
-|     [**List Client**](#listing-clients-listc)     |                                       `list`                                       |                                                                                                    |
-|    [**List Listing**](#listing-listings-listl)    |                                                                                    |                                                                                                    |
-|          [**Help**](#viewing-help--help)          |                                       `help`                                       |                                                                                                    |
+|                      Action                       |                                       Format                                       |                                              Examples                                               |
+|:-------------------------------------------------:|:----------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------------------:|
+|      [**Add Client**](#adding-a-client-addc)      |              `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`              | `addC n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+|     [**Add Listing**](#adding-a-listing-addl)     |        `addL l/LISTING_ID a/ADDRESS n/OWNER_NAME ap/ASKING_PRICE [t/TAG]…​`        |                     `addL l/007 a/100 Charming Ave n/Joke Peralta ap/10000000`                      |
+|     [**Add Meeting**](#adding-a-meeting-addm)     |                   `addM id/Listing_ID n/CLIENT_NAME d/DATE_TIME`                   |                   `addM id/1 a/John street, block 123, #01-01 d/2022-10-20 12:00`                   |
+|      [**Add Offer**](#adding-an-offer-addo)       |                      `addO l/LISTING_ID n/NAME o/OFFER_PRICE`                      |                          `addO l/30_SERGARDENS_LOR23_0718 n/Bob o/600000`                           |
+|     [**Clear**](#clearing-all-entries--clear)     |                                      `clear`                                       |                                               `clear`                                               |
+|   [**Delete Client**](#deleting-a-client--delc)   |                                    `delC INDEX`                                    |                                              `delC 3`                                               |
+|  [**Delete Listing**](#deleting-a-listing--dell)  |                                    `delL INDEX`                                    |                                              `delL 1`                                               |
+| [**Delete Meeting**](#deleting-an-meeting--delm)  |                                    `delM INDEX`                                    |                                              `delM 4`                                               |
+|   [**Delete Offer**](#deleting-an-offer--delo)    |                                    `delO INDEX`                                    |                                              `delO 2`                                               |
+|    [**Edit Client**](#editing-a-client--editc)    |      `editC INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`       |                            `editC 2 n/James Lee e/jameslee@example.com`                             |
+|   [**Edit Listing**](#editing-a-listing--editl)   | `editL INDEX [l/LISTING_ID][a/ADDRESS] [n/OWNER_NAME] [ap/ASKING_PRICE] [t/TAG]…​` |                                        `editL 4 ap/1234567`                                         |
+|   [**Edit Meeting**](#editing-a-meeting--editm)   |                     `editM INDEX [n/OWNER_NAME] [d/DATE_TIME]`                     |                                      `editM 2 n/Roza Santiago`                                      |
+|    [**Edit Offer**](#editing-an-offer--edito)     |               `editO INDEX [n/NAME] [o/OFFER_PRICE] [l/LISTING_ID]`                |                                  `editO 2 n/Betsy Crower o/123456`                                  |
+| [**Find Client**](#finding-clients-by-name-findc) |                          `findC KEYWORD [MORE_KEYWORDS]`                           |                                         `findC James Jake`                                          |
+|     [**List Client**](#listing-clients-listc)     |                                      `listC`                                       |                                               `listC`                                               |
+|    [**List Listing**](#listing-listings-listl)    |                                      `listL`                                       |                                               `listL`                                               |
+|          [**Help**](#viewing-help--help)          |                                       `help`                                       |                                               `help`                                                |
+
+
+[Back to Table of Contents](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-[](#listing-listings-listl)
+
 # Prefix Summary
 
 | Prefix | Description                                                             | Used in                                                                                                                                                                                                                                                    | Example                       |
@@ -560,3 +706,4 @@ REal-Time will discard all data and start with an empty data file at the next ru
 | `p/`   | **Phone number** of a Client                                            | [Add Client](#adding-a-client-addc)<br/>[Edit Client](#editing-a-client--editc)                                                                                                                                                                            | `p/12345678`                  |
 | `t/`   | **Tag** to specify a unique trait of a Listing or Client                | [Add Client](#adding-a-client-addc)<br/> [Add Listing](#adding-a-listing-addl) <br/> [Edit Client](#editing-a-client--editc)<br/> [Edit Listing](#editing-a-listing--editl)                                                                                | `t/4room`                     |
 
+[Back to Table of Contents](#table-of-contents)

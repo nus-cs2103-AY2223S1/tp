@@ -11,8 +11,14 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
+Class ClientListPanel
+Class ClientCard
+Class OfferListPanel
+Class OfferCard
+Class ListingListPanel
+Class ListingCard
+Class MeetingListPanel
+Class MeetingCard
 Class StatusBarFooter
 Class CommandBox
 }
@@ -32,26 +38,44 @@ UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
+MainWindow *-down-> "1" ClientListPanel
+MainWindow *-down-> "1" OfferListPanel
+MainWindow *-down-> "1" ListingListPanel
+MainWindow *-down-> "1" MeetingListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
 
-PersonListPanel -down-> "*" PersonCard
+ClientListPanel -down---> "*" ClientCard
+OfferListPanel -down---> "*" OfferCard
+ListingListPanel -down--> "*" ListingCard
+MeetingListPanel -down--> "*" MeetingCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+ClientListPanel --|> UiPart
+ClientCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
+OfferListPanel --|> UiPart
+OfferCard --|> UiPart
+ListingListPanel --|> UiPart
+ListingCard --|> UiPart
+MeetingListPanel --|> UiPart
+MeetingCard --|> UiPart
 
-PersonCard ..> Model
+
+ClientCard ...> Model
+OfferCard ..> Model
+ListingCard ..> Model
+MeetingCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+ClientListPanel -[hidden]left- HelpWindow
+ListingListPanel -[hidden]left- ResultDisplay
+MeetingListPanel -[hidden]left- ResultDisplay
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
