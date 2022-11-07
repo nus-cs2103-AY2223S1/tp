@@ -402,7 +402,7 @@ Step 5: The user's default mail client is accessed by calling `Desktop#mail(URI)
 
 Step 6: Upon recognising the `CommandResult`, `MainWindow` displays the resulting `CommandResult`.
 
-The following sequence diagram demonstrates the above operations (excluding `java.awt.Desktop`, `java.net.URI`, and obtaining `Tutor` email data):
+The following sequence diagram demonstrates the above operations (excluding [`java.awt.Desktop`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/Desktop.html), [`java.net.URI`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/net/URI.html), and obtaining `Tutor` email data):
 
 ![MailSequenceDiagram](./images/MailSequenceDiagram.png)
 
