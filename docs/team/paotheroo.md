@@ -23,6 +23,7 @@ Given below are my contributions to the project.
   * Credits: Inspiration was taken from the `find` feature.
   * Pull request: [\#84](https://github.com/AY2223S1-CS2103T-F12-2/tp/pull/84)
 
+<div style="page-break-after: always;"></div>
 
 * **New Feature**: Added the ability to find tasks using keywords.
   * What it does: allows the user to find and list all tasks that have names or descriptions that contain any of the input keywords. Keyword matching is case-insensitive.
