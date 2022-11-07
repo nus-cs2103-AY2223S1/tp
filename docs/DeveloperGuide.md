@@ -181,14 +181,19 @@ This feature represents an appointment between a user and a client. An appointme
 Overview of implementation for Appointment:
 
 * `Appointment`- This is a class that stores information regarding an appointment of a specific client, such as the `DateTime` and `Location`.
-* `DateTime`- This is a class that stores the Date and Time of an `Appointment`. It has a format of `d-MMM-yyyy hh:mm a` as a `String`.
+* `DateTime`- This is a class that stores the Date and Time of an `Appointment`. It has a format of `dd-MM-yyyy HH:mm` as a `String`.
 * `Location`- This is a class that stores the location of an `Appointment`. It can take any `String` values, but it must not be blank.
 * `JsonAdaptedAppointment`- This is a class that acts as a bridge between the `Appointment` class and `Storage` layer. It specifies how an `Appointment` object is converted to a JSON and vice versa.
 * `AddAppointmentCommandParser`- This is a class that parses user input from a `String` to an `AddAppointmentCommand` object. Validation for the user's input is performed in this class.
 * `AddAppointmentCommand`- This is a class where the logic for the Add Appointment command is specified and the `execute` method is called. It will access the `Model` layer to ensure that there will not be a duplicate `Appointment` and the maximum number of `Appointments` for the client has not been reached, followed by adding the `Appointment` to the `Model`.
 * `MaximumSortedList`- This is an abstraction that represents the list of `Appointments` for a specific client. It ensures that the `Appointments` are in sorted order according to chronological order, ensures that there is a maximum number, 3, of `Appointments` for each client and ensures that there are no duplicate `Appointments` for each client.
-
-The appointment feature currently supports 3 different commands.
+* `EditAppointmentCommandParser`- This is a class that parses user input from a `String` to an `EditAppointmentCommand` object. Validation for the user's input is performed in this class.
+* `EditAppointmentCommand`- This is a class where the logic for the Edit Appointment command is specified and the `execute` method is called. It will access the `Model` layer to ensure that there will not be a `Appointment` with the same DateTime.
+It will then remove the old appointment and add the newly edited appointment. The `Model` will be updated accordingly.
+* `EditAppointmentDescriptor`- This is a class that takes in the user input's edited Location/Datetime fields to create the newly edited appointment.
+* `DeleteAppointmentCommandParser`- This is a class that parses user input from a `String` to an `DeleteAppointmentCommand` object. Validation for the user's input is performed in this class.
+* `DeleteAppointmentCommand`- This is a class where the logic for the Delete Appointment command is specified and the `execute` method is called. It will access the `Model` layer to ensure that there exists an `Appointment` at the specified appointment index. The appointment will be removed from the `Model`.
+ 
 1. `add appointment`
 2. `edit appointment`
 3. `delete appointment`
@@ -217,7 +222,7 @@ This is shown in the diagram below:
 
 </div>
 
-*Figure 11: Sequence Diagram showing the execution of an `aa` (Add Appointment) command*
+*Figure 10: Sequence Diagram showing the execution of an `aa` (Add Appointment) command*
 
 #### Design Considerations
 **Aspect: How many `Appointments` can be added for each command**
@@ -228,6 +233,41 @@ This is shown in the diagram below:
   * Pros: Lower number of commands needed to be executed to add all the desired `Appointments`
   * Cons: Complex input validation as unique `DateTimes` and `Locations` must be enforced within the command and alongside the existing `Appointments`. The maximum number of `Appointments` must also be enforced. Also, length of user input may be very long
 
+#### Edit Appointment Command
+
+Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager##execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser##parseCommand(userInput)` which parses the command.
+
+Step 2. If the user input matches the format for the command word for the `EditAppointmentCommand`, `AddressBookParser` will create an `EditAppointmentCommandParser` and will call the `AddAppointmentCommandParser##parse(args)` to parse the command.
+
+Step 3. Validation for the user input is performed, such as validating the client's `Index` and the appointment's `Index`
+
+Step 4. Validation for the user's input for the format of the `DateTime` and `Location` is also performed to create a `EditAppointmentDescriptor`
+
+Step 5. If the user input is valid, a new `EditAppointmentCommand` object is created and returned to the `LogicManager`.
+
+Step 6. `LogicManager` will call `EditAppointmentCommand##execute(model)` method. `EditAppointmentDescriptor` will create the edited `Appointment`
+
+Step 7. Further validation is performed, such as checking whether an `Appointment` with the same Datetime exists and whether the user's edited Location field is changed.
+
+Step 6. If the command is valid, the `remove` and `add` method of the `MaximumSortedList` containing the client's `Appointments` is called, 
+removing the old appointment and adding the newly edited appointment. `Person` and `Model` will be updated accordingly.
+
+Step 7. `EditAppointmentCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
+
+This is shown in the diagram below:
+<br>
+![Edit Appointment Sequence Diagram](images/EditAppointmentCommandSequenceDiagram.png)
+
+*Figure 11: Sequence Diagram showing the execution of an `ea` (Edit Appointment) command*
+
+#### Design Considerations
+**Aspect: How many `Appointments` can be edited for each command?**
+* **Alternative 1 (current choice):** Edit only one `Appointment` in each command.
+    * Pros: Simpler input validation and length of user input is shorter.
+    * Cons: User has to execute the `ea` command multiple times to edit all their desired `Appointments`
+* **Alternative 2**: Multiple `Appointments` can be edited in each command
+    * Pros: Lower number of commands needed to be executed to edit all the desired `Appointments`
+    * Cons: Complex input validation as multiple index must be enforced within the command and alongside the existing `Appointments`. The maximum number of `Appointments` to edit must also be enforced. 
 #### Delete Appointment Command
 
 Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager##execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser##parseCommand(userInput)` which parses the command.
@@ -248,7 +288,7 @@ This is shown in the diagram below:
 
 ![Delete Appointment Sequence Diagram](images/DeleteAppointmentCommandSequenceDiagram.png)
 
-*Figure 11: Sequence Diagram showing the execution of an `da` (Delete Appointment) command*
+*Figure 12: Sequence Diagram showing the execution of an `da` (Delete Appointment) command*
 
 #### Design Considerations
 **Aspect: How many `Appointments` can be deleted for each command**
@@ -281,7 +321,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![Find Command Activity Diagram](images/FindCommandActivityDiagram.png)
 
-*Figure 12: Activity Diagram showing the execution of an `find` command*
+*Figure 13: Activity Diagram showing the execution of an `find` command*
 
 #### Design Considerations
 
@@ -373,11 +413,28 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-#### Parameter hint feature
-
-The feature allows a user to view the correct prefixes and arguments of a command before entering the command.
+### Parameter hint (enhancement)
+This enhancement allows a user to view the correct prefixes and arguments of a command before entering the command.
 
 The parameter hints for the command will be shown in the ResultDisplay once the command word is typed out.
+
+Implementation:
+1. `CommandBox` takes in the `ResultDisplay` as one of the arguments for its constructor method
+2. In the `CommandBox` constructor method, `setupCommandHistoryNavigation()` is called which sets up `commandTextField` 
+to listen for the event when a valid command word is typed 
+3. When the event occurs, `ResultDisplay#setFeedbackToUser()` is called to display the command's message usage in the `ResultDisplay`
+
+### Command History feature
+This feature allows the user to navigate to their previously entered commands.
+- Only valid commands will be saved in the command history
+- Command history will only save up to 20 previously typed valid commands
+- Consecutive duplicate commands will not be saved (e.g entering “list” 3 times in a row will only add “list” to command history once)
+
+The following sequence diagram summarizes how a valid command is saved in CommandHistoryStorage:
+![Add to command history storage](images/AddToCommandHistorySequenceDiagram.png)
+<br>
+The following sequence diagram summarizes how an up arrow key navigates to the previous command:
+![Navigate command history](images/NavigateCommandHistorySequenceDiagram.png)
 
 ### Calendar features
 The calendar feature allows a calendar to display with the corresponding appointments of the month in a calendar format. The feature consists of the following features:

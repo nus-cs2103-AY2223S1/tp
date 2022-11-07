@@ -189,12 +189,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public String nextCommand() {
+        public String getNextCommand() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public String prevCommand() {
+        public String getPrevCommand() {
             throw new AssertionError("This method should not be called.");
         }
 
