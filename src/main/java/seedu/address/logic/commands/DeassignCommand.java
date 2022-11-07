@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_SLOT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
 
@@ -48,8 +49,7 @@ public class DeassignCommand extends Command {
      * specific nurse's home visit.
      */
     public DeassignCommand(Uid uid, List<Index> dateslotOrHomevisitIndex) {
-        requireNonNull(uid);
-        requireNonNull(dateslotOrHomevisitIndex);
+        requireAllNonNull(uid, dateslotOrHomevisitIndex);
         this.uid = uid;
         this.dateslotOrHomevisitIndex = new ArrayList<>();
         this.dateslotOrHomevisitIndex.addAll(dateslotOrHomevisitIndex);

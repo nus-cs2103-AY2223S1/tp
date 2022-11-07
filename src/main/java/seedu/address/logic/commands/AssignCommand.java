@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_SLOT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
 
@@ -49,9 +50,7 @@ public class AssignCommand extends Command {
      * Creates an AssignCommand to assgin specific patient's date slot to a nurse.
      */
     public AssignCommand(Uid uid1, Uid uid2, List<Index> dateslotIndex) {
-        requireNonNull(uid1);
-        requireNonNull(uid2);
-        requireNonNull(dateslotIndex);
+        requireAllNonNull(uid1, uid2, dateslotIndex);
         this.uid1 = uid1;
         this.uid2 = uid2;
         this.dateslotIndex = new ArrayList<>();
@@ -129,10 +128,9 @@ public class AssignCommand extends Command {
         editor.editNurse(nurse, updatedHomeVisitList, updatedFullyScheduledList);
     }
 
-
     @Override
     public boolean equals(Object other) {
-        if(other instanceof AssignCommand){
+        if (other instanceof AssignCommand) {
             AssignCommand o = (AssignCommand) other;
             System.out.println(uid1.equals(o.uid1));
             System.out.println(uid2.equals(o.uid2));
@@ -146,7 +144,3 @@ public class AssignCommand extends Command {
     }
 
 }
-
-
-
-

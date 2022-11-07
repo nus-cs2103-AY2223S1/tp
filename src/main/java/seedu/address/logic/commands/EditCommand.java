@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_SLOT;
@@ -118,8 +119,7 @@ public class EditCommand extends Command {
      * @param editPersonDescriptor Details to edit the person with
      */
     public EditCommand(Uid targetUid, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(targetUid);
-        requireNonNull(editPersonDescriptor);
+        requireAllNonNull(targetUid, editPersonDescriptor);
 
         this.targetUid = targetUid;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
@@ -739,8 +739,8 @@ public class EditCommand extends Command {
                 + "given is out of bounds of the existing list."
                 + " Please retype another index that is within the range or left it empty.";
 
-        public static final String MESSAGE_INVALID_NUMBERS_OF_UNAVAILABLE_DATES_AND_UNAVAILABLE_DATE_INDEXES = "The unavailable date index "
-                + "provided is more than the unavailable date provided."
+        public static final String MESSAGE_INVALID_NUMBERS_OF_UNAVAILABLE_DATES_AND_UNAVAILABLE_DATE_INDEXES =
+                "The unavailable date index provided is more than the unavailable date provided."
                 + " Please remove the unavailable date index or add more unavailable date.";
 
         private final Model model;
