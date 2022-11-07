@@ -35,6 +35,7 @@ of these terms in the hopes that it will clear your doubts.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always"></div>
+
 ## **Quick start**
 
 1. Ensure you have Java `11` or above is installed in your Computer. Please kindly refer to [this guide](https://blog.hubspot.com/website/check-java-verison) for further instructions on how to do so.
