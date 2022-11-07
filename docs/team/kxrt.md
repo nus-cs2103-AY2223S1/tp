@@ -1,5 +1,6 @@
 ---
-layout: page title: Kartikeya's Project Portfolio Page
+layout: page 
+title: Kartikeya's Project Portfolio Page
 ---
 
 ###### Overview
