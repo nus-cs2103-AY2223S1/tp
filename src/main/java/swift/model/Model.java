@@ -5,7 +5,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import swift.commons.core.GuiSettings;
-import swift.logic.commands.exceptions.CommandException;
 import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.Person;
 import swift.model.task.Task;
@@ -50,13 +49,6 @@ public interface Model {
      * Sets the user prefs' address book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
-
-    /**
-     * Method that updates the associated contact list if it's unambiguous that a user has been selected.
-     *
-     * @throws CommandException
-     */
-    void hotUpdateAssociatedContacts() throws CommandException;
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
