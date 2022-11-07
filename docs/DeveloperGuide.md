@@ -419,7 +419,7 @@ The `find` mechanism is facilitated within [TeachersPet.java](https://github.com
 There are 7 different variations of `find`:
 1. Find by name: Find all matching student(s) with any matching full keyword(s) from name of student using `find n/[KEYWORDS]`.
 2. Find by email: Find all matching student(s) with any matching full keyword(s) from email of student using `find e/[KEYWORDS]`.
-3. Find by address: Find all matching student(s) with any matching full keyword(s) from address of using `find a/[KEYWORDS]`.
+3. Find by address: Find all matching student(s) with any matching keyword(s) from address of using `find a/[KEYWORDS]`.
 4. Find by student's contact number: Find the matching student with a particular contact number using `find p/CONTACT_NUMBER`.
 5. Find by next of kin's contact number: Find all matching student(s) with a particular next of kin's contact number using `find np/NEXT_OF_KIN_CONTACT_NUMBER`.
 6. Find by class date: Find all matching student(s) with classes on a particular date`find dt/[CLASS_DATE]`.
@@ -438,11 +438,11 @@ Below is an example of the general flow of a find by address command.
 2. `AddressContainsKeywordsPredicate` will be generated and a predicate value will be returned to `FindCommandParser`.
 3. `FindCommandParser` will send the predicate value to `FindCommand`.
 4. `FindCommand` will be generated and the command will be returned to the `FindCommandParser`.
-5. `FindCommand` will call the `execute(model)` function, and pass the predicate value into `Model` through `updateFilteredTaskList`.
-6. `filteredTasks` list will be updated accordingly in `ModelManager` and the list display in Teacher's Pet will be updated.
+5. `FindCommand` will call the `execute(model)` function, and pass the predicate value into `Model` through `updateFilteredStudentList`.
+6. `filteredStudents` list will be updated accordingly in `ModelManager` and the list display in Teacher's Pet will be updated.
 7. `CommandResult` will eventually be returned and feedback will be given to the user.
 
-The Sequence Diagram below shows how the components interact with each other when the user issues a find command:
+The following sequence diagram summarizes what happens when a user executes a find by address command:
 
 ![FindByAddressSequenceDiagram](images/DG-images/FindByAddressSequenceDiagram.png)
 
@@ -450,7 +450,7 @@ ___
 
 ### [Proposed] Next Available Class Feature
 
-This feature allows the teacher to find then next available class by specifying the time range and the duration that
+This feature allows the teacher to find the next available class by specifying the time range and the duration that
 he or she is looking at. For example, if the teacher wants to have a 1-hour class in the range of 1000-1600, but is not
 sure when is the next available date, he or she can simply run `avail 1000-1600 60` and the first available class would
 be output to the teacher.
@@ -658,13 +658,13 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **Extensions**
 
-- 1a. Teacher requests to find by address without providing any query.
-    - 1a1. Teacher’s Pet displays invalid address command message.
+- 1a. Teacher requests to find by address with a blank or white space as the only parameter.
+    - 1a1. Teacher’s Pet displays invalid address format command message.
 
       Use case ends.
 
 - 1b. Teacher's Pet detects multiple students share the same address in the system.
-    - 1b1. Teacher’s Pet lists the details of multiple students.
+    - 1b1. Teacher’s Pet lists the details of all those students.
 
       Use case ends.
 
