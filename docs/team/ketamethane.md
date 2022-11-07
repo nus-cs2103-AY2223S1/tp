@@ -1,5 +1,6 @@
 ---
-layout: page title: Tan Cheong Hsien Ryan's Project Portfolio Page
+layout: page 
+title: Tan Cheong Hsien Ryan's Project Portfolio Page
 ---
 
 ### Project: SETA
@@ -42,10 +43,11 @@ more effectively than traditional GUI apps. Given below are my contributions to 
 * **Code
   contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=ketamethane&breakdown=true)
 
-
 * **Project management**:
-    *
+    * Managed releases v1.2 - v1.4 on Github.
 
+* **Update to existing features**:
+    * Updated the GUI, with a splitpane for the Question list.
 
 * **Documentation**:
     * User Guide:
@@ -62,6 +64,8 @@ more effectively than traditional GUI apps. Given below are my contributions to 
         * Added use cases for the features implemented [\#23](https://github.com/AY2223S1-CS2103T-T08-4/tp/pull/23)
         * Updated the `model` component section [\#117](https://github.com/AY2223S1-CS2103T-T08-4/tp/pull/117)
 
+* **Tean-based Tasks**:
+    * Helped to set up team org/repo.
 
 * **Community**:
     * Helped to review PRs and suggested changes.
@@ -71,7 +75,3 @@ more effectively than traditional GUI apps. Given below are my contributions to 
           Tests [#113](https://github.com/AY2223S1-CS2103T-T08-4/tp/pull/113)
     * Answering questions in the CS2103T forum
         * Line ending issue for CI \r\n [#336](https://github.com/nus-cs2103-AY2223S1/forum/issues/336)
-
-
-* **Tools**:
-    * 
