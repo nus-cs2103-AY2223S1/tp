@@ -89,11 +89,15 @@ This project was adapted from an application called [`AddressBook Level 3 (AB3)`
 
 [**CLI**](#glossary) gives the user an easy way to type commands. This is especially useful for a target audience which is familiar with the process of performing admin tasks using a computer. For users who type fast, RC4HDB will be highly efficient and quick to respond, improving their existing processes of managing their housing database.
 
-#### Color coding of components
+---
+
+### Color coding of components
 
 To make it easier for readers to identify the components each class belong to in our UML diagrams, we have color coded each of our main components, `Model`, `Logic`, `Storage`, and `UI` with the following colors .
 
 ![Colors for UML diagrams](./images/ColorCoding.png)
+
+<br>
 
 ### Architecture
 
@@ -131,9 +135,11 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+![ComponentManagers](images/ComponentManagers.png)
 
-The sections below give more details of each component.
+The following sections below provides more details of each component.
+
+---
 
 ### UI component
 
@@ -141,16 +147,17 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ResidentTabView`, `VenueTabView`, `CurrentWorkingFileFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ResidentTabView`, `VenueTabView`, `CurrentWorkingFileFooter` etc. All these, including the `MainWindow`, extend from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFX UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
-
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Resident`, `Venue` and `Booking` object residing in the `Model`.
+
+---
 
 ### Logic component
 
@@ -164,14 +171,17 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `Rc4hdbParser` class to parse the user command.
 2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+4. The result of the command execution is encapsulated as a `CommandResult` object which is passed on to the `UI` component for display as a message to the user.
+
+<br>
+
+#### Command execution
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+#### Command parsing
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -182,13 +192,15 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `CommandParser` interface so that they can be treated similarly where possible e.g, during testing.
 * Note that not all `CommandParser` classes depend on `CliSyntax`, `ArgumentTokenizer`, `ArgumentMultimap` and `ParserUtil`. e.g. `FileCommandParser` and `VenueCommandParser`.
 
+#### Class structure of commands
+
+As seen from the diagram below, The command class structure has been changed to provide an additional layer of abstraction using the four interface classes `ModelCommand`, `StorageCommand`, `StorageModelCommand` and `MiscCommand`.
+
 ![Class structure of Command](images/CommandDiagram.png)
 
-The command class structure has been changed to provide an additional layer of abstraction using the four interface
-classes ```ModelCommand```, ```StorageCommand```, ```StorageModelCommand``` and ```MiscCommand```. These interfaces all
-implement the Command interface and is used as a intermediate barrier to build the command classes. The specific
-commands implement these commands instead of directly implementing the Command interface in order to improve
-the abstraction of commands.
+These interfaces all implement the `Command` interface and are used as a intermediate barrier to build the command classes. This allows us to control the components that are available to each `Command` during execution. i.e. `ModelCommand` will only be able to alter the `Model`, while `MiscCommand` will not be able to alter any component directly. The specific commands implement these commands instead of directly implementing the `Command` interface in order to improve the abstraction of commands.
+
+---
 
 ### Model component
 
@@ -197,11 +209,8 @@ the abstraction of commands.
 ![UML diagram for Model component](./images/ModelClassDiagram.png)
 
 The `Model` component,
-
-* stores the `ResidentBook` and `VenueBook` data, i.e. all `Resident` and `Venue` objects (which are further 
-  contained in a `UniqueResidentList` object and `UniqueVenueList` object respectively).
-* stores the currently selected venues and bookings, and the current set of visible and hidden table columns in 
-  separate `ObservableList` objects.
+* stores the `ResidentBook` and `VenueBook` data, i.e. all `Resident` and `Venue` objects (which are further contained in a `UniqueResidentList` object and `UniqueVenueList` object respectively).
+* stores the currently selected venue and its bookings, and the current set of visible and hidden table columns in separate `ObservableList` objects.
     * The `Resident` objects are contained in a `FilteredList<Resident>` which are exposed to the outside as an unmodifiable `ObservableList`.
     * The `visibleFields` and `hiddenFields` are also exposed to the outside as unmodifiable `ObservableList` instances.
     * The UI can 'observe' these lists so that the UI automatically changes when the data in these lists change.
@@ -217,12 +226,13 @@ The `Model` component,
 ![StorageClassDiagram](images/StorageClassDiagram.png)
 
 The `Storage` component,
-* can save resident book data, venue book data and user preference data in json format, and read them back into corresponding objects.
+* can save resident book data, venue book data and user preference data in [JSON](#glossary) format, and read back into corresponding objects.
 * inherits from both `DataStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-The ```DataStorage``` class inherits ```ResidentBookStorage``` and ```VenueBookStorage```. The functionalities
-of both these classes can be extended into DataStorage, which is applied by the ```DataStorageManager``` class.
+The `DataStorage` class inherits from `ResidentBookStorage` and `VenueBookStorage`. The functionalities of both these classes can be extended into DataStorage, which is applied by the `DataStorageManager` class.
+
+---
 
 ### Common classes
 
@@ -235,9 +245,9 @@ Classes used by multiple components are in the `seedu.rc4hdb.commons` package.
 This section describes some noteworthy details on how certain features are implemented. We have included other implementations that we have considered, along with reasons for choosing the current implementation over the others.
 
 Here is a list of the details discussed:
-* [Resident class](#the-resident-class)
-* [Displaying data](#displaying-data)
-* [Show only/Hide only commands](#show-onlyhide-only-commands)
+* [Resident class](#resident-class)
+* [Displaying resident data](#displaying-resident-data)
+* [Showonly and Hideonly commands](#showonly-and-hideonly-commands)
 * [Filter command](#filter-command)
 * [Multiple data files](#multiple-data-files)
 * [Command history](#command-history)
@@ -245,7 +255,7 @@ Here is a list of the details discussed:
 
 ---
 
-### The Resident Class
+### Resident class
 
 `RC4HDB` seeks to serve as a housing management database, and as such, one of the first tasks at hand was to modify the
 existing `AddressBook` application to one that makes use of the `Resident` class, which contains much more useful information as compared to the current fields that are supported by `Person`. `Person` contained the fields `Name`,
@@ -255,19 +265,23 @@ housing management staff.
 
 <br>
 
-#### Refactoring of Classes
+#### Refactoring of classes
 
 Refactoring of classes to make use of `Resident` related fields and information was a priority for us in the initial stages of development. With `Resident` not yet implemented, it was difficult for us to progress to other features that required the fields of said class. After this refactoring was done, all packages now fall under `seedu.rc4hdb`, the `Person` class was no longer needed, and `Resident` was able to replace it in all existing commands.
 
 ---
 
-### Displaying Data
+### Displaying resident data
 
 There are two main types of data that is stored and displayed, the `Resident`, and the `Venue`. As such, we have naturally separated the display of the two. The `MainWindow` contains two components, a `ResidentTabView` and a `VenueTabView`, which are responsible for displaying the respective information.
+
+<br>
 
 #### Resident Information
 
 The `ResidentTabView` contains a `ResidentTableView` which is implemented via the `TableView` class of `JavaFX`. This is represented as a table, where each row corresponds to a `Resident` in `RC4HDB`, and each column corresponds to a field belonging to that `Resident`.
+
+<br>
 
 #### Design considerations
 
@@ -303,11 +317,14 @@ Cons:
 
 For the purposes of the user, who has to deal with large amounts of residential information, we opted the use of the table.
 
+<br>
 
 #### Booking Information
 
 Similar to the display of resident information, the `VenueTabView` contains a `BookingTableView` which was also implemented
 via the `TableView` class of `JavaFX`. Here, each row corresponds to the `Day`, and each column corresponds to the `HourPeriod`.
+
+<br>
 
 ##### Design considerations
 
@@ -336,11 +353,9 @@ Cons
 Weighing the pros and cons, we decided to opt for the Table as it was sufficient for our purposes, without the addition
 of any sizeable overhead.
 
-<br>
-
 ---
 
-### Manipulating table columns using `showonly` and `hideonly`
+### Showonly and Hideonly commands
 
 #### Changes to Model component:
 
@@ -443,8 +458,6 @@ not affect the list of residents.
 To make our commands more intuitive, we also made the `showonly` and `hideonly` commands state-dependent, so
 that the user did not have to re-specify columns that were already hidden.
 
-<br>
-
 ---
 
 ### Filter command
@@ -505,8 +518,6 @@ flexible if the contains option is implemented as the user can use a substring o
 out residents. Thus, while keeping this advantage in mind, we have decided to make the filter feature accept fields
 that contain the attributes instead of having it to be exactly equal.
 
-<br>
-
 ---
 
 ### Multiple data files
@@ -559,8 +570,6 @@ Due to file creation and deletion not requiring an update to `Model`, but requir
 
 Due to file switching requiring an update to not only `Storage`, but also `Model`, we implemented `FileSwitchCommand` as a storage model command. Similarly, the `setResidentBookFilePath(Path)` method was implemented to support the switching of files. As for the manipulation of `Model`, we made use of existing methods to update the user preferences and use the data file that the user intends to switch to as the data file that the application will read from when it first starts up. Additionally, the `FileSwitchCommand` also results in the `Model` updating its old data with the data from the file the user intends to switch to.
 
-<br>
-
 ---
 
 ### Command history
@@ -588,9 +597,6 @@ To illustrate how `CommandHistory` works, an activity diagram when using the `UP
 ![CommandHistoryActivityDiagram](images/CommandHistoryActivityDiagram.png)
 
 The activity diagram for the `DOWN_ARROW_KEY` is largely similar to the one above.
-
-<<<<<<< HEAD
-<br>
 
 ---
 
@@ -644,7 +650,7 @@ After considering both choices, we decided that a weekly timetable format would 
 
 Considering the fact that our Ui has no space for a timetable to be added in, we decided to make use of `Tab` and `TabView` from the JavaFX library. This allows us to keep our [`ResidentTableView`](#resident-information), while adding our timetable. However, we realised that users will need a way to view what venues are currently being tracked in **RC4HDB**. Thus, we decided to complement our timetable with a `ListView` which contains the list of venues being tracked.
 
-With this, we went on implementing the following Ui parts:
+With this, we decided to split the Ui requirements into the following Ui parts:
 * `VenueTabView`
 * `BookingTableView`
 * `VenueListView`
@@ -676,6 +682,8 @@ The following diagram describes the interactions between each newly introduced U
 
 ![VenueBookingUiClassDiagram](images/VenueBookingUiClassDiagram.png)
 
+As seen from the diagram, the `MainWindow` contains the `VenueTabView`, along with all the other Ui components which for the sake of keeping the above diagram readable, is shown [here](#ui-component). The `VenueTabView` is a container for the `BookingTableView` which displays the booking data of the currently viewed venue and for the `VenueListView` which displays the list of all venues tracked by **RC4HDB**. The `VenueListView` displays each venue in the form of a `VenueListCard`, which is purely for enhancing the aesthetics of the `VenueListView`. The `VenueListView` also contains a `Label` component from JavaFX which displays the currently viewed venue for the `BookingTableView`.
+
 <br>
 
 #### Planning the data format
@@ -702,7 +710,7 @@ In order to be able to keep track of venues, we implemented a `Venue` class, whi
 
 ##### Daily schedule
 
-However, considering our usage of a `BookingTableView` Ui component, we had to transform the bookings for a venue into a format suitable for a table. To do so, we decided to add a `DailySchedule` data class, which will represent a row in our timetable implementation of the Ui. We will then pass a list of 7 `DailySchedule` to `BookingTableView` to represent a timetable of the bookings for a week, for a specified venue.
+However, considering our usage of a `BookingTableView` Ui component, we had to transform the bookings for a venue into a format suitable for a table. To do so, we decided to add a `DailySchedule` data class, which will represent a row in our timetable implementation of the Ui. We will then pass a list of 7 `DailySchedule` to `BookingTableView` to represent a timetable of the bookings for a whole week, for a specified venue.
 
 <br>
 
@@ -735,6 +743,8 @@ With the addition of venue and booking data, we have to update the `Storage` com
 The following diagram showcases the additions to the `Storage` component to support the venue and booking data storage:
 
 ![VenueStorageUpdateClassDiagram](images/VenueStorageUpdateClassDiagram.png)
+
+As seen in the diagram, apart from the `DataStorageManager` class, all additions were heavily reused from the `ResidentBookStorage` portion. We added a `DataStorageManager` class to handle the `VenueBookStorage` and `ResidentBookStorage` needs. We intended for the `DataStorageManager` to be an all-purpose **RC4HDB** data storage, meaning that in the future, when more data needs to be tracked, such as perhaps finances and such, the `DataStorageManager` will serve as a go-to class to handle all **RC4HDB** data storage matters.
 
 <br>
 
@@ -776,8 +786,8 @@ RC4HDB is built upon [AddressBook-Level3](https://github.com/se-edu/addressbook-
 1. The code for some methods in `ResidentTableView` and `BookingTableView` was adapted from these threads on StackOverflow:
    * [How to show a list on table column with few fields of list items](https://stackoverflow.com/questions/31126123/how-to-show-a-list-on-table-column-with-few-fields-of-list-items), and
    * [Creating a row index column in JavaFX](https://stackoverflow.com/questions/33353014/creating-a-row-index-column-in-javafx)
-2. `cleanBom` in `CsvReader` was adapted from this [thread](https://mkyong.com/java/java-how-to-add-and-remove-bom-from-utf-8-file/) on mkyong's website.
-3. `NoSelectionModel` was adapted from [this thread](https://stackoverflow.com/questions/20621752/javafx-make-listview-not-selectable-via-mouse) on StackOverflow.
+2. The `cleanBom` method in `CsvReader` was adapted from this [thread](https://mkyong.com/java/java-how-to-add-and-remove-bom-from-utf-8-file/) on mkyong's website.
+3. The `NoSelectionModel` class was adapted from [this thread](https://stackoverflow.com/questions/20621752/javafx-make-listview-not-selectable-via-mouse) on StackOverflow.
 
 ---
 
@@ -1266,6 +1276,7 @@ Extensions:
 ### Glossary
 * **Command Line Interface (CLI)**: An area in the application interface for users to input commands
 * **Comma-Separated Values (CSV)**: A delimited text file that uses a comma to separate values and each line of the file is a data record
+* **Javascript Object Notation (JSON)**: A lightweight format for storing and transporting data.
 * **Display Window**: An area in the application interface for users to view the output of their commands
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **NUS**: The National University of Singapore
@@ -1727,5 +1738,11 @@ We recommend viewing the [Quality-of-life](UserGuide.md#quality-of-life) section
 
    2. Test case: Pressing `CTRL-TAB`<br>
       Expected: Alternate tab is displayed.
+
+---
+
+## **Appendix: Effort**
+
+[Comment]: <> (To add effort component here)
 
 ---

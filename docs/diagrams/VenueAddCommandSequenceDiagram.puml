@@ -30,6 +30,12 @@ create VenueCommandParser
 Rc4hdbParser -> VenueCommandParser
 activate VenueCommandParser
 
+VenueCommandParser --> Rc4hdbParser
+deactivate VenueCommandParser
+
+Rc4hdbParser -> VenueCommandParser : parse("add Hall")
+activate VenueCommandParser
+
 create VenueAddCommand
 VenueCommandParser -> VenueAddCommand
 activate VenueAddCommand

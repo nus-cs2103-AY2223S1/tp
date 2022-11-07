@@ -21,16 +21,17 @@ class Day
 class Resident
 }
 
-Venue --> "*" Booking
-Venue -up-> VenueName : has a >
+Venue -> Booking
+Venue -left-> VenueName : has a >
 
-DailySchedule -up-> "24" Resident
+DailySchedule -> Resident
 DailySchedule --> Day
+DailySchedule .left.> Venue
 
 Booking -up-> VenueName
 Booking -down-> HourPeriod
 Booking -down-> Day
-Booking -up-> Resident : booked by >
-RecurrentBooking .up.|> Booking
+Booking -> Resident : booked by >
+RecurrentBooking .right.|> Booking
 
 @enduml

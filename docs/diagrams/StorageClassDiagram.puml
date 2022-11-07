@@ -27,42 +27,46 @@ Class JsonAdaptedVenue
 Class JsonVenueBookStorage
 }
 
+package "Csv " #F4F6F6 {
+Class CsvFileManager
+Class CsvReader
+}
+
 Class "<<interface>>\nStorage" as Storage
 Class "<<interface>>\nDataStorage" as DataStorage
 Class StorageManager
-Class CsvFileManager
 Class DataStorageManager
 
 }
 
 Class HiddenOutside #FFFFFF
-HiddenOutside ..> Storage
+HiddenOutside .down.> Storage
 
-StorageManager .up.|> Storage
-StorageManager -up-> "1" UserPrefsStorage
-StorageManager -->  "1" DataStorage
-StorageManager --> "1"CsvFileManager
+StorageManager .up-|> Storage
+StorageManager -right-> "1" UserPrefsStorage
+StorageManager -down->  "1" DataStorage
+StorageManager -right-> "1"CsvFileManager
+
+JsonUserPrefsStorage .right.|> UserPrefsStorage
+CsvFileManager -right> CsvReader
 
 DataStorageManager .up.|> DataStorage
-DataStorageManager --> "1" ResidentBookStorage
-DataStorageManager --> "1" VenueBookStorage
+DataStorageManager -up-> "1" ResidentBookStorage
+DataStorageManager -up-> "1" VenueBookStorage
 
+Storage -down--|> VenueBookStorage
+Storage -down--|> ResidentBookStorage
+Storage -down-|> UserPrefsStorage
 
-Storage -up-|> "1" VenueBookStorage
-Storage -up-|> "1"ResidentBookStorage
-
-Storage -left-|> UserPrefsStorage
-
-JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonResidentBookStorage .up.|> ResidentBookStorage
-JsonResidentBookStorage ..> JsonSerializableResidentBook
-JsonSerializableResidentBook --> "*" JsonAdaptedResident
-JsonAdaptedResident --> "*" JsonAdaptedTag
+JsonResidentBookStorage .down.> JsonSerializableResidentBook
+JsonSerializableResidentBook -down-> "*" JsonAdaptedResident
+JsonAdaptedResident -down-> "*" JsonAdaptedTag
 
 JsonVenueBookStorage .up.|> VenueBookStorage
-JsonVenueBookStorage ..> JsonSerializableVenueBook
-JsonSerializableVenueBook --> "*" JsonAdaptedVenue
-JsonAdaptedVenue --> "*" JsonAdaptedRecurrentBooking
-JsonAdaptedRecurrentBooking --> "1" JsonAdaptedResident
+JsonVenueBookStorage .down.> JsonSerializableVenueBook
+JsonSerializableVenueBook -down-> "*" JsonAdaptedVenue
+JsonAdaptedVenue -down-> "*" JsonAdaptedRecurrentBooking
+JsonAdaptedRecurrentBooking -left-> "1" JsonAdaptedResident
 
 @enduml
