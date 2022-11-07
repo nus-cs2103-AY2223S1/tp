@@ -6,8 +6,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.task.Name;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskName;
+import seedu.address.model.team.TeamName;
 
 /**
  * Jackson-friendly version of {@link Task}.
@@ -48,17 +49,17 @@ public class JsonAdaptedTask {
     public Task toModelType() throws IllegalValueException {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    seedu.address.model.team.Name.class.getSimpleName()));
+                    TeamName.class.getSimpleName()));
         }
 
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!TaskName.isValidName(name)) {
+            throw new IllegalValueException(TaskName.MESSAGE_CONSTRAINTS);
         }
 
         if (deadline != null && !Task.isValidDeadline(deadline)) {
             throw new IllegalValueException(Task.MESSAGE_INVALID_DATE_VALUE);
         }
 
-        return new Task(new Name(name), deadline, isDone);
+        return new Task(TaskName.of(name), deadline, isDone);
     }
 }

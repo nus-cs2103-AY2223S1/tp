@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.task.Name;
-
+import seedu.address.model.task.TaskName;
+import seedu.address.model.team.TeamName;
 
 
 public class JsonAdaptedTeamTest {
@@ -34,7 +34,7 @@ public class JsonAdaptedTeamTest {
     public void toModelType_invalidTeamName_throwsIllegalValueException() {
         JsonAdaptedTeam team =
                 new JsonAdaptedTeam(INVALID_NAME, VALID_TASKS, VALID_MEMBERS);
-        String expectedMessage = Name.MESSAGE_CONSTRAINTS;
+        String expectedMessage = TaskName.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, team::toModelType);
     }
 
@@ -42,7 +42,7 @@ public class JsonAdaptedTeamTest {
     public void toModelType_nullTeamName_throwsIllegalValueException() {
         JsonAdaptedTeam team =
                 new JsonAdaptedTeam(null, VALID_TASKS, VALID_MEMBERS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TeamName.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, team::toModelType);
     }
 

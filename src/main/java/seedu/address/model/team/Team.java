@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskName;
 import seedu.address.model.task.UniqueTaskList;
 
 /**
@@ -20,7 +21,7 @@ import seedu.address.model.task.UniqueTaskList;
 public class Team {
 
     // Identity fields
-    private Name name;
+    private TeamName teamName;
     private UniqueTaskList tasks = new UniqueTaskList();
     private UniquePersonList members = new UniquePersonList();
 
@@ -28,20 +29,20 @@ public class Team {
     /**
      * Every field must be present and not null.
      */
-    public Team(Name name) {
-        requireAllNonNull(name);
-        this.name = name;
+    public Team(TeamName teamName) {
+        requireAllNonNull(teamName);
+        this.teamName = teamName;
     }
 
     /**
      * Creates a team with certain preset {@code task} and {@code member}.
      *
-     * @param name A valid team name.
+     * @param teamName A valid team name.
      * @param tasks A list with tasks.
      * @param members A list of team members.
      */
-    public Team(Name name, List<Task> tasks, List<Person> members) {
-        this.name = name;
+    public Team(TeamName teamName, List<Task> tasks, List<Person> members) {
+        this.teamName = teamName;
         this.tasks.addAll(tasks);
         this.members.addAll(members);
     }
@@ -49,22 +50,22 @@ public class Team {
     /**
      * Creates a team with certain preset {@code task} and {@code member}.
      *
-     * @param name A valid team name.
+     * @param teamName A valid team name.
      * @param tasks A UniqueTaskList.
      * @param members A UniquePersonList.
      */
-    public Team(Name name, UniqueTaskList tasks, UniquePersonList members) {
-        this.name = name;
+    public Team(TeamName teamName, UniqueTaskList tasks, UniquePersonList members) {
+        this.teamName = teamName;
         this.tasks = tasks;
         this.members = members;
     }
 
-    public Name getName() {
-        return name;
+    public TeamName getName() {
+        return teamName;
     }
 
-    public void setName(Name name) {
-        this.name = name;
+    public void setName(TeamName teamName) {
+        this.teamName = teamName;
     }
 
     public UniqueTaskList getTasks() {
@@ -168,10 +169,10 @@ public class Team {
     /**
      * Edits a task of the team.
      * @param index The index of the {@code task} to be deleted.
-     * @param newName The new name of the task.
+     * @param newTaskName The new name of the task.
      */
-    public void editTask(int index, seedu.address.model.task.Name newName, LocalDate newDeadline) {
-        tasks.edit(index, newName, newDeadline);
+    public void editTask(int index, TaskName newTaskName, LocalDate newDeadline) {
+        tasks.edit(index, newTaskName, newDeadline);
     }
 
     /**
@@ -217,7 +218,7 @@ public class Team {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name);
+        return Objects.hash(teamName);
     }
 
     @Override

@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showTeamAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TEAM;
 import static seedu.address.testutil.TypicalTeams.getTypicalAddressBookWithTeams;
@@ -47,34 +46,6 @@ public class DeleteTeamCommandTest {
         assertCommandFailure(deleteTeamCommand, model, Messages.MESSAGE_INVALID_TEAM_DISPLAYED_INDEX);
     }
 
-    @Test
-    public void execute_validIndexFilteredList_success() {
-        showTeamAtIndex(model, INDEX_FIRST_TEAM);
-
-        Team teamToDelete = model.getFilteredTeamList().get(INDEX_FIRST_TEAM.getZeroBased());
-        DeleteTeamCommand deleteTeamCommand = new DeleteTeamCommand(INDEX_FIRST_TEAM);
-
-        String expectedMessage = String.format(DeleteTeamCommand.MESSAGE_DELETE_TEAM_SUCCESS, teamToDelete);
-
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deleteTeam(teamToDelete);
-        showNoTeam(expectedModel);
-
-        assertCommandSuccess(deleteTeamCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showTeamAtIndex(model, INDEX_FIRST_TEAM);
-
-        Index outOfBoundIndex = INDEX_SECOND_TEAM;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTeamList().size());
-
-        DeleteTeamCommand deleteTeamCommand = new DeleteTeamCommand(outOfBoundIndex);
-
-        assertCommandFailure(deleteTeamCommand, model, Messages.MESSAGE_INVALID_TEAM_DISPLAYED_INDEX);
-    }
 
     @Test
     public void equals() {
@@ -96,14 +67,5 @@ public class DeleteTeamCommandTest {
 
         // different person -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
-    }
-
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoTeam(Model model) {
-        model.updateFilteredTeamList(p -> false);
-
-        assertTrue(model.getFilteredTeamList().isEmpty());
     }
 }

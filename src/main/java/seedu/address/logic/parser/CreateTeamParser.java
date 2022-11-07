@@ -7,10 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TEAM_NAME;
 
 import seedu.address.logic.commands.CreateTeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.team.Name;
 import seedu.address.model.team.Team;
-
-
+import seedu.address.model.team.TeamName;
 
 /**
  * Parses input arguments and creates a new CreateTeamCommand object
@@ -31,9 +29,9 @@ public class CreateTeamParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateTeamCommand.MESSAGE_USAGE));
         }
 
-        Name name = ParserUtil.parseTeamName(argMultimap.getValue(PREFIX_TEAM_NAME).get());
+        TeamName teamName = ParserUtil.parseTeamName(argMultimap.getValue(PREFIX_TEAM_NAME).get());
 
-        Team team = new Team(name);
+        Team team = new Team(teamName);
 
         return new CreateTeamCommand(team);
     }
