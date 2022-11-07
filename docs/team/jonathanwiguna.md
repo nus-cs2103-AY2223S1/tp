@@ -5,7 +5,7 @@ title: Jonathan Wiguna's Project Portfolio Page
 
 ### Project: EZLead
 
-EZLead is a **desktop app for tech leads to manage teams optimized for use via a Command Line Interface (CLI)**, and it has a GUI created with JavaFX. It is written in Java, and has about 7k LoC.
+EZLead is a **desktop app for tech leads to manage teams optimized for use via a Command Line Interface (CLI)**, and it has a GUI created with JavaFX. It is written in Java, and has about 8k LoC.
 
 Given below are my contributions to the project.
 
@@ -34,8 +34,8 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added some use cases (Pull request [\#114](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/114)).
     * Added implementation of `taskadd` and `deleteteam` feature and UML diagrams to show the executions of these commands (Pull requests [\#157](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/157), [\#162](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/162)).
-    * Updated the Model diagram (Pull request [#\162](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/162)).
-    * Updated the Appendix (Pull request [#\278](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/278)).
+    * Updated the Model diagram (Pull request [\#162](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/162)).
+    * Updated the Appendix (Pull request [\#278](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/278)).
 
 * **Review/mentoring contributions**
   * Reviewed and suggested changes of other member's PRs (Pull requests [\#159](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/159), [\#181](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/181)).
