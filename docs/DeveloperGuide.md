@@ -521,6 +521,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `   | sole tuition admin | clear the list of students                               | remove all the student entries without deleting one by one                                                |
 | `* * `   | sole tuition admin | clear the list of tutors                                 | remove all the tutor entries without deleting one by one                                                  |
 | `* * `   | sole tuition admin | clear the list of tuition classes                        | remove all the tuition classes without deleting one by one                                                |
+
 *{More to be added}*
 
 ### Use cases
