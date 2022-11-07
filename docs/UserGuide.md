@@ -19,12 +19,14 @@ Eager to get started? You can refer to our [Quick Start](#quick-start) section t
 you can jump right into our [Features](#features) section to learn more about the features ArtBuddy offers.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 # Table of Contents
 
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 # Using this guide
 
 This guide walks you through all the features of ArtBuddy and can be used as a quick reference whenever you need any help.
@@ -84,11 +86,13 @@ any unexpected behaviour of ArtBuddy.
 </div>
 
 <div align="right">
+<br>
 
 [ <a href="#using-this-guide">To start section: Using this guide</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 # Introduction
 
 Made for commission-based artists, ArtBuddy is the easiest way to organise your customers and commissions.
@@ -133,6 +137,7 @@ More of a visual person? Don't sweat it! Unlike many CLI applications, ArtBuddy 
 like buttons and pop-ups. There's something for everyone!
 
 <div align="right">
+<br>
 
 [ <a href="#introduction">To start section: Introduction</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
@@ -175,6 +180,7 @@ to run ArtBuddy.
 6. And...that's it! You now have ArtBuddy installed on your laptop!
 
 <div align="right">
+<br>
 
 [ <a href="#quick-start">To start section: Quick start</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
@@ -195,6 +201,7 @@ may not work as expectedly. To avoid this, please refer to the section
 2. And...ta-da! You should now see ArtBuddy running on your computer!
 
 <div align="right">
+<br>
 
 [ <a href="#quick-start">To start section: Quick start</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
@@ -222,6 +229,7 @@ the Terminal window and hit **return** on your keyboard.
 5. And...ta-da! You should now see ArtBuddy running on your computer!
 
 <div align="right">
+<br>
 
 [ <a href="#quick-start">To start section: Quick start</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
@@ -250,6 +258,7 @@ in your **Customers Tab** does!
 | 5   | Customer Details | When you select a customer from your **Customer List**, ArtBuddy will show you the details and statistics of your selected customer in this pane.                                                           |
 | 6   | Saved Data File  | For advanced users, the [file path](#glossary) displayed here is where ArtBuddy stores your saved data (which you can [edit](#editing-the-data-file)).                                                      |
 
+<div style="page-break-after: always;"></div>
 {: .no_toc}
 ### Commissions Tab
 
@@ -265,10 +274,12 @@ As you might've already guessed it, ArtBuddy's **Commissions Tab** shows all com
 | 3   | Iteration List     | Within the **Commission Details** pane, ArtBuddy will also display all your commission's iterations here.                                |
 
 <div align="right">
+<br>
 
 [ <a href="#quick-start">To start section: Quick start</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
 
+<div style="page-break-after: always;"></div>
 ## ArtBuddy's Command Line Interface (CLI)
 
 ArtBuddy also has a Command Line Interface (CLI). This just means that besides interacting with ArtBuddy by
@@ -287,6 +298,7 @@ typed in your command, just press 'Enter' (or 'return' for Mac users) on your ke
 ArtBuddy has just executed your command. It's that easy!
 
 ![ArtBuddy's UI](images/ab-cli-command-input.png)
+<div style="page-break-after: always;"></div>
 
 {: .no_toc}
 ### ArtBuddy Commands
@@ -327,10 +339,12 @@ each of these parameters.
 
 
 <div align="right">
+<br>
 
 [ <a href="#quick-start">To start section: Quick start</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
 
+<div style="page-break-after: always;"></div>
 ## Quick tutorial
 Itching to get started with ArtBuddy? Let's run you through some simple commands to get you warmed up
 before you dive right into ArtBuddy's full feature list!
@@ -385,11 +399,13 @@ Good job! Now that you're getting the hang of things, check out our [Features](#
 capabilities of ArtBuddy.
 
 <div align="right">
+<br>
 
 [ <a href="#quick-start">To start section: Quick start</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 # Features
 Dive right into ArtBuddy's full list of features. This section guides you through all of ArtBuddy's commands.
@@ -469,9 +485,11 @@ Examples:
 
 
 <div align="right">
+<br>
 
 [ <a href="#customer-related-commands">To start of Customer related commands</a> | <a href="#features">To start section: Features</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
+<div style="page-break-after: always;"></div>
 
 ## Commission related commands
 
@@ -541,9 +559,11 @@ Example:
 * <code>delcom <em>14</em></code>
 
 <div align="right">
+<br>
 
 [ <a href="#commission-related-commands">To start of Commission related commands</a> | <a href="#features">To start section: Features</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
+<div style="page-break-after: always;"></div>
 
 ## Iteration related commands
 
@@ -647,10 +667,11 @@ Example:
 
 
 <div align="right">
+<br>
 
 [ <a href="#iteration-related-commands">To start of Iteration related commands</a> | <a href="#features">To start section: Features</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
-
+<div style="page-break-after: always;"></div>
 ## Statistical commands
 
 Supercharge your business with ArtBuddy's integrated statistical commands. It's now possible to leverage on your business data at the snap of your fingers. 
@@ -723,10 +744,12 @@ Examples:
 * <code>findcom -any t/<em>oil painting</em> t/<em>canvas</em></code> Finds commissions who are either tagged `oil painting` or `canvas`.
 
 <div align="right">
+<br>
 
 [ <a href="#statistical-commands">To start of Statistical commands</a> | <a href="#features">To start section: Features</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
 
+<div style="page-break-after: always;"></div>
 ## Miscellaneous
 
 ### Viewing help: `help`
@@ -750,11 +773,14 @@ Exits the program.
 Format: `exit`
 
 <div align="right">
+<br>
 
 [ <a href="#miscellaneous">To start of Miscellaneous commands</a> | <a href="#features">To start section: Features</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 # Appendix
 
@@ -827,12 +853,13 @@ To easily copy a filepath of a file:
 * On Mac, in your Finder, click on the file you want to select it and press the <code>Option</code>, <code>Command</code>, <code>C</code> keys simultaneously. The filepath of your file is now copied!
 
 <div align="right">
+<br>
 
 [ <a href="#appendix">To start section: Appendix</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 # Glossary
 
 Not sure what certain terms used in this user guide mean? Don't worry, we're here to help! 
@@ -852,12 +879,13 @@ Not sure what certain terms used in this user guide mean? Don't worry, we're her
 | Root directory                 | The mother of all folders in your computer. You can think of the root directory as the folder that stores all of the folders in your computer.         |
 
 <div align="right">
+<br>
 
 [ <a href="#glossary">To start section: Glossary</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 # FAQ
 
 <details>
@@ -938,12 +966,13 @@ But we provide you a good explanation to answer your question in the <a href="#w
 <br>
 
 <div align="right">
+<br>
 
 [ <a href="#FAQ">To start section: FAQ</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 # Command summary
 
 | Action                                                                                          | Format, Examples                                                                                                                                                                                                                                                                                                                      |
@@ -971,6 +1000,7 @@ But we provide you a good explanation to answer your question in the <a href="#w
 
 
 <div align="right">
+<br>
 
 [ <a href="#command-summary">To start section: Command summary</a> | <a href="#table-of-contents">To table of contents</a> ]
 </div>
