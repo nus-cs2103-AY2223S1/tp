@@ -100,7 +100,9 @@ Here's a (partial) class diagram of the `UI` component:
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
+
 <div style="page-break-after: always;"></div>
+
 
 The UI consists of a `MainWindow` that is made up of 4 crucial parts:
 
@@ -117,6 +119,8 @@ All these, including the `MainWindow`, inherit from the abstract `UiPart` class 
 
 Additionally, the structure of `OutputPanel` (simplified in class diagram above) is shown below:
 ![Structure of the OutputPanel Component](images/OutputPanelClassDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 `OutputPanel` is a UI part that loads the appropriate view based on the command result. Similar to `MainWindow`, all views and the `OutputPanel` inherit from the abstract `UiPart` class. The `OutputPanel` supports the following views:
 
