@@ -685,6 +685,17 @@ Do the test cases sequentially to ensure correct expectation.
     3. Test case: `add student n/Mary i/A1234567J ph/12345678 e/mary@example.com tele/mary m/CS2103T tut/W17`<br>
        Expected:  A success message containing details of the added student is shown. Main display changes to student and student list is updated.
 
+#### Editing a student
+
+1. Editing a student while student tab is being shown.
+
+    1. Prerequisites: Switch to student tab using the `switch f/student` command (you may skip this if the main display is already student). There exists at least 1 student in the list.
+
+    2. Test case: `edit student 1 m/CS1101S`<br>
+       Expected: Module of first student is edited. Details of the edited student shown in the status message.
+
+    3. Test case: `edit student 0`<br>
+       Expected: No student is edited. Error message shown in result display box.
 
 #### Deleting a student
 
@@ -700,18 +711,6 @@ Do the test cases sequentially to ensure correct expectation.
 
     4. Other incorrect delete student commands to try: `delete`, `delete x`, `...` (where x is larger than the student list size)<br>
        Expected: Similar to previous.
-
-#### Editing a student
-
-1. Editing a student while student tab is being shown.
-
-    1. Prerequisites: Switch to student tab using the `switch f/student` command (you may skip this if the main display is already student). There exists at least 1 student in the list.
-
-    2. Test case: `edit student 1 m/CS1101S`<br>
-       Expected: Module of first student is edited. Details of the edited student shown in the status message.
-
-    3. Test case: `edit student 0`<br>
-       Expected: No student is edited. Error message shown in result display box.
 
 #### Finding a student
 
@@ -852,21 +851,6 @@ Do the test cases sequentially to ensure correct expectation.
 
     4. Other incorrect delete consultation commands to try: `delete`, `delete x`, `...` (where x is larger than the consultation list size)<br>
        Expected: Similar to previous.
-
-<<<<<<< Updated upstream
-#### Editing a consultation
-
-1. Editing a consultation while consultation tab is being shown.
-
-    1. Prerequisites: Switch to consultation tab using the `switch f/consultation` command (you may skip this if the main display is already consultation). There exists at least 1 consultation in the list.
-
-    2. Test case: `edit consultation 1 v/AS16`<br>
-       Expected: Venue of first consultation is edited. Details of the edited consultation shown in the status message.
-
-    3. Test case: `edit consultation 0`<br>
-       Expected: No consultation is edited. Error message shown in result display box.
-=======
->>>>>>> Stashed changes
 
 ### Reminder
 
