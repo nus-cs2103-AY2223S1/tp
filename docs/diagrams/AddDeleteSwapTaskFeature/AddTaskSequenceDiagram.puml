@@ -50,6 +50,7 @@ AddTaskCommand --> AddTaskCommandParser : a
 deactivate AddTaskCommand
 
 AddTaskCommandParser --> AddressBookParser : a
+AddTaskCommandParser -[hidden]-> AddTaskCommandParser
 destroy AddTaskCommandParser
 
 AddressBookParser --> LogicManager : a
@@ -84,6 +85,7 @@ Model --> AddTaskCommand
 deactivate Model
 
 AddTaskCommand --> LogicManager : commandResult
+AddTaskCommand -[hidden]-> AddTaskCommand
 destroy AddTaskCommand
 
 [<--LogicManager : commandResult
