@@ -7,9 +7,7 @@ title: Shawn Kok's Project Portfolio Page
 
 **Coydir is a desktop application used by Human Resource Executives to streamline processes in managing their staffing.**
 The user interacts with it using a CLI, and it has a GUI created with JavaFX.
-
 Given below are my contributions to the project.
-
 ### Summary of Contributions
 
 ---
@@ -21,46 +19,39 @@ Given below are my contributions to the project.
 #### Enhancements Implemented
 * **New Features**
   * Implemented `Rating` class
-    * Created the `Rating` class, one of the key components we are tracking in our application.
-    * Use Case: Building blocks to track Employee Performance over time in the form of rating values.
-    * Justification: Tracking performance for talent development is one of the more important components of HRM.
-    * Highlights: Was not too challenging other than the part about ensuring the format for values and timestamps, and writing into `JSON Adapted Person`.
-
+    * Created the `Rating` class, one of the key components we are tracking with Coydir.
+    * Use Case: Building blocks to track Employee Performance over time.
+    * Justification: Tracking performance (talent development) is one important component of HRM.
+    * Highlights: Formating values and timestamps.
   * Implemented `rate` feature
     * Created a `RateCommand` class to handle the logic (Refer to code [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/src/main/java/coydir/logic/commands/RateCommand.java))
     and `RateCommandParser` class to handle the parsing of the user input (Refer to code [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/src/main/java/coydir/logic/parser/RateCommandParser.java)).
     * Use Case: User can add ratings for employees.
-    * Justification: With this command, users of Coydir will be able to rate the performance of an employee based on a 1-5 integer rating scale.
-    * Highlights: This command was slightly tricky to implement, as there were many cases to consider, such as ensuring that ratings are always sorted by the local date format (if the user modifies the JSON database).
-
+    * Justification: Rate the employee performance (1-5 integer rating scale).
+    * Highlights: Multiple considerations such as ensuring that ratings are always sorted by the local date format (user modifies the JSON database).
   * Implemented `Performance history graph` feature
     * Created a `performanceHistory` Arraylist within the `Person` class to store all the past ratings of a particular employee (Refer to code [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/src/main/java/coydir/model/person/Person.java))
     * Created a `Performance history graph` line chart within the `Personinfo` class to chart the performance rating values of employees against time (Refer to code [here](https://github.com/AY2223S1-CS2103T-T15-1/tp/blob/master/src/main/java/coydir/ui/PersonInfo.java))
     * Use Case: User can view the performance history of employees.
-    * Justification: With this command, users of Coydir will be able to observe the overall trend of a particular employee's performance, and make talent development decisions based on that insight.
-    * Highlights: Was slightly challenging to present the JavaFX line chart data in a presentable format, displaying individual rating values beside each node, implementing logic to prevent multiple ratings in a day (prevent weird straight vertical line graph), and ensuring that the rating values are sorted by ascending order in the graph.
-
+    * Justification: Observe the overall trend of employee performance and make talent development decisions.
+    * Highlights: Display individual rating values beside each node, prevent multiple ratings per day, sort ratings by date.
 * **Existing Features**
-  * Made improvements to the `Add` class by implementing variable arguments (`varags`) for particular non-compulsory fields.
-  * Refactored `Add` command.
+  * Made improvements to the `Add` class - variable arguments `varags` for non-compulsory fields.
   * Fixed multiple bugs (Refer to #84, #200, #227, #242).
 
 #### Contributions to the UG
 * Added documentation for following parts:
-  * Introduction catchy hook
   * Product Overview and Description
   * `add` command
   * `rate` command
   * Employee Performance History section
-  * Checking if an employee is on leave section
-  * Overall aesthetics of UG page
+  * Overall aesthetics of UG 
 
 #### Contributions to the DG
-* Edited implementation details for:
-  * `add`
 * Added implementation details for:
-  * `rate`
-  * [To Be Updated]
+  * `add` function
+  * `rate` function
+  * Use cases
 
 #### Contributions to the team-based tasks
 * Helped to create and distribute issues.
