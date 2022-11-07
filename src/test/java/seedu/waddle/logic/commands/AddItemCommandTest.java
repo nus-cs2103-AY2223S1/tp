@@ -3,22 +3,23 @@ package seedu.waddle.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.waddle.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.waddle.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.waddle.testutil.Assert.assertThrows;
 import static seedu.waddle.testutil.TypicalItineraries.getTypicalWaddle;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.waddle.commons.core.GuiSettings;
-import seedu.waddle.commons.core.index.MultiIndex;
 import seedu.waddle.logic.StageManager;
 import seedu.waddle.logic.commands.exceptions.CommandException;
-import seedu.waddle.model.*;
+import seedu.waddle.model.Model;
+import seedu.waddle.model.ModelManager;
+import seedu.waddle.model.ReadOnlyUserPrefs;
+import seedu.waddle.model.ReadOnlyWaddle;
+import seedu.waddle.model.UserPrefs;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.itinerary.Itinerary;
 import seedu.waddle.testutil.ItemBuilder;
@@ -75,7 +76,7 @@ public class AddItemCommandTest {
 
     // integration test with typical Waddle
     @Test
-    public void execute_duplicateItem_throwsDuplicateItemException_modelIntegration() {
+    public void addItemCommand_duplicateItemTypicalWaddle_throwsDuplicateItemException() {
         Model model = new ModelManager(getTypicalWaddle(), new UserPrefs());
         Itinerary itineraryInList = model.getWaddle().getItineraryList().get(1);
         Item itemInList = itineraryInList.getItemList().get(0);
