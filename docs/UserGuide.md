@@ -50,6 +50,9 @@ title: InterNUS User Guide
 6. [Command summary](#6-command-summary) 
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 # 1. Introduction
 
 ## 1.1. What is InterNUS?
@@ -60,6 +63,8 @@ InterNUS is a convenient and powerful desktop app for NUS CS students to **manag
 
 Having troubles finding who to contact for your various internship applications? Don’t worry! InterNUS also allows you to manage contact person during your applications. After your internship, InterNUS can still be used to manage your work contact list!
 
+<div style="page-break-after: always;"></div>
+
 ## 1.2. Person List
 
 Store the information of key contacts in InterNUS. During the internship-hunting period, add the contacts of hiring managers and link them to your bookmarked internship positions. What about the multiple colleagues you'll meet during your internship stints? InterNUS makes it easy to manage these contacts and lets you see at a glance where you worked at together.
@@ -68,11 +73,16 @@ Store the information of key contacts in InterNUS. During the internship-hunting
 **:information_source: Note:** Each person can be linked to a maximum of one internship, and vice  versa.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ## 1.3. Internship List
 
 Track the internships you're interested in and all the relevant information -- the company, role, contact person and interview date. Awaiting a reply, or have you been accepted? With InterNUS, you can monitor and update the statuses of your internship applications effortlessly.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 # 2. How to use this User Guide?
 
 We have created this user manual for new users who want to use our app and returning users who need a reference to the command summary. 
@@ -87,6 +97,8 @@ For new users you can proceed to our [Quick start](#3-quick-start) while returni
 | :bulb:               | Tips that can make certain features of InterNUS quicker and easier to use      |
 | :exclamation:        | Cautionary information to avoid unintended behaviour during usage of InterNUS  | 
 
+<div style="page-break-after: always;"></div>
+
 ## 2.2. Graphical User Interface (GUI) of InterNUS
 
 |    ![Ui](images/interNUS.png)     |
@@ -95,7 +107,7 @@ For new users you can proceed to our [Quick start](#3-quick-start) while returni
 
 
 
-The UI component description:
+The UI components description:
 
 | Components             | Purpose                                                  |
 |------------------------|----------------------------------------------------------|
@@ -105,6 +117,8 @@ The UI component description:
 | System Message Display | Displays results of executed commands and error messages |
 | Person List            | Displays contact information of persons                  |
 | Internship List        | Displays information of internships                      |
+
+<div style="page-break-after: always;"></div>
 
 ## 2.3. Command format
 
@@ -127,12 +141,15 @@ The UI component description:
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `listp`, `exit` and `clear`) will be ignored.<br>
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list -p`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 # 3. Quick start
 
 1. Ensure you have Java `11` or above installed in your computer.
@@ -156,6 +173,8 @@ The UI component description:
 8. Refer to the [Features](#4-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 # 4. Features
 
@@ -194,6 +213,7 @@ Examples:
 * `add -p n/Betsy Crowe t/HR e/betsycrowe@example.com` adds a person with `NAME` **Betsy Crowe**, `TAG` **HR**, `EMAIL` **betsycrowe@example.com**
   Here, since the `LINK_INDEX` field is omitted, the person will be added with **No internship linked**. To link an internship to this person, see [section 4.4.1 for the Link command](#441-linking-a-person-and-an-internship--link).
 
+<div style="page-break-after: always;"></div>
 
 ### 4.1.2. Adding an internship: `add -i`
 
@@ -230,6 +250,8 @@ Examples:
 * `add -i c/Grab r/Full Stack Developer s/PENDING d/2020-12-20 12:00` adds an internship with `COMPANY_NAME` **Grab**, `ROLE` **Full Stack Developer**, `STATUS` **PENDING** and `INTERVIEW_DATE` **2020-12-20 12:00**.
   Here, since the `LINK_INDEX` field is omitted, the internship will be added with **No contact person**. To link a person to this internship, see [section 4.4.1 for the Link command](#441-linking-a-person-and-an-internship--link).
 
+<div style="page-break-after: always;"></div>
+
 ## 4.2. List Command
 
 ### 4.2.1. Listing all persons : `list -p`
@@ -243,6 +265,8 @@ Format: `list -p`
 Removes all filters on the internship list and lists all internships in InterNUS in the current sorted order.
 
 Format: `list -i`
+
+<div style="page-break-after: always;"></div>
 
 ## 4.3. Edit Command
 
@@ -262,6 +286,8 @@ Examples:
 - `list -p` followed by `edit -p 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 - `list -p` followed by `edit -p 2 n/Betsy Crower t/` edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
 
+<div style="page-break-after: always;"></div>
+
 ### 4.3.2. Editing an internship : `edit -i`
 
 Edits an existing internship in InterNUS.
@@ -275,6 +301,8 @@ Format: `edit -i INDEX [c/COMPANY] [r/ROLE] [s/STATUS] [d/INTERVIEW_DATE]`
 Examples:
 - `list -i` followed by `edit -i 1 s/ACCEPTED` edits the status of the 1st internship to be `ACCEPTED`.
 - `list -i` followed by `edit -i 2 s/REJECTED` edits the status of the 2nd internship to `REJECTED`.
+
+<div style="page-break-after: always;"></div>
 
 ## 4.4. Link and Unlink Command
 
@@ -290,6 +318,8 @@ Format: `link p/PERSON_INDEX i/INTERNSHIP_INDEX`
 Examples:
 - `link p/1 i/1` links the person at index **1** to the internship at index **1**.
 
+<div style="page-break-after: always;"></div>
+
 ### 4.4.2. Unlinking a person and an internship : `unlink`
 
 Unlinks an existing person and internship together in InterNUS.
@@ -304,6 +334,8 @@ Examples:
 - `unlink p/1 i/1` unlinks person at index **1** and internship at index **1**.
 - `unlink p/1` unlinks person at index **1** and its linked internship.
 - `unlink i/1` unlinks internship at index **1** and its linked person.
+
+<div style="page-break-after: always;"></div>
 
 ## 4.5. Find Command
 
@@ -325,6 +357,8 @@ Examples:
 - `find -p t/supervisor HR` finds persons with `TAG` that contains **supervisor** or **HR**.
 - `find -p n/john jon e/@u.nus.edu @gmail.com t/supervisor HR` finds persons with all 3 of the above.
   e.g. A person with `NAME` **Jonathan**, `EMAIL` **jonathan@gmail.com**, and `TAG` **HR** can be found with this command.
+
+<div style="page-break-after: always;"></div>
 
 ### 4.5.2. Finding internships : `find -i`
 
@@ -350,6 +384,8 @@ Examples:
 i.e. `find -i s/a` will only find internships with `STATUS` **ACCEPTED** even though both **ACCEPTED** and **BOOKMARKED** 
 contain the letter **a**. This is to match the behaviour of `STATUS` shortcuts as mentioned in [this tip under section 4.1.2](#412-adding-an-internship-add--i).
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ## 4.6. Delete Command
 
@@ -381,6 +417,8 @@ Examples:
 * `list -i` followed by `delete -i 2` deletes the 2nd internship in InterNUS.
 * `find -i c/Meta` followed by `delete -i 1` deletes the 1st internship in the results of the `find` command.
 
+<div style="page-break-after: always;"></div>
+
 ## 4.7. Sort Command
 
 ### 4.7.1. Sorting persons in the list: `sort -p`
@@ -403,6 +441,8 @@ Examples:
 - When sorted by the attached company name, persons without an attached company name are listed at the bottom of the list, and they will be sorted in alphabetical order of their own names, ignoring upper and lower cases.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ### 4.7.2. Sorting internships in the list: `sort -i`
 
 Sorts the internship list given a sorting criterion.
@@ -424,6 +464,8 @@ Examples:
 - When sorted by interview date, internships with no interview dates appear at the bottom of the list.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 ## 4.8. General
 
 ### 4.8.1. Viewing help : `help`
@@ -444,6 +486,8 @@ Exits the program.
 
 Format: `exit`
 
+<div style="page-break-after: always;"></div>
+
 ## 4.9. User Interface
 
 Click on the Color Theme button in the Menu Bar to display a dropdown list to select between Light/Dark mode.
@@ -454,12 +498,15 @@ Click on the Color Theme button in the Menu Bar to display a dropdown list to se
 |:-----------------------------------:|
 | InterNUS dark mode with sample data |
 
+<div style="page-break-after: always;"></div>
 
 ### 4.9.2 Light Mode
 
 |     ![Ui](images/lightheme.png)      |
 |:------------------------------------:|
 | InterNUS light mode with sample data |
+
+<div style="page-break-after: always;"></div>
 
 ## 4.10. Data files
 
@@ -478,6 +525,8 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## 5. FAQ
 
 **Q**: How do I transfer my data to another computer?<br>
@@ -492,6 +541,8 @@ If your changes to the data file makes its format invalid, InterNUS will discard
 `find -p n/NAME` to find the linked contact person.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## 6. Command summary
 
