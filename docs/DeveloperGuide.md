@@ -323,6 +323,8 @@ should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML,
 reaches the end of diagram.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### Design Considerations
 
 **Aspect: How the `listi` command executes**
@@ -361,6 +363,8 @@ The sequence diagram below illustrates this process.
 and `FindItemCommand` should end at the <i>destroy marker</i> (X) but due to a limitation of PlantUML, the lifeline
 reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### Design Considerations
 
@@ -537,6 +541,8 @@ reaches the end of the diagram.
 
 The following activity diagram below illustrates the general flow of the user's experience in adding an order.
 ![AddOrderActivityDiagram](images/developer-guide/AddOrderActivityDiagram.png)
+
+<div style="page-break-after: always;"></div>
 
 ##### Design considerations
 
