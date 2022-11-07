@@ -52,6 +52,8 @@ Code contribution for this project is listed in [RepoSense](https://nus-cs2103-a
   - Add typical, duplicate and invalid Json files in `JsonAddressBookStorageTest` for testing of save and load functions in `JsonSerializableAddressBookTest`. [#166](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/166)
   - Add additional test data in `SampleDataUtil` that is a duplicate of the test data Json files. [#157](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/157)
 
+<div style="page-break-after: always;"></div>
+
 ### Contributions to the user guide
 
 I structured the user guide and rewrote the following sections [#172](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/172):
@@ -79,6 +81,8 @@ I structured the user guide and rewrote the following sections [#172](https://gi
 
 - Wrote the storage component section. [#47](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/47)
 - Added the `PlantUML` diagrams relating to the storage components in the storage section. [#47](https://github.com/AY2223S1-CS2103T-T11-1/tp/pull/47)
+
+<div style="page-break-after: always;"></div>
 
 ### Pull Requests reviewed
 
