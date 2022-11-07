@@ -5,9 +5,9 @@ title: Jiang Zhimeng's Project Portfolio Page
 
 ### Project: myStudents
 
-myStudents helps tuition center admins manage details of the students, tutors and classes. It is optimized for CLI users so that frequent tasks can be done faster by typing in commands. 
+MyStudents helps tuition center admins manage details of the students, tutors and classes. It is optimized for CLI users so that frequent tasks can be done faster by typing in commands. 
 
-It is a brown-field project evolved based on [AB3](https://github.com/nus-cs2103-AY2223S1/tp). Compared to AB3 that only manipulates one type of entity `Person`, myStudent needs to manipulate three
+MyStudent is a brown-field project evolved based on [AB3](https://github.com/nus-cs2103-AY2223S1/tp). Compared to AB3 that only manipulates one type of entity `Person`, myStudent needs to manipulate three
 types of entities: `Student`, `Tutor` and `TuitionClass`. To adapt to the three different entities, myStudent has made enhancements to the existing structure and commands of AB3. Additionally, myStudent has also implemented some new commands and new GUI features.
 
 Given below are my contributions to the project.
@@ -31,7 +31,7 @@ an evolution from a single type of entity in AB3 to multiple types of entities i
   * Implemented the `show command` which displays the descriptions of the specified `Student` or `Tutor` [#103](https://github.com/AY2223S1-CS2103T-F12-4/tp/pull/103).
     * The description of the `Student` and `Tutor` is not shown in the list panel. The `show command` displays the description 
 of the specified `Student` or `Tutor` in a separate description panel. 
-    * The `show command` is closely related to `Ui` as it makes use of the `SelecetionMode` of `ListView` in JavaFX.
+    * The `show command` is closely related to `Ui` as it makes use of the `SelecetionModel` of `ListView` in JavaFX.
   * Implemented clickable list tabs [#81](https://github.com/AY2223S1-CS2103T-F12-4/tp/pull/81).
     * The user can click at the list tabs to switch to a different list, which supplements the `list command`.
   * Implemented clickable person cards [#122](https://github.com/AY2223S1-CS2103T-F12-4/tp/pull/122).
@@ -46,13 +46,13 @@ of the specified `Student` or `Tutor` in a separate description panel.
 one of the three different lists, the `student list`, `tutor list` or `class list`.
   * Modified the `delete command`[#62](https://github.com/AY2223S1-CS2103T-F12-4/tp/pull/62).
     * The previous `delete command` in AB3 is only for one type of entity. The modified `delete command` deletes one of the three entities depending on the
-current list, which can be one of the three lists: `student list`, `tutor list` and `class list`.
+current list, which is one of the three lists: `student list`, `tutor list` and `class list`.
   * Modified the `CommandResult` class. Introduced enum class `CommandType` to account for the type of the command that is executed [#103](https://github.com/AY2223S1-CS2103T-F12-4/tp/pull/103).
     * The previous `CommandResult` allows the `Ui` to handle the `help command` and the `exit command`. The modified `CommandResult` class
 allows the `Ui` to handle more `Ui` changes for more command types.
   * Helped in making the `Person` class abstract [#107](https://github.com/AY2223S1-CS2103T-F12-4/tp/pull/107).
     * The `Person` class in AB3 is concrete. In the earlier stage of our project, we accommodated our codes to `Person` class as we did not wish
-to break the pre-existing functionalities of AB3, which leads to dependencies in the `Logic`, `Storage` and `Ui`. In latter stage we decided to make `Person` class abstract, before which the dependencies need to be cleaned.
+to break the pre-existing functionalities of AB3, which leads to dependencies of the `Person` class in the `Logic`, `Storage` and `Ui`. In latter stage we decided to make `Person` class abstract, before which the dependencies need to be cleaned.
 
 * **Documentation**:
   * User Guide:
