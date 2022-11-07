@@ -313,6 +313,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the internship being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+
 ### Help window feature
 
 The help window has been redesigned to show all the commands supported by WB as well as examples of how to use the commands. This is to enable ease of use as users can quickly reference commands from the help window instead of having to open and refer to the UG.
