@@ -315,12 +315,10 @@ BookFace data are saved in the hard disk automatically after any command that ch
 
 ### Editing the data file
 
-BookFace data are saved as a JSON file `[JAR file location]/data/bookface.json`. Advanced users are welcome to update
-data
-directly by editing that data file.
+BookFace data are saved as a JSON file `[JAR file location]/data/bookface.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, BookFace will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, BookFace will discard all data, log a warning about the invalid format and start with an empty data file at the next run.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
