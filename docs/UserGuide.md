@@ -346,6 +346,8 @@ If your changes to the data file makes its format invalid, BookFace will discard
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## Command summary
 
 | Action          | Format, Examples                                                                                                              |
