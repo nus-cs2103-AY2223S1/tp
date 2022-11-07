@@ -7,7 +7,12 @@ import static jeryl.fyp.logic.commands.CommandTestUtil.PROJECT_NAME_DESC_AMY;
 import static jeryl.fyp.logic.commands.CommandTestUtil.STUDENT_ID_DESC_AMY;
 import static jeryl.fyp.logic.commands.CommandTestUtil.STUDENT_NAME_DESC_AMY;
 import static jeryl.fyp.testutil.Assert.assertThrows;
+import static jeryl.fyp.testutil.TypicalStudents.ALICE;
 import static jeryl.fyp.testutil.TypicalStudents.AMY;
+import static jeryl.fyp.testutil.TypicalStudents.BENSON;
+import static jeryl.fyp.testutil.TypicalStudents.CARL;
+import static jeryl.fyp.testutil.TypicalStudents.DANIEL;
+import static jeryl.fyp.testutil.TypicalStudents.ELLE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
@@ -91,6 +96,64 @@ public class LogicManagerTest {
     @Test
     public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredStudentList().remove(0));
+    }
+
+    @Test
+    public void getUncompletedStudentList() {
+        Student[] students = { ALICE, BENSON, DANIEL };
+        for (Student student : students) {
+            model.addStudent(student);
+        }
+        assertEquals(logic.getUncompletedStudentList().get(0), ALICE);
+        assertEquals(logic.getUncompletedStudentList().get(1), BENSON);
+        assertThrows(IndexOutOfBoundsException.class, () -> logic.getUncompletedStudentList().get(2));
+    }
+
+    @Test
+    public void getCompletedStudentList() {
+        Student[] students = { ALICE, BENSON, DANIEL };
+        for (Student student : students) {
+            model.addStudent(student);
+        }
+        assertEquals(logic.getCompletedStudentList().get(0), DANIEL);
+        assertThrows(IndexOutOfBoundsException.class, () -> logic.getCompletedStudentList().get(1));
+    }
+
+    @Test
+    public void getSortedByProjectNameUncompletedStudentList() {
+        Student[] students = { ALICE, BENSON, CARL, DANIEL };
+        for (Student student : students) {
+            model.addStudent(student);
+        }
+        assertEquals(logic.getSortedByProjectNameUncompletedStudentList().get(0), CARL);
+        assertEquals(logic.getSortedByProjectNameUncompletedStudentList().get(1), BENSON);
+        assertEquals(logic.getSortedByProjectNameUncompletedStudentList().get(2), ALICE);
+        assertThrows(IndexOutOfBoundsException.class, () -> logic
+                .getSortedByProjectNameUncompletedStudentList().get(3));
+    }
+
+    @Test
+    public void getSortedByProjectStatusUncompletedStudentList() {
+        Student[] students = { CARL, BENSON, DANIEL, ALICE };
+        for (Student student : students) {
+            model.addStudent(student);
+        }
+        assertEquals(logic.getSortedByProjectStatusUncompletedStudentList().get(0), CARL);
+        assertEquals(logic.getSortedByProjectStatusUncompletedStudentList().get(1), ALICE);
+        assertEquals(logic.getSortedByProjectStatusUncompletedStudentList().get(2), BENSON);
+        assertThrows(IndexOutOfBoundsException.class, () -> logic
+                .getSortedByProjectStatusUncompletedStudentList().get(3));
+    }
+
+    @Test
+    public void getSortedCompletedStudentList() {
+        Student[] students = { BENSON, ALICE, DANIEL, ELLE };
+        for (Student student : students) {
+            model.addStudent(student);
+        }
+        assertEquals(logic.getSortedCompletedStudentList().get(0), ELLE);
+        assertEquals(logic.getSortedCompletedStudentList().get(1), DANIEL);
+        assertThrows(IndexOutOfBoundsException.class, () -> logic.getSortedCompletedStudentList().get(2));
     }
 
     /**

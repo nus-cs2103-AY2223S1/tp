@@ -27,13 +27,22 @@ public class StudentNameTest {
         // invalid name
         assertFalse(StudentName.isValidStudentName("")); // empty string
         assertFalse(StudentName.isValidStudentName(" ")); // spaces only
-        assertFalse(StudentName.isValidStudentName("^")); // only unsupportedcharacters
-        assertFalse(StudentName.isValidStudentName("/////")); // only supported characters
+        assertFalse(StudentName.isValidStudentName("^")); // only unsupported characters
+        assertFalse(StudentName.isValidStudentName("Test2")); // numeric characters
+        assertFalse(StudentName.isValidStudentName("/////")); // only supported non-alphabetic characters
 
         // valid name
         assertTrue(StudentName.isValidStudentName("peter jack")); // alphabets only
-        assertTrue(StudentName.isValidStudentName("Raju S/O Muthu")); // contains non-alphanumeric characters
+        assertTrue(StudentName.isValidStudentName("Raju S/O Muthu")); // contains non-alphabetic characters
+        assertTrue(StudentName.isValidStudentName(
+                "Raju S//O Muthu")); // contains consecutive non-alphabetic characters
+        assertTrue(StudentName.isValidStudentName(
+                "Bai Guo Zhang (Bagazang)")); // contains more non-alphabetic characters
+        assertTrue(StudentName.isValidStudentName(
+                "Raju S/O Muthu S/O Gopal")); // contains multiple non-alphabetic characters
         assertTrue(StudentName.isValidStudentName("Capital Tan")); // with capital letters
         assertTrue(StudentName.isValidStudentName("David Roger Jackson Ray Jr")); // long names
+        assertTrue(StudentName.isValidStudentName(
+                "small big QUICK FOX (actually) [maybe] two//three IS [[{equal] {to} four")); // combination
     }
 }

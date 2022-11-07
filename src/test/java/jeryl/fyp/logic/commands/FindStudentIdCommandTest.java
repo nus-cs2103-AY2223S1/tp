@@ -2,8 +2,13 @@ package jeryl.fyp.logic.commands;
 
 import static jeryl.fyp.commons.core.Messages.MESSAGE_PROJECTS_LISTED_OVERVIEW;
 import static jeryl.fyp.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static jeryl.fyp.testutil.TypicalStudents.ALICE;
+import static jeryl.fyp.testutil.TypicalStudents.BENSON;
 import static jeryl.fyp.testutil.TypicalStudents.CARL;
+import static jeryl.fyp.testutil.TypicalStudents.DANIEL;
+import static jeryl.fyp.testutil.TypicalStudents.ELLE;
 import static jeryl.fyp.testutil.TypicalStudents.FIONA;
+import static jeryl.fyp.testutil.TypicalStudents.GEORGE;
 import static jeryl.fyp.testutil.TypicalStudents.getTypicalFypManager;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -62,6 +67,25 @@ public class FindStudentIdCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredStudentList());
     }
+    @Test
+    public void execute_singleKeyword_multipleStudentsFound() {
+        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 3);
+        StudentIdContainsKeywordsPredicate predicate = preparePredicate("14");
+        FindStudentIdCommand command = new FindStudentIdCommand(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ELLE, FIONA, GEORGE), model.getFilteredStudentList());
+    }
+
+    @Test
+    public void execute_multipleKeywords_noStudentsFound() {
+        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 0);
+        StudentIdContainsKeywordsPredicate predicate = preparePredicate("123 /  456 / 7890");
+        FindStudentIdCommand command = new FindStudentIdCommand(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredStudentList());
+    }
 
     @Test
     public void execute_multipleKeywords_multipleStudentsFound() {
@@ -71,6 +95,28 @@ public class FindStudentIdCommandTest {
         expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, FIONA), model.getFilteredStudentList());
+    }
+
+    @Test
+    public void execute_duplicateKeywords_singleStudentFound() {
+        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 1);
+        StudentIdContainsKeywordsPredicate predicate = preparePredicate("2427  / 2427");
+        FindStudentIdCommand command = new FindStudentIdCommand(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(FIONA), model.getFilteredStudentList());
+    }
+
+    // to address Issue #176, where "find -i/a" will function the same as List
+    // since all StudentId begins with "A"
+    @Test
+    public void execute_keywordContainsA_allStudentsFound() {
+        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 7);
+        StudentIdContainsKeywordsPredicate predicate = preparePredicate("a");
+        FindStudentIdCommand command = new FindStudentIdCommand(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE), model.getFilteredStudentList());
     }
 
     /**

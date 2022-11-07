@@ -15,7 +15,7 @@ Given below are my contributions to the project.
     * [Support friendlier syntaxes](https://github.com/AY2223S1-CS2103-F09-1/tp/pull/133).
       * Rationale: Adding a student and adding a deadline has an overlapping command word `add`, likewise for deleting. As such, the previous implementation changes the command word to accept strictly `add-s` and `add-d`. However, it would be better to accept any spaces between `add` and the flags, `-s` or `-d`, as well as providing a default choice if the flag is not specified.
     * [Extend `HelpCommand` to handle various commands](https://github.com/AY2223S1-CS2103-F09-1/tp/pull/133).
-      * Rationale: With more commands being added, it would be harder to maintain the help command since another new class must be added. Instead, I modified `HelpCommandParser` to create different `HelpCommand` instances. This approach will keep `HelpCommand` as its own class but with extended functionalities that do not need to increase the number of classes needed. 
+      * Rationale: With more commands being added, it would be harder to maintain the help command since another new class must be added. Instead, I modified `HelpCommandParser` to create different `HelpCommand` instances. This approach will keep `HelpCommand` as its own class but with extended functionalities that do not need to increase the number of classes needed.
     * [Enhance deadline parser to accept multiple datetime formats](https://github.com/AY2223S1-CS2103-F09-1/tp/pull/131).
     * [Improve code quality on `EditCommand`](https://github.com/AY2223S1-CS2103-F09-1/tp/pull/141).
       * Rationale: Used the Facade design pattern such that `EditCommandParser` does not access `EditCommand.EditStudentDescriptor` directly but rather use what has been provided in the `Model` interface.
@@ -24,7 +24,7 @@ Given below are my contributions to the project.
 * **New Feature**:
   * Add student command - A feature to add a student to FypManager along with the particular details.
 
-* **Code contributed**: I personally contributed around 3 KLoC to FypManager, the RepoSense link can be found [here](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=RussellDash332).
+* **Code contributed**: I personally contributed around 4 KLoC to FypManager, the RepoSense link can be found [here](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=RussellDash332).
 
 * **Project management**:
   * Created team organization, setup team repository, CodeCov, and GitHub Actions workflow.
@@ -35,7 +35,7 @@ Given below are my contributions to the project.
   * Set up milestones on GitHub (v1.2, v1.2b, v1.3, v1.3b, v1.4, v1.4b).
   * Set up preliminary meeting minutes, such as post PE-D pre-triaging report.
   * Initiated Zoom meetings for team meeting, hosted them, and conduct debug sessions.
-  * Contributed to more than 40 PR review comments as shown on [this dashboard](https://nus-cs2103-ay2223s1.github.io/dashboards/contents/tp-comments.html).
+  * Contributed to more than 50 PR review comments as shown on [this dashboard](https://nus-cs2103-ay2223s1.github.io/dashboards/contents/tp-comments.html).
 
 * **Documentation**:
     * User Guide:

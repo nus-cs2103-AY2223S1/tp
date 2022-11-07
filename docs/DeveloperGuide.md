@@ -20,6 +20,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
@@ -68,6 +70,8 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103-F09-1/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -84,6 +88,8 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Student` object residing in the `Model`.
+
+<div style="page-break-after: always;"></div>
 
 ### Logic component
 
@@ -114,6 +120,8 @@ How the parsing works:
 * When called upon to parse a user command, the `FypManagerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddStudentCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddStudentCommand`) which the `FypManagerParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddStudentCommandParser`, `DeleteStudentCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103-F09-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -131,8 +139,7 @@ The `Model` component,
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
-</div>
-
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -150,6 +157,8 @@ The `Storage` component,
 Classes used by multiple components are in the `jeryl.fyp.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Implementation**
 
@@ -174,29 +183,59 @@ The following sequence diagram shows how the add student command works:
 
 <img src="images/AddStudentSequenceDiagram.png" width="550" />
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The following activity diagram summarizes what happens when a user executes an add student command.
-
-<img src="images/AddStudentActivityDiagram.png" width="550" />
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddStudentCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### Design considerations
 An add student command is designed to add a single student along with its detail particulars such as one's student ID, student name, project name, and email. These details are the important details every professor needs from a student so that the professor can understand the work of the student and is able to contact the student when needed.
 
+<div style="page-break-after: always;"></div>
+
+### Adding a deadline to a student in the FYP manager
+This feature allows professors as users to keep track of students deadlines that are supervised under.
+
+#### Implementation details
+The add student feature is facilitated by `AddDeadlineCommandParser` and `AddDeadlineCommand`. The operation is exposed in the `Model` interface as `Model#addDeadline()`.
+
+Given below is an example usage scenario and how the add deadline mechanism behaves at each step:
+1. The user enters the add deadline command and provides the name of the deadline, the student ID, and deadline date(optional parameter).
+2. `FypManagerParser` creates a new `AddDeadlineCommandParser` after preliminary processing of user input.
+3. `AddDeadlineCommandParser` then processes the input again and creates an `AddDeadlineCommand`.
+4. `LogicManager` executes the `AddDeadlineCommand` using the `LogicManager#execute()` method.
+5. `AddDeadlineCommand` gets student using StudentID via `Model#getStudentByStudentId(studentId)`.
+6. `AddDeadlineCommand` checks if the deadline has existed before using `Model#hasDeadline()`.
+7. `AddDeadlineCommand` checks if the project is done using `Student#getProjectStatus().equals(new ProjectStatus("DONE"))`.
+8. If the deadline is not inside the student deadline list yet, `AddDeadlineCommand` calls `Model#addDeadline()` and passes the student and deadline as the parameter.
+9. Finally, `AddDeadlineCommand` creates a `CommandResult` and returns it to `LogicManager` to complete the command.
+
+The following sequence diagram shows how the add deadline command works:
+
+<img src="images/AddDeadlineSequenceDiagram.png" width="550" />
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddDeadlineCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes an add deadline command.
+
+<img src="images/AddDeadlineActivityDiagram.png" width="550" />
+
+#### Design considerations
+
+An add deadline command is designed to add a single deadline along with its deadline date to a particular student. This helps the professor to keep track of which deadline is assigned to which student easily.
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting a student from the FYP manager
 This feature allows professors to delete students who have dropped their FYP
 
 #### Implementation details
 
-The borrow feature is facilitated by `DeleteStudentCommandParser` and `DeleteStudentCommand`. The operation is exposed in the `Model` interface as `Model#DeleteStudent()`.
+The delete student feature is facilitated by `DeleteStudentCommandParser` and `DeleteStudentCommand`. The operation is exposed in the `Model` interface as `Model#DeleteStudent()`.
 
-Given below is an example usage scenario and how the borrow mechanism behaves at each step:
-
+Given below is an example usage scenario and how the delete student mechanism behaves at each step:
 1. The user enters delete student command and provides the student ID of student to be deleted.
-2. `FYPManagerParser` creates a new `DeleteStudentCommandParser` after preliminary processing of user input.
+2. `FypManagerParser` creates a new `DeleteStudentCommandParser` after preliminary processing of user input.
 3. `DeleteStudentCommandParser` creates a new `DeleteStudentCommand` based on the processed input.
 4. `LogicManager` executes the `DeleteStudentCommand`.
 5. `DeleteStudentCommand` calls `Model#getFilteredStudentList()` to get the list of student with FYP, and then gets the student at the specified index using the unique studentId.
@@ -224,6 +263,45 @@ to find students taking machine learning projects before doing `delete -s i/A012
 This integration between delete student command with find student command is important because FYPManager can store large number of students with FYP, making it not fesiable for users to scroll through the list.
 By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student ID, users can delete the student from the FYPManager once he/she drops the FYP.
 
+<div style="page-break-after: always;"></div>
+
+#### Implementation details
+
+The delete deadline feature is facilitated by `DeleteDeadlineCommandParser` and `DeleteDeadlineCommand`. The operation is exposed in the `Model` interface as `Model#DeleteDeadline()`.
+
+Given below is an example usage scenario and how the delete deadline mechanism behaves at each step:
+
+1. The user enters delete deadline command and provides the student ID and rank of deadline to be deleted.
+2. `FYPManagerParser` creates a new `DeleteDeadlineCommandParser` after preliminary processing of user input.
+3. `DeleteDeadlineCommandParser` creates a new `DeleteDeadlineCommand` based on the processed input.
+4. `LogicManager` executes the `DeleteDeadlineCommand`.
+5. `DeleteCommand` calls `Model#getIndexByStudentId(index)` and passes the studentId, and gets the desired student.
+6. `DeleteCommand` calls `Student#getDeadlineList().getDeadlineByRank(rank - 1)` and passes the rank, and gets the deadline.
+7. `DeleteDeadlineCommand` calls `Model#deleteDeadline()` and passes the student, and deadline to be deleted.
+8. Finally, `DeleteDeadlineCommand` creates a `CommandResult` and returns it to `LogicManager` to complete the command.
+
+
+The following sequence diagram shows how delete deadline command works:
+
+<img src="images/DeleteDeadlineSequenceDiagram.png" width="550" />
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteDeadlineCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a delete deadline command.
+
+<img src="images/DeleteDeadlineActivityDiagram.png" width="550" />
+
+#### Design considerations
+
+The delete deadline command is designed to be used in conjunction with find student command. For instance, the user would first use find student using project name to find the student taking FYP using `find machine`
+to find students taking machine learning projects before doing `delete -d i/A0123456X r/1` to remove student from FYP Manager.
+
+This integration between delete deadline command with find student command is important because FYPManager can store large number of students with FYP, making it not fesiable for users to scroll through the list.
+By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student ID, users can delete the deadline from the FYPManager once he/she drops the deadline task.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -242,11 +320,11 @@ Step 1. The user launches the application for the first time. The `VersionedFypM
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th student in the FYP manager. The `delete` command calls `Model#commitFypManager()`, causing the modified state of the FYP manager after the `delete 5` command executes to be saved in the `fypManagerStateList`, and the `currentStatePointer` is shifted to the newly inserted FYP manager state.
+Step 2. The user executes `delete -s i/A0123456A` command to delete student with studentId of A0123456A in the FYP manager. The `delete` command calls `Model#commitFypManager()`, causing the modified state of the FYP manager after the `delete 5` command executes to be saved in the `fypManagerStateList`, and the `currentStatePointer` is shifted to the newly inserted FYP manager state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitFypManager()`, causing another modified FYP manager state to be saved into the `fypManagerStateList`.
+Step 3. The user executes `add -s n/David …​` to add a new student. The `add -s` command also calls `Model#commitFypManager()`, causing another modified FYP manager state to be saved into the `fypManagerStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -304,7 +382,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] `MarkCommand` Feature
+<div style="page-break-after: always;"></div>
+
+### `Mark` Feature
 #### Proposed Implementation
 The proposed MarkCommand Feature marks the Project Status of an FYP project as one of 3 possible statuses
 {***YTS***, ***IP***, ***DONE***}. Currently these are the only 3 statuses supported, although more may be implemented
@@ -341,6 +421,9 @@ The following sequence diagram shows how the MarkCommand operation works:
 
 ![MarkCommandSequenceDiagram](images/MarkCommandSequenceDiagram.jpg)
 
+The following activity diagram illustrates what happens when a user executes `MarkCommand`:
+
+![MarkCommandActivityDiagram](images/MarkCommandActivityDiagram.jpg)
 #### Design considerations:
 
 **Implementation Choice: Why MarkCommand is implemented this way**
@@ -358,6 +441,49 @@ is trying to find. Here we have made an assumption that there the StudentId uniq
 * **Alternative 1:** Extend the Edit command to include the MarkCommand
     * Pros: Easier to implement.
     * Cons: No clear distinction between tags and project status
+
+<div style="page-break-after: always;"></div>
+
+#### Implementation details
+
+The edit student feature is facilitated by `EditCommandParser` and `EditCommand`. The operation is exposed in the `Model` interface as `Model#Edit()`.
+
+Given below is an example usage scenario and how the edit student mechanism behaves at each step:
+
+1. The user enters delete deadline command and provides the student ID and other parameters(eg: student name, project name) to be changed to.
+2. `FypManagerParser` creates a new `EditCommandParser` after preliminary processing of user input.
+3. `EditCommandParser` creates a new `EditCommand` based on the processed input.
+4. `LogicManager` executes the `EditCommand`.
+5. `EditCommand` calls `Model#getFilteredStudentList()` and gets the student list.
+6. `EditCommand` calls `Model#getIndexByStudentId(i)` and passes the studentId, and gets the desired student.
+7. `EditCommand` calls `EditCommand#createEditedStudent(student, parameters)` and passes the student and parameters to be edited to.
+8. `EditCommand` calls `EditCommand#setStudent(studentToEdit, editedStudent)` and passes the student and previous student object to be replaced.
+9. `EditCommand` calls `EditCommand#updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)` and updates the studentList.
+10. Finally, `EditCommand` creates a `CommandResult` and returns it to `LogicManager` to complete the command.
+
+
+The following sequence diagram shows how edit student command works:
+
+<img src="images/EditSequenceDiagram.png" width="550" />
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+Also, due to puml limitations, we are not able to clearly show self-invocation methods well. Do take note that arrow supposed to start at beginning of activation bar and end at end of activation bar.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes am edit command.
+
+<img src="images/EditActivityDiagram.png" width="550" />
+
+#### Design considerations
+
+The edit deadline command is designed to be used in conjunction with find student command. For instance, the user would first use find student using project name to find the student taking FYP using `find machine`
+to find students taking machine learning projects before doing `edit A0123456X p/AI` to edit student from FYP Manager.
+
+This integration between edit command with find student command is important because FypManager can store large number of students with FYP, making it not fesiable for users to scroll through the list.
+By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student ID, users can edit the student attributes from the FypManager.
+
+<div style="page-break-after: always;"></div>
 
 ###  `Help` Feature
 #### Proposed Implementation
@@ -383,21 +509,32 @@ Given below is an example usage scenario of `HelpCommand`:
 
 The following sequence diagram shows how the help command works:
 
+<img src="images/HelpSequenceDiagram.png" width="550" />
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `HelpCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes am help command.
+
+<img src="images/HelpActivityDiagram.png" width="550" />
+
+
 <img src="images/helpMessage.png" width="550" />
 
 
-###  `Exit` Feature
+###  `List` Feature
 #### Proposed Implementation
-The proposed `Exit` Feature allows the professor to list all FYP students in the FYP Manager.
-The `Exit` feature mechanism is facilitated by `ExitCommand`. It extends from the abstract class `Command`.
+The proposed `List` Feature allows the professor to list all FYP students in the FYP Manager.
+The `List` feature mechanism is facilitated by `ListCommand`. It extends from the abstract class `Command`.
 To summarize, it implements the following operation:
-* `ListCommand#execute()` — oversees the execution process for `ExitCommand`.
+* `ListCommand#execute()` — oversees the execution process for `ListCommand`.
 
-Given below is an example usage scenario of `ExitCommand`:
-1. The user enters the `Exit` command
-2. `FypManagerParser` creates a new `ExitCommand` after preliminary check of user input.
-3. `LogicManager` executes the `ExitCommand` using the `LogicManager#execute()` method.
-4. `ExitCommand` updates a `ObservableList<Student>`, and then creates a `CommandResult` and returns it to `LogicManager` to complete the command.
+Given below is an example usage scenario of `ListCommand`:
+1. The user enters the `List` command
+2. `FypManagerParser` creates a new `ListCommand` after preliminary check of user input.
+3. `LogicManager` executes the `ListCommand` using the `LogicManager#execute()` method.
+4. `ListCommand` updates a `ObservableList<Student>`, and then creates a `CommandResult` and returns it to `LogicManager` to complete the command.
 
 The following sequence diagram shows how the list command works:
 
@@ -407,7 +544,9 @@ The following activity diagram summarizes what happens when a user executes a li
 
 <img src="images/ListCommandActivityDiagram.png" />
 
-### \[Proposed\] `FindCommand` Feature
+<div style="page-break-after: always;"></div>
+
+### `Find` Feature
 #### Proposed Implementation
 
 The proposed FindCommand Feature allows the user to find for specific keywords in certain fields. The current
@@ -438,14 +577,25 @@ Step 2: The user finds a project by keying in `find -p tree` to find all project
 ![FindCommandState1](images/FindCommandState1.png)
 
 Step 3: Suppose that the user wants to find another project with keyword `blockchain`. The user keys in
-`find -p blockchain` to find all projects which contain the keyword `blockchain`. FypManager returns an empty list,
-as there is no project whose project name contains `blockchain`.
+`find -p blockchain` to find all projects whose names contain the keyword `blockchain`. FypManager returns an empty
+list, as there is no project whose project name contains `blockchain`.
 
 ![FindCommandState2](images/FindCommandState2.png)
+
+Step 4: The user is unsure of the correct names of the projects that he wants to find, and decides to find for
+multiple keywords `network / design`. The user keys in `find -p network / design` to find all projects whose names
+contain either the keywords `network` or `design`. FypManager returns a list of projects whose names contain at least
+one of the two keywords.
+
+![FindCommandState3](images/FindCommandState3.png)
 
 The following sequence diagram shows how the FindCommand operation works:
 
 ![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a list command:
+
+![FindCommandActivityDiagram](images/FindCommandActivityDiagram.png)
 
 #### Design considerations:
 
@@ -455,7 +605,7 @@ The following sequence diagram shows how the FindCommand operation works:
   as a FypManager tool.
 
 * We have allowed the user to be able to search using different keywords (so long as they are separated by ***/*** ),
-  which lets the user be more stringent in his/her search criteria.
+  which lets the user be more flexible in his/her search criteria.
 
 * Furthermore, we have made the input more flexible by making it case-insensitive, helping users who are not particularly
   careful with their input of capital-cases or lower-cases. This also mimics real-life query engines, which usually
@@ -464,15 +614,17 @@ The following sequence diagram shows how the FindCommand operation works:
 
 **Other Alternatives:**
 
-***v1.3 update: the following has been achieved as of this update. :)***
-
 * **Alternative 1:** Extend the FindCommand by allowing the user to search by fields other than project name
     * Pros: Allows the users to search using more fields instead of ProjectName alone.
     * Cons: Harder to implement. And requires inclusion of a suffix.
 
+***[v1.3 update: the above has been achieved as of this update. :) ]***
+
 * **Alternative 2:** Allow the user to search for their keywords across all fields without specifying a field
     * Pros: More comprehensive search for projects with the required keyword.
     * Cons: Much harder to implement, as it requires a field-less search.
+
+<div style="page-break-after: always;"></div>
 
 ### `Sort` Feature
 #### Proposed Implementation
@@ -506,31 +658,16 @@ We give an example usage scenario of `SortProjectNameCommand` and `SortProjectSt
 
 ![SortProjectStatusCommandSequenceDiagram](images/SortProjectStatusCommandSequenceDiagram.jpg)
 
+The following activity diagram summarizes what happens when the user runs a `SortCommand`:
+
+![SortCommandActivityDiagram](images/SortCommandActivityDiagram.jpg)
+
 #### Future Implementations
-* Sorting of deadlines to be included in future iterations as well
-
-###  `Exit` Feature
-#### Proposed Implementation
-The proposed `Exit` Feature allows the professor to exit the FYP Manager.
-The `Exit` feature mechanism is facilitated by `ExitCommand`. It extends from the abstract class `Command`.
-To summarize, it implements the following operation:
-* `ExitCommand#execute()` — oversees the execution process for `ExitCommand`.
-
-Given below is an example usage scenario of `ExitCommand`:
-1. The user enters the `Exit` command.
-2. `UiManager` calls `MainWindow#fillInnerParts()`.
-3. `MainWindow#fillInnerParts()` executes a `executeCommand()` and creates a `CommandResult`.
-4. `LogicManager` executes the `ExitCommand` using the `LogicManager#execute()` method.
-4.1. `FypManagerParser` will parse the command using `parseCommand` and generate
-4.2. `ExitCommand` then creates a `CommandResult` and returns it to `MainWindow` to complete the command.
-4.3. `StorageManager` will save the record using method `StorageManager#saveFypManager()`.
-5. `handleExit()` is then executed to hide the main window.
-
-The following sequence diagram shows how the list command works:
-
-<img src="images/ExitSequenceDiagram.png" width="550" />
+* Sorting of deadlines could be considered as well
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -541,6 +678,8 @@ The following sequence diagram shows how the list command works:
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Appendix: Requirements**
 
@@ -601,6 +740,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ### Use cases
 
 (For all use cases below, the **System** is the `JerylFypManager` and the **Actor** is the `Professor`, unless specified otherwise)
@@ -754,6 +896,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.

@@ -127,7 +127,9 @@ class JsonAdaptedStudent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ProjectStatus.class.getSimpleName()));
         }
-
+        if (!ProjectStatus.isValidProjectStatus(projectStatus)) {
+            throw new IllegalValueException(ProjectStatus.MESSAGE_CONSTRAINTS);
+        }
         final ProjectStatus modelProjectStatus = new ProjectStatus(projectStatus);
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);

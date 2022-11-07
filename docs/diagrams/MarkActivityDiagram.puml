@@ -1,0 +1,20 @@
+@startuml
+start
+:User executes mark command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([valid format])
+    :Parser parses studentId and mark status;
+    :Logic executes command;
+    if () then ([student exists])
+        :Model executes Mark();
+    else ([else])
+        :UI shows error message;
+       endif
+else ([else])
+    :UI shows error message;
+endif
+stop
+@enduml

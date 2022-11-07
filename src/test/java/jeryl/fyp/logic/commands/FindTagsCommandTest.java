@@ -2,7 +2,9 @@ package jeryl.fyp.logic.commands;
 
 import static jeryl.fyp.commons.core.Messages.MESSAGE_PROJECTS_LISTED_OVERVIEW;
 import static jeryl.fyp.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static jeryl.fyp.testutil.TypicalStudents.ALICE;
 import static jeryl.fyp.testutil.TypicalStudents.BENSON;
+import static jeryl.fyp.testutil.TypicalStudents.DANIEL;
 import static jeryl.fyp.testutil.TypicalStudents.getTypicalFypManager;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -63,6 +65,26 @@ public class FindTagsCommandTest {
     }
 
     @Test
+    public void execute_singleKeyword_multipleStudentsFound() {
+        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 3);
+        TagsContainKeywordsPredicate predicate = preparePredicate("frIENDs");
+        FindTagsCommand command = new FindTagsCommand(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredStudentList());
+    }
+
+    @Test
+    public void execute_multipleKeywords_noStudentsFound() {
+        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 0);
+        TagsContainKeywordsPredicate predicate = preparePredicate("enemies / bffs4lyfe / friendss");
+        FindTagsCommand command = new FindTagsCommand(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredStudentList());
+    }
+
+    @Test
     public void execute_multipleKeywords_multipleStudentsFound() {
         String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 1);
         TagsContainKeywordsPredicate predicate = preparePredicate("smo / wES");
@@ -70,6 +92,16 @@ public class FindTagsCommandTest {
         expectedModel.updateFilteredStudentList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(BENSON), model.getFilteredStudentList());
+    }
+
+    @Test
+    public void execute_duplicateKeywords_multipleStudentsFound() {
+        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 3);
+        TagsContainKeywordsPredicate predicate = preparePredicate("friends /  friends");
+        FindTagsCommand command = new FindTagsCommand(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredStudentList());
     }
 
     /**
