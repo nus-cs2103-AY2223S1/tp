@@ -6,16 +6,23 @@ skinparam classBackgroundColor MODEL_COLOR
 
 Friday *-right-> "1" UniqueStudentList
 Friday *-right-> "1" UniqueTagList
+Friday *-down-> "1" AliasMap
 UniqueTagList -[hidden]down- UniqueStudentList
 UniqueTagList -[hidden]down- UniqueStudentList
 
 UniqueTagList *-right-> "*" Tag
-UniqueStudentList -right-> Student
+UniqueStudentList -right-> "*" Student
 
 Student -up-> "*" Tag
 
-Student *--> Name
-Student *--> Phone
-Student *--> Email
-Student *--> Address
+Student *--> "1" Name
+Student *--> "0..1" TelegramHandle
+Student *--> "0..1" MasteryCheck
+Student *--> "0..1" Consultation
+Student *--> "0..1" Remark
+
+AliasMap *--> "0..50" Alias
+AliasMap *--> "0..50" ReservedKeyword
+
+Alias "1" <-right> "1" ReservedKeyword
 @enduml

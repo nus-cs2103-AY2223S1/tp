@@ -20,6 +20,10 @@ Class Name
 Class Phone
 Class Tag
 
+Class AliasMap
+Class Alias
+Class ReservedKeyword
+
 }
 
 Class HiddenOutside #FFFFFF
@@ -35,7 +39,12 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 Friday *--> "1" UniqueStudentList
+Friday *--> "1" AliasMap
 UniqueStudentList --> "~* all" Student
+AliasMap *--> Alias
+AliasMap *--> ReservedKeyword
+Alias <--> ReservedKeyword
+
 Student *--> Name
 Student *--> Phone
 Student *--> Email
@@ -45,6 +54,7 @@ Student *--> "*" Tag
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
+Alias -[hidden]right-> ReservedKeyword
 
 ModelManager -->"~* filtered" Student
 @enduml

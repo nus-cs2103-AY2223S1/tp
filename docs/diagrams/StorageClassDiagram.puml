@@ -18,6 +18,7 @@ package "Friday Storage" #F4F6F6{
 Class "<<interface>>\nFridayStorage" as FridayStorage
 Class JsonFridayStorage
 Class JsonSerializableFriday
+Class JsonAdaptedAlias
 Class JsonAdaptedStudent
 Class JsonAdaptedTag
 }
@@ -38,6 +39,7 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonFridayStorage .up.|> FridayStorage
 JsonFridayStorage ..> JsonSerializableFriday
 JsonSerializableFriday --> "*" JsonAdaptedStudent
+JsonSerializableFriday --> "*" JsonAdaptedAlias
 JsonAdaptedStudent --> "*" JsonAdaptedTag
 
 @enduml

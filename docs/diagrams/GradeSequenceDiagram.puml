@@ -7,7 +7,6 @@ participant ":FridayParser" as FridayParser LOGIC_COLOR
 participant ":GradeCommandParser" as GradeCommandParser LOGIC_COLOR
 participant "g:GradeCommand" as GradeCommand LOGIC_COLOR
 participant "gL:GradesList" as GradesList LOGIC_COLOR
-participant "ra1:Grade" as Grade LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -57,20 +56,13 @@ create GradesList
 GradeCommand -> GradesList : GradesList()
 activate GradesList
 
-GradesList --> GradeCommand
+GradesList --> GradeCommand: gL
 deactivate GradesList
 
-GradeCommand -> GradesList : editGrade
+GradeCommand -> GradesList : editGrade(ra1, 90)
 activate GradesList
 
-create Grade
-GradesList -> Grade : Grade(ra1, 90)
-activate Grade
-
-Grade --> GradesList
-deactivate Grade
-
-GradesList --> GradeCommand
+GradesList --> GradeCommand: gL
 deactivate GradesList
 
 GradeCommand --> GradeCommand

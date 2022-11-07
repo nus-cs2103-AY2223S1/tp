@@ -37,7 +37,7 @@ You can reach us at the consultation `seer[at]comp.nus.edu.sg`
 [[portfolio](team/howsuen.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: UI, Dev Ops
 
 ### Soh Jing Ren
 
