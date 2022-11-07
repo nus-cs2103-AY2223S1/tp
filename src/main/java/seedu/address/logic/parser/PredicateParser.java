@@ -246,7 +246,10 @@ public class PredicateParser {
             Price lowerBound = new Price(Double.parseDouble(lower));
             Price upperBound = new Price(Double.parseDouble(upper));
 
-            if (lowerBound.getPrice() > upperBound.getPrice()) {
+            if ((lowerBound.getPrice() > upperBound.getPrice() && (!upperBound.isNotApplicablePrice()))
+                    || ((!lowerBound.isNotApplicablePrice()) && lowerBound.getPrice() < 0)
+                    || ((!upperBound.isNotApplicablePrice()) && upperBound.getPrice() < 0)
+            ) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterOrderCommand.MESSAGE_USAGE));
             }
