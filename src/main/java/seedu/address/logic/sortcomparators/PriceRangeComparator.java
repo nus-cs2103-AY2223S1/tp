@@ -3,6 +3,8 @@ package seedu.address.logic.sortcomparators;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
+import java.util.Objects;
+import java.util.Optional;
 
 import seedu.address.model.price.PriceRange;
 
@@ -10,7 +12,7 @@ import seedu.address.model.price.PriceRange;
 /**
  * A comparator to compare two PriceRanges.
  */
-public class PriceRangeComparator implements Comparator<PriceRange> {
+public class PriceRangeComparator implements Comparator<Optional<PriceRange>> {
 
     private final Order order;
 
@@ -25,10 +27,16 @@ public class PriceRangeComparator implements Comparator<PriceRange> {
     }
 
     @Override
-    public int compare(PriceRange firstPriceRange, PriceRange secondPriceRange) {
-        return order.equals(new Order("ASC"))
-                ? firstPriceRange.compareLowerBound(secondPriceRange)
-                : firstPriceRange.compareUpperBound(secondPriceRange);
+    public int compare(Optional<PriceRange> firstPriceRange, Optional<PriceRange> secondPriceRange) {
+        return firstPriceRange.isEmpty() && secondPriceRange.isEmpty()
+                ? 0
+                : firstPriceRange.isEmpty()
+                ? 1
+                : secondPriceRange.isEmpty()
+                ? -1
+                : order.equals(new Order("ASC"))
+                ? firstPriceRange.get().compareLowerBound(secondPriceRange.get())
+                : firstPriceRange.get().compareUpperBound(secondPriceRange.get());
     }
 
     @Override
