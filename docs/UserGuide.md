@@ -254,7 +254,6 @@ Edits an existing student in the list.
 
 4. Amount Owed (`owed/`):
     - Amount Owed stands for the amount that has been owed by the Student.
-    - Format: `owed/` must be followed by an integer.
     - Amount Owed can only be an integer.
     - Amount Owed must be non-negative.
 
@@ -399,7 +398,7 @@ Finds all students with names matching the keywords.
 Format: `find n/KEYWORD [MORE_KEYWORDS]`
 
 - The search is case-insensitive. e.g., `alex` will match `Alex`.
-- The order of the keywords does not matter. e.g. `Yeoh Alex` will match `Alex Yeoh`.
+- The order of the keywords does not matter. e.g., `Yeoh Alex` will match `Alex Yeoh`.
 - Only full words will be matched e.g., `Han` will not match `Hans`.
 - Students matching at least one keyword will be returned. e.g., `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
@@ -511,7 +510,7 @@ Examples:
 * `find t/python` returns all students who have a python tag, including students who have other tags on top of the
 python tag.
 * `find t/javascript` returns all students who have a javascript tag, including students who have other tags on top
-of javascript tag 
+of javascript tag.
 * `find t/python t/javascript` returns all students who have javascript and python tags, includings students who have 
 other tags on top of the two tags.
 
@@ -523,7 +522,7 @@ other tags on top of the two tags.
 While there is no available command at the moment, you can find the next available class through a series of steps.
 
 1. Use [find command](#finding-a-student-find), to find a specific day: `find dt/2022-11-07` will find the students
-   who have classes on `2022-11-07`
+   who have classes on `2022-11-07`.
 2. Use [sort command](#sort-the-displayed-students-sort), to sort by class: `sort class asc`.
 3. View each class for the student under the [Student List](#ui-overview) until you find the slot you want.
 
@@ -562,7 +561,7 @@ Examples:
 - `list` followed by `sort name asc` will list all the students according to their names in ascending order.
 - `list` followed by `sort name desc` will list all the students according to their names in descending order.
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 #### Sort by Class Date
 
@@ -576,7 +575,7 @@ Examples:
 - `list` followed by `sort class asc` will list all the students according to their upcoming classes in ascending order.
 - `list` followed by `sort class desc` will list all the students according to their upcoming classes in descending order.
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 #### Sort by Money Owed
 
@@ -590,7 +589,7 @@ Examples:
 - `list` followed by `sort OWED ASC` will list all the students according to how much money they owe in ascending order.
 - `list` followed by `sort OWED DESC` will list all the students according to how much money they owe in descending order.
 
-[Back to top](#table-of-contents)
+[↑ Back to top](#table-of-contents)
 
 ---
 
