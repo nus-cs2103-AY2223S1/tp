@@ -1,0 +1,43 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include style.puml
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "persons:UniquePersonList" as UniquePersonList MODEL_COLOR
+participant "person:Person" as Person MODEL_COLOR
+participant "fields:Fields" as Fields MODEL_COLOR
+participant ":Field" as Field MODEL_COLOR
+end box
+
+activate Model
+
+Model -> UniquePersonList : addField("github")
+activate UniquePersonList
+
+loop until each Person in persons has been iterated
+    UniquePersonList -> Person : addField("github")
+    activate Person
+
+    Person -> Fields : addField("github")
+    activate Fields
+
+    create Field
+    Fields -> Field : Field("github")
+    activate Field
+
+    Field --> Fields
+    deactivate Field
+
+    Fields --> Person
+    deactivate Fields
+
+    Person --> UniquePersonList
+    deactivate Person
+end
+
+UniquePersonList --> Model
+deactivate UniquePersonList
+
+deactivate Model
+@enduml
