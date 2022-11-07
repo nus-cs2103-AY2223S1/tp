@@ -81,11 +81,6 @@ public class EditBillCommand extends Command {
                                          EditBillDescriptor editBillDescriptor) throws CommandException {
         assert billToEdit != null;
 
-        if (editBillDescriptor.getBillDate().orElse(billToEdit.getBillDate()).localDate
-                        .isBefore(billToEdit.getAppointment().getSlot().localDateTime.toLocalDate())) {
-            throw new CommandException(MESSAGE_BILL_DATE_EARLIER_THAN_SLOT);
-        }
-
         Amount updatedAmount = editBillDescriptor.getAmount().orElse(billToEdit.getAmount());
         BillDate updatedBillDate = editBillDescriptor.getBillDate().orElse(billToEdit.getBillDate());
 
