@@ -16,8 +16,10 @@ public class ClearCommandTest {
     public void execute_emptyProfNus_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
+        CommandResult expectedMessage = new CommandResult(ClearCommand.MESSAGE_SUCCESS, false, false, false, false,
+                false, false, true, false, false);
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -25,8 +27,10 @@ public class ClearCommandTest {
         Model model = new ModelManager(getTypicalProfNus(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalProfNus(), new UserPrefs());
         expectedModel.setProfNus(new ProfNus());
+        CommandResult expectedMessage = new CommandResult(ClearCommand.MESSAGE_SUCCESS, false, false, false, false,
+                false, false, true, false, false);
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, expectedMessage, expectedModel);
     }
 
 }
