@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-###Introduction
+### Introduction
 Welcome to the User Guide of MODPRO!
 
 MODPRO is a desktop application which helps NUS students track the progress of their modules.
@@ -14,9 +14,12 @@ MODPRO helps you…
 
 It is highly optimised for students who prefer Command Line Interface (CLI) by allowing those who type fast to key in commands to track their modules. If you struggle to type fast, we also provide a Graphical User interface (GUI) to assist you in using MODPRO.
 
-###The Graphical User Interface (GUI)
+### The Graphical User Interface (GUI)
 To give you a quick overview of MODPRO, the following image shows you the main components of the GUI.
-![Ui](images/)
+
+| ![Ui](images/GUI.png) |
+|:---------------------:|
+|     GUI of MODPRO     |
 
 The table below summarises the function of each component.
 
@@ -29,7 +32,7 @@ The table below summarises the function of each component.
 | Module List               | To view your modules                                         |
 | Exam List                 | To view your exams                                           |
 
-###Icons and formatting used in the guide
+### Icons and formatting used in the guide
 
 This guide uses icons and formatting to differentiate between the different types of information so that it is comprehensible. The following table summarises the icons and formatting used, along with their meaning.
 
@@ -40,11 +43,11 @@ This guide uses icons and formatting to differentiate between the different type
 | :bulb:                  | Tips that we provide                                              |
 | `WORD HIGHLIGHTED GREY` | Words that you can type into the Command Input                    |
 
-###Purpose of the guide
+### Purpose of the guide
 This document is to assist you in using MODPRO smoothly and effectively to track your tasks and progress.
 
 * For first-time users, you can proceed to [Quick Start](#quick-start) for a guide on how to set up MODPRO and a short tutorial on the basic commands. Once you are familiar with the interface, you can start exploring our extensive list of features [here](#features)
-* For the experienced users, you can learn more about these unique features that can help you manage your tasks better: [adding tags to your tasks](#adding-a-tag-to-a-task), [sorting your list](#sorting-the-task-list), [filtering your list](#filtering-the-task-list), [linking an exam to a task](#linking-an-exam)
+* For the experienced users, you can learn more about these unique features that can help you manage your tasks better: [adding tags to your tasks](#adding-the-tags-to-a-task), [sorting your list](#sorting-the-task-list), [filtering your list](#filtering-the-task-list), [linking an exam to a task](#linking-an-exam)
 
 --------------------------------------------------------------------------------------------------------------------
 ## Table of Contents
@@ -66,7 +69,7 @@ This document is to assist you in using MODPRO smoothly and effectively to track
     - [Filtering the task list](#filtering-the-task-list)
     - [Finding a task](#finding-tasks)
     - [Sorting the task list](#sorting-the-task-list)
-    - [Adding the tags to a task](#adding-a-tag-to-a-task)
+    - [Adding the tags to a task](#adding-the-tags-to-a-task)
     - [Editing the tags of a task](#editing-the-tags-of-a-task)
     - [Deleting the tags of a task](#deleting-the-tags-of-a-task)
     - [Clearing the task list](#clearing-the-task-list)
@@ -104,10 +107,10 @@ This document is to assist you in using MODPRO smoothly and effectively to track
 5. Type the command in the command box and press Enter to execute it. </br>
    e.g. typing help and pressing Enter will open the help window. </br>
    Here are some commands you can try:
-   * m add c/CS2100 m/Computer Organisation mc/4 : Adds the module called Computer Organisation with the module code CS2100 into the module list.
-   * m delete 1 : Deletes the 1st module shown in the displayed module list.
-   * m list : Lists all modules stored in the module list.
-   * exit : Exits the app.
+   * `m add c/CS2100 m/Computer Organisation mc/4` : Adds the module called Computer Organisation with the module code CS2100 into the module list.
+   * `m list` : Lists all modules stored in the module list.
+   * `m delete 1` : Deletes the 1st module shown in the displayed module list.
+   * `exit` : Exits the app.
 
 
 6. Refer to the [Features](#features) below for details of each command.
@@ -149,21 +152,28 @@ This document is to assist you in using MODPRO smoothly and effectively to track
 ### Adding a module
 Adds the module into the module list.
 
-Format: `m add c/MODULE_CODE m/MODULE_NAME mc/MODULAR_CREDIT`
-* Adds a module with its module code, module name and modular credit into
-the module list.
-* `MODULE_CODE` refers to the module code of the module.
+Format: `m add c/MODULE_CODE m/MODULE_NAME mc/MODULE_CREDIT`
+Parameters:
+* `MODULE_CODE` refers to the module code of the module being added.
 * `MODULE_NAME` refers to the name of the module.
-* `MODULAR_CREDIT` refers to the number of modular credits that the module has.
-* `MODULE_CODE` must be at least 6 characters long and the first two characters
-of the module code must be an alphabetical character.
-* `MODULAR_CREDIT` must be at least 0 and not more than 45.
-* If the module name is empty, an error message will be displayed.
+* `MODULE_CREDIT` refers to the number of module credits that the module has
+
+Restrictions:
+* `MODULE_CODE` must be at least 6 characters long , the first two characters of the module code must be an alphabetical character and the rest of the characters should be alphanumeric characters.
+* `MODULE_NAME` must not be empty
+* `MODULE_CREDIT` must be at least 0 and not more than 45.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:** `MODULE_CODE` is case-insensitive.
+</div>
 
 Examples:
 
-`m add c/cs2100 m/computer organisation mc/4` adds a module with the module
-code `cs2100`, the module name `computer organisation` and the modular credit `4`
+`m add c/cs2100 m/computer organisation mc/4` adds a module with the module code cs2100, the module name computer organisation and the module credit 4
+
+`m add c/cs2105 m/networking mc/3 adds a module` with the module code cs2105, the module name networking and the module credit 3
+
 
 ### Listing Modules
 Lists modules stored in module list.
@@ -368,16 +378,22 @@ Examples:
 Sorts the tasks in the task list based on the criteria specified
 
 Format: `t sort c/CRITERIA`
-* Sorts all the tasks in the task list based on the criteria specified
+
+Parameter:
+* `CRITERIA` refers to the criteria that is used for sorting the task list.
+
+
+Restrictions:
 * `CRITERIA` can be either `priority`, `deadline`, `module` or `description`
-* When sorting by `priority`, all tasks marked with priority status `HIGH` will appear
-at the top of the displayed task list, followed by `MEDIUM`, `LOW` and lastly all tasks
-with no priority status being at the bottom
-* When sorting by `deadline`, tasks with the earliest deadline will appear at the top of 
-the displayed list and tasks with no deadlines will appear at the bottom of the displayed task list
-* When sorting by `module`, all tasks will be sorted by module code in alphanumeric order
-* When sorting by `description`, all tasks will be sorted by the task description in alphanumeric order
-* The criteria is not case-sensitive so `PRIORITY` is the same as `priority`
+* When sorting by priority, all tasks marked with priority status `HIGH` will appear at the top of the displayed task list, followed by `MEDIUM`, `LOW` and lastly all tasks with no priority status being at the bottom
+* When sorting by deadline, tasks with the earliest deadline will appear at the top of the displayed list and tasks with no deadlines will appear at the bottom of the displayed task list
+* When sorting by module, all tasks will be sorted by module code in alphanumeric order
+* When sorting by description, all tasks will be sorted by the task description in alphanumeric order
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:** `CRITERIA` is case-insensitive.
+</div>
 
 Examples:
 
@@ -390,48 +406,66 @@ Examples:
 `t sort c/description` sorts all the tasks in the task list by task description
 
 
-### Adding a tag to a task
+### Adding the tags to a task
 Tags the priority status and the deadline to complete task 
 
 Format: `t tagadd INDEX [p/PRIORITY_STATUS]* [dl/DEADLINE]*`
-* A task can be tagged with either the priority status, the deadline or both 
-* The task is tagged at the specified `INDEX`. 
-* `INDEX` refers to the index number shown on the displayed task list. 
-* `INDEX` must be a positive number 1, 2, 3, …​
-* If `INDEX` is non-positive or greater than the number of tasks in the list, an error message
-will be displayed.
-* `PRIORITY STATUS` must be one of three priorities("high", "medium", "low")
-* `DEADLINE` must be in the format `DD-MM-YYYY`
-* `DEADLINE` must not be earlier than the current date
+
+Parameters:
+* `INDEX` refers to the index number shown on the displayed task list.
+* `PRIORITY_STATUS` refers to the priority status which is tagged to the task in the displayed task list
+* `DEADLINE` refers to the deadline which is tagged to the task in the displayed task list
+
+Restrictions:
+* INDEX should not be greater than 0 and less than 2147483648
+* INDEX should not be greater than the number of tasks in the task list
+* PRIORITY STATUS must be one of three priorities `HIGH`, `MEDIUM`, `LOW`
+* DEADLINE must be in the format DD-MM-YYYY
+* DEADLINE must not be earlier than the current date
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:** `PRIORITY_STATUS` is case-insensitive.
+</div>
 
 Examples:
 
-`t tagadd 1 p/high` tags the first task in the displayed task list with the priority status of `HIGH`
+`t tagadd 1 p/HIGH` tags the first task in the displayed task list with the priority status of `HIGH`
 
 `t tagadd 1 dl/31-12-2022` tags the first task in the displayed task list with the deadline of `31-12-2022`
 
 `t tagadd 2 p/low dl/31-12-2022` tags the second task in the displayed task list with a priority status of 
-`HIGH` and a deadline of `31-12-2022`
+`LOW` and a deadline of `31-12-2022`
 
 ### Editing the tags of a task
 Edits the tags associated with the task
 
 Format: `t tagedit INDEX [p/PRIORITY_STATUS]* [dl/DEADLINE]*`
-* Edits the tags that are currently tagged to the task
-* To edit the priority status of the task, the task must already be tagged with the priority status
-* To edit the deadline of the task, the task must already be tagged with the deadline
-* The tags of the task at the specified `INDEX` is edited.
+
+Parameters:
 * `INDEX` refers to the index number shown on the displayed task list.
-* The index must be a positive number 1, 2, 3, …​
-* If the index is non-positive or greater than the number of tasks in the list, an error message
-will be displayed.
-* `PRIORITY STATUS` must be one of three priorities("high", "medium", "low")
-* `DEADLINE` must be in the format `DD-MM-YYYY`
+* `PRIORITY_STATUS` refers to the priority status which is tagged to the task in the displayed task list
+* `DEADLINE` refers to the deadline which is tagged to the task in the displayed task list
+
+Restrictions:
+* `INDEX` should be greater than 0 and less than 2147483648
+* `INDEX` should not be greater than the number of tasks in the task list
+* `PRIORITY STATUS` must be one of three priorities `HIGH`, `MEDIUM`, `LOW`
+* `DEADLINE` must be in the format DD-MM-YYYY
 * `DEADLINE` must not be earlier than the current date
+* To edit the `PRIORITY_STATUS` of the task, the task must already have a priority status tagged to it
+* The edited `PRIORITY_STATUS` of the task should not be the same as the current PRIORITY_STATUS of the task
+* To edit the `DEADLINE` of the task, the task must already have a deadline tagged to it
+* `DEADLINE` should not be the same as the current deadline tagged to the task
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:** `PRIORITY_STATUS` is case-insensitive.
+</div>
 
 Examples:
 
-`t tagadd 1 p/high` followed by `t tagedit 1 p/low` update priority status of the task
+`t tagadd 1 p/HIGH` followed by `t tagedit 1 p/LOW` update priority status of the task
 from `HIGH` to `LOW`
 
 `t tagadd 1 dl/31-12-2022` followed by `t tagedit 1 dl/31-11-2022` updates the deadline of the task
@@ -441,30 +475,33 @@ from `31-12-2022` to `31-11-2022`
 Deletes the tags associated with the task
 
 Format: `t tagdel INDEX t/KEYWORD [SECOND_KEYWORD]`
-* Deletes the tags that are currently tagged to the task
-* `KEYWORD` and `SECOND_KEYWORD` indicate the kind of tags to be removed from
-the task
-* The list of keywords which can be used for `KEYWORD` and `SECOND_KEYWORD` are
-priority and deadline
-* The number of keywords which can be used must be at least 1 and not more
-than 2
-* The tag of the task at the specified `INDEX` is deleted
+
+Parameters:
 * `INDEX` refers to the index number shown on the displayed task list.
-* `INDEX` must be a positive number 1, 2, 3, …​
-* If `INDEX` is non-positive or greater than the number of tasks in the list, an error message 
-will be displayed.
-* If duplicate keywords are used, the duplicate keyword will be ignored
-* The keywords are not case-sensitive so `PRIORITY` would be the same `priority`
+* `KEYWORD` refers to the first keyword which indicates the type of tag that can be removed.
+* `SECOND_KEYWORD` refers to second keyword which indicates the type of tag that can be removed.
+
+Restrictions:
+* `INDEX` should be greater than 0 and lesser than 2147483648.
+* `INDEX` should not be greater than the size of the displayed task list.
+* The list of keywords which can be used for `KEYWORD` and `SECOND_KEYWORD` are `priority` and `deadline`.
+* If duplicate keywords are used, the duplicate keyword will be ignored.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: **Note:** `KEYWORD` and `SECOND_KEYWORD` are case-insensitive.
+</div>
+
 
 Examples:
 
-`t tagadd 1 p/high` followed by `t tagdel 1 t/priority` would delete the priority status
+`t tagadd 1 p/HIGH` followed by `t tagdel 1 t/priority` would delete the priority status
 of the first task in the displayed task list
 
 `t tagadd 1 dl/24-11-2022` followed by `t tagdel 1 t/deadline` would delete the deadline
 of the first task in the displayed task list
 
-`t tagadd 2 p/low dl/31-12-2022` followed by `t tagdel 2 t/priority deadline` would delete 
+`t tagadd 2 p/LOW dl/31-12-2022` followed by `t tagdel 2 t/priority deadline` would delete 
 the priority status and deadline of the second task in the displayed task list
 
 ### Clearing the task list
@@ -550,21 +587,21 @@ Example:
 Links the task in displayed task list to the exam in the exam list based on the indexes given.
 
 Format `e link e/EXAM_INDEX t/TASK_INDEX`
-* Links the exam at the specified index in the exam list to a task at the specified index
-in the task list
-* `EXAM_INDEX` refers to the index number displayed in the exam list
-* `TASK_INDEX` refers to the index number displayed in the task list
-* `EXAM_INDEX` and `TASK_INDEX` must be a positive integer 1, 2, 3, …​
-* If `EXAM_INDEX` is a non-positive integer or is greater than the number of exams in the exam list,
-an error message will be shown
-* If `TASK_INDEX` is a non-positive integer or is greater than the number of tasks in the task list,
-an error message will be shown
+
+Parameters:
+* EXAM_INDEX refers to the index number shown on the displayed exam list
+* TASK_INDEX refers to the index number shown on the displayed task list
+
+Restrictions:
+* EXAM_INDEX and TASK_INDEX should be greater than 0 and lesser than 2147483648
+* EXAM_INDEX should not be greater than the displayed exam list
+* TASK_INDEX should not be greater than the displayed task list
 
 Examples:
 
-`e link e/1 t/1` links the first task in the displayed task list to the first exam in the exam list
+`e link e/1 t/1` links the first task in the displayed task list to the first exam in the displayed exam list
 
-`e link e/2 t/3` links the third task in the displayed task list to the second exam in the exam list
+`e link e/2 t/3` links the third task in the displayed task list to the second exam in the displayed exam list
 
 ### Unlinking an exam
 Unlinks the exam from the specified task according to the index given.
@@ -630,7 +667,8 @@ There is no need to manually save the data.
 * MODPRO data is saved as a JSON file at `[JAR FILE LOCATION]/data/modpro.json`. Advanced users are allowed
 to modify the data at the JSON file
 
-<div markdown="span" class="warning-for-modpro-data-change">:exclamation: **Warning:**
+<div markdown="block" class="warning-for-modpro-data-change">
+:exclamation: **Warning:**
 If changes made to the modpro.json makes the format invalid or invalid data is used, 
 MODPRO will discard all data stored and start with an empty data file.
 </div>
@@ -646,36 +684,36 @@ MODPRO will discard all data stored and start with an empty data file.
 
 ## Summary of Commands
 
-| Command       | Format and Examples                                                                                                               |
-|---------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| **Module**    |                                                                                                                                   |
-| **m add**     | **Format**: `m add c/MODULE_CODE m/MODULE_NAME mc/MODULAR_CREDIT`<br/> **Example**: `m add c/cs2103t m/software engineering mc/4` |
-| **m del**     | **Format**: `m del INDEX`<br/> **Example**: `m del 1`                                                                             |
-| **m edit**    | **Format**: `m edit INDEX [c/MODULE_CODE]* [m/MODULE_NAME]* [mc/MODULE_CREDIT]*`<br/> **Example**: `m edit 1 c/cs2040 mc/4`       |
-| **m list**    | **Format**: `m list`<br/> **Example**: `m list`                                                                                   |
-| **m find**    | **Format**: `m find KEYWORD`<br/> **Example**: `m find cs`                                                                        |
-| **Task**      |                                                                                                                                   |
-| **t add**     | **Format**: `t add m/MODULE d/DESCRIPTION`<br/> **Example**: `t add m/CS2105 d/Assignment 1`                                      |
-| **t del**     | **Format**: `t del INDEX`<br/> **Example**: `t del 1`                                                                             |
-| **t edit**    | **Format**: `t edit INDEX [m/MODULE]* [d/DESCRIPTION]*`<br/> **Example**: `t edit 1 d/Assignment 2`                               |
-| **t mark**    | **Format**: `t mark INDEX`<br/> **Example**: `t mark 1`                                                                           |
-| **t unmark**  | **Format**: `t unmark INDEX`<br/> **Example**: `t unmark 1`                                                                       |
-| **t list**    | **Format**: `t list`<br/> **Example**: `t list`                                                                                   |
-| **t sort**    | **Format**: `t sort c/CRITERIA`<br/> **Example**: `t sort c/priority`                                                             |
-| **t filter**  | **Format**: `t filter [m/MODULE]* [c/COMPLETED]* [l/LINKED]*`<br/> **Example**: `t filter m/cs2030 c/y`                           |
-| **t find**    | **Format**: `t find KEYWORD`<br/> **Example**: `t find watch lecture rec`                                                         |
-| **t tagadd**  | **Format**: `t tagadd INDEX [p/PRIORITY_STATUS]* [dl/DEADLINE]*`<br/> **Example**: `t tagadd 1 p/high dl/29-12-2022`              |
-| **t tagdel**  | **Format**: `t tagdel INDEX t/KEYWORD [SECOND_KEYWORD]`<br/> **Example**:`t tagdel 1 t/priority`                                  |
-| **t tagedit** | **Format**: `t tagedit INDEX [p/PRIORITY_STATUS]* [dl/DEADLINE]*`<br/> **Example**: `t tagedit 1 p/medium`                        |
-| **t clear**   | **Format**: `t clear`<br/> **Example**: `t clear`                                                                                 |
-| **Exam**      |                                                                                                                                   |
-| **e add**     | **Format**: `e add m/MODULE ex/EXAM_DESCRIPTION ed/EXAM_DATE`<br/> **Example**: `e add m/cs2013t ex/practical ed/29-10-2022`      |
-| **e edit**    | **Format**: `e edit INDEX [m/MODULE]* [ex/EXAM_DESCRIPTION]* [ed/EXAM_DATE]*`<br/> **Example**: `e edit 1 m/cs2040`               |
-| **e del**     | **Format**: `e del INDEX`<br/> **Example**: `e del 1`                                                                             |
-| **e link**    | **Format**: `e link e/EXAM_INDEX t/TASK_INDEX`<br/> **Example**: `e link e/1 t/2`                                                 |
-| **e unlink**  | **Format**: `e unlink INDEX`<br/> **Example**: `e unlink 1`                                                                       |
-| **e showt**   | **Format**: `e showt INDEX`<br/> **Example**: `e showt 1`                                                                         |
-| **Others**    |                                                                                                                                   |
-| **clearall**  | **Format**: `clearall`<br/> **Example**: `clearall`                                                                               |
-| **help**      | **Format**: `help`<br/> **Example**: `help`                                                                                       |
-| **exit**      | **Format**: `exit`<br/> **Example**: `exit`                                                                                       |
+| Command       | Format and Examples                                                                                                              |
+|---------------|----------------------------------------------------------------------------------------------------------------------------------|
+| **Module**    |                                                                                                                                  |
+| **m add**     | **Format**: `m add c/MODULE_CODE m/MODULE_NAME mc/MODULE_CREDIT`<br/> **Example**: `m add c/cs2103t m/software engineering mc/4` |
+| **m del**     | **Format**: `m del INDEX`<br/> **Example**: `m del 1`                                                                            |
+| **m edit**    | **Format**: `m edit INDEX [c/MODULE_CODE]* [m/MODULE_NAME]* [mc/MODULE_CREDIT]*`<br/> **Example**: `m edit 1 c/cs2040 mc/4`      |
+| **m list**    | **Format**: `m list`<br/> **Example**: `m list`                                                                                  |
+| **m find**    | **Format**: `m find KEYWORD`<br/> **Example**: `m find cs`                                                                       |
+| **Task**      |                                                                                                                                  |
+| **t add**     | **Format**: `t add m/MODULE d/DESCRIPTION`<br/> **Example**: `t add m/CS2105 d/Assignment 1`                                     |
+| **t del**     | **Format**: `t del INDEX`<br/> **Example**: `t del 1`                                                                            |
+| **t edit**    | **Format**: `t edit INDEX [m/MODULE]* [d/DESCRIPTION]*`<br/> **Example**: `t edit 1 d/Assignment 2`                              |
+| **t mark**    | **Format**: `t mark INDEX`<br/> **Example**: `t mark 1`                                                                          |
+| **t unmark**  | **Format**: `t unmark INDEX`<br/> **Example**: `t unmark 1`                                                                      |
+| **t list**    | **Format**: `t list`<br/> **Example**: `t list`                                                                                  |
+| **t sort**    | **Format**: `t sort c/CRITERIA`<br/> **Example**: `t sort c/priority`                                                            |
+| **t filter**  | **Format**: `t filter [m/MODULE]* [c/COMPLETED]* [l/LINKED]*`<br/> **Example**: `t filter m/cs2030 c/y`                          |
+| **t find**    | **Format**: `t find KEYWORD`<br/> **Example**: `t find watch lecture rec`                                                        |
+| **t tagadd**  | **Format**: `t tagadd INDEX [p/PRIORITY_STATUS]* [dl/DEADLINE]*`<br/> **Example**: `t tagadd 1 p/high dl/29-12-2022`             |
+| **t tagdel**  | **Format**: `t tagdel INDEX t/KEYWORD [SECOND_KEYWORD]`<br/> **Example**:`t tagdel 1 t/priority`                                 |
+| **t tagedit** | **Format**: `t tagedit INDEX [p/PRIORITY_STATUS]* [dl/DEADLINE]*`<br/> **Example**: `t tagedit 1 p/medium`                       |
+| **t clear**   | **Format**: `t clear`<br/> **Example**: `t clear`                                                                                |
+| **Exam**      |                                                                                                                                  |
+| **e add**     | **Format**: `e add m/MODULE ex/EXAM_DESCRIPTION ed/EXAM_DATE`<br/> **Example**: `e add m/cs2013t ex/practical ed/29-10-2022`     |
+| **e edit**    | **Format**: `e edit INDEX [m/MODULE]* [ex/EXAM_DESCRIPTION]* [ed/EXAM_DATE]*`<br/> **Example**: `e edit 1 m/cs2040`              |
+| **e del**     | **Format**: `e del INDEX`<br/> **Example**: `e del 1`                                                                            |
+| **e link**    | **Format**: `e link e/EXAM_INDEX t/TASK_INDEX`<br/> **Example**: `e link e/1 t/2`                                                |
+| **e unlink**  | **Format**: `e unlink INDEX`<br/> **Example**: `e unlink 1`                                                                      |
+| **e showt**   | **Format**: `e showt INDEX`<br/> **Example**: `e showt 1`                                                                        |
+| **Others**    |                                                                                                                                  |
+| **clearall**  | **Format**: `clearall`<br/> **Example**: `clearall`                                                                              |
+| **help**      | **Format**: `help`<br/> **Example**: `help`                                                                                      |
+| **exit**      | **Format**: `exit`<br/> **Example**: `exit`                                                                                      |
