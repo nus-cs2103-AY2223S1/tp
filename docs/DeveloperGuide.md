@@ -55,7 +55,7 @@ The rest of the App consists of four components.
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each
-other for the scenario where the user issues the command `delete-person 1`.
+other for the scenario where the user issues the command `delete-person n/Amy`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
