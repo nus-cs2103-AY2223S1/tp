@@ -53,10 +53,6 @@ public class EditInternshipDescriptorTest {
         editedAapl = new EditInternshipDescriptorBuilder(DESC_AAPL).withEmail(VALID_EMAIL_MSFT).build();
         assertFalse(DESC_AAPL.equals(editedAapl));
 
-        // different position -> returns false
-        // editedAapl = new EditInternshipDescriptorBuilder(DESC_AAPL).withStatus(VALID_STATUS_MSFT).build();
-        // assertFalse(DESC_AAPL.equals(editedAapl));
-
         // different address -> returns false
         editedAapl = new EditInternshipDescriptorBuilder(DESC_AAPL).withWebsite(VALID_WEBSITE_MSFT).build();
         assertFalse(DESC_AAPL.equals(editedAapl));
