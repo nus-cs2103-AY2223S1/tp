@@ -449,7 +449,7 @@ you can type in `TEAM NAME`.
 - `team new Vongola_X`
 - `team new Team_Alpha_Centauri`
 
-![Create Team Screenshot](images/user-guide-img/CreateTeamScreenshot.PNG)
+![Create Team Screenshot](images/user-guide-img/CreateTeamScreenshot.png)
 
 ### Delete a team
 
@@ -486,9 +486,9 @@ for a tutorial on team navigation before executing this command.
 - `cg 3`
     - The above command allows you to navigate to team number 3 in the list of teams.
     - Before:
-      ![Create Team Screenshot](images/user-guide-img/NavigateTeamBeforeScreenshot.PNG)
+      ![Create Team Screenshot](images/user-guide-img/NavigateTeamBefore.png)
     - After:
-      ![Create Team Screenshot](images/user-guide-img/NavigateTeamAfterScreenshot.PNG)
+      ![Create Team Screenshot](images/user-guide-img/NavigateTeamAfter.png)
 - `cg ..`
 
 <div markdown="block" class="alert alert-info">
@@ -554,7 +554,7 @@ to each person, or add a tag to identify each person.
 - `person new n/John Mays`
 - `person new n/Hilbert Stewart p/+91 368 91829383 e/hilbertstewart@gmail.com a/68 Hudson Street t/friend`
 
-![Add Person Screenshot](images/user-guide-img/PersonNewScreenshot.PNG)
+![Add Person Screenshot](images/user-guide-img/PersonNewScreenshot.png)
 
 ### Delete a contact
 
@@ -606,7 +606,7 @@ is when the current team is (`/`).
 
 Adds a new task to an existing group scope. This group **cannot be the root group**.
 
-![Create Team Screenshot](images/user-guide-img/TaskAddScreenshot.PNG)
+![Create Team Screenshot](images/user-guide-img/TaskAddScreenshot.png)
 
 **Format:** `task add t/<TITLE> d/<DESCRIPTION>`
 
@@ -704,7 +704,7 @@ by itself, it is useful as a precursor to chaining other commands after it.
 
 - `task select 3 mark`
 
-![Select command ui](images/SelectCommandUi)
+![Select command ui](images/user-guide-img/SelectCommandUI.png)
 
 ### Contains command
 
@@ -717,7 +717,7 @@ then the attribute description will be shown in the result display if there is n
 
 - `task select 1 contains bug`
 
-![Contains command ui](images/ContainsCommandUi)
+![Contains command ui](images/user-guide-img/ContainsCommandUI.png)
 
 Here, we see that there are no `bug` attribute in the task `New Burger Recipes`.
 
@@ -751,9 +751,9 @@ when combined with piping to do complex executions with a single command!
 
 **Example:**
 
-- `task foreach unmark`
+- `task foreach mark`
 
-![Foreach command ui](images/ForeachCommandUi)
+![Foreach command ui](images/user-guide-img/ForEachCommandUI.png)
 
 ### If / else command
 
@@ -783,7 +783,7 @@ how it works:
 
 After running `alias group team`, you are now able to use the command `group` as if it was a `team`!
 
-![Aliasing command ui](images/AliasingCommandUi)
+![Aliasing command ui](images/user-guide-img/AliasingCommandUI.png)
 
 ### Custom command / Macro
 
@@ -806,7 +806,7 @@ This will produce the following output:
 
 When `markeverytask` is typed into the command box, all tasks become marked!
 
-![Custom command ui 2](images/CustomCommandUi2)
+![Custom command ui 2](images/user-guide-img/MarkEveryTaskDone.png)
 
 ### Piecing multiple commands together
 
