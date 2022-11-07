@@ -30,6 +30,7 @@ Given below are my contributions to the project.
     * Highlights: This enhancement displays the information in a table format using monospace fonts which is easier to read for the users.
 
 
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jsincorporated&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16)
 
 
@@ -54,4 +55,3 @@ Given below are my contributions to the project.
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#93](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/93#pullrequestreview-1169403633), [\#89](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/89#pullrequestreview-1169402735), [\#107](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/107#pullrequestreview-1169400983)
 
-* _{you can add/remove categories in the list above}_
