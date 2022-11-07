@@ -248,12 +248,13 @@ Currently, the appointment feature supports 3 different type of command:
 #### Add Appointment Command
 
 Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
-For example, the user inputs this command: `aa 1 d/15-02-2022 12:00 l/NUS`.
 <br>
-The initial state of the `MaximumSortedList<Appointment>` object present in the specified client Person object before executing the command is shown below (assuming the client currently has 0 appointments scheduled):
+For example, the user inputs this command: `"aa 1 d/15-02-2022 12:00 l/NUS"`.
 <br>
+The initial state of the `MaximumSortedList<Appointment>` object present in the specified client `Person` object before executing the command is shown below (assuming the client currently has 0 appointments scheduled):
+<br><br>
 ![Before Add Appointment Object Diagram](images/BeforeAddAppointmentObjectDiagram.png)
-<br>
+<br><br>
 
 Step 2. If the user input matches the format for the command word for the `AddAppointmentCommand`, `AddressBookParser` will create an `AddAppointmentCommandParser` and will call the `AddAppointmentCommandParser::parse(args)` to parse the command.
 
@@ -265,9 +266,9 @@ Step 5. `LogicManager` will call `AddAppointmentCommand::execute(model)` method.
 
 Step 6. If the command is valid, the `add` method of the `MaximumSortedList` containing the client's `Appointments` is called, which will update the `Person` and `Model`.
 The `MaximumSortedList<Appointment>` object present in the specified client `Person` will be updated as shown below:
-<br>
+<br><br>
 ![After Add Appointment Object Diagram](images/AfterAddAppointmentObjectDiagram.png)
-<br>
+<br><br>
 
 Step 7. `AddAppointmentCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
 
@@ -275,7 +276,7 @@ This is shown in the diagram below:
 
 <img src="images/AddAppointmentCommandSequenceDiagram.png" width="2000"/>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** command_details and command_values refer to the command `aa 1 d/21-01-2023 `12:30 l/Starbucks` and the command values `1 d/21-01-2023 `12:30 l/Starbucks`. We have substituted these values for readability.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** command_details and command_values refer to the command `aa 1 d/15-02-2022 12:00 l/NUS` and the command values `1 d/15-02-2022 12:00 l/NUS`. We have substituted these values for readability.
 
 </div>
 
@@ -293,13 +294,14 @@ This is shown in the diagram below:
 #### Edit Appointment Command
 
 Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
-For example, the user inputs this command: `ea 1.1 l/NUS`.
 <br>
-The initial state of the `MaximumSortedList<Appointment>` object present in the specified client Person object before executing the command is shown below (assuming the client currently has 1 appointment scheduled):
+For example, the user inputs this command: `"ea 1.1 l/NUS"`.
 <br>
+The initial state of the `MaximumSortedList<Appointment>` object present in the specified client `Person` object before executing the command is shown below (assuming the client currently has 1 appointment scheduled):
+<br><br>
 ![Before Edit Appointment Object Diagram](images/BeforeEditAppointmentObjectDiagram.png)
-<br>
-Step 2. If the user input matches the format for the command word for the `EditAppointmentCommand`, `AddressBookParser` will create an `EditAppointmentCommandParser` and will call the `AddAppointmentCommandParser::parse(args)` to parse the command.
+<br><br>
+Step 2. If the user input matches the format for the command word for the `EditAppointmentCommand`, `AddressBookParser` will create an `EditAppointmentCommandParser` and will call the `EditAppointmentCommandParser::parse(args)` to parse the command.
 
 Step 3. Validation for the user input is performed, such as validating the client's `Index` and the appointment's `Index`
 
@@ -314,9 +316,9 @@ Step 7. Further validation is performed, such as checking whether an `Appointmen
 Step 6. If the command is valid, the `remove` and `add` method of the `MaximumSortedList` containing the client's `Appointments` is called,
 removing the old appointment and adding the newly edited appointment. `Person` and `Model` will be updated accordingly.
 The `MaximumSortedList<Appointment>` object present in the specified client `Person` will be updated as shown below:
-<br>
+<br><br>
 ![After Edit Appointment Object Diagram](images/AfterEditAppointmentObjectDiagram.png)
-<br>
+<br><br>
 Step 7. `EditAppointmentCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
 
 This is shown in the diagram below:
@@ -333,15 +335,16 @@ This is shown in the diagram below:
 * **Alternative 2**: Multiple `Appointments` can be edited in each command
     * Pros: Lower number of commands needed to be executed to edit all the desired `Appointments`
     * Cons: Complex input validation as multiple index must be enforced within the command and alongside the existing `Appointments`. The maximum number of `Appointments` to edit must also be enforced.
+
 #### Delete Appointment Command
 
 Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
 For example, the user inputs this command: `da 1.1`.
 <br>
 The initial state of the `MaximumSortedList<Appointment>` object present in the specified client Person object before executing the command is shown below (assuming the client currently has 1 appointment scheduled):
-<br>
+<br><br>
 ![Before Delete Appointment Object Diagram](images/BeforeDeleteAppointmentObjectDiagram.png)
-<br>
+<br><br>
 Step 2. If the user input matches the format for the command word for the `DeleteAppointmentCommand`, `AddressBookParser` will create an `DeleteAppointmentCommandParser` and will call the `DeleteAppointmentCommandParser::parse(args)` to parse the command.
 
 Step 3. Validation for the user input is performed, such as validating the client's `Index` and the appointment's `Index`.
@@ -352,9 +355,9 @@ Step 5. `LogicManager` will call `DeleteAppointmentCommand::execute(model)` meth
 
 Step 6. If the command is valid, the `remove` method of the `MaximumSortedList` containing the client's `Appointments` is called, which will update the `Person` and `Model`.
 The `MaximumSortedList<Appointment>` object present in the specified client `Person` will be updated as shown below:
-<br>
+<br><br>
 ![After Delete Appointment Object Diagram](images/AfterDeleteAppointmentObjectDiagram.png)
-<br>
+<br><br>
 Step 7. `DeleteAppointmentCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
 
 This is shown in the diagram below:
