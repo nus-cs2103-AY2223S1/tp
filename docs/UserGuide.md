@@ -81,6 +81,8 @@ a few seconds. Note how the app contains some sample data. In the event that the
 
 ![Ui](images/Ui.png)
 
+<div style="page-break-after: always;"></div>
+
 Here are some example commands you can try:
 
 * **`addStudent`**`nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 exam/CA1 90` : Adds a new student named 
