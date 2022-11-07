@@ -4,18 +4,19 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-BobaBot *-right-> "1" UniquePersonList
+BobaBot *-right-> "1" UniqueCustomerList
 BobaBot *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniquePersonList
-UniqueTagList -[hidden]down- UniquePersonList
+UniqueTagList -[hidden]down- UniqueCustomerList
+UniqueTagList -[hidden]down- UniqueCustomerList
 
 UniqueTagList *-right-> "*" Tag
-UniquePersonList -right-> Person
+UniqueCustomerList -right-> Customer
 
-Person -up-> "*" Tag
+Customer -up-> "*" Tag
 
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
+Customer *--> Name
+Customer *--> Phone
+Customer *--> Email
+Customer *--> Rewards
+Customer *--> BirthdayMonth
 @enduml
