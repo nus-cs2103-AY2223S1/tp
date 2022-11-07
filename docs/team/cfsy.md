@@ -59,17 +59,10 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Updated the original AB3 diagrams to correctly reflect our application
     * Created the following diagrams
-      * `ItineraryClassDiagram`
-      * `PlanSequenceDiagram`
-      * `PlanSequenceDiagram2`
+      * `ItineraryClassDiagram`, `PlanSequenceDiagram`, `PlanSequenceDiagram2`
     * Wrote the content for the following sections
       * `StageManager` under the Architecture section
-      * Implementation of the `Plan/Unplan` feature
-      * Implementation of the `Edit (item)` feature
-      * Implementation of the `Edit (itinerary)` feature
-      * Implementation of the `Copy` feature
-      * User stories
-      * The "Add an Itinerary" use case
+      * Implementation of the `Plan/Unplan`, `Edit (item)`, and `Edit (itinerary)` features
     * (Pull requests [\#17](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/17), [\#62](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/62), [\#107](https://github.com/AY2223S1-CS2103T-W11-4/tp/pull/107))
 
 
