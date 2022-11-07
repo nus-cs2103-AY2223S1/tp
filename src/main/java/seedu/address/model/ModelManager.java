@@ -193,8 +193,7 @@ public class ModelManager implements Model {
     public void deleteSchedule(Schedule target) {
         requireNonNull(target);
         profNus.removeSchedule(target);
-        filteredSchedule.remove(target);
-        // updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
+        updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
     }
 
     @Override
