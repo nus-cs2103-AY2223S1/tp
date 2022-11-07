@@ -116,6 +116,45 @@ Upon completing this section, you should be able to explore SoConnect on your ow
 
 ### 6.1. Layout
 
+![SoConnect GUI](images/SoConnectGUI.png)
+
+When you launch SoConnect, SoConnect will appear as a of Graphical User Interface [(GUI)](#gui). Let's look at the layout of the different components in SoConnect.
+
+**SoConnect's GUI Components:**
+
+![SoConnect GUI With Label](images/SoConnectGUIWithLabel.png)
+
+#### 6.1.1. Command Box
+
+![Command Box](images/CommandBox.png)
+
+* Command Box allows you to enter commands for actions that you wish to perform. Try typing `help` in the command box and see what happens!
+
+#### 6.1.2. Result Box
+
+**Success message**:
+![Result Box Success](images/ResultBoxSuccess.png)
+
+**Error message**:
+![Result Box Error](images/ResultBoxError.png)
+
+* The Result Box provides a feedback message after a command is entered.
+* The feedback message will either be a success message to indicate that the command has successfully executed or an error message to inform you that there is an error with the command that you just entered.
+
+#### 6.1.3. Contact List
+
+![Contact List With Label](images/ContactListWithLabel.png)
+
+* Contact list displays the contacts with their information in the contact card.
+
+#### 6.1.4. Todo List
+
+![Todo List With Label](images/TodoListWithLabel.png)
+
+* Todo list displays the todos with their information in the todo card.
+* The todo header changes based on the todos that are shown in the todo list.
+
+
 ### 6.2. Key Definitions
 
 #### 6.2.1. Command
@@ -191,14 +230,14 @@ Welcome to the General Commands section! In this section, you can learn about va
 
 If you are ever stuck or in need of help while using SoConnect, the `help` command will be there to assist you! The `help` command will link you to this user guide, providing you with easy access to guidance on how to use SoConnect.
 
-Format: `help`
+**Format:** `help`
 
-**Example Input in Command Box**
+**Example Input in Command Box:**
 ```
 help
 ```
 
-**Example Result**
+**Example Result:**
 
 ![help message](images/helpMessage.png)
 
@@ -208,7 +247,7 @@ help
 
 When you are done with your [contact management](#72-contact-management-commands) and [todo management](#73-todo-management-commands), you can exit SoConnect at any time using the `exit` command.
 
-Format: `exit`
+**Format:** `exit`
 
 <br>
 
@@ -265,7 +304,7 @@ A contact of a person consists of
 
 You can add a contact using the `add` command as shown below. While the `NAME`, `PHONE_NUMBER`, `EMAIL`, and `ADDRESS` parameters are mandatory, you can include as many `TAG` parameters as you wish (including none).
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
+**Format:** `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
 <div markdown="block" class="alert alert-primary">
 
@@ -277,14 +316,14 @@ Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
 
 </div>
 
-**Example Input in Command Box**
+**Example Input in Command Box:**
 ```
-add n/John Doe t/friend p/98765432 e/johnd@example.com a/John street, block 123, #01-01
+add n/John Doe t/friends p/98765432 e/johnd@example.com a/John street, block 123, #01-01
 ```
 
-**Example Result**
+**Example Result:**
 
-(insert image of a successful contact addition)
+![Contact Add](images/ContactAdd.png)
 
 <br>
 
@@ -292,7 +331,7 @@ add n/John Doe t/friend p/98765432 e/johnd@example.com a/John street, block 123,
 
 You might have included the wrong information when [adding a contact](#721-adding-a-contact-add), or you might need to update the information of a contact. Regardless, you can accomplish both easily using the `edit` command as shown below. All you need is the `INDEX` of the contact you want to modify along with the parameters you want to update.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
+**Format:** `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
 
 * At least 1 of the 4 optional parameters must be provided.
 * Existing information will be updated with the parameters provided. Information of the parameters not provided will remain unchanged.
@@ -305,14 +344,20 @@ To edit the tags of a contact, you can refer to [adding a tag](#744-adding-a-tag
 
 </div>
 
-**Example Input in Command Box**
+**Example Input in Command Box:**
 ```
-edit 1 p/91234567 e/johndoe@example.com
+edit 7 p/91234567 e/johndoe@example.com
 ```
 
-**Example Result: Comparing the Before and After**
-    (insert image of before the edit command)
-    (insert image of after the edit command)
+**Example Result:**
+
+Before:
+
+![Contact Edit Before](images/ContactEditBefore.png)
+
+After:
+
+![Contact Edit After](images/ContactEditAfter.png)
 
 <br>
 
@@ -320,48 +365,78 @@ edit 1 p/91234567 e/johndoe@example.com
 
 Whenever you need to view a list of all the contacts you have in your SoConnect, you can easily do so using the `list` command. You can directly use the `list` command without the need of any parameters!
 
-Format: `list`
+**Format:** `list`
 
 <br>
 
 #### 7.2.4. Searching for a contact: `search`
 
-Search for contacts using partial information.
+You can easily find the contacts that you are interested in using the `search` command as shown below. The `search` command has two formats - `and` condition and `or` condition search, it also comes with [autocomplete](#autocomplete) feature to help you to search more efficiently without typing the command in full.
 
-Format: `search [CONDITION] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
+**1. `and` Condition Search:**
 
-* `search t/TAG1 t/TAG2…` searches for contacts that contain all the given tags.
-* `search and n/NAME p/PHONE…` searches for contacts that match all the given information.
-* `search n/NAME p/PHONE…` and `search and n/NAME p/PHONE…` will return the same contacts that match all the given information.
-* `search or t/TAG1 t/TAG2…` searches for contacts that contain any of the given tags.
+If you are looking for a very specific search result, you can use `and` condition search to search for contacts with information matching **all** of your given parameters.
+
+**Format:** `search [and] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
+
 * The search using `n/NAME` is case-insensitive. (e.g. `hans` will match `Hans`).
-* Displays a list of relevant contacts related to the search query if no search result available. A contact is considered relevant if there are high matches of characters between the contact information and search keyword. For example, `David Li` and `Charlotte` are relevant to `search n/al` because these names contain characters `a` and `l` in it.
+* At least 1 of the optional parameters must be provided.
 
-Example:
-* `search t/family` returns all contacts tagged with family in the contact list.
-* `search and a/NUS p/86178789` returns all contacts with that address and phone number.
-* `search t/cs2103t t/tp` returns all contacts tagged with both cs2103t and tp.
-* `search or t/friends t/family` returns all contacts tagged with either friends or family.
-* `search n/Johm` is supposed to return an empty result since there is no contact named `Johm` in the list of contacts, but now it will return contacts with names similar to that. For example, `John`.
+<div markdown="block" class="alert alert-success">
 
-Autocompleting search: `search`
+:bulb: **Tip:**<br/>
+The word `and` is optional, so you can perform `and` condition search without including the word `and`, i.e. `search n/Alex p/12345678` gives the same result as `search and n/Alex p/12345678`.
+</div>
 
-Displays a list of search queries based on the current search query with the last parameter completed. The completed parameter will depend on the contacts that match the current search query. User can choose one of the search queries and perform the searching without having to type the full parameter.
+**Example Input in Command Box:**
+```
+search and n/Bernice t/cs2100 t/friends
+```
 
-Format: Refer to the [`search`](#724-searching-for-a-contact-search) command format above.
+**Example Result:**
 
-* This feature is only available when search command is entered (i.e. the command entered matches the [`search`](#724-searching-for-a-contact-search) format stated above).
-* Only the last parameter will be completed (e.g. `search and n/NAME p/PHONE`, only the last parameter `PHONE` will be completed).
-* The list of search queries will include the current search query.
-* No result will be displayed if there is no contact matches the current search query.
-* No result will be displayed if the last parameter is empty.
+![And Condition Search](images/AndConditionSearch.png)
 
-Example:
-* `search or n/John p/` displays nothing as the last parameter `PHONE` is empty.
-* `search and n/John a/N`, displays a list of search queries containing `search and n/John a/N` and `search and n/John a/NUS` if SoConnect has contacts with name `John` and address `NUS`
-* `search and n/John a/N` displays nothing if SoConnect does not have any contact with name `John` or has contact with name `John` but does not start with `N`.
-* `search or n/John a/N` displays a list of search queries containing `search and n/John a/N`, `search and n/John a/NUS`, `search and n/John a/NYC` if SoConnect has contacts with address `NTU` and `NYC`, does not have to care about the name in the contact since it is `or` condition.
-* `search or n/John a/N` displays nothing if SoConnect does not have contacts with address starts with `N`.
+**2. `or` Condition Search:**
+
+If you wish to broaden your search result, you can use `or` condition search to search for contacts with information matching **at least one** of your given parameters.
+
+Format: `search or [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
+
+* The search using `n/NAME` is case-insensitive. (e.g. `hans` will match `Hans`).
+* At least 1 of the optional parameters must be provided.
+
+**Example Input in Command Box**
+```
+search or n/Bernice t/cs2100 t/friends
+```
+
+**Example Result**
+
+![Or Condition Search](images/OrConditionSearch.png)
+
+Notice there are more contacts listed as compared to `search and n/Bernice t/cs2100 t/friends`.
+
+<div markdown="block" class="alert alert-primary">
+**:memo: Note**<br/>
+For both `and` and `or` condition search, you still get a list of relevant contacts related to your search query if there are no search results available. This is useful as you might still get the contacts that you are searching for when you entered some characters wrongly.<br/><br/>A contact is considered relevant if there are high matches of characters between the contact information and search parameters. For example, the information `David Li` and `Charlotte` are relevant to `search n/al` because these names contain characters `a` and `l` in it.
+</div>
+
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Info:**<br>
+Autocomplete:
+
+![Autocomplete With Label](images/AutocompleteWithLabel.png)
+
+Autocomplete helps you to get your search done faster as you do not have to type the full parameter to search. This also reduce the chances of you typing the wrong character as you have lesser characters to type.
+
+* Autocomplete generates a list of [autocomplete entries](#autocomplete-entries) based on the current search query.
+* Autocomplete only completes the last parameter, in this case `t/f`.
+* If no contact matches the current search query, empty list of [autocomplete entries](#autocomplete-entries) will be generated and autocomplete box will be hidden.
+
+</div>
 
 <br>
 
@@ -387,7 +462,7 @@ How *[tags](#tag) (t/TAG)* are sorted:
 
 </div>
 
-Format: `sort [n/] [p/] [e/] [a/] [t/TAG]…​`
+**Format:** `sort [n/] [p/] [e/] [a/] [t/TAG]…​`
 * At least 1 of the optional parameters must be provided.
 * To sort in reverse order from the orders given above, use these modified parameters: `[n/!] [p/!] [e/!] [a/!] [t/!TAG]`.
 
@@ -402,23 +477,23 @@ You can use multiple parameters to sort if you want to organise your contacts ev
 
 </div>
 
-**Example Input in Command Box**
+**Example Input in Command Box:**
 ```
 sort n/!
 ```
 
-**Example Result**
+**Example Result:**
 
-(insert image of a successful reverse sorting by name)
+![Sort Name Reverse](images/SortNameReverse.png)
 
-**Example Input in Command Box**
+**Example Input in Command Box:**
 ```
-sort t/friend n/
+sort t/cs2100 n/
 ```
 
-**Example Result**
+**Example Result:**
 
-(insert image of a successful sorting by the friend tag and names. If possible, have 2 contacts with the friend tag and 2 contacts without the friend tag)
+![Sort Tag Name](images/SortTagName.png)
 
 <br>
 
@@ -426,7 +501,7 @@ sort t/friend n/
 
 If you [added a contact](#721-adding-a-contact-add) by mistake, or you no longer wish to keep a particular contact, you can delete it easily using the `delete` command. All you need is the `INDEX` of the contact and poof, it's gone!
 
-Format: `delete INDEX`
+**Format:** `delete INDEX`
 
 <br>
 
@@ -434,7 +509,7 @@ Format: `delete INDEX`
 
 Want a fresh start? You can reset and get a clean, empty list of contacts using the `clear` command. You can directly use the `clear` command without the need of any parameters!
 
-Format: `clear`
+**Format:** `clear`
 
 <br>
 
@@ -463,7 +538,7 @@ A todo consists of
 
 You can add a todo using the `todo add` command as shown below. While the `DESCRIPTION`, `DATE`, and `PRIORITY` parameters are mandatory, you can include as many `TAG` parameters as you wish (including none).
 
-Format: `todo add d/DESCRIPTION date/DATE pr/PRIORITY [t/TAG]…​`
+**Format:** `todo add d/DESCRIPTION date/DATE pr/PRIORITY [t/TAG]…​`
 
 * `DATE` should be of the format dd-MM-yyyy (e.g. 24-03-2022).
 * The todo list will always be sorted by date from earliest to latest (for todos with the same date, they will be sorted in decreasing priority order).
@@ -478,69 +553,114 @@ Format: `todo add d/DESCRIPTION date/DATE pr/PRIORITY [t/TAG]…​`
 
 </div>
 
-Examples:
-* `todo add d/Watched recorded videos for CS2100 date/24-10-2022 pr/low t/CS2100`
-* `todo add d/Prepare slides for OP2 date/25-03-2022 pr/high t/CS2101 t/CS2103T`
+**Example Input in Command Box:**
+```
+todo add d/cs2103 UG date/07-11-2022 pr/high t/cs2103
+```
+
+**Example Result:**
+
+![Todo Add](images/TodoAdd.png)
 
 <br>
 
 #### 7.3.2. Editing a todo : `todo edit`
 
-Edits an existing todo in your SoConnect.
+You can update the information of a todo easily using the `todo edit` command as shown below. All you need is the `INDEX` of the todo you want to modify along with the parameters you want to update.
 
-Format: `todo edit INDEX [d/DESCRIPTION] [date/DATE] [pr/PRIORITY] [t/TAG]…​`
+**Format:** `todo edit INDEX [d/DESCRIPTION] [date/DATE] [pr/PRIORITY] [t/TAG]…​`
 
-* Edits the todo at the specified [`INDEX`](#).
-* At least one of the optional fields must be provided.
-* Parameters given will overwrite the existing values completely.
-  * For example, giving 1 or more tag(s) in the edit command will replace all existing tags with the ones given in the edit command.
-  * `Coming soon in v1.5`, you can use `tag add` and `tag remove` to modify tags in a todo instead of only using `todo edit`.
+* At least 1 of the 4 optional fields must be provided.
+* Existing information will be overwritten with the parameters provided. Information of the parameters not provided will remain unchanged.
 
-Examples:
-*  `todo edit 1 d/Read notes for ST2334` Edits the description of the 1st todo to be `Read notes for ST2334`.
-*  `todo edit 1 pr/medium t/ST2334` Edits the priority of the 2nd contact to be `medium` and changes its tags to just `ST2334`.
+
+<div markdown="block" class="alert alert-primary">
+**:memo: Note:**<br/>
+[Tags](#tag) have to be created first before you can add them to a todo.
+
+* Refer to [`Creating a Tag`](#741-creating-a-tag-tag-create) on how to create a tag.
+</div>
+
+<div markdown="block" class="alert alert-info">
+**:information_source: info:** <br/>
+
+* You can use `todo edit` command to add or remove tags to a todo.
+  * To add a tag, you can include all the existing tags in the todo as parameter together with the new tags that you wish to add.
+  * To remove a tag, you can include all the existing tags in the todo excluding the tags that you wish to remove.
+* `Coming soon in v1.5`, you can use `tag add` and `tag remove` to modify tags in a todo instead of only using `todo edit` to type all the tags in the todo to make modifications.
+
+</div>
+
+**Example Input in Command Box:**
+
+```
+todo edit 2 pr/medium t/cs2103 t/cs2100
+```
+
+**Example Result:**
+
+Before:
+
+![Todo edit before](images/TodoEditBefore.png)
+
+After:
+
+![Todo edit after](images/TodoEditAfter.png)
 
 <br>
 
 #### 7.3.3. Deleting a todo : `todo delete`
 
-Deletes the specified todo from your SoConnect.
+You can delete a particular todo after you have completed the todo or you no longer wish to keep it. This can be done easily using the `todo delete` command. All you need is the `INDEX` of the todo!
 
-Format: `delete INDEX`
-
-* Deletes the todo at the specified `INDEX`.
-
-Examples:
-* `todo show` followed by `todo delete 2` deletes the 2nd todo shown in your SoConnect.
+**Format:** `todo delete INDEX`
 
 <br>
 
 #### 7.3.4. Clearing all todos : `todo clear`
 
-Clears all todos from your SoConnect.
+You can delete all your todos using the `todo clear` command. This resets and gets you a clean and empty list of todos.
 
-Format: `todo clear`
+**Format:** `todo clear`
 
 <br>
 
 #### 7.3.5. Filtering todos shown : `todo show`
 
-Shows a filtered list of todos in your SoConnect.
+Want to view a particular list of todos? You can use the `todo show` commands to filter the todos that you want to see. There are different formats to the `todo show` command for different filter.
 
-Format: `todo show`, `todo show today`, `todo show date/DATE`, `todo show date/DATE to DATE`, `todo show t/TAG`, `todo show pr/Priority`
+| Format                          | Result                                                       |
+|---------------------------------|--------------------------------------------------------------|
+| `todo show`                     | Shows you all the todos in your SoConnect.                   |
+| `todo show today`               | Shows you all the todos that you have to complete for today. |
+| `todo show date/DATE`           | Shows you all the todos with the specified date.             |
+| `todo show date/DATE1 to DATE2` | Shows you all the todos from `DATE1` to `DATE2`.             |
+| `todo show pr/PRIORITY`         | Shows you all the todos with the specified priority.         |
+| `todo show t/TAG`               | Shows you all the todos with the specified tag.              |
 
-* `todo show`: Shows all todos.
-* `todo show today`: Shows all todos with the date same as the current date.
-* `todo show date/DATE`: show all todos with the specified date.
-* `todo show date/DATE1 to DATE2`: shows all todos with the date from `DATE1` to `DATE2`.
-* `todo show pr/PRIORITY`: Shows all todos with the specified priority.
-* `todo show t/TAG`: Shows all todos with the specified tag.
 
-Examples:
-* `todo show date/25-10-2022`: show all todos with the date `25-10-2022`.
-* `todo show date/24-10-2022 to 26-10-2022`: shows all todos with the date from `24-10-2022` to `26-10-2022`.
-* `todo show pr/high`: Shows all todos with the priority `high`.
-* `todo show t/friends`: Shows all todos with the tag `friends`.
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Info:**<br>
+Todo header tells you the todos that are shown in the todo list. 
+
+</div>
+
+**Example Input in Command Box:**
+
+```
+todo show pr/medium
+```
+
+**Example Result:**
+
+Before:
+
+![Todo Show Before](images/TodoShowBefore.png)
+
+After:
+
+![Todo Show After](images/TodoShowAfter.png)
 
 <br>
 
@@ -556,16 +676,16 @@ A tag consists of a category name that can be a maximum of 10 characters.
 
 You can create a new `TAG` and add it into the tag list.
 
-Format: `tag create t/TAG`
+**Format:** `tag create t/TAG`
 
-**Example Input in Command Box**
+**Example Input in Command Box:**
 ```
-tag create t/friends
+tag create t/cca
 ```
 
-**Example Result**
+**Example Result:**
 
-   (insert image of a successful creation of the `friends` tag)
+![Tag Create](images/TagCreate.png)
 
 Great! You have successfully learnt how to add your first `TAG` you have made. Now, you can start utilising the other tag features.
 
@@ -575,7 +695,7 @@ Great! You have successfully learnt how to add your first `TAG` you have made. N
 
 You can delete a `TAG` from the tag list.
 
-Format: `tag delete t/TAG`
+**Format:** `tag delete t/TAG`
 
 <div markdown="block" class="alert alert-info">
 
@@ -583,14 +703,20 @@ Format: `tag delete t/TAG`
 When `TAG` is deleted, `TAG` is removed from all the contacts which previously had it.
 </div>
 
-**Expected Input in Command Box**
+**Expected Input in Command Box:**
 ```
 tag delete t/friends
 ```
 
-**Example Result**
+**Example Result:**
 
-   (insert successful deletion of `Test2` tag)
+Before:
+
+![Tag Delete Before](images/TagDeleteBefore.png)
+
+After:
+
+![Tag Delete After](images/TagDeleteAfter.png)
 
 Wonderful! You have successfully deleted a tag.
 
@@ -600,7 +726,7 @@ Wonderful! You have successfully deleted a tag.
 
 If you make a mistake or want to update your `TAG`, you can simply update it with this command.
 
-Format: `tag edit t/TAG1 t/TAG2`
+**Format:** `tag edit t/TAG1 t/TAG2`
 
 <div markdown="block" class="alert alert-info">
 
@@ -611,20 +737,20 @@ Format: `tag edit t/TAG1 t/TAG2`
 
 </div>
 
-**Example Input in Command Box**
+**Example Input in Command Box:**
 ```
-tag edit t/friends t/bestFriends
+tag edit t/friends t/bestFriend
 ```
 
-**Example Result**
+**Example Result:**
 
-* You can refer to the Before and After comparison below.
+Before:
 
-   Before:
-   (insert image a contact with `friends` tag)
+![Tag Edit Before](images/TagEditBefore.png)
 
-   After:
-   (insert image of the same contact with `bestFriends` tag instead of `friend`, with the Command Result Box)
+After:
+
+![Tag Edit After](images/TagEditAfter.png)
 
 Fantastic! You have successfully learnt how to change tags.
 
@@ -636,7 +762,7 @@ You can add a `TAG` from the tag list to a contact.
 * `Coming soon in v1.5`, we will upgrade `tag add` to add tags to todos.
 * Consider using [Adding a todo](#731-adding-a-todo-todo-add) or [Editing a todo](#732-editing-a-todo--todo-edit) to add tags to todos.
 
-Format: `tag add INDEX t/TAG`
+**Format:** `tag add INDEX t/TAG`
 
 <div markdown="span" class="alert alert-success">
 
@@ -652,14 +778,14 @@ The tag has to be created first before you can add it into a contact.
 Refer to [`Creating a Tag`](#741-creating-a-tag-tag-create) on how to create a tag.
 </div>
 
-**Example Input in Command Box**
+**Example Input in Command Box:**
 ```
-tag add 1 t/friends
+tag add 3 t/bestFriend
 ```
 
-**Example Result**
+**Example Result:**
 
-   (insert image of a successful addition of the `friends` tag to contact `1`)
+![Tag Add](images/TagAdd.png)
 
 Awesome! You have successfully learnt to add a tag to a contact.
 
@@ -671,16 +797,16 @@ You can remove a `TAG` from a contact.
 * `Coming soon in v1.5`, we will upgrade `tag remove` to remove tags from todos.
 * Consider using [Editing a todo](#732-editing-a-todo--todo-edit) to remove tags from todos.
 
-Format: `tag remove INDEX t/TAG`
+**Format:** `tag remove INDEX t/TAG`
 
-**Example Input in Command Box**
+**Example Input in Command Box:**
 ```
-tag remove 1 t/friends
+tag remove 3 t/bestFriend
 ```
 
-**Example Result**
+**Example Result:**
 
-   (insert image of contact `1` without the `friend` tag with the resu )
+![Tag Remove](images/TagRemove.png)
 
 Nice! You have successfully removed a tag from a contact.
 
@@ -703,20 +829,20 @@ Welcome to the Customisation Commands section! In this section, you can learn to
 
 You can customise the order of information shown for all contacts.
 
-Format: `customise order [t/] [p/] [e/] [a/]`
+**Format:** `customise order [t/] [p/] [e/] [a/]`
 
 * You will always see the contact's name at the top of each card.
 * You can change the order of the following information: Tags, Phone Number, Email, Address.
 * Unspecified information will be ordered last according to the default order (Tags > Phone Number > Email > Address).
 
-**Expected Input in Command Box**
+**Example Input in Command Box:**
 ```
 customise order a/ e/ p/
 ```
 
 **Example Result**
 
-(insert image)
+![Customise Order](images/CustomiseOrder.png)
 
 <br>
 
@@ -724,20 +850,20 @@ customise order a/ e/ p/
 
 You can hide certain information fields from all contacts.
 
-Format: `customise hide [t/] [p/] [e/] [a/]`
+**Format:** `customise hide [t/] [p/] [e/] [a/]`
 
 * You can hide the following information: Tags, Phone Number, Email, Address.
 * After you use this command, the information specified is hidden.
 * If the information that you specify is already hidden, it will stay hidden.
 
-**Expected Input in Command Box**
+**Example Input in Command Box:**
 ```
 customise hide p/ t/
 ```
 
-**Output in Command Result Box**
+**Example Result:**
 
-(insert image)
+![Customise Hide](images/CustomiseHide.png)
 
 <br>
 
@@ -752,14 +878,14 @@ Format: `customise show [t/] [p/] [e/] [a/]`
 * If the information that you specify is already shown, it will stay shown.
 * `Coming soon in v1.5`, we will include `customise show all`, a shortcut to show all information.
 
-**Expected Input in Command Box**
+**Example Input in Command Box:**
 ```
 customise show p/ t/
 ```
 
-**Output in Command Result Box**
+**Example Result:**
 
-(insert image)
+![Customise Show](images/CustomiseShow.png)
 
 <br>
 
@@ -834,7 +960,13 @@ A feature that shows a list of completed words or strings without the user needi
 
 <br>
 
-**<a id="cli"></a>CLI**
+**<a id="autocomplete-entries">Autocomplete Entry</a>**
+
+A sentence that has been autocompleted with [autocomplete](#autocomplete).
+
+<br>
+
+**<a id="cli">CLI</a>**
 
 A text-based user interface used to run programs.
 
