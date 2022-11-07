@@ -59,7 +59,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -210,7 +210,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 **Aspect: How to handle the adding of class and person separating:**
 
-* **Alternative 1 (current choice):** An `AddCommand` instance has both `Person` and `TuitionClass` fields but only atmost one can be non-null at a time.
+* **Alternative 1 (current choice):** An `AddCommand` instance has both `Person` and `TuitionClass` fields but only at most one can be non-null at a time.
     * Pros: Less cluttered.
     * Cons: Harder to implement.
 * **Alternative 2:** Separate classes that extend `Command` for adding of class and person separately.
@@ -255,7 +255,7 @@ tuition classes in the student/tutor.
 
 **Aspect: How assign & unassign executes:**
 
-* **Alternate 1 (current choice)):** `assign`/`unassign` just involves adding / removing tuition class from 
+* **Alternate 1 (current choice):** `assign`/`unassign` just involves adding / removing tuition class from 
   a list of tuition classes that every student/tutor has.
   * Pros: Easier to implement and store in Json format.
   * Cons: Not keeping a list of students and tutors for tuition classes may
@@ -366,7 +366,7 @@ The `ListType` field `type` in the `ModelManager` is referred to by any method t
 
 Step 1. The user launches the application for the first time. The `ModelManager` would be initialised and the `type` is set to the default list type which is the `STUDENT_LIST`.
 
-Step 2. The user executes `list tutor` command to list out tuition classes by calling `ListTutorCommand`. The `ListTutorCommand` calls `Model#updateCurrentListType()` with the `TUTOR_LIST` being the parameter, causing the `type` field in the `ModelManager` to update to the `TUTOR_LIST`. 
+Step 2. The user executes `list tutor` command to list out tutors by calling `ListTutorCommand`. The `ListTutorCommand` calls `Model#updateCurrentListType()` with the `TUTOR_LIST` being the parameter, causing the `type` field in the `ModelManager` to update to the `TUTOR_LIST`. 
 
 Step 3. The command then returns a `commandResult` with its `commandType` field being `LIST`. This will cause calling `commandResult.isList()` to return true. 
 
