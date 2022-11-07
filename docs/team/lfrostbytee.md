@@ -38,14 +38,13 @@ Given below are my contributions to the project.
         * Standardised the overall user guide for V1.4.
     * Developer Guide:
         * Added documentation for V1.1 and the `listEvents` command.
-        * Did the manual testing and effort section for V1.4.
-    * ReadMe:
-        * Updated the ReadMe for V1.4.
+        * Did the manual testing and effort sections for V1.4.
 
 * **Contributions to team-based tasks**:
     * Setting up the GitHub team org/repo.
     * Organizing and facilitating bi-weekly team meetings as the Team Lead.
     * Distributing workload amongst team members.
+    * Updated the README for V1.4.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): 
