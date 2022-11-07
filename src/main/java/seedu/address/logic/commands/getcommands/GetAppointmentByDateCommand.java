@@ -17,8 +17,7 @@ public class GetAppointmentByDateCommand extends GetCommand {
     public static final String APPOINTMENT_BY_DATE_PREFIX = "/appton";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Gets all patients who are on the same appointment "
-            + "date "
-            + "and displays them as a list with index numbers. \n"
+            + "date and displays them as a list with index numbers. \n"
             + "Parameters: "
             + APPOINTMENT_BY_DATE_PREFIX + " DATE [dd-MM-yyyy]\n"
             + "Example: "
@@ -61,4 +60,3 @@ public class GetAppointmentByDateCommand extends GetCommand {
                 && predicate.equals(((GetAppointmentByDateCommand) other).predicate)); // state check
     }
 }
-

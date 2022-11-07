@@ -236,7 +236,7 @@ This section describes some noteworthy details on how certain features are imple
 The `add` command is used to create a new patient in the app and set the necessary fields for that patient,
 namely they are the: `Name`, `Phone`, `Email`, `NextOfKin`, `PatientType`,`HospitalWing`, `FloorNumber`, `WardNumber`,
 `Medications` and `UpcomingAppointment` fields. Note that the `PastAppointment` field cannot be updated in this command,
-that is done in the [`Appt`](#pastappointment) and [`DelAppt`](#delappt-command ) commands.
+that is done in the [`Appt`](#pastappointment) and [`DelAppt`](#delappt-delete-appointment-command) commands.
 
 When `add <<args>>` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the
 input. This then creates an instance of the `AddCommandParser` to parse the `args` via the respective static
@@ -258,7 +258,7 @@ The following sequence diagram shows how the argument parsing for the `add` comm
 
 The `edit` command is used to change the information of an existing patient in the app. The fields supported are: `Name`, `Phone`, `Email`, `NextOfKin`, `PatientType`,`HospitalWing`, `FloorNumber`, `WardNumber`,
 `Medications` and `UpcomingAppointment`. Note that the `PastAppointment` field cannot be updated in this command,
-that is done in the [`Appt`](#pastappointment) and [`DelAppt`](#delappt-command ) commands.
+that is done in the [`Appt`](#pastappointment) and [`DelAppt`](#delappt-delete-appointment-command) commands.
 
 When `edit INDEX <<args>>` is inputted, the UI calls the `LogicManager` which then calls the `AddressBookParser` to parse the
 input. This then creates an instance of the `EditCommandParser` to parse the `INDEX` and `args` via the respective static
@@ -447,10 +447,10 @@ Getting the list of patients with an appointment on the query date involves the 
 1. Prefix `/appton` is matched using an instance of `GetCommandParser`
 2. A new `GetAppointmentByDateCommandParser` instance is created and parses the user input (specifically the date inputted)
 3. A `GetAppointmentByDateCommand` instance containing the date of the appointment is created and returned
-4. The `GetAppointmentByDateCommand` is executed, accessing the list of `PastAppointment` of the specified patient
+4. The `GetAppointmentByDateCommand` is executed, accessing the list of `PastAppointment`s for every patient
    to be returned in a `CommandResult`
-5. The model is updated such that the *filtered* list only displays patients who have an appointment on the specified
-   date.
+5. The model is updated such that the *filtered* list only displays patients who have both an upcoming or past appointment
+   on the query date
 
 To ease the parsing of date inputs using `LocalDate`, we have standardized the input query to be in the format of `dd-MM-yyyy`.
 
@@ -486,13 +486,13 @@ Getting the list of patients in the query hospital wing involves the following s
 Strict restrictions are placed to prevent too many varieties of hospital wings. Hospital wings only accepts 
 the following values (case-insensitive) `south` `north` `east` `west` as valid inputs. 
 
-#### Long Term Medication (/m)
+#### Long-Term Medication (/m)
 
-Getting the list of patients who are taking the query long term medication involves the following steps:
+Getting the list of patients who are taking the query long-term medication involves the following steps:
 1. Prefix `/m` is matched in `GetCommandParser` class
 2. A new `GetMedicationCommandParser` instance is created and parses the user input
 3. A `GetMedicationCommand` instance is returned
-4. The model is updated such that the *filtered* list only displays patients who are taking the query long term medication
+4. The model is updated such that the *filtered* list only displays patients who are taking the query long-term medication
 
 Medication name searches are case-insensitive. Each search requires a full-word match.
 For example, searching for `paracet` will only return patients with long-term medication name
@@ -515,7 +515,7 @@ Getting the information of the next of kin of the list of query patient names in
 1. Prefix `/nok` is matched in `GetCommandParser` class
 2. A new `GetNextOfKinCommandParser` instance is created and parses the user input
 3. A `GetNextOfKinCommand` instance is returned
-4. The model is updated such that the *filtered* list only displays queried patients' next of kin details
+4. The model is updated such that the *filtered* list only displays query patients' next of kin details
 
 Details of the next of kin include the name, relationship to patient and phone number.
 
@@ -1279,6 +1279,7 @@ Challenges we faced along the way include:
 1. Time management
    - We found ourselves rushing most of the milestone deadlines, despite splitting it up to halves
    - Last minute changes to the UI and features resulted in merge conflicts
+
 2. Team coordination
    - All of us had differing schedules, therefore finding a common meeting time every week was difficult
 
@@ -1298,8 +1299,24 @@ Here are some of the efforts we have put in to develop checkUp, which was a brow
 
 Here are some of the features we achieved:
 
-1. Past and future appointments for patients
-2. Inpatient and outpatient patient types
-3. Filtering of patients according to given prefix
-4. Next of kin of patients
-5. Long-term medication of patients
+1. Implementing past and upcoming appointments for patients
+
+2. Allow filtering of patients according to given prefix
+
+3. Addition to `Person` fields:
+
+   1. Inpatient and outpatient patient types
+
+   2. Hospitalisation details
+
+   3. Next of kin details
+
+   4. Long-term medication records
+
+   5. Past and upcoming appointments
+
+4. inpatient and outpatient patient types
+
+5. Next of kin of patients
+
+6. Long-term medication of patients
