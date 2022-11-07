@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.client.EditClientCommand.MESSAGE_SUCCESS;
 
@@ -26,7 +28,7 @@ public class FindClientCommandTest {
     private final Ui stubUi = new StubUiManager();
 
     @Test
-    public void execute_findClient_success() {
+    public void execute_findClientName_success() {
         Model actualModel = new ModelManager();
         Client clientJohn = new Client(new Name("John Watson"), new ClientMobile("12345678"),
                 new ClientEmail("john@nus.com"), new ArrayList<>(), new ClientId(1), new Pin(false));
@@ -40,58 +42,56 @@ public class FindClientCommandTest {
                 new ClientEmail("mary@nus.com"), new ArrayList<>(), new ClientId(3), new Pin(false));
         actualModel.addClient(clientMary);
 
-        CommandResult expectedCommandResultName = new CommandResult(
-                String.format(Messages.MESSAGE_CLIENTS_LISTED_OVERVIEW, actualModel.getFilteredClientList().size()));
-
         List<String> name = Arrays.asList("Watson");
-        List<String> email = Arrays.asList("rosie@reddit.com-sg");
-        List<String> phone = Arrays.asList("12345678");
-        List<String> clientId = Arrays.asList("1");
         List<String> empty = new ArrayList<>();
-
-        //by name
-        FindClientCommand findName = new FindClientCommand(new ClientContainsKeywordsPredicate(
-                name, empty, empty, empty));
 
         Model expectedNameModel = new ModelManager();
         expectedNameModel.addClient(clientJohn);
         expectedNameModel.addClient(clientRosie);
         expectedNameModel.addClient(clientMary);
 
+        CommandResult expectedCommandResultName = new CommandResult(
+                String.format(Messages.MESSAGE_CLIENTS_LISTED_OVERVIEW,
+                        actualModel.getFilteredClientList().size()));
+
+        FindClientCommand findName = new FindClientCommand(new ClientContainsKeywordsPredicate(
+                name, empty, empty, empty));
+
         assertCommandSuccess(findName, actualModel, expectedCommandResultName, expectedNameModel, stubUi);
 
-        //by mobile
-        FindClientCommand findMobile = new FindClientCommand(new ClientContainsKeywordsPredicate(
-                empty, empty, , empty));
-
-        Model expectedModel = new ModelManager();
-        expectedModel.addClient(clientJohn);
-        expectedModel.addClient(clientRosie);
-        expectedModel.addClient(clientMary);
-
-        assertCommandSuccess(findName, actualModel, expectedCommandResultName, expectedModel, stubUi);
-
-
-        //by name
-        FindClientCommand findEmail = new FindClientCommand(new ClientContainsKeywordsPredicate(
-                name, empty, empty, empty));
-
-        Model expectedModel = new ModelManager();
-        expectedModel.addClient(clientJohn);
-        expectedModel.addClient(clientRosie);
-        expectedModel.addClient(clientMary);
-
-        assertCommandSuccess(findName, actualModel, expectedCommandResultName, expectedModel, stubUi);
-
-        //by id
-        FindClientCommand findId = new FindClientCommand(new ClientContainsKeywordsPredicate(
-                name, empty, empty, empty));
-
-        Model expectedModel = new ModelManager();
-        expectedModel.addClient(clientJohn);
-        expectedModel.addClient(clientRosie);
-        expectedModel.addClient(clientMary);
-
-        assertCommandSuccess(findName, actualModel, expectedCommandResultName, expectedModel, stubUi);
     }
+
+    @Test
+    public void testEquals() {
+
+        List<String> name = Arrays.asList("Harry");
+        List<String> email = Arrays.asList("potter@reddit.com-sg");
+        List<String> phone = Arrays.asList("103835180");
+        List<String> clientId = Arrays.asList("1");
+        List<String> empty = new ArrayList<>();
+
+        FindClientCommand findClientCommandOne = new FindClientCommand(
+                new ClientContainsKeywordsPredicate(name, email, phone, clientId));
+        FindClientCommand findClientCommandTwo = new FindClientCommand(
+                new ClientContainsKeywordsPredicate(name, empty, empty, clientId));
+        FindClientCommand findClientCommandOneCopy = new FindClientCommand(
+                new ClientContainsKeywordsPredicate(name, email, phone, clientId));
+
+        // same object -> returns true
+        assertTrue(findClientCommandOne.equals(findClientCommandOne));
+
+        // same values -> returns true
+        assertTrue(findClientCommandOne.equals(findClientCommandOneCopy));
+
+        // different types -> returns false
+        assertFalse(findClientCommandOne.equals(1));
+
+        // null -> returns false
+        assertFalse(findClientCommandOne.equals(null));
+
+        // different person -> returns false
+        assertFalse(findClientCommandOne.equals(findClientCommandTwo));
+    }
+
+
 }
