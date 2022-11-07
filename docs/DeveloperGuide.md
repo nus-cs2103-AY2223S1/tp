@@ -127,8 +127,6 @@ The `Graphical UI` that will be displayed to user upon launching `InternConnect`
 
 <img src="images/annotatedGui.png" />
 
-<div style="page-break-after: always;"></div>
-
 ### 3.3 Logic component
 
 **API** : [`Logic.java`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -159,7 +157,6 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-<div style="page-break-after: always;"></div>
 
 ### 3.4 Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103-F14-2/tp/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -173,15 +170,12 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div style="page-break-after: always;"></div>
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" />
 
 </div>
 
-<div style="page-break-after: always;"></div>
 
 ### 3.5 Storage component
 
@@ -199,6 +193,7 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
+--------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
 ## 4. Implementation Highlights
@@ -249,8 +244,6 @@ The following sequence diagram shows how the checkout operation works:
 The following activity diagram summarizes what happens when a user executes a checkout command:
 
 ![CheckoutActivityDiagram](images/CheckoutActivityDiagram.png)
-
-<div style="page-break-after: always;"></div>
 
 #### Design considerations
 
@@ -304,8 +297,6 @@ The following sequence diagram shows how the `view` command works:
 
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
-<div style="page-break-after: always;"></div>
-
 #### Design considerations
 
 **Aspect: How the UI window is split to show a panel of list of all applicants and another panel to view details of an applicant:**
@@ -342,8 +333,6 @@ Given below is an example success scenario and how the `import` mechanism behave
 The following sequence diagram shows how the `import` command works:
 
 ![ImportSequenceDiagram](images/ImportSequenceDiagram.png)
-
-<div style="page-break-after: always;"></div>
 
 #### Design Considerations
 
@@ -466,7 +455,7 @@ The following sequence diagram shows how the `find` command works:
 
 
 **Aspect: Different search types**
-* **Alternative 1**: we create a new command for each type of search
+* **Alternative 1 **: we create a new command for each type of search
     * Pros:
         * All commands current follow this design, allows for consistency in code structure, and follows current OOP design conventions.
         * Naming format for all commands are fixed.
@@ -522,7 +511,6 @@ how internship campus recruiters work with their applicants’ data.
 Say goodbye to opening multiple windows to retrieve the information you need and
 focus on what matters more: matching the right people for the right job.
 
-<div style="page-break-after: always;"></div>
 
 ### 6.2 User stories
 
