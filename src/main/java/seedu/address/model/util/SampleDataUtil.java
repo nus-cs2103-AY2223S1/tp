@@ -38,7 +38,7 @@ public class SampleDataUtil {
     public static Question[] getSampleQuestions() {
         return new Question[] {
             new Question(new Description("What is the difference between Sequence and Activity Diagrams?"),
-                new ImportantTag(true)),
+                new ImportantTag(false)),
             new Question(new Description("What are UML Diagrams?"),
                 new ImportantTag(false))
         };

@@ -1,5 +1,5 @@
 ---
-layout: page title: SETA
+layout: page title: User Guide
 ---
 
 User Guide
@@ -18,6 +18,7 @@ tutorials and note down questions more effectively than traditional GUI apps.
             * Adding student's attendance: [`attendance`](#adding-students-attendance--attendance)
             * Adding student’s response: [`addresponse`](#adding-students-response-addresponse)
             * Adding help tag to a student: [`helpstu`](#adding-help-tag-helpstu)
+            * Removing help tag from a student: [`unhelpstu`](#removing-help-tag-unhelpstu)
             * Deleting a student: [`deletestu`](#deleting-a-student-deletestu)
             * Finding a student: [`findstu`](#finding-a-student-findstu)
             * Listing all students: [`liststu`](#listing-all-students-liststu)
