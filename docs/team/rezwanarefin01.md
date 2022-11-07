@@ -30,7 +30,7 @@ Given below are my contributions to the project.
 * Refactored AddressBook to TA-Assist in the whole repository.
 * Refactored `Tag` to `ModuleClass` in the whole repository. In collaboration with [Lin Zechen](/team/bubbl3t.html).
 * Authored [35 issues](https://github.com/AY2223S1-CS2103T-T12-1/tp/issues?q=is%3Aissue+author%3ARezwanArefin01) to help keep track of current issues and progress.
-* Reviewed [46 pull requests](https://github.com/AY2223S1-CS2103T-T12-1/tp/pulls?q=is%3Apr+author%3ARezwanArefin01) to ensure quality and consistency across the project.
+* Reviewed [47 pull requests](https://github.com/AY2223S1-CS2103T-T12-1/tp/pulls?q=is%3Apr+author%3ARezwanArefin01) to ensure quality and consistency across the project.
 * Updated styling of the website to make it more visually appealing.
 * Edited the UG and DG for consistency and clarity.
 * Exported the UG and DG to PDF format, fixing spacing issues.
