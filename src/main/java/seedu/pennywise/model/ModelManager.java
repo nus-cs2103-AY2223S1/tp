@@ -9,7 +9,6 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -18,6 +17,7 @@ import javafx.scene.chart.XYChart;
 import seedu.pennywise.commons.core.GuiSettings;
 import seedu.pennywise.commons.core.LogsCenter;
 import seedu.pennywise.model.entry.Entry;
+import seedu.pennywise.model.entry.Tag;
 
 /**
  * Represents the in-memory model of the PennyWise application data.
@@ -196,24 +196,24 @@ public class ModelManager implements Model {
         double[] incomePieChartArr = new double[6];
 
         for (Entry e : filteredIncome) {
-            String tagName = e.getTag().getTagName();
+            Tag.IncomeTag tagName = (Tag.IncomeTag) e.getTag().getEntryTag();
             switch (tagName) {
-            case "Salary":
+            case SALARY:
                 incomePieChartArr[0] += e.getAmount().getValue();
                 break;
-            case "Allowance":
+            case ALLOWANCE:
                 incomePieChartArr[1] += e.getAmount().getValue();
                 break;
-            case "Profit":
+            case PROFIT:
                 incomePieChartArr[2] += e.getAmount().getValue();
                 break;
-            case "Investment":
+            case INVESTMENT:
                 incomePieChartArr[3] += e.getAmount().getValue();
                 break;
-            case "Gifts":
+            case GIFTS:
                 incomePieChartArr[4] += e.getAmount().getValue();
                 break;
-            case "Others":
+            case OTHERS:
                 incomePieChartArr[5] += e.getAmount().getValue();
                 break;
             default:
@@ -243,24 +243,24 @@ public class ModelManager implements Model {
         double[] expensePieChartArr = new double[6];
 
         for (Entry e : filteredExpenditure) {
-            String tagName = e.getTag().getTagName();
+            Tag.ExpenditureTag tagName = (Tag.ExpenditureTag) e.getTag().getEntryTag();
             switch (tagName) {
-            case "Food":
+            case FOOD:
                 expensePieChartArr[0] += e.getAmount().getValue();
                 break;
-            case "Groceries":
+            case GROCERIES:
                 expensePieChartArr[1] += e.getAmount().getValue();
                 break;
-            case "Entertainment":
+            case ENTERTAINMENT:
                 expensePieChartArr[2] += e.getAmount().getValue();
                 break;
-            case "Education":
+            case EDUCATION:
                 expensePieChartArr[3] += e.getAmount().getValue();
                 break;
-            case "Housing":
+            case HOUSING:
                 expensePieChartArr[4] += e.getAmount().getValue();
                 break;
-            case "Others":
+            case OTHERS:
                 expensePieChartArr[5] += e.getAmount().getValue();
                 break;
             default:
@@ -304,7 +304,7 @@ public class ModelManager implements Model {
         ObservableList<XYChart.Data<String, Number>> expenseSeries = FXCollections.observableArrayList();
 
         filteredEntryList.forEach(entry -> dateToExpenditureMap.computeIfPresent(
-                entry.getFormattedDate(ISO_LOCAL_DATE), (key, val) -> val.doubleValue() + entry.getAmountValue()));
+            entry.getFormattedDate(ISO_LOCAL_DATE), (key, val) -> val.doubleValue() + entry.getAmountValue()));
 
         for (HashMap.Entry<String, Number> entry : dateToExpenditureMap.entrySet()) {
             expenseSeries.add(new XYChart.Data<>(entry.getKey(), entry.getValue()));

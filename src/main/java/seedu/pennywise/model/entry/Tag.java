@@ -11,9 +11,9 @@ public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tag names should be alphanumeric";
     public static final String INCOME_CONSTRAINTS = "Income tag must only be one of the following: \n"
-            + IncomeTag.getAllTags();
+        + IncomeTag.getAllTags();
     public static final String EXPENDITURE_CONSTRAINTS = "Expenditure tag must only be one of the following: \n"
-            + ExpenditureTag.getAllTags();
+        + ExpenditureTag.getAllTags();
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     /**
@@ -38,7 +38,7 @@ public class Tag {
          * Checks that the input of {@code tag} is a valid income tag.
          */
         public static boolean isValid(String tag) {
-            for (IncomeTag incomeTag: values()) {
+            for (IncomeTag incomeTag : values()) {
                 if (incomeTag.name().equalsIgnoreCase(tag)) {
                     return true;
                 }
@@ -48,7 +48,7 @@ public class Tag {
 
         public static String getAllTags() {
             StringBuilder sb = new StringBuilder();
-            for (IncomeTag incomeTag: values()) {
+            for (IncomeTag incomeTag : values()) {
                 sb.append(incomeTag.toString());
                 if (!incomeTag.equals(IncomeTag.OTHERS)) {
                     sb.append(", ");
@@ -65,7 +65,12 @@ public class Tag {
             return camelCaseName;
         }
 
+        public IncomeTag getTag() {
+            return this;
+        }
+
     }
+
     /**
      * Expenditure tags that can be used.
      */
@@ -77,11 +82,12 @@ public class Tag {
         EDUCATION,
         HOUSING,
         OTHERS;
+
         /**
          * Checks that the input of {@code tag} is a valid expenditure tag.
          */
         public static boolean isValid(String tag) {
-            for (ExpenditureTag expenditureTag: values()) {
+            for (ExpenditureTag expenditureTag : values()) {
                 if (expenditureTag.name().equalsIgnoreCase(tag)) {
                     return true;
                 }
@@ -91,7 +97,7 @@ public class Tag {
 
         public static String getAllTags() {
             StringBuilder sb = new StringBuilder();
-            for (ExpenditureTag expenditureTag: values()) {
+            for (ExpenditureTag expenditureTag : values()) {
                 sb.append(expenditureTag.toString());
                 if (!expenditureTag.equals(ExpenditureTag.OTHERS)) {
                     sb.append(", ");
@@ -108,6 +114,7 @@ public class Tag {
         }
 
     }
+
     private final EntryTag tag;
 
     /**
@@ -129,6 +136,10 @@ public class Tag {
             // Should not reach here
             this.tag = null;
         }
+    }
+
+    public EntryTag getEntryTag() {
+        return this.tag;
     }
 
     /**
