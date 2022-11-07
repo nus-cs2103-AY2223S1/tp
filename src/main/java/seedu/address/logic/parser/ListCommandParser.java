@@ -46,7 +46,7 @@ public class ListCommandParser implements Parser<ListCommand> {
 
         return new ListCommand(address, category, gender, tag, parametersAreValid);
     }
-    
+
     private Optional<Category> getFilteredCategory(ArgumentMultimap argumentMultimap) {
         List<Optional<Category>> category = new ArrayList<>();
         argumentMultimap.getValue(PREFIX_CATEGORY).ifPresentOrElse(
