@@ -843,28 +843,28 @@ Given below are instructions to test the app manually.
 
 Prerequisites: Existing student records do not have the names or IDs that will be added.
 
-1. Test case: `addStudent nm/Peter Tan id/452B class/1F`  
+* Test case 1: `addStudent nm/Peter Tan id/452B class/1F`  
    * Expected: A new student record with the provided details is added to the list. Details of the student record are shown in the status message. Since no exam grades have been provided, the student card UI does not show anything below the grades section.
 
-2. Test case: `addStudent nm/Alex Yeoh id/123A class/2B exam/CA1 60 exam/CA2 70`
+* Test case 2: `addStudent nm/Alex Yeoh id/123A class/2B exam/CA1 60 exam/CA2 70`
    * Expected: A new student record with the provided details is added to the list. Details of the student record are shown in the status message. Since exam grades have been provided, the student card UI shows the exam scores for each exam that has been provided. 
 
 <div style="page-break-after: always;"></div>
 
-3. Test case: `addStudent nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 e/bobdoe@gmail.com exam/CA1 50`
+* Test case 3: `addStudent nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 e/bobdoe@gmail.com exam/CA1 50`
    * Expected: A new student record with the provided details is added to the list. Details of the student record are shown in the status message. This test case includes parents' details as well.
 
-4. Test case: `addStudent nm/Jonathan Lim id/abc2 class/2A`
+* Test case 4: `addStudent nm/Jonathan Lim id/abc2 class/2A`
    * Expected: The command entered by the user is highlighted red. The status message shows an error: "Id should only contain 3 digits and 1 character". "abc2" is an invalid value for the ID as Class-ify only accepts the last 3 numbers and last letter of a student's ID.
 
 ### 7.3 Editing a student record
 
 Prerequisites: There are at least 2 student records in classify and no students have the name 'Jacob Teo'.
 
-1. Test case: `edit 1 exam/CA2 70 exam/SA1 60`
+* Test case 1: `edit 1 exam/CA2 70 exam/SA1 60`
    * Expected: Adds or updates the CA2 and SA1 exam grades of the 1st student in the list to be `70` and `60` respectively.
 
-2. Test case `edit 2 nm/Jacob Teo`
+* Test case 2: `edit 2 nm/Jacob Teo`
    * Expected: Edits the name of the 2nd student in the list to `Jacob Teo`.
 
 ### 7.4 Deleting a student record
@@ -876,13 +876,13 @@ Prerequisites: A student with name "Alex Yeoh" and ID "123A" exists in Classify.
 To perform them consecutively, you may use `addStudent nm/Alex Yeoh id/123A class/1A` after Test case 1 to add the student record back into classify.
 </div>
 
-1. Test case: `delete nm/Alex Yeoh`
+* Test case 1: `delete nm/Alex Yeoh`
    * Expected: Alex Yeoh's student record is removed from the list. Details of the deleted student record are shown in the status message. 
 
-2. Test case: `delete id/123A`
+* Test case 2: `delete id/123A`
    * Expected: Similar to expected result in Test case 1. 
 
-3. Other incorrect delete commands to try: `delete`, `delete x`
+* Other incorrect delete commands to try: `delete`, `delete x`
    * Expected: The command entered by the user is highlighted red. The status message shows invalid format error message.
 
 <div style="page-break-after: always;"></div>
@@ -891,35 +891,35 @@ To perform them consecutively, you may use `addStudent nm/Alex Yeoh id/123A clas
 
 Prerequisites: Students with "Alex" in their name or "123A" as their ID exist in the list. You may use `addStudent nm/Alex Yeoh id/123A class/1A` to add the student record into Classify.
 
-1. Test case: `find nm/Alex`
+* Test case 1: `find nm/Alex`
    * Expected: Students with "Alex" in their name appears in the list.
 
-2. Test case: `find id/123A`
+* Test case 2: `find id/123A`
    * Expected: Student with "123A" as their ID appears in the list.
 
 ### 7.6 Viewing all student records
 
 Prerequisites: There are existing student records.
 
-1. Test case: `viewAll`
+* Test case: `viewAll`
    * Expected: All student records will appear in the list.
 
 ### 7.7 Viewing student records from a class
 
 Prerequisites: Class provided must exist within the student records.
 
-1. Test case: `viewClass 1A`
+* Test case: `viewClass 1A`
    * Expected: Student records from class 1A will appear in the list.
 
 ### 7.8 Toggling view
 
 Prerequisites for Test case 1: Classify currently shows the parent details in each student card UI.
 
-1. Test case: `toggleView`
+* Test case 1: `toggleView`
    * Expected: Hides parent details in each student card UI.
 
 Prerequisites for Test case 2: Classify currently hide the parent details in each student card UI.
-2. Test case: `toggleView`
+* Test case 2: `toggleView`
     * Expected: Shows parent details in each student card UI.
 
 <div style="page-break-after: always;"></div>
@@ -928,14 +928,14 @@ Prerequisites for Test case 2: Classify currently hide the parent details in eac
 
 Prerequisites: Student records with class "4a" and exam results for "sa1" exists.
 
-1. Test case: `viewStats class/4a exam/sa1 filter/off`
+* Test case: `viewStats class/4a exam/sa1 filter/off`
    * Expected: Displays the mean obtained by class "4A" for "SA1", as well as the list of all the students in the class '4A', arranged in ascending grades for "SA1".
 
 ### 7.10 Saving data
 
 Prerequisites: Missing `data/classify.json` file
 
-1. Test case: Delete `data/classify.json` file and relaunch the application. 
+* Test case: Delete `data/classify.json` file and relaunch the application. 
    * Expected: Application will be populated with sample data.
 
 Click <a href="#top">here</a> to return to the top.

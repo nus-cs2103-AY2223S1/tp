@@ -5,8 +5,8 @@ title: Linus Chan's Project Portfolio Page
 
 ## Project: Class-ify
 
-Class-ify is a class management application** built specially for Singapore Ministry of Education (MOE) teachers
-to monitor their student's academic progress easily**. Teachers can generate exam statistics for each class, and
+Class-ify is a class management application built specially for Singapore Ministry of Education (MOE) teachers
+to monitor their student's academic progress easily. Teachers can generate exam statistics for each class, and
 Class-ify quickly flags out students who require more support for contacting.
 
 It is written in Java and the GUI is build using JavaFX.
