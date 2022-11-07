@@ -15,17 +15,15 @@ Given below are my contributions to the project.
 
 ### Enhancements implemented:
 * Implemented FindPatientCommand, FindAppointmentCommand, FindPatientCommandParser and FindAppointmentCommandParser
-  * FindPatientCommand filters patients by name, phone number, email, address, remarks and tags
+  * FindPatientCommand filters patients by name, address, email, phone, remarks and tags
   * FindAppointmentCommand filters appointments by name, medical test, slot and doctor
   * Both commands are case-insensitive and allow the user to filter by one or multiple fields in a single command
   * Both commands are implemented using many Optional predicates and lambda functions
-  * The filter input is much more flexible than AB3, allowing the user to input partial words, numbers and special characters
+  * Filter input is much more flexible than AB3, allowing the user to input partial words, numbers and special characters
   * Learnt to use regular expressions to restrict the user input to only the appropriate characters for each field
   * Came up with methods to handle edge cases like checking for multiple occurrences of the same prefix in one command
-* SetPaidCommand and SetUnpaidCommand
-  * SetPaidCommand sets the payment status of a patient's bill to "PAID"
-  * SetUnpaidCommand sets the payment status of a patient's bill to "UNPAID"
-  * User enters index of bill on the filtered bill list to set the payment status for both commands
+* Implemented SetPaidCommand and SetUnpaidCommand to set bills' payment statuses
+  * User enters index of bill to set the payment status to paid or unpaid respectively
 * Added tests to check how the commands handle normal and edge cases:
   * FindPatientCommandTest, FindPatientCommandParserTest, FindAppointmentCommandTest and FindAppointmentCommandParserTest
   * SetPaidCommandTest, SetPaidCommandParserTest, SetUnpaidCommandTest and SetUnpaidCommandParserTest
@@ -53,10 +51,3 @@ Given below are my contributions to the project.
 * Debugged and fixed more than half of the bugs from PE Dry Run
 * Led the team by assigning tasks, reminding teammates to complete them and checking through their work
 * Managed and scribed the project Google document and made team submissions
-
-### Review/mentoring contributions:
-* Some of the PRs I reviewed:
-  * [#1](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/174), [#2](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/172), [#3](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/158)
-* Mentored teammates for features, User Guide and Developer Guide:
-  * FindBillCommand and FindBillCommandParser (code was also referenced)
-  * FindBillCommandTest and FindBillCommandParserTest (code was also referenced)
