@@ -17,6 +17,7 @@ title: Developer Guide
   * [Displaying Command Help](#displaying-command-help)
   * [Favourite/Unfavourite Feature](#favouriteunfavourite-feature)
   * [Optional Fields](#optional-fields-in-eateries-_currently-not-in-use_)
+  * [Searching Through Food Guide](#searching-through-food-guide)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 * [Appendix: Requirements](#appendix-requirements)
   * [Product Scope](#product-scope)
