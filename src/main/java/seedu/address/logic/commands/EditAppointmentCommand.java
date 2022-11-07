@@ -21,6 +21,10 @@ import seedu.address.model.util.exceptions.SortedListException;
 
 /**
  * Overwrites the appointment details of an existing person in the address book.
+ *
+ * @author Gerald Teo Jin Wei
+ * @version 1.4
+ * @since 2022-11-07
  */
 public class EditAppointmentCommand extends Command {
 
@@ -44,7 +48,9 @@ public class EditAppointmentCommand extends Command {
     private final EditAppointmentDescriptor editAppointmentDescriptor;
 
     /**
+     * Creates an EditAppointmentCommand to be executed to edit an appointment
      * @param personIndex of the person in the filtered person list
+     * @param appointmentIndex of the appointment in the specified person's appointment list
      * @param editAppointmentDescriptor new appointment details to overwrite with
      */
     public EditAppointmentCommand(Index personIndex, Index appointmentIndex,
@@ -54,11 +60,6 @@ public class EditAppointmentCommand extends Command {
         this.personIndex = personIndex;
         this.appointmentIndex = appointmentIndex;
         this.editAppointmentDescriptor = new EditAppointmentDescriptor(editAppointmentDescriptor);
-    }
-
-
-    public Index getIndex() {
-        return personIndex;
     }
 
     @Override

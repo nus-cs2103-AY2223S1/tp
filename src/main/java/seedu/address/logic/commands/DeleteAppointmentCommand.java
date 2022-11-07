@@ -16,6 +16,10 @@ import seedu.address.model.util.exceptions.SortedListException;
 
 /**
  * Deletes all appointments of an existing person in the address book.
+ *
+ * @author Gerald Teo Jin Wei
+ * @version 1.4
+ * @since 2022-11-07
  */
 public class DeleteAppointmentCommand extends Command {
 
@@ -32,6 +36,7 @@ public class DeleteAppointmentCommand extends Command {
     private final Index appointmentIndex;
 
     /**
+     * Creates a DeleteAppointmentCommand to be executed to delete an appointment
      * @param personIndex of the person in the filtered person list
      * @param appointmentIndex of the person in the filtered person list
      */

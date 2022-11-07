@@ -10,6 +10,10 @@ import seedu.address.model.appointment.Location;
 /**
  * Stores the details to edit the appointment with. Each non-empty field value will replace the
  * corresponding field value of the appointment.
+ *
+ * @author Gerald Teo Jin Wei
+ * @version 1.4
+ * @since 2022-11-07
  */
 public class EditAppointmentDescriptor {
     private DateTime dateTime;
@@ -17,6 +21,7 @@ public class EditAppointmentDescriptor {
 
 
     public EditAppointmentDescriptor() {};
+
     /**
      * Copy constructor.
      */
@@ -36,6 +41,10 @@ public class EditAppointmentDescriptor {
         return Optional.ofNullable(dateTime);
     }
 
+    /**
+     * Set the newly edited DateTime
+     * @param dateTime newly edited dateTime
+     */
     public void setDateTime(DateTime dateTime) {
         this.dateTime = dateTime;
     }
@@ -44,6 +53,10 @@ public class EditAppointmentDescriptor {
         return Optional.ofNullable(location);
     }
 
+    /**
+     * Set the newly edited Location
+     * @param location newly edited location
+     */
     public void setLocation(Location location) {
         this.location = location;
     }

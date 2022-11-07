@@ -6,6 +6,10 @@ import java.util.List;
 
 /**
  * Represents User's command history.
+ *
+ * @author Gerald Teo Jin Wei
+ * @version 1.4
+ * @since 2022-11-07
  */
 public class CommandHistory implements ReadOnlyCommandHistory {
     public static final int MAX_COMMAND_HISTORY_SIZE = 20;
@@ -57,6 +61,10 @@ public class CommandHistory implements ReadOnlyCommandHistory {
         resetCurrentIndexToBeyondMaxIndex();
     }
 
+    /**
+     * Gets the previous command in the command history list
+     * @return String of previous command
+     */
     public String getPrevCommand() {
         if (commandHistoryList.size() == 0) {
             return "";
@@ -67,6 +75,10 @@ public class CommandHistory implements ReadOnlyCommandHistory {
         return commandHistoryList.get(currentIndex);
     }
 
+    /**
+     * Gets the next command in the command history list
+     * @return String of next command
+     */
     public String getNextCommand() {
         int maxZeroBasedIndex = commandHistoryList.size() - 1;
 
@@ -90,14 +102,27 @@ public class CommandHistory implements ReadOnlyCommandHistory {
         currentIndex = commandHistoryList.size();
     }
 
+    /**
+     * Gets the current index
+     * @return current index of command history
+     */
     public int getCurrentZeroBasedIndex() {
         return currentIndex;
     }
 
+    /**
+     * Sets the current index to a new value
+     * @param i new value to set the current index to
+     * @return current index of command history
+     */
     public int setCurrentZeroBasedIndex(int i) {
         return currentIndex = i;
     }
 
+    /**
+     * Returns an unmodifiable command history list
+     * @return Unmodifiable commandhistory list
+     */
     @Override
     public List<String> getCommandHistoryList() {
         return Collections.unmodifiableList(commandHistoryList);

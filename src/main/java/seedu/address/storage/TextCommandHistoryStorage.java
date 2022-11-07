@@ -18,6 +18,10 @@ import seedu.address.model.ReadOnlyCommandHistory;
 
 /**
  * A class to access CommandHistory data stored as a text file on the hard disk.
+ *
+ * @author Gerald Teo Jin Wei
+ * @version 1.4
+ * @since 2022-11-07
  */
 public class TextCommandHistoryStorage implements CommandHistoryStorage {
     private static final Logger logger = LogsCenter.getLogger(TextCommandHistoryStorage.class);

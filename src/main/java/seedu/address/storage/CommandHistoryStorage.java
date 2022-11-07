@@ -8,6 +8,10 @@ import seedu.address.model.ReadOnlyCommandHistory;
 
 /**
  * Represents a storage for {@link seedu.address.model.CommandHistory}.
+ *
+ * @author Gerald Teo Jin Wei
+ * @version 1.4
+ * @since 2022-11-07
  */
 public interface CommandHistoryStorage {
 
