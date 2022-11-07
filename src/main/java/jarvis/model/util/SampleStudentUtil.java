@@ -21,7 +21,7 @@ public class SampleStudentUtil {
             new Student(new StudentName("David Li"), new MatricNum("A8353285P"), new GradeProfile()),
             new Student(new StudentName("Irfan Ibrahim"), new MatricNum("A2833958J"), new GradeProfile()),
             new Student(new StudentName("Roy Balakrishnan"), new MatricNum("A0033458L"),
-                    new GradeProfile())
+                    new GradeProfile()),
         };
     }
 

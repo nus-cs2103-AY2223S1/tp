@@ -40,7 +40,7 @@ public class UniqueTaskListTest {
     @Test
     public void contains_taskWithSameIdentityFieldsInList_returnsTrue() {
         uniqueTaskList.add(MISSION1);
-        Task editedMission = new TaskBuilder(MISSION1).build();
+        Task editedMission = new TaskBuilder(MISSION1).buildWithCompletionStatus();
         assertTrue(uniqueTaskList.contains(editedMission));
     }
 

@@ -19,7 +19,7 @@ public class TaskTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Task mission1Copy = new TaskBuilder(MISSION1).build();
+        Task mission1Copy = new TaskBuilder(MISSION1).buildWithCompletionStatus();
         assertTrue(MISSION1.equals(mission1Copy));
 
         // same object -> returns true

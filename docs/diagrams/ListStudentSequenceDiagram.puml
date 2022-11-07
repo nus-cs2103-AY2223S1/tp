@@ -1,7 +1,13 @@
 @startuml
 !include style.puml
+scale 2.5
+
+box Ui UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+end box
 
 box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ListStudentCommand" as ListStudentCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -10,7 +16,12 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
--> ListStudentCommand : execute(model)
+-> MainWindow : executeCommand(commandText)
+activate MainWindow
+
+MainWindow -> LogicManager : execute(commandText)
+activate LogicManager
+LogicManager -> ListStudentCommand : execute(model)
 activate ListStudentCommand
 
 ListStudentCommand -> Model : updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS)
@@ -26,7 +37,15 @@ activate CommandResult
 CommandResult --> ListStudentCommand
 deactivate CommandResult
 
-[<--ListStudentCommand : commandResult
+ListStudentCommand --> LogicManager : commandResult
 deactivate ListStudentCommand
 
+LogicManager --> MainWindow : commandResult
+deactivate LogicManager
+
+MainWindow -> MainWindow : handleList(commandResult)
+activate MainWindow
+
+[<-- MainWindow
+deactivate MainWindow
 @enduml

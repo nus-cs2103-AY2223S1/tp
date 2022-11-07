@@ -25,14 +25,14 @@ public class MarkTaskCommand extends Command {
 
     public static final String MESSAGE_MARK_TASK_SUCCESS = "Marked task as done: %1$s";
 
-    private final Index targetIndex;
+    private final Index taskIndex;
 
     /**
      * Creates a MarkTaskCommand to mark the task at the specified index as done.
      */
-    public MarkTaskCommand(Index targetIndex) {
-        requireNonNull(targetIndex);
-        this.targetIndex = targetIndex;
+    public MarkTaskCommand(Index taskIndex) {
+        requireNonNull(taskIndex);
+        this.taskIndex = taskIndex;
     }
 
     @Override
@@ -40,11 +40,11 @@ public class MarkTaskCommand extends Command {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (taskIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
         }
 
-        Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
+        Task taskToMark = lastShownList.get(taskIndex.getZeroBased());
         taskToMark.markAsDone();
         model.setTask(taskToMark, taskToMark);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
@@ -53,10 +53,17 @@ public class MarkTaskCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof MarkTaskCommand // instanceof handles nulls
-                && targetIndex.equals(((MarkTaskCommand) other).targetIndex));
-        // state check
+        if (other == this) { // short circuit if same object
+            return true;
+        }
+
+        if (!(other instanceof MarkTaskCommand)) { // instanceof handles nulls
+            return false;
+        }
+
+        MarkTaskCommand otherMarkTask = (MarkTaskCommand) other;
+
+        return taskIndex.equals(otherMarkTask.taskIndex);
     }
 }
 

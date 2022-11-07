@@ -2,8 +2,14 @@ package jarvis.logic.parser;
 
 import static jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static jarvis.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON_INDEX;
+import static jarvis.logic.parser.CliSyntax.PREFIX_NOTE;
+import static jarvis.logic.parser.CliSyntax.PREFIX_NOTE_INDEX;
+import static jarvis.logic.parser.CliSyntax.PREFIX_PARTICIPATION;
+import static jarvis.logic.parser.CliSyntax.PREFIX_STUDENT_INDEX;
 import static jarvis.testutil.Assert.assertThrows;
 import static jarvis.testutil.TypicalIndexes.INDEX_FIRST_LESSON;
+import static jarvis.testutil.TypicalIndexes.INDEX_FIRST_NOTE;
 import static jarvis.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static jarvis.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static jarvis.testutil.TypicalLessons.CONSULT_1;
@@ -28,11 +34,14 @@ import org.junit.jupiter.api.Test;
 import jarvis.logic.commands.AddConsultCommand;
 import jarvis.logic.commands.AddLessonCommandTest;
 import jarvis.logic.commands.AddMasteryCheckCommand;
+import jarvis.logic.commands.AddNoteCommand;
+import jarvis.logic.commands.AddParticipationCommand;
 import jarvis.logic.commands.AddStudentCommand;
 import jarvis.logic.commands.AddStudioCommand;
 import jarvis.logic.commands.AddTaskCommand;
 import jarvis.logic.commands.ClearCommand;
 import jarvis.logic.commands.DeleteLessonCommand;
+import jarvis.logic.commands.DeleteNoteCommand;
 import jarvis.logic.commands.DeleteStudentCommand;
 import jarvis.logic.commands.DeleteTaskCommand;
 import jarvis.logic.commands.EditStudentCommand;
@@ -62,6 +71,7 @@ import jarvis.testutil.StudentBuilder;
 import jarvis.testutil.StudentUtil;
 import jarvis.testutil.TaskBuilder;
 import jarvis.testutil.TaskUtil;
+
 
 public class JarvisParserTest {
 
@@ -106,6 +116,36 @@ public class JarvisParserTest {
                 LessonUtil.getPartialAddConsultCommand(consult) + " " + "si/1");
         assertEquals(new AddConsultCommand(CONSULT_DESCRIPTION_1,
                 TP3, AddLessonCommandTest.getFirstStudentIndex()), command);
+    }
+
+    @Test
+    public void parseCommand_addParticipation() throws Exception {
+        AddParticipationCommand command = (AddParticipationCommand) parser.parseCommand(
+                AddParticipationCommand.COMMAND_WORD
+                        + " " + PREFIX_PARTICIPATION + 100
+                        + " " + PREFIX_LESSON_INDEX + INDEX_FIRST_LESSON.getOneBased()
+                        + " " + PREFIX_STUDENT_INDEX + INDEX_FIRST_STUDENT.getOneBased());
+        assertEquals(new AddParticipationCommand(100, INDEX_FIRST_LESSON, INDEX_FIRST_STUDENT), command);
+    }
+
+    @Test
+    public void parseCommand_addNote() throws Exception {
+        AddNoteCommand command = (AddNoteCommand) parser.parseCommand(
+                AddNoteCommand.COMMAND_WORD
+                        + " " + PREFIX_LESSON_INDEX + INDEX_FIRST_LESSON.getOneBased()
+                        + " " + PREFIX_STUDENT_INDEX + INDEX_FIRST_STUDENT.getOneBased()
+                        + " " + PREFIX_NOTE + "Test");
+        assertEquals(new AddNoteCommand(INDEX_FIRST_LESSON, INDEX_FIRST_STUDENT, "Test"), command);
+    }
+
+    @Test
+    public void parseCommand_deleteNote() throws Exception {
+        DeleteNoteCommand command = (DeleteNoteCommand) parser.parseCommand(
+                DeleteNoteCommand.COMMAND_WORD
+                        + " " + PREFIX_NOTE_INDEX + INDEX_FIRST_NOTE.getOneBased()
+                        + " " + PREFIX_LESSON_INDEX + INDEX_FIRST_LESSON.getOneBased()
+                        + " " + PREFIX_STUDENT_INDEX + INDEX_FIRST_STUDENT.getOneBased());
+        assertEquals(new DeleteNoteCommand(INDEX_FIRST_NOTE, INDEX_FIRST_LESSON, INDEX_FIRST_STUDENT), command);
     }
 
     @Test

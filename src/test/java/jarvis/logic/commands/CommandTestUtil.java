@@ -1,13 +1,19 @@
 package jarvis.logic.commands;
 
+import static jarvis.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static jarvis.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static jarvis.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON;
+import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON_INDEX;
 import static jarvis.logic.parser.CliSyntax.PREFIX_MATRIC_NUM;
 import static jarvis.logic.parser.CliSyntax.PREFIX_NAME;
+import static jarvis.logic.parser.CliSyntax.PREFIX_NOTE;
+import static jarvis.logic.parser.CliSyntax.PREFIX_NOTE_INDEX;
+import static jarvis.logic.parser.CliSyntax.PREFIX_PARTICIPATION;
 import static jarvis.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static jarvis.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static jarvis.logic.parser.CliSyntax.PREFIX_STUDENT_INDEX;
+import static jarvis.logic.parser.CliSyntax.PREFIX_TASK_DESC;
 import static jarvis.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,6 +25,8 @@ import java.util.List;
 
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.exceptions.CommandException;
+import jarvis.model.Lesson;
+import jarvis.model.LessonBook;
 import jarvis.model.Model;
 import jarvis.model.NameContainsKeywordsPredicate;
 import jarvis.model.Student;
@@ -26,11 +34,16 @@ import jarvis.model.StudentBook;
 import jarvis.model.Task;
 import jarvis.model.TaskBook;
 import jarvis.testutil.EditStudentDescriptorBuilder;
+import jarvis.testutil.TypicalIndexes;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
+    // students
+    public static final String STUDENT_INDEX = " " + PREFIX_STUDENT_INDEX
+            + TypicalIndexes.INDEX_FIRST_STUDENT.getOneBased();
+    public static final String INVALID_STUDENT_INDEX = " " + PREFIX_STUDENT_INDEX + "a";
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
@@ -47,9 +60,22 @@ public class CommandTestUtil {
     public static final String INVALID_MATRIC_NUM_SIX_DIGITS = " " + PREFIX_MATRIC_NUM + "A123456U";
     public static final String INVALID_MATRIC_NUM_UNCAPITALISED = " " + PREFIX_MATRIC_NUM + "a1234567U";
 
+    // tasks
     public static final String VALID_TASK_DESC_MISSION1 = "Mark mission 1";
     public static final String VALID_TASK_DESC_MISSION2 = "Mark mission 2";
     public static final LocalDate VALID_TASK_DEADLINE = LocalDate.of(2022, 10, 20);
+    public static final String VALID_TASK_DEADLINE_MISSION1 = "2022-10-23";
+
+    public static final String TASK_DESC_MISSION1 = " " + PREFIX_TASK_DESC + VALID_TASK_DESC_MISSION1;
+    public static final String TASK_DEADLINE_MISSION1 = " " + PREFIX_DEADLINE + VALID_TASK_DEADLINE_MISSION1;
+
+    public static final String INVALID_TASK_DEADLINE = " " + PREFIX_DEADLINE + "2022-55-55";
+
+    // lessons
+    public static final String LESSON_INDEX = " " + PREFIX_LESSON_INDEX
+            + TypicalIndexes.INDEX_FIRST_LESSON.getOneBased();
+    public static final String INVALID_LESSON_INDEX = " " + PREFIX_LESSON_INDEX + "a";
+    public static final String NOTE_INDEX = " " + PREFIX_NOTE_INDEX + TypicalIndexes.INDEX_FIRST_NOTE.getOneBased();
 
     public static final String VALID_CONSULT_DESC = "Consult on recursion";
     public static final String VALID_MASTERY_CHECK_DESC = "Mastery Check 1";
@@ -74,7 +100,18 @@ public class CommandTestUtil {
     public static final String INVALID_LESSON_END_TIME = " " + PREFIX_END_TIME + "25:00";
     public static final String INVALID_LESSON_STUDENT_INDEX = " " + PREFIX_STUDENT_INDEX + "-1";
 
+    public static final String VALID_NOTE = "This is a valid note";
+    public static final String BLANK_NOTE = "    ";
+    public static final String EMPTY_NOTE = "";
 
+    public static final String NOTE_DESC = " " + PREFIX_NOTE + VALID_NOTE;
+    public static final String BLANK_NOTE_DESC = " " + PREFIX_NOTE + BLANK_NOTE;
+    public static final String EMPTY_NOTE_DESC = " " + PREFIX_NOTE + EMPTY_NOTE;
+
+    public static final String STUDIO_PARTICIPATION = " " + PREFIX_PARTICIPATION + 100;
+    public static final String INVALID_STUDIO_PARTICIPATION = " " + PREFIX_PARTICIPATION + 1000;
+
+    // others
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -126,14 +163,18 @@ public class CommandTestUtil {
         // only do so by copying its components.
         StudentBook expectedStudentBook = new StudentBook(actualModel.getStudentBook());
         TaskBook expectedTaskBook = new TaskBook(actualModel.getTaskBook());
+        LessonBook expectedLessonBook = new LessonBook(actualModel.getLessonBook());
         List<Student> expectedFilteredStudentList = new ArrayList<>(actualModel.getFilteredStudentList());
         List<Task> expectedFilteredTaskList = new ArrayList<>(actualModel.getFilteredTaskList());
+        List<Lesson> expectedFilteredLessonList = new ArrayList<>(actualModel.getFilteredLessonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedStudentBook, actualModel.getStudentBook());
         assertEquals(expectedTaskBook, actualModel.getTaskBook());
+        assertEquals(expectedLessonBook, actualModel.getLessonBook());
         assertEquals(expectedFilteredStudentList, actualModel.getFilteredStudentList());
         assertEquals(expectedFilteredTaskList, actualModel.getFilteredTaskList());
+        assertEquals(expectedFilteredLessonList, actualModel.getFilteredLessonList());
     }
     /**
      * Updates {@code model}'s filtered student list to show only the student at the given {@code targetIndex} in the

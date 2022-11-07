@@ -1,0 +1,44 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+scale 1.5
+
+package UI <<Rectangle>> {
+package ExpandedLists <<Rectangle>> {
+    Class ExpandedStudentListPanel
+    Class ExpandedTaskListPanel
+    Class ExpandedLessonListPanel
+    Class ExpandedStudentCard
+    Class ExpandedTaskCard
+    Class ExpandedLessonCard
+}
+Class MainWindow
+Class "{abstract}\nUiPart" as UiPart
+}
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+MainWindow *-down-> "1" ExpandedStudentListPanel
+MainWindow *-down-> "1" ExpandedTaskListPanel
+MainWindow *-down-> "1" ExpandedLessonListPanel
+
+ExpandedStudentListPanel -down-> "*" ExpandedStudentCard
+ExpandedTaskListPanel -down-> "*" ExpandedTaskCard
+ExpandedLessonListPanel -down-> "*" ExpandedLessonCard
+
+ExpandedStudentListPanel --|> UiPart
+ExpandedTaskListPanel --|> UiPart
+ExpandedLessonListPanel --|> UiPart
+ExpandedStudentCard --|> UiPart
+ExpandedTaskCard --|> UiPart
+ExpandedLessonCard --|> UiPart
+
+ExpandedStudentCard ...> Model
+ExpandedTaskCard ..> Model
+ExpandedLessonCard ..> Model
+
+@enduml

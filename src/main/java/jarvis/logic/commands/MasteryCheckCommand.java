@@ -11,6 +11,7 @@ import java.util.List;
 import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.exceptions.CommandException;
+import jarvis.logic.commands.exceptions.InvalidAssessmentException;
 import jarvis.model.Assessment;
 import jarvis.model.Model;
 import jarvis.model.Student;
@@ -27,6 +28,7 @@ public class MasteryCheckCommand extends Command {
             + PREFIX_MC_NUM + "MC_NUM " + PREFIX_MC_RES + "MC_RESULT\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_MC_NUM + "1 " + PREFIX_MC_RES + "PASS";
 
+    public static final String MESSAGE_SUCCESS = "Updated %1$s for student: %2$s";
     private final Index index;
     private final Assessment assessment;
     private final boolean isPass;
@@ -36,6 +38,9 @@ public class MasteryCheckCommand extends Command {
      */
     public MasteryCheckCommand(Index index, Assessment assessment, boolean isPass) {
         requireAllNonNull(index, assessment, isPass);
+        if (assessment != Assessment.MC1 && assessment != Assessment.MC2) {
+            throw new InvalidAssessmentException();
+        }
         this.index = index;
         this.assessment = assessment;
         this.isPass = isPass;
@@ -54,6 +59,6 @@ public class MasteryCheckCommand extends Command {
         studentToEdit.updateMark(assessment, isPass ? 1 : 0);
         model.setStudent(studentToEdit, studentToEdit);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-        return new CommandResult(String.format("Updated " + assessment + " for " + studentToEdit));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, assessment, studentToEdit));
     }
 }

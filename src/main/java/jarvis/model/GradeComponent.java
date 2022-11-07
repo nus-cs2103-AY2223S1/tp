@@ -1,7 +1,11 @@
 package jarvis.model;
 
+import static java.util.Objects.requireNonNull;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import jarvis.logic.commands.exceptions.InvalidMarkException;
 
 /**
  * Represents a component of a GradeProfile in JARVIS.
@@ -17,6 +21,7 @@ public class GradeComponent {
      * @param assessment The assessment involved.
      */
     public GradeComponent(Assessment assessment) {
+        requireNonNull(assessment);
         this.assessment = assessment;
         isGraded = false;
         marks = 0;
@@ -58,6 +63,9 @@ public class GradeComponent {
     }
 
     public void setGrade(double marks) {
+        if (marks < 0 || marks > assessment.getTotalMarks()) {
+            throw new InvalidMarkException();
+        }
         isGraded = true;
         this.marks = marks;
     }
@@ -68,6 +76,20 @@ public class GradeComponent {
 
     public double getMarks() {
         return marks;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) { // short circuit if same object
+            return true;
+        }
+
+        if (!(other instanceof GradeComponent)) { // instanceof handles nulls
+            return false;
+        }
+
+        GradeComponent gc = (GradeComponent) other;
+        return assessment == gc.assessment && isGraded == gc.isGraded && marks == gc.marks;
     }
 }
 

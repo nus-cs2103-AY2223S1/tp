@@ -20,7 +20,6 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -40,8 +39,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private StudentListPanel studentListPanel;
-    private UiPart<Region> taskListPanel;
-    private UiPart<Region> lessonListPanel;
+    private TaskListPanel taskListPanel;
+    private LessonListPanel lessonListPanel;
     private ExpandedStudentListPanel expStudentListPanel;
     private ExpandedTaskListPanel expTaskListPanel;
     private ExpandedLessonListPanel expLessonListPanel;
@@ -216,11 +215,12 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Displays the default list or an expanded student/task/lesson list, depending on the command.
+     * Displays the default list or an expanded student/task/lesson list, depending on the command result.
      */
     @FXML
-    public void handleList(DisplayedList displayedList) {
+    public void handleList(CommandResult commandResult) {
         hideAllList();
+        DisplayedList displayedList = commandResult.getDisplayedList();
         if (displayedList == DisplayedList.DEFAULT_LIST) {
             defaultList.setVisible(true);
         } else if (displayedList == DisplayedList.EXP_STUDENT_LIST) {
@@ -271,7 +271,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isList()) {
-                handleList(commandResult.getDisplayedList());
+                handleList(commandResult);
             }
 
             if (commandResult.isExit()) {
