@@ -10,6 +10,7 @@ title: Developer Guide
 ## **1. Acknowledgements**
 
 * Adapted `Theme` class to switch between dark and light mode from [here](https://github.com/junlong4321/tp/blob/master/src/main/java/tutorspet/ui/stylesheet/Stylesheet.java).
+* Adapted timetable GUI implementation from [here](https://github.com/AY2021S1-CS2103T-W13-3/tp/blob/master/src/main/java/seedu/homerce/ui/schedulepanel/SchedulePanel.java).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -465,7 +466,7 @@ After the ProfNUS receives the instruction to edit a target `Schedule` (indicate
 
 During the execution, the following validity checks will be conducted:
 
-- Index validity check — The model will check if the index is valid. More specifically, the index should be within the range of $1$ to $n$ where $n$ is the total number of schedules. If the index is invalid, then a `CommandException` will be thrown.
+- Index validity check — The model will check if the index is valid. More specifically, the index should be within the range of $$1$$ to $$n$$ where $$n$$ is the total number of schedules. If the index is invalid, then a `CommandException` will be thrown.
 - Schedule conflict check — The model will check if the edited schedule conflicts with any existing schedules that the user has. If conflict happens, then a `CommandException` will be thrown.
 - Optional parameters check — The parser will check if at least one of fields of the `Schedule` is edited. If no modification exists, then a `ParserException` will be thrown.
 
@@ -612,7 +613,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. ProfNUS shows a list of modules
 3. User requests to view more details about a module in the list
 4. ProfNUS displays the module name, module code, module description,
-and any tags given to the module, along with the schedules for that module.
+   and any tags given to the module, along with the schedules for that module.
 
    Use case ends.
 

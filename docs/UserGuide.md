@@ -1,7 +1,8 @@
 ---
 layout: page
-title: <img src="images/userguide/ProfNUS.png" alt="img" style="zoom:5%;" /> User Guide
+title: User Guide
 ---
+<img src="images/userguide/ProfNUS.png" alt="img" style="zoom:10%;" />
 
 Made for SOC (School of Computing) Professors, **ProfNUS** is the **easiest way to keep track of your teaching schedule and organize information regarding the students and modules you teach.** It is optimized for users who prefer Command Line Interface (CLI) so that frequent tasks can be done faster by typing in commands which is perfect for SOC Professors! Interested? :wink: Continue reading to find out more!
 
@@ -72,9 +73,8 @@ The table below shows the general symbols and syntax used throughout the user gu
 | Syntax                                                                      | Definition                                                                                               |
 |-----------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------|
 | `command`                                                                   | A grey highlighted block specifies an executable command that can be entered into the command box.       |
-| <div markdown="block" class="alert alert-info"> :bulb: </div>               | An bulb icon indicates that the following text is a tip.                                                 |
 | <div markdown="block" class="alert alert-info"> :information_source: </div> | An information sign indicates that the following text provides additional information that you may need. |
-| <div markdown="block" class="alert alert-danger"> :exclamation: </div>      | An exclamation mark indicates that the following text is important.                                      |
+| <div markdown="block" class="alert alert-warning"> :exclamation: </div>     | An exclamation mark indicates that the following text is important.                                      |
 
 #### 3.2.2. Command Syntax
 Notes about the command format:
@@ -126,7 +126,7 @@ You can use this command to access the help page, where you can find our User Gu
 ### 4.2. Module Manager
 
 As SOC Professors, you would be teaching at least one or more modules.
-In ProfNUS, you are able to add modules in to our module list.
+In ProfNUS, you are able to add modules into our module list.
 We are able to save the module's name, unique module code, description
 and other module related information such as your teaching schedule for the module.
 
@@ -302,7 +302,7 @@ Now, let's use `mdel` to delete a module in ProfNUS!
 ### 4.3. Student Manager
 
 As SOC Professors, you certainly have many students and teaching assistants to keep track of.
-In ProfNUS, you are able to add students / teaching assistants in to our contact list.
+In ProfNUS, you are able to add students / teaching assistants into our contact list.
 We are able to save the individual's name, unique student id, phone number, email, telegram handle,
 address and other school related information such as modules the student is taking, modules which
 the student is a teaching assistant for and the class groups that the student is in.
@@ -811,16 +811,6 @@ Now, let's use `sclear` to clear all schedules of CS2101 and CS2103T in the sche
 
 ![sclear_step2](images/userguide/sclear_step2.png)
 
-
-
-
-
-
-
-
-
-
-
 ### 4.5. Clearing all entries: `clear`
 
 Clears all entries from ProfNUS.
@@ -889,15 +879,14 @@ If your changes to the data file makes its format invalid, ProfNUS will discard 
 
 ### 6.4. Schedule Manager Command Summary
 
-| Action                                                    | Format                                                                                            | Example                                                          |
-|-----------------------------------------------------------|---------------------------------------------------------------------------------------------------|------------------------------------------------------------------|
-| [View your schedule list](#442-view-your-schedule-view)   | `sview [c/MODULE_CODE]... [w/WEEKDAY]...`                                                         | `sview c/CS2040S w/Monday`                                       |
-| [View your timetable](#447-view-your-timetable-tview)     | `tview [MODE]`                                                                                    | `tview v`                                                        |
-| [Add your schedule](#444-add-your-schedule-sadd)          | `sadd c/MODULE_CODE w/WEEKDAY ct/PERIOD cc/CLASS_TYPE cg/CLASS_GROUP cv/VENUE`                    | `sadd c/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD` |
-| [Edit your schedule](#445-edit-your-schedule-sedit)       | `sedit INDEX [c/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cg/CLASS_GROUP] [cv/VENUE]` | `sedit 1 w/Monday ct/09:00-10:00 cc/tut cv/COM1-B103`            |
-| [Delete your schedule](#446-delete-your-schedule-sdelete) | `sdelete INDEX`                                                                                   | `sdelete 1`                                                      |
-| [Clear your schedule](#447-clear-your-schedule-sclear)    | `sclear [c/MODULE_CODE]...`                                                                       | `sclear c/CS2103T m/CS1101S`                                     |
-
+| Action                                                    | Format                                                       | Example                                                      |
+|-----------------------------------------------------------| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [View your schedule list](#442-view-your-schedule-sview)  | `sview [c/MODULE_CODE]... [w/WEEKDAY]...`                    | `sview c/CS2040S w/Monday`                                   |
+| [View your timetable](#443-view-your-timetable-tview)     | `tview [MODE]`                                               | `tview v`                                                    |
+| [Add your schedule](#444-add-your-schedule-sadd)          | `sadd c/MODULE_CODE w/WEEKDAY ct/PERIOD cc/CLASS_TYPE cg/CLASS_GROUP cv/VENUE` | `sadd c/CS1101S w/Tuesday ct/10:00-12:00 cc/lec cg/L1 cv/I3-AUD` |
+| [Edit your schedule](#445-edit-your-schedule-sedit)       | `sedit INDEX [c/MODULE_CODE] [w/WEEKDAY] [ct/PERIOD] [cc/CLASS_TYPE] [cg/CLASS_GROUP] [cv/VENUE]` | `sedit 1 w/Monday ct/09:00-10:00 cc/tut cv/COM1-B103`        |
+| [Delete your schedule](#446-delete-your-schedule-sdelete) | `sdelete INDEX`                                              | `sdelete 1`                                                  |
+| [Clear your schedule](#447-clear-your-schedule-sclear)    | `sclear [c/MODULE_CODE]...`                                  | `sclear c/CS2103T m/CS1101S`                                 |
 
 ### 6.5. Miscellaneous Command Summary
 
