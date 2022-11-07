@@ -411,9 +411,6 @@ Below is a sequence diagram that illustrates the execution of `listMeeting d/tom
 
 ![ListMeetingSequenceDiagram](images/ListMeetingSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** `pred` refers to a predicate where the `Meeting` are filtered based on that predicate.
-</div>
-
 ##### Design Considerations
 
 **Aspect: What the `listMeeting` command accepts for the `PERIOD` prefix:**
