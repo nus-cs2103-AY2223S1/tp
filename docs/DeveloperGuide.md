@@ -216,7 +216,7 @@ Additionally, it will also contain these fields:
 - `TelegramHandle`: The student's telegram handle.
 - `studentModuleInfo`: A set of ModuleCode's that the student is taking.
 - `teachingAssistantInfo`: A set of ModuleCode's that the student is a teaching assistant for.
-- 'classGroups': A set of String's that represent the class groups the student is in.
+- `classGroups`: A set of String's that represent the class groups the student is in.
 
 #### Design consideration:
 
@@ -297,7 +297,38 @@ A professor is unlikely to remember a Student's Id and it would also be a hassle
 to just typing the index of the student. Additionally, with other commands to search through the list of students by module
 and name, it should be easy for a professor to find the desired student to edit. Therefore, option 2 is preferred.
 
-### 5.3. View module list feature
+### 5.3. Module Class
+
+#### Implementation
+
+The class diagram below shows our current implementation of the `Module` class.
+![ModuleClassDiagram](images/ModuleClassDiagram.png)
+
+Each `Module` in ProfNUS will contain the following fields:
+- `ModuleName`: The name of the module.
+- `ModuleCode`: The unique module code used to identify the module. 
+- `ModuleDescription`: The description of the module.
+- `tags`: A set of string tags that describes the module.
+- `schedules`: A set of Schedule's that represent the classes and lectures the user has for the module.
+
+#### Design consideration:
+
+##### Aspect: How to ensure Module being added is unique
+
+* **Alternative 1 (current choice):** Ensure that the `ModuleCode` of each module is unique
+    * Pros:
+        * Convenient and easy to implement since all modules have a unique module code given by NUS.
+    * Cons:
+        * The `ModuleCode` field is an editable string, and we cannot ensure that the `ModuleCode` that is added is
+          a valid code in NUS.
+
+* **Alternative 2:** Ensure that the `ModuleName` of each module is unique
+  * Pros:
+      * `ModuleCode` would not be a necessary field, less information required. 
+  * Cons:
+      * NUS modules can share the same name. For example, CS2103 and CS2103T have the module name Software Engineering. Thus, with this implementation, you would not be able to add two Software Engineering modules.
+
+### 5.4. View module list feature
 
 #### Implementation
 
@@ -309,7 +340,7 @@ The following sequence diagram shows how view module operation works :
 
 ![ListModuleSequence](images/ListModuleSequence.png)
 
-### 5.4. View students and tutors in module feature
+### 5.5. View students and tutors in module feature
 
 #### Implementation
 
@@ -319,8 +350,6 @@ The method updates the student and tutor list and filters it according to the gi
 
 The following sequence diagram shows how the find module by module code operation works:
 ![ViewModuleSequenceDiagram](./images/ViewModuleSequenceDiagram.png)
-
-<div style="page-break-after: always;"></div>
 
 The following activity diagram summarizes what happens when a user executes a `mview` command:
 
@@ -340,7 +369,7 @@ Modules like CS2103T, CS2103R and CS2103 have the same module name "Software Eng
 This would mean that we would need to have unique module names. However, this is not possible if the professor is teaching modules that have the same name but different code.
 As module code is the only unique field Module has, we decided to view modules by module code only to avoid any errors.
 
-### 5.5. The edit a module feature
+### 5.6. The edit a module feature
 
 #### Implementation
 
@@ -368,7 +397,7 @@ The following activity diagram summarizes what happens when a user executes a `m
 Reason for choosing option 1:
 A professor is more highly likely to remember the module codes of the modules that he is teaching rather than the index in the list in our application. Hence, an additional step would be required of the professor if option 2 were to be chosen. Therefore, option 1 is preferred.
 
-###  5.6. AddSchedule feature
+###  5.7. AddSchedule feature
 
 #### Implementation
 
@@ -389,7 +418,7 @@ During the execution, the following validity checks will be conducted:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the command isn't executed successfully and a `CommandException` is thrown, then the new schedule won't be added to the ProfNUS.</div>
 
-### 5.7. EditSchedule feature
+### 5.8. EditSchedule feature
 
 #### Implementation
 
@@ -425,7 +454,7 @@ Reason for choosing Option 2:
 
 To locate a schedule uniquely with schedule, a user needs to know the module code, class type, and class group. For example, `CS2103T tut W11`. However, when there are too many groups, professors can easily forget which group he is looking for. Therefore, using the index is better in this case.
 
-### 5.8. ViewSchedule feature
+### 5.9. ViewSchedule feature
 
 #### Implementation
 
