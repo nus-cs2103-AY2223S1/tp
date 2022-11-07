@@ -116,6 +116,45 @@ Upon completing this section, you should be able to explore SoConnect on your ow
 
 ### 6.1. Layout
 
+![SoConnect GUI](images/SoConnectGUI.png)
+
+When you launch SoConnect, SoConnect will appear in the form of Graphical User Interface (<a href="#gui">GUI</a>). Let's look at the layout of the different components in SoConnect.
+
+**SoConnect's GUI Components:**
+
+![SoConnect GUI With Label](images/SoConnectGUIWithLabel.png)
+
+#### 6.1.1 Command Box
+
+![Command Box](images/CommandBox.png)
+
+* Command box allows you to enter commands for actions that you wish to perform. Try typing `help` in the command box and see what happens!
+
+#### 6.1.2 Result Box
+
+**Success message**:
+![Result Box Success](images/ResultBoxSuccess.png)
+
+**Error message**:
+![Result Box Error](images/ResultBoxError.png)
+
+* The result box provides a feedback message after a command is entered.
+* The feedback message will either be a success message to indicate that the command has successfully executed or an error message to inform you that there is an error with the command that you just entered.
+
+#### 6.1.3 Contact List
+
+![Contact List With Label](images/ContactListWithLabel.png)
+
+* Contact list displays the contacts with their information in the contact card.
+
+#### 6.1.4 Todo List
+
+![Todo List With Label](images/TodoListWithLabel.png)
+
+* Todo list displays the todos with their information in the todo card.
+* The todo header changes based on the todos that are shown in the todo list.
+
+
 ### 6.2. Key Definitions
 
 ### 6.3. Command Format
@@ -239,42 +278,70 @@ Format: `list`
 
 #### 7.2.4. Searching for a contact: `search`
 
-Search for contacts using partial information.
+You can easily find the contacts that you are interested in using the `search` command as shown below. The `search` command has two formats - `and` condition and `or` condition search, it also comes with [autocomplete](#autocomplete) feature to help you to search more efficiently without typing the command in full.
 
-Format: `search [CONDITION] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
+**1. `and` Condition Search:**
 
-* `search t/TAG1 t/TAG2…` searches for contacts that contain all the given tags.
-* `search and n/NAME p/PHONE…` searches for contacts that match all the given information.
-* `search n/NAME p/PHONE…` and `search and n/NAME p/PHONE…` will return the same contacts that match all the given information.
-* `search or t/TAG1 t/TAG2…` searches for contacts that contain any of the given tags.
+If you are looking for a very specific search, you can use `and` condition search to search for contacts that have information matches **all** the given parameter.
+
+Format: `search [and] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
+
 * The search using `n/NAME` is case-insensitive. (e.g. `hans` will match `Hans`).
-* Displays a list of relevant contacts related to the search query if no search result available. A contact is considered relevant if there are high matches of characters between the contact information and search keyword. For example, `David Li` and `Charlotte` are relevant to `search n/al` because these names contain characters `a` and `l` in it.
+* At least 1 of the optional parameters must be provided.
 
-Example:
-* `search t/family` returns all contacts tagged with family in the contact list.
-* `search and a/NUS p/86178789` returns all contacts with that address and phone number.
-* `search t/cs2103t t/tp` returns all contacts tagged with both cs2103t and tp.
-* `search or t/friends t/family` returns all contacts tagged with either friends or family.
-* `search n/Johm` is supposed to return an empty result since there is no contact named `Johm` in the list of contacts, but now it will return contacts with names similar to that. For example, `John`.
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**<br/>
+The preamble `and` is optional, so you can perform `and` condition search without including the word `and`, i.e. `search n/Alex p/12345678` gives the same result as `search and n/Alex p/12345678`.
+</div>
 
-Autocompleting search: `search`
+**Example Input in Command Box**
+```
+`search and n/Bernice t/cs2100 t/friends`
+```
 
-Displays a list of search queries based on the current search query with the last parameter completed. The completed parameter will depend on the contacts that match the current search query. User can choose one of the search queries and perform the searching without having to type the full parameter.
+**Example Result**
 
-Format: Refer to the [`search`](#724-searching-for-a-contact-search) command format above.
+![And Condition Search](images/AndConditionSearch.png)
 
-* This feature is only available when search command is entered (i.e. the command entered matches the [`search`](#724-searching-for-a-contact-search) format stated above).
-* Only the last parameter will be completed (e.g. `search and n/NAME p/PHONE`, only the last parameter `PHONE` will be completed).
-* The list of search queries will include the current search query.
-* No result will be displayed if there is no contact matches the current search query.
-* No result will be displayed if the last parameter is empty.
+**2. `or` Condition Search:**
 
-Example:
-* `search or n/John p/` displays nothing as the last parameter `PHONE` is empty.
-* `search and n/John a/N`, displays a list of search queries containing `search and n/John a/N` and `search and n/John a/NUS` if SoConnect has contacts with name `John` and address `NUS`
-* `search and n/John a/N` displays nothing if SoConnect does not have any contact with name `John` or has contact with name `John` but does not start with `N`.
-* `search or n/John a/N` displays a list of search queries containing `search and n/John a/N`, `search and n/John a/NUS`, `search and n/John a/NYC` if SoConnect has contacts with address `NTU` and `NYC`, does not have to care about the name in the contact since it is `or` condition.
-* `search or n/John a/N` displays nothing if SoConnect does not have contacts with address starts with `N`.
+If you wish to broaden your search result, you can use `or` condition search to search for contacts that have information matches **at least one** of the parameters given.
+
+Format: `search or [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
+
+* The search using `n/NAME` is case-insensitive. (e.g. `hans` will match `Hans`).
+* At least 1 of the optional parameters must be provided.
+
+**Example Input in Command Box**
+```
+`search or n/Bernice t/cs2100 t/friends`
+```
+
+**Example Result**
+
+![Or Condition Search](images/OrConditionSearch.png)
+
+Notice there are more contacts listed as compared to `search and n/Bernice t/cs2100 t/friends`.
+
+<div markdown="block" class="alert alert-primary">
+**:memo: Note:**<br/>
+For both `and` and `or` condition search, you still get a list of relevant contacts related to your search query if no search result available. This is useful as you might still get the contacts that you are searching for when you entered some characters wrongly.<br/><br/>A contact is considered relevant if there are high matches of characters between the contact information and search parameters. For example, the information `David Li` and `Charlotte` are relevant to `search n/al` because these names contain characters `a` and `l` in it.
+</div>
+
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+Autocomplete:
+
+![Autocomplete With Label](images/AutocompleteWithLabel.png)
+
+Autocomplete helps you to get your search done faster as you do not have to type the full parameter to search. This also reduce the chances of you typing the wrong character as you have lesser characters to type.
+
+* Autocomplete generates a list of autocomplete entries based on the current search query.
+* Autocomplete only completes the last parameter, in this case `t/f`.
+* If no contact matches the current search query, empty list of autocomplete entries will be generated and autocomplete box will be hidden.
+
+</div>
 
 <br>
 
@@ -372,38 +439,58 @@ Examples:
 
 #### 7.3.2. Editing a todo : `todo edit`
 
-Edits an existing todo in your SoConnect.
+You can update the information of a todo easily using the `todo edit` command as shown below. All you need is the `INDEX` of the todo you want to modify along with the parameters you want to update.
 
 Format: `todo edit INDEX [d/DESCRIPTION] [date/DATE] [pr/PRIORITY] [t/TAG]…​`
 
-* Edits the todo at the specified [`INDEX`](#).
-* At least one of the optional fields must be provided.
-* Parameters given will overwrite the existing values completely.
-  * For example, giving 1 or more tag(s) in the edit command will replace all existing tags with the ones given in the edit command.
-  * `Coming soon in v1.5`, you can use `tag add` and `tag remove` to modify tags in a todo instead of only using `todo edit`.
+* At least 1 of the 4 optional fields must be provided.
+* Existing information will be overwritten with the parameters provided. Information of the parameters not provided will remain unchanged.
 
-Examples:
-*  `todo edit 1 d/Read notes for ST2334` Edits the description of the 1st todo to be `Read notes for ST2334`.
-*  `todo edit 1 pr/medium t/ST2334` Edits the priority of the 2nd contact to be `medium` and changes its tags to just `ST2334`.
+
+<div markdown="block" class="alert alert-info">
+**:memo: Note:**<br/>
+[Tags](#tag) have to be created first before you can add them to a contact.
+
+* Refer to [`Creating a Tag`](#741-creating-a-tag-tag-create) on how to create a tag.
+</div>
+
+<div markdown="block" class="alert alert-info">
+**:information_source: info:** <br/>
+
+* You can use `todo edit` command to add or remove tags to a todo.
+  * To add a tag, you can include all the existing tags in the todo as parameter together with the new tags that you wish to add.
+  * To remove a tag, you can include all the existing tags in the todo excluding the tags that you wish to remove.
+* `Coming soon in v1.5`, you can use `tag add` and `tag remove` to modify tags in a todo instead of only using `todo edit` to type all the tags in the todo to make modifications.
+
+</div>
+
+**Example Input in Command Box**
+
+```
+`todo edit 2 pr/medium t/cs2103 t/cs2100`
+```
+
+**Example Result**
+
+Before:
+![Todo edit before](images/TodoEditBefore.png)
+
+After:
+![Todo edit after](images/TodoEditAfter.png)
 
 <br>
 
 #### 7.3.3. Deleting a todo : `todo delete`
 
-Deletes the specified todo from your SoConnect.
+You can delete a particular todo after you have completed the todo or you no longer wish to keep it. This can be done easily using the `todo delete` command. All you need is the `INDEX` of the contact!
 
-Format: `delete INDEX`
-
-* Deletes the todo at the specified `INDEX`.
-
-Examples:
-* `todo show` followed by `todo delete 2` deletes the 2nd todo shown in your SoConnect.
+Format: `todo delete INDEX`
 
 <br>
 
 #### 7.3.4. Clearing all todos : `todo clear`
 
-Clears all todos from your SoConnect.
+You can delete all your todos using the `todo clear` command. This resets and gets you a clean and empty list of todos.
 
 Format: `todo clear`
 
@@ -411,22 +498,37 @@ Format: `todo clear`
 
 #### 7.3.5. Filtering todos shown : `todo show`
 
-Shows a filtered list of todos in your SoConnect.
+Want to view a particular list of todos? You can use the `todo show` commands to filter the todos that you want to see. There are different formats to the `todo show` command for different filter.
 
-Format: `todo show`, `todo show today`, `todo show date/DATE`, `todo show date/DATE to DATE`, `todo show t/TAG`, `todo show pr/Priority`
+| Format                          | Result                                                       |
+|---------------------------------|--------------------------------------------------------------|
+| `todo show`                     | Shows you all the todos in your SoConnect.                   |
+| `todo show today`               | Shows you all the todos that you have to complete for today. |
+| `todo show date/DATE`           | Shows you all the todos with the specified date.             |
+| `todo show date/DATE1 to DATE2` | Shows you all the todos from `DATE1` to `DATE2`.             |
+| `todo show pr/PRIORITY`         | Shows you all the todos with the specified priority.         |
+| `todo show t/TAG`               | Shows you all the todos with the specified tag.              |
 
-* `todo show`: Shows all todos.
-* `todo show today`: Shows all todos with the date same as the current date.
-* `todo show date/DATE`: show all todos with the specified date.
-* `todo show date/DATE1 to DATE2`: shows all todos with the date from `DATE1` to `DATE2`.
-* `todo show pr/PRIORITY`: Shows all todos with the specified priority.
-* `todo show t/TAG`: Shows all todos with the specified tag.
 
-Examples:
-* `todo show date/25-10-2022`: show all todos with the date `25-10-2022`.
-* `todo show date/24-10-2022 to 26-10-2022`: shows all todos with the date from `24-10-2022` to `26-10-2022`.
-* `todo show pr/high`: Shows all todos with the priority `high`.
-* `todo show t/friends`: Shows all todos with the tag `friends`.
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Info:**<br>
+Todo header tells you the todos that are shown in the todo list. 
+
+</div>
+
+**Example Input in Command Box**
+```
+`todo show pr/medium`
+```
+
+**Example Result**
+
+Before:
+![Todo Show Before](images/TodoShowBefore.png)
+
+After:
+![Todo Show After](images/TodoShowAfter.png)
 
 <br>
 
