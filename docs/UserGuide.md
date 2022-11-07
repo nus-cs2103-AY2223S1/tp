@@ -249,7 +249,7 @@ Examples:
 
 Edits the roles of an existing professor in TAB.
 
-Format: `roles INDEX roles/ROLE1, ROLE2,...`
+Format: `roles INDEX roles/ROLE`
 
 Edits the roles of the person (whose position must be professor) at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 Roles are case-insensitive
