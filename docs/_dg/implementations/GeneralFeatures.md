@@ -5,10 +5,12 @@
 <!-- TODO: ADD GENERAL FEATURES CLASS DIAGRAM -->
 <!-- NOTE: As this is for general features like Help, add/remove class diagrams as you see fit -->
 
-The `Exit command` and `Reset command` do not contain complex implementations. 
+The `Exit command` and `Reset command` do not contain complex implementations.
 
-Exit command returns a `CommandResult` that returns `true` when calling the method `shouldExit()` on it. 
-The reset command functions like most other commands. 
+Exit command returns a `CommandResult` that returns `true` when calling the method `shouldExit()` on it.
+
+The reset command functions like most other commands.
+
 The `HelpCommand` is worth looking into, as it involves opening a separate window (`HelpWindow`).
 
 #### Displaying Help Dialogs

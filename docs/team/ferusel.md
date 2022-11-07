@@ -14,10 +14,10 @@ Given below are my contributions to the project.
 
 * **New Feature**: Statistics feature
 
-  * What it does: Calculates some statistics regarding the Items and Tags in FoodRem's inventory, and displays them to the user. Statistics include: Top three most commonly used tags, top three most expensive items in inventory, total cost accrued due to food waste. 
-  * Highlights: These statistics were chosen after discussion as they were determined to be most useful and provided a high degree of flexibility. It was not easy to choose the statistics. 
+  * What it does: Calculates some statistics regarding the Items and Tags in FoodRem's inventory, and displays them to the user. Statistics include: Top three most commonly used tags, top three most expensive items in inventory, total cost accrued due to food waste.
+  * Highlights: These statistics were chosen after discussion as they were determined to be most useful and provided a high degree of flexibility. It was not easy to choose the statistics.
   * Credits: N/A
-   
+
 * **New Feature**: `Item` class
 
   * What it does: Provides an internal representation of an `Item` in FoodRem. Adapted from the original AB3's `Person` class, I laid the foundation by adding the necessary attributes to represent an `Item`. I also wrote test cases for the `Item` class.
@@ -28,7 +28,7 @@ Given below are my contributions to the project.
 * **New Feature**: `inc`, `dec`, `view` commands
 
   * What it does: `inc` allows the user to increment a chosen item by a specified quantity. `dec` allows the user to decrement a chosen item by a specified quantity. `view` displays all relevant information about an `Item`, such as the quantity, name, tags, to the user.
-  * Justification: These are key features for FoodRem. 
+  * Justification: These are key features for FoodRem.
 
 * **New Feature**: `sort` command
 
@@ -58,7 +58,7 @@ Given below are my contributions to the project.
     * Improve UG for v1.3 [[PR#335]]
     * Fix UG after Peer Review [[PR#351]]
     * Fix find command description in Command Summary [[PR#324]]
-   
+
   * Developer Guide:
     * Add Glossary, UC3, UC4 to Developer Guide [[PR#87]]
     * Add Glossary section to Developer Guide [[PR#164]]
@@ -66,7 +66,7 @@ Given below are my contributions to the project.
     * Add Sort Command UML [[PR#232]]
     * Update Developer Guide with v1.3  [[PR#295]]
 
-* ** Features**:
+* **Features**:
   * Add Item model [[PR#143]]
   * Add Sort Command [[PR#158]]
   * Add Increment and Decrement Command [[PR#161]]
@@ -74,10 +74,10 @@ Given below are my contributions to the project.
   * Add Statistics Command [[PR#360]]
   * Update find command [[PR#367]]
   * Fix stats command [[PR#372]]
- 
+
 * **Community**:
 
-  * Created [forum discussion](https://github.com/nus-cs2103-AY2223S1/forum/issues/413) 
+  * Created [forum discussion](https://github.com/nus-cs2103-AY2223S1/forum/issues/413)
 
 * **Misc PRs**:
   * Add profile picture [[PR#67]]
