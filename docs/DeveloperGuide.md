@@ -6,6 +6,7 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## **Acknowledgements**
 
 This project is based on the [AddressBook Level-3](https://github.com/nus-cs2103-AY2223S1/tp) project created by
@@ -16,12 +17,15 @@ Libraries used:
 * [JavaFX](https://openjfx.io/)
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
+
 ## **Design**
 
 <div markdown="span" class="alert alert-primary">
@@ -71,6 +75,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 The sections below give more details of each component.
 
 <div style="page-break-after: always;"></div>
+
 ### UI component
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -89,6 +94,7 @@ The `UI` component,
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
 <div style="page-break-after: always;"></div>
+
 ### Logic component
 
 The **API** of this component is specified in [`Logic.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -119,6 +125,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 <div style="page-break-after: always;"></div>
+
 ### Model component
 The **API** of this component is specified in [`Model.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -139,6 +146,7 @@ The `Model` component,
 </div>
 
 <div style="page-break-after: always;"></div>
+
 ### Storage component
 
 The **API** of this component is specified in [`Storage.java`](https://github.com/AY2223S1-CS2103T-F11-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -151,12 +159,15 @@ The `Storage` component,
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 <div style="page-break-after: always;"></div>
+
 ### Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
+
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -184,6 +195,7 @@ The following activity diagram summarizes what happens when a user executes an `
 ![SortPersonActivity](images/EditInternshipActivity.png)
 
 <div style="page-break-after: always;"></div>
+
 ### Sort Person list
 
 #### Implementation
@@ -209,6 +221,7 @@ The activity diagram is given below.
 The sorting mechanism is designed in a way to keep all operations to the `SortPersonCommand` object itself, which will them prompt the `Model` to set the comparator of the person list. This is consistent with the other commands, as they will go through the same process, since each command has their own class and parser (if needed).
 
 <div style="page-break-after: always;"></div>
+
 ### Find Person
 
 #### Implementation
@@ -230,6 +243,7 @@ The sequence diagram is given below.
 ![FindPersonSequence](images/FindPersonSequence.png)
 
 <div style="page-break-after: always;"></div>
+
 ### Link Person and Internship
 
 #### Implementation
@@ -252,6 +266,7 @@ The following activity diagram summarizes what happens when a user attempts to l
 ![LinkActivity](images/LinkActivityDiagram.png)
 
 <div style="page-break-after: always;"></div>
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -331,7 +346,9 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 --------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
@@ -341,7 +358,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
+
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -361,6 +380,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 * Keep track of contact information of hiring managers, and link them to internship openings
 
 <div style="page-break-after: always;"></div>
+
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -391,6 +411,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | *        | User             | Personalize GUI colors and color themes (light mode, dark mode etc.)                   | I can make the app more visually appealing                                                             |
 
 <div style="page-break-after: always;"></div>
+
 ### Use cases
 
 (For all use cases below, the **System** is the `InterNUS` and the **Actor** is the `user`, unless specified otherwise)
@@ -534,6 +555,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
        Use case ends.
 
 <div style="page-break-after: always;"></div>
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -553,7 +575,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 
 --------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
+
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
@@ -595,6 +619,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Similar to previous.
 
 <div style="page-break-after: always;"></div>
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -611,6 +636,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Similar to previous.
 
 <div style="page-break-after: always;"></div>
+
 ### Sorting person list
 
 1. Sorts person list while all persons are being shown
@@ -646,6 +672,7 @@ testers are expected to do more *exploratory* testing.
    Expected: Similar to previous.
 
 <div style="page-break-after: always;"></div>
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
