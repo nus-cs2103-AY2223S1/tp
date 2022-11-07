@@ -39,12 +39,15 @@ Added the ability to track patients added and deleted during an undo/redo comman
 * Highlights: PatientListTracker class is used to track the patients added and deleted
 
 ### Contributions to User Guide
-* Added documentation for the `editPatient` feature [\#50]()
-* Added documentation for the `findPatient` feature [\#50]()
+* Added documentation for email and task parameters
+* Added documentation for the `editPatient` feature
+* Added documentation for the `findPatient` feature 
 
 ### Contributions to Developer Guide
 * Added documentation and class diagrams for UI component
 * Added implementation details for displaying added/edited/deleted patients
+* Added instructions for manual testing
+* Added the following use cases: UC04, UC05
 
 ### Contributions to team-based tasks
 
