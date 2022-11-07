@@ -291,9 +291,14 @@ Shown below is a sequence diagram of what occurs when the execute method of Logi
 | ![MarkTaskReferenceDiagram](images/MarkTaskReferenceDiagram.png) |
 |               Sequence diagram of MarkTaskCommand                |
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MarkCommandParser` and `MarkCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifelines reach the end of the diagram.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifeline for `MarkCommandParser` and `MarkCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifelines reach the end of the diagram.
 </div>
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command fails, `Model#replaceTask()` will not be called, so the task list will not change. If so, `MarkCommand` will return an error to the user rather than attempting to perform the command.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** If the command fails, `Model#replaceTask()` will not be called, so the task list will not change. If so, `MarkCommand` will return an error to the user rather than attempting to perform the command.
 </div>
 
 **Sequence of actions made when `execute` method of `LogicManager` is invoked**
@@ -308,7 +313,9 @@ Shown below is a sequence diagram of what occurs when the execute method of Logi
 8. This `markedTask` has all fields similar to the original task, except its `TaskStatus` is `COMPLETE`.
 9. Then, `MarkCommand` calls `Model#replaceTask()` which replaces the `taskToMark` in the filtered task list in `Model` with the `markedTask`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:**The `UnmarkCommand` works the same — the only difference is that it calls `Task#unmark()`, which returns a copy of the task with `TaskStatus` set to `INCOMPLETE`.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The `UnmarkCommand` works the same — the only difference is that it calls `Task#unmark()`, which returns a copy of the task with `TaskStatus` set to `INCOMPLETE`.
 </div>
   
 The following activity diagram summarizes what happens when MarkCommand is executed
@@ -343,10 +350,14 @@ Shown below is a sequence diagram of what occurs when the `execute` method of
 | ![EditTaskReferenceDiagram](images/EditTaskReferenceDiagram.png) |
 |               Sequence diagram of EditTaskCommand                |
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifelines for `EditTaskCommandParser` and `EditTaskCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifelines reach the end of the diagram.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** The lifelines for `EditTaskCommandParser` and `EditTaskCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifelines reach the end of the diagram.
 </div>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command is invalid, `Model#replaceTask()` will not be called, so the task list will not change. If so, `EditTaskCommand` will return an error to the user rather than attempting to perform the command.
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** If the command is invalid, `Model#replaceTask()` will not be called, so the task list will not change. If so, `EditTaskCommand` will return an error to the user rather than attempting to perform the command.
 </div>
 
 **Sequence of actions made when `execute` method of `LogicManager` is invoked**
@@ -500,7 +511,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Indicate a task is completed**
 
 **MSS**
-1. User requests to mark a specific task
+1. NUS student requests to mark a specific task
 2. MODPRO ticks the specified task
 3. MODPRO updates the progress bar for the module and exam (if it exists) of the task
 
@@ -520,7 +531,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Indicate a task is not completed**
 
 **MSS**
-1. User requests to unmark a specific task
+1. NUS student requests to unmark a specific task
 2. MODPRO unticks the specified task
 3. MODPRO updates the progress bar for the module and exam (if it exists) of the task
 
@@ -540,7 +551,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Use case: Edit a task**
 
 **MSS**
-1. User requests to edit the module or description of a specific task
+1. NUS student requests to edit the module or description of a specific task
 2. MODPRO updates the specified task with the new values provided
 
    Use case ends.
