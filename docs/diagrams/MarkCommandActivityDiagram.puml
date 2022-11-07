@@ -1,0 +1,41 @@
+@startuml
+
+!include style.puml
+title Marking a student's Mastery Check as passed
+
+start
+
+:Receives a ""mark"" command;
+
+if () then ([valid command])
+    :Parses the ""mark""
+    command and index;
+
+    if () then ([Mastery Check can be marked])
+
+    :Marks the student's Mastery
+    Check as passed;
+
+    :Displays the student's Mastery
+    Check with an added
+    "(passed)" String in the GUI;
+
+    :Shows a success message;
+
+    else ([else])
+
+    :Shows the specific
+    error message;
+
+    endif
+
+else ([else])
+
+    :Shows an invalid
+    command message;
+
+endif
+
+stop
+
+@enduml

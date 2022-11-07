@@ -14,11 +14,13 @@ Class UserPrefs
 
 Class UniqueStudentList
 Class Student
-Class Address
-Class Email
+Class MasteryCheck
+Class TelegramHandle
 Class Name
-Class Phone
+Class Consultation
 Class Tag
+Class Remark
+Class GradesList
 
 Class AliasMap
 Class Alias
@@ -46,14 +48,13 @@ AliasMap *--> ReservedKeyword
 Alias <--> ReservedKeyword
 
 Student *--> Name
-Student *--> Phone
-Student *--> Email
-Student *--> Address
+Student *--> TelegramHandle
+Student *--> MasteryCheck
+Student *--> Consultation
 Student *--> "*" Tag
+Student *--> Remark
+Student *--> GradesList
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
 Alias -[hidden]right-> ReservedKeyword
 
 ModelManager -->"~* filtered" Student

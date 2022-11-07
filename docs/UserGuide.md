@@ -12,9 +12,9 @@ optimized for use via a Command Line Interface** (CLI) while still having the be
 If you can type fast, FRIDAY can get your student management tasks done faster than traditional GUI apps.
 
 --------------------------------------------------------------------------------------------------------------------
-## Quickstart
+## Quick start
 
-1. Ensure you have Java `11` or above installed in your computer.
+1. Ensure you have Java 11 or above installed in your computer.
 
 2. Download the latest `friday.jar` from [here](https://github.com/AY2223S1-CS2103T-W15-4/tp/releases).
 
@@ -38,8 +38,7 @@ If you can type fast, FRIDAY can get your student management tasks done faster t
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-
-## Features
+## A guide to using FRIDAY's CLI
 
 <div markdown="block" class="alert alert-info">
 
@@ -51,9 +50,9 @@ If you can type fast, FRIDAY can get your student management tasks done faster t
 
 * Items in square brackets are optional.<br>
 
-  e.g `n/NAME [t/TELEGRAM_HANDLE]` can be used as `n/John Doe t/johndoe` or as `n/John Doe`.
+  e.g. `n/NAME [t/TELEGRAM_HANDLE]` can be used as `n/John Doe t/johndoe` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used any number of times including zero times.<br>
+* Items with `…`​ after them can be used multiple times including zero times.<br>
 
   e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/fast learner`, `tag/fast learner tag/good at recursion` etc.
 
@@ -69,22 +68,31 @@ If you can type fast, FRIDAY can get your student management tasks done faster t
 
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-* `INDEX` is used in commands to refer to a specific student by their index number on the currently displayed list, 
-   so it ` **must be a positive integer** 1, 2, 3, …​
+* `INDEX` is used in commands to refer to a specific student by their index number on the currently displayed list,
+  so it ` **must be a positive integer** 1, 2, 3, …​
 
 </div>
 
-### Clearing all existing data: `clear`
 
-Clears all existing data in FRIDAY, resulting in an empty Student list.
+## Features
 
-Format: `clear`
+
+## Student management
+
+Overview: These features allow you to add, delete and edit your students' details.
 
 ### Adding a student: `add`
 
 Adds a student to FRIDAY, with the given name, Telegram handle, consultation date, Mastery Check date, and tags.
 
 Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...`
+
+* The student details and their associated prefixes are:
+    * Name - `n`
+    * Telegram Handle - `t`
+    * Consultation date - `c`
+    * Mastery Check date - `m`
+    * Tags - `tag`
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** <br>
@@ -93,7 +101,7 @@ Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_D
 * Dates for consultation and Mastery Check must be in the format YYYY-MM-DD.
 </div>
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 **:bulb: Tip:** <br>
 * A student can have any number of tags (including 0).
 </div>
@@ -102,11 +110,12 @@ Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_D
 Example: `add n/Alex Yeoh t/al3xx c/2022-10-25 m/2022-08-16 tag/cool guy tag/quiet`
 
 Outcome: a student named Alex Yeoh is added.
+
 ![AddCommandOutcome.png](images/AddCommandOutcome.png)
 
 ### Deleting a student: `delete`
 
-Deletes the student at the given index from FRIDAY. 
+Deletes the student at the given index from FRIDAY.
 
 Format: `delete INDEX`
 
@@ -115,7 +124,7 @@ Format: `delete INDEX`
 * The index of the student must be specified and there should be exactly one INDEX parameter.
 </div>
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 **:bulb: Tip:** <br>
 * The index of the student can be seen from the student list.
 </div>
@@ -133,7 +142,7 @@ Format: `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHE
 optional fields, but there should be at least one field specified for the `edit` command to be valid.<br>
 </div>
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 **:bulb: Tip:** <br>
 * The index of the student can be seen from the student list.
 * A student can have any number of tags (including 0).
@@ -141,12 +150,14 @@ optional fields, but there should be at least one field specified for the `edit`
 
 Example: `edit 1 n/Alex Yap t/AlexYap tag/Experienced coder tag/Intern m/2022-11-06 c/2022-10-10`
 
-Initial: A student with name "Alex Yeoh", with the following details: Telegram handle as "@al3xx", Mastery Check date 
+Initial: A student with name "Alex Yeoh", with the following details: Telegram handle as "@al3xx", Mastery Check date
 on 2022-08-16, consultation date on 2022-11-11, and a tag "Colour blind".
+
 ![EditCommandInitial.png](images/EditCommandInitial.png)
 
-Outcome: Student's name changed to "Alex Yap", along with the following changed details: Telegram handle as "@AlexYap", 
+Outcome: Student's name changed to "Alex Yap", along with the following changed details: Telegram handle as "@AlexYap",
 Mastery Check date as 2022-11-06, consultation date as 2022-10-10, and tags as "Experienced coder" and "Intern".
+
 ![EditCommandOutcome.png](images/EditCommandOutcome.png)
 
 ### Editing a remark for a student: `remark`
@@ -160,7 +171,7 @@ Format: `remark INDEX [r/REMARK]`
 * The index of the student must be specified and there should be exactly one INDEX parameter.
 </div>
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 **:bulb: Tip:** <br>
 * The index of the student can be seen from the student list.<br>
 * The remark is optional. If you do not include the remark (i.e. input `remark INDEX` as your command), FRIDAY will 
@@ -170,7 +181,84 @@ remove any existing remark for the specified student.<br>
 Example: `remark 1 r/Aspiring to be a CS1101S TA for next year`
 
 Outcome: The student at the 1st index (Alex Yap) will have the remark "Aspiring to be a CS1101S TA for next year".
+
 ![RemarkCommandOutcome.png](images/RemarkCommandOutcome.png)
+
+## Organizing students
+
+Overview: These features allow you to organize your students to suit your needs.
+
+### Sorting students: `sort`
+
+Sorts all students in FRIDAY with the given criteria, in ascending or descending order.
+
+Format: `sort CRITERIA/ORDER`
+
+* `CRITERIA` can be
+    * `n` (name)
+    * `t` (Telegram handle)
+    * `c` (consultation)
+    * `m` (Mastery Check)
+    * `ra1` (Reading Assessment 1)
+    * `ra2` (Reading Assessment 2)
+    * `pa` (Practical Assessment)
+    * `mt` (Midterm Test)
+    * `ft` (Final Examination)
+* `ORDER` can be
+    * `a` (ascending)
+    * `d` (descending)
+
+How criteria are sorted:
+* Names and Telegram handles - alphabetical order
+* Consultations and Mastery Checks - chronological order
+* Grades - numerical order
+
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:**<br>
+* If the `find` command was run before `sort`, using `sort` will undo the result of `find` and all students will be sorted.
+* Students with missing information will be sorted first in descending order, e.g. students with no Telegram handles
+  will be shown before students with Telegram handles.
+</div>
+
+Example: enter `sort m/a` with an unsorted list of students.
+
+![SortCommand.png](images/SortCommand.png)
+
+Outcome: students are sorted by Mastery Check date, from earliest to latest.
+
+![SortCommandOutcome.png](images/SortCommandOutcome.png)
+
+### Finding individual student details: `find`
+
+View a particular student's details.
+
+Format: `find KEYWORDS`
+
+<div markdown="span" class="alert alert-primary">
+**:bulb: Tip:** <br>
+Use student name/telegram handle/consultation/mastery check date/remark to search up a particular student.
+Note: Multiple keywords can be entered and each keyword is separated by a space.
+Note: when searching for exam grade use format `find [exam_name:EXAM_SCORE]`
+</div>
+
+Example:
+
+![FindCommand.png](images/FindCommand.png)
+
+Outcome:
+
+![FindCommandOutcome.png](images/FindCommandOutcome.png)
+
+### Viewing all students: `list`
+
+Lists all students in FRIDAY. This command helps you to reset the sorting and finding done by the `sort` and `find` commands respectively.
+
+Format: `list`
+
+## Grading students
+
+Overview: These features allow you to record your students grades.
 
 ### Recording grades for a student: `grade`
 
@@ -201,90 +289,36 @@ decimal places allowed. `0`, `100.00` and `69.1` are examples of valid scores.
 Example:`grade 1 ra1/90 ra2/80.1 pa/100.00 mt/85.23 ft/78`
 
 Outcome: The student at the 1st index (Alex Yap) will have their grades updated.
+
 ![GradeCommand.png](images/GradeCommand.png)
 
-### Finding individual student details: `find`
-
-View a particular student's details.
-
-Format: `find KEYWORDS`
-
-<div markdown="span" class="alert alert-primary">
-**:bulb: Tip:** <br>
-Use student name/telegram handle/consultation/mastery check date/remark to search up a particular student.
-Note: Multiple keywords can be entered and each keyword is separated by a space.
-Note: when searching for exam grade use format `find [exam_name:EXAM_SCORE]`
-</div>
-
-Example:
-![FindCommand.png](images/FindCommand.png)
-
-Outcome:
-![FindCommandOutcome.png](images/FindCommandOutcome.png)
-
-### Viewing all students: `list`
-
-Lists all students in FRIDAY. This command helps you to reset the sorting and finding done by the `sort` and `find` command respectively.
-
-Format: `list`
-
-### Sorting students: `sort`
-
-Sorts all students in FRIDAY with the given criteria, in ascending or descending order.
-
-Format: `sort CRITERIA/ORDER`
-
-* `CRITERIA` can be 
-  * `n` (name) 
-  * `t` (Telegram handle)
-  * `c` (consultation)
-  * `m` (Mastery Check)
-  * `ra1` (Reading Assessment 1)
-  * `ra2` (Reading Assessment 2)
-  * `pa` (Practical Assessment)
-  * `mt` (Midterm Test)
-  * `ft` (Final Examination)
-* `ORDER` can be 
-  * `a` (ascending)
-  * `d` (descending)
-
-How criteria are sorted:
-* Names and Telegram handles - alphabetical order
-* Consultations and Mastery Checks - chronological order
-* Grades - numerical order
-
-
-<div markdown="block" class="alert alert-info">
-**:information_source: Note:**<br>
-* If the `find` command was run before `sort`, using `sort` will undo the result of `find` and all students will be sorted.
-* Students with missing information will be sorted first in descending order, e.g. students with no Telegram handles
-  will be shown before students with Telegram handles.
-</div>
-
-Example: enter `sort m/a` with an unsorted list of students.
-![SortCommand.png](images/SortCommand.png)
-
-Outcome: students are sorted by Mastery Check date, from earliest to latest.
-![SortCommandOutcome.png](images/SortCommandOutcome.png)
 
 ### Marking a student's Mastery Check as passed: `mark`
 
-Marks the Mastery Check of a specified student as passed.
+After a student has passed their Mastery Check, you can use the `mark` command to mark their Mastery Check as passed. This will update the list of students with the status of the specified student's Mastery Check.
 
 Format: `mark INDEX`
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-primary">
 **:bulb: Tip:** <br>
-The index of the student must be specified and there should be exactly one INDEX parameter.<br>
-The index of the student can be seen from the student list.<br>
+* The index of the student must be specified and there should be exactly one INDEX parameter.<br>
+* The index of the student can be seen from the student list.<br>
 </div>
 
-Example after entering `mark 1`:
+Example before entering `mark 1`:
+
+![MarkCommandBefore.png](images/MarkCommandBefore.png)
+
+
+Outcome after entering `mark 1`:
+
 ![MarkCommandOutcome.png](images/MarkCommandOutcome.png)
+
+As you can see, a "(passed)" status is added to student 1's Mastery Check after the `mark` command is run.
 
 ### Unmarking a student's Mastery Check: `unmark`
 
-Unmarks the Mastery Check of a specified student.
+Unmarks the Mastery Check of a specified student and removes its "(passed)" status. This will come in handy if you accidentally mark the Mastery Check of a student as passed, even though that is not the case.
 
 Format: `unmark INDEX`
 
@@ -294,8 +328,48 @@ The index of the student must be specified and there should be exactly one INDEX
 The index of the student can be seen from the student list.<br>
 </div>
 
-Example after entering `unmark 1` (Assuming student 1's Mastery Check has previously been marked as passed):
+Example before entering `unmark 1` (Assuming student 1's Mastery Check has previously been marked as passed):
+
+![UnmarkCommandBefore.png](images/UnmarkCommandBefore.png)
+
+Example after entering `unmark 1`:
+
 ![UnmarkCommandOutcome.png](images/UnmarkCommandOutcome.png)
+
+As you can see, the "(passed)" status has been removed from student 1's Mastery Check after the `unmark` command is run.
+
+## Miscellaneous features
+
+Overview: Other features that aid you in using FRIDAY.
+
+### Getting User Guide link: `guide`
+
+If you ever need to refer to our User Guide while using FRIDAY, use this command to obtain the link to FRIDAY's User Guide.
+
+Format: `guide`
+
+### Getting help: `help`
+
+Shows a summary of commands along with their command word used in FRIDAY. This allows you to have an easily accessible summary when using FRIDAY.<br>
+It also includes a link to this User Guide if needed.
+
+Format: `help`
+
+### Clearing all existing data: `clear`
+
+On your first launch of FRIDAY, a sample list of students is displayed. The `clear` command allows you to clear this and any other existing data in FRIDAY, resulting in an empty Student list.
+
+Format: `clear`
+
+### Exiting FRIDAY : `exit`
+
+Exits FRIDAY. See you again soon!
+
+Format: `exit`
+
+## Features for advanced users
+
+Overview: These features help you personalize your FRIDAY experience and improve your productivity when using FRIDAY.
 
 ### Adding aliases: `alias`
 
@@ -331,7 +405,7 @@ Format: `aliaslist`
 
 ### Getting User Guide link: `guide`
 
-Returns a link to FRIDAY's User Guide.
+If you ever need to refer to our User Guide while using FRIDAY, use this command to obtain the link to FRIDAY's User Guide.
 
 Format: `guide`
 
@@ -344,7 +418,7 @@ Format: `help`
 
 ### Exiting FRIDAY : `exit`
 
-Exits FRIDAY.
+Exits FRIDAY. See you again soon!
 
 Format: `exit`
 
@@ -383,10 +457,12 @@ If your changes to the data file makes its format invalid, FRIDAY will ignore al
 
 **Q**: What are the additional features coming to FRIDAY?<br>
 **A**: FRIDAY is always expanding to serve you better. In the near future you can expect to see:
-1. Shared databases 
-2. Larger storage limits 
-3. Cloud compatibility 
+
+1. Shared databases
+2. Larger storage limits
+3. Cloud compatibility
 4. Easy import and export of data
+5. Undoing previous actions
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -411,33 +487,35 @@ If your changes to the data file makes its format invalid, FRIDAY will ignore al
 | **Get a link to the User Guide**             | `guide`                                                                                                  |
 | **Getting Help**                             | `help`                                                                                                   |
 | **Exiting FRIDAY**                           | `exit`                                                                                                   |
------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+---------------------------------------------------------------------------------------------------------------------
 
-##Glossary
+## Glossary
 
-1. CLI: CLI stands for command line interface. It is a system wherein the user enters textual one line inputs into an input box and the computer responds with a textual or graphical output.
+1. **CLI:** CLI stands for command line interface. It is a system wherein the user enters textual one line inputs into an input box and the computer responds with a textual or graphical output.
 
-2. GUI: GUI stands for graphical user interface. It is the opposite of CLI wherein the user interacts with icons and items on the screen to communicate with the computer. Outputs are also displayed in graphical form.
+2. **GUI:** GUI stands for graphical user interface. It is the opposite of CLI wherein the user interacts with icons and items on the screen to communicate with the computer. Outputs are also displayed in graphical form.
 
-3. Java : Java is a programming language introduced in the 90's. It is used to create many applications that you use today. Including this one.
+3. **Java:** Java is a programming language introduced in the 90's. It is used to create many applications that you use today. Including this one.
 
-4. .jar : Specifies the file format of the file.
+4. **.jar:** Specifies the file format of the file.
 
-5. Command: The text that you enter in the input box is a command.
+5. **Command:** The text that you enter in the input box is a command.
 
-6. Parameter: The text that follows the first word of your input in the input box.
+6. **Parameter:** The text that follows the first word of your input in the input box.
 
-7. RA1: Reading assessment 1 a minor assessment in the CS1101S module that tests the content of the first half of the module.
+7. **Prefix:** A word or letter used in commands to specify the field you are adding, editing or sorting by.
 
-8. RA2: Reading assessment 2 a minor assessment in the CS1101S module that tests the content of the second half of the module.
+8. **RA1:** Reading assessment 1 is a minor assessment in the CS1101S module that tests the content of the first half of the module.
 
-9. Midterm: Midterm examination a major assessment that occurs halfway through the CS1101S module.
+9. **RA2:** Reading assessment 2 is a minor assessment in the CS1101S module that tests the content of the second half of the module.
 
-10. Practical: Practical examination is a major non-paper assessment that occurs at the end of the CS1101S module.
+10. **Midterm:** Midterm examination is a major assessment that occurs halfway through the CS1101S module.
 
-11. Final: Final examination is a major paper assessment that occurs at the end of the CS1101S module.
+11. **Practical:** Practical examination is a major non-paper assessment that occurs at the end of the CS1101S module.
 
-12. Mastery Check: A pass/fail for of assessment on students to assess their understanding of the concepts taught. There are 2 Mastery checks per semester.
+12. **Final:** Final examination is a major paper assessment that occurs at the end of the CS1101S module.
 
-13. Alias: A nickname or an alternate name for a command that you can set.
+13. **Mastery Check:** A pass/fail assessment on students to assess their understanding of the concepts taught. There are 2 Mastery checks per semester.
+
+14. **Alias:** A nickname or an alternate name that you can set for a command.
