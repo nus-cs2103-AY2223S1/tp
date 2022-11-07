@@ -1,4 +1,4 @@
-package jarvis.model.student;
+package jarvis.model;
 
 import static jarvis.testutil.Assert.assertThrows;
 import static jarvis.testutil.TypicalStudents.ALICE;
@@ -13,8 +13,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import jarvis.model.Student;
-import jarvis.model.UniqueStudentList;
 import jarvis.model.exceptions.DuplicateStudentException;
 import jarvis.model.exceptions.StudentNotFoundException;
 import jarvis.testutil.StudentBuilder;
@@ -92,7 +90,7 @@ public class UniqueStudentListTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasDifferentIdentity_success() {
+    public void setStudent_editedStudentHasDifferentIdentity_success() {
         uniqueStudentList.add(ALICE);
         uniqueStudentList.setStudent(ALICE, BOB);
         UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();
@@ -101,24 +99,24 @@ public class UniqueStudentListTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
+    public void setStudent_editedStudentHasNonUniqueIdentity_throwsDuplicateStudentException() {
         uniqueStudentList.add(ALICE);
         uniqueStudentList.add(BOB);
         assertThrows(DuplicateStudentException.class, () -> uniqueStudentList.setStudent(ALICE, BOB));
     }
 
     @Test
-    public void remove_nullPerson_throwsNullPointerException() {
+    public void remove_nullStudent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueStudentList.remove(null));
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsPersonNotFoundException() {
+    public void remove_studentDoesNotExist_throwsStudentNotFoundException() {
         assertThrows(StudentNotFoundException.class, () -> uniqueStudentList.remove(ALICE));
     }
 
     @Test
-    public void remove_existingPerson_removesPerson() {
+    public void remove_existingStudent_removesStudent() {
         uniqueStudentList.add(ALICE);
         uniqueStudentList.remove(ALICE);
         UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();
@@ -126,12 +124,12 @@ public class UniqueStudentListTest {
     }
 
     @Test
-    public void setPersons_nullUniquePersonList_throwsNullPointerException() {
+    public void setStudents_nullUniqueStudentList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueStudentList.setStudents((UniqueStudentList) null));
     }
 
     @Test
-    public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
+    public void setStudents_uniqueStudentList_replacesOwnListWithProvidedUniqueStudentList() {
         uniqueStudentList.add(ALICE);
         UniqueStudentList expectedUniqueStudentList = new UniqueStudentList();
         expectedUniqueStudentList.add(BOB);
@@ -140,12 +138,12 @@ public class UniqueStudentListTest {
     }
 
     @Test
-    public void setPersons_nullList_throwsNullPointerException() {
+    public void setStudents_nullList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueStudentList.setStudents((List<Student>) null));
     }
 
     @Test
-    public void setPersons_list_replacesOwnListWithProvidedList() {
+    public void setStudents_list_replacesOwnListWithProvidedList() {
         uniqueStudentList.add(ALICE);
         List<Student> studentList = Collections.singletonList(BOB);
         uniqueStudentList.setStudents(studentList);
@@ -155,7 +153,7 @@ public class UniqueStudentListTest {
     }
 
     @Test
-    public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
+    public void setStudents_listWithDuplicateStudents_throwsDuplicateStudentException() {
         List<Student> listWithDuplicateStudents = Arrays.asList(ALICE, ALICE);
         assertThrows(DuplicateStudentException.class, () -> uniqueStudentList.setStudents(listWithDuplicateStudents));
     }
@@ -164,5 +162,37 @@ public class UniqueStudentListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueStudentList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void getNumStudents() {
+        // empty list
+        assertEquals(0, uniqueStudentList.getNumStudents());
+
+        uniqueStudentList.add(ALICE);
+        assertEquals(1, uniqueStudentList.getNumStudents());
+
+        uniqueStudentList.remove(ALICE);
+        assertEquals(0, uniqueStudentList.getNumStudents());
+    }
+
+    @Test
+    public void equals() {
+        // same object -> returns true
+        assertTrue(uniqueStudentList.equals(uniqueStudentList));
+
+        // same internal list -> returns true
+        UniqueStudentList uniqueStudentListCopy = new UniqueStudentList();
+        assertTrue(uniqueStudentList.equals(uniqueStudentListCopy));
+
+        // different type -> returns false
+        assertFalse(uniqueStudentList.equals(5));
+
+        // null -> returns false
+        assertFalse(uniqueStudentList.equals(null));
+
+        // different internal list -> returns false
+        uniqueStudentListCopy.add(ALICE);
+        assertFalse(uniqueStudentList.equals(uniqueStudentListCopy));
     }
 }

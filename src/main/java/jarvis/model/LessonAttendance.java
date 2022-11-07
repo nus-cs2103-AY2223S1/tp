@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import jarvis.model.exceptions.NoStudentsInLessonException;
 import jarvis.model.exceptions.StudentNotFoundException;
 
 /**
@@ -20,7 +21,11 @@ public class LessonAttendance {
      * @param students Students who are involved in the lesson.
      */
     public LessonAttendance(Collection<Student> students) {
-        attendance = new TreeMap<>(Student.NAME_COMPARATOR);
+        if (students.size() == 0) {
+            throw new NoStudentsInLessonException();
+        }
+
+        attendance = new TreeMap<>();
         for (Student stu : students) {
             attendance.put(stu, false);
         }
@@ -33,7 +38,7 @@ public class LessonAttendance {
      * @param indexAttendanceMap The attendance data using student indexes to represent students in the studentList.
      */
     public LessonAttendance(List<Student> studentList, Map<Integer, Boolean> indexAttendanceMap) {
-        TreeMap<Student, Boolean> attendance = new TreeMap<>(Student.NAME_COMPARATOR);
+        TreeMap<Student, Boolean> attendance = new TreeMap<>();
         for (Integer i : indexAttendanceMap.keySet()) {
             attendance.put(studentList.get(i), indexAttendanceMap.get(i));
         }
@@ -84,8 +89,10 @@ public class LessonAttendance {
     }
 
     public void setStudent(Student targetStudent, Student editedStudent) {
-        Boolean b = attendance.get(targetStudent);
-        assert b != null;
+        if (!attendance.containsKey(targetStudent)) {
+            return;
+        }
+        boolean b = attendance.get(targetStudent);
         attendance.remove(targetStudent);
         attendance.put(editedStudent, b);
     }

@@ -6,6 +6,7 @@ import static jarvis.logic.parser.CliSyntax.PREFIX_MIDTERM;
 import static jarvis.logic.parser.CliSyntax.PREFIX_PRACTICAL_ASST;
 import static jarvis.logic.parser.CliSyntax.PREFIX_RA1;
 import static jarvis.logic.parser.CliSyntax.PREFIX_RA2;
+import static jarvis.logic.parser.CliSyntax.PREFIX_STUDIO_ATTENDANCE;
 import static java.util.Objects.requireNonNull;
 
 import java.util.stream.Stream;
@@ -13,6 +14,7 @@ import java.util.stream.Stream;
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.GradeCommand;
 import jarvis.logic.parser.exceptions.ParseException;
+import jarvis.model.Assessment;
 import jarvis.model.GradeProfile;
 
 /**
@@ -29,10 +31,10 @@ public class GradeCommandParser implements Parser<GradeCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_RA1, PREFIX_RA2, PREFIX_MIDTERM,
-                        PREFIX_PRACTICAL_ASST, PREFIX_FINAL_ASST);
+                        PREFIX_PRACTICAL_ASST, PREFIX_FINAL_ASST, PREFIX_STUDIO_ATTENDANCE);
 
-        if (!anyPrefixesPresent(argMultimap, PREFIX_RA1, PREFIX_RA2, PREFIX_MIDTERM,
-                PREFIX_PRACTICAL_ASST, PREFIX_FINAL_ASST) || argMultimap.getPreamble().isEmpty()) {
+        if (!anyPrefixesPresent(argMultimap, PREFIX_RA1, PREFIX_RA2, PREFIX_MIDTERM, PREFIX_PRACTICAL_ASST,
+                PREFIX_FINAL_ASST, PREFIX_STUDIO_ATTENDANCE) || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.MESSAGE_USAGE));
         }
 
@@ -48,19 +50,25 @@ public class GradeCommandParser implements Parser<GradeCommand> {
         GradeProfile gp = new GradeProfile();
 
         if (argMultimap.getValue(PREFIX_RA1).isPresent()) {
-            gp.setRa1(ParserUtil.parseMarks(argMultimap.getValue(PREFIX_RA1).get()));
+            gp.setRa1(ParserUtil.parseMarks(argMultimap.getValue(PREFIX_RA1).get(), Assessment.RA1));
         }
         if (argMultimap.getValue(PREFIX_RA2).isPresent()) {
-            gp.setRa2(ParserUtil.parseMarks(argMultimap.getValue(PREFIX_RA2).get()));
+            gp.setRa2(ParserUtil.parseMarks(argMultimap.getValue(PREFIX_RA2).get(), Assessment.RA2));
         }
         if (argMultimap.getValue(PREFIX_MIDTERM).isPresent()) {
-            gp.setMidterm(ParserUtil.parseMarks(argMultimap.getValue(PREFIX_MIDTERM).get()));
+            gp.setMidterm(ParserUtil.parseMarks(argMultimap.getValue(PREFIX_MIDTERM).get(), Assessment.MIDTERM));
         }
         if (argMultimap.getValue(PREFIX_PRACTICAL_ASST).isPresent()) {
-            gp.setPracticalAssessment(ParserUtil.parseMarks(argMultimap.getValue(PREFIX_PRACTICAL_ASST).get()));
+            gp.setPracticalAssessment(ParserUtil.parseMarks(argMultimap.getValue(PREFIX_PRACTICAL_ASST).get(),
+                    Assessment.PRACTICAL_ASSESSMENT));
         }
         if (argMultimap.getValue(PREFIX_FINAL_ASST).isPresent()) {
-            gp.setFinalAssessment(ParserUtil.parseMarks(argMultimap.getValue(PREFIX_FINAL_ASST).get()));
+            gp.setFinalAssessment(ParserUtil.parseMarks(argMultimap.getValue(PREFIX_FINAL_ASST).get(),
+                    Assessment.FINAL_ASSESSMENT));
+        }
+        if (argMultimap.getValue(PREFIX_STUDIO_ATTENDANCE).isPresent()) {
+            gp.setStudioAttendance(ParserUtil.parseMarks(argMultimap.getValue(PREFIX_STUDIO_ATTENDANCE).get(),
+                    Assessment.STUDIO_ATTENDANCE));
         }
 
         return new GradeCommand(index, gp);

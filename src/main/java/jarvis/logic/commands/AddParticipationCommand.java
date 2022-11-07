@@ -28,9 +28,9 @@ public class AddParticipationCommand extends Command {
     public static final String COMMAND_WORD = "addpart";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds participation for a student in a studio. The studio is identified by its index number in the"
-            + " displayed lesson list. The student is identified using its displayed index in the student list of the "
-            + "specified studio\n"
+            + ": Adds participation for a student in a lesson. The lesson must be a studio and is identified by its "
+            + "index number in the displayed lesson list. The student is identified using its displayed index in the "
+            + "student list of the specified lesson\n"
             + "Parameters: "
             + PREFIX_PARTICIPATION + "PARTICIPATION "
             + PREFIX_LESSON_INDEX + "LESSON_INDEX "
@@ -64,7 +64,7 @@ public class AddParticipationCommand extends Command {
 
         Lesson lessonToMark = lastShownLessonList.get(lessonIndex.getZeroBased());
         if (!(lessonToMark instanceof Studio)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_STUDIO_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_LESSON_TYPE);
         }
 
         Studio studioToMark = (Studio) lessonToMark;
