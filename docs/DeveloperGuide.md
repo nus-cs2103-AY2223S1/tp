@@ -316,11 +316,12 @@ The sort command mainly relies on the following classes:
 3. `SortCommandParser#parse()` is called, which creates and returns a new `SortCommand` with the given `sortParam`.
 4. `SortCommand#execute()` is called.
     1. `SortCommand#execute()` will pass `sortParam` to `model#sort`.
-    2. `model#sort` will call `UniquePersonList#sort` to sort client list.
-    3. `UniquePersonList` then updates `internalList` with sorted client list according to `sortParam`.
+    2. `model#sort` will call `AddressBook#sort` 
+    3. `AddressBook#sort` then calls `UniquePersonList#sort` to sort client list.
+    4. `UniquePersonList` then updates `internalList` with sorted client list according to `sortParam`.
 
 #### Design considerations:
-`Model` calls `UniquePersonList` to modify `internalList`.
+`sortParam` should be passed to `UniquePersonList#sort` to modify `internalList`.
 
 *{More to be added}*
 
