@@ -100,27 +100,27 @@ The `UI` component,
 
 #### Overall structure of the UI component
 
-We currently have two tabs for the different displays (Contacts and Calendar). Users can switch between these tabs by entering certain keys or clicking on the tabs. Our team decided that we needed a method to update our UI dynamically upon update of an `Appointment` or update of a `Person`. Also, we wanted our application to support navigation using keystrokes as well on top of clicking the different UI components. 
+We currently have two tabs for the different displays (Contacts and Calendar). Users can switch between these tabs by entering certain keys or clicking on the tabs. Our team decided that we needed a method to update our UI dynamically upon update of an `Appointment` or update of a `Person`. Also, we wanted our application to support navigation using keystrokes as well on top of clicking the different UI components.
 Hence, our team made use of two of `JavaFx` features, [`ObservableList`](https://docs.oracle.com/javase/8/javafx/api/javafx/collections/ObservableList.html) and [`FocusModel`](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/FocusModel.html).
 
 #### `ObservableList`
 
 ##### Reason for use:
 
-The use of the `ObservableList` class follows the **observer design pattern**, where the `UI` components, the observer, listen subscribe to updates by the different `Model` components which are the observable objects. This is necessary as certain parts of the `UI` are dependent on `Model` components, and if these components are updated, the UI should be updated as well.    
+The use of the `ObservableList` class follows the **observer design pattern**, where the `UI` components, the observer, listen subscribe to updates by the different `Model` components which are the observable objects. This is necessary as certain parts of the `UI` are dependent on `Model` components, and if these components are updated, the UI should be updated as well.
 
 ##### Design Considerations
 
 **Aspect: How the UI is dynamically updated**
 * **Alternative 1 (current choice):** Use `ObservableList` to listen to changes.
     * Pros: Simpler to implement with current changes required by the UI as the **observer design pattern** is inbuilt in the `ObservableList` class. 
-    * Cons: May require the different `UI` components to listen to multiple `ObservableList`, if more features are added that requires new model components that update the `UI`. 
-* **Alternative 2 (potential future choice)**: Use state management features and `callbacks`. 
-    * Pros: 
+    * Cons: May require the different `UI` components to listen to multiple `ObservableList`, if more features are added that requires new model components that update the `UI`.
+* **Alternative 2 (potential future choice)**: Use state management features and `callbacks`.
+    * Pros:
       * Able to introduce state to the application and synchronize the state of the application throughout all components of the application.
       * Maintenance of code is simple, as well as making code more readable.
       * `UI` components can update according to multiple data changes in `Model`.
-    * Cons: Implementing state-management is difficult and requires change throughout the entire architecture of the application. 
+    * Cons: Implementing state-management is difficult and requires change throughout the entire architecture of the application.
 
 #### `FocusModel`
 
@@ -168,9 +168,9 @@ Here are the other classes in Logic (omitted from the class diagram above) that 
 
 How the `Logic` component works during the user's interaction with the Calendar:
 1. `CalendarLogic` listens to any changes in `Model`'s `filteredCalendarEventList`, which contains different `CalendarEvents`, upon interaction with the Calendar Ui.
-2. `CalendarLogic` will then update the corresponding Calendar components in `Ui` that are dependent on these `CalendarEvents`.  
+2. `CalendarLogic` will then update the corresponding Calendar components in `Ui` that are dependent on these `CalendarEvents`.
 
-More about our `Ui` design decisions [can be found here](#ui-component) 
+More about our `Ui` design decisions [can be found here](#ui-component)
 
 *Figure 8. Class diagram showing the classes in the `Logic` component used for during the User's interaction with the Calendar*
 
@@ -1015,7 +1015,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1d1. Financial Advisor Planner shows an error message.
 
       Use case ends.
-    
+
 * 1e. The specified client already has the maximum number of appointments
 
     * 1e1. Financial Advisor Planner shows an error message.
@@ -1330,7 +1330,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Test Case: `find r/medium`
        Expected: All clients with risk tag "medium" are displayed. Success message shown.
-   
+
     1. Test Case: `find r/meDIuM`
        Expected: All clients with risk tag "medium" are displayed, this command is case-insensitive. Success message shown.
 

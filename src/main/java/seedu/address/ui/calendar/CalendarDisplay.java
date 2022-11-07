@@ -75,6 +75,7 @@ public class CalendarDisplay extends UiPart<Region> {
         }
     }
 
+    //@@author wongyewjon
     /**
      * Draws the Ui for the Calendar.
      */
@@ -82,10 +83,12 @@ public class CalendarDisplay extends UiPart<Region> {
         drawHeader();
         calendarLogic.drawBody();
     }
+
     public void resetMargin(Node node) {
         topCalendar.setMargin(node, MARGIN);
     }
 
+    //@@author wongyewjon
     /**
      * Resets the calendarGrid.
      */
@@ -96,6 +99,7 @@ public class CalendarDisplay extends UiPart<Region> {
         calendarGrid.getChildren().add(0, node);
     }
 
+    //@@author wongyewjon
     /**
      * Resets the calendarGrid's body.
      */
@@ -105,6 +109,7 @@ public class CalendarDisplay extends UiPart<Region> {
         calendarGrid.getChildren().add(0, node);
     }
 
+    //@@author wongyewjon
     private void drawHeader() {
         Text textHeader = calendarLogic.getTextHeader();
         topCalendar.getChildren().addAll(textHeader, prevButton.getRoot(), nextButton.getRoot(),
@@ -112,14 +117,17 @@ public class CalendarDisplay extends UiPart<Region> {
         topCalendar.setMargin(textHeader, MARGIN);
     }
 
+    //@@author wongyewjon
     public String getJumpBoxText() {
         return jumpBox.getText();
     }
 
+    //@@author wongyewjon
     public void clearJumpBox() {
         jumpBox.clear();
     }
 
+    //@@author wongyewjon
     /**
      * Adds the node to be contained within the calendarGrid.
      */
@@ -127,14 +135,17 @@ public class CalendarDisplay extends UiPart<Region> {
         calendarGrid.add(node, columnIndex, rowIndex);
     }
 
+    //@@author wongyewjon
     public void setTextValidation(String validation) {
         textValidation.setTextValidation(validation);
     }
 
+    //@@author wongyewjon
     public void setTopCalendarHeader(int index, Node node) {
         topCalendar.getChildren().set(index, node);
     }
 
+    //@@author wongyewjon
     public boolean isJumpBoxFocused() {
         return jumpBox.isJumpBoxFocused();
     }
