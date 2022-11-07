@@ -13,8 +13,8 @@ Given below are my contributions to the project.
     * What it does: Allows the user to sort the applications list by company, position, application date or interview date, both in forward and reverse orders.
     * Justification: This feature allows the user to organise the applications in various useful orders based on their needs. It allows the user to find applications based on the different fields more easily.
 
-* **New Feature**: Added the ability to save the sort order. [#129](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/129)
-    * What it does: Allows the sort order last used by the user to be saved when the app is closed so that it can automatically be used the next time the app is opened.
+* **New Feature**: Added the ability to save and load the sort order. [#129](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/129)
+    * What it does: Allows the sort order last used by the user to be saved when the app is closed so that it can automatically be used the next time the app is reopened.
     * Justification: A user may find that one particular order of sorting is most useful to them. Preserving this sort order across sessions saves the user the trouble of having to enter the sort command every time. 
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=teekaytai&breakdown=true)
@@ -23,7 +23,7 @@ Given below are my contributions to the project.
     * Drove discussions during team meetings on Zoom.
     * Started a GitHub Project to aid in tracking the work to be done.
     * Reviewed pull requests of teammates and provided suggestions for improvement. (examples: [1](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/98#pullrequestreview-1148545590), [2](https://github.com/AY2223S1-CS2103-F14-3/tp/pull/112#pullrequestreview-1153542428)) 
-    * Managed release `v1.3.1` on GitHub.
+    * Managed release `v1.3.1` and `v1.4` on GitHub.
     * Collated and categorised the issues raised during testing for easier triaging.
 
 * **Enhancements to existing features**:
