@@ -144,7 +144,8 @@ as a `Command` object.
 `Parser` interface so that they can be treated similarly where possible e.g. during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+[Back to top](#table-of-contents)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 [!ModelClassDiagram](images/ModelClassDiagram.png)
 
