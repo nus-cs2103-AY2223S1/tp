@@ -350,7 +350,7 @@ Check out [Add Command using the popup window](#adding-a-contact-with-a-popup-wi
 
 To help you better understand the hierarchy of the second sample command, we illustrate its structure as follows:
 
-![img.png](images/AddBuyerCommandIllustration.png)
+![img.png](!img="images/AddBuyerCommandIllustration.png" weight=200px height=200px)
 
 [Go back to [Table of Contents](#table-of-contents)]
 [Go back to [Commands](#commands)]
@@ -403,6 +403,9 @@ Examples:
   sale: `add-s n/Carol Pet House ph/17238965 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 l/Singapore p/add-p p_n/Luck p_d/2022-01-01 p_c/pink p_cp/pure pink p_h/41.2 p_s/Yorkshire pig p_cert/US certified p_v/true p_w/102.5 p_p/270.3`
 * To add a supplier with two pets for
   sale: `add-s n/Carol Pet House ph/17238965 e/carolpethouse@gmail.com a/Marina Bay Sands 138600 l/Singapore p/add-p p_n/Luck p_d/2022-01-01 p_c/pink p_cp/pure pink p_h/41.2 p_s/Yorkshire pig p_cert/US certified p_v/true p_w/102.5 p_p/270.3 p/add-p p_n/Snupy p_d/2021-05-31 p_c/white p_cp/dotted p_h/89.3 p_cert/US certified p_s/Californian rabbit p_v/false p_w/32.8 p_p/330.3`
+
+:exclamation: **Caution**: Take note that the above added suppliers are considered as the SAME, so if you try all these sample commands, PetCode will notify you that the supplier already exists in the list.
+Check out [FAQ](#faq) on the concept of "What is being the same".
 
 <div markdown="span" class="alert alert-primary">
 
@@ -974,7 +977,8 @@ _Details coming soon ..._
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
 the data of your previous PetCode home folder.
 
-**Q**: Why does the app tell my that the buyer/deliverer/supplier already exits in the addressbook? How are contacts and
+**Q**: What is being the same? Why does the app tell my that the buyer/deliverer/supplier already exits in the list? How
+are contacts and
 items considered as duplicates?<br>
 **A**: Unfortunately, we do not allow duplicate contacts or items in our app, otherwise you may mistakenly modify a
 person that you don't intend to! For buyer/deliverer/supplier, if they are of the same person category and have the same
@@ -1015,7 +1019,7 @@ These prefixes are for you to indicate different parameters when you add a new [
 | `p/`      | Pet             | Pet                               | Always followed by `add-p`. Optional, if no orders to add when adding a supplier. Can have multiple.                                                                                                                                                                                                                                        | `p/add-p`                                       |
 | `p_n/`    | Pet             | Pet name                          | A string of alphanumeric and characters and whitespaces. Required.                                                                                                                                                                                                                                                                          | `p_n/Page`                                      |
 | `p_s/`    | Pet             | Species                           | A string of alphanumeric and characters and whitespaces. Required.                                                                                                                                                                                                                                                                          | `p_s/Chihuahua`, `p_s/German shepherd`          |
-| `p_d/`    | Pet             | Date of birth of the pet          | In the format `yyyy-MM-dd`.                                                                                                                                                                                                                                                                                                                 | `p_d/2020-3-29`                                 |
+| `p_d/`    | Pet             | Date of birth of the pet          | In the format `yyyy-MM-dd`. Cannot be a date in future. Required.                                                                                                                                                                                                                                                                           | `p_d/2020-3-29`                                 |
 | `p_c/`    | Pet             | Color                             | A string of alphanumeric and characters and whitespaces. Required.                                                                                                                                                                                                                                                                          | `p_c/blue`                                      |
 | `p_cp/`   | Pet             | Color pattern                     | A string of alphanumeric and characters and whitespaces. This describes the appearance of the pet in more detail. Required.                                                                                                                                                                                                                 | `p_cp/blue grids`                               |
 | `p_h/`    | Pet             | Height                            | A non-negative decimal number. The unit is cm. Required.                                                                                                                                                                                                                                                                                    | `p_h/33.2`                                      |
@@ -1026,7 +1030,7 @@ These prefixes are for you to indicate different parameters when you add a new [
 
 <div markdown="span" class="alert alert-info">
 
-:information_source: `-0` is also considered as non-negative.
+:information_source: `-0` is also considered as negative.
 
 </div>
 

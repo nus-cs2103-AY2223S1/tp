@@ -46,8 +46,9 @@ You can reach us at the email `seer@comp.nus.edu.sg`
 [[github](https://github.com/Hongyi6328)]
 [[portfolio](team/hongyi6328.md)]
 
-* Role: Developer
-* Responsibilities: Issue Manager, UI
+* Role: Logic Developer, Intra-structure Developer, Manual Tester, Documentation Writer, Project Manager
+* Responsibilities: Issue Manager, Milestone Manager, Official & Unofficial Meeting Minutes Maintainer, Solution
+  Architect
 
 ### Hong Ker Yen Elizabeth
 

@@ -72,7 +72,7 @@ public class AddPetCommand extends Command {
             + COMMON_SAMPLE_PARAMETERS;
 
 
-    public static final String MESSAGE_DUPLICATE_PET = "This pet already exists in the buyer list";
+    public static final String MESSAGE_DUPLICATE_PET = "This pet already exists in the pet list";
 
     public static final String MESSAGE_SUCCESS = "Added Pet: %1$s";
 
@@ -114,6 +114,10 @@ public class AddPetCommand extends Command {
             throw new CommandException(String.format(Messages.INVALID_SUPPLIER, index.getOneBased()));
         }
         Supplier associatedSupplier = (Supplier) o;
+
+        if (model.hasPet(toAdd)) {
+            throw new CommandException(AddPetCommand.MESSAGE_DUPLICATE_PET);
+        }
 
         associatedSupplier.addPets(Collections.singletonList(toAdd.getId()));
         toAdd.setSupplier(associatedSupplier);

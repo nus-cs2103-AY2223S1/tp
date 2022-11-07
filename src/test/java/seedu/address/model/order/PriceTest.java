@@ -56,7 +56,7 @@ public class PriceTest {
 
     @Test
     public void toString_unsettledPrice_returnsTrue() {
-        String expectedString = "Price settled: " + "The price is not settled yet";
+        String expectedString = "Price settled: " + "N/A";
         String result = new Price(-1).toString();
         assertEquals(result, expectedString);
     }

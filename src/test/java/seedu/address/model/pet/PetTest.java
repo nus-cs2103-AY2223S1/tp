@@ -38,7 +38,7 @@ public class PetTest {
     @Test
     public void toStringTest() {
         String expected = "Doja; Species: cat; Date of birth: 2022-10-10; Weight: 10.05 kg; Height: 50.0 cm; "
-                + "Color: white; Color pattern: none; Vaccination status: Vaccinated";
+                + "Color: white; Color pattern: none; Price settled: 100.0; Vaccination status: Vaccinated";
         assertEquals(expected, TypicalPets.DOJA.toString());
     }
 

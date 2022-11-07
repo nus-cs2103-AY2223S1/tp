@@ -13,7 +13,8 @@ import seedu.address.model.ModelManager;
 public class DateOfBirth implements Comparable<DateOfBirth> {
 
     public static final String MESSAGE_USAGE = "The date of birth should be in this format preferably: "
-            + ModelManager.PREFERRED_DATE_FORMAT;
+            + ModelManager.PREFERRED_DATE_FORMAT
+            + "\nYou cannot enter a future date for date of birth";
     private static final String[] ACCEPTABLE_DATE_FORMATS = ModelManager.ACCEPTABLE_DATE_FORMATS;
 
     private static final String PREFERRED_DATE_FORMAT = ModelManager.PREFERRED_DATE_FORMAT;

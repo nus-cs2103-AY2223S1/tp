@@ -39,8 +39,8 @@ public class AddBuyerCommand extends AddPersonCommand {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_LOCATION + "USA "
-            + PREFIX_ORDER + AddOrderCommand.COMMAND_WORD + " (...Order1 fields)"
-            + PREFIX_ORDER + AddOrderCommand.COMMAND_WORD + " (...Order2 fields)";
+            + PREFIX_ORDER + AddOrderCommand.COMMAND_WORD + " (order1 prefixes and parameters) "
+            + PREFIX_ORDER + AddOrderCommand.COMMAND_WORD + " (order2 prefixes and parameters) ";
 
     public static final String MESSAGE_SUCCESS = "New buyer added: %1$s";
     public static final String MESSAGE_DUPLICATE_BUYER = "This buyer already exists in the buyer list";
@@ -85,7 +85,6 @@ public class AddBuyerCommand extends AddPersonCommand {
         model.addBuyer(toAdd);
         model.switchToBuyerList();
 
-        //TODO To keep a single MESSAGE_SUCCESS
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd)
                 + "\n" + numOrdersAdded + (numOrdersAdded == 1 ? " order" : " orders") + " added\n");
     }

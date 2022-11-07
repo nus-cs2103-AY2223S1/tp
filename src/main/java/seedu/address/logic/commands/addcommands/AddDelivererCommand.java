@@ -37,7 +37,7 @@ public class AddDelivererCommand extends AddPersonCommand {
             + PREFIX_LOCATION + "China";
 
     public static final String MESSAGE_SUCCESS = "New deliverer added: %1$s";
-    public static final String MESSAGE_DUPLICATE_DELIVERER = "This deliverer already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_DELIVERER = "This deliverer already exists in the deliverer list";
 
     private static final Logger LOGGER = LogsCenter.getLogger(AddDelivererCommand.class);
     private final Deliverer toAdd;

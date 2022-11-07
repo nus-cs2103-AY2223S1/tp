@@ -38,7 +38,7 @@ public class AddOrderCommand extends Command {
                     + "\nExample: " + COMMAND_WORD + " ";
     public static final String USAGE_COMMON_SAMPLE_PARAMETERS =
             PREFIX_ORDER_STATUS + "Pending "
-                    + PREFIX_ORDER_REQUESTS + "...(Request fields) "
+                    + PREFIX_ORDER_REQUESTS + " (request prefixes and parameters) "
                     + PREFIX_ORDER_PRICE + "6.8 "
                     + PREFIX_ORDER_PRICE_RANGE + "5.4,8.0 "
                     + PREFIX_ORDER_DATE + "2022-09-30 "
@@ -57,7 +57,7 @@ public class AddOrderCommand extends Command {
             + "1 "
             + USAGE_COMMON_SAMPLE_PARAMETERS;
 
-    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the order list";
     public static final String MESSAGE_SUCCESS = "Added Order: %1$s";
 
     private final Order toAdd;
