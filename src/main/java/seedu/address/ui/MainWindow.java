@@ -113,7 +113,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        reminderListPanel = new ReminderListPanel(logic.getSortedReminderList());
+        reminderListPanel = new ReminderListPanel(logic.getSortedReminderPairs());
         centerPanel = new CenterPanel(personListPanel, reminderListPanel);
         centerPanelPlaceholder.getChildren().add(centerPanel.getRoot());
 
