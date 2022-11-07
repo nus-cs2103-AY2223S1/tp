@@ -13,7 +13,7 @@ title: Developer Guide
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
 
-## Introduction
+## **Introduction**
 Welcome to the Developer Guide for **Tuthub**, a Command Line Interface (CLI) App that will help you find your next batch of teaching assistants (TA) in no time! Tuthub is a desktop app for NUS professors who wish to track and choose their next batch of teaching assistants/tutors based on their past performance and records but have little time to spare for tedious administrative work.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -172,7 +172,7 @@ Classes used by multiple components are in the `tuthub.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Adding tutors
+### Add Feature
 
 Tutor information is stored as `Tutor` objects, which captures all the information that the tutor represents. When the user adds a tutor, the program creates a new `Tutor` object with the given information and adds it to the `ObservableList` to be displayed in the program. The `Model` class handles the checking of uniqueness while the `Storage` class handles the conversion of the `Tutor` object to a [JSON](https://www.json.org/) format and updating of the storage file in `{source_root}/data/Tuthub.json`.
 
@@ -264,7 +264,7 @@ The following sequence diagram demonstrates the above operations (excluding the 
 ### View Feature
 <ins>Implementation</ins>
 
-Similar to the `help` command, the `view` command involves operations within the UI to display/hide the tutor details panel. The communication between the logic and UI classes is facilitated by the `CommandResult` class, where the following field has been added:
+The `view` command involves operations within the UI to display/hide the tutor details panel. The communication between the logic and UI classes is facilitated by the `CommandResult` class, where the following field has been added:
 - `CommandResult#isView` - Indicates if the current command is a `view` command.
 
 Given below is an example usage scenario when the user enters a `view` command in the command box and how the view mechanism behaves at each step (omitting the parsing details).
@@ -414,15 +414,21 @@ TutHub helps professors find TAs efficiently by consolidating information in an 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                | I can …​                             | So that I can…​                                                                            |
-|----------|----------------------------------------|--------------------------------------|--------------------------------------------------------------------------------------------|
-| `* * *`  | NUS Computing Professor                | list all tutor profiles              | get a quick view of all available tutors                                                   |
-| `* * *`  | NUS Computing Professor                | add a new tutor                      | track their profiles                                                                       |
-| `* * *`  | NUS Computing Professor                | view a tutor's full profile          | find out more about their performance and contact details to reach out for future TA roles |
-| `* * *`  | NUS Computing Professor                | find a specific tutor by name easily | filter tutor names                                                                         |
-| `* * *`  | NUS Computing Professor                | delete a tutor profile               | remove tutors that are no longer available for work                                        |
-| `* * *`  | NUS Computing Professor                | save data                            | there is a local backup on the computer                                                    |
-| `* * *`  | NUS Computing Professor                | exit the program                     |                                                                                            |
+| Priority | As a …​                                | I can …​                                                        | So that I can…​                                                                             |
+|----------|----------------------------------------|-----------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| `* * *`  | NUS Professor                          | list all tutor profiles                                         | get a quick view of all available tutors.                                                   |
+| `* * *`  | NUS Professor                          | add a new tutor                                                 | track their profiles.                                                                       |
+| `* *`    | NUS Professor                          | edit a tutor profile                                            | update tutor information if there are any changes.                                          |
+| `* * *`  | NUS Professor                          | view a tutor's full profile                                     | find out more about their performance and contact details to reach out for future TA roles. |
+| `* *`    | NUS Professor                          | comment on a tutor                                              | keep notes about the tutor's performance for future reference.                              |
+| `* * *`  | NUS Professor with many tutor profiles | find a specific tutor by various fields easily                  | find the most relevant and competent tutors more easily.                                    |
+| `* * *`  | NUS Professor                          | sort a list of tutors according to ratings/teaching nominations | identify and pick the best tutors more easily.                                              |
+| `* *`    | NUS Professor                          | mail a specific tutor or group of tutors                        | reach out to them for a TA role.                                                            |
+| `* *`    | NUS Professor                          | delete a tutor profile                                          | remove tutors that have graduated/are no longer available to teach.                         |
+| `* * *`  | NUS Professor                          | save data                                                       | there is a local backup on the computer.                                                    |
+| `* * *`  | NUS Professor                          | exit the program                                                |                                                                                             |
+| `*`      | NUS Professor                          | clear all data                                                  | remove all irrelevant sample data on first use.                                             |
+| `*`      | NUS Professor new to Tuthub            | view help                                                       | familiarise myself with Tuthub commands.                                                    |
 
 
 ### Use cases
@@ -547,12 +553,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 9. Constraints: The data should be stored locally and should be in a human editable text file.
 10. Constraints: The file size of the deliverables should be reasonable. Product (i.e. JAR/ZIP file) should not exceed 100 MB. Documents (i.e. PDF files) should not exceed 150 MB.
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Tutor Profile**: A profile containing the tutor's details, such as `NAME`, `PHONE_NUMBER`, `GENDER`, `EMAIL`, etc.
+* **Student Feedback Points/Ratings**: A way the National University of Singapore (NUS) assess tutors and professors' performances by gathering feedback from students.
+* **Teaching Assistant (TA)**: A part-time tutor who supports professors in teaching a module by conducting tutorial/lab sessions.
+* **Teaching Nominations**: Number of nominations submitted by students for a teaching excellence award in NUS.
+* **Tutor Profile**: A profile containing the tutor's details, such as `NAME`, `PHONE_NUMBER`, `EMAIL`, etc.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -582,8 +589,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-3. _{ more test cases …​ }_
 
 ### Viewing a tutor's full details
 
@@ -615,7 +620,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `find n/`<br>
         Expected: Error status messages telling user what kind of input is valid for `n/` prefix.
 
-    4. Other incorrect commmands to try: `find n/   `
+    4. Other incorrect commands to try: `find n/   `
         Expected: Similar to previous.
 
 ### Deleting a tutor
@@ -633,12 +638,16 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
-
 ### Saving data
 
 1. Dealing with missing/corrupted data files
+    1. Prerequisites: If you have used Tuthub before, there should be a `tuthub.json` in the `./data/` directory. If not, the directory and file will be created when you first launch Tuthub.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    2. Test Case: Before starting Tuthub, enter random characters in the `tuthub.json` file. Launch Tuthub.<br/>
+       Expected: Tuthub should start with no tutors in the list. You should see a warning message "`WARNING: Data file not in the correct format. Will be starting with an empty Tuthub`" in the terminal console.
 
-1. _{ more test cases …​ }_
+    3. Test Case: Before starting Tuthub, delete `tuthub.json`. Launch Tuthub.<br/>
+        Expected: Tuthub will start with a sample list of tutors. A new `tuthub.json` file containing the sample data will be created.
+
+    4. Test Case: While Tuthub is running, delete `tuthub.json`. Try carrying out a valid command, e.g. `view 1`.<br/>
+       Expected: Command works as per usual. Upon carrying out the command, a new `tuthub.json` file will be created.
