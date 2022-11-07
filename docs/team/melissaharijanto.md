@@ -100,6 +100,8 @@ Given below are my contributions to the project.
     - Fixed UG bugs due to Markdown syntax issues
       - Relevant pull request(s): [#135](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/135), 
       [#216](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/216)
+    - Added `Symbols & Syntax` section
+      - Relevant pull request(s): [#225](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/225)
 
   - **Contributions to the DG**:
     - Added use cases for the Developer's Guide
