@@ -54,7 +54,7 @@ For a full list of commands and detailed instructions, head to the [Features](#f
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
-2. Download the latest `teachersPet.jar` from https://github.com/AY2223S1-CS2103T-T09-4/tp/releases when made available.
+2. Download the latest `teachersPet.jar` from [here](https://github.com/AY2223S1-CS2103T-T09-4/tp/releases).
 3. Copy the file to the folder you want to use as the *home folder* for your application.
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds.
    Note how the app contains some sample data.
@@ -69,13 +69,13 @@ For a full list of commands and detailed instructions, head to the [Features](#f
 
 Our application is divided into 5 areas to maximise productivity, the specific uses are:
 
-- Input Command - The dialog box where all user interaction are held.
-- Application’s Reply - A short answer whether the application has executed the command, or an error message if the
+1) Command Input - The dialog box where all user interaction are held.
+2) Command Result - A short answer whether the application has executed the command, or an error message if the
   application did not understand the command.
-- Student's Details - A window that will display the details of the student(s).
-- Statistics Window - A window that shows all the statistics of the tutor, such as the number of students and
+3) Student List - A window that will display the details of the student(s).
+4) Statistics Window - A window that shows all the statistics of the tutor, such as the number of students and
 the money collected/owed.
-- Day’s Schedule List - A scroll window which shows the schedule for the day, sorted by time.
+5) Schedule List - A scroll window which shows the schedule for the day, sorted by time.
 
 Basic Instructions:
 1. Type the command in the command box and press Enter to execute it. e.g., typing `help` and pressing Enter will open
@@ -176,12 +176,14 @@ Adds a student to the Teacher’s Pet.
 ##### Email:
     - Email must not be empty. 
     - Email should be in the format of `local@domain`, where:
-      - Local address should only contain alphanumeric characters and these special characters `+_.-`.
+      - Local address should only contain alphanumeric characters and these special characters
+        `+_.-`.
       - Consecutive special characters are not supported.
       - The domain name must:
         1. End with a domain label at least 2 characters long.
         2. Have each domain label start and end with alphanumeric characters.
-        3. Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+        3. Have each domain label consist of alphanumeric characters, separated only by hyphens,
+           if any.
 
 ##### Tags:
     - Tags are optional.
@@ -239,18 +241,18 @@ Edits an existing student in the list.
 <div markdown="span" class="alert alert-danger">❗ **Caution:** If a chosen date is occupied by another student, a class conflict error will arise.
 </div>
 
-4. Amount Paid (`paid/`):
+3. Amount Paid (`paid/`):
     - Amount Paid stands for the amount that has been paid by the Student.
     - Amount paid can only be an integer.
     - Amount paid must be non-negative.
 
-5. Amount Owed (`owed/`):
+4. Amount Owed (`owed/`):
     - Amount Owed stands for the amount that has been owed by the Student.
     - Format: `owed/` must be followed by an integer.
     - Amount owed can only be an integer.
     - Amount owed must be non-negative.
 
-6. Rates per Class (`rate/`):
+5. Rates per Class (`rate/`):
     - Rates per Class stands for the amount of charge per Class for the Student.
     - Rates per Class can only be an integer.
     - Rates per Class must be non-negative.
@@ -259,7 +261,7 @@ Edits an existing student in the list.
   independent of each other.</div>
 
 
-7. Additional Notes (`nt/`):
+6. Additional Notes (`nt/`):
     - Additional notes can be left empty.
     - Additional notes can take in any types of character.
     - Use `nt/` to set the additional notes.
@@ -447,7 +449,7 @@ Example:
 
 Finds all students with a particular next of kin's contact number.
 
-Formats: `find np/NEXT_OF_KIN_CONTACT_NUMBER`
+Format: `find np/NEXT_OF_KIN_CONTACT_NUMBER`
 
 - Only full numbers will be matched e.g., `8123` will not match `81234567`.
 - Only one contact number can be searched at each time.
@@ -455,7 +457,7 @@ Formats: `find np/NEXT_OF_KIN_CONTACT_NUMBER`
 <div markdown="span" class="alert alert-danger">❗ **Caution:** Do not include more than one contact number such as find np/91232323 81231232.
 </div>
 
-Examples:
+Example:
 
 `find np/91232323` returns all students with the next of kin's contact number set as `91232323`.
 
@@ -486,7 +488,7 @@ Examples:
 
 Finds all students with a particular tag.
 
-Formats: `find t/tagName`
+Format: `find t/tagName`
 
 - Only one tag can be searched at each time.
 - The tag is case-insensitive.
@@ -727,19 +729,19 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 
 ## Prefix Summary
 
-| Prefix                                              | Meaning | Examples                                             |
-|-----------------------------------------------------|:--------|------------------------------------------------------|
-| Name of student                                     | n/      | `n/Alice`                                            |
-| Phone number of student                             | p/      | `p/81234567`                                         |
-| Next of Kin Phone number                            | np/     | `np/65432109`                                        |
-| Email of student                                    | e/      | `e/alice@email.com`                                  |
-| Date and time of student's class                    | dt/     | `dt/2022-10-27 1300-1400`                            |
-| Address of student                                  | a/      | `a/15 Bukit Timah Road, Singapore 155203`            |
-| Amount paid by student                              | paid/   | `paid/300`                                           |
-| Amount owed by student                              | owed/   | `owed/200`                                           |
-| Rates per Class                                     | rate/   | `rate/100`                                           |
-| Additional notes of student (create new notes)      | nt/     | `nt/I have created new notes for Alice`              |
-| Additional notes of student (append existing notes) | nt-a/   | `nt-a/I have added more notes to the existing notes` |
-| Tags of student                                     | t/      | `t/python`                                           |
+| Representation of                                   | Prefix | Examples                                             |
+|-----------------------------------------------------|:-------|------------------------------------------------------|
+| Name of student                                     | n/     | `n/Alice`                                            |
+| Phone number of student                             | p/     | `p/81234567`                                         |
+| Next of Kin Phone number                            | np/    | `np/65432109`                                        |
+| Email of student                                    | e/     | `e/alice@email.com`                                  |
+| Date and time of student's class                    | dt/    | `dt/2022-10-27 1300-1400`                            |
+| Address of student                                  | a/     | `a/15 Bukit Timah Road, Singapore 155203`            |
+| Amount paid by student                              | paid/  | `paid/300`                                           |
+| Amount owed by student                              | owed/  | `owed/200`                                           |
+| Rates per Class                                     | rate/  | `rate/100`                                           |
+| Additional notes of student (create new notes)      | nt/    | `nt/I have created new notes for Alice`              |
+| Additional notes of student (append existing notes) | nt-a/  | `nt-a/I have added more notes to the existing notes` |
+| Tags of student                                     | t/     | `t/python`                                           |
 
 [↑ Back to top](#table-of-contents)
