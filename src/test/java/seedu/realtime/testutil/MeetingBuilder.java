@@ -1,6 +1,9 @@
 package seedu.realtime.testutil;
 
-import static seedu.realtime.logic.parser.ParserUtil.DATETIME_FORMAT;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
+import java.util.Set;
 
 import seedu.realtime.model.listing.ListingId;
 import seedu.realtime.model.meeting.Meeting;
@@ -8,10 +11,7 @@ import seedu.realtime.model.person.Name;
 import seedu.realtime.model.tag.Tag;
 import seedu.realtime.model.util.SampleDataUtil;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.HashSet;
-import java.util.Set;
+import static seedu.realtime.logic.parser.ParserUtil.DATETIME_FORMAT;
 
 /**
  * A utility class to help with building Meeting objects.

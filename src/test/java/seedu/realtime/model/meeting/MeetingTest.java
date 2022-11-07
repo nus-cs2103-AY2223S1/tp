@@ -2,16 +2,17 @@ package seedu.realtime.model.meeting;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.realtime.logic.commands.CommandTestUtil.VALID_DATETIME_2;
 import static seedu.realtime.logic.commands.CommandTestUtil.VALID_ID_BOB;
 import static seedu.realtime.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.realtime.logic.commands.CommandTestUtil.VALID_DATETIME_2;
-import static seedu.realtime.logic.commands.CommandTestUtil.VALID_TAG_CONTRACT;
 import static seedu.realtime.logic.commands.CommandTestUtil.VALID_TAG_CHILDREN;
+import static seedu.realtime.logic.commands.CommandTestUtil.VALID_TAG_CONTRACT;
 import static seedu.realtime.testutil.Assert.assertThrows;
 import static seedu.realtime.testutil.TypicalMeetings.ALICE;
 import static seedu.realtime.testutil.TypicalMeetings.BOB;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.realtime.testutil.MeetingBuilder;
 
 

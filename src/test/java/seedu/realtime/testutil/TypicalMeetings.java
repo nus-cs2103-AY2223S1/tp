@@ -7,7 +7,16 @@ import java.util.List;
 import seedu.realtime.model.RealTime;
 import seedu.realtime.model.meeting.Meeting;
 
-import static seedu.realtime.logic.commands.CommandTestUtil.*;
+
+import static seedu.realtime.logic.commands.CommandTestUtil.VALID_DATETIME_1;
+import static seedu.realtime.logic.commands.CommandTestUtil.VALID_DATETIME_2;
+import static seedu.realtime.logic.commands.CommandTestUtil.VALID_ID_AMY;
+import static seedu.realtime.logic.commands.CommandTestUtil.VALID_ID_BOB;
+import static seedu.realtime.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.realtime.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.realtime.logic.commands.CommandTestUtil.VALID_TAG_CHILDREN;
+import static seedu.realtime.logic.commands.CommandTestUtil.VALID_TAG_CONTRACT;
+import static seedu.realtime.logic.commands.CommandTestUtil.VALID_TAG_VIEWING;
 
 /**
  * A utility class containing a list of {@code Meeting} objects to be used in tests.
