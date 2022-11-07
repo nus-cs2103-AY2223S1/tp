@@ -48,7 +48,7 @@ We are developing NutriGoals - a free-to-use CLI nutritional tracker for beginne
 
 ### Aung Khant Kyaw
 
-<img src="images/akkfiros.png" width="200px">
+<img src="images/akkfiros2.png" width="200px">
 
 [[GitHub](http://github.com/akkfiros)][[Portfolio](team/akkfiros.md)]
 
