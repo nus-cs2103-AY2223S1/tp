@@ -49,11 +49,10 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         Uid uid;
 
-        if (argMultimap.getValue(PREFIX_UID).isPresent()) {
-            uid = ParserUtil.parseUid(argMultimap.getValue(PREFIX_UID).get());
-        } else {
+        if (argMultimap.getValue(PREFIX_UID).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
+        uid = ParserUtil.parseUid(argMultimap.getValue(PREFIX_UID).get());
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {

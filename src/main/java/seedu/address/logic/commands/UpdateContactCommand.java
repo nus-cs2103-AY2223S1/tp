@@ -104,9 +104,8 @@ public class UpdateContactCommand extends Command {
                     patientToEdit.getPhone(), patientToEdit.getEmail(), patientToEdit.getAddress(),
                     patientToEdit.getTags(), patientToEdit.getDatesSlots(),
                     patientToEdit.getAttendingPhysician(), Optional.of((NextOfKin) updatedContact));
-        } else {
-            throw new CommandException(Messages.MESSAGE_UPDATECONTACT_INVALID_CONTACT_CATEGORY);
         }
+        throw new CommandException(Messages.MESSAGE_UPDATECONTACT_INVALID_CONTACT_CATEGORY);
     }
 
     @Override
