@@ -32,7 +32,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         }
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ADDRESS, PREFIX_CATEGORY, PREFIX_GENDER,
                 PREFIX_TAG);
-        
+
         boolean[] parametersAreValid = new boolean[]{true};
 
         List<Optional<Address>> address = new ArrayList<>();
