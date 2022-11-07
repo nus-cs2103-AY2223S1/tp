@@ -574,13 +574,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​            | I want to …​                                                             | So that I can…​                                                                       |
 |---------|--------------------|--------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
-| `* * *` | Teaching Assistant | store all my student’s contacts in one place                             | I can easily contact whoever needs to be contacted.                                   |
-| `* * *` | Teaching Assistant | remove student contacts who dropped the module                           | my address book is updated for the current semester                                   |
-| `* * *` | Professor          | store all my TAs’ contacts in one place                                  |                                                                                       |
+| `* * *` | Teaching Assistant | store all my student’s contacts in one place                             | easily contact whoever needs to be contacted.                                         |
+| `* * *` | Teaching Assistant | remove student contacts who dropped the module                           | have an updated address book for the current semester                                 |
+| `* * *` | Teaching Assistant | view the performance of students                                         | know who is doing well and who needs more help                                        |
+| `* * *` | Professor          | store all my TAs’ contacts in one place                                  | know who to contact should I need help                                                |
 | `* * *` | Professor          | view the availability of the TAs                                         | I know who to reach out to should one be unavailable to teach due to medical reasons. |
 | `* * *` | Professor          | remove contacts of TAs from my address book when they are no longer a TA | my address book is updated for the current semester                                   |
-| `* * *` | New User           | view the summary of all commands                                         |                                                                                       |
-| `* * *` | New User           | go through a tutorial to get started.                                    |                                                                                       |
+| `* * *` | New User           | view the summary of all commands                                         | know the features of TAB                                                              |
+| `* * *` | New User           | go through a tutorial to get started.                                    | understand how to use TAB                                                             |
 
 *{More to be added}*
 
@@ -890,14 +891,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
 
