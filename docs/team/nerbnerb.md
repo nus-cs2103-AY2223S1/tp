@@ -37,10 +37,12 @@ Given below are my contributions to the project.
     * Explains purpose of certain elements which may be less obvious
   * Added appendix section
     * Defines requirements about input fields for commands and explains certain fields
+  * Improved navigability of user guide
+    * Added "back to..." buttons
 
 * **Contributions to the DG**:
   * Added implementation details of `filter` feature
-    * Included activity diagram and design considerations for feature
+    * Included activity, sequence diagrams and design considerations for feature
   * Updated diagrams to reflect changes to UI
   * Added user stories
 
