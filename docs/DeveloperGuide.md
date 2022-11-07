@@ -126,13 +126,6 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
-
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -307,6 +300,10 @@ Step 2. The user executes `createTagType Grade grdt` command to add a Grade Tag 
 Step 3. The user executes the 'editTagType Grade-Score grdt-scrt' to edit the existing Tag Type Grade and rename it as Score. The `editTagType` command calls the `UniqueTagTypeMap#setExistingTagType()` to remove the grdt/ — Grade key-value pair from the `prefixMap` and add scrt/ — Score key-value pair to the `prefixMap`. Furthermore, the `editTagType` command also calls 'Model#editTagTypeForAllPerson()' to edit the Grade Tag Type name and rename it as Score Tag Type for all person who had Tags of Grade Tag Type.
 
 Step 4. The user executes the `deleteTagType Score` to delete the Score Tag Type and all Tags of Score Tag Type for all person in CLInkedIn. The `deleteTagType` command calls the `UniqueTagTypeMap#removeExistingTagType()` to remove the scrt/ — Score key-value pair from the `prefixMap`. Furthermore, it also calls the `Model#deleteTagTypeForAllPerson()` to delete the Score Tag Type and the Tags assigned to the Score Tag TYpe for each person having Tags of Score Tag Type.
+
+The following sequence diagram shows how the createTagType operation works:
+
+![CreateTagTypeSequenceDiagram](images/CreateTagTypeSequenceDiagram.png)
 
 ### Status feature
 
