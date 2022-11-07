@@ -649,9 +649,7 @@ testers are expected to do more *exploratory* testing.
 
     2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-
-3. _{ more test cases …​ }_
-
+    
 ### 8.2 Deleting a task
 
 1. Deleting a task while all tasks are being shown
@@ -684,6 +682,11 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. Open `/data/addressbook.json`
 
-2. _{ more test cases …​ }_
+    2. In line 2, change `tasks` to `task`. This corrupts the file and system will recognise the mismatch. 
+
+    3. Launch NotionUS by double-clicking the jar file. 
+        E
+
+3. _{ more test cases …​ }_
