@@ -32,7 +32,6 @@ Given below are my contributions to the project.
         * Credits: Integration of functionality was done with the help of `@Yingming23`.
         * To Note: Currently only works for modules in the _current semester_, will be implementing it such that users can
           select their preferred academic year to query from, as well as input custom modules.
-          <div style="page-break-after: always;"></div>
     * **Add Module Command**:
         * What it does: Adds a module to the SoCompiler data archive, similar to the add-command introduced in AB3.
         * Justification: Allows user to add modules to a separate list from the Person for a better overview and clarity.
