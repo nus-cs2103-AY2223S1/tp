@@ -70,7 +70,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'EzLead.jar'
+    archiveFileName = 'EZLead.jar'
 }
 
 defaultTasks 'clean', 'test'
