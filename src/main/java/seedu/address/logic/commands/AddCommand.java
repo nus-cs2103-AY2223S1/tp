@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.internship.Internship;
@@ -27,7 +28,7 @@ public class AddCommand extends Command {
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_APPLIED_DATE + "APPLIED_DATE "
             + "[" + PREFIX_INTERVIEW_DATE_TIME + "INTERVIEW_DATE_TIME] "
-            + "[" + PREFIX_TAG + "TAG]\n"
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_COMPANY + "TikTok "
             + PREFIX_LINK + "https://careers.tiktok.com/position "
@@ -37,7 +38,6 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "Frontend";
 
     public static final String MESSAGE_SUCCESS = "New internship added: %1$s";
-    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in findMyIntern.";
 
     private final Internship toAdd;
 
@@ -54,7 +54,7 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasInternship(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_INTERNSHIP);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_INTERNSHIP);
         }
 
         model.addInternship(toAdd);
