@@ -739,11 +739,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The user makes an error in writing the request.
-    * 1a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 1.
-* 1b. DevEnable detects that the project already exists in the list.
+* 1a. The project already exists within the list.
     * 1b1. DevEnable displays an error message that the project already exists.
 
       Use case ends.
@@ -760,11 +756,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that the project does not exist in the list.
+* 2b. The project does not exist.
     * 2b1. DevEnable displays an error message that the project does not exist.
 
       Use case ends.
@@ -781,11 +773,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that the project does not exist in the list.
+* 2b. The project does not exist.
     * 2b1. DevEnable displays an error message that the project does not exist.
 
       Use case ends.
@@ -817,141 +805,62 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that the project that the client will be attached to does not exist in the list.
-    * 2b1. DevEnable displays an error message that the project does not exist.
+* 2a. The project that the client will be attached to does not exist.
+    * 2a1. DevEnable displays an error message that the project does not exist.
 
       Use case ends.
 
-**Use case: UC6 - Delete client from project**
+**Use case: UC6 - Delete client**
 
 **MSS**
 
-1. User <ins>views the list of projects (UC1).</ins>
-2. User requests to delete a client from a specific project in the list.
-3. DevEnable deletes the client from the project in the list.
+1. User requests to delete a client.
+2. DevEnable deletes the client from the project in the list.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that the project does not exist in the list.
-    * 2b1. DevEnable displays an error message that the project does not exist.
-
-      Use case ends.
-* 2c. DevEnable detects that the client is not assigned to the project.
-    * 2c1. DevEnable displays an error message that the client does not exist.
+* 2b. The client does not exist.
+    * 2b1. DevEnable displays an error message that the client does not exist.
 
       Use case ends.
 
-**Use case: UC7 - Edit client of project**
+**Use case: UC7 - Edit client**
 
 **MSS**
 
-1. User <ins>views the list of projects (UC1).</ins>
-2. User requests to edit a client of a specific project in the list.
-3. DevEnable edits the client of the project in the list.
+1. User requests to edit a client of a specific project in the list.
+2. DevEnable edits the client of the project in the list.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that the project does not exist in the list.
-    * 2b1. DevEnable displays an error message that the project does not exist.
-
-      Use case ends.
-* 2c. DevEnable detects that the client is not assigned to the project.
+* 2c. The client does not exist.
     * 2c1. DevEnable displays an error message that the client does not exist.
 
       Use case ends.
 
-**Use case: UC8 - Add deadline to project**
+**Use case: UC8 - Edit details of project**
 
 **MSS**
 
 1. User <ins>views the list of projects (UC1).</ins>
-2. User requests to add a deadline to a specific project in the list.
+2. User requests to edit some details of a specific project in the list.
 3. DevEnable adds the deadline to the project in the list.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that the project does not exist in the list.
-    * 2b1. DevEnable displays an error message that the project does not exist.
+* 2a. The project does not exist.
+    * 2a1. DevEnable displays an error message that the project does not exist.
 
       Use case ends.
-* 2c. DevEnable detects that the deadline is not in the correct format.
-    * 2c1. DevEnable displays an error message with the required format.
-
-      Use case ends.
-
-**Use case: UC9 - Delete deadline from project**
-
-**MSS**
-
-1. User <ins>views the list of projects (UC1).</ins>
-2. User requests to delete the deadline from a specific project in the list.
-3. DevEnable deletes the deadline from the project in the list.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that the project does not exist in the list.
-    * 2b1. DevEnable displays an error message that the project does not exist.
-
-      Use case ends.
-* 2c. DevEnable detects that the project does not have a deadline.
-    * 2c1. DevEnable displays an error message that there is no deadline.
-
-      Use case ends.
-
-**Use case: UC10 - Edit deadline of project**
-
-**MSS**
-
-1. User <ins>views the list of projects (UC1).</ins>
-2. User requests to edit the deadline of a specific project in the list.
-3. DevEnable edits the deadline of the project in the list.
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that the project does not exist in the list.
-    * 2b1. DevEnable displays an error message that the project does not exist.
-
-      Use case ends.
-* 2c. DevEnable detects that the project does not have a deadline.
-    * 2c1. DevEnable displays an error message that there is no deadline.
-
-      Use case ends.
-* 2d. DevEnable detects that the deadline is not in the correct format.
-    * 2d1. DevEnable displays an error message with the required format.
+	  
+* 2b. The user input is not in the correct format.
+    * 2b1. DevEnable displays an error message with the required format.
 
       Use case ends.
 
@@ -966,12 +875,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The user makes an error in writing the request.
-    * 1a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 1.
-* 1b. DevEnable detects that the client already exists in the list.
-    * 1b1. DevEnable displays an error message that the client already exists.
+* 1a. The client already exists in the list.
+    * 1a1. DevEnable displays an error message that the client already exists.
 
       Use case ends.
 
@@ -987,12 +892,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that the client does not exist in the list.
-    * 2b1. DevEnable displays an error message that the client does not exist.
+* 2a. DevEnable detects that the client does not exist.
+    * 2a1. DevEnable displays an error message that the client does not exist.
 
       Use case ends.
 
@@ -1008,12 +909,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that the client does not exist in the list.
-    * 2b1. DevEnable displays an error message that the client does not exist.
+* 2a. DevEnable detects that the client does not exist.
+    * 2a1. DevEnable displays an error message that the client does not exist.
 
       Use case ends.
 
@@ -1029,12 +926,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that such a project does not exist in the list.
-    * 2b1. DevEnable displays an error message that such a project does not exist.
+* 2a. A project that matches the search does not exist.
+    * 2a1. DevEnable displays an error message that such a project does not exist.
 
       Use case ends.
 
@@ -1050,12 +943,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that such a client does not exist in the list.
-    * 2b1. DevEnable displays an error message that such a client does not exist.
+* 2a. A client that matches the search does not exist.
+    * 2a1. DevEnable displays an error message that such a client does not exist.
 
       Use case ends.
 
@@ -1070,12 +959,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that the project that the issue will be attached to does not exist in the list.
-    * 2b1. DevEnable displays an error message that the project does not exist.
+* 2a. The project specified for the issue to be attached to does not exist.
+    * 2a1. DevEnable displays an error message that the project does not exist.
 
       Use case ends.
 
@@ -1083,24 +968,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User <ins>views the list of projects (UC1).</ins>
-2. User requests to delete a issue from a specific project in the list.
-3. DevEnable deletes the issue from the project in the list.
+1. User requests to delete an issue.
+2. DevEnable deletes the issue.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that the project does not exist in the list.
-    * 2b1. DevEnable displays an error message that the project does not exist.
-
-      Use case ends.
-* 2c. DevEnable detects that the issue is not assigned to the project.
-    * 2c1. DevEnable displays an error message that the issue does not exist.
+* 2a. The issue does not exist
+    * 2a1. DevEnable displays an error message.
 
       Use case ends.
 
@@ -1108,27 +984,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User <ins>views the list of projects (UC1).</ins>
-2. User requests to edit a issue of a specific project in the list.
-3. DevEnable edits the issue of the project in the list.
+1. User requests to edit an issue.
+2. DevEnable edits the issue as requested.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that the project does not exist in the list.
-    * 2b1. DevEnable displays an error message that the project does not exist.
+* 2b. The issue does not exist.
+    * 2b1. DevEnable displays an error message that the issue does not exist.
 
       Use case ends.
-* 2c. DevEnable detects that the issue is not assigned to the project.
-    * 2c1. DevEnable displays an error message that the issue does not exist.
-
-      Use case ends.
-
 	  
 **Use case: List all issues**
 
@@ -1177,7 +1043,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 	Use Case ends.
 
-- 1b. The issue is already incomplete
+- 1b. The issue is incomplete
 	- 1b1. DevEnable displays an error message
 
 	Use Case ends.
@@ -1194,12 +1060,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The user makes an error in writing the request.
-    * 2a1. DevEnable displays an error message with the correct usage.
-
-      Use case resumes at Step 2.
-* 2b. DevEnable detects that such an issue does not exist in the list.
-    * 2b1. DevEnable displays an error message that such an issue does not exist.
+* 2a. DevEnable detects that such an issue does not exist.
+    * 2a1. DevEnable displays an error message that such an issue does not exist.
 
       Use case ends.
 
@@ -1213,13 +1075,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 	Use Case ends
 
-**Extensions**
-- 1a. User makes an error in writing the request (incorrect parameters and/or sorting keys)
-	- 1a1. DevEnable displays an error message with the correct usage.
-
-	Use Case Ends
-
-
 **Use Case: View a sorted list of clients**
 
 **MSS**
@@ -1229,12 +1084,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 	Use Case ends
 
-**Extensions**
-- 1a. User makes an error in writing the request (incorrect parameters and/or sorting keys)
-	- 1a1. DevEnable displays an error message with the correct usage.
-
-	Use Case Ends
-	
 **Use Case: View a sorted list of issues**
 
 **MSS**
@@ -1243,12 +1092,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. DevEnable displays a sorted list of issues with said parameters.
 
 	Use Case ends
-
-**Extensions**
-- 1a. User makes an error in writing the request (incorrect parameters and/or sorting keys)
-	- 1a1. DevEnable displays an error message with the correct usage.
-
-	Use Case Ends
 
 **Use Case: Pin/Unpin a project**
 
@@ -1260,10 +1103,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 	Use Case ends
 
 **Extensions**
-- 1a. User makes an error in writing the request (negative ID)
-	- 1a1. DevEnable displays an error message with the correct usage.
+- 1a. The project requested for by the user does not exist
+	- 1a1. DevEnable displays an error message that the project does not exist.
 
-	Use Case resumes at Step 1.
+	Use Case ends.
 
 
 **Use Case: Pin/Unpin a issue**
@@ -1276,10 +1119,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 	Use Case ends
 
 **Extensions**
-- 1a. User makes an error in writing the request (negative ID)
-	- 1a1. DevEnable displays an error message with the correct usage.
+- 1a. The issue requested for by the user does not exist
+	- 1a1. DevEnable displays an error message that the issue does not exist.
 
-	Use Case resumes at Step 1.
+	Use Case ends.
 
 **Use Case: Pin/Unpin a client**
 
@@ -1291,8 +1134,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 	Use Case ends
 
 **Extensions**
-- 1a. User makes an error in writing the request (negative ID)
-	- 1a1. DevEnable displays an error message with the correct usage.
+- 1a. The client requested for by the user does not exist
+	- 1a1. DevEnable displays an error message that the client does not exist.
 
 	Use Case resumes at Step 1.
 
@@ -1334,6 +1177,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Use Case: Clear project book**
+
+**Guarantees:** Project book is empty after clear
 
 **MSS**
 
