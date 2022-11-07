@@ -15,8 +15,8 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_TASKS_LISTED_OVERVIEW = "%1$d tasks listed!";
     public static final String MESSAGE_MODULES_LISTED_OVERVIEW = "%1$d modules listed!";
-    public static final String MESSAGE_INVALID_MODULE_DISPLAYED_INDEX =
-            "Please provide a positive integer for the index of a module.";
+    public static final String MESSAGE_INVALID_MODULE_INDEX =
+            "Please provide a positive unsigned integer less than 2147483648 for the index of a module.";
     public static final String MESSAGE_INVALID_MODULE_DELETION_AS_TIED_WITH_TASK = "The module"
             + " cannot be deleted as it is tied with an existing task";
     public static final String MESSAGE_INVALID_MODULE_EDIT_AS_TIED_WITH_TASK = "The module"
