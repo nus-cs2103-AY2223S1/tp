@@ -8,7 +8,7 @@ title: User Guide
 
 *Teaching Assistant Assistant (TAA)* is a **desktop app for Teaching Assistants (TA) to track student progress and tasks,
 optimized for use via a Command Line Interface** (CLI) while still having the
-benefits of a Graphical User Interface (GUI). If you can type fast, TAA can get your students and tasks management done
+benefits of a Graphical User Interface (GUI). If you can type fast, TAA can get your students and task management done
 faster than traditional GUI apps.
 
 ### Using this guide
@@ -28,10 +28,10 @@ for a quick overview of the commands.
 
 ## Getting Started
 
-If you are new to TAA, this section serves as an introduction to the app and it's functionalities.
+If you are new to TAA, this section serves as an introduction to the app and its functionalities.
 
 ### What is TAA?
-TAA is a student developed, open source desktop application for **Teaching Assistants (TA) to track students' progress
+TAA is a student developed, open source desktop application for **Teaching Assistants (TAs) to track students' progress
 and tasks.**
 
 ### Quick Start
@@ -46,9 +46,9 @@ and tasks.**
 ![TAA](/images/taa_main.png)
 
 5. Type the command in the command box and press Enter or click the Send button to execute. Some example commands you can try:
-   * `task add` `tn/Assignment 1 i/Due ASAP d/12/12/2022`: Creates a task called Assignment 1.
-   * `task edit` `1 d/30/12/2022`: Edits the task Assignment 1 to change its deadline to 30/12/2022.
-   * `task delete` `1`: Removes the task Assignment 1 from TAA.
+   * `task add tn/Assignment 1 i/Due ASAP d/12/12/2022`: Creates a task called Assignment 1.
+   * `task edit 1 d/30/12/2022`: Edits the task Assignment 1 to change its deadline to 30/12/2022.
+   * `task delete 1`: Removes the task Assignment 1 from TAA.
 
 6. Refer to the Features below for details of each command. Alternatively, you may refer to the 
 [Command Summary](#Command Summary) section for a quick overview of the commands.
@@ -57,36 +57,36 @@ and tasks.**
 
 ## Command Summary
 
-This section shows a quick summary of a list of commands that are available in TAA.
+This section shows a quick summary of the list of commands that are available in TAA.
 
 ### Student Management
 
-| Action                                                                    | Format, Examples                                                                                                                                                                 |
-|---------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **[Add student](#add-students)**                                          | `student add n/studentName p/phoneNumber e/email g/tutorialGroup(optional) t/tags(optional)` e.g. `student add n/James Ho p/98765432 e/a@gmail.com g/T03 t/yearTwo`              |
-| **[Remove student(s)](#remove-students)**                                 | `student delete <indices>` e.g. `student delete 1 3`                                                                                                                             |
-| **[Edit student](#edit-students)**                                        | `student edit <index> n/<studentName>(optional) p/<studentPhone>(optional) e/<studentEmail>(optional) g/<tutorialGroup>(optional) t/<tag>(optional)` e.g. `student edit 1 g/T05` |
-| **[List students](#list-students)**                                       | `student list`                                                                                                                                                                   |
+| Action                                    | Format, Examples                                                                                                                                                                  |
+|-------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **[Add student](#add-students)**          | `student add n/<studentName> p/<phoneNumber> e/<email> g/<tutorialGroup>(optional) t/<tags>(optional)` e.g. `student add n/James Ho p/98765432 e/a@gmail.com g/T03 t/yearTwo`     |
+| **[Remove student(s)](#remove-students)** | `student delete <indices>` e.g. `student delete 1 3`                                                                                                                              |
+| **[Edit student](#edit-students)**        | `student edit <index> n/<studentName>(optional) p/<studentPhone>(optional) e/<studentEmail>(optional) g/<tutorialGroup>(optional) t/<tags>(optional)` e.g. `student edit 1 g/T05` |
+| **[List students](#list-students)**       | `student list`                                                                                                                                                                    |
 
 ### Task Management
 
-| Action                                                                    | Format, Examples                                                                                                                                                                 |
-|---------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **[Add task](#add-new-task)**                                             | `task add tn/<taskName> i/<taskDescription> d/<taskDeadline> s/<student(s)>(optional)` e.g. `task add tn/Grade Mission 1 i/Due Tomorrow d/10/12/2022 s/James Ho`                 |
-| **[Remove task(s)](#remove-task)**                                        | `task delete <indices>` e.g. `task delete 2 4`                                                                                                                                   |
-| **[Edit task](#edit-task)**                                               | `task edit <index> tn/<taskName>(optional) i/<taskDescription>(optional) d/<taskDeadline>(optional) s/<student(s)>(optional)` `e.g. task edit 1 d/11/12/2020`                    |
-| **[List tasks](#list-tasks)**                                             | `task list`                                                                                                                                                                      |
+| Action                             | Format, Examples                                                                                                                                                 |
+|------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **[Add task](#add-new-task)**      | `task add tn/<taskName> i/<taskDescription> d/<taskDeadline> s/<student(s)>(optional)` e.g. `task add tn/Grade Mission 1 i/Due Tomorrow d/10/12/2022 s/James Ho` |
+| **[Remove task(s)](#remove-task)** | `task delete <indices>` e.g. `task delete 2 4`                                                                                                                   |
+| **[Edit task](#edit-task)**        | `task edit <index> tn/<taskName>(optional) i/<taskDescription>(optional) d/<taskDeadline>(optional) s/<student(s)>(optional)` e.g. `task edit 1 d/11/12/2020`    |
+| **[List tasks](#list-tasks)**      | `task list`                                                                                                                                                      |
 
 ### Tutorial Groups
 
-| Action                                                                    | Format, Examples                                                                                                                                                                 |
-|---------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **[Add tutorial group](#add-new-tutorial-group)**                         | `tutorial add g/<tutorialGroup>` e.g. `tutorial add g/T01`                                                                                                                       |
-| **[Remove tutorial group](#remove-tutorial-group)**                       | `tutorial delete g/<tutorialGroup>` e.g. `tutorial delete g/T01`                                                                                                                 |
-| **[Enrol student](#enroll-a-student-into-a-group)**                       | `student enroll <index> g/<groupName>` e.g. `student enrol 1 g/T03`                                                                                                              |
-| **[Expel student](#expel-a-student-from-a-group)**                        | `student expel <index> g/<groupName>` e.g. `student expel 1 g/T03`                                                                                                               |
-| **[Filter students by group](#view-all-students-in-a-tutorial-group)**    | `tutorial filter g/<groupName>` e.g. `tutorial filter g/T03`                                                                                                                     |
-| **[Reset filters](#reset-filters-and-show-all-students)**                 | `tutorial reset`                                                                                                                                                                 |
+| Action                                                                    | Format, Examples                                                    |
+|---------------------------------------------------------------------------|---------------------------------------------------------------------|
+| **[Add tutorial group](#add-new-tutorial-group)**                         | `tutorial add g/<tutorialGroup>` e.g. `tutorial add g/T01`          |
+| **[Remove tutorial group](#remove-tutorial-group)**                       | `tutorial delete <index>` e.g. `tutorial delete 2`                  |
+| **[Enrol student](#enroll-a-student-into-a-group)**                       | `student enroll <index> g/<groupName>` e.g. `student enrol 1 g/T03` |
+| **[Expel student](#expel-a-student-from-a-group)**                        | `student expel <index> g/<groupName>` e.g. `student expel 1 g/T03`  |
+| **[Filter students by group](#view-all-students-in-a-tutorial-group)**    | `tutorial filter g/<groupName>` e.g. `tutorial filter g/T03`        |
+| **[Reset filters](#reset-filters-and-show-all-students)**                 | `tutorial reset`                                                    |
 
 ### Grades
 
@@ -147,7 +147,7 @@ Before we start, here are some definitions that will be used in this section:
 
 Adds a student with the given phone number, email, tutorial group, and tags to the list of students
 
-- Command `student add n/studentName p/phoneNumber e/email g/tutorialGroup(optional) t/tags(optional)`
+- Command `student add n/<studentName> p/<phoneNumber> e/<email> g/<tutorialGroup>(optional) t/<tags>(optional)`
 
 E.g. `student add n/James Ho p/98765432 e/a@gmail.com g/T03 t/yearTwo`
 
@@ -158,8 +158,8 @@ E.g. `student add n/James Ho p/98765432 e/a@gmail.com g/T03 t/yearTwo`
 - `<studentName>` should be alphanumeric and should not be blank
 - `<phoneNumber>` should only contain numbers, and it should be at least 3 digits long
 - `<email>` should contain in the format: local-part@domain
-  - local-part should only contain alphanumerics and these special characters, excluding the parentheses, (+_.-)
-  - local-part should not start or end with any special characters
+  - local-part should only contain letters, numbers, and the special characters `+`, `_`, `.`, and `-`
+  - local-part should not start or end with the four special characters mentioned above
   - domain should be at least 2 characters long
 - `<tutorialGroup>` should follow the format Txx, where x is a numeric value, and it should not be blank
 - `<tags>` should be alphanumeric with no white space
@@ -185,7 +185,7 @@ E.g. `student delete 1 3`
 
 Edits the student by its given index with at least 1 variable specified to change.
 
-- Command: `student edit <index> n/<studentName>(optional) p/<studentPhone>(optional) e/<studentEmail>(optional) g/<tutorialGroup>(optional) t/<tag>(optional)`
+- Command: `student edit <index> n/<studentName>(optional) p/<studentPhone>(optional) e/<studentEmail>(optional) g/<tutorialGroup>(optional) t/<tags>(optional)`
 
 E.g. `student edit 1 g/T05`
 
@@ -193,12 +193,12 @@ E.g. `student edit 1 g/T05`
 
 **:information_source: Notes:**<br>
 
-- `index` must be a positive integer and must correspond to an existing student.
+- `<index>` must be a positive integer and must correspond to an existing student.
 - `<studentName>` should be alphanumeric and should not be blank
 - `<phoneNumber>` should only contain numbers, and it should be at least 3 digits long
 - `<email>` should contain in the format: local-part@domain
-  - local-part should only contain alphanumerics and these special characters, excluding the parentheses, (+_.-)
-  - local-part should not start or end with any special characters
+  - local-part should only contain letters, numbers, and the special characters `+`, `_`, `.`, and `-`
+  - local-part should not start or end with the four special characters mentioned above
   - domain should be at least 2 characters long
 - `<tutorialGroup>` should follow the format Txx, where x is a numeric value, and it should not be blank
 - `<tags>` should be alphanumeric with no white space
@@ -320,7 +320,7 @@ E.g. `tutorial delete 1`
 
 **:bulb: Tips:**<br>
 
-- do a `tutorial list` command first, to see which index the tutorial group is at
+- Before deleting a tutorial group, you may want to enter the `tutorial list` command first to see which index corresponds to the tutorial group meant to be deleted.
 </div>
 
 #### Enroll a student into a group
@@ -368,6 +368,7 @@ E.g. tutorial filter g/T01
 **:information_source: Notes:**<br>
 
 - `tutorialGroup` must follow the format Txx, where x is a numeric value, and it should not be blank
+- the specified `tutorialGroup` must exist
 </div>
 
 #### Reset filters and show all students
@@ -409,9 +410,9 @@ E.g. `grade view 3 7`
 </div>
 
 ### General
-#### Display user guide url
+#### Display user guide URL
 
-Shows a popup with the user guide url in it
+Shows a popup with the user guide URL in it
 
 - Command: `help me`
 
