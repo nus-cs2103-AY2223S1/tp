@@ -25,7 +25,6 @@ Given below are my contributions to the project.
     * v1.3: Changed Phone to Price as Price was deemed as more important
     * Semi-regularly maintained the issue tracker (e.g. added & assigned most of the v1.3 issues)
     * Managed the v1.3 jar release
-    * Started off the v1.4 milestone
 
 * **Enhancements to existing features**:
     * Changed add to suit the new fields (add can either take in a Phone or not)
@@ -36,12 +35,15 @@ Given below are my contributions to the project.
     * User Guide (UG)
         * v1.1: Formatted (headers, command format) and added descriptions to all commands (transferred and added onto the UG draft made on Google Docs)
         * v1.3: Updated whole UG to match features implemented/changed in v1.2 & v1.3
-          * (Now removed due to outdated UI) Took screenshots of all the features (made before/after diagrams for add/delete & tag/untag)
+          * (Now removed due to outdated UI) Took screenshots of all the features 
+          * (Now removed due to outdated UI) Made before/after diagrams for add/delete & tag/untag
         * v1.4: Fixed part of the issues with the UG pointed out during the PE dry run
     * Developer Guide (DG)
-        * v1.4: Wrote an introduction (user profile, value proposition, etc.), standardized image & caption formatting, tweaked formatting (more/changed headers, bold/italics to make some text easier to read), and
+        * v1.4: Wrote an introduction (user profile, value proposition, etc.), standardized image & caption formatting, 
+      tweaked formatting (added/changed headers, bold/italics to make some text easier to read)
+        * v1.4: Added implementations for fav/unfav and an optional field (did up their diagrams as well)
 
 * **Review/Mentoring**:
     * Authored 11 user-story related issues
-    * Reviewed 11 pull requests 
+    * Reviewed 14 pull requests 
 
