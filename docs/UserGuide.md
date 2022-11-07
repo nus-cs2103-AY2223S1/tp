@@ -16,7 +16,7 @@ should be used. Start by looking at the [quick start](#quick-start) guide to get
 
 ## Quick Start
 1. Ensure you have **Java `11`** or above installed on your computer.
-2. Download the latest `taassist.jar` from [here](https://github.com/AY2223S1-CS2103T-T12-1/tp/releases/tag/v1.3).
+2. Download the latest `taassist.jar` from [here](https://github.com/AY2223S1-CS2103T-T12-1/tp/releases/tag/v1.4).
 3. **Copy** the file to the folder you want to use as the _home folder_ for your TA-Assist.
 4. **Double-click** the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the
    app contains sample data.
