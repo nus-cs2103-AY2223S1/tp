@@ -9,25 +9,14 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
 import seedu.workbook.commons.core.LogsCenter;
+import seedu.workbook.ui.util.HelpUtil;
+import seedu.workbook.ui.util.HelpUtil.Command;
 
 /**
  * Controller for a help page
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String ADD_COMMAND = "add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/EMAIL] "
-            + "[l/PROGRAMMING LANGUAGE]… [t/TAG]…";
-    public static final String EDIT_COMMAND = "edit INDEX [c/COMPANY] [r/ROLE] [s/STAGE] [d/DATETIME] [e/EMAIL] "
-            + "[l/PROGRAMMING LANGUAGE]… [t/TAG]…";
-    public static final String DELETE_COMMAND = "delete INDEX";
-    public static final String CLEAR_COMMAND = "clear";
-    public static final String LIST_COMMAND = "list";
-    public static final String FIND_COMMAND = "find  c/COMPANY | r/ROLE | s/STAGE";
-    public static final String UNDO_COMMAND = "undo";
-    public static final String REDO_COMMAND = "redo";
-    public static final String EXIT_COMMAND = "exit";
-    public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t10-3.github.io/tp/UserGuide.html";
-    public static final String URL_MESSAGE = "Refer to the user guide for more information: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -73,16 +62,16 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
 
-        addCommand.setText(ADD_COMMAND);
-        editCommand.setText(EDIT_COMMAND);
-        deleteCommand.setText(DELETE_COMMAND);
-        clearCommand.setText(CLEAR_COMMAND);
-        listCommand.setText(LIST_COMMAND);
-        redoCommand.setText(REDO_COMMAND);
-        undoCommand.setText(UNDO_COMMAND);
-        findCommand.setText(FIND_COMMAND);
-        exitCommand.setText(EXIT_COMMAND);
-        urlMessage.setText(URL_MESSAGE);
+        addCommand.setText(HelpUtil.getCommandExample(Command.ADD));
+        editCommand.setText(HelpUtil.getCommandExample(Command.EDIT));
+        deleteCommand.setText(HelpUtil.getCommandExample(Command.DELETE));
+        clearCommand.setText(HelpUtil.getCommandExample(Command.CLEAR));
+        listCommand.setText(HelpUtil.getCommandExample(Command.LIST));
+        redoCommand.setText(HelpUtil.getCommandExample(Command.REDO));
+        undoCommand.setText(HelpUtil.getCommandExample(Command.UNDO));
+        findCommand.setText(HelpUtil.getCommandExample(Command.FIND));
+        exitCommand.setText(HelpUtil.getCommandExample(Command.EXIT));
+        urlMessage.setText(HelpUtil.getUrlMessage());
     }
 
     /**
@@ -144,7 +133,7 @@ public class HelpWindow extends UiPart<Stage> {
     private void copyUrl() {
         final Clipboard clipboard = Clipboard.getSystemClipboard();
         final ClipboardContent url = new ClipboardContent();
-        url.putString(USERGUIDE_URL);
+        url.putString(HelpUtil.getUserGuideUrl());
         clipboard.setContent(url);
     }
 }
