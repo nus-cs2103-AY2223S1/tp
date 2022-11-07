@@ -854,46 +854,44 @@ Prerequisite: Only 1 guest to be edited. The guest's index should exist.
    3. Other incorrect edit commands to try: `edit`, `edit x`, `edit 1 rc/hi`, `edit ...`, `edit 1 n/Jo@`<br>
       Expected: No guest is edited, because the **parameters are invalid**. Error details shown in the result display.
 
-   5. Other incorrect edit commands to try: `edit`, `edit x`, `edit 1 rc/hi`, `edit ...`<br>
-      Expected: No guest is edited, because the parameters are invalid. Error details shown in the status message.
-      Status bar remains the same.
 
-### Marking Guests Rooms as Unclean
+### Marking all guests' rooms as unclean
 
 Prerequisite: All guests room cleaning status will be edited.
 
    1. Test case: `markroomsunclean`<br>
-      Expected: All guests are marked as unclean, the icon representing `isRoomClean` will change to red from green.
+      Expected: All guests' room clean statuses are marked as unclean and the icon representing isRoomClean will change to red for all the guests.
    2. Test case: `markroomunclean`<br>
-      Expected: The error will throw: "unknown command", because the command is **missing out the `s`**
+      Expected: No guest's room clean status is changed. The command is invalid as it is missing a "s" after the "room".
    3. Test case: `markRoomsUnclean`<br>
-      Expected: The error will throw: "unknown command", because the command is **Capitalising the `R` or `U`**
+      Expected: No guest's room clean status is changed. The command is invalid as is capitalised the "R" and "U" when they should have been lower case.
 
-### Changing guests bill value
+### Changing guest's bill value
 
 Prerequisite: Only one guest's bill will be edited.
 The guest should exist in GuestBook. The format and content of the command should be valid.
 The bill value cannot exceed 999,999,999,999.99.
+The test cases must be executed in succession as stated below for the intended outcome.
 
 We assume that there is a guest named John in the list.
 
    1. Test case: `bill 1 b/10`
-      Expected: the bill for guest will be added from $0 to $10.
+      Expected: The bill for guest will be added from $0 to $10.
    2. Test case: `bill 1 b/-10`
-      Expected: the bill for guest will be subtracted from $10 to $0.
+      Expected: The bill for guest will be subtracted from $10 to $0.
    3. Test case: `bill 2 b/10`
-      Expected: the error will throw because the second guest is not existing in the list.
+      Expected: No guest's bill is edited, because the input index **does not exist**. Error details shown in the result display."
    4. Test case: `bill 1 b/9999999999999`
-      Expected: the error will throw because the bill exceed 999,999,999,999.99.
+      Expected: No guest's bill is edited, because **the bill value exceeds 999,999,999,999.99**. Error details shown in the result display.
    5. Test case: `bill 1 b/-10`
-      Expected: the error will throw because the bill cannot be negative.
+      Expected: No guest's bill is edited, because the total bill value **cannot be negative**. Error details shown in the result display.
 
-### Clearing all guests
-Prerequisite: all guests in the guestbook will be deleted.
+### Clearing all guests from GuestBook
+Prerequisite: all guests in GuestBook will be deleted.
 This command is irreversible.
 
    1. Test case: `clear`
-      Expected: all guests in the guest book will be deleted
+      Expected: All guests in the guest book will be deleted
 
 ### Saving data
 
