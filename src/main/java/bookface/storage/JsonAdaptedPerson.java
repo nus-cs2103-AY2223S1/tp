@@ -23,6 +23,7 @@ import bookface.model.tag.Tag;
  */
 class JsonAdaptedPerson {
 
+    public static final String INVALID_PERSON_FORMAT = "Invalid format for a person detected!";
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
@@ -77,10 +78,24 @@ class JsonAdaptedPerson {
         final ArrayList<Book> bookLoansToPerson = new ArrayList<>();
 
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            if (tag == null) {
+                throw new IllegalValueException(JsonAdaptedTag.INVALID_TAG_FORMAT);
+            }
+            Tag newTag = tag.toModelType();
+            if (personTags.contains(newTag)) {
+                throw new IllegalValueException("A person has duplicate tag(s).");
+            }
+            personTags.add(newTag);
         }
         for (JsonAdaptedBook book : loanedBooks) {
-            bookLoansToPerson.add(book.toModelType());
+            if (book == null) {
+                throw new IllegalValueException(JsonAdaptedBook.INVALID_BOOK_FORMAT);
+            }
+            Book newBook = book.toModelType();
+            if (bookLoansToPerson.contains(newBook)) {
+                throw new IllegalValueException(JsonSerializableBookFace.MESSAGE_DUPLICATE_BOOK);
+            }
+            bookLoansToPerson.add(newBook);
         }
 
         if (name == null) {

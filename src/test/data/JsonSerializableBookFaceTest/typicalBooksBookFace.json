@@ -7,13 +7,16 @@
   } ],
   "books": [ {
     "title" : "How to Spell",
-    "author" : "Ronald Johnson"
+    "author" : "Ronald Johnson",
+    "isLoaned": false
   }, {
     "title" : "Making a Computer",
-    "author" : "Roger Smith"
+    "author" : "Roger Smith",
+    "isLoaned": false
   }, {
     "title" : "Get Motivated",
-    "author" : "Lim Chee Teck"
+    "author" : "Lim Chee Teck",
+    "isLoaned": false
   }]
 }
 

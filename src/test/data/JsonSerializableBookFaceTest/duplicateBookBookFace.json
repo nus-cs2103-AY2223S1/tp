@@ -6,10 +6,12 @@
   } ],
   "books": [ {
     "title" : "How to Spell",
-    "author" : "Ronald Johnson"
+    "author" : "Ronald Johnson",
+    "isLoaned": false
   }, {
     "title": "How to Spell",
-    "author": "Ronald Johnson"
+    "author": "Ronald Johnson",
+    "isLoaned": false
   } ]
 }
 

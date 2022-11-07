@@ -18,6 +18,13 @@ import bookface.model.book.Title;
 class JsonAdaptedBook {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Book's %s field is missing!";
+    public static final String INVALID_BOOK_FORMAT = "Invalid format for a loaned book detected!";
+
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+    static {
+        dateFormat.setLenient(false);
+    }
 
     private final String title;
     private final String author;
@@ -91,7 +98,7 @@ class JsonAdaptedBook {
 
         if (isLoaned) {
             try {
-                final Date modelDate = new SimpleDateFormat("yyyy-MM-dd").parse(returnDate);
+                final Date modelDate = dateFormat.parse(returnDate);
                 return new Book(modelTitle, modelAuthor, modelDate);
             } catch (java.text.ParseException pe) {
                 throw new ParseException(String.valueOf(pe));
