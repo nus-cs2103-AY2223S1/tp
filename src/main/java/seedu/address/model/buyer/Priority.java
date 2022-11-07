@@ -15,7 +15,7 @@ public class Priority implements Comparable<Priority> {
         HIGH, NORMAL, LOW;
     }
 
-    public static final String MESSAGE_CONSTRAINTS = "Priority should be high, low or normal.";
+    public static final String MESSAGE_CONSTRAINTS = "If -pr flag is used, high, low or normal must be specified.";
 
     public final PriorityName specifiedPriority;
 

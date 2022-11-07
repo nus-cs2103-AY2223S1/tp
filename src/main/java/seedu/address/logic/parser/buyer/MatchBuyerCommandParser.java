@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_STRICT;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.buyer.MatchBuyerCommand;
-import seedu.address.logic.commands.property.MatchPropertyCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -31,7 +30,7 @@ public class MatchBuyerCommandParser extends Parser<MatchBuyerCommand> {
             return new MatchBuyerCommand(index, isMatchingAll);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MatchPropertyCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MatchBuyerCommand.MESSAGE_USAGE), pe);
         }
 
     }
