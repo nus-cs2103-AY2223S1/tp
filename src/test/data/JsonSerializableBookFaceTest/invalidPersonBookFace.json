@@ -6,6 +6,8 @@
   } ],
   "books": [ {
     "author": "Check",
-    "phone": "Check"
+    "phone": "Check",
+    "isLoaned": false,
+    "returnDate": ""
   } ]
 }

@@ -39,6 +39,7 @@
   "books": [ {
     "title" : "How to Spell",
     "author" : "Ronald Johnson",
-    "isLoaned": false
+    "isLoaned": false,
+    "returnDate": ""
   } ]
 }

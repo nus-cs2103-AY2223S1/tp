@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import bookface.commons.exceptions.IllegalValueException;
+import bookface.commons.util.StringUtil;
 import bookface.logic.parser.exceptions.ParseException;
 import bookface.model.book.Author;
 import bookface.model.book.Book;
@@ -58,7 +59,7 @@ class JsonAdaptedBook {
             returnDate = formatter.format(source.getReturnDate()
                     .orElseGet(bookface.commons.util.Date::getFourteenDaysLaterDate));
         } else {
-            returnDate = null;
+            returnDate = "";
         }
     }
 
@@ -88,12 +89,16 @@ class JsonAdaptedBook {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "isLoaned"));
         }
 
-        if (!isLoaned && returnDate != null) {
-            throw new IllegalValueException("An unloaned Book's returnDate field is not null!");
+        if (returnDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "returnDate"));
         }
 
-        if (isLoaned && returnDate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "returnDate"));
+        if (!isLoaned && !StringUtil.containsWhitespaceOnly(returnDate)) {
+            throw new IllegalValueException("An unloaned Book's returnDate field is not the empty string!");
+        }
+
+        if (isLoaned && StringUtil.containsWhitespaceOnly(returnDate)) {
+            throw new IllegalValueException("A loaned Book's returnDate field is the empty string!");
         }
 
         if (isLoaned) {
