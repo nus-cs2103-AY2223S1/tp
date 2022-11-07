@@ -720,7 +720,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file and copy into an empty folder.
 
    2. Double-click the jar file
        Expected: Shows the GUI with a set of sample students, tasks and lists. The window size may not be optimum.
@@ -737,32 +737,75 @@ testers are expected to do more *exploratory* testing.
     1. While the app is still open, enter `exit` in the command box or click on the close window button.
        Expected: The application closes. 
 
+### Adding a student
+
+1. Adding a student while student list is being shown
+
+   1. Prerequisites: List all students using the `liststudent` or `listall` command.
+
+   2. Test case: `addstudent s/John Doe m/A0123459G` <br>
+      Expected: Student with the name `John Doe` and matriculation number `A0123459G` has been added to the list of students. Details of added student shown in the status message.
+   
+   3. Test case : `addstudent s/J@hn Doe m/A0123459G` <br>
+      Expected: No student is added. Error details are shown in the status message. 
+   
+   4. Test case : `addstudent s/John Doe m/A01234G` <br>
+      Expected: Similar to previous.
+
 ### Deleting a student
 
 1. Deleting a student while student list is being shown
 
-   1. Prerequisites: List all students using the `liststudent` command. Multiple students in the list.
+   1. Prerequisites: List all students using the `liststudent` or `listall` command. There must be at least one student in the list.
 
-   1. Test case: `deletestudent 1`<br>
-      Expected: First student is deleted from the list. Details of the deleted student shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `deletestudent 1`<br>
+      Expected: First student is deleted from the list. Details of the deleted student shown in the status message.
 
-   1. Test case: `deletestudent 0`<br>
-      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `deletestudent 0`<br>
+      Expected: No student is deleted. Error details shown in the status message.
 
-   1. Other incorrect delete commands to try: `deletestudent`, `deletestudent x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `deletestudent`, `deletestudent x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Adding a task
 
+1. Adding a task while task list is being shown
+
+    1. Prerequisites: List all tasks using the `listtask` or `listall` command.
+
+    2. Test case: `addtask t/Prepare tutorial slides d/2022-10-09` <br>
+       Expected: Task with the description `Prepare tutorial slides` with the deadline `Oct-09-2022` is added. Details of the task added shown in status message.
+   
+    3. Test case: `addtask d/2022-10-09` <br>
+       Expected: No task is added. Error details are shown in the status message.
+   
+    4. Test case: `addtask t/ d/2022-10-09` <br>
+       Expected: Similar to previous. 
+
+### Deleting a task
+
+1. Deleting a task while task list is being shown
+
+   1. Prerequisites: List all tasks using the `listtask` or `listall` command. There are existing tasks in the task list.
+   
+   2. Test case: `deletetask 1` <br>
+      Expected: The first task at the top of the list is deleted. Details of the deleted task are shown in the status message. 
+   
+   3. Test case: `deletetask 0` <br>
+      Expected: No task is deleted. Error details shown in status message.
+   
+   4. Other incorrect delete commands to try: `deletetask`, `deletetask x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+   
 ### Saving data
 
-1. Dealing with missing data file(s)
+1. Dealing with missing data file(s).
 
    1. Prerequisites: If there exists studentbook.json, taskbook.json and/or lessonbook.json file(s) in the data folder at the root of the application directory, delete the file(s).
    2. Test case: Double-click on the jar file to run the application.
       Expected: Application runs and loads the sample data from `SampleStudentUtil#getSampleStudentBook`, `SampleTaskUtil#getSampleTaskBook` and/or `SampleLessonUtil#getSampleLessonBook`.
 
-2. Dealing with corrupted data file(s)
+2. Dealing with corrupted data file(s).
 
    1. Prerequisites: Modify the studentbook.json, taskbook.json and/or lessonbook.json file(s) to be an illegal format, such as deleting the “name” field of a student, the "taskDesc" field of a task, and/or the "attendance" field of a lesson.
    2. Test case: Double-click on the jar file to run the application.
