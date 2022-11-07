@@ -89,7 +89,7 @@ public class PreferCommand extends Command {
         Socials socialToEdit = findSocial(social);
         prefer(personToEdit, socialToEdit); //Includes the new social to the person to edit.
 
-        UndoCommand.prepareSaveModelBefore(this, model, 3);
+        UndoCommand.prepareSaveModelBefore(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.setPerson(personToEdit, personToEdit);
         UndoCommand.saveBeforeMod(model);

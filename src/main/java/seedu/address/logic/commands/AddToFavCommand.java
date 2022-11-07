@@ -46,7 +46,7 @@ public class AddToFavCommand extends Command {
         Person personToGroup = model.getFilteredPersonList().get(index.getZeroBased());
         Person groupedPerson = addToGroupCommand.getGroupedPerson(personToGroup, favorite);
 
-        UndoCommand.prepareSaveModelBefore(this, model, 3);
+        UndoCommand.prepareSaveModelBefore(model);
         model.setPerson(personToGroup, groupedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         UndoCommand.saveBeforeMod(model);

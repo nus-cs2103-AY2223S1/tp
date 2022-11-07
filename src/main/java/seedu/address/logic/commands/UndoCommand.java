@@ -3,13 +3,11 @@ package seedu.address.logic.commands;
 import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.SortedList;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.storage.HistoryList;
 
 /**
  * Undoes the last modifying operator. An undo can be undone, effectively
@@ -29,18 +27,12 @@ public class UndoCommand extends Command {
     public static final String NO_ACTION_TO_UNDO = "No action to undo.";
 
 
-    private static Command prepareLastCommand = null;
+    private static String prepareLastCommand = null;
     private static ReadOnlyAddressBook prepareAddressBook = null;
-    private static ObservableList<Person> prepareFilteredPersons = null;
-    private static SortedList<Person> prepareSortedPersons = null;
-    private static ObservableList<Person> prepareGroupedPersons = null;
 
-    private static Command lastCommand = null;
+    private static String lastCommand = null;
 
     private static ReadOnlyAddressBook undoAddressBook = null;
-    private static ObservableList<Person> undoFilteredPersons = null;
-    private static SortedList<Person> undoSortedPersons = null;
-    private static ObservableList<Person> undoGroupedPersons = null;
 
     /*
      * For every possibly modifying command, add this just before model is
@@ -53,32 +45,11 @@ public class UndoCommand extends Command {
 
     /**
      * Saves the previous state of the model before it changes.
-     * @param lastCommand The command that potentially modifies the model.
      * @param model The model itself.
-     * @param mask A bitmask of the parts of the model that may change.
      */
-    public static void prepareSaveModelBefore(Command lastCommand, Model model, int mask) {
-        prepareLastCommand = lastCommand;
-        if ((mask & 1) == 1) {
-            prepareAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
-        } else {
-            prepareAddressBook = undoAddressBook;
-        }
-        if ((mask & 2) == 2) {
-            prepareFilteredPersons = FXCollections.observableArrayList(model.getFilteredPersonList());
-        } else {
-            prepareFilteredPersons = undoFilteredPersons;
-        }
-        if ((mask & 4) == 4) {
-            prepareSortedPersons = new SortedList<>(model.getSortedPersonList());
-        } else {
-            prepareSortedPersons = undoSortedPersons;
-        }
-        if ((mask & 8) == 8) {
-            prepareGroupedPersons = FXCollections.observableArrayList(model.getGroupedPersonList());
-        } else {
-            prepareGroupedPersons = undoGroupedPersons;
-        }
+    public static void prepareSaveModelBefore(Model model) {
+        prepareLastCommand = HistoryList.getList().getLast();
+        prepareAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
     }
     /**
      * Checks if a command modifies the {@code AddressBook} and saves it if
@@ -87,32 +58,24 @@ public class UndoCommand extends Command {
      */
     public static void saveBeforeMod(Model model) {
         if (isNull(prepareAddressBook)
-            || isNull(prepareFilteredPersons)
-            || isNull(prepareSortedPersons)
-            || isNull(prepareGroupedPersons)
-            || prepareAddressBook.equals(model.getAddressBook())
-            && prepareFilteredPersons.equals(model.getFilteredPersonList())
-            && prepareSortedPersons.equals(model.getSortedPersonList())
-            && prepareGroupedPersons.equals(model.getGroupedPersonList())) {
+            || prepareAddressBook.equals(model.getAddressBook())) {
             return;
         }
         lastCommand = prepareLastCommand;
         undoAddressBook = prepareAddressBook;
-        undoFilteredPersons = prepareFilteredPersons;
-        undoSortedPersons = prepareSortedPersons;
-        undoGroupedPersons = prepareGroupedPersons;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (undoAddressBook == null) {
+        if (isNull(prepareAddressBook)) {
             throw new CommandException(NO_ACTION_TO_UNDO);
         }
-        prepareSaveModelBefore(this, model, 15);
+        UndoCommand.prepareSaveModelBefore(model);
         model.setAddressBook(undoAddressBook);
+        String undidCommand = lastCommand;
         saveBeforeMod(model);
         return new CommandResult(String.format(SHOWING_UNDO_MESSAGE,
-                lastCommand));
+                undidCommand));
     }
 }

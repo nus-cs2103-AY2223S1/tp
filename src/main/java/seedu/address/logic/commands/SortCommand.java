@@ -37,10 +37,8 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        UndoCommand.prepareSaveModelBefore(this, model, 6);
         model.updateSortedPersonList(comparator);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        UndoCommand.saveBeforeMod(model);
         return new CommandResult(String.format(MESSAGE_SUCCESS, comparator.toString()));
     }
 }
