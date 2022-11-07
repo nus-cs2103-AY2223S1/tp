@@ -102,7 +102,7 @@ Here are some symbols used throughout this user guide:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## **Quick start**
 
 1. Ensure you have [Java 11](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) or above
    installed on your computer. To check your Java version, open a Command Prompt or Terminal window and type:
@@ -146,7 +146,7 @@ The app comes with some sample patients by default. Type `clear` in the command 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Glossary
+## **Glossary**
 
 **Here are some of the technical terminologies used:**
 
@@ -165,7 +165,7 @@ The app comes with some sample patients by default. Type `clear` in the command 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command format
+## **Command format**
 
 <div markdown="block" class="alert alert-info">
 
@@ -213,7 +213,7 @@ The app comes with some sample patients by default. Type `clear` in the command 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Patient parameter constraints
+## **Patient parameter constraints**
 
 A patient's attributes can be categorized into two: *single-valued attributes* and *multi-valued attributes*. A patient's single-valued attributes consist of their name, phone, email, and address, and their multi-valued attributes consist of their tags, tasks, conditions, medications, and remarks.
 
@@ -336,7 +336,7 @@ Example:`r/Allergic to peanuts`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## **Features**
 
 <div markdown="block" class="alert alert-success">
 
@@ -1299,7 +1299,7 @@ data file at the next run.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## **FAQ**
 
 **Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app on the other computer and overwrite the empty data file it creates with the file that contains
@@ -1311,7 +1311,7 @@ the data of your previous UniNurse home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## **Command summary**
 
 | Action                                  | Format                                                                                                      |
 |-----------------------------------------|-------------------------------------------------------------------------------------------------------------|
