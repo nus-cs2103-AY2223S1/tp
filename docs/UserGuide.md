@@ -59,7 +59,7 @@ Symbol/Syntax        | Meaning
 
    * **`clear`** : Deletes all contacts.
 
-   * **`sort KEYWORD`** : Sorts the contacts based on the `KEYWORD`.
+   * **`sort`**`KEYWORD`: Sorts the contacts based on the `KEYWORD`.
 
    * **`find`** `n/John`: looks for contact that matches name (Prefix - n/) ‘John’
 
