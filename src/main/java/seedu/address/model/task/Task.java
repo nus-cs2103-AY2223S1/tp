@@ -2,8 +2,10 @@ package seedu.address.model.task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -137,7 +139,11 @@ public class Task {
         Set<Contact> contacts = getAssignedContacts();
         if (!contacts.isEmpty()) {
             builder.append("; Contacts: ");
-            contacts.forEach(builder::append);
+            List<Contact> contactList = new ArrayList<>(contacts);
+            builder.append(contactList.get(0));
+            for (int i = 1; i < contactList.size(); i++) {
+                builder.append(", " + contactList.get(i).toString());
+            }
         }
 
         if (!deadline.isUnspecified()) {
