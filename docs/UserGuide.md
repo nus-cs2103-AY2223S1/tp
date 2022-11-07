@@ -16,7 +16,9 @@ MODPRO helps you…
 
 It is highly optimised for students who prefer Command Line Interface (CLI) by allowing those who type fast to key in commands to track their modules. If you struggle to type fast, we also provide a Graphical User interface (GUI) to assist you in using MODPRO.
 
+------------------
 <div style="page-break-after: always;"></div>
+
 
 ### The Graphical User Interface (GUI)
 
