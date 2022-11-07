@@ -1,6 +1,7 @@
 package seedu.realtime.testutil;
 
 import seedu.realtime.model.RealTime;
+import seedu.realtime.model.offer.Offer;
 import seedu.realtime.model.person.Client;
 
 /**
@@ -25,6 +26,14 @@ public class RealTimeBuilder {
      */
     public RealTimeBuilder withClient(Client client) {
         realTime.addClient(client);
+        return this;
+    }
+
+    /**
+     * Adds a new {@code Offer} to the {@code RealTime} that we are building.
+     */
+    public RealTimeBuilder withOffer(Offer offer) {
+        realTime.addOffer(offer);
         return this;
     }
 
