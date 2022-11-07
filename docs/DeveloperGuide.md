@@ -97,15 +97,15 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddPersonCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("deletePerson 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeletePersonSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram. This error will appear later as well so take note of this PlantUML limitation.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeletePersonCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram. This error will appear later as well so take note of this PlantUML limitation.
 </div>
 <br/>
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -113,8 +113,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddPersonCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddPersonCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddPersonCommandParser`, `DeletePersonCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -226,6 +226,36 @@ event command text entered by user. event represents the event class created and
 Additionally, saving of the updated events list has been excluded from this diagram for simplicity.
 </div>
 
+### Editing Events
+
+The Edit Event feature that is accessed through the `editEvent` command allows users to edit existing marketing campaigns of
+the `event` class in the application.
+
+The `event`edited by the user allows the user to edit any combination of the 4 existing fields:
+- Title of the `event`
+- Date of the `event`
+- Time of the `event`
+- Purpose of the `event`
+
+The `editEvent` operation is facilitated by `EditEventCommand` which extends from `Command`. If the users' input matches
+the `COMMAND_WORD` of `EditEventCommand` in `AddressBookParser#parseCommand()`, `EditEventCommandParser#parse()` will
+process the additional user inputs which constitute any combination of the 4 optional fields and return a `EditPersonCommand`.
+
+Executing this Command object through the `EditEventCommand#execute()` triggers the `Model` interface's
+`Model#setEvent()`. This operation subsequently calls upon the `AddressBook#setEvent()` operation which in turn calls
+upon the `UniqueEventList#asetEvent()` operation and the existing `event` will be replaced with the new edited `event`in memory.
+
+The addEvent operation will also trigger the `StorageManager#saveAddressBook()` operation which will save the current list of events, which will save the edited event to a .JSON format together with all other `Person`(s) and `Event`(s) in memory.
+
+The following sequence diagram will illustrate how the `editEvent` operation works:
+
+![AddEventSequenceDiagram](images/EditEventSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the edit
+event command text entered by user. event represents the event class created and stored within EditEventCommand.
+Additionally, saving of the updated events list has been excluded from this diagram for simplicity.
+</div>
+
 
 ### Deleting Events
 
@@ -291,7 +321,7 @@ for simplicity. Additionally, saving of the updated persons list from has also b
 #### Add Gender field (Closer look)
 Let's take a closer look at how the `AddPersonCommand` adds the `gender` field.
 
-The following activity diagram shows what happens when a user executes a new add command:
+The following activity diagram shows what happens when a user executes a new add person command:
 
 ![AddPersonActivityDiagram](images/AddPersonGenderActivityDiagram.png)
 
@@ -302,6 +332,9 @@ activities related to gender field are considered and shown in this activity dia
 <div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
 gender field is not provided in the command, or the gender is not of valid format; Duplicated person exception is
 thrown if the person to add already exists in the contact list. Error message is displayed on the GUI subsequently.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**Due to limitations of PlantUML, there are a few extra branch nodes that are created. Do ignore these.
 </div>
 
 #### Design considerations:
@@ -331,6 +364,9 @@ activities related to date of birth field are considered and shown in this activ
 <div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
 date of birth field is not provided in the command, or the date of birth is not of valid format; Duplicate person exception is
 thrown if the person to add already exists in the addressbook. Error message is displayed on the GUI subsequently.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**Due to limitations of PlantUML, there are a few extra branch nodes that are created. Do ignore these.
 </div>
 
 #### Design considerations:
@@ -381,7 +417,7 @@ in the model. The specific `UniquePersonList` operations are not shown in the di
 #### Edit Gender field (Closer look)
 Let's take a closer look at how the `EditPersonCommand` edits the `gender` field.
 
-The following activity diagram shows what happens when a user executes a new edit command:
+The following activity diagram shows what happens when a user executes a new edit person command:
 
 ![EditPersonActivityDiagram](images/EditPersonGenderActivityDiagram.png)
 
@@ -395,10 +431,13 @@ the gender is not of valid format; Invalid person exception is thrown if the per
 contact list. Error message is displayed on the GUI subsequently.
 </div>
 
+<div markdown="span" class="alert alert-info">:information_source: **Note:**Due to limitations of PlantUML, there are a few extra branch nodes that are created. Do ignore these.
+</div>
+
 #### Edit Date of Birth field (Closer look)
 Let's take a closer look at how the `EditPersonCommand` edits the `date of birth` field.
 
-The following activity diagram shows what happens when a user executes a new edit command:
+The following activity diagram shows what happens when a user executes a new edit person command:
 
 ![EditPersonActivityDiagram](images/EditPersonDobActivityDiagram.png)
 
@@ -409,6 +448,9 @@ activities related to date of birth field are considered and shown in this activ
 <div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
 the date of birth is not of valid format; Invalid person exception is thrown if the person to edit doesn't exist in the
 addressbook. Error message is displayed on the GUI subsequently.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**Due to limitations of PlantUML, there are a few extra branch nodes that are created. Do ignore these.
 </div>
 
 ### \[Proposed\] Undo/redo feature
@@ -532,6 +574,42 @@ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline 
   * Pros: When users sort their events, the ordering of the events in `ModelManager` stays constant.
   * Cons: Hard to implement as a new form of storage or memory has to be created to maintain the relative ordering of
     events.
+
+### Make Statistics
+
+The Make Statistics feature that is accessed through the `makeStats` command allows users to generate statistics of the persons of the `Person` class that are tagged to an event of the `Event` class, and show a piechart of the statistics in a new window.
+
+There are 2 types of statistics that can be generated:
+* Age: Shows the proportion of ages of the `persons` tagged to the `event` based on 5-year age ranges.
+* Gender: Shows the proportion of genders of the `persons` tagged to the `event`, seperating them into either `Male` or `Female`.
+
+Users specify the type by specifying the 2 fields below:
+- Index of the `event`
+- Type of statistic to generate from the `event`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Age is generated using the date of birth of the persons tagged to the event and is calculated from the current real-time date.
+</div>
+
+The `makeStats` operation is facilitated by `MakeStatsCommand` which extends from `Command`. If the users' input matches
+the `COMMAND_WORD` of `MakeStatsCommand` in `AddressBookParser#parseCommand()`, `MakeStatsCommandParser#parse()` will
+process the additional user input which constitutes the 6 compulsory fields and return an `AddPersonCommand`.
+
+Executing this Command object through the `MakeStatsCommand#execute()` first triggers the `Model` interface's
+`Model#setData()`. This operation updates the list of piechart data in the `Model`.
+
+ Then, the `Logic` interface's `Logic#setPieChartData()` is triggered. This operation subsequently calls upon the `AddressBook#addPerson()` operation which in turn calls upon the `UniquePersonList#add()` operation and the `person` will be stored in memory.
+
+The addPerson operation will also trigger the `StorageManager#saveAddressBook()` operation which will save the current
+list of persons, which will save the new person to a .JSON format together with all other `Event`(s) and `Person`(s) in memory.
+
+The following sequence diagram shows the methods calls related to the add person operation:
+
+![AddPersonSequenceDiagram](images/AddPersonSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the add
+person command text entered by user. The specific `UniquePersonList` operations are not shown in the diagram
+for simplicity. Additionally, saving of the updated persons list from has also been excluded from this diagram for simplicity.
+</div>
 
 
 

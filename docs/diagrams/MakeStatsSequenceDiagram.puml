@@ -48,6 +48,7 @@ MakeStatsCommand -> ModelManager : setData(data)
 activate ModelManager
 
 ModelManager --> MakeStatsCommand :
+ModelManager --> LogicManager :
 deactivate ModelManager
 
 MakeStatsCommand -[hidden]-> LogicManager : result

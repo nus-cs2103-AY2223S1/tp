@@ -11,7 +11,6 @@ end box
 box Model MODEL_COLOR_T1
 participant ":ModelManager" as ModelManager MODEL_COLOR
 participant ":AddressBook" as AddressBook MODEL_COLOR
-participant ":UniquePersonList" as UniquePersonList MODEL_COLOR
 end box
 
 [-> LogicManager : execute(cmd)
@@ -46,12 +45,6 @@ activate ModelManager
 
 ModelManager -> AddressBook : setPerson(P1, P2)
 activate AddressBook
-
-AddressBook -> UniquePersonList : setPerson(P1, P2)
-activate UniquePersonList
-
-UniquePersonList -> AddressBook
-deactivate UniquePersonList
 
 AddressBook --> ModelManager :
 deactivate AddressBook
