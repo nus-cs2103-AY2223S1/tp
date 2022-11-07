@@ -375,6 +375,8 @@ command to filter a list down to the results you are looking for. To reset the l
 Current filters applied will be shown in the UI at the top bar.
 
 ![Before image of List Command](images/user-guide/ListCommandBefore.png)
+
+
 ![After image of List Command](images/user-guide/ListCommandAfter.png)
 
 We have the following commands in this section:
