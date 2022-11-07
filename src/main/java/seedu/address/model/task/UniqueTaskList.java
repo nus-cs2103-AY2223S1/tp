@@ -207,4 +207,8 @@ public class UniqueTaskList implements Iterable<Task> {
         }
         return count;
     }
+
+    public boolean isEmpty() {
+        return this.getSize() == 0;
+    }
 }
