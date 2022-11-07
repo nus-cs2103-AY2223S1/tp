@@ -1,7 +1,6 @@
 package bookface.model.person;
 
 import java.util.Collections;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -60,10 +59,8 @@ public class Person {
     /**
      * Sets return date of book, and add it to list of books loaned by person.
      * @param book book to be loaned
-     * @param returnDate return date to be set for book
      */
-    public void addLoanedBook(Book book, Date returnDate) {
-        book.setReturnDate(returnDate);
+    public void addLoanedBook(Book book) {
         loanedBooks.add(book);
     }
 

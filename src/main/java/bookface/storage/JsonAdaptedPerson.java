@@ -24,7 +24,7 @@ import bookface.model.tag.Tag;
 class JsonAdaptedPerson {
 
     public static final String INVALID_PERSON_FORMAT = "Invalid format for a person detected!";
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_PERSON_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
     private final String name;
     private final String phone;
@@ -99,7 +99,8 @@ class JsonAdaptedPerson {
         }
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_PERSON_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
@@ -107,7 +108,8 @@ class JsonAdaptedPerson {
         final Name modelName = new Name(name);
 
         if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_PERSON_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
         if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
@@ -115,7 +117,8 @@ class JsonAdaptedPerson {
         final Phone modelPhone = new Phone(phone);
 
         if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_PERSON_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
         if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);

@@ -158,7 +158,6 @@ public class BookFace implements ReadOnlyBookFace {
             return;
         }
         books.loan(person, book, returnDate);
-        persons.loan(person, book, returnDate);
     }
 
     /**
@@ -193,7 +192,8 @@ public class BookFace implements ReadOnlyBookFace {
                     .orElseGet(bookface.commons.util.Date::getFourteenDaysLaterDate);
             newBook.loanTo(p, returnDate);
             p.returnLoanedBook(currentBook);
-            p.addLoanedBook(newBook, returnDate);
+            p.addLoanedBook(newBook);
+            persons.loan(p, newBook);
         });
     }
 

@@ -22,7 +22,7 @@ public class TypicalPersons {
             .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
+            .withTags("owesMoney", "friends").withBooksToLoan(getTypicalBooks()).build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
@@ -33,6 +33,9 @@ public class TypicalPersons {
             .withEmail("lydia@example.com").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").build();
+    public static final Person HILLY = new PersonBuilder().withName("Benson Meier")
+            .withEmail("johnd@example.com").withPhone("98765432")
+            .withTags("owesMoney", "friends").withBooksToLoan(getTypicalBooks()).build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")

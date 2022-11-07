@@ -1,5 +1,7 @@
 package bookface.storage;
 
+import static bookface.commons.util.Date.DATE_FORMAT;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,14 +20,8 @@ import bookface.model.book.Title;
  */
 class JsonAdaptedBook {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Book's %s field is missing!";
+    public static final String MISSING_BOOK_FIELD_MESSAGE_FORMAT = "Book's %s field is missing!";
     public static final String INVALID_BOOK_FORMAT = "Invalid format for a loaned book detected!";
-
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-    static {
-        dateFormat.setLenient(false);
-    }
 
     private final String title;
     private final String author;
@@ -70,7 +66,8 @@ class JsonAdaptedBook {
      */
     public Book toModelType() throws IllegalValueException {
         if (title == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_BOOK_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
         }
         if (!Title.isValidTitle(title)) {
             throw new IllegalValueException(Title.MESSAGE_CONSTRAINTS);
@@ -78,7 +75,8 @@ class JsonAdaptedBook {
         final Title modelTitle = new Title(title);
 
         if (author == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Author.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_BOOK_FIELD_MESSAGE_FORMAT, Author.class.getSimpleName()));
         }
         if (!Author.isValidAuthor(author)) {
             throw new IllegalValueException(Author.MESSAGE_CONSTRAINTS);
@@ -86,11 +84,11 @@ class JsonAdaptedBook {
         final Author modelAuthor = new Author(author);
 
         if (isLoaned == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "isLoaned"));
+            throw new IllegalValueException(String.format(MISSING_BOOK_FIELD_MESSAGE_FORMAT, "isLoaned"));
         }
 
         if (returnDate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "returnDate"));
+            throw new IllegalValueException(String.format(MISSING_BOOK_FIELD_MESSAGE_FORMAT, "returnDate"));
         }
 
         if (!isLoaned && !StringUtil.containsWhitespaceOnly(returnDate)) {
@@ -103,7 +101,7 @@ class JsonAdaptedBook {
 
         if (isLoaned) {
             try {
-                final Date modelDate = dateFormat.parse(returnDate);
+                final Date modelDate = DATE_FORMAT.parse(returnDate);
                 return new Book(modelTitle, modelAuthor, modelDate);
             } catch (java.text.ParseException pe) {
                 throw new ParseException(String.valueOf(pe));
@@ -113,4 +111,3 @@ class JsonAdaptedBook {
         }
     }
 }
-
