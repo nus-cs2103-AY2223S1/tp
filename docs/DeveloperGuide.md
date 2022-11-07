@@ -499,9 +499,7 @@ The following sequence diagram shows how view schedule operation works :
 ![ViewScheduleSequence](images/sview_Sequence.png)
 
 
---------------------------------------------------------------------------------------------------------------------
-
-### 5.11. ViewTimetable feature
+### 5.11. Viewing the Timetable feature
 
 The proposed ViewTimetable functionality is accomplished by `ViewTimetableCommand` which extends the `Command` class. The `ViewTimetableCommand` overrides the following method:
 
@@ -515,7 +513,7 @@ The following sequence diagram shows how view schedule operation works with inpu
 
 
 
-
+--------------------------------------------------------------------------------------------------------------------
 
 
 ## **6. Documentation, logging, testing, configuration, dev-ops**
