@@ -28,8 +28,9 @@ public class StudentBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_STUDENTCLASS = "1.3";
-    public static final String DEFAULT_SUBJECTHANDLER = "english: CA1:[80.0, 100.0, 0.2, 1.0], "
-                                                        + "CA2:[30.0, 56.0, 0.4, 2.0]";
+    public static final String DEFAULT_SUBJECTHANDLER =
+        "ENGLISH: CA1:[60.0, 100.0, 0.2, 1.0], CA2:[25.0, 50.0, 0.4, 2.0]"
+        + "%%MATH: CA1:[90.0, 100.0, 0.2, 1.0], A2:[31.0, 50.0, 0.4, 2.0]";
 
     private Name name;
     private Phone phone;
