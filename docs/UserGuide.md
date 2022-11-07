@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-<img src="images/userguide/ProfNUS.png" alt="img" style="zoom:10%;" />
+<img src="images/userguide/ProfNUS.png" alt="img" style="zoom:10%;" width="3000" height="2000"/>
 
 Made for SOC (School of Computing) Professors, **ProfNUS** is the **easiest way to keep track of your teaching schedule and organize information regarding the students and modules you teach.** It is optimized for users who prefer Command Line Interface (CLI) so that frequent tasks can be done faster by typing in commands which is perfect for SOC Professors! Interested? :wink: Continue reading to find out more!
 
