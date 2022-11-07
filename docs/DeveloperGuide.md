@@ -502,8 +502,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | NUS Professor                          | delete a tutor profile                                          | remove tutors that have graduated/are no longer available to teach.                         |
 | `* * *`  | NUS Professor                          | save data                                                       | there is a local backup on the computer.                                                    |
 | `* * *`  | NUS Professor                          | exit the program                                                |                                                                                             |
-| `*`      | NUS Professor                          | clear all data                                                  | remove all irrelevant sample data on first use.                                             |
-| `*`      | NUS Professor new to Tuthub            | view help                                                       | familiarise myself with Tuthub commands.                                                    |
+| `* *`    | NUS Professor                          | clear all data                                                  | remove all irrelevant sample data on first use.                                             |
+| `* *`    | NUS Professor new to Tuthub            | view help                                                       | familiarise myself with Tuthub commands.                                                    |
 
 
 ### Use cases
