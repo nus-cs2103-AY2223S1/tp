@@ -137,16 +137,16 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="1000" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both ModQuik data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `ModQuikStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.modquik.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -635,6 +635,25 @@ Do the test cases sequentially to ensure correct expectation.
 
    3. Test case: `add tutorial n/TW08 m/GEC1027 v/AS1-0203 T/10:00-11:00 D/1`<br>
       Expected:  A success message containing details of the added tutorial is shown. Main display changes to tutorial and tutorial list is updated.
+<<<<<<< HEAD
+    
+   
+#### Deleting a tutorial
+
+1. Deleting a tutorial while tutorial tab is being shown
+
+    1. Prerequisites: Switch to tutorial tab using `switch f/tutorial` command (you can skip this if the main display is already tutorial). Multiple tutorials in the list.
+
+    2. Test case: `delete tutorial 1`<br>
+       Expected: First tutorial is deleted from the list. Details of the deleted tutorial shown in the status message. Tutorial list is updated.
+
+    3. Test case: `delete tutorial 0`<br>
+       Expected: No tutorial is deleted. Error details shown in the status message. Tutorial list remains the same.
+
+    4. Other incorrect delete tutorial commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+=======
+>>>>>>> 082f7917115367ab5ca9662f5af0abb286f52f2a
 
 #### Editing a tutorial
 
@@ -662,6 +681,69 @@ Do the test cases sequentially to ensure correct expectation.
 
     4. Other incorrect delete tutorial commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
+
+### Consultation
+
+#### Adding a consultation
+
+Do the test cases sequentially to ensure correct expectation.
+
+1. Adding a consultation while consultation tab is being shown.
+
+    1. Prerequisites: Switch to consultation tab using the `switch f/consultation` command. Ensure consultations data are empty by using `clear f/consultation` (you may skip this if you do not have any consultations).
+
+    2. Test case: `add consultation n/Review past year paper m/CS2103T v/COM2-0109 D/2022-12-12 T/16:00-18:00 d/AY2019-2020 Question 3,6,8`<br>
+       Expected:  A new consultation is added to the tutorial list. A success message containing details of the added consultation is shown in result display box and the list of consultations is shown.
+
+    3. Test case: `add consultation n/Review past year paper m/CS2103T v/COM2-0109 D/2022-12-12 T/17:00-19:00 d/AY2019-2020 Question 3,6,8`<br>
+       Expected: Conflicting consultation error message is shown.
+
+    4. Test case: `add consultation n/Review past year paper m/CS2103T v/COM2-0109 D/2022-12-12 T/19:00-17:00 d/AY2019-2020 Question 3,6,8`<br>
+       Expected: Error message is shown as time range is invalid. No consultation is added.
+
+    5. Test case: `add consultation n/Review past year paper m/CS2103T v/COM2-0109 D/2022-12-12 T/16:00-18:00` <br>
+       Expected: Error message is shown as missing prefix. No consultation is added.
+
+    6. Other incorrect add consultation commands to try: `add consultation`, `add consultation n/testing m/sususu v/ T/ D/`, `...` <br>
+       Expected: Error message is shown in the result display box.
+
+2. Adding a consultation while consultation tab is not being shown.
+
+    1. Prerequisites: Switch to another tab that is not consultation, for example, using the `switch f/student` command.
+
+    2. Test case: `add consultation n/Review past year paper m/CS2103T v/COM2-0109 D/2022-12-12 T/1900-1700 d/AY2019-2020 Question 3,6,8`<br>
+       Expected: Error message is shown as time range format is invalid. Main display remains the same.
+
+    3. Test case: `add consultation n/Review past year paper m/CS2103T v/COM2-0109 D/2023-12-12 T/16:00-18:00 d/AY2020-2021 Question 1, 2, 3`<br>
+       Expected:  A success message containing details of the added consultation is shown. Main display changes to consultation and consultation list is updated.
+
+
+#### Deleting a consultation
+
+1. Deleting a consultation while consultation tab is being shown
+
+    1. Prerequisites: Switch to consultation tab using `switch f/consultation` command (you can skip this if the main display is already consultation). Multiple consultation in the list.
+
+    2. Test case: `delete consultation 1`<br>
+       Expected: First consultation is deleted from the list. Details of the deleted consultation shown in the status message. Consultation list is updated.
+
+    3. Test case: `delete consultation 0`<br>
+       Expected: No consultation is deleted. Error details shown in the status message. Consultation list remains the same.
+
+    4. Other incorrect delete consultation commands to try: `delete`, `delete x`, `...` (where x is larger than the consultation list size)<br>
+       Expected: Similar to previous.
+
+#### Editing a consultation
+
+1. Editing a consultation while consultation tab is being shown.
+
+    1. Prerequisites: Switch to consultation tab using the `switch f/consultation` command (you may skip this if the main display is already consultation). There exists at least 1 consultation in the list.
+
+    2. Test case: `edit consultation 1 v/AS16`<br>
+       Expected: Venue of first consultation is edited. Details of the edited tutorial shown in the status message.
+
+    3. Test case: `edit consultation 0`<br>
+       Expected: No consultation is edited. Error message shown in result display box.
 
 ### Deleting a student
 

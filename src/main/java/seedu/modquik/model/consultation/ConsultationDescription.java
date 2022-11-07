@@ -1,12 +1,21 @@
 package seedu.modquik.model.consultation;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.modquik.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Consultation's description in ModQuik.
  * Guarantees: immutable;
  */
 public class ConsultationDescription {
+    public static final String MESSAGE_CONSTRAINTS =
+        "Description can take any values, and it should not be blank.";
+
+    /*
+     * The first character of the description must not be a whitespace,
+     * otherwise " " (a blank string) becomes a valid input.
+     */
+    public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String description;
 
@@ -17,7 +26,15 @@ public class ConsultationDescription {
      */
     public ConsultationDescription(String description) {
         requireNonNull(description);
+        checkArgument(isValidConsultationDescription(description), MESSAGE_CONSTRAINTS);
         this.description = description;
+    }
+
+    /**
+     * Returns true if a given string is a valid description.
+     */
+    public static boolean isValidConsultationDescription(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
