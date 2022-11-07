@@ -135,7 +135,7 @@ Professors:
 * Roles: `Coordinator`, `Tutor`, `Lecturer`and/or `Advisor`
 
 TA:
-* Availability: `Available` or `Unavailable` 
+* Availability: `Available` or `Unavailable`
 
 Student
 * Attendance: represented as a fraction _e.g. 9/10_

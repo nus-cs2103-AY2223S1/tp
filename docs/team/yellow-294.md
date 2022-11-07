@@ -39,13 +39,13 @@ Given below are my contributions to the project.
         * Added implementation details of the AddAssignments feature: [#72](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/72)
 
 * **Community**:
-    * PRs reviewed: 
+    * PRs reviewed:
       [#34](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/34),
       [#37](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/37),
-      [#70](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/70), 
+      [#70](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/70),
       [#81](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/81),
       [#155](https://github.com/AY2223S1-CS2103T-T17-1/tp/pull/155),
-            
-    
+
+
 
 
