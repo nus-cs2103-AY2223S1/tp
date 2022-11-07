@@ -30,8 +30,6 @@ The photo above is a screenshot of what you will see when you launch CLInkedIn.
 In this user guide, you will find instructions on how to install CLInkedIn and a guide on how to use CLInkedIn's numerous features.
 
 ## Table of Contents
-{:.no_toc}
-* Table of Contents {:toc}
 
 1. [Using this Guide](#using-this-guide)
 2. [Useful Notations and Glossary](#useful-notations-and-glossary)
