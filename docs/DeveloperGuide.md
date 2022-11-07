@@ -177,12 +177,6 @@ The `Schedule` component
 
 - represents a schedule of its corresponding module
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative design is to make `Schedule` abstract class, and create `LectureSchedule`, `TutorialSchedule`, `LabSchedule`, `RefelectionSchedule` that extend the `Schedule` class. The diagram is as follows: <br>
-    <div align=center>
-        <img src="images/ScheduleAlt.png" alt="NewScheduleUML" width=450; />
-</div>
-
-
 ### 4.5. Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W11-2/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
@@ -792,7 +786,6 @@ testers are expected to do more *exploratory* testing.
 
    4. Other incorrect delete commands to try: `add`, `add x` and `add n/John Doe p/98765432`<br>
       Expected: Similar to previous.
-
 2. Deleting a student while all students are being shown
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
@@ -805,6 +798,22 @@ testers are expected to do more *exploratory* testing.
 
    4. Other incorrect delete commands to try: `del`, `del x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+### 8.4 Add a schedule
+
+Adding a schedule to ProfNUS. 
+
+1. Prerequisites: Arguments are valid and all compulsory parameters are provided.
+
+2. Test case: `add c/CS2103T w/Friday ct/16:00-18:00 cc/lec cg/L1 cv/COM2 0217`<br>
+   Expected: Adds a new schedule with the module `CS2103T`, weekday `Friday`, class time `16:00-18:00`, class type `lec`, class group `L1`, class venue `COM2 0217`.
+
+3. Test case: `add c/CS2000 w/Thursday ct/16:00-18:00 cc/lec cg/L1 cv/COM2 0217`<br>
+   Expected: No schedule is added. Error details shown in the status message. Status bar remains the same.
+
+4. Test case: `add c/CS2030S w/Friday ct/15:00-17:00 cc/lab cg/L1 cv/COM1 0210`
+
+   Expected: No schedule is added. Error details shown in the status message. Status bar remains the same.
 
 ## **9. Appendix C: Effort**
 

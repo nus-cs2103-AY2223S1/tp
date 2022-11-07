@@ -24,7 +24,7 @@ public class AddModuleCommand extends Command {
             + PREFIX_NAME + "MODULE NAME "
             + PREFIX_MODULE_CODE + "MODULE CODE "
             + PREFIX_MODULE_DESCRIPTION + "MODULE DESCRIPTION "
-            + PREFIX_TAG + "MODULE TAG\n "
+            + PREFIX_TAG + "MODULE TAG\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Software Engineering "
             + PREFIX_MODULE_CODE + "CS2103T "

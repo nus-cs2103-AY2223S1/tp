@@ -5,6 +5,8 @@ title: User Guide
 
 Made for SOC (School of Computing) Professors, **ProfNUS** is the **easiest way to keep track of your teaching schedule and organize information regarding the students and modules you teach.** It is optimized for users who prefer Command Line Interface (CLI) so that frequent tasks can be done faster by typing in commands which is perfect for SOC Professors! Interested? :wink: Continue reading to find out more!
 
+<img src="images/userguide/ProfNUS.png" alt="img" style="zoom:75%;" />
+
 * Table of Contents
 {:toc}
 
@@ -107,13 +109,13 @@ This section contains all the information on the main features of **ProfNUS**. Y
 
 #### 4.1.1. Switch to light mode: `light`
 
-Switch to light mode.
+Switchs to light mode.
 
 **Format:** `light`
 
 #### 4.1.2. Switch to dark mode: `dark`
 
-Switch to dark mode.
+Switchs to dark mode.
 
 **Format:** `dark`
 
@@ -568,7 +570,7 @@ You can use this command to view the list of all the students and teaching assis
 
 ### 4.4. Schedule Manager
 
-As a professor in SoC, you must be busy with teaching. ProfNUS is here to help you out! The following features are designed to help you manage your schedules more efficiently.
+As a professor in SoC, you must be busy with teaching. ProfNUS is here to help you out! We provide you with a variety of efficient commands to help you keep track of your teaching schedules easily. For each schedule, you can indicate the module it belongs to, the weekday it happens on, the class type, the class group, the time period, and the class venue. If you are interested, please continue to see how our schedule features can help you.
 
 #### 4.4.1. Schedule Manager Command Parameters
 
@@ -578,7 +580,7 @@ In this section, we list all the parameters you will encounter of following comm
 | ------------- | ------------------------------------------------------------ | ------------- |
 | `MODULE_CODE` | This parameter represents the code of a module. Using module code can uniquely determine a module. The format should abide by the  [Module Code Format of NUS](https://www.nus.edu.sg/registrar/docs/info/nusbulletin/AY201213_GeneralInformation.pdf). | `CS2103T`     |
 | `WEEKDAY`     | This parameter represents the day in a week. We provide seven options for you: `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`, `Sunday`. <br/>Please take note that this parameter is **case sensitive**. Weekdays in lower case will not be accepted. | `Monday`      |
-| `PERIOD`      | This parameter represents the time slot of your schedule. Your `PERIOD` should follow the format of `HH:MM-HH:MM`. To be consistent with NUS regular class duration, we  have set the following **restrictions** to this parameter:                                                                                                                  <br/>1. No class should start before `07:00` or end after `10:00`.                                <br/>2. The time should be on the whole or half hour.                                                   <br/>3. The duration should be longer than or equal to one hour, and shorter than or equal to three hours.                                                                                                             <br/>Please take note that ProfNUS adopts 24-hour clock, so `02:00` will be treated as 2am. | `10:00-12:00` |
+| `PERIOD`      | This parameter represents the time slot of your schedule. Your `PERIOD` should follow the format of `HH:MM-HH:MM`. To be consistent with NUS regular class duration, we  have set the following **restrictions** to this parameter:                                                                                                                  <br/>1. No class should start before `08:00` or end after `10:00`.                                <br/>2. The time should be on the whole or half hour.                                                   <br/>3. The duration should be longer than or equal to one hour, and shorter than or equal to three hours.                                                                                                             <br/>Please take note that ProfNUS adopts 24-hour clock, so `02:00` will be treated as 2am. | `10:00-12:00` |
 | `CLASS_TYPE`  | This parameter represents the class category. We provide four types of classes for you: `lec`, `tut`, `lab`, `rec`, representing Lecture, Tutoria, Lab, and Reflection, respectively. <br/> Please take note that this parameter is **case sensitive**. Any uppercase character will not be accepted. | `lec`         |
 | `CLASS_GROUP` | This parameter represents the group label if there are multiple lecture, tutorial, lab, or reflection groups. | `L1`          |
 | `VENUE`       | This parameter represents the venue of a class.              | `LT16`        |
