@@ -342,6 +342,14 @@ Adds an entry to the specified list.
 
 ![AddCommandIncome](images/ug/AddCommandIncome.png)
 
+<div markdown="span" class="alert alert-info">:information_source: **Do not see the entry you just added?:**
+If you did a [view by month](#view-entries-by-month) command before adding new entries, and you cannot find the entry you just added in the
+List Display, don't worry! This is because List Display is still filtered by the month specified.
+If the entry you just added does not fall within the month, it will not be shown. Simply use the [view by category](#view-entries-by-category)
+command to get the entire entry list, and you will find your newly added entry!
+Refer to the sections on [view](#view-entries-by-category) command to find out more.
+</div>
+
 ### Editing entries
 
 Whoops! You made an error in your previous entry. Fret not, you can easily edit it.
