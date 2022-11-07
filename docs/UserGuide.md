@@ -351,7 +351,7 @@ Deletes a `transaction` specified by the index number.
 Format: `delete INDEX m/transaction`
 
 * `INDEX` refers to the index number shown in the displayed list of transactions. 
-* `INDEX` must be a **positive integer**, and must not contain any signs e.g. +1, -3`.
+* `INDEX` must be a **positive integer**, and must not contain any signs e.g. +1, -3.
 
 Example:
 

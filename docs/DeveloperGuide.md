@@ -342,7 +342,7 @@ The following sequence diagram shows how the edit client operation works in Logi
 
 ![EditClientSequenceDiagram](images/EditClientSequence.png)
 
-The following activity diagram summarizes what happens when a user executes the edit command:
+The following activity diagram summarizes what happens when a user executes the edit client command:
 
 <img src="images/EditCommandActivityDiagram.png" width="250" />
 
@@ -382,7 +382,9 @@ The following sequence diagram shows how the edit transaction operation works in
 
 ![EditTransactionSequenceDiagram](images/EditTransactionSequence.png)
 
-The activity diagram for this feature is the same as that of the [Editing client feature](#editing-client-feature)
+The following activity diagram summarizes what happens when a user executes the edit transaction command:
+
+<img src="images/EditTransactionActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
@@ -415,11 +417,11 @@ Step 2. The user executes `view 1` command to focus on the client at index 1 and
 Step 3. The user executes `edit 2 m/remark Fast and responsive` command to replace the remark at index 2 in the focused client's remarks list.
 This is done by accessing the `UniqueRemarkList` of the focused client, and executing `UniqueRemarkList#replaceRemark(index, editedTransaction)`
 
-The following sequence diagram shows how the edit transaction operation works in Logic Manager:
+The following sequence diagram shows how the edit remark operation works in Logic Manager:
 
 ![EditRemarkSequenceDiagram](images/EditRemarkSequence.png)
 
-The activity diagram for this feature is the same as that of the [Editing client feature](#editing-client-feature)
+The activity diagram for this feature is the same as that of the [Editing transaction feature](#editing-transactions-feature)
 
 #### Design considerations:
 
