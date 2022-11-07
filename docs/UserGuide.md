@@ -156,13 +156,29 @@ Simply type in:
 
 ### Setting up
 
-1. Ensure you have [Java 11](https://www.oracle.com/java/technologies/downloads/#java11) or above installed in your Computer.
+1. Ensure you have Java 11 or above installed in your Computer: 
+   1. Open up the command prompt/Terminal in your respective OS:
+      1. For **Windows**: <br>
+         Open up the command prompt by pressing the **Windows** key and searching **Command Prompt**.
+      2. For **Mac**: <br>
+         Click on **Finder**, then open the `/Application/Utilities` folder by pressing **Command + Shift + U**, and finally open the **Terminal** application.
+      3. For **Linux**: <br>
+         Open up the command prompt by pressing **Ctrl + Alt + T**.
+   2. Once the command prompt/Terminal is opened, type in `java -version`.
+   3. It should look similar to this:
+
+        <p align="center">
+            <img src="images/javaVersion.png" />
+        </p>
+
+   4. If your version starts with `"11.*.*.*"` where `*` represents any number, you are good to go!
+   5. Otherwise, you can download Java 11 [here](https://www.oracle.com/java/technologies/downloads/#java11). 
 
 2. Download the latest `findmyintern.jar` from [here](https://github.com/AY2223S1-CS2103T-T14-1/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your FindMyIntern.
 
-4. Double-click the file to start the app.
+4. Double-click the file to start the application.
 
 ### Adding your first internship application
 
@@ -204,7 +220,7 @@ This section contains **everything you need to know** about the commands used in
 
 Below shows the command format used in FindMyIntern.
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by you<br>
   * e.g. in `add c/COMPANY`, `COMPANY` is a parameter which can be used as `add c/Google`
 
 * Items in square brackets are optional<br>
@@ -295,9 +311,9 @@ See [Appendix: Date/time formats](#datetime-formats) for the date/time formats a
 </div>
 
 Examples:
-* `add c/Apple l/https://jobs.apple.com/en-sg d/Software engineering internship a/11/10/2022`
-* `add c/Grab l/https://grab.careers/teams/campus d/Marketing internship a/11 Oct i/23 Nov, 3:00 pm`
-* `add c/Shopee l/careers.shopee.sg/students d/Data analyst internship a/20 Oct 2022 i/28 Nov 16:00 t/data analyst t/summer`
+* `add c/Apple l/https://jobs.apple.com/en-sg d/Software engineering internship a/11/10/2022` - Adds an internship application for `Apple` into the list 
+* `add c/Grab l/https://grab.careers/teams/campus d/Marketing internship a/11 Oct i/23 Nov, 3:00 pm` - Adds an internship application for `Grab` into the list
+* `add c/Shopee l/careers.shopee.sg/students d/Data analyst internship a/20 Oct 2022 i/28 Nov 16:00 t/data analyst t/summer` - Adds an internship application for `Shopee` into the list
 
 <div class="btn-group btn-group-sm mt-2 mb-4">
 <a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
@@ -440,31 +456,6 @@ Examples:
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
 
-#### Filtering for internship applications of a specific status: `filter`
-
-<div class="d-flex alert alert-secondary">
-    <div class="me-3">
-        <span class="badge text-bg-dark">FORMAT</span>
-    </div>
-    <div markdown="span" class="w-100">
-        ```
-        filter APPLICATION_STATUS
-        ```
-    </div>
-</div>
-
-* Filters for internship applications of the specified [`APPLICATION_STATUS`](#application-status).
-* `APPLICATION_STATUS` is case-insensitive.
-
-Examples:
-* `filter accepted` - Shows a list of internship applications marked as `accepted`
-* `filter Rejected` - Shows a list of internship applications marked as `rejected`
-
-<div class="btn-group btn-group-sm mt-2 mb-4">
-<a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
-<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
-</div>
-
 #### Finding for internship applications or tags: `find`
 
 Finds internship applications where the company's name and tags contain any of the given keywords.
@@ -487,9 +478,48 @@ Finds internship applications where the company's name and tags contain any of t
 <div class="me-3">
   <span class="badge text-bg-info">INFO</span>
 </div>
+<div markdown="span">
+**Usage of <code>find</code> command**<br>
+<code>find</code> command find internship applications from the original list instead of the current list.
+</div>
+</div>
+
+Examples:
+* `find tiktok` returns internship application(s) and tag(s) containing `tiktok`
+* `find google backend` returns internship application(s) and tag(s) containing `google` and `backend`
+
+<p align="center">
+    <img src="images/findGoogleBackendResult.png" width="600" />
+</p>
+
+<div class="btn-group btn-group-sm mt-2 mb-4">
+<a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
+<a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
+</div>
+
+#### Filtering for internship applications of a specific status: `filter`
+
+<div class="d-flex alert alert-secondary">
+    <div class="me-3">
+        <span class="badge text-bg-dark">FORMAT</span>
+    </div>
+    <div markdown="span" class="w-100">
+        ```
+        filter APPLICATION_STATUS
+        ```
+    </div>
+</div>
+
+* Filters for internship applications of the specified [`APPLICATION_STATUS`](#application-status).
+* `APPLICATION_STATUS` is case-insensitive.
+
+<div class="d-flex alert alert-info">
+<div class="me-3">
+  <span class="badge text-bg-info">INFO</span>
+</div>
 <div>
 <b><code><b>filter</b></code> vs <code><b>find</b></code></b><br>
-<code>filter</code> and<code>find</code> commands may seem similar, here are some differences to take note of:<br>
+<code>filter</code> and <code>find</code> commands may seem similar, here are some differences to take note of:<br>
 <table class="table table-light table-hover">
   <thead>
     <tr>
@@ -512,12 +542,8 @@ Finds internship applications where the company's name and tags contain any of t
 </div>
 
 Examples:
-* `find tiktok` returns internship application(s) and tag(s) containing `tiktok`
-* `find google backend` returns internship application(s) and tag(s) containing `google` and `backend`
-
-<p align="center">
-    <img src="images/findGoogleBackendResult.png" width="600" />
-</p>
+* `filter accepted` - Shows a list of internship applications marked as `accepted`
+* `filter Rejected` - Shows a list of internship applications marked as `rejected`
 
 <div class="btn-group btn-group-sm mt-2 mb-4">
 <a href="#commands" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to commands</a>
