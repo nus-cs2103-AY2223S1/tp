@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CancelCommand;
@@ -24,10 +25,15 @@ public class CancelCommandParser implements Parser<CancelCommand> {
         requireNonNull(userInput);
         String trimmedIndices = userInput.trim();
         String[] arrIndex = trimmedIndices.split(" ");
-        if (arrIndex.length != 1) {
+        if (arrIndex.length != 1 || arrIndex[0].isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CancelCommand.MESSAGE_USAGE));
+        }
+        Index apptIndex;
+        try {
+            apptIndex = ParserUtil.parseIndex(arrIndex[0]);
+        } catch (ParseException e) {
             throw new ParseException(MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX);
         }
-        Index apptIndex = ParserUtil.parseIndex(arrIndex[0]);
 
         return new CancelCommand(apptIndex);
     }

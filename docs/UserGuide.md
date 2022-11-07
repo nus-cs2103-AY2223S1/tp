@@ -522,7 +522,7 @@ Other Examples:
 
 Shows the most recent 10 commands that was inputted.
 Allows cycling through those commands to reduce the need of retyping similar commands fully.
-The history is looped, meaning that when you reach the end, the next cycle will bring it back to the start.
+The history is looped, meaning that when you reach the last command, the next cycle will bring it back to the first command.
 
 <div markdown="block" class="alert alert-primary">
 :bulb: **Tip:** <br>
@@ -563,7 +563,7 @@ If your changes to the data file makes its format invalid, idENTify will discard
 | Action                    | Format, Examples                                                                                                                                                                         |
 |---------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Help**                  | `help`                                                                                                                                                                                   |
-| **Add**                   | `add n/NAME p/PHONE_NUMBER a/ADDRESS [e/EMAIL] [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 a/123, Clementi Rd, 1234665`                                                              |
+| **Add**                   | `add n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [t/TAG]…​` <br> e.g. `add n/James Ho p/22224444 a/123, Clementi Rd, 1234665`                                                              |
 | **Delete**                | `delete INDEX [END_INDEX]`<br> e.g. `delete 3`                                                                                                                                           |
 | **Book**                  | `book INDEX r/REASON d/DATE [pe/TIME_PERIOD] [t/TAG]…​` <br> e.g. `book 2 r/Ear Infection d/2022-12-31 18:00 pe/1Y`                                                                      |
 | **Cancel**                | `cancel APPOINTMENT_INDEX` <br> e.g. `cancel 2`                                                                                                                                          |
