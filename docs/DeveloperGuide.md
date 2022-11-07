@@ -191,6 +191,10 @@ The following activity diagram summarizes what happens when a user executes a li
 
 ![ListActivityDiagram](images/ListActivityDiagram.png)
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The diagrams above are generalized to `Client` but work similarly for other entity types (`Project, `Issue`).
+</div>
+
 #### Design considerations
 
 **Aspect: How list executes:**
@@ -230,6 +234,10 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 The following activity diagram summarizes what happens when a user executes a default view command:
 
 ![DefaultViewActivityDiagram](images/DefaultViewActivityDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The diagrams above are generalized to `Client` but work similarly for other entity types (`Project, `Issue`).
+</div>
   
 ### Add Command Feature
 
@@ -451,6 +459,10 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 The following activity diagram summarizes what happens when a user executes a pin command:
 
 ![PinActivityDiagram](images/PinActivityDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The diagrams above are generalized to `Client` but work similarly for other entity types (`Project, `Issue`).
+</div>
 
 #### Design considerations
 
