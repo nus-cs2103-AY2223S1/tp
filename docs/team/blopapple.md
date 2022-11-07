@@ -48,8 +48,12 @@ Added the ability to dynamically edit a task for a patient.
     * Implemented TruncatedTaskListPanel to support viewing all patients' tasks [\#285](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/285)
 
 ### Contributions to User Guide
-* Added documentation for the `listTask` feature [\#53]()
-* Added documentation for the `viewTask` feature [\#53]()
+* Added documentation for the `listTask` feature [\#67](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/67)
+* Added documentation for the `viewTask` feature [\#67](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/67)
+* Added documentation for the `view` related features [\#402](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/402)
+* Added documentation for the `add/edit/delete` `Medication` feature [\#403](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/403)
+* Added documentation for the `add/edit/delete` `Remark` feature [\#403](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/403)
+* Added documentation for the `focus` feature [\#433](https://github.com/AY2223S1-CS2103T-T12-4/tp/pull/433)
 
 ### Contributions to Developer Guide
 * Updated User Profile [\#46]()
