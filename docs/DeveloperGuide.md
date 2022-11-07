@@ -823,10 +823,10 @@ Furthermore, there have been a great amount of work in writing test cases, enabl
 
 #### Models
 
-In [AddressBook Level-3](https://github.com/se-edu/addressbook-level3), there were only 1 `Person` class, which made it straightforward
+In [AddressBook Level-3](https://github.com/se-edu/addressbook-level3), there was only 1 `Person` class, which made it straightforward
 to define fields and actions associated with a `Person`. However, in PennyWise, we have both an `Income` class and an `Expense`
 class. Thus, all instances of `AddressBook` and its related entities had to be removed and refactored throughout the project.
-Furthermore, we needed to take great care in implementing an `Entry` class, which acts as a parent of the `Income` and `Expenditure`
+Furthermore, we needed to take great care in implementing an `Entry` class, which acts as a parent of the `Income` and `Expense`
 class so that we can take advantage of polymorphism and improve code reusability.
 
 #### Commands
