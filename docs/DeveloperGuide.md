@@ -713,6 +713,7 @@ The general difficulty level of TaskBook was medium. As the project direction wa
 **Logic**
 * Implementing inheritance structure for Sorting commands.
 * Parsing all fields in `task find` to create one comparator that searches all fields.
+* Implementing `VersionedTaskBook` to support `undo` and `redo` functionality.
 
 **Model**
 * Implementing Sorting and Filtering of tasks and contacts.
@@ -737,13 +738,17 @@ Adding the SortedList components to the task list and contact list in `ModelMana
 
 A significant part of the effort in storing and loading of Tasks was saved using Jackson's `@JsonTypeInfo` and `@JsonSubTypes` annotations. This allowed for Tasks in the `TaskList` to be saved and loaded in their actual subtypes.
 
-{TODO: Talk about effort for 2nd stage aka v1.3 - QOL features}
+Much effort was required to create `VersionedTaskBook` for the `undo` and `redo` functionality. Despite AB-3 having a proposed implementation of it, a substantial amount of effort was put it to ensure that it was durable and can withstand any possible commit. Extra effort was put in to ensure that commits to the version history are capped at a certain capacity and yet are fast.
 
-It was also difficult learning Javafx and CSS in order to design our Gui in the style we wanted it. It was also a struggle to learn how to use the Observer design pattern that was given by AB3. However, with a lot of trial and error, as well as feedback from close friends outside this project group, we managed to put together a Gui we can be proud of.
+Quality of life features like command history navigation and help command also took some effort. Effort had to be put in to ensure that these features are consistent and work as intended in various different scenarios. Even though these features are not core, they elevate the experience of the user.
+
+It was also difficult learning Javafx and CSS in order to design our GUI in the style we wanted it. It was also a struggle to learn how to use the Observer design pattern that was given by AB3. However, with a lot of trial and error, as well as feedback from close friends outside this project group, we managed to put together a GUI we can be proud of.
 
 We thankfully avoided a lot of work conflicts where multiple people were stuck because of one person's portion being unimplemented because we recognised early on that work blockages were a huge risk factor. We therefore assigned strict deadlines for those vital features and thus reduced the number of work blockages that occurred.
 
 ### Achievements
 * Working saving and loading of Tasks.
 * Implemented effective task management system with finding and sorting features.
-* Fully customised and good-looking Gui.
+* Fully customised and good-looking GUI.
+* Quality of life features like undoing, redoing, and command history navigation.
+* Comprehensive help command.
