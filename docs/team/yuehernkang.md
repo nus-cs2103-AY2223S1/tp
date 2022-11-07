@@ -37,6 +37,7 @@ Contributions to the UG: `to be added soon`
 
 Contributions to the DG:
 - Added documentation for Filter by `PropertyStatusEnum` feature
+- Added use cases
 
 ### Contributions to team-based tasks
 
