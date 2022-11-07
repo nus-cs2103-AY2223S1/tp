@@ -1,5 +1,9 @@
 @startuml
-enum Status {
+!include style.puml
+skinparam classBackgroundColor MODEL_COLOR
+show members
+
+enum "<<enumeration>>\nStatus" {
     INTERVIEW
     OFFERED
     PENDING
