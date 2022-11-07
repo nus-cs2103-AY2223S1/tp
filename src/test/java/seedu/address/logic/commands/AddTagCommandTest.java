@@ -29,6 +29,9 @@ import seedu.address.testutil.DeadlineTagBuilder;
 import seedu.address.testutil.PriorityTagBuilder;
 import seedu.address.testutil.TaskBuilder;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Integration test for AddTagCommandTest together with some unit testing
  */
@@ -134,6 +137,45 @@ public class AddTagCommandTest {
         AddTagCommand addTagCommand = new AddTagCommand(priorityTag, null, outOfBoundsIndex);
         String expectedMessage = Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
         assertCommandFailure(addTagCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void testEquals() {
+        PriorityTag firstPriorityTag = new PriorityTagBuilder().build();
+        DeadlineTag firstDeadlineTag = new DeadlineTagBuilder().build();
+        Index firstIndex = Index.fromOneBased(1);
+        Index secondIndex = Index.fromOneBased(2);
+        PriorityTag secondPriorityTag = new PriorityTagBuilder().withStatus("LOW").build();
+        LocalDate date = LocalDate.parse("25-11-2024", DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        DeadlineTag secondDeadlineTag = new DeadlineTagBuilder().withDeadline(date).build();
+
+        AddTagCommand firstAddTagCommand = new AddTagCommand(firstPriorityTag, firstDeadlineTag, firstIndex);
+        AddTagCommand firstAddTagCommandCopy = new AddTagCommand(firstPriorityTag, firstDeadlineTag, firstIndex);
+        AddTagCommand secondAddTagCommand = new AddTagCommand(secondPriorityTag, firstDeadlineTag, firstIndex);
+        AddTagCommand thirdAddTagCommand = new AddTagCommand(firstPriorityTag, secondDeadlineTag, firstIndex);
+        AddTagCommand fourthAddTagCommand = new AddTagCommand(firstPriorityTag, firstDeadlineTag, secondIndex);
+
+        //Equals to itself
+        assertTrue(firstAddTagCommand.equals(firstAddTagCommand));
+
+        //Equals to another AddTagCommand with the same fields
+        assertTrue(firstAddTagCommand.equals(firstAddTagCommandCopy));
+
+        //Not equals to another AddTagCommand with different priority tag
+        assertFalse(firstAddTagCommand.equals(secondAddTagCommand));
+
+        //Not equals to another AddTagCommand with different deadline tag
+        assertFalse(firstAddTagCommand.equals(thirdAddTagCommand));
+
+        //Not equal to another AddTagCommand with different index
+        assertFalse(firstAddTagCommand.equals(fourthAddTagCommand));
+
+        //Not equal to null
+        assertFalse(firstAddTagCommand.equals(null));
+
+        //Not equal to different object types
+        assertFalse(firstAddTagCommand.equals(219129));
+
     }
 
 }
