@@ -199,6 +199,8 @@ public class Pet {
                 .append("; ")
                 .append(getColorPattern().toString())
                 .append("; ")
+                .append(getPrice().toString())
+                .append("; ")
                 .append(getVaccinationStatus().toString());
 
         Set<PetCertificate> certificates = getCertificates();
