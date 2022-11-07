@@ -1038,6 +1038,42 @@ testers are expected to do more *exploratory* testing.
 
 ---
 
+# Appendix: Effort
+
+StudMap was an interesting experience in a Brownfield software development environment.
+To many of us, it was our first endeavor, which meant lots of trial and error to get things right.
+
+## Keeping StudMap extensible
+
+Diving into AB3, we quickly ran into problems stemming from its rigid structure. Here are some fundamental changes
+we made to keep things streamlined and extendable.
+
+### Student Parameter Object
+
+AB3 came with rigid constructors for its `Person` class, which meant that any extension introduced ugly overloading
+of constructors. We made use of a parameter object for the `Student` constructor to overcome this issue. With this,
+we could easily add multiple attributes, including `Attendances`, `Assignments`, `Participations` without hassle.
+
+### Abstraction of Commands
+
+AB3 started off with a few commands with a lot of duplicated code. Naive extension of AB3 would have resulted in this
+code being duplicated many more times, a danger to code quality. As such, one of the earlier efforts was to abstract
+out the idea of command parsers which required certain syntax (e.g. `Index`), as well as commands that mutated `Student`.
+This allowed StudMap to be flexible and extendable so that future features were easy to implement.
+
+## Conclusion
+
+Overall, this project was fulfilling for many of us, and certainly a fun journey. StudMap gave us the opportunity to
+experiment with and learn about non-trivial design patterns.
+
+We cannot understate the effort that we have invested in this project - from midnight meetings for discussing
+implementation details to the hours spent upgrading the documentation for this project.
+
+We hope that this Developer Guide has helped you in understanding the architecture of StudMap. If you are a Software Engineering
+student, we strongly encourage you to try to extend it - hopefully you will learn as much as we did.
+
+---
+
 # Glossary
 
 ### TA
