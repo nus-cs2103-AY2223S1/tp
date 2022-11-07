@@ -65,8 +65,6 @@ Given below are my contributions to the project.
 
 * **Community**:
 
-    * Reviewed over 24 PRs
+    * Review 16 PRs: [PR Reviews](https://github.com/AY2223S1-CS2103T-W08-3/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
   
-    * Initiated design-related discussions
-  
-    * Contributed to discussions
+    * Initiated design-related discussions: [Design-related](https://github.com/AY2223S1-CS2103T-W08-3/tp/pull/61)
