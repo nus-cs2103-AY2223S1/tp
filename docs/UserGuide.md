@@ -64,6 +64,8 @@ If you are looking to expand on our project, check out our [Developer Guide](Dev
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## **Introduction to RC4HDB**
 
 **RC4HDB** is a desktop application which streamlines the daily workflow of **RC4 housing management staff**, by providing specialised features which solve their resident and venue management needs.
@@ -88,6 +90,8 @@ RC4HDB.
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## **Using this guide**
 
 This user guide contains all the information that you will need to know as a user of **RC4HDB**. We hope that it
@@ -111,20 +115,22 @@ pay attention to. </div>
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## **Quick start**
 
 Here is a quick guide on how to get a working copy of RC4HDB on your computer.
 
-### 1. Setup
+#### 1. Setup
 
 Ensure you have [*Java 11*](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) or
 above installed on your Computer.
 
-### 2. Install
+#### 2. Install
 
 Visit this [link](https://github.com/AY2223S1-CS2103T-W12-3/tp/releases/). Click on `rc4hdb.jar` to download the latest `rc4hdb.jar`. Move the `rc4hdb.jar` file to the folder you want to use as the _home folder_ for RC4HDB. The home folder is the folder from which the application will run, save data to, and retrieve data from.
 
-### 3. Running RC4HDB
+#### 3. Running RC4HDB
 
 Double-click the file to start the app. The **Graphical User Interface (GUI)** similar to the one shown
 below should appear in a few seconds.
@@ -138,7 +144,7 @@ delete the folder called `data` as this would cause all your data to be deleted!
 
 ![Ui](images/Ui.png)
 
-### 4. Try it out!
+#### 4. Try it out!
 
 Try typing `help` into the command box where it says "Enter Command here..." and pressing the Enter/Return key on your keyboard to execute it! This command will open a help window which shows you a quick summary of our available commands.
 
@@ -147,6 +153,8 @@ For more details on commands, refer to our [command guide](#command-guide) below
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Command Guide**
 
@@ -182,6 +190,8 @@ may have typed a command incorrectly as **RC4HDB** will inform you in the event 
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## **Getting Help**
 
 Viewing the command summary from the user guide can be a hassle to some. As an alternative, we have incorporated it
@@ -205,6 +215,8 @@ if it is open. </div>
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Modifying Resident Data**
 
@@ -314,7 +326,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Deletes all residents from **RC4HDB**.
+Clears all entries from **RC4HDB**.
 
 Format: `clear`
 
@@ -325,6 +337,8 @@ Deleted data can not be retrieved. Do use this command cautiously!
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### Format for resident fields
 
@@ -367,6 +381,8 @@ Deleted data can not be retrieved. Do use this command cautiously!
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Viewing Residents**
 
@@ -451,7 +467,6 @@ Calling `hideonly i r p e m t` on a full table will produce the following result
 
 ![hideonly](images/ug-photos/hideonly_photo.png)
 
-
 The following examples are to be performed one after the other:
 
 1. `hideonly i r p e m t` on a full table returns a table with only the *index*, *room*, *phone*, *email*, *matric* 
@@ -461,6 +476,15 @@ The following examples are to be performed one after the other:
    present* in the current table.
 3. However, using `hideonly n` on said table is **valid**, and will return a table with only the *gender* and *house*
    columns shown, as the *name* column has been hidden.
+
+Note:
+* Valid inputs include `i n p e r g h m t` (case-insensitive), which correspond to the first letter of each field in the table.
+    * This *should not* be confused with the `n/` or `p/` prefixes used in `edit` or `filter`.
+* Letters *must* be separated by a single whitespace.
+* The order of each letter does not matter.
+* Duplicate letters are ignored.
+* There needs to be at least one column shown in the table at all times.
+* You can always use `reset` to restore the full table view!
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -476,7 +500,6 @@ Format: `reset`
 * Any input entered directly after `reset` will be ignored. i.e. *`reset asd`*, `asd` will be ignored.
 * This command is different from the `list` command in that it does not affect the list of residents being displayed.
     * However, both commands cause the full set of resident fields (i.e. the full set of columns) to be displayed in the table.
-
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
@@ -509,6 +532,7 @@ Examples:
 ---
 
 ### Filtering residents by field : `filter`
+
 Shows a list of residents whose fields match the input keywords.
 
 Format: `filter /SPECIFIER KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
@@ -530,6 +554,8 @@ Examples:
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## **File Management**
 
 To provide a streamlined way of managing **RC4** related data, **RC4HDB** provides users with the ability to organise their files using our file management commands.
@@ -546,6 +572,8 @@ Before proceeding to learn more about file commands it would be good to have a q
 </div>
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### Finding your data
 
@@ -568,6 +596,8 @@ RC4HDB saves your data after every command. There is no need to save manually.
 [Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### Creating a new data folder : `file create`
 
@@ -602,6 +632,8 @@ Examples:
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### Switching to a different data folder : `file switch`
 
 Switches between different [**sub**](#finding-your-data) data folders.
@@ -635,6 +667,8 @@ Examples:
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### File Command Format:
 * All file commands have a `FOLDER_NAME` or `FILE_NAME` field depending on the command that is being used. 
 * `FOLDER_NAME` signifies the name of the **sub** data folder that is being used.
@@ -659,20 +693,21 @@ Examples:
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### CSV file format
 
 Format:
 * For clarity, the table column headers have been included. **DO NOT** include them in your **CSV** file.
 * All fields are mandatory, apart from `TAGS`, where users have to input a `NIL`, which is **not** case-sensitive.
 
-| NAME         | PHONE_NUMBER | EMAIL                   | FLOOR-UNIT | GENDER | HOUSE  | MATRIC_NUMBER | TAGS                |
-|--------------|--------------|-------------------------|------------|--------|--------|---------------|---------------------|
-| John Doe     | 91234567     | johnDoe@example.com     |    5-8     | M      | D      | A9876543B     | NIL                 |
-| Maggie Smith | 98765432     | maggieSmith@example.com |    4-1     | F      | A      | A3456789B     | WelfareHead Captain |
+<img src="images/ug-photos/csv_table_format.png" width="420" />
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Venue Management**
 
@@ -801,12 +836,14 @@ To view all venues, switch over to the bookings tab and refer to the list on the
 </div>
 
 Examples:
-* `venue unbook v/Meeting Room tp/8-9 d/TUE` deletes the 8am to 9am Meeting Room booking on Tuseday.
+* `venue unbook v/Meeting Room tp/8-9 d/TUE` deletes the 8am to 9am Meeting Room booking on Tuesday.
 * `venue unbook v/Hall tp/13-18 d/WED` deletes the 1pm to 6pm Hall booking n Wednesday.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### Format for Venue fields
 
@@ -830,6 +867,8 @@ Examples:
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Quality-Of-Life**
 
@@ -856,6 +895,8 @@ commands. If you want a full summary of all our commands, refer to [here](#comma
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### Accessing command history
 
 Use the `↑ Up` and `↓ Down` arrow keys to navigate through the command history. This
@@ -874,11 +915,11 @@ will not be saved!. </div>
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## **Exiting the Program**
 
-You do not have to worry about exiting
-**RC4HDB** without saving as any changes you've made is automatically saved after every command. For more information, visit
-the section on [saving your data](#saving-your-data).
+You do not have to worry about exiting **RC4HDB** without saving as any changes you've made is automatically saved after every command. For more information, visit the section on [saving your data](#saving-your-data).
 
 ### Exiting the program : `exit`
 
@@ -889,6 +930,8 @@ Format: `exit`
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Upcoming Features**
 
@@ -913,6 +956,8 @@ Examples:
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## **FAQ**
 
 **Q: I type very slowly, is RC4HDB any good for me?**
@@ -923,41 +968,42 @@ Examples:
 
 **Q: I have accidentally deleted an entry, is there any way for me to undo it?**
 
-**A**: Currently, we do not offer such an option, but you can look forward to RC4HDB v1.5, as we will be implementing that
-in the near future!
+**A:** Currently, we do not offer such an option, but you can look forward to RC4HDB v1.5, as we will be implementing that in the near future!
 
 <br>
 
 **Q: The text on the screen is too small, is there any way for me to resize it?**
 
-**A**: RC4HDB does not allow the text size to be changed, however, you can enlarge the text by changing your screen resolution. You may
+**A:** RC4HDB does not allow the text size to be changed, however, you can enlarge the text by changing your screen resolution. You may
 refer to this [link](https://support.microsoft.com/en-us/windows/change-your-screen-resolution-in-windows-5effefe3-2eac-e306-0b5d-2073b765876b) for Windows, and this [link](https://www.wikihow.com/Change-the-Screen-Resolution-on-a-Mac) for Mac.
 
 <br>
 
 **Q: Do I need an internet connection to be able to use RC4HDB?**
 
-**A**: You do not need an internet connection to use RC4HDB as everything is done on your device.
+**A:** You do not need an internet connection to use RC4HDB as everything is done on your device.
 
 <br>
 
 **Q: Can I search using fields other than the name?**
 
-**A**: You can use the `filter` command to search for people using the other fields.
+**A:** You can use the `filter` command to search for people using the other fields.
 
 <br>
 
 **Q: Why is there a need to use `hideonly` if we can already use `showonly`?**
 
-**A**: You can use `hideonly` when you want to display more fields than you want to hide. For example,
+**A:** You can use `hideonly` when you want to display more fields than you want to hide. For example,
 `hideonly i` has the same effect as `showonly n p e r g h m t` on a full table. Using `hideonly` helps to save 
 time on typing!
 
 <br>
 
+<div style="page-break-after: always;"></div>
+
 **Q: How do I remember which commands use letters (as compared to other commands which use key/value) as inputs?**
 
-**A**: Only the column hiding features, i.e. `showonly` and `hideonly`, use letters. You can remember this by 
+**A:** Only the column hiding features, i.e. `showonly` and `hideonly`, use letters. You can remember this by 
 associating the "only" in these commands to the convenience of typing *only* letters!
 
 <br>
@@ -988,6 +1034,8 @@ do not wish to see them.
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## **Glossary of terms**
 
 ### Field
@@ -1010,6 +1058,9 @@ This term is short for JavaScript Object Notation. It is a common file type that
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
+---
+
+<div style="page-break-after: always;"></div>
 
 ## **Authors**
 
@@ -1024,7 +1075,6 @@ We understand that you might be overwhelmed by the number of commands available 
 summary table of contents in the Help Window in **RC4HDB**, that table contains only our most basic and commonly used
 commands. The tables below contain the full summary of our commands and how they can be used.
 
-
 ### General Commands
 
 | Action                                 | Format, Examples |
@@ -1035,6 +1085,8 @@ commands. The tables below contain the full summary of our commands and how they
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### Modifying Resident Commands
 
@@ -1051,6 +1103,8 @@ commands. The tables below contain the full summary of our commands and how they
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### Viewing Resident Commands
 
 | Action                                                | Format, Examples                                                                                           |
@@ -1065,6 +1119,8 @@ commands. The tables below contain the full summary of our commands and how they
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### File Management Commands
 
@@ -1090,7 +1146,3 @@ commands. The tables below contain the full summary of our commands and how they
 | [**Unbook Venue**](#deleting-a-booking-venue-unbook)  | `venue unbook v/VENUE_NAME tp/TIME_PERIOD d/DAY` <br> e.g. `venue unbook v/Meeting Room tp/8-9 d/TUE`     |
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
-
----
-
-
