@@ -33,7 +33,7 @@ Given below are my contributions to the project.
     * Relevant pull request(s): [#56](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/56), [#105](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/105)
     
   * **Major Enhancement**: Built on top of a team member's implementation of marking orders to freeze order details on completion.
-    * What it does: Implement measures such that an order's details become immutable when it has been marked paid and completed.
+    * What it does: Implement measures such that an order's details become immutable when it has been marked completed.
     * Justification: This enhancement was necessary to keep data consistent such that completed orders' data is not affected by any subsequent edits to items in the inventory.
     * Highlights: 
       * The implementation of this enhancement was challenging as the architecture of the model had to be updated to accommodate different representations of items (existing inventory items VS recorded items part of completed orders).
@@ -44,11 +44,10 @@ Given below are my contributions to the project.
     * User Guide:
       * Added documentation for the `addo` feature and the glossary section
       * Updated front-matters to be more user-friendly (intro, TOC structure)
-      * Relevant pull request(s): [#193](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/193)
     * Developer Guide:
       * Added implementation details of the `Order` class and `addo` feature
       * Added manual testing section for `deletei`, `editi`, `addo`
-    * Relevant pull request(s): [#141](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/141), [#228](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/228)
+    * Relevant pull request(s): [#141](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/141), [#193](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/193), [#228](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/228)
 
   * **Review/Mentoring Contributions:**:
     * Pull requests reviewed (with non-trivial review comments): [#199](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/199), [#136](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/136), [#125](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/125), [#111](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/111)  
@@ -59,4 +58,4 @@ Given below are my contributions to the project.
     * Managed release [`v1.2.1`](https://github.com/AY2223S1-CS2103T-W15-3/tp/releases/tag/v0.1) (1 release)
 
   * **Contributions beyond the project team**:
-    * Reported bugs and suggestions for other teams in the class: [Reported bugs during the Practical Exam Dry Run](https://github.com/donljh/ped/issues)
+    * Reported bugs for other teams in the class: [Reported bugs during PE-D](https://github.com/donljh/ped/issues)
