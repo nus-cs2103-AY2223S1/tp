@@ -5,46 +5,61 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlyPropertyDirectory" as ReadOnlyPropertyDirectory
+Class "<<interface>>\nReadOnlyClientDirectory" as ReadOnlyClientDirectory
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class ClientDirectory
+Class PropertyDirectory
 Class ModelManager
 Class UserPrefs
 
-Class UniquePersonList
-Class Person
+Class UniquePropertyList
+Class UniqueClientList
+Class Property
+Class Client
 Class Address
-Class Email
+Class Status
 Class Name
-Class Phone
+Class Price
+Class Type
 Class Tag
-
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+PropertyDirectory .up.|> ReadOnlyPropertyDirectory
+ClientDirectory .up.|> ReadOnlyClientDirectory
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
+Model .left.> ReadOnlyPropertyDirectory
+Model .left.> ReadOnlyClientDirectory
+ModelManager -left-> "1" PropertyDirectory
+ModelManager -left-> "1" ClientDirectory
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+PropertyDirectory *--> "1" UniquePropertyList
+ClientDirectory *--> "1" UniqueClientList
+UniquePropertyList --> "~* all" Property
+UniqueClientList --> "~* all" Client
+Property *--> Name
+Property *--> Address
+Property *--> Price
+Property *--> Status
+Property *--> Type
+Property *--> "*" Tag
+Client *--> Name
+Client *--> Address
+Client *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Name -[hidden]right-> Address
+Address -[hidden]right-> Status
+Status -[hidden]right-> Type
 
-ModelManager -->"~* filtered" Person
+Property "1" - "*" Client : has interested >
+ModelManager -->"~* filtered" Property
+ModelManager -->"~* filtered" Client
 @enduml
