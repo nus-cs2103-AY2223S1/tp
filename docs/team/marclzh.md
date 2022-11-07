@@ -5,8 +5,8 @@ title: Marcus Lee's Project Portfolio Page
 ### Project: OmniHealth
 
 OmniHealth is a **Patient Management System** tailored to private clinicians to manage patients' details, records and
-upcoming appointments. Manage and search for your patient's details and records with ease using 
-OmniHealth's, and keep track of all your upcoming appointments in one place!
+upcoming appointments. OmniHealth allows you to manage and search for your patient's details and records with ease using 
+its management system, and also allows you to keep track of upcoming appointments for them.
 
 Given below are my contributions to the project.
 
@@ -16,7 +16,7 @@ Given below are my contributions to the project.
     * Justification: Since the target users are doctors, a place to centrally manage their patient records is a key
       feature in improving their workflow.
     * Highlights: The list of records is automatically sorted chronologically, and the addition of an additional record
-      field required many changes across the different components of OmniHealth.
+      field required many changes across the different components of OmniHealth, including its UI and test cases.
 
 * **New Feature**: Added the `rclear` command [\#50](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/50)
     * What it does: Allows for users to clear the records of a specified patient.
