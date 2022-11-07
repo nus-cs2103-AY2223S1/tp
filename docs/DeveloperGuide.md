@@ -168,7 +168,7 @@ The `Model` component,
 
 #### 3.4.2 Client
 
-<img src="images/ClientClassDiagram.png" width="600" />
+<img src="images/ClientClassDiagram.png" width="590" />
 
 #### 3.4.3 Meeting
 
@@ -176,13 +176,13 @@ The `Model` component,
 
 #### 3.4.4 Product
 
-<img src="images/ProductClassDiagram.png" width="150" />
+<img src="images/ProductClassDiagram.png" width="160" />
 
 ### 3.5 Storage component
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W16-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="570" />
 
 The `Storage` component,
 * can save both MyInsuRec data and user preference data in json format, and read them back into corresponding objects.
@@ -203,7 +203,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### 4.1.1 Add client with product
 
-Syntax: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
+Syntax: `addClient n/NAME p/PHONE_NUMBER [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]...`
 
 Purpose: Adds a client with the given information to the internal model and storage
 
@@ -221,7 +221,7 @@ We decided to only allow adding of a client with its product only after the prod
 
 This is to try and maintain the overall cleanliness and housekeeping of _MyInsuRec_. Suppose we allow the user to add the client with any product name without it already existing in the product list. This might be organized and clean for the first few contacts added, but over time, the product name can get distorted. Shorthand forms may be used in place of the product name, case sensitivity and whitespaces are ignored. With _MyInsuRec_ also placing a focus on allowing users to get an idea of the popularity of each of the products they are selling, it is paramount that the product name stay the same, so as to enable the feature to work. Furthermore, one of the problems we are attempting to solve is the messiness of using traditional Excel spreadsheets. Having this validation check helps to preserve the data added, and thus the user can use the app for a longer time without feeling cluttered.
 
-#### Constraint regrading Birthday
+#### 4.1.2 Birthday constraints
 
 Below is the activity diagram that illustrates the process of validating birthday when birthday of a client is added.
 
@@ -231,7 +231,7 @@ We decided to set these 2 constraints on birthday:
 1) Birthday should not be in the future
 2) Birthday should not be more than 100 years ago as we feel that client would not be able to buy product due to age limit.
 
-#### 4.1.2 View client
+#### 4.1.3 View client
 
 Syntax: `viewClient i/INDEX`, where `INDEX` is an index shown in the client list.
 
@@ -255,7 +255,7 @@ Below is an activity diagram that summarises the execution of `viewClient`.
 
 ![ViewClientActivityDiagram](images/ViewClientActivityDiagram.png)
 
-#### 4.1.3 Delete Client
+#### 4.1.4 Delete Client
 
 Syntax: `delClient i/INDEX`, where `INDEX` is an index shown in the client list.
 
@@ -316,13 +316,14 @@ the command is executed.
     - Cons: The parser will need to have access to the model in order to
       obtain the referenced client.
 
-#### Constraint regrading Meeting Date
+#### Meeting date constraints
 
 Below is the activity diagram that illustrates the process of validating meeting date.
 
 ![MeetingDateActivityDiagram](images/MeetingDateActivityDiagram.png)
 
 We decided to set this constraint on meeting date:
+
 1) Meeting Date is not in the past.
 
 #### 4.2.2 Delete meeting
@@ -365,7 +366,8 @@ Usage Scenario of `viewMeeting`:
 
 1) User inputs `viewMeeting i/1` to view the first meeting in the `Model`.
 
-:information_source: **Note:** If `INDEX` is larger than the current meeting list's size or `INDEX` is negative, then it will not show any meeting details. It will return an error to the user.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If `INDEX` is larger than the current meeting list's size or `INDEX` is negative, then it will not show any meeting details. It will return an error to the user.
+</div>
 
 Below is a sequence diagram that illustrates the execution of `viewMeeting` command and the interaction with `Model`.
 
@@ -385,7 +387,7 @@ Purpose: View all `Meeting` from the Meeting List in `Model`, optionally using `
 
 Usage Scenario of `listMeeting`:
 
-Step 1. User inputs `listMeeting d/tomorrow` to view the meetings for tomorrow in the `Model`.
+1) User inputs `listMeeting d/tomorrow` to view the meetings for tomorrow in the `Model`.
 
 Below is a sequence diagram that illustrates the execution of `listMeeting d/tomorrow` command and the interaction with `Model`.
 
@@ -455,7 +457,7 @@ We chose to implement the changing of view panels through `CommandResult` due to
     - Cons: If we have too many views, we will need a lot of different `CommandSpecific`. Furthermore, our switch statements may get bloated.
 - **Alternative 2:** Use listeners on the model. For example, we can have listeners on `filteredClients` to change views when changes happen on `filteredClients`.
     - Pros: Cleaner design. We will not need a separate enum.
-    - Cons: Harder to implement. Increases coupling as well, as `Model` can skip communications through `Logic` to get `UI` to change views directly.
+    - Cons: Harder to implement. Increases coupling as well, as `Model` skips communications through `Logic` to get `UI` to change views directly, which is not in line with the architecture diagram.
 
 - Ultimately, we believe that we will not have too many views (likely a maximum of 6 as we only have to consider `Client`, `Meeting`, `Product` and their detailed variant). As such, we felt that passing the `CommandSpecific` is a cheaper (in terms of effort and programming hours and research) and better solution for now.
 
@@ -1062,7 +1064,7 @@ Deleting a meeting while all meetings are being shown
 
 MyInsuRec is a brown-field project that extends from AB3. It is developed to become a financial advisor's everyday companion app, used for its client contacts tracking, meetings scheduling and products management ability.
 
-Our team has put in a substantial effort in developing this product. To date, we have over [10,000 lines of code](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=w16-4&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16). Over 380 automated tests were written, and many hours of writing code and testing them was spent on this.
+Our team has put in a substantial effort in developing this product. To date, we have over [12,000 lines of code](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=w16-4&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16). Over 380 automated tests were written, and many hours of writing code and testing them was spent on this.
 
 We have listed our project challenges below in an attempt to bring you closer to the behind-the-scenes of the product development, and help you understand the countless hours and the thoughts put into designing and creating the product.
 
