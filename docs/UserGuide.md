@@ -340,17 +340,19 @@ Example: `tag 1 -t optional`
 
 Clears all entries of tasks in the task list.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:**<br>
 Clear command does not clear archived task list.  
-
 </div>
 
 Format: `clear`
 
-<div markdown="block" class="alert alert-info">
-**:information_source: Note:**<br>
+<div markdown="span" class="alert alert-warning">
+
+:warning: **Warning:**
+
 This command is irreversible!
+
 </div>
 
 <div style="page-break-after: always;"></div>
@@ -523,10 +525,7 @@ NotionUS data are saved in the hard disk automatically after any command that ch
 NotionUS data are saved as a JSON file `[JAR file location]/data/taskList.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">
-
-**:exclamation: Caution:**<br>
 If your changes to the data file makes its format invalid, NotionUS will discard all data and start with an empty data file at the next run.
-
 </div>
 
 Click to return to: [Back to Top](#)
