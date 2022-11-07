@@ -264,6 +264,11 @@ A check ensures that at least one field to search for is specified.
 Then, the `PersonDescriptor` and `DebtsDescriptor` are used to construct a `PersonMatchesDescriptorPredicate`,
 which will return `true` if the given `Person` matches all the person-related fields in `PersonDescriptor` and all the debt-related fields in `DebtsDescriptor`.
 
+For example, suppose the user has multiple friends named Gary, and wants to find the one that owes money for a burger.
+The command `find n/gary d/burger` can be used to accomplish this. The sequence diagram below shows the basic events that take place.
+
+<img src="images/FindSequenceDiagram.png" width="600" />
+
 ### List debtors feature: `listdebtors`
 
 #### Implementation
