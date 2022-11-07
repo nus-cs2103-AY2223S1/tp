@@ -624,7 +624,7 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `find n/`<br>
         Expected: Error status messages telling user what kind of input is valid for `n/` prefix.
 
-    4. Other incorrect commmands to try: `find n/   `
+    4. Other incorrect commands to try: `find n/   `
         Expected: Similar to previous.
 
 ### Deleting a tutor
@@ -650,7 +650,7 @@ testers are expected to do more *exploratory* testing.
     2. Test Case: Before starting Tuthub, enter random characters in the `tuthub.json` file. Launch Tuthub.<br/>
        Expected: Tuthub should start with no tutors in the list. You should see a warning message "`WARNING: Data file not in the correct format. Will be starting with an empty Tuthub`" in the terminal console.
    
-    5. Test Case: Before starting Tuthub, delete `tuthub.json`.<br/>
+    5. Test Case: Before starting Tuthub, delete `tuthub.json`. Launch Tuthub.<br/>
         Expected: Tuthub will start with a sample list of tutors. A new `tuthub.json` file containing the sample data will be created.
    
     6. Test Case: While Tuthub is running, delete `tuthub.json`. Try carrying out a valid command, e.g. `view 1`.<br/>
