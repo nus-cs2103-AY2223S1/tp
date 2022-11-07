@@ -282,9 +282,11 @@ Leave your task management to YellowBook, so you can do your best work.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source:<br>
+:information_source: Notes on tasks:<br>
 
 * Tasks have no labels by default.<br>
+
+* Task description should only contain alphanumeric characters and spaces, and it should not be blank.<br>
 
 * Task deadline must be in the format dd-mm-yyyy, e.g. `25-12-2022`.<br>
 
@@ -301,9 +303,12 @@ Format: `addT d/DESCRIPTION D/DEADLINE`
 
 * Tasks that are past their deadline can still be added since overdue tasks might have to be completed still.
 
-<div markdown="span" class="alert alert-warning">:warning: Adding a task that is the same as one already in the address book. Two tasks are the same if they have the same description, deadline and labels.
+<div markdown="span" class="alert alert-warning">:warning: There will be an error if you:<br>
+
+* Add a task that is the same as one already in the address book. Two tasks are the same if they have the same description, deadline and labels.<br>
+
 </div>
-   
+ 
 Example:
 
 * `addT d/buy milk D/12-09-2022` will add the task "buy milk" with deadline 12 September 2022.
@@ -341,9 +346,17 @@ Deletes a task from the task list.
 
 Format: `deleteT INDEX`
 
-* Index of a task is its index number on the task list.
+* Index of a task is its index number on the currently shown task list.
 
 * INDEX must be a positive integer more than 0.
+
+<div markdown="span" class="alert alert-warning">:warning: There will be an error if you:<br>
+
+* Enter 0 or a negative number as INDEX.<br>
+
+* Enter a number greater than the currently shown list size as INDEX
+
+</div>
 
 Examples:
 
@@ -461,7 +474,7 @@ Format: `unarchiveT INDEX`
 
 ### Listing tasks with deadlines up to and including the specified date: `remindT`
 
-Lists tasks in YellowBook with deadlines up to and including the specified date.
+Lists tasks in task list with deadlines up to and including the specified date.
 
 Format: `remindT DEADLINE`
 
@@ -469,7 +482,7 @@ Format: `remindT DEADLINE`
 
 * Task with deadlines that are already past are also listed.
 
-<div markdown="span" class="alert alert-info">:bulb:Tasks that are complete are also listed so users are reminded to delete them.
+<div markdown="span" class="alert alert-info">:bulb:Tasks that are complete are also listed so users are reminded to delete or archive them.
 </div>
 
 Example:
@@ -485,9 +498,13 @@ Example:
 
 Shows the percentage of tasks whose label(s) contain any of the given keywords that are complete to one decimal place of accuracy.
 
-Format: `progressT KEYWORD [MORE_KEYWORDS]`
+Format: `progressT KEYWORD [MORE_KEYWORDS]…`
 
 * The filter is case-sensitive, e.g. `cs2103t` will not match `CS2103T`.
+
+* Only full words will be matched. e.g. `cs2103t` will not match `cs2103`.
+
+* Tasks with labels matching at least one keyword will be returned.
 
 * Both complete and incomplete tasks are listed.
 
@@ -495,9 +512,11 @@ Format: `progressT KEYWORD [MORE_KEYWORDS]`
 
 * Tasks with deadlines that are already past are also listed.
 
-* Only full words will be matched. e.g. `cs2103t` will not match `cs2103`.
+<div markdown="span" class="alert alert-warning">:warning: There will be an error if you:<br>
 
-* Tasks with labels matching at least one keyword will be returned.
+* Do not adhere to label name constraints. Label names must be alphanumeric with no spaces.<br>
+
+</div>
 
 Example:
 
