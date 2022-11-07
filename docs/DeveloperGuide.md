@@ -519,7 +519,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. User enters invalid input
   * 1a1. REal-Time shows an error message.
- 
+  * 
     Use case resumes at Step 1.
 
 **Use case: UC05 - Delete an offer**
@@ -643,7 +643,7 @@ Timestamp in the status bar is updated.
 1. Adding an offer while all offers are being shown
    1. Prerequisites: The Offer being added must not exist in the current list.
    2. Test case: `addO n/John Doe l/BEDOK_SOUTH o/700000`
- 
+   
       Expected: An Offer with name John Doe, listing ID BEDOK_SOUTH and offer price of 700000 will be added to the list.
 
    3. Test case: `addO n/Jackson Ang l/CALIFORNIA o/-10000`
