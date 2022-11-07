@@ -3,6 +3,20 @@ layout: page
 title: Developer Guide
 ---
 
+## **About FindMyIntern**
+
+FindMyIntern is a desktop application designed to help students keep track of their internship applications. 
+It allows students to: 
+1. Consolidate all these applications into a single place 
+2. Manage these applications
+3. Visualise their application statuses
+
+The use of this Developer Guide is to document how FindMyIntern is designed and developed to **provide insights for 
+developers** on the design considerations made for each feature.
+In addition, it provides a macro and micro overview of the architecture of FindMyIntern to **guide new developers to navigate
+through the code base**.
+
+
 ## **Table of Contents**
 {:.no_toc}
 
@@ -148,7 +162,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T14-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" width="650" />
 
 
 The `Model` component,
@@ -160,7 +174,7 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `FindMyIntern`, which `Internship` references. This allows `FindMyIntern` to only require one `Tag` object per unique tag, instead of each `Internship` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" width="650" />
 
 </div>
 
@@ -175,7 +189,7 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both findMyIntern data and user preference data in json format, and read them back into corresponding objects.
+* can save both FindMyIntern data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `FindMyInternStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
@@ -333,8 +347,7 @@ The following activity diagram summarizes what happens when a user executes an e
 `MarkCommand` was implemented similar to how `EditCommand` was implemented.
 * A `MarkCommandParser` object is created, which parses the user input by splitting the input by `PREFIX_APPLICATION_STATUS`, then returns the relevant `MarkCommand`.
 * `MarkCommand` takes in an `index` and `applicationStatus`.
-  
-When `execute` of `MarkCommand` is run, a new `Internship` object with the updated `applicationStatus` is created, with all other fields unchanged. 
+* When `execute` of `MarkCommand` is run, a new `Internship` object with the updated `applicationStatus` is created, with all other fields unchanged. 
 * The new `Internship` is passed into the model to be updated.
 
 The following activity diagram summarizes what happens when a user executes a mark command.
@@ -361,8 +374,7 @@ The following activity diagram summarizes what happens when a user executes a ma
 	
 #### Implementation
 
-`ModelManager` provides a `FilteredList` that is stored as an `ObservableList`.
-`InternshipListPanel` stores this `ObservableList` to display the list of internship applications to the user.
+- `ModelManager` provides a `FilteredList` that is stored as an `ObservableList`. `InternshipListPanel` stores this `ObservableList` to display the list of internship applications to the user.
 - In order to sort the list of applications, we wrap the `FilteredList` as a `SortedList` in `ModelManager` 
 before returning it as the `ObservableList`.
 - This allows ModelManager to accept a `Comparator` using the method `updateSortedInternshipList` 
@@ -424,23 +436,22 @@ The following sequence diagram illustrates how the list is updated when the user
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …       | I want to …                                                                    | So that I can…                                                   |
-|----------|--------------|--------------------------------------------------------------------------------|------------------------------------------------------------------|
-| `* * *`  | new user     | utilise the help function                                                      | see the instructions on how to use the app                       |
-| `* * *`  | busy student | add internship applications quickly using CLI                                  | have more time for other things                                  |
-| `* * *`  | student      | mark the internship as rejected, interviewed, applied or rejected              | know the status of the internship application                    |
-| `* * *`  | user         | edit an internship application                                                 | update the details of an internship application                  |
-| `* * *`  | user         | automatically save any edits made                                              | save edits even if I accidentally close the app                  |
-| `* *`    | user         | add a short description of the internship                                      | know what the role is about                                      |
-| `* *`    | busy student | view the interview date of each internship application                         | better manage my time and prepare accordingly                    |
-| `* *`    | student      | add the link of the internship posting                                         | refer to the internship posting when preparing for interview     |
-| `* *`    | lazy student | search for a specific internship using keywords                                | get matching results more quickly                                |
-| `* *`    | student      | filter the internships that I have applied to by application status            | easily view the statuses of my applications                      |
-| `* *`    | student      | sort the internships based on a sort criteria (applied date or interview date) | easily view my applications in a reverse chronological order     |
-| `* *`    | user         | clear all internship applications                                              | focus on my applications for a new internship application period |
+| Priority | As a …    | I want to …                                                                    | So that I can…                                                    |
+|----------|-----------|--------------------------------------------------------------------------------|-------------------------------------------------------------------|
+| `* * *`  | new user  | utilise the help function                                                      | see the instructions on how to use the app                        |
+| `* * *`  | busy user | add internship applications quickly using CLI                                  | have more time for other things                                   |
+| `* * *`  | user      | mark the internship as rejected, interviewed, applied or rejected              | know the status of the internship application                     |
+| `* * *`  | user      | edit an internship application                                                 | update the details of an internship application                   |
+| `* * *`  | user      | automatically save any edits made                                              | save edits even if I accidentally close the app                   |
+| `* * *`  | user      | delete a specific internship application                                       | delete an individual application if I accidentally made a mistake |
+| `* *`    | user      | add a short description of the internship                                      | know what the role is about                                       |
+| `* *`    | busy user | view the interview date of each internship application                         | better manage my time and prepare accordingly                     |
+| `* *`    | user      | add the link of the internship posting                                         | refer to the internship posting when preparing for interview      |
+| `* *`    | lazy user | search for a specific internship using keywords                                | get matching results more quickly                                 |
+| `* *`    | user      | filter the internships that I have applied to by application status            | easily view the statuses of my applications                       |
+| `* *`    | user      | sort the internships based on a sort criteria (applied date or interview date) | easily view my applications from latest date to earliest date     |
+| `* *`    | user      | clear all internship applications                                              | focus on my applications for a new internship application period  |
 
-
-*{More to be added}*
 
 <div class="btn-group btn-group-sm mt-2 mb-4">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
@@ -548,22 +559,58 @@ Similar to use case 4 except that the filtering is done by application status in
 
       Use case ends.
 
+<br />
+
+**Use Case: UC7 - Delete a specific internship application**
+
+**MSS**:
+1. User wants to delete a specific internship application.
+2. User enters the desired internship application to remove.
+3. FindMyIntern deletes the specific internship application.
+
+   Use case ends.
+
+**Extensions**:
+* 2a. User enters an invalid index.
+    * 2a1. FindMyIntern shows an error message.
+
+      Use case ends.
+  
+* 2b. User enters the details in the wrong format.
+    * 2a1. FindMyIntern shows an error message.
+
+      Use case ends.
+
+<br />
+
+**Use Case: UC8 - Clear all internship applications**
+
+**MSS**:
+1. User wants to clear all internship applications.
+2. User enters the `clear` command.
+3. FindMyIntern deletes all internship applications.
+
+   Use case ends.
+  
 <div class="btn-group btn-group-sm mt-2 mb-4">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
 </div>
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 internship applications without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
+1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+2. Should be able to hold up to 1000 internship applications without a noticeable sluggishness in performance for typical usage.
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4. Should be more efficient than a typical spreadsheet application.
+   1. Should be easy to pick up for people who are not proficient with technology.
+5. Should be able to work without any internet connection.
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **ApplicationStatus**: Internship application status which is either `applied`, `shortlisted`, `interviewed`, `accepted`, or `rejected`
+* **GUI (Graphical User Interface)**: A system of interactive visual components for computer software for users to interact with.
+* **CLI (Command Line Interface)**: A text-based interface that communicate with users in the form of lines of text.
 
 <div class="btn-group btn-group-sm mt-2 mb-4">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
