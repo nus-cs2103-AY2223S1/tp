@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DEADLINE_DESC_A;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_B;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CATEGORY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DEADLINE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRIORITY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_LOW;
 import static seedu.address.logic.commands.CommandTestUtil.TASK_NAME_DESC_A;
@@ -32,6 +33,7 @@ import seedu.address.logic.commands.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.TaskCategory;
 import seedu.address.model.task.TaskDeadline;
+import seedu.address.model.task.TaskName;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 public class EditTaskCommandParserTest {
@@ -61,53 +63,20 @@ public class EditTaskCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        // invalid task priority
-        assertParseFailure(parser, "1" + INVALID_PRIORITY_DESC, Priority.MESSAGE_CONSTRAINTS);
-
-        // invalid task category
-        assertParseFailure(parser, "1" + INVALID_CATEGORY_DESC, TaskCategory.MESSAGE_CONSTRAINTS);
-
         // invalid task deadline
         assertParseFailure(parser, "1" + INVALID_DEADLINE_DESC, TaskDeadline.MESSAGE_CONSTRAINTS);
 
-        // invalid task category followed by valid task deadline
+        // invalid task deadline followed by valid task category
         assertParseFailure(
-                parser, "1" + INVALID_CATEGORY_DESC + DEADLINE_DESC_A, TaskCategory.MESSAGE_CONSTRAINTS);
+                parser, "1" + INVALID_DEADLINE_DESC + CATEGORY_DESC_FRONTEND, TaskDeadline.MESSAGE_CONSTRAINTS);
 
-        // valid task category followed by invalid task category. The test case for invalid task category followed by
-        // valid task category is tested at {@code parse_invalidValueFollowedByValidValue_success()}
+        // valid task deadline followed by invalid task deadline
         assertParseFailure(
-                parser, "1" + CATEGORY_DESC_FRONTEND + INVALID_CATEGORY_DESC, TaskCategory.MESSAGE_CONSTRAINTS);
+                parser, "1" + DEADLINE_DESC_A + INVALID_DEADLINE_DESC, TaskDeadline.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_PRIORITY_DESC + INVALID_CATEGORY_DESC + INVALID_DEADLINE_DESC,
-                Priority.MESSAGE_CONSTRAINTS);
-    }
-
-    @Test
-    public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_TASK;
-        String userInput = targetIndex.getOneBased() + TASK_NAME_DESC_A + DESCRIPTION_DESC_B
-                + PRIORITY_DESC_LOW + CATEGORY_DESC_FRONTEND + DEADLINE_DESC_A;
-
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder().withName(VALID_TASK_NAME_B)
-                .withDescription(TEST_DESCRIPTION_ONE).withCategory(TEST_CATEGORY_OTHERS)
-                .withPriority(TEST_PRIORITY_MEDIUM).withDeadline(TEST_DEADLINE_TOMORROW).build();
-        EditTaskCommand expectedCommand = new EditTaskCommand(targetIndex, descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
-    public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_TASK;
-        String userInput = targetIndex.getOneBased() + CATEGORY_DESC_FRONTEND + DEADLINE_DESC_A;
-
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder()
-                .withCategory(TEST_CATEGORY_OTHERS).withDeadline(TEST_DEADLINE_TOMORROW).build();
-        EditTaskCommand expectedCommand = new EditTaskCommand(targetIndex, descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_PRIORITY_DESC + INVALID_CATEGORY_DESC,
+                TaskName.MESSAGE_CONSTRAINTS);
     }
 
     @Test
