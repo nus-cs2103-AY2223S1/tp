@@ -9,51 +9,62 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Leong Ming Jian Eugene
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/eugenelmj.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/eugenelmj)]
+[[portfolio](team/eugenelmj.md)]
 
 * Role: Project Advisor
+* Responsibilities: Meeting Minutes
 
-### Jane Doe
+### Nicholas Russell Saerang
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/russelldash332.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/russelldash332)]
+[[portfolio](team/russelldash332.md)]
 
-* Role: Team Lead
+* Role: Team Lead, Git Expert
+* Responsibilities: Project Coordination
+
+### Chua Yu Xuan Jordan
+
+<img src="images/jordanchua.png" width="200px">
+
+[[github](http://github.com/jordanchua)]
+[[portfolio](team/jordanchua.md)]
+
+* Role: Developer
+* Responsibilities: Storage
+
+### Zhang Yuhao
+
+<img src="images/yh-15.png" width="200px">
+
+[[github](http://github.com/YH-15)]
+[[portfolio](team/yh-15.md)]
+
+* Role: Developer
+* Responsibilities: Testing
+
+### Liu Han
+
+<img src="images/sweetpotato0213.png" width="200px">
+
+[[github](http://github.com/SweetPotato0213)]
+[[portfolio](team/sweetpotato0213.md)]
+
+* Role: Developer
 * Responsibilities: UI
 
-### Johnny Doe
+### Poh Yu Jie
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/pokezardvgc.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/PokezardVGC)]
+[[portfolio](team/pokezardvgc.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: UI
+* Responsibilities: Documentation + Code Quality

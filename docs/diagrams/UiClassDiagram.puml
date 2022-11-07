@@ -11,10 +11,12 @@ Class UiManager
 Class MainWindow
 Class HelpWindow
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
+Class XStudentListPanel
+Class XStudentListTitle
+Class StudentCard
 Class StatusBarFooter
 Class CommandBox
+Class WelcomeBox
 }
 
 package Model <<Rectangle>> {
@@ -32,29 +34,34 @@ UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
-MainWindow *-down-> "1" PersonListPanel
+MainWindow *-down-> "1" XStudentListPanel
+MainWindow *-down-> "1" XStudentListTitle
 MainWindow *-down-> "1" StatusBarFooter
+MainWindow *-down-> "1" WelcomeBox
 MainWindow --> "0..1" HelpWindow
 
-PersonListPanel -down-> "*" PersonCard
+XStudentListPanel -down-> "*" StudentCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+XStudentListPanel --|> UiPart
+XStudentListTitle --|> UiPart
+StudentCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
 
-PersonCard ..> Model
+StudentCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+XStudentListPanel -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
+
+note right of XStudentListPanel: X = Completed\nor Uncompleted
 
 MainWindow -[hidden]-|> UiPart
 @enduml
