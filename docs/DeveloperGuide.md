@@ -801,7 +801,57 @@ testers are expected to do more *exploratory* testing.
    
    4. Other incorrect delete commands to try: `deletetask`, `deletetask x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
+
+### Adding a Mastery Check
+
+1. Adding a mastery check while lesson list is being shown
+
+   1. Prerequisites: List all lessons using the `listlesson` or `listall` command. 
+
+   2. Test case: `addmc sd/2022-12-12 st/10:00 et/12:00 si/1 si/2` <br>
+      Expected: Mastery Check with no description on Dec-12-2022 from 10:00 to 12:00 with 1st and 2nd student in student list is added. Details of the mastery check added shown in status message.
+
+   3. Test case: `addmc sd/12-12-2022 st/10:00 et/12:00 si/1 si/2` <br>
+      Expected: No lesson is added. Error details are shown in status message.
+
+   4. Other incorrect add mastery check commands to try: `addmc sd/2022-12-12 si/1`, `addmc sd/2022-12-12 st/10:00`, `addmc si/`, `...`<br>
+      Expected: Similar to previous.
+
+### Adding a Consult
+
+Refer to Adding a Mastery Check, with the only difference being `addconsult` instead of `addmc`.
+
+### Adding a Studio
+
+1. Adding a Studio while lesson list is being shown
+
+    1. Prerequisites: List all lessons using the `listlesson` or `listall` command.
+
+    2. Test case: `addstudio sd/2022-11-11 st/10:00 et/12:00` <br>
+       Expected: Studio with no description on Nov-11-2022 from 10:00 to 12:00 with all students in student list is added. Details of the studio added shown in status message.
+
+    3. Test case: `addstudio sd/12-12-2022 st/10:00 et/12:00` <br>
+       Expected: No lesson is added. Error details are shown in status message.
+
+    4. Other incorrect add mastery check commands to try: `addstudio sd/2022-12-12`, `addstudio sd/2022-12-12 st/10:00`, `addstudio ed/`, `...`<br>
+       Expected: Similar to previous.
+
+### Deleting a Lesson
+
+1. Deleting a lesson while lesson list is being shown
+
+    1. Prerequisites: List all tasks using the `listlesson` or `listall` command. There are existing lessons in the lesson list.
+
+    2. Test case: `deletelesson 1` <br>
+       Expected: The first lesson at the top of the list is deleted. Details of the deleted lesson are shown in the status message.
+
+    3. Test case: `deletelesson 0` <br>
+       Expected: No lesson is deleted. Error details shown in status message.
+
+    4. Other incorrect delete commands to try: `deletelesson`, `deletelesson x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
    
+       
 ### Saving data
 
 1. Dealing with missing data file(s).
