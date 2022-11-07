@@ -138,7 +138,7 @@ facing, you can refer to this guide.
   - [Viewing all Students](#viewing-all-students)
   - [Clearing the list of Students](#clearing-the-list-of-students)
   - [Getting help](#getting-help)
-* Frequently Asked Questions
+* [Frequently Asked Questions](#frequently-asked-questions)
 * [Glossary](#glossary)
 
 <div style="page-break-after: always;"></div>
