@@ -49,7 +49,7 @@ Alternatively, consider looking at the [Command Summary](#command-summary) for a
 4. Launch the app by double-clicking the file or by using the command `java -jar InTrack.jar` in your terminal. The GUI
    similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
-   ![Ui](images/Ui.png)
+   ![Ui](images/UiBefore.png)
 
 5. Type the command in the command box and press Enter to execute it. E.g. typing **`help`** and pressing Enter will
    open the help window.<br>
@@ -227,7 +227,7 @@ Expected outcome:
 
 Before deleting the internship application for `Software Engineer` at `Microsoft` at `INDEX` 1:
 
-![Ui](images/Ui.png)
+![Ui](images/UiBefore.png)
 
 After deleting the internship application for `Software Engineer` at `Microsoft` previously at `INDEX` 1:
 
@@ -257,7 +257,7 @@ Expected outcome:
 
 Before updating the status of the internship application at `INDEX` 1 to `Offered`:
 
-![Ui](images/Ui.png)
+![Ui](images/UiBefore.png)
 
 After updating the status of the internship application at `INDEX` 1 to `Offered`:
 
@@ -349,7 +349,7 @@ Expected outcome:
 
 Before selecting the internship application at `INDEX` 1:
 
-![Ui](images/Ui.png)
+![Ui](images/UiBefore.png)
 
 After selecting the internship application at `INDEX` 1:
 
@@ -591,7 +591,7 @@ Expected outcome:
 
 Before using `findc` with the keywords `Microsoft Alphabet`:
 
-![Ui](images/Ui.png)
+![Ui](images/UiBefore.png)
 
 After using `findc` with the keywords `Microsoft Alphabet`:
 
@@ -707,7 +707,7 @@ Expected outcome:
 
 Before sorting by upcoming task time in ascending order:
 
-![Ui](images/Ui.png)
+![Ui](images/UiBefore.png)
 
 After sorting by upcoming task time in ascending order:
 
