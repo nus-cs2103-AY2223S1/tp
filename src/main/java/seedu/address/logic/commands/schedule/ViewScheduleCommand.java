@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_OF_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEEKDAY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SCHEDULES;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
@@ -26,7 +28,7 @@ public class ViewScheduleCommand extends Command {
             + "Format: " + COMMAND_WORD + " [ " + PREFIX_WEEKDAY + "WEEKDAY] [ " + PREFIX_WEEKDAY + "MORE_WEEKDAYS] ["
             + PREFIX_MODULE_OF_SCHEDULE + "MODULE_CODE] [" + PREFIX_MODULE_OF_SCHEDULE + " MORE_MODULE_CODES]" + "\n"
             + "Example: " + COMMAND_WORD + " \n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_WEEKDAY + " Friday " + PREFIX_MODULE_OF_SCHEDULE + " cs2103t\n";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_WEEKDAY + " Friday " + PREFIX_MODULE_OF_SCHEDULE + " CS2103T\n";
 
     public static final String MESSAGE_MODULE_NOT_EXIST = "The module you are looking for doesn't exist.";
 
@@ -37,8 +39,8 @@ public class ViewScheduleCommand extends Command {
      * Creates a view schedule command without predicate
      */
     public ViewScheduleCommand() {
-        this.predicate = null;
-        this.modules = null;
+        this.predicate = new ScheduleContainsKeywordsPredicate(new ArrayList<>());
+        this.modules = new HashSet<>();
     }
 
     /**
@@ -53,7 +55,7 @@ public class ViewScheduleCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
 
         requireNonNull(model);
-        if (this.predicate == null) {
+        if (this.predicate.equals(new ScheduleContainsKeywordsPredicate(new ArrayList<>()))) {
             model.updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
         } else {
             for (String module: modules) {

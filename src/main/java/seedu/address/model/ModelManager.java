@@ -349,5 +349,9 @@ public class ModelManager implements Model {
         return profNus.equals(other.profNus)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
+//                && filteredTutors.equals(other.filteredTutors)
+//                && filteredSchedule.equals(other.filteredSchedule);
+//                && filteredModules.equals(other.filteredModules);
+
     }
 }

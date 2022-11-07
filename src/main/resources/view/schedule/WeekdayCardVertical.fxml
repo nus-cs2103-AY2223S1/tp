@@ -10,7 +10,7 @@
         <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
         </padding>
-        <Label fx:id="weekday" alignment="CENTER" prefHeight="80.0" prefWidth="95.0"
+        <Label fx:id="weekday" alignment="CENTER" prefHeight="80.0" prefWidth="170.0"
                style="-fx-font-size: 20; -fx-background-color: #fae3d9#fae3d9; -fx-background-radius: 10px;"
                text="\$weekday">
             <VBox.margin>
