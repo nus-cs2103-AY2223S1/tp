@@ -57,7 +57,7 @@ public class EditTeamCommandTest {
     @Test
     public void execute_nullTeamIndexUnfilteredList_throwsNullPointerException() {
         Team editedTeam = new TeamBuilder().build();
-        assertThrows(NullPointerException.class, () -> new EditTeamCommand( null, editedTeam.getName()));
+        assertThrows(NullPointerException.class, () -> new EditTeamCommand(null, editedTeam.getName()));
     }
 
     @Test
