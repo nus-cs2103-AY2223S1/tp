@@ -3,10 +3,6 @@ layout: page
 title: Developer Guide
 ---
 
-[Comment]: <> (landing page to be added here)
-
----
-
 ## **Table of Contents**
 
 * [**Introduction**](#introduction)
