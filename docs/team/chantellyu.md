@@ -43,7 +43,7 @@ Given below are my contributions to the project.
   * Documented team's v1.2 postmortem.
   * Helped write and reformat v1.3 features demo.
 
-* **Review/mentoring contributions:**: 
+* **Review/mentoring contributions**: 
   * Reviewed PRs (Examples: [#86](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/86),
       [#118](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/118),
       [#133](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/133)).
