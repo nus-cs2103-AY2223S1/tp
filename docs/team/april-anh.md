@@ -40,26 +40,27 @@ Given below are my contributions to the project.
     * Highlight: `clear` command is a cross-component feature as it requires access to the lists of students, tutorials, consultations, reminders or all. 
     Implementing `clear` to compile with OOP principle, i.e. preventing exposing internal structures, was quite challenging. 
 
-* **Project management**:
+### Project management:
   * Responsible for admin tasks (wrap up milestone, release jar file, submit documentation,...)
 
-* **Documentation**:
+### Documentation:
   * User Guide:
     * Completed documentation for consultation features: 
   * Developer Guide:
     * Completed user stories and value proposition
+    * Add test cases for consultation and student features in manual testing section
     * Update storage UML diagram
     * Update architecture UML diagram
     * Add `add student` activity diagram
 
-* **Contributions to team-based tasks**:
-  * Upload draft UG, jar file, UG, DG
+### Contributions to team-based tasks:
+  * Upload draft UG, jar file, UG, DG, demo video
   * Release v1.3.trial, v1.3.0, v1.4
   * Wrap up v1.2, v1.3, 1.4
 
-* **Review/mentoring contributions**: [About 40 pull requests](https://github.com/AY2223S1-CS2103T-W17-3/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
+### Review/mentoring contributions: [About 45 pull requests](https://github.com/AY2223S1-CS2103T-W17-3/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
   * PRs reviewed (with non-trivial review comments):
 
-* **Contributions beyond the project team**: 
-  * Contributed to forum discussions (examples: 1, 2, 3)
-  * Reported bugs and suggestions for other teams in the class (examples: 1, 2, 3, 4, 5)
+### Contributions beyond the project team: 
+  * Contributed to forum discussions [7 issues](https://github.com/nus-cs2103-AY2223S1/forum/issues?q=is%3Aissue+author%3Aapril-anh)
+  * Reported bugs and suggestions for other teams in the class [8 issues](https://github.com/AY2223S1-CS2103T-F11-2/tp/issues?q=is%3Aissue+april-anh)
