@@ -26,6 +26,7 @@ public class MarkCommandParserTest {
 
     private MarkCommandParser parser = new MarkCommandParser();
 
+    //MarkCommandParser with valid index and valid applicationStatus
     @Test
     public void parse_validArgs_returnsMarkCommand() {
         Index targetIndex = INDEX_FIRST_INTERNSHIP;
@@ -53,10 +54,10 @@ public class MarkCommandParserTest {
 
     @Test
     public void parse_invalidPreamble_failure() {
-        // negative index
+        // negative index with valid applicationStatus
         assertParseFailure(parser, "-5" + APPLICATION_STATUS_ACCEPTED, ParserUtil.MESSAGE_INVALID_INDEX);
 
-        // zero index
+        // zero index with valid application status
         assertParseFailure(parser, "0" + APPLICATION_STATUS_ACCEPTED, ParserUtil.MESSAGE_INVALID_INDEX);
 
         // invalid arguments being parsed as preamble
@@ -81,11 +82,11 @@ public class MarkCommandParserTest {
                 + " " + PREFIX_APPLICATION_STATUS, ApplicationStatus.MESSAGE_CONSTRAINTS);
     }
 
+    //MarkCommandParser with valid index and invalid applicationStatus
     @Test
     public void parse_invalidApplicationStatus_failure() {
         Index targetIndex = INDEX_FIRST_INTERNSHIP;
         assertParseFailure(parser, targetIndex.getOneBased() + APPLICATION_STATUS_INVALID,
                 ApplicationStatus.MESSAGE_CONSTRAINTS);
     }
-
 }
