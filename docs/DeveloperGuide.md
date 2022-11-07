@@ -468,22 +468,22 @@ The following sequence diagram shows how the `TaskTagCommand` works:
 * **Current choice:** Empty tags are not saved.
     * Rationale: Does not unnecessarily clutter the number of tags saved to a task.
   
-### ToDo/Deadline/Event Task types
+### Todo/Deadline/Event Task types
 
 #### Implementation
 
 The Todo, Deadline and Event task types is facilitated by `TaskList`. It extends `Task` with 3 specific task types. Additional features of each task type:
 
-- ToDo: Nil
-- Event: Event Date
-- Deadline: Deadline Date
+- `Todo`: Nil
+- `Event`: Event Date
+- `Deadline`: Deadline Date
 
 #### Design Considerations:
 
 **Aspect: `Task` superclass implementation**
 
 * **Current choice:** Implement `Task` as an abstract class.
-    * Rationale: Having the specific task types extend from `Task` allows `TaskList` to store them homogeneously. `Task` is made abstract as `ToDo` Task type models a basic task without a concept of time.
+    * Rationale: Having the specific task types extend from `Task` allows `TaskList` to store them homogeneously. `Task` is made abstract as `Todo` Task type models a basic task without a concept of time.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -925,27 +925,193 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+
+### Adding a person
+
+* Adding a person to contact list
+
+    1. Prerequisites: There must not be a contact with name "John Doe". Verify with `contact find q/John Doe`, there can be contacts containing "John Doe" in the name field, but not exactly "John Doe".
+  
+    2. Test case: `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123`<br>
+       Expected: Person "John Doe" is added into the contact list, with given phone number, email and address. Details of the added contact shown in the console message.
+
+    3. Test case: `contact add n/NAME p/91234567` (where NAME does not already exist in contact list as specified in 1.)<br>
+       Expected: Person "NAME" is added into the contact list with given phone number, email defaults to "[No Email]", address defaults to "[No Address]".
+
+    4. Test case: `contact add n/John'Doe p/98765432 e/johnd@example.com a/John street, block 123`<br>
+       Expected: No person is added. Error details shown in the console message.
+
+    5. Other incorrect contact add commands to try: `contact add`, `contact add n/NAME p/9821a7832` (where NAME does not already exist in contact list as specified in 1.)<br>
+       Expected: Similar to previous.
 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+* Deleting a person
 
-   1. Prerequisites: List all persons using the `contact list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `contact list` command. There must be at least one person in the contact list.
 
-   1. Test case: `contact delete i/1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `contact delete i/1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact is shown in the console message.
 
-   1. Test case: `contact delete i/0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `contact delete i/0`<br>
+      Expected: No person is deleted. Error details shown in the console message.
 
-   1. Other incorrect delete commands to try: `contact delete`, `contact delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `contact delete`, `contact delete X` (where X is larger than the list size)<br>
       Expected: Similar to previous.
+
+* Deleting a person from a sorted contact list
+
+    1. Prerequisites: Sort the contact list using the `contact sort s/SORT_TYPE` command. There must be at least one person in the contact list.
+
+    2. Test case: `contact delete i/1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the console message.
+
+    3. Test case: `contact delete i/0`<br>
+       Expected: No person is deleted. Error details shown in the console message.
+
+    4. Other incorrect delete commands to try: `contact delete X` (where X is larger than the list size)<br>
+       Expected: Similar to previous.
+  
+* Deleting a person from a filtered contact list
+
+    1. Prerequisites: Filter the contact list using the `contact find q/QUERY` command. There must be at least one person in the contact list after filtering.
+
+    2. Test case: `contact delete i/1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the console message.
+
+    3. Test case: `contact delete i/0`<br>
+       Expected: No person is deleted. Error details shown in the console message.
+
+    4. Other incorrect delete commands to try: `contact delete X` (where X is larger than the filtered list size)<br>
+       Expected: Similar to previous.
+
+### Adding a Todo
+
+* Adding a Todo *assigned by* a contact 
+
+    1. Prerequisites: There must be a person in the contact list with name "John Doe". Verify with `contact find q/John Doe`, there must be a contact with exact name "John Doe", else add "John Doe" as specified above in "Adding a person".
+
+    2. Test case: `task todo m/John Doe d/Finish user guide #/cs2103`<br>
+       Expected: Todo with description "Finish user guide" and tag "cs2103" assigned by "John Doe".
+
+    3. Test case: `task todo m/John Doe d/ #/cs2103 #homework`<br>
+       Expected: No Todo is added. Error details shown in the console message.
+
+    4. Other incorrect contact add commands to try: `task todo`, `task todo m/ d/Finish user guide`.<br>
+       Expected: Similar to previous.
+
+* Adding a Todo *assigned to* a contact 
+    
+    Similar as above, but replacing all `m/` with `o/` in the `task todo` commands. <br>
+       Expected from valid test case: Todo with similar details assigned to "John Doe"
+
+* Adding a *self-assigned* Todo
+
+    Similar as above, but omitting both `m/NAME` or `o/NAME` in the `task todo` commands.<br>
+       Expected from valid test case: Todo with similar details assigned to "Myself"
+
+### Adding a Deadline
+
+* Adding a Deadline *assigned by* a contact 
+
+    1. Prerequisites: There must be a person in the contact list with name "John Doe". Verify with `contact find q/John Doe`, there must be a contact with exact name "John Doe", else add "John Doe" as specified above in "Adding a person".
+
+    2. Test case: `task deadline m/John Doe d/Find project references t/2022-02-15 #/cs2103`<br>
+       Expected: Deadline with description "Find project references", deadline "2022-02-15" and tag "cs2103" assigned by "John Doe".
+
+    3. Test case: `task deadline m/John Doe d/ #/cs2103 #homework`<br>
+       Expected: No Deadline is added. Error details shown in the console message.
+  
+    4. Test case: `task deadline m/John Doe d/Find project references t/2022-09-39 #/cs2103 #homework`<br>
+       Expected: No Deadline is added. Error details shown in the console message.
+
+    5. Other incorrect contact add commands to try: `task deadline`, `task deadline m/ d/Find project references`.<br>
+       Expected: Similar to previous.
+
+* Adding a Deadline *assigned to* a contact 
+    
+    Similar as above, but replacing all `m/` with `o/` in the `task deadline` commands. <br>
+       Expected from valid test case: Deadline with similar details assigned to "John Doe"
+
+* Adding a *self-assigned* Deadline
+
+    Similar as above, but omitting both `m/NAME` or `o/NAME` in the `task deadline` commands.<br>
+       Expected from valid test case: Deadline with similar details assigned to "Myself"
+
+### Adding a Event
+
+* Adding a Event *assigned by* a contact 
+
+    1. Prerequisites: There must be a person in the contact list with name "John Doe". Verify with `contact find q/John Doe`, there must be a contact with exact name "John Doe", else add "John Doe" as specified above in "Adding a person".
+
+    2. Test case: `task event m/John Doe d/Attend group meeting t/2022-02-15 #/cs2103`<br>
+       Expected: Event with description "Attend group meeting", event "2022-02-15" and tag "cs2103" assigned by "John Doe".
+
+    3. Test case: `task event m/John Doe d/ #/cs2103 #homework`<br>
+       Expected: No Event is added. Error details shown in the console message.
+  
+    4. Test case: `task event m/John Doe d/Attend group meeting t/2022-09-39 #/cs2103 #homework`<br>
+       Expected: No Event is added. Error details shown in the console message.
+
+    5. Other incorrect contact add commands to try: `task event`, `task event m/ d/Attend group meeting`.<br>
+       Expected: Similar to previous.
+
+* Adding a Event *assigned to* a contact 
+    
+    Similar as above, but replacing all `m/` with `o/` in the `task event` commands. <br>
+       Expected from valid test case: Event with similar details assigned to "John Doe"
+
+* Adding a *self-assigned* Event
+
+    Similar as above, but omitting both `m/NAME` or `o/NAME` in the `task event` commands.<br>
+       Expected from valid test case: Event with similar details assigned to "Myself"
+
+### Deleting a Task
+
+* Deleting a task
+
+    1. Prerequisites: List all tasks using the `task list` command. There must be at least one task in the task list, regardless of the specific task subtype.
+
+    2. Test case: `task delete i/1`<br>
+       Expected: First task is deleted from the list. Details of the deleted task is shown in the console message.
+
+    3. Test case: `task delete i/0`<br>
+       Expected: No task is deleted. Error details shown in the console message.
+
+    4. Other incorrect delete commands to try: `task delete`, `task delete X` (where X is larger than the list size)<br>
+       Expected: Similar to previous.
+
+* Deleting a task from a sorted task list
+
+    1. Prerequisites: Sort the task list using the `task sort s/SORT_TYPE` command. There must be at least one task in the task list.
+
+    2. Test case: `task delete i/1`<br>
+       Expected: First task is deleted from the list. Details of the deleted task shown in the console message.
+
+    3. Test case: `task delete i/0`<br>
+       Expected: No task is deleted. Error details shown in the console message.
+  
+    4. Other incorrect delete commands to try: `task delete X` (where X is larger than the list size)<br>
+          Expected: Similar to previous.
+
+* Deleting a task from a filtered task list
+
+    1. Prerequisites: Filter the task list using the `task find q/QUERY` command. There must be at least one task in the task list after filtering.
+
+    2. Test case: `task delete i/1`<br>
+       Expected: First task is deleted from the list. Details of the deleted task shown in the console message.
+
+    3. Test case: `task delete i/0`<br>
+       Expected: No task is deleted. Error details shown in the console message.
+  
+    4. Other incorrect delete commands to try: `task delete X` (where X is larger than the filtered list size)<br>
+          Expected: Similar to previous.
 
 ### UI for Command History Navigation
 
