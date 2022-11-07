@@ -20,8 +20,6 @@ application via a CLI, and the application responds with its GUI, created with J
     - Justification: As the team is taking on a new approach to the project, we wanted to rebrand and give users the
     impression of a fresh and new application.
     - Highlights:
-      - To implement the UI, I had to familiarize myself with JavaFX, something I barely have experience with. Doing
-      this required me to analyze the code and determine the pros and cons of each element that is being used.
       - I considered the case of extreme inputs and fix the UI to display such inputs without truncating them.
       Aside from that, I also constantly test the UI in order to keep it bug-free, and immediately fix any that I could
       find.
@@ -37,9 +35,6 @@ application via a CLI, and the application responds with its GUI, created with J
       classes) for the members to build on, utilizing object-oriented programming.
       - Justification: This task had to be done quite early in order to minimize conflicts between the members' code, as
       commands relying on `Item`s had to depend on this class.
-      - Highlights:
-        - This was one of my earliest exposures to the code base (aside from the tutorial tasks), and implementing this
-        made me understand it more.
       - Relevant pull request(s): [#58](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/58)
 
     - **Implement the following commands: `edito`, `listi`, `findi`**
@@ -62,10 +57,6 @@ application via a CLI, and the application responds with its GUI, created with J
       `EditOrderCommandTest`, `EditOrderDescriptorBuilder`, `DeleteOrderCommandParserTest`, `DeleteOrderCommandTest`,
       `DeleteItemCommandTest`, `DeleteItemCommandParserTest`, `QuantityTest`, `DescriptionTest`, `ItemNameTest`
       - Justification: Testing will reduce the chances of bugs occurring in the program.
-      - Highlights:
-        - Making test cases required me to understand certain methods, such as `assertTrue`, `assertFalse`,
-        `assertThrows`, etc. However, the code base itself already has testing utilities that I could use, which
-        simplifies the testing process.
       - Related pull request(s): [#100](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/100),
       [#122](https://github.com/AY2223S1-CS2103T-W15-3/tp/pull/122)
 
