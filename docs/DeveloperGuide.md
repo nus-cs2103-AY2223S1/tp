@@ -676,21 +676,17 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. The given index is invalid.
 
-  Use case ends.
+    - 1a1. Teacher’s Pet shows an error message.
 
-* 3a. The given index is invalid.
+        Use case ends.
 
-    - 3a1. Teacher’s Pet shows an error message.
+* 2b. The student’s attendance is already marked as present.
 
-        Use case resumes at step 2.
+    - 2b1. Teacher’s Pet shows a message indicating student’s attendance is already marked as present.
 
-* 3b. The student’s attendance is already marked as present.
-
-    - 3b1. Teacher’s Pet shows a message indicating student’s attendance is already marked as present.
-
-        Use case resumes at step 2.
+        Use case ends.
 
 #### Use case: **Allocate a slot for future class**
 
