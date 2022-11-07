@@ -375,6 +375,7 @@ You can add a student / teaching assistant by using this command.
 - A student can have any number of tags, modules, ta modules and class groups (including 0).
 - A student's Student Id has to be unique!
 - Successfully adding a student will redirect you to the all student's and teaching assistant's page.
+- `c/` refers to the modules the student is taking, while `ta/` refers to the modules the student is teaching.
 
 </div>
 
@@ -410,7 +411,7 @@ Now, let's use `add` to add a student with the following information.
 
 You can use this command to edit a student in the Student Manager.
 
-**Format:** `editstu INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`
+**Format:** `editstu INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/STUDENT_ID] [h/TELEGRAM] [t/TAG]…​ [c/MODULE_CODE]…​ [ta/MODULE_CODE]…​ [cg/CLASSGROUPS]…​`
 
 <div markdown="block" class="alert alert-info">
 
@@ -450,7 +451,7 @@ Press `Enter` to execute the command.
 
 You can use this command to edit a teaching assistant from the teaching assistant list.
 
-**Format:** `editta INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`
+**Format:** `editta INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/STUDENT_ID] [h/TELEGRAM] [t/TAG]…​ [c/MODULE_CODE]…​ [ta/MODULE_CODE]…​ [cg/CLASSGROUPS]…​`
 
 <div markdown="block" class="alert alert-info">
 
@@ -855,15 +856,15 @@ If your changes to the data file makes its format invalid, ProfNUS will discard 
 
 ### 6.3. Student Manager Command Summary
 
-| Action                                                                                           | Format                                                                                                             | Example                                                                                                                                                                |
-|--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [List all students/teaching assistants](#432-listing-all-students-list)                          | `list`                                                                                                             | `list`                                                                                                                                                                 |
-| [Add a student/teaching assistant](#433-adding-a-student-or-teaching-assistant-add)              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`            | `add n/Peter Lim p/98413235 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney i/A0243456G h/@good_student c/CS2030S ta/CS1101S cg/CS2030S:Tut07` |
-| [Edit a student](#434-editing-a-student-editstu)                                                 | `editstu INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​` | `editstu 1 p/91234567 e/johndoe@example.com` <br> `editstu 2 n/Betsy Crower c/`                                                                                        |
-| [Edit a teaching assistant](#435-editing-a-teaching-assistant-editta)                            | `editta INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASSGROUPS]…​`  | `editta 1 p/97384723 e/davidlim@example.com` <br> `editta 2 n/Beth ta/CS2030S`                                                                                         |
-| [Delete a student](#436-deleting-a-student-delstu)                                               | `delstu INDEX`                                                                                                     | `delstu 1`                                                                                                                                                             |
-| [Delete a teaching assistant](#437-deleting-a-teaching-assistant-delta)                          | `delta INDEX`                                                                                                      | `delta 1`                                                                                                                                                              |
-| [Find a student/teaching assistant](#438-locating-students-and-teaching-assistants-by-name-find) | `find KEYWORD [MORE_KEYWORD]`                                                                                      | `find Adam Do`                                                                                                                                                         |
+| Action                                                                                           | Format                                                                                                                                         | Example                                                                                                                                                                |
+|--------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [List all students/teaching assistants](#432-listing-all-students-list)                          | `list`                                                                                                                                         | `list`                                                                                                                                                                 |
+| [Add a student/teaching assistant](#433-adding-a-student-or-teaching-assistant-add)              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/STUDENT_ID h/TELEGRAM [t/TAG]…​ [c/MODULE_CODE]…​ [ta/MODULE_CODE]…​ [cg/CLASS_GROUP]…​`        | `add n/Peter Lim p/98413235 e/johnd@example.com a/311, Clementi Ave 2, #02-25 t/friends t/owesMoney i/A0243456G h/@good_student c/CS2030S ta/CS1101S cg/CS2030S:Tut07` |
+| [Edit a student](#434-editing-a-student-editstu)                                                 | `editstu INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/STUDENT_ID] [h/TELEGRAM] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASS_GROUP]…​` | `editstu 1 p/91234567 e/johndoe@example.com` <br> `editstu 2 n/Betsy Crower c/`                                                                                        |
+| [Edit a teaching assistant](#435-editing-a-teaching-assistant-editta)                            | `editta INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/STUDENT_ID] [h/TELEGRAM] [t/TAG]…​ [c/MODULE]…​ [ta/TAMODULE]…​ [cg/CLASS_GROUP]…​`  | `editta 1 p/97384723 e/davidlim@example.com` <br> `editta 2 n/Beth ta/CS2030S`                                                                                         |
+| [Delete a student](#436-deleting-a-student-delstu)                                               | `delstu INDEX`                                                                                                                                 | `delstu 1`                                                                                                                                                             |
+| [Delete a teaching assistant](#437-deleting-a-teaching-assistant-delta)                          | `delta INDEX`                                                                                                                                  | `delta 1`                                                                                                                                                              |
+| [Find a student/teaching assistant](#438-locating-students-and-teaching-assistants-by-name-find) | `find KEYWORD [MORE_KEYWORD]`                                                                                                                  | `find Adam Do`                                                                                                                                                         |
 
 ### 6.4. Schedule Manager Command Summary
 
