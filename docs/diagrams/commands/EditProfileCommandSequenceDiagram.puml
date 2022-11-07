@@ -6,6 +6,7 @@ Participant ":LogicManager" as logicManager LOGIC_COLOR_T3
 Participant ":NuSchedulerParser" as nuSchedulerParser LOGIC_COLOR_T3
 Participant ":ProfileCommandParser" as profileCommandParser LOGIC_COLOR_T3
 Participant ":EditProfileCommandParser" as editProfileCommandParser LOGIC_COLOR_T3
+Participant "d:EditProfileDescriptor" as editProfileDescriptor LOGIC_COLOR_T3
 Participant "p:EditProfileCommand" as editProfileCommand LOGIC_COLOR_T3
 Participant ":CommandResult" as commandResult LOGIC_COLOR_T3
 endBox
@@ -27,8 +28,12 @@ profileCommandParser -> editProfileCommandParser ++
 return
 profileCommandParser -> editProfileCommandParser ++: parse(" -e 1...")
 
+create editProfileDescriptor
+editProfileCommandParser -> editProfileDescriptor ++: EditProfileDescriptor()
+return d
+
 create editProfileCommand
-editProfileCommandParser -> editProfileCommand ++
+editProfileCommandParser -> editProfileCommand ++: EditProfileCommand(1, d)
 return p
 return p
 destroy editProfileCommandParser
@@ -46,6 +51,7 @@ create commandResult
 editProfileCommand -> commandResult++
 return
 return
+destroy editProfileCommand
 return
 
 @enduml
