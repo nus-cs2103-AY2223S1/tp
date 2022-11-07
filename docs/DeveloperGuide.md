@@ -82,7 +82,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `CustomerListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W09-1/tp/blob/master/src/main/java/seedu/boba/ui/MainWindow.java) 
 is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W09-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
@@ -92,7 +92,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `BobaBotModel` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `BobaBotModel` component, as it displays `Person` object residing in the `BobaBotModel`.
+* depends on some classes in the `BobaBotModel` component, as it displays `Customer` object residing in the `BobaBotModel`.
 
 <div style="page-break-after: always;"></div>
 ### Logic component
@@ -149,12 +149,12 @@ The diagram also includes some new classes involved. For example, the `find` com
 
 The `BobaBotModel` component,
 
-* stores the bobaBot data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the bobaBot data i.e., all `Customer` objects (which are contained in a `UniqueCustomerList` object).
+* stores the currently 'selected' `Customer` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Customer>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `BobaBotModel` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) bobaBotModel is given below. It has a `Tag` list in the `BobaBot`, which `Person` references. This allows `BobaBot` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) bobaBotModel is given below. It has a `Tag` list in the `BobaBot`, which `Customer` references. This allows `BobaBot` to only require one `Tag` object per unique tag, instead of each `Customer` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -337,7 +337,7 @@ The feature also supports fuzzy search based on `Soundex` when searching by name
 1. User chooses the Customer he/ she wants to find and enters the command `find Aschcroft`
 2. The `LogicManager` redirects this command to `BobaBotParser`, which parses the command via `FindCommandParser` and
    returns the `FindCommand` containing the predicate
-3. The `LogicManager` executes the `FindCommand` and update the filtered list with matching `Person`
+3. The `LogicManager` executes the `FindCommand` and update the filtered list with matching `Customer`
 4. The `CommandResult` reflects the number of customers listed
 
 The following sequence diagram shows how the find feature works, following the flow of entering the command `find Aschcroft`:
