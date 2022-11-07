@@ -12,6 +12,8 @@ import seedu.address.model.module.Module;
  * the module card.
  */
 public class ModuleListPanel extends UiPart<Region> {
+    //@@author dlimyy-reused
+    //Reused with minor modifications from existing AddressBook 3
     private static final String FXML = "ModuleListPanel.fxml";
 
     @FXML
@@ -43,4 +45,5 @@ public class ModuleListPanel extends UiPart<Region> {
         }
     }
 
+    //@@author
 }

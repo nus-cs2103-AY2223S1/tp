@@ -12,6 +12,8 @@ import seedu.address.model.module.Module;
  * the module card.
  */
 public class ModuleCard extends UiPart<Region> {
+    //@@author dlimyy-reused
+    //Reused with minor modifications from existing AddressBook 3
 
     private static final String FXML = "ModuleListCard.fxml";
     @FXML
@@ -56,5 +58,5 @@ public class ModuleCard extends UiPart<Region> {
         percentageCompleted.setStyle("-fx-accent: limegreen");
         progressString.setText(module.generateProgressMessage());
     }
-
+    //@@author
 }

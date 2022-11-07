@@ -11,6 +11,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_PRIORITY_TAG_TASK;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
@@ -21,7 +23,11 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.tag.DeadlineTag;
+import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.task.Task;
+import seedu.address.testutil.DeadlineTagBuilder;
+import seedu.address.testutil.PriorityTagBuilder;
 import seedu.address.testutil.TaskBuilder;
 
 
@@ -117,4 +123,42 @@ public class DeleteTagCommandTest {
         assertCommandFailure(deleteTagCommand, model, expectedFailureMessage);
     }
 
+    @Test
+    public void testEquals() {
+        PriorityTag firstPriorityTag = new PriorityTagBuilder().build();
+        DeadlineTag firstDeadlineTag = new DeadlineTagBuilder().build();
+        Index firstIndex = Index.fromOneBased(1);
+        Index secondIndex = Index.fromOneBased(2);
+        PriorityTag secondPriorityTag = new PriorityTagBuilder().withStatus("LOW").build();
+        LocalDate date = LocalDate.parse("25-11-2024", DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        DeadlineTag secondDeadlineTag = new DeadlineTagBuilder().withDeadline(date).build();
+
+        EditTagCommand firstEditTagCommand = new EditTagCommand(firstIndex, firstPriorityTag, firstDeadlineTag);
+        EditTagCommand firstEditTagCommandCopy = new EditTagCommand(firstIndex, firstPriorityTag, firstDeadlineTag);
+        EditTagCommand secondEditTagCommand = new EditTagCommand(firstIndex, secondPriorityTag, firstDeadlineTag);
+        EditTagCommand thirdEditTagCommand = new EditTagCommand(firstIndex, firstPriorityTag, secondDeadlineTag);
+        EditTagCommand fourthEditTagCommand = new EditTagCommand(secondIndex, firstPriorityTag, firstDeadlineTag);
+
+        //Equals to itself
+        assertTrue(firstEditTagCommand.equals(firstEditTagCommand));
+
+        //Equals to another EditTagCommand with the same fields
+        assertTrue(firstEditTagCommand.equals(firstEditTagCommandCopy));
+
+        //Not equals to another EditTagCommand with different priority tag
+        assertFalse(firstEditTagCommand.equals(secondEditTagCommand));
+
+        //Not equals to another EditTagCommand with different deadline tag
+        assertFalse(firstEditTagCommand.equals(thirdEditTagCommand));
+
+        //Not equal to another EditTagCommand with different index
+        assertFalse(firstEditTagCommand.equals(fourthEditTagCommand));
+
+        //Not equal to null
+        assertFalse(firstEditTagCommand.equals(null));
+
+        //Not equal to different object types
+        assertFalse(firstEditTagCommand.equals(219129));
+
+    }
 }
