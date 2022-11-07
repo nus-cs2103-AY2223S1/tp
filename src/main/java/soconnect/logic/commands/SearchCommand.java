@@ -5,6 +5,8 @@ import static soconnect.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static soconnect.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.function.Predicate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import soconnect.commons.core.Messages;
 import soconnect.logic.commands.exceptions.CommandException;
@@ -30,6 +32,7 @@ public class SearchCommand extends Command {
             + COMMAND_WORD + " " + AND_CONDITION + " n/John a/NUS, "
             + COMMAND_WORD + " " + OR_CONDITION + " p/12345678 e/betsy@nus.edu";
 
+    private static Logger logger = Logger.getLogger("search");
     private final Predicate<Person> predicate;
     private final Predicate<Person> alternativePredicate;
     private final Predicate<Person> leastAccuratePredicate;
@@ -39,6 +42,7 @@ public class SearchCommand extends Command {
      */
     public SearchCommand(Predicate<Person> predicate, Predicate<Person> alternativePredicate,
                          Predicate<Person> leastAccuratePredicate) {
+        logger.log(Level.INFO, "going to start processing");
         requireAllNonNull(predicate, alternativePredicate);
         this.predicate = predicate;
         this.alternativePredicate = alternativePredicate;
@@ -51,6 +55,7 @@ public class SearchCommand extends Command {
         try {
             model.updateFilteredPersonList(predicate);
         } catch (NullPointerException | IllegalArgumentException e) {
+            logger.log(Level.WARNING, "processing error", e);
             throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
         }
         if (model.isFilteredPersonListEmpty()) {
@@ -59,6 +64,7 @@ public class SearchCommand extends Command {
         if (model.isFilteredPersonListEmpty()) {
             model.updateFilteredPersonList(leastAccuratePredicate);
         }
+        logger.log(Level.INFO, "end of processing");
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
