@@ -818,10 +818,6 @@ Reverses the most recent command.
 
 #### Examples:
 
-Original data:
-
-<img src="images/ug/undoredocommand/undo1.png">
-
 * `deletepatient 1` deletes all information of `Bernice Yu`.
 
 <img src="images/ug/undoredocommand/undo2.png">
@@ -846,10 +842,6 @@ Reverses the most recent undo command.
 
 
 #### Examples:
-
-Original Data
-
-<img src="images/ug/undoredocommand/redo1.png">
 
 * `deletepatient 1` deletes all information of `Bernice Yu`.
 
