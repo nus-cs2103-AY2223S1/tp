@@ -52,7 +52,7 @@ If you can type fast, FRIDAY can get your student management tasks done faster t
 
   e.g `n/NAME [t/TELEGRAM_HANDLE]` can be used as `n/John Doe t/johndoe` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used any number of times including zero times.<br>
+* Items with `…`​ after them can be used multiple times including zero times.<br>
 
   e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/fast learner`, `tag/fast learner tag/good at recursion` etc.
 
