@@ -116,24 +116,18 @@ Format: `add c/COMPANY ct/CONTACT e/EMAIL p/POSITION d/DATE_APPLIED s/STATUS [t/
 
 <div markdown="span" class="alert alert-primary">:bulb: <b>Tip:</b>
 <br>
+
 1. <code>CONTACT</code> must be 5-15 digits long. <i>[COMING SOON: allowing spaces and country codes in contacts]</i><br>
-2. Emails should be of the format local-part@domain and adhere to the following constraints:
-<ol>
-    <li>
-    The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-).<br>
+2. Emails should be of the format local-part@domain and adhere to the following constraints:<br>
+
+* The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-).<br>
     The local-part may not start or end with any special characters, nor can it contain consecutive special characters.
-    </li>
-    <li>
-    This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.<br>
-    The domain name must:
-    <ul>
-        <li>
-        have each domain label consist of alphanumeric characters, separated only by singular hyphens, if any</li>
-        <li>have each domain label start and end with alphanumeric characters</li>
-        <li>end with a domain label that contains at least 2 consecutive alphanumeric characters</li>
-    </ul>
-    </li>
-</ol>
+* This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods.<br>
+The domain name must:
+  * have each domain label consist of alphanumeric characters, separated only by singular hyphens, if any</li>
+  * have each domain label start and end with alphanumeric characters
+  end with a domain label that contains at least 2 consecutive alphanumeric characters
+
 3. <code>DATE_APPLIED</code> must be specified in the format <em>yyyy-MM-dd</em>.<br>
 4. <code>STATUS</code> must be one of the following: <b>pending</b>, <b>interview</b>, <b>offered</b>, <b>rejected</b>.<br>
 5. Do note that an <b>interview</b> <code>STATUS</code> does not imply that the application has an associated interview in the interview list. The purpose of the status is to help users in tracking the applications according to their own preferences (e.g. user can put the status as `pending` instead of `interview` for an application even if an interview is received).<br>
@@ -314,7 +308,7 @@ Restores the state of CinternS before the change made by the previous command.
 Format: `undo`
 
 * There must be a previous state to restore to.
-* Commands that do not change the data stored in CinternS, e.g. list, find, sort, etc., will not be undone.
+* Commands that do not change the data stored in CinternS, e.g. `list`, `find`, `sort`, etc., will not be undone.
 
 Example:
 * `delete 1` followed by `undo` makes no change to the application list or the interview list.
@@ -342,12 +336,15 @@ Format: `remind`
 
 ### Showing the statistics of applications: `stats`
 
-* Shows the statistics of applications (e.g. number of each application status, interviews, archived applications etc.). 
+Shows the statistics of applications (e.g. number of each application status, interviews, archived applications etc.). 
+
+Format: `stats` 
+
 * All the statistics counts include the archived applications.
 * The interview count shown from the `stats` command does not relate to the `interview` status tag. It shows the number of actual interviews associated with the applications in CinternS.
 * The `pending`, `offered` and `rejected` counts are related to the status tag of the applications.
 
-Format: `stats`
+
 
 ### Clearing all entries: `clear`
 
@@ -390,7 +387,7 @@ The data of all the internship applications is saved automatically to the hard d
 ## FAQ
 
 **Q**: What should I do if the program crashes?<br>
-**A**: Screenshot the error message (if any) and report to us via [email](mailto:seer@comp.nus.edu.sg) or GitHub issue [here](https://github.com/AY2223S1-CS2103-F14-3/tp/issues). 
+**A**: Screenshot the error message (if any) and report to us via GitHub issue [here](https://github.com/AY2223S1-CS2103-F14-3/tp/issues). 
 We will assist you as soon as possible.
 
 **Q**: Is **CinternS** supported on mobile platforms?<br>
