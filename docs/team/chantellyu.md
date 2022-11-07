@@ -29,9 +29,13 @@ Given below are my contributions to the project.
   * Proofread UG for readability and comprehensibility.
   * Handled organization and formatting of the UG.
 * **Contributions to the DG**: 
-  * Added explanation, implementation, diagrams and design considerations for the following feature: `findn`.
+  * Added explanation, implementation, diagrams and design considerations for the following feature: `findc`.
+  * Proofread DG for readability and comprehensibility.
+  * Handled organization and formatting of the DG.
 * **Contributions to team-based tasks**: 
   * Reviewed [15](https://github.com/AY2223S1-CS2103T-T11-2/tp/pulls?q=is%3Apr+is%3Aclosed) team pull requests.
+  * Refactored AddressBook into InTrack.
+  * Formatted and edited both UG and DG.
 * **Review/mentoring contributions:**: 
   * Reviewed PRs (Examples: [#86](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/86),
       [#118](https://github.com/AY2223S1-CS2103T-T11-2/tp/pull/118),
