@@ -95,7 +95,16 @@ All these, including the `MainWindow`, inherit from the abstract `UiPart` class 
 Additionally, the structure of `OutputPanel` is as shown below:
 ![Structure of the OutputPanel Component](images/OutputPanelClassDiagram.png)
 
-`OutputPanel` is made up of parts e.g. `TruncatedTaskListPanel`, `ScheduleListPanel`, `UpdatedPersonListPanel`, `UndoCard` etc. Similar to `MainWindow`, all these components including the `OutputPanel` inherit from the abstract `UiPart` class.
+`OutputPanel` is a UI part that loads the appropriate view based on the command result. Similar to `MainWindow`, all views and the `OutputPanel` inherit from the abstract `UiPart` class. The `OutputPanel` supports the following views:
+
+|                        |                                                                                |
+|------------------------|--------------------------------------------------------------------------------|
+|`UpdatedPatientCard`    | Displays details of a `Patient`                                                |
+|`TaskListPanel`         | Displays the list of tasks of a `Patient`, omitting other `Patient` detail     |
+|`TruncatedTaskListPanel`| A Truncated view of the list of tasks of all `Patient`s                        |
+|`ScheduleListPanel`     | A Schedule detailing the tasks of the given day and their respective `Patient`s|
+|`UpdatedPersonListPanel`| Displays a list of `UpdatedPatientCard`s after using a `find` command          |
+|`UndoCard`, `RedoCard`, `ModifiedPatientCard`| Displays the outcome of an `undo`/`redo` command          |
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/uninurse/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T12-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -104,7 +113,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person` or `Patient` object residing in the `Model`.
 
 ### Logic component
 
