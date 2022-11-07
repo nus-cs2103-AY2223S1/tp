@@ -82,4 +82,4 @@ meaning `Task` added first will be displayed at the top.
     
 * **Review/mentoring contributions**:
   * Review pull request and comment on teammates pull request as per our forking workflow
-    ([reviewed pull request](https://github.com/AY2223S1-CS2103T-W08-4/tp/pulls?q=is%3Apr+reviewed-by%3A%40me+is%3Aclosed))
+    ([reviewed pull request](https://github.com/AY2223S1-CS2103T-W08-4/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Akang-quan))
