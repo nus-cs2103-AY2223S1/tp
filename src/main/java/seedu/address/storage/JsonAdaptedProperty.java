@@ -74,7 +74,7 @@ class JsonAdaptedProperty {
 
         if (entryTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    "entry time not found"));
+                    "time of creation not found"));
         }
 
         final LocalDateTime modelTime = LocalDateTime.parse(entryTime);

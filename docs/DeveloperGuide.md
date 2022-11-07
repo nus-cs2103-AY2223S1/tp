@@ -8,8 +8,7 @@ title: Developer Guide
 
 ## **Introduction**
 
-Cobb is a brownfield software project based off of [AddressBook3](https://se-education.org/addressbook-level3/). It is a 
-JavaFX application that helps property agents manage their database of buyers and properties using a command-line interface.
+Cobb is a JavaFX application that helps property agents manage their database of buyers and properties using a command-line interface.
 
 ### **Purpose**
 
@@ -28,6 +27,7 @@ of the guide.
 --------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
 
+Based off on [AddressBook-Level3](https://github.com/se-edu/addressbook-level3). <br>
 Libraries used: [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [JavaFX](https://openjfx.io),
 [PlantUML](https://plantuml.com).
 --------------------------------------------------------------------------------------------------------------------
@@ -726,23 +726,19 @@ automation of matching between suitable properties and buyers
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                        | I want to …​                                                                          | So that I can…​                                                   |
-|----------|------------------------------------------------|---------------------------------------------------------------------------------------|-------------------------------------------------------------------|
-| `* * *`  | property agent                                 | add new buyers                                                                        |                                                                   |
-| `* * *`  | property agent                                 | add new properties                                                                    |                                                                   |
-| `* *`    | property agent                                 | edit contact and property information offline                                         | keep the information updated                                      |
-| `* *`    | property agent                                 | delete existing contact and propety entries                                           | remove redundant information, to keep dataset neat                |
-| `* *`    | property agent with a large number of contacts | sort buyers and properties according to various relevant criteria                     | easily find information using their order |
-| `* *`    | property agent                                 | find and filter for certain characteristics                                           | easily find matches                                               |
-| `*`      | non tech-savvy user                            | be able to make use of the command-line interface without too much difficulty         |                                                                   |
-| `*`      | property agent                                 | filter out properties that do not meet the conditions of a prospective buyer          |                                                                   |
-| `*`      | property agent                                 | save tasks related to each contact                                                    | monitor the things that I have to do                              |
-| `*`      | property agent                                 | input notes for each contact                                                          | easily retrieve it for future correspondence with the client      |
-| `*`      | property agent                                 | view all existing information at a glance in a clean, visually-appealing manner       | easily make sense of information presented                        |
-| `*`      | property agent with many clients               | avoid duplicate contacts                                                              | have a neat list of active clients                                |
-| `*`      | property agent                                 | view the commission rate for each closed case and aggregated commissions for the year | track my progress                                                 |
-| `*`      | property agent                                 | prioritise some clients who are desperate to find a place                             | contact them first and close the deal more easily                 |
-| `*`      | property agent with a busy schedule            | know when my next free time is                                                        | schedule client meetings with no overlap                          |
+| Priority | As a …​                                        | I want to …​                                                                    | So that I can…​                                    |
+|----------|------------------------------------------------|---------------------------------------------------------------------------------|----------------------------------------------------|
+| `* * *`  | property agent                                 | add new buyers                                                                  |                                                    |
+| `* * *`  | property agent                                 | add new properties                                                              |                                                    |
+| `* *`    | property agent                                 | edit contact and property information offline                                   | keep the information updated                       |
+| `* *`    | property agent                                 | delete existing contact and property entries                                    | remove redundant information, to keep dataset neat |
+| `* *`    | property agent with a large number of contacts | sort buyers and properties according to various relevant criteria               | easily find information using their order          |
+| `* *`    | property agent                                 | find and filter for certain characteristics                                     | easily find matches                                |
+| `*`      | non tech-savvy user                            | be able to make use of the command-line interface without too much difficulty   |                                                    |
+| `*`      | property agent                                 | filter out properties that do not meet the conditions of a prospective buyer    |                                                    |
+| `*`      | property agent                                 | view all existing information at a glance in a clean, visually-appealing manner | easily make sense of information presented         |
+| `*`      | property agent with many clients               | avoid duplicate contacts                                                        | have a neat list of active clients                 |
+| `*`      | property agent                                 | prioritise some clients who are desperate to find a place                       | contact them first and close the deal more easily  |
 
 ### Use cases
 
@@ -804,6 +800,29 @@ Use case ends.
   3a1. Cobb shows an error message.<br>
   Use case ends.
 
+### Use case: Edit a property
+
+**MSS:**
+
+1. User chooses to edit an existing property.
+2. User enters the details of the property to be edited.
+3. Property is successfully edited with the new details.
+
+Use case ends.
+
+**Extensions**
+* 1a. The property does not exist.
+    * 1a1. Cobb shows an error message.
+    * Use case ends.
+* 2a. The new details cause the property to be a duplicate of another property.
+    * 2a1. Cobb shows an error message.
+    * Use case ends.
+* 2b. The new details are the same as previous details.
+    * 2b1. Property remains the same.
+    * Use case ends.
+* 2c. The new details are invalid.
+    * 2c1. Cobb shows an error message.
+    * Use case ends
 
 ### Use case: List properties
 
@@ -873,18 +892,7 @@ Use case ends.
 
 Use case ends.
 
-
-### Use case: Match property to buyers
-
-**Preconditions**: Property exists in database.
-
-**MSS:**
-1. User <u>lists all properties [(Use case: List properties)](#use-case-list-properties)</u>.
-2. User executes match command on desired property.
-
-Use case ends.
-
-### Use case: New buyer
+### Use case: Find suitable property for new buyer
 
 **MSS:**
 1. User gets a new buyer.
@@ -896,36 +904,22 @@ Use case ends.
   2b. User edits the existing buyer with new requirements, if necessary.<br>
   Use case continues at 3.
 
-### Use case: Edit a property
+### Use case: Match property to buyers
+
+**Preconditions**: Property exists in database.
 
 **MSS:**
-
-1. User chooses to edit an existing property.
-2. User enters the details of the property to be edited.
-3. Property is successfully edited with the new details.
+1. User <u>lists all properties [(Use case: List properties)](#use-case-list-properties)</u>.
+2. User executes match command on desired property.
 
 Use case ends.
 
-**Extensions**
-* 1a. The property does not exist.
-  * 1a1. Cobb shows an error message.
-  * Use case ends.
-* 2a. The new details cause the property to be a duplicate of another property.
-  * 2a1. Cobb shows an error message.
-  * Use case ends.
-* 2b. The new details are the same as previous details.
-  * 2b1. Property remains the same.
-  * Use case ends.
-* 2c. The new details are invalid.
-  * 2c1. Cobb shows an error message.
-  * Use case ends.
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should work on any computer fewer than five years old. 
+
 3. Should be able to hold up to 1000 buyers without noticeable sluggishness in performance for typical usage.
 4. Should be able to hold up to 1000 properties without noticeable sluggishness in performance for typical usage.
 5. Should be able to respond to any given command within two seconds.
