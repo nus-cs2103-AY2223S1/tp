@@ -48,7 +48,7 @@ patient bills for the family clinic.
 
 3. Copy the file to the folder you want to use as the home folder for your HealthContact application.
 
-4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.
+4. Double-click the file to start the app. The Graphical User Interface(GUI) similar to the below should appear in a few seconds. Note how the app contains some sample data.
 
 <img src="images/Ui.png">
 
@@ -641,6 +641,7 @@ Deletes a bill by the index number of the bill in the list.
   shown with the correct command format.
 * If the index provided is negative or greater than the number of patients in the list, an error message will be shown
   saying the index is invalid.
+* The appointment should be deleted only once the bill for the appointment is paid.
 
 #### Examples:
 
