@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_GOOGLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;

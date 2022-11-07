@@ -1,6 +1,6 @@
 package seedu.address.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_ALICE;
 import static seedu.address.testutil.Assert.assertThrows;
 

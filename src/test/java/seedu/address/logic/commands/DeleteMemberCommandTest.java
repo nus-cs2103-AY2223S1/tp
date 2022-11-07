@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalTruthTable;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -45,7 +46,8 @@ public class DeleteMemberCommandTest {
     @Test
     public void execute_helpFlagSupplied_success() {
         commandLine.parseArgs(FLAG_HELP_STR);
-        CommandResult expectedResult = new CommandResult(commandLine.getUsageMessage());
+        CommandResult expectedResult = new CommandResult(
+                DeleteMemberCommand.HELP_MESSAGE + commandLine.getUsageMessage());
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
     @Test
@@ -66,7 +68,8 @@ public class DeleteMemberCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(List.of("Benson"));
+        NameContainsKeywordsPredicate predicate =
+                new NameContainsKeywordsPredicate(Collections.singletonList("Benson"));
         model.updateFilteredMembersList(predicate);
         expectedModel.getTeam().removeMember(BENSON);
         commandLine.parseArgs(new String[] {"1"});
@@ -77,7 +80,7 @@ public class DeleteMemberCommandTest {
 
     @Test
     public void execute_invalidMemberIndexFilteredList_throwsCommandException() {
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(List.of("Benson"));
+        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(List.of("benson"));
         model.updateFilteredMembersList(predicate);
         commandLine.parseArgs(new String[] {"2"});
         assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, ()

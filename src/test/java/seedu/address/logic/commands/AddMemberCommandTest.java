@@ -34,7 +34,8 @@ public class AddMemberCommandTest {
     @Test
     public void execute_helpFlagSupplied_success() {
         commandLine.parseArgs(FLAG_HELP_STR);
-        CommandResult expectedResult = new CommandResult(commandLine.getUsageMessage());
+        CommandResult expectedResult = new CommandResult(
+                AddMemberCommand.HELP_MESSAGE + commandLine.getUsageMessage());
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
 
@@ -58,7 +59,7 @@ public class AddMemberCommandTest {
     public void execute_indexOutOfBounds_throwsCommandException() {
         Integer outOfBoundsIndex = model.getFilteredPersonList().size() + 1;
         commandLine.parseArgs(new String[] {outOfBoundsIndex.toString()});
-        assertThrows(CommandException.class, AddMemberCommand.MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS, ()
+        assertThrows(CommandException.class, AddMemberCommand.MESSAGE_PERSON_INDEX_OUT_OF_BOUNDS, ()
                 -> commandToBeTested.execute(model));
     }
 }

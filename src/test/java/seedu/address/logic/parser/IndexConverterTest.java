@@ -6,8 +6,8 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_ONE;
 
 import org.junit.jupiter.api.Test;
 
+import picocli.CommandLine;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.parser.exceptions.ParseException;
 
 class IndexConverterTest {
     private IndexConverter converter = new IndexConverter();
@@ -20,8 +20,8 @@ class IndexConverterTest {
     }
 
     @Test
-    public void convert_invalidIndex_throwsParseException() {
+    public void convert_invalidIndex_throwsTypeConversionException() {
         String inValidIndex = "0";
-        assertThrows(ParseException.class, () -> converter.convert(inValidIndex));
+        assertThrows(CommandLine.TypeConversionException.class, () -> converter.convert(inValidIndex));
     }
 }

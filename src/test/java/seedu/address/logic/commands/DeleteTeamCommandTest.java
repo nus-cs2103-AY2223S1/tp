@@ -37,7 +37,8 @@ class DeleteTeamCommandTest {
     @Test
     public void execute_helpFlagSupplied_success() {
         commandLine.parseArgs(FLAG_HELP_STR);
-        CommandResult expectedResult = new CommandResult(commandLine.getUsageMessage());
+        CommandResult expectedResult = new CommandResult(
+                DeleteTeamCommand.HELP_MESSAGE + commandLine.getUsageMessage());
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
 

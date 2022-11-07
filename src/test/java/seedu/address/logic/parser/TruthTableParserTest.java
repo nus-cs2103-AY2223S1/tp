@@ -309,7 +309,7 @@ public class TruthTableParserTest {
                 + keywords.stream().collect(Collectors.joining(" "));
         FindMemberCommand emailFindCommand = (FindMemberCommand) parser.parseCommand(emailCommandString);
         assertEquals(new EmailContainsKeywordsPredicate(keywords),
-                ParserHelper.getOption(EmailContainsKeywordsPredicate.class, FLAG_EMAIL_STR ,emailFindCommand));
+                ParserHelper.getOption(EmailContainsKeywordsPredicate.class, FLAG_EMAIL_STR, emailFindCommand));
     }
 
     @Test
@@ -356,18 +356,18 @@ public class TruthTableParserTest {
     @Test
     public void parseCommand_listTasks() throws Exception {
         ListTasksCommand commandEmpty = (ListTasksCommand) parser.parseCommand("list tasks");
-        assertEquals(false, ParserHelper.getOption(Boolean.class, FLAG_COMPLETE_TASKS_STR,commandEmpty));
+        assertEquals(false, ParserHelper.getOption(Boolean.class, FLAG_COMPLETE_TASKS_STR, commandEmpty));
         assertEquals(false, ParserHelper.getOption(Boolean.class, FLAG_INCOMPLETE_TASKS_STR, commandEmpty));
         ListTasksCommand commandFlagComplete = (ListTasksCommand) parser.parseCommand(
                 ListTasksCommand.FULL_COMMAND + " " + FLAG_COMPLETE_TASKS_STR);
         assertEquals(true, ParserHelper.getOption(Boolean.class,
-                FLAG_COMPLETE_TASKS_STR,commandFlagComplete));
+                FLAG_COMPLETE_TASKS_STR, commandFlagComplete));
         assertEquals(false, ParserHelper.getOption(Boolean.class,
                 FLAG_INCOMPLETE_TASKS_STR, commandFlagComplete));
         ListTasksCommand commandFlagIncomplete = (ListTasksCommand) parser.parseCommand(
                 ListTasksCommand.FULL_COMMAND + " " + FLAG_INCOMPLETE_TASKS_STR);
         assertEquals(false, ParserHelper.getOption(Boolean.class,
-                FLAG_COMPLETE_TASKS_STR,commandFlagIncomplete));
+                FLAG_COMPLETE_TASKS_STR, commandFlagIncomplete));
         assertEquals(true, ParserHelper.getOption(Boolean.class,
                 FLAG_INCOMPLETE_TASKS_STR, commandFlagIncomplete));
     }
@@ -452,23 +452,20 @@ public class TruthTableParserTest {
     public void parseCommand_addPersonIncompleteParameters_throwsMissingArgumentException() {
         String command = AddPersonCommand.FULL_COMMAND + " "
                 + FLAG_NAME_STR + " " + VALID_NAME_BOB;
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(command));
+        assertThrows(ParseException.class, () -> parser.parseCommand(command));
     }
 
     @Test
     public void parseCommand_addPersonMissingParameters_throwsMissingArgumentException() {
         String command = AddPersonCommand.FULL_COMMAND + " "
                 + FLAG_NAME_STR;
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(command));
+        assertThrows(ParseException.class, () -> parser.parseCommand(command));
     }
 
     @Test
     public void parseCommand_knownCommandNoParameters_throwsParseException() {
         String command = AddPersonCommand.FULL_COMMAND;
-        assertThrows(ParseException.class,
-                () -> parser.parseCommand(command));
+        assertThrows(ParseException.class, () -> parser.parseCommand(command));
     }
 
     @Test
@@ -518,6 +515,6 @@ public class TruthTableParserTest {
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_WITH_HELP_COMMAND,
-                HelpCommand.MESSAGE_USAGE), () -> parser.parseCommand("unknownCommand"));
+                HelpCommand.HELP_MESSAGE), () -> parser.parseCommand("unknownCommand"));
     }
 }

@@ -49,7 +49,7 @@ public class DeleteMemberCommand extends Command {
             return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
-        List<Person> teamMembers = model.getTeam().getTeamMembers();
+        List<Person> teamMembers = model.getTeam().getFilteredMemberList();
 
         if (targetIndex.getZeroBased() >= teamMembers.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

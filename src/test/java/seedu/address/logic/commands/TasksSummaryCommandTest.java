@@ -16,7 +16,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.testutil.TaskUtil;
-import seedu.address.testutil.TypicalTasks;
 
 public class TasksSummaryCommandTest {
     private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
@@ -39,7 +38,8 @@ public class TasksSummaryCommandTest {
     @Test
     public void execute_helpFlagSupplied_success() {
         commandLine.parseArgs(FLAG_HELP_STR);
-        CommandResult expectedResult = new CommandResult(commandLine.getUsageMessage());
+        CommandResult expectedResult = new CommandResult(
+                TasksSummaryCommand.HELP_MESSAGE + commandLine.getUsageMessage());
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
     }
 

@@ -25,5 +25,4 @@ class TeamNameConverterTest {
         String inValidTeamName = "question?mark";
         assertThrows(CommandLine.TypeConversionException.class, () -> converter.convert(inValidTeamName));
     }
-
 }
