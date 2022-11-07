@@ -64,6 +64,8 @@ If you are looking to expand on our project, check out our [Developer Guide](Dev
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## **Introduction to RC4HDB**
 
 **RC4HDB** is a desktop application which streamlines the daily workflow of **RC4 housing management staff**, by providing specialised features which solve their resident and venue management needs.
@@ -82,6 +84,8 @@ workflow as a RC4 housing management staff member.
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Using this guide**
 
@@ -105,6 +109,8 @@ pay attention to. </div>
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Quick start**
 
@@ -143,6 +149,8 @@ For more details on commands, refer to our [Command Guide](#command-guide) below
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## **Command Guide**
 
 Below shows a breakdown of how the commands in **RC4HDB** are structured. Don't be afraid that you
@@ -177,6 +185,8 @@ may have typed a command incorrectly as **RC4HDB** will warn you in the event th
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## **Getting Help**
 
 Viewing the command summary from the user guide can be a hassle to some. As an alternative, we have incorporated it
@@ -200,6 +210,8 @@ if it is open. </div>
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### **Modifying Resident Data**
 
@@ -249,6 +261,8 @@ Examples:
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### Editing an existing resident : `edit`
 
 Edits the data of an existing resident in **RC4HDB**. Does **not** allow any [duplicate residents](#modifying-resident-data) to be created due to the editing of a resident.
@@ -288,13 +302,13 @@ The delete command can be used in conjunction with other commands such as list a
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd resident in the database.
-
-
 * `find Betsy` followed by `delete 1` deletes the 1st resident in the results of the `find` command.
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting multiple residents : `remove`
 
@@ -317,9 +331,9 @@ Examples:
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
-### Clearing all entries : `clear`
-
 ---
+
+### Clearing all entries : `clear`
 
 Clears all entries from **RC4HDB**.
 
@@ -332,6 +346,8 @@ Deleted data can not be retrieved. Do use this command cautiously!
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### Format for resident fields
 
@@ -375,6 +391,8 @@ Deleted data can not be retrieved. Do use this command cautiously!
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## **Viewing Residents**
 
 You might find yourself overloaded with information. These commands can help you hide resident fields from view, 
@@ -398,9 +416,9 @@ Note:
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
-<br>
-
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### Showing only some columns : `showonly`
 
@@ -447,9 +465,9 @@ Note:
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
-<br>
-
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### Hiding only some columns : `hideonly`
 
@@ -478,7 +496,6 @@ Sequential examples:
    columns shown, as the *name* column has been hidden.
 
 Note:
-
 * Valid inputs include `i n p e r g h m t` (case-insensitive), which correspond to the first letter of each field in the table.
     * This *should not* be confused with the `n/` or `p/` prefixes used in `edit` or `filter`.
 * Letters *must* be separated by a single whitespace.
@@ -487,10 +504,7 @@ Note:
 * There needs to be at least one column shown in the table at all times.
 * You can always use `reset` to restore the full table view!
 
-
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
-
-<br>
 
 ---
 
@@ -509,9 +523,9 @@ Note:
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
-<br>
-
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### Locating residents by name : `find`
 
@@ -539,15 +553,15 @@ Examples:
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
-<br>
-
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### Filtering residents by field : `filter`
+
 Shows a list of residents whose fields match the input keywords.
 
 Format: `filter /SPECIFIER KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
-
 * A specifier is required in order for the command to work. If not it is an invalid command format
 * Only one specifier can be entered in a command.
 * Currently, only two specifiers are supported:
@@ -567,6 +581,8 @@ Examples:
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## **File Management**
 
 To provide a streamlined way of managing **RC4** related data, **RC4HDB** provides users with the ability to organise their files using our file management commands.
@@ -581,6 +597,8 @@ To provide a streamlined way of managing **RC4** related data, **RC4HDB** provid
 </div>
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### Finding your data
 
@@ -617,29 +635,7 @@ RC4HDB saves your data after every command. There is no need to save manually.
 
 ---
 
-### File Command Format:
-* All file commands have a `FOLDER_NAME` or `FILE_NAME` field depending on the command that is being used. 
-* `FOLDER_NAME` signifies the name of the **sub** data folder that is being used.
-* `FILE_NAME` refers to the [CSV](#glossary-of-terms) file to be targeted.
-* Do not include any file types in the `FOLDER_NAME` or `FILE_NAME`. A file type is the description that comes after the `.` in a file. For example, The file name of the file `residents.csv` is just `residents`.
-* The following symbols are not to be used in `FOLDER_NAME` or `FILE_NAME`:
-  * Empty spaces
-  * `.` dots
-  * `/` forward slashes
-  * `\ ` backslashes
-
-### Examples:
-* `rc4_data_2022` is a valid `FOLDER_NAME`/`FILE_NAME`.
-* `rc4_data_2022.json` is an invalid `FOLDER_NAME`/`FILE_NAME` due to the inclusion of the file type, `.json`.
-* The following are invalid `FOLDER_NAME`/`FILE_NAME` due to the inclusion of restricted symbols.
-  * `rc4 data 2022` has empty spaces.
-  * `rc4.data.2022` has dots.
-  * `rc4/data/2022` has forward slashes.
-  * `rc4\data\2022` has backslashes.
-
-[↑ Back to Top](#welcome-to-rc4hdb-user-guide)
-
----
+<div style="page-break-after: always;"></div>
 
 ### Creating a new data folder : `file create`
 
@@ -673,6 +669,8 @@ Examples:
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### Switching to a different data folder : `file switch`
 
 **RC4HDB** provides users with the ability to switch between different [**sub**](#finding-your-data) data folders.
@@ -704,6 +702,34 @@ Examples:
 
 ---
 
+<div style="page-break-after: always;"></div>
+
+### File Command Format:
+* All file commands have a `FOLDER_NAME` or `FILE_NAME` field depending on the command that is being used.
+* `FOLDER_NAME` signifies the name of the **sub** data folder that is being used.
+* `FILE_NAME` refers to the [CSV](#glossary-of-terms) file to be targeted.
+* Do not include any file types in the `FOLDER_NAME` or `FILE_NAME`. A file type is the description that comes after the `.` in a file. For example, The file name of the file `residents.csv` is just `residents`.
+* The following symbols are not to be used in `FOLDER_NAME` or `FILE_NAME`:
+  * Empty spaces
+  * `.` dots
+  * `/` forward slashes
+  * `\ ` backslashes
+
+### Examples:
+* `rc4_data_2022` is a valid `FOLDER_NAME`/`FILE_NAME`.
+* `rc4_data_2022.json` is an invalid `FOLDER_NAME`/`FILE_NAME` due to the inclusion of the file type, `.json`.
+* The following are invalid `FOLDER_NAME`/`FILE_NAME` due to the inclusion of restricted symbols.
+  * `rc4 data 2022` has empty spaces.
+  * `rc4.data.2022` has dots.
+  * `rc4/data/2022` has forward slashes.
+  * `rc4\data\2022` has backslashes.
+
+[↑ Back to Top](#welcome-to-rc4hdb-user-guide)
+
+---
+
+<div style="page-break-after: always;"></div>
+
 ### CSV file format
 
 :information_source: All fields must adhere to this [format](#format-for-resident-fields).<br>
@@ -720,6 +746,8 @@ Format:
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Venue Management**
 
@@ -784,6 +812,8 @@ Examples:
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### Viewing a venue : `venue view`
 
 Displays all bookings for the specified venue.
@@ -815,6 +845,8 @@ Examples:
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ### Deleting a booking: `venue unbook`
 
@@ -853,6 +885,8 @@ Examples:
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## **Quality-Of-Life**
 
 As an application optimized for keyboard usage, **RC4HDB** may not be the most intuitive for someone that is used to using the mouse. As
@@ -878,6 +912,8 @@ commands. If you want a full summary of all our commands, refer to [here](#comma
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ### Accessing command history
 
 Use the `↑ Up` and `↓ Down` arrow keys to navigate through the command history. This
@@ -896,11 +932,13 @@ will not be saved!. </div>
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## **Exiting the Program**
 
 You do not have to worry about exiting
 **RC4HDB** without saving as any changes you've made is automatically saved after every command. For more information,
-the [file management section](#saving-the-data).
+the [file management section](#saving-your-data).
 
 ### Exiting the program : `exit`
 
@@ -911,6 +949,8 @@ Format: `exit`
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Upcoming Features**
 
@@ -935,21 +975,23 @@ Examples:
 
 ---
 
+<div style="page-break-after: always;"></div>
+
 ## **FAQ**
 
 **Q: Can I search using fields other than the name?**
 
-**A**: You can use the `filter` command to search for people using the other fields.
+**A:** You can use the `filter` command to search for people using the other fields.
 
 **Q: Why is there a need to use `hideonly` if we can already use `showonly`?**
 
-**A**: You can use `hideonly` when you want to display more fields than you want to hide. For example,
+**A:** You can use `hideonly` when you want to display more fields than you want to hide. For example,
 `hideonly i` has the same effect as `showonly n p e r g h m t` on a full table. Using `hideonly` helps to save 
 time on typing!
 
 **Q: How do I remember which commands use letters (as compared to other commands which use key/value) as inputs?**
 
-**A**: Only the column hiding features, i.e. `showonly` and `hideonly`, use letters. You can remember this by 
+**A:** Only the column hiding features, i.e. `showonly` and `hideonly`, use letters. You can remember this by 
 associating the "only" in these commands to the convenience of typing *only* letters!
 
 **Q: The section for `showonly` and `hideonly` says that `i n p e r g h m t` are valid letters. However, I am getting an error message that says "Please enter columns to show or hide that are currently in the table view." when using these valid letters.** 
@@ -969,6 +1011,8 @@ do not wish to see them.
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## **Glossary of terms**
 
@@ -992,13 +1036,14 @@ This term is short for JavaScript Object Notation. It is a common file type that
 
 [↑ Back to Top](#welcome-to-rc4hdb-user-guide)
 
+---
+
+<div style="page-break-after: always;"></div>
 
 # Authors
 
 This User Guide was co-written by Alvin, Jordan, Neale, Nicholas, and Naren, the developers behind RC4HDB.
 For more information, please refer to our [about us](AboutUs.md) page.
-
-
 
 ---
 
@@ -1007,7 +1052,6 @@ For more information, please refer to our [about us](AboutUs.md) page.
 We understand that you might be overwhelmed by the number of commands available to you. Though we have provided a
 summary table of contents in the Help Window in **RC4HDB**, that table contains only our most basic and commonly used
 commands. The tables below contain the full summary of our commands and how they can be used.
-
 
 ### General Commands
 
