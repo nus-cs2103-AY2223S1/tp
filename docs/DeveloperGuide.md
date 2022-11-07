@@ -130,7 +130,6 @@ The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* stores a seperate _sorted_ list which is expose to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed'.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -168,7 +167,7 @@ The Set Command makes use of the following classes:
 
 * `SetCommand` — Updates the `Person` object in the model.
 * `SetCommandParser` — Parses the arguments supplied by the user.
-* `SetPersonDescriptor` — Contains the updated information from the user.
+* `SetPersonDescriptor` — Contains the updated information from the user. 
 
 In particular, `SetPersonDescriptor` contains the following fields
 
@@ -194,18 +193,50 @@ attributes will be updated.
 The sequence diagram below illustrates the process of the Set Command works.
 ![SetSequenceDiagram](images/SetSequenceDiagram.png)
 
-### Sort Command
+### Add user using GitHub account
 
-The Sort Command makes use of the following classes:
-* `SortCommand` — Updates the `Comparator` object in model.
-* `SortCommandParser` — Parses the arguments supplied by the user, and choose the comparator supplied by `PersonComparators`.
-* `PersonComparators` — Defines a set of comparators that can be supplied to model.
+Adding of a GitHub account uses the following classes:
 
-SortCommand Parser will determine the field that users want to sort, retrieve the `Comparator` from `PersonComparators` and update in model.
+- `seedu.address.logic.commands.AddCommand` - Adds user with GitHub account
+- `seedu.address.logic.commands.parser.AddCommandParser` - Parses GitHub username to add
+- `seedu.address.github.GithubApi` - Defines error handling and consolidates API calls
+- `seedu.address.github.UserInfoRoute.UserInfoRequest` - Calls API to get user information and profile image
+- `seedu.address.github.UserInfoWrapper` - Parses API response by `UserInfoRoute`
+- `seedu.address.github.UserRepoRoute.UserRepoRequest` - Calls API to get user repositories information
+- `seedu.address.github.UserRepoWrapper` - Parses API response by `UserRepoRoute`
+- `seedu.address.model.person.github.User` - Holds all parsed information about GitHub user
+- `seedu.address.model.person.github.Repo` - Holds all parsed information about a specific GitHub repository
 
-![SortSequenceDiagram](images/SortSequenceDiagram.png)
+When adding a contact, the user will be able to give a GitHub username to add, from which we pull all relevant data from:
 
-### \[Proposed\] Undo/redo feature
+- `Name`
+- `Location`
+- `Email`
+- `Profile Picture`
+
+The updated `Add` command uses the following classes:
+
+- `AddCommand` - Creates and adds `Person` object to list of contacts
+- `AddCommandParser` - Parses the arguments supplied by the user for the `Add` command, differentiates between adding local name and GitHub account.
+- `GithubApiWrapper` - Retrieves information from GitHub API to populate user detail fields
+
+Flow of adding user: 
+
+1. Since the user is unsure of name/location/other info about the contact they wish to add, they wish to pull it straight from GitHub. Say the contact's GitHub account is `@exampleaccount`. The user executes the command `add github/exampleaccount`
+2.  `AddCommandParser` parses the command, returning an `AddCommand` which will add a contact using their GitHub username.
+3. It then creates the `User` object with the username, which uses `GithubApi` to get all relevant information about the user and their repos.
+   1. `GithubApi` object will create the `UserInfoWrapper` and `UserRepoWrapper` objects pertaining to the user, 
+   2. These will create `UserInfoRoute.UserInfoRequest` and `UserRepoRoute.UserRepoRequest` objects to call the API
+   3. The wrappers will parse the information and pass it back to the `User` object.
+4. The `User` class initialises all needed information as well as a list of `Repo`s owned by the user.
+
+The UML diagram below shows how the dependicies between the different related classes work:
+
+![PlantUML diagram](images/GithubApiUML.png)
+
+
+
+### [Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
@@ -232,7 +263,6 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 ![UndoRedoState2](images/UndoRedoState2.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
 </div>
 
 Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
@@ -291,37 +321,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### \[Proposed\] Delete User Attributes Feature (In Github Contact Page)
 
-When the user navigates to the ContactDetail Page of a specified Person, this feature allows the User to delete specified attributes from the command line.
+When the user navigates to the ContactDetail Page of a specified Person, this feature allows the User to delete specified attributes from the command line. 
 
 The Delete Attribute feature will make use of the following classes:
 * `DeleteAttributeCommand` — Removes specified attribute from specified `Person` object in the model.
 * `DeleteAttributeCommandParser` — Parses the arguments supplied by the user - the `name` of the person whose `attribute` will be deleted.
-* `DeleteAttributePersonDescriptor` - Contains the attributes of the Person after an Attribute has been deleted.
+* `DeleteAttributePersonDescriptor` - Contains the attributes of the Person after an Attribute has been deleted. 
 
 Step 1: The user enters the `ContactDetailPage` of a previously added `Person`.
 
 Step 2: The user executes `delete name/Bob role/DevOps`. `DeleteAttributeCommandParser` parses the arguments and
-creates a `DeletePersonDescriptor` containing null value for the attribute `Role` while maintaining the values for the other
-attributes. A`DeleteAttributeCommand` instance containing that `DeletePersonDescriptor` will then be created. When executed,
+creates a `DeletePersonDescriptor` containing null value for the attribute `Role` while maintaining the values for the other 
+attributes. A`DeleteAttributeCommand` instance containing that `DeletePersonDescriptor` will then be created. When executed, 
 the currently selected `Person`'s attributes will be updated according to the deleted attribute.
-
-### [Proposed] Add user using GitHub account
-
-When adding a contact, the user will be able to give a GitHub username to add, from which we pull all relevant data from:
-
-- `Name`
-- `Address`
-- `Location`
-- `Email`
--  `Timezone`
-
-The updated `Add` command will make use of the following classes:
-
-- `AddCommand` - Creates and adds `Person` object to list of contacts
-- `AddCommandParser` - Parses the arguments supplied by the user for the `Add` command, differentiates between adding local name and GitHub account.
-- `GithubApiWrapper` - Retrieves information from GitHub API to populate user detail fields
-
-Step 1: Since the user is unsure of name/location/other info about the contact they wish to add, they wish to pull it straight from GitHub. Say the contact's GitHub account is `@exampleaccount`. The user executes the command `add github/exampleaccount`, upon which `AddCommandParser` parses the command, returning an `AddCommand` which will add a contact using their GitHub username. It then uses `GithubApiWrapper` to pull relevant information about the person then populates the fields before creating the `Person` object.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -448,7 +460,7 @@ Use Case ends.
 
 **Use case: UC-07 - Delete a Contact from a person**
 
-**Preconditions:**
+**Preconditions:** 
 * Person has been added to the system.
 * User is inside the person's Contact Detail Page.
 
@@ -483,7 +495,7 @@ Use Case ends.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should be able to load the contact list within 2 seconds.
 5. Without noticeable delay, should be able to add and update contact information.
-6. Without noticeable delay, should be able to delete contact information.
+6. Without noticeable delay, should be able to delete contact information. 
 7. Must be able to cache github repository list for future use.
 8. Must be able to display search results for find function within 3 seconds.
 
