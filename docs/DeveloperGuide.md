@@ -1166,22 +1166,22 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a description
 
-   2. Test case: `description 2 d/Eager to invest`<br>
+   2. Test case: `description 2 ds/Eager to invest`<br>
       Expected: Description of the second client changed to `Eager to invest`. 
    
-   3. Test case: `description d/Eager to invest`<br>
+   3. Test case: `description ds/Eager to invest`<br>
       Expected: No change in descriptions made. Error details shown in command display.
   
-   3. Other test cases: `description`, `description 0 d/Eager to invest`<br>
+   3. Other test cases: `description`, `description 0 ds/Eager to invest`<br>
       Expected: No change in descriptions made. Error details shown in command display.
    
 
 2. Removing a description
 
-   2. Test case: `description 2 d/`<br>
+   2. Test case: `description 2 ds/`<br>
       Expected: Description of the second client removed. "Removed Description: " message shown in command display. 
    
-   3. Other test cases: `description`, `description 0 d/`<br>
+   3. Other test cases: `description`, `description 0 ds/`<br>
       Expected: No change in descriptions made. Error details shown in command display.
 
 
