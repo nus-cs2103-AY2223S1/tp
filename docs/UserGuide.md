@@ -62,9 +62,6 @@ This section introduces the different components of Class-ify's application wind
 | 4   | Result Box            | Displays the system message after the execution of a command. The system message describes the outcome of the entered command. |
 | 5   | Command Box           | Type in your commands here.                                                                                                    |
 | 6   | Storage File Location | Displays the location of the data file on your computer.                                                                       |
-
---------------------------------------------------------------------------------------------------------------------
-
 <div style="page-break-after: always;"></div>
 
 ## 3. **Quick Start**
@@ -208,6 +205,7 @@ for the intended parameter.
 Invalid command message:
 ![InvalidCommandError](images/InvalidCommandError.png){:width="400px"}
 </div>
+<div style="page-break-after: always;"></div>
 
 #### 4.2.2 Editing a student record : `edit`
 
@@ -232,6 +230,7 @@ Format: `edit INDEX [nm/STUDENT-NAME] [id/ID] [exam/EXAM-NAME SCORE] [pn/PARENT-
 Examples:
 * `edit 1 exam/CA2 70 exam/SA1 60` adds or updates the _CA2_ and _SA1_ exam grades of the 1st student to be _70_ and _60_ respectively.
 * `edit 2 nm/Jacob Teo` edits the name of the 2nd student to _Jacob Teo_.
+<div style="page-break-after: always;"></div>
 
 #### 4.2.3 Deleting a student record : `delete`
 
@@ -259,6 +258,7 @@ are treated as _JOHN_ by default.
 :exclamation: **Caution:** This command will delete a student record and this action is irreversible. Make sure you are 
 deleting the correct student record!
 </div>
+<div style="page-break-after: always;"></div>
 
 #### 4.2.4 Clearing all student records : `clear`
 
@@ -304,6 +304,7 @@ In the event that the list is only showing student records from a particular cla
 the full list of student records again.
 
 Format: `viewAll`
+<div style="page-break-after: always;"></div>
 
 #### 4.3.2 Viewing student records from a class : `viewClass`
 
@@ -325,6 +326,7 @@ Example:
 * `viewClass 1A` displays the list of students in _Class 1A_
 
 ![viewClass](images/viewClass.png)
+<div style="page-break-after: always;"></div>
 
 #### 4.3.3 Finding a student record : `find`
 
@@ -356,6 +358,7 @@ Examples:
 * `find nm/John` displays the list of students with _john_ in their name. 
 * `find nm/john alice` displays the list of students whose name contain _john_, _alice_ or both.
 * `find id/123A` displays the student with _123A_ as their student ID.
+<div style="page-break-after: always;"></div>
 
 #### 4.3.4 Toggling view : `toggleView`
 
@@ -441,6 +444,7 @@ Format: `help`
 
 :bulb: **Tip:** Copy and paste the [URL](#7-glossary) into your browser to open this user guide. This user guide provides a more extensive explanation of each command.
 </div>
+<div style="page-break-after: always;"></div>
 
 #### 4.5.2 Exiting the application : `exit`
 
