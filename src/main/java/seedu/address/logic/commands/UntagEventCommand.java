@@ -21,7 +21,7 @@ import seedu.address.model.person.Person;
 public class UntagEventCommand extends Command {
     public static final String COMMAND_WORD = "untagEvent";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Untags 1 or more persons in the person list from an event in the event list "
+            + ": Untags 1 or more persons previously tagged to the event from the event in the event list "
             + "by the index number used in the displayed person and event lists.\n"
             + "Parameters: "
             + "EVENT_INDEX (must be a positive integer) "
