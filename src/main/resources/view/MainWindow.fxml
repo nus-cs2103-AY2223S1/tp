@@ -2,7 +2,6 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.Scene?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -10,51 +9,64 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+<?import javafx.scene.Scene?>
+<?import javafx.stage.Stage?>
+<fx:root xmlns:fx="http://javafx.com/fxml/1" onCloseRequest="#handleExit"
+  title="CLIMods" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/address_book_32.png"/>
   </icons>
   <scene>
     <Scene>
-      <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
-      </stylesheets>
-
       <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+        <MenuBar VBox.vgrow="NEVER" fx:id="menuBar">
           <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit"/>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+            <MenuItem mnemonicParsing="false" onAction="#handleHelp" text="Help"
+              fx:id="helpMenuItem"/>
           </Menu>
         </MenuBar>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+        <SplitPane VBox.vgrow="ALWAYS" dividerPositions="0.5" fx:id="modulePane">
+          <VBox VBox.vgrow="ALWAYS" minWidth="350" styleClass="pane-with-border"
+            fx:id="moduleListPanel">
+            <StackPane VBox.vgrow="ALWAYS" fx:id="moduleListPanelPlaceholder"/>
+            <padding>
+              <Insets bottom="10" left="10" right="10" top="10"/>
+            </padding>
+          </VBox>
+
+          <VBox VBox.vgrow="ALWAYS" styleClass="pane-with-border" fx:id="savedModuleListPanel">
+            <StackPane VBox.vgrow="ALWAYS" fx:id="savedModuleListPanelPlaceholder"/>
+            <padding>
+              <Insets bottom="10" left="10" right="10" top="10"/>
+            </padding>
+          </VBox>
+        </SplitPane>
+
+        <StackPane styleClass="pane-with-border" fx:id="resultDisplayPlaceholder">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets bottom="5" left="10" right="10" top="5"/>
           </padding>
         </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
+        <!--Use a split pane to contain the panels -->
+        <StackPane styleClass="pane-with-border" fx:id="commandBoxPlaceholder">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets bottom="5" left="10" right="10" top="5"/>
           </padding>
         </StackPane>
 
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+        <StackPane fx:id="statusbarPlaceholder"/>
       </VBox>
+
+      <stylesheets>
+        <URL value="@OneDarkTheme.css"/>
+        <URL value="@DarkTheme.css"/>
+        <URL value="@Extensions.css"/>
+      </stylesheets>
     </Scene>
   </scene>
 </fx:root>

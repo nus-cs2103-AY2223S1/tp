@@ -3,9 +3,16 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+`CLIMods` is a native desktop application for NUS students to explore, manage and plan academic
+modules that they are interested in taking. It is primarily optimised for the use via a Command Line
+Interface (CLI) while still providing the benefits of a Graphical User Interface (GUI). Power users
+of the command line/terminal will be able to plan and manage their modules much faster than doing it
+on [nusmods.com](https://www.nusmods.com).
 
-* Table of Contents
+Developed with love by: 
+Linus, Cheng Yi, Yi Hong, Huzaifa, Hong Jin
+
+* Table of Contents 
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -14,179 +21,255 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `climods.jar`
+   from [here](https://github.com/AY2223S1-CS2103-F14-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your `CLIMods`.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few
+   seconds.<br> 
    ![Ui](images/Ui.png)
+   If double-clicking fails to start the app try these steps instead:
+   - Launch a terminal or command prompt on your system
+   - Change the current working directory to the _home folder_ 
+   - Run the following command: `java -jar climods.jar`
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and
+   pressing Enter will open the help window.
 
-   * **`list`** : Lists all contacts.
+6. Refer to the [Features](#features) below for details of each command.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
+> If no academic year is specified in `preferences.json`, the current academic year (e.g. 2022-2023) will be used.
 
 --------------------------------------------------------------------------------------------------------------------
+
+## Features syntax
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**
+
+* Words in `lowercase` are commands.
+* Words in `UPPPERCASE` are compulsory arguments.
+* Words in `[square brackets]` are optional arguments.
+* Words in `<triangle brackets>` are keyboard strokes.
+
+</div>
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
-
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
-
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
-
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
-
-</div>
-
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
+### User Manual: `help`
 
 Format: `help`
 
+Provides the user manual for all supported commands.
 
-### Adding a person: `add`
+### Listing modules: `ls`
 
-Adds a person to the address book.
+![ListCommand Demo](images/commands/ListCommand.png)
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `ls [FACULTY-PREFIX]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
+Optional Arguments:
+
+- `FACULTY-PREFIX`
+    - e.g. `CS`, `CEG`
+
+Shows the entire list of modules offered by NUS with the option to also filter it by faculty (via
+module prefix e.g. CS, CEG).
+
+### Searching for modules: `find`
+
+![FindCommand Demo](images/commands/FindCommand.png)
+
+Format: `find KEYWORD`
+
+Required Arguments:
+
+- `KEYWORD`
+    - Any keyword to search against the list of modules
+    - A keyword must be a regex expression
+        - e.g. `^CS20\d0$` or `CS2103`
+        - Refer to the FAQ section to learn more about regex!
+
+Search for a (list of) module in the entire list of modules offered by NUS.
+
+<div markdown="block" class="alert alert-danger">
+:warning: Regex is difficult, and is intended to be used by more experienced users. This function works fine even without using regex in the query!
 </div>
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+> Click [here](https://regex101.com/) to check that your regex statement is compatible with Java 8
 
-### Listing all persons : `list`
+### View module details: `view`
 
-Shows a list of all persons in the address book.
+![ViewCommand Demo](images/commands/ViewCommand.png)
+![ViewCommand Show Tutorial Demo](images/commands/ViewCommandShowTutorial.png)
 
-Format: `list`
+Format: `view MODULE-CODE`
 
-### Editing a person : `edit`
+Required Arguments:
 
-Edits an existing person in the address book.
+- `MODULE-CODE`
+    - e.g. `CS2103`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+View full details (e.g. description, module credits and lesson slots) of a module via its module code.
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+### Listing module prerequisite: `preq`
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+![PreqCommand Demo](images/commands/PreqCommand.png)
 
-### Locating persons by name: `find`
+Format: `preq MODULE-CODE`
 
-Finds persons whose names contain any of the given keywords.
+Required Arguments:
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+- `MODULE-CODE`
+    - e.g. `CS2103`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+Show the list of modules that are the given module's prerequisites.
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+<div markdown="block" class="alert alert-danger">
+:warning: Preclusions to prerequisite mods will not be shown due to a limitation with the NUSMods API. (E.g. Only CS1010 will be shown for `preq cs2040`)
+</div>
 
-Deletes the specified person from the address book.
+**Note**: `preq` is not always able to show prerequisites for all modules due to limitations of the NUSMods API.
+- Some modules may list a prerequisite module code that is no longer offered in the current academic year. Such 
+modules will not be shown in the list of prerequisites after running `preq`.
+- Some modules have a prerequisite description but the NUSMods API is unable to provide prerequisite module codes 
+(e.g `LLJ5479`). 
+- The `preq` command does not show and/or relationships between prerequisite modules.
 
-Format: `delete INDEX`
+### Add modules to user list: `add`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+![AddCommand Demo](images/commands/AddCommand.png)
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+Format: `add MODULE-CODE SEMESTER-CODE`
 
-### Clearing all entries : `clear`
+Required Arguments:
 
-Clears all entries from the address book.
+- `MODULE-CODE`
+    - e.g. `CS2103`
+  
+- `SEMESTER-CODE`
+    - `s1`, Semester 1
+    - `s2`, Semester 2
+    - `st1`, Special Term 1
+    - `st2`, Special Term 2
 
-Format: `clear`
+Add a module to the user's own list of modules.
 
-### Exiting the program : `exit`
+Your added module will display your lesson timings!
 
-Exits the program.
+### Delete a module from user list: `rm`
+
+Format: `rm MODULE-CODE`
+
+Required Arguments:
+
+- `MODULE-CODE`
+    - e.g. `CS2103`
+
+Delete a module to the user's own list of modules.
+
+### Pick module lessons: `pick`
+
+![PickCommand Demo](images/commands/PickCommand.png)
+
+Format: `pick MODULE-CODE LESSON-TYPE LESSON-ID`
+
+Required Arguments:
+
+- `MODULE-CODE`
+    - e.g. `CS2103`
+
+- `LESSON-TYPE`
+    - `TUT`: Tutorial
+    - `LAB`: Lab
+    - `REC`: Recitations
+    - `SEC`: Sectional Teaching
+    - `LEC`: Lecture
+    - `OTHERS`: Others
+  > More lesson types coming soon 😃
+
+- `LESSON-ID`
+    - e.g. `08J`
+  > Tip: Use the `view` command to look at the available lessons!
+
+Pick lesson (e.g tutorial, lab) slots from the available choices for modules that have been selected by the user.
+
+Your list of modules will display your lesson timings!
+
+### Exiting the program: `exit`
 
 Format: `exit`
 
-### Saving the data
+Exits the program
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+### Previous/Next command: `<Up>/<Down>`
 
-### Editing the data file
+Using the `<Up>` and `<Down>` arrow keys, users can traverse through the command history.
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+Traverse/Scroll **up**: `<Up>`
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
+Traverse/Scroll **down**: `<Down>`
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
---------------------------------------------------------------------------------------------------------------------
-
-## FAQ
-
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+> Do note that the implementation of the command history will not keep track of consecutive 
+> duplicate commands. This is to prevent clutter in the command history. Therefore, a command
+> sequence like `ls CS` followed by another `ls CS` will only have one record in the command history.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action   | Format, Examples                                                       |
+|----------|------------------------------------------------------------------------|
+| **help** | `help`<br> e.g. `help`                                                 |
+| **ls**   | `ls [FACULTY-PREFIX]`<br> e.g. `ls`, `ls CS`                           |
+| **find** | `find KEYWORD`<br> e.g. `find compilers`                               |
+| **view** | `view MODULE-CODE`<br> e.g. `view CS2103`                              |
+| **preq** | `preq MODULE-CODE`<br> e.g. `preq CS2103`                              |
+| **add**  | `add MODULE-CODE`<br> e.g. `add CS2103 s1`                             |
+| **rm**   | `rm MODULE-CODE`<br> e.g. `rm CS2103`                                  |
+| **pick** | `pick MODULE-CODE LESSON-TYPE LESSON-ID`<br> e.g. `pick CS2103 TUT 06` |
+| **exit** | `exit`                                                                 |
+
+
+## FAQs
+
+1. **What is a `regex` expression?**
+
+    It stands for `regular expression` and is a sequence of characters that specifies a search pattern in text. To learn more about regex, you can refer to [this tutorial](https://regexone.com).
+
+2. **Why can't I visit external links?**
+
+    You are likely coming from our application via the `help` command. It is intended for the user
+    to only view our website (including the user guide) via the command. If you wish to visit any external links,
+    you can copy the link and paste it into your favourite browser!
+
+3. **Can I update the json file?**
+
+    No! Do not edit the json files on your own! Instead, you should use the command line interface provided by
+    CLIMods. We do not take any responsibility for any unexpected behaviour if you insist on editing the json files.
+
+    <div markdown="block" class="alert alert-danger">
+    :warning: If the file is corrupted, please manually delete the file from the directory. 
+    Automatic deletion of files is not a feature due to security concerns (e.g. malicious hackers can set the file preference to local files that are not json compatible. Enabling auto-deletion of corrupted files will enable hackers to delete these files.)
+    </div>
+
+4. **Why is the application not displaying any modules?**
+
+    CLIMods requires internet access because we fetch module data from NUSMods API.  Please ensure that you have
+    internet access before launching CLIMods.
+
+5. **How should I specify the academic year?**
+
+    An academic year is specified in the `YYYY-YYYY` format. Note that specifying identical years (`2022-2022`) will be treated as an invalid academic year.
+
+    Since, `CLIMods` relies on the [`nusmods` API](https://api.nusmods.com/v2) for module data, do note that legacy module data may not be available. For example, since `nusmods` no longer provide module data before `2018`, specifying `2017-2018` or any previous academic years will be treated as an invalid academic year.
+
+    <div markdown="span" class="alert alert-primary">
+    :bulb: **Tip**
+    
+    - **Valid** ✅ academic year examples: `2022-2023`, `2018-2019`
+       
+    - **Invalid** ❌ academic year examples: `2022-2022`, `2023-2022`, `22-23`
+    </div>

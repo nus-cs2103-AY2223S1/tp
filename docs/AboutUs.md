@@ -5,55 +5,55 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `climods[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Huzaifa Raghav
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/huzaifa1712.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/huzaifa1712)]
+[[portfolio](team/huzaifa1712.md)]
 
-* Role: Project Advisor
+* Role: Developer
+* Responsibilities: 
 
-### Jane Doe
+### Linus Lee
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/zupey.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/zupey)]
+[[portfolio](team/zupey.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Coder
 
-### Johnny Doe
+### Pei Cheng Yi  
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/seeksaveserve.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/SeekSaveServe)] [[portfolio](team/seeksaveserve.md)]
 
 * Role: Developer
 * Responsibilities: Data
 
-### Jean Doe
+### Shen Yi Hong
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/shenyih0ng.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/shenyih0ng)]
+[[portfolio](team/shenyih0ng.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities:
+
+### Chew Hong Jin
+
+<img src="images/sarrrdin.png" width="200px">
+
+[[github](https://github.com/sarrrdin)]
+[[portfolio](team/sarrrdin.md)]
+
+* Role: Developer
+* Responsibilities: UX

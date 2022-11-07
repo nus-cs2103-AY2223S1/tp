@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.scene.control.Accordion?>
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane HBox.hgrow="ALWAYS">
+    <VBox alignment="CENTER_LEFT" GridPane.columnIndex="0">
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label fx:id="moduleCode" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-font-size: 20;" text="\$moduleCode" />
+        <FlowPane fx:id="moduleInfo" alignment="CENTER_LEFT" hgap="5" />
+      </HBox>
+      <Label fx:id="title" style="-fx-font-size: 15;" text="\$title" />
+      <Label fx:id="department" style="-fx-font-size: 15;" text="\$department" />
+      <!--  Expanded module info  -->
+      <VBox fx:id="expandedModuleInfo">
+        <Label fx:id="moduleDescription" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-font-size: 15;" text="\$moduleDescription" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin></Label>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Prerequisites">
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </Text>
+
+        <Label fx:id="prerequisite" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-font-size: 15;" text="\$prerequisite" />
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Preclusions">
+               <VBox.margin>
+                  <Insets bottom="5.0" top="5.0" />
+               </VBox.margin>
+            </Text>
+            <Label fx:id="preclusion" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" style="-fx-font-size: 15;" text="\$preclusion" />
+
+          <padding>
+          <Insets right="10.0">
+            <top>10.0</top>
+            <bottom>10.0</bottom>
+          </Insets>
+        </padding>
+      </VBox>
+        <!-- Lesson Info -->
+        <VBox fx:id="lessonInfo">
+
+        </VBox>
+      <padding>
+        <Insets bottom="5" left="15" right="5" top="5" />
+      </padding>
+      <padding>
+        <Insets bottom="10.0" left="15.0" right="10.0" top="15.0" />
+      </padding>
+    </VBox>
+    <columnConstraints>
+      <ColumnConstraints hgrow="ALWAYS" minWidth="10" prefWidth="100" />
+    </columnConstraints>
+    <rowConstraints>
+      <RowConstraints />
+    </rowConstraints>
+  </GridPane>
+</HBox>

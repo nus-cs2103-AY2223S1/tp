@@ -1,0 +1,16 @@
+{
+  "modules": [
+    {
+      "moduleCode": "AC5001",
+      "selectedSemester": "S1"
+    },
+    {
+      "moduleCode": "CS2103",
+      "selectedSemester": "S1"
+    },
+    {
+      "moduleCode": "CS2030S",
+      "selectedSemester": "S1"
+    }
+  ]
+}
