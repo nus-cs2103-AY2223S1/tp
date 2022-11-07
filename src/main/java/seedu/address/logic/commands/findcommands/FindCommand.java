@@ -14,7 +14,7 @@ import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Supplier;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all Persons in address book whose name contains any of the argument keywords.
  * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
@@ -50,7 +50,6 @@ public class FindCommand extends Command {
      * @param sPredicate A Predicate for Suppliers.
      * @param type Whether to return a CommandResult relevant to the
      *             Buyer, Deliverer or Supplier.
-     * @return FindCommand.
      */
     public FindCommand(Predicate<Buyer> bPredicate, Predicate<Deliverer> dPredicate,
                        Predicate<Supplier> sPredicate, PersonCategory type) {

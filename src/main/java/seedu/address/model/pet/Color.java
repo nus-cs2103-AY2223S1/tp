@@ -1,7 +1,7 @@
 package seedu.address.model.pet;
 
 /**
- * Abstracts the color of a pet.
+ * Represents the color of a pet.
  */
 public class Color implements Comparable<Color> {
 

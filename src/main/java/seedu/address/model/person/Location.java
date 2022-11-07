@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Person's location in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidLoc(String)}
+ * Guarantees: immutable.
  */
 public class Location {
     public static final String MESSAGE_CONSTRAINTS =

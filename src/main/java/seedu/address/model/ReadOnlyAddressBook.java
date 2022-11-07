@@ -8,7 +8,7 @@ import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an address book.
  */
 public interface ReadOnlyAddressBook {
 

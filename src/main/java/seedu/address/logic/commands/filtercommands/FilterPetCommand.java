@@ -35,7 +35,7 @@ public class FilterPetCommand extends FilterCommand {
     private final Predicate<Pet> vaccinationPredicate;
 
     /**
-     * Creates a FilterLocCommand to filter the specified {@code Location}.
+     * Creates a FilterPetCommand to filter the specified {@code Pet}.
      */
     public FilterPetCommand(Predicate<Pet> cPredicate, Predicate<Pet> nPredicate, Predicate<Pet> pPredicate,
                             Predicate<Pet> sPredicate, Predicate<Pet> vaccinationPredicate) {

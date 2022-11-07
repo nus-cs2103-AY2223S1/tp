@@ -18,7 +18,7 @@ import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Phone;
 
 /**
- * Jackson-friendly version of {@link Deliverer }.
+ * Jackson-friendly version of {@link Deliverer}.
  */
 class JsonAdaptedDeliverer {
 
@@ -33,7 +33,7 @@ class JsonAdaptedDeliverer {
     private final List<String> ids = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedDeliverer } with the given Deliverer  details.
+     * Constructs a {@code JsonAdaptedDeliverer} with the given Deliverer details.
      */
     @JsonCreator
     public JsonAdaptedDeliverer(@JsonProperty("personCategory") String personCategory,
@@ -68,7 +68,7 @@ class JsonAdaptedDeliverer {
     }
 
     /**
-     * Converts this Jackson-friendly adapted Deliverer  object into the model's {@code Deliverer } object.
+     * Converts this Jackson-friendly adapted Deliverer  object into the model's {@code Deliverer} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted Deliverer .
      */

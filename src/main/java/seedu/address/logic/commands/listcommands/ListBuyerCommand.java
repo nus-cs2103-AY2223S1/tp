@@ -4,7 +4,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
- * Lists all buyers to the user.
+ * Lists all Buyers to the user.
  */
 public class ListBuyerCommand extends ListCommand {
 

@@ -1,7 +1,7 @@
 package seedu.address.model.pet;
 
 /**
- * A class the represents the weight of a pet.
+ * Represents the weight of a pet.
  */
 public class Weight implements Comparable<Weight> {
 

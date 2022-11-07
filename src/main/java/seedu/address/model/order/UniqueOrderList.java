@@ -20,7 +20,7 @@ import seedu.address.model.order.exceptions.OrderNotFoundException;
  * orders uses Order#isSameOrder(Order) for equality so as to ensure that the order being added or updated is
  * unique in terms of identity in the UniqueOrderList. However, the removal of an order uses Order#equals(Object) so
  * as to ensure that the order with exactly the same fields will be removed.
- * <p>
+ *
  * Supports a minimal set of list operations.
  *
  */

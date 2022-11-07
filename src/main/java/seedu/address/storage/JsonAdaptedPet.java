@@ -46,7 +46,7 @@ public class JsonAdaptedPet {
     private final String uniqueId;
 
     /**
-     * Constructs a {@code JsonAdaptedPet} with the given buyer details.
+     * Constructs a {@code JsonAdaptedPet} with the given Pet details.
      */
     @JsonCreator
     public JsonAdaptedPet(@JsonProperty("name") String name,

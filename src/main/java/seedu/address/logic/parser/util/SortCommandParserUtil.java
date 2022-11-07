@@ -17,7 +17,7 @@ import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
 
 /**
- * Provides utils for Sort related classes.
+ * Provides utils for SortCommand related classes.
  */
 public class SortCommandParserUtil {
 
@@ -33,23 +33,23 @@ public class SortCommandParserUtil {
     private static final Comparator<? extends Person> PERSON_PHONE_COMPARATOR = (o1, o2) ->
             o1.getPhone().compareTo(o2.getPhone());
 
-    //Comparators for buyer
+    //Comparators for Buyer
     private static final Comparator<Buyer> BUYER_COMPARATOR = Buyer::compareTo;
 
-    //Comparators for supplier
+    //Comparators for Supplier
     private static final Comparator<Supplier> SUPPLIER_COMPARATOR = Supplier::compareTo;
 
-    //Comparators for deliverer
+    //Comparators for Deliverer
     private static final Comparator<Deliverer> DELIVERER_COMPARATOR = Deliverer::compareTo;
 
-    //Comparators for order
+    //Comparators for Order
     private static final Comparator<Order> ORDER_PRICE_RANGE_COMPARATOR = Comparator.comparing(
             Order::getRequestedPriceRange);
     private static final Comparator<Order> ORDER_DUE_DATE_COMPARATOR = Comparator.comparing(Order::getByDate);
     private static final Comparator<Order> ORDER_PRICE_COMPARATOR = Comparator.comparing(Order::getSettledPrice);
     private static final Comparator<Order> ORDER_STATUS_COMPARATOR = Comparator.comparing(Order::getOrderStatus);
 
-    //comparators for pet
+    //Comparators for Pet
     private static final Comparator<Pet> PET_NAME_COMPARATOR = (o1, o2) ->
             o1.getName().compareTo(o2.getName());
     private static final Comparator<Pet> PET_COLOR_COMPARATOR = Comparator.comparing(Pet::getColor);

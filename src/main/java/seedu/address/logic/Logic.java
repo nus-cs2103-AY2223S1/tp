@@ -16,7 +16,7 @@ import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
 
 /**
- * API of the Logic component
+ * API of the Logic component.
  */
 public interface Logic {
     /**

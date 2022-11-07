@@ -20,7 +20,7 @@ import seedu.address.model.person.PersonCategory;
 import seedu.address.model.person.Supplier;
 
 /**
- * Parses input arguments and creates a new FindCommand object.
+ * Parses input arguments and creates a {@code FindCommand}.
  */
 public class FindCommandParser implements Parser<FindCommand> {
     /**
