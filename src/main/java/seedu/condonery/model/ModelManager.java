@@ -13,6 +13,8 @@ import seedu.condonery.commons.core.GuiSettings;
 import seedu.condonery.commons.core.LogsCenter;
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.CommandQueue;
+import seedu.condonery.logic.commands.exceptions.CommandException;
+import seedu.condonery.logic.commands.exceptions.EmptyQueueException;
 import seedu.condonery.model.client.Client;
 import seedu.condonery.model.client.ClientDirectory;
 import seedu.condonery.model.client.ReadOnlyClientDirectory;
@@ -305,7 +307,19 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public CommandQueue getCommandQueue() {
-        return this.commandQueue;
+    public void undoCommand() throws EmptyQueueException {
+        Command previousCommand = this.commandQueue.popCommand();
+        resetPropertyDirectory();
+        resetClientDirectory();
+        updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
+        updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+
+        for (Command cmd : commandQueue) {
+            try {
+                cmd.execute(this);
+            } catch (CommandException ex) {
+                logger.warning("CommandException thrown when undo-ing command. This should not happen!");
+            }
+        }
     }
 }

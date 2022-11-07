@@ -20,17 +20,8 @@ public class UndoCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        CommandQueue commandQueue = model.getCommandQueue();
         try {
-            Command previousCommand = commandQueue.popCommand();
-            model.resetPropertyDirectory();
-            model.resetClientDirectory();
-            model.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
-            model.updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
-
-            for (Command cmd : commandQueue) {
-                cmd.execute(model);
-            }
+            model.undoCommand();
             return new CommandResult(MESSAGE_SUCCESS);
 
         } catch (EmptyQueueException ex) {

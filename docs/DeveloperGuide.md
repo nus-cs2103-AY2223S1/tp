@@ -379,13 +379,18 @@ models in order to determine the location to source for the uploaded images.
 The undo mechanism is facilitated by `CommandQueue`. 
 
 `CommandQueue` stores a List of Commands which had been executed during the application lifecycle, and is stored as a field in the `Model` class.
-In addition, the initial state of the `PropertyDirectory` and `ImageDirectory` is saved on initialization. 
+Everytime the `LogicManager` executes a command, it will call `Model#addCommand()`, which adds the `Command` to the `CommandQueue`.
+In addition, the initial state of the `PropertyDirectory` and `ClientDirectory` is saved on initialization. 
 
-The `CommandQueue` is exposed in the `Model` interface as `Model#getCommandQueue()` respectively.
-Ideally, the `CommandQueue` operations should be exposed using a Facade pattern. However, as the use case for the `CommandQueue` class is small, 
-we use getters for simplicity.
+The undo functionality is exposed in the `Model` interface as `Model#undoCommand()`.
+This method handles the resetting of `PropertyDirectory` and `ClientDirectory` to its initial states, and then executing all the commands except for the most recent one. 
 
 Here is the sequence diagram for when `undo` command is executed.
+![UndoSequenceDiagram.png](images/UndoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
 
 Given below is an example usage scenario and how the undo mechanism behaves at each step.
 
@@ -393,32 +398,24 @@ Step 1. The user launches the application for the first time. The `ModelManager`
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete -p 5` command to delete the 5th property in the address book. The `LogicManager` calls `Model#addCommand(deleteCommand)`, causing the exact same `DeletePropertyCommand` to be saved in the `CommandQueue`.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add -p n/Oasis …` to add a new person. The `add -p` command also calls `Model#addCommand(addCommand)`, causing another command to be saved into the `CommandQueue`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#addCommand()`, so the command will not be saved into the `CommandQueue`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoCommand()`, which will pop the most recent `Command`(ie. addCommand), and restores the `PropertyDirectory` and `ClientDirectory` to its initial state. It will then proceed to execute all commands in the `CommandQueue`. Since all commands are deterministic, the resultant state of `PropertyDirectory` and `ClientDirectory` will be as though the last command was 'undone'.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `CommandQueue` is empty, then there are no commands to execute. The `CommandQueue` will throw `EmptyQueueException`, which will be handled by `UndoCommand` by returning an error to the user rather
 than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
@@ -428,11 +425,11 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list -p`. Commands that do not modify the `PropertyDirectory` or `ClientDirectory`, such as `list -p`, will not call `Model#addCommand()`. Thus, the `CommandQueue` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear -p`, which calls `Model#addCommand()`. We notice that `addCommand` is no longer in the `CommandQueue`, and is now replaced by `clearCommand`
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -447,22 +444,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 1:** Saves the initial PropertyDirectory and ClientDirectory on initialization. Store all commands in
 CommandQueue and re-executes _n - 1_ commands on undo.
     * Pros: Easy to implement. Less memory usage
-    * Cons: Might make undo command less responsive, depending on complexity of commands.
-* **Alternative 2:** Saves the entire address book.
+    * Cons: Might make undo command less responsive, depending on time taken to execute commands.
+* **Alternative 2:** Saves the entire address book after each Command.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
-
 * **Alternative 3:** Individual command knows how to undo/redo by
   itself.
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 

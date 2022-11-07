@@ -10,6 +10,7 @@ end box
 box Model MODEL_COLOR_T1
 participant "m:Model" as Model MODEL_COLOR
 participant ":CommandQueue" as CommandQueue MODEL_COLOR
+participant "cmd:Command" as Command MODEL_COLOR
 end box
 [-> LogicManager : execute('undo')
 activate LogicManager
@@ -30,16 +31,28 @@ deactivate CondoneryParser
 LogicManager -> UndoCommand : execute(m)
 activate UndoCommand
 
-UndoCommand -> Model : undoAddressBook()
+UndoCommand -> Model : undoCommand()
 activate Model
 
-Model -> CommandQueue : undo()
+Model -> CommandQueue : popCommand()
 activate CommandQueue
 
-CommandQueue -> CommandQueue :resetData(ReadOnlyAddressBook)
-CommandQueue --> Model :
+CommandQueue -> Model
 deactivate CommandQueue
 
+Model -> Model : resetPropertyDirectory()
+Model -> Model : resetClientDirectory()
+
+loop for cmd in CommandQueue
+    Model -> CommandQueue : next()
+    activate CommandQueue
+    CommandQueue -> Model : cmd
+    deactivate CommandQueue
+    Model -> Command : execute(m)
+    activate Command
+    Command -> Model
+    deactivate Command
+end
 Model --> UndoCommand
 deactivate Model
 

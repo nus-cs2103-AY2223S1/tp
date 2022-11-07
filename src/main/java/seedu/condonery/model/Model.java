@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.condonery.commons.core.GuiSettings;
 import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.CommandQueue;
+import seedu.condonery.logic.commands.exceptions.EmptyQueueException;
 import seedu.condonery.model.client.Client;
 import seedu.condonery.model.client.ReadOnlyClientDirectory;
 import seedu.condonery.model.property.Property;
@@ -195,7 +196,17 @@ public interface Model {
     void updateFilteredClientList(Predicate<Client> predicate);
 
     //=========== CommandQueue =============================================================
+
+    /**
+     * Adds a Command to the @code CommandQueue}.
+     * @param cmd Command to be added
+     */
     void addCommand(Command cmd);
 
-    CommandQueue getCommandQueue();
+    /**
+     * Undo the last command.
+     * @throws EmptyQueueException if {@code CommandQueue} is empty.
+     */
+    void undoCommand() throws EmptyQueueException;
+
 }
