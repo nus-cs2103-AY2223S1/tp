@@ -102,7 +102,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
-* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
+* implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.)
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
@@ -139,7 +139,7 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `InternshipBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add an internship).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -893,7 +893,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Shows the full list of internships sorted by the company name in lexicographically order.
    
     4. Test case: `list c/d true`<br>
-      Expected: Shows the full list of internships sorted by the date. Internships are sorted from the latest to earliest date.
+      Expected: Shows the full list of internships sorted by the date. Internships are sorted from the latest to the earliest date.
 
 ### Deleting internship(s)
 
