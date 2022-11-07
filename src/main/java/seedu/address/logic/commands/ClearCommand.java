@@ -16,6 +16,8 @@ import seedu.address.model.TruthTable;
 public class ClearCommand extends Command {
     public static final String COMMAND_WORD = "clear";
     public static final String FULL_COMMAND = COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to clear all the data from the application.\n";
 
     public static final String MESSAGE_SUCCESS = "Address book has been cleared!";
 
@@ -29,7 +31,7 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         model.setTruthTable(TruthTable.createNewTruthTable());

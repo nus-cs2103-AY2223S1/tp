@@ -45,23 +45,12 @@ public class EditTaskCommand extends Command {
     public static final String COMMAND_WORD = "task";
     public static final String ALIAS = "ta";
     public static final String FULL_COMMAND = EditCommand.COMMAND_WORD + " " + COMMAND_WORD;
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to edit a task's details.\n";
 
-    public static final String MESSAGE_USAGE =
-            FULL_COMMAND + ": Edits a current task identified by the index number used in the displayed task list. \n"
-                    + "Existing values will be overwritten by the input values. \n"
-                    + "Parameters: INDEX (must be a positive integer) "
-                    + FLAG_NAME_STR + " NAME "
-                    + FLAG_DEADLINE_STR + " DEADLINE \n"
-                    + FLAG_ASSIGNEE_STR + "MEMBER_INDEX \n"
-                    + "Example: " + FULL_COMMAND + " 1 "
-                    + FLAG_NAME_STR + " \"Review PR\" "
-                    + FLAG_DEADLINE_STR + " \"02-Dec-2022 23:59\" "
-                    + FLAG_ASSIGNEE_STR + "1";
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited task: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "A task with the same name already exists.";
     public static final String MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS = "Invalid member index provided";
-    public static final String MESSAGE_DEADLINE_BADLY_FORMATTED = "Deadline is badly formatted.";
 
     private final EditTaskDescriptor editTaskDescriptor;
 
@@ -112,7 +101,7 @@ public class EditTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
 
@@ -135,7 +124,7 @@ public class EditTaskCommand extends Command {
 
         if (editTaskDescriptor.getAssignees().isPresent()) {
             List<Index> assignees = editTaskDescriptor.getAssignees().get();
-            for (Index index: assignees) {
+            for (Index index : assignees) {
                 if (index.getZeroBased() >= memberList.size()) {
                     throw new CommandException(MESSAGE_MEMBER_INDEX_OUT_OF_BOUNDS);
                 }

@@ -21,10 +21,8 @@ public class ListMembersCommand extends Command {
     public static final String COMMAND_WORD = "members";
     public static final String ALIAS = "m";
     public static final String FULL_COMMAND = ListCommand.COMMAND_WORD + " " + COMMAND_WORD;
-
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Lists all the members of the current team.\n"
-            + "Example: " + FULL_COMMAND;
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to list all the members of the current team.\n";
 
     @CommandLine.Option(names = {FLAG_HELP_STR, FLAG_HELP_STR_LONG}, usageHelp = true,
             description = FLAG_HELP_DESCRIPTION)
@@ -39,7 +37,7 @@ public class ListMembersCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
 

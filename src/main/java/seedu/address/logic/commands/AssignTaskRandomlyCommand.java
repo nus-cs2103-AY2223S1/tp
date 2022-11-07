@@ -27,11 +27,8 @@ public class AssignTaskRandomlyCommand extends Command {
     public static final String COMMAND_WORD = "random";
     public static final String ALIAS = "r";
     public static final String FULL_COMMAND = AssignCommand.COMMAND_WORD + " " + COMMAND_WORD;
-
-    public static final String MESSAGE_USAGE = FULL_COMMAND
-            + ": Assigns a task to the random member in the team.\n"
-            + "Parameters: TASK_INDEX (must be a valid positive integer) \n"
-            + "Example: " + FULL_COMMAND + " 1";
+    public static final String HELP_MESSAGE =
+            "The '" + FULL_COMMAND + "' command is used to randomly assign a task to a member in the team.\n";
 
     public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "Randomly Assigned Task: %1$s randomly assigned to %2$s";
     public static final String MESSAGE_ALL_MEMBERS_ASSIGNED = "There are no team members left to assign this task to";
@@ -54,7 +51,7 @@ public class AssignTaskRandomlyCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         if (commandSpec.commandLine().isUsageHelpRequested()) {
-            return new CommandResult(commandSpec.commandLine().getUsageMessage());
+            return new CommandResult(HELP_MESSAGE + commandSpec.commandLine().getUsageMessage());
         }
         requireNonNull(model);
         List<Task> tasks = model.getFilteredTaskList();
