@@ -1,5 +1,6 @@
 ---
-layout: page title: Dilys Pang's Portfolio Page
+layout: page 
+title: Dilys Pang's Portfolio Page
 ---
 
 ### Project: SETA
