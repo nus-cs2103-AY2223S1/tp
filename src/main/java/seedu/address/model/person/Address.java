@@ -56,6 +56,6 @@ public class Address {
     }
 
     public String toFormattedString() {
-        return String.format("Address: %s", value);
+        return String.format("Address: %s;", value);
     }
 }
