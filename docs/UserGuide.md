@@ -148,7 +148,7 @@ Simply type in:
 3. The field to be added or updated
     * Enter directly after the prefix
     * Example: For `c/TikTok`, `Tiktok` represents the actual `company` field to be added.
-4. Repeat steps 3 and 4 to add or update more fields in a single command
+4. Repeat steps 2 and 3 to add or update more fields in a single command
 
 <div class="btn-group btn-group-sm mt-2 mb-4">
 <a href="#table-of-contents" class="btn btn-outline-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-bar-up me-2"></i>Back to table of contents</a>
@@ -160,13 +160,13 @@ Simply type in:
 
 ### Setting up
 
-1. Ensure you have Java 11 or above installed in your Computer: 
+1. Ensure you have **Java 11** or above installed in your Computer: 
    1. Open up the command prompt/Terminal in your respective OS:
-      1. For **Windows**: <br>
-         Open up the command prompt by pressing the **Windows** key and searching **Command Prompt**.
-      2. For **Mac**: <br>
-         Click on **Finder**, then open the `/Application/Utilities` folder by pressing **Command + Shift + U**, and finally open the **Terminal** application.
-      3. For **Linux**: <br>
+      * For <i class="bi bi-microsoft ms-1 me-2" style="font-size: .9rem"></i>**Windows**: <br>
+         Open up the command prompt by pressing the **Windows** key <code><i class="bi bi-microsoft"></i></code> and searching **Command Prompt**.
+      * For <i class="bi bi-apple ms-1 me-2"></i>**Mac**: <br>
+        Click on **Finder**, then open the `/Application/Utilities` folder by pressing <br>**Command + Shift + U** <code><i class="bi bi-command"></i> + <i class="bi bi-shift"></i> + U</code>, and finally open the **Terminal** application.
+      * For <i class="bi bi-ubuntu ms-1 me-2"></i>**Linux**: <br>
          Open up the command prompt by pressing **Ctrl + Alt + T**.
    2. Once the command prompt/Terminal is opened, type in `java -version`.
    3. It should look similar to this:
@@ -176,7 +176,7 @@ Simply type in:
         </p>
 
    4. If your version starts with `"11.*.*.*"` where `*` represents any number, you are good to go!
-   5. Otherwise, you can download Java 11 [here](https://www.oracle.com/java/technologies/downloads/#java11). 
+   5. Otherwise, you can download Java 11 [here](https://www.oracle.com/java/technologies/downloads/#java11).<br><br> 
 
 2. Download the latest `findmyintern.jar` from [here](https://github.com/AY2223S1-CS2103T-T14-1/tp/releases).
 
@@ -511,6 +511,8 @@ Examples:
 
 #### Filtering for internship applications of a specific status: `filter`
 
+Filters for internship applications of the specified [application status](#application-status).
+
 <div class="d-flex alert alert-secondary">
     <div class="me-3">
         <span class="badge text-bg-dark">FORMAT</span>
@@ -522,7 +524,6 @@ Examples:
     </div>
 </div>
 
-* Filters for internship applications of the specified [`APPLICATION_STATUS`](#application-status).
 * `APPLICATION_STATUS` is case-insensitive.
 
 <div class="d-flex alert alert-info">
@@ -928,16 +929,16 @@ The year `yyyy` can be omitted when entering `APPLIED_DATE` or `INTERVIEW_DATE_T
 
 Action | Format, Examples
 --------|------------------
-**Help** | `help`
 **Add** | `add c/COMPANY l/LINK d/DESCRIPTION a/APPLIED_DATE [i/INTERVIEW_DATE_TIME] [t/TAG]…` <br> e.g., `add c/Apple l/https://jobs.apple.com/en-sg d/Software engineering internship a/11/10/2022`
 **Edit** | `edit INDEX [c/COMPANY] [l/LINK] [d/DESCRIPTION] [a/APPLIED_DATE] [i/INTERVIEW_DATE_TIME] [t/TAG]…` <br> e.g., `edit 1 d/Data analyst intern`
 **Mark** | `mark INDEX s/APPLICATION_STATUS` <br> e.g., `mark 3 s/interviewed`
 **List** | `list`
 **Delete** | `delete INDEX` <br> e.g., `delete 4`
-**Filter** | `filter APPLICATION_STATUS` <br> e.g., `filter accepted`
 **Find** | `find KEYWORD [MORE_KEYWORDS]…`<br> e.g., `find google`
+**Filter** | `filter APPLICATION_STATUS` <br> e.g., `filter accepted`
 **Sort** | `sort CRITERIA`<br> e.g., `sort applied`
 **Clear** | `clear`
+**Help** | `help`
 **Exit** | `exit`
 
 <div class="btn-group btn-group-sm mt-2 mb-4">
