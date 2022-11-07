@@ -13,8 +13,11 @@ Class HelpWindow
 Class ResultDisplay
 Class PersonListPanel
 Class PersonCard
+Class PromotionListPanel
+Class PromotionCard
 Class StatusBarFooter
 Class CommandBox
+Class CalculatorWindow
 }
 
 package BobaBotModel <<Rectangle>> {
@@ -33,19 +36,25 @@ UiManager -down-> "1" MainWindow
 MainWindow *-down->  "1" CommandBox
 MainWindow *-down-> "1" ResultDisplay
 MainWindow *-down-> "1" PersonListPanel
+MainWindow *-down-> "1" PromotionListPanel
 MainWindow *-down-> "1" StatusBarFooter
 MainWindow --> "0..1" HelpWindow
+MainWindow --> "0..1" CalculatorWindow
 
 PersonListPanel -down-> "*" PersonCard
+PromotionListPanel -down-> "*" PromotionCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
 PersonListPanel --|> UiPart
+PromotionListPanel --|> UiPart
 PersonCard --|> UiPart
+PromotionCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow --|> UiPart
+CalculatorWindow --|> UiPart
 
 PersonCard ..> BobaBotModel
 UiManager -right-> Logic
