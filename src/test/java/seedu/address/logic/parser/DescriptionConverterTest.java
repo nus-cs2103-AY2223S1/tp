@@ -21,7 +21,7 @@ class DescriptionConverterTest {
 
     @Test
     public void convert_invalidDescription_throwsTypeConversionException() {
-        String inValidDescription = "question?mark";
+        String inValidDescription = "this\"mark";
         assertThrows(CommandLine.TypeConversionException.class, () -> converter.convert(inValidDescription));
     }
 }

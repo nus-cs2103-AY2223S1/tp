@@ -21,7 +21,7 @@ class NameConverterTest {
 
     @Test
     public void convert_invalidName_throwsTypeConversionException() {
-        String inValidName = "question?mark";
+        String inValidName = "this\"mark";
         assertThrows(CommandLine.TypeConversionException.class, () -> converter.convert(inValidName));
     }
 }

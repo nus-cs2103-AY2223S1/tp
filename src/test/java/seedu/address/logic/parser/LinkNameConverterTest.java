@@ -21,7 +21,7 @@ class LinkNameConverterTest {
 
     @Test
     public void convert_invalidLinkName_throwsTypeConversionException() {
-        String inValidLinkName = "question?mark";
+        String inValidLinkName = "this\"mark";
         assertThrows(CommandLine.TypeConversionException.class, () -> converter.convert(inValidLinkName));
     }
 }

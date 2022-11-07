@@ -28,7 +28,7 @@ class DescriptionTest {
         assertFalse(Description.isValidTeamDescription("")); // empty string
         assertFalse(Description.isValidTeamDescription(" ")); // spaces only
         assertFalse(Description.isValidTeamDescription("^")); // only non-alphanumeric characters
-        assertFalse(Description.isValidTeamDescription("peter*")); // contains non-alphanumeric characters
+        assertFalse(LinkName.isValidLinkName("this\"mark")); // quotations
 
         // valid name
         assertTrue(Description.isValidTeamDescription("peter jack")); // alphabets only
@@ -36,6 +36,7 @@ class DescriptionTest {
         assertTrue(Description.isValidTeamDescription("peter the 2nd")); // alphanumeric characters
         assertTrue(Description.isValidTeamDescription("Capital Tan")); // with capital letters
         assertTrue(Description.isValidTeamDescription("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(Description.isValidTeamDescription("peter*")); // contains non-alphanumeric characters
     }
 
 }

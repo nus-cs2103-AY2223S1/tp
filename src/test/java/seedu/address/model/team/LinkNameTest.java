@@ -27,8 +27,8 @@ class LinkNameTest {
         // invalid name
         assertFalse(LinkName.isValidLinkName("")); // empty string
         assertFalse(LinkName.isValidLinkName(" ")); // spaces only
+        assertFalse(LinkName.isValidLinkName("this\"mark")); // quotations
         assertFalse(LinkName.isValidLinkName("^")); // only non-alphanumeric characters
-        assertFalse(LinkName.isValidLinkName("peter*")); // contains non-alphanumeric characters
 
         // valid name
         assertTrue(LinkName.isValidLinkName("peter jack")); // alphabets only
@@ -36,6 +36,7 @@ class LinkNameTest {
         assertTrue(LinkName.isValidLinkName("peter the 2nd")); // alphanumeric characters
         assertTrue(LinkName.isValidLinkName("Capital Tan")); // with capital letters
         assertTrue(LinkName.isValidLinkName("David Roger Jackson Ray Jr 2nd")); // long names
+        assertTrue(LinkName.isValidLinkName("peter*")); // contains non-alphanumeric characters
     }
 
 }

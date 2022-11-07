@@ -22,7 +22,7 @@ class TeamNameConverterTest {
 
     @Test
     public void convert_invalidTeamName_throwsTypeConversionException() {
-        String inValidTeamName = "question?mark";
+        String inValidTeamName = "this\"mark";
         assertThrows(CommandLine.TypeConversionException.class, () -> converter.convert(inValidTeamName));
     }
 }
