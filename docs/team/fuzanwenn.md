@@ -49,9 +49,9 @@ Given below are my contributions to the project.
   bill amount, bill date and the payment status of the bill.
 * Added supportive classes Amount, BillDate and PaymentStatus.
 * EditBillCommand:
-    * It allows the user to edit the bill amount, bill date of an existing bill.
-    * It warns the user if the input of information in the parameter is invalid.
-    * It gives the user an example when user input is not valid.
+  * It allows the user to edit the bill amount, bill date of an existing bill.
+  * It warns the user if the input of information in the parameter is invalid.
+  * It gives the user an example when user input is not valid.
 
 ### Documentation:
 
@@ -67,12 +67,35 @@ Given below are my contributions to the project.
 ### Contributions to the Developer Guide:
 
 * Added Use Case for:
+  * AddPatientCommand
+  * AddBillCommand
+  * AddAppointmentCommand
   * EditPatientCommand
   * EditAppointmentCommand
   * EditBillCommand
+  * FindPatientCommand
+  * FindAppointmentCommand
+  * FindBillCommand
+  * UndoCommand
+  * RedoCommand
+  * SortPatientCommand
+  * SortAppointmentCommand
+  * SortBillCommand
+  * DeletePatientCommand
+  * DeleteAppointmentCommand
+  * DeleteBillCommand
+  * ListCommand
+  * SetPaidCommand
+  * SetUnpaidCommand
+  * SelectPatientCommand
+  * SelectAppointmentCommand
+* Added Add feature implementation with sequence diagram.
+* Added Edit feature implementation with sequence diagram.
+* Added Effort for Edit feature implementation.
 
 ### Contributions to the team-based tasks:
 
+* Tested the application and report bugs.
 * Added class Bill to represent the bill of the appointment with the bill information including
   bill amount, bill date and the payment status of the bill.
 * Added test cases for EditAppointmentCommandParser class.
@@ -82,21 +105,24 @@ Given below are my contributions to the project.
 * Added test cases for NameContainsKeywordsPredicateAppointment class.
 * Added test cases for DeleteAppointmentCommand class.
 * Added test cases for AddBillCommandParser class.
+* Added test cases for FindBillCommandParser class.
+* Maintained the issue tracker.
+* Released JAR file.
 
 ### Review/mentoring contributions:
 
 * Reviewed PRs from other team members:
-    * [Branch update delete patient command](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/81)
-    * [Undo/Redo command](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/136)
-    * [Update developer guide for SelectCommand](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/136)
-
-### Contributions beyond the project team:
-to be added soon
+  * [Branch update delete patient command](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/81)
+  * [Undo/Redo command](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/136)
+  * [Update developer guide for SelectCommand](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/136)
+  * [Add HealthContactParserTest](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/340)
 
 ### Tools:
 * IntelliJ
 * Gradle
+* CheckStyle
+* SourceTree
 
 ### Project management:
-to be added soon
-
+* Managed the team's GitHub repository.
+* Managed the team's issue tracker.
