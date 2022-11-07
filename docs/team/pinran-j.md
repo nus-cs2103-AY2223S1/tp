@@ -8,7 +8,6 @@ title: Pinran's Project Portfolio Page
 SectresBook helps secretaries to maintain all the information of the members of their club by collating a list of identifiable information, past records and future tasks.
 
 Given below are my contributions to the project.
-</br>
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=pinran-j&breakdown=true)
 
 * **New Features Implemented**
@@ -21,17 +20,15 @@ Given below are my contributions to the project.
   2. **_Add Note command_** [(Link to own PR)](https://github.com/AY2223S1-CS2103T-W12-2/tp/pull/54)
      * **What it does**: Allows adding of notes into SectresBook by specifying a title and content (optional tag) using respective prefixes.
      * **Justification**: Command is needed to allow the user to add a note into SectresBook to be kept track of.
-     * **Highlights**: Note's title had to accommodate special characters which made the regex tricky. Selection of prefixes were tricky as many prefixes were already in use.
-
+     
   3. **_Delete Note command_** [(Link to own PR)](https://github.com/AY2223S1-CS2103T-W12-2/tp/pull/54)
      * **What it does**: Allows the deleting of notes in SectresBook by specifying an index in the notes listed.
      * **Justification**: A delete command is needed to allow users to delete notes that are no longer relevant or needed to be kept track of.
-     * **Highlights**:  Making sure the specified index matches the index shown in the list, thus, making sure the correct note was being deleted was tricky as it needed good understanding of `Index` class (One-based compared to zero-based)
+     * **Highlights**:  Making sure the correct note was being deleted (matches specified index) was tricky as it needed good understanding of `Index` class (One-based compared to zero-based)
 
   4. **_List Note command_** [(Link to own PR)](https://github.com/AY2223S1-CS2103T-W12-2/tp/pull/54)
      * **What it does**: Lists all the notes that is being kept track of.
      * **Justification**: A list command is needed to allow users at any point to view/reset the full list of notes.
-     * **Highlights**: GUI (Interface) was only updated to support notes in later iterations, thus, this implementation had to change from initially displaying the notes as a message to the users to incorporating with the GUI.
 
   5. **_Edit Note command_** [(Link to own PR)](https://github.com/AY2223S1-CS2103T-W12-2/tp/pull/81)
      * **What it does**: Edits the note specified by index/name in the list of notes being kept track of. Notes can be edited by any combinations of `Title`, `Content` or `Tag` (At least one).
@@ -56,7 +53,6 @@ Given below are my contributions to the project.
   * **Highlights**: Since notes are a completely new implementation, tedious work was required to set up `TypicalNotes`, an example of a typical note used for testing with. Extra utility classes were also needed to be created for the new notes.
 
 * **Contributions to team-based tasks:**
-  * Created milestones (skeleton)
   * Necessary implementations of entire Note features.
     * Structure of Notes, its integration and all of its related commands.
   * Updated parts of UG/DG not specific to a feature.
