@@ -1,4 +1,7 @@
-# Project Portfolio Page for Zhang Bozheng
+---
+layout: page
+title: Project Portfolio Page for Zhang Bozheng
+---
 
 ## Overview
 
