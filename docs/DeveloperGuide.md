@@ -200,8 +200,6 @@ For the `Task` class,
 * to support a default sorting of `Task` objects, `Task` implements the `Comparable<Task>` interface
 * As `Deadline` is an optional field, their values are stored in an `Optional` object.
 
-<div style="page-break-after: always;"></div>
-
 ### 4.5 Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/TaskList-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
@@ -550,8 +548,6 @@ provides 20/11, the date should be parsed as 20 November 2022.
 The following sequence diagram shows what will happen with the proposed implementation of multiple date formats:
 
 ![ProposedDeadlineSequenceDiagram](images/ProposedDeadlineSequenceDiagram.png)
-
-<div style="page-break-after: always;"></div>
 
 #### 5.7.3 Alternative Implementations
 
@@ -1086,6 +1082,8 @@ testers are expected to do more *exploratory* testing.
     2. Delete `taskList.json` manually.
 
     3. Follow Steps 3-5 of the above "Dealing with corrupted data files". Expected behaviour is the same.
+
+<div style="page-break-after: always;"></div>
 
 ### 8.7 Loading saved data
 
