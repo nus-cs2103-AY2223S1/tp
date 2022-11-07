@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Thomas Ho's Project Portfolio Page
+title: Ho Lok Wah's Project Portfolio Page
 ---
 
 ### Project: MyInsuRec
