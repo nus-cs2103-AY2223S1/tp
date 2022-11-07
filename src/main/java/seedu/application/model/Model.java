@@ -145,6 +145,13 @@ public interface Model {
     void updateApplicationListWithInterview(Predicate<Application> predicate);
 
     /**
+     * Refreshes the upcoming interviews list.
+     * This method is necessary to ensure interviews that become/are no longer upcoming
+     * while the app is in use are added/removed from the list accordingly.
+     */
+    void refreshApplicationListWithUpcomingInterview();
+
+    /**
      * Sorts the application list by company.
      * If the {@code shouldReverse} argument is true, the list is sorted in the reversed order.
      *
