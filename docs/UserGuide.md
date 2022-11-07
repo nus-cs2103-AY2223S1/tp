@@ -97,6 +97,7 @@ The table explains the general syntax and common occurrences throughout the user
 | CAPITALIZED TEXT               | Indicates a parameter that follows the first word of a command                                                      |
 | **:information_source: Info:** | The icon indicates a section of increased importance and provides essential information to the smooth use of FRIDAY |
 | **:bulb: Tip:**                | A quick memorable form of advice to the user to make their friday experience enjoyable                              |
+| **:exclamation: Caution:**     | A warning sign indicating that the following text is important                                                      |
 
 #### Understanding command terms and general information
 
