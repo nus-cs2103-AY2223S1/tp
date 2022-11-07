@@ -606,7 +606,7 @@ For now, kindly categorise them under `Others`.
 If you want to view all the dates, enlarge your application!
 
 **Q**: I prefer a date format like 4 Apr 2022. Why can't I pick the date format I want to use ? <br>
-**A**: Unfortunately PennyWise current only accepts one type of format which is `04-04-2022`. However, we are exploring
+**A**: Unfortunately PennyWise currently only accepts one type of format which is `04-04-2022`. However, we are exploring
 the possibilities of allowing more types of date formats without compromising on quality and user experience so do look
 out for our future software updates!
 
