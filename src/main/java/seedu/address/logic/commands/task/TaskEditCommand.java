@@ -104,7 +104,8 @@ public class TaskEditCommand extends Command {
                 .orElse(taskToEdit.getTaskDescription());
         TaskDeadline updatedTaskDeadline = editTaskDescriptor.getTaskDeadline().orElse(taskToEdit.getTaskDeadline());
 
-        Set<Student> students = new HashSet<>();
+        Set<Student> students = new HashSet<>(taskToEdit.getStudents());
+
         if (editTaskDescriptor.getStudentNames() != null) {
             for (String studentName : editTaskDescriptor.getStudentNames()) {
                 if (isNull(model.findStudent(studentName))) {
@@ -114,8 +115,9 @@ public class TaskEditCommand extends Command {
                 students.add(model.findStudent(studentName));
             }
         }
-
-        return new Task(updatedTaskName, updatedTaskDescription, updatedTaskDeadline, students);
+        Task newTask = new Task(updatedTaskName, updatedTaskDescription, updatedTaskDeadline, students);
+        model.updateGrades(taskToEdit, newTask);
+        return newTask;
     }
 
     @Override
@@ -147,7 +149,8 @@ public class TaskEditCommand extends Command {
         private List<String> studentNames;
 
 
-        public EditTaskDescriptor() {}
+        public EditTaskDescriptor() {
+        }
 
         /**
          * Copy constructor.
