@@ -1,0 +1,20 @@
+@startuml
+
+!include style.puml
+
+start
+:User inputs ToggleView command;
+:Parse user input and executes ToggleView command;
+:Model checks if students are showing concise info;
+
+if () then ([isConciseInfo])
+    :Set isConciseInfo to false;
+    :Student card show parent details;
+else ([else])
+    :Set isConciseInfo to true;
+    :Student card hides parent details;
+endif
+
+stop
+
+@enduml

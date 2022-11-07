@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<HBox id="cardPane" fx:id="cardPane" prefWidth="400.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane prefWidth="150.0" HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150" />
+    </columnConstraints>
+    <VBox alignment="CENTER_LEFT" minHeight="75.0" prefWidth="150.0" GridPane.columnIndex="0">
+      <padding>
+        <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+      </padding>
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label fx:id="id" styleClass="cell_big_label" text="\$id">
+          <minWidth>
+            <!-- Ensures that the label text is never truncated -->
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
+        <Label fx:id="studentName" prefWidth="200.0" styleClass="cell_big_label" text="\$studentName" />
+         <Label fx:id="studentId" styleClass="cell_big_label" text="\$studentId">
+               <graphic>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_big_text" text="ID:" />
+               </graphic>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+      </HBox>
+      <Label fx:id="className" alignment="CENTER" styleClass="cell_big_label" text="\$className">
+            <graphic>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_big_text" text="Class:" />
+            </graphic>
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+            <font>
+               <Font name="Apple Braille" size="13.0" />
+            </font>
+         </Label>
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="Grades" underline="true">
+            <VBox.margin>
+               <Insets top="5.0" />
+            </VBox.margin>
+         </Text>
+        <FlowPane fx:id="exams" prefWidth="130.0">
+            <padding>
+                <Insets top="4.0" />
+            </padding>
+            <VBox.margin>
+               <Insets top="3.0" />
+            </VBox.margin>
+        </FlowPane>
+         <VBox fx:id="parentDetailsContainer">
+            <children>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="Parent Details" underline="true" />
+            <Label fx:id="parentName" alignment="CENTER" styleClass="cell_small_label" text="\$parentName">
+                  <graphic>
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="Name:" />
+                  </graphic>
+                  <padding>
+                     <Insets top="1.0" />
+                  </padding>
+                  <font>
+                     <Font name="Apple SD Gothic Neo Regular" size="13.0" />
+                  </font>
+               </Label>
+            <Label fx:id="phone" alignment="CENTER" styleClass="cell_small_label" text="\$phone">
+                  <graphic>
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="Phone:" />
+                  </graphic>
+                  <padding>
+                     <Insets top="1.0" />
+                  </padding>
+               </Label>
+            <Label fx:id="email" alignment="CENTER" styleClass="cell_small_label" text="\$email">
+                  <graphic>
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="Email:" />
+                  </graphic>
+                  <padding>
+                     <Insets top="1.0" />
+                  </padding>
+               </Label>
+            </children>
+            <VBox.margin>
+               <Insets top="10.0" />
+            </VBox.margin>
+         </VBox>
+    </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+  </GridPane>
+</HBox>

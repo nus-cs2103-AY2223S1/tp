@@ -1,0 +1,11 @@
+{
+  "students": [ {
+    "studentName": "Hans Muster",
+    "id": "12A",
+    "className" : "1A",
+    "parentName": "Joe Muster",
+    "phone": "91234567",
+    "email": "testing@example.com",
+    "exams" : [ ]
+  }]
+}
