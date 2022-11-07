@@ -285,6 +285,10 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 
 Below is the sequence diagram for the execution of `ls -u --module CS2103T`.
 
+![Partial sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram1-0.png)
+
+![Partial sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram2-0.png)
+
 ![Sequence diagram when command `ls -u --module CS2103T` is executed](images/ListSequenceDiagram-0.png)
 
 ### 5.4 Returning to a previous command
@@ -654,18 +658,27 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all tasks using the `ls -a` command. Multiple tasks in the list.
 
-
     2. Test case: `delete 1`<br>
-       Expected: First tasj is deleted from the list. Details of the deleted task shown in the status message.
-       Timestamp in the status bar is updated.
+       Expected: First task is deleted from the list. Details of the deleted task shown in the status message.
+       Task IDs of remaining tasks updated.
 
     3. Test case: `delete 0`<br>
-       Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
+       Expected: No task is deleted. Error details shown in the status message.
 
-    4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-       Expected: Similar to previous.
+2. Deleting a task while only tasks tagged with "lowPriority" are being shown 
 
-1. _{ more test cases …​ }_
+   1. Prerequisites: List all tasks using the `ls -t lowPriority` command. Multiple tasks in the list.
+
+   2. Test case: `delete 1`<br>
+      Expected: First task is deleted from the filtered list. Details of the deleted task shown in the status message.
+      Task IDs of remaining tasks updated.
+
+   3. Test case: `delete 0`<br>
+      Expected: No task is deleted. Error details shown in the status message. 
+
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
 
 ### 8.3 Saving data
 
