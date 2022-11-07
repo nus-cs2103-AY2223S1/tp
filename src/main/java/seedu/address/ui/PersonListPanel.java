@@ -16,6 +16,7 @@ import seedu.address.model.person.Person;
 public class PersonListPanel extends UiPart<Region> {
     private static final String FXML = "PersonListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private final boolean isExpanded;
 
     @FXML
     private ListView<Person> personListView;
@@ -23,10 +24,11 @@ public class PersonListPanel extends UiPart<Region> {
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Person> personList) {
+    public PersonListPanel(ObservableList<Person> personList, boolean isExpanded) {
         super(FXML);
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
+        this.isExpanded = isExpanded;
     }
 
     /**
@@ -35,13 +37,16 @@ public class PersonListPanel extends UiPart<Region> {
     class PersonListViewCell extends ListCell<Person> {
         @Override
         protected void updateItem(Person person, boolean empty) {
+            Person oldPerson = getItem();
             super.updateItem(person, empty);
 
             if (empty || person == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                if (!person.equals(oldPerson)) {
+                    setGraphic(new PersonCard(person, getIndex() + 1, isExpanded).getRoot());
+                }
             }
         }
     }

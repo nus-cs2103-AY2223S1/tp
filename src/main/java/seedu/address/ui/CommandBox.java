@@ -32,6 +32,19 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
+     * Creates a CommandBox object with text.
+     * @param commandExecutor The given commandExecutor.
+     * @param text Text to be added to the command box.
+     */
+    public CommandBox(CommandExecutor commandExecutor, String text) {
+        super(FXML);
+        this.commandExecutor = commandExecutor;
+        // calls #setStyleToDefault() whenever there is a change to the text of the command box.
+        commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandTextField.setText(text);
+    }
+
+    /**
      * Handles the Enter button pressed event.
      */
     @FXML

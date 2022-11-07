@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -14,33 +15,34 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of Survin data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final VersionedSurvin survin;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given survin and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlySurvin survin, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(survin, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with Survin: " + survin + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.survin = new VersionedSurvin(survin);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(this.survin.getPersonList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new Survin(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    // =========== UserPrefs
+    // ==================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -65,42 +67,49 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getSurvinFilePath() {
+        return userPrefs.getSurvinFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setSurvinFilePath(Path survinFilePath) {
+        requireNonNull(survinFilePath);
+        userPrefs.setSurvinFilePath(survinFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    // =========== Survin
+    // ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setSurvin(ReadOnlySurvin survin) {
+        this.survin.resetData(survin);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlySurvin getSurvin() {
+        return survin;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return survin.hasPerson(person);
+    }
+
+    @Override
+    public Optional<Person> getPerson(Person person) {
+        requireNonNull(person);
+        return survin.getPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        survin.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        survin.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -108,14 +117,30 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        survin.setPerson(target, editedPerson);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void commitSurvin() {
+        survin.commit();
+    }
+
+    @Override
+    public void undoSurvin() {
+        survin.undo();
+    }
+
+    @Override
+    public boolean canUndoSurvin() {
+        return survin.canUndo();
+    }
+
+    // =========== Filtered Person List Accessors
+    // =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Person} backed by the
+     * internal list of {@code versionedSurvin}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
@@ -142,8 +167,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
+        return survin.equals(other.survin) && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
 

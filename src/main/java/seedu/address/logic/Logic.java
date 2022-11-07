@@ -7,7 +7,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlySurvin;
 import seedu.address.model.person.Person;
 
 /**
@@ -24,19 +24,19 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the Survin.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getSurvin()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlySurvin getSurvin();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' Survin file path.
      */
-    Path getAddressBookFilePath();
+    Path getSurvinFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

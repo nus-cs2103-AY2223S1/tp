@@ -9,51 +9,52 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Low Weimin, Ian
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/castryl.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Project Advisor
-
-### Jane Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
-### Johnny Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](https://github.com/castryl)]
+[[portfolio](team/castryl.md)]
 
 * Role: Developer
-* Responsibilities: Data
+* Responsibilities: Documentation
 
-### Jean Doe
+### Guo Qi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/nusdg.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/NUSDG)]
+[[portfolio](team/nusdg.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Testing
+
+### Jeremy Toh
+
+<img src="images/deepimpactmir.png" width="200px">
+
+[[github](http://github.com/deepimpactmir)]
+[[portfolio](team/deepimpactmir.md)]
+
+- Role: Developer
+- Responsibilities: Code quality
+
+### Keith Png
+
+<img src="images/keithpjx.png" width="200px">
+
+[[github](http://github.com/KeithPJX)]
+[[portfolio](team/keithpjx.md)]
+
+* Role: Developer
+* Responsibilities: Deliverables and deadlines
+
+### Ryan Lee
+
+<img src="images/ryanlml.png" width="200px">
+
+[[github](http://github.com/ryanlml)]
+[[portfolio](team/ryanlml.md)]
+
+* Role: Developer
+* Responsibilities: Integration

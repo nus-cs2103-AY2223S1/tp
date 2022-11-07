@@ -15,11 +15,14 @@ import seedu.address.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
+    public static final String USERGUIDE_URL = "https://ay2223s1-cs2103-f13-2.github.io/tp/UserGuide.html";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
+
+    private final String lightTheme = getClass().getResource("/view/HelpWindowLight.css").toExternalForm();
+    private final String darkTheme = getClass().getResource("/view/HelpWindowDark.css").toExternalForm();
 
     @FXML
     private Button copyButton;
@@ -46,21 +49,18 @@ public class HelpWindow extends UiPart<Stage> {
 
     /**
      * Shows the help window.
+     *
      * @throws IllegalStateException
-     *     <ul>
-     *         <li>
-     *             if this method is called on a thread other than the JavaFX Application Thread.
-     *         </li>
-     *         <li>
-     *             if this method is called during animation or layout processing.
-     *         </li>
-     *         <li>
-     *             if this method is called on the primary stage.
-     *         </li>
-     *         <li>
-     *             if {@code dialogStage} is already showing.
-     *         </li>
-     *     </ul>
+     *                               <ul>
+     *                               <li>if this method is called on a thread other
+     *                               than the JavaFX Application Thread.</li>
+     *                               <li>if this method is called during animation
+     *                               or layout processing.</li>
+     *                               <li>if this method is called on the primary
+     *                               stage.</li>
+     *                               <li>if {@code dialogStage} is already showing.
+     *                               </li>
+     *                               </ul>
      */
     public void show() {
         logger.fine("Showing help page about the application.");
@@ -87,6 +87,22 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public void focus() {
         getRoot().requestFocus();
+    }
+
+    /**
+     * Set theme of help window to the light theme.
+     */
+    public void setLightTheme() {
+        getRoot().getScene().getStylesheets().add(lightTheme);
+        getRoot().getScene().getStylesheets().remove(darkTheme);
+    }
+
+    /**
+     * Set theme of help window to the dark theme.
+     */
+    public void setDarkTheme() {
+        getRoot().getScene().getStylesheets().add(darkTheme);
+        getRoot().getScene().getStylesheets().remove(lightTheme);
     }
 
     /**

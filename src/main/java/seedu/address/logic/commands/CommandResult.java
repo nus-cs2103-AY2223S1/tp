@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.address.commons.core.Themes.Theme;
+
 /**
  * Represents the result of a command execution.
  */
@@ -14,24 +16,65 @@ public class CommandResult {
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
+    /** Help information for the specified command to be shown. */
+    private final String showHelpFor;
+
     /** The application should exit. */
     private final boolean exit;
+
+    /** The theme to change to, null if no change. */
+    private final Theme theme;
+
+    /** Should toggle the list mode */
+    private final boolean toggleListMode;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, String showHelpFor, boolean exit,
+                         Theme theme, boolean toggleListMode) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
+        this.showHelpFor = showHelpFor;
         this.exit = exit;
+        this.theme = theme;
+        this.toggleListMode = toggleListMode;
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * Constructs a {@code CommandResult} with the specified fields
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, Theme theme) {
+        this(feedbackToUser, false, "", false, theme, false);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields
+     * and Optional fields set to empty
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+        this(feedbackToUser, showHelp, "", exit, null, false);
+    }
+
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean toggleListMode) {
+        this(feedbackToUser, showHelp, "", exit, null, toggleListMode);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, "", false, null, false);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields
+     * and Optional fields set to empty
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, String showHelpFor) {
+        this(feedbackToUser, showHelp, showHelpFor, false, null, false);
     }
 
     public String getFeedbackToUser() {
@@ -42,8 +85,28 @@ public class CommandResult {
         return showHelp;
     }
 
+    public String getShowHelpFor() {
+        return this.showHelpFor;
+    }
+
     public boolean isExit() {
         return exit;
+    }
+
+    /**
+     * Returns true if theme is not null. Meaning there is a call to change the theme.
+     * @return true if theme is not null.
+     */
+    public boolean isThemeChange() {
+        return theme != null;
+    }
+
+    public Theme getTheme() {
+        return theme;
+    }
+
+    public boolean isToggleListMode() {
+        return toggleListMode;
     }
 
     @Override

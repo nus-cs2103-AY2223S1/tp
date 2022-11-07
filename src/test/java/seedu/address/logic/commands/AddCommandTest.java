@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -16,10 +17,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlySurvin;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.Survin;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -99,12 +100,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getSurvinFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setSurvinFilePath(Path survinFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -114,12 +115,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setSurvin(ReadOnlySurvin newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlySurvin getSurvin() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -129,12 +130,32 @@ public class AddCommandTest {
         }
 
         @Override
+        public Optional<Person> getPerson(Person person) {
+            throw new AssertionError("This methoud should not be called");
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setPerson(Person target, Person editedPerson) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitSurvin() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoSurvin() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canUndoSurvin() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -165,6 +186,11 @@ public class AddCommandTest {
             requireNonNull(person);
             return this.person.isSamePerson(person);
         }
+
+        @Override
+        public Optional<Person> getPerson(Person person) {
+            return Optional.of(person);
+        }
     }
 
     /**
@@ -186,8 +212,13 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public void commitSurvin() {
+            // for the personAcceptedByModel test
+        }
+
+        @Override
+        public ReadOnlySurvin getSurvin() {
+            return new Survin();
         }
     }
 

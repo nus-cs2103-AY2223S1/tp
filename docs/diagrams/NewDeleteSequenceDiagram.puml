@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SurvinParser" as SurvinParser LOGIC_COLOR
+participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
+participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("delete s/Survey")
+activate LogicManager
+
+LogicManager -> SurvinParser : parseCommand("delete s/Survey")
+activate SurvinParser
+
+create DeleteCommandParser
+SurvinParser -> DeleteCommandParser
+activate DeleteCommandParser
+
+DeleteCommandParser --> SurvinParser
+deactivate DeleteCommandParser
+
+SurvinParser -> DeleteCommandParser : parse("s/Survey")
+activate DeleteCommandParser
+
+create DeleteCommand
+DeleteCommandParser -> DeleteCommand
+activate DeleteCommand
+
+DeleteCommand --> DeleteCommandParser : d
+deactivate DeleteCommand
+
+DeleteCommandParser --> SurvinParser : d
+deactivate DeleteCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteCommandParser -[hidden]-> SurvinParser
+destroy DeleteCommandParser
+
+SurvinParser --> LogicManager : d
+deactivate SurvinParser
+
+LogicManager -> DeleteCommand : execute()
+activate DeleteCommand
+
+loop for each Person in filteredList
+    DeleteCommand -> Model : deletePerson(p)
+    activate Model
+end
+
+Model --> DeleteCommand
+deactivate Model
+
+create CommandResult
+DeleteCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteCommand
+deactivate CommandResult
+
+DeleteCommand --> LogicManager : result
+deactivate DeleteCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
