@@ -1009,6 +1009,15 @@ testers are expected to do more *exploratory* testing.
    Expected: "Invalid command format" error message should be displayed, with information regarding the syntax of the `addbuyer` command
    and a correct example of the command.
 
+### Adding a property
+1. Test case: `addprop -n Peak Residences -a 333 Thompson Road -p 1000000 -d long property description -o Bob -ph 91234567 -c Toa Payoh; Bright`<br>
+   Expected: New property should be added into the list with relevant details. "New property added" message should be displayed
+   with details of the property that was added.
+
+2. Test case: `addprop -n Peak Residences -a 333 Street`<br>
+   Expected: "Invalid command format" error message should be displayed, with information regarding the syntax of the `addprop` command
+   and a correct example of the command.
+
 ### Deleting a buyer
 
 1. Test case: `deletebuyer 1`<br>
@@ -1018,20 +1027,45 @@ testers are expected to do more *exploratory* testing.
 2. Test case: `deletebuyer 0`<br>
    Expected: No buyer is deleted. Error details shown in the status message. 
 
-3. Other incorrect delete commands to try: `delete`, `delete x`, `...`, `delete test` (where x is larger than the list size)<br>
+3. Other incorrect delete commands to try: `deletebuyer`, `deletebuyer x`, `...`, `deletebuyer test` (where x is larger than the list size)<br>
+   Expected: Similar to previous.
+
+### Deleting a property
+
+1. Test case: `deleteprop 1`<br>
+   Expected: First property is deleted from the list. "Deleted Property" message should be displayed on the screen
+   with details of the deleted contact.
+
+2. Test case: `deleteprop 0`<br>
+   Expected: No property is deleted. Error details shown in the status message.
+
+3. Other incorrect delete commands to try: `deleteprop`, `deleteprop x`, `...`, `deleteprop test` (where x is larger than the list size)<br>
    Expected: Similar to previous.
    
 ### Editing a buyer
 
 1. Test case: `editbuyer 1 -n Tommy Jones`
    Expected: First buyer in the list should have their name changed to "Tommy Jones". "Edited Buyer" message should also be
-   displayed on the screen with details of the edited contact.
+   displayed on the screen with details of the edited buyer.
 
 2. Test case: `editbuyer -n Tommy Jones`
    Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `editbuyer`
    command and a correct example.
 
 3. Test case: `editbuyer 1`
+   Expected: "At least one field to edit must be provided" error message should be displayed.
+
+### Editing a property
+
+1. Test case: `editprop 1 -n Minecraft dirt hut`
+   Expected: First property in the list should have their name changed to "Minecraft dirt hut". "Edited Property" message should also be
+   displayed on the screen with details of the edited property.
+
+2. Test case: `editprop -n Minecraft dirt hut`
+   Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `editprop`
+   command and a correct example.
+
+3. Test case: `editprop 1`
    Expected: "At least one field to edit must be provided" error message should be displayed.
 
 ### Finding a buyer
@@ -1046,6 +1080,18 @@ testers are expected to do more *exploratory* testing.
    Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `findbuyers`
    command and a correct example.
 
+### Finding a property
+
+**Prerequisites**: A property that has 'House' in its name must exist in the property list.
+
+1. Test case: `findprops house`
+   Expected: Property list should be filtered to contain only properties that have 'house' as a substring in their name (case-insensitive).
+   "x properties listed" message should be displayed, where x refers to the number of properties in the new filtered list.
+
+2. Test case: `findbuyers`
+   Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `findprops`
+   command and a correct example.
+
 ### Filtering buyers
 
 **Prerequisites**: A buyer that has normal priority must exist in the buyer list.
@@ -1056,6 +1102,18 @@ testers are expected to do more *exploratory* testing.
 
 2. Test case: `filterbuyers`, `filterbuyers 1`, `filterbuyers x`
    Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `filterbuyers`
+   command and a correct example.
+
+### Filtering properties
+
+**Prerequisites**: A property that has an owner with name containing "Johnny" must exist in the property list.
+
+1. Test case: `filterproperties -o Johnny`
+   Expected: Buyer list should be filtered to contain only properties whose owners have names containing "Johnny".
+   "x properties listed" message should be displayed, where x refers to the number of properties in the new filtered list.
+
+2. Test case: `filterproperties`, `filterproperties 1`, `filterproperties x`
+   Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `filterproperties`
    command and a correct example.
 
 ### Listing all buyers
@@ -1069,6 +1127,17 @@ testers are expected to do more *exploratory* testing.
 2. Test case: `listbuyers 1`, `listbuyers x`
    Expected: Same behaviour as above.
 
+### Listing all properties
+
+**Prerequisites**: Property list should be filtered to show a subset of the original list.
+
+1. Test case: `listproperties`
+   Expected: Property list should return to its original state containing all properties. "Listed all properties" message should be displayed
+   on the screen.
+
+2. Test case: `listproperties 1`, `listproperties x`
+   Expected: Same behaviour as above.
+
 ### Matching buyers to properties
 
 1. Test case: `matchbuyer 5`
@@ -1079,6 +1148,18 @@ testers are expected to do more *exploratory* testing.
 2. Test case: `matchbuyer`, `matchbuyer 5 30`, `matchbuyer x`
    Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `matchbuyer`
    command and a correct example.
+
+### Matching properties to buyers
+
+1. Test case: `matchprop 5`
+   Expected: Property list should be filtered to contain all buyers that match a given property based on its price and
+   characteristics. "x matched buyers for the property" message should be displayed on the screen, with x representing the number
+   of matched buyers found, along with the property's information.
+
+2. Test case: `matchprop`, `matchprop 5 30`, `matchprop x`
+   Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `matchprop`
+   command and a correct example.
+
 
 ### Sorting buyers
 
@@ -1091,4 +1172,17 @@ testers are expected to do more *exploratory* testing.
    command and a correct example.
 
 3. Test case: `sortbuyers -n`, `sortbuyers -n oops`, `sortbuyers -n 1`
+   Expected: "Order should be ASC or DESC" error message should be displayed.
+
+### Sorting properties
+
+1. Test case: `sortprops -n ASC`
+   Expected: Property list should be sorted in increasing alphabetical order. "Sorted properties by:" message should be displayed on the screen
+   with correct criteria and order.
+
+2. Test case: `sortprops`, `sortprops x`, `sortprops 1`
+   Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `sortprops`
+   command and a correct example.
+
+3. Test case: `sortprops -n`, `sortprops -n oops`, `sortprops -n 1`
    Expected: "Order should be ASC or DESC" error message should be displayed.
