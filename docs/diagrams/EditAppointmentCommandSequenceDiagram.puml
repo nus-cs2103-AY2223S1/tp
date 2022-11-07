@@ -84,7 +84,9 @@ destroy EditAppointmentDescriptor
 EditAppointmentCommand -> MaximumSortedList : remove(appointmentToEdit)
 activate MaximumSortedList
 MaximumSortedList --> EditAppointmentCommand
+deactivate MaximumSortedList
 EditAppointmentCommand -> MaximumSortedList : add(a)
+activate MaximumSortedList
 MaximumSortedList --> EditAppointmentCommand
 deactivate MaximumSortedList
 
