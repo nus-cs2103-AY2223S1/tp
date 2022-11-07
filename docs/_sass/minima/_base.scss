@@ -161,14 +161,7 @@ blockquote {
 pre,
 code {
   font-family: $code-font-family;
-  font-size: 0.9375em;
-  border: 1px solid $brand-color-light;
-  border-radius: 3px;
-  background-color: $code-background-color;
-}
-
-code {
-  padding: 1px 5px;
+  color: #e74c3c;
 }
 
 pre {
@@ -288,7 +281,7 @@ table {
     text-align: center;
   }
   .site-header:before {
-    content: "AB-3";
+    content: "TA-Assist";
     font-size: 32px;
   }
 }

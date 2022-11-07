@@ -1,0 +1,54 @@
+@startuml
+!include style.puml
+mainframe **sd** construct new student with updated grade
+
+box Model MODEL_COLOR_T1
+participant "oldStudent:Student" as OldStudent MODEL_COLOR
+participant "newStudent:Student" as Student MODEL_COLOR
+participant "oldData:StudentModuleData" as SMD MODEL_COLOR
+participant "newData:StudentModuleData" as NSMD MODEL_COLOR
+participant "s:SessionData" as SD MODEL_COLOR
+end box
+
+[-> OldStudent:
+activate OldStudent
+
+OldStudent -> SMD: updateGrade(session, grade)
+activate SMD
+
+SMD -> SMD : removeSession(session)
+activate SMD
+create NSMD
+SMD -> NSMD
+activate NSMD
+NSMD --> SMD
+deactivate NSMD
+SMD --> SMD: newData
+deactivate SMD
+
+create SD
+SMD -> SD
+activate SD
+SD --> SMD
+deactivate SD
+
+SMD -> SMD: add s to newData's\nlist of SessionData
+activate SMD
+SMD --> SMD
+deactivate SMD
+
+SMD --> OldStudent: newData
+deactivate SMD
+
+create Student
+OldStudent -> Student
+activate Student
+Student --> OldStudent
+deactivate Student
+
+OldStudent -->[:
+deactivate OldStudent
+
+
+
+@enduml

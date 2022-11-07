@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+<TitledPane fx:id="titledPane" minWidth="10.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+    <VBox fx:id="dataFields" alignment="CENTER_LEFT" minHeight="75.0">
+      <padding>
+        <Insets bottom="5" left="15" right="5" top="5" />
+      </padding>
+      <FlowPane fx:id="classes" />
+    </VBox>
+   </content>
+</TitledPane>

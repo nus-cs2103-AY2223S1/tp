@@ -1,0 +1,27 @@
+@startuml
+!include style.puml
+
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package "TaAssist" <<Rectangle>>{
+class "<u>moduleClasses:UniqueList</u>" as ModuleClassList
+class "<u>students:UniqueList</u>" as StudentList
+class "<u>:TaAssist</u>" as TaAssist
+class "<u>Alex:Student" as Alex
+class "<u>Bernice:Student" as Bernice
+class "<u>Charlotte:Student" as Charlotte
+class "<u>CS1101S:ModuleClass" as CS1101S
+}
+
+TaAssist -up-> StudentList
+TaAssist -down-> ModuleClassList
+
+StudentList -right-> Alex
+StudentList --> Bernice
+StudentList --> Charlotte
+
+ModuleClassList -right-> CS1101S
+
+@enduml

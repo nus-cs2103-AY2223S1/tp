@@ -1,0 +1,22 @@
+{
+  "students": [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "address": "123, Jurong West Ave 6, #08-111",
+    "moduleData": [ {
+      "module": "CS1231S",
+      "data": [ {
+        "session": "Lab 1",
+        "grade": 100.0
+      } ]
+    }]
+  } ],
+  "moduleClasses" : [{
+    "name": "CS1231S",
+    "sessions": [ {
+      "name": "Tutorial 1",
+      "date": "2022-01-01"
+    } ]
+  }]
+}

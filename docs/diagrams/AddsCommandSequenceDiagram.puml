@@ -1,0 +1,62 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant "s:AddsCommand" as AddsCommand LOGIC_COLOR
+participant "result:CommandResult" as CommandResult LOGIC_COLOR
+
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":TaAssist" as TaAssist MODEL_COLOR
+participant "oldClass:ModuleClass" as ModuleClass MODEL_COLOR
+participant "newClass:ModuleClass" as NewModuleClass MODEL_COLOR
+end box
+
+[-> AddsCommand : execute(model)
+activate AddsCommand
+
+AddsCommand -> Model: getFocusedClass()
+activate Model
+Model --> AddsCommand: oldClass
+deactivate Model
+
+AddsCommand -> Model: addSessions(oldClass, newSessions)
+activate Model
+
+Model -> TaAssist: addSessions(oldClass, newSessions)
+activate TaAssist
+
+loop for each session in newSessions
+    TaAssist -> ModuleClass: addSession(session)
+    activate ModuleClass
+
+    create NewModuleClass
+    ModuleClass -> NewModuleClass
+    activate NewModuleClass
+
+    NewModuleClass --> ModuleClass
+    deactivate NewModuleClass
+
+    ModuleClass --> TaAssist
+    deactivate ModuleClass
+end
+
+TaAssist --> Model
+deactivate TaAssist
+
+Model --> AddsCommand
+deactivate Model
+
+create CommandResult
+AddsCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddsCommand: result
+deactivate CommandResult
+
+AddsCommand -->[: result
+deactivate AddsCommand
+
+@enduml

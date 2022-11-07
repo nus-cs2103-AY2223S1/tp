@@ -1,4 +1,4 @@
-title: "AB-3"
+title: "TA-Assist"
 theme: minima
 
 header_pages:
@@ -8,8 +8,9 @@ header_pages:
 
 markdown: kramdown
 
-repository: "se-edu/addressbook-level3"
+repository: "AY2223S1-CS2103T-T12-1/tp"
 github_icon: "images/github-icon.png"
+app_icon: "images/app-icon.png"
 
 plugins:
   - jemoji

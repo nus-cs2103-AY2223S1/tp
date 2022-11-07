@@ -14,14 +14,16 @@ Class JsonUserPrefsStorage
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
-Class JsonAdaptedPerson
-Class JsonAdaptedTag
+package "TaAssist Storage" #F4F6F6{
+Class "<<interface>>\nTaAssistStorage" as TaAssistStorage
+Class JsonTaAssistStorage
+Class JsonSerializableTaAssist
+Class JsonAdaptedStudent
+Class JsonAdaptedModuleClass
+Class JsonAdaptedSession
+Class JsonAdaptedStudentModuleData
+Class JsonAdaptedSessionData
 }
-
 }
 
 Class HiddenOutside #FFFFFF
@@ -29,15 +31,18 @@ HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -up-> "1" TaAssistStorage
 
 Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Storage -right-|> TaAssistStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonTaAssistStorage .up.|> TaAssistStorage
+JsonTaAssistStorage ..> JsonSerializableTaAssist
+JsonSerializableTaAssist--> "*" JsonAdaptedStudent
+JsonSerializableTaAssist--> "*" JsonAdaptedModuleClass
+JsonAdaptedModuleClass--> "*" JsonAdaptedSession
+JsonAdaptedStudent--> "*" JsonAdaptedStudentModuleData
+JsonAdaptedStudentModuleData--> "*" JsonAdaptedSessionData
 
 @enduml

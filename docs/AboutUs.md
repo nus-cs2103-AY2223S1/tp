@@ -5,55 +5,54 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
-
 ## Project team
 
-### John Doe
+### Lin Zechen
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/bubbl3t.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/Bubbl3T)]
+[[portfolio](team/bubbl3t.md)]
 
-* Role: Project Advisor
+* Role: Team Lead, IntelliJ Expert.
+* Responsibilities: Deliverables and Deadlines, Integration, Logic IC, Model IC.
 
-### Jane Doe
+### Rezwan Arefin
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/rezwanarefin01.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/RezwanArefin01)]
+[[portfolio](team/rezwanarefin01.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Team Lead.
+* Responsibilities: Code Quality, Git Expert, Logic IC, Consistency.
 
-### Johnny Doe
+### Edbert Geraldy Cangdinata
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/berted.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/berted)]
+[[portfolio](team/berted.md)]
 
-* Role: Developer
-* Responsibilities: Data
+* Role: Developer.
+* Responsibilities: Documentation, Scheduling, Storage IC.
 
-### Jean Doe
+### Xu Yi
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/optionalemon.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/optionalemon)]
+[[portfolio](team/optionalemon.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Role: Developer.
+* Responsibilities: Testing, Deliverables and Deadlines, UI IC.
 
-### James Doe
+### Ng Jing Xue
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/njxue.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/njxue)]
+[[portfolio](team/njxue.md)]
 
-* Role: Developer
-* Responsibilities: UI
+* Role: Developer.
+* Responsibilities: Integration, Documentation, Testing and Model.
