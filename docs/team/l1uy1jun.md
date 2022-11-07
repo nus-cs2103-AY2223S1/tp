@@ -1,6 +1,6 @@
 ---
 layout: page
-title: L1uY1jun's Project Portfolio Page
+title: Liu Yijun's Project Portfolio Page
 ---
 
 ### Project: TrackAScholar
