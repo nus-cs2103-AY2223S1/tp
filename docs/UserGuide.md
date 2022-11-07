@@ -369,13 +369,13 @@ Examples:
 
 **Description**
 
-Toggles the display between showing and hiding the students' parent details. If the current view displays the parent details, 'toggleView' will hide the parent details and vice versa.
+Toggles the display between showing and hiding the students' parent details. If the current view displays the parent details, `toggleView` will hide the parent details and vice versa.
 
 **Usage**
 
 There are a few scenarios when you may want to use this command:
-* Toggle to hide when you have many student and want to uncluttered view of your students without their parental details.
-* Toggle to show when you want to contact the parent of the student.
+* Toggle to hide: When you want an uncluttered view of your students without their parental details.
+* Toggle to show: When you want to contact the parent of the student.
 
 Format: `toggleView`
 
@@ -390,7 +390,7 @@ Format: `toggleView`
 ![Detailed](images/ToggleViewDetailed.png)
 
 <div markdown="span" class="alert alert-primary">:bulb:
-**Tip:** The default view on every start of the application displays the students'
+**Tip:** The default view whenever the application is started displays the students'
 parent details as a reminder that these optional fields exists.   
 </div>
 

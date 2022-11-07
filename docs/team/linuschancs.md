@@ -27,6 +27,8 @@ It is written in Java and the GUI is build using JavaFX.
   * Changed some compulsory fields of a `Student` to optional such as the respective parent details
     * See PR [#139](https://github.com/AY2223S1-CS2103T-T15-2/tp/pull/139)
   * Fixed bug where empty flags were allowed when entering the AddStudent Command
+<div style="page-break-after: always;"></div>
+  
 * ViewClassCommand
   * Implemented ViewClassCommand that displays the list of students in a class
   * Created ClassPredicate to handle the class filtering logic
@@ -59,6 +61,8 @@ It is written in Java and the GUI is build using JavaFX.
 * Created Release for v1.3.1 and v1.3.trial
   * See [Class-ify Releases](https://github.com/AY2223S1-CS2103T-T15-2/tp/releases)
 * Created weekly agenda and tasks to be completed for team meeting
+
+<div style="page-break-after: always;"></div>
 
 #### Review/ Mentoring Contributions:
 * Total Pull Requests reviewed: 37
