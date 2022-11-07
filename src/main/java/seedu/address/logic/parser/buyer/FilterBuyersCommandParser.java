@@ -61,7 +61,7 @@ public class FilterBuyersCommandParser extends Parser<FilterBuyersCommand> {
             Characteristics characteristics = ParserUtil.parseCharacteristics(
                     argMultimap.getValue(PREFIX_CHARACTERISTICS).get());
             if (characteristics.isReset()) {
-                throw new ParseException("If -c flag is used, it cannot be empty.");
+                throw new ParseException("-c flag should not be left empty.");
             }
             if (argMultimap.getValue(PREFIX_FUZZY).isPresent()) {
                 predicatesList.add(new FilterBuyersContainingAnyCharacteristicPredicate(characteristics));

@@ -153,9 +153,9 @@ public class ModelManager implements Model {
     @Override
     public void sortBuyerList(Comparator<Buyer> comparator) {
         requireNonNull(comparator);
-        List<Buyer> sortedList = new ArrayList<>(buyerBook.getBuyerList());
-        sortedList.sort(comparator);
-        buyerBook.setBuyers(sortedList);
+        List<Buyer> buyerList = new ArrayList<>(buyerBook.getBuyerList());
+        buyerList.sort(comparator);
+        buyerBook.setBuyers(buyerList);
     }
 
 
