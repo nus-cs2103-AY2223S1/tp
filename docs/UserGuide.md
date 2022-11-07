@@ -87,7 +87,7 @@ Here are some symbols used throughout this user guide:
    7. [Modifying remarks](#adding-a-remark-add--p)
       1. [Adding a remark: `add` `-p`](#adding-a-remark-add--p)
       2. [Editing a remark: `edit` `-p` `-r`](#editing-a-remark-edit--p--r)
-      3. [Deleting a remark: `delete` `-p` `-r`](#deleting-a-remark-delete--p--r)<div style="page-break-after: always;"></div>
+      3. [Deleting a remark: `delete` `-p` `-r`](#deleting-a-remark-delete--p--r)
    8. [Viewing patients](#listing-all-patients-list)
       1. [Listing all patients: `list`](#listing-all-patients-list)
       2. [Viewing all details of a patient: `focus` `-p`](#viewing-all-details-of-a-patient-focus--p)
@@ -275,6 +275,10 @@ Example: `johndoe@gmail.com`
 
 Example:`a/John street, block 123, #01-01`
 
+<br>
+
+[Back to Table of Contents ↑](#table-of-contents)
+
 ### Multi-valued attributes
 
 #### `t/TAG`
@@ -324,6 +328,10 @@ Example:`m/Amoxicillin | 0.5g every 8 hours`
 `REMARK` is specified by the prefix `r/`, and its index by the flag `-r`.
 
 Example:`r/Allergic to peanuts`
+
+<br>
+
+[Back to Table of Contents ↑](#table-of-contents)
 
 <div style="page-break-after: always;"></div>
 
@@ -1071,8 +1079,6 @@ You can refer to [this tip](#edit-multi-valued-attributes) to better understand 
 
 <br>
 
-<div style="page-break-after: always;"></div>
-
 ### Listing all patients: `list`
 
 You can view a list of all patients using the `list` command.
@@ -1204,6 +1210,8 @@ If today's date is 2022-11-04, `view --today` will display those 2 tasks.
 
 <br>
 
+[Back to Table of Contents ↑](#table-of-contents)
+
 <div markdown="block" class="alert alert-success">
 
 :bulb: **Tip:**
@@ -1270,8 +1278,6 @@ This command replaces `PATIENT_INDEX` in the [previous command](#viewing-all-tas
 [Back to Table of Contents ↑](#table-of-contents)
 
 <br>
-
-<div style="page-break-after: always;"></div>
 
 ### Undoing previous command: `undo`
 
