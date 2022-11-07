@@ -9,8 +9,8 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.UniqueMeetingList;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the meeting-list level
+ * Duplicates are not allowed (by .isSameMeeting comparison)
  */
 public class MeetingList implements ReadOnlyMeetingList {
 
@@ -31,7 +31,7 @@ public class MeetingList implements ReadOnlyMeetingList {
     public MeetingList() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an MeetingList using the Meetings in the {@code toBeCopied}
      */
     public MeetingList(ReadOnlyMeetingList toBeCopied) {
         this();
@@ -54,8 +54,8 @@ public class MeetingList implements ReadOnlyMeetingList {
     }
 
     /**
-     * Adds a person to the address book.
-     * The person must not already exist in the address book.
+     * Adds a meeting to the meeting list.
+     * The meeting must not already exist in the meeting list.
      */
     public void addMeeting(Meeting newMeeting) {
         this.meetings.add(newMeeting);
@@ -86,8 +86,8 @@ public class MeetingList implements ReadOnlyMeetingList {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code MeetingList}.
+     * {@code key} must exist in the meeting list.
      */
     public void removeMeeting(Meeting key) {
         meetings.remove(key);
@@ -124,6 +124,5 @@ public class MeetingList implements ReadOnlyMeetingList {
     public int hashCode() {
         return meetings.hashCode();
     }
-
 
 }

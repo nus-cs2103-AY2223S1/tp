@@ -23,7 +23,8 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code AddressBookStorage},
+     * {@code MeetingListStorage}  and {@code UserPrefStorage}.
      */
     public StorageManager(AddressBookStorage addressBookStorage, MeetingListStorage meetingListStorage,
                           UserPrefsStorage userPrefsStorage) {

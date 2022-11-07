@@ -13,7 +13,7 @@ import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 
 /**
- * Jackson-friendly version of {@link Person}.
+ * Jackson-friendly version of {@link Meeting}.
  */
 class JsonAdaptedMeeting {
 
@@ -25,7 +25,7 @@ class JsonAdaptedMeeting {
     private final String meetingLocation;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedMeeting} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedMeeting(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
@@ -39,7 +39,7 @@ class JsonAdaptedMeeting {
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Meeting} into this class for Jackson use.
      */
     public JsonAdaptedMeeting(Meeting source) {
         persons.addAll(source.getPersonToMeet().asUnmodifiableObservableList()
@@ -51,7 +51,7 @@ class JsonAdaptedMeeting {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted meeting object into the model's {@code Meeting} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */

@@ -27,7 +27,7 @@ Given below are my contributions to the project.
   - Developer Guide
     - Added implementation details for storage meetings [#54](https://github.com/AY2223S1-CS2103-F13-3/tp/pull/54)
     - Created UML Diagrams for `ModifiedStorageClassDiagram`, `ModifiedArchitectureSequenceDiagram` and `ModifiedModelClassDiagram` 
-  * **Community**
+* **Community**
   * Created team organization and repository in GitHub
   * Opened issues for bugs [#65](https://github.com/AY2223S1-CS2103-F13-3/tp/issues/65) [#66](https://github.com/AY2223S1-CS2103-F13-3/tp/issues/66)
   * Helped to review and close pull request [#24](https://github.com/AY2223S1-CS2103-F13-3/tp/pull/28) [#63](https://github.com/AY2223S1-CS2103-F13-3/tp/pull/63) [#67](https://github.com/AY2223S1-CS2103-F13-3/tp/pull/67)
