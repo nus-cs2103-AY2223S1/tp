@@ -44,9 +44,23 @@ Added the ability to track patients added and deleted during an undo/redo comman
 ### Contributions to Developer Guide
 * Added documentation and class diagrams for UI component
 * Added implementation details for displaying added/edited/deleted patients
-* Added instructions for manual testing
 * Added the following use cases: UC04, UC05
 * Added acknowledgement for font usage
+* Added manual testing instructions for modifying patient contact details
+* Added manual testing instructions for modifying patient tags
+* Added manual testing instructions for modifying patient tasks
+* Added manual testing instructions for modifying medical conditions
+* Added manual testing instructions for modifying medications
+* Added manual testing instructions for modifying remarks
+* Added manual testing instructions for viewing patient details
+* Added manual testing instructions for finding patients
+* Added manual testing instructions for viewing tasks for a particular day
+* Added manual testing instructions for viewing all tasks of a patient
+* Added manual testing instructions for viewing all tasks of all patients
+* Added manual testing instructions for undoing previous commands
+* Added manual testing instructions for reversing undo commands
+* Added manual testing instructions for clearing all patients
+* Added manual testing instructions for saved data
 
 ### Contributions to team-based tasks
 
