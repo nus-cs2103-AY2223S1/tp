@@ -77,7 +77,7 @@ Given below are my contributions to the project.
     * User Guide:
         * Adding a buyer, Adding a deliverer, Adding a supplier, Adding a pet to a supplier, Adding an order to a buyer,
           Prefix Summary, FAQs, Other miscellaneous parts and proofreading
-    * Developer Guide: 
+    * Developer Guide:
         * Target user profile, Value proposition, User stories, Use cases, Match command implementation, Unique ID
           implementation, Other miscellaneous parts and proofreading
 
