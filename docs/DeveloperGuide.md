@@ -764,7 +764,7 @@ Initial launch: `data/addressbook.json` is not present.
 
 Run `help`
 
-**Expected:** Help window opens with a list of commands and their descriptions. The window size may not be optimum.
+**Expected:** Help window opens with a list of commands and their descriptions.
 
 ## **Appendix F: Effort**
 
