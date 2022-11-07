@@ -40,14 +40,14 @@ Given below are my contributions to the project.
       * Did overall code quality check for most java files to modify Javadocs and align code format (Pull request [#240](https://github.com/AY2223S1-CS2103-F09-2/tp/pull/240)).
 * **Documentation**:
     * Contributions to the User Guide:
-        * Added documentation for the `tagEvent` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/UserGuide.html#tag-persons-to-an-event--tagevent)),
-      `untagEvent` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/UserGuide.html#untag-persons-from-an-event--untagevent)),
-      and `mailEvent` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/UserGuide.html#create-mailing-list-for-an-event--mailevent)) features.
-        * Modified `addPerson` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/UserGuide.html#adding-a-contact-addperson))
-      and `editPerson` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/UserGuide.html#editing-a-contact--editperson)) feature slightly to include new gender field.
+        * Added documentation for the `tagEvent` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/UserGuide.html#tagging-persons-to-an-event--tagevent)),
+      `untagEvent` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/UserGuide.html#untagging-persons-from-an-event--untagevent)),
+      and `mailEvent` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/UserGuide.html#creating-mailing-list-for-an-event--mailevent)) features.
+        * Modified `addPerson` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/UserGuide.html#adding-a-person-addperson))
+      and `editPerson` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/UserGuide.html#editing-a-person--editperson)) feature slightly to include new gender field.
     * Contributions to the Developer Guide:
-        * Added implementation details of gender field in `addPerson` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/DeveloperGuide.html#add-gender))
-      and `editPerson` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/DeveloperGuide.html#edit-gender)) feature.
+        * Added implementation details of gender field in `addPerson` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/DeveloperGuide.html#add-person))
+      and `editPerson` ([Link](https://ay2223s1-cs2103-f09-2.github.io/tp/DeveloperGuide.html#edit-person)) feature.
 
 * **Contributions to team-based tasks**:
     * Did smoke test for product releases v1.2 and v1.3 ([Link](https://github.com/AY2223S1-CS2103-F09-2/tp/releases))
