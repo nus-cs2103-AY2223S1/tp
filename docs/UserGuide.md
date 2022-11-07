@@ -28,7 +28,8 @@ The following is a short overview of the features and capabilities of NotionUS:
 |   a new user   | proceed to our [quick start](#quick-start) section to set up NotionUS and try its features |
 | returning user |       skip to our [command summary](#command-summary) for a summary of our features!       |
 
-* Table of Contents
+**Table of Contents**
+
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
