@@ -49,14 +49,14 @@ Here are some symbols used throughout this user guide:
 
 ### Table of Contents
 
-1. [Quick start](#quick-start)
-2. [Glossary](#glossary)
-3. [Command format](#command-format)
-4. [Patient parameter constraints](#patient-parameter-constraints)
+1. [**Quick start**](#quick-start)
+2. [**Glossary**](#glossary)
+3. [**Command format**](#command-format)
+4. [**Patient parameter constraints**](#patient-parameter-constraints)
    1. [Single-valued attributes](#single-valued-attributes)
    2. [Multi-valued attributes](#multi-valued-attributes)
    3. [Patient parameter summary](#patient-parameter-summary)
-5. [Features](#features)
+5. [**Features**](#features)
    1. [Getting help: `help`](#getting-help-help)
    2. [Modifying patient contact details](#adding-a-patient-add)
       1. [Adding a patient: `add`](#adding-a-patient-add)
@@ -97,8 +97,8 @@ Here are some symbols used throughout this user guide:
    13. [Exiting UniNurse: `exit`](#exiting-uninurse-exit)
    14. [Saving the data](#saving-the-data)
    15. [Editing the data file](#editing-the-data-file)
-6. [FAQ](#faq)
-7. [Command summary](#command-summary)
+6. [**FAQ**](#faq)
+7. [**Command summary**](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
