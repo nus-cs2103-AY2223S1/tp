@@ -91,7 +91,7 @@ While exploring CLInkedIn's features with this user guide, do take note of these
 
 The following glossary table provides clarification of the terms commonly used in CLInkedIn:
 
-|   Term    | Meaning                                                                                                                                             |
+|  Symbol   | Meaning                                                                                                                                             |
 |:---------:|-----------------------------------------------------------------------------------------------------------------------------------------------------|
 | Candidate | An entry in CLInkedIn. You can add a candidate with the `add` command.                                                                              |
 |  Status   | Application stage the candidate is in. Example: `Application Received`, `OA in Progress`, `Shortlisted for Interview`, `Accepted`, `Rejected`, etc. |
@@ -100,6 +100,8 @@ The following glossary table provides clarification of the terms commonly used i
 |   Links   | Webpages to find more information about the candidate.                                                                                              |
 | TAG_TYPE  | Description of tag, eg: GPA, Skill, Degree, Job Type, etc. Only used in the following commands `createTagType`, `editTagType`, `deleteTagType`.     |
 | TAG_ALIAS | Prefix for tag type. Used in `add` and `edit` commands to specify prefix of attribute.                                                              |
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
