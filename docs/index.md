@@ -17,6 +17,6 @@ title: TaskBook
 **Acknowledgements**
 
 * This project is based on the AddressBook-Level3 (AB-3) project created by the [SE-EDU initiative](https://se-education.org).
-* The use of SortedList in ModelManager was inspired by [Harmonia](https://github.com/AY2122S2-CS2103T-T09-1/tp), a project also based on AddressBook-Level3.
+* The use of SortedList in ModelManager was inspired by [Harmonia](https://github.com/AY2122S2-CS2103T-T09-1/tp) ([UG](https://ay2122s2-cs2103t-t09-1.github.io/tp/UserGuide.html), [DG](https://ay2122s2-cs2103t-t09-1.github.io/tp/DeveloperGuide.html)), a project also based on AddressBook-Level3.
 * The saving and storing of TaskBook in StorageManager was adapted from AddressBook-Level3 to include support for Tasks.
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)

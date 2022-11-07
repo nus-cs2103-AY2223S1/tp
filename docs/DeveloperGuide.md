@@ -16,7 +16,7 @@ This developer's guide consists of the following sections. Note that TaskBook is
 ## **Acknowledgements**
 
 * This project is based on the AddressBook-Level3 (AB-3) project created by the [SE-EDU initiative](https://se-education.org).
-* The use of SortedList in ModelManager was inspired by [Harmonia](https://github.com/AY2122S2-CS2103T-T09-1/tp), a project also based on AddressBook-Level3.
+* The use of SortedList in ModelManager was inspired by [Harmonia](https://github.com/AY2122S2-CS2103T-T09-1/tp) ([UG](https://ay2122s2-cs2103t-t09-1.github.io/tp/UserGuide.html), [DG](https://ay2122s2-cs2103t-t09-1.github.io/tp/DeveloperGuide.html)), a project also based on AddressBook-Level3.
 * The saving and storing of TaskBook in StorageManager was adapted from AddressBook-Level3 to include support for Tasks.
 * Third party libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5).
 
@@ -80,7 +80,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T13-4/tp/tree/master/src/main/java/taskbook/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<img src="images/UiClassDiagram.png" width="900">
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -468,22 +468,22 @@ The following sequence diagram shows how the `TaskTagCommand` works:
 * **Current choice:** Empty tags are not saved.
     * Rationale: Does not unnecessarily clutter the number of tags saved to a task.
   
-### ToDo/Deadline/Event Task types
+### Todo/Deadline/Event Task types
 
 #### Implementation
 
 The Todo, Deadline and Event task types is facilitated by `TaskList`. It extends `Task` with 3 specific task types. Additional features of each task type:
 
-- ToDo: Nil
-- Event: Event Date
-- Deadline: Deadline Date
+- `Todo`: Nil
+- `Event`: Event Date
+- `Deadline`: Deadline Date
 
 #### Design Considerations:
 
 **Aspect: `Task` superclass implementation**
 
 * **Current choice:** Implement `Task` as an abstract class.
-    * Rationale: Having the specific task types extend from `Task` allows `TaskList` to store them homogeneously. `Task` is made abstract as `ToDo` Task type models a basic task without a concept of time.
+    * Rationale: Having the specific task types extend from `Task` allows `TaskList` to store them homogeneously. `Task` is made abstract as `Todo` Task type models a basic task without a concept of time.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -563,28 +563,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `TaskBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TaskBook` and the **Actor** is the `student`, unless specified otherwise)
 
-**Use case: Add a contact**
+**1. Use case UC01: Add a contact**
 
 **MSS**
 
-1. User requests to add a person in the list
+1. Student requests to add a person in the list
 2. TaskBook adds the person
 
-    Use case ends.
+   Use case ends.
 
-**Use case: Delete a contact**
+**2. Use case UC02: Delete a contact**
 
 **MSS**
 
-1. User requests to list persons
+1. Student requests to list persons
 2. TaskBook shows a list of persons
-3. User requests to delete a specific person in the list
+3. Student requests to delete a specific person in the list
 4. TaskBook deletes the person
 
-    Use case ends.
-   
+   Use case ends.
+
 **Extensions**
 
 * 2a. The list is empty.
@@ -594,27 +594,97 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given index is invalid.
 
     * 3a1. TaskBook shows an error message.
+    * 3a2. Student enters a new delete request.
 
-      Use case resumes at step 2.
+  Steps 3a1 - 3a2 are repeated until the request entered is valid.
 
-**Use case: Add a task**
+  Use case resumes at step 4.
+
+**3. Use case UC03: Add a todo**
 
 **MSS**
 
-1. User requests to list persons
+1. Student requests to list persons
 2. TaskBook shows a list of persons
-3. User requests to add a task to a person in the list
-4. TaskBook adds the task
+3. Student requests to add a todo to a person in the list
+4. TaskBook adds the todo
 
    Use case ends.
 
-**Use case: Delete a task**
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given todo is invalid due to wrong parameters.
+
+    * 3a1. TaskBook shows an error message.
+    * 3a2. Student enters a new todo request.
+
+  Steps 3a1 - 3a2 are repeated until the request entered is valid.
+
+  Use case resumes at step 4.
+
+**4. Use case UC04: Add a deadline**
 
 **MSS**
 
-1.  User requests to list tasks
+1. Student requests to list persons
+2. TaskBook shows a list of persons
+3. Student requests to add a deadline to a person in the list
+4. TaskBook adds the deadline
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given deadline is invalid due to wrong parameters.
+
+    * 3a1. TaskBook shows an error message.
+    * 3a2. Student enters a new deadline request.
+
+  Steps 3a1 - 3a2 are repeated until the request entered is valid.
+
+  Use case resumes at step 4.
+
+**5. Use case UC05: Add an event**
+
+**MSS**
+
+1. Student requests to list persons
+2. TaskBook shows a list of persons
+3. Student requests to add an event to a person in the list
+4. TaskBook adds the event
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given event is invalid due to wrong parameters.
+
+    * 3a1. TaskBook shows an error message.
+    * 3a2. Student enters a new event request.
+
+  Steps 3a1 - 3a2 are repeated until the request entered is valid.
+
+  Use case resumes at step 4.
+
+**6. Use case UC06: Delete a task**
+
+**MSS**
+
+1.  Student requests to list tasks
 2.  TaskBook shows a list of tasks
-3.  User requests to delete a specific task in the list
+3.  Student requests to delete a specific task in the list
 4.  TaskBook deletes the task
 
     Use case ends.
@@ -628,8 +698,190 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given index is invalid.
 
     * 3a1. TaskBook shows an error message.
+    * 3a2. Student enters a new delete request.
 
-      Use case resumes at step 2.
+  Steps 3a1 - 3a2 are repeated until the request entered is valid.
+
+  Use case resumes at step 4.
+
+**7. Use case UC07: Find a task**
+
+**MSS**
+
+1.  Student requests to list tasks
+2.  TaskBook shows a list of tasks
+3.  Student requests to find a specific task in the list
+4.  TaskBook displays a list of tasks matching the request
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given query, assignment or done status is invalid.
+
+    * 3a1. TaskBook shows an error message.
+    * 3a2. Student enters a new find request.
+
+  Steps 3a1 - 3a2 are repeated until the request entered is valid.
+
+  Use case resumes at step 4.
+
+**8. Use case UC08: Find a contact**
+
+**MSS**
+
+1.  Student requests to list contacts
+2.  TaskBook shows a list of contacts
+3.  Student requests to find a specific contact in the list
+4.  TaskBook displays a list of contacts matching the request
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given query is invalid.
+
+    * 3a1. TaskBook shows an error message.
+    * 3a2. Student enters a new find request.
+
+  Steps 3a1 - 3a2 are repeated until the request entered is valid.
+
+  Use case resumes at step 4.
+
+**9. Use case UC09: Sort tasks**
+
+**MSS**
+
+1.  Student requests to list tasks
+2.  TaskBook shows a list of tasks
+3.  Student requests to sort the list of tasks in some order
+4.  TaskBook displays a list of tasks in the requested order
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given sorting order is invalid.
+
+    * 3a1. TaskBook shows an error message.
+    * 3a2. Student enters a new sort request.
+
+  Steps 3a1 - 3a2 are repeated until the request entered is valid.
+
+  Use case resumes at step 4.
+
+**10. Use case UC10: Sort contacts**
+
+**MSS**
+
+1.  Student requests to list contacts
+2.  TaskBook shows a list of contacts
+3.  Student requests to sort the list of contacts in some order
+4.  TaskBook displays a list of contacts in the requested order
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given sorting order is invalid.
+
+    * 3a1. TaskBook shows an error message.
+    * 3a2. Student enters a new sort request.
+
+  Steps 3a1 - 3a2 are repeated until the request entered is valid.
+
+  Use case resumes at step 4.
+
+**11. Use case UC11: Edit a task**
+
+**MSS**
+
+1.  Student requests to list tasks
+2.  TaskBook shows a list of tasks
+3.  Student requests to edit one task
+4.  TaskBook edits the task
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given edit request is invalid.
+
+    * 3a1. TaskBook shows an error message.
+    * 3a2. Student enters a new edit request.
+
+  Steps 3a1 - 3a2 are repeated until the request entered is valid.
+
+  Use case resumes at step 4.
+
+**12. Use case UC12: Edit a contact**
+
+**MSS**
+
+1.  Student requests to list contacts
+2.  TaskBook shows a list of contacts
+3.  Student requests to edit one contact
+4.  TaskBook edits the contact
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given edit request is invalid.
+
+    * 3a1. TaskBook shows an error message.
+    * 3a2. Student enters a new edit request.
+
+  Steps 3a1 - 3a2 are repeated until the request entered is valid.
+
+  Use case resumes at step 4.
+
+**13. Use case UC13: Navigating command history**
+
+**Precondition: TaskBook must have a previous state**
+
+**MSS**
+
+1. Student requests TaskBook to revert to previous state.
+2. TaskBook reverts to previous state.
+3. Student requests TaskBook to go back to next state.
+4. TaskBook goes back to next state.
+
+   Use case ends.
+
+**14. Use case UC14: Exiting TaskBook**
+
+**MSS**
+
+1. Student requests exit TaskBook.
+2. TaskBook application is closed.
+
+   Use case ends.
+
 
 ### Non-Functional Requirements
 
@@ -673,27 +925,193 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
+2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
+
+### Adding a person
+
+* Adding a person to contact list
+
+    1. Prerequisites: There must not be a contact with name "John Doe". Verify with `contact find q/John Doe`, there can be contacts containing "John Doe" in the name field, but not exactly "John Doe".
+  
+    2. Test case: `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123`<br>
+       Expected: Person "John Doe" is added into the contact list, with given phone number, email and address. Details of the added contact shown in the console message.
+
+    3. Test case: `contact add n/NAME p/91234567` (where NAME does not already exist in contact list as specified in 1.)<br>
+       Expected: Person "NAME" is added into the contact list with given phone number, email defaults to "[No Email]", address defaults to "[No Address]".
+
+    4. Test case: `contact add n/John'Doe p/98765432 e/johnd@example.com a/John street, block 123`<br>
+       Expected: No person is added. Error details shown in the console message.
+
+    5. Other incorrect contact add commands to try: `contact add`, `contact add n/NAME p/9821a7832` (where NAME does not already exist in contact list as specified in 1.)<br>
+       Expected: Similar to previous.
 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+* Deleting a person
 
-   1. Prerequisites: List all persons using the `contact list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `contact list` command. There must be at least one person in the contact list.
 
-   1. Test case: `contact delete i/1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `contact delete i/1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact is shown in the console message.
 
-   1. Test case: `contact delete i/0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `contact delete i/0`<br>
+      Expected: No person is deleted. Error details shown in the console message.
 
-   1. Other incorrect delete commands to try: `contact delete`, `contact delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `contact delete`, `contact delete X` (where X is larger than the list size)<br>
       Expected: Similar to previous.
+
+* Deleting a person from a sorted contact list
+
+    1. Prerequisites: Sort the contact list using the `contact sort s/SORT_TYPE` command. There must be at least one person in the contact list.
+
+    2. Test case: `contact delete i/1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the console message.
+
+    3. Test case: `contact delete i/0`<br>
+       Expected: No person is deleted. Error details shown in the console message.
+
+    4. Other incorrect delete commands to try: `contact delete X` (where X is larger than the list size)<br>
+       Expected: Similar to previous.
+  
+* Deleting a person from a filtered contact list
+
+    1. Prerequisites: Filter the contact list using the `contact find q/QUERY` command. There must be at least one person in the contact list after filtering.
+
+    2. Test case: `contact delete i/1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the console message.
+
+    3. Test case: `contact delete i/0`<br>
+       Expected: No person is deleted. Error details shown in the console message.
+
+    4. Other incorrect delete commands to try: `contact delete X` (where X is larger than the filtered list size)<br>
+       Expected: Similar to previous.
+
+### Adding a Todo
+
+* Adding a Todo *assigned by* a contact 
+
+    1. Prerequisites: There must be a person in the contact list with name "John Doe". Verify with `contact find q/John Doe`, there must be a contact with exact name "John Doe", else add "John Doe" as specified above in "Adding a person".
+
+    2. Test case: `task todo m/John Doe d/Finish user guide #/cs2103`<br>
+       Expected: Todo with description "Finish user guide" and tag "cs2103" assigned by "John Doe".
+
+    3. Test case: `task todo m/John Doe d/ #/cs2103 #homework`<br>
+       Expected: No Todo is added. Error details shown in the console message.
+
+    4. Other incorrect contact add commands to try: `task todo`, `task todo m/ d/Finish user guide`.<br>
+       Expected: Similar to previous.
+
+* Adding a Todo *assigned to* a contact 
+    
+    Similar as above, but replacing all `m/` with `o/` in the `task todo` commands. <br>
+       Expected from valid test case: Todo with similar details assigned to "John Doe"
+
+* Adding a *self-assigned* Todo
+
+    Similar as above, but omitting both `m/NAME` or `o/NAME` in the `task todo` commands.<br>
+       Expected from valid test case: Todo with similar details assigned to "Myself"
+
+### Adding a Deadline
+
+* Adding a Deadline *assigned by* a contact 
+
+    1. Prerequisites: There must be a person in the contact list with name "John Doe". Verify with `contact find q/John Doe`, there must be a contact with exact name "John Doe", else add "John Doe" as specified above in "Adding a person".
+
+    2. Test case: `task deadline m/John Doe d/Find project references t/2022-02-15 #/cs2103`<br>
+       Expected: Deadline with description "Find project references", deadline "2022-02-15" and tag "cs2103" assigned by "John Doe".
+
+    3. Test case: `task deadline m/John Doe d/ #/cs2103 #homework`<br>
+       Expected: No Deadline is added. Error details shown in the console message.
+  
+    4. Test case: `task deadline m/John Doe d/Find project references t/2022-09-39 #/cs2103 #homework`<br>
+       Expected: No Deadline is added. Error details shown in the console message.
+
+    5. Other incorrect contact add commands to try: `task deadline`, `task deadline m/ d/Find project references`.<br>
+       Expected: Similar to previous.
+
+* Adding a Deadline *assigned to* a contact 
+    
+    Similar as above, but replacing all `m/` with `o/` in the `task deadline` commands. <br>
+       Expected from valid test case: Deadline with similar details assigned to "John Doe"
+
+* Adding a *self-assigned* Deadline
+
+    Similar as above, but omitting both `m/NAME` or `o/NAME` in the `task deadline` commands.<br>
+       Expected from valid test case: Deadline with similar details assigned to "Myself"
+
+### Adding a Event
+
+* Adding a Event *assigned by* a contact 
+
+    1. Prerequisites: There must be a person in the contact list with name "John Doe". Verify with `contact find q/John Doe`, there must be a contact with exact name "John Doe", else add "John Doe" as specified above in "Adding a person".
+
+    2. Test case: `task event m/John Doe d/Attend group meeting t/2022-02-15 #/cs2103`<br>
+       Expected: Event with description "Attend group meeting", event "2022-02-15" and tag "cs2103" assigned by "John Doe".
+
+    3. Test case: `task event m/John Doe d/ #/cs2103 #homework`<br>
+       Expected: No Event is added. Error details shown in the console message.
+  
+    4. Test case: `task event m/John Doe d/Attend group meeting t/2022-09-39 #/cs2103 #homework`<br>
+       Expected: No Event is added. Error details shown in the console message.
+
+    5. Other incorrect contact add commands to try: `task event`, `task event m/ d/Attend group meeting`.<br>
+       Expected: Similar to previous.
+
+* Adding a Event *assigned to* a contact 
+    
+    Similar as above, but replacing all `m/` with `o/` in the `task event` commands. <br>
+       Expected from valid test case: Event with similar details assigned to "John Doe"
+
+* Adding a *self-assigned* Event
+
+    Similar as above, but omitting both `m/NAME` or `o/NAME` in the `task event` commands.<br>
+       Expected from valid test case: Event with similar details assigned to "Myself"
+
+### Deleting a Task
+
+* Deleting a task
+
+    1. Prerequisites: List all tasks using the `task list` command. There must be at least one task in the task list, regardless of the specific task subtype.
+
+    2. Test case: `task delete i/1`<br>
+       Expected: First task is deleted from the list. Details of the deleted task is shown in the console message.
+
+    3. Test case: `task delete i/0`<br>
+       Expected: No task is deleted. Error details shown in the console message.
+
+    4. Other incorrect delete commands to try: `task delete`, `task delete X` (where X is larger than the list size)<br>
+       Expected: Similar to previous.
+
+* Deleting a task from a sorted task list
+
+    1. Prerequisites: Sort the task list using the `task sort s/SORT_TYPE` command. There must be at least one task in the task list.
+
+    2. Test case: `task delete i/1`<br>
+       Expected: First task is deleted from the list. Details of the deleted task shown in the console message.
+
+    3. Test case: `task delete i/0`<br>
+       Expected: No task is deleted. Error details shown in the console message.
+  
+    4. Other incorrect delete commands to try: `task delete X` (where X is larger than the list size)<br>
+          Expected: Similar to previous.
+
+* Deleting a task from a filtered task list
+
+    1. Prerequisites: Filter the task list using the `task find q/QUERY` command. There must be at least one task in the task list after filtering.
+
+    2. Test case: `task delete i/1`<br>
+       Expected: First task is deleted from the list. Details of the deleted task shown in the console message.
+
+    3. Test case: `task delete i/0`<br>
+       Expected: No task is deleted. Error details shown in the console message.
+  
+    4. Other incorrect delete commands to try: `task delete X` (where X is larger than the filtered list size)<br>
+          Expected: Similar to previous.
 
 ### UI for Command History Navigation
 
@@ -714,6 +1132,7 @@ The general difficulty level of TaskBook was medium. As the project direction wa
 * Implementing inheritance structure for Sorting commands.
 * Parsing all fields in `task find` to create one comparator that searches all fields.
 * Implementing `VersionedTaskBook` to support `undo` and `redo` functionality.
+* Integrating tags for tasks 
 
 **Model**
 * Implementing Sorting and Filtering of tasks and contacts.
@@ -742,12 +1161,16 @@ Mark and unmark command was a challenge because the models were implemented with
 Having a mutable boolean field in a task model resulted in misbehavior with the GUI and storage.
 We opted to create a new task object entirely when a mark or unmark command is executed as a workaround to this problem.
 
+Integrating tags for tasks was also a challenge as many classes across the different components of the app (`Logic`, `Model`, `Storage`) 
+had to be refactored slightly to accommodate a new tag field in a task. The parser classes also had to be changed and it was tricky 
+figuring out how some of the parser methods could be modified to parse and return the set of tags.
+
 Trying to parse the arguments for `task find` was also a big challenge, because there was a lot of possible combinations of fields we could use, but we managed to break up the command's execute method into several smaller methods that could be reused, thus not only saving lines of code and increasing code readability, but also applying SLAP.
 Adding the SortedList components to the task list and contact list in `ModelManager` was also a challenge due to lack of information on the existence of such a class. Until that point, we did not know how to implement a sorting feature to our contact and task lists. However, upon learning of Observer design patterns, we found another project that used SortedList and understood what to do from there.
 
 A significant part of the effort in storing and loading of Tasks was saved using Jackson's `@JsonTypeInfo` and `@JsonSubTypes` annotations. This allowed for Tasks in the `TaskList` to be saved and loaded in their actual subtypes.
 
-Much effort was required to create `VersionedTaskBook` for the `undo` and `redo` functionality. Despite AB-3 having a proposed implementation of it, a substantial amount of effort was put it to ensure that it was durable and can withstand any possible commit. Extra effort was put in to ensure that commits to the version history are capped at a certain capacity and yet are fast.
+Much effort was required to create `VersionedTaskBook` for the `undo` and `redo` functionality. Despite AB-3 having a proposed implementation of it, a substantial amount of effort was put in to ensure that it was durable and can withstand any possible commit. Extra effort was put in to ensure that commits to the version history are capped at a certain capacity and yet are fast.
 
 Quality of life features like command history navigation and help command also took some effort. Effort had to be put in to ensure that these features are consistent and work as intended in various different scenarios. Even though these features are not core, they elevate the experience of the user.
 
