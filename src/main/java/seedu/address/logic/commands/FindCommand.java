@@ -21,7 +21,13 @@ public class FindCommand extends Command {
 
     private final ContainsKeywordsPredicate predicate;
 
+    /**
+     * Constructs a new FindCommand.
+     *
+     * @param predicate Predicate containing keywords matching.
+     */
     public FindCommand(ContainsKeywordsPredicate predicate) {
+        requireNonNull(predicate);
         this.predicate = predicate;
     }
 

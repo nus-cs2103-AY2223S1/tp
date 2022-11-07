@@ -247,12 +247,12 @@ Below shows the command format used in FindMyIntern.
 * Items with `…` after them can be used multiple times<br>
   * e.g. `[t/TAG]…` can be used as `t/backend`, `t/backend t/summer`, etc.
 
-* Parameters can be in any order<br>
+* Parameters can be in any order except for `INDEX`<br>
   * e.g. if the command specifies `d/DESCRIPTION l/LINK`, `l/LINK d/DESCRIPTION` is also acceptable
 
 * If a parameter is expected only once in the command but is specified multiple times, only the last occurrence of the parameter will be taken<br>
   * e.g. if `c/Google c/TikTok` is entered, only `c/TikTok` will be taken
-  * This does not apply to `INDEX`, e.g. if `delete 1 2` is entered, the command will fail
+  * However, this will not work for `INDEX`. e.g. `delete 1 2` will show an error instead.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`) will be ignored<br>
   * e.g. if `help 123` is entered, it will be interpreted as `help`
@@ -904,7 +904,10 @@ Application status as an input field **must be one of the following**:
 
 ### Link Formats
 
-For `Link`, the format allowed is `[SCHEME][HOSTNAME.]SLD.TLD[.MORE_TLDS][/PATH]`.
+For `Link`, the format allowed is `[SCHEME][HOSTNAME]SLD.TLD[MORE_TLDS][PATH]`.
+
+Example:
+* `[https://][careers.]google.com[.sg][/students]`
 
 The constraints are:
 
@@ -913,28 +916,34 @@ The constraints are:
     <tr>
       <th scope="col">Field</th>
       <th scope="col">Constraints</th>
+      <th scope="col">Example</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code>SCHEME</code></td>
       <td><ul><li>Only <code>http://</code> and <code>https://</code> are allowed</li></ul></td>
+      <td>https://</td>
     </tr>
     <tr>
       <td><code>HOSTNAME</code></td>
-      <td><ul><li>Must only contain alphabets and numbers</li><li>Must be at least 2 characters and at most 8 characters long</li></lu></ul></td>
+      <td><ul><li>Must only contain alphabets and numbers</li><li>Must end with the character '.'</li><li>Must be at least 2 characters and at most 8 characters long excluding the '.' character at the end</li></ul></td>
+      <td>careers.</td>
     </tr>
     <tr>
-        <td><code>SLD</code></td>
-        <td><ul><li>Must only contain alphabets, numbers and the character '-'</li><li>Must be at least 1 character and at most 63 characters long</li></ul></td>
+      <td><code>SLD</code></td>
+      <td><ul><li>Must only contain alphabets, numbers and the character '-'</li><li>Must end with the character '.'</li><li>Must be at least 1 character and at most 63 characters long excluding the '.' character at the end</li></ul></td>
+      <td>google.</td>
     </tr>
     <tr>
       <td><code>TLD</code></td>
-      <td><ul><li>Must only contain alphabets and numbers</li><li>Must be at least 2 characters and at most 8 characters long</li></lu></ul></td>
+      <td><ul><li>Must only contain alphabets and numbers</li><li>Must end with the character '.' if there is another <code>TLD</code> after the current one</li><li>Must be at least 2 characters and at most 8 characters long</li></ul></td>
+      <td>com.sg</td>
     </tr>
     <tr>
-        <td><code>PATH</code></td>
-        <td><ul><li>Must only contain alphabets, numbers and the characters '+&@#/%=~$.?'</li></ul></td>
+      <td><code>PATH</code></td>
+      <td><ul><li>Must only contain alphabets, numbers and the characters '+&@#/%=~$.?'</li><li>Must start with the character '/'</li></ul></td>
+      <td>/students</td>
     </tr>
   </tbody>
 </table>

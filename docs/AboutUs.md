@@ -54,4 +54,4 @@ We are a team based in the [School of Computing, National University of Singapor
 [[portfolio](team/puakii.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: `find` command, refactoring from `Person` to `Internship`, user guide and developer guide

@@ -74,8 +74,11 @@ public class Internship {
     }
 
     /**
-     * Returns true if both internships have the same company.
+     * Returns true if both internships have the same company and tags.
      * This defines a weaker notion of equality between two internships.
+     *
+     * @param otherInternship The internship to compare with.
+     * @return true if both internships have the same company and tags.
      */
     public boolean isSameInternship(Internship otherInternship) {
 
