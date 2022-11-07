@@ -186,7 +186,15 @@ class AbstractAttributeTest {
     }
 
     @Test
-    void testHashCode() {
+    void toString_nullValue_success() {
+        Attribute<String> attr = new AbstractAttribute<String>("String", null) { };
+        assertEquals(attr.toString(), "");
+    }
+
+    @Test
+    void hashCode_success() {
+        assertEquals(AGE.hashCode(), 66036);
+        assertEquals(POSITION.hashCode(), 812513371);
     }
 
     @Test
