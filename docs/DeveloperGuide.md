@@ -220,6 +220,161 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Client Information feature
+This feature allows users to record key information about clients as phone number, yearly income and risk appetite.
+
+Overview of implementation of Client Information:
+
+* `Address`- This is a class that stores information regarding the address of a specific client.
+* `Email`- This is a class that stores information regarding the email of a specific client.
+* `Income`- This is a class that stores information regarding the income of a specific client.
+* `Monthly`- This is a class that stores information regarding the monthly contributions of a specific client.
+* `Name`- This is a class that stores information regarding the name of a specific client.
+* `Phone`- This is a class that stores information regarding the phone number of a specific client.
+* `RiskTag`- This is a class that stores information regarding the risk appetite of a specific client as a tag.
+* `ClientTag`- This is a class that stores information regarding the status of a specific client as a tag. 
+* `PlanTag`- This is a class that stores information regarding the financial plan of a specific client as a tag.
+* `NormalTag`- This is a class that stores additional information regarding a specific client as a tag.
+* `Person`- This is a class that represents a specific client and stores all the above information .
+* `JsonAdaptedPerson`- This is a class that acts as a bridge between the Person class and Storage layer. It specifies how a Person object is converted to a JSON and vice versa.
+* `JsonAdaptedTag` - This is a class that acts as a bridge between the Tag class and Storage layer. It specifies how a Tag object is converted to a JSON and vice versa.
+* `AddCommand` - This is a class where the logic for the Add command is specified and the execute method is called. It will access the Model layer to ensure that there will not be a duplicate Person with the same name and that none of the above fields have any violations, followed by adding the Person to the Model.
+* `AddCommandParser` - This is a class that parses user input from a String to an AddCommand object. Validation for the user’s input is performed in this class.
+* `EditCommand` - This is a class where the logic for the Edit command is specified and the execute method is called. It will access the Model layer to ensure that the input is valid. It will then remove the old field data and add the newly edited field data. The Model will be updated accordingly.
+* `EditPersonDescriptor` - This is a class that takes in the user input’s edited fields to create the newly edited Person.
+* `EditCommandParser` - This is a class that parses user input from a String to an EditCommand object. Validation for the user’s input is performed in this class.
+* `DeleteCommand` - This is a class where the logic for the Delete command is specified and the execute method is called. It will access the Model layer to ensure that there exists a Person at the specified index. The Person will be removed from the Model.
+* `DeleteCommandParser` - This is a class that parses user input from a String to an DeleteCommand object. Validation for the user’s input is performed in this class.
+* `UniquePersonList` - This is an abstraction that represents the list of clients. It ensures that the Persons are in sorted order according to alphabetical order, and ensures that there are no duplicate clients.
+
+
+Currently, the appointment feature supports 3 different type of command:
+1. `add`
+2. `edit`
+3. `delete`
+
+
+#### Add Command
+
+Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
+
+Step 2. If the user input matches the format for the command word for the `AddCommand`, `AddressBookParser` will create an `AddCommandParser` and will call the `AddCommandParser::parse(args)` to parse the command.
+
+Step 3. Validation for the user input is performed, such as validating the format of the various fields such as `Name` and `Risk`.
+
+Step 4. If the user input is valid, a new `AddCommand` object is created and returned to the `LogicManager`.
+
+Step 5. `LogicManager` will call `AddCommand::execute(model)` method. Further validation is performed, such as checking whether a duplicate `Person` exists.
+
+Step 6. If the command is valid, the `setPerson` method of the `UniquePersonList` is called, which will update `Model`.
+
+Step 7. `AddCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
+
+This is shown in the diagram below:
+<br>
+![Add Sequence Diagram](images/AddCommandSequenceDiagram.png)
+<br>
+*Figure 10: Sequence Diagram showing the execution of an `add` (Add) command*
+
+#### Edit Command
+
+Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
+
+Step 2. If the user input matches the format for the command word for the `EditCommand`, `AddressBookParser` will create an `EditCommandParser` and will call the `EditCommandParser::parse(args)` to parse the command.
+
+Step 3. Validation for the user input is performed, such as validating the client's `Index`.
+
+Step 4. Validation for the user's input for the format of input such as `Phone` and `Monthly` is also performed to create a `EditPersonDescriptor`
+
+Step 5. If the user input is valid, a new `EditCommand` object is created and returned to the `LogicManager`.
+
+Step 6. `LogicManager` will call `EditCommand::execute(model)` method. `EditPersonDescriptor` will create the edited `Person`
+
+Step 7. Further validation is performed, such as checking whether the user's edited field is changed.
+
+Step 6. If the command is valid, the `remove` and `add` method of the `UniquePersonList` is called,
+removing the old Person and adding the newly edited Person. `Model` will be updated accordingly.
+
+Step 7. `EditCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
+
+This is shown in the diagram below:
+<br>
+![Edit Sequence Diagram](images/EditCommandSequenceDiagram.png)
+<br>
+*Figure 11: Sequence Diagram showing the execution of an `edit` (Edit) command for name*
+
+#### Delete Command
+
+Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager::execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser::parseCommand(userInput)` which parses the command.
+
+Step 2. If the user input matches the format for the command word for the `DeleteCommand`, `AddressBookParser` will create an `DeleteCommandParser` and will call the `DeleteCommandParser::parse(args)` to parse the command.
+
+Step 3. Validation for the user input is performed, such as validating the client's `Index` .
+
+Step 4. If the user input is valid, a new `DeleteCommand` object is created and returned to the `LogicManager`.
+
+Step 5. `LogicManager` will call `DeleteCommand::execute(model)` method. Further validation is performed, such as checking whether an `Appointment` exists to be deleted.
+
+Step 6. If the command is valid, the `remove` method of the `UniquePersonList` is called, which will update the `Model`.
+
+Step 7. `DeleteCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
+
+This is shown in the diagram below:
+<br>
+![Delete Sequence Diagram](images/DeleteSequenceDiagram.png)
+<br>
+*Figure 6: Sequence Diagram showing the execution of an `d 1` (Delete Appointment) command*
+
+### Special Tag feature
+This feature allows users to record key information about clients as special tag, which are colour coded to make it easier to interpret at a glance. 
+
+Overview of implementation of Special Tags:
+* `Tag` - Tag has now been reformatted to an abstract class to support extensions and operations by the new `Tag` classes.
+* `NormalTag` - NormalTag now represents the former `Tag` class, which is used to create regular tags which users can create with a single word up to 50 characters. It is also now restricted to maximum of 5 tags per use. The design decision will be elaborated on in later sections.
+* `SpecialTag` This is an abstract class that extends `Tag`, which supports `RiskTag`, `ClientTag`, and `PlanTag`.
+* `RiskTag` - This is a class for users to indicate client's risk appetite. It accepts only 3 inputs - Low, Medium, and High which are colour coded as GREEN, YELLOW and RED respectively.
+* `ClientTag` - This is a class for users to indicate client's status. It accepts only 2 inputs - Potential or Current, which are colour coded as BLUE and GREY.
+* `PlanTag` - This is a class for users to indicate client's current financial plan. It accepts any input ending with Plan. It is colour coded in MAGENTA.
+
+Currently, to add any tags including `NormalTag`, users have to use the add or edit commands, which have been enhanced to incorporate the new tags. `SpecialTags` are mandatory while `Tags` are optional
+
+Here are the Prefix to be used with add and edit commands:
+1. `NormalTag` - /t
+2. `RiskTag` - /r
+3. `ClientTag` - /c
+4. `PlanTag` - /ip
+
+#### Design Considerations
+**Aspect: How many `Tags` can be added for each command**
+* **Alternative 1:** Add only one `Tag` in each command.
+    * Pros: Simpler input validation and length of user input is shorter, as the presence of other fields has the potential to be very lengthy.
+    * Cons: User has to execute the `edit` command multiple times to add all their desired `Tags`.
+* **Alternative 2 (current choice)**: Multiple `Tags` can be added in each command
+    * Pros: Lower number of commands needed to be executed to add all the desired `Tags`
+    * Cons: Lengthier user input, tags have to be re-entered everytime when editing even if it is already present.
+    * Rationale: We decided on allowing multiple tags as the users are unlikely to edit tags frequently, hence it would be more user friendly for users to enter fewer commands.
+
+
+**Aspect: Should special tags be made Mandatory?**
+* **Alternative 1 (current choice):** Make all `SpecialTags` mandatory.
+    * Pros: Consistent display across all clients, easy for users to find information at a glance.
+    * Cons: Users may not have all information ready for all `SpecialTags` when adding new Client.
+    * Rationale: Most of the `SpecialTags` pertain to information that users can obtain from their client within the first meeting or contact. Hence we chose to prioritise a consistent display.
+* **Alternative 2 (current choice):** Make all `SpecialTags` optional.
+  * Pros: Users do not need to enter fields that they do not have the information for.
+  * Cons: Inconsistent display across all clients, making it harder for users to find information at a glance.
+
+**Aspect: How many `Tags` can be added for each client**
+* **Alternative 1 (current choice):** Limit number of `Tags` per client and character length of each `Tag`.
+    * Pros: Ensure consistent display across all clients and prevent excessive `Tag` spam, which may obscure other information.
+    * Cons: Users will be restricted to a limited number of `Tags` and they may not be able to add `Tags` of the length they desire.
+    * Rationale: The main purpose of the app is to store the key information of clients, which are stored in the main fields and appointment list. Hence, to protect the view of these information, we have decided to limit the `Tag` feature. Additionally, the second longest word in the English Language is 47 characters. Hence, a limit of 50 characters is sufficient for each tag.
+* **Alternative 2 :** Do not limit number of `Tags` per client and character length of each `Tag`.
+    * Pros: Users will be able to add any `Tags` they desire. 
+    * Cons: Display across various clients may be inconsistent, and certain information may be obscured when too many tags are added.
+  
+
+
 ### Appointment feature
 
 This feature represents an appointment between a user and a client. An appointment consists of a DateTime and a Location.
@@ -279,7 +434,7 @@ This is shown in the diagram below:
 
 </div>
 
-*Figure 10: Sequence Diagram showing the execution of an `aa` (Add Appointment) command*
+*Figure 12: Sequence Diagram showing the execution of an `aa` (Add Appointment) command*
 
 #### Design Considerations
 **Aspect: How many `Appointments` can be added for each command**
@@ -323,7 +478,7 @@ This is shown in the diagram below:
 <br>
 ![Edit Appointment Sequence Diagram](images/EditAppointmentCommandSequenceDiagram.png)
 <br>
-*Figure 11: Sequence Diagram showing the execution of an `ea` (Edit Appointment) command*
+*Figure 13: Sequence Diagram showing the execution of an `ea` (Edit Appointment) command*
 
 #### Design Considerations
 **Aspect: How many `Appointments` can be edited for each command?**
@@ -361,7 +516,7 @@ This is shown in the diagram below:
 <br>
 ![Delete Appointment Sequence Diagram](images/DeleteAppointmentCommandSequenceDiagram.png)
 <br>
-*Figure 12: Sequence Diagram showing the execution of an `da` (Delete Appointment) command*
+*Figure 14: Sequence Diagram showing the execution of an `da` (Delete Appointment) command*
 
 #### Design Considerations
 **Aspect: How many `Appointments` can be deleted for each command**
@@ -413,13 +568,13 @@ This is shown in the diagram below:
 
 ![Sort Command Sequence Diagram](images/SortCommandSequenceDiagram.png)
 
-*Figure 13: Sequence Diagram showing the execution of an `sort` command*
+*Figure 15: Sequence Diagram showing the execution of an `sort` command*
 
 The following activity diagram summarizes what happens when a user executes the Sort Command:
 
 ![Sort Command Activity Diagram](images/SortCommandActivityDiagram.png)
 
-*Figure 14: Activity Diagram showing the execution of an `sort` command*
+*Figure 16: Activity Diagram showing the execution of an `sort` command*
 
 #### Design Considerations
 
@@ -471,7 +626,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ![Find Command Activity Diagram](images/FindCommandActivityDiagram.png)
 
-*Figure 15: Activity Diagram showing the execution of an `find` command*
+*Figure 17: Activity Diagram showing the execution of an `find` command*
 
 #### Design Considerations
 

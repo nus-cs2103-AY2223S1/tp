@@ -15,18 +15,23 @@ UniqueTagList *-down-> "*" Tag
 UniquePersonList -right-> Person
 UniqueAppointmentList *-down-> Appointment
 
-Person *-up-> "*" Tag
+Person *-left-> "1" PlanTag
+Person *-left-> "1" RiskTag
+Person *-left-> "1" ClientTag
+Person *-left-> "0..5" NormalTag
 Person *--> "1" Name
 Person *--> "1" Phone
 Person *--> "1" Email
 Person *-up-> "0..3" Appointment
 Person *--> "1" Address
-Person *--> "1" IncomeLevel
-Person *--> "1" MonthlySavings
+Person *--> "1" Income
+Person *--> "1" Monthly
 
 NormalTag -up-|> Tag
-RiskTag -up-|> Tag
-PlanTag -up-|> Tag
+SpecialTag -up-|> Tag
+RiskTag -up-|> SpecialTag
+PlanTag -up-|> SpecialTag
+ClientTag -up-|> SpecialTag
 
 Appointment *--> "1" DateTime
 Appointment *--> "1" Location

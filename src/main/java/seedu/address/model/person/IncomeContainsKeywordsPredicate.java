@@ -20,7 +20,7 @@ public class IncomeContainsKeywordsPredicate extends FindPredicate {
 
     @Override
     public boolean test(Person person) {
-        IncomeLevel personIncome = person.getIncome();
+        Income personIncome = person.getIncome();
         for (String predicateIncomeName : income) {
             if (predicate.equals(">")) {
                 if (personIncome.convertIncomeToLong() >= Long.parseLong(predicateIncomeName)) {

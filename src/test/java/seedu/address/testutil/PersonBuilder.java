@@ -8,7 +8,7 @@ import java.util.Set;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.IncomeLevel;
+import seedu.address.model.person.Income;
 import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -41,7 +41,7 @@ public class PersonBuilder {
     private RiskTag riskTag;
     private PlanTag planTag;
     private ClientTag clientTag;
-    private IncomeLevel income;
+    private Income income;
     private Monthly monthly;
     private Set<NormalTag> tags;
     private MaximumSortedList<Appointment> appointments;
@@ -57,7 +57,7 @@ public class PersonBuilder {
         riskTag = new RiskTag(DEFAULT_RISKTAG);
         planTag = new PlanTag(DEFAULT_PLANTAG);
         clientTag = new ClientTag(DEFAULT_CLIENTTAG);
-        income = new IncomeLevel(DEFAULT_INCOME);
+        income = new Income(DEFAULT_INCOME);
         monthly = new Monthly(DEFAULT_MONTHLY);
         tags = new HashSet<>();
         appointments = new MaximumSortedList<>(MAXIMUM_NUM_OF_APPOINTMENTS);
@@ -150,7 +150,7 @@ public class PersonBuilder {
      * Sets the {@code Income} of the {@code Person} that we are building.
      */
     public PersonBuilder withIncome(String income) {
-        this.income = new IncomeLevel(income);
+        this.income = new Income(income);
         return this;
     }
 

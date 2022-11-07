@@ -15,7 +15,7 @@ Class Address
 Class Email
 Class Name
 Class Phone
-Class IncomeLevel
+Class Income
 Class Monthly
 Class HiddenModel2 #FFFFFF
 Class HiddenModel3 #FFFFFF
@@ -26,6 +26,8 @@ Class "{abstract}\nTag" as Tag
 Class NormalTag
 Class PlanTag
 Class RiskTag
+Class ClientTag
+Class SpecialTag
 }
 
 Package Appointment as AppointmentPackage{
@@ -47,12 +49,13 @@ Class Email
 Class Name
 Class Phone
 Class "{abstract}\nTag" as Tag
-Class IncomeLevel
+Class Income
 Class Monthly
 Class Appointment
 Class NormalTag
 Class PlanTag
 Class RiskTag
+class ClientTag
 Class Location
 Class DateTime
 
@@ -80,10 +83,13 @@ Person *--> "1" Name
 Person *--> "1" Phone
 Person *--> "1" Email
 Person *--> "1" Address
-Person *--> "1" IncomeLevel
+Person *--> "1" Income
 Person *--> "1" Monthly
 Person *--> "0..3" Appointment
-Person *---> "*" Tag
+Person *-right-> "1" PlanTag
+Person *-right-> "1" RiskTag
+Person *-right-> "1" ClientTag
+Person *-right-> "0..5" NormalTag
 Appointment *--> "1" Location
 Appointment *--> "1" DateTime
 
@@ -102,8 +108,10 @@ Address -[hidden]right-> Email
 
 
 NormalTag -up-|> Tag
-RiskTag -up-|> Tag
-PlanTag -up-|> Tag
+SpecialTag -up-|> Tag
+RiskTag -up-|> SpecialTag
+PlanTag -up-|> SpecialTag
+ClientTag -up-|> SpecialTag
 
 ModelManager -->"~* filtered" Person
 @enduml

@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
-import seedu.address.model.person.IncomeLevel;
+import seedu.address.model.person.Income;
 import seedu.address.model.person.Monthly;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -151,7 +151,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_nullIncome_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
                 null, VALID_MONTHLY, VALID_RISKTAG, VALID_PLANTAG, VALID_CLIENTTAG, VALID_TAGS, VALID_APPOINTMENTS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, IncomeLevel.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Income.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
@@ -160,7 +160,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, INVALID_INCOME,
                         VALID_MONTHLY, VALID_RISKTAG, VALID_PLANTAG, VALID_CLIENTTAG, VALID_TAGS, VALID_APPOINTMENTS);
-        String expectedMessage = IncomeLevel.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Income.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
