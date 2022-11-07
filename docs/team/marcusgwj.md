@@ -78,6 +78,10 @@ Given below are my contributions to the project.
       * [#157](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/157)
       * [#162](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/162)
       * [#169](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/169)
+      * [#173](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/173)
+      * [#176](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/176)
+      * [#181](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/181)
+      * [#183](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/183)
 
 * **Contributions beyond the project team**: 
     * Reported bugs and provided suggestions for other teams: [Bugs](https://github.com/Marcusgwj/ped/issues)

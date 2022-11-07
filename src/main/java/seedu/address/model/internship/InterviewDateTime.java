@@ -66,9 +66,6 @@ public class InterviewDateTime {
      * @return true if it is valid.
      */
     public static boolean isValidFormat(String interviewDateTime) {
-        if (interviewDateTime.isEmpty()) {
-            return false;
-        }
 
         try {
             INPUT_DATE_FORMAT.withResolverStyle(ResolverStyle.LENIENT).parse(interviewDateTime);
@@ -84,9 +81,6 @@ public class InterviewDateTime {
      * @return true if it is valid.
      */
     public static boolean isValidDateTime(String interviewDateTime) {
-        if (interviewDateTime.isEmpty()) {
-            return false;
-        }
 
         try {
             INPUT_DATE_FORMAT.withResolverStyle(ResolverStyle.STRICT).parse(interviewDateTime);
@@ -102,6 +96,9 @@ public class InterviewDateTime {
      * @return true if it is valid.
      */
     public static boolean isValidInterviewDateTime(String interviewDateTime) {
+        if (interviewDateTime.isEmpty()) {
+            return false;
+        }
         return isValidFormat(interviewDateTime) && isValidDateTime(interviewDateTime);
     }
 
@@ -111,12 +108,21 @@ public class InterviewDateTime {
      * @param interviewDateTime2 Second InterviewDateTime.
      * @return true if both are equal.
      */
-    public static boolean bothNullOrEqual(InterviewDateTime interviewDateTime1, InterviewDateTime interviewDateTime2) {
+    public static boolean isBothNullOrEqual(InterviewDateTime interviewDateTime1,
+                                            InterviewDateTime interviewDateTime2) {
         if (interviewDateTime1 == null) {
             return null == interviewDateTime2;
         } else {
             return interviewDateTime1.equals(interviewDateTime2);
         }
+    }
+
+    /**
+     * Returns the LocalDate representation of this InterviewDateTime object.
+     * @return LocalDate representation.
+     */
+    public LocalDate getLocalDate() {
+        return this.interviewDateTime.toLocalDate();
     }
 
     @Override

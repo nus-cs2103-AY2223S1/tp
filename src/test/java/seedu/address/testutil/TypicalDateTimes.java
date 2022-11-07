@@ -28,4 +28,8 @@ public class TypicalDateTimes {
     public static final String FIRST_INVALID_TIME = "2000"; // colon missing from HH:mm format
     public static final String SECOND_INVALID_TIME = "3 pm"; // :mm missing from H:mm a format
     public static final String THIRD_INVALID_TIME = "3:00pm"; // space missing from H:mm a format
+
+    // Dates that are consecutive
+    public static final String EARLIER_VALID_DATE = "23 Oct 2022";
+    public static final String LATER_VALID_DATE = "24 Oct 2022";
 }
