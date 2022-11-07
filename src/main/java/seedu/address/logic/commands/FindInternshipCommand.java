@@ -27,7 +27,7 @@ public class FindInternshipCommand extends Command {
             + "[" + PREFIX_COMPANY_NAME + " COMPANY_NAME_KEYWORDS...] "
             + "[" + PREFIX_INTERNSHIP_ROLE + " ROLE_KEYWORDS...] "
             + "[" + PREFIX_INTERNSHIP_STATUS + " STATUS_KEYWORDS...] "
-            + "[" + PREFIX_INTERVIEW_DATE + " INTERVIEW_DATE_KEYWORDS...]\n"
+            + "[" + PREFIX_INTERVIEW_DATE + " INTERVIEW_DATE_KEYWORDS...] (at least one prefix should be specified)\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_COMPANY_NAME + "abc pte ltd";
 
     private final InternshipContainsKeywordsPredicate predicate;

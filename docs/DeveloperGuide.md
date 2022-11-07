@@ -221,12 +221,14 @@ The following activity diagram summarizes what happens when a user executes an `
 The sequence diagram is given below.
 ![SortPersonSequence](images/SortPersonSequence.png)
 
-The activity diagram is given below.
+The following activity diagram summarizes what happens when a user attempts to sort the person list:
 ![SortPersonActivity](images/SortPersonActivity.png)
 
 #### Design considerations
 
-The sorting mechanism is designed in a way to keep all operations to the `SortPersonCommand` object itself, which will them prompt the `Model` to set the comparator of the person list. This is consistent with the other commands, as they will go through the same process, since each command has their own class and parser (if needed).
+The sorting mechanism is designed in a way to keep all operations to the `SortPersonCommand` object itself, 
+which will them prompt the `Model` to set the comparator of the person list. 
+This is consistent with the other commands, as they will go through the same process, since each command has their own class and parser (if needed).
 
 <div style="page-break-after: always;"></div>
 
@@ -237,7 +239,7 @@ The sorting mechanism is designed in a way to keep all operations to the `SortPe
 1. When the user attempts to find a person or internship, the command goes through the `LogicManager`, which will then go through the `AddressBookParser`.
 2. The `AddressBookParser` will then create the corresponding parser for the command, `FindPersonCommandParser`.
 3. After which, it will pass the argument (the full command excluding the command word and flag) to this parser.
-4. The command parser will then create a `FindPersonCommand` by constructing and storing a `Predicate` that checks, 
+4. The command parser will then create a `FindPersonCommand` by constructing and storing a `predicate` that checks, 
    for each field of the `Person`, whether it contains any of the specified keywords.
    The determining of which keyword is for which field is done via parsing of prefixes in the command,
    and these prefixes are consistent with the ones used in other commands such as the `Add` command.
@@ -249,6 +251,15 @@ The sorting mechanism is designed in a way to keep all operations to the `SortPe
 
 The sequence diagram is given below.
 ![FindPersonSequence](images/FindPersonSequence.png)
+
+The following activity diagram summarizes what happens when a user attempts to find a person:
+![FindPersonActivity](images/FindPersonActivity.png)
+
+#### Design considerations
+
+The finding mechanism is designed in a way to keep all operations to the `FindPersonCommand` object itself,
+which will them prompt the `Model` to set the predicate of the person list.
+This is consistent with the other commands, as they will go through the same process, since each command has their own class and parser (if needed).
 
 <div style="page-break-after: always;"></div>
 
@@ -272,88 +283,6 @@ The sequence diagram is given below.
 
 The following activity diagram summarizes what happens when a user attempts to link a person and an internship:
 ![LinkActivity](images/LinkActivityDiagram.png)
-
-<div style="page-break-after: always;"></div>
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete -p 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add -p n/David …​` to add a new person. The `add -p` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div style="page-break-after: always;"></div>
-<br>
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list -p`. Commands that do not modify the address book, such as `list -p`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete -p`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -660,6 +589,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 <div style="page-break-after: always;"></div>
+
 ### Editing a person
 
 1. Editing a person in a filtered list of persons.
@@ -727,6 +657,26 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect sort person commands to try: `sort -p rbivrv`, `sort -p      `, `sort -p n/ krvnkr`, `...`.<br>
    Expected: Similar to previous.
+
+<div style="page-break-after: always;"></div>
+
+### Finding a person
+
+1. Finds a person by each given field.
+
+    1. Prerequisites: List is not empty.
+
+    1. Test case: `find -p n/alex`<br>
+       Expected: Finds all persons whose name contains the string "alex".
+
+    1. Test case: `find -p c/google`<br>
+       Expected: Finds all persons whose company contains the string "google".
+
+    1. Test case: `find -p`<br>
+       Expected: Error is thrown to show that at least 1 valid field prefix should be used.
+
+    1. Other incorrect find person commands to try: `find -p asdf`, `find -p      `, `...`.<br>
+       Expected: Similar to previous.
 
 <div style="page-break-after: always;"></div>
 

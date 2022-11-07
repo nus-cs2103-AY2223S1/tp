@@ -5,7 +5,7 @@ title: Tan Xuan Yun's Project Portfolio Page
 
 ### Project: InterNUS
 
-InterNUS is a desktop address book application used for teaching Software Engineering principles. The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+InterNUS is a convenient and powerful desktop app for NUS CS students to **manage internship applications, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). It has a sleek design to track your internship status at one glance.
 
 Given below are my contributions to the project.
 
