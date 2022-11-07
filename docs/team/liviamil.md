@@ -31,7 +31,9 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=liviamil&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByAuthors&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=liviamil&tabRepo=AY2223S1-CS2103T-T08-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false&reverseAuthorshipOrder=false)
 
 * **Project management**:
-    * Co-managed releases `v1.1` - `v1.4` (4 releases) on GitHub with team
+  * Set up GitHub org
+  * Co-managed releases `v1.1` - `v1.4` (4 releases) on GitHub with team
+  * Updating user and developer docs for a better flow
 
 * **Enhancements to existing features**:
     * Updated add person to include tutorial (Pull requests [\#100](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/100), [\#178](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/178))
@@ -43,8 +45,8 @@ Given below are my contributions to the project.
         * Added documentation for the `person fields`, and features `sort`, `fav`, `social`
         * Did cosmetic tweaks and bug fixes to existing documentation of features. [#31](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/31), [#125](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/125)
     * Developer Guide:
-        * Added implementation details of the `sort` feature.
-          * Complete use cases for features `sort`, `social`.
+        * Added implementation details of the `sort` feature, including the UML diagrams.
+        * Complete use cases for features `sort`, `social`.
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments) examples: [\#40](https://github.com/AY2223S1-CS2103T-T08-3/tp/pull/40)
