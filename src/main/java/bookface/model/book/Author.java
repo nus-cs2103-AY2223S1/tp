@@ -11,7 +11,7 @@ import bookface.commons.util.AppUtil;
 public class Author {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "The names of authors should only contain alphabetical characters and spaces, and it should not be blank";
+            "The name of Author should only contain alphanumeric characters and spaces, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
