@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HealthContactParser" as HealthContactParser LOGIC_COLOR
+participant "s:SortPatientCommand" as SortPatientCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":HealthContact" as HealthContact MODEL_COLOR
+participant ":UniquePatientList" as UniquePatientList MODEL_COLOR
+end box
+
+[-> LogicManager : execute(sop c/name o/asc)
+activate LogicManager
+
+LogicManager -> HealthContactParser : parseCommand(sop c/name o/asc)
+activate HealthContactParser
+
+create SortPatientCommand
+HealthContactParser -> SortPatientCommand
+activate SortPatientCommand
+
+SortPatientCommand --> HealthContactParser
+deactivate SortPatientCommand
+
+HealthContactParser --> LogicManager : s
+deactivate HealthContactParser
+
+LogicManager -> SortPatientCommand : execute()
+activate SortPatientCommand
+
+SortPatientCommand -> Model : sortPatients(Comparator<Patient> comparator, boolean isAscending)
+activate Model
+
+Model -> HealthContact: sortPatients(Comparator<Patient> comparator, boolean isAscending)
+activate HealthContact
+
+HealthContact -> UniquePatientList : sort(Comparator<Patient> comparator, boolean isAscending)
+activate UniquePatientList
+
+UniquePatientList --> HealthContact : sortedPatientList
+deactivate UniquePatientList
+
+HealthContact --> Model : sortedPatientList
+deactivate HealthContact
+
+Model --> SortPatientCommand
+deactivate Model
+
+SortPatientCommand --> LogicManager : result
+deactivate SortPatientCommand
+SortPatientCommand -[hidden]-> LogicManager : result
+destroy SortPatientCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

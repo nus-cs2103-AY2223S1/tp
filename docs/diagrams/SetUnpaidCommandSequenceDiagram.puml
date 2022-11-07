@@ -1,0 +1,63 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HealthContactParser" as HealthContactParser LOGIC_COLOR
+participant "s:SetUnpaidCommand" as SetUnpaidCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":List<Bill>" as BillList MODEL_COLOR
+participant ":Bill" as Bill MODEL_COLOR
+end box
+
+[-> LogicManager : execute(setunpaid 1)
+activate LogicManager
+
+LogicManager -> HealthContactParser : parseCommand(setunpaid 1)
+activate HealthContactParser
+
+create SetUnpaidCommand
+HealthContactParser -> SetUnpaidCommand
+activate SetUnpaidCommand
+
+SetUnpaidCommand --> HealthContactParser
+deactivate SetUnpaidCommand
+
+HealthContactParser --> LogicManager : s
+deactivate HealthContactParser
+
+LogicManager -> SetUnpaidCommand : execute()
+activate SetUnpaidCommand
+
+SetUnpaidCommand -> Model : getFilteredBillList()
+activate Model
+
+Model --> SetUnpaidCommand : lastShownBillList
+deactivate Model
+
+SetUnpaidCommand -> BillList : get(1)
+activate BillList
+
+BillList --> SetUnpaidCommand : bill
+deactivate BillList
+
+SetUnpaidCommand -> Bill : setBillAsUnpaid(bill)
+activate Bill
+
+Bill --> SetUnpaidCommand :
+deactivate Bill
+
+
+deactivate Model
+
+SetUnpaidCommand --> LogicManager : result
+deactivate SetUnpaidCommand
+SetUnpaidCommand -[hidden]-> LogicManager : result
+destroy SetUnpaidCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

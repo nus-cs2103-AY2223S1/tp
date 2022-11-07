@@ -1,0 +1,36 @@
+@startuml
+!include style.puml
+
+
+participant "a:AddPatientCommand" as AddPatientCommand LOGIC_COLOR
+
+participant ":Model" as Model MODEL_COLOR
+
+[-> AddPatientCommand : execute()
+
+
+activate AddPatientCommand
+
+AddPatientCommand -> Model: hasPatient(p)
+activate Model
+Model -> AddPatientCommand
+deactivate Model
+
+alt patient is not already in the HealthContact
+    AddPatientCommand -> Model : addPatient(p)
+    activate Model
+    Model -> Model: resetDisplayedList()
+    activate Model
+    Model --> Model
+    deactivate Model
+    Model --> AddPatientCommand
+    deactivate Model
+end
+
+
+[<--AddPatientCommand : result
+deactivate AddPatientCommand
+[<-[Hidden]- AddPatientCommand
+destroy AddPatientCommand
+
+@enduml

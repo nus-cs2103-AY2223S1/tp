@@ -9,10 +9,17 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.appointment.Doctor;
+import seedu.address.model.appointment.MedicalTest;
+import seedu.address.model.appointment.Slot;
+import seedu.address.model.bill.Amount;
+import seedu.address.model.bill.BillDate;
+import seedu.address.model.bill.PaymentStatus;
+import seedu.address.model.patient.Address;
+import seedu.address.model.patient.Email;
+import seedu.address.model.patient.Name;
+import seedu.address.model.patient.Phone;
+import seedu.address.model.patient.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,6 +55,21 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String remark} into a {@code Remark}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code remark} is invalid.
+     */
+    public static Remark parseRemark(String remark) throws ParseException {
+        requireNonNull(remark);
+        String trimmedRemark = remark.trim();
+        if (!Remark.isValidRemark(trimmedRemark)) {
+            throw new ParseException(Remark.MESSAGE_CONSTRAINTS);
+        }
+        return new Remark(trimmedRemark);
     }
 
     /**
@@ -120,5 +142,96 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static Doctor parseDoctor(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedDoctorName = name.trim();
+        if (!Doctor.isValidDoctorName(trimmedDoctorName)) {
+            throw new ParseException(Doctor.MESSAGE_CONSTRAINTS);
+        }
+        return new Doctor(trimmedDoctorName);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code Name}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static MedicalTest parseMedicalTest(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedMedicalTestName = name.trim();
+        if (!MedicalTest.isValidMedicalTest(trimmedMedicalTestName)) {
+            throw new ParseException(MedicalTest.MESSAGE_CONSTRAINTS);
+        }
+        return new MedicalTest(trimmedMedicalTestName);
+    }
+
+    /**
+     * Parses a {@code String dateTime} into a {@code Slot}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateTime} is invalid.
+     */
+    public static Slot parseSlot(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
+        if (!Slot.isValidSlot(trimmedDateTime)) {
+            throw new ParseException(Slot.MESSAGE_CONSTRAINTS);
+        }
+        return new Slot(dateTime);
+    }
+
+
+    /**
+     * Parses a {@code String date} into a {@code BillDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static BillDate parseBillDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!BillDate.isValidBillDate(trimmedDate)) {
+            throw new ParseException(BillDate.MESSAGE_CONSTRAINTS);
+        }
+        return new BillDate(date);
+    }
+
+    /**
+     * Parses a {@code String amount} into a {@code Amount}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code amount} is invalid.
+     */
+    public static Amount parseAmount(String amount) throws ParseException {
+        requireNonNull(amount);
+        String trimmedAmount = amount.trim();
+        if (!Amount.isValidAmount(trimmedAmount)) {
+            throw new ParseException(Amount.MESSAGE_CONSTRAINTS);
+        }
+        return new Amount(amount);
+    }
+
+    /**
+     * Parses a {@code String paymentStatus} into a {@code PaymentStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code paymentStatus} is invalid.
+     */
+    public static PaymentStatus parsePaymentStatus(String paymentStatus) throws ParseException {
+        requireNonNull(paymentStatus);
+        String trimmedPaymentStatus = paymentStatus.trim();
+        if (!PaymentStatus.isValidPaymentStatus(trimmedPaymentStatus)) {
+            throw new ParseException(PaymentStatus.MESSAGE_CONSTRAINTS);
+        }
+        return new PaymentStatus(paymentStatus);
     }
 }

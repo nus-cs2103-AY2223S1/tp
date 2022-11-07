@@ -1,0 +1,45 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":HealthContactParser" as HealthContactParser LOGIC_COLOR
+participant ":SelectXXXCommandParser" as SelectCommandParser LOGIC_COLOR
+participant "sl:SelectXXXCommand" as SelectCommand LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("selectXXX 1")
+activate LogicManager
+
+LogicManager -> HealthContactParser : parseCommand("selectXXX 1")
+activate HealthContactParser
+
+create SelectCommandParser
+HealthContactParser -> SelectCommandParser
+activate SelectCommandParser
+
+SelectCommandParser --> HealthContactParser
+deactivate SelectCommandParser
+
+HealthContactParser -> SelectCommandParser : parse("1")
+activate SelectCommandParser
+
+create SelectCommand
+SelectCommandParser -> SelectCommand
+activate SelectCommand
+
+SelectCommand --> SelectCommandParser : sl
+deactivate SelectCommand
+
+SelectCommandParser --> HealthContactParser : sl
+deactivate SelectCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SelectCommandParser -[hidden]-> HealthContactParser
+destroy SelectCommandParser
+
+HealthContactParser --> LogicManager : sl
+deactivate HealthContactParser
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

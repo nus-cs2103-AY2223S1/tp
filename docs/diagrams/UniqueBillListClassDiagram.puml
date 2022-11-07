@@ -1,0 +1,32 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model <<Rectangle>> {
+    Class HealthContact
+    Class ModelManager
+
+    Package UniqueBillList <<Rectangle>> {
+        Class UniqueBillList
+        Class Bill
+        Class Appointment
+        Class Amount
+        Class BillDate
+        Class PaymentStatus
+    }
+}
+
+HealthContact *-right-> "1" UniqueBillList
+ModelManager -right-> "1" HealthContact
+ModelManager -right->"~* filtered" Bill
+
+UniqueBillList --> "~* all" Bill
+Bill *--> "1"Appointment
+Bill *--> "1"Amount
+Bill *--> "1"BillDate
+Bill *--> "1"PaymentStatus
+
+
+@enduml

@@ -1,0 +1,22 @@
+{
+  "patients": [{
+      "name": "Benson Meier",
+      "phone": "94351253",
+      "email": "alice@example.com",
+      "address": "123, Jurong West Ave 6, #08-111",
+      "remark" : "",
+      "tagged": [ "friends" ]
+    }],
+  "appointments": [{
+      "name" : "Benson Meier",
+      "medicalTest" : "gastric fluid analysis",
+      "slot" : "2022-11-01 08:00",
+      "doctor" : "Edith Hilton"
+    }, {
+      "name" : "Benson Meier",
+      "medicalTest" : "gastric fluid analysis",
+      "slot" : "2022-11-01 08:00",
+      "doctor" : "Edith Hilton"
+    }],
+  "bills" : []
+}

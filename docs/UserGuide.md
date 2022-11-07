@@ -3,190 +3,947 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
 
-* Table of Contents
-{:toc}
+HealthContact is a software for the receptionist of a family clinic
+who arranges telemedicine services between doctors and patients.
+It helps to keep track of patient data, patient appointments and
+patient bills for the family clinic.
 
---------------------------------------------------------------------------------------------------------------------
-
-## Quick start
-
-1. Ensure you have Java `11` or above installed in your Computer.
-
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
-
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
-
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * **`list`** : Lists all contacts.
-
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
-
-   * **`clear`** : Deletes all contacts.
-
-   * **`exit`** : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
-
---------------------------------------------------------------------------------------------------------------------
+---
 
 ## Features
 
-<div markdown="block" class="alert alert-info">
+* [Add a patient (addpatient, ap)](#111-add-a-patient-addpatient-ap)
+* [Add an appointment of a patient (addappointment, aa)](#112-add-an-appointment-of-a-patient-addappointment-aa)
+* [Add a bill of an appointment (addbill, ab)](#113-add-a-bill-of-an-appointment-addbill-ab)
+* [Edit a patient (editpatient, ea)](#121-edit-a-patient-editpatient-ep)
+* [Edit an appointment of a patient (editappointment, ea)](#122-edit-an-appointment-of-a-patient-editappointment-ea)
+* [Edit a bill of an appointment (editbill, eb)](#123-edit-a-bill-of-an-appointment-editbill-eb)
+* [Find patient(s) (findpatient, fp)](#131-find-patients-findpatient-fp)
+* [Find appointment(s) (findappointment, fa)](#132-find-appointments-findappointment-fa)
+* [Find bill(s) (findbill, fb)](#133-find-bills-findbill-fb)
+* [Sort patients (sortpatient, sop)](#141-sort-patients-sortpatient-sop)
+* [Sort appointments (sortappointment, soa)](#142-sort-appointments-sortappointment-soa)
+* [Sort bills (sortbill, sob)](#143-sort-bills-sortbill-sob)
+* [Select a patient (selectpatient, slp)](#151-select-a-patient-selectpatient-slp)
+* [Select an appointment (selectappointment, sla)](#152-select-an-appointment-selectappointment-sla)
+* [Set bill as paid (setpaid, sp)](#161-set-bill-as-paid-setpaid-sp)
+* [Set bill as unpaid (setunpaid, sup)](#162-set-bill-as-unpaid-setunpaid-sup)
+* [List (list, ls)](#17-list-list-ls)
+* [Delete a patient (deletepatient, dp)](#181-delete-a-patient-deletepatient-dp)
+* [Delete a patient's appointment (deleteappointment, da)](#182-delete-a-patients-appointment-deleteappointment-da)
+* [Delete the bill of an appointment (deletebill, db)](#183-delete-the-bill-of-an-appointment-deletebill-db)
+* [Undo (undo)](#19-undo-undo)
+* [Redo (redo)](#110-redo-redo)
+* [Clear (clear)](#111-clear-clear)
+* [Exit the program (exit)](#112-exit-exit)
+* [Help (help)](#113-help-help)
+* [Save the data](#114-save-the-data)
+* [Edit the data file](#115-edit-the-data-file)
 
-**:information_source: Notes about the command format:**<br>
+## Others
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* [Command summary table](#2-command-summary-table)
+* [Frequently asked questions](#3-frequently-asked-questions)
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+---
+# Quick Start
+1. Ensure you have Java 11 or above installed in your Computer.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+2. Download the latest HealthContact.jar from [here](https://github.com/AY2223S1-CS2103T-W08-1/tp/releases).
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+3. Copy the file to the folder you want to use as the home folder for your HealthContact application.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
+4. Double-click the file to start the app. The Graphical User Interface (GUI) similar to the one below should appear in a few seconds. Note how the app contains some sample data.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+<img src="images/Ui.png">
 
-</div>
+5. Type the command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
 
-### Viewing help : `help`
-
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
+6. Refer to the __Features__ below for details of each command.
 
 
-### Adding a person: `add`
+# 1. Features
 
-Adds a person to the address book.
+## 1.1 Add
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+### 1.1.1 Add a patient `addpatient`, `ap`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Adds a patient to HealthContact with input information including name, phone number,
+email address, home address, remarks and tags.
 
-Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+#### Command word
 
-### Listing all persons : `list`
+`addpatient` or `ap`
 
-Shows a list of all persons in the address book.
+#### Format
 
-Format: `list`
+`Command word <prefix><input> ...`
 
-### Editing a person : `edit`
+* Name must be different from existing patient and name is case-insensitive.
 
-Edits an existing person in the address book.
+* Remark and tags are optional.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+* A patient can be added with multiple tags.
 
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
+* The patient list, appointment list and bill list will show all data after adding.
+
+#### Parameter List
+
+|     | Prefix  | Meaning       | Input Constraint                                                                                       |
+|-----|---------|---------------|--------------------------------------------------------------------------------------------------------|
+| `*` | `n/`    | Name          | 1. Non-empty alphanumeric characters and spaces<br/> 2. Must be different from existing patient's name |
+| `*` | `p/`    | Phone number  | Numbers with at least 3 digits                                                                         |
+| `*` | `e/`    | Email address | `local-part@domain`                                                                                    |
+| `*` | `a/`    | Home address  | Non-empty characters                                                                                   |
+|     | `r/`    | Remark        | Any characters                                                                                         |
+| `+` | `t/`    | Tag           | One alphanumeric word                                                                                  |
+
+Notes on symbols in first column:
+
+`*`  Must have (If they are duplicate prefixes, only the last one will be taken into account)
+
+`+`  Can have multiple
+
+#### Example:
+
+* `ap n/Bernice Yu a/#11-330, blk 775, Bishan e/b.yu@nus.edu.sg p/80880011 t/NUS t/staff` adds the patient.
+
+<img src="images/ug/addcommand/ap1.png">
+
+### 1.1.2 Add an appointment of a patient `addappointment`, `aa`
+
+Adds an appointment to HealthContact with input information including patient name, medical test,
+slot, and doctor.
+
+#### Command word
+
+`addappointment` or `aa`
+
+#### Format
+
+`Command word <prefix><input> ...`
+
+* Patient name input must strictly match the name of an existing patient, even the casing.
+
+* Slot must be in the format `yyyy-MM-dd HH:mm`, eg. `2022-11-12 13:00`.
+
+* The input of four parameters must be different with the combination in other appointments.
+
+* Doctor and medical test are case-sensitive.
+
+* The input of four parameters must be different with the combination in other appointments, taking into consideration that doctor and medical test are case-sensitive, while patient name is case-insensitive.
+
+* The patient list, appointment list and bill list will show all data after adding.
+
+* The onus is on the user to check and ensure the following before adding an appointment:
+  * The appointment times for different patients with the same doctor do not clash with one another.
+  * The same patient/doctor does not have multiple appointments with times that clash with one another.
+
+#### Parameter List
+
+|     | Prefix | Meaning      | Input Constraint                                                                        |
+|-----|--------|--------------|-----------------------------------------------------------------------------------------|
+| `*` | `n/`   | Name         | 1. Non-empty alphanumeric characters and spaces<br/> 2. must be existing patient's name |
+| `*` | `s/`   | Slot         | Valid date and time in format `yyyy-MM-dd HH:mm`                                        |
+| `*` | `d/`   | Doctor name  | Non-empty alphanumeric characters and spaces                                            |
+| `*` | `t/`   | Medical test | Non-empty characters                                                                    |
+
+Notes on symbols in first column:
+
+`*`  Must have (If they are duplicate prefixes, only the last one will be taken into account)
+
+`+`  Can have multiple
+
+#### Examples:
+
+* `aa n/Bernice Yu s/2021-10-11 12:00 d/Dioni Yong t/X-Ray` adds the appointment.
+
+<img src="images/ug/addcommand/aa1.png">
+
+* `aa n/Bernice Yu s/2022-01-23 09:00 d/Dioni Yong t/CT` adds another appointment for `Bernice Yu`.
+
+<img src="images/ug/addcommand/aa2.png">
+
+### 1.1.3 Add a bill of an appointment `addbill`, `ab`
+
+Adds a bill attached to an appointment with input information including amount and bill date.
+
+#### Command word
+
+`addbill` or `ab`
+
+#### Format
+
+`Command word <index of appointment> <prefix><input> ...`
+
+* An amount must be positive number with at most 2 decimal places.
+
+* One appointment can be attached to no more than one bill.
+
+* A bill date must be in the format `yyyy-MM-dd`, eg. `2022-11-12`.
+
+* The patient list, appointment list and bill list will show all data after adding.
+
+#### Parameter List
+
+|      | Prefix  | Meaning              | Input Constraint                                                                                                 |
+|------|---------|----------------------|------------------------------------------------------------------------------------------------------------------|
+| `**` | NA      | Index of appointment | 1. Positive integer <br/> 2. Appears in the appointment list<br/>3. The indicated appointment does not have bill |
+| `*`  | `a/`    | Amount               | Positive number with at most 2 decimal place                                                                     |
+| `*`  | `d/`    | Bill Date            | Valid date in format `yyyy-MM-dd`                                                                          |
+
+Notes on symbols in first column:
+
+`**` Must be directly after command word
+
+`*`  Must have (If they are duplicate prefixes, only the last one will be taken into account)
+
+#### Example:
+
+* `ab 1 a/1200.00 d/2021-11-11` adds a bill to the first appointment in the displayed list.
+
+<img src="images/ug/addcommand/ab1.png">
+
+## 1.2 Edit
+
+### 1.2.1 Edit a patient `editpatient`, `ep`
+
+Edits a patient's information, such as name, phone number, address, email, remarks, and tags.
+
+#### Command word:
+
+`editpatient` or `ep`
+
+#### Format:
+
+`Command word <index of patient> <prefix><input> ...`
+
+#### Parameter List
+
+
+|       | Prefix | Meaning          | Input Constraint                                                                            |
+|-------|--------|------------------|---------------------------------------------------------------------------------------------|
+| `**`  | NA     | Index of patient | 1. Positive integer <br/> 2. Appears in the patient list                                    |
+| `*`   | `n/`   | Name             | 1. Non-empty alphanumeric characters and spaces<br/> 2. Must not be existing patient's name |
+| `*`   | `p/`   | Phone            | Numbers with at least 3 digits                                                              |
+| `*`   | `e/`   | Email address    | `local-part@domain`                                                                         |
+| `*`   | `a/`   | Home address     | Non-empty characters                                                                        |
+|       | `r/`   | Remark           | Any characters                                                                              |
+| `+`   | `t/`   | Tag              | One alphanumeric word                                                                       |
+
+
+* Edits the patient at the specified index. The index of patient refers to the index number shown in the displayed patient list.
+
+  The index **must be a positive integer** 1, 2, 3, …​
+* `<input>` refers to the new value of the field to be edited.
+* User input should be different from the previous information that the patient has.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
+* When editing tags, the existing tags of the person will be removed, i.e. adding of tags is not cumulative.
+* You can remove all the patient’s tags by typing `t/` without
+  specifying any tags after it.
+* The prefixes that can be used to edit patients can be found below in the parameter list.
 
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+#### Parameter List
 
-### Locating persons by name: `find`
+|     | Prefix  | Meaning       | Input Constraint                                                                                       |
+|-----|---------|---------------|--------------------------------------------------------------------------------------------------------|
+| `*` | `n/`    | Name          | 1. Non-empty alphanumeric characters and spaces<br/> 2. Must be different from existing patient's name |
+| `*` | `p/`    | Phone number  | Numbers with at least 3 digits                                                                         |
+| `*` | `e/`    | Email address | `local-part@domain`                                                                                    |
+| `*` | `a/`    | Home address  | Non-empty characters                                                                                   |
+|     | `r/`    | Remark        | Any characters                                                                                         |
+| `+` | `t/`    | Tag           | One alphanumeric word                                                                                  |
 
-Finds persons whose names contain any of the given keywords.
+#### Examples:
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+* `editpatient 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the first patient on the displayed list to be
+   `91234567` and `johndoe@example.com` respectively.
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+<img src = "images/ug/editcommand/ep1.png">
 
-Examples:
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `editpatient 2 n/Betsy Crower t/` edits the name of the second patient on the displayed list to be `Betsy Crower` and clears all existing tags.
 
-### Deleting a person : `delete`
+<img src = "images/ug/editcommand/ep2.png">
 
-Deletes the specified person from the address book.
+### 1.2.2 Edit an appointment of a patient `editappointment`, `ea`
 
-Format: `delete INDEX`
+Edits an appointment of a patient, such as name, medical test, slot, and doctor.
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
+#### Command word:
+
+`editappointment` or `ea`
+#### Format:
+
+`Command word <index of appointment> <prefix><input> ...`
+
+#### Parameter List
+
+|       | Prefix | Meaning              | Input Constraint                                                                        |
+|-------|--------|----------------------|-----------------------------------------------------------------------------------------|
+| `**`  | NA     | Index of appointment | 1. Positive integer <br/> 2. Appears in the appointment list                            |
+| `*`   | `n/`   | Name                 | 1. Non-empty alphanumeric characters and spaces<br/> 2. must be existing patient's name |
+| `*`   | `s/`   | Slot                 | Valid date and time in format `yyyy-MM-dd HH:mm`                                        |
+| `*`   | `d/`   | Doctor name          | Non-empty alphanumeric characters and spaces                                            |
+| `*`   | `t/`   | Medical test         | Non-empty characters                                                                    |
+
+
+* Edits the appointment at the specified index. The index of appointment refers to the index number shown in the displayed appointment list.
+
 * The index **must be a positive integer** 1, 2, 3, …​
+* The `<input>` refers to the new value of the field to be edited.
+* User input should be different from the previous information that the appointment has.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* The prefixes that can be used to edit patients can be found below in the parameter list.
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+#### Parameter List
 
-### Clearing all entries : `clear`
+|     | Prefix | Meaning      | Input Constraint                                                                        |
+|-----|--------|--------------|-----------------------------------------------------------------------------------------|
+| `*` | `n/`   | Name         | 1. Non-empty alphanumeric characters and spaces<br/> 2. must be existing patient's name |
+| `*` | `s/`   | Slot         | Valid date and time in format `yyyy-MM-dd HH:mm`                                        |
+| `*` | `d/`   | Doctor name  | Non-empty alphanumeric characters and spaces                                            |
+| `*` | `t/`   | Medical test | Non-empty characters                                                                    |
 
-Clears all entries from the address book.
+#### Examples:
 
-Format: `clear`
+* `editappointment 1 n/David Li t/CT Scan s/2021-03-01 10:00 d/Tan` Edits the name, medical test, slot,
+   and doctor of the 1st appointment to be `David Li`, `CT Scan`, `2021-03-01 10:00`, and `Tan` respectively.
 
-### Exiting the program : `exit`
+<img src = "images/ug/editcommand/ea1.png">
 
-Exits the program.
+### 1.2.3 Edit a bill of an appointment `editbill`, `eb`
 
-Format: `exit`
+Edits the bill of an appointment.
 
-### Saving the data
+#### Command word:
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+`editbill` or `eb`
 
-### Editing the data file
+#### Format: 
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+`Command word <index of bill> <prefix><input> ...`
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
-</div>
+#### Parameter List
 
-### Archiving data files `[coming in v2.0]`
+|        | Prefix  | Meaning       | Input Constraint                                           |
+|--------|---------|---------------|------------------------------------------------------------|
+| `**`   | NA      | Index of bill | 1. Positive integer <br/> 2. Appears in the bill list<br/> |
+| `*`    | `a/`    | Amount        | Positive number with at most 2 decimal place               |
+| `*`    | `d/`    | Bill Date     | Valid date in format `yyyy-MM-dd`                          |
 
-_Details coming soon ..._
+* Edits the bill at the specified index. The index of bill refers to the index number shown in the displayed bill list.
 
---------------------------------------------------------------------------------------------------------------------
+  The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
 
-## FAQ
+#### Examples:
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+* `editbill 1 a/100` edits the amount of the first bill to be `100`.
 
---------------------------------------------------------------------------------------------------------------------
+<img src="images/ug/editcommand/eb1.png">
 
-## Command summary
+* `editbill 1 d/2022-10-10` edits the bill date of the 1st bill to be `2022-10-10`.
+<img src="images/ug/editcommand/eb2.png">
 
-Action | Format, Examples
---------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+## 1.3 Find
+
+### 1.3.1 Find patient(s) `findpatient`, `fp`
+
+Filters patients by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
+special characters). The filtered patients are then listed as an indexed list.
+
+#### Command word:
+
+`findpatient` or `fp`
+
+#### Format:
+
+```Command word <prefix><input> ...``` <br>
+
+* The command words are ``findpatient`` or ``fp``.
+* The prefixes that can be used are provided in the parameter list below.
+* The filter is case-insensitive, e.g. han will match Han.
+* The user can filter using full words or partial words, e.g. han will match Hannah.
+* The user can only filter according to the input constraints of each field as shown in the parameter list below.
+* The user can filter using one field or multiple fields at once, but each field can only be used once in a single command(except tags).
+* If there are no prefixes keyed in, an error message will be shown with the correct command format.
+* If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
+
+#### Parameter List
+
+| Prefix  | Meaning       | Input Constraint                                                                                 |
+|---------|---------------|--------------------------------------------------------------------------------------------------|
+| `n/`    | Name          | Non-empty alphanumeric characters and spaces                                                     |
+| `p/`    | Phone number  | A number consisting of one or more digits, and spaces before and/or after the number are allowed |
+| `e/`    | Email address | Non-empty characters                                                                             |
+| `a/`    | Home address  | Non-empty characters                                                                             |
+| `r/`    | Remark        | Non-empty characters                                                                             |
+| `t/`    | Tag           | One alphanumeric word, and spaces before and/or after the number are allowed                     |
+
+
+#### Examples:
+
+* ```findpatient n/alex``` returns ``Alex Yeoh`` and ``alex tan``.
+
+<img src="images/ug/findcommand/fp_alex.png">
+
+* ```fp t/friends t/colleagues n/bernice``` returns only `Bernice Yu` with the tags `friends` and `colleagues`.
+
+<img src="images/ug/findcommand/fp_byu.png">
+
+### 1.3.2 Find appointment(s) `findappointment`, `fa`
+
+Filters appointments by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
+special characters).
+
+#### Command word:
+
+`findappointment` or `fa`
+
+#### Format:
+
+```Command word <prefix><input> ...```
+
+* The command words are `findappointment` or `fa`.
+* The prefixes that can be used are listed in the parameter list below.
+* The filter is case-insensitive, e.g. han will match Han.
+* The user can filter using full words or partial words, e.g. han will match Hannah.
+* The user can only filter according to the input constraints of each field as shown in the parameter list below.
+* The user can filter using one field or multiple fields at once, but each field can only be used once in a single command.
+* If there are no prefixes keyed in, an error message will be shown with the correct command format.
+* If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
+
+#### Parameter List
+
+| Prefix | Meaning       | Input Constraint                             |
+|--------|---------------|----------------------------------------------|
+| `n/`   | Name          | Non-empty alphanumeric characters and spaces |
+| `t/`   | Medical Test  | Non-empty characters                         |
+| `s/`   | Slot          | Only numbers, "-", ":" and spaces            |
+| `d/`   | Doctor        | Only alphanumeric characters and spaces      |
+
+
+#### Examples:
+
+* ```findappointment t/x-ray``` returns `Bernice Yu`'s appointment with medical test `X-ray`.
+
+<img src="images/ug/findcommand/fa_xray.png">
+
+* ```fa d/Dr Tan n/Alex``` returns only `Alex Yeoh`'s appointment with `Dr Tan`.
+
+<img src="images/ug/findcommand/fa_alextan.png">
+
+
+### 1.3.3 Find bill(s) `findbill`, `fb`
+
+Filters bills by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
+special characters).
+
+#### Command word:
+
+`findbill` or `fb`
+
+#### Format:
+
+```Command word <prefix><input> ...```
+
+* The command words are `findbill` or `fb`.
+* The prefixes that can be used are listed in the parameter list below.
+* The filter is case-insensitive, e.g. han will match Han.
+* The user Can filter using full words or partial words, e.g. han will match Hannah.
+* The user can only filter according to the input constraints of each field as shown in the parameter list below.
+* The user can filter using one field or multiple fields at once, but each field can only be used once in a single command.
+* If there are no prefixes keyed in, an error message will be shown with the correct command format.
+* If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
+
+#### Parameter List
+
+| Prefix | Meaning        | Input Constraint                                                                                       |
+|--------|----------------|--------------------------------------------------------------------------------------------------------|
+| `n/`   | Name           | Non-empty alphanumeric characters and spaces                                                           |
+| `d/`   | Bill date      | Only numbers, "-" and spaces are allowed                                                               |
+| `a/`   | Amount         | Positive number with at most two decimal places, and spaces before and/or after the number are allowed |
+| `p/`   | Payment Status | Only "paid" or "unpaid" in any case                                                                    |
+
+#### Examples:
+
+`findbill n/Ber p/unpaid` returns `Bernice Yu`'s unpaid bill
+
+<img src="images/ug/findcommand/fb.png">
+
+## 1.4 Sort
+
+### 1.4.1 Sort patients `sortpatient`, `sop`
+
+Sorts patients by a single field.
+
+#### Command word:
+
+`sortpatient` or `sop`
+
+#### Format:
+
+```Command word c/<input> o/<input>```
+
+* The command word is `sortpatient` or `sop`.
+* The prefixes are `c/` for Criteria and `o/` for Order.
+* The criteria can be Name of patient (`name`), Phone number of patient (`phone`), Email address of patient (`email`), Address of patient (`address`).
+* The order can be Ascending (`asc`) or Descending (`desc`).
+* If there are no prefixes keyed in, an error message will be shown with the correct command format.
+* If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
+
+#### Examples:
+
+* ```sortpatient c/name o/asc``` returns patients sorted by name in ascending order.
+
+<img src="images/ug/sortcommand/sop1.png">
+
+* ```sortpatient c/phone o/desc``` returns patients sorted by phone number in descending order.
+
+<img src="images/ug/sortcommand/sop2.png">
+
+### 1.4.2 Sort appointments `sortappointment`, `soa`
+
+Sorts appointments by a single field.
+
+#### Command word:
+
+`sortappointment` or `soa`
+
+#### Format:
+
+```Command word c/<input> o/<input> ...```
+
+
+* The command word is `sortappointment` or `soa`.
+* The prefixes are `c/` for Criteria and `o/` for Order.
+* The criteria can be Name of patient (`name`), Medical Test of appointment (`test`), Slot of appointment (`slot`) and Doctor of appointment (`doctor`).
+* The order can be Ascending (`asc`) or Descending (`desc`).
+* If there are no prefixes keyed in, an error message will be shown with the correct command format.
+* If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
+
+#### Examples:
+
+* ```sortappointment c/test o/asc``` returns appointments sorted by medical test in ascending order.
+
+<img src="images/ug/sortcommand/soa1.png">
+
+* ```sortappointment c/doctor o/desc``` returns appointments sorted by doctor in descending order.
+
+<img src="images/ug/sortcommand/soa2.png">
+
+### 1.4.3 Sort bills `sortbill`, `sob`
+
+Sorts bills by a single field.
+
+#### Command word:
+
+`sortbill` or `sob`
+
+#### Format:
+
+```Command word c/<input> o/<input> ...```
+
+
+* The command word is `sortbill` or `sob`.
+* The prefixes are `c/` for Criteria and `o/` for Order.
+* The criteria can be Name of patient (`name`), Amount (`amount`), Bill date (`date`), Payment status (`status`).
+* The order can be Ascending (`asc`) or Descending (`desc`).
+* If there are no prefixes keyed in, an error message will be shown with the correct command format.
+* If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
+* If the criteria is payment status, Ascending will show bills which are paid first and Descending will show bills which are unpaid first.
+
+
+#### Examples:
+
+* ```sortbill c/amount o/asc``` returns bills sorted by amount in ascending order.
+
+<img src="images/ug/sortcommand/sob1.png">
+
+* ```sortbill c/status o/desc``` returns bills sorted by payment status in descending order.
+
+<img src="images/ug/sortcommand/sob2.png">
+
+## 1.5 Select
+
+Select is a type of command that quickly shows the related information of an item, simulating a mouse click on the item.
+
+### 1.5.1 Select a patient `selectpatient`, `slp`
+
+Selects a patient by index in the patient list. Filter the appointment list and bill list
+so that these two lists shows the appointments and bills for the selected patient only.
+
+#### Command word
+
+`selectpatient` or `slp`
+
+#### Format
+
+`Command word <index of patient>`
+
+#### Parameter List
+
+|      | Prefix  | Meaning          | Input Constraint                                           |
+|------|---------|------------------|------------------------------------------------------------|
+| `**` | NA      | Index of patient | 1. Positive integer <br/> 2. Appears in the patient list   |
+
+Notes on symbols in first column:
+
+`**` Must be directly after command word
+
+#### Example:
+
+* `slp 1` shows the appointments and bills for the first patient on the patient list.
+
+<img src="images/ug/selectcommand/slp1.png">
+
+### 1.5.2 Select an appointment `selectappointment`, `sla`
+
+Selects an appointment by index in the appointment list. Filter the bill list
+so that bill list shows the bill for the selected appointment only.
+
+#### Command word
+
+`selectappointment` or `sla`
+
+#### Format
+
+`Command word <index of appointment>`
+
+#### Parameter List
+
+|      | Prefix  | Meaning              | Input Constraint                                             |
+|------|---------|----------------------|--------------------------------------------------------------|
+| `**` | NA      | Index of appointment | 1. Positive integer <br/> 2. Appears in the appointment list |
+
+Notes on symbols in first column:
+
+`**` Must be directly after command word
+
+#### Example:
+
+* `sla 1` shows the bill for the first appointment on the appointment list.
+
+<img src="images/ug/selectcommand/sla1.png">
+
+## 1.6 Set Bill Payment Status
+
+### 1.6.1 Set Bill As Paid `setpaid`, `sp`
+
+Sets the payment status of a bill to "paid".
+
+#### Command word:
+
+`setpaid` or `sp`
+
+#### Format:
+
+```Command word <index of bill>```
+
+* The command words are `setpaid` or `sp`.
+* The index refers to the index number of the bill shown in the displayed bill list.
+* The index must be a valid positive integer 1, 2, 3, …​
+
+#### Example:
+
+* ```setpaid 1``` sets the first bill on the displayed bill list as paid, in this case, `Bernice Yu`'s bill.
+
+Before:
+
+<img src="images/ug/setpaidunpaidcommand/spbefore.png">
+
+After:
+
+<img src="images/ug/setpaidunpaidcommand/spafter.png">
+
+### 1.6.2 Set Bill As Unpaid `setunpaid`, `sup`
+
+Sets the payment status of a bill to "unpaid".
+
+#### Command word:
+
+`setunpaid` or `sup`
+
+#### Format:
+
+```Command word <index of bill>```
+
+* The command words are `setunpaid` or `sup`.
+* The index refers to the index number of the bill shown in the displayed bill list.
+* The index must be a valid positive integer 1, 2, 3, …​
+
+#### Example:
+
+* ```setunpaid 1``` sets the first bill in the displayed bill list as unpaid, in this case, `Bernice Yu`'s bill.
+
+Before:
+
+<img src="images/ug/setpaidunpaidcommand/supbefore.png">
+
+After:
+
+<img src="images/ug/setpaidunpaidcommand/supafter.png">
+
+## 1.7 List `list`, `ls`
+
+Removes all conditions previously applied to the list and shows all patients, appointments and bills.
+
+#### Command word:
+
+`list` or `ls`
+
+#### Format
+
+```Command word```
+
+#### Example:
+
+* `list` shows all patients, appointments and bills.
+
+<img src="images/ug/othercommands/ls1.png">
+
+## 1.8 Delete
+
+### 1.8.1 Delete a patient `deletepatient`, `dp`
+
+Deletes a patient by the index number of the patient in the list.
+
+#### Command word:
+
+`deletepatient` or `dp`
+
+#### Format:
+
+```Command word <index of patient>```
+
+* The command words are `deletepatient` or `dp`.
+* The patient to be deleted is identified by using the index in the displayed list.
+* Deleting a patient deletes their related appointments and bills.
+* If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be
+  shown with the correct command format.
+* If the index provided is negative or greater than the number of patients in the list, an error message will be shown
+  saying the index is invalid.
+
+#### Examples:
+
+* `deletepatient 1` deletes patient `Bernice Yu` and all of her related appointments and bills.
+
+Before:
+
+<img src="images/ug/deletecommand/dp1.png">
+
+After:
+
+<img src="images/ug/deletecommand/dp2.png">
+
+### 1.8.2 Delete a patient's appointment `deleteappointment`, `da`
+
+Deletes an appointment by the index number of the appointment in the list.
+
+#### Command word:
+
+`deleteappointment` or `da`
+
+#### Format:
+
+```Command word <index of appointment>```
+
+* The command words are `deleteappointment` or `da`.
+* The appointment to be deleted is identified by using the index in the displayed list.
+* Deleting an appointment deletes its related bill.
+* If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be
+  shown with the correct command format.
+* If the index provided is negative or greater than the number of patients in the list, an error message will be shown
+  saying the index is invalid.
+
+#### Examples:
+
+* `deleteappointment 3` deletes `Charlotte Oliveiro`'s appointment and the bill tagged to it.
+
+Before:
+
+<img src="images/ug/deletecommand/da1.png">
+
+After:
+
+<img src="images/ug/deletecommand/da2.png">
+
+### 1.8.3 Delete the bill of an appointment `deletebill`, `db`
+
+Deletes a bill by the index number of the bill in the list.
+
+#### Command word:
+
+`deletebill` or `db`
+
+#### Format:
+
+```Command word <index of bill>```
+
+* The command words are `deletebill` or `db`.
+* The bill to be deleted is identified by using the index in the displayed list.
+* If there is no index keyed in or the command word is followed by non-numeric characters, an error message will be
+  shown with the correct command format.
+* If the index provided is negative or greater than the number of patients in the list, an error message will be shown
+  saying the index is invalid.
+* The appointment should be deleted only once the bill for the appointment is paid.
+
+#### Examples:
+
+* `deletebill 3` deletes `Bernice Yu`'s bill for her `X-Ray` appointment.
+
+Before:
+
+<img src="images/ug/deletecommand/db1.png">
+
+After:
+
+<img src="images/ug/deletecommand/db2.png">
+
+## 1.9 Undo `undo`
+
+Reverses the most recent command.
+
+#### Format:
+```undo```
+
+* The command word is `undo`.
+* The command can be used multiple times to undo multiple commands.
+* If there are no commands to undo, an error message will be shown.
+* Only commands that change the state of HealthContact can be undone. (Commands such as list, find, select cannot be undone)
+
+#### Examples:
+
+* `deletepatient 1` deletes all information of `Bernice Yu`.
+
+<img src="images/ug/undoredocommand/undo2.png">
+
+* `undo` brings back all the information of `Bernice Yu`.
+
+<img src="images/ug/undoredocommand/undo3.png">
+
+## 1.10 Redo `redo`
+
+Reverses the most recent undo command.
+
+#### Format:
+
+```redo```
+
+* The command word is `redo`.
+* The command can be used multiple times to redo multiple commands.
+* If there are no commands to redo, an error message will be shown.
+* Executing any command other than undo/redo will clear the redo stack. (i.e. Redo will not work after executing any command other than undo/redo)
+
+
+
+#### Examples:
+
+* `deletepatient 1` deletes all information of `Bernice Yu`.
+
+<img src="images/ug/undoredocommand/redo2.png">
+
+* `undo` brings back all information of `Bernice Yu`.
+
+<img src="images/ug/undoredocommand/redo3.png">
+
+* `redo` deletes all information of `Bernice Yu` again.
+
+<img src="images/ug/undoredocommand/redo4.png">
+
+## 1.11 Clear `clear`
+
+Deletes all patients, appointments and bills from HealthContact.
+
+* If the user accidentally clears all data, the user can restore the data by using the `undo` command. If the user closes the application before undoing `clear`, the data will be gone permanently.
+
+#### Format
+
+`clear`
+
+#### Example
+
+* `clear` deletes all the data in HealthContact.
+
+<img src="images/ug/othercommands/clear.png">
+
+## 1.12 Exit `exit`
+
+Quits HealthContact.
+
+#### Format
+
+`exit`
+
+#### Example
+
+* Executing `exit`, the program closes.
+
+## 1.13 Help `help`
+
+Opens the Help Window.
+
+#### Format
+
+`help`
+
+#### Example
+
+* `help` opens the help window.
+
+<img src="images/ug/othercommands/help.png" width="639px" height="239px">
+
+## 1.14 Save the data
+
+HealthContact data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+## 1.15 Edit the data file
+
+HealthContact data are saved as a JSON file `[JAR file location]/data/healthcontact.json`. Advanced users are welcome to update data directly by editing that data file.
+* If the changes to the data file makes its format invalid, HealthContact will discard all data and start with an empty data file at the next run.
+
+# 2. Command Summary Table
+
+| Feature  |                                      | Command Word        | Shortcut |
+|----------|--------------------------------------|---------------------|----------|
+| Add      | a patient                            | `addpatient`        | `ap`     |
+|          | an appointment of a patient          | `addappointment`    | `aa`     |
+|          | a bill for an appointment            | `addbill`           | `ab`     |
+| Edit     | a patient                            | `editpatient`       | `ep`     |
+|          | an appointment of a patient          | `editappointment`   | `ea`     |
+|          | a bill for an appointment            | `editbill`          | `eb`     |
+| Delete   | a patient                            | `deletepatient`     | `dp`     |
+|          | an appointment of a patient          | `deleteappointment` | `da`     |
+|          | a bill for an appointment            | `deletebill`        | `db`     |
+| Find     | a patient                            | `findpatient`       | `fp`     |
+|          | an appointment of a patient          | `findappointment`   | `fa`     |
+|          | a bill for an appointment            | `findbill`          | `fb`     |
+| Sort     | patients                             | `sortpatient`       | `sop`    |
+|          | appointments                         | `sortappointment`   | `soa`    |
+|          | bills                                | `sortbill`          | `sob`    |
+| Select   | a patient                            | `selectpatient`     | `slp`    |
+|          | an appointment                       | `selectappointment` | `sla`    |
+| Set bill | as paid                              | `setpaid`           | `sp`     |
+|          | as unpaid                            | `setunpaid`         | `sup`    |
+| Undo     | the last change                      | `undo`              |          |
+| Redo     | the last undone change               | `redo`              |          |
+| Clear    | all the data saved                   | `clear`             |          |
+| List     | all patients, appointments and bills | `list`              | `ls`     |
+| Exit     | the program                          | `exit`              |          |
+| Help     | the user with user guide             | `help`              |          |
+
+# 3. Frequently Asked Questions
+1. Q: How do I find out which appointment a bill is for?
+- Use the FindAppointmentCommand to find all appointments for a patient using the patient name on the bill. Then, use the SelectAppointmentCommand to see which appointment is the bill for.
+
+2. Q: What do I do if I cannot open the application by double-clicking on it?
+- Try opening the application by running the command `java -jar HealthContact.jar` in the command prompt.
+
+3. Q: What do I do if the data on the application panels are too long and are partially hidden by "..."?
+- Use select commands to view the details or expand the application window.
+
+

@@ -20,6 +20,10 @@ checkstyle {
     toolVersion = '10.2'
 }
 
+run {
+    enableAssertions = true
+}
+
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
@@ -66,7 +70,7 @@ dependencies {
 }
 
 shadowJar {
-    archiveFileName = 'addressbook.jar'
+    archiveFileName = 'HealthContact.jar'
 }
 
 defaultTasks 'clean', 'test'

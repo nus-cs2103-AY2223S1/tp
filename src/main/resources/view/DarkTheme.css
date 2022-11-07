@@ -1,13 +1,35 @@
+.appointment-list {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-border-color: derive(#1d1d1d, 10%);
+    -fx-border-top-width: 1px;
+    -fx-min-width: 650px;
+}
+
+.patient-list {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-border-color: derive(#1d1d1d, 10%);
+    -fx-border-top-width: 1px;
+    -fx-min-width: 350px;
+}
+
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
     background-color: #383838; /* Used in the default.html file */
 }
 
 .label {
-    -fx-font-size: 11pt;
+    -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: #555555;
+    -fx-text-fill: #000000;
     -fx-opacity: 0.9;
+}
+
+.section-header-label {
+    -fx-font-size: 15pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: #ffffff;
+    -fx-opacity: 0.9;
+    -fx-min-height: 25px;
 }
 
 .label-bright {
@@ -123,17 +145,18 @@
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;
-    -fx-text-fill: #010504;
+    -fx-text-fill: #ffffff;
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
-    -fx-font-size: 13px;
-    -fx-text-fill: #010504;
+    -fx-font-size: 15px;
+    -fx-text-fill: #ffffff;
+    -fx-min-width: 60px;
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .pane-with-border {
@@ -178,6 +201,12 @@
     -fx-background-color: derive(#1d1d1d, 30%);
     -fx-border-color: derive(#1d1d1d, 30%);
     -fx-border-width: 1px;
+}
+
+.grid-pane .label {
+    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 15pt;
+    -fx-text-fill: white;
 }
 
 .grid-pane .stack-pane {
@@ -328,7 +357,7 @@
     -fx-text-fill: white;
 }
 
-#filterField, #personListPanel, #personWebpage {
+#filterField, #patientListPanel, #patientWebpage, #appointmentListPanel, #appointmentWebpage {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 

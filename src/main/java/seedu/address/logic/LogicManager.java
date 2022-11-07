@@ -9,12 +9,16 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
+import seedu.address.logic.parser.HealthContactParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyHealthContact;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.bill.Bill;
+import seedu.address.model.patient.Patient;
 import seedu.address.storage.Storage;
 
 /**
@@ -26,7 +30,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final HealthContactParser healthContactParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +38,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        healthContactParser = new HealthContactParser();
     }
 
     @Override
@@ -42,11 +46,28 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        Command command = healthContactParser.parseCommand(commandText);
+        model.getHistory().updateHealthContactHistory();
+        if (!(command instanceof UndoCommand || command instanceof RedoCommand)) {
+            model.getHistory().clearRedoHealthContactHistory();
+            model.getHistory().clearRedoPatientsHistory();
+            model.getHistory().clearRedoAppointmentsHistory();
+            model.getHistory().clearRedoBillsHistory();
+        }
+        try {
+            commandResult = command.execute(model);
+        } catch (CommandException e) {
+            logger.info("Invalid command: " + commandText);
+            model.getHistory().deleteHealthContactHistory(model.getHistory().getHealthContactHistorySize() - 1);
+            model.getHistory().deletePatientsHistory(model.getHistory().getPatientsHistorySize() - 1);
+            model.getHistory().deleteAppointmentsHistory(model.getHistory().getAppointmentsHistorySize() - 1);
+            model.getHistory().deleteBillsHistory(model.getHistory().getBillsHistorySize() - 1);
+            throw e;
+        }
+
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveHealthContact(model.getHealthContact());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,18 +76,28 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyHealthContact getHealthContact() {
+        return model.getHealthContact();
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<Patient> getFilteredPatientList() {
+        return model.getFilteredPatientList();
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return model.getFilteredAppointmentList();
+    }
+
+    @Override
+    public ObservableList<Bill> getFilteredBillList() {
+        return model.getFilteredBillList();
+    }
+
+    @Override
+    public Path getHealthContactFilePath() {
+        return model.getHealthContactFilePath();
     }
 
     @Override

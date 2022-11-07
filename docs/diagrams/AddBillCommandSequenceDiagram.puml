@@ -1,0 +1,36 @@
+@startuml
+!include style.puml
+
+
+participant "a:AddBillCommand" as AddBillCommand LOGIC_COLOR
+
+participant ":Model" as Model MODEL_COLOR
+
+[-> AddBillCommand : execute()
+
+
+activate AddBillCommand
+
+AddBillCommand -> Model: hasBill(p)
+activate Model
+Model -> AddBillCommand
+deactivate Model
+
+alt Bill is not already in the HealthContact and the bill date is not earlier than the appointment date
+    AddBillCommand -> Model : addBill(p)
+    activate Model
+    Model -> Model: resetDisplayedList()
+    activate Model
+    Model --> Model
+    deactivate Model
+    Model --> AddBillCommand
+    deactivate Model
+end
+
+
+[<--AddBillCommand : result
+deactivate AddBillCommand
+[<-[Hidden]- AddBillCommand
+destroy AddBillCommand
+
+@enduml

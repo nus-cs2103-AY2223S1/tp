@@ -1,0 +1,37 @@
+@startuml
+!include style.puml
+
+
+participant "sl:SelectPatientCommand" as SelectPatientCommand LOGIC_COLOR
+
+participant ":Model" as Model MODEL_COLOR
+
+[-> SelectPatientCommand : execute()
+
+activate SelectPatientCommand
+
+alt selected patient is in the HealthContact
+    SelectPatientCommand -> Model : selectPatient(p)
+    activate Model
+
+    Model -> Model: updateFilteredAppointmentList()
+    activate Model
+    Model --> Model
+    deactivate Model
+
+    Model -> Model: updateFilteredBillList()
+    activate Model
+    Model --> Model
+    deactivate Model
+
+    Model --> SelectPatientCommand
+    deactivate Model
+end
+
+
+[<--SelectPatientCommand : result
+deactivate SelectPatientCommand
+[<-[Hidden]- SelectPatientCommand
+destroy SelectPatientCommand
+
+@enduml
