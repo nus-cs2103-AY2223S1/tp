@@ -148,7 +148,7 @@ Format: `sedit STALL_INDEX [n/NAME] [a/ADDRESS] [t/EDIT_TAG]…`
 Examples:
 * `sedit 1 n/John Doe Eatery a/Blk 123 Bedok South` edits the name and address of the 1st stall to be `John Doe Eatery` and `Blk 123 Bedok South` respectively. All reviews that are associated to the 1st stall will be updated to reflect the new changes of the stall and moved to the back of the review list.
 * `sedit 2 n/Jane Doe Bakery` edits the name of the 2nd stall to be `Jane Doe Bakery`. All reviews that are associated to the 2nd stall will be updated to reflect the new changes of the stall and moved to the back of the review list.
-* `sedit 2 t/` Clears all existing tags of 2nd stall.
+* `sedit 2 t/` Clears all existing tags of the 2nd stall.
 
 ### Editing a review: `redit`
 
@@ -168,7 +168,7 @@ Format: `redit REVIEW_INDEX [d/DATE] [c/CONTENT] [r/RATING] [t/EDIT_TAG]…`
 Examples:
 * `redit 1 c/Food was decent. r/3` edits the content and rating of the 1st review to be `Food was decent.` and `3` respectively.
 * `redit 2 d/20/09/2022` edits the date of the 2nd review to be `20/09/2022`.
-* `redit 2 t/` Clears all existing tags of 2nd review.
+* `redit 2 t/` Clears all existing tags of the 2nd review.
 
 ### Finding a stall: `sfind`
 
@@ -183,8 +183,8 @@ Format: `sfind n/[KEYWORD]… t/[KEYWORD]…`
 
 Examples:
 * `sfind n/eatery` returns `Johns eatery` and `Doe eatery`.
-* `sfind t/opensDaily veryNice` returns all stalls that has the tag `opensdaily` OR `verynice`.
-* `sfind n/eatery t/opensDaily` returns all stalls where name includes `eatery` OR has the tag `opensdaily`.
+* `sfind t/opensDaily veryNice` returns all stalls that have the tag `opensdaily` OR `verynice`.
+* `sfind n/eatery t/opensDaily` returns all stalls where the name includes `eatery` OR has the tag `opensdaily`.
 
 ### Finding a review: `rfind`
 
@@ -199,8 +199,8 @@ Format: `rfind n/[KEYWORD]… t/[KEYWORD]…`
 
 Examples:
 * `rfind n/eatery` returns reviews `Johns eatery` and `Doe eatery`.
-* `rfind t/opensDaily veryNice` returns all reviews that has the tag `opensdaily` OR `verynice`.
-* `rfind n/eatery t/opensDaily` returns all reviews where name includes `eatery` OR has the tag `opensdaily`.
+* `rfind t/opensDaily veryNice` returns all reviews that have the tag `opensdaily` OR `verynice`.
+* `rfind n/eatery t/opensDaily` returns all reviews where the name includes `eatery` OR has the tag `opensdaily`.
 
 ### Sorting stall list: `ssort`
 
@@ -290,23 +290,23 @@ Should FoodWhere be unable to interpret the data file, FoodWhere will start with
 
 ## Command summary
 
-| Action    | Format, Examples                                                                                             |
-|-----------|--------------------------------------------------------------------------------------------------------------|
-| **exit**  | `exit`                                                                                                       |
-| **help**  | `help`                                                                                                       |
-| **clear** | `clear`                                                                                                      |
-| **radd**  | `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…` <br> e.g., `radd s/3 d/20/09/2022 c/Great food! r/4`|
-| **rdel**  | `rdel REVIEW_INDEX`                                                                                                 |
+| Action    | Format, Examples                                                                                                        |
+|-----------|-------------------------------------------------------------------------------------------------------------------------|
+| **exit**  | `exit`                                                                                                                  |
+| **help**  | `help`                                                                                                                  |
+| **clear** | `clear`                                                                                                                 |
+| **radd**  | `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…` <br> e.g., `radd s/3 d/20/09/2022 c/Great food! r/4`           |
+| **rdel**  | `rdel REVIEW_INDEX`                                                                                                     |
 | **redit** | `redit REVIEW_INDEX [d/DATE] [c/CONTENT] [r/RATING] [t/EDIT_TAG]…` <br> e.g., `redit 1 d/20/09/2022 c/Great food!`      |
-| **rlist** | `rlist`                                                                                                      |
-| **rfind** | `rfind n/[KEYWORD]… t/[KEYWORD]…` <br> e.g., `rfind n/eatery`                                |
-| **rsort** | `rsort CRITERION` <br> e.g., `rsort rating`                                                                  |
-| **sadd**  | `sadd n/NAME a/ADDRESS [t/TAGS]…` <br> e.g., `sadd n/John Chicken Rice a/Blk 123 Bedok South`                |
-| **sdel**  | `sdel STALL_INDEX`                                                                                           |
-| **sedit** | `sedit STALL_INDEX [n/NAME] [a/ADDRESS] [t/EDIT_TAG]…` <br> e.g., `sedit 1 n/John Chicken Rice`                  |
-| **slist** | `slist`                                                                                                      |
-| **sfind** | `sfind n/[KEYWORD]… t/[KEYWORD]…` <br> e.g., `sfind n/eatery`                                |
-| **ssort** | `ssort CRITERION` <br> e.g., `ssort reversedname`                                                            |
+| **rlist** | `rlist`                                                                                                                 |
+| **rfind** | `rfind n/[KEYWORD]… t/[KEYWORD]…` <br> e.g., `rfind n/eatery`                                                           |
+| **rsort** | `rsort CRITERION` <br> e.g., `rsort rating`                                                                             |
+| **sadd**  | `sadd n/NAME a/ADDRESS [t/TAGS]…` <br> e.g., `sadd n/John Chicken Rice a/Blk 123 Bedok South`                           |
+| **sdel**  | `sdel STALL_INDEX`                                                                                                      |
+| **sedit** | `sedit STALL_INDEX [n/NAME] [a/ADDRESS] [t/EDIT_TAG]…` <br> e.g., `sedit 1 n/John Chicken Rice`                         |
+| **slist** | `slist`                                                                                                                 |
+| **sfind** | `sfind n/[KEYWORD]… t/[KEYWORD]…` <br> e.g., `sfind n/eatery`                                                           |
+| **ssort** | `ssort CRITERION` <br> e.g., `ssort reversedname`                                                                       |
 
 ## Accepted command arguments
 
@@ -320,8 +320,8 @@ Should FoodWhere be unable to interpret the data file, FoodWhere will start with
 | `KEYWORD`      | A nonempty alphanumeric token without spaces, case insensitive                                              |
 | `NAME`         | A nonempty alphanumeric string with spaces, case insensitive                                                |
 | `RATING`       | An integer from 0 to 5, inclusive                                                                           |
-| `REVIEW_INDEX` | A positive integer from 1 and the number of reviews in the review list, inclusive                           |
-| `STALL_INDEX`  | A positive integer from 1 and the number of stalls in the stall list, inclusive                             |
+| `REVIEW_INDEX` | A positive integer from 1 to the number of reviews in the review list, inclusive                            |
+| `STALL_INDEX`  | A positive integer from 1 to the number of stalls in the stall list, inclusive                              |
 | `TAGS`         | A nonempty alphanumeric token without spaces, case insensitive                                              |
 
 ## Stored data format
@@ -334,7 +334,7 @@ This table highlights how the various data of the stalls and reviews are stored 
 | Content        | Any nonempty ASCII text                                                                                   |
 | Date           | DD/MM/YYYY                                                                                                |
 | Name           | Nonempty alphanumeric string with spaces, no repeated spaces, capitalization preserved                    |
-| Rating         | An integer from 0 to 5                                                                                    |
+| Rating         | An integer from 0 to 5, inclusive                                                                         |
 | Tag            | Nonempty lowercase alphanumeric token without spaces                                                      |
 
 ## Future features (unimplemented)
