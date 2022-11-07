@@ -193,7 +193,8 @@ constraints: <br/>
    &emsp;&emsp; - have each domain label start and end with alphanumeric characters<br/>
    &emsp;&emsp; - have each domain label consist of alphanumeric characters, separated only by hyphens, if <br>
    &emsp;&emsp; any.<br>
-   **Examples**:
+
+**Examples**:
 
 * Valid: `john@gmail.com`, `jo_doe@abc.com.sg`
 * Invalid: `john_@example.com`, `john@example_.com`
@@ -238,7 +239,9 @@ Location of meeting with client. <br>
 * Addresses can take any values, and it should not be blank.
   Links should be of the format protocol://host, and links compliant with the format will be automatically detected by
   Finbook, and the meeting will be automatically categorised as online.<br>
-  **Examples**:
+
+**Examples**:
+
 * Valid: `13 Computing Drive`, `https://nus-sg.zoom.us/`
 
 ---
