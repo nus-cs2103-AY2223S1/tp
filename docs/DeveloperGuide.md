@@ -739,21 +739,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. NUS student requests to add a task.
 2. MODPRO shows the task added.
-3. MODPRO updates the progress bar to include the added task. </br>
+3. MODPRO updates the progress bar to include the added task. <br>
    Use case ends.
 
 **Extensions**
 * 1a. The command format is invalid.
-    * 1a1. MODPRO shows an error message. </br>
+    * 1a1. MODPRO shows an error message. <br>
       Use case ends.
 * 1b. The module code is invalid.
-    * 1b1. MODPRO shows an error message. </br>
+    * 1b1. MODPRO shows an error message. <br>
       Use case ends.
 * 1c. The given description is empty.
-    * 1c1. MODPRO shows an error message. </br>
+    * 1c1. MODPRO shows an error message. <br>
       Use case ends.
 * 1d. The module does not exist in the module list.
-    * 1d1. MODPRO shows an error message. </br>
+    * 1d1. MODPRO shows an error message. <br>
       Use case ends.
 
 **Use case: List tasks in task list**
@@ -767,7 +767,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. The provided command is in an invalid command format.
   
-    * 1a1. MODPRO shows an error message. </br>
+    * 1a1. MODPRO shows an error message. <br>
       Use case ends.
 
 
@@ -782,13 +782,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The provided command is in an invalid command format
-    * 1a1. MODPRO shows an error message </br>
+    * 1a1. MODPRO shows an error message <br>
       Use case ends.
 * 1b. The given index for the task is invalid
-    * 1b1. MODPRO shows an error message </br>
+    * 1b1. MODPRO shows an error message <br>
       Use case ends.
 * 1c. The task specified is already marked 
-    * 1c1. MODPRO shows an error message </br>
+    * 1c1. MODPRO shows an error message <br>
       Use case ends.
 
 **Use case: Indicate a task is not completed**
@@ -802,13 +802,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The provided command is in an invalid command format
-    * 1a1. MODPRO shows an error message </br>
+    * 1a1. MODPRO shows an error message <br>
       Use case ends.
 * 1b. The given index for the task is invalid
-    * 1b1. MODPRO shows an error message </br>
+    * 1b1. MODPRO shows an error message <br>
       Use case ends.
 * 1c. The task specified is already unmarked
-    * 1c1. MODPRO shows an error message </br>
+    * 1c1. MODPRO shows an error message <br>
       Use case ends.
 
 **Use case: Edit a task**
@@ -821,28 +821,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The provided command is in an invalid command format
-    * 1a1. MODPRO shows an error message </br>
+    * 1a1. MODPRO shows an error message <br>
       Use case ends.
 * 1b. The given index for the task is invalid
-    * 1b1. MODPRO shows an error message </br>
+    * 1b1. MODPRO shows an error message <br>
       Use case ends.
 * 1c. Neither the module nor the description is provided.
-    * 1c1. MODPRO shows an error message </br>
+    * 1c1. MODPRO shows an error message <br>
       Use case ends.
 * 1d. The given module code is invalid
-    * 1d1. MODPRO shows an error message </br>
+    * 1d1. MODPRO shows an error message <br>
       Use case ends.
 * 1e. The given description is invalid
-    * 1e1. MODPRO shows an error message </br>
+    * 1e1. MODPRO shows an error message <br>
       Use case ends.
 * 1f. The given module does not exist in the module list
-    * 1f1. MODPRO shows an error message </br>
+    * 1f1. MODPRO shows an error message <br>
       Use case ends.
 * 1g. The module and description of the specified task are not changed.
-    * 1g1. MODPRO shows an error message </br>
+    * 1g1. MODPRO shows an error message <br>
       Use case ends.
 * 1h. The edited task is the same as another existing task in the task list
-    * 1h1. MODPRO shows an error message </br>
+    * 1h1. MODPRO shows an error message <br>
       Use case ends. 
 * 2a. The module of the specified task is changed and the specified task is linked to an exam
     * 2a1. MODPRO unlinks the task from its exam and updates the progress bar for the exam
@@ -862,22 +862,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The provided command is in an invalid command format
-  * 1a1. MODPRO shows an error message </br>
+  * 1a1. MODPRO shows an error message <br>
   Use case ends.
 * 1b. The given index for the task is invalid
-  * 1b1. MODPRO shows an error message </br>
+  * 1b1. MODPRO shows an error message <br>
     Use case ends.
 * 1c. The priority status provided is invalid
-  * 1c1. MODPRO shows an error message </br>
+  * 1c1. MODPRO shows an error message <br>
   Use case ends
 * 1d. The deadline provided is invalid
-  * 1d1. MODPRO shows an error message </br>
+  * 1d1. MODPRO shows an error message <br>
   Use case ends
 * 1e. The task already has a priority status
-  * 1e1. MODPRO shows an error message </br>
+  * 1e1. MODPRO shows an error message <br>
   Use case ends
 * 1f. The task already has a deadline
-  * 1f1. MODPRO shows an error message </br>
+  * 1f1. MODPRO shows an error message <br>
   Use case ends
 
 **Use Case: Edit the tags of a task**
@@ -890,28 +890,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The provided command is in an invalid command format
-    * 1a1. MODPRO shows an error message </br>
+    * 1a1. MODPRO shows an error message <br>
       Use case ends.
 * 1b. The given index for the task is invalid
-    * 1b1. MODPRO shows an error message </br>
+    * 1b1. MODPRO shows an error message <br>
       Use case ends.
 * 1c. The priority status provided is invalid
-    * 1c1. MODPRO shows an error message </br>
+    * 1c1. MODPRO shows an error message <br>
       Use case ends
 * 1d. The deadline provided is invalid
-    * 1d1. MODPRO shows an error message </br>
+    * 1d1. MODPRO shows an error message <br>
       Use case ends
 * 1e. The task does not have a priority status
-    * 1e1. MODPRO shows an error message </br>
+    * 1e1. MODPRO shows an error message <br>
       Use case ends
 * 1f. The task does not have a deadline
-    * 1f1. MODPRO shows an error message </br>
+    * 1f1. MODPRO shows an error message <br>
       Use case ends
 * 1g. The priority status is the same as the priority status of the task
-    * 1g1. MODPRO shows an error message </br>
+    * 1g1. MODPRO shows an error message <br>
       Use case ends
 * 1h. The deadline is the same as the deadline of the task
-    * 1h1. MODPRO shows an error message </br>
+    * 1h1. MODPRO shows an error message <br>
       Use case ends
 
 **Use Case: Delete tags of a task**
@@ -924,19 +924,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The provided command is in an invalid command format
-    * 1a1. MODPRO shows an error message </br>
+    * 1a1. MODPRO shows an error message <br>
       Use case ends.
 * 1b. The given index for the task is invalid
-    * 1b1. MODPRO shows an error message </br>
+    * 1b1. MODPRO shows an error message <br>
       Use case ends.
 * 1c. The keywords provided is invalid
-    * 1c1. MODPRO shows an error message </br>
+    * 1c1. MODPRO shows an error message <br>
       Use case ends
 * 1d. The task does not have a priority status
-    * 1d1. MODPRO shows an error message </br>
+    * 1d1. MODPRO shows an error message <br>
       Use case ends
 * 1e. The task does not have a deadline
-    * 1e1. MODPRO shows an error message </br>
+    * 1e1. MODPRO shows an error message <br>
       Use case ends
 
     
@@ -950,34 +950,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The given index is invalid.
-    * 1a1. MODPRO shows an error message. </br>
+    * 1a1. MODPRO shows an error message. <br>
       Use case ends.
 
 **Use case: Filter the task list**
 
 **MSS**
 1. NUS student requests to filter the task list based on some conditions.
-2. MODPRO shows the list of tasks that fulfil the given conditions. </br>
+2. MODPRO shows the list of tasks that fulfil the given conditions. <br>
    Use case ends.
 
 **Extensions**
 * 1a. The command format is invalid.
-    * 1a1. MODPRO shows an error message. </br>
+    * 1a1. MODPRO shows an error message. <br>
       Use case ends.
 * 1b. The module code is invalid.
-    * 1b1. MODPRO shows an error message. </br>
+    * 1b1. MODPRO shows an error message. <br>
       Use case ends.
 * 1c. The module does not exist in the task list.
-    * 1c1. MODPRO shows an error message. </br>
+    * 1c1. MODPRO shows an error message. <br>
       Use case ends.
 * 1d. The completion status provided is invalid.
-    * 1d1. MODPRO shows an error message. </br>
+    * 1d1. MODPRO shows an error message. <br>
       Use case ends.
 * 1e. The link status provided is invalid.
-    * 1e1. MODPRO shows an error message. </br>
+    * 1e1. MODPRO shows an error message. <br>
       Use case ends.
 * 1f. There are no filter conditions stated.
-    * 1f1. MODPRO shows an error message. </br>
+    * 1f1. MODPRO shows an error message. <br>
       Use case ends.
 
 **Use case: Clear the task list**
@@ -985,12 +985,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. NUS student requests to clear the task list.
 2. MODPRO clears the task list.
-3. MODPRO resets all exam and module progress bars. </br>
+3. MODPRO resets all exam and module progress bars. <br>
    Use case ends.
 
 **Extensions**
 * 1a. The task list is already empty
-    * 1a1. MODPRO shows an error message. </br>
+    * 1a1. MODPRO shows an error message. <br>
       Use case ends.
 
 **Use Case: Add a module to the module list**
@@ -1003,25 +1003,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The provided command is in an invalid command format
-    * 1a1. MODPRO shows an error message </br>
+    * 1a1. MODPRO shows an error message <br>
       Use case ends.
 * 1b. The given module code is invalid
-    * 1b1. MODPRO shows an error message </br>
+    * 1b1. MODPRO shows an error message <br>
       Use case ends.
 * 1c. The given module name is invalid
-    * 1c1. MODPRO shows an error message </br>
+    * 1c1. MODPRO shows an error message <br>
       Use case ends
 * 1d. The given module credit is invalid
-    * 1d1. MODPRO shows an error message </br>
+    * 1d1. MODPRO shows an error message <br>
       Use case ends
 * 1e. The given module code already exists in the module list
-  * 1e1. MODPRO shows an error message </br>
+  * 1e1. MODPRO shows an error message <br>
     Use case ends
 * 1f. The given module name already exists in the module list
-    * 1f1. MODPRO shows an error message </br>
+    * 1f1. MODPRO shows an error message <br>
       Use case ends
 * 1g. The given module credit already exists in the module list
-    * 1g1. MODPRO shows an error message </br>
+    * 1g1. MODPRO shows an error message <br>
       Use case ends
 
 **Use case: Delete a module from the module list**
@@ -1034,10 +1034,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The given index is invalid.
-    * 1a1. MODPRO shows an error message. </br>
+    * 1a1. MODPRO shows an error message. <br>
       Use case ends.
 * 1b. The module at the given index is tied to multiple tasks thus cannot be deleted
-    * 1a1. MODPRO shows an error message. </br>
+    * 1a1. MODPRO shows an error message. <br>
       Use case ends.
 
 **Use case: Edit a module in the module list**
@@ -1050,13 +1050,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The given index is invalid.
-    * 1a1. MODPRO shows an error message. </br>
+    * 1a1. MODPRO shows an error message. <br>
       Use case ends.
 * 1b. The module at the given index is tied to multiple tasks thus cannot be edited
-    * 1b1. MODPRO shows an error message. </br>
+    * 1b1. MODPRO shows an error message. <br>
       Use case ends.
 * 1c. The given module code is invalid 
-    * 1c1. MODPRO shows an error message. </br>
+    * 1c1. MODPRO shows an error message. <br>
       Use case ends.
 
 
@@ -1065,18 +1065,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. NUS student requests to delete a specific exam in the exam list.
 2. MODPRO deletes the exam.
-3. MODPRO unlinks all tasks currently linked to the deleted exam. </br>
+3. MODPRO unlinks all tasks currently linked to the deleted exam. <br>
    Use case ends.
 
 **Extensions**
 * 1a. The command format is invalid.
-    * 1a1. MODPRO shows an error message. </br>
+    * 1a1. MODPRO shows an error message. <br>
       Use case ends.
 * 1b. The given index is non-positive or larger than 2147483647.
-    * 1b1. MODPRO shows an error message. </br>
+    * 1b1. MODPRO shows an error message. <br>
       Use case ends.
 * 1c. The given index is larger than the number of exams in the exam list.
-    * 1c1. MODPRO shows an error message. </br>
+    * 1c1. MODPRO shows an error message. <br>
       Use case ends.
 
 **Use case: Unlink task from exam**
@@ -1084,51 +1084,51 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. NUS student requests to unlink a task from its exam.
 2. MODPRO unlinks the task.
-3. MODPRO updates the exam progress bar. </br>
+3. MODPRO updates the exam progress bar. <br>
    Use case ends.
 
 **Extensions**
 * 1a. The command format is invalid.
-    * 1a1. MODPRO shows an error message. </br>
+    * 1a1. MODPRO shows an error message. <br>
       Use case ends.
 * 1b. The given index is non-positive or larger than 2147483647.
-    * 1b1. MODPRO shows an error message. </br>
+    * 1b1. MODPRO shows an error message. <br>
       Use case ends.
 * 1c. The given index is larger than the number of tasks in the task list.
-    * 1c1. MODPRO shows an error message. </br>
+    * 1c1. MODPRO shows an error message. <br>
       Use case ends.
 * 1d. The task is not linked to any exam.
-    * 1d1. MODPRO shows an error message. </br>
+    * 1d1. MODPRO shows an error message. <br>
       Use case ends.
 
 **Use case: Showing the tasks of an exam**
 
 **MSS**
 1. NUS student requests to list all tasks of a specified exam.
-2. MODPRO shows list of all tasks of the specified exam. </br>
+2. MODPRO shows list of all tasks of the specified exam. <br>
    Use case ends.
 
 **Extensions**
 * 1a. The command format is invalid.
-    * 1a1. MODPRO shows an error message. </br>
+    * 1a1. MODPRO shows an error message. <br>
       Use case ends.
 * 1b. The given index is non-positive or larger than 2147483647.
-    * 1b1. MODPRO shows an error message. </br>
+    * 1b1. MODPRO shows an error message. <br>
       Use case ends.
 * 1c. The given index is larger than the number of exams in the exam list.
-    * 1c1. MODPRO shows an error message. </br>
+    * 1c1. MODPRO shows an error message. <br>
       Use case ends.
 
 **Use case: Clear all lists**
 
 **MSS**
 1. NUS student requests to clear all lists.
-2. MODPRO clears task, exam and module lists. </br>
+2. MODPRO clears task, exam and module lists. <br>
    Use case ends.
 
 **Extensions**
 * 1a. All lists are already empty
-    * 1a1. MODPRO shows an error message. </br>
+    * 1a1. MODPRO shows an error message. <br>
       Use case ends.
 
 
@@ -1142,10 +1142,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The provided command is in an invalid command format
-    * 1a1. MODPRO shows an error message </br>
+    * 1a1. MODPRO shows an error message <br>
       Use case ends.
 * 1b. The given criteria is invalid
-    * 1b1. MODPRO shows an error message </br>
+    * 1b1. MODPRO shows an error message <br>
       Use case ends.
 
 **Use Case: Link the exam to a task**
@@ -1158,19 +1158,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The provided command is in an invalid command format
-    * 1a1. MODPRO shows an error message </br>
+    * 1a1. MODPRO shows an error message <br>
       Use case ends.
 * 1b. The given index for the task is invalid
-    * 1b1. MODPRO shows an error message </br>
+    * 1b1. MODPRO shows an error message <br>
       Use case ends.
 * 1c. The given index for the exam is invalid
-    * 1c1. MODPRO shows an error message </br>
+    * 1c1. MODPRO shows an error message <br>
       Use case ends.
 * 1d. The task is already linked
-    * 1d1. MODPRO shows an error message </br>
+    * 1d1. MODPRO shows an error message <br>
       Use case ends.
 * 1e. The task and exam selected have a different module code
-    * 1e1. MODPRO shows an error message </br>
+    * 1e1. MODPRO shows an error message <br>
       Use case ends.
 
 
@@ -1186,7 +1186,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The provided command is in an invalid command format.
-    * 1a1. MODPRO shows an error message. </br>
+    * 1a1. MODPRO shows an error message. <br>
       Use case ends.
   
 **Use case: Find tasks in the task list**
@@ -1199,10 +1199,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The keyword inputted is empty
-    * 1a1. MODPRO shows an error message </br> 
+    * 1a1. MODPRO shows an error message <br> 
       Use case ends. 
 * 1b. The provided command is in an invalid command format.
-    * 1b1. MODPRO shows an error message. </br>
+    * 1b1. MODPRO shows an error message. <br>
       Use case ends.
 
 **Use case: Find modules in the module list**
@@ -1215,10 +1215,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The keyword inputted is empty
-    * 1a1. MODPRO shows an error message </br>
+    * 1a1. MODPRO shows an error message <br>
       Use case ends.
 * 1b. The provided command is in an invalid command format.
-    * 1b1. MODPRO shows an error message. </br>
+    * 1b1. MODPRO shows an error message. <br>
       Use case ends.
   
 **Use case: Add an exam into the exam list** 
@@ -1231,25 +1231,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The description of the exam is empty
-    * 1a1. MODPRO shows an error message. </br>
+    * 1a1. MODPRO shows an error message. <br>
       Use case ends. 
 * 1b. The exam date provided is invalid. 
-    * 1b1. MODPRO shows an error message. </br>
+    * 1b1. MODPRO shows an error message. <br>
       Use case ends.
 * 1c. Exam module does not exist in MODPRO.  
-    * 1c1. MODPRO shows an error message. </br>
+    * 1c1. MODPRO shows an error message. <br>
       Use case ends.
 * 1d. The exam to be added is the same as another existing exam in the exam list. 
-    * 1d1. MODPRO shows an error message. </br> 
+    * 1d1. MODPRO shows an error message. <br> 
       Use case ends. 
 * 1e. The module code provided is invalid. 
-    * 1e1. MODPRO shows an error message. </br> 
+    * 1e1. MODPRO shows an error message. <br> 
       Use case ends.
 * 1f. The provided command is in an invalid command format. 
-    * 1f1. MODPRO shows an error message. </br> 
+    * 1f1. MODPRO shows an error message. <br> 
       Use case ends.
 * 1g. Not all the fields(Exam description, Exam date, Module) are provided. 
-    * 1g1. MODPRO shows an error message. </br>
+    * 1g1. MODPRO shows an error message. <br>
       Use case ends. 
 
 **Use case: Edit an exam in the exam list**
@@ -1262,34 +1262,34 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 1a. The given exam description is empty. 
-    * 1a1. MODPRO shows an error message. </br>
+    * 1a1. MODPRO shows an error message. <br>
       Use case ends.
 * 1b. The given exam date is invalid. 
-    * 1b1. MODPRO shows an error message. </br>
+    * 1b1. MODPRO shows an error message. <br>
       Use case ends.
 * 1c. The given exam module code is invalid.
-    * 1c1.MODPRO shows an error message. </br> 
+    * 1c1.MODPRO shows an error message. <br> 
       Use case ends. 
 * 1d. The given exam module does not exist in MODPRO. 
-    * 1d1. MODPRO shows an error message. </br> 
+    * 1d1. MODPRO shows an error message. <br> 
       Use case ends. 
 * 1e. The given index is invalid.
-    * 1e1. MODPRO shows an error message. </br>
+    * 1e1. MODPRO shows an error message. <br>
       Use case ends.
 * 1f. The edited exam is the same as another existing exam in the exam list.
-    * 1f1. MODPRO shows an error message. </br>
+    * 1f1. MODPRO shows an error message. <br>
       Use case ends.
 * 1g. The module and description and date of the exam are not changed. 
-    * 1g1. MODPRO shows an error message </br> 
+    * 1g1. MODPRO shows an error message <br> 
       Use case ends. 
 * 1h. The provided command is in an invalid command format.
-    * 1h1. MODPRO shows an error message. </br>
+    * 1h1. MODPRO shows an error message. <br>
       Use case ends.
 * 1i. No fields are provided to edit the exam. 
-    * 1i1. MODPRO shows an error message. </br>
+    * 1i1. MODPRO shows an error message. <br>
       Use case ends. 
 * 2a. The module of the specified exam is changed and the exam is linked to some tasks previously. 
-    * 2a1. MODPRO unlinks these tasks from the exam, and the updates the progress bar of the exam. </br>
+    * 2a1. MODPRO unlinks these tasks from the exam, and the updates the progress bar of the exam. <br>
       Use case ends.
 
 ### Non-Functional Requirements
