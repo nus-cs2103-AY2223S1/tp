@@ -90,11 +90,11 @@ Here are some symbols used throughout this user guide:
       1. [Viewing all tasks for a particular day: `view`](#viewing-all-tasks-for-a-particular-day-view) 
       2. [Viewing all tasks for today: `view` `--today`](#viewing-all-tasks-for-today-view---today)
       3. [Viewing all tasks of a patient: `view` `-p`](#viewing-all-tasks-of-a-patient-view--p)
-      4. [Viewing all tasks of all patients](#viewing-all-tasks-of-all-patients-view--p---all)
+      4. [Viewing all tasks of all patients: `view` `-p` `--all`](#viewing-all-tasks-of-all-patients-view--p---all)
    10. [Undoing last command: `undo`](#undoing-previous-command-undo)
    11. [Reversing undo command: `redo`](#reversing-undo-command-redo)
    12. [Clearing all entries: `clear`](#clearing-all-entries-clear)
-   13. [Exiting UniNurse](#exiting-uninurse-exit)
+   13. [Exiting UniNurse: `exit`](#exiting-uninurse-exit)
    14. [Saving the data](#saving-the-data)
    15. [Editing the data file](#editing-the-data-file)
 6. [FAQ](#faq)
@@ -133,9 +133,9 @@ The app comes with some sample patients by default. Type `clear` in the command 
 5. Type your command in the command box and hit `Enter` to execute the command. Here are some example commands
    you can try:
     * **`help`**: Opens the help window.
-    * **`add`**`n/Jane Doe p/91234567 e/janed@example.com a/20 Anderson Road, block 123, #01-01`: Adds a
+    * **`add`** `n/Jane Doe p/91234567 e/janed@example.com a/20 Anderson Road, block 123, #01-01`: Adds a
       patient named `Jane Doe` to your patient list.
-    * **`delete`**`-p 3`: Deletes the 3rd patient shown in the current list.
+    * **`delete`** `-p 3`: Deletes the 3rd patient shown in the current list.
     * **`list`**: Lists all patients.
     * **`clear`**: Deletes all patients shown in the current list.
     * **`exit`**: Exits from UniNurse.
@@ -369,7 +369,7 @@ Format: **`help`**
 
 You can add a patient to the patient list with the `add` command.
 
-Format: **`add`**`n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]… [d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL TIME_PERIOD>]… [c/CONDITION]… [m/MEDICATION | DOSAGE]… [r/REMARK]…`
+Format: **`add`** `n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]… [d/TASK_DESCRIPTION | <DATE TIME> | <INTERVAL TIME_PERIOD>]… [c/CONDITION]… [m/MEDICATION | DOSAGE]… [r/REMARK]…`
 
 <div markdown="block" class="alert alert-success">
 
@@ -383,7 +383,7 @@ You can view the constraints for each parameter in the [Parameter constraints](#
 
 :information_source: **Notes:**
 * You cannot add duplicate patients.
-* Patients with the exact same name, phone, email, and address are considered duplicates; otherwise, they are considered to be distinct.
+* Patients with the exact same name, phone, email, and address are considered duplicates; otherwise, they are considered distinct.
 
 </div>
 
@@ -521,14 +521,14 @@ You can understand the commands about multi-valued attributes as follows.
 
 You can add a value to a patient's attribute with the `add` command.
 
-Format: **`add`**`-p PATIENT_INDEX xyz/XYZ_VALUE`
+Format: **`add`** `-p PATIENT_INDEX xyz/XYZ_VALUE`
 
 Example:
 * `list` followed by `add -p 1 t/high-risk` adds the `high-risk` tag (attribute `t`) to the 1st patient in the patient list.
 
 #### Editing a value of an attribute: `edit` `-p` `-xyz`
 
-Format: **`edit`**`-p PATIENT_INDEX -xyz XYZ_INDEX xyz/XYZ_VALUE`
+Format: **`edit`** `-p PATIENT_INDEX -xyz XYZ_INDEX xyz/XYZ_VALUE`
 
 Example:
 * `list` followed by `edit -p 2 -t 3 t/high-risk` edits the 3rd tag (attribute `t`) of the 2nd patient in the patient list to `high-risk`.
@@ -536,7 +536,7 @@ Example:
 
 #### Deleting a value from an attribute: `edit` `-p` `-xyz`
 
-Format: **`delete`**`-p PATIENT_INDEX -xyz XYZ_INDEX`
+Format: **`delete`** `-p PATIENT_INDEX -xyz XYZ_INDEX`
 
 Example:
 * `list` followed by `delete -p 2 -t 3` deletes the 3rd tag (attribute `t`) of the 2nd patient in the patient list.
@@ -1038,7 +1038,7 @@ Examples:
 
 You can find specific patients using the `find` command.
 
-Format: **`find`**`[KEYWORD]… [xyz/XYZ_KEYWORD]…`
+Format: **`find`** `[KEYWORD]… [xyz/XYZ_KEYWORD]…`
 
 <div markdown="block" class="alert alert-info">
 
@@ -1084,7 +1084,7 @@ Format: **`view`** `DATE`
 
 :information_source: **Note:**
 
-The DATE **must be of the specified format** dd-MM-yy
+The DATE **must be of the specified format** `DD-MM-YY`
 
 </div>
 
