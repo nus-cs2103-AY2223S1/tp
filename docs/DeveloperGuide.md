@@ -449,6 +449,10 @@ Given below is an example success scenario and how the `find` mechanism behaves 
 6. `FindCommand` combines the list of predicates into a single predicate, and calls `Model#updateFilteredPersonList(predicate)`.
 7. `FindCommand` updates the `displayedList` from `model` to display only the Applicants that match the predicate.
 
+
+<div style="page-break-after: always;"></div>
+
+
 The following sequence diagram shows how the `find` command works:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
@@ -558,6 +562,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | user                              | close the app                                                                  |                                                                                                              |
 
 
+<div style="page-break-after: always;"></div>
+
+
 ### 6.3 Use cases
 
 (For all use cases below, the **System** is the `InternConnect` and the **Actor** is the `user`, unless specified otherwise)
@@ -601,6 +608,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. InternConnect shows an error message.
 
       Use case ends.
+
+
+<div style="page-break-after: always;"></div>
 
 
 **Use case: UC03 - Edit an applicant**
@@ -649,6 +659,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2e1. InternConnect shows an error message.
 
       Use case ends.
+
+
+<div style="page-break-after: always;"></div>
 
 
 **Use case: UC04 - Delete an applicant**
@@ -708,6 +721,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. InternConnect shows an error message.
 
       Use case ends.
+
+
+<div style="page-break-after: always;"></div>
 
 
 **Use case: UC06 - Find applicants by field**
