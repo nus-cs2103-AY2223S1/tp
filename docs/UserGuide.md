@@ -124,7 +124,6 @@ Do refer to the callouts icons below! They will be useful when you are reading t
 | ℹ️   | Indicates additional information that can help you to gain a better understanding. They are good to know but not crucial. |
 | 💡   | Indicates tips and solutions for potential problems you may encounter.                                                    |
 | ❗    | Indicates information that are important to know so as to minimise confusion.                                             |
-| ⚠️   | Indicates a warning to ensure you will proceed with care.                                                                 |
 
 [↑ Back to top](#table-of-contents)
 
