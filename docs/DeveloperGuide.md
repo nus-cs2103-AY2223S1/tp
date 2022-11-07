@@ -1132,6 +1132,7 @@ testers are expected to do more *exploratory* testing.
 ### Remove past meetings
 
 1. Remove past meetings
+
    1. Add multiple meeting to multiple clients in FABook with meeting times after the present time.
 
    1. Add multiple meeting to multiple clients in FABook with meeting times before the present time.
@@ -1139,6 +1140,62 @@ testers are expected to do more *exploratory* testing.
    3. Enter `sync`.<br>
       Expected: Meetings added in step 2 are removed. Success message displayed shown in the command display.
       
+      
+### Undoing a previous command
+
+1. Undoing create
+   
+   1. Enter `create n/Amy p/11111111`<br>
+      Expected: New person created with `Name`: Amy and `Phone`: 11111111.
+      
+   2. Enter `undo`<br>
+      Expected: Person removed. Removed person detail shown in the command display.
+      
+2. Undoing clear
+   
+   1. Use `create` command to add multiple clients to FABook.
+
+   2. Use `clear` command<br>
+      Expected: All clients removed from `results display` list.
+      
+   3. Enter `undo`<br>
+      Expected: All clients restored. Success message shown in the command display.
+
+3. Undoing delete
+
+   1. Prerequisite: At least one client on displayed list.
+   
+   2. Use `delete` command to remove a client.
+   
+   3. Enter `undo`<br>
+      Expected: Removed client restored. Success message shown in the command display.
+      
+4. Undoing with non-undoable commands in between
+
+   1. Similar to test 1, use `create` command to add a client to list.
+      
+   2. Use `list` command to view entire list.
+   
+   3. Use `help` command to view help window.
+   
+   4. Enter `undo`<br>
+      Expected: Successfully removed the client created in step 1.
+      
+5. Undoing multiple commands
+   
+   1. Prerequisite: Multiple clients on displayed list.
+   
+   2. Use `delete` command to remove a client.
+   
+   3. Repeat step 2 five times.
+   
+   4. Enter `undo`<br>
+      Expected: Most recently removed client is restored.
+   
+   5. Re-enter `undo` with same number of repetition as step 3<br>
+      Expected: All removed clients restored. Clients restored in reverse order of removal.
+   
+
 ### Saving data
 
 1. Dealing with missing data files
