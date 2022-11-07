@@ -1,7 +1,7 @@
 package seedu.uninurse.logic.commands;
 
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 
 import org.junit.jupiter.api.Test;
 

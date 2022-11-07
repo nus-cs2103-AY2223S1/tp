@@ -10,9 +10,13 @@ import java.util.List;
 import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
+import seedu.uninurse.logic.commands.exceptions.DuplicateEntryException;
+import seedu.uninurse.logic.commands.exceptions.InvalidAttributeIndexException;
 import seedu.uninurse.model.Model;
-import seedu.uninurse.model.PatientListTracker;
+import seedu.uninurse.model.PersonListTracker;
+import seedu.uninurse.model.exceptions.PatientNotFoundException;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.Person;
 import seedu.uninurse.model.tag.Tag;
 import seedu.uninurse.model.tag.TagList;
 import seedu.uninurse.model.tag.exceptions.DuplicateTagException;
@@ -55,17 +59,25 @@ public class EditTagCommand extends EditGenericCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);
-        List<Patient> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getFilteredPersonList();
 
         if (patientIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Patient patientToEdit = lastShownList.get(patientIndex.getZeroBased());
+        Patient patientToEdit;
+
+        try {
+            patientToEdit = model.getPatient(lastShownList.get(patientIndex.getZeroBased()));
+        } catch (PatientNotFoundException pnfe) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT);
+        }
+
         TagList initialTagList = patientToEdit.getTags();
 
         if (tagIndex.getZeroBased() >= initialTagList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TAG_INDEX);
+            model.setPatientOfInterest(patientToEdit);
+            throw new InvalidAttributeIndexException(Messages.MESSAGE_INVALID_TAG_INDEX);
         }
 
 
@@ -75,13 +87,14 @@ public class EditTagCommand extends EditGenericCommand {
 
             Patient editedPatient = new Patient(patientToEdit, updatedTagList);
 
-            PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
+            PersonListTracker personListTracker = model.setPatient(patientToEdit, editedPatient);
             model.setPatientOfInterest(editedPatient);
 
             return new CommandResult(String.format(MESSAGE_SUCCESS, tagIndex.getOneBased(),
-                    editedPatient.getName(), initialTag, editedTag), COMMAND_TYPE, patientListTracker);
+                    editedPatient.getName(), initialTag, editedTag), COMMAND_TYPE, personListTracker);
         } catch (DuplicateTagException dte) {
-            throw new CommandException(String.format(Messages.MESSAGE_DUPLICATE_TAG, patientToEdit.getName()));
+            model.setPatientOfInterest(patientToEdit);
+            throw new DuplicateEntryException(String.format(Messages.MESSAGE_DUPLICATE_TAG, patientToEdit.getName()));
         }
     }
 

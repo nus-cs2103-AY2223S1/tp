@@ -1,16 +1,15 @@
 package seedu.uninurse.ui;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 
 /**
- * A ui for the status bar that is displayed at the header of the application.
+ * A UI component for the status bar that is displayed at the header of the application.
  */
 public class ResultDisplay extends UiPart<Region> {
-
     private static final String FXML = "ResultDisplay.fxml";
 
     @FXML
@@ -21,8 +20,7 @@ public class ResultDisplay extends UiPart<Region> {
     }
 
     public void setFeedbackToUser(String feedbackToUser) {
-        requireNonNull(feedbackToUser);
+        requireAllNonNull(feedbackToUser);
         resultDisplay.setText(feedbackToUser);
     }
-
 }

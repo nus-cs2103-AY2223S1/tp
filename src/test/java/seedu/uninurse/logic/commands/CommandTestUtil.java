@@ -24,8 +24,8 @@ import seedu.uninurse.logic.commands.EditPatientCommand.EditPatientDescriptor;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.UninurseBook;
-import seedu.uninurse.model.person.Patient;
-import seedu.uninurse.model.person.PatientContainsKeywordsPredicate;
+import seedu.uninurse.model.person.NameContainsKeywordsPredicate;
+import seedu.uninurse.model.person.Person;
 import seedu.uninurse.testutil.EditPatientDescriptorBuilder;
 
 /**
@@ -132,7 +132,7 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         UninurseBook expectedUninurseBook = new UninurseBook(actualModel.getUninurseBook());
-        List<Patient> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedUninurseBook, actualModel.getUninurseBook());
@@ -146,11 +146,10 @@ public class CommandTestUtil {
     public static void showPersonAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
-        Patient person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().getValue().split("\\s+");
-        model.updateFilteredPersonList(new PatientContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
+        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
-
 }

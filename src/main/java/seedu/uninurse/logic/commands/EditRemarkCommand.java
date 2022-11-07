@@ -10,9 +10,13 @@ import java.util.List;
 import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
+import seedu.uninurse.logic.commands.exceptions.DuplicateEntryException;
+import seedu.uninurse.logic.commands.exceptions.InvalidAttributeIndexException;
 import seedu.uninurse.model.Model;
-import seedu.uninurse.model.PatientListTracker;
+import seedu.uninurse.model.PersonListTracker;
+import seedu.uninurse.model.exceptions.PatientNotFoundException;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.Person;
 import seedu.uninurse.model.remark.Remark;
 import seedu.uninurse.model.remark.RemarkList;
 import seedu.uninurse.model.remark.exceptions.DuplicateRemarkException;
@@ -55,17 +59,25 @@ public class EditRemarkCommand extends EditGenericCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);
-        List<Patient> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getFilteredPersonList();
 
         if (patientIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Patient patientToEdit = lastShownList.get(patientIndex.getZeroBased());
+        Patient patientToEdit;
+
+        try {
+            patientToEdit = model.getPatient(lastShownList.get(patientIndex.getZeroBased()));
+        } catch (PatientNotFoundException pnfe) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT);
+        }
+
         RemarkList initialRemarkList = patientToEdit.getRemarks();
 
         if (remarkIndex.getZeroBased() >= initialRemarkList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_REMARK_INDEX);
+            model.setPatientOfInterest(patientToEdit);
+            throw new InvalidAttributeIndexException(Messages.MESSAGE_INVALID_REMARK_INDEX);
         }
 
         try {
@@ -74,14 +86,16 @@ public class EditRemarkCommand extends EditGenericCommand {
 
             Patient editedPatient = new Patient(patientToEdit, updatedRemarkList);
 
-            PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
+            PersonListTracker personListTracker = model.setPatient(patientToEdit, editedPatient);
             model.setPatientOfInterest(editedPatient);
 
             return new CommandResult(String.format(MESSAGE_SUCCESS,
                     remarkIndex.getOneBased(), editedPatient.getName(), initialRemark,
-                    updatedRemark), COMMAND_TYPE, patientListTracker);
+                    updatedRemark), COMMAND_TYPE, personListTracker);
         } catch (DuplicateRemarkException dre) {
-            throw new CommandException(String.format(Messages.MESSAGE_DUPLICATE_REMARK, patientToEdit.getName()));
+            model.setPatientOfInterest(patientToEdit);
+            throw new DuplicateEntryException(
+                    String.format(Messages.MESSAGE_DUPLICATE_REMARK, patientToEdit.getName()));
         }
     }
 

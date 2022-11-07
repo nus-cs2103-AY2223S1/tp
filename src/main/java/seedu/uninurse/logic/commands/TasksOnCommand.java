@@ -1,9 +1,11 @@
 package seedu.uninurse.logic.commands;
 
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.uninurse.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.Schedule;
 import seedu.uninurse.model.task.DateTime;
 
 /**
@@ -14,7 +16,8 @@ public class TasksOnCommand extends DisplayTasksGenericCommand {
             + ": Shows a list of tasks for the given date. The date must be in dd-mm-yy format.\n"
             + "Format: " + COMMAND_WORD + " DATE\n"
             + "Example: " + COMMAND_WORD + " 25-4-22";
-    public static final String MESSAGE_SUCCESS = "Showing Tasks for %1$s";
+    public static final String MESSAGE_SUCCESS = "Listed all patients for %1$s";
+    public static final String MESSAGE_FAILURE = "No patients for %1$s";
     public static final CommandType COMMAND_TYPE = CommandType.SCHEDULE;
 
     private final DateTime dayToCheck;
@@ -33,8 +36,13 @@ public class TasksOnCommand extends DisplayTasksGenericCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);
 
-        model.setDayOfInterest(dayToCheck);
+        if (model.getPatientList().filtered(p -> !(p.getTasks()
+                .getAllTasksOnDay(dayToCheck).isEmpty())).isEmpty()) {
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            return new CommandResult(String.format(MESSAGE_FAILURE, dayToCheck.getDate()), CommandType.EMPTY);
+        }
 
+        model.setSchedule(new Schedule(model.getPatientList(), dayToCheck));
         return new CommandResult(String.format(MESSAGE_SUCCESS, dayToCheck.getDate()), COMMAND_TYPE);
     }
 

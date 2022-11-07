@@ -15,7 +15,7 @@ import static seedu.uninurse.testutil.TypicalMedications.MEDICATION_AMOXICILLIN;
 import static seedu.uninurse.testutil.TypicalMedications.MEDICATION_AMPICILLIN;
 import static seedu.uninurse.testutil.TypicalMedications.TYPICAL_DOSAGE_AMOXICILLIN;
 import static seedu.uninurse.testutil.TypicalMedications.TYPICAL_MEDICATION_AMOXICILLIN;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,7 +27,7 @@ import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.medication.Medication;
 import seedu.uninurse.model.person.Patient;
-import seedu.uninurse.testutil.PersonBuilder;
+import seedu.uninurse.testutil.PatientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code AddMedicationCommand}.
@@ -55,8 +55,9 @@ public class AddMedicationCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Medication medicationToAdd = new Medication(TYPICAL_MEDICATION_AMOXICILLIN, TYPICAL_DOSAGE_AMOXICILLIN);
-        Patient patientToAddMedication = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Patient editedPatient = new PersonBuilder(patientToAddMedication)
+        Patient patientToAddMedication =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
+        Patient editedPatient = new PatientBuilder(patientToAddMedication)
                 .withMedications(medicationToAdd).build();
 
         AddMedicationCommand addMedicationCommand = new AddMedicationCommand(INDEX_FIRST_PERSON, medicationToAdd);
@@ -64,7 +65,7 @@ public class AddMedicationCommandTest {
         String expectedMessage = String.format(MESSAGE_SUCCESS, editedPatient.getName(), medicationToAdd);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPerson(patientToAddMedication, editedPatient);
+        expectedModel.setPatient(patientToAddMedication, editedPatient);
 
         assertCommandSuccess(addMedicationCommand, model, expectedMessage, COMMAND_TYPE, expectedModel);
     }
@@ -82,8 +83,9 @@ public class AddMedicationCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Medication medicationToAdd = new Medication(TYPICAL_MEDICATION_AMOXICILLIN, TYPICAL_DOSAGE_AMOXICILLIN);
-        Patient patientToAddMedication = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Patient editedPatient = new PersonBuilder(patientToAddMedication)
+        Patient patientToAddMedication =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
+        Patient editedPatient = new PatientBuilder(patientToAddMedication)
                 .withMedications(medicationToAdd).build();
 
         AddMedicationCommand addMedicationCommand = new AddMedicationCommand(INDEX_FIRST_PERSON, medicationToAdd);
@@ -92,7 +94,7 @@ public class AddMedicationCommandTest {
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
-        expectedModel.setPerson(patientToAddMedication, editedPatient);
+        expectedModel.setPatient(patientToAddMedication, editedPatient);
 
         assertCommandSuccess(addMedicationCommand, model, expectedMessage, COMMAND_TYPE, expectedModel);
     }
@@ -113,10 +115,11 @@ public class AddMedicationCommandTest {
     @Test
     public void execute_duplicateMedication_throwsCommandException() {
         Medication medicationToAdd = new Medication(TYPICAL_MEDICATION_AMOXICILLIN, TYPICAL_DOSAGE_AMOXICILLIN);
-        Patient patientToAddMedication = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Patient editedPatient = new PersonBuilder(patientToAddMedication)
+        Patient patientToAddMedication =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
+        Patient editedPatient = new PatientBuilder(patientToAddMedication)
                 .withMedications(medicationToAdd).build();
-        model.setPerson(patientToAddMedication, editedPatient);
+        model.setPatient(patientToAddMedication, editedPatient);
 
         AddMedicationCommand addMedicationCommand = new AddMedicationCommand(INDEX_FIRST_PERSON, medicationToAdd);
 

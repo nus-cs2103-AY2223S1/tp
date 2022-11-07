@@ -26,7 +26,7 @@ import seedu.uninurse.logic.parser.exceptions.ParseException;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.person.PatientMatchPredicate;
 import seedu.uninurse.testutil.EditPatientDescriptorBuilder;
-import seedu.uninurse.testutil.PersonBuilder;
+import seedu.uninurse.testutil.PatientBuilder;
 import seedu.uninurse.testutil.PersonUtil;
 
 public class UninurseBookParserTest {
@@ -37,7 +37,7 @@ public class UninurseBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Patient person = new PersonBuilder().build();
+        Patient person = new PatientBuilder().build();
         AddPatientCommand command = (AddPatientCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
         assertEquals(new AddPatientCommand(person), command);
     }
@@ -57,7 +57,7 @@ public class UninurseBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Patient person = new PersonBuilder().build();
+        Patient person = new PatientBuilder().build();
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder(person).build();
         EditPatientCommand command = (EditPatientCommand) parser.parseCommand(EditPatientCommand.COMMAND_WORD + " -p "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPatientDescriptorDetails(descriptor));

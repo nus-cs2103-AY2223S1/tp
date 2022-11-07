@@ -27,7 +27,7 @@ import seedu.uninurse.model.task.TaskList;
 /**
  * Jackson-friendly version of {@link Patient}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedPatient {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Patient's %s field is missing!";
 
@@ -45,7 +45,7 @@ class JsonAdaptedPerson {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedPatient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("conditions") List<JsonAdaptedCondition> conditions,
             @JsonProperty("medications") List<JsonAdaptedMedication> medications,
@@ -81,7 +81,7 @@ class JsonAdaptedPerson {
     /**
      * Converts a given {@code Patient} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Patient source) {
+    public JsonAdaptedPatient(Patient source) {
         name = source.getName().getValue();
         phone = source.getPhone().getValue();
         email = source.getEmail().getValue();
@@ -104,34 +104,34 @@ class JsonAdaptedPerson {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Patient} object.
+     * Converts this Jackson-friendly adapted patient object into the model's Patient object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted patient.
      */
     public Patient toModelType() throws IllegalValueException {
-        final List<Condition> personConditions = new ArrayList<>();
+        final List<Condition> patientConditions = new ArrayList<>();
         for (JsonAdaptedCondition condition : conditions) {
-            personConditions.add(condition.toModelType());
+            patientConditions.add(condition.toModelType());
         }
 
-        final List<Medication> personMedications = new ArrayList<>();
+        final List<Medication> patientMedications = new ArrayList<>();
         for (JsonAdaptedMedication medication : medications) {
-            personMedications.add(medication.toModelType());
+            patientMedications.add(medication.toModelType());
         }
 
-        final ArrayList<Task> personTasks = new ArrayList<>();
+        final ArrayList<Task> patientTasks = new ArrayList<>();
         for (JsonAdaptedTask task : tasks) {
-            personTasks.add(task.toModelType());
+            patientTasks.add(task.toModelType());
         }
 
-        final List<Remark> personRemarks = new ArrayList<>();
+        final List<Remark> patientRemarks = new ArrayList<>();
         for (JsonAdaptedRemark remark : remarks) {
-            personRemarks.add(remark.toModelType());
+            patientRemarks.add(remark.toModelType());
         }
 
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> patientTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            patientTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -166,15 +166,15 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
-        final ConditionList modelConditions = new ConditionList(personConditions);
+        final ConditionList modelConditions = new ConditionList(patientConditions);
 
-        final MedicationList modelMedications = new MedicationList(personMedications);
+        final MedicationList modelMedications = new MedicationList(patientMedications);
 
-        final TaskList modelTasks = new TaskList(personTasks);
+        final TaskList modelTasks = new TaskList(patientTasks);
 
-        final RemarkList modelRemarks = new RemarkList(personRemarks);
+        final RemarkList modelRemarks = new RemarkList(patientRemarks);
 
-        final TagList modelTags = new TagList(personTags);
+        final TagList modelTags = new TagList(patientTags);
 
         return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelConditions,
                 modelMedications, modelTasks, modelRemarks);

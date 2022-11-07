@@ -10,12 +10,16 @@ import java.util.List;
 import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
+import seedu.uninurse.logic.commands.exceptions.DuplicateEntryException;
+import seedu.uninurse.logic.commands.exceptions.InvalidAttributeIndexException;
 import seedu.uninurse.model.Model;
-import seedu.uninurse.model.PatientListTracker;
+import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.condition.Condition;
 import seedu.uninurse.model.condition.ConditionList;
 import seedu.uninurse.model.condition.exceptions.DuplicateConditionException;
+import seedu.uninurse.model.exceptions.PatientNotFoundException;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.Person;
 
 /**
  * Edits the details of an existing condition for a patient.
@@ -55,17 +59,25 @@ public class EditConditionCommand extends EditGenericCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);
-        List<Patient> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getFilteredPersonList();
 
         if (patientIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Patient patientToEdit = lastShownList.get(patientIndex.getZeroBased());
+        Patient patientToEdit;
+
+        try {
+            patientToEdit = model.getPatient(lastShownList.get(patientIndex.getZeroBased()));
+        } catch (PatientNotFoundException pnfe) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT);
+        }
+
         ConditionList initialConditionList = patientToEdit.getConditions();
 
         if (conditionIndex.getZeroBased() >= initialConditionList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CONDITION_INDEX);
+            model.setPatientOfInterest(patientToEdit);
+            throw new InvalidAttributeIndexException(Messages.MESSAGE_INVALID_CONDITION_INDEX);
         }
 
         try {
@@ -75,14 +87,16 @@ public class EditConditionCommand extends EditGenericCommand {
 
             Patient editedPatient = new Patient(patientToEdit, updatedConditionList);
 
-            PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
+            PersonListTracker personListTracker = model.setPatient(patientToEdit, editedPatient);
             model.setPatientOfInterest(editedPatient);
 
             return new CommandResult(String.format(MESSAGE_SUCCESS,
                     conditionIndex.getOneBased(), editedPatient.getName(), initialCondition, editedCondition),
-                    COMMAND_TYPE, patientListTracker);
+                    COMMAND_TYPE, personListTracker);
         } catch (DuplicateConditionException dce) {
-            throw new CommandException(String.format(Messages.MESSAGE_DUPLICATE_CONDITION, patientToEdit.getName()));
+            model.setPatientOfInterest(patientToEdit);
+            throw new DuplicateEntryException(
+                    String.format(Messages.MESSAGE_DUPLICATE_CONDITION, patientToEdit.getName()));
         }
     }
 

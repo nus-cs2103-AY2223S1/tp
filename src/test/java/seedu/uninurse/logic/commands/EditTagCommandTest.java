@@ -12,7 +12,7 @@ import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 import static seedu.uninurse.testutil.TypicalTags.TAG_ELDERLY;
 import static seedu.uninurse.testutil.TypicalTags.TAG_NURSING_HOME;
 import static seedu.uninurse.testutil.TypicalTags.TYPICAL_TAG_ELDERLY;
@@ -27,7 +27,7 @@ import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.tag.Tag;
-import seedu.uninurse.testutil.PersonBuilder;
+import seedu.uninurse.testutil.PatientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditTagCommand.
@@ -64,11 +64,11 @@ public class EditTagCommandTest {
     public void execute_validArgsUnfilteredList_success() {
         // Use third patient in typical persons because it only has one tag, so we only have to
         // replace it rather than retrieve the other unedited tags
-        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
+        Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased()));
 
         Tag initialTag = patientToEdit.getTags().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
-        Patient editedPatient = new PersonBuilder(patientToEdit).withTags(TYPICAL_TAG_ELDERLY).build();
+        Patient editedPatient = new PatientBuilder(patientToEdit).withTags(TYPICAL_TAG_ELDERLY).build();
 
         EditTagCommand editTagCommand =
                 new EditTagCommand(INDEX_THIRD_PERSON, INDEX_FIRST_ATTRIBUTE, TAG_ELDERLY);
@@ -77,7 +77,7 @@ public class EditTagCommandTest {
                 editedPatient.getName(), initialTag, TAG_ELDERLY);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPerson(patientToEdit, editedPatient);
+        expectedModel.setPatient(patientToEdit, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(editTagCommand, model, expectedMessage, EditTagCommand.COMMAND_TYPE, expectedModel);
@@ -95,11 +95,11 @@ public class EditTagCommandTest {
     @Test
     public void execute_validArgsFilteredList_success() {
         showPersonAtIndex(model, INDEX_THIRD_PERSON);
-        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
 
         Tag initialTag = patientToEdit.getTags().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
-        Patient editedPatient = new PersonBuilder(patientToEdit).withTags(TYPICAL_TAG_ELDERLY).build();
+        Patient editedPatient = new PatientBuilder(patientToEdit).withTags(TYPICAL_TAG_ELDERLY).build();
 
         EditTagCommand editTagCommand =
                 new EditTagCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE, TAG_ELDERLY);
@@ -110,7 +110,7 @@ public class EditTagCommandTest {
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
 
         showPersonAtIndex(expectedModel, INDEX_THIRD_PERSON);
-        expectedModel.setPerson(patientToEdit, editedPatient);
+        expectedModel.setPatient(patientToEdit, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(editTagCommand, model, expectedMessage, EditTagCommand.COMMAND_TYPE, expectedModel);
@@ -132,7 +132,7 @@ public class EditTagCommandTest {
 
     @Test
     public void execute_duplicateTag_throwsCommandException() {
-        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
         Tag tag = new Tag("high-risk");
         EditTagCommand editTagCommand =
                 new EditTagCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE, tag);
@@ -142,7 +142,7 @@ public class EditTagCommandTest {
 
     @Test
     public void execute_invalidTagIndex_throwsCommandException() {
-        Patient patient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patient = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         Index outOfBoundTagIndex = Index.fromOneBased(patient.getTags().size() + 1);
         EditTagCommand editTagCommand = new EditTagCommand(INDEX_FIRST_PERSON, outOfBoundTagIndex, TAG_ELDERLY);
 

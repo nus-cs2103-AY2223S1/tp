@@ -8,7 +8,7 @@ import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,12 +35,12 @@ public class ViewPatientCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Patient patientToView = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToView = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         ViewPatientCommand viewPatientCommand = new ViewPatientCommand(INDEX_FIRST_PERSON);
         String expectedMessage = String.format(ViewPatientCommand.MESSAGE_SUCCESS, patientToView.getName());
 
         assertCommandSuccess(viewPatientCommand, model, expectedMessage,
-                ViewPatientCommand.VIEW_PATIENT_COMMAND_TYPE, expectedModel);
+                ViewPatientCommand.COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -56,12 +56,12 @@ public class ViewPatientCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
 
-        Patient patientToView = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToView = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         ViewPatientCommand viewPatientCommand = new ViewPatientCommand(INDEX_FIRST_PERSON);
         String expectedMessage = String.format(ViewPatientCommand.MESSAGE_SUCCESS, patientToView.getName());
 
         assertCommandSuccess(viewPatientCommand, model, expectedMessage,
-                ViewPatientCommand.VIEW_PATIENT_COMMAND_TYPE, expectedModel);
+                ViewPatientCommand.COMMAND_TYPE, expectedModel);
     }
 
     @Test

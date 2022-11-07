@@ -9,7 +9,7 @@ import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.task.TaskList;
 
 /**
- * An UI component that displays information of a {@code Patient} with a truncated {@code TaskList}.
+ * An UI component that displays information of a Patient with a truncated TaskList.
  */
 public class TruncatedTaskListCard extends UiPart<Region> {
     private static final String FXML = "TruncatedTaskListCard.fxml";
@@ -26,14 +26,12 @@ public class TruncatedTaskListCard extends UiPart<Region> {
     private VBox taskPane;
 
     /**
-     * Creates a {@code TruncatedTaskListCard} with the given {@code Patient} to display.
+     * Creates a TruncatedTaskListCard with the given Patient to display.
      */
     public TruncatedTaskListCard(Patient patient) {
         super(FXML);
-        cardPane.setSpacing(1);
-        cardPane.setStyle("-fx-padding: 1;" + "-fx-border-style: dashed inside;"
-                + "-fx-border-width: 1;" + "-fx-border-insets: 1;"
-                + "-fx-border-radius: 5;" + "-fx-border-color: black;");
+        this.cardPane.setSpacing(1);
+        this.cardPane.setId("truncated_task_list_card");
 
         this.name.setText(patient.getName().getValue());
         patient.getTags().getInternalList()
@@ -47,9 +45,7 @@ public class TruncatedTaskListCard extends UiPart<Region> {
 
         if (taskList.size() > TRUNCATION_LIMIT) {
             VBox additionalTaskBox = new VBox();
-            additionalTaskBox.setStyle("-fx-background-color: #2154ad;"
-                    + "-fx-padding: 3;" + "-fx-border-radius: 2;"
-                    + "-fx-background-radius: 10;");
+            additionalTaskBox.setId("task_number_border_round");
             additionalTaskBox.setMaxWidth(150.0);
 
             Label additionalTaskNumberLabel = new Label();
@@ -58,9 +54,7 @@ public class TruncatedTaskListCard extends UiPart<Region> {
             } else {
                 additionalTaskNumberLabel.setText("+ " + (taskList.size() - TRUNCATION_LIMIT) + " more Tasks");
             }
-            additionalTaskNumberLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
-                    + "-fx-font-size: 13px;"
-                    + "-fx-text-fill: white;");
+            additionalTaskNumberLabel.setId("task_number_label");
 
             additionalTaskBox.getChildren().add(additionalTaskNumberLabel);
             this.taskPane.getChildren().add(additionalTaskBox);

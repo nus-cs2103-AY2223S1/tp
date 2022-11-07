@@ -5,7 +5,7 @@ import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 import java.util.Optional;
 
-import seedu.uninurse.model.PatientListTracker;
+import seedu.uninurse.model.PersonListTracker;
 
 /**
  * Represents the result of a command execution.
@@ -13,7 +13,7 @@ import seedu.uninurse.model.PatientListTracker;
 public class CommandResult {
     private final String feedbackToUser;
     private final CommandType commandType;
-    private final Optional<PatientListTracker> patientListTracker;
+    private final Optional<PersonListTracker> personListTracker;
 
     /**
      * Constructs a CommandResult with the specified fields.
@@ -22,21 +22,21 @@ public class CommandResult {
         requireAllNonNull(feedbackToUser, commandType);
         this.feedbackToUser = feedbackToUser;
         this.commandType = commandType;
-        this.patientListTracker = Optional.empty();
+        this.personListTracker = Optional.empty();
     }
 
     /**
-     * Constructs a CommandResult with the specified fields with a provided patientListTracker.
+     * Constructs a CommandResult with the specified fields with a provided personListTracker.
      */
-    public CommandResult(String feedbackToUser, CommandType commandType, PatientListTracker patientListTracker) {
-        requireAllNonNull(feedbackToUser, commandType, patientListTracker);
+    public CommandResult(String feedbackToUser, CommandType commandType, PersonListTracker personListTracker) {
+        requireAllNonNull(feedbackToUser, commandType, personListTracker);
         this.feedbackToUser = feedbackToUser;
         this.commandType = commandType;
-        this.patientListTracker = Optional.of(patientListTracker);
+        this.personListTracker = Optional.of(personListTracker);
     }
 
-    public Optional<PatientListTracker> getPatientListTracker() {
-        return patientListTracker;
+    public Optional<PersonListTracker> getPersonListTracker() {
+        return personListTracker;
     }
 
     public String getFeedbackToUser() {
