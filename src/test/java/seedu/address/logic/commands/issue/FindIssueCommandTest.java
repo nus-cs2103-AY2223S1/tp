@@ -72,6 +72,83 @@ public class FindIssueCommandTest {
     }
 
     @Test
+    public void execute_findIssueStatus_success() {
+        Model actualModel = new ModelManager();
+        Issue issueOne = new Issue(new Title("Fix some bugs"),
+                new Deadline("2022-02-02"), Urgency.MEDIUM,
+                new Status(true), new Project(new Name("Stub")), new IssueId(1),
+                new Pin(false));
+        Issue issueTwo = new Issue(new Title("Fix the UG"),
+                new Deadline("2022-01-02"), Urgency.HIGH,
+                new Status(false), new Project(new Name("Stub")), new IssueId(2),
+                new Pin(false));
+        Issue issueThree = new Issue(new Title("Fix the DG"),
+                new Deadline("2022-01-02"), Urgency.HIGH,
+                new Status(false), new Project(new Name("Stub")), new IssueId(3),
+                new Pin(false));
+
+        actualModel.addIssue(issueOne);
+        actualModel.addIssue(issueTwo);
+        actualModel.addIssue(issueThree);
+
+        Model expectedModel = new ModelManager();
+        expectedModel.addIssue(issueOne);
+
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(Messages.MESSAGE_ISSUES_LISTED_OVERVIEW,
+                        expectedModel.getFilteredIssueList().size()));
+
+        List<String> status = Arrays.asList("completed");
+        List<String> empty = new ArrayList<>();
+
+
+        FindIssueCommand find = new FindIssueCommand(new IssueContainsKeywordsPredicate(empty, status, empty,
+                empty, empty, empty));
+
+        assertCommandSuccess(find, actualModel, expectedCommandResult, expectedModel, stubUi);
+
+    }
+
+    @Test
+    public void execute_findUrgencyStatus_success() {
+        Model actualModel = new ModelManager();
+        Issue issueOne = new Issue(new Title("Fix some bugs"),
+                new Deadline("2022-02-02"), Urgency.MEDIUM,
+                new Status(true), new Project(new Name("Stub")), new IssueId(1),
+                new Pin(false));
+        Issue issueTwo = new Issue(new Title("Fix the UG"),
+                new Deadline("2022-01-02"), Urgency.HIGH,
+                new Status(false), new Project(new Name("Stub")), new IssueId(2),
+                new Pin(false));
+        Issue issueThree = new Issue(new Title("Fix the DG"),
+                new Deadline("2022-01-02"), Urgency.HIGH,
+                new Status(false), new Project(new Name("Stub")), new IssueId(3),
+                new Pin(false));
+
+        actualModel.addIssue(issueOne);
+        actualModel.addIssue(issueTwo);
+        actualModel.addIssue(issueThree);
+
+        Model expectedModel = new ModelManager();
+        expectedModel.addIssue(issueTwo);
+        expectedModel.addIssue(issueThree);
+
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(Messages.MESSAGE_ISSUES_LISTED_OVERVIEW,
+                        expectedModel.getFilteredIssueList().size()));
+
+        List<String> urgency = Arrays.asList("high");
+        List<String> empty = new ArrayList<>();
+
+
+        FindIssueCommand find = new FindIssueCommand(new IssueContainsKeywordsPredicate(empty, empty, urgency,
+                empty, empty, empty));
+
+        assertCommandSuccess(find, actualModel, expectedCommandResult, expectedModel, stubUi);
+
+    }
+
+    @Test
     public void testEquals() {
 
         List<String> issueTitle = Arrays.asList("This is an issue title", "another title");
