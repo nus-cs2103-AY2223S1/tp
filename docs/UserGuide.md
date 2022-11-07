@@ -442,10 +442,9 @@ The Mastery Check of a student can only be unmarked if:
 2. The student has a scheduled Mastery Check date (i.e. the student's Mastery Check field is not empty)
 
 Format: `unmark INDEX`
-
-<div markdown="span" class="alert alert-primary">
-**:bulb: Tip:** <br>
-The index of the student must be specified and there should be exactly one INDEX parameter.<br>
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** <br>
+* The index of the student must be specified and there should be exactly one `INDEX` parameter.
 </div>
 
 Example before entering `unmark 1` (Assuming student 1's Mastery Check has previously been marked as passed):
