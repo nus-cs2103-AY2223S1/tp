@@ -2,11 +2,15 @@
 /.gradle/
 /build/
 src/main/resources/docs/
+/bin/
 
 # IDEA files
 /.idea/
 /out/
 /*.iml
+
+# VS Code files
+/.vscode/
 
 # Storage/log files
 /data/
@@ -20,3 +24,5 @@ src/test/data/sandbox/
 # MacOS custom attributes files created by Finder
 .DS_Store
 docs/_site/
+
+# Change for dummy commit

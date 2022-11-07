@@ -4,11 +4,22 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
-    "tagged": [ "friends" ]
+    "gender" : "Female",
+    "dob" : "01/01/2000",
+    "uid" : "0ae8093a-6367-4060-bf1d-437646cb26c6"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "address": "4th street"
+    "address": "4th street",
+    "gender" : "Female",
+    "dob" : "01/01/2000",
+    "uid" : "afe9246b-891e-4268-a5c0-c7cbebf1a790"
+  } ],
+  "events" : [ {
+    "eventTitle" : "Dinosaur Sale",
+    "date" : "2022-01-04",
+    "time" : "12:00",
+    "purpose" : "Selling all dinosaurs at 15% discount"
   } ]
 }

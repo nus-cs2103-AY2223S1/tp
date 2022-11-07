@@ -69,6 +69,7 @@ skinparam ParticipantPadding 10
 skinparam Shadowing false
 skinparam DefaultTextAlignment center
 skinparam packageStyle Rectangle
+skinparam RoundCorner 0
 
 hide footbox
 hide members

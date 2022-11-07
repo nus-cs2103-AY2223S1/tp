@@ -2,38 +2,40 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
-import seedu.address.model.tag.Tag;
+import seedu.address.model.date.Date;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in the application.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
+
+    private static final int AGE_GROUP_SIZE = 5;
 
     // Identity fields
     private final Name name;
     private final Phone phone;
     private final Email email;
-
-    // Data fields
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Gender gender;
+    private final Date dob;
+    private final Uid uid;
 
     /**
+     * Constructor to create a new Person object.
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Gender gender, Date dob, Uid uid) {
+        requireAllNonNull(name, phone, email, address, gender, uid);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.tags.addAll(tags);
+        this.gender = gender;
+        this.dob = dob;
+        this.uid = uid;
     }
 
     public Name getName() {
@@ -52,12 +54,24 @@ public class Person {
         return address;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+    public Date getDob() {
+        return dob;
+    }
+    public Uid getUid() {
+        return uid;
+    }
+
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
+     * Returns the age group range of a Person.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public String getAgeGroup() {
+        int minAgeInGroup = dob.toAge();
+        minAgeInGroup = (int) (Math.floor(minAgeInGroup / AGE_GROUP_SIZE) * AGE_GROUP_SIZE);
+        int maxAgeInGroup = minAgeInGroup + AGE_GROUP_SIZE;
+        return String.format("%d-%dyo", minAgeInGroup, maxAgeInGroup);
     }
 
     /**
@@ -76,6 +90,7 @@ public class Person {
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
+     * Uid is not included in equality check.
      */
     @Override
     public boolean equals(Object other) {
@@ -92,13 +107,13 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getGender().equals(getGender())
+                && otherPerson.getDob().equals(getDob());
     }
 
     @Override
     public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, gender, dob);
     }
 
     @Override
@@ -110,14 +125,12 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Gender: ")
+                .append(getGender())
+                .append("; Date of birth: ")
+                .append(getDob());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
-        }
         return builder.toString();
     }
-
 }
