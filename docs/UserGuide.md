@@ -59,7 +59,7 @@ Symbol/Syntax        | Meaning
 
    * **`clear`** : Deletes all contacts.
 
-   * **`sort KEYWORD`** : Sorts the contacts based on the `KEYWORD`.
+   * **`sort`**`KEYWORD`: Sorts the contacts based on the `KEYWORD`.
 
    * **`find`** `n/John`: looks for contact that matches name (Prefix - n/) ‘John’
 
@@ -304,7 +304,7 @@ Format: `aa INDEX d/DATE_AND_TIME l/LOCATION`
 
 Refer to [Prefixes](#4-prefixes) for the types of prefixes.
 
-Example: `aa 1 d/21-01-2023 12:30 l/Jurong Point, Starbucks`
+Example: `aa 1 d/09-11-2022 12:30 l/Jurong`
 
 The appointment details will be added to the specified client's information.
 
