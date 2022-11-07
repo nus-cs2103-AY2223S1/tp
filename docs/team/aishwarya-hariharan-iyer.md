@@ -66,7 +66,6 @@ Given below are my contributions to the project.
 
 * **Contributions to team-based tasks and beyond**:
     * Created some issues for the weekly deliverables
-    * Reviewed and approved some PRs, explored in detail various design decisions using comments in assigned PRs and 
-      issues
+    * Reviewed and approved some PRs
     * Helped manage weekly meetings by setting Zoom links and taking notes
     * Reported bugs and suggestions for other teams in the class [(Link)](https://github.com/Aishwarya-Hariharan-Iyer/ped/issues)
