@@ -832,7 +832,7 @@ Both the People Panel and Notes Panel will show a `FILTERED` indicator to inform
 Format: `findTag TAG [MORE_TAGS]`
 
 * The tag search is not case-sensitive. e.g `finance` will match `Finance`
-* Only the tag is searched.
+* Only tags are searched.
 * Only full words will be matched e.g. `Tech` will not match `Technology`
 * Persons and Notes matching at least one tag will be returned (i.e. `OR` search).
   e.g. `Operations Finance` will return
