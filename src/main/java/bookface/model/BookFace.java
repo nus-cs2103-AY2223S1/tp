@@ -15,7 +15,7 @@ import bookface.model.person.UniquePersonList;
 import javafx.collections.ObservableList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the BookFace level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class BookFace implements ReadOnlyBookFace {
