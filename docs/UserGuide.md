@@ -491,7 +491,7 @@ Format: `tag edit t/TAG1 t/TAG2`
 
 * The new Tag must not have the same name as any other existing tags.
 * `TAG1` represents the current name of the tag and `TAG2` represents the new name of the tag.
-* This would replace `TAG1` in all contacts and todos to `TAG2`. 
+* This command will replace `TAG1` in all contacts and todos to `TAG2`. 
 
 </div>
 
