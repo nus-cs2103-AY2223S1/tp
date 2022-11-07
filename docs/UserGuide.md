@@ -46,6 +46,7 @@ via a Command Line Interface (CLI) while still having the benefits of a Graphica
 * [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 ![Format](images/Format.png)
@@ -64,8 +65,8 @@ Note how the app contains some sample data.<br>
 open the help window.
 
 6. Refer to the [Features](#features) below for details of each command.
-
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -92,6 +93,8 @@ open the help window.
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ## Person Fields
 
@@ -160,6 +163,8 @@ Sets tag(s) of a person in uNivUSal.
 Format : `t/TAGS`
 
 Example : `t/classmate friend`
+
+<div style="page-break-after: always;"></div>
 
 ## Basic Features
 
@@ -258,6 +263,8 @@ Examples:
 * `sort n/` displays the entries sorted by name alphabetically.
 * `sort e/` displays the entries sorted by email address alphabetically.
 * `sort p/` displays the entries sorted by phone number in an ascending manner.
+
+<div style="page-break-after: always;"></div>
 
 ## Enhanced Features
 
@@ -442,6 +449,7 @@ Format: `social SOCIAL`
 Examples:
 * `social telegram` will display a filtered list of persons with `telegram` as their preferred social media.
 
+<div style="page-break-after: always;"></div>
 
 ## General App Features
 
@@ -502,7 +510,7 @@ _Details coming soon ..._
 _Details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## Command summary
 
 | Action                | Format, Examples                                                                                                                                                                                             |
