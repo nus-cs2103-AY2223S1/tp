@@ -22,7 +22,9 @@ Users are able to:
 
 ## More information about this project
 * This project was made as part of CS2103T in AY22/23 S1.
-* If your are interested in the documentation of this project, head over to the **[idENTify Developer Guide](https://ay2223s1-cs2103t-t17-4.github.io/tp/DeveloperGuide.html)**.
+* If you are interested in using idENTify, head over to the [*Quick Start* section of the **User Guide**](https://ay2223s1-cs2103t-t17-4.github.io/tp/UserGuide.html#quick-start).
+* If you are interested in developing idENTify, the **[Developer Guide](https://ay2223s1-cs2103t-t17-4.github.io/tp/DeveloperGuide.html)** is a good place to start.
 
 ## Credits & Acknowledgements
 * This project is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
