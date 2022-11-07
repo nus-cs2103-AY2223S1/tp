@@ -34,7 +34,8 @@ This displays my code contributions for the project: [RepoSense link](https://nu
 #### Contributions to Developer Guide
 
 - [User Stories and Use Cases](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/77): Added User Stories and Use Cases for Tips.
-- (Soon to be done) Added section on Tips button, Tips window, Tips panel and Responsive UI.
+- [Help Window](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/177)Added section on Help window.
+- [Tips and Responsive UI](https://github.com/AY2223S1-CS2103T-T10-3/tp/pull/169) Added section on Tips button, Tips window, Tips panel and Responsive UI.
 
 #### Contributions to team-based tasks
 
