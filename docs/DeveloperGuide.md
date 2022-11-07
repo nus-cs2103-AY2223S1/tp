@@ -8,6 +8,8 @@ in a more organized manner.
 
 If you are a developer, this guide provides you with comprehensive documentation about the design and implementation details of UniNurse to help you get started, should you choose to build on its existing features.
 
+--------------------------------------------------------------------------------------------------------------------
+
 * Table of Contents
 {:toc}
 
@@ -168,12 +170,6 @@ The `Model` component,
 * each patient has a `TaskList`, which holds `Task` which can be NonRecurringTasks or RecurringTasks. The below Class diagram illustrates their relationship.
   
 <img src="images/TaskClassDiagram.png" width="450" />
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in `UniNurse`, which `Person` references. This allows `UniNurse` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
 
 ### Storage component
 
