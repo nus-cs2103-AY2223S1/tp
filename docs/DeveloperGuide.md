@@ -368,7 +368,7 @@ The `Note` attribute is mainly implemented by the following methods:
 - `Note` can be edited via the `EditCommand`.
 
 It is also additionally facilitated by these methods:
-- `NoteCommandParser#parse()` - Checks the input for the Note prefix, only adds a candidate into CLInkedIn if the entry has a `Note` prefix and a valid `Note` input
+- `AddNoteCommandParser#parse()` - Checks the input for the Note prefix, only adds a candidate into CLInkedIn if the entry has a `Note` prefix and a valid `Note` input
 - `AddressBookParser#parseCommand()` - Checks the input for `AddCommand` or `EditCommand`
 
 Here is an example of what happens when the recruiter attempts to add a candidate to CLInkedIn:
@@ -408,16 +408,25 @@ The `Rating` attribute is mainly implemented by the following methods:
 - `EditCommand` - Edits the rating of a candidate, eg: `edit 2 rate/9` edits `Rating` of the 2nd candidate in CLInkedIn to `9`.
 
 It is also additionally facilitated by these methods:
-- `RateCommandParser#parse()` - Checks the input for the rating prefix, only adds the rating to the candidate if the entry has a `Rating` prefix and a valid `Rating` input
-- `AddressBookParser#parseCommand()` - Checks the input for `RateCommand`.
+- `AddRateCommandParser#parse()` - Checks the input for the rating prefix, only adds the rating to the candidate if the entry has a `Rating` prefix and a valid `Rating` input
+- `DeleteRateCommandParser#parse()` - Checks the input for the rating prefix, only deletes the rating to the candidate if the entry has a valid `Rating` input
+- `AddCommandParser#parse()` - Checks the input for the rating prefix, adds a candidate with rating into CLInkedIn if the entry has a `Rating` prefix and a valid `Rating` input
+- `EditCommandParser#parse()` - Checks the input for the rating prefix, only edits the candidate's rating if the entry has a `Rating` prefix and a valid `Rating` input
+- `AddressBookParser#parseCommand()` - Checks the input for `AddRateCommand`.
 
-Here is an example of what happens when the recruiter attempts to add a rating to a candidate on CLInkedIn:
-1. Recruiter enters the command `rate 4 rate/8`
+Here is an example of what happens when the recruiter attempts to add a rating to a candidate on CLInkedIn via the `AddRateCommand`:
+1. Recruiter enters the command `addrate 4 rate/8`
 2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command.
-3. Since this is a `RateCommand`, the remaining arguments are passed into `RateCommandParser#parse()`
-4. The different arguments (index, rating) are parsed by `RateCommandParser#parse()` and a `RateCommand` object is created.
-5. Next, the `RateCommand#execute()` is called, which triggers the `Model#setPerson(Person)` and `Model#updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)` commands
+3. Since this is a `AddRateCommand`, the remaining arguments are passed into `AddRateCommandParser#parse()`
+4. The different arguments (index, rating) are parsed by `AddRateCommandParser#parse()` and a `AddRateCommand` object is created.
+5. Next, the `AddRateCommand#execute()` is called, which triggers the `Model#setPerson(Person)` and `Model#updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)` commands
 6. A `CommandResult` is returned.
+
+The following sequence diagram shows how the add rate operation via `AddRateCommand` works:
+![AddRateSequenceDiagram](images/AddRateSequenceDiagram.png)
+
+In comparison, the following sequence diagram shows how the add rate operation via `AddCommand` works:
+![AddCommandRateSequenceDiagram](images/AddCommandRateSequenceDiagram.png)
 
 #### Design Considerations
 
@@ -522,6 +531,12 @@ Here is an example of what happens when the recruiter attempts to sort candidate
 3. Since this is a `SortCommand`, there is no parser. A `SortCommand()` object is returned by the parser. 
 4. Next, the `SortCommand#execute(Model model)` is called, which triggers the `Model#updateSort(Comparator)` command 
 5. Lastly, a `CommandResult` is returned.
+
+
+The following activity diagram summarizes what happens when a user executes a find command:
+
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
 
 #### Design Considerations 
 
