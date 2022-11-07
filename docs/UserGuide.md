@@ -873,7 +873,10 @@ Application status as an input field **must be one of the following**:
 
 ### Link Formats
 
-For `Link`, the format allowed is `[SCHEME][HOSTNAME.]SLD.TLD[.MORE_TLDS][/PATH]`.
+For `Link`, the format allowed is `[SCHEME][HOSTNAME]SLD.TLD[MORE_TLDS][PATH]`.
+
+Example:
+* `[https://][careers.]google.com[.sg][/students]`
 
 The constraints are:
 
@@ -882,28 +885,34 @@ The constraints are:
     <tr>
       <th scope="col">Field</th>
       <th scope="col">Constraints</th>
+      <th scope="col">Example</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code>SCHEME</code></td>
       <td><ul><li>Only <code>http://</code> and <code>https://</code> are allowed</li></ul></td>
+      <td>https://</td>
     </tr>
     <tr>
       <td><code>HOSTNAME</code></td>
-      <td><ul><li>Must only contain alphabets and numbers</li><li>Must be at least 2 characters and at most 8 characters long</li></lu></ul></td>
+      <td><ul><li>Must only contain alphabets and numbers</li><li>Must end with the character '.'</li><li>Must be at least 2 characters and at most 8 characters long excluding the '.' character at the end</li></ul></td>
+      <td>careers.</td>
     </tr>
     <tr>
-        <td><code>SLD</code></td>
-        <td><ul><li>Must only contain alphabets, numbers and the character '-'</li><li>Must be at least 1 character and at most 63 characters long</li></ul></td>
+      <td><code>SLD</code></td>
+      <td><ul><li>Must only contain alphabets, numbers and the character '-'</li><li>Must end with the character '.'</li><li>Must be at least 1 character and at most 63 characters long excluding the '.' character at the end</li></ul></td>
+      <td>google.</td>
     </tr>
     <tr>
       <td><code>TLD</code></td>
-      <td><ul><li>Must only contain alphabets and numbers</li><li>Must be at least 2 characters and at most 8 characters long</li></lu></ul></td>
+      <td><ul><li>Must only contain alphabets and numbers</li><li>Must end with the character '.' if there is another <code>TLD</code> after the current one</li><li>Must be at least 2 characters and at most 8 characters long</li></ul></td>
+      <td>com.sg</td>
     </tr>
     <tr>
-        <td><code>PATH</code></td>
-        <td><ul><li>Must only contain alphabets, numbers and the characters '+&@#/%=~$.?'</li></ul></td>
+      <td><code>PATH</code></td>
+      <td><ul><li>Must only contain alphabets, numbers and the characters '+&@#/%=~$.?'</li><li>Must start with the character '/'</li></ul></td>
+      <td>/students</td>
     </tr>
   </tbody>
 </table>
