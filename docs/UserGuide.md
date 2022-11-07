@@ -302,7 +302,7 @@ To change [application status](#application-status), see [`mark` command](#marki
 </div>
 <div markdown="span">
 **Date/time formats**<br>
-See [Appendix: Date/time formats](#datetime-formats) for the date/time formats allowed.
+See [Appendix: Date/time formats](#datetime-formats) for the date/time formats allowed. Not following these formats will result in an error.
 </div>
 </div>
 
@@ -357,7 +357,7 @@ To change [application status](#application-status), see [`mark` command](#marki
 </div>
 <div markdown="span">
 **Date/time formats**<br>
-See [Appendix: Date/time formats](#datetime-formats) for the date/time formats allowed.
+See [Appendix: Date/time formats](#datetime-formats) for the date/time formats allowed. Not following these formats will result in an error.
 </div>
 </div>
 
@@ -692,7 +692,7 @@ A tooltip is shown when the link is hovered.
 
 #### Tags
 
-Tags are displayed in lexicographical order.
+Tags that are added are automatically converted to lowercase. They are displayed in lexicographical order.
 
 A tooltip containing the full tag name is shown when a tag is hovered.
 
@@ -826,8 +826,6 @@ Application status as an input field **must be one of the following**:
 
 ### Date/Time Formats
 
-The year can be omitted from `APPLIED_DATE` and `INTERVIEW_DATE_TIME` to default to current year.
-
 For `APPLIED_DATE`, the formats allowed:
 
 <table class="table table-hover">
@@ -882,6 +880,16 @@ For `INTERVIEW_DATE_TIME`, the formats allowed:
     </tr>
   </tbody>
 </table>
+
+<div class="d-flex alert alert-info">
+<div class="me-3">
+  <span class="badge text-bg-info">INFO</span>
+</div>
+<div markdown="span">
+**Omission of year**<br>
+The year `yyyy` can be omitted when entering `APPLIED_DATE` or `INTERVIEW_DATE_TIME` to default to the current year.
+</div>
+</div>
 
 <div class="btn-group btn-group-sm mt-2 mb-4">
 <a href="#appendix" class="btn btn-light link-primary" style="--bs-btn-font-size: .8rem;"><i class="bi bi-chevron-up me-2"></i>Back to appendix</a>
