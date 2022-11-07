@@ -158,8 +158,6 @@ Example:
 
 <img src="images/ug-screenshots/attendance.png" alt="attendance 1" width="1100">
 
-<img src="images/ug-screenshots/attendance.png" alt="attendance 1" width="1100">
-
 ### Adding student's response: `addresponse`
 
 Edits the number of messages a specified student sent during tutorial.
