@@ -38,16 +38,16 @@ AddressBookParser --> LogicManager : e
 deactivate AddressBookParser
 destroy EditEventCommandParser
 
-LogicManager -> EditEventCommand : execute(e)
+LogicManager -> EditEventCommand : execute(b)
 activate EditEventCommand
 
-EditEventCommand -> ModelManager : editEvent(event)
+EditEventCommand -> ModelManager : setEvent(E1, E2)
 activate ModelManager
 
-ModelManager -> AddressBook : editEvent(event)
+ModelManager -> AddressBook : setEvent(E1, E2)
 activate AddressBook
 
-AddressBook -> UniqueEventList : setEvent(event)
+AddressBook -> UniqueEventList : setEvent(E1, E2)
 activate UniqueEventList
 
 UniqueEventList --> AddressBook

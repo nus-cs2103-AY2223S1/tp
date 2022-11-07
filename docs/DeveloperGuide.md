@@ -239,11 +239,11 @@ The `event`edited by the user allows the user to edit any combination of the 4 e
 
 The `editEvent` operation is facilitated by `EditEventCommand` which extends from `Command`. If the users' input matches
 the `COMMAND_WORD` of `EditEventCommand` in `AddressBookParser#parseCommand()`, `EditEventCommandParser#parse()` will
-process the additional user inputs which constitute any combination of the 4 optional fields and return a `EditPersonCommand`.
+process the additional user inputs which constitute any combination of the 4 optional fields and return a `EditEventCommand`.
 
 Executing this Command object through the `EditEventCommand#execute()` triggers the `Model` interface's
 `Model#setEvent()`. This operation subsequently calls upon the `AddressBook#setEvent()` operation which in turn calls
-upon the `UniqueEventList#asetEvent()` operation and the existing `event` will be replaced with the new edited `event`in memory.
+upon the `UniqueEventList#setEvent()` operation and the existing `event` will be replaced with the new edited `event`in memory.
 
 The addEvent operation will also trigger the `StorageManager#saveAddressBook()` operation which will save the current list of events, which will save the edited event to a .JSON format together with all other `Person`(s) and `Event`(s) in memory.
 
@@ -252,7 +252,8 @@ The following sequence diagram will illustrate how the `editEvent` operation wor
 ![AddEventSequenceDiagram](images/EditEventSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the edit
-event command text entered by user. event represents the event class created and stored within EditEventCommand.
+event command text entered by user; the `setEvent(E1, E2)` method replaces event E1 with event E2 in the event list
+in the model. `event` represents the event class created and stored within EditEventCommand.
 Additionally, saving of the updated events list has been excluded from this diagram for simplicity.
 </div>
 
@@ -597,21 +598,72 @@ process the additional user input which constitutes the 6 compulsory fields and 
 Executing this Command object through the `MakeStatsCommand#execute()` first triggers the `Model` interface's
 `Model#setData()`. This operation updates the list of piechart data in the `Model`.
 
- Then, the `Logic` interface's `Logic#setPieChartData()` is triggered. This operation subsequently calls upon the `AddressBook#addPerson()` operation which in turn calls upon the `UniquePersonList#add()` operation and the `person` will be stored in memory.
+ Then, the `Logic` interface's `Logic#setPieChartData()` is triggered. This operation subsequently calls upon the `MainWindow#setPieChart()` operation which in turn calls upon the `MainWindow#handleStats()` operation, which finally culminates with a call upon the `StatsWindow#show()` which displays the piechart in a new window.
 
-The addPerson operation will also trigger the `StorageManager#saveAddressBook()` operation which will save the current
-list of persons, which will save the new person to a .JSON format together with all other `Event`(s) and `Person`(s) in memory.
+The following sequence diagram shows the methods calls related to the make stats operation:
 
-The following sequence diagram shows the methods calls related to the add person operation:
+![AddPersonSequenceDiagram](images/MakeStatsSequenceDiagram.png)
 
-![AddPersonSequenceDiagram](images/AddPersonSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the add
-person command text entered by user. The specific `UniquePersonList` operations are not shown in the diagram
-for simplicity. Additionally, saving of the updated persons list from has also been excluded from this diagram for simplicity.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the make stats command text entered by user.
 </div>
 
+### Tagging Events
 
+The Tag Event feature that is accessed through the `tagEvent` command allows users to tag persons from existing marketing campaigns of the `event` class in the application.
+
+In order to tag persons from `events`, users need to specify:
+- Index of the `event`
+- Index(s) of the `persons` to tag from the `event`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Tagging of persons from an event is basically the same as editting an event, except we are now editing the Uid list that is in the event, which is the list of the Uids of persons tagged to the event.
+</div>
+
+The `tagEvent` operation is facilitated by `TagEventCommand`, which extends from `Command`. If the users' input matches the `COMMAND_WORD` of `TagEventCommand` in `AddressBookParser#parseCommand()`, `TagEventCommandParser#parse()` will process the additional user inputs which constitute 2 compulsory fields above and return a `TagEventCommand`.
+
+Executing this Command object through the `TagEventCommand#execute()` triggers the `Model` interface's
+`Model#setEvent()`. This operation subsequently calls upon the `AddressBook#setEvent()` operation which in turn calls
+upon the `UniqueEventList#setEvent()` operation and the existing `event` will be replaced with the new edited `event` with the new tagged `persons` in memory.
+
+The tagEvent operation will also trigger the `StorageManager#saveAddressBook()` operation which will save the current list of events, which will save the edited event to a .JSON format together with all other `Person`(s) and `Event`(s) in memory.
+
+The following sequence diagram will illustrate how the `tagEvent` operation works:
+
+![AddEventSequenceDiagram](images/TagEventSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the tag
+event command text entered by user; the `setEvent(E1, E2)` method replaces event E1 with event E2 in the event list
+in the model. `event` represents the event class created and stored within TagEventCommand.
+Additionally, saving of the updated events list has been excluded from this diagram for simplicity.
+</div>
+
+### Untagging Events
+
+The Untag Event feature that is accessed through the `untagEvent` command allows users to untag persons from existing marketing campaigns of the `event` class in the application.
+
+In order to untag persons from `events`, users need to specify:
+- Index of the `event`
+- Index(s) of the `persons` to untag from the `event`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Untagging of persons from an event is basically the same as editting an event, except we are now editing the Uid list that is in the event, which is the list of the Uids of persons tagged to the event.
+</div>
+
+The `untagEvent` operation is facilitated by `UntagEventCommand`, which extends from `Command`. If the users' input matches the `COMMAND_WORD` of `UntagEventCommand` in `AddressBookParser#parseCommand()`, `UntagEventCommandParser#parse()` will process the additional user inputs which constitute 2 compulsory fields above and return a `UntagEventCommand`.
+
+Executing this Command object through the `UntagEventCommand#execute()` triggers the `Model` interface's
+`Model#setEvent()`. This operation subsequently calls upon the `AddressBook#setEvent()` operation which in turn calls
+upon the `UniqueEventList#setEvent()` operation and the existing `event` will be replaced with the new edited `event` with the new untagged `persons` in memory.
+
+The tagEvent operation will also trigger the `StorageManager#saveAddressBook()` operation which will save the current list of events, which will save the edited event to a .JSON format together with all other `Person`(s) and `Event`(s) in memory.
+
+The following sequence diagram will illustrate how the `untagEvent` operation works:
+
+![AddEventSequenceDiagram](images/UntagEventSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the untag
+event command text entered by user; the `setEvent(E1, E2)` method replaces event E1 with event E2 in the event list
+in the model. `event` represents the event class created and stored within UntagEventCommand.
+Additionally, saving of the updated events list has been excluded from this diagram for simplicity.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 

@@ -38,7 +38,7 @@ AddressBookParser --> LogicManager : a
 deactivate AddressBookParser
 destroy AddEventCommandParser
 
-LogicManager -> AddEventCommand : execute(a)
+LogicManager -> AddEventCommand : execute(b)
 activate AddEventCommand
 
 AddEventCommand -> ModelManager : addEvent(event)
