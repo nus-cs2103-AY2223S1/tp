@@ -320,7 +320,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the [`seedu.addressbook.commons`](https://github.com/AY2223S1-CS2103T-W17-2/tp/tree/master/src/main/java/seedu/pennywise/commons) package.
+Classes used by multiple components are in the [`seedu.pennywise.commons`](https://github.com/AY2223S1-CS2103T-W17-2/tp/tree/master/src/main/java/seedu/pennywise/commons) package.
 
 <p align="right">
     <a href="#top">Back to Top </a>
@@ -362,7 +362,7 @@ which then calls the `PennyWiseParser#parseCommand` method
 4. The `PennyWiseParser` then calls `SummaryCommandParser#parse` method
 and the argument string is converted to a List
 
-5. The `SummaryCommandParser` creates a new EntryInYearMonthPredicate instance to handle the filter
+5. The `SummaryCommandParser` creates a new `EntryInYearMonthPredicate` instance to handle the filter
 
 6. The `SummaryCommandParser` creates a new `SummaryCommand` instance with the `EntryInYearMonthPredicate` instance and
 returns it to `PennyWiseParser`, which in turn returns to `LogicManger`.
@@ -374,7 +374,7 @@ filters the income and expenditure entries by the month
 
 9. The application calculates the summary statistics for the filtered income and expenditure entries.
 
-10. The `SummaryCommand` then creates a CommandResult and returns it to `LogicManager`.
+10. The `SummaryCommand` then creates a `CommandResult` and returns it to `LogicManager`.
 
 #### Design considerations:
 * **Alternative 1 (current choice):** Only allow users to generate summary statistic either by month or all entries
@@ -425,13 +425,13 @@ Below is a sequence diagram and explanation of how the `add` command is executed
 10. The `AddCommand` then creates a `CommandResult` instance and returns it to `LogicManager`.
 
 #### Design Considerations
-* **Alternative 1 (current choice):** Only allow users to create an Entry with 1 type of category
-  * Pros: Users are able to distinctly sort their entries into specific pre-determined categories.
-  * Cons: Users would not be able to specify entries under their own categories.
+* **Alternative 1 (current choice):** Only allow users to create an entry with 1 type of category
+  * Pros: Users are able to distinctly sort their expenditures/incomes into specific pre-determined categories.
+  * Cons: Users would not be able to specify expenditures/incomes under their own categories.
 
 * **Alternative 2:** Allow users to specify their own categories.
-  * Pros: Users can be more flexible in grouping their spending/incomes.
-  * Cons: Possible dilution of categories, which would make the PieChart diagram not as useful.
+  * Pros: Users can be more flexible in grouping their expenditures/incomes.
+  * Cons: Possible dilution of categories, which would make the pie chart diagram not as useful.
 
 ### Edit Entry
 
@@ -445,7 +445,8 @@ The `edit` command is implemented by the `EditCommandParser` and `EditCommand` c
 
 `EditCommand` class is responsible for editing an existing entry in the application.
 
-Below is a sequence diagram and explanation of how the EditCommand is executed.
+Below is a sequence diagram and explanation of how the `EditCommand` is executed.
+
 ![Interactions Inside the Logic Component for the `edit 1 t/e d/LunchDeck` Command](images/EditSequenceDiagram.png)
 
 ![Interactions Inside the Logic Component for the `edit 1 t/e d/LunchDeck` Command](images/EditEntrySequenceDiagram.png)
@@ -474,7 +475,7 @@ Below is a sequence diagram and explanation of how the EditCommand is executed.
 
 11. The `EditCommand` eventually creates a `CommandResult` instance and returns it to `LogicManager`.
 
-### View pie charts and line graphs
+### View Pie Charts and Line Graphs
 
 #### How the `view` command works
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The command syntax for view command is as follows:
@@ -489,7 +490,9 @@ The `ViewCommandParser` class is responsible for parsing the parameter received 
 as well as `GraphType` to the `ViewCommand` class.
 
 The `ViewCommand` class is responsible for filtering the entry list and generating the correct `GraphConfiguration`.
+
 The class diagram below shows the structure of `ViewCommand`.
+
 ![ViewCommandClassDiagram](images/ViewCommandClassDiagram.png)
 
 The `view` command will produce a category view with a pie chart or a daily view with a line graph. This is achieved with an optional
@@ -497,6 +500,7 @@ input `mo/MONTH`. If it is present, the entry list will be filtered by the speci
 a line graph will be displayed. Otherwise, the full list will be shown and a pie chart will be displayed.
 
 The activity diagram below illustrates the workflow described above when a user executes the `view` command.
+
 ![ViewActivityDiagram](images/ViewActivityDiagramBusiness.png)
 
 Given below is an example usage scenario and how the pie chart view mechanism behaves at each step.
@@ -513,13 +517,13 @@ the steps in **command execution** as well as **UI updates**.
 3. `LogicManager` then calls the `pennyWiseParser#parseCommand` method which matches the command word `view` in the string and extracts the arguments string `t/e`.
 
 4. `pennyWiseParser` then calls the `ViewCommandParser#parse` method.
-   In this method, it is ensured that the input is of the correct format, and the entryType (and year month, if supplied) is extracted.
+   In this method, it is ensured that the input is of the correct format, and the entry type (and year month, if supplied) is extracted.
    It creates a `viewEntriesDescriptor` with `entryType` set to expenditure and `yearMonth` set to `null`.
 5. `LogicManager`then calls the `ViewCommand#execute` method which creates a `graphConfiguration` based on the `viewEntriesDescriptor`. It also filters the
 expenditure list based on `predicate` generated from the `viewEntriesDescriptor`.
 The `CommandResult`, containing the `graphConfiguration`, is returned to `LogicManager` and passed to `MainWindow`.
 
-6.`MainWindow` checks the `commandResult` which indicates a need to update graph. It then calls the `updateGraph` method which renders the graph according to the `graphConfiguration`.
+6. `MainWindow` checks the `commandResult` which indicates a need to update graph. It then calls the `updateGraph` method which renders the graph according to the `graphConfiguration`.
 
 7. In `updateGraph`, `LogicManager#getExpensePieChartData` calls `ModelManager#getPieChartData` which returns the `pieChartData`.
    It then creates a new `GraphPanel` with the `pieChartData` and add it to the UI.
@@ -628,14 +632,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-<p align="right">
-    <a href="#top">Back to Top </a>
-</p>
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -666,7 +662,7 @@ In particular, this encompasses:
 ### Product scope
 
 Here, we share the target user profile and the value proposition of PennyWise, which can aid you in having a better
-understanding of how our features _fit together__ a cohesive product and how it matches our target user.
+understanding of how our features __fit together__ a cohesive product and how it matches our target user.
 
 **Target user profile**:
 
@@ -916,8 +912,6 @@ testers are expected to do more *exploratory* testing.
     1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Adding an entry
 
 1. Adding an entry while all entries are being shown
@@ -1001,16 +995,6 @@ testers are expected to do more *exploratory* testing.
 
     1. Other incorrect delete commands to try: `summary x`, `...` (where x is a string that does not follow the command format)<br>
        Expected: Error details shown in the status message.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
 
 --------------------------------------------------------------------------------------------------------------------
 

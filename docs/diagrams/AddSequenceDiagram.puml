@@ -56,7 +56,7 @@ deactivate PennyWiseParser
 LogicManager -> AddCommand : execute(model)
 activate AddCommand
 
-AddCommand -> Model : addEntry(Entry)
+AddCommand -> Model : addExpenditure(Entry)
 activate Model
 
 Model --> AddCommand

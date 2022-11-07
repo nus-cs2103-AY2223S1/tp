@@ -3,7 +3,7 @@
 start
 :user input view command;
 if () then ([input is valid]))
-if () then ([entry type is expenditure]))
+if () then ([entry type is expenditure])
     switch ()
     case ([month parameter is present])
       :Filter the expenditure list by the specified month;
