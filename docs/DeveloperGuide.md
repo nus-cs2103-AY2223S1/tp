@@ -334,7 +334,7 @@ Given below is an example usage scenario and how the sort mechanism behaves at e
 
 The following sequence diagram summarizes the aforementioned steps.
 
-![Find command sequence diagram](images/FindSequenceDiagram.png)
+![Find command sequence diagram](images/FindCommandSequenceDiagram.png)
 
 #### Design considerations
 
