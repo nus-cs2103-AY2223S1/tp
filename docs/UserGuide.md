@@ -167,19 +167,18 @@ incomes, you need to tell PennyWise the following:
 
 ### Familiarising yourself with the interface
 
-To familiarise yourself with our user interface, please refer to the following diagram and table to get comfortable with
-the application.
+Let's get acquainted with the application with the help of the following diagram!
 
 When you first open up the application, this is the *default view*, which shows the list of expenditures (or incomes):
 
 ![UserInterfaceExplanation](images/ug/UserInterfaceExplanation.png)
 
-|                                       `Component`                                        |                                                       `Explanation`                                                        |
-|:----------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------:|
-|     ![](https://img.shields.io/static/v1?label=&message=List%20Display&color=862e9c)     |            where you view your entry lists (Expenditure or Income) <br> - can be modified by the `view` command            |
-|    ![](https://img.shields.io/static/v1?label=&message=Graph%20Display&color=5c940d)     | where you view your entries in a graphical overview (Pie Chart or Line Graph) <br> - can be modified by the `view` command |
-| ![](https://img.shields.io/static/v1?label=&message=Command%20Input%20Box&color=e67700)  |                                       where you enter your commands to use PennyWise                                       |
-| ![](https://img.shields.io/static/v1?label=&message=Command%20Output%20Box&color=d9480f) |                                  where you see the output of your commands from PennyWise                                  |
+|                                       `Component`                                        |                                                                      `Explanation`                                                                      |
+|:----------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|     ![](https://img.shields.io/static/v1?label=&message=List%20Display&color=862e9c)     |          Where you view your entry lists (Expenditure or Income) <br> This can be filtered by the [`view`](#view-entries-by-category) command           |
+|    ![](https://img.shields.io/static/v1?label=&message=Graph%20Display&color=5c940d)     | Where you view your entries in a graphical overview (Pie Chart or Line Graph) <br> This can be modified by the [`view`](#view-entries-by-month) command |
+| ![](https://img.shields.io/static/v1?label=&message=Command%20Input%20Box&color=e67700)  |                                                     Where you enter your commands to use PennyWise                                                      |
+| ![](https://img.shields.io/static/v1?label=&message=Command%20Output%20Box&color=d9480f) |                                                Where you see the output of your commands from PennyWise                                                 |
 
 <div markdown="block" class="alert alert-danger">:exclamation: **Warning**
 If the application is resized to a smaller screen, certain graphical components will be hidden. This is to ensure that
@@ -187,15 +186,15 @@ you still see the most important information about your budgeting. If details of
 
 1. Pie Chart Legend <br/>
 
-- The Pie Chart Legend will be hidden should the application be of a smaller size. This ensures your categorical
-  overview can still be seen at a glance!
-  ![ChartLegend](images/ug/ChartLegend.png)
+   - The Pie Chart Legend will be hidden should the application be of a smaller size. This ensures your categorical
+     overview can still be seen at a glance!
+     ![ChartLegend](images/ug/ChartLegend.png)
 
 2. Line Graph Dates
 
-- Certain Line Graph dates will be hidden should the application be of a smaller size. This ensures you can still view
-  the trend of your entries easily.
-  ![LineGraphDates](images/ug/LineGraphDates.png)
+   - Certain Line Graph dates will be hidden should the application be of a smaller size. This ensures you can still view
+     the trend of your entries easily.
+     ![LineGraphDates](images/ug/LineGraphDates.png)
 
 </div>
 
@@ -231,7 +230,7 @@ step-by-step!
   You should expect to see this output:
     <pre>
     <code>
-        New entry added: October Allowance; Date: 01-10-2022; Amount: 200.00; Tag: Allowance.
+        New entry added: October Allowance; Date: 01-10-2022; Amount: 200.00; Tag: Allowance
     </code>
   </pre>
 
@@ -249,7 +248,7 @@ step-by-step!
   e.g. `d/Lunch` as a descriptor for "Lunch" is accepted by PennyWise, however `D/Lunch` would not be accepted.
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
-- Adding identifiers that are not used in the command will result in an error.
+Adding identifiers that are not used in the command will result in an error.
 </div>
 
 ### Categorising your expenses and income
@@ -516,26 +515,18 @@ Format: `view t/ENTRY_TYPE mo/MONTH`
     - Expected: `Show graphically all income by month` and a Line Graph on the right of the application
     The List Display will also be filtered to show only income in Jan 2022.
 
-<div markdown="span" class="alert alert-info">:information_source: **Info:**
-The `MONTH` field is optional. If a month is specified, the entry details for the corresponding month is shown,
-accompanied by a Line Graph on the right of the application. If no month is specified, the application displays an
-error.
-</div>
-
 <div markdown="block" class="alert alert-primary">:bulb: **Tip:**
 You can think of the view entries by month command as applying a month filter to the entry list,
-and view entries by category command as clearing any filters on the entry list.
+and view entries by category command as clearing any filters on the entry list. <br/>
+To switch back to the [default view](#familiarising-yourself-with-the-interface) of the list of expenditures, 
+simply use the [`view t/e` command](#view-entries-by-category). If you would like to switch back to the 
+[default view](#familiarising-yourself-with-the-interface) of the list of income, you can use the 
+[`view t/i` command](#view-entries-by-category).
 </div>
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
 Note that if you manually switch between the income list display and expenditure list display, all filters (if any)
 will be cleared and a pie chart will be drawn. Manual toggling is equivalent to typing the command `view t/e` or `view t/i`.
-</div>
-
-
-<div markdown="span" class="alert alert-info">:information_source: **Info:**
-To switch back to the [default view](#familiarising-yourself-with-the-interface) of the list of expenditures, simply use the [`view t/e` command](#view-entries-by-category).
-If you would like to switch back to the [default view](#familiarising-yourself-with-the-interface) of the list of income, you can use the [`view t/i` command](#view-entries-by-category).
 </div>
 
 ### Clearing all entries
