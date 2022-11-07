@@ -1,0 +1,59 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "s:sortByDeadlineCommand" as SortByDeadlineCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
+participant ":TaskList" as TaskList MODEL_COLOR
+end box
+[-> LogicManager : execute(sortD)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(sortD)
+activate AddressBookParser
+
+create SortByDeadlineCommand
+AddressBookParser -> SortByDeadlineCommand
+activate SortByDeadlineCommand
+
+SortByDeadlineCommand --> AddressBookParser
+deactivate SortByDeadlineCommand
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> SortByDeadlineCommand : execute()
+activate SortByDeadlineCommand
+
+SortByDeadlineCommand -> Model : sortByDeadline()
+activate Model
+
+Model -> AddressBook : sortByDeadline()
+activate AddressBook
+
+AddressBook -> TaskList : sortByDeadline()
+activate TaskList
+
+TaskList --> AddressBook
+deactivate TaskList
+
+AddressBook --> Model
+deactivate AddressBook
+
+Model --> SortByDeadlineCommand
+deactivate Model
+
+SortByDeadlineCommand --> LogicManager : result
+deactivate SortByDeadlineCommand
+SortByDeadlineCommand -[hidden]-> LogicManager : result
+destroy SortByDeadlineCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

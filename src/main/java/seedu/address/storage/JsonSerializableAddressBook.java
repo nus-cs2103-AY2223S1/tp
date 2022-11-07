@@ -12,6 +12,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -20,15 +22,26 @@ import seedu.address.model.person.Person;
 class JsonSerializableAddressBook {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_TASK = "Tasks list contains duplicate task(s).";
+    public static final String MESSAGE_DUPLICATE_TAG = "Tag list contains duplicate tag(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedTask> tasks = new ArrayList<>();
+    private final List<JsonAdaptedTag> tags = new ArrayList<>();
+    private final JsonAdaptedTaskList taskList = new JsonAdaptedTaskList();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given persons and tasks.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                       @JsonProperty("tasks") List<JsonAdaptedTask> tasks,
+                                       @JsonProperty("taskList") JsonAdaptedTaskList taskList,
+                                       @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.persons.addAll(persons);
+        this.tasks.addAll(tasks);
+        this.tags.addAll(tags);
+        this.taskList.setSortByDeadline(taskList.isSortByDeadline());
     }
 
     /**
@@ -38,6 +51,9 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
+        tags.addAll(source.getTagList().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
+        taskList.setSortByDeadline(source.isSortByDeadline());
     }
 
     /**
@@ -54,6 +70,28 @@ class JsonSerializableAddressBook {
             }
             addressBook.addPerson(person);
         }
+        for (JsonAdaptedTask jsonAdaptedTask : tasks) {
+            Task task = jsonAdaptedTask.toModelType();
+            if (addressBook.hasTask(task)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
+            }
+            addressBook.addTask(task);
+        }
+
+        for (JsonAdaptedTag jsonAdaptedTag : tags) {
+            Tag tag = jsonAdaptedTag.toModelType();
+            if (addressBook.hasTag(tag)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TAG);
+            }
+            addressBook.addTag(tag);
+        }
+
+        if (taskList.isSortByDeadline()) {
+            addressBook.sortByDeadline();
+        } else {
+            addressBook.sortById();
+        }
+
         return addressBook;
     }
 

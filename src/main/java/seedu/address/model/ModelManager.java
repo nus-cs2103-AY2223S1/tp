@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.task.Task.PREDICATE_SHOW_NON_ARCHIVED_TASKS;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -12,6 +13,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -19,9 +22,11 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final VersionedAddressBook versionedAddressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Tag> filteredTags;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -31,9 +36,14 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.versionedAddressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredPersons = new FilteredList<>(this.versionedAddressBook.getPersonList());
+        filteredTasks = new FilteredList<>(this.versionedAddressBook.getTaskList());
+        filteredTags = new FilteredList<>(this.versionedAddressBook.getTagList());
+
+        // Show only non-archived tasks
+        updateFilteredTaskList(PREDICATE_SHOW_NON_ARCHIVED_TASKS);
     }
 
     public ModelManager() {
@@ -79,28 +89,28 @@ public class ModelManager implements Model {
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+        this.versionedAddressBook.resetData(addressBook);
     }
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+        return versionedAddressBook;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return versionedAddressBook.hasPerson(person);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        versionedAddressBook.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        versionedAddressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -108,7 +118,34 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
 
-        addressBook.setPerson(target, editedPerson);
+        versionedAddressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void commitAddressBook() {
+        versionedAddressBook.commit();
+    }
+
+    @Override
+    public void undoAddressBook() {
+        versionedAddressBook.undo();
+        setAddressBook(versionedAddressBook.getCurrentState());
+    }
+
+    @Override
+    public void redoAddressBook() {
+        versionedAddressBook.redo();
+        setAddressBook(versionedAddressBook.getCurrentState());
+    }
+
+    @Override
+    public boolean canUndoAddressBook() {
+        return versionedAddressBook.canUndo();
+    }
+
+    @Override
+    public boolean canRedoAddressBook() {
+        return versionedAddressBook.canRedo();
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -142,9 +179,132 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return versionedAddressBook.equals(other.versionedAddressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredTasks.equals(other.filteredTasks)
+                && filteredTags.equals(other.filteredTags);
     }
 
+    //=========== TaskList =================================================================================
+
+    @Override
+    public void addTask(Task task) {
+        versionedAddressBook.addTask(task);
+        updateFilteredTaskList(PREDICATE_SHOW_NON_ARCHIVED_TASKS);
+    }
+
+    @Override
+    public void deleteTask(Task target) {
+        versionedAddressBook.removeTask(target);
+    }
+
+    @Override
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return versionedAddressBook.hasTask(task);
+    }
+
+    @Override
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
+        versionedAddressBook.setTask(target, editedTask);
+    }
+
+    @Override
+    public void sortByDeadline() {
+        versionedAddressBook.sortByDeadline();
+    }
+
+    @Override
+    public void sortById() {
+        versionedAddressBook.sortById();
+    }
+    //=========== Filtered Task List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return filteredTasks;
+    }
+
+    @Override
+    public void updateFilteredTaskList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public double getPercentageCompletion(Predicate<Task> predicate) {
+        updateFilteredTaskList(predicate);
+
+        double numOfTasks = filteredTasks.size();
+        double numCompleted = 0.0;
+
+        if (numOfTasks == 0) {
+            return -1;
+        }
+
+        for (int i = 0; i < numOfTasks; i++) {
+            Task currTask = filteredTasks.get(i);
+            if (currTask.getIsCompleted()) {
+                numCompleted += 1;
+            }
+        }
+
+        return (numCompleted / numOfTasks) * 100.0;
+    }
+
+    //=========== Tag List Accessors =============================================================
+    @Override
+    public void addTag(Tag tag) {
+        versionedAddressBook.addTag(tag);
+    }
+
+    @Override
+    public void addTagCount(Tag tag) {
+        versionedAddressBook.addTagCount(tag);
+    }
+
+    @Override
+    public void decreaseTagCount(Tag toDelete) {
+        versionedAddressBook.decreaseTagCount(toDelete);
+    }
+
+    @Override
+    public void deleteTag(Tag target) {
+        versionedAddressBook.removeTag(target);
+    }
+
+    @Override
+    public boolean hasTag(Tag tag) {
+        requireNonNull(tag);
+        return versionedAddressBook.hasTag(tag);
+    }
+
+    @Override
+    public void setTag(Tag target, Tag editedTag) {
+        requireAllNonNull(target, editedTag);
+
+        versionedAddressBook.setTag(target, editedTag);
+    }
+
+    @Override
+    public void updateFilteredTagList(Predicate<Tag> predicate) {
+        requireNonNull(predicate);
+        filteredTags.setPredicate(predicate);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Tag} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Tag> getFilteredTagList() {
+        return filteredTags;
+    }
 }

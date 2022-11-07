@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes add task command;
+
+if () then ([valid format])
+    :Create new Task;
+    :Insert new Task
+    at the end of the
+    TaskList;
+    :Show success
+    message;
+else ([invalid format])
+    :Show error
+    message;
+endif
+stop
+@enduml
