@@ -1,6 +1,7 @@
 package seedu.watson.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.watson.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,8 +49,22 @@ public class GradeCommand extends Command {
      * @param assessmentString the name of the assessment to edit grades for
      */
     public GradeCommand(String subject, String assessmentString) {
+        requireAllNonNull(subject, assessmentString);
         this.subject = subject.toUpperCase();
         this.assessmentString = assessmentString;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof GradeCommand)) {
+            return false;
+        }
+        GradeCommand other = (GradeCommand) o;
+        return subject.equals(other.subject)
+                && assessmentString.equals(other.assessmentString);
     }
 
     @Override

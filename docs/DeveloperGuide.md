@@ -18,7 +18,8 @@ title: Developer Guide
    * [Edit Feature](#edit-feature)
    * [Sort Feature](#sort-feature)
    * [Grade Feature](#grade-feature)
-   * [(Proposed) Undo/redo Feature](#proposed-undoredo-feature)
+   * [Grade Prediction Feature](#grade-prediction-feature)
+   * [Attendance Feature](#attendance-feature)
 6. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
 7. [Appendix: Requirements](#appendix-requirements)
    * [Product Scope](#product-scope)
@@ -28,6 +29,7 @@ title: Developer Guide
    * [Glossary](#glossary)
 8. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing) 
 
+<div style="page-break-after: always;"></div>
 ---
 
 ## **Overview**
@@ -59,6 +61,7 @@ the design implementation of Watson for further development.
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
+<div style="page-break-after: always;"></div>
 ---
 
 ## **Design**
@@ -111,13 +114,14 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
+<div style="page-break-after: always;"></div>
 ### UI component
 
 The **API** of this component is specified in [UiManager.java](https://github.com/AY2223S1-CS2103T-T08-1/tp/blob/master/src/main/java/seedu/address/ui/UiManager.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `StudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -126,7 +130,7 @@ The `UI` component,
 - executes user commands using the `Logic` component.
 - listens for changes to `Model` data so that the UI can be updated with the modified data.
 - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-- depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- depends on some classes in the `Model` component, as it displays `Student` object residing in the `Model`.
 
 We added a new UI component in our implementation: the `LoginWindow`.
 The `LoginWindow` is a separate window that is displayed when the user first starts the application.
@@ -136,12 +140,14 @@ The `LoginWindow` will then pass the user's data to the `MainWindow` so that the
 `LoginWindow` inherits from the abstract `UiPart` class, just like the `MainWindow`.
 As of 20/10/2022, it consists of 2 `TextBox` FXML components and a "submit" `Button` FXML component.
 
-We plan to add a new UI component in our implementation: the `ImportCSVButton`.
-The `ImportCSVButton` is a button that is displayed on the `MainWindow` after login
-The `ImportCSVButton` is allows users to import student's data from a CSV file into the `storage` component
+We also added a new UI component in our implementation: the `GradeWindow`.
+The `GradeWindow` is a separate GUI window that is displayed when the user enters the `GradeCommand`.
+The `GradeWindow` allows users to enter the `Grade` for an `Assesment` for all students taking a `Subject` as specified by the `GradeCommand`
 
-`ImportCSVButton` inherits from the abstract `UiPart` class, just like the `MainWindow`.
-As of 21/10/2022, it has yet to be implemented
+
+<div style="page-break-after: always;"></div>
+---
+
 ### Logic component
 
 **API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -173,6 +179,9 @@ How the parsing works:
 - When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 - All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+<div style="page-break-after: always;"></div>
+---
+
 ### Model component
 
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -181,16 +190,19 @@ How the parsing works:
 
 The `Model` component,
 
-- stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-- stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+- stores the address book data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
+- stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Student` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
 </div>
+
+<div style="page-break-after: always;"></div>
+---
 
 ### Storage component
 
@@ -208,6 +220,7 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
+<div style="page-break-after: always;"></div>
 ---
 
 ## **Implementation**
@@ -231,6 +244,9 @@ The command will be used as such:
 - Words in `UPPER_CASE` are the inputs to be supplied by the user.
 - Words in square brackets are optional, but at least one of them must be present.
 
+<div style="page-break-after: always;"></div>
+---
+
 ### Sort feature
 
 #### current Implementation
@@ -246,6 +262,9 @@ The command will be used as such:
 - sort by English grade in ascending order - e.g.`sort asc s/ENGLISH`
 - sort by Math grade in descending order - e.g. `sort desc S/MATH`
 
+<div style="page-break-after: always;"></div>
+---
+
 ### Grade feature
 
 #### current Implementation
@@ -253,97 +272,94 @@ The command will be used as such:
 The Grade command consists of these following classes:
 
 - `GradeCommand` which extends `Command`
-- `GradeCommandParser` which extends `Parser<SortCommand>`
+- `GradeCommandParser` which extends `Parser<GradeCommand>`
+- `GradeWindow` which extends `UiPart`
 
-As with all other commands, the sort command has a `Parser` subclass that goes through the `AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object. It opens a new GUI window to start the grading process
+As with all other commands, the Grade command has a `Parser` subclass that goes through the `AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object. It opens a new `GradeWindow` to start the grading process.
 
 The command will be used as such:
-- entering grades for an `Assignment` using the follow command format - grade <subject_assignment_totalScore_weightage_difficulty>
+- entering grades for an `Assignment` using the follow command format - `grade SUBJECT_NAME_TOTALSCORE_WEIGHTAGE_DIFFICULTY`,
 e.g.`grade MATH_CA1_100_0.4_0.1`
+- Words in `UPPER_CASE` are the inputs to be supplied by the user.
 
+The command works in the following steps: <br>
+1) Users enter the `GradeCommand` following the above specified format in the `CommandBox`, providing `Subject` and `Assessment` details such as assessment name, total score, weightage and difficulty <br>
+2) `GradeCommandParser` will parse the `GradeCommand` to check whether the parameters provided are valid and return a `CommandResult` with a `StudentList`, which is a list of `Students` filtered by the specified `Subject` <br>
+3) If the parameters are valid, a `GradeWindow` GUI will be opened which will prompt the user to enter the `Grade` of the first `Student` in the `StudentList`<br>
+4) Once the grade is entered, the method `updateUiToNextStudent` will be called to update the `Student` specified in the `GradeWindow` to the next available `Student` in the `StudentList`. <br>
+5) Repeat step 4 until  the grades of all `Students` in the `StudentList` have been entered accordingly. <br>
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th student in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new student. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-- **Alternative 1 (current choice):** Saves the entire address book.
-
-  - Pros: Easy to implement.
-  - Cons: May have performance issues in terms of memory usage.
-
-- **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  - Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
-  - Cons: We must ensure that the implementation of each individual command are correct.
-
+<div style="page-break-after: always;"></div>
 ---
 
-## **Documentation, logging, testing, configuration, dev-ops**
+### Grade Prediction feature
+
+#### current Implementation
+Watson follows the following steps to predict a student's grade:
+
+1) Calculate the percentage of classes attended by the student. Let's call this the student's **learning rating**.
+
+For each of the student's previous assessments, perform the following procedure:
+
+1.1. Take the difficulty of the assessment, then apply the following formula:
+
+
+`(difficulty x learning rating)`
+
+
+Let's call this number the **difficulty bonus**.
+
+1.2. Add the **difficulty bonus** to the student's grade for the assessment.
+We call this their **normalized score**. <br>
+2) Take the average of the student's **normalized scores** for all their previous assessments,
+   then add the difficulty of the assessment to predict. This is the final prediction!
+
+The GradePrediction command consists of these following classes:
+
+- `PredictionCommand` which extends `Command`
+- `PredictionCommandParser` which extends `Parser<PredictionCommand>`
+- `predictionUtil` utility class to handle the logic of grade prediction
+- `predictionWindow` which extends `UiPart`
+
+As with all other commands, the `PredictionCommand` command has a `Parser` subclass that goes through the `AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object. It opens a new GUI window to start the grading process
+
+The command will be used as such:
+-`predict n/NAME s/SUBJECT diff/DIFFICULTY`
+- Words in `UPPER_CASE` are the inputs to be supplied by the user.
+
+The command works in the following steps: <br>
+1) Users enter the `PredictionCommand` following the above specified format in the `CommandBox`, providing the name of the `Student`, `Subject` and `Difficulty` <br>
+2) `PredictionCommandParser` will parse the `PredictionCommand` to check whether the provided arguments are valid and return a `CommandResult` <br>
+3) The `PredictGrade` method in `PredictionUtil` class will be used to predict the grade given the arguments provided <br>
+4) A new `PredictionWindow` will be opened to display the predicted grade <br>
+
+<div style="page-break-after: always;"></div>
+---
+
+### Attendance feature
+
+#### current Implementation
+
+The Attendance command consists of these following classes:
+
+- `AttendanceCommand` which extends `Command`
+- `AttendanceCommandParser` which extends `Parser<Attendance>`
+
+As with all other commands, the `AttendanceCommand` command has a `Parser` subclass that goes through the `AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object. It marks the attendance of students from a specified `studentClass` on a given `Date`
+
+The command will be used as such:
+- `markAtt d/DATE c/STUDENTCLASS ind/INDEXES` eg. `markAtt d/12-02-2023 c/1.2 ind/1 2 3`
+- Words in `UPPER_CASE` are the inputs to be supplied by the user.
+
+The command works in the following steps: <br>
+1) Users enter the `AttendanceCommand` following the above specified format in the `CommandBox`, providing the `Date`, `StudentClass` and `Indexes` of students present <br>
+2) `AttendanceCommandParser` will parse the `AttendanceCommand` to check whether the provided arguments are valid <br>
+3) For each `Student` in the specified `StudentClass`, the `updateAttendance` method in the `Attendance` class is called to update the model to indicate whether the `Student` is present. <br>
+
+<div style="page-break-after: always;"></div>
+---
+
+## **Documentation, testing, logging, configuration, dev-ops**
 
 - [Documentation guide](Documentation.md)
 - [Testing guide](Testing.md)
@@ -351,6 +367,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 - [Configuration guide](Configuration.md)
 - [DevOps guide](DevOps.md)
 
+<div style="page-break-after: always;"></div>
 ---
 
 ## **Appendix: Requirements**
@@ -369,6 +386,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Value proposition**: manage and retrieve information of students faster than a typical mouse/GUI driven app
 
+<div style="page-break-after: always;"></div>
+---
+
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -385,6 +405,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | teacher  | add remarks to students                                 | remember important details about my students          |
 | `* *`    | teacher  | sort my students by grade                               | see student's performance at a glance                 |
 | `*`      | teacher  | import information from existing databases              | I can set up Watson quickly                           |
+
+<div style="page-break-after: always;"></div>
+---
 
 ### Use cases
 
@@ -576,6 +599,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
+<div style="page-break-after: always;"></div>
+---
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -590,6 +616,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 - **Mainstream OS**: Windows, Linux, Unix, OS-X
 
+<div style="page-break-after: always;"></div>
 ---
 
 ## **Appendix: Instructions for manual testing**
@@ -747,6 +774,16 @@ testers are expected to do more *exploratory* testing.
     4. Other incorrect sort commands to try: `sort`, `sort asc`
        Expected: Similar to previous.
 
+### Marking attendance of students
+1. Marking attendance while all students are being shown
+
+    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+    2. Test case: `markAtt d/30-02-2023 c/1.2 ind/1 `<br>
+       Expected: Attendance of the first student provided in the example, Alex Yeoh will be marked
+    3. Test case: `markAtt d/30-02-2023 `<br>
+       Expected: No update in list.  Error details shown in the status message. Status bar remains the same.
+    4. Other incorrect sort commands to try: `markAtt`, `markAtt c/1.2`, `markAtt d/30-02-2023 c/1.2`
+       Expected: Similar to previous.
 ### Saving data
 
 1. Dealing with missing/corrupted data files

@@ -1,6 +1,7 @@
 package seedu.watson.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.watson.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_FUTURE_ASSESSMENT_DIFFICULTY;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.watson.logic.parser.CliSyntax.PREFIX_SUBJECT;
@@ -42,9 +43,24 @@ public class PredictionCommand extends Command {
      * Creates a PredictionCommand to get the predicted score for a given student's next assessment
      */
     public PredictionCommand(Name name, String subjectName, double futureAssessmentDifficulty) {
+        requireAllNonNull(name, subjectName, futureAssessmentDifficulty);
         this.name = name;
         this.subjectName = subjectName;
         this.difficulty = futureAssessmentDifficulty;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof PredictionCommand)) {
+            return false;
+        }
+        PredictionCommand other = (PredictionCommand) o;
+        return name.equals(other.name)
+            && subjectName.equals(other.subjectName)
+            && difficulty == other.difficulty;
     }
 
     @Override
