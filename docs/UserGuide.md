@@ -116,7 +116,7 @@ All your data will be saved as .json files in their respective location as speci
 The default location of the files will be in a folder named `data` in your [home folder](#quick-start).  
 Do **NOT** modify these files directly as it may cause irreparable damage to your data, cause the application to not work as intended, or both.  
 If you need to modify the details of your entries, please do so within the myStudent application. Your data will be saved automatically.  
-Some applicable commands that helps to modify your data are: [assign](#unassign-class-from-a-person-unassign), [unassign](#unassign-class-from-a-person-unassign) and [edit](#editing-an-entity-edit). 
+Some applicable commands that helps to modify your data are: [assign](#assign-class-to-a-person-assign), [unassign](#unassign-class-from-a-person-unassign) and [edit](#editing-an-entity-edit). 
     
 </div>
 
