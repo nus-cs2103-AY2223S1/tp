@@ -77,38 +77,38 @@ To better understand the usage of YellowBook, we have provided a usage scenario 
 
 2. Let's start by listing all the contacts in YellowBook. Type `listC` in the command box and press Enter to execute it. You should see a list of contacts. Try using `listT` to list all the tasks.
 
-  <figure>
-  <img src="images/listC.png" alt="listC" style="width:100%">
-  <figcaption align = "center"><i>Fig.2 - Result of listC</i></figcaption>
-  </figure>
-
-  <figure>
-  <img src="images/listT.png" alt="listT" style="width:100%">
-  <figcaption align = "center"><i>Fig.3 - Result of listT</i></figcaption>
-  </figure>
+    <figure>
+    <img src="images/listC.png" alt="listC" style="width:100%">
+    <figcaption align = "center"><i>Fig.2 - Result of listC</i></figcaption>
+    </figure>
+  
+    <figure>
+    <img src="images/listT.png" alt="listT" style="width:100%">
+    <figcaption align = "center"><i>Fig.3 - Result of listT</i></figcaption>
+    </figure>
 
 3. Now that you can navigate between the contact and task lists, let's add a new contact. Type `addC n/Elmo p/91238888 e/elmo@sesamestreet.com a/sesame street` in the command box and press Enter to execute it. You should see a message indicating that the contact has been added successfully and Elmo will appear in your contact list.
 
-  <figure>
-  <img src="images/step3.png" alt="step3" style="width:100%">
-  <figcaption align = "center"><i>Fig.4 - Result of addC</i></figcaption>
-  </figure>
+    <figure>
+    <img src="images/step3.png" alt="step3" style="width:100%">
+    <figcaption align = "center"><i>Fig.4 - Result of addC</i></figcaption>
+    </figure>
 
 4. YellowBook also allows you to add tasks, to add homework task with deadline of 25 December 2022. Type `addT d/complete homework D/25-12-2022` in the command box and press Enter to execute it. You should see a message indicating that the task has been added successfully and the task will appear in your task list.
 
-  <figure>
-  <img src="images/step4.png" alt="step4" style="width:100%">
-  <figcaption align = "center"><i>Fig.5 - Result of addT</i></figcaption>
-  </figure>
+    <figure>
+    <img src="images/step4.png" alt="step4" style="width:100%">
+    <figcaption align = "center"><i>Fig.5 - Result of addT</i></figcaption>
+    </figure>
 
 5. Now that you know the basic commands, try following the guide for the label command to tag the newly added `Elmo` contact as `friend`.
 
 6. When you feel ready to use YellowBook for your own contacts and tasks, type `clear` to remove all the sample data from YellowBook.
 
-  <figure>
-  <img src="images/clear.png" alt="clear" style="width:100%">
-  <figcaption align = "center"><i>Fig.6 - Result of clear command</i></figcaption>
-  </figure>
+    <figure>
+    <img src="images/clear.png" alt="clear" style="width:100%">
+    <figcaption align = "center"><i>Fig.6 - Result of clear command</i></figcaption>
+    </figure>
 
 YellowBook's commands are mnemonically named. A [Command Summary](#command-summary) with these helpful tips can be found below.
 
@@ -141,7 +141,7 @@ YellowBook's commands are mnemonically named. A [Command Summary](#command-summa
 **:information_source: Command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [r/REMARK]` can be used as `n/John Doe r/friend` or as `n/John Doe`.
@@ -216,6 +216,8 @@ Shows all contacts stored in the contact list.
 
 Format: `listC`
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a contact: `deleteC`
 
 Deletes a contact from the contact list.
@@ -239,6 +241,8 @@ Examples:
 * `listC` followed by `deleteC 1` deletes the first contact in the address book.
 
 * `findC n/John` followed by `deleteC 1` deletes the first result of the `findC` command.
+
+<div style="page-break-after: always;"></div>
 
 ### Editing a contact: `editC`
 
@@ -267,6 +271,8 @@ Format: `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]`
 Example:
 
 * `editC 1 n/John p/12345678` edits the first contact’s name to be John and phone number to be 12345678.
+
+<div style="page-break-after: always;"></div>
 
 ### Finding a contact: `findC`
 
@@ -298,6 +304,8 @@ Examples:
 * `findC n/flynn` will return `Candace Flynn` and `Phineas Flynn`.
 
 * `findC n/john p/12345678 e/john@gmail.com a/123` will return contacts with name containing the word `john`, phone number `12345678`, email `john@gmail.com`, and address containing `123`.
+
+<div style="page-break-after: always;"></div>
 
 ### Filtering contacts by label: `filterC`
 
@@ -397,6 +405,8 @@ Format: `addT d/DESCRIPTION D/DEADLINE`
 Example:
 
 * `addT d/buy milk D/12-09-2022` will add the task "buy milk" with deadline 12 September 2022.
+
+<div style="page-break-after: always;"></div>
 
 ### Listing all non-archived tasks: `listT`
 
@@ -616,6 +626,8 @@ Examples:
 
 * `findT d/book` followed by `unmarkT 1` marks the first result of the `findT` command as undone.
 
+<div style="page-break-after: always;"></div>
+
 ### Archiving a task: `archiveT`
 
 Archives a task in the displayed task list, removing it from main (unarchived) task list.
@@ -787,6 +799,8 @@ With our label feature, managing your numerous projects on the go has just gotte
 * Labels used in commands are case-sensitive. e.g. `CS2103T` is different from `cs2103t`.<br>
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a label to a contact/task: `addL`
 
