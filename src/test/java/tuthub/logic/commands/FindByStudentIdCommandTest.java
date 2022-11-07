@@ -60,7 +60,7 @@ public class FindByStudentIdCommandTest {
         FindByStudentIdCommand command = new FindByStudentIdCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredTutorList());
+        assertEquals(Collections.emptyList(), model.getSortedFilteredTutorList());
     }
 
     @Test
@@ -70,7 +70,7 @@ public class FindByStudentIdCommandTest {
         FindByStudentIdCommand command = new FindByStudentIdCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, CARL), model.getFilteredTutorList());
+        assertEquals(Arrays.asList(ALICE, CARL), model.getSortedFilteredTutorList());
     }
 
     @Test
@@ -80,7 +80,7 @@ public class FindByStudentIdCommandTest {
         FindByStudentIdCommand command = new FindByStudentIdCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, CARL), model.getFilteredTutorList());
+        assertEquals(Arrays.asList(ALICE, CARL), model.getSortedFilteredTutorList());
     }
 
     /**

@@ -77,15 +77,15 @@ public class CommentCommandTest {
         Index index = Index.fromZeroBased(0);
         CommentCommand commentCommand = new CommentCommand(index, new Comment("test"));
 
-        Tutor tutorInFilteredList = model.getFilteredTutorList().get(INDEX_FIRST_TUTOR.getZeroBased());
+        Tutor tutorInFilteredList = model.getSortedFilteredTutorList().get(INDEX_FIRST_TUTOR.getZeroBased());
         Tutor editedTutor = new TutorBuilder(tutorInFilteredList).withComment("test").build();
         Model expectedModel = new ModelManager(new Tuthub(model.getTuthub()), new UserPrefs());
-        expectedModel.setTutor(model.getFilteredTutorList().get(0), editedTutor);
+        expectedModel.setTutor(model.getSortedFilteredTutorList().get(0), editedTutor);
 
         String expectedMessage = String.format(CommentCommand.MESSAGE_ADD_COMMENT_SUCCESS,
                 editedTutor);
 
         assertCommandSuccess(commentCommand, model, expectedMessage, expectedModel);
-        System.out.println(model.getFilteredTutorList().get(0));
+        System.out.println(model.getSortedFilteredTutorList().get(0));
     }
 }

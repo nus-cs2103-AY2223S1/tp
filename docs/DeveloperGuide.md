@@ -2,11 +2,21 @@
 layout: page
 title: Developer Guide
 ---
+
+<p align="center">
+  <img src="./images/user-guide/tuthub.png" />
+</p>
+
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
+
+## **Introduction**
+Welcome to the Developer Guide for **Tuthub**, a Command Line Interface (CLI) App that will help you find your next batch of teaching assistants (TA) in no time! Tuthub is a desktop app for NUS professors who wish to track and choose their next batch of teaching assistants/tutors based on their past performance and records but have little time to spare for tedious administrative work.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
 
@@ -40,7 +50,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/java/tuthub/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/java/tuthub/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -73,9 +83,9 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/java/tuthub/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<img src="images/UiClassDiagram.png" width="90%" />
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TutorListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -90,11 +100,11 @@ The `UI` component,
 
 In addition to the third point above, the `CommmandExecutor` functional interface, initially encapsulated inside the `CommandBox` class, was abstracted out to allow multiple `UI` components to communicate with the `Logic` component. The `CommandExecutor` is first created in `MainWindow` and passed down to `CommandBox` and `TutorListCard` to keep a link to `Logic` for the components to execute a command.
 
-![Implementation of UI Parts](images/CommandExecutorClassDiagram.png)
+<img src="images/CommandExecutorClassDiagram.png" width="280" />
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/java/tuthub/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -122,10 +132,9 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/java/tuthub/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
-
 
 The `Model` component,
 
@@ -142,7 +151,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T15-3/tp/blob/master/src/main/java/tuthub/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -162,9 +171,7 @@ Classes used by multiple components are in the `tuthub.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Adding tutors
-
-<img src="images/AddSequenceDiagram.png">
+### Add Feature
 
 Tutor information is stored as `Tutor` objects, which captures all the information that the tutor represents. When the user adds a tutor, the program creates a new `Tutor` object with the given information and adds it to the `ObservableList` to be displayed in the program. The `Model` class handles the checking of uniqueness while the `Storage` class handles the conversion of the `Tutor` object to a [JSON](https://www.json.org/) format and updating of the storage file in `{source_root}/data/Tuthub.json`.
 
@@ -184,13 +191,27 @@ Step 4: The `AddCommand` object is executed. The `Tutor` object created in step 
 
 Step 5: The execution ends and returns a `CommandResult` object contained the success message to be displayed to the GUI to the user.
 
-Design considerations:
-* Alternative 1 (current choice): Add the tutor to a list that is maintained by the `Model` class
-  * Pros: Tutor can be viewed in the GUI once added without requiring any additional reading from storage.
-  * Cons: More complex implementation of `add` needed due to requirement for both adding to model and storage.
-* Alternative 2: Add the tutor directly to the `Storage` class as a JSON object
-  * Pros: Less memory needed to store an extra list, especially when there would be a large number of tutors
-  * Cons: The `Storage` class would be handling both storing of the Tuthub file and providing of the list to the UI, which would violate OOP principles.
+The following sequence diagram demonstrates the above operations (excluding the parsing details):
+
+![AddSequenceDiagram](./images/AddSequenceDiagram.png)
+
+Extra information on how `ModelManager` handles adding of tutors:
+
+The `ModelManager` class calls on the `addTutor` method of `Tuthub`, which calls on the `add` method of the `UniqueTutorList` currently present in Tuthub. `UniqueTutorList` enforces the checking of uniqueness before the tutor is added and displayed in the `observableList`.
+
+The following sequence diagram demonstrates the above operations:
+
+![AddSequenceModelDiagram](./images/AddSequenceModelDiagram.png)
+
+<ins>Design considerations</ins>:
+
+**Aspect: Implementation of `add`**
+- **Alternative 1:** Add the tutor to a list that is maintained by the `Model` class **(chosen)**
+  - Pros: Tutor can be viewed in the GUI once added without requiring any additional reading from storage.
+  - Cons: More complex implementation of `add` needed due to requirement for both adding to model and storage.
+- **Alternative 2:** Add the tutor directly to the `Storage` class as a JSON object
+  - Pros: Less memory needed to store an extra list, especially when there would be a large number of tutors
+  - Cons: The `Storage` class would be handling both storing of the Tuthub file and providing of the list to the UI, which would violate OOP principles.
 
 ### Find Feature
 
@@ -217,7 +238,7 @@ The following methods in `tuthub` manage the finding of tutors:
 * `tuthub#FindByTagCommand(TagContainsKeywordsPredicate predicate)` - Finds and adds tutors with tags matching keywords to list of tutors displayed
 * `tuthub#FindByPrefixParser(String args)` - Parses the `find` command and determines the `prefix` corresponding to the attribute to search through to find matching tutors
 * `ModelManager#filteredTutors` - A `javafx.collections.transformation.FilteredList` that contains a list of filtered tutors according to a predicate
-* `ModelManager#getFilteredTutorList()` - Returns the `filteredTutors` list
+* `ModelManager#getSortedFilteredTutorList()` - Returns the `sortedFilteredTutors` list
 * `ModelManager#updateFilteredTutorList(Predicate<Tutor> predicate)` - Updates filtered list based on predicate
 
 Given below is an example usage scenario when the user is finding tutors whose names contain alex.
@@ -234,9 +255,12 @@ containing the string alex captured in the `ModelManager` object, which makes us
 
 Step 5: The execution ends, returning a `CommandResult` object that has the success message to be displayed to the user.
 
+The following sequence diagram demonstrates the above operations (excluding the parsing details):
+![FindSequenceDiagram](./images/FindSequenceDiagram.png)
+
 <ins>Design Considerations</ins>
 
-**Aspect: How `find` should be implemented:**
+**Aspect: Implementation of `find`**
 - **Alternative 1:** `find` command integrates the use of prefixes in user input to determine which tutor attribute to search through. (i.e. `find n/alex`, `find s/A0123456X) **(chosen)**.
     - Pros: Better OOP practice as the resultant find commands are all subclasses of `FindByPrefixCommand`
     - Cons: Took more time to think of and implement.
@@ -247,24 +271,26 @@ Step 5: The execution ends, returning a `CommandResult` object that has the succ
 ### View Feature
 <ins>Implementation</ins>
 
-Similar to the `help` command, the `view` command involves operations within the UI to display/hide the tutor details panel. The communication between the logic and UI classes is facilitated by the `CommandResult` class, where the following field has been added:
+The `view` command involves operations within the UI to display/hide the tutor details panel. The communication between the logic and UI classes is facilitated by the `CommandResult` class, where the following field has been added:
 - `CommandResult#isView` - Indicates if the current command is a `view` command.
 
-Given below is an example usage scenario when the user enters a `view` command in the command box and how the view mechanism behaves at each step (omitting the parsing details).
+Given below is an example usage scenario when the user enters a `view` command in the command box and how the view mechanism behaves at each step.
 
 Step 1: The user enters the command `view 1`.
 
-Step 2: Upon parsing, a new `ViewCommand` based on the valid index.
+Step 2: The `TuthubParser` verifies the `ViewCommand#COMMAND_WORD`, and requests `ViewCommandParser` to parse. The `ViewCommandParser` verifies the appropriateness of the user input (`index`).
 
-Step 3: When the `ViewCommand` is executed, a new `CommandResult` with `isView` set to `true` is created and `ModelManager#tutorToView` is updated with the selected tutor.
+Step 3: Upon parsing, a new `ViewCommand` is created based on the valid index.
 
-Step 4: Upon recognising the `CommandResult` is of `isView` type, `MainWindow` calls `logic#getTutorToView()` to get the tutor to be displayed, which is passed into `MainWindow#handleView(Tutor tutor)`.
+Step 4: When the `ViewCommand` is executed, a new `CommandResult` with `isView` set to `true` is created and `ModelManager#tutorToView` is updated with the selected tutor.
 
-Step 5: This causes the `TutorDetailsPanel` of the `tutor` to be set as visible, resulting in the side panel being displayed.
+Step 5: Upon recognising the `CommandResult` is of `isView` type, `MainWindow` calls `logic#getTutorToView()` to get the tutor to be displayed from `Model`, which is then passed into `MainWindow#handleView(Tutor tutor)`.
 
-The following sequence diagram demonstrates the above operations (excluding the parsing details):
+Step 6: This causes the `TutorDetailsPanel` of the `tutor` to be set as visible, resulting in the side panel being displayed.
 
-![ViewSequenceDiagram](./images/ViewSequenceDiagram.png)
+The following sequence diagram demonstrates the above operations:
+
+<img src="images/ViewSequenceDiagram.png"/>
 
 <ins>Design Considerations</ins>
 
@@ -287,10 +313,10 @@ This command sorts `Tuthub`'s displayed list based on quantitative measures, suc
 
 The `sort` command involves the logic, model, and UI part of Tuthub. Most updates are made within the `ModelManager`, which are:
 - `ModelManager#sortedFilteredTutors` - A `javafx.collections.transformation.SortedList` that contains `ModelManager#filteredTutors`.
-- `ModelManager#getFilteredTutorList()` - Now returns the `sortedFilteredTutors` list.
+- `ModelManager#getSortedFilteredTutorList()` - Now returns the `sortedFilteredTutors` list.
 - `ModelManager#updateSortedTutorList(Comparator<Tutor>)` - Similar to `ModelManager#updateFilteredTutorList`, but updates the Comparator instead of predicate.
 
-Given below is an example usage scenario when the user enters a `view` command in the command box and how the sort mechanism behaves at each step.
+Given below is an example usage scenario when the user enters a `sort` command in the command box and how the sort mechanism behaves at each step.
 
 Step 1: The user enters the command `sort a r/`.
 
@@ -304,7 +330,7 @@ Step 5: Upon recognising the `CommandResult`, `MainWindow` calls `logic#getFilte
 
 Step 6: Then, the `TutorListPanel` sets the items to view as the new and updated `sortedFilteredTutors` list.
 
-The following sequence diagram demonstrates the above operations (excluding the parsing details):
+The following sequence diagram demonstrates the above operations:
 
 ![SortSequenceDiagram](./images/SortSequenceDiagram.png)
 
@@ -327,6 +353,32 @@ The following sequence diagram demonstrates the above operations (excluding the 
 - **Alternative 2:** Store two lists, one for `FilteredList` and one for `SortedList`.
     - Pros: Idea is more simply understood. Serves the main purpose of `sort` if implemented correctly.
     - Cons: Complicated to implement and possibility of many bugs. Poor OOP practice as it may require reassigning of the `FilteredList` and `SortedList` variables.
+
+### Mail Feature
+
+This command allows users to easily contact tutors from `Tuthub`'s displayed list. Users can mail a specific tutor (by `INDEX`) or **all** the currently displayed tutors.
+
+<ins>Implementation</ins>
+
+The `mail` command involves the logic and model part of Tuthub. Other than that, it relies on the `Java` classes, [`java.awt.Desktop`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/Desktop.html) and [`java.net.URI`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/net/URI.html).
+
+Given below is an example usage scenario when the user enters a `mail` command in the command box.
+
+Step 1: The user enters the command `mail all`.
+
+Step 2: The `TuthubParser` verifies the `MailCommand#COMMAND_WORD`, and requests `MailCommandParser` to parse. The `MailCommandParser` verifies the appropriateness of the user input (in this case, the valid inputs are `INDEX` or "`all`").
+
+Step 3: Upon parsing, a new `MailCommand` is created based on the target, which is `all`.
+
+Step 4: In the `MailCommand` execution, the `URI` message is created by getting the emails (`Tutor#getEmail()`) of each tutor in the currently displayed list. The emails are combined in the `message` variable, which is then used as an argument in `URI#create(String)`. 
+
+Step 5: The user's default mail client is accessed by calling `Desktop#mail(URI)` with the recently created `uri` as the argument. Then, a new `CommandResult` is created and stored in `LogicManager`.
+
+Step 6: Upon recognising the `CommandResult`, `MainWindow` displays the resulting `CommandResult`.
+
+The following sequence diagram demonstrates the above operations (excluding [`java.awt.Desktop`](https://docs.oracle.com/en/java/javase/11/docs/api/java.desktop/java/awt/Desktop.html), [`java.net.URI`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/net/URI.html), and obtaining `Tutor` email data):
+
+![MailSequenceDiagram](./images/MailSequenceDiagram.png)
 
 ### Comment feature
 
@@ -431,15 +483,21 @@ TutHub helps professors find TAs efficiently by consolidating information in an 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                | I can …​                             | So that I can…​                                                                            |
-|----------|----------------------------------------|--------------------------------------|--------------------------------------------------------------------------------------------|
-| `* * *`  | NUS Computing Professor                | list all tutor profiles              | get a quick view of all available tutors                                                   |
-| `* * *`  | NUS Computing Professor                | add a new tutor                      | track their profiles                                                                       |
-| `* * *`  | NUS Computing Professor                | view a tutor's full profile          | find out more about their performance and contact details to reach out for future TA roles |
-| `* * *`  | NUS Computing Professor                | find a specific tutor by name easily | filter tutor names                                                                         |
-| `* * *`  | NUS Computing Professor                | delete a tutor profile               | remove tutors that are no longer available for work                                        |
-| `* * *`  | NUS Computing Professor                | save data                            | there is a local backup on the computer                                                    |
-| `* * *`  | NUS Computing Professor                | exit the program                     |                                                                                            |
+| Priority | As a …​                                | I can …​                                                        | So that I can…​                                                                             |
+|----------|----------------------------------------|-----------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| `* * *`  | NUS Professor                          | list all tutor profiles                                         | get a quick view of all available tutors.                                                   |
+| `* * *`  | NUS Professor                          | add a new tutor                                                 | track their profiles.                                                                       |
+| `* *`    | NUS Professor                          | edit a tutor profile                                            | update tutor information if there are any changes.                                          |
+| `* * *`  | NUS Professor                          | view a tutor's full profile                                     | find out more about their performance and contact details to reach out for future TA roles. |
+| `* *`    | NUS Professor                          | comment on a tutor                                              | keep notes about the tutor's performance for future reference.                              |
+| `* * *`  | NUS Professor with many tutor profiles | find a specific tutor by various fields easily                  | find the most relevant and competent tutors more easily.                                    |
+| `* * *`  | NUS Professor                          | sort a list of tutors according to ratings/teaching nominations | identify and pick the best tutors more easily.                                              |
+| `* *`    | NUS Professor                          | mail a specific tutor or group of tutors                        | reach out to them for a TA role.                                                            |
+| `* *`    | NUS Professor                          | delete a tutor profile                                          | remove tutors that have graduated/are no longer available to teach.                         |
+| `* * *`  | NUS Professor                          | save data                                                       | there is a local backup on the computer.                                                    |
+| `* * *`  | NUS Professor                          | exit the program                                                |                                                                                             |
+| `*`      | NUS Professor                          | clear all data                                                  | remove all irrelevant sample data on first use.                                             |
+| `*`      | NUS Professor new to Tuthub            | view help                                                       | familiarise myself with Tuthub commands.                                                    |
 
 
 ### Use cases
@@ -541,7 +599,53 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC6 - Exit the program**
+**Use case: UC6 - Sorting the tutor list**
+
+**MSS**
+
+1. User requests to sort the currently displayed tutor list.
+2. Tuthub sorts the list of tutors based on a prefix (`Rating` or `TeachingNomination`) in a specific order (ascending or descending).
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given `order` is invalid.
+    * 1a1. Tuthub displays an error message.
+    * Step 1a1 is repeated until the proper `order` ("`a`" or "`d`") is entered.
+
+      Use case resumes from step 1.
+
+* 1b. The given `prefix` is invalid.
+    * 1a1. Tuthub displays an error message.
+    * Step 1a1 is repeated until the proper `prefix` ("`r/`" or "`tn/`") is entered.
+
+      Use case resumes from step 1.
+
+**Use case: UC7 - Contacting tutors by email**
+
+**MSS**
+
+1. User requests to mail a single tutor or all tutors.
+2. Tuthub opens the user's default mail client with the "to" specified.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given input is invalid.
+    * 1a1. Tuthub displays an error message.
+    * Step 1a1 is repeated until the proper input (a valid index or "all") is entered.
+      
+      Use case resumes from step 1.
+
+* 2a. The user's default mail client is not found or fails to be launched.
+    * 2a1. Tuthub displays an error message.
+    * Step 2a1 is repeated until the user's default mail client can be accessed.
+      
+      Use case ends.
+
+**Use case: UC8 - Exit the program**
 
 **MSS**
 
@@ -564,12 +668,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 9. Constraints: The data should be stored locally and should be in a human editable text file.
 10. Constraints: The file size of the deliverables should be reasonable. Product (i.e. JAR/ZIP file) should not exceed 100 MB. Documents (i.e. PDF files) should not exceed 150 MB.
 
-*{More to be added}*
-
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Tutor Profile**: A profile containing the tutor's details, such as `NAME`, `PHONE_NUMBER`, `GENDER`, `EMAIL`, etc.
+* **Student Feedback Points/Ratings**: A way the National University of Singapore (NUS) assess tutors and professors' performances by gathering feedback from students.
+* **Teaching Assistant (TA)**: A part-time tutor who supports professors in teaching a module by conducting tutorial/lab sessions.
+* **Teaching Nominations**: Number of nominations submitted by students for a teaching excellence award in NUS.
+* **Tutor Profile**: A profile containing the tutor's details, such as `NAME`, `PHONE_NUMBER`, `EMAIL`, etc.
 
 --------------------------------------------------------------------------------------------------------------------
 <div style="page-break-after: always;"></div>
@@ -600,8 +705,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-3. _{ more test cases …​ }_
-
 ### Viewing a tutor's full details
 
 1. Viewing a tutor's full details
@@ -620,6 +723,21 @@ testers are expected to do more *exploratory* testing.
     5. Other incorrect view commands to try: `view`, `view x` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
+### Finding a tutor
+
+1. Finding a tutor based on a specified attribute
+
+    1. Prerequisites: List all tutors using the `list` command. Multiple tutors in the list.
+
+    2. Test case: `find n/alex`<br>
+        Expected: List of tutors with name containing the string `alex` is shown. Status message shows how many tutors were found.
+
+    3. Test case: `find n/`<br>
+        Expected: Error status messages telling user what kind of input is valid for `n/` prefix.
+
+    4. Other incorrect commands to try: `find n/   `
+        Expected: Similar to previous.
+
 ### Deleting a tutor
 
 1. Deleting a tutor while all tutors are being shown
@@ -635,12 +753,73 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Sorting the tutor list
+
+1. Sorting the tutor list while all tutors are being shown
+
+    1. Prerequisites: List all tutors using the `list` command. Multiple tutors in the list.
+
+    2. Test case: `sort a r/`<br>
+       Expected: The tutor list should be sorted by rating in ascending order (low to high). This can be seen by viewing tutor profiles.
+
+    3. Test case: `sort d tn/`<br>
+       Expected: The tutor list should be sorted by teaching nominations in descending order (high to low). This can be seen by viewing tutor profiles.
+
+    4. Test case: `sort m r/`<br>
+       Expected: No sorting occurs. Error details shown in the status message (`order` is invalid).
+
+    5. Test case: `sort a n/`<br>
+       Expected: No sorting occurs. Error details shown in the status message (`prefix` is invalid).
+
+    6. Test case: `sort a`<br>
+       Expected: No sorting occurs. Error details shown in the status message (Wrong command format).
+
+    7. Other incorrect sort commands to try: `sort`, `sort x p`, `...` (where x is any character other than `a` and `d`, and p is any prefix other than `r/` and `tn/`)<br>
+       Expected: Similar to 4 and 5.
+
+2. Sorting the tutor list after a filter (`find`)
+   1. Prerequisites: Filter the tutor list by executing a `find` command. 
+
+   2. Test case: `sort a r/`<br>
+      Expected: The currently displayed tutor list should be sorted by rating in ascending order (low to high). This can be seen by viewing tutor profiles. 
+
+   3. Test case: `sort d tn/`<br>
+      Expected: The currently displayed tutor list should be sorted by teaching nominations in descending order (high to low). This can be seen by viewing tutor profiles.
+
+   4. Incorrect sort commands from first case.
+      Expected: Same expected results as the first case.
+
+### Mailing tutor(s)
+
+1. Mailing the tutor list while all tutors are being shown
+
+    1. Prerequisites: List all tutors using the `list` command. Multiple tutors in the list.
+
+    2. Test case: `mail 1`<br>
+       Expected: The user's default mail client should be launched with the "to" specified as the first tutor's email.
+
+    3. Test case: `mail all`<br>
+       Expected: The user's default mail client should be launched with the "to" specified as the all tutor emails in this list.
+
+    4. Test case: `mail 0`<br>
+       Expected: User's default mail client not displayed. Error details shown in the status message.
+
+    5. Test case: `mail a`<br>
+       Expected: User's default mail client not displayed. Error details shown in the status message. 
+   
+    6. Other incorrect mail commands to try: `mail`, `mail x`, `mail c` (where x is larger than the current list size, and c is any word excluding `all`)<br>
+       Expected: Similar to 4 and 5.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
+    1. Prerequisites: If you have used Tuthub before, there should be a `tuthub.json` in the `./data/` directory. If not, the directory and file will be created when you first launch Tuthub.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    2. Test Case: Before starting Tuthub, enter random characters in the `tuthub.json` file. Launch Tuthub.<br/>
+       Expected: Tuthub should start with no tutors in the list. You should see a warning message "`WARNING: Data file not in the correct format. Will be starting with an empty Tuthub`" in the terminal console.
 
-1. _{ more test cases …​ }_
+    3. Test Case: Before starting Tuthub, delete `tuthub.json`. Launch Tuthub.<br/>
+        Expected: Tuthub will start with a sample list of tutors. A new `tuthub.json` file containing the sample data will be created.
+
+    4. Test Case: While Tuthub is running, delete `tuthub.json`. Try carrying out a valid command, e.g. `view 1`.<br/>
+       Expected: Command works as per usual. Upon carrying out the command, a new `tuthub.json` file will be created.
