@@ -25,13 +25,13 @@
           4. [Add new contact to team](#add-new-contacts-within-a-team)
           5. [Remove contact from team](#removing-contacts-from-team-team-remove)
           6. [Creating or deleting a subteam](#creating-and-deleting-a-subteam)
-          7. [Find a team](#find-command-team-find)
-       4. [Contact commands](#3-contact-commands)
+          7. [Find a team](#finding-a-team-team-remove)
+       3. [Contact commands](#3-contact-commands)
           1. [Create a contact](#create-a-contact)
           2. [Delete a contact](#delete-a-contact)
           3. [List all contacts in team](#listing-all-contacts-in-current-team)
-          4. [Find a contact](#find-command-person-find)
-       5. [Task commands](#4-task-commands)
+          4. [Find a contact](#find-command-find)
+       4. [Task commands](#4-task-commands)
           1. [Adding a task](#adding-a-task-to-a-team-task-add)
           2. [Deleting a task](#deleting-a-task-from-team-task-delete)
           3. [Mark task](#mark-a-task-task-mark)
@@ -63,7 +63,7 @@
 
 > **What is Contactmation?**
 
-Contactmation is a powerful **desktop based project and task management solution** that **helps you efficiently and
+Contactmation is a powerful **desktop-based project and task management solution** that **helps you efficiently and
 effectively manage many projects at once** through the [Command Line Interface (CLI)](#glossary).
 
 Contactmation will be able to help you save all your project member details, keep track of
@@ -182,11 +182,11 @@ section to better understand how to read the formats.
 This section aims to help you better understand the different terminologies used in the format section of each
 feature description.
 
-| Format                               | Explanation                                                                          |
-| ------------------------------------- | ------------------------------------------------------------------------------- |
+| Format                    | Explanation                                                                                                                                                                                                |
+|---------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Square brackets** ([ ]) | Anything that is within the square brackets are entirely **optional**. You may skip anything wrapped in the square bracket and move on to the next [word](#glossary) in the [command sequence](#glossary). |
-| **Angled brackets** (< >) | Anything within angled brackets are placeholder words. These words will be replaced by other words for the command to run. The replacing words will be specified in the format section for each feature. |
-| **Ellipses** (`...`)      | The word which these ellipses are attached to can be repeated multiple times in a single command. |
+| **Angled brackets** (< >) | Anything within angled brackets are placeholder words. These words will be replaced by other words for the command to run. The replacing words will be specified in the format section for each feature.   |
+| **Ellipses** (`...`)      | The word which these ellipses are attached to can be repeated multiple times in a single command.                                                                                                          |
 
 #### Combining the format styles
 
@@ -302,7 +302,7 @@ To "zoom into" a specific group, you can use the [cg](#navigate-to-a-team) comma
 **:information_source: How to type the commands properly:**<br>
 
 For more information on how to type the command, please visit the sections on
-[standardised format styling](#standardised-format-style) and [placeholder constraints](#constraints-of-placeholder-words)
+[standardised format styling](#standardised-format-style) and [placeholder constraints](#constraints-on-placeholder-words)
 that is used to type all commands.
 
 </div>
@@ -357,7 +357,7 @@ with respect to group, contact and task management, whereas the advanced feature
 increasing the efficiency of using the application on large numbers of groups, contacts and tasks.
 
 Do visit the [standardised format style](#standardised-format-style) and the 
-[format constraint](#constraints-of-placeholder-words) sections before writing commands
+[format constraint](#constraints-on-placeholder-words) sections before writing commands
 in Contactmation.
 
 ## Basic features
@@ -449,7 +449,7 @@ you can type in `TEAM NAME`.
 - `team new Vongola_X`
 - `team new Team_Alpha_Centauri`
 
-![Create Team Screenshot](images/user-guide-img/CreateTeamScreenshot.PNG)
+![Create Team Screenshot](images/user-guide-img/CreateTeamScreenshot.png)
 
 ### Delete a team
 
@@ -486,9 +486,9 @@ for a tutorial on team navigation before executing this command.
 - `cg 3`
     - The above command allows you to navigate to team number 3 in the list of teams.
     - Before:
-      ![Create Team Screenshot](images/user-guide-img/NavigateTeamBeforeScreenshot.PNG)
+      ![Create Team Screenshot](images/user-guide-img/NavigateTeamBefore.png)
     - After:
-      ![Create Team Screenshot](images/user-guide-img/NavigateTeamAfterScreenshot.PNG)
+      ![Create Team Screenshot](images/user-guide-img/NavigateTeamAfter.png)
 - `cg ..`
 
 <div markdown="block" class="alert alert-info">
@@ -529,6 +529,10 @@ the application window.
 Contactmation allows the creation and deletion of a subteam within a team using the same command as
 [creating a team](#create-a-team) and [deleting a team](#delete-a-team).
 
+### Finding a team: `team remove`
+
+Contactmation allows for searching of teams with the [find command](#find-command-find).
+
 ## 3. Contact commands
 
 Contact commands are used to manage people within Contactmation. The following commands are used to create,
@@ -550,7 +554,7 @@ to each person, or add a tag to identify each person.
 - `person new n/John Mays`
 - `person new n/Hilbert Stewart p/+91 368 91829383 e/hilbertstewart@gmail.com a/68 Hudson Street t/friend`
 
-![Add Person Screenshot](images/user-guide-img/PersonNewScreenshot.PNG)
+![Add Person Screenshot](images/user-guide-img/PersonNewScreenshot.png)
 
 ### Delete a contact
 
@@ -571,7 +575,7 @@ Contactmation supports the `list` command that displays all of your contacts int
 ### Find command: `find`
 
 Searches for a contact, group or task that matches the given `KEYWORD`. Searches may also include `MORE_KEYWORDS`
-to further narrow the search for a contact, subgroup or task within the current [scope](#scoping).
+to further narrow the search for a contact, subgroup or task within the current [scope](#glossary).
 
 **Format:** `<ITEM> find <KEYWORD> [<MORE_KEYWORDS>]`
 
@@ -602,7 +606,7 @@ is when the current team is (`/`).
 
 Adds a new task to an existing group scope. This group **cannot be the root group**.
 
-![Create Team Screenshot](images/user-guide-img/TaskAddScreenshot.PNG)
+![Create Team Screenshot](images/user-guide-img/TaskAddScreenshot.png)
 
 **Format:** `task add t/<TITLE> d/<DESCRIPTION>`
 
@@ -612,7 +616,7 @@ Adds a new task to an existing group scope. This group **cannot be the root grou
 
 ### Deleting a task from team: `task delete`
 
-Deletes an existing task from a group by their `INDEX` within the current [scope](#scoping).
+Deletes an existing task from a group by their `INDEX` within the current [scope](#glossary).
 
 Format: `task delete <INDEX>`
 
@@ -700,7 +704,7 @@ by itself, it is useful as a precursor to chaining other commands after it.
 
 - `task select 3 mark`
 
-![Select command ui](images/SelectCommandUi)
+![Select command ui](images/user-guide-img/SelectCommandUI.png)
 
 ### Contains command
 
@@ -713,7 +717,7 @@ then the attribute description will be shown in the result display if there is n
 
 - `task select 1 contains bug`
 
-![Contains command ui](images/ContainsCommandUi)
+![Contains command ui](images/user-guide-img/ContainsCommandUI.png)
 
 Here, we see that there are no `bug` attribute in the task `New Burger Recipes`.
 
@@ -747,9 +751,9 @@ when combined with piping to do complex executions with a single command!
 
 **Example:**
 
-- `task foreach unmark`
+- `task foreach mark`
 
-![Foreach command ui](images/ForeachCommandUi)
+![Foreach command ui](images/user-guide-img/ForEachCommandUI.png)
 
 ### If / else command
 
@@ -779,7 +783,7 @@ how it works:
 
 After running `alias group team`, you are now able to use the command `group` as if it was a `team`!
 
-![Aliasing command ui](images/AliasingCommandUi)
+![Aliasing command ui](images/user-guide-img/AliasingCommandUI.png)
 
 ### Custom command / Macro
 
@@ -802,7 +806,7 @@ This will produce the following output:
 
 When `markeverytask` is typed into the command box, all tasks become marked!
 
-![Custom command ui 2](images/CustomCommandUi2)
+![Custom command ui 2](images/user-guide-img/MarkEveryTaskDone.png)
 
 ### Piecing multiple commands together
 
@@ -958,29 +962,29 @@ Our future plans for Contactmation includes:
 
 ## **Glossary**
 
-| Vocabulary       | Description                                                                                        |
-|------------------| -------------------------------------------------------------------------------------------------- |
-| CLI / Command Line Interface | You can only interact with the application through text, which is typed in the [command box](#contactmation-window-guide).|
-| Command / Command sequence | What you would write in the command box to interact with the application.                |
-| Contact          | A contact with contact information.                                                                |
-| Alphanumeric     | The text can contain capitalised and non-capitalised alphabets and numbers only.                   |
-| Team             | A container that contains people that work on a similar project.                                   |
-| Index            | The numerical placing of a group, contact or task in the current application display.              |
-| Item             | An item can refer to a group, contact or task.                                                     |
-| Pipe             | The output of the previous section of commands will be used as input for the next set of commands. |
-| Root group       | Refers to the application being able to view all groups in the display.                            |
-| Scope            | A constraint on the groups, people and tasks you are able to view at one time on the display.      |
-| Task             | Assigned to people or groups.                                                                      |
-| Word             | Text in a command sequence that is separated from other words by a white space.                    |
+| Vocabulary                   | Description                                                                                                                |
+|------------------------------|----------------------------------------------------------------------------------------------------------------------------|
+| CLI / Command Line Interface | You can only interact with the application through text, which is typed in the [command box](#contactmation-window-guide). |
+| Command / Command sequence   | What you would write in the command box to interact with the application.                                                  |
+| Contact                      | A contact with contact information.                                                                                        |
+| Alphanumeric                 | The text can contain capitalised and non-capitalised alphabets and numbers only.                                           |
+| Team                         | A container that contains people that work on a similar project.                                                           |
+| Index                        | The numerical placing of a group, contact or task in the current application display.                                      |
+| Item                         | An item can refer to a group, contact or task.                                                                             |
+| Pipe                         | The output of the previous section of commands will be used as input for the next set of commands.                         |
+| Root group                   | Refers to the application being able to view all groups in the display.                                                    |
+| Scope                        | A constraint on the groups, people and tasks you are able to view at one time on the display.                              |
+| Task                         | Assigned to people or groups.                                                                                              |
+| Word                         | Text in a command sequence that is separated from other words by a white space.                                            |
 
 ## **Command summary**
 
 ### General commands summary
 
 | Command                                                       | Format                                                                         |
-| ------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+|---------------------------------------------------------------|--------------------------------------------------------------------------------|
 | Clear all items                                               | clear                                                                          |
-| Exit Contacmation                                             | exit                                                                           |
+| Exit Contactmation                                            | exit                                                                           |
 | Resets filters and list all contents within the current scope | list                                                                           |
 | Rename the name of items on the screen                        | rename (g, u, t)/<INDEX> <new name> or <type> select <INDEX> rename <new name> |
 | Assigning user to a existing group                            | assign u/<INDEX> g/<INDEX>                                                     |
@@ -988,7 +992,7 @@ Our future plans for Contactmation includes:
 ### Group commands summary
 
 | Command                            | Format                                                     |
-| ---------------------------------- | ---------------------------------------------------------- |
+|------------------------------------|------------------------------------------------------------|
 | Adding new team                    | `team new <NAME>`                                          |
 | Delete team                        | `team delete <INDEX>` or `team select <INDEX> team delete` |
 | Removing contact from current team | `team remove <Contact INDEX>`                              |
@@ -998,7 +1002,7 @@ Our future plans for Contactmation includes:
 ### Contact commands summary
 
 | Command                               | Format                                                                          |
-| ------------------------------------- | ------------------------------------------------------------------------------- |
+|---------------------------------------|---------------------------------------------------------------------------------|
 | Adding new contact to current context | `person new n/<NAME> [p/<PHONE_NUMBER>] [e/<EMAIL>] [a/<ADDRESS>] [t/<TAG>...]` |
 | Delete contact                        | `person delete <INDEX>` or `person select <INDEX> person delete`                |
 | Finding/filtering contacts            | `person find <keywords>`                                                        |
@@ -1006,7 +1010,7 @@ Our future plans for Contactmation includes:
 ### Task commands summary
 
 | Command                            | Format                                                                   |
-| ---------------------------------- | ------------------------------------------------------------------------ |
+|------------------------------------|--------------------------------------------------------------------------|
 | Adding new task to current context | `team new t/<title> d/<description>`                                     |
 | Delete a task                      | `task delete <INDEX>` or `task select <INDEX> task delete`               |
 | Marking a task as complete         | `task mark <INDEX>` or `mark <INDEX>` or task select <INDEX> mark`       |
@@ -1015,22 +1019,22 @@ Our future plans for Contactmation includes:
 
 ### Advanced commands summary
 
-| Command                  | Format                                                                  |
-| ------------------------ | ----------------------------------------------------------------------- |
-| Aliasing                 | `alias <NEW COMMAND NAME> <COMMAND>`                                    |
-| Saving macros            | `macro <NEW COMMAND NAME> <COMMANDS TO CHAIN>`                          |
-| Deleting Custom Commands | `rmMacro <COMMAND NAME>`                                                |
-| Chaining/seq             | `seq <command 1> [\| command 3]... OR seq <command 1> [; command 3]...` |
-| Contains                 | `<ITEM> contains <ATTRIBUTE>`                                           |
-| Execute                  | `<INPUT> \| e`                                                          |
-| Foreach                  | `<ITEM> foreach <COMMAND>`                                              |
-| If else                  | `if [[CRITERIA]] ;; [[COMMAND IF]] ;; [[COMMAND ELSE]]`                 |
-| Macro                    | `macro <MACRO WORD> <COMMAND SEQUENCE>`                                 |
-| Replace                  | `r <TEXT TO REPLACE> <TEXT TO BE REPLACED>`                             |
-| Select                   | `<ITEM> select <INDEX> <COMMAND> [...]`                                 |
-| Create/convert int       | `int <integer>`                                                         |
-| Create/convert float     | `float <float>`                                                         |
-| Create/convert String    | `str <String>`                                                          |
-| Print                    | `<...> \| print`                                                        |
+| Command                  | Format                                                  |
+|--------------------------|---------------------------------------------------------|
+| Aliasing                 | `alias <NEW COMMAND NAME> <COMMAND>`                    |
+| Saving macros            | `macro <NEW COMMAND NAME> <COMMANDS TO CHAIN>`          |
+| Deleting Custom Commands | `rmMacro <COMMAND NAME>`                                |
+| Chaining/seq             | `seq <command 1> [\                                     | command 3]... OR seq <command 1> [; command 3]...` |
+| Contains                 | `<ITEM> contains <ATTRIBUTE>`                           |
+| Execute                  | `<INPUT> \                                              | e`                                                          |
+| Foreach                  | `<ITEM> foreach <COMMAND>`                              |
+| If else                  | `if [[CRITERIA]] ;; [[COMMAND IF]] ;; [[COMMAND ELSE]]` |
+| Macro                    | `macro <MACRO WORD> <COMMAND SEQUENCE>`                 |
+| Replace                  | `r <TEXT TO REPLACE> <TEXT TO BE REPLACED>`             |
+| Select                   | `<ITEM> select <INDEX> <COMMAND> [...]`                 |
+| Create/convert int       | `int <integer>`                                         |
+| Create/convert float     | `float <float>`                                         |
+| Create/convert String    | `str <String>`                                          |
+| Print                    | `<...> \                                                | print`                                                        |
 
 [Back to top](#table-of-contents)
