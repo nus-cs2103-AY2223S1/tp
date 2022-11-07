@@ -5,8 +5,8 @@ title: User Guide
 
 Cobb is a **Contact and Property Management System** that aims to help property agents and brokers manage their customer
 base and properties, as well as match and gain actionable insights from stored data. As property agents, you can make use
-of Cobb's flexible **filtering and sorting** systems to understand key demographics of your customer base. Cobb's **tagging** system
-allows you to organise entries in your database into defined categories. Finally, make use of Cobb's **matching** systems
+of Cobb's flexible **filtering and sorting** systems to understand key demographics of your customer base. Leverage on Cobb's **finding** system
+to quickly locate buyers that you want to retrieve information about. Finally, make use of Cobb's **matching** systems
 to match-make buyers and properties or vice-versa, boosting sales potential.
 
 The only tools you need to make use of the full suite of capabilities Cobb has to offer are your hands and a keyboard.
