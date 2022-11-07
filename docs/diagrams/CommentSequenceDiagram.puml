@@ -52,7 +52,7 @@ cc -> model :getFilteredTutorList()
 
 activate model
 create tutor
-model -> tutor
+model -> tutor: get(1)
 
 activate tutor
 create comments
