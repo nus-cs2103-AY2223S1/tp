@@ -28,7 +28,7 @@ public class ModelManager implements Model {
     private final FilteredList<Application> filteredApplications;
     private final SortedList<Application> sortedFilteredApplications;
     private final FilteredList<Application> applicationsWithInterview;
-    private final ObservableList<Application> applicationsWithUpcomingInterviews;
+    private final FilteredList<Application> applicationsWithUpcomingInterviews;
 
     /**
      * Initializes a ModelManager with the given versionedApplicationBook and userPrefs.
@@ -101,11 +101,11 @@ public class ModelManager implements Model {
                 .sorted(new InterviewComparator());
     }
 
-    private ObservableList<Application> filterApplicationsWithUpcomingInterview() {
+    private FilteredList<Application> filterApplicationsWithUpcomingInterview() {
         return versionedApplicationBook.getApplicationList()
                 .filtered(application -> application.hasInterview() && !application.isArchived())
-                .filtered(new UpcomingInterviewPredicate())
-                .sorted(new InterviewComparator());
+                .sorted(new InterviewComparator())
+                .filtered(new UpcomingInterviewPredicate());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -256,6 +256,11 @@ public class ModelManager implements Model {
     public void updateApplicationListWithInterview(Predicate<Application> predicate) {
         requireNonNull(predicate);
         applicationsWithInterview.setPredicate(predicate);
+    }
+
+    @Override
+    public void refreshApplicationListWithUpcomingInterview() {
+        applicationsWithUpcomingInterviews.setPredicate(new UpcomingInterviewPredicate());
     }
 
     @Override
