@@ -1,39 +1,51 @@
 package seedu.waddle.logic.parser;
 
 import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.waddle.logic.commands.CommandTestUtil.*;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PEOPLE;
+import static seedu.waddle.logic.commands.CommandTestUtil.COST_DESC_ART;
+import static seedu.waddle.logic.commands.CommandTestUtil.COST_DESC_SHOPPING;
+import static seedu.waddle.logic.commands.CommandTestUtil.COST_DESC_SKINNY;
+import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_COST_DESC;
+import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_ITEM_DESC_DESC;
+import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_ITEM_DURATION_DESC;
+import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_PRIORITY_DESC;
+import static seedu.waddle.logic.commands.CommandTestUtil.ITEM_DESC_DESC_ART;
+import static seedu.waddle.logic.commands.CommandTestUtil.ITEM_DESC_DESC_BREAKFAST;
+import static seedu.waddle.logic.commands.CommandTestUtil.ITEM_DESC_DESC_SHOPPING;
+import static seedu.waddle.logic.commands.CommandTestUtil.ITEM_DURATION_DESC_ART;
+import static seedu.waddle.logic.commands.CommandTestUtil.ITEM_DURATION_DESC_SHOPPING;
+import static seedu.waddle.logic.commands.CommandTestUtil.PRIORITY_DESC_BEACH;
+import static seedu.waddle.logic.commands.CommandTestUtil.PRIORITY_DESC_SHOPPING;
+import static seedu.waddle.logic.commands.CommandTestUtil.PRIORITY_DESC_TOUR;
+import static seedu.waddle.logic.commands.CommandTestUtil.START_TIME_DESC_1715;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COST_SHOPPING;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COST_SKINNY;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_ART;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_SHOPPING;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_ITEM_DESC_ART;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_ITEM_DESC_BREAKFAST;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_ITEM_DESC_SHOPPING;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PRIORITY_SHOPPING;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PRIORITY_TOUR;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_TIME_1715;
 import static seedu.waddle.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.waddle.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.waddle.testutil.TypicalIndexes.INDEX_FIRST_ITINERARY;
-import static seedu.waddle.testutil.TypicalIndexes.INDEX_SECOND_ITINERARY;
-import static seedu.waddle.testutil.TypicalIndexes.INDEX_THIRD_ITINERARY;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.commons.core.index.MultiIndex;
-import seedu.waddle.logic.commands.EditCommand;
-import seedu.waddle.logic.commands.EditCommand.EditItineraryDescriptor;
 import seedu.waddle.logic.commands.EditItemCommand;
 import seedu.waddle.model.item.Cost;
 import seedu.waddle.model.item.Duration;
 import seedu.waddle.model.item.Priority;
-import seedu.waddle.model.item.StartTime;
-import seedu.waddle.model.itinerary.Budget;
-import seedu.waddle.model.itinerary.Country;
-import seedu.waddle.model.itinerary.Date;
 import seedu.waddle.model.itinerary.Description;
-import seedu.waddle.model.itinerary.ItineraryDuration;
-import seedu.waddle.model.itinerary.People;
 import seedu.waddle.testutil.EditItemDescriptorBuilder;
-import seedu.waddle.testutil.EditItineraryDescriptorBuilder;
 
 public class EditItemCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditItemCommand.MESSAGE_USAGE);
 
-    private EditItemCommandParser parser = new EditItemCommandParser();
+    private final EditItemCommandParser parser = new EditItemCommandParser();
 
     @Test
     public void parse_missingParts_failure() {

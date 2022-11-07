@@ -9,10 +9,9 @@ import org.junit.jupiter.api.Test;
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.commons.core.index.MultiIndex;
 import seedu.waddle.logic.commands.DeleteItemCommand;
-import seedu.waddle.logic.commands.SelectCommand;
 
 public class DeleteItemCommandParserTest {
-    private DeleteItemCommandParser parser = new DeleteItemCommandParser();
+    private final DeleteItemCommandParser parser = new DeleteItemCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {

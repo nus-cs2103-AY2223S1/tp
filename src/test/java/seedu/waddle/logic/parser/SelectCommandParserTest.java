@@ -4,17 +4,13 @@ import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.waddle.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.waddle.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.util.Arrays;
-
 import org.junit.jupiter.api.Test;
 
 import seedu.waddle.commons.core.index.Index;
-import seedu.waddle.logic.commands.FindCommand;
 import seedu.waddle.logic.commands.SelectCommand;
-import seedu.waddle.model.itinerary.NameContainsKeywordsPredicate;
 
 public class SelectCommandParserTest {
-    private SelectCommandParser parser = new SelectCommandParser();
+    private final SelectCommandParser parser = new SelectCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
