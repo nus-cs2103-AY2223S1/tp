@@ -56,6 +56,7 @@ FindCommand - allows users to search for the desired FYP projects with specified
       * Written up a thorough explanation of how FindCommand works
       * Added State Diagrams for the command
       * Added a sequence diagram for the command (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/118)
+      * Added an activity diagram for the command (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/233)
       * Contributed several user stories. (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/76)
       * Came up with Use Case (UC03 - Marking Project Status).
       * Made thorough checks of UG several times, and fixed documentation bugs when spotted.
