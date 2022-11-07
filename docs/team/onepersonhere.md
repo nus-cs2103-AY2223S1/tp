@@ -21,12 +21,12 @@ The link to my contributions in the code dashboard is [here](https://nus-cs2103-
 
 ### Enhancements implemented
 
-**Autocomplete feature**
+**Autocomplete feature**<br>
 I spent a lot of time researching and implementing the auto-complete feature:
 * took advantage of the ControlsFX library and making the necessary changes to the `CommandBox` class.
 * make it look and feel similar to the Minecraft theme used in the application by modifying the css files.
 
-**Help Screen**
+**Help Screen**<br>
 I implemented the help screen to show the user a list of commands and their descriptions:
 * `HelpWindow` class, to implement the help screen.
 * `MainWindow` class, to implement the show help upon startup when the user has no data.
@@ -35,7 +35,7 @@ I implemented the help screen to show the user a list of commands and their desc
 ### Contributions to the User Guide
 
 * Content Page Layout
-* Auto-complete feature
+* Autocomplete feature
 * Frequently Asked Questions(FAQ)
 
 ### Contributions to the Developer's Guide
