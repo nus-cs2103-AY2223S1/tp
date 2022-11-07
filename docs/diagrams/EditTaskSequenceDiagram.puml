@@ -84,5 +84,3 @@ destroy EditTaskCommand
 deactivate LogicManager
 
 @enduml
-
-@enduml
