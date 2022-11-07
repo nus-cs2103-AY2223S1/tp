@@ -21,7 +21,6 @@ Class JsonSerializableAddressBook
 Class JsonAdaptedStudent
 Class JsonAdaptedQuestion
 Class JsonAdaptedTutorial
-Class JsonAdaptedTag
 }
 
 }

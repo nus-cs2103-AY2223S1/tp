@@ -17,6 +17,7 @@ tutorials and note down questions more effectively than traditional GUI apps.
             * Adding student's attendance: [`attendance`](#adding-students-attendance--attendance)
             * Adding student’s response: [`addresponse`](#adding-students-response-addresponse)
             * Adding help tag to a student: [`helpstu`](#adding-help-tag-helpstu)
+            * Removing help tag from a student: [`unhelpstu`](#removing-help-tag-unhelpstu)
             * Deleting a student: [`deletestu`](#deleting-a-student-deletestu)
             * Finding a student: [`findstu`](#finding-a-student-findstu)
             * Listing all students: [`liststu`](#listing-all-students-liststu)
@@ -176,7 +177,7 @@ Format: `addresponse INDEX m/MESSAGE_COUNT`
 
 Example:
 
-* `addresponse 1 m/7`
+* `addresponse 1 m/7![img.png](img.png)`
 
 <img src="images/ug-screenshots/addresponse.png" alt="addresponse 1 m/7" width="1100">
 
@@ -242,7 +243,7 @@ Format: `findstu KEYWORD [MORE_KEYWORDS]`
 Examples:
 
 * `findstu john mary`
-* `findstu jun`
+* `findstu john`
 
 <img src="images/ug-screenshots/findstu.png" alt="findstu 1" width="1100">
 
