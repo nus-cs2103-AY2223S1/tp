@@ -1225,7 +1225,7 @@ testers are expected to do more *exploratory* testing.
     4. Test case: `sort PHONE` <br>
        Expected: No changes displayed on TrackAScholar GUI since TrackAScholar can only sort applicants by `NAME`, `SCHOLARSHIP` and `STATUS`. Error details shown in the status message.
 
-    5. Other incorrect filter commands to try: `sort` and `sort Alex Yeoh` <br>
+    5. Other incorrect sort commands to try: `sort` and `sort Alex Yeoh` <br>
        Expected: Similar to previous.
 
 [Return to top](#table-of-contents)
