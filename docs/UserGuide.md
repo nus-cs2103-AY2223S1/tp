@@ -31,9 +31,6 @@ interactive graphical icons such as buttons.
 
 If you are interested to try, jump to [Quick Start](#quick-start) to learn how to start using **FRIDAY**!
 
-* Table of Contents
-{:toc}
-
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
 
@@ -196,7 +193,6 @@ Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_D
 **:information_source: Note:** <br>
 * All student names and Telegram handles in FRIDAY must be unique.
 * Names and Telegram handles are case-insensitive.
-* Dates for consultation and Mastery Check must be in the format YYYY-MM-DD.
 </div>
 
 <div markdown="block" class="alert alert-primary">
@@ -222,11 +218,6 @@ Format: `delete INDEX`
 * The index of the student must be specified and there should be exactly one INDEX parameter.
 </div>
 
-<div markdown="block" class="alert alert-primary">
-**:bulb: Tip:** <br>
-* The index of the student can be seen from the student list.
-</div>
-
 ### Editing a student: `edit`
 
 You may not have all your students' details at the start, or you may have typed in the wrong details for a specific student. You can use the `edit` feature to add in or edit a student's details after getting this information. This feature is also useful for adding Mastery Check and Consultation dates you have scheduled with your students.
@@ -242,7 +233,6 @@ optional fields, but there should be at least one field specified for the `edit`
 
 <div markdown="block" class="alert alert-primary">
 **:bulb: Tip:** <br>
-* The index of the student can be seen from the student list.
 * A student can have any number of tags (including 0).
 </div>
 
@@ -271,7 +261,6 @@ Format: `remark INDEX [r/REMARK]`
 
 <div markdown="block" class="alert alert-primary">
 **:bulb: Tip:** <br>
-* The index of the student can be seen from the student list.<br>
 * The remark is optional. If you do not include the remark (i.e. input `remark INDEX` as your command), FRIDAY will
 remove any existing remark for the specified student.<br>
 </div>
@@ -348,9 +337,9 @@ Format: `find KEYWORDS`
 
 <div markdown="span" class="alert alert-primary">
 **:bulb: Tip:** <br>
-Use student name/telegram handle/consultation/mastery check date/remark to search up a particular student.
-Note: Multiple keywords can be entered and each keyword is separated by a space.
-Note: when searching for exam grade use format `find [exam_name:EXAM_SCORE]`
+* Use student name/telegram handle/consultation/mastery check date/remark to search up a particular student.
+* Multiple keywords can be entered and each keyword is separated by a space.
+* When searching for exam grade, use the format `find [exam_name:EXAM_SCORE]`.
 </div>
 
 Example: Enter `find alex`
@@ -391,7 +380,7 @@ The table below shows a list of command parameters that will be used.
 
 The `grade` command allows you to record the grades obtained for the assessments and examinations by a specified student.
 
-Format: `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MID_TERM_SCORE] [ft/FINALS_SCORE]`
+Format: `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MIDTERM_SCORE] [ft/FINALS_SCORE]`
 
 * The examinations and their associated prefixes are:
   * Reading Assessment 1 - `ra1`
@@ -403,13 +392,10 @@ Format: `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MI
 <div markdown="block" class="alert alert-info">
 **:information_source: Note:** <br>
 * The index of the student must be specified and there should be exactly one INDEX parameter.
-* The scores of the assessments must be numerical as percentages, i.e. between 0% and 100% inclusive, with up to 2
-decimal places allowed. `0`, `100.00` and `69.1` are examples of valid scores.
 </div>
 
 <div markdown="span" class="alert alert-primary">
 **:bulb: Tip:** <br>
-* The index of the student can be seen from the student list.
 * The scores are optional, but there should be at least one score specified for `grade` command to be valid.
 </div>
 
@@ -434,7 +420,6 @@ Format: `mark INDEX`
 <div markdown="block" class="alert alert-primary">
 **:bulb: Tip:** <br>
 * The index of the student must be specified and there should be exactly one INDEX parameter.<br>
-* The index of the student can be seen from the student list.<br>
 </div>
 
 Example: Enter `mark 1`.
@@ -461,7 +446,6 @@ Format: `unmark INDEX`
 <div markdown="span" class="alert alert-primary">
 **:bulb: Tip:** <br>
 The index of the student must be specified and there should be exactly one INDEX parameter.<br>
-The index of the student can be seen from the student list.<br>
 </div>
 
 Example before entering `unmark 1` (Assuming student 1's Mastery Check has previously been marked as passed):
