@@ -52,6 +52,8 @@ Given below are my contributions to the project.
 * **Documentation**:
     * User Guide:
       * Add documentation for the `edit`, `profile`, `suggest` and `help` features.
+      * Add section numbers using CSS (Pull request [\#153](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/153)).
+      * Reorganised the sections (Pull request [\#163](https://github.com/AY2223S1-CS2103T-T17-2/tp/pull/163)).
     * Developer Guide:
       * Add use cases and user stories.
       * Add implementation details for `edit`, `profile` and `suggest` features, together with activity, object and sequence diagrams.
