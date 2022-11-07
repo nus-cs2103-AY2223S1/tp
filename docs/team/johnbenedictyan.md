@@ -11,18 +11,18 @@ Given below are my contributions to the project.
 
 - **New Features**:
 
-  1.  Uid & Uid Manager
+  1.  Uid
 
   - What it does:
     - Unique Id and the manager to manage operations associated with the uid.
   - Justification:
-    - Uid and Uid Manager solves the issue whereby the medical administrator may enter very similar persons into Healthcare Xpress.
+    - Uid solves the issue whereby the medical administrator may enter very similar persons into Healthcare Xpress.
     - Uid helps to differentiate between these individuals.
   - Highlights:
     - Implementing a unique set of uid was challenging.
       <br></br>
 
-  2. Delete Command
+  1. Delete Command
 
   - What it does:
     - Deletes the person based on their uid.
