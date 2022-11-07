@@ -150,7 +150,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<Tutor> getSortedFilteredTutorLis() {
+        public ObservableList<Tutor> getSortedFilteredTutorList() {
             throw new AssertionError("This method should not be called.");
         }
 

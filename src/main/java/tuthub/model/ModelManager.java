@@ -134,7 +134,7 @@ public class ModelManager implements Model {
      * {@code versionedTuthub}
      */
     @Override
-    public ObservableList<Tutor> getSortedFilteredTutorLis() {
+    public ObservableList<Tutor> getSortedFilteredTutorList() {
         return sortedFilteredTutors;
     }
 

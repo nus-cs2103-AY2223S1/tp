@@ -29,9 +29,9 @@ public class FindByModuleCommand extends FindByPrefixCommand {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredTutorList(predicate);
-        System.out.println(model.getSortedFilteredTutorLis());
+        System.out.println(model.getSortedFilteredTutorList());
         return new CommandResult((
-                String.format(Messages.MESSAGE_TUTORS_LISTED_OVERVIEW, model.getSortedFilteredTutorLis().size())));
+                String.format(Messages.MESSAGE_TUTORS_LISTED_OVERVIEW, model.getSortedFilteredTutorList().size())));
     }
 
     @Override

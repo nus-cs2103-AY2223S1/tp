@@ -38,9 +38,9 @@ public class DeleteCommentCommandTest {
     @Test
     public void execute_validIndex_success() {
         // Add a comment to the first tutor
-        Tutor tutorToDelete = model.getSortedFilteredTutorLis().get(INDEX_FIRST_TUTOR.getZeroBased());
+        Tutor tutorToDelete = model.getSortedFilteredTutorList().get(INDEX_FIRST_TUTOR.getZeroBased());
 
-        int lastCommentPos = model.getSortedFilteredTutorLis().get(0).getComments().size() - 1;
+        int lastCommentPos = model.getSortedFilteredTutorList().get(0).getComments().size() - 1;
         // Comment is at index 0
         DeleteCommentCommand deleteCommentCommand = new DeleteCommentCommand(INDEX_FIRST_TUTOR,
                 Index.fromZeroBased(lastCommentPos));
@@ -55,7 +55,7 @@ public class DeleteCommentCommandTest {
 
     @Test
     public void execute_tutorNoComments_throwsCommandException() {
-        Tutor tutorToDelete = model.getSortedFilteredTutorLis().get(INDEX_SECOND_TUTOR.getZeroBased());
+        Tutor tutorToDelete = model.getSortedFilteredTutorList().get(INDEX_SECOND_TUTOR.getZeroBased());
         DeleteCommentCommand deleteCommentCommand = new DeleteCommentCommand(INDEX_SECOND_TUTOR,
                 Index.fromZeroBased(0));
 

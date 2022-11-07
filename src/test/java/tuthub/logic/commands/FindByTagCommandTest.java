@@ -63,7 +63,7 @@ public class FindByTagCommandTest {
         FindByTagCommand command = new FindByTagCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getSortedFilteredTutorLis());
+        assertEquals(Collections.emptyList(), model.getSortedFilteredTutorList());
     }
 
     @Test
@@ -73,7 +73,7 @@ public class FindByTagCommandTest {
         FindByTagCommand command = new FindByTagCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(LOPEZ, NATHAN), model.getSortedFilteredTutorLis());
+        assertEquals(Arrays.asList(LOPEZ, NATHAN), model.getSortedFilteredTutorList());
     }
 
     @Test
@@ -83,7 +83,7 @@ public class FindByTagCommandTest {
         FindByTagCommand command = new FindByTagCommand(predicate);
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(LOPEZ, NATHAN), model.getSortedFilteredTutorLis());
+        assertEquals(Arrays.asList(LOPEZ, NATHAN), model.getSortedFilteredTutorList());
     }
 
     private Tuthub getTestTaTuthub() {
