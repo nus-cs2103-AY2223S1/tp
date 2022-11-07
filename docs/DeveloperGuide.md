@@ -476,7 +476,7 @@ Priority legend
 | High    | Minecraft player | know my friend's phone number                      | call/text them when I want to play with them                                |
 | High    | Minecraft player | know my friend's social media handles              | contact them when I want to play with them                                  |
 | High    | Minecraft player | know my friend's preferred game modes              | find friends with compatible game type interests                            |
-| High    | Minecraft player | know my friend's preferred Minecraft servers       | find friends with compatible server interests with me at that point in time |
+| High    | Minecraft player | know my friend's preferred Minecraft servers       | find friends with compatible server interests with me                       |
 | High    | Minecraft player | know my friend's preferred play timings            | find friends who are free at a particular time                              |
 | Medium  | Minecraft player | know my friend's email address                     | contact them when I want to play with them                                  |
 | Medium  | Minecraft player | know my friend's physical address                  | go to their houses to play together                                         |
