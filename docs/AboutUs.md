@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/cfsy.md)]
 
 * Role: Developer
-* Responsibilities: Logic
+* Responsibilities: Logic + UI
 
 ### Chen Shun
 
@@ -27,7 +27,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/ciaoosuuu.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Logic
 
 ### Hui Yi Lu
 
@@ -36,7 +36,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/pewggls)] [[portfolio](team/pewggls.md)]
 
 * Role: Developer
-* Responsibilities: Developer
+* Responsibilities: Storage
 
 ### Law Sean Meng
 
@@ -46,7 +46,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/seox123.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: Logic + Parser
 
 ### Tan Shao Ning
 
@@ -56,4 +56,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/ningtan11.md)]
 
 * Role: Developer
-* Responsibilities: UI
+* Responsibilities: Logic + Documentation
