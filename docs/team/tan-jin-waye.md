@@ -21,7 +21,7 @@ Given below are my contributions to the project.
       * Need a data structure to represent a group in TABS.  
       * Commands exist for testing purpose only.
 
-  * [Integrate Groups into AB3](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/72) which includes:
+  * [Integrate Groups into AB3](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/72)
     * What has been done: 
       * Allows app to store a list of groups, and subsequently perform CRUD operations to modify this list.
       * Skeleton commands to add/delete from list.
@@ -35,14 +35,13 @@ Given below are my contributions to the project.
       * Add rudimentary `AddGroupCommand` and `DeleteGroupCommand`, including respective parsers and modifying `AddressBookParser` class;
       * Add JUnit test cases for above-mentioned new classes.
 
-  * [Storage for Groups](https://github.com/Tan-Jin-Waye/tp/tree/branch_storage) to account for abovementioned Groups data structure.
+  * [Storage for Groups](https://github.com/Tan-Jin-Waye/tp/tree/branch_storage)
     * What has been done:
       * Add supporting classes to convert a Group object into JSON format, and store it in the data file.
     * Rationale:
       * To allow users to save their changes made to Groups in a similar manner to `Person`s
 
-  * [Bulk Task Assignment/Deletion](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/112) to support assigning a task to
-  /deleting a task from all members of a group.
+  * [Bulk Task Assignment/Deletion](https://github.com/AY2223S1-CS2103T-W10-1/tp/pull/112)
     * What it does:
       * Assigns a task to/Deletes a task from all members of a group (exact behaviour specified in developer guide).
     * Rationale:
