@@ -388,10 +388,6 @@ The following sequence diagram shows how the `export` command works:
 
 ![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ExportCommandParser`
-should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
-
 #### Design Considerations
 
 **Aspect: Where to save the exported JSON file**
