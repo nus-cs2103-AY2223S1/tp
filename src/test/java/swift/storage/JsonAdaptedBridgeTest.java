@@ -1,14 +1,15 @@
 package swift.storage;
 
-import org.junit.jupiter.api.Test;
-import swift.commons.exceptions.IllegalValueException;
-
-import java.util.UUID;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static swift.storage.JsonAdaptedBridge.MISSING_FIELD_MESSAGE_FORMAT;
 import static swift.testutil.Assert.assertThrows;
 import static swift.testutil.TypicalBridges.DEFAULT_BRIDGE_1;
+
+import java.util.UUID;
+
+import org.junit.jupiter.api.Test;
+
+import swift.commons.exceptions.IllegalValueException;
 
 public class JsonAdaptedBridgeTest {
     private static final String INVALID_PERSON_ID = "invalid";

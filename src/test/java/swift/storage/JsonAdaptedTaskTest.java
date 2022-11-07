@@ -1,18 +1,19 @@
 package swift.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static swift.storage.JsonAdaptedTask.MISSING_FIELD_MESSAGE_FORMAT;
+import static swift.testutil.Assert.assertThrows;
+import static swift.testutil.TypicalTasks.CS2103T;
+
+import java.util.UUID;
+
 import org.junit.jupiter.api.Test;
+
 import swift.commons.exceptions.IllegalValueException;
 import swift.model.task.Deadline;
 import swift.model.task.Description;
 import swift.model.task.TaskName;
 import swift.testutil.TaskBuilder;
-
-import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static swift.storage.JsonAdaptedTask.MISSING_FIELD_MESSAGE_FORMAT;
-import static swift.testutil.Assert.assertThrows;
-import static swift.testutil.TypicalTasks.CS2103T;
 
 public class JsonAdaptedTaskTest {
     private static final String INVALID_ID = "hello world";
