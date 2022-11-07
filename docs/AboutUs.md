@@ -32,7 +32,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="images/lan-jingbo.png" width="200px">
 
-[[github](http://github.com/Lan-Jingbo)] [[portfolio](team/lanjingbo.md)]
+[[github](http://github.com/Lan-Jingbo)] [[portfolio](team/lan-jingbo.md)]
 
 * Role: Developer
 * Responsibilities: Data, Testing, Project Management
