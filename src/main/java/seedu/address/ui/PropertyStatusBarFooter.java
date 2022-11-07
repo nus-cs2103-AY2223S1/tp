@@ -8,14 +8,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
 
 /**
- * A ui for the status bar that is displayed at the footer of the application.
+ * A ui for the status bar that is displayed at the footer of the property list.
  */
-public class StatusBarFooter extends UiPart<Region> {
+public class PropertyStatusBarFooter extends UiPart<Region> {
 
-    private static final String FXML = "StatusBarFooter.fxml";
-
-    @FXML
-    private Label saveBuyerLocationStatus;
+    private static final String FXML = "PropertyStatusBarFooter.fxml";
 
     @FXML
     private Label savePropertyLocationStatus;
@@ -23,10 +20,8 @@ public class StatusBarFooter extends UiPart<Region> {
     /**
      * Creates a {@code StatusBarFooter} with the given {@code Path}.
      */
-    public StatusBarFooter(Path saveBuyerLocation, Path savePropertyLocation) {
+    public PropertyStatusBarFooter(Path savePropertyLocation) {
         super(FXML);
-        saveBuyerLocationStatus.setText(Paths.get(".").resolve(saveBuyerLocation).toString());
         savePropertyLocationStatus.setText(Paths.get(".").resolve(savePropertyLocation).toString());
     }
-
 }

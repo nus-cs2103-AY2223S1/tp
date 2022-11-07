@@ -13,9 +13,6 @@ You can reach us at the email `cobb[at]comp.nus.edu.sg`
 
 <img src="images/riccqi.png" width="200px">
 
-
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-
 [[github](https://github.com/riccqi)]
 [[portfolio](team/riccqi.md)]
 
@@ -30,7 +27,7 @@ You can reach us at the email `cobb[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Documentation
-*
+
 ### Chng Ian
 
 <img src="images/chngchngchng.png" width="200px">
@@ -49,7 +46,8 @@ You can reach us at the email `cobb[at]comp.nus.edu.sg`
 [[portfolio](team/zsiggg.md)]
 
 * Role: Developer
-* Responsibilities: Deliverables and Deadlines
+* Responsibilities: Refactoring of previous AB3 code, management of issues on GitHub,
+implementing new features
 
 ### Chen Hung-Yu
 
@@ -60,23 +58,3 @@ You can reach us at the email `cobb[at]comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: Data
-
-### Jean Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/jchilling.md)]
-
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
-
-### James Doe
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/jchilling.md)]
-
-* Role: Developer
-* Responsibilities: UI

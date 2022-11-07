@@ -14,15 +14,23 @@ Given below are my contributions to the project.
 * **Enhancements implemented**: 
   1. Created initial person role package
   2. Created Property column to list properties
-  3. Added filterbuyer command and relevant predicates
-  4. Add multifilter and matchprop commands
-  5. Edited existing commands to better fit functionality
+  3. Created Property `ObservableArrayList` and all related functionality
+  4. Added filterbuyer command and relevant predicates
+  5. Add multifilter and matchprop commands
+  6. Edited and refactored existing commands to better fit functionality
 * **Contributions to the UG**: 
-  1. Created overall new structure of the UG, updated from original AB3 UG
-  2. Added all new sections to the UG
-  3. Wrote descriptions for all new commands that were added to Cobb
-  4. Wrote glossary, UI walkthrough sections of the UG
-* **Contributions to the DG**: To be added soon
+  1. Created overall new structure of the UG, updated from original AB3 UG.
+  2. Added most new sections to the UG
+  3. Updated features section of the UG to reflect all new commands that were added to the application
+  4. Wrote key definitions section of the UG
+  5. Wrote interface layout section of the UG
+  6. Wrote introduction to the UG
+  7. Wrote quick start section of the UG
+* **Contributions to the DG**:
+  1. Added section on choices made regarding how users are indexed
+  2. Added section on how filter commands work and how the predicates are composed
+  3. Added UML diagrams for filter commands explaining the internal structure of predicates used
+  4. Created more use cases for the application
 * **Contributions to team-based tasks**:
   1. Refactored `price` and `priceRange`
   2. Refactored `filter` and `match` commands

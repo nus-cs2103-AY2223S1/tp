@@ -111,14 +111,14 @@ public class EditPropertyCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_OWNER_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
 
         // valid field followed by invalid field
-        assertParseFailure(parser, "1" + PRICE_DESC_HOME + INVALID_NAME_DESC , Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + PRICE_DESC_HOME + INVALID_NAME_DESC , PropertyName.MESSAGE_CONSTRAINTS);
 
         // valid field followed by same field, but invalid
-        assertParseFailure(parser, "1" + NAME_DESC_HOME + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + NAME_DESC_HOME + INVALID_NAME_DESC, PropertyName.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_ADDRESS_DESC + INVALID_PRICE_DESC,
-                Name.MESSAGE_CONSTRAINTS);
+                PropertyName.MESSAGE_CONSTRAINTS);
     }
 
     @Test

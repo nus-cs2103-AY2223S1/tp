@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Buyer {
+-String name
+-String phone
+-String address
+-String email
+-LocalDateTime entryTime
+-String priority
+-String price
+-String[] characteristicsArray
+
++ boolean isSameBuyer(Buyer otherBuyer)
++ boolean isValidPrice(String test)
++ boolean isValidPriceRange(String test)
++ boolean isWithinPriceRange(String price)
++ boolean isValidCharacteristics(String test)
++ boolean containsCharacteristic(String characteristic)
+}
+
+class Property {
+-String propertyName
+-String address
+-String description
+-String ownerName
+-String ownerPhone
+-LocalDateTime propertyEntryTime
+-String price
+-String characteristicsArray
+
++ boolean isSameProperty(Property otherProperty)
++ boolean isGreaterThanOrEqual(String price)
++ boolean isSmallerThanOrEqual(String price)
++ boolean isValidCharacteristic(String test)
++ boolean containsCharacteristic(String characteristic)
+}
+
+@enduml

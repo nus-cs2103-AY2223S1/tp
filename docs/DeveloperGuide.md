@@ -7,8 +7,8 @@ title: Developer Guide
 
 ## **Introduction**
 
-Cobb is a JavaFX application that helps property agents manage their database of buyers and properties using a
-command-line interface. 
+Cobb is a brownfield software project based off of [AddressBook3](https://se-education.org/addressbook-level3/). It is a 
+JavaFX application that helps property agents manage their database of buyers and properties using a command-line interface.
 
 ### **Purpose**
 
@@ -27,7 +27,8 @@ of the guide.
 --------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
 
-* [AddressBook-Level3](https://github.com/se-edu/addressbook-level3)
+Libraries used: [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [JavaFX](https://openjfx.io),
+[PlantUML](https://plantuml.com).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -143,8 +144,7 @@ as a `Command` object.
 `Parser` interface so that they can be treated similarly where possible e.g. during testing.
 
 ### Model component
-**API** : 
-[`Model.java`](https://github.com/AY2223S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="950" />
 
@@ -195,85 +195,57 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Creating a buyer: `addbuyer`
 
-#### Proposed Implementation
+The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The `Buyer` class represents a buyer with buyer-specific fields. `PriceRange`, `Characteristics`, and `Priority`
+denote his budget, requirements for the property, and buyer priority respectively.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+These three fields are all optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`.
+When the user chooses not to indicate a buyer priority, the buyer's priority will be set to the default priority as `NORMAL`.
+When the user creates a buyer, the entry time is also automatically stored as an `LocalDateTime`.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+This is the class diagram of a `Buyer`.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+![BuyerClassDiagram](images/BuyerClassDiagram.png)
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+The object diagram below shows the new objects in the internal state when a valid `addbuyer` command `addbuyer -n Jane -ph 89991237 -e jane@gmail.com -a Bishan Street 12 -r 2000-5000` is input by the user.
+Note that a new `LocalDateTime` object is created by default and a new `Priority` object is also created albeit the user did not specify the priority parameter in the command.
+In addition, a new `Optional<PriceRange>` object containing a new `PriceRange` object is created since the user specified a price range parameter while a new `Optional<Characteristics>` containing null is created since the user did not specify the characteristics parameter.
+The latter is omitted from the diagram for simplicity purposes.
 
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th buyer in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new buyer. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the buyer was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
+![BuyerObjectDiagram](images/AddBuyerObjectDiagram-Final_state.png)
 
 #### Design considerations:
+No duplicate buyers can be added to the buyer list. This means that no two buyers with the same phone or email can exist. We considered using only name to identify a buyer, so that two people with the name but different contact numbers can be added. However, we decided against it as there could be two people with the exact same name. Therefore, we decided to use phone or email since these should be unique to every person.
+The entry time is added towards later of the development to help facilitate a more flexible implementation of the `sortbuyers` command.
+We considered whether to allow the user to specify a date and time by adding an additional `-d` flag, but later decided against it since we see little value for allowing such feature.  
 
-**Aspect: How undo & redo executes:**
+### Creating a property: `addprop`
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+The structure for executing an `addprop` command follows the flow as mentioned in the "Logic component" section of this guide.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the buyer being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+The `Property` class represents a property with property-specific fields. `Price` and `Characteristics` denote the price and feature of the property respectively.
 
-_{more aspects and alternatives to be added}_
+The `price` field is mandatory while the `characteristics` field is optional. When the user chooses not to indicate a property's characteristics, the `characteristics` field of a property may be null. Hence, it has been implemented using `Optional<T>`.
+When the user creates a property, the entry time is also automatically stored as an `LocalDateTime`.
+
+This is the class diagram of a `Property`.
+
+![PropertyClassDiagram](images/PropertyClassDiagramNew.png)
+
+The object diagram below shows the new objects in the internal state when a valid `addprop` command `addprop -n Peak Residences -a 333 Thompson Road -p 1000000 -d long property description -owner Bob -ph 91234567` is input by the user.
+Note that a new `LocalDateTime` object is created by default.
+In addition, a new `Optional<Characteristics>` containing null is created since the user did not specify the characteristics parameter.
+It is omitted from the diagram for simplicity purposes.
+
+![PropertyObjectDiagram](images/AddPropertyObjectDiagram-Final_state.png)
+
+#### Design considerations:
+No duplicate properties can be added to the property list. This means that no two properties with the same address can exist. We used name and price to identify a property in previous iterations, but later decided against it since in real life there could be identical properties with the exact same name and price. The only thing unique to the property would be the unit number recorded in the address.
+The entry time is added towards later of the development to help facilitate a more flexible implementation of the `sortprops` command.
+We considered whether to allow the user to specify a date and time by adding an additional `-d` flag, but later decided against it since we see little value for allowing such feature.
 
 ### \[Proposed\] Data archiving
 
@@ -344,23 +316,23 @@ If the index provided is not a positive integer or not a valid number, Cobb will
 provide a valid input. Similarly, if the index provided is valid but exceeds the number of elements currently in the list,
 Cobb will be able to identify that there is a bounds mismatch and inform the user to provide a valid input within bounds.
 
-Internally, both of the lists of `Buyers` and `Properties` are stored using an `ObservableArrayList`, which is an array-like
+Internally, both of the lists of `Buyers` and `Properties` are stored using an `ObservableList`, which is an array-like
 data structure provided by JavaFX which fires off reports about all of its changes to associated listeners. This means that
-any changes to the structure or objects in the `ObservableArrayList` will be recorded by its listeners, causing the updated
+any changes to the structure or objects in the `ObservableList` will be recorded by its listeners, causing the updated
 list to be displayed correctly on the user's screen.
 
 #### Design Considerations
 **Aspect: How entries are indexed in a list**
-* **Alternative 1 (current choice)**: Entries are indexed by their relative positions in the current `ObservableArrayList`.
+* **Alternative 1 (current choice)**: Entries are indexed by their relative positions in the current `ObservableList`.
   If the list is filtered or sorted, then the entries' relative positions will change according to this new version of the
   list.
     * Pros:
         * Users will be able to quickly ascertain the index of an entry in the list simply by finding the entry in the list.
-        * Indices of visible entries in the `ObservableArrayList` will always be in the range `[1,n]` inclusive, where n
+        * Indices of visible entries in the `ObservableList` will always be in the range `[1,n]` inclusive, where n
           is the number of entries currently visible in the list. This gives the indices order and structure.
         * No index field needs to be created for `Buyer` and `Property` objects.
     * Cons:
-        * The relative index of an entry will change depending on the current structure of the `ObservableArrayList`. This 
+        * The relative index of an entry will change depending on the current structure of the `ObservableList`. This 
           means that a property that has index `1` might not have the same index after the property list is filtered.
 
 * **Alternative 2**: Entries in a list are indexed by an internal `EntryID` parameter that is automatically generated 
@@ -376,6 +348,71 @@ list to be displayed correctly on the user's screen.
         * Users might be able to execute commands on entries in the list that are not currently visible, which might lead
           to confusion.
 
+### Internal implementations of Buyers and Properties
+
+Cobb allows functionality that performs operations on two distinct types of entities stored in the database: Potential property
+buyers, as well as properties that are for sale. To allow for this functionality, two classes were created that represented each type
+of entity: `Buyer` and `Property`, respectively.
+
+The structure of a `Buyer` object can be viewed in the class diagram below.
+
+![BuyerClassDiagram](images/BuyerClassDiagram.png)
+
+From the diagram, it can be seen that a `Buyer` object consists of the following attributes:
+- A `Name`, representing the name of the buyer.
+- A `Phone`, representing the phone number of the buyer.
+- An `Address`, representing the address of the buyer.
+- An `Email`, representing the email address of the buyer.
+- An `entryTime`, representing the creation time of the buyer (created and accessed internally).
+- A `Priority`, representing the priority of the buyer - High, Normal or Low.
+- A `PriceRange`, representing the price range of properties that a buyer is willing to consider.
+- A `Characteristics`, representing the characteristics of a property that a buyer is looking for.
+
+On the other hand, the structure of a `Property` object can be viewed in the class diagram below.
+
+![PropertyClassDiagram](images/PropertyClassDiagramNew.png)
+
+From the diagram, it can be seen that a `Property` object consists of the following attributes:
+- A `PropertyName`, representing the name of the property.
+- An `Address`, representing the address of the property.
+- A `Description`, representing a short description of the property.
+- An `Owner`, representing the Owner of the property. An owner has an `ownerName` and an `ownerPhone`.
+- A `propertyEntryTime`, representing the creation time of the property (created and accessed internally).
+- A `Price`, representing the price of the property.
+- A `Characteristics`, representing the characteristics that a property possesses.
+
+#### Design Considerations
+
+**Aspect: How `Buyer` and `Property` objects are stored internally**
+
+* **Alternative 1 (current choice)**: Individual classes are created for each of the attributes related to `Buyer` and `Property`
+  objects.
+  * Pros:
+    * Reduces piling up of functionality within the `Buyer` and `Property` classes by abstracting out behaviour related to each
+      individual attribute to its own component class.
+    * Adheres more to the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single-responsibility_principle)
+      through aforementioned abstraction of functionality.
+    * Makes the code neater and easier to follow.
+    * Makes individual components of code easier to test and easier to re-use.
+  * Cons:
+    * Increases coupling of different classes.
+    * Increases the number of classes in the codebase.
+    
+  
+* **Alternative 2**: All individual attributes are stored directly in the `Property` or `Buyer` classes, with all related
+  functionality also implemented within them. This would result in `Buyer` and `Property` objects similar to that in the 
+  UML diagram below.
+  * Pros:
+    * No extra classes are required, as all attributes are stored directly in the component classes.
+    * All functionality is executed by the singular component class, so there is no confusion.
+  * Cons:
+    * Very bloated component classes with a lot of functionality.
+    * Difficult to abstract and test each functionality of the class separately.
+
+
+![Alternative Property and Buyer implementation](images/AlternativeBuyerAndProperty.png)
+
+
 ### Creating a buyer
 
 The `Buyer` class represents a buyer with buyer-specific fields. `PriceRange`, `Characteristics`, and `Priority`
@@ -383,23 +420,36 @@ denote his budget, requirements for the property, and buyer priority respectivel
 
 These three fields are all optional. When the user chooses not to indicate a buyer’s price range or desired characteristics, the `priceRange` and `desiredCharacteristics` field of a buyer may be null. Hence, they have both been implemented using `Optional<T>`.
 When the user chooses not to indicate a buyer priority, the buyer's priority will be set to the default priority as `NORMAL`.
+
 When the user creates a buyer, the time of creation is also automatically stored as an `LocalDateTime`. 
 
 This is the class diagram of a `Buyer`.
 
 ![BuyerClassDiagram](images/BuyerClassDiagram.png)
 
+
 The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide.
 
 #### Design considerations:
-No duplicate buyers can be added to the buyer list. This means that no two buyers with the same phone or email can exist. We considered using only name to identify a buyer, so that two people with the name but different contact numbers can be added. However, we decided against it as there could be two people with the exact same name. Therefore, we decided to use phone or email since these should be unique to every person. 
-The `time of creation` field was added towards later of the development to help facilitate a more flexible implementation of the `sortbuyers` command.  
+Duplicate buyers should not be able to be added into the buyer list. This means that we need some sort of criterion to differentiate
+between buyers.
+
+Originally, we disallowed creation of two buyers that have the same name. However, we found this to be too rigid as there could very well
+exist two distinct buyers that have the same name. Instead, we decided to make use of phone numbers and emails to identify identical buyers,
+as these fields should be unique to each person.
+
+The time of creation field was added towards the later part of development to help facilitate a more flexible implementation of the `sortbuyers` command.  
+
+The activity diagram for the creation of a buyer can be seen below.
+
+![Add buyer activity diagram](images/AddBuyerActivityDiagram.png)
 
 ### Creating a property
 
 The `Property` class represents a property with property-specific fields. `Price` and `Characteristics` denote the price and feature of the property respectively.
 
 The `price` field is mandatory while the `characteristics` field is optional. When the user chooses not to indicate a property's characteristics, the `characteristics` field of a property may be null. Hence, it has been implemented using `Optional<T>`.
+
 When the user creates a property, the time of creation is also automatically stored as an `LocalDateTime`.
 
 This is the class diagram of a `Property`.
@@ -409,10 +459,70 @@ This is the class diagram of a `Property`.
 The structure for executing an `addprop` command follows the flow as mentioned in the "Logic component" section of this guide.
 
 #### Design considerations:
-No duplicate properties can be added to the property list. This means that no two properties with the same address can exist. We used name and price to identify a property in previous iterations, but later decided against it since in real life there could be identical properties with the exact same name and price. The only thing unique to the property would be the unit number recorded in the address.
-The `time of creation` field was added towards later of the development to help facilitate a more flexible implementation of the `sortprops` command.
+No duplicate properties can be added to the property list. This means that we need some sort of criterion to differentiate between
+properties.
+
+Originally, we disallowed creation of two properties that have the same name and price. However, we found this to be to rigid as
+there could very well be two distinct properties that exist which have both the same name and price. Instead, we decided to make
+use of the property's address to distinguish it from another property, as the address of a property should be unique to it.
+
+The time of creation field was added towards the later part of development to help facilitate a more flexible implementation of the `sortprops` command.
+
+The activity diagram for the creation of a property can be seen below.
+
+![Add property activity diagram](images/AddPropertyActivityDiagram.png)
+
+
+### Editing of buyers and properties
+
+#### Motivation
+The user may want to edit the details of a buyer or property after adding it to the application. For example, the user may want to change the budget range of a buyer after adding it to Cobb. 
+Or, the user may want to change the price of a property after adding it to Cobb.
+
+#### Implementation
+The `EditBuyerCommand` and `EditPropertyCommand` classes extends the `Command` class. They are used to edit the details of a buyer or property, respectively.
+Both commands allow the user to change any of the fields of a buyer or property. The commands expect at least one flag to be edited, otherwise an error message will be displayed.
+When the edit command is inputted, the `EditBuyerCommandParser` and `EditPropertyCommandParser` classes are used to parse the user input and create the respective `EditBuyerCommand` and `EditPropertyCommand` objects.
+When these created command objects are executed by the `LogicManager`, the `EditBuyerCommand#execute(Model model)` or `EditPropertyCommand#execute(Model model)` methods are called. These methods will edit the buyer or property in the model, and return a `CommandResult` object.
+
+
+<div markdown="span" class="alert alert-primary">:exclamation: **Note:**
+To be more concise, we will be referring to both buyers and properties as entities in this section from here onwards.
+</div>
+
+During this execution process, the existing entity is first retrieved from the model. The fields of the entities are then edited according to what flags were passed in by the user during the edit commands. 
+A new buyer or property is then created with the edited fields, and any fields that have not been edited will be copied over from the original entity. The new entity is then added to the model, and the original entity is removed from the model.
+The new buyer or property is then added into the model, replacing the old one. The new entity will then be displayed to the user, and a success message is displayed.
+
+The following sequence diagram shows how the `EditBuyerCommand` is executed.
+![EditBuyerSequenceDiagram](images/EditSequenceDiagram.png)
+
+#### Design considerations
+**Aspect: How the edit commands should relate to each other:**
+
+* **Alternative 1 (current choice):** `EditBuyerCommand` and `EditPropertyCommand` are separate, and both inherit from the `Command` class.
+    * Pros:
+        * Both the `Buyer` and `Property` classes have different fields that are exclusive to each other.
+        * This reduces complexity of the system, and unexpected behaviours.
+        * The inheritance of the `Command` class allows us to keep to the Command design pattern, to easily add more types of edit commands in the future, without having to change the existing code. 
+    * Cons:
+        * More boilerplate code for each of the classes, which increases the size of the codebase.
+* **Alternative 2:** A single `EditCommand` class is used to edit both buyer and property.
+    * Cons:
+        * Unnecessary complexity is introduced into the system.
+
+**Aspect: How the edited entities should interact with the model:**
+* We also decided for the edit commands to create a new entity, instead of editing the existing one. This allows us to not include any setters in the `Buyer` and `Property` classes, which make the objects immutable, so there is less likelihood of unexpected changes to the object. 
+By creating a new entity every time the user edits, we can easily add the new buyer or property into the model, and remove the old one. This also allows us to easily undo the edit command in the future, by simply adding the old entity back into the model.
 
 ### Owner specification within a property
+
+#### Motivation
+In real estate, a property being listed by a property agent is usually owned by a property owner. 
+However, the agent may not be the owner of the property. Hence, we decided to allow the user to specify the owner of a property, 
+with essential details such as their name and phone number, and have them represented as part of the `Property` class.
+
+#### Implementation
 To identify the owner of the property, we decided to include an `Owner` object within a `Property`. This `Owner` class contains two fields: `name` and `phone`.
 
 The `name` and `phone` fields in the `Owner` class are compulsory, to make sure that each property being sold has a relevant contact buyer.
@@ -431,7 +541,8 @@ The tradeoffs for this approach is examined below:
 
 #### Design considerations:
 
-**Aspect: How the owner class associates with the property class:**
+**Aspect: How the owner class associates with the property class**
+
 
 * **Alternative 1 (current choice):** Owner class is coupled together with the property class.
     * Pros:
@@ -452,16 +563,21 @@ The tradeoffs for this approach is examined below:
       * This may lead to unexpected behaviours, such as whether properties linked to an owner should be deleted when
       the owner is deleted.
 
-### Filtering buyers and properties: Overall structure
+### Filtering buyers and properties
 
-In order to filter `Buyers` and `Properties`, a `Predicate` needs to be passed into the `ObservableArrayList` that stores 
+In order to filter `Buyers` and `Properties`, a `Predicate` needs to be passed into the `ObservableList` that stores 
 references to these objects and displays them on the user's screen. These predicates can differ in the conditions that are
 being tested, consequently, they might give different outputs when applied to a given list.
 
+
 #### Design Considerations
-In order to allow for multiple-condition filtering, that is, the composition of multiple filter predicates, an abstract 
-`AbstractFilterXYZPredicate` class was created to employ polymorphic behaviour, where XYZ represents the entry type that
+In order to allow for multiple-condition filtering, that is, the concatenation of multiple filter predicates, an abstract 
+`AbstractFilterXYZPredicate` class was created to employ polymorphic behaviour, where XYZ represents the entity type that
 we are working with, for example `AbstractFilterBuyersPredicate` or `AbstractFilterPropsPredicate`. 
+
+As `Property` has a single specific `Price`, it is much less useful to filter the list using one price value as it is
+unlikely to match any property. Instead, we decided to filter by a price range instead, where any property whose price
+falls within this range would be displayed.
 
 Additionally, since users
 are only allowed to filter using certain conditions as defined in the behaviour of the `filter` commands, concrete classes
@@ -475,24 +591,84 @@ concrete predicate classes were implemented:
 4. `FilterPropsContainingAnyCharacteristicsPredicate`
 5. `FilterPropsByOwnerNamePredicate`
 
-Based on command parameters passed in by the user, these predicates are constructed and composed together to form a single
-`Predicate`, which is then used to filter the `ObservableArrayList` directly.
+Based on command parameters passed in by the user, these predicates are constructed and concatenated together to form a single
+`Predicate`, which is then used to filter the `ObservableArrayList` directly. More specifics regarding concatenation behaviour
+can be found in the [filter-specific design considerations](#filter-specific-design-considerations) section located below.
 
-The below UML diagram represents the overall structure of the predicates for `Buyers` and `Properties`.
+The UML diagram below represents the overall structure of the predicates for `Buyers` and `Properties`.
 
 ![FilterPredicatesClassDiagram](images/FilterPredicatesClassDiagram.png)
 
 #### Filter-specific design considerations
 1. Filtering `Properties` by their prices takes in a `priceRange` instead of just a `Price` as it makes more sense for
    agents to want to identify properties that fit within a certain price range instead of a fixed price.
-2. For both `filterBuyers` and `filterProps`, passing in the `-fuzzy` flag will change the final composed predicate to be
+2. For both `filterBuyers` and `filterProps`, the default concatenated predicate will be a logical **AND** of all individual
+   predicates, that is, all predicates need to be satisfied in order for the entry to pass through the filter.
+3. For both `filterBuyers` and `filterProps`, passing in the `-fuzzy` flag will change the final concatenated predicate to be
    a logical **OR** of all individual predicates, that is, only one of the predicates needs to be satisfied in order
    for the entry to pass through the filter.
-3. If the `-c` flag is specified, that is, desired characteristics are supplied as filter conditions, the default behaviour
+4. If the `-c` flag is specified, that is, desired characteristics are supplied as filter conditions, the default behaviour
    is for Cobb to filter out entries that contain **ALL** of the given characteristics. The `-fuzzy` flag changes this behaviour
    to filter out entries that contain *at least one* of the given characteristics.
-4. Filtering entries by name - that is, providing the `-n` flag to the filter command, will filter all entries whose names
+5. Filtering entries by name - that is, providing the `-n` flag to the filter command, will filter all entries whose names
    contain the parameter provided to `-n` as a *substring*.
+
+### Sorting buyers and properties
+
+To sort `Buyers` and `Properties`, the `ObservableList` that stores references to these objects and displays them on the user's screen
+is modified directly to a sorted version. These changes are propagated directly to the `FilteredList`, enabling users to sort
+a previously filtered list. As the `FilteredList` is based on the `ObservableList`, users can also sort the list first,
+then filter it. This results in users being able to build sort and filter functions on top of each other to more powerfully
+manipulate the list based on their needs.
+
+A `Comparator` is used to sort the `ObservableList`. Different comparators with different conditions are used to sort the
+list by different criteria. The following are the `Comparators` used to allow for the corresponding sorting functions:
+
+`Buyer`: `BuyerComparator`
+1. `BuyerNameComparator`: sort by buyer's name
+2. `PriceRangeComparator`: sort by buyer's price range
+3. `PriorityComparator`: sort by buyer's priority
+
+`Property`: `PropertyComparator`
+4. `PropertyNameComparator`: sort by property's name
+5. `PriceComparator`: sort by property's price
+Both:
+6. `TimeComparator`: sort by entry's time of creation
+
+A `BuyerComparator` compares two `Buyer`s by using the `Comparator` stored in it on the corresponding `Buyer` fields.
+For example, if a `BuyerComparator` contains a `BuyerNameComparator`, the two `Buyer`s are compared by their `Name`s using the `BuyerNameComparator`.
+As we allow sorting only by one criterion at a time, a `BuyerComparator` will only contain one field `Comparator`. 
+
+The UML diagrams below represent the overall structure of the `Comparator`s used.
+
+![BuyerComparatorsClassDiagram](images/SortBuyerComparatorsClassDiagram.png)
+
+![PropertyComparatorsClassDiagram](images/SortPropComparatorsClassDiagram.png)
+
+Below is a Seqeunce Diagram showing how a `sortbuyer -n ASC` command is executed through the model to modify the original `ObservableList`.
+
+![SortBuyersSequenceDiagram](images/SortSequenceDiagram.png)
+
+#### Design Considerations:
+Similar to the `FilteredList` abstraction provided by JavaFX, we considered using a `SortedList` to present the list in a
+sorted version without modifying the underlying data structure `ObservableList`. This is
+to preserve the chronological order in which users enter the entries so that it can still be displayed with the `list` command.
+
+However, this meant that we needed to have both `FilteredList` and `SortedList` stored and vary which one is displayed to users
+on entering a command. As such, the last-shown list changes depending on the last command entered. To keep track of this,
+we used a flag which would be updated everytime a `filter` or `sort` command was used. All `Command`s that referred to an
+entry on the displayed list were adapted to take relative indices from the last-shown list indicated by the flag. The `Model`
+component also needed access to the `UI` component's `BuyerPanelList` and `PropertyPanelList` in order to display
+the corresponding `FilteredList` or `SortedList` based on changes to the flag. To reduce coupling, we would have had to
+apply the Observer pattern.
+
+We decided against this as the complicated design made it more bug-prone. In addition, it did not allow for
+stacking of `filter` and `sort` functions, that is, a user is unable to filter on top of a sorted list or vice versa as the
+`FilteredList` and `SortedList` are independent and separate from each other.
+
+Hence, the above-mentioned design was used. We included chronological sorting as well using `TimeComparator`
+so that the user is able to return to the original state of the list,
+since sorting by name, for example, would permanently modify the `ObservableList`.
 
 ### Matching properties to a buyer, and vice versa
 
@@ -569,27 +745,23 @@ automation of matching between suitable properties and buyers
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------------------------- | --------------------------------------------|
-| `* * *`  | property agent                             | add new buyers
-| `* * *`  | property agent                             | add new properties
-| `* *`    | property agent                             | edit information without needing internet access
-| `* *`    | disorganised property agent                | categorise contacts as "buyer" or "seller         | keep track of demand and supply
-| `* *`    | property agent                             | edit contacts' details                            | easily update any changes
-| `* * *`  | property agent with a large number of contacts | sort contacts in different ways (alphabetical order, date of transaction, location)           | easily update any changes
-| `* *`    | property agent                             | search and filter for certain characteristics     | easily find matches
-| `*`      | property agent                             | link a buyer to a property
-| `*`      | non tech-savvy user                        | be able to make use of the command-line interface without too much difficulty
-| `*`      | property agent                             | track a list of buyers who are interested in a certain property | follow up on these leads
-| `*`      | property agent                             | filter out properties that do not meet the conditions of a prospective buyer
-| `*`      | property agent                             | save tasks related to each contact                | monitor the things that I have to do
-| `*`      | property agent                             | input notes for each contact                      | easily retrieve it for future correspondence with the client
-| `*`      | property agent                             | view all existing information at a glance in a clean, visually-appealing manner
-| `*`      | property agent with many clients           | avoid duplicate contacts                          | have a neat list of active clients
-| `*`      | property agent                             | view the commission rate for each closed case and aggregated commissions for the year | track my progress
-| `*`      | property agent                             | prioritise some clients who are desperate to find a place | contact them first and close the deal more easily |
-| `*`      | property agent with a busy schedule        | know when my next free time is                    | schedule client meetings with no overlap
-| `*`      | property agent                             | keep track of the cases that I have closed        | track my progress
+| Priority | As a …​                                        | I want to …​                                                                          | So that I can…​                                                   |
+|----------|------------------------------------------------|---------------------------------------------------------------------------------------|-------------------------------------------------------------------|
+| `* * *`  | property agent                                 | add new buyers                                                                        |                                                                   |
+| `* * *`  | property agent                                 | add new properties                                                                    |                                                                   |
+| `* *`    | property agent                                 | edit contact and property information offline                                         | keep the information updated                                      |
+| `* *`    | property agent                                 | delete existing contact and propety entries                                           | remove redundant information, to keep dataset neat                |
+| `* *`    | property agent with a large number of contacts | sort buyers and properties according to various relevant criteria                     | easily find information using their order |
+| `* *`    | property agent                                 | find and filter for certain characteristics                                           | easily find matches                                               |
+| `*`      | non tech-savvy user                            | be able to make use of the command-line interface without too much difficulty         |                                                                   |
+| `*`      | property agent                                 | filter out properties that do not meet the conditions of a prospective buyer          |                                                                   |
+| `*`      | property agent                                 | save tasks related to each contact                                                    | monitor the things that I have to do                              |
+| `*`      | property agent                                 | input notes for each contact                                                          | easily retrieve it for future correspondence with the client      |
+| `*`      | property agent                                 | view all existing information at a glance in a clean, visually-appealing manner       | easily make sense of information presented                        |
+| `*`      | property agent with many clients               | avoid duplicate contacts                                                              | have a neat list of active clients                                |
+| `*`      | property agent                                 | view the commission rate for each closed case and aggregated commissions for the year | track my progress                                                 |
+| `*`      | property agent                                 | prioritise some clients who are desperate to find a place                             | contact them first and close the deal more easily                 |
+| `*`      | property agent with a busy schedule            | know when my next free time is                                                        | schedule client meetings with no overlap                          |
 
 ### Use cases
 
@@ -658,6 +830,7 @@ Use case ends.
 
 1. User chooses to list properties.
 2. User executes list properties command.
+3. Cobb displays a list of all properties saved.
 
 Use case ends.
 
@@ -667,6 +840,7 @@ Use case ends.
 
 1. User chooses to list buyers
 2. User executes list buyers command.
+3. Cobb displays a list of all buyers saved.
 
 Use case ends.
 
@@ -687,6 +861,26 @@ Use case ends.
 1. User <u>lists buyers [(Use case: List buyers)](#use-case-list-buyers)</u>.
 2. User finds buyers that are no longer relevant (e.g. already bought a house).
 3. User executes delete command on these buyers.
+
+### Use case: Sort properties
+
+**MSS:**
+
+1. User chooses to sort properties by a specified field in a specified order.
+2. User executes sort properties command on the currently displayed properties list.
+3. Cobb displays the last-shown property list in a sorted order according to the specified criteria.
+
+Use case ends.
+
+### Use case: Sort buyers
+
+**MSS:**
+
+1. User chooses to sort buyers by a specified field in a specified order.
+2. User executes sort buyers command on the currently displayed buyer list.
+3. Cobb displays the last-shown buyer list in a sorted order according to the specified criteria.
+
+Use case ends.
 
 ### Use case: Match buyer to properties
 
@@ -721,6 +915,30 @@ Use case ends.
   2b. User edits the existing buyer with new requirements, if necessary.<br>
   Use case continues at 3.
 
+### Use case: Edit a property
+
+**MSS:**
+
+1. User chooses to edit an existing property.
+2. User enters the details of the property to be edited.
+3. Property is successfully edited with the new details.
+
+Use case ends.
+
+**Extensions**
+* 1a. The property does not exist.
+  * 1a1. Cobb shows an error message.
+  * Use case ends.
+* 2a. The new details cause the property to be a duplicate of another property.
+  * 2a1. Cobb shows an error message.
+  * Use case ends.
+* 2b. The new details are the same as previous details.
+  * 2b1. Property remains the same.
+  * Use case ends.
+* 2c. The new details are invalid.
+  * 2c1. Cobb shows an error message.
+  * Use case ends.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -730,14 +948,21 @@ Use case ends.
 3. Should be able to hold up to 1000 buyers without a noticeable sluggishness in performance for typical usage.
 4. Should be able to respond within two seconds.
 5. Should be downloaded and available to use within one minute.
+6. Should work without requiring an installer.
+7. Should avoid to include hard-to-test features
+7. Should not depend on a remote server.
+8. Should save data locally in a human editable text file.
+9. Should be able to be packaged into a JAR file.
+10. Should have a GUI with readable font, at least size 11, and resizable.
 6. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-
-*{More to be added}*
 
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Buyer**: A client interested in purchasing or investing in properties.
+* **Property**: A real estate unit listed or accessible in the market.
+* **Owner**: The person who possess the rights to use/ transfer/ commercialize the real estate unit.
+* **Property Agent**: A licensed professional that represents buyer or sellers in real estate transaction. Intended target users for this product.
 
 --------------------------------------------------------------------------------------------------------------------
 
