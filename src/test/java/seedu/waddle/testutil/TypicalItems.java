@@ -2,6 +2,7 @@ package seedu.waddle.testutil;
 
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COST_ART;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COST_BEACH;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COST_BREAKFAST;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COST_LUNCH;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COST_SHOPPING;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COST_SKINNY;
@@ -35,7 +36,7 @@ import java.util.List;
 import seedu.waddle.model.item.Item;
 
 /**
- * A utility class containing a list of {@code Itinerary} objects to be used in tests.
+ * A utility class containing a list of {@code Item} objects to be used in tests.
  */
 public class TypicalItems {
     private TypicalItems() {
@@ -73,7 +74,7 @@ public class TypicalItems {
 
     public static Item getBreakfast() {
         return new ItemBuilder().withDesc(VALID_ITEM_DESC_BREAKFAST)
-                .withDuration(VALID_DURATION_BREAKFAST).withCost(VALID_COST_ART)
+                .withDuration(VALID_DURATION_BREAKFAST).withCost(VALID_COST_BREAKFAST)
                 .withPriority(VALID_PRIORITY_BREAKFAST).build();
     }
 

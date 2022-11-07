@@ -25,6 +25,7 @@ Given below are my contributions to the project.
   * Nothing
 
 * **Documentation**:
+  * Wrote and edited help messages for various commands
   * User Guide:
     * Wrote the content for the following sections:
       * Universal commands

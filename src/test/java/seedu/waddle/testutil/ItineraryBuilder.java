@@ -19,7 +19,7 @@ public class ItineraryBuilder {
     public static final String DEFAULT_PEOPLE = "1";
     public static final String DEFAULT_BUDGET = "2000.00";
 
-    private Description name;
+    private Description description;
     private Country country;
     private Date startDate;
     private ItineraryDuration duration;
@@ -30,7 +30,7 @@ public class ItineraryBuilder {
      * Creates a {@code ItineraryBuilder} with the default details.
      */
     public ItineraryBuilder() {
-        name = new Description(DEFAULT_NAME);
+        description = new Description(DEFAULT_NAME);
         country = new Country(DEFAULT_COUNTRY);
         startDate = new Date(DEFAULT_START_DATE);
         duration = new ItineraryDuration(DEFAULT_DURATION);
@@ -42,7 +42,7 @@ public class ItineraryBuilder {
      * Initializes the ItineraryBuilder with the data of {@code itineraryToCopy}.
      */
     public ItineraryBuilder(Itinerary itineraryToCopy) {
-        name = itineraryToCopy.getDescription();
+        description = itineraryToCopy.getDescription();
         country = itineraryToCopy.getCountry();
         startDate = itineraryToCopy.getStartDate();
         duration = itineraryToCopy.getDuration();
@@ -53,8 +53,8 @@ public class ItineraryBuilder {
     /**
      * Sets the {@code Name} of the {@code Itinerary} that we are building.
      */
-    public ItineraryBuilder withName(String name) {
-        this.name = new Description(name);
+    public ItineraryBuilder withDescription(String name) {
+        this.description = new Description(name);
         return this;
     }
 
@@ -99,7 +99,7 @@ public class ItineraryBuilder {
     }
 
     public Itinerary build() {
-        return new Itinerary(name, country, startDate, duration, people, budget);
+        return new Itinerary(description, country, startDate, duration, people, budget);
     }
 
 }

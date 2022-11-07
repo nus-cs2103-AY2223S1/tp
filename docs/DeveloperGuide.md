@@ -9,6 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
+* [Apache PDFBox®](https://pdfbox.apache.org/)
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
 --------------------------------------------------------------------------------------------------------------------
@@ -176,7 +177,7 @@ Additionally, we will explain the methods of particular concern below.
 * `Item#getStartTime()` — Returns the start time of the item.
 * `Item#getEndTime()` — Returns the end time of the item.
 
-Given below is an example usage scenario and how the Plan/Unplan mechanism behaves at each step.
+Given below is an example usage scenario and how the Plan/Unplan mechanism behaves at each step. The sequence diagram is a partial diagram showing omitting the details of how the `PlanCommand` is executed. This detail will be shown in the next sequence diagram.
 
 ![PlanSequenceDiagram](images/PlanSequenceDiagram.png)
 
@@ -193,8 +194,6 @@ Step 4. `Itinerary` gets the item from its unscheduledItemList at the specified 
 Step 5. `Day`self invokes `Day#getConflictingItems(item)`. If there are no conflicting items, the incoming item is added into the day's `itemList`. If there are conflicting items, a CommandException is thrown with a time conflict message.
 
 Step 6. If the item is successfully added, a `CommandResult` object is created with the success message.
-
-The following sequence diagram shows how the undo operation works:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The Unplan command works in a similar manner. Instead of `Itinerary#planItem(itemIndex, dayNumber, startTime)` and `Day#addItem(item)`, `Itinerary#unplanItem(MultiIndex)` and `Day#removeitem(Index)` are called instead.
 
@@ -245,18 +244,26 @@ Step 1. The `EditCommand` object's `execute()` method is called.
     * The Items that were scheduled in the deleted Days would be unscheduled.
   * Update the duration field.
 
-### Export
+### Export to PDF
 
-The Export feature is facilitated by the pdfbox library.
+The exporting feature is facilitated by the Apache PDFBox Java library.
 
-The conversion from Objects to a text output can be done by calling the `getTextRepresentation()` method of the `Itinerary` ,`Day` and  `item` classes in a cascading manner.
+PDFBox converts a fill-able PDF template into an Acroform. Each fill-able field of the Acroform (PDField) can be identified with
+a field name and PDField can be filled by calling `PDField#setValue(value)`.
 
-`Itinerary#getTextRepresentation()` will call and append `Day#getTextRepresentation()` of the `Day`s in its `days` list.  `Day#getTextRepresentation()` then calls and append `Item#getTextRepresentation()` of the `Item`s in its `itemList`.
-The output will be the itinerary fully represented in text form and written to a newly created blank pdf.
+Given below is a walk-through of the exporting to pdf mechanism.
+* Step 1. The `PdfCommand` object's `execute()` method is called.
+* Step 2. A new `PdfFiller` object is created with the current itinerary and a path to the export template.
+* Step 3. `PdfFiller#fillItinerary()` method is called. 
+* Step 4. `PdfFiller#fillDay()` method is called with each Day object in the itinerary.
+* Step 5. In each `PdfFiller#fillDay()`, the list of scheduled items will be converted to a list of PDFieldInfo which contains
+the description of the item as value and a name which identifies the PDField the item is supposed to fill.
+* Step 6. `PdfFiller#fillForm()` method is called.
+* Step 7. An acroform is generated using the template pdf and each PDField in the acroform is filled up according using 
+the list of PDFieldInfo which specifies the PDField to fill and the value to fill with.
+* Step 8. The filled up forms for the different days are then appended together and export as one pdf.
 
-PDF is then exported.
-
-PDF will be stored as "data/<itinerary name>.pdf".
+PDF will be stored in the user's Documents folder with the naming being "<itinerary name>.pdf".
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -323,13 +330,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to add itinerary.
-2. User enters the name of the itinerary.
+2. User enters the description of the itinerary.
 3. Waddle creates the itinerary and provides a confirmation to the user.<br>
 Use case ends.
 
 **Extensions**
 
-* 2a. The itinerary name is not entered.
+* 2a. The itinerary description is not entered.
   * Waddle shows an error message.<br>
   Use case resumes at step 2.
 
@@ -345,7 +352,7 @@ Use case ends.
 
 **Extensions**
 
-* 2a. The itinerary name is incomplete.
+* 2a. The itinerary description is incomplete.
   * Waddle shows an error message.<br>
   Use case resumes at step 2.
 

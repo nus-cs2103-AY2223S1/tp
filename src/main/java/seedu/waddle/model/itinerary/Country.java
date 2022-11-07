@@ -21,7 +21,7 @@ public class Country {
     public final String country;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code Country}.
      *
      * @param country A valid country.
      */

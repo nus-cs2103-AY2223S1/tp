@@ -8,8 +8,8 @@ import static seedu.waddle.logic.commands.CommandTestUtil.DURATION_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.DURATION_DESC_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_BUDGET_DESC;
 import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_COUNTRY_DESC;
+import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_DESC_DESC;
 import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_DURATION_DESC;
-import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_PEOPLE_DESC;
 import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_START_DATE_DESC;
 import static seedu.waddle.logic.commands.CommandTestUtil.ITINERARY_DESC_DESC_SUMMER;
@@ -85,7 +85,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Description.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, "1" + INVALID_DESC_DESC, Description.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_COUNTRY_DESC, Country.MESSAGE_CONSTRAINTS); // invalid country
         assertParseFailure(parser, "1" + INVALID_START_DATE_DESC, Date.MESSAGE_CONSTRAINTS); // invalid start date
         //invalid duration
@@ -112,7 +112,7 @@ public class EditCommandParserTest {
          */
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_START_DATE_DESC
+        assertParseFailure(parser, "1" + INVALID_DESC_DESC + INVALID_START_DATE_DESC
                 + VALID_DURATION_SUMMER + VALID_COUNTRY_SUMMER + VALID_BUDGET_SUMMER, Description.MESSAGE_CONSTRAINTS);
     }
 
@@ -121,7 +121,8 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_SECOND_ITINERARY;
         String userInput = targetIndex.getOneBased() + COUNTRY_DESC_SUMMER + PEOPLE_DESC_SUMMER
                 + START_DATE_DESC_SUMMER + DURATION_DESC_SUMMER + ITINERARY_DESC_DESC_SUMMER + BUDGET_DESC_SUMMER;
-        EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder().withName(VALID_ITINERARY_DESC_SUMMER)
+        EditItineraryDescriptor descriptor =
+                new EditItineraryDescriptorBuilder().withDescription(VALID_ITINERARY_DESC_SUMMER)
                 .withCountry(VALID_COUNTRY_SUMMER).withStartDate(VALID_START_DATE_SUMMER)
                 .withDuration(VALID_DURATION_SUMMER).withPeople(VALID_PEOPLE_SUMMER)
                 .withBudget(VALID_BUDGET_SUMMER).build();
@@ -147,7 +148,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_ITINERARY;
         String userInput = targetIndex.getOneBased() + ITINERARY_DESC_DESC_SUMMER;
         EditItineraryDescriptor descriptor = new EditItineraryDescriptorBuilder()
-                .withName(VALID_ITINERARY_DESC_SUMMER).build();
+                .withDescription(VALID_ITINERARY_DESC_SUMMER).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

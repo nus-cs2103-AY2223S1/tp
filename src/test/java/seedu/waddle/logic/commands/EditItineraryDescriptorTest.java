@@ -37,7 +37,7 @@ public class EditItineraryDescriptorTest {
 
         // different name -> returns false
         EditItineraryDescriptor editedSummer =
-                new EditItineraryDescriptorBuilder(DESC_SUMMER).withName(VALID_ITINERARY_DESC_WINTER).build();
+                new EditItineraryDescriptorBuilder(DESC_SUMMER).withDescription(VALID_ITINERARY_DESC_WINTER).build();
         assertFalse(DESC_SUMMER.equals(editedSummer));
 
         // different country -> returns false
