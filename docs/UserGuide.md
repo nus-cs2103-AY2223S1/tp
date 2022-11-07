@@ -1,6 +1,6 @@
 ---
 layout: page
-title: HealthContact User Guide
+title: User Guide
 ---
 
 
@@ -40,8 +40,13 @@ patient bills for the family clinic.
 * [Save the data](#114-save-the-data)
 * [Edit the data file](#115-edit-the-data-file)
 
-## [Command Summary Table](#2-command-summary-table)
-## [Frequently Asked Questions](#3-frequently-asked-questions)
+## [Command Summary]
+
+* [Command summary table](#2-command-summary-table)
+
+## [Others]
+
+* [Frequently asked questions](#3-frequently-asked-questions)
 
 ---
 # Quick Start
@@ -913,33 +918,33 @@ HealthContact data are saved as a JSON file `[JAR file location]/data/healthcont
 
 # 2. Command Summary Table
 
-| Feature  |                                      | Command Word        | Shortcut  |
-|----------|--------------------------------------|---------------------|-----------|
-| Add      | a patient                            | `addpatient`        | `ap`      |
-|          | an appointment of a patient          | `addappointment`    | `aa`      |
-|          | a bill for an appointment            | `addbill`           | `ab`      |
-| Edit     | a patient                            | `editpatient`       | `ep`      |
-|          | an appointment of a patient          | `editappointment`   | `ea`      |
-|          | a bill for an appointment            | `editbill`          | `eb`      |
-| Delete   | a patient                            | `deletepatient`     | `dp`      |
-|          | an appointment of a patient          | `deleteappointment` | `da`      |
-|          | a bill for an appointment            | `deletebill`        | `db`      |
-| Find     | a patient                            | `findpatient`       | `fp`      |
-|          | an appointment of a patient          | `findappointment`   | `fa`      |
-|          | a bill for an appointment            | `findbill`          | `fb`      |
-| Sort     | patients                             | `sortpatient`       | `sop`     |
-|          | appointments                         | `sortappointment`   | `soa`     |
-|          | bills                                | `sortbill`          | `sob`     |                                                                                                                                                               |                                                                                                                                                                                                                                                                                                                                                                                                            |
-| Select   | a patient                            | `selectpatient`     | `slp`     |
-|          | an appointment                       | `selectappointment` | `sla`     |
-| Set bill | as paid                              | `setpaid`           | `sp`      |
-|          | as unpaid                            | `setunpaid`         | `sup`     |
-| Undo     | the last change                      | `undo`              |           |
-| Redo     | the last undone change               | `redo`              |           |
-| Clear    | all the data saved                   | `clear`             |           |
-| List     | all patients, appointments and bills | `list`              | `ls`      |
-| Exit     | the program                          | `exit`              |           |
-| Help     | the user with user guide             | `help`              |           |
+| Feature  |                                      | Command Word        | Shortcut |
+|----------|--------------------------------------|---------------------|----------|
+| Add      | a patient                            | `addpatient`        | `ap`     |
+|          | an appointment of a patient          | `addappointment`    | `aa`     |
+|          | a bill for an appointment            | `addbill`           | `ab`     |
+| Edit     | a patient                            | `editpatient`       | `ep`     |
+|          | an appointment of a patient          | `editappointment`   | `ea`     |
+|          | a bill for an appointment            | `editbill`          | `eb`     |
+| Delete   | a patient                            | `deletepatient`     | `dp`     |
+|          | an appointment of a patient          | `deleteappointment` | `da`     |
+|          | a bill for an appointment            | `deletebill`        | `db`     |
+| Find     | a patient                            | `findpatient`       | `fp`     |
+|          | an appointment of a patient          | `findappointment`   | `fa`     |
+|          | a bill for an appointment            | `findbill`          | `fb`     |
+| Sort     | patients                             | `sortpatient`       | `sop`    |
+|          | appointments                         | `sortappointment`   | `soa`    |
+|          | bills                                | `sortbill`          | `sob`    |
+| Select   | a patient                            | `selectpatient`     | `slp`    |
+|          | an appointment                       | `selectappointment` | `sla`    |
+| Set bill | as paid                              | `setpaid`           | `sp`     |
+|          | as unpaid                            | `setunpaid`         | `sup`    |
+| Undo     | the last change                      | `undo`              |          |
+| Redo     | the last undone change               | `redo`              |          |
+| Clear    | all the data saved                   | `clear`             |          |
+| List     | all patients, appointments and bills | `list`              | `ls`     |
+| Exit     | the program                          | `exit`              |          |
+| Help     | the user with user guide             | `help`              |          |
 
 # 3. Frequently Asked Questions
 1. Q: How do I find out which appointment a bill is for?
