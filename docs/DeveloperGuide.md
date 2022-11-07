@@ -189,17 +189,27 @@ The Edit mechanism is facilitated by `EditCommand` and `EditCommandParser`. It a
 
 Step 1: The user inputs `edit 1 p/91234567 e/johndoe@example.com`. This the phone number and email address of the person with an index of 1 to be `91234567` and `johndoe@example.com` respectively.
 
-Step 2: `LogicManager` calls `AddressBookParser#parseCommand` with the user input.
+Step 2: `LogicManager` calls `AddressBookParser` with the user input.
 
-Step 3: `AddressBookParser` will parse the command word and create a new `EditCommandParser` and call its function `parse` with the index as the arguments.
+Step 3: `AddressBookParser` will parse the command word and create a new `EditCommandParser` and call its function `parse` with the rest of the user input as the arguments.
 
-Step 4: The `EditCommandParser#parse` will then parse the arguments and create a new `EditCommand` object.
+Step 4: The `EditCommandParser#parse` will then parse the insurance prefixes to create a new `EditPersonDescriptor` object.
 
-Step 5: The `LogicManager` then calls `EditCommand#execute`.
+Step 5: The `EditCommandParser#parse` will then create a new `EditCommand` object using the index and the `EditPersonDescriptor` object.
 
-Step 6: The `EditCommand` communicates with the `Model` to add the person by calling `Model#editPerson`.
+Step 5: The `LogicManager` then calls `EditCommand#execute` with the `Model` object.
 
-Step 7: `EditCommand` then returns a new `CommandResult` with the result of the execution.
+Step 6: The `EditCommand` calls `Model#getFilteredPersonList` to get the filtered `List` of `Person` objects.
+
+Step 7: The `EditCommand` gets the `Person` to be edited from the `List`
+
+Step 8: The `EditCommand` calls its `createEditedPerson` method with the `Person` to be edited and the `EditPersonDescriptor` which returns the new edited `Person` .
+
+Step 9: The `EditCommand` calls the `setPerson` method of the `Model` object to replace the existing `Person` object with the new edited one.
+
+Step 11: The `EditCommand` then returns a new `CommandResult` object with the result of the execution.
+
+Step 12: The `LogicManager` then returns the `CommandResult` object.
 
 ![Sequence diagram for the Edit Command](images/EditSequenceDiagramParse.png)
 ![Sequence diagram for the Edit Command](images/EditSequenceDiagramExecute.png)
