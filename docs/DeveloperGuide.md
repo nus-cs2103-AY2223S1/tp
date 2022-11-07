@@ -425,6 +425,56 @@ The following sequence diagram shows how the `findc` command works:
 The following activity diagram shows what happens when a user executes a `findc` command:
 ![FindNameActivityDiagram](images/FindNameActivityDiagram.png)
 
+
+### Sort internship feature
+
+#### About this feature
+
+The sort internship feature allows users to sort the list of internship application via the given parameter in the given
+order via the command `sort SORT_TYPE SORT_ORDER`, where `SORT_TYPE` can either be time or salary, and `SORT_ORDER`
+can either be `a` or `d`.
+
+#### How it is implemented
+
+The `sort` command is facilitated by the `SortCommand`, `SortSalaryCommand`, `SortTimeCommand`, and `SortCommandParser`.
+It enables users to sort the list of internship applications either by salary or by time and by ascending or descending
+order.
+
+Given below is how the sort mechanism behaves at each step.
+
+#### Parsing User input
+
+1. The user inputs the `sort` command.
+2. The `InTrackParser` processes the input and creates a new `SortCommandParser`.
+3. The `SortCommandParser` then checks the validity of `SORT_TYPE`. If `SORT_TYPE` is invalid or absent, a
+   `ParseException` would be thrown.
+4. The `SortCommandParser` then creates either `SortTimeCommand` or `SortSalaryCommand` based on the processed input.
+
+#### Command execution
+
+Sort by salary:
+
+1. The `LogicManager` executes the `SortSalaryCommand`.
+2. The `SortSalaryCommand` checks if the `ORDER_TYPE` is `a` or `d`.
+3. If the `ORDER_TYPE` is `a`, then `Model#ascendSortSalary()` is called. If the `ORDER_TYPE` is `d`, then
+`Model#descendSortSalary()` is called.
+
+Sort by time:
+
+1. The `LogicManager` executes the `SortTimeCommand`.
+2. The `SortTimeCommand` checks if the `ORDER_TYPE` is `a` or `d`.
+3. If the `ORDER_TYPE` is `a`, then `Model#ascendSortTime()` is called. If the `ORDER_TYPE` is `d`, then
+   `Model#descendSortTime()` is called.
+
+The following sequence diagram shows how the `sort` command works:
+
+![SortTimeSequenceDiagram](images/SortTimeSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user executes a `sort` command:
+
+![SortTimeActivityDiagram](images/SortTimeActivityDiagram.png)
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
