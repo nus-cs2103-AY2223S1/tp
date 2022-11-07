@@ -21,6 +21,10 @@ public interface Model {
     Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
     Predicate<Bill> PREDICATE_SHOW_ALL_BILLS = unused -> true;
 
+    Predicate<Patient> PREDICATE_LIST_SHOW_ALL_PATIENTS = unused -> true;
+    Predicate<Appointment> PREDICATE_LIST_SHOW_ALL_APPOINTMENTS = unused -> true;
+    Predicate<Bill> PREDICATE_LIST_SHOW_ALL_BILLS = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */

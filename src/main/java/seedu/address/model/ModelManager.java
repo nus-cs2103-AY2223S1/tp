@@ -363,9 +363,12 @@ public class ModelManager implements Model {
     public void undo() throws CommandException {
         try {
             boolean shouldNotAdd = history.compareHealthContactHistory(this.healthContact)
-                    && !(this.filteredPatients.getPredicate() == null
-                    && this.filteredAppointments.getPredicate() == null
-                    && this.filteredBills.getPredicate() == null);
+                    && !((this.filteredPatients.getPredicate() == null
+                    || this.filteredPatients.getPredicate() == PREDICATE_SHOW_ALL_PATIENTS)
+                    && (this.filteredAppointments.getPredicate() == null
+                    || this.filteredAppointments.getPredicate() == PREDICATE_SHOW_ALL_APPOINTMENTS)
+                    && (this.filteredBills.getPredicate() == null
+                    || this.filteredBills.getPredicate() == PREDICATE_SHOW_ALL_BILLS));
             if (!shouldNotAdd) {
                 history.updateRedoHealthContactHistory();
                 history.updateRedoPatientsHistory();

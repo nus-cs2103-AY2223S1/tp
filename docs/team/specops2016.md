@@ -30,13 +30,19 @@ Given below are my contributions to the project.
 * UndoCommand
     * It reverts the user's last command.
 * RedoCommand
-   * It reverts the user's last undo.
+    * It reverts the user's last undo.
 * UndoCommandTest and UndoCommandParserTest
+    * It tests the undo command. 
 * RedoCommandTest and RedoCommandParserTest
+    * It tests the redo command.
 * SortPatientCommandTest and SortPatientCommandParserTest
+    * It tests the sortpatient command.
 * SortBillCommandTest and SortBillCommandParserTest
+    * It tests the sortbill command. 
 * SortAppointmentCommandTest and SortAppointmentCommandParserTest
+    * It tests the sortappointment command. 
 * AddBillCommandTest and AddBillCommandParserTest
+    * It tests the addbill command. 
 * Modified CommandTestUtil to include new fields for testing
    
 ### Contributions to the User Guide:
@@ -71,9 +77,7 @@ Given below are my contributions to the project.
     * [#1](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/264)
     * [#2](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/158)
     * [#3](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/141)
-
-### Contributions beyond the project team:
-to be added soon
+    
 
 ### Tools:
 * IntelliJ IDEA
@@ -83,4 +87,10 @@ to be added soon
 * SourceTree
 
 ### Project management:
-to be added soon
+* Managed the team's GitHub repository
+* Managed the team's issue tracker
+* Managed the team's milestones
+* Managed the team's releases
+* Managed the team's project board
+* Managed the team's project website
+
