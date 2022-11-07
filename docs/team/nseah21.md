@@ -7,7 +7,7 @@ title: Nicholas Seah's Project Portfolio Page
 
 RC4HDB is a desktop application that offers a convenient and intuitive interface for housing management staff to streamline their resident and venue management operations.
 
-Given below are my contributions to the project. You may view the full code here: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nseah21&breakdown=true)
+Given below are my contributions to the project. You may view the full code here: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=nseah21&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=nseah21&tabRepo=AY2223S1-CS2103T-W12-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **New Feature**: Added the ability to show, hide, and reset table columns
     * *What it does*: allows the user to hide any number of unwanted columns in the table. Columns that have been hidden can be restored by using the reset command.
