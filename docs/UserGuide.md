@@ -101,25 +101,27 @@ These descriptor words will be ignored for commands that do not use them (e.g. `
   * **Must only be from the following:** `ear`, `nose`, `throat` (not case-sensitive). <br>
     e.g. `t/sick` will cause an error message.
 * `PHONE_NUMBER`
-  * Must only contain integers, and it should be at least 3 digits long.
+  * **Must only contain integers**, and it should be at least 3 digits long.
 * `EMAIL`
   * Format: `local-part@domain-name`
   * Follows below constraints:
   * `local-part` must:
-    * Contain alphanumeric characters and these special characters: `+`, `_`, `.`, `-`.
+    * Contain alphanumeric characters or these special characters: `+`, `_`, `.`, `-`.
     * Not start or end with any special characters.
   * `domain-name` must:
     * Be at least 2 characters long.
     * Begin and end with alphanumeric characters.
-    * Have both parts consist of alphanumeric characters, separated only by hyphens (`-`), if any.
-  * Examples:
-    * Valid
-      * `John@example.com`
-      * `John@example`
-    * Invalid
-      * `John`: Missing `@` and `domain-name`.
-      * `John@^s^`: `^s^` does not start and end with alphanumeric characters.
-      * `John@x`: `x` is less than 2 characters long.
+    * Have both parts consist of alphanumeric characters, separated only by hyphens (`-`), if any. <br>
+      e.g. `John` will cause an error message: Missing `@` and `domain-name`.
+* `REASON`
+  * **Must not be empty**.
+* `DATE` 
+  * **Must input** in a YYYY-MM-DD HH:MM format or HH:MM YYYY-MM-DD format <br>
+    e.g. `2022-12-10 14:00` or `14:00 2022-12-10`.
+* `TIME_PERIOD`
+  * **Must input** at least a Y M or D value to be recurring. Values **must be inserted in the order** Y -> M -> D.
+  * **Must be in the range of** 0-10Y, 0-12M or 0-31D to be considered as valid. <br>
+    e.g. `1Y3D`, `2M`.
 </div>
 
 
@@ -182,9 +184,6 @@ Format: `book INDEX r/REASON d/DATE [pe/TIME_PERIOD] [t/TAG]…​`
 
 * The index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …​
-* Dates **must be inputted** in a YYYY-MM-DD HH:MM format or HH:MM YYYY-MM-DD format.
-* Input at least a Y, M or D value for the time period. Value **must be inserted in the order** Y -> M -> D.
-* Time Period Values **must be in the range of** 0-10Y, 0-12M or 0-31D to be considered as valid.
 * Default time period is set to 0Y0M0D if no time period is inputted.
 
 Examples:
