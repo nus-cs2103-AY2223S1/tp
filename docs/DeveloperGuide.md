@@ -21,6 +21,8 @@ better understand what the application does from the user's standpoint, you migh
 [Use cases](#Use cases) section first, or simply run the application and try it for yourself before reading the rest
 of the guide.
 
+--------------------------------------------------------------------------------------------------------------------
+## **Table of Contents**
 * Table of Contents
 {:toc}
 
@@ -39,6 +41,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
+[Back to top](#table-of-contents)
 
 ### Architecture
 
@@ -90,6 +93,8 @@ to the implementation of a component), as illustrated in the (partial) class dia
 The sections below give more details of each component.
 
 ### UI component
+[Back to top](#table-of-contents)
+
 
 **API**: 
 [`Ui.java`](https://github.com/AY2223S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
@@ -107,6 +112,7 @@ The `UI` component,
 * depends on some classes in the `Model` component, as it displays `Buyer` and `Property` objects residing in `Model`.
 
 ### Logic component
+[Back to top](#table-of-contents)
 
 **API** : 
 [`Logic.java`](https://github.com/AY2223S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
@@ -144,6 +150,8 @@ as a `Command` object.
 `Parser` interface so that they can be treated similarly where possible e.g. during testing.
 
 ### Model component
+[Back to top](#table-of-contents)
+
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="1000" />
@@ -170,6 +178,7 @@ children classes have a lot of methods with identical purposes.<br>
 
 
 ### Storage component
+[Back to top](#table-of-contents)
 
 **API** :
 [`Storage.java`](https://github.com/AY2223S1-CS2103T-F12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
@@ -191,6 +200,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
+[Back to top](#table-of-contents)
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -239,7 +249,7 @@ to the `commandHistory` list, and index is set to `commandHistory.size()`.
 Step 3. The user types a command halfway, but does not press the Enter key. He/she now wishes to use the previous
 command to type the command.
 
-Step 4. The user presses and releases the Up arrow. `CommandBox#handleKeyReleased` is fired, which sets the text field
+Step 4. The user presses and releases the Up arrow. `CommandBox#handleKeyReleased()` is fired, which sets the text field
 to display the `(index - 1)`th element in `commmandHistory`. Because the current command is one that has not been
 executed, it is saved in the field `currentCommand`.
 
@@ -251,6 +261,7 @@ element in `commandHistory`, the text field is set to display the string `curren
 unexecuted command from Step 3.
 
 ### Indexing existing buyers and properties in the database
+[Back to top](#table-of-contents)
 
 Many of the existing features that are currently implemented requires Cobb to index existing entries in the database.
 For example, `deletebuyer 1` would perform the `deletebuyer` operation on the buyer at index `1` of the buyer list.
@@ -292,6 +303,7 @@ list to be displayed correctly on the user's screen.
           to confusion.
 
 ### Internal implementations of Buyer and Property
+[Back to top](#table-of-contents)
 
 Cobb allows functionality that performs operations on two distinct types of entities stored in the database: Potential property
 buyers, as well as properties that are for sale. To allow for this functionality, two classes were created to represent each type
@@ -354,6 +366,7 @@ From the diagram, it can be seen that a `Property` object consists of the follow
     * Difficult to abstract and test each functionality of the class separately.
 
 ### Creating a buyer: `addbuyer`
+[Back to top](#table-of-contents)
 
 The structure for executing an `addbuyer` command follows the flow as mentioned in the “Logic component” section of this guide.
 
@@ -402,6 +415,7 @@ The activity diagram for the creation of a buyer can be seen below.
 ![Add buyer activity diagram](images/AddBuyerActivityDiagram.png)
 
 ### Creating a property: `addprop`
+[Back to top](#table-of-contents)
 
 The structure for executing an `addprop` command follows the flow as mentioned in the "Logic component" section of this guide.
 
@@ -446,8 +460,8 @@ The activity diagram for the creation of a property can be seen below.
 
 ![Add property activity diagram](images/AddPropertyActivityDiagram.png)
 
-
 ### Editing of buyers and properties
+[Back to top](#table-of-contents)
 
 #### Motivation
 The user may want to edit the details of a buyer or property after adding it to the application. For example, the user may want to change the budget range of a buyer after adding it to Cobb. 
@@ -489,6 +503,7 @@ The following sequence diagram shows how the `EditBuyerCommand` is executed.
 By creating a new entity every time the user edits, we can easily add the new buyer or property into the model, and remove the old one. This also allows us to easily undo the edit command in the future, by simply adding the old entity back into the model.
 
 ### Owner specification within a property
+[Back to top](#table-of-contents)
 
 #### Motivation
 In real estate, a property being listed by a property agent is usually owned by a property owner. 
@@ -536,6 +551,7 @@ The tradeoffs for this approach is examined below:
       the owner is deleted.
 
 ### Filtering buyers and properties
+[Back to top](#table-of-contents)
 
 In order to filter `Buyers` and `Properties`, a `Predicate` needs to be passed into the `ObservableList` that stores 
 references to these objects and displays them on the user's screen. These predicates can differ in the conditions that are
@@ -585,6 +601,7 @@ The class diagram below represents the overall structure of the predicates for `
    contain the parameter provided to `-n` as a *substring*.
 
 ### Sorting buyers and properties
+[Back to top](#table-of-contents)
 
 To sort `Buyers` and `Properties`, the `ObservableList` that stores references to these objects and displays them on the user's screen
 is modified directly to a sorted version. These changes are propagated directly to the `FilteredList`, enabling users to sort
@@ -642,6 +659,7 @@ so that the user is able to return to the original state of the list,
 since sorting by name, for example, would permanently modify the `ObservableList`.
 
 ### Matching properties to a buyer, and vice versa
+[Back to top](#table-of-contents)
 
 `matchprop` and `matchbuyer` are convenience features, allowing the users to find suitable matches between buyers
 and properties easily. Without this, users would have to manually input the conditions from an identified buyer or 
@@ -684,6 +702,7 @@ to occur would likely give the user more matches that were irrelevant instead of
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
+[Back to top](#table-of-contents)
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -694,6 +713,7 @@ to occur would likely give the user more matches that were irrelevant instead of
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
+[Back to top](#table-of-contents)
 
 ### Product scope
 
@@ -957,6 +977,7 @@ Use case ends.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
+[Back to top](#table-of-contents)
 
 This section gives you some information as to how to test the application manually.
 
@@ -988,6 +1009,15 @@ testers are expected to do more *exploratory* testing.
    Expected: "Invalid command format" error message should be displayed, with information regarding the syntax of the `addbuyer` command
    and a correct example of the command.
 
+### Adding a property
+1. Test case: `addprop -n Peak Residences -a 333 Thompson Road -p 1000000 -d long property description -o Bob -ph 91234567 -c Toa Payoh; Bright`<br>
+   Expected: New property should be added into the list with relevant details. "New property added" message should be displayed
+   with details of the property that was added.
+
+2. Test case: `addprop -n Peak Residences -a 333 Street`<br>
+   Expected: "Invalid command format" error message should be displayed, with information regarding the syntax of the `addprop` command
+   and a correct example of the command.
+
 ### Deleting a buyer
 
 1. Test case: `deletebuyer 1`<br>
@@ -997,20 +1027,45 @@ testers are expected to do more *exploratory* testing.
 2. Test case: `deletebuyer 0`<br>
    Expected: No buyer is deleted. Error details shown in the status message. 
 
-3. Other incorrect delete commands to try: `delete`, `delete x`, `...`, `delete test` (where x is larger than the list size)<br>
+3. Other incorrect delete commands to try: `deletebuyer`, `deletebuyer x`, `...`, `deletebuyer test` (where x is larger than the list size)<br>
+   Expected: Similar to previous.
+
+### Deleting a property
+
+1. Test case: `deleteprop 1`<br>
+   Expected: First property is deleted from the list. "Deleted Property" message should be displayed on the screen
+   with details of the deleted contact.
+
+2. Test case: `deleteprop 0`<br>
+   Expected: No property is deleted. Error details shown in the status message.
+
+3. Other incorrect delete commands to try: `deleteprop`, `deleteprop x`, `...`, `deleteprop test` (where x is larger than the list size)<br>
    Expected: Similar to previous.
    
 ### Editing a buyer
 
 1. Test case: `editbuyer 1 -n Tommy Jones`
    Expected: First buyer in the list should have their name changed to "Tommy Jones". "Edited Buyer" message should also be
-   displayed on the screen with details of the edited contact.
+   displayed on the screen with details of the edited buyer.
 
 2. Test case: `editbuyer -n Tommy Jones`
    Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `editbuyer`
    command and a correct example.
 
 3. Test case: `editbuyer 1`
+   Expected: "At least one field to edit must be provided" error message should be displayed.
+
+### Editing a property
+
+1. Test case: `editprop 1 -n Minecraft dirt hut`
+   Expected: First property in the list should have their name changed to "Minecraft dirt hut". "Edited Property" message should also be
+   displayed on the screen with details of the edited property.
+
+2. Test case: `editprop -n Minecraft dirt hut`
+   Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `editprop`
+   command and a correct example.
+
+3. Test case: `editprop 1`
    Expected: "At least one field to edit must be provided" error message should be displayed.
 
 ### Finding a buyer
@@ -1025,6 +1080,18 @@ testers are expected to do more *exploratory* testing.
    Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `findbuyers`
    command and a correct example.
 
+### Finding a property
+
+**Prerequisites**: A property that has 'House' in its name must exist in the property list.
+
+1. Test case: `findprops house`
+   Expected: Property list should be filtered to contain only properties that have 'house' as a substring in their name (case-insensitive).
+   "x properties listed" message should be displayed, where x refers to the number of properties in the new filtered list.
+
+2. Test case: `findbuyers`
+   Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `findprops`
+   command and a correct example.
+
 ### Filtering buyers
 
 **Prerequisites**: A buyer that has normal priority must exist in the buyer list.
@@ -1035,6 +1102,18 @@ testers are expected to do more *exploratory* testing.
 
 2. Test case: `filterbuyers`, `filterbuyers 1`, `filterbuyers x`
    Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `filterbuyers`
+   command and a correct example.
+
+### Filtering properties
+
+**Prerequisites**: A property that has an owner with name containing "Johnny" must exist in the property list.
+
+1. Test case: `filterproperties -o Johnny`
+   Expected: Buyer list should be filtered to contain only properties whose owners have names containing "Johnny".
+   "x properties listed" message should be displayed, where x refers to the number of properties in the new filtered list.
+
+2. Test case: `filterproperties`, `filterproperties 1`, `filterproperties x`
+   Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `filterproperties`
    command and a correct example.
 
 ### Listing all buyers
@@ -1048,6 +1127,17 @@ testers are expected to do more *exploratory* testing.
 2. Test case: `listbuyers 1`, `listbuyers x`
    Expected: Same behaviour as above.
 
+### Listing all properties
+
+**Prerequisites**: Property list should be filtered to show a subset of the original list.
+
+1. Test case: `listproperties`
+   Expected: Property list should return to its original state containing all properties. "Listed all properties" message should be displayed
+   on the screen.
+
+2. Test case: `listproperties 1`, `listproperties x`
+   Expected: Same behaviour as above.
+
 ### Matching buyers to properties
 
 1. Test case: `matchbuyer 5`
@@ -1058,6 +1148,18 @@ testers are expected to do more *exploratory* testing.
 2. Test case: `matchbuyer`, `matchbuyer 5 30`, `matchbuyer x`
    Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `matchbuyer`
    command and a correct example.
+
+### Matching properties to buyers
+
+1. Test case: `matchprop 5`
+   Expected: Property list should be filtered to contain all buyers that match a given property based on its price and
+   characteristics. "x matched buyers for the property" message should be displayed on the screen, with x representing the number
+   of matched buyers found, along with the property's information.
+
+2. Test case: `matchprop`, `matchprop 5 30`, `matchprop x`
+   Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `matchprop`
+   command and a correct example.
+
 
 ### Sorting buyers
 
@@ -1070,4 +1172,17 @@ testers are expected to do more *exploratory* testing.
    command and a correct example.
 
 3. Test case: `sortbuyers -n`, `sortbuyers -n oops`, `sortbuyers -n 1`
+   Expected: "Order should be ASC or DESC" error message should be displayed.
+
+### Sorting properties
+
+1. Test case: `sortprops -n ASC`
+   Expected: Property list should be sorted in increasing alphabetical order. "Sorted properties by:" message should be displayed on the screen
+   with correct criteria and order.
+
+2. Test case: `sortprops`, `sortprops x`, `sortprops 1`
+   Expected: "Invalid command format" error message should be displayed, along with information regarding the syntax of the `sortprops`
+   command and a correct example.
+
+3. Test case: `sortprops -n`, `sortprops -n oops`, `sortprops -n 1`
    Expected: "Order should be ASC or DESC" error message should be displayed.
