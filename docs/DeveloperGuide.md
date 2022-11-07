@@ -74,6 +74,8 @@ Given below is a quick overview of main components and how they interact with ea
 
 [**`Commons`**](#415-common-classes) represents a collection of classes used by multiple other components.
 
+<div style="page-break-after: always;"></div>
+
 The rest of the App consists of four components.
 
 * [**`UI`**](#411-ui-component): The UI of the App.
@@ -91,12 +93,14 @@ Each of the four main components (also shown in the diagram above),
 
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point).
+<div style="page-break-after: always;"></div>
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
 The sections below give more details of each component.
+<div style="page-break-after: always;"></div>
 
 #### 4.1.1 UI component
 
@@ -114,6 +118,7 @@ The `UI` component,
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+<div style="page-break-after: always;"></div>
 
 #### 4.1.2 Logic component
 
@@ -144,6 +149,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 How the parsing works:
 * When called upon to parse a user command, the `StudentRecordParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `StudentRecordParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+<div style="page-break-after: always;"></div>
 
 #### 4.1.3 Model component
 
@@ -157,6 +163,7 @@ The `Model` component:
 * stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
+<div style="page-break-after: always;"></div>
 
 #### 4.1.4 Storage component
 
@@ -168,6 +175,7 @@ The `Storage` component,
 * can save both student record data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `StudentRecordStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
+<div style="page-break-after: always;"></div>
 
 #### 4.1.5 Common classes
 
@@ -176,6 +184,7 @@ Classes used by multiple components are in the `seedu.classify.commons` package.
 Click <a href="#top">here</a> to return to the top.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ### 4.2 Implementation
 
@@ -239,6 +248,7 @@ An alternative and perhaps more OOP approach is given below. It has a `Class` li
 * `StudentRecord` only requires one `Class` object per unique class the teacher teaches, instead of each `Student` needing their own `Class` objects.
 * `Class` has reference to `Student`, modelling the relationship in which a teacher teaches a class with some students.
 * Every `Class` has a set of `Exam`(s) which a `Student` takes and scores a certain grade.
+<div style="page-break-after: always;"></div>
 
 #### 4.2.2 Delete command
 
@@ -293,6 +303,7 @@ The `DeleteCommand` instance now communicates with the `ModelManager` to execute
   - Cons:
     - Additional classes need to be implemented.
     - The command name is long.
+<div style="page-break-after: always;"></div>
 
 #### 4.2.3 Edit command
 
@@ -321,6 +332,7 @@ The `EditCommand` object now communicates with the `ModelManager` to execute the
 3. The `updateFilteredStudentList` method is called to show all student records.
 
 4. A new `Command Result` instance is created and returned to `LogicManager`.
+<div style="page-break-after: always;"></div>
 
 #### 4.2.4 Find command
 
@@ -371,6 +383,7 @@ The following activity diagram summarizes what happens when a user executes the 
 **Design Considerations**
 
 1. `ArgumentTokenizer#tokenize()` used to identify the prefix, to generate the corresponding `Predicate<Student>`.
+<div style="page-break-after: always;"></div>
 
 #### 4.2.5 ViewAll command
 
@@ -393,6 +406,7 @@ Step 2. The `StudentRecordParser` will identify the command and create a `ViewAl
 Step 3. `ViewAllCommand#execute` is called which updates the `FilteredStudentList` in `Model`.
 
 Step 4. Classify updates and displays a list of all student records.
+<div style="page-break-after: always;"></div>
 
 #### 4.2.6 ViewClass command
 
@@ -444,6 +458,7 @@ The `ViewClassCommand` instance now interacts with the `ModelManager` to execute
 * Option 2 (Current Design): Separate `ViewClassCommand` and `FindCommand`. 
   * Pros: Distinguishing between a `View` and `Find` can make the filtering logic more obvious and apparent to users
   * Cons: Users have an additional command to learn.
+<div style="page-break-after: always;"></div>
 
 #### 4.2.7 ToggleView command
 
@@ -486,6 +501,7 @@ With the above sequence, the UI is successfully updated to display the relevant 
     - Attribute is associated with the list and not each student. Only need to maintain 1 attribute.
   - Cons: 
     - Increase coupling between UI and Model.
+<div style="page-break-after: always;"></div>
 
 #### 4.2.8 ViewStats command
 
