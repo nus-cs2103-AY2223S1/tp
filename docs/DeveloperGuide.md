@@ -951,7 +951,6 @@ testers are expected to do more *exploratory* testing.
 
 ### 7.5 Listing meetings
 
-//@@author sikai00
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.</div>
 
 1. Prerequisites: One existing client, one meeting with date set to tomorrow (of system date), another set to within one week (but not tomorrow), another set to within one month (but not the next week).
