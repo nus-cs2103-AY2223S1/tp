@@ -77,6 +77,7 @@ help page).
   * Tests
     * Modify tests for `ArgumentTokenizer` [#138](https://github.com/AY2223S1-CS2103T-W08-2/tp/pull/138)
     * Added tests for person's attributes [#142](https://github.com/AY2223S1-CS2103T-W08-2/tp/pull/142)
+    * Added tests for `github.Repo` class [#247](https://github.com/AY2223S1-CS2103T-W08-2/tp/pull/247)
   * Model
     * Make address fields optional [#140](https://github.com/AY2223S1-CS2103T-W08-2/tp/pull/140)
   * Remove Edit command [#101](https://github.com/AY2223S1-CS2103T-W08-2/tp/pull/101)
@@ -91,7 +92,7 @@ help page).
     * Updated Person's model UML Diagram (Added extra attributes such as `timezone`, `role`)
 
 * **Community**:
-  * PRs reviewed with in-depth discussion (Ranked by priority):
+  * PRs reviewed with **in-depth** discussion (Ranked by priority):
     [#141](https://github.com/AY2223S1-CS2103T-W08-2/tp/pull/141)
     [#144](https://github.com/AY2223S1-CS2103T-W08-2/tp/pull/144)
     [#149](https://github.com/AY2223S1-CS2103T-W08-2/tp/pull/149)
