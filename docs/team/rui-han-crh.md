@@ -63,5 +63,5 @@ SectresBook helps secretaries to maintain all the information of the members of 
 - DG
   1. Added Edit _Sequence Diagram_ involving either searching by index or by name and _Sequence Diagram_ for the `inspect` command
   2. Updated the UI _Class Diagram_ to reflect the current state of the UI organisation and the Person _Class Diagram_ by adding the loans property to the Person _Class Diagram_
-  3. Wrote the sections involving [UI design](https://ay2223s1-cs2103t-w12-2.github.io/tp/DeveloperGuide.html#ui-features), the [`inspect` feature](https://ay2223s1-cs2103t-w12-2.github.io/tp/DeveloperGuide.html#inspect-feature) and [the `showNotes` and `hideNotes` feature](https://ay2223s1-cs2103t-w12-2.github.io/tp/DeveloperGuide.html#showing-and-hiding-the-notes-panel-feature)
+  3. Wrote the sections involving [UI design](https://ay2223s1-cs2103t-w12-2.github.io/tp/DeveloperGuide.html#ui-features) and the implementation details of [`inspect`](https://ay2223s1-cs2103t-w12-2.github.io/tp/DeveloperGuide.html#inspect-feature), and `showNotes` and `hideNotes`, found [here](https://ay2223s1-cs2103t-w12-2.github.io/tp/DeveloperGuide.html#showing-and-hiding-the-notes-panel-feature).
   4. UI activity diagram that describes how a user would interact with the UI
