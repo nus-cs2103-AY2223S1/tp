@@ -307,7 +307,9 @@ The following Sequence Diagram summarises the aforementioned steps.
 
 
 ### Find feature
+#### Rationale
 FRIDAY allows the user to search through all the fields entered for any student and outputs a modified list of students that match the criteria. This list can then be modified and the changes will be reflected in the storage used.
+This can be used to search for a particular student based on keywords.
 
 #### Implementation
 The find command is executed similar to all other commands. It goes through the parser and is interpreted using the
