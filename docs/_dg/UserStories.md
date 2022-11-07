@@ -9,7 +9,7 @@ The following legend describes the symbols used in this section:
 |   Low    |   `*`   | Unlikely to have |
 ```
 
-| Priority | As a...            | I can...                                    | So that                                                           ...                                                            |
+| Priority | As a...            | I can...                                    | So that...                                                                                                                       |
 |:--------:|--------------------|---------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
 | `* * *`  | purchasing manager | add a new item to my inventory              | I can keep track of the data related to the new item                                                                             |
 | `* * *`  | purchasing manager | delete an item from my inventory            | remove an inventory item that I no longer need to track                                                                          |
