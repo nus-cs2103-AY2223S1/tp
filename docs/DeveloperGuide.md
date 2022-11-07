@@ -564,33 +564,40 @@ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline 
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                              | I want to …​                                                                                                  | So that I can…​                                                                              |
-|----------|------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|
-| `* * *`  | new user                                             | see usage instructions                                                                                        | refer to instructions when I forget how to use the App                                       |
-| `* * *`  | frequent user                                        | update new data immediately                                                                                   | I can exit and enter the product freely                                                      |
-| `* * *`  | frequent user                                        | enter and exit the product in a short amount of time                                                          | use the product on the fly                                                                   |
-| `* * *`  | marketer                                             | add a new customer contact                                                                                    | keep track of all customers and enlarge the customer base over time                          |
-| `* * *`  | marketer                                             | delete a customer contact                                                                                     | remove entries that I no longer need                                                         |
-| `* * *`  | marketer                                             | find a customer contact by name                                                                               | locate details of customers without having to go through the entire list                     |
-| `* * *`  | pre-event marketer                                   | view all the upcoming marketing events in the system sorted in the order that they were added into the system | have a high level overview of all marketing events and be mentally prepared for each of them |
-| `* * *`  | pre-event marketer who handles many marketing events | add marketing events                                                                                          | keep the system up to date with changes that happen to the marketing plans                   |
-| `* * *`  | pre-event marketer who handles many marketing events | delete marketing events                                                                                       | remove marketing events that I no longer need                                                |
-| `* *`    | marketer with many customer contacts                 | sort all customer contacts by name, date of birth or gender                                                    | locate people more easily and obtain contact lists of different demographic groups           |
+| Priority  | As a …​                                               | I want to …​                                                                                                     | So that I can…​                                                                                                                                                  |
+|-----------|-------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `* * *`   | new user                                              | see usage instructions                                                                                           | refer to instructions when I forget how to use the App                                                                                                           |
+| `* * *`   | frequent user                                         | update new data immediately                                                                                      | I can exit and enter the product freely                                                                                                                          |
+| `* * *`   | frequent user                                         | enter and exit the product in a short amount of time                                                             | use the product on the fly                                                                                                                                       |
+| `* * *`   | marketer                                              | add a new customer contact                                                                                       | keep track of all customers and enlarge the customer base over time                                                                                              |
+| `* * *`   | marketer                                              | edit a customer contact                                                                                          | ensure that customers details are up to date                                                                                                                     |
+| `* * *`   | marketer                                              | delete a customer contact                                                                                        | remove entries that I no longer need                                                                                                                             |
+| `* * *`   | marketer                                              | find a customer contact by name                                                                                  | locate details of customers without having to go through the entire list                                                                                         |
+| `* * *`   | marketer                                              | add a customer's date of birth to his contact in the system during contact creation                              | so that I can better understand the profile of customers who attended my events in terms of age and segment the customers for future marketing campaigns         |
+| `* * *`   | marketer                                              | add a customer's gender to his contact in the system during contact creation                                     | so that I can better understand the profile of customers who attended my events in terms of gender and segment the customers for future marketing campaigns      |
+| `* *`     | marketer with many customer contacts                  | sort all customer contacts by name, date of birth or gender                                                      | locate people more easily and obtain contact lists of different demographic groups                                                                               |
+| `* * *`   | pre-event marketer                                    | view all the upcoming marketing events in the system sorted in the order that they were added into the system    | have a high level overview of all marketing events and be mentally prepared for each of them                                                                     |
+| `* * *`   | pre-event marketer who handles many marketing events  | add marketing events                                                                                             | keep the system up to date with changes that happen to the marketing plans such as the development of new marketing campaigns                                    |
+| `* * *`   | pre-event marketer who handles many marketing events  | edit marketing events                                                                                            | keep the system up to date with changes that happen to the marketing plans that are present in the system                                                        |
+| `* * *`   | pre-event marketer who handles many marketing events  | delete marketing events                                                                                          | remove marketing events that I no longer need                                                                                                                    |
+| `* * `    | pre-event marketer who handles many marketing events  | sort marketing events by date                                                                                    | so that I can take a look at when last few marketing events are scheduled and start planning ahead for more if those plans are to be executed soon               |
+| `* * `    | pre-event marketer who handles many marketing events  | sort marketing events by name                                                                                    | so that I can locate events more easily                                                                                                                          |
+| `* *`     | post-event marketer with many marketing events        | generate statistics of marketing events based on the gender and age demographics of my event attendees           | evaluate the success of my marketing campaigns                                                                                                                   |
+| `* *`     | post-event marketer with many marketing events        | generate a mailing list of people who attended the event                                                         | reach out to the people for feedback about the event                                                                                                             |
 
-*{More to be added}*
 
 ### Use cases
 
 (For all use cases below, **UC** is the `Use Case`, the **System** is `Duke The Market` and the **Actor** is the `user`, unless specified otherwise)
 
-**UC01: Delete a customer**
+**UC01: Delete an event**
 
 **MSS**
 
-1. User requests to list customers
-2. Duke The Market shows a list of customers
-3. User requests to delete a specific customer in the list
-4. Duke The Market deletes the customer
+1. User requests to list events
+2. Duke The Market shows a list of events
+3. User requests to delete a specific event in the list
+4. Duke The Market deletes the event
 
    Use case ends.
 
@@ -604,7 +611,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 3a1. Duke The Market shows an error message
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
 
 
 **UC02: Add a customer**
@@ -621,19 +628,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. User enters data in an invalid format.
 
     * 1a1. Duke The Market requests for the correct data
+
     * 1a2. User enters new data
 
-  Steps 1a1-1a2 are repeated until the data entered is correct
+    Steps 1a1-1a2 are repeated until the data entered is correct 
 
-  Use case resumes at step 2.
+    Use case resumes at step 2.
 
 * 1b. User enters data for an individual who already exists in the database.
+
     * 1b1. Duke The Market shows an error message that the user is a duplicate customer
-    * 1b2. User enters new data
 
-  Steps 1b1-1b2 are repeated until the data entered is correct.
+    * 1b2. User enters new data 
 
-  Use case resumes at step 2.
+    Steps 1b1-1b2 are repeated until the data entered is correct and not a repeat of an individual already in the database. 
+
+    Use case resumes at step 2.
 
 
 **UC03: View the overall performance of a past event**
@@ -655,33 +665,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The given index is invalid.
     * 3a1. Duke The Market shows an error message.
 
-      Use case resumes at step 3.
+    Use case resumes at step 3.
 
 
 **UC04: Export email addresses of customers to a file**
 
 **MSS**
-1.  User requests to export to a specified file the email address of customers who attended a specific event.
-2.  Duke The Market exports the customers’ email addresses to the specified file
+1. User requests to list events
+2. Duke The Market shows a list of events 
+3. User requests to export to a specified file the email address of customers who attended a specific event on the list. 
+4. Duke The Market exports the customers’ email addresses to the specified file
 
     Use case ends.
 
+**Extensions**
 
-**UC05: Retrieve customers who may be interested in an upcoming event**
+* 2a. The list is empty.
 
-**MSS**
-1. User requests to list events
-2. Duke The Market shows a list of events
-3. User requests to show customers who may be interested in an upcoming event in the list
-4. Duke The Market shows the customers who may be interested in that upcoming event
-5. User requests to <ins>export the customers' email addresses to a specified file (UC04)</ins>
+  Use case ends.
 
-   Use case ends.
+* 3a. The given index is invalid.
 
+    * 3a1. Duke The Market shows an error message.
 
+      Use case resumes at step 3.
 
-
-*{More to be added}*
 
 ### Non-Functional Requirements
 
