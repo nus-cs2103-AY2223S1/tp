@@ -50,7 +50,9 @@ title: Developer Guide
   * [Editing a client](#editing-a-client)
   * [Editing a transaction](#editing-a-transaction)
   * [Editing a remark](#editing-a-remark)
-  * [Sort a client](#sorting-transactions-from-a-client)
+  * [Sort a client](#sorting-transactions-of-a-client)
+  * [Adding buy/sell transactions](#adding-buysell-transactions)
+  * [Help command](#help-command)
   * [Saving data](#saving-data)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -415,7 +417,7 @@ This is done by accessing the `UniqueRemarkList` of the focused client, and exec
 
 The following sequence diagram shows how the edit transaction operation works in Logic Manager:
 
-![EditRemarkSequenceDiagram](images/EditTransactionSequence.png)
+![EditRemarkSequenceDiagram](images/EditRemarkSequence.png)
 
 The activity diagram for this feature is the same as that of the [Editing client feature](#editing-client-feature)
 
@@ -486,8 +488,6 @@ The operation is exposed in the `logic` interface as `Logic#execute()`.
 Given below is an example usage scenario and how the sort transaction mechanism behaves at each step.
 
 Step 1. The user launches the application. The `UiManager` will call on the `MainWindow` to invoke the UI which displays the clients.
-
-![BuyState0](images/BuyState0-initial_state.png)
 
 Step 2. The user executes `sort 1 latest` command to sort the transaction of the client at index 1 by the latest transactions first.
 
