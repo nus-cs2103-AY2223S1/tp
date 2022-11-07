@@ -9,7 +9,7 @@ NUSEatWhere is a Command Line (CLI) application which helps you search for the a
 
 Given below are my contributions to the project.
 
-**New Feature**: Added the ability to view individual command help
+**New Feature**: Added the ability to view individual command help ([#53](https://github.com/AY2223S1-CS2103T-W11-1/tp/pull/53))
 * What it does: allows the user to view how to use the commands by means of the flag `-h`.
 * Justification: This quality-of-life feature adds yet another way to obtain help within the application.
 The user need not always open the help window or go to the user guide, both of which are more invasive and cumbersome to work with.
@@ -27,16 +27,20 @@ which would burden developers greatly.
 * Managed releases for `v1.2`, `v1.2.1`, and `v1.3`
 
 **Enhancements to existing features**:
-* Misc. initial refactoring of files under `ui` and `AddCommand`.
+* Miscellaneous initial refactoring of files under `ui` and `AddCommand`.
 * Updated the help window to be more useful, containing a summary of commands and their syntax in addition to a link to the user guide.
 * Added tests for `FindCommand`, `FindLocationCommand`, `FindTagCommand`, `FindPriceCommand`
 ([#157](https://github.com/AY2223S1-CS2103T-W11-1/tp/pull/157)).
 
 **Documentation**:
 * User Guide: 
+  * Added implementation details for `exit, `edit`, and `clear`.
+  * Expanded upon the FAQ section.
+  * Miscellaneous grammatical and expression improvements for clarity.
 
 * Developer Guide:
-  * Added implementation details for handling displaying individual command help.
+  * Added implementation details for handling displaying individual command help, and a diagram for
+  the processing of commands.
 
 **Community and Team Help**:
 * Owner of the GitHub team organisation and repo.
