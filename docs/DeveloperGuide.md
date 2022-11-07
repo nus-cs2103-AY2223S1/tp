@@ -1288,7 +1288,7 @@ Extensions:
 
 ## **Appendix: Instructions for manual testing**
 
-Given below are instructions to test the app manually. The following instructions are organised in a similar manner as our **User Guide**. We recommend that you refer to our **User Guide** for a basic idea of how each command works before proceeding with manual testing.
+Given below are instructions to test the app manually. The following instructions are organised in a similar manner as our **User Guide**. We recommend that you refer to our [**User Guide**](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html) for a basic idea of how each command works before proceeding with manual testing.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
@@ -1303,16 +1303,13 @@ testers are expected to do more *exploratory* testing.
   * [Starting up with missing/corrupted data files](#starting-up-with-missingcorrupted-data-files)
 * [**Modifying residents**](#modifying-residents)
   * [Adding a resident](#adding-a-resident)
-  * [Editing an existing resident](#editing-an-existing-resident)
+  * [Editing an existing resident](#editing-a-resident)
   * [Deleting a resident](#deleting-a-resident)
-  * [Clearing all residents](#clearing-all-residents)
+  * [Removing multiple residents](#removing-multiple-residents)
 * [**Viewing residents**](#viewing-residents)
   * [Listing residents](#listing-residents)
-  * [Showing resident fields](#showing-resident-fields)
-  * [Hiding resident fields](#hiding-resident-fields)
-  * [Resetting hidden resident fields](#resetting-hidden-resident-fields)
-  * [Finding residents](#finding-residents)
-  * [Filtering residents](#filtering-residents)
+  * [Showing/hiding and resetting resident fields](#showinghiding-and-resetting-resident-fields)
+  * [Filtering a resident](#filtering-a-resident)
 * [**File management**](#file-management)
   * [Creating a new data folder](#creating-a-new-data-folder)
   * [Deleting an existing data folder](#deleting-an-existing-data-folder)
@@ -1325,14 +1322,14 @@ testers are expected to do more *exploratory* testing.
   * [Adding a booking](#adding-a-booking)
   * [Deleting a booking](#deleting-a-booking)
 * [**Quality-of-life**](#quality-of-life)
-  * [Command history](#browsing-recently-used-commands)
+  * [Command history](#command-history)
   * [Opening help window](#getting-help)
   * [Accessing command input box](#accessing-the-command-input-box)
-  * [Switching tabs](#switching-tabs))
+  * [Switching tabs](#switching-tabs)
 
 ---
 
-### Launch and shutdown
+### **Launch and shutdown**
 
 #### Initial launch
 
@@ -1352,277 +1349,197 @@ testers are expected to do more *exploratory* testing.
 #### Exiting RC4HDB
 
 1. Exiting via command-line
-
     1. Test case: `exit`<br>
        Expected: Window closes.
 
 2. Exiting via keyboard-shortcut
-
     1. Test case: Pressing `ESC`<br>
        Expected: Window closes.
 
-### Viewing residents
-
-#### Listing residents
-
-1. Listing all residents in the resident list after calling `find` or `filter` (sequential testing)
-
-    1. Prerequisites: List all persons using the `list` command. Multiple persons already in the list.
-
-    2. First, enter `add  n/Peter Senge p/90798012 e/ps@email.com r/16-19 g/M h/D m/A0238871H`.
-       Expected: `Peter Senge` is added to the list. The full list is displayed after adding the resident.
+---
        
-    3. Next, enter `add  n/Teng Mui Kiat p/88032012 e/tmk@email.com r/08-19 g/M h/D m/A0198211G`.
-       Expected: `Teng Mui Kiat` is added to the list. The full list is displayed after adding the resident.
-       
-    4. Now, enter `find eng`. Expected: At least two residents are displayed in the list, i.e. `Peter Senge` and `Teng
-       Mui Kiat`. This means that the list of residents shown is no longer the full list.
-       
-       - Alternatively, enter `filter /all h/D`. Expected: Same as *iv*.
-       
-    5. Enter `list`. Expected: The full list of residents should be displayed, along with `Peter Senge` and `Teng
-       Mui Kiat`.
+### **Modifying residents**
 
-    6. Note the incorrect command: `find`<br>
-       Expected: The list of residents displayed does not change. Error details shown in the status message. 
-    
-    7. Note the incorrect command: `filter` or `filter /all`<br>
-       Expected: The list of residents displayed does not change. Error details shown in the status message. 
-       
+#### Adding a resident
 
-2. Listing all resident fields after calling `showonly` or `hideonly` (sequential testing)
-
-    1. Prerequisites: The full set of resident fields is being shown in the table. Otherwise, use `reset` to display
-       the full set of resident fields.
-       
-    2. Enter `showonly n p e`.
-       Expected: The list of residents being displayed does not change, but only the `name`, `phone` and `email` 
-       columns are shown in the table.
-       
-        - Alternatively, enter `hideonly i r g m h t`. Expected: Same as *ii*.
-    
-    3. Enter `list`. Expected: The full set of resident fields is displayed in the table, along with the full list of 
-       residents.
-       
-    4. Note the incorrect command: `showonly` or `hideonly`.
-       Expected: The set of fields displayed does not change. Error details shown in the status message.
-
-       
-#### Showing/hiding and resetting resident fields
-
-1. Using `showonly` to show only some resident fields + `reset` (sequential testing)
-
-    1. Prerequisites: The full set of resident fields is being shown in the table. Otherwise, use `reset` to display
-       the full set of resident fields.
-       
-    2. Enter `showonly n p e`.
-       Expected: The list of residents being displayed does not change, but only the `name`, `phone` and `email`
-       columns are shown in the table.
-       
-    3. Enter `showonly r m g h`.
-       Expected: Invalid columns specified. The set of resident fields being displayed does not change as the specified 
-       fields are not present in the current table. Error details are shown in the status message. 
-       
-    4. Enter `showonly n`.
-       Expected: The list of residents being displayed does not change, but only the `name` column is shown in 
-       the table.
-       
-    5. Enter `reset`.
-       Expected: The full set of resident fields is displayed in the table.
-       
-    6. Note the incorrect command: `showonly`
-       Expected: The set of resident fields being displayed does not change. Error details are shown in the status 
-       message. 
-
-
-2. Using `hideonly` to hide only some resident fields + `reset` (sequential testing)
-
-    1. Prerequisites: The full set of resident fields is being shown in the table. Otherwise, use `reset` to display
-       the full set of resident fields.
-
-    2. Enter `hideonly i r m g h t`.
-       Expected: The list of residents being displayed does not change, but only the `name`, `phone` and `email`
-       columns are shown in the table.
-
-    3. Enter `hideonly r h`.
-       Expected: Invalid columns specified. The set of resident fields being displayed does not change as the specified 
-       fields are not present in the current table. Error details are shown in the status message.
-
-    4. Enter `hideonly p e`.
-       Expected: The list of residents being displayed does not change, but only the `name` column is shown in
-       the table.
-       
-    5. Enter `hideonly n`.
-       Expected: The set of resident fields being displayed does not change as users cannot hide all columns. Error
-       details are shown in the status message.
-       the table.
-
-    6. Enter `reset`.
-       Expected: The full set of resident fields is displayed in the table.
-
-    7. Note the incorrect command: `hideonly`
-       Expected: The set of resident fields being displayed does not change. Error details are shown in the status
-       message.
-       
-### Modifying residents
-
-#### Deleting a resident
-
-1. Deleting a resident while all persons are being shown
-
+1. Adding a resident while all resident are being shown
    1. Prerequisites: List all residents using the `list` command. Multiple residents in the list.
-   
-   1. Test case: `delete 1`<br>
-      Expected: First resident is deleted from the list. Details of the deleted resident shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No resident is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   2. Test case: `add n/ Joe Don p/ 81616144 e/Joe@example.com r/02-02 g/M h/D m/A0210101X t/friend t/break`<br>
+      Expected: resident is added to the list. Details of the newly added resident shown in the status message.
+   3. Test case: `add n/ Joe Don p/ 81616144 e/Joe@example.com r/02-02 m/A0210101X t/friend t/break`<br>
+      Expected: No person is added. Error details shown in the status message.
+   4. Other incorrect delete commands include having invalid or missing information in the command <br>
       Expected: Similar to previous.
-2. _{ more test cases …​ }_
-
-### Deleting multiple residents
-
-1. Deleting multiple residents while all persons are being shown
-
-    1. Prerequisites: List all residents using the `list` command. Multiple residents in the list.
-
-    1. Test case: `remove /any r/02-02 g/M h/D t/friend` <br>
-       Expected: residents are deleted accordingly. Number of residents deleted shown in the status message.
-    1. Test case: `remove any/ r/02-02 g/M h/D t/friend` <br>
-       Expected: Residents are not deleted. Error details shown in the status message.
-    1. Other incorrect delete commands to try: `remove`, `remove x`, `...` (where x is any other string that is not the specifier)<br>
-       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Editing a resident
 
 1. Editing a resident while all residents are being shown
+   1. Prerequisites: List all residents using the `list` command. Multiple residents in the list.
+   2. Test case: `edit r/02-02 g/M h/D t/friend` <br>
+      Expected: First resident is edited from the list. Details of the deleted resident shown in the status message.
+   3. Test case: `edit r/02-02 g/L h/D t/friend` <br>
+      Expected: No resident is edited. Error details shown in the status message. Status bar remains the same.
+   4. Other incorrect delete commands to try: `edit`, `edit l/`, `...` <br>
+      Expected: Similar to previous.
 
+#### Deleting a resident
+
+1. Deleting a resident while all persons are being shown
+   1. Prerequisites: List all residents using the `list` command. Multiple residents in the list.
+   2. Test case: `delete 1`<br>
+      Expected: First resident is deleted from the list. Details of the deleted resident shown in the status message. Timestamp in the status bar is updated.
+   3. Test case: `delete 0`<br>
+      Expected: No resident is deleted. Error details shown in the status message. Status bar remains the same.
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Removing multiple residents
+
+1. Deleting multiple residents while all persons are being shown
     1. Prerequisites: List all residents using the `list` command. Multiple residents in the list.
-
-    1. Test case: `edit r/02-02 g/M h/D t/friend` <br>
-       Expected: First resident is edited from the list. Details of the deleted resident shown in the status message.
-    1. Test case: `edit r/02-02 g/L h/D t/friend` <br>
-       Expected: No resident is edited. Error details shown in the status message. Status bar remains the same.
-    1. Other incorrect delete commands to try: `edit`, `edit l/`, `...` <br>
+    2. Test case: `remove /any r/02-02 g/M h/D t/friend` <br>
+       Expected: residents are deleted accordingly. Number of residents deleted shown in the status message.
+    3. Test case: `remove any/ r/02-02 g/M h/D t/friend` <br>
+       Expected: Residents are not deleted. Error details shown in the status message.
+    4. Other incorrect delete commands to try: `remove`, `remove x`, `...` (where x is any other string that is not the specifier)<br>
        Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+---
+
+### **Viewing residents**
+
+#### Listing residents
+
+1. Listing all residents in the resident list after calling `find` or `filter` (sequential testing)
+   1. Prerequisites: List all persons using the `list` command. Multiple persons already in the list.
+   2. First, enter `add  n/Peter Senge p/90798012 e/ps@email.com r/16-19 g/M h/D m/A0238871H`.
+      Expected: `Peter Senge` is added to the list. The full list is displayed after adding the resident.
+   3. Next, enter `add  n/Teng Mui Kiat p/88032012 e/tmk@email.com r/08-19 g/M h/D m/A0198211G`.
+      Expected: `Teng Mui Kiat` is added to the list. The full list is displayed after adding the resident.
+   4. Now, enter `find eng`. Expected: At least two residents are displayed in the list, i.e. `Peter Senge` and `Teng
+      Mui Kiat`. This means that the list of residents shown is no longer the full list.
+      - Alternatively, enter `filter /all h/D`. Expected: Same as *iv*.
+   5. Enter `list`. Expected: The full list of residents should be displayed, along with `Peter Senge` and `Teng
+      Mui Kiat`.
+   6. Note the incorrect command: `find`<br>
+      Expected: The list of residents displayed does not change. Error details shown in the status message.
+   7. Note the incorrect command: `filter` or `filter /all`<br>
+      Expected: The list of residents displayed does not change. Error details shown in the status message.
+
+2. Listing all resident fields after calling `showonly` or `hideonly` (sequential testing)
+   1. Prerequisites: The full set of resident fields is being shown in the table. Otherwise, use `reset` to display
+      the full set of resident fields.
+   2. Enter `showonly n p e`.
+      Expected: The list of residents being displayed does not change, but only the `name`, `phone` and `email`
+      columns are shown in the table.
+      - Alternatively, enter `hideonly i r g m h t`. Expected: Same as *ii*.
+   3. Enter `list`. Expected: The full set of resident fields is displayed in the table, along with the full list of
+      residents.
+   4. Note the incorrect command: `showonly` or `hideonly`.
+      Expected: The set of fields displayed does not change. Error details shown in the status message.
 
 
-### Adding a resident
+#### Showing/hiding and resetting resident fields
 
-1. Adding a resident while all resident are being shown
+1. Using `showonly` to show only some resident fields + `reset` (sequential testing)
+   1. Prerequisites: The full set of resident fields is being shown in the table. Otherwise, use `reset` to display the full set of resident fields.
+   2. Enter `showonly n p e`.
+      Expected: The list of residents being displayed does not change, but only the `name`, `phone` and `email` columns are shown in the table.
+   3. Enter `showonly r m g h`.
+      Expected: Invalid columns specified. The set of resident fields being displayed does not change as the specified fields are not present in the current table. Error details are shown in the status message.
+   4. Enter `showonly n`.
+      Expected: The list of residents being displayed does not change, but only the `name` column is shown in
+      the table.
+   5. Enter `reset`.
+      Expected: The full set of resident fields is displayed in the table.
+   6. Note the incorrect command: `showonly`
+      Expected: The set of resident fields being displayed does not change. Error details are shown in the status message.
 
-    1. Prerequisites: List all residents using the `list` command. Multiple residents in the list.
-
-    2. Test case: `add n/ Joe Don p/ 81616144 e/Joe@example.com r/02-02 g/M h/D m/A0210101X t/friend t/break`<br>
-        Expected: resident is added to the list. Details of the newly added resident shown in the status message.
-
-    3. Test case: `add n/ Joe Don p/ 81616144 e/Joe@example.com r/02-02 m/A0210101X t/friend t/break`<br>
-        Expected: No person is added. Error details shown in the status message.
-
-    4. Other incorrect delete commands include having invalid or missing information in the command <br>
-       Expected: Similar to previous.
-
-2. _{ more test cases …​ }_
+2. Using `hideonly` to hide only some resident fields + `reset` (sequential testing)
+   1. Prerequisites: The full set of resident fields is being shown in the table. Otherwise, use `reset` to display the full set of resident fields.
+   2. Enter `hideonly i r m g h t`.
+      Expected: The list of residents being displayed does not change, but only the `name`, `phone` and `email` columns are shown in the table.
+   3. Enter `hideonly r h`.
+      Expected: Invalid columns specified. The set of resident fields being displayed does not change as the specified fields are not present in the current table. Error details are shown in the status message.
+   4. Enter `hideonly p e`.
+      Expected: The list of residents being displayed does not change, but only the `name` column is shown in the table.
+   5. Enter `hideonly n`.
+      Expected: The set of resident fields being displayed does not change as users cannot hide all columns. Error details are shown in the status message.
+   6. Enter `reset`.
+      Expected: The full set of resident fields is displayed in the table.
+   7. Note the incorrect command: `hideonly`
+      Expected: The set of resident fields being displayed does not change. Error details are shown in the status message.
 
 ### Filtering a resident
 
 1. Filtering a resident while all resident are being shown
+   1. Prerequisites: List all residents using the `list` command. Multiple residents in the list.
+   2. Test case: `filter /any r/02-02 g/M h/D t/friend`<br>
+      Expected: List is filtered accordingly. Number of residents filtered shown in the status message.
+   3. Test case: `filter any/ r/02-02 g/M h/D t/friend`<br>
+      Expected: Residents are not filtered. Error details shown in the status message.
+   4. Other incorrect delete commands include having invalid or missing information in the command <br>
+      Expected: Similar to previous.
 
-    1. Prerequisites: List all residents using the `list` command. Multiple residents in the list.
+---
 
-    2. Test case: `filter /any r/02-02 g/M h/D t/friend`<br>
-       Expected: List is filtered accordingly. Number of residents filtered shown in the status message.
-
-    3. Test case: `filter any/ r/02-02 g/M h/D t/friend`<br>
-        Expected: Residents are not filtered. Error details shown in the status message.
-
-    4. Other incorrect delete commands include having invalid or missing information in the command <br>
-       Expected: Similar to previous.
-
-2. _{ more test cases …​ }_
-
-
-### File management
+### **File management**
 
 #### Creating a new data folder
 
 1. Creating a new data folder when a folder with the same name already exists.
-
    1. Prerequisites: Have a data folder in the `ROOT/data` directory with the same name as the folder you are trying to create.
-
    2. Test case: `file create already_exist` <br>
        Expected: An error message indicating that the folder you are about to create already exists will be displayed in the result panel.
-
    3. Test case: `file create current_folder` when `ROOT/data/current_folder` is the folder currently in view <br>
        Expected: An error message indicating that the folder you are trying to create is the folder that is currently in view will be displayed in the result panel. No creation occurs.
-
 2. Creating a new data folder when no folder with the same name already exists.
-
    1. Prerequisites: `ROOT/data` directory does not have a data folder with the same name as the folder you are trying to create.
-
    2. Test case: `file create does_not_exist` <br>
        Expected: A folder with the name `does_not_exist` is created in the `ROOT/data` directory.
 
 #### Deleting an existing data folder
 
 1. Deleting a data folder that does not exist.
-
    1. Prerequisites: There is no folder in the `ROOT/data` directory that has the same name as the data folder you are trying to delete.
-
    2. Test case: `file delete does_not_exist` <br>
        Expected: An error message indicating that the folder you are trying to delete does not exist will be displayed in the result panel.
 
 2. Deleting a data folder that exists.
-
    1. Prerequisites: There is an existing folder in the `ROOT/data` directory that has the same name as the data folder you are trying to delete.
-
    2. Test case: `file delete already_exists` <br>
        Expected: Deletes the `already_exists` folder.
-
    3. Test case: `file delete current_folder` when `ROOT/data/current_folder` is the folder currently in view <br>
        Expected: An error message indicating that the folder you are trying to delete is the folder that is currently in view will be displayed in the result panel. No deletion occurs.
 
 #### Switching to a different data folder
 
 1. Switching to a data folder that does not exist.
-
    1. Prerequisites: There is no folder in the `ROOT/data` directory that has the same name as the data folder you are trying to switch to.
-
    2. Test case: `file switch does_not_exist` <br>
        Expected: An error message indicating that the folder you are trying to switch to, does not exist will be displayed in the result panel.
 
 2. Switching to a data folder that exists.
-
    1. Prerequisites: There is an existing folder in the `ROOT/data` directory that has the same name as the data folder you are trying to switch to.
-
    2. Test case: `file switch already_exists` <br>
        Expected: Switches to the `already_exists` folder.
-
    3. Test case: `file switch current_folder` when `ROOT/data/current_folder` is the folder currently in view <br>
        Expected: An error message indicating that the folder you are trying to switch to is already the currently viewed data folder will be displayed in the result panel.
 
 #### Importing resident data from CSV file
 
-[Comment]: <> (Update CSV format link when UG is compiled)
-
 1. Importing from a valid CSV file.
 
-   1. Prerequisites: Have an existing CSV file in the proper format, as specified in the [CSV format]() section of our **User Guide**.
+   1. Prerequisites: Have an existing CSV file in the proper format, as specified in the [CSV format](https://ay2223s1-cs2103t-w12-3.github.io/tp/UserGuide.html#csv-file-format) section of our **User Guide**.
 
    2. Test case: `file import valid_file`, where `valid_file` is the name of your valid CSV file <br>
        Expected: A new data folder, with the name `valid_file` is created in `ROOT/data` directory. The new resident data imported from `valid_file.csv` will be stored in `ROOT/data/valid_file/resident_data.json` file, and the `valid_file.csv` file will remain inside the data folder.
 
 <br>
 
-### Venue management
+### **Venue management**
 
-#### Adding a venue (Buggy as of v1.3 - venue added does not show up immediately)
+#### Adding a venue
 
 1. Adding a venue from Bookings tab.
    1. Prerequisites: View the Bookings tab, with `Hall` being one of the existing venues while `Recreational Room` is not.
@@ -1679,65 +1596,50 @@ testers are expected to do more *exploratory* testing.
 
 <br>
 
-### Quality-of-life
+### **Quality-of-life**
 
 We recommend viewing the [Quality-of-life](UserGuide.md#quality-of-life) section before proceeding, as the following largely tests the functionality from that section.
 
-#### Browsing recently-used commands
+#### Command history
 
 1. Browsing recent valid commands
-
-   1. Prerequisites: List all residents using the `list` command, followed by adding a resident using the `add` command. The following
-   test cases are to be done sequentially.
-
+   1. Prerequisites: List all residents using the `list` command, followed by adding a resident using the `add` command. The following test cases are to be done sequentially.
    2. Test case: Pressing `UP_ARROW_KEY`<br>
       Expected: `add` command is copied onto the input command box.
-
    3. Test case: Pressing `UP_ARROW_KEY`<br>
       Expected: `add` command is replaced and `list` command is copied onto the input command box.
-
    4. Test case: Pressing `DOWN_ARROW_KEY`<br>
       Expected: `list` command is replaced and `add` command is copied onto the input command box.
-
    5. Test case: Pressing `DOWN_ARROW_KEY`<br>
       Expected: `add` command is replaced and ` ` is copied onto the input command box. i.e. no command
 
 #### Getting help
 
 1. Opening the Help Window
-
    1. Prerequisites: Help Window is not currently opened.
-
    2. Test case: `help`<br>
       Expected: Help Window pops up.
-
    3. Test case: Pressing `F1`<br>
       Expected: Help Window pops up.
 
 2. Closing the Help Window
-
    1. Prerequisites: Help Window is currently opened.
-
    2. Test case: Pressing `X` of the Help Window.<br>
       Expected: Help Window closes.
-
    3. Test case: Pressing `ESC`<br>
       Expected: Help Window closes.
 
 #### Accessing the command input box
 
 1. Accessing command input
-
    1. Prerequisites: Command input box is not in focus.
-
    2. Test case: Pressing `F3`<br>
       Expected: Command input box is in focus and ready for user command.
 
 #### Switching tabs
 
 1. Switching between `Resident` and `Bookings` tab
-
-   2. Test case: Pressing `CTRL-TAB`<br>
+   1. Test case: Pressing `CTRL-TAB`<br>
       Expected: Alternate tab is displayed.
 
 ---
