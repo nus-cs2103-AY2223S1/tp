@@ -9,9 +9,8 @@ Class "<<interface>>\nUi" as Ui
 Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
-Class StudentListPanel
-Class StudentCard
-Class NextOfKinDescription
+Class TutorListPanel
+Class TutorCard
 }
 
 package Model <<Rectangle>> {
@@ -27,21 +26,18 @@ HiddenOutside ..> Ui
 
 UiManager .left.|> Ui
 UiManager -down-> "1" MainWindow
-MainWindow *-down-> "1" StudentListPanel
+MainWindow *-down-> "1" TutorListPanel
 
-StudentListPanel -down-> "*" StudentCard
-
-StudentCard -down-> "0..1" NextOfKinDescription
+TutorListPanel -down-> "*" TutorCard
 
 MainWindow -down-|> UiPart
 
-StudentListPanel --|> UiPart
-StudentCard --|> UiPart
-NextOfKinDescription --|> UiPart
+TutorListPanel --|> UiPart
+TutorCard --|> UiPart
 
-StudentCard .right.> Model
+TutorCard .right.> Model
 UiManager -right-> Logic
 
 MainWindow -[hidden]-|> UiPart
-MainWindow -[hidden]-|> StudentCard
+MainWindow -[hidden]-|> TutorListPanel
 @enduml
