@@ -850,13 +850,13 @@ In all commands `INDEX` **must be a positive integer** 1, 2, 3, …​
 
 In [`editClient`](#715-edit-client-editclient), [`delClient`](#714-delete-client-delclient), and [`viewClient`](#713-view-client-viewclient) commands, `INDEX` refers to the  number shown by executing [`listClient`](#712-list-clients-listclient) command.
 
-e.g. David Li has position of 4 in the shown [client list](#712-list-clients-listclient)
+e.g. David Li has position of 4 in the shown [client list](#712-list-clients-listclient):
 ![](images/ListClient.png)
 
 
 In [`viewMeeting`](#723-view-meeting-viewmeeting), [`delMeeting`](#724-delete-meeting-delmeeting), and [`editMeeting`](#725-edit-meeting-editmeeting) commands, `INDEX` refers to the number shown by executing [`listMeeting`](#722-list-meetings-listmeeting) command.
 
-e.g. The meeting shown has position of 1 in [meeting list](#722-list-meetings-listmeeting)
+e.g. The meeting shown has position of 1 in [meeting list](#722-list-meetings-listmeeting):
 ![](images/ListMeeting.png)
 
 In [`delProduct`](#733-delete-product-delproduct) command, `INDEX` refers to the number shown by executing [`listProduct`](#732-list-products-listproduct) command.
