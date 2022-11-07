@@ -345,32 +345,62 @@ to load in an EMPTY state.
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Glossary
+
+Read this section to find out more about certain terms that might confuse you
+
+
+| Term            | Description                                                                                                                                                  |
+|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **CLI**         | Command Line Interface - text based user interface (UI) used to run programs, manage computer files and interact with the computer.                          |
+| **Command**     | Instruction from user to application to perform a service                                                                                                    |
+| **Feature**     | A distinct functionality of EZLead                                                                                                                           |
+| **GUI**         | Graphical User Interface - allows users to interact with electronic devices through graphical icons and audio indicators.                                    |
+| **Index**       | A unique number that is used to refer to data (team, member, task etc.)                                                                                      |
+| **JAR File**    | Java ARchive - It's a file format used for aggregating many files into one. The EZLead jar file contains all of EZLeads file and can be run on your computer |
+| **Keyword**     | words used at the start of a command e.g. `add`                                                                                                              |
+| **Parameter**   | The data that follows the Keyword and the prefix and is passed to application                                                                                |
+| **Prefix**      | A letter with a slash (e.g. n/) which allows EZLead to recognise what data you are entering and thus how to process it.                                      |
+| **Task**        | A project or any kind of work to be completed by a team                                                                                                      |
+| **Team**        | A group of members working together on a certain task or project                                                                                             |
+| **Tech Lead**   | Project manager or leader in a tech company                                                                                                                  |
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## FAQ
 
 **Q**: What should be the index of the member to be specified to assign and unassign members from a team?
 
 **A**: You can use the index of the member provided in the user list. You can access user list by using the command `userlist`.
 
+**Q**: Will I lose my data when the app is closed?
+
+**A**: No you will not lose any data. The data is stored and will be displayed even after closing and reopening the app.
+
+**Q**: Do we need an internet connection to use this app?
+
+**A**: No. Currently, you do not need internet to use this app. 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command Summary
 
-| Action              | Format, Examples                                                                                                                                               |
-|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**            | `help`                                                                                                                                                         |
-| **Member Add**      | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g. `add n/John Doe p/99853657 e/john@gmail.com a/414, North Bridge Ave 5, #09-86 t/friends t/owesMoney` |
-| **Member Delete**   | `delete p/GLOBAL-PERSON-INDEX` <br> e.g. `delete p/1`                                                                                                          |
-| **Member Edit**     | `edit GLOBAL-PERSON-INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g.`edit 1 n/Johny p/91234567 e/johndoe@example.com`                        |
-| **Member List**     | `userlist`                                                                                                                                                     |
-| **Team Add**        | `create n/TEAM-NAME` <br> e.g. `create n/TEAM1`                                                                                                                |
-| **Team Delete**     | `delteam TEAM-INDEX` <br> e.g. `delteam 1`                                                                                                                     |
-| **Team Edit**       | `editteam t/TEAM-INDEX n/TEAM-NAME` <br> e.g. `editteam t/1 n/TEAMNEW`                                                                                         |
-| **Member assign**   | `assign m/MEMBER-INDEX t/TEAM-INDEX` <br> e.g.`assign m/1 t/1`                                                                                                 |
-| **Member unAssign** | `unassign m/MEMBER-INDEX t/TEAM-INDEX` <br> e.g.`unassign m/1 t/1`                                                                                             |
-| **Task Add**        | `taskadd t/TEAM-INDEX n/TASK-NAME [d/DEADLINE]` <br> e.g. `taskadd t/1 n/Finish project d/24-12-2023`                                                          |
-| **Task Delete**     | `taskdelete t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskdelete t/1 task/1`                                                                                    |
-| **Task Mark**       | `taskmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskmark t/1 task/1`                                                                                        |
-| **Task unMark**     | `taskunmark t/TEAM-INDEX task/TASK-INDEX` <br> e.g. `taskunmark t/1 task/1`                                                                                    |
-| **Task Edit**       | `taskedit t/TEAM-INDEX task/TASK-INDEX [n/TASK-NAME] [d/DEADLINE]` <br> e.g. `taskedit t/1 task/1 n/Finish assignment d/12-12-2022`                            |
+| Action              | Format                                                                       | Examples                                                                                             |
+|---------------------|------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| **Help**            | `help`                                                                       |                                                                                                      |
+| **Member Add**      | `add n/NAME p/PHONE e/EMAIL a/ADDRESS [t/TAG]…`                              | `add n/John Doe p/99853657 e/john@gmail.com a/414, North Bridge Ave 5, #09-86 t/friends t/owesMoney` |
+| **Member Delete**   | `delete p/GLOBAL-PERSON-INDEX`                                               | `delete p/1`                                                                                         |
+| **Member Edit**     | `edit GLOBAL-PERSON-INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…` | `edit 1 n/Johny p/91234567 e/johndoe@example.com`                                                    |
+| **Member List**     | `userlist`                                                                   |                                                                                                      |
+| **Team Add**        | `create n/TEAM-NAME`                                                         | `create n/TEAM1`                                                                                     |
+| **Team Delete**     | `delteam TEAM-INDEX`                                                         | `delteam 1`                                                                                          |
+| **Team Edit**       | `editteam t/TEAM-INDEX n/TEAM-NAME`                                          | `editteam t/1 n/TEAMNEW`                                                                             |
+| **Member assign**   | `assign m/MEMBER-INDEX t/TEAM-INDEX`                                         | `assign m/1 t/1`                                                                                     |
+| **Member unAssign** | `unassign m/MEMBER-INDEX t/TEAM-INDEX`                                       | `unassign m/1 t/1`                                                                                   |
+| **Task Add**        | `taskadd t/TEAM-INDEX n/TASK-NAME [d/DEADLINE]`                              | `taskadd t/1 n/Finish project d/24-12-2023`                                                          |
+| **Task Delete**     | `taskdelete t/TEAM-INDEX task/TASK-INDEX`                                    | `taskdelete t/1 task/1`                                                                              |
+| **Task Mark**       | `taskmark t/TEAM-INDEX task/TASK-INDEX`                                      | `taskmark t/1 task/1`                                                                                |
+| **Task unMark**     | `taskunmark t/TEAM-INDEX task/TASK-INDEX`                                    | `taskunmark t/1 task/1`                                                                              |
+| **Task Edit**       | `taskedit t/TEAM-INDEX task/TASK-INDEX [n/TASK-NAME] [d/DEADLINE]`           | `taskedit t/1 task/1 n/Finish assignment d/12-12-2022`                                               |
 
 [Back to Top ↑](#table-of-contents)
