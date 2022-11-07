@@ -398,13 +398,13 @@ Examples:
 [editp](#editing-a-contact-editp) or [editm](#editing-a-module-editm) commands.
 
 **Q**: What if I have friends with the same name?<br>
-**A**: As our current iteration of SoCompiler does not allow duplicate names for contacts, if there are friends with the same first name, you may add in their full name or a nickname.
+**A**: SoCompiler currently does not support duplicate names. If there are multiple contacts with the same first name, you may add use their full name or a nickname.
 
 **Q**: Why can I not add a phone number with its country code?<br>
-**A**: Currently, SoCompiler is optimised for SoC students, and thus we assume that everyone will have Singapore numbers. If you wish to add a foreign number, you can add it in without the `+` in front.
+**A**: SoCompiler is currently optimised for [SOC](#school-of-computing-soc) students, and thus we assume that everyone will have Singapore numbers. If you wish to add a foreign number, you can add it in without the `+` in front.
 
 **Q**: Why can I add duplicate information(phone numbers, telegram handles, email addresses) to different people?<br>
-**A**: We do not wish to restrict your freedom by restricting too many fields, and we trust that you will accurately check through all the information that you input.
+**A**: We do not wish to restrict your freedom by restricting those fields. Do check that the information you input is accurate.
 
 [Back to top](#socompiler-user-guide)
 
