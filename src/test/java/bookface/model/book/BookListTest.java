@@ -1,16 +1,17 @@
 package bookface.model.book;
 
-import bookface.model.book.exceptions.BookNotFoundException;
-import bookface.model.book.exceptions.DuplicateBookException;
-import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.List;
-
 import static bookface.testutil.Assert.assertThrows;
 import static bookface.testutil.TypicalBooks.GET_MOTIVATED;
 import static bookface.testutil.TypicalBooks.HOW_TO_SPELL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+import bookface.model.book.exceptions.BookNotFoundException;
+import bookface.model.book.exceptions.DuplicateBookException;
 
 public class BookListTest {
 
