@@ -384,13 +384,14 @@ After executing `help delete`:
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous GithubContact home folder.
 
-**Q**: How do I add more than 1 email address/ phone number?
+**Q**: How do I add more than 1 email address/ phone number?<br>
 **A**: Unfortunately, this iteration of GithubContact only supports one email address/ phone number.
 
-**Q**: Can I get someone's contact information from GitHub?
+
+**Q**: How do I save my data?<br>
 **A**: You may be able to get the contact's email from GitHub if they have chosen to make it public. We do not currently support any other forms of contacts to be pulled form GitHub.
 
-**Q**: How do I save my data?
+**Q**: How do I save my data?<br>
 **A**: GithubContact automatically saves your data locally and retrieves it the next time you open it.
 
 --------------------------------------------------------------------------------------------------------------------

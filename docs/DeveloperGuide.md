@@ -289,21 +289,42 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### \[Proposed\] Delete User Attributes Feature (In Github Contact Page)
+### Delete User Attributes Feature (In Contact Detail Page)
 
 When the user navigates to the ContactDetail Page of a specified Person, this feature allows the User to delete specified attributes from the command line.
 
 The Delete Attribute feature will make use of the following classes:
 * `DeleteAttributeCommand` — Removes specified attribute from specified `Person` object in the model.
 * `DeleteAttributeCommandParser` — Parses the arguments supplied by the user - the `name` of the person whose `attribute` will be deleted.
-* `DeleteAttributePersonDescriptor` - Contains the attributes of the Person after an Attribute has been deleted.
+
 
 Step 1: The user enters the `ContactDetailPage` of a previously added `Person`.
 
-Step 2: The user executes `delete name/Bob role/DevOps`. `DeleteAttributeCommandParser` parses the arguments and
-creates a `DeletePersonDescriptor` containing null value for the attribute `Role` while maintaining the values for the other
-attributes. A`DeleteAttributeCommand` instance containing that `DeletePersonDescriptor` will then be created. When executed,
-the currently selected `Person`'s attributes will be updated according to the deleted attribute.
+Step 2: The user executes `delete role`. `DeleteAttributeCommandParser` parses the arguments 
+and creates a Prefix Object with the last valid argument supplied. A DeleteAttributeCommand
+object is then constructed with this Prefix. Upon the calling of the `execute()` method
+by the LogicManager, a new `Person` Object is created that has all the attributes of 
+the Person before deletion except the attribute that is to be deleted.
+
+Step 3: The `execute` method sets the new Person object (edited after deleting attribute)
+to the previous Person Object. 
+
+Step 4: Upon successful deletion, a `CommandResult` confirming the successful 
+deletion is returned. 
+
+Below are the attributes that can be deleted by the `DeleteAttributeCommand`:
+
+* `role`
+* `email`
+* `phone`
+* `github`
+* `slack`
+* `telegram`
+* `timezone`
+
+Below is the UML Sequence Diagram for the Delete Attribute Command:
+
+![DeleteAttributeSequenceDiagram](images/DeleteAttributeCommand.png)
 
 ### [Proposed] Add user using GitHub account
 
