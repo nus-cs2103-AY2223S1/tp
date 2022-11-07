@@ -1,0 +1,15 @@
+{
+  "profiles": [ {
+    "name": "Alice Paul",
+    "phone": "98342909",
+    "email": "alice@u.nus.edu",
+    "telegram": "alicepaul"
+  }, {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "pauline@u.nus.edu",
+    "telegram": "alicepaul"
+  } ],
+  "events": [
+  ]
+}

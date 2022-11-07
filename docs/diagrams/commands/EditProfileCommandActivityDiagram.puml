@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes EditProfileCommand;
+
+if () then ([input is valid])
+    :Parses input into index and fields required for profile;
+    :Creates EditProfileDescriptor;
+    :Creates EditProfileCommand;
+    :LogicManager executes EditProfileCommand;
+    :Update ProfileList with the edited profile;
+    :Update UI with new ProfileList;
+    :Display success message to user;
+else ([else])
+    :Display error message to user;
+endif
+stop
+@enduml

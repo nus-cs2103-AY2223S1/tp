@@ -7,8 +7,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyNuScheduler;
+import seedu.address.model.event.Event;
+import seedu.address.model.profile.Profile;
 
 /**
  * API of the Logic component
@@ -24,19 +25,22 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the NuScheduler.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getNuScheduler()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyNuScheduler getNuScheduler();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of profiles */
+    ObservableList<Profile> getFilteredProfileList();
+
+    /** Returns an unmodifiable view of the filtered list of events */
+    ObservableList<Event> getFilteredEventList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' NUScheduler file path.
      */
-    Path getAddressBookFilePath();
+    Path getNuSchedulerFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

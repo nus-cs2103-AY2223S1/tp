@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,33 +12,37 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.event.Event;
+import seedu.address.model.profile.EventsAttending;
+import seedu.address.model.profile.Profile;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the NUScheduler data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final NuScheduler nuScheduler;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Profile> filteredProfiles;
+    private final FilteredList<Event> filteredEvents;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given nuScheduler and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyNuScheduler nuScheduler, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(nuScheduler, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with NUScheduler: " + nuScheduler + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.nuScheduler = new NuScheduler(nuScheduler);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredProfiles = new FilteredList<>(this.nuScheduler.getProfileList());
+        filteredEvents = new FilteredList<>(this.nuScheduler.getEventList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new NuScheduler(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -65,67 +70,155 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getNuSchedulerFilePath() {
+        return userPrefs.getNuSchedulerFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setNuSchedulerFilePath(Path nuSchedulerFilePath) {
+        requireNonNull(nuSchedulerFilePath);
+        userPrefs.setNuSchedulerFilePath(nuSchedulerFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== NuScheduler ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setNuScheduler(ReadOnlyNuScheduler nuScheduler) {
+        this.nuScheduler.resetData(nuScheduler);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyNuScheduler getNuScheduler() {
+        return nuScheduler;
+    }
+
+    //========== Profiles ====================================================================================
+
+    @Override
+    public boolean hasEmail(Profile profile) {
+        requireNonNull(profile);
+        return nuScheduler.hasEmail(profile);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasPhone(Profile profile) {
+        requireNonNull(profile);
+        return nuScheduler.hasPhone(profile);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public boolean hasTelegram(Profile profile) {
+        requireNonNull(profile);
+        return nuScheduler.hasTelegram(profile);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void deleteProfile(Profile target) {
+        nuScheduler.removeProfile(target);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void addProfile(Profile profile) {
+        nuScheduler.addProfile(profile);
+        updateFilteredProfileList(PREDICATE_SHOW_ALL_PROFILES);
+    }
+
+    @Override
+    public void setProfile(Profile target, Profile editedProfile) {
+        requireAllNonNull(target, editedProfile);
+        nuScheduler.setProfile(target, editedProfile);
+    }
+
+    //========== Events ======================================================================================
+
+    @Override
+    public boolean hasEvent(Event event) {
+        requireNonNull(event);
+        return nuScheduler.hasEvent(event);
+    }
+
+    @Override
+    public void deleteEvent(Event target) {
+        nuScheduler.removeEvent(target);
+    }
+
+    @Override
+    public void removeEventFromAttendees(Event target, List<Profile> profilesToEdit) {
+        requireAllNonNull(target, profilesToEdit);
+        nuScheduler.removeEventFromAttendees(target, profilesToEdit);
+    }
+
+    @Override
+    public void addEvent(Event event) {
+        nuScheduler.addEvent(event);
+        updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+    }
+
+    @Override
+    public void setEvent(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+        nuScheduler.setEvent(target, editedEvent);
+    }
+
+    @Override
+    public void setEventForAttendees(Event target, Event editedEvent) {
+        requireAllNonNull(target, editedEvent);
+        nuScheduler.setEventForAttendees(target, editedEvent);
+    }
+
+    @Override
+    public void addEventAttendees(Event event, List<Profile> profilesToAdd) {
+        requireAllNonNull(event, profilesToAdd);
+        addEventToAttendees(event, profilesToAdd);
+        nuScheduler.addEventAttendees(event, profilesToAdd);
+    }
+
+    @Override
+    public void deleteEventAttendees(Event event, List<Profile> profilesToDelete) {
+        requireAllNonNull(event, profilesToDelete);
+        nuScheduler.deleteEventAttendees(event, profilesToDelete);
+    }
+
+    @Override
+     public void addEventToAttendees(Event event, List<Profile> profilesToAddEventTo) {
+        requireAllNonNull(event, profilesToAddEventTo);
+        nuScheduler.addEventToAttendees(event, profilesToAddEventTo);
+    }
+
+    @Override
+    public void refreshEvents(EventsAttending eventsToRefresh) {
+        requireNonNull(eventsToRefresh);
+        nuScheduler.refreshEvents(eventsToRefresh);
+    }
+
+    //=========== Filtered Profile List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * Returns an unmodifiable view of the list of {@code Profile} backed by the internal list of
+     * {@code versionedNuScheduler}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Profile> getFilteredProfileList() {
+        return filteredProfiles;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredProfileList(Predicate<Profile> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredProfiles.setPredicate(predicate);
+    }
+
+    //=========== Filtered Event List Accessors =============================================================
+
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return filteredEvents;
+    }
+
+    @Override
+    public void updateFilteredEventList(Predicate<Event> predicate) {
+        requireNonNull(predicate);
+        filteredEvents.setPredicate(predicate);
     }
 
     @Override
@@ -142,9 +235,10 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return nuScheduler.equals(other.nuScheduler)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredProfiles.equals(other.filteredProfiles)
+                && filteredEvents.equals(other.filteredEvents);
     }
 
 }

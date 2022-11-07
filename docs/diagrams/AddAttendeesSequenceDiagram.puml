@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+Participant ":LogicManager" as logicManager LOGIC_COLOR_T3
+Participant ":NuSchedulerParser" as nuSchedulerParser LOGIC_COLOR_T3
+Participant ":EventCommandParser" as eventCommandParser LOGIC_COLOR_T3
+Participant ":AddProfilesToEventCommandParser" as AddProfilesToEventCommandParser LOGIC_COLOR_T3
+Participant "p:AddProfilesToEventCommand" as AddProfilesToEventCommand LOGIC_COLOR_T3
+Participant ":CommandResult" as commandResult LOGIC_COLOR_T3
+endBox
+
+box Model MODEL_COLOR_T1
+Participant "model:Model" as model MODEL_COLOR_T3
+endBox
+
+-> logicManager ++: execute("event -ap...")
+logicManager -> nuSchedulerParser ++: parseCommand("event -ap...")
+
+create eventCommandParser
+nuSchedulerParser -> eventCommandParser ++
+return
+nuSchedulerParser -> eventCommandParser ++: parse(" -ap...")
+
+create AddProfilesToEventCommandParser
+eventCommandParser -> AddProfilesToEventCommandParser ++
+return
+eventCommandParser -> AddProfilesToEventCommandParser ++: parse(" -ap...")
+
+create AddProfilesToEventCommand
+AddProfilesToEventCommandParser -> AddProfilesToEventCommand ++
+return p
+return p
+destroy AddProfilesToEventCommandParser
+return p
+destroy eventCommandParser
+return p
+
+logicManager -> AddProfilesToEventCommand ++: execute(model)
+AddProfilesToEventCommand -> model ++: addEventAttendees(event, profilesToAdd)
+return
+AddProfilesToEventCommand -> model ++: addEventToAttendees(event, profilesToAdd)
+return
+
+create commandResult
+AddProfilesToEventCommand -> commandResult++
+return
+return
+destroy AddProfilesToEventCommand
+return
+
+@enduml
