@@ -22,13 +22,13 @@ Given below are my contributions to the project.
       which of the debts to delete.
     * Justification: Alongside our Add Debt feature, this Delete Debts feature forms the core of our enhancements to the
     original AB3 program where users can both add and remove debts from persons stored in PayMeLah to keep track of debts.
-    * Highlights: This feature allows users to specify more than one debt to delete from the person. Combined with the 
+    * Highlights: This feature allows users to specify more than one debt to delete from the person. Combined with the
     Clear Debts feature, this enables users full control over how to remove debts with convenience. The implementation was
     challenging as it required modification and thorough understanding of the `Parser` component of the AB3.
-  
+
   * Implementation of Clear Debts feature [#69](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/69), [#121](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/121)
-    * What it does: It enables a user to specify a given person stored in PayMeLah and delete all the debts 
-    stored for that person. 
+    * What it does: It enables a user to specify a given person stored in PayMeLah and delete all the debts
+    stored for that person.
     * Justification: It increases the convenience for users greatly for when they want to delete all the debts of a person
     (E.G. when the person paid of many debts together in one sitting). Instead of using the Delete Debts feature, this would be
     far easier and faster for them than specifying the index of each and every debt to delete.
@@ -40,7 +40,7 @@ Given below are my contributions to the project.
     personally split the cost of the items evenly. In this case, the regular Add Debt feature would not be enough
     so this Split Debt feature adds significant value by achieving this.
     * Highlights: This feature's implementation has the prerequisite of allowing users to specify as many persons
-    as they want to split the debt over. In addition, this feature allows users to specify themselves with the 
+    as they want to split the debt over. In addition, this feature allows users to specify themselves with the
     person index 0. This poses increased difficulty since AB3's `Parser` component regards the 0 index as an exception
     event. Thus, this implementation required modification and thorough understanding of the `Parser` component of AB3.
 
@@ -55,13 +55,13 @@ Given below are my contributions to the project.
 
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `cleardebts`, `deletedebt` and `splitdebt` 
+        * Added documentation for the features `cleardebts`, `deletedebt` and `splitdebt`
       [#291](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/291).
         * Added installation section for the PayMeLah application with diagrams and tutorial links
       [#269](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/269).
         * Restructured features section by type of feature
       [#279](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/279).
-      
+
     * Developer Guide:
         * Updated `Model` and `Storage` component diagrams to accommodate `Telegram` field
       [#194](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/194).
@@ -74,7 +74,7 @@ Given below are my contributions to the project.
   * PRs reviewed (with non-trivial review comments):
   [#66](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/66),
     [#127](https://github.com/AY2223S1-CS2103T-W13-3/tp/pull/127)
-  
+
   * Reported bugs and suggestions for other teams (accepted):
   [#118](https://github.com/AY2223S1-CS2103-F14-1/tp/issues/118),
   [#125](https://github.com/AY2223S1-CS2103-F14-1/tp/issues/125),
