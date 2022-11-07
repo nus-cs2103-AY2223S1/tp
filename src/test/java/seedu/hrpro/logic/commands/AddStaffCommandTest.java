@@ -2,7 +2,6 @@ package seedu.hrpro.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.hrpro.logic.commands.CommandTestUtil.VALID_STAFFNAME_ANDY;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.hrpro.logic.commands.CommandTestUtil.assertCommandSuccess;
