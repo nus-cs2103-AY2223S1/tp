@@ -7,6 +7,12 @@ import java.time.format.DateTimeFormatter;
 
 import seedu.address.logic.parser.DateKeyword;
 
+//@@author Junweimoo
+//Created most of the methods in this class.
+
+//@@author rexong
+//Refactored and abstracted Junweimoo's code to reduce code duplication.
+
 /**
  * Represents Dates that are used in MyInsuRec
  */

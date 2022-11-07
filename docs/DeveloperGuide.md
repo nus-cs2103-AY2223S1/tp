@@ -137,9 +137,9 @@ How the `Logic` component works:
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("addClient n/John Tan p/12345678")` API call.
-
+<!-- @@author rexong -->
 ![Interactions Inside the Logic Component for the `addClient n/John Tan p/12345678` Command](images/AddClientSequenceDiagram.png)
-
+<!-- @@author -->
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteClientCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -222,6 +222,7 @@ We decided to only allow adding of a client with its product only after the prod
 
 This is to try and maintain the overall cleanliness and housekeeping of _MyInsuRec_. Suppose we allow the user to add the client with any product name without it already existing in the product list. This might be organized and clean for the first few contacts added, but over time, the product name can get distorted. Shorthand forms may be used in place of the product name, case sensitivity and whitespaces are ignored. With _MyInsuRec_ also placing a focus on allowing users to get an idea of the popularity of each of the products they are selling, it is paramount that the product name stay the same, so as to enable the feature to work. Furthermore, one of the problems we are attempting to solve is the messiness of using traditional Excel spreadsheets. Having this validation check helps to preserve the data added, and thus the user can use the app for a longer time without feeling cluttered.
 
+<!-- @@author rexong -->
 #### 4.1.2 Birthday constraints
 
 Below is the activity diagram that illustrates the process of validating birthday when birthday of a client is added.
@@ -233,7 +234,7 @@ We decided to set these 2 constraints on birthday:
 1) Birthday should not be in the future.
 
 2) Birthday should not be more than 100 years ago as we feel that client would not be able to buy product due to age limit.
-
+<!-- @@author thomashoooo -->
 #### 4.1.3 View client
 
 Syntax: `viewClient i/INDEX`, where `INDEX` is an index shown in the client list.
@@ -258,6 +259,7 @@ Below is an activity diagram that summarises the execution of `viewClient`.
 
 ![ViewClientActivityDiagram](images/ViewClientActivityDiagram.png)
 
+<!-- @@author rexong -->
 #### 4.1.4 Delete Client
 
 Syntax: `delClient i/INDEX`, where `INDEX` is an index shown in the client list.
@@ -278,7 +280,7 @@ The sequence diagram below illustrates the interactions between the `Logic` and 
 Below is the activity diagram that summarises the execution of `delClient`.
 
 ![DeleteClientActivityDiagram](images/DeleteClientActivityDiagram.png)
-
+<!-- @@author -->
 #### 4.1.5 Edit Client feature
 
 Syntax: `editClient i/INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [b/BIRTHDAY] [pd/PRODUCT]`
@@ -338,6 +340,7 @@ Below is a sequence diagram that illustrates the execution of `addMeeting i/1 st
     - Cons: The parser will need to have access to the model in order to
       obtain the referenced client.
 
+<!-- @@author rexong -->
 #### 4.2.2 Meeting date constraints
 
 Below is the activity diagram that illustrates the process of validating meeting date.
@@ -348,6 +351,7 @@ We decided to set this constraint on meeting date:
 
 1) Meeting Date is not in the past.
 
+<!-- @@author rexong -->
 #### 4.2.3 Delete meeting
 
 Syntax: `delMeeting i/INDEX`, where `INDEX` is an index shown in the meeting list.
@@ -376,6 +380,7 @@ _The sequence diagram and activity diagram of `delMeeting` is similar to the dia
     - Cons: Complex to implement
 - Considering that the approach taken to develop _MyInsuRec_ is a breath first approach, where we should only build to the point where every iteration is a working product, **Solution 1** is thus chosen as it is easier to implement. However, Solution 2 could be a possible implementation for future iteration.
 
+<!-- @@author thomashoooo-->
 #### 4.2.4 View meeting
 
 Syntax: `viewMeeting i/INDEX`, where `INDEX` is an index shown in the meeting list.
@@ -392,7 +397,7 @@ Usage Scenario of `viewMeeting`:
 </div>
 
 _The sequence diagram and activity diagram of `viewMeeting` is similar to the diagrams shown in [`viewClient`](#413-view-client) feature by replacing all occurrence of `client` with `meeting`._
-
+<!-- @@author -->
 #### 4.2.5 List meeting
 
 Syntax: `listMeeting [d/PERIOD]`
@@ -457,7 +462,7 @@ Below is a sequence diagram that illustrates the execution of `editMeeting i/1 d
 <img src="images/AlternativeEditActivityDiagram.png" width="250" />
 
 ### 4.3 `Product`-related features
-
+<!-- @@author thomashoooo -->
 #### 4.3.1 Add product
 
 Syntax: `addProduct pd/PRODUCT_NAME`
@@ -470,14 +475,14 @@ Usage Scenario of `addProduct`:
 
 1) User inputs `addProduct pd/PrudenSure` to add PrudenSure in the product list.
 
-Below is a sequence diagram that illustrates the execution of `listMeeting` command.
+Below is a sequence diagram that illustrates the execution of `addProduct` command.
 
 ![AddProductSequenceDiagram](images/AddProductSequenceDiagram.png)
 
 Below is an activity diagram that summarises the execution of `addProduct`.
 
 ![AddProductActivityDiagram](images/AddProductActivityDiagram.png)
-
+<!-- @@author -->
 ### 4.4 UI
 
 #### 4.4.1 Different view panels
@@ -669,6 +674,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
+<!-- @@author rexong -->
 #### 6.3.4 Use case: UC4 - Delete a client
 
 **MSS**
@@ -687,7 +693,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
     * 1a1. System shows an error message.
 
       Use case ends.
-
+<!-- @@author -->
 #### 6.3.5 Use case: UC5 - Edit a client
 
 **MSS**
@@ -760,6 +766,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
       Use case ends.
 
+<!-- @@author rexong -->
 #### 6.3.9 Use case: UC9 - Delete a meeting
 
 **MSS**
@@ -778,7 +785,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
     * 3a1. System shows an error message.
 
       Use case ends.
-
+<!-- @@author -->
 #### 6.3.10 Use case: UC10 - Edit a meeting
 
 **MSS**
@@ -966,7 +973,7 @@ testers are expected to do more *exploratory* testing.
 10. Add client with invalid phone number
     * Test case: `addClient n/Tom p/12345`
         * Expected: No client will be added. Error regarding the wrong phone input will be shown.
-
+<!-- @@author thomashoooo -->
 ### 7.3 Viewing a client
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of clients using `listClient` where the index number of the client can be found.
@@ -999,6 +1006,7 @@ testers are expected to do more *exploratory* testing.
     * Test case: `viewClient 1`
         * Expected: Prefix for index is not provided, so there will be an invalid command format error.
 
+<!-- @@author rexong -->
 ### 7.4 Deleting a client
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of clients using `listClient` where the index number of the client can be found.</div>
@@ -1016,7 +1024,7 @@ testers are expected to do more *exploratory* testing.
 4. Delete client without parameters
     * Test case: `delClient`
         * Expected: No client is deleted. Error regarding invalid command format will be shown.
-
+<!-- @@author -->
 ### 7.5 Listing meetings
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.</div>
@@ -1047,6 +1055,7 @@ testers are expected to do more *exploratory* testing.
     * Test case: `listMeeting adsfadsf`
         * Expected: The view switches back to the list of meetings, and all three meetings are displayed. Extra parameters are ignored.
 
+<!-- @@author rexong -->
 ### 7.6 Deleting a Meeting
 
 Deleting a meeting while all meetings are being shown
@@ -1065,6 +1074,7 @@ Deleting a meeting while all meetings are being shown
     * Test case: `delMeeting`
         * Expected: No meeting is deleted. Error regarding invalid command format will be shown.
 
+<!-- @@author thomashoooo -->
 ### 7.7 Viewing a meeting
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in, but it only makes sense to use while you are in the list of meetings using `listMeeting` where the index number of the meeting can be found.</div>
@@ -1094,7 +1104,7 @@ Deleting a meeting while all meetings are being shown
 7. View meeting without using prefix
    * Test case: `viewMeeting 1`
      * Expected: Prefix for index is not provided, so there will be an invalid command format error.
-
+<!-- @@author -->
 ### 7.8 Adding a product
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The function works regardless of the view you are currently in.</div>

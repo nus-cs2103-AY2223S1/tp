@@ -46,7 +46,7 @@ Given below are my contributions to the project.
 
 * **Team tasks**:
   * Set up the Github team organisation and repository
-  * Integrated CodeDev into the team repo
+  * Integrated Codecov into the team repo
   * Set up Github pages for Jekyll
   * Maintain the issue tracker
 

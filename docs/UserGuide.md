@@ -17,7 +17,7 @@ _MyInsuRec_ prioritizes user-friendliness and user experience. As such, interact
 _MyInsuRec_ is available for the Windows, macOS and Linux operating systems. To get started, simply head over to the [installation guide](#5-installation-guide). This user guide can also serve as a reference for experienced users, with a convenient [command summary](#9-command-summary).
 
 --------------------------------------------------------------------------------------------------------------------
-
+<!-- @@author rexong -->
 ## 2. How to use this User Guide
 
 Welcome to _MyInsuRec_ User Guide!
@@ -28,12 +28,15 @@ This guide smooths the learning curve and helps you learn how to use _MyInsuRec_
 
 Before we go on further, look out for these symbols in the User Guide as they provide some important messages you might want to know!
 
+<!-- @@author -->
 | Symbol               | Background color | Meaning                                                                                               |
 |----------------------|------------------|-------------------------------------------------------------------------------------------------------|
 | `command`            | -                | Indicates some command or parameter that can be entered into MyInsuRec.                               |
 | :information_source: | Blue             | Additional information. This symbol is followed by a label 'Note'.                                    |
 | :exclamation:        | Yellow           | Crucial information needed for proper use of MyInsuRec. This symbol is followed by a label 'Caution'. |
 | :bulb:               | Green            | Tips and tricks. This symbol is followed by a label 'Tips and tricks'.                                |
+
+<!-- @@author rexong -->
 
 <div markdown="span" class="alert alert-info">**:information_source: Note:**
 If you have **not installed** _MyInsuRec_, you can follow the [installation guide](#5-installation-guide) here!
@@ -57,7 +60,7 @@ We hope that this guide is helpful in smoothing out the learning curve for you!
 [Return to the top](#)
 
 --------------------------------------------------------------------------------------------------------------------
-
+<!-- @@author -->
 ## 3. Overview
 
 The following subsections explains some terminology and main features of *MyInsuRec*:
@@ -111,7 +114,7 @@ Beyond individual products, you can also:
 [Return to the top](#)
 
 --------------------------------------------------------------------------------------------------------------------
-
+<!-- @@author rexong -->
 ## 4. User Interface
 
 The following subsections introduces the layout of _MyInsuRec_'s user interface.
@@ -157,7 +160,7 @@ This is the view after executing the `viewMeeting` command.
 [Return to the top](#)
 
 --------------------------------------------------------------------------------------------------------------------
-
+<!-- @@author -->
 ## 5. Installation Guide
 
 ### 5.1 System Requirements
@@ -269,6 +272,7 @@ This section guides you on how to use features available in *MyInsuRec*. We will
 
 **Do take some time to read the following note** to better understand how you can use this section!
 
+<!-- @@author rexong -->
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -309,7 +313,7 @@ This section guides you on how to use features available in *MyInsuRec*. We will
   e.g. if the command is used as `editClient i/1 n/Smith et/1230` where `et/` is the only invalid parameter, the input by preceding valid parameter `n/` will be read as `Smith et/1230` (this input is invalid because it is not alphanumeric)
 
 * All incorrect parameters up until the first valid parameter will be ignored for commands that take in parameters (such as `editClient` and `delMeeting`). <br> e.g. `delMeeting n/Alex i/1` will be parsed correctly since `i/1` is the first valid parameter and the incorrect parameter `n/Alex` before that is ignored.
-
+<!-- @@author -->
 </div>
 
 <div markdown="span" class="alert alert-warning">**:exclamation: Caution:**
@@ -321,7 +325,7 @@ See [addProduct](#731-adding-a-product-addproduct).
 ### 7.1 Client commands
 
 This subsection covers all client-related commands.
-
+<!-- @@author rexong -->
 #### 7.1.1 Add client: `addClient`
 
 Add a new client to _MyInsuRec_.
@@ -355,7 +359,7 @@ Examples:
   * `addClient n/John Tan p/12345678 e/johntan@insurec.com a/123 ABC ROAD, #11-01 pd/Product1`
 * Same as above, but with multiple products
   * `addClient n/John Tan p/12345678 e/johntan@insurec.com a/123 ABC ROAD, #11-01 pd/Product1 pd/Product2 pd/Product3`
-
+<!-- @@author thomashoooo -->
 #### 7.1.2 List clients: `listClient`
 
 Shows the list of clients in MyInsuRec.
@@ -393,6 +397,7 @@ Examples:
 
 * Extraneous parameters will not be taken into account. For example, `listClient n/Alex` will be considered as `listClient` without any error messages.
 </div>
+<!-- @@author thomashoooo-->
 
 #### 7.1.3 View client: `viewClient`
 
@@ -413,7 +418,7 @@ Examples:
 
 Screenshot:
 ![ViewClient](images/features/ViewClient.png)
-
+<!-- @@author rexong -->
 #### 7.1.4 Delete client: `delClient`
 
 Delete the specified client from _MyInsuRec_.
@@ -431,7 +436,7 @@ Use case:
 Examples:
 * Delete the client with an `INDEX` of 2
   * `delClient i/2`
-
+<!-- @@author -->
 #### 7.1.5 Edit client: `editClient`
 
 Edit details of the specified client.
@@ -535,6 +540,7 @@ Examples:
 <div markdown="span" class="alert alert-warning">**:exclamation: Caution:**
 Extraneous parameters will not be taken into account. For example, `listMeeting n/Alex` will be considered as `listMeeting` without any error messages.
 </div>
+<!-- @@author thomashoooo -->
 
 #### 7.2.3 View meeting: `viewMeeting`
 
@@ -555,7 +561,7 @@ Examples:
 
 Screenshot:
 ![ViewMeeting](images/features/ViewMeeting.png)
-
+<!-- @@author rexong -->
 #### 7.2.4 Delete meeting: `delMeeting`
 
 Delete a meeting from _MyInsuRec_.
@@ -574,7 +580,7 @@ Use case:
 Examples:
 * Delete meeting with an `INDEX` of 2
   * `delMeeting i/2`
-
+<!-- @@author -->
 #### 7.2.5 Edit meeting: `editMeeting`
 
 Edit details of the specified meeting.
@@ -599,7 +605,7 @@ Examples:
 ### 7.3 Product commands
 
 This subsection covers all product-related commands.
-
+<!-- @@author thomashoooo -->
 #### 7.3.1 Add product: `addProduct`
 
 Add a new product to MyInsuRec.
@@ -617,7 +623,7 @@ Use Case:
 Examples:
 * Add product with product name of 'Product1'
   * `addProduct pd/Product1`
-
+<!-- @@author -->
 #### 7.3.2 List products: `listProduct`
 
 Show the list of products in MyInsuRec.
@@ -748,7 +754,7 @@ Add the product to the client using the [`editClient`](#715-edit-client-editclie
 [Return to the top](#)
 
 --------------------------------------------------------------------------------------------------------------------
-
+<!-- @@author thomashoooo -->
 ## 9. Command summary
 
 | Action                                               | Format                                                                                            | Examples                                                                                                                                         |
@@ -769,7 +775,7 @@ Add the product to the client using the [`editClient`](#715-edit-client-editclie
 | [**Help**](#741-view-help-help)                      | `help`                                                                                            | `help`                                                                                                                                           |
 | [**Exit**](#742-exit-myinsurec-exit)                 | `exit`                                                                                            | `exit`                                                                                                                                           |
 | [**Clear**](#743-clear-myinsurec-clear)              | `clear`                                                                                           | `clear`                                                                                                                                          |
-
+<!-- @@author -->
 [Return to the top](#)
 
 --------------------------------------------------------------------------------------------------------------------
