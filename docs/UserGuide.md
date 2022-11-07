@@ -144,6 +144,10 @@ These parts are numbered, and their names and descriptions will be displayed in 
 This section displays the names of all the teams that you have created in TruthTable. Only the names of each team 
 is listed.  
 
+<div markdown="block" class="alert alert-primary">**:information_source: Note:**
+There will always be one team in TruthTable, 
+</div>
+
 | Number | Component       | Description                                    |
 |--------|-----------------|------------------------------------------------|
 | 1      | [Index](#index) | The index of the team in the list of all teams |  
@@ -218,8 +222,7 @@ designed to be **easy to remember** and **natural**, so you will get up to speed
 All instructions are executed through **commands**. Each command can have **flags specified after the command**, 
 which modifies how the instruction should be carried out.
 
-For each of these flags, there may be **parameters** specified after it. But, **not all commands**
-require flags to appear before parameters.
+For each of these flags, there may be **parameters** specified after it. But, **not all commands** require this.
 
 Note that flags and parameters always **come after the command**.
 
@@ -239,7 +242,7 @@ Here's a summary of what each highlighted section represents.
 
 ### Understanding the help message
 
-Every command in TruthTable has their own flags and parameters, you don't have to remember all of them.
+Every command in TruthTable has their own flags and parameters, so you don't have to remember all of them.
 
 Instead, each command allows you to specify the `-h` and `--help` flag, which brings up the available flags
 and parameters for the command. Alternatively, you can also refer to this user guide to find out the details of
@@ -256,7 +259,7 @@ Here's a summary of what each highlighted section represents.
 | 1      | Command                         | -                      | Only alphabets and spaces (all commands can be found [here](#commands))        |
 | 2      | Optional Flag with no Parameter | `[-flag]`              | -                                                                              |
 | 3      | Optional Flag with Parameters   | `[-flag=<parameters>]` | An ellipsis `...` is present only if more than 1 parameter is **allowed**      |
-| 4      | Required Flag with Parameters   | `flag=<parameters>`    | An ellipsis `...` is present only if more than 1 parameter is **required**     |
+| 4      | Required Flag with Parameters   | `flag=<parameters>`    | An ellipsis `...` is present only if more than 1 parameter is **allowed**      |
 | 5      | Required Parameter              | `<parameter>`          | All parameters are required by default                                         |
 | 6      | Flag/Parameter Name and Alias   | -                      | All aliases of a flag/parameter will be listed and separated with commas (`,`) |
 | 7      | Flag/Parameter Description      | -                      | Brief description of flag/parameter                                            |
@@ -305,7 +308,7 @@ A valid command is `assign task 1 -a 1 2 3` where `1 2 3` are recognised as the 
 
 
 <div markdown="block" class="alert alert-info">
-**:star: POSIX clustered short options**: TruthTable supports clustered options as specified 
+**:star: POSIX clustered short options:** TruthTable supports clustered options as specified 
 <a href="https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap12.html#tag_12_02" target="_blank">here</a>
 </div>
 
@@ -467,7 +470,7 @@ Edits an existing person in TruthTable.
 
 * Edits the person at the specified `PERSON_INDEX`, which refers to the index number shown in the
   [persons section](#persons-section)
-* `PERSON_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `PERSON_INDEX` **must be a positive integer:** 1, 2, 3,...
 * Each field only updates if the flag for that field is specified.
 * When editing tags, the existing tags of the person will be **completely replaced** by the new tags specified.
 * So, you can remove all the person’s tags by typing `-t` without specifying any tags after it.
@@ -495,7 +498,7 @@ Deletes the specified person from TruthTable.
 
 * Deletes the person at the specified `PERSON_INDEX`, which refers to the index number shown in the
   [persons section](#persons-section)
-* `PERSON_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `PERSON_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
 - `delete p`
@@ -567,7 +570,7 @@ the team, an error message will be displayed.
 |----------------|----------|-------------------------------------|
 | `-h`, `--help` | :x:      | Shows help message for this command |
 
-* `PERSON_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `PERSON_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
 - `add m`
@@ -589,7 +592,7 @@ Delete a team member from the user’s team.
 |----------------|----------|-------------------------------------|
 | `-h`, `--help` | :x:      | Shows help message for this command |
 
-* `MEMBER_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `MEMBER_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
 - `delete m`
@@ -617,7 +620,7 @@ should **not** use both `-n` and `-e` in the `find member` command.
 | `-n`, `--name`  | :hash:   | Keywords to filter by name          |
 | `-e`, `--email` | :hash:   | Keywords to filter by email         |
 
-:hash: - exactly one flag must be specified
+:hash: - exactly one of the flags for name and email must be specified
 
 * Only the name or email is searched.
 * The search is case-insensitive, e.g. `hans` will match `Hans`.
@@ -788,7 +791,7 @@ Add a new task to your current team. Each task can have multiple assignees and a
 * `TASK_DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks 
   (`""`)
   around the parameter**.
-* `TASK_ASSIGNEES` **must be positive integers**: 1, 2, 3,...
+* `TASK_ASSIGNEES` **must be positive integers:** 1, 2, 3,...
 
 **Command Aliases:**
 - `add ta`
@@ -822,7 +825,7 @@ Edits a specified task in the current team's task list.
   [team members section](#current-team-section)
 * `DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks (`""`)
   around the parameter**.
-* `TASK_INDEX` and `ASSIGNEES` **must be positive integers**: 1, 2, 3,...
+* `TASK_INDEX` and `ASSIGNEES` **must be positive integers:** 1, 2, 3,...
 * Each field only updates if the flag for that field is specified.
 * When editing assignees, the existing assignees of the task will be **completely replaced** by the new assignees 
   specified.
@@ -854,7 +857,7 @@ Delete an existing task from the team at the given task index.
 |----------------|----------|-------------------------------------|
 | `-h`, `--help` | :x:      | Shows help message for this command |
 
-* `TASK_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
 - `delete ta`
@@ -902,7 +905,7 @@ Mark a specified task as done. To undo this command, see the [unmark command](#u
 |----------------|----------|-------------------------------------|
 | `-h`, `--help` | :x:      | Shows help message for this command |
 
-* `TASK_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
 - `m`
@@ -921,7 +924,7 @@ Mark a specified task as incomplete. This will undo the [mark command](#mark-tas
 |----------------|----------|-------------------------------------|
 | `-h`, `--help` | :x:      | Shows help message for this command |
 
-* `TASK_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
 - `u`
@@ -940,7 +943,7 @@ Set a deadline for an existing task, and the deadline must be in `YYYY-MM-DD HH:
 |----------------|----------|-------------------------------------|
 | `-h`, `--help` | :x:      | Shows help message for this command |
 
-* `TASK_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 * `TASK_DEADLINE` contains both the date and time in `YYYY-MM-DD HH:MM` format, and it **does not have quotation marks 
   (`""`)
   around the parameter**.
@@ -965,7 +968,7 @@ Assign an existing task to a team member in the user’s team.
 | `-h`, `--help`     | :x:                | Shows help message for this command                          |
 | `-a`, `--assignee` | :heavy_check_mark: | Index of members in [members section](#current-team-section) |
 
-* `TASK_INDEX` and `TASK_ASSIGNEES` **must be positive integers**: 1, 2, 3,...
+* `TASK_INDEX` and `TASK_ASSIGNEES` **must be positive integers:** 1, 2, 3,...
 * The original assignees of the task will not be replaced with this command, instead, only new assignees can be added.
 * To remove assignees from a task, you can use the [`edit task` command](#edit-task-in-team-edit-task)
 
@@ -991,7 +994,7 @@ or if the task has already been assigned to all members of the team.
 |----------------|----------|-------------------------------------|
 | `-h`, `--help` | :x:      | Shows help message for this command |
 
-* `TASK_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `TASK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
 - `assign r`
@@ -1012,7 +1015,7 @@ Find all tasks that have been assigned to a particular member in the currently s
 |----------------|----------|-------------------------------------|
 | `-h`, `--help` | :x:      | Shows help message for this command |
 
-* `MEMBER_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `MEMBER_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
 - `to`
@@ -1125,7 +1128,7 @@ Edit an existing link in the currently selected team.
 
 :asterisk: - at least one of the flags for link and name must be specified
 
-* `LINK_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `LINK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
 - `edit l`
@@ -1147,7 +1150,7 @@ Delete the specified link from the currently selected team.
 |----------------|----------|-------------------------------------|
 | `-h`, `--help` | :x:      | Shows help message for this command |
 
-* `LINK_INDEX` **must be a positive integer**: 1, 2, 3,...
+* `LINK_INDEX` **must be a positive integer:** 1, 2, 3,...
 
 **Command Aliases:**
 - `delete l`
