@@ -26,11 +26,15 @@ With `Food Guide`, you can search for the available food options in NUS and make
 * [Features](#features)
   * [Help](#help-command--help)
   * [List](#listing-all-eateries--list)
-  * [Find](#finding-eateries-by-name--find) / [FindTag](#finding-eateries-by-tag--findtag) /
-    [FindLocation](#finding-eateries-by-location--findlocation) / [FindCuisine](#finding-eateries-by-cuisine--findcuisine)
+  * [Exit](#exit-command--exit)
+  * [Find](#find-eateries-by-name--find) / [FindLocation](#find-eateries-by-location--findlocation) /
+    [FindCuisine](#find-eateries-by-cuisine--findcuisine) / [FindPrice](#find-eateries-by-price--findprice) /
+    [FindTag](#find-eateries-by-tag--findtag)
   * [Tag](#add-tag-to-eatery--tag) / [Untag](#remove-tag-from-eatery--untag)
-  * [Add](#add-eatery--add) / [Delete](#delete-eatery--delete) / [Edit](#edit-eatery--edit)
   * [Fav](#favourite-eatery--fav) / [Unfav](#unfavourite-eatery--unfav)
+  * [Add](#add-eatery--add) / [Delete](#delete-eatery--delete) / [Edit](#edit-eatery--edit)
+  * [Clear](#clear-food-guide--clear)
+
 * [FAQ](#faq)
 * [Command Summary](#command-summary)
 
