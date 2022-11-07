@@ -1,3 +1,8 @@
+---
+layout: page 
+title: SETA
+---
+
 Developer Guide
 ==========
 
