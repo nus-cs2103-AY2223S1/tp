@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TAAParser" as TAAParser LOGIC_COLOR
+participant ":TaskEditCommandParser" as TaskEditCommandParser LOGIC_COLOR
+participant "t:TaskEditCommand" as TaskEditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("task edit 1 tn/hi")
+activate LogicManager
+
+LogicManager -> TAAParser : parse("task edit 1 tn/hi")
+activate TAAParser
+
+create TaskEditCommandParser
+TAAParser -> TaskEditCommandParser
+activate TaskEditCommandParser
+
+TaskEditCommandParser --> TAAParser
+deactivate TaskEditCommandParser
+
+TAAParser -> TaskEditCommandParser : parse("1 tn/hi")
+activate TaskEditCommandParser
+
+create TaskEditCommand
+TaskEditCommandParser -> TaskEditCommand
+activate TaskEditCommand
+
+TaskEditCommand --> TaskEditCommandParser : t
+deactivate TaskEditCommand
+
+TaskEditCommandParser --> TAAParser : t
+deactivate TaskEditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+TaskEditCommandParser -[hidden]-> TAAParser
+destroy TaskEditCommandParser
+
+TAAParser --> LogicManager : t
+deactivate TAAParser
+
+LogicManager -> TaskEditCommand : execute()
+activate TaskEditCommand
+
+TaskEditCommand -> Model : editTask(1, "hi")
+activate Model
+
+Model --> TaskEditCommand
+deactivate Model
+
+TaskEditCommand -> Model : updateGrade(1)
+activate Model
+
+Model --> TaskEditCommand
+deactivate Model
+
+create CommandResult
+TaskEditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> TaskEditCommand
+deactivate CommandResult
+
+TaskEditCommand --> LogicManager : result
+deactivate TaskEditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

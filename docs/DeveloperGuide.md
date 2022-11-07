@@ -270,6 +270,11 @@ The model component contains a `GradeMap`, which maps a `GradeKey` object to a `
 
 Since a `Grade` object is associated with a `Student` and `Task` pair, `GradeKey` consists of a `Student` field and a `Task` field.
 
+Therefore, editing the `Task` or `Student` using `task edit` or `student edit` necessitates updating the `GradeMap` as well, since the `edit` commands generate new `Task` and `Student` objects.
+Given below is a sequence diagram illustrating this when the user uses the `task edit 1 tn/hi` command.
+
+<img src="images/TaskEditSequenceDiagram.png" width="650" />
+
 ##### Commands
 
 ###### Viewing the grade with `grade view`
