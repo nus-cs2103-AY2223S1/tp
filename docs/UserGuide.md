@@ -427,7 +427,8 @@ Sorts patients by a single field.
 #### Format:
 
 ```Command word c/<input> o/<input>```
-* The command word is `sortpatient`.
+
+* The command word is `sortpatient` or `sop`.
 * The prefixes are `c/` for Criteria and `o/` for Order.
 * The criteria can be Name of patient (`name`), Phone number of patient (`phone`), Email address of patient (`email`), Address of patient (`address`).
 * The order can be Ascending (`asc`) or Descending (`desc`).
@@ -455,7 +456,7 @@ Sorts appointments by a single field.
 ```Command word c/<input> o/<input> ...```
 
 
-* The command word is `sortappointment`.
+* The command word is `sortappointment` or `soa`.
 * The prefixes are `c/` for Criteria and `o/` for Order.
 * The criteria can be Name of patient (`name`), Medical Test of appointment (`test`), Slot of appointment (`slot`) and Doctor of appointment (`doctor`).
 * The order can be Ascending (`asc`) or Descending (`desc`).
@@ -483,7 +484,7 @@ Sorts bills by a single field.
 ```Command word c/<input> o/<input> ...```
 
 
-* The command word is `sortbill`.
+* The command word is `sortbill` or `sob`.
 * The prefixes are `c/` for Criteria and `o/` for Order.
 * The criteria can be Name of patient (`name`), Amount (`amount`), Bill date (`date`), Payment status (`status`).
 * The order can be Ascending (`asc`) or Descending (`desc`).
