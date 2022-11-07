@@ -35,6 +35,4 @@ public class AddOrderCommandParserTest {
         String input = "this is an invalid argument";
         assertParseFailure(parser, input, expected);
     }
-
-    //TODO: add more test cases
 }

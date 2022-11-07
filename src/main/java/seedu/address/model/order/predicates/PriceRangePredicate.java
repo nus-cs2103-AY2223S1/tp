@@ -2,7 +2,6 @@ package seedu.address.model.order.predicates;
 
 import java.util.function.Predicate;
 
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.order.Order;
 import seedu.address.model.order.Price;
 import seedu.address.model.order.PriceRange;
@@ -30,8 +29,14 @@ public class PriceRangePredicate<T extends Order> implements Predicate<T> {
         Price orderLowerBound = order.getRequestedPriceRange().getLowerBound();
         Price orderUpperBound = order.getRequestedPriceRange().getUpperBound();
         PriceRange thisRange = new PriceRange(lowerBound, upperBound);
-        boolean isAboveLowerBound = thisRange.comparePrice(orderLowerBound) == PriceRange.WITHIN_RANGE;
-        boolean isBelowUpperBound = thisRange.comparePrice(orderUpperBound) == PriceRange.WITHIN_RANGE;
+        boolean isThisLowerNA = lowerBound.isNotApplicablePrice();
+        boolean isThisUpperNA = upperBound.isNotApplicablePrice();
+        boolean isOtherLowerNA = orderLowerBound.isNotApplicablePrice();
+        boolean isOtherUpperNA = orderUpperBound.isNotApplicablePrice();
+        boolean isAboveLowerBound = thisRange.comparePrice(orderLowerBound) == PriceRange.WITHIN_RANGE
+                && ((!isOtherLowerNA) || (isThisLowerNA));
+        boolean isBelowUpperBound = thisRange.comparePrice(orderUpperBound) == PriceRange.WITHIN_RANGE
+                && ((!isOtherUpperNA) || (isThisUpperNA));
         return isAboveLowerBound && isBelowUpperBound;
     }
 

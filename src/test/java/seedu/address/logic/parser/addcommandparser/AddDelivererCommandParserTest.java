@@ -42,7 +42,6 @@ import seedu.address.testutil.PersonBuilder;
 public class AddDelivererCommandParserTest {
     private AddDelivererCommandParser parser = new AddDelivererCommandParser();
 
-    //TODO Redraft the test cases
     @Test
     public void parse_allFieldsPresent_success() {
         Deliverer expectedDeliverer = new PersonBuilder(BOB).buildDeliverer();
