@@ -13,7 +13,7 @@ Given below are my contributions to the project.
   - ### Feature: Added new model `Calendar` and its logic.
     - What it does: It displays  all the appointments for the clients in a calendar  format in another tab.
     - Justification: Financial Advisors(FA) require a method to view all their current appointments with ease, hence a calendar is needed to make scheduling of appointments simple.
-  - ### Feature: Implemented the `Jump Box` 
+  - ### Feature: Implemented the `Jump Box`
     - What it does: It allows user to jump to the month that the user wants to view in the Calendar directly.
     - Justification: Financial Advisors(FA) may require to view the appointments in the far future, so this feature allows them to view it immediately without having to use the `Next Button` multiple times.
   - ### Feature: Implemented the `Next Button`
@@ -23,7 +23,7 @@ Given below are my contributions to the project.
     - What it does: It shows the previous month in the Calendar.
     - Justification: It allows user to see the appointments scheduled for the previous month, this is usually to return to the current month after using the `Next Button`.
   - ### Code contributed: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=wongyewjon&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=wongyewjon&tabRepo=AY2223S1-CS2103T-W09-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
-  - ### Enhancements implemented: 
+  - ### Enhancements implemented:
     - Changed the UI to include an additional panel for the `Appointment` model and their attributes .
   - ### Contributions to the UG:
     - Added documentation for the Calendar features section.
