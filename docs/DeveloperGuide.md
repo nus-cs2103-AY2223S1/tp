@@ -121,6 +121,7 @@ Each of the four main components (also shown in the diagram above),
 * defines its *API* in an `interface` with the same name as the Component.
 * implements its functionality using a concrete `{Component Name}Manager` class (which follows the corresponding API `interface` mentioned in the previous point.
 
+<div style="page-break-after: always;"></div>
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
@@ -128,7 +129,6 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 The sections below give more details of each component.
 
 [<*Back to ToC*>](#table-of-contents)
-
 <div style="page-break-after: always;"></div>
 
 ### UI component
@@ -287,6 +287,8 @@ displayed
   
 [<*Back to ToC*>](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### List records feature
 
 #### Implementation:
@@ -336,6 +338,7 @@ Given below is an example usage scenario for the command.
   * User executes `rdelete 1` to delete the 1st record in the displayed record list. The `rdelete` command calls `Model#deleteRecord(Record)` which performs the deletion of records from the `DisplayedPerson` held by the `Model`.
 
 [<*Back to ToC*>](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ### Edit record feature
 
@@ -365,6 +368,7 @@ Given below is an example usage scenario for the command.
   record containing the date/time of `12-12-2012 1200`, record data of `Fever` and sets the medications to empty.
 
 [<*Back to ToC*>](#table-of-contents)
+<div style="page-break-after: always;"></div>
 
 ### Find records feature
 
@@ -452,6 +456,8 @@ Given below is an example usage scenario for the command.
 
 [<*Back to ToC*>](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
+
 ### About Appointment Features
 
 > Each `Patient` holds an appointment reference for record keeping that the user is able to edit and clear.
@@ -479,6 +485,8 @@ been edited by `AddAppointmentCommand#execute()`.
 The method `AddAppointmentCommand#execute()` returns a `CommandResult` object, which stores information about the completion 
 of the command.
 
+<div style="page-break-after: always;"></div>
+
 The diagram below details how the operation of adding an appointment works.
 
 ![AddAppointmentSequenceDiagram](images/AddAppointmentSequenceDiagram.png)
@@ -504,6 +512,8 @@ Given below is an example usage scenario for the command.
   * Cons: Longer command execution, requiring more parts to work together.
 
 [<*Back to ToC*>](#table-of-contents)
+
+<div style="page-break-after: always;"></div>
 
 ### Clear appointment feature
 
@@ -546,6 +556,7 @@ Given below is an example usage scenario for the command.
 [<*Back to ToC*>](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -558,7 +569,7 @@ Given below is an example usage scenario for the command.
 [<*Back to ToC*>](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -605,6 +616,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 [<*Back to ToC*>](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
 ### Use cases
 
 (For all use cases below, the **System** is the `OmniHealth` and the **Actor** is the `user`, unless specified otherwise)
@@ -880,6 +892,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 [<*Back to ToC*>](#table-of-contents)
 
+<div style="page-break-after: always;"></div>
 ### Non-Functional Requirements
 
 1. Should work as long as Java `11` or above is installed.
@@ -917,7 +930,7 @@ when using a mouse. (Designed with CLI in mind)
 [<*Back to ToC*>](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always;"></div>
 ## **Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.

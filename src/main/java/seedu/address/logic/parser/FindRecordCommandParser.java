@@ -65,6 +65,7 @@ public class FindRecordCommandParser implements Parser<FindRecordCommand> {
      * @param date date to be validated
      */
     public static boolean isValidFindDate(String date) {
+        assert !date.equals("");
         ZoneId timeZone = ZoneOffset.UTC;
         DateTimeFormatter validateDate = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
         try {

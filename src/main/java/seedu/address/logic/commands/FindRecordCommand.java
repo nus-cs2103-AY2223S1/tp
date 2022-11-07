@@ -6,7 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECORD;
 
 import java.time.format.DateTimeFormatter;
+import java.util.logging.Logger;
 
+import seedu.address.MainApp;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -38,6 +41,7 @@ public class FindRecordCommand extends Command {
             + PREFIX_DATE + "10-2011 (must be formatted in MM-yyyy) "
             + PREFIX_RECORD + "suffers from common cold "
             + PREFIX_MEDICATION + "Paracetamol";
+    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     private final RecordContainsKeywordsPredicate predicate;
 
@@ -50,10 +54,15 @@ public class FindRecordCommand extends Command {
         requireNonNull(model);
 
         if (!model.isRecordListDisplayed()) {
+            logger.warning("Record List View not currently displayed.");
             throw new CommandException(MESSAGE_RECORD_COMMAND_PREREQUISITE);
         }
 
+        assert predicate != null;
+
         model.updateFilteredRecordList(predicate);
+
+        logger.info("Record List View has been successfully updated.");
 
         return new CommandResult(
                 String.format(Messages.MESSAGE_RECORDS_LISTED_OVERVIEW, model.getFilteredRecordList().size()),

@@ -60,6 +60,7 @@ Given below are my contributions to the project.
     * Added implementation details for the `rlist` command. [\#90](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/90)
     * Added UML Sequence Diagram showing the execution path of the `rlist` command. [\#102](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/102)
     * Added a `Table of Contents` and `Back to ToC` shortcuts to improve navigability of DG. [\#161](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/161)
+    * Added an introduction and purpose for the DG. [\#173](https://github.com/AY2223S1-CS2103T-T14-3/tp/pull/173)
     * Added use cases for `list` and `rlist` commands.
 
 * **Community**:
