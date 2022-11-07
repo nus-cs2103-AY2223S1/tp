@@ -9,17 +9,10 @@ FinBook is a desktop app for Financial Assistant (FA) to manage their client det
 secured. With FinBook, you can set a unique password, manage and view client's details, meetings and portfolio as well
 as many other features to make your daily workflow much more efficient!
 
-### Overview
-
-FinBook is optimized for use via a Command Line Interface (CLI), which means most of our commands are done by typing.
-
-### Summary of Contributions
-
 Given below are my contributions to the project.
 
 * **Code
   contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=jovitaanderson&breakdown=true)
-
 
 * **Features implemented**:
     * **New feature**: Copy command
@@ -48,8 +41,7 @@ Given below are my contributions to the project.
           FinBook.
         * Highlight: Meeting date is made optional because there could be instances where a meeting date has not been
           settled among the user and client.
-        
-
+      
 * **Documentation**:
     * **User Guide**:
         * Update `add` command to include meeting date.
