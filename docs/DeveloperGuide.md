@@ -796,7 +796,7 @@ testers are expected to do more *exploratory* testing.
 #### Editing a contact
 
 1. Editing an existing contact.
-   1. Prerequisite: There is a contact in the 2nd index of contact list.
+   1. Prerequisite: There is a contact in the 2nd index of contact list and no existing contact has the name Betsy Crower.
    2. Test case: `edit 2 n/Betsy Crower`.
    3. Expected: Edits the name of the 2nd contact to be Betsy Crower.
    
@@ -891,7 +891,7 @@ testers are expected to do more *exploratory* testing.
 
 #### Editing a tag
 
-1. Prerequisite: There is a tag named `english`.
+1. Prerequisite: There is a tag named `english` and there isn't a tag named `literature`.
 2. Test case: `tag edit t/english t/literature`.
 3. Expected: The `english` tag is now shown as `literature`.
 
