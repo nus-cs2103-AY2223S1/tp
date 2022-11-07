@@ -80,12 +80,19 @@ ___
 # Layout
 
 ![Layout](images/layout.png)
+
 `Command Box` - You can enter commands here.<br>
+
 `Feedback Box` - Real-Time feedbacks to your commands will appear here.<br>
+
 `Clients` - All clients in Real-Time will appear here.<br>
+
 `Offers` - All offers in Real-Time will appear here.<br>
+
 `Listings` - All listings in Real-Time will appear here.<br>
+
 `Meetings` - All meetings in Real-Time will appear here.
+
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -146,11 +153,23 @@ This command edits a listing in Real-Time at the specified `INDEX`.
 
 <div markdown="block" class="alert alert-info">
 
+## General
+
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+> Show a help window for Real-Time
 
-Format - `help`
+**Example Input:**<br>
+```text
+help
+```
+
+**Expected output:**<br>
+
+A window displaying help similar to below will appear.
+
+![help message](images/helpMessage.png)
+
 
 ![help message](images/helpMessage.png)
 
@@ -160,9 +179,17 @@ ___
 
 ### Clearing all entries : `clear`
 
-Clears all entries in REal-Time.
+> Clears all entries in REal-Time.
 
-Format - `clear`
+**Example Input:**<br>
+```text
+clear
+```
+**Expected output:**<br>
+Feedback Box:
+```text
+Real-Time has cleared all data!
+```
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -170,9 +197,15 @@ ___
 
 ### Exiting the program : `exit`
 
-Exits the program.
+> Exits the program.
 
-Format - `exit`
+**Example Input:**<br>
+```text
+exit
+```
+**Expected output:**<br>
+
+The Real-Time window closes.
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -240,6 +273,11 @@ ___
 > Deletes the client at the specified index in REal-Time.
 
 **Format** - `delC INDEX`
+
+**Example input:**<br>
+```text
+delC 1
+```
 
 **Expected output:**<br>
 The client at the expected index is deleted from Real-Time.<br>
@@ -356,13 +394,23 @@ Adds an offer in REal-Time, with the given **_Name_** of the Client, **_Listing 
 **_Offer_** made by the client.
 
 
-Format - `addO l/LISTING_ID n/NAME o/OFFER_PRICE`
+**Format:** `addO l/LISTING_ID n/NAME o/OFFER_PRICE`
 
 If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
-Examples:
-* `addO l/BEDOK_NORTH_BLK123_12 n/John Doe o/2000000`
-* `addO l/BUKIT_PANJANG_RD_BLK456_10 n/Betsy Crowe o/2500000`
+**Example input:**<br>
+```text
+addO l/BEDOK_NORTH_BLK123_12 n/John Doe o/2000000
+addO l/BUKIT_PANJANG_RD_BLK456_10 n/Betsy Crowe o/2500000
+```
+
+**Expected output:**<br>
+A new offer is added to RealTime
+
+Feedback Box:
+```text
+Offer added: [Details of offer]
+```
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -382,10 +430,21 @@ Deletes the specified offer in REal-Time.
 ![offerIndex](images/OfferIndex.png)
 </div>
 
-Format - `delO INDEX`
+**Format:** `delO INDEX`
 
-Examples:
-* `delO 2` deletes the 2nd offer in REal-Time.
+
+**Example input:**<br>
+```text
+delO 2
+```
+
+**Expected output:**<br>
+The offer at the expected index is deleted from Real-Time.<br>
+
+Feedback Box:
+```text
+Deleted Offer: [details of the deleted offer]
+```
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -397,14 +456,22 @@ ___
 
 Edits an existing offer in REal-Time.
 
-Format - `editO INDEX [n/NAME] [o/OFFER_PRICE] [l/LISTING_ID]`
+**Format:** `editO INDEX [n/NAME] [o/OFFER_PRICE] [l/LISTING_ID]`
 
 If you are still unsure of the **prefixes**, click [here](#prefix-summary) to find out more.
 
-Examples:
-* `editO 1 o/600000` Edits the offer price of the 1st offer to be `600000`.
-* `editO 2 n/Betsy Crower o/123456` Edits the name and offer price of the 2nd offer to be `Betsy Crower` and `123456`
-  respectively.
+**Example input:**<br>
+```text
+editO 1 o/600000
+editO 2 n/Betsy Crower o/123456
+```
+**Expected Output:**<br>
+The offer at the specified index is edited according to the fields provided.<br>
+
+FeedBack Box:
+```text
+Edited Offer: [newly updated details of offer]
+```
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -435,7 +502,7 @@ ___
 
 Adds a listing to the address book.
 
-Format - `addL l/LISTING_ID a/ADDRESS n/OWNER_NAME ap/ASKING_PRICE [t/TAG]…​`
+**Format:** `addL l/LISTING_ID a/ADDRESS n/OWNER_NAME ap/ASKING_PRICE [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A listing can have any number of tags (including 0).
@@ -465,7 +532,7 @@ ___
 
 ### Deleting a listing : `delL`
 
-Format: `delL [id/INDEX]`
+**Format:** `delL [id/INDEX]`
 * Deletes the listing with the given Index.
 * `INDEX` refers to the Index of the listing you wish to delete.
 
@@ -493,7 +560,7 @@ ___
 
 Edits an existing listing in the address book.
 
-Format - `editL INDEX [l/LISTING_ID] [a/ADDRESS] [n/OWNER_NAME] [ap/ASKING_PRICE] [t/TAG]…​`
+**Format:** `editL INDEX [l/LISTING_ID] [a/ADDRESS] [n/OWNER_NAME] [ap/ASKING_PRICE] [t/TAG]…​`
 
     `INDEX` refers to the index of the Listing you wish to edit
     Any number (more than 1) of fields may be edited.
@@ -529,7 +596,7 @@ ___
 
 Shows the full list of listings.
 
-Format - `listL`
+**Format:** `listL`
 
 [Screenshots to be added]
 
@@ -543,27 +610,47 @@ ___
 
 Adds a meeting to the address book.
 
-Format - `addM id/Listing_ID n/CLIENT_NAME d/DATE_TIME`
+**Format:** `addM id/Listing_ID n/CLIENT_NAME d/DATE_TIME`
 
+**Example input:**<br>
+```text
+addM id/1 a/John street, block 123, #01-01 d/2022-10-20 12:00
+addM id/abc a/Changi Prison d/2022-10-21 14:00
+```
+
+**Expected output:**<br>
+A new meeting is added to RealTime
+
+Feedback Box:
+```text
+Meeting added: [Details of meeting]
+```
 Note:
 * DATE_TIME must be in this format, yyyy-MM-dd HH:mm
 
-Examples:
-* `addM id/1 a/John street, block 123, #01-01 d/2022-10-20 12:00`
-* `addM id/abc a/Changi Prison d/2022-10-21 14:00`
 
 [Back to Table of Contents](#table-of-contents)
 
 ___
 
-### Deleting an meeting : `delM`
+### Deleting a meeting : `delM`
 
 Deletes the specified meeting from the address book.
 
-Format - `delM INDEX`
+**Format:** `delM INDEX`
 
-Examples:
-* `delM 2` deletes the 2nd meeting in the address book.
+**Example input:**<br>
+```text
+delM 2
+```
+
+**Expected output:**<br>
+Meeting 2 is deleted from RealTime
+
+Feedback Box:
+```text
+Meeting deleted: [Details of meeting]
+```
 
 [Back to Table of Contents](#table-of-contents)
 
@@ -573,64 +660,48 @@ ___
 
 Edits an existing meeting in the address book.
 
-Format - `editM INDEX [n/OWNER_NAME] [d/DATE_TIME]`
+**Format:** `editM INDEX [n/OWNER_NAME] [d/DATE_TIME]`
 
-Examples:
-* `editM 1 n/Betsy Crowe d/2022-10-20 17:00`
-* `editM 2 n/Johnny Sins d/2022-10-22 12:00`
-
-[Back to Table of Contents](#table-of-contents)
-
-___
-
-## General
-
-
-### Viewing help : `help`
-
-> Show a help window for Real-Time
-
-**Example Input:**<br>
+**Example input:**<br>
 ```text
-help
+editM 1 n/Betsy Crowe d/2022-10-20 17:00
+editM 2 n/Johnny Sins d/2022-10-22 12:00
 ```
 
 **Expected output:**<br>
+Meeting 1 was edited
+Meeting 2 was edited
 
-A window displaying help similar to below will appear.
-
-![help message](images/helpMessage.png)
-
-### Clearing all entries : `clear`
-
-> Clears all entries in REal-Time.
-
-**Example Input:**<br>
-```text
-clear
-```
-**Expected output:**<br>
 Feedback Box:
 ```text
-Real-Time has cleared all data!
+Meeting edited: [Details of meeting]
 ```
-___
 
-### Exiting the program : `exit`
-
-> Exits the program.
-
-**Example Input:**<br>
-```text
-exit
-```
-**Expected output:**<br>
-
-The Real-Time window closes.
 
 [Back to Table of Contents](#table-of-contents)
 
 ___
+
+
+### Finding a meeting : `[Coming soon]`
+
+[Back to Table of Contents](#table-of-contents)
+
+[Back to Managing Meetings](#managing-meetings)
+
+
+___
+
+
+### Listing meetings : `[Coming soon]`
+
+[Back to Table of Contents](#table-of-contents)
+
+[Back to Managing Meetings](#managing-meetings)
+
+
+___
+
 
 ### Saving the data
 

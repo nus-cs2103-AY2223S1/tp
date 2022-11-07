@@ -672,3 +672,37 @@ Timestamp in the status bar is updated.
    3. Test case: `editO 1 o/-1000`<br>
       Expected: No Offer is edited. Error details shown in the status message.
 
+
+### Adding a Meeting
+
+1. Adding a meeting while all meeting are being shown
+    1. Prerequisites: The Meeting being added must not exist in the current list.
+    2. Test case: `addM n/John Doe l/BEDOK_SOUTH d/2022-10-12 23:59`
+
+       Expected: A Meeting with name John Doe, listing ID BEDOK_SOUTH and dateTime 2022-10-12 23:59 will be added to the list.
+
+    3. Test case: `addM n/Jackson Ang l/CALIFORNIA d/23:59 2022-12-3`
+
+       Expected: No Meeting will be added. Error message will appear in the response box.
+    4. Other incorrect commands to try: `addM n/Bruce Wayne l/YISHUN d/2022-100-100 27:20`
+
+### Deleting a Meeting
+
+1. Deleting a meeting while all meetings are being shown
+    1. Prerequisites: At least one Meeting has to exist in the list.
+    2. Test case: `delM 1`
+
+       Expected: First Meeting is deleted from the list. Details of the deleted meeting shown in the status message.
+    3. Test case: `delM 0`
+
+       Expected: No Meeting is deleted. Error details shown in the status message.
+    4. Other incorrect commands to try: `delM -1`, `delM a`
+
+### Editing a Meeting
+
+1. Editing a meeting while all meetings are being shown
+    1. Prerequisites: At least one Meeting must exist to be edited.
+    2. Test case: `editM 1 n/John Doe`<br>
+       Expected: First Meeting has the name changed to John Doe.
+    3. Test case: `editM 1 d/2023-30-20 12:00`<br>
+       Expected: No Meeting is edited. Error details shown in the status message.
