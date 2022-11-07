@@ -33,8 +33,8 @@ title: Developer Guide
    4. [Editing an applicant](#74-editing-an-applicant)
    5. [Deleting an applicant](#75-deleting-an-applicant)
    6. [Locating applicants by field](#76-locating-applicants-by-field)
-   7. [Importing applicants from an external text file](#77-importing-applicants-from-an-external-json-file)
-   8. [Exporting displayed list](#78-exporting-displayed-list-to-a-json-file)
+   7. [Importing applicants from an external JSON file](#77-importing-applicants-from-an-external-json-file)
+   8. [Exporting displayed list to a JSON file](#78-exporting-displayed-list-to-a-json-file)
    9. [Checkout a new or existing list](#79-checkout-a-new-or-existing-list)
 
 
@@ -919,7 +919,7 @@ point for testers to work on; testers are expected to do more exploratory testin
 
    1. Prerequisites: No applicant with the email `johnd@example.com`
 
-   2. Test case: `add add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male
+   2. Test case: `add n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male
       u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/J12300 jt/Software Engineer Intern t/rejected t/KIV`<br>
       Expected: An applicant named John Doe is added. Details of the added applicant shown in the view panel. Success
       message shown in the status message.
@@ -928,7 +928,7 @@ point for testers to work on; testers are expected to do more exploratory testin
 
    1. Prerequisites: There exists an applicant with email `johndoe@example.com` and jobID `J12300`
 
-   2. Test case: `add add n/John Doe p/98765432 e/johndoe@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male
+   2. Test case: `add n/John Doe p/98765432 e/johndoe@example.com a/311, Clementi Ave 2, #02-25 c/3.50/4.00 g/male
       u/Nanyang Polytechnic gd/05-2024 m/Computer Science ji/J12300 jt/Software Engineer Intern t/rejected t/KIV`<br>
       Expected: No applicant is added. Error details shown in the status message.
 
@@ -936,7 +936,7 @@ point for testers to work on; testers are expected to do more exploratory testin
 
     1. Prerequisites: None
 
-    2. Test case: `add add n/John Doe`<br>
+    2. Test case: `add n/John Doe`<br>
        Expected: No applicant is added. Error details shown in the status message.
 
 4. Other incorrect `add` commands to try: `add`, `add 1`<br>
@@ -949,21 +949,21 @@ point for testers to work on; testers are expected to do more exploratory testin
 
    1. Prerequisites: The displayed list contains at least one applicant
 
-   2. Test case: `view 1`
+   2. Test case: `view 1`<br>
       Expected: Details of the first applicant in the list shown in the view panel. Success message shown in the status message.
 
 2. Viewing an empty displayed list
 
     1. Prerequisites: The displayed list is empty
 
-    2. Test case: `view 1`
+    2. Test case: `view 1`<br>
        Expected: No applicant is viewed. Error details shown in the status message.
 
 3. Viewing a non-positive index
 
     1. Prerequisites: List all applicants using the list command. Multiple applicants in the list.
 
-    2. Test case: `view 0`
+    2. Test case: `view 0`<br>
        Expected: No applicant is viewed. Error details shown in the status message.
 
 4. Other incorrect `view` commands to try: `view`, `view john`, `view x`(where `x` is larger than the list size)<br>
@@ -1068,11 +1068,11 @@ point for testers to work on; testers are expected to do more exploratory testin
 
 1. Exporting empty displayed list
 
-   1. Test case: `find g/nonbinary` followed by `export`
+   1. Test case: `find g/nonbinary` followed by `export`<br>
       Expected: JSON file created in `data/export/` folder with a key-value pair where the key is
       **"persons"** and value is an empty array. Success message shown in the status message.
 
-   2. Test case: `find g/nonbinary` followed by `export 1`
+   2. Test case: `find g/nonbinary` followed by `export 1`<br>
       Expected: JSON file created in `data/export/` folder with a key-value pair where the key is
       **"persons"** and value is an empty array. Success message shown in the status message.
 
@@ -1080,11 +1080,11 @@ point for testers to work on; testers are expected to do more exploratory testin
 
    1. Prerequisite: currently displayed list is not empty
 
-   2. Test case: `export`
+   2. Test case: `export`<br>
       Expected: JSON file created in `data/export/` folder with a key-value pair where the key is
       **"persons"** and value is a non-empty array. Success message shown in the status message.
 
-   3. Test case: `export a`
+   3. Test case: `export a`<br>
       Expected: JSON file created in `data/export/` folder with a key-value pair where the key is
       **"persons"** and value is a non-empty array. Success message shown in the status message.
 
@@ -1098,7 +1098,7 @@ point for testers to work on; testers are expected to do more exploratory testin
 
    1. Prerequisites: One JSON file with valid data and valid format in `data/` folder.
 
-   2. Test case: `checkout FILE_NAME`
+   2. Test case: `checkout FILE_NAME`<br>
       Expected: The data in the file `FILE_NAME.json` located at `data/` folder is loaded into the application. Success 
       message shown in the status message.
 
@@ -1106,7 +1106,7 @@ point for testers to work on; testers are expected to do more exploratory testin
 
    1. Prerequisites: No file with the name `FILE_NAME` in `data/` folder.
 
-   2. Test case: `checkout FILE_NAME`
+   2. Test case: `checkout FILE_NAME`<br>
       Expected: The file `FILE_NAME.json` is created at `data/` folder and its sample data is loaded into the 
       application. Success message shown in the status message.
 
@@ -1114,6 +1114,6 @@ point for testers to work on; testers are expected to do more exploratory testin
 
    1. Prerequisites: One JSON file with invalid data or invalid format in `data/` folder.
 
-   2. Test case: `checkout FILE_NAME`
+   2. Test case: `checkout FILE_NAME`<br>
       Expected: The data in the file `FILE_NAME.json` located at `data/` folder is wiped. The application will not 
       contain any applicants. Success message shown in the status message.
