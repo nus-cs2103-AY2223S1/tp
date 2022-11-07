@@ -347,7 +347,7 @@ Deleted data can not be retrieved. Do use this command cautiously!
 
 `r/FLOOR-UNIT`
 * The floor number and unit number must be separated by a hyphen
-* Both floor and unit number must be a non-negative integer *i.e. `5-8` is valid and `-3-8` is invalid*
+* Both floor and unit numbers must be a positive integer. The floor number must be below 30 *i.e. `5-8` is valid and `-3-8` is invalid*
 
 `g/GENDER`
 * `M` or `F`
