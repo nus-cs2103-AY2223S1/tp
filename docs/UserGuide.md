@@ -14,7 +14,7 @@ Tired of opening multiple applications for your teaching needs? Proficient in ty
 GREWZ helps **university teaching assistants** to maintain the information of the students in their classes by collating 
 a list of students' personal details, as well as keeping a task book to help them keep track of their personal work.
 
-As a teaching assistant, you can use GREWZ as an all-in-one platform to carry out your teaching duties such as: 
+As a [teaching assistant](#6-glossary), you can use GREWZ as an all-in-one platform to carry out your teaching duties such as: 
 * Marking attendance
 * Updating student details
 * Managing personal homework
@@ -50,13 +50,13 @@ Take note of the following symbols and formatting used in this document:
 
 ### 2.1 Installation
 
-1. Ensure you have Java `11` or above installed in your Computer. For more details, check out the [FAQs](#4-faq).
+1. Ensure you have [Java `11`](#6-glossary) or above installed in your Computer. For more details, check out the [FAQs](#4-faq).
 
 2. Download the latest `GREWZ.jar` from [here](https://github.com/AY2223S1-CS2103T-W12-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the [_home folder_](#6-glossary) for your GREWZ.
 
-4. Double-click the file to start the app. The GUI similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The [GUI](#6-glossary) similar to the one below should appear in a few seconds. Note how the app contains some sample data.<br>
 Alternatively, you can open the Command Prompt by right-clicking and clicking "Open in Terminal".
 ![Open Command Prompt](images/OpenCommandPrompt.png)
 <br>Next, run
@@ -133,7 +133,7 @@ Format: `add n/NAME i/STUDENT_ID [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS_GROUP] [t/T
 <div markdown="span" class="alert alert-warning">:information_source: **Note:**
 Students CANNOT have the same name.
 
-GREWZ naming convention is [case-insensitive](#6-glossary), but [whitespace-sensitive](#6-glossary).
+GREWZ naming convention is [case-insensitive](#6-glossary), but [space-sensitive](#6-glossary).
 This means that it does not allow for students with the exact same name to be keyed into the application. 
 Thus trying to add a student with the name `Ben` and `ben` will not work.
 Student ID must also be unique.
@@ -339,7 +339,7 @@ Adds a ***Deadline*** (A type of Task) to the Task List.
 Format: `task t/TITLE d/DESC by/YYYY-MM-DD`
 
 * A Deadline Task should always include a title, description and date and should not be left blank.
-* The `by/` prefix **MUST** be present for the task to be a deadline.
+* The `by/` [prefix](#6-glossary) **MUST** be present for the task to be a deadline.
 * Both title and description should not be left blank.
 * A date should strictly follow the format of YYYY-MM-DD and it should be a valid date.
 
@@ -362,7 +362,7 @@ Adds an ***Assignment*** (A type of Task) to the Task List.
 Format: `task t/TITLE d/DESCRIPTION addStu/STUDENT_1, STUDENT_2 ...`
 
 * An Assignment Task should always include a title, description that should not be left blank.
-* The `addStu/` prefix **MUST** be present for the task to be an assignment.
+* The `addStu/` [prefix](#6-glossary) **MUST** be present for the task to be an assignment.
 * The number of students input is zero or more, and each student is separated by a `,` comma, thus student names should not contain commas.
 * Both title and description should not be left blank.
 
@@ -391,7 +391,7 @@ Format: `edit-task INDEX [t/TITLE] [d/DESCRIPTION] [by/YYYY-MM-DD] [addStu/STUDE
     * `by/` is only accepted while editing a Deadline Task. A date should strictly follow the format of YYYY-MM-DD.
     * `addStu/` and `deleteStu/` are only accepted while editing an Assignment Task.
     * `addStu/` adds the student names to the assignment while `deleteStu/` deletes students names if the exact name is already in the assignment task's student list.
-    * `deleteStu/` is case-sensitive so `deleteStu/adam yeoh` will **NOT** delete `Adam Yeoh` in the assignment's student list.
+    * `deleteStu/` is [case-sensitive](#6-glossary) so `deleteStu/adam yeoh` will **NOT** delete `Adam Yeoh` in the assignment's student list.
 * Existing values will be updated to the input values.
 
 Examples:
@@ -559,8 +559,8 @@ the students in the student list. However, you could initially add a dummy stude
 | **Deadline**                               | Deadline is a task with a title, description and due date.                                                                                     |
 | **Assignment**                             | Assignment is a task with title, description and a list of students that needs to finish the task.                                             |
 | **Attendance List**                        | Attendance list is a record of the student's attendance for his class.                                                                         |
-| **Case-sensitive**                         | Case-sensitive is the ability to differentiate between capital and lower case letters                                                          |
-| **Space-insensitive**                      | Space-insensitive is the lack of ability to differentiate between blank spaces in words.                                                       |
+| **Case sensitivity**                       | Case-sensitive is the ability to differentiate between capital and lower case letters while case-insensitive is treating them as the same.     |
+| **Space-sensitive**                        | Space-sensitive is the ability to recognise extra blank spaces in words.                                                                       |
 | **Extraneous**                             | Irrelevant or unrelated to the subject being dealt with.                                                                                       |
 | **Java**                                   | Widely used programming language and it is a software platform used in distributed environment of the internet.                                |
 
