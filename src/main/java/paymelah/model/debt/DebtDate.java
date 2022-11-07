@@ -15,7 +15,7 @@ import java.time.format.ResolverStyle;
 public class DebtDate implements Comparable<DebtDate> {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Dates should be in yyyy-mm-dd format; where y is year, m is month and d is day.";
+            "Date should be a valid date in yyyy-mm-dd format; where y is year, m is month and d is day.";
     public static final DateTimeFormatter DATE_INPUT_FORMAT = DateTimeFormatter.ofPattern("uuuu-M-d")
             .withResolverStyle(ResolverStyle.STRICT);
     public static final DateTimeFormatter DATE_OUTPUT_FORMAT = DateTimeFormatter.ofPattern("uuuu-MM-dd");

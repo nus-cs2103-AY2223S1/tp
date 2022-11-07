@@ -15,7 +15,7 @@ import java.time.format.DateTimeParseException;
 public class DebtTime implements Comparable<DebtTime> {
     public static final String DEFAULT_TIME = "00:00";
     public static final String MESSAGE_CONSTRAINTS =
-            "Time should be in hh:mm format; where h is hour in 24h clock and m is minute.";
+            "Time should be a valid time in hh:mm format; where h is hour in 24h clock and m is minute.";
     public static final DateTimeFormatter TIME_INPUT_FORMAT = DateTimeFormatter.ofPattern("H:m");
     public static final DateTimeFormatter TIME_OUTPUT_FORMAT = DateTimeFormatter.ofPattern("HH:mm");
 

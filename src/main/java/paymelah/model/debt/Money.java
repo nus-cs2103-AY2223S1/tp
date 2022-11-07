@@ -14,7 +14,8 @@ public class Money implements Comparable<Money> {
     public static final String MESSAGE_CONSTRAINTS =
             "Money amounts should use numbers to represent the amount in dollars,"
                     + " separating dollar and cent values with a '.'"
-                    + "\nEnd with + to add GST to the amount, or ++ to add both GST and service charge.";
+                    + "\nEnd with + to add GST to the amount, or ++ to add both GST and service charge."
+                    + "\nMoney amounts should not be negative.";
     public static final String VALIDATION_REGEX = "\\$?\\d+(\\.\\d{1,2})?\\s*(\\+{1,2})?";
     public static final int CENTS_PRECISION = 2;
     public static final BigDecimal GST_MULTIPLIER = new BigDecimal("1.07");

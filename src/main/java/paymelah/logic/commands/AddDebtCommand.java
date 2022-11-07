@@ -25,15 +25,15 @@ import paymelah.model.person.Person;
 public class AddDebtCommand extends Command {
     public static final String COMMAND_WORD = "adddebt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a debt to a person. "
-            + "Parameters: <person index…> (must be a positive integer)\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a debt to a person.\n"
+            + "Parameters: <person index…> (must be a positive integer) "
             + PREFIX_DESCRIPTION + "<description> "
             + PREFIX_MONEY + "<money> "
             + "[" + PREFIX_DATE + "<date>] "
             + "[" + PREFIX_TIME + "<time>]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Carl's Jr "
-            + PREFIX_MONEY + "97.40"
+            + PREFIX_MONEY + "97.40 "
             + PREFIX_DATE + "2022-10-12 "
             + PREFIX_TIME + "09:00";
 

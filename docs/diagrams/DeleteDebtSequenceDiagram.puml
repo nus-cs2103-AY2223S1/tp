@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DeleteDebtCommandParser" as DeleteDebtCommandParser LOGIC_COLOR
+participant "d:DeleteDebtCommand" as DeleteDebtCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("deletedebt 1 debt/2 3")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("deletedebt 1 debt/2 3")
+activate AddressBookParser
+
+create DeleteDebtCommandParser
+AddressBookParser -> DeleteDebtCommandParser
+activate DeleteDebtCommandParser
+
+DeleteDebtCommandParser --> AddressBookParser
+deactivate DeleteDebtCommandParser
+
+AddressBookParser -> DeleteDebtCommandParser : parse("1 debt/2 3")
+activate DeleteDebtCommandParser
+
+create DeleteDebtCommand
+DeleteDebtCommandParser -> DeleteDebtCommand
+activate DeleteDebtCommand
+
+DeleteDebtCommand --> DeleteDebtCommandParser : d
+deactivate DeleteDebtCommand
+
+DeleteDebtCommandParser --> AddressBookParser : d
+deactivate DeleteDebtCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteDebtCommandParser -[hidden]-> AddressBookParser
+destroy DeleteDebtCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> DeleteDebtCommand : execute()
+activate DeleteDebtCommand
+
+DeleteDebtCommand -> DeleteDebtCommand : createReducedDebtor(debtorToUpdate, debtsToDelete)
+activate DeleteDebtCommand
+DeleteDebtCommand --> DeleteDebtCommand : updatedDebtor
+deactivate DeleteDebtCommand
+
+
+DeleteDebtCommand -> Model : setPerson(debtorToUpdate, updatedDebtor)
+activate Model
+
+Model --> DeleteDebtCommand
+deactivate Model
+
+create CommandResult
+DeleteDebtCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteDebtCommand
+deactivate CommandResult
+
+DeleteDebtCommand --> LogicManager : result
+deactivate DeleteDebtCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

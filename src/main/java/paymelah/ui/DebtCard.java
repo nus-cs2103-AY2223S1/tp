@@ -45,7 +45,7 @@ public class DebtCard extends UiPart<Region> {
     private Label isPaid;
 
     /**
-     * Creates a {@code DebtCode} with the given {@code Debt} and index to display.
+     * Creates a {@code DebtCard} with the given {@code Debt} and index to display.
      */
     public DebtCard(Debt debt, int displayedIndex) {
         super(FXML);
@@ -56,10 +56,10 @@ public class DebtCard extends UiPart<Region> {
         dateTime.setText(debt.getDate().toString() + " " + debt.getTime().toString());
         if (debt.isPaid()) {
             isPaid.setText("PAID");
-            isPaid.setBackground(new Background(new BackgroundFill(Color.GREEN, new CornerRadii(2), Insets.EMPTY)));
+            isPaid.setBackground(new Background(new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, new Insets(1))));
         } else {
             isPaid.setText("UNPAID");
-            isPaid.setBackground(new Background(new BackgroundFill(Color.RED, new CornerRadii(2), Insets.EMPTY)));
+            isPaid.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, new Insets(1))));
         }
         isPaid.setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID,
                 new CornerRadii(2), BorderStroke.THIN)));

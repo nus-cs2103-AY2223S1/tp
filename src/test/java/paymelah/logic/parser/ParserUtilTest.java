@@ -14,6 +14,8 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import paymelah.logic.parser.exceptions.ParseException;
+import paymelah.model.debt.DebtDate;
+import paymelah.model.debt.DebtTime;
 import paymelah.model.debt.Description;
 import paymelah.model.debt.Money;
 import paymelah.model.person.Address;
@@ -30,6 +32,8 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_DESCRIPTION = " ";
     private static final String INVALID_MONEY = "one dollar";
+    private static final String INVALID_DATE = "2022-10-32";
+    private static final String INVALID_TIME = "24:30";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -39,6 +43,8 @@ public class ParserUtilTest {
     private static final String VALID_TAG_2 = "neighbour";
     private static final String VALID_DESCRIPTION = "Kickstarter";
     private static final String VALID_MONEY = "2.50";
+    private static final String VALID_DATE = "2020-02-29";
+    private static final String VALID_TIME = "12:34";
 
 
     private static final String WHITESPACE = " \t\r\n";
@@ -248,8 +254,48 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void arePrefixesPresent() {
-        // To be implemented
-        assertTrue(true);
+    public void parseDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDate((String) null));
+    }
+
+    @Test
+    public void parseDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE));
+    }
+
+    @Test
+    public void parseDate_validValueWithoutWhitespace_returnsDate() throws Exception {
+        DebtDate expectedDate = new DebtDate(VALID_DATE);
+        assertEquals(expectedDate, ParserUtil.parseDate(VALID_DATE));
+    }
+
+    @Test
+    public void parseDate_validValueWithWhitespace_returnsTrimmedDate() throws Exception {
+        String dateWithWhitespace = WHITESPACE + VALID_DATE + WHITESPACE;
+        DebtDate expectedDate = new DebtDate(VALID_DATE);
+        assertEquals(expectedDate, ParserUtil.parseDate(dateWithWhitespace));
+    }
+
+    @Test
+    public void parseTime_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTime((String) null));
+    }
+
+    @Test
+    public void parseTime_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTime(INVALID_TIME));
+    }
+
+    @Test
+    public void parseTime_validValueWithoutWhitespace_returnsTime() throws Exception {
+        DebtTime expectedTime = new DebtTime(VALID_TIME);
+        assertEquals(expectedTime, ParserUtil.parseTime(VALID_TIME));
+    }
+
+    @Test
+    public void parseTime_validValueWithWhitespace_returnsTrimmedTime() throws Exception {
+        String timeWithWhitespace = WHITESPACE + VALID_TIME + WHITESPACE;
+        DebtTime expectedTime = new DebtTime(VALID_TIME);
+        assertEquals(expectedTime, ParserUtil.parseTime(timeWithWhitespace));
     }
 }
