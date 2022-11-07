@@ -12,37 +12,42 @@ participant ":ProjectWithoutModel" as ProjectWithoutModel MODEL_COLOR
 participant ":Project" as Project MODEL_COLOR
 end box
 
---> ProjectCommandParser
+-> ProjectCommandParser
 activate ProjectCommandParser
 
 create ProjectWithoutModel
-ProjectCommandParser --> ProjectWithoutModel : new ProjectWithoutModel(name, ...)
+ProjectCommandParser -> ProjectWithoutModel : new ProjectWithoutModel(name, ...)
 activate ProjectWithoutModel
 
 ProjectWithoutModel --> ProjectCommandParser
 deactivate ProjectWithoutModel
 
 create AddProjectCommand
-ProjectCommandParser --> AddProjectCommand : AddProjectCommand(projectWithoutModel)
+ProjectCommandParser -> AddProjectCommand : new AddProjectCommand(projectWithoutModel)
 activate AddProjectCommand
 
 AddProjectCommand --> ProjectCommandParser
 deactivate AddProjectCommand
 
 activate LogicManager
-LogicManager --> AddProjectCommand : execute(model)
+LogicManager -> AddProjectCommand : execute(model)
 activate AddProjectCommand
 
-AddProjectCommand --> ProjectWithoutModel : apply(model)
+AddProjectCommand -> ProjectWithoutModel : apply(model)
 activate ProjectWithoutModel
 
 create Project
-ProjectWithoutModel --> Project : new Project(...)
+ProjectWithoutModel -> Project : new Project(...)
 activate Project
+
 Project --> ProjectWithoutModel
 deactivate Project
 
 ProjectWithoutModel --> AddProjectCommand : new Project object
+deactivate ProjectWithoutModel
+
+AddProjectCommand --> LogicManager : CommandResult object
+deactivate AddProjectCommand
 
 
 
