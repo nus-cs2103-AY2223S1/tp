@@ -15,7 +15,9 @@ title: Developer Guide
 * [Implementation](#implementations)
     * [Filter transaction feature](#filter-feature-for-transactions)
     * [Buy / Sell transaction feature](#buysell-feature-for-transactions)
-    * [Edit transaction feature](#editing-feature-for-transactions)
+    * [Editing client feature](#editing-client-feature)
+    * [Editing transactions feature](#editing-transactions-feature)
+    * [Editing remarks feature](#editing-remarks-feature)
     * [Delete Client/Transaction/Remark feature](#delete-clienttransactionremark-feature)
     * [Sort feature](#sort-feature)
 * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
@@ -27,12 +29,15 @@ title: Developer Guide
       * [Delete a transaction](#use-case-uc02---delete-a-transaction)
       * [Delete a remark](#use-case-uc03---delete-a-remark)
       * [Find a client](#use-case-uc04---find-a-client)
-      * [Add a remark to a client](#use-case-uc05---add-a-remark-to-a-client-br)
+      * [Add a remark to a client](#use-case-uc05---add-a-remark-to-a-client)
       * [Requesting help](#use-case-uc06---requesting-help)
       * [Clearing all data](#use-case-uc07---clearing-all-data)
       * [Buying from a client](#use-case-uc08---buying-from-a-client)
       * [Selling to a client](#use-case-uc09---selling-to-a-client)
       * [Sorting a client](#use-case-uc10---sort-client-by-latest-transaction-br)
+      * [Edit a client](#use-case-uc11---edit-a-client)
+      * [Edit a transaction](#use-case-uc12---edit-a-transaction)
+      * [Edit a remark](#use-case-uc13---edit-a-remark)
     * [Non-Functional Requirements](#non-functional-requirements)
     * [Glossary](#glossary)
 * [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
@@ -41,6 +46,9 @@ title: Developer Guide
   * [Delete a transaction](#deleting-a-transaction)
   * [Delete a remark](#deleting-a-remark)
   * [Filtering transactions](#filtering-transactions-from-all-clients)
+  * [Editing a client](#editing-a-client)
+  * [Editing a transaction](#editing-a-transaction)
+  * [Editing a remark](#editing-a-remark)
   * [Sort a client](#sorting-transactions-from-a-client)
   * [Saving data](#saving-data)
 
@@ -309,8 +317,46 @@ _{more aspects and alternatives to be added}_
 
 
 --------------------------------------------------------------------------------------------------------------
-### Editing feature for transactions
-#### Implementation
+### Editing client feature
+#### Current Implementation
+The edit client mechanism is facilitated by EditClientCommand which extends from `EditCommand` (which extends from `Command`) and
+`EditCommandParser` which extends from `Parser`. To invoke the edit command, `EditCommandParser` will parse the arguments from user input with
+`EditCommandParser#parse()` and returns the edit command if the arguments are valid.
+
+`EditTransactionCommand` implements the `EditClientCommand#execute()` operation which executes the command and returns the result
+message in a `CommandResult` object.
+
+The operation is exposed in the `Logic` interface as `Logic#execute()`.
+
+Given below is the usage scenario and how the edit mechanism behaves at each step.
+
+Step 1. The user launches the application. The `UiManager` will call on the `MainWindow` to invoke the UI which displays the clients.
+
+Step 2. The user executes `edit 2 m/client n/John p/1234567` command to edit the information of the client at index 2 in the current Client list displayed on the left panel.
+This is done by and executing `Model#setClient(clientToEdit, editedClient)`
+
+The following sequence diagram shows how the edit client operation works in Logic Manager:
+
+![EditClientSequenceDiagram](images/EditClientSequence.png)
+
+The following activity diagram summarizes what happens when a user executes the edit command:
+
+<img src="images/EditCommandActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How edit Client executes:**
+
+* **Alternative 1 (current choice):** Edit client by using model to update filtered client list.
+    * Pros: Easy to implement and allow the user to edit the client displayed on the left client lis panel.
+    * Cons: Users can only edit clients they can see in the current displayed list.
+* **Alternative 2:** Edit client using their index within a list of all clients in JeeqTracker.
+    * Pros: Be able to edit any client even if they are not displayed.
+    * Cons: Users will take a long time navigating through the list of all client to find the index of the client they want to edit.
+
+### Editing transactions feature
+#### Current Implementation
+
 The edit transaction mechanism is facilitated by EditTransactionCommand which extends from `EditCommand` (which extends from `Command`) and
 `EditCommandParser` which extends from `Parser`. To invoke the edit command, `EditCommandParser` will parse the arguments from user input with
 `EditCommandParser#parse()` and returns the edit command if the arguments are valid.
@@ -320,18 +366,63 @@ message in a `CommandResult` object.
 
 The operation is exposed in the `Logic` interface as `Logic#execute()`.
 
-Give below is the usage scenario and how the edit mechanism behaves at each step.
+Given below is the usage scenario and how the edit mechanism behaves at each step.
 
 Step 1. The user launches the application. The `UiManager` will call on the `MainWindow` to invoke the UI which displays the clients.
 
 Step 2. The user executes `view 1` command to focus on the client at index 1 and see the client's list of transactions.
 
-Step 3. The user executes `edit 2 m/transaction q/10` command to edit the information of transaction at index 2 in the focused client's transaction list.
+Step 3. The user executes `edit 1 m/transaction g/Apple price/5` command to edit the name of goods and price of transaction at index 1 in the focused client's transaction list.
 This is done by accessing the `TransactionLog` of the focused client, and executing `TransactionLog#setTransaction(index, editedTransaction)`
 
-The following sequence diagram shows how the edit operation works in Logic Manager:
+The following sequence diagram shows how the edit transaction operation works in Logic Manager:
 
-![EditTransactionSequenceDiagram](images/EditTransactionSequenceDiagram.png)
+![EditTransactionSequenceDiagram](images/EditTransactionSequence.png)
+
+The activity diagram for this feature is the same as that of the [Editing client feature](#editing-client-feature)
+
+#### Design considerations:
+
+**Aspect: How edit transaction executes:**
+
+* **Alternative 1 (current choice):** Edit transaction by accessing transaction log of each client.
+    * Pros: Easy to implement and allow the user to edit their transactions for each client seen in the Transactionlog.
+    * Cons: Users can only edit transactions of one client at a time.
+* **Alternative 2:** Edit transactions by using a common transaction log that keeps all transactions of all clients.
+    * Pros: Be able to edit any transaction without viewing a client.
+    * Cons: Users will take a long time navigating through the list of all transactions to edit.
+
+### Editing remarks feature
+#### Current Implementation
+The edit remark mechanism is facilitated by EditRemarkCommand which extends from `EditCommand` (which extends from `Command`) and
+`EditCommandParser` which extends from `Parser`. To invoke the edit command, `EditCommandParser` will parse the arguments from user input with
+`EditCommandParser#parse()` and returns the edit command if the arguments are valid.
+
+`EditRemarkCommand` implements the `EditRemarkCommand#execute()` operation which executes the command and returns the result
+message in a `CommandResult` object.
+
+The operation is exposed in the `Logic` interface as `Logic#execute()`.
+
+Given below is the usage scenario and how the edit mechanism behaves at each step.
+
+Step 1. The user launches the application. The `UiManager` will call on the `MainWindow` to invoke the UI which displays the clients.
+
+Step 2. The user executes `view 1` command to focus on the client at index 1 and see the client's list of remarks.
+
+Step 3. The user executes `edit 2 m/remark Fast and responsive` command to replace the remark at index 2 in the focused client's remarks list.
+This is done by accessing the `UniqueRemarkList` of the focused client, and executing `UniqueRemarkList#replaceRemark(index, editedTransaction)`
+
+The following sequence diagram shows how the edit transaction operation works in Logic Manager:
+
+![EditRemarkSequenceDiagram](images/EditTransactionSequence.png)
+
+The activity diagram for this feature is the same as that of the [Editing client feature](#editing-client-feature)
+
+#### Design considerations:
+
+**Aspect: How edit remark executes:**
+
+* The design consideration for editing remark is similar to that of the editing transaction feature
 
 ### Delete Client/Transaction/Remark feature
 
@@ -578,7 +669,7 @@ Users are able to perform several tasks within the application that is broken do
 
   Use case ends.
 
-#### **Use case: UC05 - Add a Remark to a Client** <br>
+#### **Use case: UC05 - Add a Remark to a Client**
 **Preconditions: Alice is a valid Client in JeeqTracker**
 
 **MSS**
@@ -618,6 +709,7 @@ Users are able to perform several tasks within the application that is broken do
     Use case ends.
 
 #### **Use case: UC08 - Buying from a client**
+**Preconditions: Alice is a valid Client in JeeqTracker**
 
 **MSS**
 
@@ -629,6 +721,7 @@ Users are able to perform several tasks within the application that is broken do
     Use case ends.
 
 **Extensions**
+
 * 2a. The list is empty.
 
   Use case ends.
@@ -646,6 +739,7 @@ Users are able to perform several tasks within the application that is broken do
       Use case resumes at step 2.
 
 #### **Use case: UC09 - Selling to a client**
+**Preconditions: Alice is a valid Client in JeeqTracker**
 
 * Similar to [UC08](#use-case-uc08---buying-from-a-client). Just changing Buy to Sell.
 
@@ -659,8 +753,64 @@ Users are able to perform several tasks within the application that is broken do
 
     Use case ends.
 
+#### **Use case: UC11 - Edit a client**
+**Preconditions: Alice is a valid Client in JeeqTracker**
 
-*{More to be added}*
+**MSS**
+
+1.  User requests to list all clients
+2.  JeeqTracker shows a list of clients
+3.  User requests to edit a specific client in the list
+4.  JeeqTracker edits the client
+
+    Use case ends.
+
+**Extensions**
+
+* 3a. The given client does not exist in the list.
+
+    * 3a1. JeeqTracker shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User fails to provide a valid command format to edit a client.
+    * 3b1. JeeqTracker shows an error message.
+
+      Use case resumes at 2.
+
+#### **Use case: UC12 - Edit a transaction**
+**Preconditions: Alice is a valid Client with at least one transaction in JeeqTracker**
+
+**MSS**
+
+1.  User requests to view transaction details of a client
+2.  JeeqTracker displays a list of transactions of that client
+3.  User requests to edit a specific transaction in the transaction list
+4.  JeeqTracker edits the transaction
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given client does not exist in the list.
+
+    * 3a1. JeeqTracker shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. User fails to provide a valid command format to edit a client.
+    * 3b1. JeeqTracker shows an error message.
+
+      Use case resumes at 2.
+
+#### **Use case: UC13 - Edit a remark**
+**Preconditions: Alice is a valid Client with at least one remark in JeeqTracker**
+
+This use case exactly similar to use case [UC12](#use-case-uc12---edit-a-transaction). Instead of `transaction`, `remark` will be used for this use case
 
 ### Non-Functional Requirements
 
@@ -736,7 +886,6 @@ testers are expected to do more *exploratory* testing.
     3. Test case: `delete 0 m/transaction`<br/>Expected: No transaction is deleted. Error details shown in the `Application's Reply` panel.
     4. Other incorrect delete commands to try: `delete`, `delete x m/transaction` (where x is larger than the transaction list size), `delete 1`<br/>Expected: Similar to previous.
 
-
 2. Deleting a transaction while more than one client is shown in the client list.
    1. Prerequisites: List all clients using the `list` command. More than one client in the list.
    2. Test case: `delete 1 m/transaction`<br/>Expected: No transaction is deleted. Error details shown in the `Application's Reply` panel.
@@ -752,6 +901,40 @@ testers are expected to do more *exploratory* testing.
    If there are no buy transactions, the transaction list panel will be empty.
    2. Test case: `filter sold`<br/>Expected: No transaction is filtered. Error details shown in the `Application's Reply` panel.
    3. Other incorrect filter commands to try: `filter`, `filter all`, `filter 1`<br/>Expected: Similar to previous.
+
+### Editing a client
+
+1. Editing a client in the client list.
+
+    1. Test case: `edit 1 m/client n/JohnDoe`<br/>Expected: First client's name is changed to JohnDoe. Details of the edited client shown in the `Application's Reply` panel.
+    2. Test case: `edit 0 m/client`<br/>Expected: No client is edited. Error details shown in the `Application's Reply` panel.
+    3. Other incorrect edit client commands to try: `edit`, `edit x m/client` (where x is larger than the transaction list size), `edit 1 m/client n/`, `delete 1`<br/>Expected: Similar to previous.
+
+### Editing a transaction
+
+1. Editing a transaction while only one client is shown in the client list.
+
+    1. Prerequisites: View a single client using the `view` command. Use `view 1` (must have at least one client in the list). Multiple transactions in the transaction list panel.
+    2. Test case: `edit 1 m/transaction g/Oranges q/100`<br/>Expected: First transaction goods name and quantity is edited in the list. Details of the edited transaction shown in the `Application's Reply` panel.
+    3. Test case: `edit 0 m/transaction`<br/>Expected: No transaction is edited. Error details shown in the `Application's Reply` panel.
+    4. Other incorrect edit transaction commands to try: `edit`, `edit x m/transaction` (where x is larger than the transaction list size),`edit 1 m/transaction q/12g/`edit 1`<br/>Expected: Similar to previous.
+
+2. Editing a transaction while more than one client is shown in the client list.
+    1. Prerequisites: List all clients using the `list` command. More than one client in the list.
+    2. Test case: `edit 1 m/transaction g/Apples`<br/>Expected: No transaction is edited. Error details shown in the `Application's Reply` panel.
+
+### Editing a remark
+
+1. Editing a remark while only one client is shown in the client list.
+
+    1. Prerequisites: View a single client using the `view` command. Use `view 1` (must have at least one client in the list). One or multiple remarks in the transaction list panel.
+    2. Test case: `edit 1 m/remark new Edited Remark`<br/>Expected: First remark is edited in the list to be `new Edited Remark`. Details of the edited remark shown in the `Application's Reply` panel.
+    3. Test case: `edit 0 m/remark`<br/>Expected: No remark is edited. Error details shown in the `Application's Reply` panel.
+    4. Other incorrect edit remark commands to try: `edit`, `edit x m/remark` (where x is larger than the transaction list size)<br/>Expected: Similar to previous.
+
+2. Editing a remark while more than one client is shown in the client list.
+    1. Prerequisites: List all clients using the `list` command. More than one client in the list.
+    2. Test case: `edit 1 m/remark newRemark`<br/>Expected: No remark is edited. Error details shown in the `Application's Reply` panel.
 
 ### Sorting transactions from a client
 
@@ -785,7 +968,8 @@ testers are expected to do more *exploratory* testing.
 
     1. Open the `jeeqtracker.json` file. Change one field to an invalid data, e.g. change the `price` field to contain value `123abc`. Launch the application<br/>Expected: Application starts up with no data. 
 
-1. _{ more test cases …​ }_
+
+_{ more test cases …​ }_
 
 ## **Appendix: Effort**
 

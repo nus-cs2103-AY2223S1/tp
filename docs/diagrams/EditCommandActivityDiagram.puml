@@ -1,0 +1,14 @@
+@startuml
+ start
+ :User inputs edit command;
+
+ 'Since the beta syntax does not support placing the condition outside the
+ 'diamond we place it as the true branch instead.
+
+ if () then ([command is valid argument])
+     :Executes edit command;
+
+ else ([else])
+ endif
+ stop
+ @enduml
