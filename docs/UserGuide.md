@@ -350,8 +350,15 @@ If you're looking to migrate your team information onto TruthTable, here is a st
 [read this section](#understanding-truthtables-cli) before continuing!**
 </div>
 
-TruthTable allows you to manage members, tasks, links, and members. For member management, you will need to create the 
-person's record in TruthTable first, before assigning them to different teams.
+TruthTable allows you to manage members, tasks, links, and members. 
+
+<div markdown="block" class="alert alert-primary">**:information_source: Persons and Members**
+
+The persons in TruthTable (as seen in the [persons section](#persons-section)) may not be in a team. Hence, not all 
+persons are members. However, the members of a team must have a record in the persons section.
+
+This is why TruthTable distinguishes between persons and member commands.
+</div>
 
 Consequently, the commands are split into **5** main sections:
 
