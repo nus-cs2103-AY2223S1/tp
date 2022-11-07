@@ -45,16 +45,19 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Completed documentation for assignments features:
+    * Completed documentation for consultation features: 
   * Developer Guide:
-    * to be added soon
+    * Completed user stories and value proposition
+    * Update storage UML diagram
+    * Update architecture UML diagram
+    * Add `add student` activity diagram
 
 * **Contributions to team-based tasks**:
-  * Upload draft UG
-  * Release v1.3.trial
-  * Wrap up v1.2
+  * Upload draft UG, jar file, UG, DG
+  * Release v1.3.trial, v1.3.0, v1.4
+  * Wrap up v1.2, v1.3, 1.4
 
-* **Review/mentoring contributions**: to be added soon
+* **Review/mentoring contributions**: 
   * PR #25
   * PR #39
   * PR #53
