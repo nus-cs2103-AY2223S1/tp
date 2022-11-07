@@ -49,15 +49,22 @@ public class MatchCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        ObservableList<Order> orderList = model.getFilteredOrderList();
+        ObservableList<Object> currList = model.getFilteredCurrList();
         ObservableList<Pet> petList = model.getFilteredPetList();
 
-        if (index.getZeroBased() >= orderList.size()) {
+        if (index.getZeroBased() >= currList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Order order = orderList.get(index.getZeroBased());
+        Object o = currList.get(index.getZeroBased());
+        if (!(o instanceof Order)) {
+            throw new CommandException(String.format(Messages.INVALID_ORDER, index.getOneBased()));
+        }
+
+        Order order = (Order) o;
+
         PetGrader grader = new PetGrader(order);
+
         Map<Pet, Double> petScoreMap = new HashMap<>();
         petList.forEach(x -> petScoreMap.put(x, grader.evaluate(x)));
         Comparator<Pet> comparator = (x, y) -> {
