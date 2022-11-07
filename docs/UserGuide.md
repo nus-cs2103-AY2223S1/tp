@@ -170,9 +170,9 @@ Exits the program.
 
 Format: `exit`
 
-<div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Student commands
 This section contains commands for managing students.
@@ -278,9 +278,9 @@ Format: `mc INDEX num/MC_NUM r/MC_RESULT`
 Examples:
 * `mc 1 num/1 r/pass` sets the mastery check result for the 1st student in your student list to `PASS`.
 
-<div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Task commands
 This section contains commands for managing tasks.
@@ -340,9 +340,9 @@ Format: `unmarktask INDEX`
 Example:
 * `unmarktask 2` marks the 2nd task in your task list as not done.
 
-<div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Lesson commands
 This section contains commands for managing lessons.
@@ -514,9 +514,10 @@ Format: `addpart p/PARTICIPATION li/LESSON_INDEX si/STUDENT_INDEX`
 Example:
 * `addpart p/100 li/1 si/2` sets participation for the 2nd student in the 1st lesson in your lesson list to be 100.
 
+--------------------------------------------------------------------------------------------------------------------
+
 <div style="page-break-after: always;"></div>
 
---------------------------------------------------------------------------------------------------------------------
 
 ## Saving the data
 
