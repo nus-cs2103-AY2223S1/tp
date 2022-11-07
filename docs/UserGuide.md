@@ -170,7 +170,6 @@ For example, you can charge the third guest _30.35_ by running the command below
 For example, you can check out the third guest by executing the command below.
     * `delete 3` : Deletes the third guest shown in the current list.
           <br><br>
-    <div style="page-break-after: always;"></div>
     
 12. Should you wish to clear your GuestBook of **all** entries, you can use the **`clear`** command.<br>
     * `clear` : Deletes all guests.
@@ -296,6 +295,8 @@ you provide. The values that you **did not specify** to edit will remain **uncha
   of each field.
 </div>
 
+<div style="page-break-after: always;"></div>
+
 **Examples**:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the `phone number` and `email address` of the first guest to _91234567_ and _johndoe@example.com_ respectively.
 *  `edit 2 n/Betsy Crower` Edits the `name` of the second guest to _Betsy Crower_.
@@ -383,8 +384,6 @@ will display the guests that already have their rooms cleaned.
 :triangular_flag_on_post: **Common mistake:**<br>
 * Searching for guests using incomplete keywords e.g. `170` will **not match** `170.00`.
 </div>
-
-<div style="page-break-after: always;"></div>
 
 <div markdown="block" class="alert alert-success">
 
