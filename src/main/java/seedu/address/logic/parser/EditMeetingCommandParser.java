@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
@@ -32,6 +33,10 @@ public class EditMeetingCommandParser implements Parser<EditMeetingCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_INDEX, PREFIX_DATE, PREFIX_START_TIME, PREFIX_END_TIME,
                         PREFIX_DESCRIPTION);
+
+        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_INDEX)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditMeetingCommand.MESSAGE_USAGE));
+        }
 
         Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
 
