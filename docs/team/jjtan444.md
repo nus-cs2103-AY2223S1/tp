@@ -45,7 +45,7 @@ Given below are my contributions to the project.
 * **Project management**:
   * Project demonstration for submission.
   * Increased overall test quality [\#124](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/124), 
-  [\#230](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/230), [\#233](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/233).
+  [\#230](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/230), [\#234](https://github.com/AY2223S1-CS2103T-T09-3/tp/pull/234).
 
 * **Documentation**:
   * User Guide:
