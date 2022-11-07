@@ -597,6 +597,9 @@ public class ParserUtil {
         for (String format: ACCEPTABLE_DATE_FORMATS) {
             try {
                 output = LocalDate.parse(date, DateTimeFormatter.ofPattern(format));
+                if (output.compareTo(LocalDate.now()) > 0) {
+                    throw new ParseException(DateOfBirth.MESSAGE_USAGE);
+                }
                 return new DateOfBirth(output);
             } catch (DateTimeParseException exception) {
                 //Do nothing because it will eventually throw an exception if no formats match
