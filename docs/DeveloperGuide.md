@@ -246,13 +246,13 @@ Step 8: The `InsuranceCommand` calls its `createEditedPerson` method with the `P
 
 Step 9: The `InsuranceCommand` calls the `setPerson` method of the `Model` object to replace the existing `Person` object with the new edited one.
 
-Step 10: The `InsuranceCommand` calls the `updateFilteredPersonList` method of the `Model` object to update the filtered list.
-
 Step 11: The `InsuranceCommand` then returns a new `CommandResult` object with the result of the execution.
 
 Step 12: The `LogicManager` then returns the `CommandResult` object.
 
-![Sequence diagram for the Insurance Command](images/InsuranceSequenceDiagram.png)
+![Sequence diagram for the Insurance Command](images/InsuranceSequenceDiagramParse.png)
+
+![Sequence diagram for the Insurance Command](images/InsuranceSequenceDiagramExecute.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `InsuranceCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>

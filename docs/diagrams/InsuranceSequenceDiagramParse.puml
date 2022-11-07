@@ -6,14 +6,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
 participant ":InsuranceCommandParser" as InsuranceCommandParser LOGIC_COLOR
 participant "r:InsuranceCommand" as InsuranceCommand LOGIC_COLOR
-participant ":CommandResult" as CommandResult LOGIC_COLOR
-participant "lastShownList:List" as List LOGIC_COLOR
-participant "editedPerson:Person" as Person LOGIC_COLOR
 participant ":EditInsuranceDescriptor" as EditInsuranceDescriptor LOGIC_COLOR
-end box
-
-box Model MODEL_COLOR_T1
-participant ":Model" as Model MODEL_COLOR
 end box
 
 [-> LogicManager : execute("insurance 1 li/ di/")
@@ -56,51 +49,11 @@ AddressBookParser --> LogicManager : r
 deactivate AddressBookParser
 
 LogicManager -> InsuranceCommand : execute()
-activate InsuranceCommand
 
-InsuranceCommand -> Model : getFilteredPersonList()
-activate Model
-
-create List
-Model --> List
-activate List
-
-InsuranceCommand -> List : get(1)
-
-List --> InsuranceCommand: personToEdit
-deactivate List
-
-InsuranceCommand --> InsuranceCommand : createEditedPerson(personToEdit, descriptor)
-activate InsuranceCommand
-
-create Person
-InsuranceCommand -> Person
-activate Person
-
-Person --> InsuranceCommand : editedPerson
-deactivate Person
-InsuranceCommand --> InsuranceCommand: editedPerson
-deactivate InsuranceCommand
-
-InsuranceCommand -> Model : setPerson(personToEdit, editedPerson)
-
-Model --> InsuranceCommand
-
-InsuranceCommand -> Model : updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)
-
-Model --> InsuranceCommand
-deactivate Model
-
-create CommandResult
-InsuranceCommand -> CommandResult
-activate CommandResult
-
-CommandResult --> InsuranceCommand
-deactivate CommandResult
+ref over InsuranceCommand: execute insurance command
 
 InsuranceCommand --> LogicManager : result
 deactivate InsuranceCommand
-
 [<--LogicManager
 deactivate LogicManager
 @enduml
