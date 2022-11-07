@@ -466,7 +466,7 @@ save time, we have provided quick access to this user guide by entering the `hel
 
 --------------------------------------------------------------------------------------------------------------------
 
-### Exiting the program: `exit`
+#### Exiting the program: `exit`
 
 This command exits the program.
 

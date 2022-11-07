@@ -792,3 +792,9 @@ testers are expected to do more *exploratory* testing.
    5. Other incorrect edit commands to try: `edit`, `edit x`, `edit 1 rc/hi`, `edit ...`<br>
       Expected: No guest is edited, because the parameters are invalid. Error details shown in the status message.
       Status bar remains the same.
+
+### MarkRoomsClean/MarkRoomsUnclean
+
+1. MarkRoomsClean
+    Test case: 
+2. MarkRoomsUnclean
