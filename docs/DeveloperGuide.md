@@ -94,8 +94,8 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command to result in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddClientCommand`). More specifically,
-   1. If the command is specific to an entity (e.g. `Project`, `Client` or `Issue`), this results in a `CommandParser` object (More specifically, an object of one of its subclasses e.g., `ClientCommandParser`)).
-      1. This `XYZCommandParser` object then yields a `Command` object (more specifically, a derived class of `ProjectCommand`, `ClientCommand` or `IssueCommand` respectively.
+   1. If the command is specific to an entity (e.g. `Project`, `Client` or `Issue`), this results in a `CommandParser` object (More specifically, an object of one of its subclasses e.g., `ClientCommandParser`).
+      1. This `XYZCommandParser` object then yields a `Command` object (more specifically, a derived class of `ProjectCommand`, `ClientCommand` or `IssueCommand` respectively).
    2. Otherwise, it results in a `Command` Object directly.
 2. The resulting `Command` object is then executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
