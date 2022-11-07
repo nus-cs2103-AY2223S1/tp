@@ -1431,7 +1431,9 @@ testers are expected to do more *exploratory* testing.
    1. Setup and Prerequisites:
       1. Run TrackAScholar (make some changes to the file) and close it
       2. It will create a new ./data/ folder with the trackAScholar.json file in the same folder 
-      3. Insert the trackAScholarImport.json file here (Note that the name needs to be exactly as stated)
+      3. Go to [trackAScholarImport test files](https://github.com/AY2223S1-CS2103T-W10-3/tp/tree/master/src/test/data/JsonImportCommandTest) to download the test files. 
+      Click into one of the json files provided, press the raw button, right click and save the file. If still unsure, check step 5 onwards from [here](https://www.wikihow.com/Download-a-File-from-GitHub)
+      4. Place the file inside the ./data/ folder and rename it as trackAScholarImport.json.
    1. Test case: `import k`<br>
       Expected: trackAScholarImport has been imported and new applicants are displayed in the GUI. Applicants with the same name will not be imported. A successful import message is displayed.
 
