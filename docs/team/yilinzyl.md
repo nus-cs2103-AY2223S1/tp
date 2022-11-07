@@ -21,7 +21,7 @@ project managers, which assumptively equipped with _Command Line Interface_ (CLI
   - What it does: Allows the user to find all teammates with the same tag.
 
 #### Documentation
-- UG: Added`task assign`
+- UG: Added `task assign`, updated `find` to reflect search for tasks
 - DG: Added `task assign` and Use cases. Updated UI, Model, Storage diagram to reflect additional fields in Task.
 
 #### Community
