@@ -15,7 +15,10 @@ Class CliSyntax
 Class ParserUtil
 Class ArgumentMultimap
 Class ArgumentTokenizer
+Class "<<interface>>\nArgumentToken" as ArgumentToken
+Class FlagTokenizer
 Class Prefix
+Class Flag
 }
 
 Class HiddenOutside #FFFFFF
@@ -28,11 +31,17 @@ TrackOParser ..> Command : returns >
 XYZCommandParser .up.|> Parser
 XYZCommandParser ..> ArgumentMultimap
 XYZCommandParser ..> ArgumentTokenizer
+XYZCommandParser ..> FlagTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap
+FlagTokenizer .left.> ArgumentMultimap
 XYZCommandParser ..> CliSyntax
 CliSyntax ..> Prefix
+CliSyntax ..> Flag
+ArgumentMultimap *-- ArgumentToken
 XYZCommandParser ..> ParserUtil
-ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix
+FlagTokenizer .down.> Flag
+Flag .down.|> ArgumentToken
+Prefix .down.|> ArgumentToken
 XYZCommand -up-|> Command
 @enduml
