@@ -9,7 +9,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Person;
 
 
@@ -90,9 +89,10 @@ public class PreferCommand extends Command {
         Socials socialToEdit = findSocial(social);
         prefer(personToEdit, socialToEdit); //Includes the new social to the person to edit.
 
-        ReadOnlyAddressBook pastAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
+        UndoCommand.prepareSaveModelBefore(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.setPerson(personToEdit, personToEdit);
+        UndoCommand.saveBeforeMod(model);
         return new CommandResult(String.format(MESSAGE_SUCCESS));
     }
 }

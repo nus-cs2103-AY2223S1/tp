@@ -114,7 +114,7 @@ Format: `n/NAME`
 Sets the phone number of a person in uNivUSal.
 
 Format : `p/PHONE`
-* `PHONE` must only contain digits and not alphabets, and it should be at least 3 digits long.
+* `PHONE` must only contain digits and not alphabets, and it should be at least 3 and at most 15 digits long.
 
 Example : `p/97865486`
 
@@ -149,6 +149,7 @@ Example : `tut/T08`
 Sets the address of a person in uNivUSal.
 
 Format : `a/ADDRESS`
+* `ADDRESS` must be at most 100 characters long.
 
 Example : `a/36 College Avenue`
 

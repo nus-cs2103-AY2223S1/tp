@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCIAL;
+
 import seedu.address.model.social.Social;
+
 
 /**
  * Contains helper methods and fields for testing social commands.
@@ -24,6 +27,7 @@ public class SocialTestUtil {
     public static final String VALID_PREFERRED_BOB = "TELEGRAM";
 
     public static final String INVALID_SOCIALS = "WHATELEMAILGRAM";
+    public static final String INVALID_SOCIALS_DESC = " " + PREFIX_SOCIAL + INVALID_SOCIALS;
 
     public static Social getAmySocial() {
         Social s = new Social();

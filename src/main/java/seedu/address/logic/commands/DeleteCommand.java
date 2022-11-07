@@ -15,7 +15,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Occupation;
@@ -70,11 +69,11 @@ public class DeleteCommand extends Command {
         }
 
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        ReadOnlyAddressBook pastAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
+        UndoCommand.prepareSaveModelBefore(model);
 
         if (isNull(field)) {
             model.deletePerson(personToDelete);
-            UndoCommand.saveBeforeMod(this, pastAddressBook, model.getAddressBook());
+            UndoCommand.saveBeforeMod(model);
             return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
         }
 
@@ -91,7 +90,6 @@ public class DeleteCommand extends Command {
      */
     public CommandResult deleteHandler(Person personToDelete, Model model, String field) throws CommandException {
         EditCommand.EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
-        ReadOnlyAddressBook pastAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
 
         switch (field) {
         case "o/":
@@ -101,7 +99,7 @@ public class DeleteCommand extends Command {
             editPersonDescriptor.setOccupation(new Occupation("NONE"));
             Person editedPerson = createEditedPerson(personToDelete, editPersonDescriptor);
             model.setPerson(personToDelete, editedPerson);
-            UndoCommand.saveBeforeMod(this, pastAddressBook, model.getAddressBook());
+            UndoCommand.saveBeforeMod(model);
             return new CommandResult(String.format(MESSAGE_DELETE_FIELD_SUCCESS,
                     "Occupation", personToDelete.getOccupation(), personToDelete.getName()));
 
@@ -112,7 +110,7 @@ public class DeleteCommand extends Command {
             editPersonDescriptor.setPhone(new Phone("NO NUMBER SET"));
             editedPerson = createEditedPerson(personToDelete, editPersonDescriptor);
             model.setPerson(personToDelete, editedPerson);
-            UndoCommand.saveBeforeMod(this, pastAddressBook, model.getAddressBook());
+            UndoCommand.saveBeforeMod(model);
             return new CommandResult(String.format(MESSAGE_DELETE_FIELD_SUCCESS,
                     "Phone Number", personToDelete.getPhone(), personToDelete.getName()));
 
@@ -123,7 +121,7 @@ public class DeleteCommand extends Command {
             editPersonDescriptor.setEmail(new Email("NO EMAIL SET"));
             editedPerson = createEditedPerson(personToDelete, editPersonDescriptor);
             model.setPerson(personToDelete, editedPerson);
-            UndoCommand.saveBeforeMod(this, pastAddressBook, model.getAddressBook());
+            UndoCommand.saveBeforeMod(model);
             return new CommandResult(String.format(MESSAGE_DELETE_FIELD_SUCCESS,
                     "Email", personToDelete.getEmail(), personToDelete.getName()));
 
@@ -134,7 +132,7 @@ public class DeleteCommand extends Command {
             editPersonDescriptor.setAddress(new Address("NO ADDRESS SET"));
             editedPerson = createEditedPerson(personToDelete, editPersonDescriptor);
             model.setPerson(personToDelete, editedPerson);
-            UndoCommand.saveBeforeMod(this, pastAddressBook, model.getAddressBook());
+            UndoCommand.saveBeforeMod(model);
             return new CommandResult(String.format(MESSAGE_DELETE_FIELD_SUCCESS,
                     "Address", personToDelete.getAddress(), personToDelete.getName()));
 
@@ -148,7 +146,7 @@ public class DeleteCommand extends Command {
             editPersonDescriptor.setTags(hash);
             editedPerson = createEditedPerson(personToDelete, editPersonDescriptor);
             model.setPerson(personToDelete, editedPerson);
-            UndoCommand.saveBeforeMod(this, pastAddressBook, model.getAddressBook());
+            UndoCommand.saveBeforeMod(model);
             return new CommandResult(String.format(MESSAGE_DELETE_FIELD_SUCCESS,
                     "Tag", personToDelete.getTags(), personToDelete.getName()));
 

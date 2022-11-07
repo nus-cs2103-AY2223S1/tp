@@ -11,7 +11,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.group.Group;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -69,11 +68,10 @@ public class UngroupCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        ReadOnlyAddressBook pastAddressBook = (ReadOnlyAddressBook) model.getAddressBook().clone();
+        UndoCommand.prepareSaveModelBefore(model);
         model.setPerson(personToUngroup, removedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        UndoCommand.saveBeforeMod(this, pastAddressBook, model.getAddressBook());
-
+        UndoCommand.saveBeforeMod(model);
         return new CommandResult(String.format(MESSAGE_UNGROUP_PERSON_SUCCESS, removedPerson));
     }
 
