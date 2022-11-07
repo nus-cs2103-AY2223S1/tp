@@ -168,6 +168,8 @@ The features covered in this guide are:
 * [Undo Command Feature](#undo-command-feature)
 * [[Proposed] Find-by feature](#proposed-find-by-feature)
 
+___
+
 ### Edit Class Feature
 
 This feature allows the teacher to create a class at a specified date and time.
@@ -217,6 +219,8 @@ The following activity diagram summarizes what happens when a teacher executes a
         1. Harder to implement.
         2. Only can set the class to a date at most 1 week away.
 
+___
+
 ### Next Available Class Feature
 
 This feature allows the teacher to find then next available class by specifying the time range and the duration that
@@ -259,6 +263,8 @@ The following activity diagram summarizes what happens when a teacher executes a
     * Pros: More flexible, allowing teacher to specify what the time range is and the duration of class interested in.
     * Cons: Harder to implement.
 
+___
+
 ### Statistics Display Feature
 
 This feature allows the teacher to get an overall view of his/her teaching statistics, which includes the number of students, total money owed and total money paid by the current list of students.
@@ -284,15 +290,11 @@ How the individual operations work:
 
 - `StatisticsCalculator#getAmountOwed()`
   1. When `StatisticsCalculator#getAmountOwed()` is called by `StatisticDisplay`, `StatisticsCalculator` attains the updated list of students from `ReadOnlyTeachersPet`.
-  2. After getting the list of students in the form of `ObservableList<Student>`, StatisticsCalculator iterates across all students in the list and sums the total amount owed.
-
-  ![StatisticsCalculatorGetAmountOwedSequenceDiagram](images/DG-images/StatisticsCalculatorGetAmountOwedSequenceDiagram.png)
+  2. After getting the list of students in the form of `ObservableList<Student>`, `StatisticsCalculator` iterates across all students in the list and sums the total amount owed.
 
 - `StatisticsCalculator#getAmountPaid()`
   1. When `StatisticsCalculator#getAmountPaid()` is called by `StatisticDisplay`, `StatisticsCalculator` attains the updated list of students from `ReadOnlyTeachersPet`.
-  2. After getting the list of students in the form of `ObservableList<Student>`, StatisticsCalculator iterates across all students in the list and sums the total amount paid.
-  
-  ![StatisticsCalculatorGetAmountPaidSequenceDiagram](images/DG-images/StatisticsCalculatorGetAmountPaidSequenceDiagram.png)
+  2. After getting the list of students in the form of `ObservableList<Student>`, `StatisticsCalculator` iterates across all students in the list and sums the total amount paid.
 
 #### Design Considerations:
 ##### Aspect: Implementing the statistics function:
@@ -306,6 +308,8 @@ How the individual operations work:
         1. Fewer repetition of code.
         2. More optimised solution as `ObservableList<Student>` needs to be iterated only once. 
     * Cons: Violates Single Responsibility Principle (SRP) as the function would have multiple responsibilities.
+
+___
 
 ### Schedule List Feature
 This feature allows the user to be able to view a schedule on the right hand side of the panel.
@@ -331,9 +335,11 @@ This `UniqueScheduleList` would store the filtered version of the original `Addr
   * Pros: Achieved our purpose of a `ScheduleList`
   * Cons: Code duplication
 
+___
+
 ### Mark Student Feature
 
-This feature allows the teacher to mark a student as present for class, which increases the student's amount owed by the rates per class, while setting the student's next class date to be a week later.
+This feature allows the teacher to mark a student as present for class, which increases the student's amount owed by the rates per class.
 
 #### Implementation Details
 
@@ -346,12 +352,6 @@ This command executes 3 main actions, they are:
    - This action will add `ratesPerClass` field to `moneyOwed` field in `Student`.
    - The addition of money is called through `Money#addTo(Money money)` method.
    - To prevent integer overflow from happening, `Money#addTo(Money money)` throws a `CommandException` if it occurs.
-
-3. Set the next class to be a week later.
-   - This action will update `Class` to be `7` days later at the same `startTime` and `endTime`.
-   - Addition of days to the current `Class` date is called through `Class#addDays(int numberOfDays)` method.
-   - The next `Class` will be checked if it clashes with another `Class`. If it does not, it will be saved in `ClassStorage`. All these are called through `ClassStorage#saveClass()`.
-   - The marked `Class` will be deleted from `ClassStorage`.
 
 The following diagram illustrates how the operation works:
 

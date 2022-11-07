@@ -24,6 +24,7 @@ Student *--> MoneyOwed
 Student *--> MoneyPaid
 Student *--> RatesPerClass
 Student *--> AdditionalNotes
+Student *--> Mark
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> NokPhone
@@ -34,4 +35,5 @@ Class -[hidden]right-> MoneyOwed
 MoneyOwed -[hidden]right-> MoneyPaid
 MoneyPaid -[hidden]right-> RatesPerClass
 RatesPerClass -[hidden]right-> AdditionalNotes
+AdditionalNotes -[hidden]right-> Mark
 @enduml
