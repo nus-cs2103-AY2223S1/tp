@@ -40,8 +40,8 @@ SectresBook helps secretaries to maintain all the information of the members of 
 **Contributions to team-based tasks**:
 
 * Setting up the GitHub team org/repo
-* Changed the product icon to the current version (ledger with pen) using GIMP
-* Released version v1.3.1 for PE-D and fixed 16 bugs after PE-D
+* Changed the product icon to the current version (ledger with pen) using GIMP (Pull Request [#102](https://github.com/AY2223S1-CS2103T-W12-2/tp/pull/102))
+* Released version v1.3.1 for PE-D and fixed 16 bugs after PE-D (Pull Request [#179](https://github.com/AY2223S1-CS2103T-W12-2/tp/pull/179))
 
 **Review/mentoring contributions**:
 
