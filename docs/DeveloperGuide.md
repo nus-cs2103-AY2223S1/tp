@@ -116,7 +116,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W15-4/tp/blob/master/src/main/java/friday/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="500" />
+<img src="images/ModelClassDiagram.png" width="600" />
 
 
 The `Model` component,
@@ -128,7 +128,7 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Friday`, which `Student` references. This allows `Friday` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="650" />
+<img src="images/BetterModelClassDiagram.png" width="700" />
 
 </div>
 
@@ -137,7 +137,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W15-4/tp/blob/master/src/main/java/friday/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="600" />
+<img src="images/StorageClassDiagram.png" width="650" />
 
 The `Storage` component,
 * can save both FRIDAY data and user preference data in json format, and read them back into corresponding objects.
@@ -207,47 +207,57 @@ The following Sequence Diagram summarises the aforementioned steps.
 
 **Aspect: How many criteria should the `sort` command accept**
 
-|              | **Pros**   | **Cons** |
-| -------------|------------|----------|
-| **Option 1 (current choice)** <br> Accept only one criterion | Easier to implement and also clearer for the user | Unable to further sort students with a secondary criteria should the first criteria of some students match |
-| **Option 2** <br> Accept multiple criteria and sort in the order they are given | More precise sorting when many students have matching details, e.g. same Mastery Check dates | Sorting becomes confusing for the user and difficult to implement if many criteria are given |
+|                                                                                 | **Pros**                                                                                     | **Cons**                                                                                                   |
+|---------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|
+| **Option 1 (current choice)** <br> Accept only one criterion                    | Easier to implement and also clearer for the user                                            | Unable to further sort students with a secondary criteria should the first criteria of some students match |
+| **Option 2** <br> Accept multiple criteria and sort in the order they are given | More precise sorting when many students have matching details, e.g. same Mastery Check dates | Sorting becomes confusing for the user and difficult to implement if many criteria are given               |
 
 ### Alias feature
+#### Rationale
+Some advanced users might want to customise the command words. 
+This feature will allow them to do so, enabling these users to be more efficient in using FRIDAY.
 
 #### Implementation
+The current implementation of the alias feature will allow users to add a non-empty one word alias for a [default command](#glossary).
 
-The alias command will be executed by `AliasCommand`. Aliases added will be stored in a `AliasMap`, while
-in-built command names (e.g. add, delete) will be stored in a constant `LIST_RESERVED_KEYWORD` in the `ReservedKeyword` class.
+The following activity diagram will outline the process when the `alias` command is executed.
 
 ![Alias Command Activity Diagram](images/AliasCommandActivityDiagram.png)
+
+The alias command will be executed by `AliasCommand`. Aliases added will be stored in a `AliasMap`, while
+default command names (e.g. add, delete) will be stored in a constant `LIST_RESERVED_KEYWORD` in the `ReservedKeyword` class.
 
 Given below is an example usage scenario and how the alias mechanism behaves at each step.
 
 1. The user launches the application for the first time. FRIDAY will initialise a `Friday`
 with an empty `AliasMap`.
 
-2. The user executes `alias a/ls k/list` command to add an alias `ls` for the command `list`. `FridayParser` will parse 
+2. The user executes `alias a/ls k/list` command to add an alias `ls` for the default command `list`. `FridayParser` will parse 
 `alias` and create a new `AliasCommandParser`.`AliasCommandParser` will parse `a/ls k/list` and create an `AlliasCommand` with `Alias("ls")` 
 and a `ReservedKeyword("list")`. When executing the `AliasCommand`, the command will check that `list` is in the `LIST_RESERVED_KEYWORD`,`ls` is not in the 
-`AliasMap` and `ls` is a valid alias. After all the conditions are fulfilled, `Model#addAlias(Alias("ls"), ReservedKeyword("list")))` will be called to add
+`AliasMap` and `ls` is a valid alias. After all the conditions are fulfilled, `Model#addAlias(Alias("ls"), ReservedKeyword("list"))` will be called to add
 this alias-keyword mapping into `AliasMap`.
 
 3. The user executes `ls` using the alias of the `list` command. `Model#getKeyword("ls")` will check `AliasMap` in `Model` 
 for an alias-keyword mapping. As there is a mapping of `ls` to `list`, `Model#getKeyword("ls")` will return `list`. 
 `list` will then be assigned to `commandWord` in `FridayParser`. `commandWord` will then be used to get the command to be executed.
+`ListCommand` will then be executed.
+
+The following sequence diagram shows how the alias `ls` is used to execute the default command `list`.
 ![Using Alias Sequence Diagram](images/UsingAliasSequenceDiagram.png)
 
 #### Design considerations
 
 **Aspect: How `Alias` is stored in `AliasMap`:**
 
-|                                                                                            | **Pros**                       | **Cons**                                                                                                                                                                                 |
-|--------------------------------------------------------------------------------------------|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Option 1 (current choice)** <br> Stored as an Alias-ReservedKeyword mapping in a Map     | Fast with O(1) time complexity | At high capacity, there might be complications due to collision in Map                                                                                                                   |
-| **Option 2** <br> Alias and ReservedKeyword stored within an association class in a List   | Can store more Aliases         | To get an Alias, iteration through the whole list must be done causing the time complexity to be at O(Number of Aliases) and this might cause performance issues when there are many aliases |
+|                                                                                          | **Pros**                       | **Cons**                                                                                                                                                                                     |
+|------------------------------------------------------------------------------------------|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Option 1 (current choice)** <br> Stored as an Alias-ReservedKeyword mapping in a Map   | Fast with O(1) time complexity | At high capacity, there might be complications due to collision in Map                                                                                                                       |
+| **Option 2** <br> Alias and ReservedKeyword stored within an association class in a List | Can store more Aliases         | To get an Alias, iteration through the whole list must be done causing the time complexity to be at O(Number of Aliases) and this might cause performance issues when there are many aliases |
 _
 
 ### Grade Feature
+#### Rationale
 FRIDAY allows the user to record their students' grades for assessments and examinations in CS1101S. There are 5 
 assessments in CS1101S, namely Reading Assessment 1 (RA1), Reading Assessment 2 (RA2), Practical Assessment, Midterm 
 exam, and the Final exam. Each student in FRIDAY will have a list of their grades for the 5 assessments, showing the 
@@ -338,15 +348,16 @@ The following sequence diagram summarizes the aforementioned steps.
 
 **Aspect: Should we allow users to find block keywords :**
 
-|                                                                                                                          | **Pros**                       | **Cons**                                                                                                                                                                                 |
-|--------------------------------------------------------------------------------------------------------------------------|--------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Option 1 (current choice)** <br> Allow user to find by single keywords                                   | Provides more search results and the expected student is part of the list.| The expected student may not appear at the top of the list due to lexicography.                                                                                                                  |
-| **Option 2** <br> Allow users to find by block keywords | Possibly more accurate searches.         | Higher possibly that search is unsuccessful due to error in keywords. |
+|                                                                          | **Pros**                                                                   | **Cons**                                                                        |
+|--------------------------------------------------------------------------|----------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| **Option 1 (current choice)** <br> Allow user to find by single keywords | Provides more search results and the expected student is part of the list. | The expected student may not appear at the top of the list due to lexicography. |
+| **Option 2** <br> Allow users to find by block keywords                  | Possibly more accurate searches.                                           | Higher possibly that search is unsuccessful due to error in keywords.           |
 
 ### Mark feature
-FRIDAY allows users to mark the Mastery Checks of certain students as passed.
+#### Rationale
+FRIDAY allows users to mark the Mastery Checks of certain students as passed. This would help the user keep track of which students have already completed and passed their Mastery Checks.
 
-### Implementation
+#### Implementation
 The mark command is implemented by a `MarkMasteryCheckCommand`. The `MasteryCheck` of a student contains a boolean `isPassed`, which is set to false by default for sample students and when a student is added to the list.
 
 Below is an activity diagram depicting the implementation of the mark command.
@@ -371,20 +382,21 @@ The following Sequence Diagram summarises the aforementioned steps.
 
 ![Mark command sequence diagram](images/MarkCommandSequenceDiagram.png)
 
-### Design considerations
+#### Design considerations
 
 **Aspect: Should we allow users to mark empty Mastery Checks as passed**
 
-|              | **Pros**   | **Cons**                                                                                                                                                                                                                |
-| -------------|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Option 1 (current choice)** <br> Do not allow marking of empty Mastery Checks | More intuitive and makes more sense | May be useful in certain cases                                                                                                                                                                                          |
-| **Option 2** <br> Allow marking of empty Mastery Checks | Could be useful in certain cases, for example when a student is exempted from having to complete the Mastery Check | These cases are rare. Also does not make sense to allow this as there is an empty Mastery Check means that the student has not scheduled or completed any Mastery Check. Hence, there is nothing to be marked as passed |
+|                                                                                 | **Pros**                                                                                                           | **Cons**                                                                                                                                                                                                                |
+|---------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Option 1 (current choice)** <br> Do not allow marking of empty Mastery Checks | More intuitive and makes more sense                                                                                | May be useful in certain cases                                                                                                                                                                                          |
+| **Option 2** <br> Allow marking of empty Mastery Checks                         | Could be useful in certain cases, for example when a student is exempted from having to complete the Mastery Check | These cases are rare. Also does not make sense to allow this as there is an empty Mastery Check means that the student has not scheduled or completed any Mastery Check. Hence, there is nothing to be marked as passed |
 
 
 ### Unmark feature
+#### Rationale
 FRIDAY allows users to unmark the Mastery Checks of certain students as passed. This would be useful in cases where the user accidentally marks the Mastery Check of a student who has not passed their Mastery Check.
 
-### Implementation
+#### Implementation
 The unmark command is implemented by an `UnmarkMasteryCheckCommand`. As mentioned above the `MasteryCheck` of a student contains a boolean `isPassed`, which is set to false by default but can be changed to `true` by a `MarkMasteryCheckCommand`.
 
 Below is an activity diagram depicting how the unmark command is implemented.
@@ -409,13 +421,13 @@ The following Sequence Diagram summarises steps 4 to 5.
 
 ![Unmark command sequence diagram](images/UnmarkCommandSequenceDiagram.png)
 
-### Design considerations
+#### Design considerations
 
 **Aspect: Should we allow users to unmark empty Mastery Checks as passed**
 
-|                                                                                   | **Pros**   | **Cons**                                                                                                                                                             |
-|-----------------------------------------------------------------------------------|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Option 1 (current choice)** <br> Do not allow unmarking of empty Mastery Checks | More intuitive and makes more sense | May be useful in certain cases                                                                                                                                       |
+|                                                                                   | **Pros**                                                                                                                       | **Cons**                                                                                                                                                             |
+|-----------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Option 1 (current choice)** <br> Do not allow unmarking of empty Mastery Checks | More intuitive and makes more sense                                                                                            | May be useful in certain cases                                                                                                                                       |
 | **Option 2** <br> Allow marking of empty Mastery Checks                           | Could be useful in certain cases, for example when the user accidentally marks a student with an empty Mastery Check as passed | This would require the marking of empty Mastery Checks to be allowed. Refer to the design considerations in implementing the `mark` command for the cons of doing so |
 
 --------------------------------------------------------------------------------------------------------------------
@@ -880,13 +892,14 @@ For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `us
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
-* **TA / Avenger**: Teaching assistants, namely CS1101S teaching assistants (also called "Avengers"), who are the target audience of our product FRIDAY.
-* **Reading Assessment**: Assessments in the form of online quiz with Multiple-Choice Questions (MCQ). There are a total of two reading assessments, namely RA1 and RA2, throughout the semester. Reading Assessments have weightage in the students' final grade for the module.
-* **Mastery Check**: An assessment of the students' understanding of topics conducted by the user (the teaching assistants).
+1. **Mainstream OS**: Windows, Linux, Unix, OS-X
+2. **Private contact detail**: A contact detail that is not meant to be shared with others
+3. **TA / Avenger**: Teaching assistants, namely CS1101S teaching assistants (also called "Avengers"), who are the target audience of our product FRIDAY.
+4. **Reading Assessment**: Assessments in the form of online quiz with Multiple-Choice Questions (MCQ). There are a total of two reading assessments, namely RA1 and RA2, throughout the semester. Reading Assessments have weightage in the students' final grade for the module.
+5. **Mastery Check**: An assessment of the students' understanding of topics conducted by the user (the teaching assistants).
 There are two Mastery Checks through the semester. Students will be assessed by their knowledge of the topics covered by presenting to their teaching assistant in pairs.
 Since users have to arrange dates to meet with their students to conduct the Mastery Checks, FRIDAY allows users to record the scheduled dates for each student.
+* **Default Command**: The original command word for a command in FRIDAY. (e.g. `add`,`sort`)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**

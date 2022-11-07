@@ -13,7 +13,7 @@ if () then ([valid command])
 
     if () then ([Mastery Check can be unmarked])
 
-    :Unarks the student's
+    :Unmarks the student's
     Mastery Check;
 
     :Removes the "(passed)"

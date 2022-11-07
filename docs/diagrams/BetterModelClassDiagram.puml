@@ -4,16 +4,12 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Friday *-right-> "1" UniqueStudentList
-Friday *-right-> "1" UniqueTagList
-Friday *-down-> "1" AliasMap
-UniqueTagList -[hidden]down- UniqueStudentList
-UniqueTagList -[hidden]down- UniqueStudentList
+Friday *-down-> "1" UniqueStudentList
+Friday *-right-> "1" AliasMap
 
-UniqueTagList *-right-> "*" Tag
 UniqueStudentList -right-> "*" Student
 
-Student -up-> "*" Tag
+Student *--> "*" Tag
 
 Student *--> "1" Name
 Student *--> "0..1" TelegramHandle
