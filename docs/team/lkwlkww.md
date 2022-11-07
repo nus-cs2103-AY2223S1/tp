@@ -44,6 +44,21 @@ Given below are my contributions to the project.
 
 ### Contributions to the Developer Guide (Extracts)
 #### Select feature
+##### High-level details
+* The select feature is meant to expand on either a `Property` or a `Client` to display its details in the GUI.
+* Importantly, a `Property` can hold a list of interested clients and a `Client` can hold a list of properties that the client is interested in.
+* Depending on if a `Property` or `Client` is selected, the GUI changes to show just the selected `Property` or `Client` in its respective tab, and its interested clients or intersted properties - respectively - in the other tab.
+* The select command is as follows, where `select -p [INDEX]` is used to select a property under the property directory, and `select -c [INDEX]` is used to select a client under the client directory:
+
+  ```
+  select -[pc] [INDEX]
+  ```
+
+  * The compulsory input `INDEX` would correspond to the current displayed list in the GUi.
+* Examples of usage:
+  * `select -p 2`
+  * `select -c 10`
+
 ##### Technical details
 * The implementation of the select feature mainly revolves around two classes each for a `Property` and a `Client`: `SelectPropertyCommand`, `SelectPropertyCommandParser`, `SelectClientCommand` and `SelectClientCommandParser`.
   * The `SelectPropertyCommand` and `SelectClientCommand` classes handle the backend execution of the command, such as changing the list of Properties or Clients to be displayed on the GUI (See the UML diagrams below for a detailed breakdown).
@@ -57,11 +72,28 @@ This activity diagram models the workflow when a `select -p 1` input is given by
 
 Importantly, errors that might be thrown are modeled in this diagram.
 
-![SelectPropertyActivityDiagram](images/SelectPropertyActivityDiagram.png)
+![SelectPropertyActivityDiagram](../images/SelectPropertyActivityDiagram.png)
 
 This sequence diagram shows the interactions between the `Logic`, `Model`, and `Ui` classes when a `select -p 1` input is given by the user.
 
-![SelectPropertySequenceDiagram](images/SelectPropertySequenceDiagram.png)
+![SelectPropertySequenceDiagram](../images/SelectPropertySequenceDiagram.png)
+
+The logic for `SelectClientCommand` and `SelectClientCommandParser` are similar and derivable from the diagrams too.
+
+#### Glossary
+
+* **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Property**: A listed unit of a property
+* **Command**: A text input keyed in by the user, in the command box of the GUI.
+  * A command must have a keyword (e.g. `select`, `clear`)
+  * A command might require a flag, and/or a parameter(s)
+* **Flag**: A flag denoting if a command is for properties or clients, i.e., `-p` and `-c`
+* **Parameter**: A combination of a prefix and an argument(s) that functions as inputs to a command
+  * Examples: `n/Samuel` is a name parameter; `a/Woodlands` is an address parameter
+* **Prefix**: The symbol used in a parameter to indicate which parameter it is for
+  * Examples: `n/` is the prefix for the name parameter; `a/` is the prefix for the address parameter
+* **Argument**: The user-defined inputs for parameters
+  * Examples: "Jaime" could be an argument for the name parameter; "Sembawang" could be an argument for the addresss parameter
 
 ### Contributions to the User Guide (Extracts)
 #### Prefix list

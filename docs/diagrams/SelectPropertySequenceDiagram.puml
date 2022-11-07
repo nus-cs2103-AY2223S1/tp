@@ -85,4 +85,5 @@ deactivate SelectPropertyCommand
 
 [<--LogicManager
 deactivate LogicManager
+
 @enduml

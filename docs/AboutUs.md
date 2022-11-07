@@ -55,7 +55,8 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](http://github.com/lkwlkww)]
 [[portfolio](team/lkwlkww.md)]
 
-* Role: Developer
+* Role: Code Chicken
 * Responsibilities:
-    * Client directory features
+    * Select feature
+    * Interested properties/clients enhancement
     * Ensure good code quality
