@@ -194,6 +194,10 @@ attributes will be updated.
 The sequence diagram below illustrates the process of the Set Command works.
 ![SetSequenceDiagram](images/SetSequenceDiagram.png)
 
+The below activity diagram highlights what happens when a user uses the `set` command.
+
+![SetActivityDiagram](images/SetActivityDiagram.png)
+
 ### Sort Command
 
 The Sort Command makes use of the following classes:
@@ -204,6 +208,10 @@ The Sort Command makes use of the following classes:
 SortCommand Parser will determine the field that users want to sort, retrieve the `Comparator` from `PersonComparators` and update in model.
 
 ![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
+The below activity diagram shows what happens when a user uses the `sort` command.
+
+
 
 ### \[Proposed\] Undo/redo feature
 
