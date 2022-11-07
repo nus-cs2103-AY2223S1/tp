@@ -466,25 +466,25 @@ You may "peek" at a module's tasks by clicking on the module while on the
  **Step 1**: Let's say you wish to view the tasks of `CS2103T SOFTWARE 
 ENGINEERING` (module number 1).
 <p align="center">
-  <img src="images/home-page-with-cs2103-circled.png" width="500"/>
+  <img src="images/home-page-with-cs2103-circled.png" width="300"/>
 </p>
 
 **Step 2**: You will notice a blue glow when hovering your mouse over the 
 module.
 <p align="center">
-  <img src="images/home-page-with-cs2103-glowing.png" width="500"/>
+  <img src="images/home-page-with-cs2103-glowing.png" width="300"/>
 </p>
 
 **Step 3**: Double-clicking on the blue area will allow you to view the 
  tasks of `CS2103T SOFTWARE ENGINEERING`.
 <p align="center">
-  <img src="images/home-page-with-cs2103-tasks.png" width="500"/>
+  <img src="images/home-page-with-cs2103-tasks.png" width="300"/>
 </p>
 
 **Step 4**: Clicking again on the blue area will close the dropdown and hide 
 the tasks.
 <p align="center">
-  <img src="images/home-page-with-cs2103-glowing.png" width="500"/>
+  <img src="images/home-page-with-cs2103-glowing.png" width="300"/>
 </p>
 
 <div markdown="span" class="alert alert-info">:information_source: 
