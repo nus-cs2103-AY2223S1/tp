@@ -388,7 +388,7 @@ Examples:
 * `find John` returns john and John Doe
 * `find alex david` returns `Alex Yeoh`, `David Li`
 
-<img src="images/FindCommand.png" width="500">
+<img src="images/FindCommand.png" width="450">
 
 [Scroll back to top](#table-of-contents)
 
@@ -525,7 +525,7 @@ Format: `modsleft INDEX`
 * Compares your Current Modules and Previous Modules list with the list of modules required to clear requirements and outputs the remaining modules needed to clear it.
 * The index refers to the index number shown in the displayed focus area list.
 * The index **must be a positive integer between 1 and 11**
-* This feature is currently compatible with CS students who enrolled in AY21/22, additional compatability with students from other AYs and other majors will be added in future versions.
+* This feature is currently compatible with CS students who enrolled in AY21/22, additional compatability with students from other AYs and majors will be added in future versions.
 
 The index reference list is as shown:
 1. CS Core Requirements
