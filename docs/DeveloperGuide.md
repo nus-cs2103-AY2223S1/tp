@@ -622,7 +622,7 @@ Here is an example of what happens when the recruiter attempts to view a candida
 
 The following sequence diagram shows how the view operation works:
 
-![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
+![ViewSequenceDiagram](images/ViewCommandSequenceDiagram.png)
 
 #### Design Considerations
 
@@ -630,15 +630,6 @@ The `ViewCommand` is able to show the full details of a candidate in the result 
 
 The user is also able to view the full details of a candidate by clicking on the candidate card in the `PersonCard` component in CLInkedIn. This allows the user to view the full details of a candidate without having to type in the command.
 
-### Add feature
-
-#### Implementation
-
-The proposed `Add` feature allows the user to add a candidate to CLInkedIn. It is mainly implemented by the `AddCommand` method.
-
-Here is an example of what happens when the recruiter attempts to add a candidate to CLInkedIn:
-
-1. The user enters the command `add n/John Doe p/98765432
 
 ### \[Proposed\] Data archiving
 
