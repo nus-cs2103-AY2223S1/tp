@@ -352,6 +352,10 @@ The following activity diagram summarizes what happens when a user executes an `
 
 When the `sort` command is entered, a `Comparator<Task>` is created which will be an instance of either `model.task.SortByDeadline` or `model.task.SortByPriority`. This `Comparator<Task>` will be reversed if the task list needs to be sorted in descending order. The `SortedList<Task>` in the `Model` will then be updated to use the new `Comparator<Task>`.
 
+The following sequence diagram shows what happens when the command is executed:
+
+![SortTaskCommandSequenceDiagram](images/SortTaskCommandSequenceDiagram.png)
+
 ### \[Proposed\] Task and Person display each other
 
 #### Proposed Implementation

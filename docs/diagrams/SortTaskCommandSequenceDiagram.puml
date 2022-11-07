@@ -1,0 +1,79 @@
+@startuml
+!include style.puml
+
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SortTaskParser" as SortTaskParser LOGIC_COLOR
+
+participant ":SortTaskCommand" as SortTaskCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":SortByDeadline" as SortByDeadline MODEL_COLOR
+end box
+
+[-> LogicManager : execute("sort dl/asc")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("sort dl/asc")
+activate AddressBookParser
+
+create SortTaskParser
+AddressBookParser -> SortTaskParser : SortTaskParser()
+activate SortTaskParser
+
+SortTaskParser --> AddressBookParser
+deactivate SortTaskParser
+
+
+AddressBookParser -> SortTaskParser : parse("dl/asc")
+activate SortTaskParser
+
+
+create SortByDeadline
+SortTaskParser -> SortByDeadline
+activate SortByDeadline
+
+SortByDeadline --> SortTaskParser
+deactivate SortByDeadline
+
+
+create SortTaskCommand
+SortTaskParser -> SortTaskCommand : SortTaskCommand(comparator)
+activate SortTaskCommand
+
+SortTaskCommand --> SortTaskParser
+deactivate SortTaskCommand
+
+
+SortTaskParser --> AddressBookParser
+deactivate SortTaskParser
+
+AddressBookParser --> LogicManager
+
+LogicManager -> SortTaskCommand : execute()
+activate SortTaskCommand
+
+SortTaskCommand -> Model : updateSortingCriteria(comparator)
+activate Model
+Model --> SortTaskCommand
+
+deactivate
+
+create CommandResult
+SortTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SortTaskCommand
+deactivate CommandResult
+
+SortTaskCommand --> LogicManager : commandResult
+deactivate SortTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
