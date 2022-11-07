@@ -189,7 +189,7 @@ Format: `add c/COMPANY r/ROLE s/STAGE [d/DATETIME] [e/COMPANY_EMAIL] [l/LANGUAGE
 Example: `add c/Meta r/Web Developer s/Application Sent d/20-Oct-2022 10:00 l/Java e/metaHires@meta.com` <br><br>
 What you will see:
 
-|                                                  |
+|                What you will see                 |
 |:------------------------------------------------:|
 | ![AddCommandResult](images/AddCommandResult.png) |
 
@@ -226,7 +226,7 @@ Example: `edit 2 s/Technical Interview d/28-Dec-2022 08:00`
 
 What you'll see before and after executing the command: <br>
 
-| State      | What you'll see                             |
+| State      | What you will see                           |
 |------------|---------------------------------------------|
 | **Before** | ![Before edit](images/EditCommandInput.png) |
 | **After**  | ![After edit](images/EditCommandResult.png) |
