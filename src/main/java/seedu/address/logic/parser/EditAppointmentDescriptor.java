@@ -52,12 +52,11 @@ public class EditAppointmentDescriptor {
      * Creates and returns a {@code Appointment} with the details of {@code appointmentToEdit}
      * edited with {@code editAppointmentDescriptor}.
      */
-    public static Appointment createEditedAppointment(Appointment appointmentToEdit,
-                                                      EditAppointmentDescriptor editAppointmentDescriptor) {
+    public Appointment createEditedAppointment(Appointment appointmentToEdit) {
         assert appointmentToEdit != null;
 
-        DateTime updatedDateTime = editAppointmentDescriptor.getDateTime().orElse(appointmentToEdit.getDateTime());
-        Location updatedLocation = editAppointmentDescriptor.getLocation().orElse(appointmentToEdit.getLocation());
+        DateTime updatedDateTime = this.getDateTime().orElse(appointmentToEdit.getDateTime());
+        Location updatedLocation = this.getLocation().orElse(appointmentToEdit.getLocation());
 
         return new Appointment(updatedDateTime, updatedLocation);
     }

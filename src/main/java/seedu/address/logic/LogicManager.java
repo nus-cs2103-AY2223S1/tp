@@ -63,11 +63,11 @@ public class LogicManager implements Logic {
     }
 
     public String getNextInCommandHistory() {
-        return model.nextCommand();
+        return model.getNextCommand();
     }
 
     public String getPrevInCommandHistory() {
-        return model.prevCommand();
+        return model.getPrevCommand();
     }
 
     @Override

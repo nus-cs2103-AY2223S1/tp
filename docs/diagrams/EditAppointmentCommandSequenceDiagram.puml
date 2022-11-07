@@ -1,0 +1,109 @@
+@startuml
+!include style.puml
+
+skinparam ParticipantFontSize 25
+
+skinparam Sequence {
+    ArrowFontSize 20
+}
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":EditAppointmentCommandParser " as EditAppointmentCommandParser  LOGIC_COLOR
+participant "eac:EditAppointmentCommand" as EditAppointmentCommand LOGIC_COLOR
+participant "ead:EditAppointmentDescriptor" as EditAppointmentDescriptor LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":MaximumSortedList" as MaximumSortedList MODEL_COLOR
+participant "a:Appointment" as Appointment MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("ea 1.1 l/NUS")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("ea 1.1 l/NUS")
+activate AddressBookParser
+
+create EditAppointmentCommandParser
+AddressBookParser -> EditAppointmentCommandParser
+activate EditAppointmentCommandParser
+
+EditAppointmentCommandParser  --> AddressBookParser
+deactivate EditAppointmentCommandParser
+
+AddressBookParser -> EditAppointmentCommandParser  : parse("ea 1.1 l/NUS")
+activate EditAppointmentCommandParser
+
+create EditAppointmentDescriptor
+EditAppointmentCommandParser -> EditAppointmentDescriptor :
+activate EditAppointmentDescriptor
+
+EditAppointmentDescriptor --> EditAppointmentCommandParser : ead
+deactivate EditAppointmentDescriptor
+
+create EditAppointmentCommand
+EditAppointmentCommandParser  -> EditAppointmentCommand
+activate EditAppointmentCommand
+
+EditAppointmentCommand --> EditAppointmentCommandParser  : eac
+deactivate EditAppointmentCommand
+
+
+EditAppointmentCommandParser  --> AddressBookParser : eac
+deactivate EditAppointmentCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditAppointmentCommandParser  -[hidden]-> AddressBookParser
+destroy EditAppointmentCommandParser
+
+AddressBookParser --> LogicManager : eac
+deactivate AddressBookParser
+
+LogicManager -> EditAppointmentCommand : execute()
+activate EditAppointmentCommand
+
+EditAppointmentCommand -> EditAppointmentDescriptor : createEditedAppointment(appointmentToEdit)
+activate EditAppointmentDescriptor
+
+create Appointment
+EditAppointmentDescriptor -> Appointment : Appointment(updatedDateTime, updatedLocation)
+activate Appointment
+
+Appointment --> EditAppointmentDescriptor : a
+deactivate Appointment
+
+EditAppointmentDescriptor --> EditAppointmentCommand : a
+deactivate EditAppointmentDescriptor
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditAppointmentDescriptor  -[hidden]-> EditAppointmentCommand
+destroy EditAppointmentDescriptor
+
+EditAppointmentCommand -> MaximumSortedList : remove(appointmentToEdit)
+activate MaximumSortedList
+MaximumSortedList --> EditAppointmentCommand
+EditAppointmentCommand -> MaximumSortedList : add(a)
+MaximumSortedList --> EditAppointmentCommand
+deactivate MaximumSortedList
+
+EditAppointmentCommand -> Model : updateCalendarEventList
+activate Model
+
+Model --> EditAppointmentCommand
+deactivate Model
+
+create CommandResult
+EditAppointmentCommand -> CommandResult : CommandResult(successMsg)
+activate CommandResult
+
+CommandResult --> EditAppointmentCommand
+deactivate CommandResult
+
+EditAppointmentCommand --> LogicManager : result
+deactivate EditAppointmentCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
