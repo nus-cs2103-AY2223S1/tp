@@ -64,6 +64,15 @@ public class AssignMemberCommandTest {
     }
 
     @Test
+    public void execute_PersonAlreadyExistsInTeamUnfilteredList_throwsCommandException() {
+        Index teamIndex = INDEX_FIRST_TEAM;
+        Index personIndex = INDEX_FIRST_PERSON;
+        AssignMemberCommand assignMemberCommand = new AssignMemberCommand(personIndex, teamIndex);
+
+        assertCommandFailure(assignMemberCommand, model, AssignMemberCommand.MESSAGE_DUPLICATE_PERSON);
+    }
+
+    @Test
     public void equals() {
         AssignMemberCommand assignFirstCommand = new AssignMemberCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TEAM);
         AssignMemberCommand assignSecondCommand = new AssignMemberCommand(INDEX_SECOND_PERSON, INDEX_SECOND_TEAM);
