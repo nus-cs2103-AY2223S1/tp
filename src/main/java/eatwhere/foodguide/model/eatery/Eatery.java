@@ -73,7 +73,8 @@ public class Eatery {
 
     /**
      * Returns true if both eateries have the same name & location.
-     * This defines a weaker notion of equality between two eateries.
+     * This defines a weaker notion of equality between two eateries,
+     * used for duplicate detection when adding eateries to the Food Guide.
      */
     public boolean isSameEatery(Eatery otherEatery) {
         if (otherEatery == this) {
@@ -81,8 +82,8 @@ public class Eatery {
         }
 
         return otherEatery != null
-                && otherEatery.getName().equals(getName())
-                && otherEatery.getLocation().equals(getLocation());
+                && otherEatery.getName().similarTo(getName())
+                && otherEatery.getLocation().similarTo(getLocation());
     }
 
     /**
