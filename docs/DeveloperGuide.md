@@ -1090,6 +1090,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **Client**: A contact detail that is attached to a project.
 * **Project**: A project that has many clients, which typically has deliverables with deadlines.
+* **Issue**: A deliverable or a task to be done for a project.
 * **Entity**: A Client, Project or Issue.
 
 --------------------------------------------------------------------------------------------------------------------

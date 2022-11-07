@@ -15,7 +15,7 @@ Given below are my contributions to the project.
 * **Code Contributed**: The link to the tP dashboard can be found [here](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=crvstalphua&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=false).
 
 * **New features implemented**: A summary of the enhancements you implemented.
-  * **New Feature**: `Issue` class with `add`, `delete` and `edit` commands
+  * **New Feature**: `Issue` class with `add`, `delete` and `edit` commands [\#80](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/80), [\#96](https://github.com/AY2223S1-CS2103-F13-1/tp/pull/96)
     * What it does: The `Issue` class represents an issue belonging to a project. Each issue consists of a title, 
       deadline, status, urgency, pin and a project which it belongs to. Title, deadline, status and urgency fields each
       have their own classes. The user can create an issue, adding it to the `IssueList`and the list of issues of the 
