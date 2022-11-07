@@ -10,8 +10,10 @@ import static seedu.intrack.logic.parser.CliSyntax.PREFIX_WEBSITE;
 import java.util.Set;
 
 import seedu.intrack.logic.commands.AddCommand;
+import seedu.intrack.logic.commands.AddTaskCommand;
 import seedu.intrack.logic.commands.EditCommand.EditInternshipDescriptor;
 import seedu.intrack.model.internship.Internship;
+import seedu.intrack.model.internship.Task;
 import seedu.intrack.model.tag.Tag;
 
 /**
@@ -24,6 +26,14 @@ public class InternshipUtil {
      */
     public static String getAddCommand(Internship internship) {
         return AddCommand.COMMAND_WORD + " " + getInternshipDetails(internship);
+    }
+
+    /**
+     * Returns an add task command string for adding the {@code task}.
+     */
+    public static String getAddTaskCommand(Task task) {
+        return AddTaskCommand.COMMAND_WORD + " " + task.getTaskName() + " /at "
+                + task.getTaskTime().format(Task.FORMATTER);
     }
 
     /**
