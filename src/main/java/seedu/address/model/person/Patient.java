@@ -32,7 +32,7 @@ public class Patient extends Person {
             Set<Tag> tags, List<DateSlot> dateTimeSlot) {
         super(uid, name, gender, phone, email, address, tags);
         requireAllNonNull(dateTimeSlot);
-        this.dateSlots.addAll(dateTimeSlot);
+        dateSlots.addAll(dateTimeSlot);
         attendingPhysician = Optional.empty();
         nextOfKin = Optional.empty();
 
@@ -46,7 +46,7 @@ public class Patient extends Person {
             Set<Tag> tags, List<DateSlot> dateTime, Physician p, NextOfKin n) {
         super(uid, name, gender, phone, email, address, tags);
         requireAllNonNull(dateTime);
-        this.dateSlots.addAll(dateTime);
+        dateSlots.addAll(dateTime);
         attendingPhysician = Optional.ofNullable(p);
         nextOfKin = Optional.ofNullable(n);
     }
@@ -58,7 +58,7 @@ public class Patient extends Person {
             Set<Tag> tags, List<DateSlot> dateSlot, Optional<Physician> p, Optional<NextOfKin> n) {
         super(uid, name, gender, phone, email, address, tags);
         requireAllNonNull(dateSlot);
-        this.dateSlots.addAll(dateSlot);
+        dateSlots.addAll(dateSlot);
         attendingPhysician = p;
         nextOfKin = n;
     }
@@ -124,6 +124,10 @@ public class Patient extends Person {
                 .append(getDatesSlotsInString());
 
         return builder.toString();
+    }
+
+    public String toLiteString() {
+        return String.format("Patient [Uid:%s]", this.getUid());
     }
 
     public boolean isPatient() {

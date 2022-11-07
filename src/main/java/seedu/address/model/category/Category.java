@@ -93,19 +93,19 @@ public class Category {
     }
 
     public boolean isNurse() {
-        return this.categoryName.equals(NURSE_SYMBOL);
+        return categoryName.equals(NURSE_SYMBOL);
     }
 
     public boolean isPatient() {
-        return this.categoryName.equals(PATIENT_SYMBOL);
+        return categoryName.equals(PATIENT_SYMBOL);
     }
 
     public boolean isPhysician() {
-        return this.categoryName.equals(PHYSICIAN_SYMBOL);
+        return categoryName.equals(PHYSICIAN_SYMBOL);
     }
 
     public boolean isNextOfKin() {
-        return this.categoryName.equals(NEXTOFKIN_SYMBOL);
+        return categoryName.equals(NEXTOFKIN_SYMBOL);
     }
 
     public String toFormattedString() {

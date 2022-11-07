@@ -32,6 +32,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         if (args.length() == 0) {
             return new ListCommand(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
         }
+
         parametersAreValid = true;
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_ADDRESS,
@@ -48,6 +49,7 @@ public class ListCommandParser implements Parser<ListCommand> {
     }
 
     private Optional<Category> getFilteredCategory(ArgumentMultimap argumentMultimap) {
+
         List<Optional<Category>> category = new ArrayList<>();
         argumentMultimap.getValue(PREFIX_CATEGORY).ifPresentOrElse(
                 x -> {
