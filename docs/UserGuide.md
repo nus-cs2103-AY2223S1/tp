@@ -294,9 +294,14 @@ Examples:
 * `import nus_students.json` Imports applicants listed in the `nus_students.json` file
 
 
+<div style="page-break-after: always;"></div>
+
 ### 3.9 Exporting displayed list: `export`
 
 Exports the displayed list from InternConnect.
+
+<div style="page-break-after: always;"></div>
+
 
 Format: `export`
 
@@ -336,6 +341,10 @@ Format: `clear`
 Exits the program.
 
 Format: `exit`
+
+
+<div style="page-break-after: always;"></div>
+
 
 ### 3.13 Saving the data
 
