@@ -14,6 +14,13 @@ It provides a clean Graphical User Interface (GUI) for easy comprehension of exp
 </div>
 
 <!-- TOC -->
+* [Table of Contents](#table-of-contents)
+  * [Purpose of Guide](#purpose-of-guide)
+  * [How to use this Developer Guide](#how-to-use-this-developer-guide)
+    * [Information Box](#information-box)
+    * [Tip Box](#tip-box)
+    * [Danger Box](#danger-box)
+    * [Formatting](#formatting)
   * [**Acknowledgements**](#acknowledgements)
   * [**Setting up, getting started**](#setting-up-getting-started)
   * [**Design**](#design)
@@ -25,16 +32,15 @@ It provides a clean Graphical User Interface (GUI) for easy comprehension of exp
     * [Common classes](#common-classes)
   * [**Implementation**](#implementation)
     * [Summarise Entries](#summarise-entries)
-      * [Design considerations:](#design-considerations)
+      * [How the `summary` command works](#how-the-summary-command-works)
     * [Add Entry](#add-entry)
-      * [Design Considerations](#design-considerations)
+    * [How the `add` command works](#how-the-add-command-works)
     * [Edit Entry](#edit-entry)
+      * [How the `edit` command works](#how-the-edit-command-works)
+    * [View Pie Charts and Line Graphs](#view-pie-charts-and-line-graphs)
+      * [How the `view` command works](#how-the-view-command-works)
     * [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
       * [Proposed Implementation](#proposed-implementation)
-      * [Design considerations:](#design-considerations)
-    * [\[Proposed\] Data archiving](#proposed-data-archiving)
-    * [[Proposed\] Pie Chart View feature](#proposed-pie-chart-view-feature)
-      * [Implementation](#implementation)
   * [**Documentation, logging, testing, configuration, dev-ops**](#documentation-logging-testing-configuration-dev-ops)
   * [**Appendix: Requirements**](#appendix-requirements)
     * [Product scope](#product-scope)
@@ -49,10 +55,13 @@ It provides a clean Graphical User Interface (GUI) for easy comprehension of exp
     * [Editing an entry](#editing-an-entry)
     * [View PieChart](#view-piechart)
     * [Summary statistics](#summary-statistics)
-    * [Saving data](#saving-data)
-  * [**Appendix: Effort*](#appendix-effort)
+  * [**Appendix: Effort**](#appendix-effort)
+    * [Challenges Faced](#challenges-faced)
+      * [Models](#models)
+      * [Commands](#commands)
+      * [UI](#ui)
+    * [Achievements of the Project](#achievements-of-the-project)
 <!-- TOC -->
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## Purpose of Guide
@@ -424,7 +433,7 @@ Below is a sequence diagram and explanation of how the `add` command is executed
 
 10. The `AddCommand` then creates a `CommandResult` instance and returns it to `LogicManager`.
 
-#### Design Considerations
+#### Design Considerations:
 * **Alternative 1 (current choice):** Only allow users to create an entry with 1 type of category
   * Pros: Users are able to distinctly sort their expenditures/incomes into specific pre-determined categories.
   * Cons: Users would not be able to specify expenditures/incomes under their own categories.
@@ -528,7 +537,7 @@ The `CommandResult`, containing the `graphConfiguration`, is returned to `LogicM
 7. In `updateGraph`, `LogicManager#getExpensePieChartData` calls `ModelManager#getPieChartData` which returns the `pieChartData`.
    It then creates a new `GraphPanel` with the `pieChartData` and add it to the UI.
 
-Design considerations:
+#### Design considerations:
 * **Alternative 1:** The charts update only after `view` command.
     * Pros: Easy to extend since we are adding more graph representation of data later such as bar graphs.
     * Cons: Not responsive to changes in data, for instance if the user adds an entry, the pie chart will not be automatically updated.

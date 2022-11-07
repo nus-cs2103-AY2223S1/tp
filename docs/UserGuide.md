@@ -16,7 +16,7 @@ easy comprehension of expenditure and savings.
 _Interested?_ Head over to [Quick Start](#quick-start) to get started. Enjoy!
 
 <div markdown="span" class="alert alert-info">:information_source: **Info:**
-Already done with the set-up? Jump right straight to the [features](#features) section to see what features are available!
+Already done with the set-up? Jump straight to the [features](#features) section to see what features are available!
 </div>
 
 # Table of Contents
@@ -54,6 +54,7 @@ Already done with the set-up? Jump right straight to the [features](#features) s
         * [Summary of all entries in the specified month](#summary-of-all-entries-in-the-specified-month)
     * [View entries by category:](#view-entries-by-category)
     * [View entries by month:](#view-entries-by-month)
+    * [Command summary table](#command-summary-table)
     * [Clearing all entries:](#clearing-all-entries)
     * [Exiting the program:`](#exiting-the-program)
     * [Saving the data](#saving-the-data)
@@ -62,6 +63,8 @@ Already done with the set-up? Jump right straight to the [features](#features) s
 * [Command summary](#command-summary)
 
 <!-- TOC -->
+
+---
 
 ## Purpose of Guide
 
@@ -98,6 +101,8 @@ Danger zone! Do pay attention to the information here carefully.
     <a href="#top">Back to Top </a>
 </p>
 
+---
+
 ## Quick Start
 
 If you are unfamiliar with using command prompt, head to
@@ -119,7 +124,7 @@ this [link](https://www.freecodecamp.org/news/command-line-for-beginners/) to le
 
    ![Ui](images/Ui.png)
 5. Type the command in the [command box](#familiarising-yourself-with-the-interface) and press Enter to execute it. e.g.
-   typing **`help`** and pressing Enter will open the help window.<br>
+   typing [**`help`**](#command-summary-table) and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
     - **`add`**`t/i d/Tution Teaching a/45.00 da/13-10-2022 c/Salary`: Adds an income entry with the
@@ -214,10 +219,12 @@ you still see the most important information about your budgeting. If details of
 
 </div>
 
+---
+
 ## Understanding the command formats
 
 All commands follow this format except: [`delete`](#deleting-entries),
-[`clear`](#clearing-all-entries), [`exit`](#exiting-the-program) and `help`.<br>
+[`clear`](#clearing-all-entries), [`exit`](#exiting-the-program) and [`help`](#command-summary-table).<br>
 <pre>
     command | entry identifier | input | [optional inputs]
 </pre>
@@ -233,11 +240,11 @@ step-by-step!
 |  Optional Input  |                  NIL                   |
 
 - Letters followed by a forward slash is called an identifier and will be used to specify a specific parameter<br>
-  e.g. `t/ ` refers to the entry type parameter.
+  e.g. `t/` refers to the entry type parameter.
 
 - PennyWise will always take the **LAST OCCURRENCE** of a command identifier should there be more than 1 of the same command
   identifier in a given command. <br/>
-  e.g. PennyWise will add the following `Income` with the description: "October Allowance" upon running the following command.
+  e.g. PennyWise will add the following **Income** with the description: "October Allowance" upon running the following command.
   <pre>
     <code>
         add t/i d/Monthly Allowance a/200.00 da/01-10-2022 c/Allowance d/Oct Allowance d/October Allowance
@@ -252,7 +259,8 @@ step-by-step!
 
 - PennyWise will **IGNORE** any extra words or characters present after the following commands:
 
- `summary` (except [`summary [mo/MONTH]`](#summary-of-entries)) `help`, `clear` and `exit`.
+ [`summary`](#summary-of-entries) (except [`summary [mo/MONTH]`](#summary-of-all-entries-in-the-specified-month)),
+ [`help`](#command-summary-table), [`clear`](#clearing-all-entries) and [`exit`](#exiting-the-program).
   e.g. `summary abcdefg` will be interpreted as `summary` and `help 123456` will also be interpreted as `help`.
 
 - Words in `UPPER_CASE` are the parameters that you must supply<br>
@@ -334,7 +342,7 @@ Descriptions are case-insensitive as well! PennyWise will interpret `Teh Beng` a
     <a href="#top">Back to Top </a>
 </p>
 
-
+---
 
 ## Features
 
@@ -550,7 +558,8 @@ simply use the [`view t/e` command](#view-entries-by-category). If you would lik
 
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
 Note that if you manually switch between the income list display and expenditure list display, all filters (if any)
-will be cleared and a pie chart will be drawn. Manual toggling is equivalent to typing the command `view t/e` or `view t/i`.
+will be cleared and a pie chart will be drawn. Manual toggling is equivalent to typing the command 
+[`view t/e`](#view-entries-by-category) or [`view t/i`](#view-entries-by-category).
 </div>
 
 ### Command summary table
@@ -614,15 +623,16 @@ the data of your previous PennyWise home folder.
 **A**: Make sure that your `INDEX_OF_ENTRY` is the first parameter after the command word.
 
 **Q**: I want to have a `Medical` category to log my expenses. Is there anyway I can do it? <br>
-**A**: The categories for income and expenses entries are fixed. However, we are exploring the possibilities of user
-added categories so do look out for our software updates! For now, kindly categorise them under `Others`.
+**A**: The categories for income and expenses entries are fixed. However, we are exploring the possibilities of [user
+added categories](#categorising-your-expenses-and-income) so do look out for our software updates! 
+For now, kindly categorise them under `Others`.
 
 **Q**: Why are there missing dates on my Line Graph? <br>
 **A**: PennyWise automatically removes certain elements to ensure you can still get an overview of your finances!
-If you want to view all the dates enlarge your application!
+If you want to view all the dates, enlarge your application!
 
 **Q**: I prefer a date format like 4 Apr 2022. Why can't I pick the date format I want to use ? <br>
-**A**: Unfortunately PennyWise current only accepts one type of format which is `04-04-2022`. However, we are exploring
+**A**: Unfortunately PennyWise currently only accepts one type of format which is `04-04-2022`. However, we are exploring
 the possibilities of allowing more types of date formats without compromising on quality and user experience so do look
 out for our future software updates!
 
@@ -644,7 +654,9 @@ out for our future software updates!
 | **View (Month)**    | `view t/ENTRY_TYPE mo/MONTH` <br> e.g. `view t/i mo/2022-10`                                                                                            |
 | **Clear**           | `clear`                                                                                                                                                 |
 | **Exit**            | `exit`                                                                                                                                                  |
+| **Help**            | `help`                                                                                                                                                  |
+
 
 <p align="right">
     <a href="#top">Back to Top </a>
-</p>**
+</p>
