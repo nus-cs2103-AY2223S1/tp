@@ -4,19 +4,19 @@ package tracko.logic.parser;
  * A prefix that marks the beginning of an argument in an arguments string.
  * E.g. 't/' in 'add James t/ friend'.
  */
-public class Prefix extends ArgumentToken {
+public class Prefix implements ArgumentToken {
     private final String prefix;
 
     public Prefix(String prefix) {
         this.prefix = prefix;
     }
 
-    public String getPrefix() {
+    public String getToken() {
         return prefix;
     }
 
     public String toString() {
-        return getPrefix();
+        return getToken();
     }
 
     @Override
@@ -34,6 +34,6 @@ public class Prefix extends ArgumentToken {
         }
 
         Prefix otherPrefix = (Prefix) obj;
-        return otherPrefix.getPrefix().equals(getPrefix());
+        return otherPrefix.getToken().equals(getToken());
     }
 }
