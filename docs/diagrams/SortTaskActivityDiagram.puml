@@ -1,0 +1,13 @@
+@startuml
+start
+:User inputs sorttask command;
+:execute sorttask command;
+if () then (deadline of A later then deadline of B)
+	:Model places A after B;
+else (else)
+	:No change to order of tasks A and B;
+endif
+:Model updates the displayed TaskList;
+:return success message;
+stop
+@enduml

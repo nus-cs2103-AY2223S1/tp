@@ -48,7 +48,7 @@ deactivate HrProParser
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePerson(1)
+DeleteCommand -> Model : deleteProject(project)
 activate Model
 
 Model --> DeleteCommand

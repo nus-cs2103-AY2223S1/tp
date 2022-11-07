@@ -78,8 +78,8 @@ deactivate commandResult
 
 markCommand --> commandBox
 deactivate markCommand
-deactivate commandBox
 
 commandBox --> user :
+deactivate commandBox
 
 @enduml
