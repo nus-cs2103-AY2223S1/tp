@@ -3,7 +3,6 @@ package soconnect.ui;
 import java.util.Comparator;
 import java.util.Set;
 
-import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -71,7 +70,6 @@ public class TodoCard extends UiPart<Region> {
         newTag.stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> todoTags.getChildren().add(new Label(tag.tagName)));
-        todoTags.maxWidthProperty().bind(Bindings.add(-100, todoCardPane.widthProperty()));
         todoTags.getChildren().forEach(label -> label.setStyle("-fx-background-color: #9867C5;"
                 + "-fx-font-size: 12;-fx-background-radius: 15;-fx-font-family: \"Karla\";"
                 + "-fx-border-radius: 2;-fx-padding: 1 3 1 3; -fx-label-padding: 3 7 3 7;"

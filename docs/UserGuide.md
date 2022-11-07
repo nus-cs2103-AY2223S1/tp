@@ -156,6 +156,8 @@ The parameters required for each command can be found in [Command Summary](#9-co
 
 * `INDEX` is used in commands to refer to a specific contact or todo by their index number on the currently displayed list. The `INDEX` **must be a positive non-zero integer** 1, 2, 3, …​ <a id="command-format-index"></a>
 
+</div>
+
 ### 6.4. How to Use the CLI
 
 If you already know about [Command Line Interface (CLI)](#CLI), you can skip this part and read the [Commands](#7-commands).
@@ -165,8 +167,8 @@ To use the CLI, you can type a command, which is supposed to be typed in a certa
 The command format for `help` is just `help`. You can just type **`help`** into the CLI and press Enter, SoConnect will open the help window.
 
 The command format for `add` is `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`. As mentioned [here](#63-command-format), since `t/TAG` is wrapped with square brackets and has the `…`​ at the back, you can choose whether to provide this parameter and even choose to provide this multiple times. The parameters can be provided in any order as long as they are after the command.<br>
-Valid usage e.g.: `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567` <br>
-Invalid usage e.g: `add n/Joe Tan` (Other parameters such as `p/PHONE_NUMBER e/EMAIL a/ADDRESS` must be provided as they are not wrapped in square brackets)
+Valid usage e.g. `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567` <br>
+Invalid usage e.g. `add n/Joe Tan` (Other parameters such as `p/PHONE_NUMBER e/EMAIL a/ADDRESS` must be provided as they are not wrapped in square brackets)
 
 Do not worry about typing commands wrongly as SoConnect will guide you if and when you do so.
 
@@ -552,18 +554,29 @@ A tag consists of a category name that can be a maximum of 10 characters.
 
 #### 7.4.1. Creating a Tag: `tag create`
 
-Creates a new tag
+You can create a new `TAG` and add it into the tag list.
 
 Format: `tag create t/TAG`
 
-Example:
-* `tag create t/family` creates a `family` tag.
+**Example Input in Command Box**
+```
+tag create t/friends
+```
+
+**Output in Command Result Box**
+```
+New Tag created: [friends]
+```
+
+   (insert image of a successful creation of the `friends` tag)
+
+Great! You have successfully learnt how to add your first `TAG` you have made. Now, you can start utilising the other tag features.
 
 <br>
 
 #### 7.4.2. Deleting a Tag: `tag delete`
 
-Deletes a tag.
+You can delete a `TAG` from the tag list.
 
 Format: `tag delete t/TAG`
 
@@ -571,28 +584,64 @@ Format: `tag delete t/TAG`
 **:information_source: Note:** When `TAG` is deleted, `TAG` is removed from all the contacts which previously had it.
 </div>
 
-Example:
-* `tag delete t/family` deletes the `family` tag.
+**Expected Input in Command Box**
+```
+tag delete t/friends
+```
+
+**Output in Command Result Box**
+```
+Tag deleted: [friends]
+```
+
+   (insert successful deletion of `Test2` tag)
+
+Wonderful! You have successfully deleted a tag.
 
 <br>
 
 #### 7.4.3. Editing a Tag: `tag edit`
 
-Renames an existing tag.
+If you make a mistake or want to update your `TAG`, you can simply update it with this command.
 
-Format: `tag edit t/TAG1 t/ TAG2`
+Format: `tag edit t/TAG1 t/TAG2`
 
-* `TAG1` is the current name of the tag and `TAG2` is the new name of the tag.
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** 
 
-Example:
-* `tag edit t/friend t/bestFriend` changes the friend tag to a bestFriend tag.
+* The new Tag must not have the same name as any other existing tags.
+* `TAG1` represents the current name of the tag and `TAG2` represents the new name of the tag.
+* This command will replace `TAG1` in all contacts and todos to `TAG2`. 
+
+</div>
+
+**Example Input in Command Box**
+```
+tag edit t/friends t/bestFriends
+```
+
+**Output in Command Result Box**
+```
+Tag has changed from [friends] to [bestFriends]
+```
+
+* You can refer to the Before and After comparison below.
+
+   Before:
+   (insert image a contact with `friends` tag)
+
+   After:
+   (insert image of the same contact with `bestFriends` tag instead of `friend`, with the Command Result Box)
+
+Fantastic! You have successfully learnt how to change tags.
 
 <br>
 
 #### 7.4.4. Adding a Tag to a Contact: `tag add`
 
-Adds an existing tag to an existing contact.
+You can add a `TAG` from the tag list to a contact.
 * `Coming soon in v1.5`, we will upgrade `tag add` to add tags to todos.
+* Consider using [Adding a todo](#731-adding-a-todo-todo-add) or [Editing a todo](#732-editing-a-todo--todo-edit) to add tags to todos.
 
 Format: `tag add INDEX t/TAG`
 
@@ -601,27 +650,48 @@ A contact can have any number of tags. Add as many as you want.
 </div>
 
 <div markdown="block" class="alert alert-info">
-**:information_source: Note:** The tag has to be made first before you can add it into a contact.
+**:information_source: Note:** The tag has to be created first before you can add it into a contact.
+
+Refer to [`Creating a Tag`](#creating-a-tag-tag-create) on how to create a tag.
 </div>
 
-* Adds a `TAG` to the contact at the specified `INDEX`.
+**Example Input in Command Box**
+```
+tag add 1 t/friends
+```
 
-Example:
-* `tag add 1 t/friend` adds the friend tag to the first contact shown in the list.
+**Output in Command Result Box**
+```
+Tag added: [friends]
+```
+
+   (insert image of a successful addition of the `friends` tag to contact `1`)
+
+Awesome! You have successfully learnt to add a tag to a contact.
 
 <br>
 
 #### 7.4.5. Removing a Tag from a Contact: `tag remove`
 
-Removes an existing tag from an existing contact.
+You can remove a `TAG` from a contact.
 * `Coming soon in v1.5`, we will upgrade `tag remove` to remove tags from todos.
+* Consider using [Editing a todo](#732-editing-a-todo--todo-edit) to remove tags from todos.
 
 Format: `tag remove INDEX t/TAG`
 
-* Removes a `TAG` from the contact at the specified `INDEX`.
+**Example Input in Command Box**
+```
+tag remove 1 t/friends
+```
 
-Example:
-* `tag remove 1 t/friend` removes the friend tag from the first contact shown in the list.
+**Output in Command Result Box**
+```
+Tag removed: [friends]
+```
+
+   (insert image of contact `1` without the `friend` tag with the resu )
+
+Nice! You have successfully removed a tag from a contact.
 
 <br>
 
