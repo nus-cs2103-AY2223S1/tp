@@ -23,7 +23,7 @@ Given below are my contributions to the project.
   * Implemented `Rating` class
     * Created the `Rating` class, one of the key components we are tracking in our application.
     * Use Case: Building blocks to track Employee Performance over time in the form of rating values.
-    * Justification: Tracking performance for talent development is one  important component of HRM.
+    * Justification: Tracking performance for talent development is one important component of HRM.
     * Highlights: Was not too challenging other than the part about ensuring the format for values and timestamps, and writing into `JSON Adapted Person`.
 
   * Implemented `rate` feature
