@@ -39,7 +39,7 @@ public class UniquePersonList implements Iterable<Person> {
 
     /**
      * Adds a person to the internal list.
-     * The person must not already exist in the list.
+     * The person must not already exist in the internal list.
      * @param toAdd Person to be added to the internal list.
      */
     public void add(Person toAdd) {
@@ -74,7 +74,7 @@ public class UniquePersonList implements Iterable<Person> {
 
     /**
      * Removes the equivalent person from the internal list.
-     * The person must exist in the list.
+     * The person must exist in the internal list.
      * @param toRemove Person to be removed.
      */
     public void remove(Person toRemove) {

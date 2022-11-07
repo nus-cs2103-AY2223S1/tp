@@ -51,10 +51,10 @@ public class MailEventCommand extends Command {
         List<Person> lastShownPersonList = model.getFilteredPersonList();
         List<Event> lastShownEventList = model.getFilteredEventList();
         //check if index is in range of event list
-        if (eventIndex.getZeroBased() >= lastShownEventList.size()) {
+        if (index.getZeroBased() >= lastShownEventList.size()) {
             throw new CommandException(MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
-        Event eventToMail = lastShownEventList.get(eventIndex.getZeroBased());
+        Event eventToMail = lastShownEventList.get(index.getZeroBased());
         String eventTitle = eventToMail.getEventTitle().toString();
         // check if there is any person in the event
         if (eventToMail.getUids().size() == 0) {
@@ -77,7 +77,7 @@ public class MailEventCommand extends Command {
     /**
      * Returns a list of names and emails of all persons tagged to an event.
      * @param event an event for mailing list generation.
-     * @param personList a list of all persons in the contact list.
+     * @param personList a list of all persons in the persons list.
      */
     private static List<String[]> getMailingList(Event event, List<Person> personList) {
         UidList uids = event.getUids();

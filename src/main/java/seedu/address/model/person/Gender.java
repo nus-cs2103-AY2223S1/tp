@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Represents a Person's gender in the contact list of the application.
+ * Represents a Person's gender in the persons list of the application.
  * Guarantees: immutable; is valid as declared in {@link #isValidGender(String)}
  */
 public class Gender implements Comparable<Gender> {
@@ -22,7 +22,7 @@ public class Gender implements Comparable<Gender> {
 
 
     /**
-     * Constructs an {@code Gender}.
+     * Constructs a {@code Gender}.
      *
      * @param gender  A valid gender.
      */

@@ -32,7 +32,7 @@ public class UniqueEventList implements Iterable<Event> {
 
     /**
      * Adds a new Event to the internal list.
-     * The event must not already exist in the list.
+     * The event must not already exist in the internal list.
      * @param toAdd Event to be added to the internal list.
      */
     public void add(Event toAdd) {
@@ -66,7 +66,7 @@ public class UniqueEventList implements Iterable<Event> {
     }
     /**
      * Removes the equivalent event from the internal list.
-     * The event must exist in the list.
+     * The event must exist in the internal list.
      * @param toRemove Event to be removed.
      */
     public void remove(Event toRemove) {
@@ -77,7 +77,7 @@ public class UniqueEventList implements Iterable<Event> {
     }
 
     /**
-     * Replace the contents of this list with {@code replacementEvents}.
+     * Replaces the contents of this list with {@code replacementEvents}.
      * @param replacementEvents UniqueEventList to replace the current internal list.
      */
     public void setEvents(UniqueEventList replacementEvents) {

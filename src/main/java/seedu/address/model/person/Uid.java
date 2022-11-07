@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.UUID;
 
 /**
- * Represents a Person's uid that uniquely identifies the person in the contact list of the application.
+ * Represents a Person's uid that uniquely identifies the person in the persons list of the application.
  * Uid is an unmodifiable field that is created every time with the creation of a new Person.
  * Guarantees: immutable; is valid as declared in {@link #isValidUid(String)}
  */

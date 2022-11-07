@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.PersonSortField;
 
 /**
- * Lists all persons in the contact list of the application.
+ * Lists all persons in the persons list of the application.
  */
 public class ListPersonsCommand extends Command {
 
