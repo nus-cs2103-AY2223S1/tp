@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org/).
+* Implementation of the `help` command is inspired by [Rachel Angelyn Gunawan](https://github.com/Rachel-AG), a developer of PleaseHireUs. Check out their project [here](https://github.com/AY2223S1-CS2103T-W17-4/tp)
 
 --------------------------------------------------------------------------------------------------------------------
 
