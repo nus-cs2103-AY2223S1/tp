@@ -137,7 +137,7 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
     }
 
     /**
-     * Creates the name predicate.
+     * Creates predicate for the name field.
      * @param argMultimap The argument multimap to get the input from.
      * @throws ParseException If the prefix is present more than once.
      */
@@ -155,7 +155,7 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
     }
 
     /**
-     * Creates the phone predicate.
+     * Creates the predicate for the phone field.
      * @param argMultimap The argument multimap to get the input from.
      * @throws ParseException If the prefix is present more than once.
      */
@@ -175,7 +175,7 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
     }
 
     /**
-     * Creates the email predicate.
+     * Creates the predicate for the email field.
      * @param argMultimap The argument multimap to get the input from.
      * @throws ParseException If the prefix is present more than once.
      */
@@ -197,7 +197,7 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
     }
 
     /**
-     * Creates the address predicate.
+     * Creates the predicate for the address field.
      * @param argMultimap The argument multimap to get the input from.
      * @throws ParseException If the prefix is present more than once.
      */
@@ -215,7 +215,7 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
     }
 
     /**
-     * Creates the remark predicate.
+     * Creates the predicate for the remark field.
      * @param argMultimap The argument multimap to get the input from.
      * @throws ParseException If the prefix is present more than once.
      */
@@ -233,7 +233,7 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
     }
 
     /**
-     * Creates the tag predicate.
+     * Creates the predicate for the tag field.
      * @param argMultimap The argument multimap to get the input from.
      * @throws ParseException If the prefix is present more than once.
      */
