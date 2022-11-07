@@ -1743,6 +1743,22 @@ We recommend viewing the [Quality-of-life](UserGuide.md#quality-of-life) section
 
 ## **Appendix: Effort**
 
-[Comment]: <> (To add effort component here)
+The effort required for our application is very high. By building upon AddressBook-Level3, we implemented many new features for RC4HDB, which include:
+
+1) the filter feature, which was refined to support more complex filter operations (OR and AND search)
+2) the find feature, which was refined to allow for substring search
+3) the remove feature, for users to delete residents by field
+4) the column hiding feature, for users to de-clutter their screen
+5) the file management system, for users to work with multiple data files easily
+6) the venue booking feature, for users to manage bookings from residents easily
+7) the command history feature, plus the use of key bindings as quality-of-life features for the users
+
+In particular, the venue booking feature was a substantially big feature added to RC4HDB, which involved many classes and components that mirrored the complexity of our Resident class. It could be argued that the Venue feature is, perhaps, even more complex than the Resident class, as the relationships between Booking instances had to managed properly for the feature to work as intended.  There were no such dependencies between the Resident fields.
+
+The file management and column hiding features were also sizeable features that took a lot of time and many design considerations to implement correctly.
+
+We did not solely focus on adding functional code, as many test cases were written for these features as well.
+
+We are proud to say that we have produced a product with cohesive features that can readily be adopted by our target audience.
 
 ---
