@@ -209,6 +209,8 @@ The following activity diagram illustrates what happens when the `add student` c
 
 ![AddStudentActivityDiagram](images/AddStudentActivityDiagram.png)
 
+**NOTE:** Fields used in `add student` command are name, student id, phone, email, telegram handle, module, tutorial, and grade(if any), attendance(if any), participation (if any), tags (if any).
+
 Referencing the above activity diagram, ModQuik will first check that all prefixes are present and formatted correctly. It will then proceed to check if all fields provided are formatted correctly. After that, it creates a Student object using the provided fields and then check if there is a duplicate student inside ModQuik. If there are no duplicate student inside ModQuik, it will check across every student in ModQuik to see if the provided student id already exists inside ModQuik. If the provided student id does not belong to any student inside ModQuik already, the created student is then added into ModQuik and a message is returned indicating success. The new student will appear in the ModQuik.
 
 
@@ -268,15 +270,16 @@ The following activity diagram illustrates what happens when the `delete student
 The implementation of the `find` command to find students, allows the user to see a filtered list of students.
 The filtering is based on an AND search, for example, `find n/John m/CS2103T` will show only students that have "John" in their name and are also from the CS2103T module.
 
-#### Current Implementation
+#### Implementation
+The filtering logic is done with predicate classes that implement Java's Predicate interface.
+![FindPredicateClassDiagram](images/FindPredicateClassDiagram.png)
 
-The following sequence diagram shows how the `find` command works. The exact command has been omitted in the diagram, instead
-replaced with "..." for readability.
-
+The following sequence diagrams shows how the `find` command works.
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
+![FindSequenceDiagramRef](images/FindSequenceDiagramRef.png)
 
 When a user enters `find n/John m/CS2103T`, the FindCommandParser created will parse the tags in the command.
-For each valid tag, it creates the respective XYZPrediate. In the example command, there are two search criteria
+For each valid tag, it creates the respective XYZPredicate. In the example command, there are two search criteria
 corresponding to name and module, hence a `NamePredicate` and a `ModulePredicate` is created.
 
 These predicates are stored in a `List`, which is passed to the `createChainedPredicates` internal method that combines the predicates in the AND sense.
