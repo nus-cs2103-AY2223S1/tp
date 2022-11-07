@@ -4,10 +4,11 @@ title: Developer Guide
 ---
 
 ## **Table of Contents**
+
 {:.no_toc}
 
 1. Table of Contents
-{:toc}
+   {:toc}
 
 ---
 
@@ -44,7 +45,7 @@ The rest of the app consists of four components.
 - [**`Logic`**](#logic-component): Parses and executes the commands.
 - [**`Model`**](#model-component): Holds the data of the app in memory.
 - [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
- 
+
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple components.
 
 #### How the architecture components interact with each other
@@ -66,13 +67,19 @@ The sections below give more details of each component.
 
 ### UI Component
 
-The API of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/ui/Ui.java). 
+The API of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/ui/Ui.java).
 
-Here's a partial class diagram of the `UI` component.
+Here's a partial class diagram of the `UI` component without any of the task/contact management panels.
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+![Structure of the UI Component without Panels](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts, e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, and etc. All these parts, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+
+Here's another partial class diagram of the `UI` component with the task and contact management panels.
+
+![Structure of the UI Component with Panels](images/UiPanelsClassDiagram.png)
+
+The UI keeps track of which tab the user is currently viewing with the `isContactTabShown` boolean. If the contacts tab is currently in view, `MainWindow` contains `PersonListPanel` and `PersonTaskListPanel`, and it contains `TaskListPanel` and `TaskPersonListPanel` if otherwise.
 
 The `UI` component uses the [JavaFx](https://openjfx.io/) UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/java/swift/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T12-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
@@ -113,7 +120,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddContactCommandParser`) 
+- When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddContactCommandParser`)
 - The `XYZCommandParser` class then uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddContactCommand`), which the `AddressBookParser` returns back as a `Command` object.
 - All `XYZCommandParser` classes (e.g., `AddContactCommandParser`, `DeleteTaskCommandParser`, ...) inherit from the `Parser` interface, so that they can be treated similarly where possible, e.g. during testing.
 
@@ -179,7 +186,6 @@ The implementation of the contact-task relation is facilitated by `PersonTaskBri
 - `PersonTaskBridgeList#remove(PersonTaskBridge)` - Removes an existing relation between a `Person` and a `Task` from the list.
 - `PersonTaskBridgeList#removePerson(Person)` and `PersonTaskBridgeList#removeTask(Task)` - Removes all existing relations between a `Person` and `Task` objects from the list.
 
-
 These operations will be exposed in the `Model` interface.
 
 The following class diagram summarizes the relationship between `PersonTaskBridge` and other classes:
@@ -188,18 +194,34 @@ The following class diagram summarizes the relationship between `PersonTaskBridg
 
 #### Design Considerations
 
-**Aspect: How `Person` and `Task` are associated with `PersonTaskBridge`:**
+**Aspect: How `Person` and `Task` are associated with `PersonTaskBridge`**
 
 - **Alternative 1 (current choice):** Stores `Person` and `Task` UUID in `PersonTaskBridge`.
 
-    - Pros: No need to handle the case of changing index when `Person` or `Task` are filtered. Easier to maintain data integrity.
-    - Cons: Requires changes in `Person` and `Task` schema and storage.
+  - Pros: No need to handle the case of changing index when `Person` or `Task` are filtered. Easier to maintain data integrity.
+  - Cons: Requires changes in `Person` and `Task` schema and storage.
 
 - **Alternative 2:** Stores `Person` and `Task` index in `PersonTaskBridge`.
-    - Pros: No change is needed for `Person` and `Task` schema.
-    - Cons: Requires changes to `PersonTaskBridge` objects every time a command changes `Person` or `Task` object index.
+  - Pros: No change is needed for `Person` and `Task` schema.
+  - Cons: Requires changes to `PersonTaskBridge` objects every time a command changes `Person` or `Task` object index.
 
-### View tasks details
+### Optional `Description` and `Deadline` Fields
+
+The `Description` and `Deadline` fields for tasks are optional for the users fill in. The implementation of this optionality is 
+facilitated by wrapping the values using the [`java.util.Optional<T>`](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Optional.html) class. 
+By doing so, we took advantage of the provided methods, e.g. `orElse`, `or`, and etc. This `Optional` class thus helps to encapsulate
+the logic of methods that depend on the presence or absence of the contained value.
+
+#### Difference from Optional `Tag`
+
+It is also optional for a `Person` to have tags. To achieve this, a `Person` stores the tags in a `HashSet`.
+If no tags are assigned to a `Person`, the `HashSet` will be empty. By doing so, a `Person` can have any number of tags.
+
+This differs from the implementation of optionality for `Description` and `Deadline`. For `Description` and `Deadline`,
+a `Task` can either contain the value or no value at all. Thus, due to the differing multiplicities, we could not use the 
+same implementation as tags.
+
+### View Task Details
 
 The implementation of the task tab UI is facilitated by `TaskCard` and `TaskListPanel`.
 
@@ -212,12 +234,13 @@ The implementation of the task tab UI is facilitated by `TaskCard` and `TaskList
 The implementation of Command Suggestions and Command Auto-Completion is facilitated by `CommandSuggestor` in the `Logic` Component. The `CommandBox` UI component listens for changes in the command box textField and calls methods from `CommandSuggestor` to reflect command suggestions and allow autocompletion.
 
 `CommandSuggestor` mainly implements the following operations:
+
 - `CommandSuggestor#suggestCommand` - Suggests a command with the corresponding syntax based on the user's current input
 - `CommandSuggestor#autocompleteCommand` - Completes the current user input according to the shown command suggestion
 
-#### Design considerations:
+#### Design Considerations
 
-**Aspect: How to provide command suggestions to users:**
+**Aspect: How to provide command suggestions to users**
 
 - **Alternative 1 (current choice):** Provide command suggestion over the command box.
 
@@ -226,7 +249,7 @@ The implementation of Command Suggestions and Command Auto-Completion is facilit
 
 - **Alternative 2:** Provide command suggestions in a separate display box
   itself.
-  - Pros: Able to display all possible commands.
+  - Pros: Able to display all possible commands
   - Cons: Uses more screen real estate
 
 **Aspect: How to autocomplete commands for users**
@@ -237,7 +260,6 @@ The implementation of Command Suggestions and Command Auto-Completion is facilit
   - Cons: Users might have to backspace and complete the command again for commands with common prefixes. Eg. `add_contact`, `add_task`
 
 - **Alternative 2 (current choice):** Autocomplete up to the longest matching prefix of all possible commands.
-  itself.
   - Pros: Easy to autocomplete commands with common prefixes
   - Cons: Users might have to type a few characters more
 
@@ -264,6 +286,7 @@ This section covers the user requirements we attempt to meet in Swift+.
 ### Target User Profile
 
 Swift+ is designed for **software engineering project leads** who,
+
 - need to keep track of many tasks with clients and colleagues.
 - can type fast.
 - prefer typing to mouse interactions.
@@ -276,12 +299,13 @@ Swift+ allows users to manage tasks with clients and colleagues **faster** than 
 ### User stories
 
 Priority levels:
+
 - High (must have) - `* * *`
 - Medium (nice to have) - `* *`
 - Low (unlikely to have) - `*`
 
 | Priority | As a …​        | I want to …​             | So that I can…​                                                            |
-|----------|----------------|--------------------------|----------------------------------------------------------------------------|
+| -------- | -------------- | ------------------------ | -------------------------------------------------------------------------- |
 | `* * *`  | new user       | see usage instructions   | refer to instructions when I forget how to use the app                     |
 | `* * *`  | user           | add a new contact        | add a new contact to keep track of                                         |
 | `* * *`  | user           | view all contacts        | get an overview of all contacts in my app                                  |
@@ -290,120 +314,186 @@ Priority levels:
 | `* * *`  | user           | find contacts by name    | locate details of contacts without having to go through the entire list    |
 | `* * *`  | user           | add task for contact     | add a task to a contact to keep track of                                   |
 | `* * *`  | user           | view tasks by contact    | view tasks belonging to a contact                                          |
-| `* *`    | user           | update a task            | update the particulars of a task                                           |
 | `* * *`  | user           | delete a task            | remove tasks that I no longer need                                         |
-| `* *`    | user           | list all tasks           | to locate details of all the tasks immediately                             |
+| `* *`    | user           | update a task            | update the particulars of a task                                           |
+| `* *`    | user           | list all tasks           | get an overview of all tasks in my app                                     |
 | `* *`    | user           | find tasks by name       | locate details of tasks without having to go through the entire list       |
 | `* *`    | forgetful user | autocomplete my commands | conveniently type commands without referring to the user guide excessively |
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+For all use cases below, the system is `Swift+` and the actor is the `user`, unless specified otherwise.
 
-**Use case: Update a person**
+**Use case: UC1 - Create a contact**
 
-**MSS**
+MSS:
 
-1.  User requests to list people
-2.  AddressBook shows a list of people
-3.  User requests to edit a specific person in the list
-4.  AddressBook edits the person
+1. User requests to add a contact.
+2. Swift+ creates the contact. 
 
-    Use case ends.
+Use case ends.
 
-**Extensions**
+Extensions:
 
-- 2a. The list is empty.
+- 1a. Swift+ detects an error in the entered data.
+    - 1a1. Swift+ requests for the correct data.
+    - Use case resumes from step 1.
 
-  Use case ends.
+**Use case: UC2 - Update a contact**
 
-- 3a. The given index is invalid.
+MSS:
 
-  - 3a1. AddressBook shows an error message.
+1.  User requests to view all contacts.
+2.  Swift+ returns a list of all contacts.
+3.  User requests to edit a specific contact in the list.
+4.  Swift+ edits the details of the specified contact.
 
-    Use case resumes at step 2.
+Use case ends.
 
-- 3b. The command arguments are invalid.
+Extensions:
 
-  - 3b1. AddressBook shows an error message.
+- 2a. Swift+ returns an empty list.
+    - Use case ends.
+- 3a. Swift+ detects the given index to be invalid.
+    - 3a1. Swift+ requests for a valid index.
+    - Use case resumes from step 3.
+- 3b. Swift+ detects an error in the entered data.
+    - 3b1. Swift+ requests for the correct data.
+    - Use case resumes from step 3.
 
-    Use case resumes at step 2.
+**Use case: UC3 - Delete a person**
 
-**Use case: Delete a person**
+MSS:
 
-**MSS**
+1.  User requests to view all contacts.
+2.  Swift+ returns a list of all contacts.
+3.  User requests to delete a specific contact in the list.
+4.  Swift+ deletes the specified contact.
 
-1.  User requests to list people
-2.  AddressBook shows a list of people
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+Use case ends.
 
-    Use case ends.
+Extensions:
 
-**Extensions**
+- 2a. Swift+ returns an empty list.
+    - Use case ends.
+- 3a. Swift+ detects the given index to be invalid.
+    - 3a1. Swift+ requests for a valid index.
+    - Use case resumes from step 3.
 
-- 2a. The list is empty.
+**Use case: UC4 - Create a task**
 
-  Use case ends.
+MSS:
 
-- 3a. The given index is invalid.
+1. User requests to add a task.
+2. Swift+ creates the task.
 
-  - 3a1. AddressBook shows an error message.
+Use case ends.
 
-    Use case resumes at step 2.
+Extensions:
 
-**Use case: Update a task**
+- 1a. Swift+ detects an error in the entered data.
+    - 1a1. Swift+ requests for the correct data.
+    - Use case resumes from step 1.
 
-**MSS**
+**Use case: UC5 - Update a task**
 
-1.  User requests to list tasks
-2.  AddressBook shows a list of tasks
-3.  User requests to edit a specific task in the list
-4.  AddressBook edits the task
+MSS:
 
-    Use case ends.
+1.  User requests to view all tasks.
+2.  Swift+ returns a list of all tasks.
+3.  User requests to edit a specific task in the list.
+4.  Swift+ edits the details of the specified task.
+ 
+Use case ends.
 
-**Extensions**
+Extensions:
 
-- 2a. The list is empty.
+- 2a. Swift+ returns an empty list.
+    - Use case ends.
+- 3a. Swift+ detects the given index to be invalid.
+    - 3a1. Swift+ requests for a valid index.
+    - Use case resumes from step 3.
+- 3b. Swift+ detects an error in the entered data.
+    - 3b1. Swift+ requests for the correct data.
+    - Use case resumes from step 3.
 
-  Use case ends.
+**Use case: UC6 - Delete a task**
 
-- 3a. The given index is invalid.
+MSS:
 
+1.  User requests to view all tasks.
+2.  Swift+ returns a list of all tasks.
+3.  User requests to delete a specific task in the list.
+4.  Swift+ deletes the specified task.
 
-  - 3a1. AddressBook shows an error message.
+Use case ends.
 
-    Use case resumes at step 2.
+Extensions:
 
-- 3b. The command argument is invalid.
+- 2a. Swift+ returns an empty list.
+    - Use case ends.
+- 3a. Swift+ detects the given index to be invalid.
+    - 3a1. Swift+ requests for a valid index.
+    - Use case resumes from step 3.
 
-  - 3b1. AddressBook shows an error message.
+**Use case: UC7 - View tasks associated with a contact**
 
-    Use case resumes at step 2.
+MSS:
 
-**Use case: Delete a task**
+1. User requests to view all contacts.
+2. Swift+ returns a list of all contacts.
+3. User requests to view tasks associated with a specified contact.
+4. Swift+ returns the contact and all associated tasks.
 
-**MSS**
+Extensions:
 
-1.  User requests to list tasks
-2.  AddressBook shows a list of tasks
-3.  User requests to delete a specific task in the list
-4.  AddressBook deletes the task
+- 2a. Swift+ returns an empty list.
+    - Use case ends.
+- 3a. Swift+ detects the given index to be invalid.
+    - 3a1. Swift+ requests for a valid index.
+    - Use case resumes from step 3.
 
-    Use case ends.
+**Use case: UC8 - Mark a task as completed**
 
-**Extensions**
+MSS:
 
-- 2a. The list is empty.
+1. User requests to view all tasks.
+2. Swift+ returns a list of all tasks.
+3. User requests to mark a task as completed.
+4. Swift+ marks the specified task as completed.
 
-  Use case ends.
+Extensions:
 
-- 3a. The given index is invalid.
+- 2a. Swift+ returns an empty list.
+    - Use case ends.
+- 3a. Swift+ detects the given index to be invalid.
+    - 3a1. Swift+ requests for a valid index.
+    - Use case resumes from step 3.
+- 3b. Swift+ detects that the specified task is already completed.
+    - Swift+ indicates that task is already completed.
+    - Use case ends.
 
-  - 3a1. AddressBook shows an error message.
+**Use case: UC9 - Assign a task to a contact**
 
-    Use case resumes at step 2.
+MSS:
+
+1. User requests to view all tasks and contacts.
+2. Swift+ returns all tasks and contacts.
+3. User requests to assign a task to a contact.
+4. Swift+ assigns the specified task to the specified contact.
+
+Extensions:
+
+- 2a. Swift+ returns an empty list of contacts.
+    - Use case ends.
+- 2b. Swift+ returns an empty list of tasks.
+    - Use case ends.
+- 3a. Swift+ detects given contact or task index to be invalid.
+    - Swift+ requests for a valid index.
+    - Use case resumes from step 3.
+- 3b. Swift+ detects that the specified task is already assigned to the specified contact.
+    - Swift+ indicates that task is already assigned to the contact.
+    - Use case ends.
 
 ### Non-Functional Requirements
 
@@ -436,8 +526,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
-
+   1. Download the jar file and copy into an empty folder.
    2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 2. Saving window preferences
@@ -446,32 +535,148 @@ testers are expected to do more *exploratory* testing.
    2. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
-3. _{ more test cases …​ }_
+### Adding a Task
 
-### Deleting a person / task
+1. Adding a Task
 
-1. Deleting a person / task while all persons / task are being shown
+   1. Prerequisites: task "Foo" isn't already added. If added, delete it first.
+   2. Test case: `add_task n/Foo d/Foo`<br>
+      Expected: Task "Foo" is added to the task list. Details of the added task shown in the status message.
+   3. Test case: `add_task n/Foo d/Foo`<br>
+      Expected: No task is added. Error details shown in the status message.
 
-   1. Prerequisites: List all persons / task using the `list_contact` or `list_task` command.
+2. Adding a Task with deadline
+   1. Prerequisites: deadline "Bar" isn't already added. If added, delete it first.
+   2. Test case: `add_task n/Bar d/Bar dl/02-02-2022 2200`<br>
+      Expected: Deadline "Bar" is added to the task list. Details of the added deadline shown in the status message.
+   3. Test case: `add_task n/Bar d/Bar dl/02-02-2022 2200`<br>
+      Expected: No deadline is added. Error details shown in the status message.
 
-   2. Test case: `delete_contact 1` / `delete_task 1`<br>
-      Expected: First contact / task is deleted from the list. Details of the deleted contact / task shown in the status message. Timestamp in the status bar is updated.
+### Mark / Unmark a Task
 
-   3. Test case: `delete_contact 0` / `delete_task 0`<br>
-      Expected: No person / task is deleted. Error details shown in the status message. Status bar remains the same.
+1. Marking a Task as completed
 
+   1. Prerequisites: task "Foo" is already added. If not added, add it first. Foo should be the first index in the task list.
+   2. Test case: `mark 1`<br>
+      Expected: Task "Foo" is marked as completed. Details of the completed task shown in the status message.
+   3. Test case: `mark 1`<br>
+      Expected: No task is marked as completed. Error details shown in the status message.
+   4. Test case: `mark 0`<br>
+      Expected: No task is marked as completed. Error details shown in the status message.
+
+2. Unmarking a Task as incomplete
+
+   1. Prerequisites: task "Bar" is already added. If not added, add it first. Foo should be the first index in the task list and already marked as complete.
+   2. Test case: `unmark 1`<br>
+      Expected: Task "Bar" is marked as uncompleted. Details of the uncompleted task shown in the status message.
+   3. Test case: `unmark 1`<br>
+      Expected: No task is marked as uncompleted. Error details shown in the status message.
+   4. Test case: `unmark 0`<br>
+      Expected: No task is marked as uncompleted. Error details shown in the status message.
+
+### Switching Lists
+
+1. List all tasks
+
+   1. Test case: `list_task`<br>
+      Expected: All tasks are listed in the task list and, if not already on the "Task List" view it's swapped to it. Details of the listed tasks shown in the status message.
+   2. Test case: `list_contact`<br>
+      Expected: All contacts are listed in the contact list and, if not already on the "Contact List" view it's swapped to it. Details of the listed contacts shown in the status message.
+   3. Test case: type `ctrl + tab`<br>
+      Expected: The current list is switched to the other list.
+
+### Viewing Task and Contact Assocation
+
+1. Select Task to view Contact Assocation
+
+   1. Prerequisites: task "Foo" is already added and assigned to contact "Alex". If not added, add it first. Foo should be the first index in the task list.
+   2. Test case: `select_task 1`<br>
+      Expected: Task "Foo" is selected, the view is swapped to the "Task List" and the contact list is updated to show all contacts associated with the task. Details of the selected task shown in the status message.
+   3. Test case: `select_task 0`<br>
+      Expected: No task is selected. Error details shown in the status message.
+
+2. Select Contact to view Task Association
+
+   1. Prerequisites: contact "Alex" is already added and assigned to task "Foo". If not added, add it first. Alex should be the first index in the contact list.
+   2. Test case: `select_contact 1`<br>
+      Expected: Contact "Alex" is selected, the view is swapped to the "Contact List" and the task list is updated to show all tasks associated with the contact. Details of the selected contact shown in the status message.
+   3. Test case: `select_contact 0`<br>
+      Expected: No contact is selected. Error details shown in the status message.
+
+### Finding Task or Contact
+
+1. Find Task
+
+   1. Prerequisites: task "Foo" is already added and "Bar" is not added. If not added, add it first.
+   2. Test case: `find_task Foo`<br>
+      Expected: All tasks containing "Foo" are listed in the task list. Details of the listed tasks shown in the status message.
+   3. Test case: `find_task Bar`<br>
+      Expected: No tasks are listed in the task list. Details of the listed tasks shown in the status message.
+
+2. Find Contact
+   1. Prerequisites: contact "Alex" is already added and "Bob is not added". If not added, add it first.
+   2. Test case: `find_contact Alex`<br>
+      Expected: All contacts containing "Alex" are listed in the contact list. Details of the listed contacts shown in the status message.
+   3. Test case: `find_contact Bob`<br>
+      Expected: No contacts are listed in the contact list. Details of the listed contacts shown in the status message.
+
+### Deleting a Task or Contact
+
+1. Deleting a Contact or Task while all Contact or Task are being shown
+
+   1. Prerequisites: List all Contacts or Tasks using the `list_contact` or `list_task` command.
+   2. Test case: `delete_contact 1` or `delete_task 1`<br>
+      Expected: First Contact or Task is deleted from the list. Details of the deleted Contact or Task shown in the status message.
+   3. Test case: `delete_contact 0` or `delete_task 0`<br>
+      Expected: No Contact, Task is deleted. Error details shown in the status message. Status bar remains the same.
    4. Other incorrect delete commands to try: `delete_contact` / `delete_task`, `delete_contact x` / `delete_task x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-2. _{ more test cases …​ }_
+### Editing a Task or Contact
+
+1. Editing a Contact or Task while all Contact or Task are being shown
+
+   1. Prerequisites: List all Contacts or Tasks using the `list_contact` or `list_task` command. There should be at least one contact or task.
+   2. Test case: `edit_contact 1 n/Alex Yeoh p/98765432`
+      Expected: First Contact is edited to have the name "Alex Yeoh" and phone number "98765432". Details of the edited Contact shown in the status message.
+   3. Test case: `edit_contact 0 n/Alex Yeoh p/98765432`<br>
+      Expected: No Contact is edited. Error details shown in the status message. Status bar remains the same.
+   4. Test case: `edit_task 1 n/Bar d/Foo dl/02-02-2022 2200`<br>
+      Expected: First Task is edited to have the name "Bar", description "Foo" and deadline "02-02-2022 2200". Details of the edited Task shown in the status message.
+   5. Test case: `edit_task 0 n/Bar d/Foo dl/02-02-2022 2200`<br>
+      Expected: No Task is edited. Error details shown in the status message. Status bar remains the same.
+   6. Other incorrect edit commands to try: `edit_contact` / `edit_task`, `edit_contact x ...` / `edit_task x ...`, `...` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+### Autocomplete
+
+1. type `li` then press `tab`<br>
+   Expected: Autocomplete the command based on the current command text, autocompleting it to `list\_`.
+2. type `list_t` then press `tab`<br>
+   Expected: Autocomplete the command based on the current command text, autocompleting it to `list_task`.
+
+### Clearing all entries
+
+1. Clear all exisiting data in the application
+   1. Test case: `clear`<br>
+      Expected: All data is cleared from the application. Status message shows the number of contacts and tasks cleared.
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1.  Shutdown the app by typing `exit` into the command box.
+2.  Re-launch the app by double-clicking the jar file.<br>
+    Expected: The most recent state is saved.
+3.  Dealing with missing/corrupted data files
+    1.  Corrupt the data file in `data/addressbook.json` by adding random characters to make the JSON file unreadable or by simply deleting it.
+    2.  Re-launch the app by double-clicking the jar file.<br>
+        Expected: The app will start with an empty address book.
+    3.  After new data is added, the corrupted data file will be overwritten by the app. Any missing file will be replaced by the app.
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+### Viewing Help
 
-2. _{ more test cases …​ }_
+1. View Help
+   1. Test case: `help`<br>
+      Expected: Help window opens.
 
 ---
 

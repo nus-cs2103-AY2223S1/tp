@@ -43,9 +43,10 @@ Given below are my contributions to the project.
     - Add documentation for `unassign`
   - Developer Guide:
     - Added documentation for `delete_task` [#89](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/89)
+    - Added manual testing instructions [#251](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/251)
 - **Community**:
   - PRs reviewed (with non-trivial review comments):
     - [#111](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/111), [#28](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/28), [#27](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/27),
-      [#91](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/91), [#94](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/94)
+      [#91](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/91), [#94](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/94), [#227](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/227), [#230](https://github.com/AY2223S1-CS2103T-T12-2/tp/pull/230)
   - Reported bugs and added suggestions for other teams in the class
     - [#93](https://github.com/AY2223S1-CS2103T-T12-2/tp/issues/93), [#92](https://github.com/AY2223S1-CS2103T-T12-2/tp/issues/92), [#110](https://github.com/AY2223S1-CS2103T-T12-2/tp/issues/110)
