@@ -158,18 +158,19 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Unique ID Mechanism
 
-#### Motivation
+#### Motivation:
 
 Individuals who are modelled by the subclasses of `Person` may have very similar attributes, such as name, gender and tags. As such there is a high chance that the medical administrator may be confused when looking at similar persons. Thus, a unique id (UID) was introduced to act as the differentiator for such persons.
 
-#### Implementation for unique ID
+#### Implementation for unique ID:
+
 The unique ID mechanism is facilitated by the `Uid` class. The `Uid` instance utilizes the `AtomicLong` class and ensures that unique `Uid` are used throughout the system.
 
 Originally there was a `UidManager` class which facilitated the generation and implementation of ensuring that there is no repeated `Uid` objects. However, this was later refactored to utilize the `AtomicLong` class.
 
 ### Add feature
 
-#### Implementation for adding a patient
+#### Implementation for adding a patient:
 
 The add patient mechanism is facilitated by `Patient`, `AddCommandParser`,`AddCommand`, `Model`, `AddressBook` and `UniquePersonList`.
 
@@ -214,10 +215,12 @@ The following activity diagram summarizes what happens when a user executes an a
 **Aspect: How to deal with duplication:**
 
 - **Alternative 1:** Check the name. If the name is the same, then show duplicate error and do not proceed to add the patient.
+
   - Pros: Easy to implement.
   - Cons: If the 2 different patients have the exact same name, the user would not be able to add that patient.
 
 - **Alternative 2:** Check the name. If the name is the same, then show duplicate warning but that patient would still be added.
+
   - Pros: If the 2 different patients have the exact same name, the user would still be able to add that patient. At the same time, it will show potential duplication to the user.
   - Cons: The user have to manually check whether it is the same person and delete it if it is a duplication.
   - Cons: The user might miss out the duplicated patients.
@@ -225,10 +228,11 @@ The following activity diagram summarizes what happens when a user executes an a
 - **Alternative 3 (Chosen):** Check the similarity levels by comparing attributes of both people. If there is only a zero or one field difference between the two, then show duplicate warning but that patient would still be added
   - Pros: By comparing similarity levels, it reduces the chances of actually having a duplicate, which means that if the warning appears then there is a high chance that it is an actual duplicate, not a false duplicate with only same name.
   - Cons: The user would still have to manually delete if it is a duplicate.
-  
+
 **Aspect: The home-visit `DateTime` input:**
 
 - **Alternative 1:** The `DateTime` input is in the format of `YYYY-MM-DDTHH:mm` and it can in any time.
+
   - Pros: More specific date and time recorded for the patient.
   - Pros: More flexible in the home visit date and time that a patient can choose.
   - Cons: It is hard to determine/check time crashes when assigning a home-visit `DateTime` to a nurse.
@@ -271,7 +275,7 @@ The following activity diagram shows what happens when a user marks an appointme
 
 ![UnmarkActivityDiagram](images/UnmarkActivityDiagram.png)
 
-#### Design considerations
+#### Design considerations:
 
 ** Aspect: Unmarking DateSlots that have not been marked: **
 
@@ -328,7 +332,7 @@ The following activity diagram summarizes what happens when a user executes the 
 
 ### Update Emergency Contacts feature
 
-#### Implementation for updating attending physician and next of kin contact information for patients
+#### Implementation for updating attending physician and next of kin contact information for patients:
 
 The feature is primarily facilitated by `UpdateContactCommand` and `UpdateContactCommandParser`.
 
@@ -362,7 +366,64 @@ Step 6. `Model` updates the database, and displays the attending physician on `P
 
 The activity diagram below summarises exception handling of UpdateContactCommand:
 
-![UpdateContactActivityDiagram](images/UpdateContactActivityDiagram.png))
+![UpdateContactActivityDiagram](images/UpdateContactActivityDiagram.png)
+
+### Assign Feature
+
+#### Motivation:
+
+- The assign feature is necessary so that the medical administrator can visually see which nurse is attending which patient's home visit.
+
+#### Implementation:
+
+![AssignSequenceDiagram](images/AssignSequenceDiagram.png)
+
+Step 1. The user executes `assign id/3 id/2`
+
+Step 2. `HealthcareXpressParser` creates an `AssignCommandParser` to parse the arguments.
+
+Step 3. `AssignCommandParser` checks validity of the given arguments and creates an `AssignCommand`.
+
+Step 4. The `AssignCommand` is executed, and a new `InternalEditor` is created.
+
+Step 5. `AssignCommand` calls the `InternalEditor`'s methods of `editPatient` and `editNurse`.
+
+Step 6. `Model` updates the database, and displays all the persons.
+
+The activity diagram below summarises exception handling of AssignCommand:
+
+![AssignActivityDiagram](images/AssignActivityDiagram.png)
+<br>
+
+#### Design considerations:
+
+- **Aspect: How the parse interprets the order of uids**
+  - **Alternative 1:** Fix the order of the uid, so patient then nurse
+    - Pros: There will be less checking needed to deduce the class of the persons involved.
+    - Cons: The user experience will suffer as the medical administrator might not be able to accurately remember which uid corresponding to which person, the nurse or the patient.
+      <br>
+  - **Alternative 2:** Have no fix order, as long as one nurse uid and one patient uid is inputted
+    - Pros: The user experience will be better as there will be more leeway.
+    - Cons: Harder to implement and more testing is required.
+      <br>
+
+### Deassign Feature
+
+#### Motivation:
+
+- The deassign feature is necessary so that the medical administrator deassign a nurse to a patient's home visit if a mistake has been made or changes are necessary.
+
+#### Implementation:
+Step 1. The user executes `deassign id/3`
+
+Step 2. `HealthcareXpressParser` creates an `DeassignCommandParser` to parse the arguments.
+
+Step 3. `DeassignCommandParser` checks validity of the given arguments and creates an `DeassignCommand`.
+
+Step 4. The `DeassignCommand` is executed, the person with the id of 3 will have their home visits deassigned.
+
+Step 5. `Model` updates the database, and displays all the persons.
+<br>
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
@@ -541,10 +602,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
-- 2c. The given index of the dateslot is out of bound of the dateslot list of the patient. 
+- 2c. The given index of the dateslot is out of bound of the dateslot list of the patient.
 
-  - 2c1. Healthcare Xpress shows an error message. 
-    
+  - 2c1. Healthcare Xpress shows an error message.
+
     Use cases resumes at step 1.
 
 - 2d. The given index gives a dateslot that has not pass.
@@ -723,7 +784,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   - 2d1. Healthcare Xpress deletes the matching home-visits from the nurses.
 
-    Use cases resumes at step 3. 
+    Use cases resumes at step 3.
 
 - \*a. At any time, medical administrator chooses to exit the program.
 
@@ -771,15 +832,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   - 2d1. Healthcare Xpress shows an error message.
 
-    Use case resumes at step 1. 
-
-- 2e. The given date and slot indexes are more than the dates and slots given. 
-
-  - 2e1. Healthcare Xpress shows an error message.
-  
     Use case resumes at step 1.
 
-- 2f. The old date(s) and slot(s) to be updated is/are assigned. 
+- 2e. The given date and slot indexes are more than the dates and slots given.
+
+  - 2e1. Healthcare Xpress shows an error message.
+
+    Use case resumes at step 1.
+
+- 2f. The old date(s) and slot(s) to be updated is/are assigned.
 
   - 2f1. Healthcare Xpress deletes the matching home-visits from the nurses.
 
@@ -831,7 +892,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
 
-- 2f. The given index of the date slot gives a date slot that has pass. 
+- 2f. The given index of the date slot gives a date slot that has pass.
 
   - 2f1. Healthcare Xpress shows an error message.
 
@@ -869,18 +930,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   - 2c1. Healthcare Xpress shows an error message.
 
-    Use case resumes at step 1. 
+    Use case resumes at step 1.
 
 - 2d. The given index of the date slot gives a date slot that has not been assigned.
 
   - 2d1. Healthcare Xpress shows an error message.
 
-    Use case resumes at step 1. 
+    Use case resumes at step 1.
 
 - \*a. At any time, medical administrator choose to exit the program.
 
   Use case ends.
-
 
 ### Non-Functional Requirements
 
