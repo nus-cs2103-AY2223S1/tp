@@ -6,7 +6,7 @@ title: Ramanathan Kumarappan's Project Portfolio Page
 ## Project: UniNurse
 
 UniNurse is a desktop application used for managing patient contact details and tasks. The user interacts with it using
-a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 20 kLoC.
 
 ## Contributions to project
 
