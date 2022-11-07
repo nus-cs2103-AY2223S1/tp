@@ -10,6 +10,7 @@ import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.logic.commands.exceptions.CommandException;
 import seedu.clinkedin.model.Model;
 import seedu.clinkedin.model.link.Link;
+import seedu.clinkedin.model.link.exceptions.DuplicateLinkException;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
 
@@ -56,12 +57,15 @@ public class AddLinkCommand extends Command {
         Person personToUpdate = lastShownList.get(index.getZeroBased());
         UniqueTagTypeMap tagMap = new UniqueTagTypeMap();
         tagMap.setTagTypeMap(personToUpdate.getTags());
-        Set<Link> updatedLinks = personToUpdate.mergeLinks(links);
-
+        Set<Link> updatedLinks;
+        try {
+            updatedLinks = personToUpdate.mergeLinks(links);
+        } catch (DuplicateLinkException d) {
+            throw new CommandException(d.getMessage());
+        }
         Person updatedPerson = new Person(personToUpdate.getName(), personToUpdate.getPhone(),
                 personToUpdate.getEmail(), personToUpdate.getAddress(), tagMap, personToUpdate.getStatus(),
                 personToUpdate.getNote(), personToUpdate.getRating(), updatedLinks);
-
         if (!personToUpdate.isSamePerson(updatedPerson) && model.hasPerson(updatedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
