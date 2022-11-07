@@ -378,7 +378,7 @@ These are the valid companies and their corresponding codes.
 | FWD          | FWD Singapore Private Limited      |
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Commissions must take positive percentages within 0% to 100%! (e.g. 10%, 3.5%, 1.0%)
+Commissions must take positive percentages within 0% to 100%! (e.g. 10% 3.5% 1.0%)
 </div>  
 
 Examples:
