@@ -18,7 +18,7 @@ public class LinkUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code Link}'s details.
      */
     public static String getLinkDetails(Link link) {
         StringBuilder sb = new StringBuilder();

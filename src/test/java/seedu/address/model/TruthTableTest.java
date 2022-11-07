@@ -130,13 +130,11 @@ public class TruthTableTest {
         assertThrows(UnsupportedOperationException.class, () -> truthTable.getPersonList().remove(0));
     }
 
-
     @Test
     public void getTeamList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> truthTable.getTeamList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () ->
+                truthTable.getTeamList().remove(0));
     }
-
-
 
     /**
      * A stub ReadOnlyTruthTable whose persons list can violate interface constraints.

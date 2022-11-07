@@ -37,7 +37,6 @@ public class LinkBuilder {
         return this;
     }
 
-
     /**
      * Sets the {@code Url} of the {@code Link} that we are building.
      */
