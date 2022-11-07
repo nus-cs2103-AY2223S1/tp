@@ -3,20 +3,18 @@
 <!-- TODO: Update UI Images after UI updates are implemented -->
 When you launch FoodRem, FoodRem appears on your screen as a [Graphical User Interface](#glossary-{{ 'Graphical User Interface' | slugify }}), or GUI. Let's look at the layout of the different components of FoodRem.
 
-**FoodRem's GUI:**
+FoodRem's GUI consists of a single main window, as well as the [[ help-window:Help Window ]]. The main window consists of three components:
 
-![FoodRem UI](images/Ui.png)
+1. Command Input Box
+1. Item List Box
+1. Command Output Box
 
-This table breaks down the different components of FoodRem's GUI.
+The following picture of the main window shows the three components, numbered accordingly:
 
-| Name               |                       Image                        |
-|--------------------|:--------------------------------------------------:|
-| Command Input Box  |  ![Command Input Box](images/CommandInputBox.png)  |
-| Command Output Box | ![Command Output Box](images/CommandOutputBox.png) |
-| Item List Box      |      ![Item List Box](images/ItemListBox.png)      |
-| Help Window        |       ![Help Window](images/HelpWindow.png)        |
-{: .layout-table }
+![FoodRem UI](images/UiAnnotated.png)
 
-```note
-The [[ help-window:_Help Window_ ]] is not part of the main GUI and is only shown after a [Help Command](#receive-help-during-usage-help) is run.
-```
+Besides the main window, FoodRem also has the Help Window. It is not part of the main GUI and is only shown after a [Help Command](#receive-help-during-usage-help) is run.
+
+The Help Window looks like the following:
+
+![Help Window](images/HelpWindow.png)
