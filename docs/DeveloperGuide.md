@@ -582,6 +582,51 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect delete commands to try: `profile -d`, `profile -d x`, `...` (where x is larger than the list size, or 1000)<br>
       Expected: Similar to previous.
 
+### Adding an Event
+
+1. Adding a valid Event
+
+   1. Prerequisites: Event to be added does not exist in the current event list.
+   2. Test case: `event -a n/Presentation s/22/10/2022 e/23/10/2022 t/CS2103`<br>
+      Expected: Event is added to the list, ordered by start time, end time, then title. Details of the added event shown in the status message.
+2. Adding an invalid Event
+   1. Prerequisites: Event to be added exist in the current list.
+   2. Test case: `event -a n/Presentation s/22/10/2022 e/23/10/2022 t/CS2103`<br>
+      Expected: Event does not get added to the list of events. Error message indicating that event already exist shown in the status message.
+
+### Adding a Profile to an Event
+
+1. Prerequisites: Profile to be added to Event is currently shown on the Profiles list. Event for Profile to be added to exist in the current event list.
+2. Test case: `event -ap 1 pr/1`
+   Expected: Event has an attendee added with the name and number of the Profile. Details of the event shown in the status message.
+
+### Deleting an attendee from an Event
+1. Prerequisites: Event to remove attendee from exist. Attendee to be removed exist in the Event.
+2. Test case: `event -dp 1 pr/1`
+   Expected: Event no longer has attendee. Details of the event shown in the status message.
+
+### Viewing upcoming Events
+1. Test case: `event -u 5`
+   Expected: Event starting in the next 5 days will be displayed to the Events list.
+
+### Viewing all Events
+1. Test case: `event -v`
+   Expected: All Events are displayed to the Events list.
+
+### Editing an Event
+1. Prerequisites: Event to be edited exist in the current list. Start and end includes both date and time.
+2. Test case: `event -e 1 n/Formal Dinner t/RC4 s/22/10/2022 09:00`
+   Expected: Event on the current list is updated with the new title, with only one tag RC4, and the new start time. Event list is resorted. Details of the Event edited is displayed in the status message.
+
+### Finding an Event
+1. Test case: `event -f Presentation`
+   Expected: Event list will display all Events which contains "presentation", case-insensitive, within its title.
+
+### Deleting an Event
+1. Prerequisites: Event to be deleted exist in the current list.
+2. Test case: `event -d 1`
+   Expected: Event deleted is no longer visible in the list of events. Details of the Event deleted is displayed in the status message.
+
 ### Saving data
 
 1. Dealing with missing/corrupted data files
