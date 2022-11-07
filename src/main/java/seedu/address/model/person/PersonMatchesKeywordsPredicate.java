@@ -14,7 +14,7 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
     public PersonMatchesKeywordsPredicate() {
     }
 
-    public void setKeywords(String keywords){
+    public void setKeywords(String keywords) {
         this.keywords = keywords;
     }
 
