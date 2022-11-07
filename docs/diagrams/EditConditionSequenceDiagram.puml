@@ -1,0 +1,98 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":UninurseBookParser" as UninurseBookParser LOGIC_COLOR
+participant ":EditGenericCommandParser" as EditGenericCommandParser LOGIC_COLOR
+participant ":EditConditionCommandParser" as EditConditionCommandParser LOGIC_COLOR
+participant ":EditConditionCommand" as EditConditionCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit -p 2 -c 1 c/Hypertension")
+activate LogicManager
+
+LogicManager -> UninurseBookParser : parseCommand("edit -p 2 -c 1 c/Hypertension")
+activate UninurseBookParser
+
+create EditGenericCommandParser
+UninurseBookParser -> EditGenericCommandParser
+activate EditGenericCommandParser
+
+EditGenericCommandParser --> UninurseBookParser
+deactivate EditGenericCommandParser
+
+UninurseBookParser -> EditGenericCommandParser : parse("-p 2 -c 1 c/Hypertension")
+activate EditGenericCommandParser
+
+create EditConditionCommandParser
+EditGenericCommandParser -> EditConditionCommandParser
+activate EditConditionCommandParser
+
+EditConditionCommandParser --> EditGenericCommandParser
+deactivate EditConditionCommandParser
+
+EditGenericCommandParser -> EditConditionCommandParser : parse("2 1 c/Hypertension")
+activate EditConditionCommandParser
+
+create EditConditionCommand
+EditConditionCommandParser -> EditConditionCommand : EditConditionCommand(patientIndex, conditionIndex, condition)
+activate EditConditionCommand
+
+EditConditionCommand --> EditConditionCommandParser : command
+deactivate EditConditionCommand
+
+EditConditionCommandParser --> EditGenericCommandParser : command
+deactivate EditConditionCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditConditionCommandParser -[hidden]-> EditGenericCommandParser
+destroy EditConditionCommandParser
+
+EditGenericCommandParser --> UninurseBookParser : command
+deactivate EditGenericCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditGenericCommandParser -[hidden]-> UninurseBookParser
+destroy EditGenericCommandParser
+
+UninurseBookParser --> LogicManager : command
+deactivate UninurseBookParser
+
+LogicManager -> EditConditionCommand : execute(model)
+activate EditConditionCommand
+
+EditConditionCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model --> EditConditionCommand : lastShownList
+deactivate Model
+
+EditConditionCommand -> Model : edit(condition)
+activate Model
+
+Model --> EditConditionCommand : updatedConditionList
+deactivate Model
+
+EditConditionCommand -> Model : updateFilteredPersonList
+activate Model
+
+Model --> EditConditionCommand
+deactivate Model
+
+create CommandResult
+EditConditionCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditConditionCommand : commandResult
+destroy CommandResult
+
+EditConditionCommand --> LogicManager : commandResult
+destroy EditConditionCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

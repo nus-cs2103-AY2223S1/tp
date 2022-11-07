@@ -81,6 +81,17 @@ The sections below give more details of each component.
 
 **API** : [`Ui.java`](https://github.com/AY2223S1-CS2103T-T12-4/tp/tree/master/src/main/java/seedu/uninurse/ui/Ui.java)
 
+**Description**
+
+The `UI` component manages the user interface of the application so that it responds appropriately to all commands (valid or invalid) that a user inputs.
+
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder.
+For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/uninurse/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T12-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+
+**Components**
+
+Here's a (partial) class diagram of the `UI` component:
+
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of 4 crucial parts:
@@ -96,7 +107,7 @@ Other miscellaneous parts (such as `StatusBarFooter`, `HelpWindow`) are also inc
 
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-Additionally, the structure of `OutputPanel` is as shown below:
+Additionally, the structure of `OutputPanel` (simplified in class diagram above) is shown below:
 ![Structure of the OutputPanel Component](images/OutputPanelClassDiagram.png)
 
 `OutputPanel` is a UI part that loads the appropriate view based on the command result. Similar to `MainWindow`, all views and the `OutputPanel` inherit from the abstract `UiPart` class. The `OutputPanel` supports the following views:
@@ -110,7 +121,8 @@ Additionally, the structure of `OutputPanel` is as shown below:
 | `UpdatedPersonListPanel`                      | Displays a list of `UpdatedPatientCard`s after using a `find` command           |
 | `UndoCard`, `RedoCard`, `ModifiedPatientCard` | Displays the outcome of an `undo`/`redo` command                                |
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/uninurse/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T12-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+
+**Functionality**
 
 The `UI` component,
 
@@ -184,7 +196,7 @@ The `Model` component,
 * stores the UniNurse book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object) and all of its saved versions.
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* depends on the other three components in the following manner: `UninurseBookSnapshot` stores a copy of the `CommandResult` after a snapshot is made, to be retrieved by the `Ui` component when an `undo`/`redo` command is executed.
 * each patient has a `TaskList`, which holds `Task` which can be NonRecurringTasks or RecurringTasks. The below Class diagram illustrates their relationship.
   
 <img src="images/TaskClassDiagram.png" width="450" />
@@ -246,7 +258,7 @@ The `viewTask` command is executed when the user enters the command into the UI 
 
 Note that `TaskListPanel` only displays the complete list of tasks of the specified patient and essential information such as the patient name and tags.
 
-The following sequence diagrams illustrates the interactions between the `UI`, `Logic` and `Model` component when the command is being executed.
+The following sequence diagrams illustrate the interactions between the `UI`, `Logic` and `Model` component when the command is being executed.
 
 <img src="images/ViewTaskSequenceDiagram1.png" width="900" />
 
@@ -263,58 +275,121 @@ The Sequence diagram below shows the execution of a view command with no flags.
 
 ![tasksOnSequenceDiagram](images/TasksOnSequenceDiagram.png)
 
-### Add/delete medical conditions from patients
+### Multi-valued attributes feature
 
-Users can add a medical condition to a particular patient by providing the following details:
+A multi-valued attribute is a patient details that consists of a list of values. A patient's multi-valued attributes includes tags, tasks, medical conditions, medications and remarks.
+Multi-valued attributes are represented by the `Tag`, `Task`, `Condition`, `Medication` and `Remark` classes respectively.
+
+Users can add a multi-valued attribute to a particular patient by providing the following details:
 1. The patient's index number shown in the displayed patient list.
-2. The condition to be added.
+2. The attribute to be added.
 
-There are two ways a user can add a medical condition:
-1. Add multiple medical conditions at one go when the user first creates a patient.
-2. Add one condition at a time to an existing patient.
+
+There are two ways a user can add a multi-valued attribute:
+1. Add multiple attributes at one go when the user first creates a patient.
+2. Add one attribute at a time to an existing patient.
 
 #### Implementation
 
-A medical condition is represented by `Condition`, and multiple conditions are stored internally as a `ConditionList`.
-`ConditionList` facilitates the add/delete condition mechanism, and each patient only has one associated `ConditionList`.
-`ConditionList` mainly implements the following operations:
-* `ConditionList#add()`: adds a condition to the patient's list of conditions.
-* `ConditionList#delete()`: removes a condition from the patient's list of conditions.
+A multi-valued attribute is represented by `XYZ`, and multiple attributes are stored internally as a `XYZList`.
+`XYZList` facilitates the add/edit/delete multi-valued attribute mechanism, and each patient only has one associated `XYZList`.
+`XYZList` mainly implements the following operations:
+* `XYZList#add()`: adds a multi-valued attribute to the patient's list of attributes.
+* `XYZList#edit()`: edits a multi-valued attribute in the patient's list of attributes.
+* `XYZList#delete()`: removes a multi-valued attribute from the patient's list of attributes.
 
-Figure 1 below summarises what happens when a user executes an add condition command on a specified patient:
-<figure>
-    <img src="images/AddConditionActivityDiagram.png" alt="add_condition_activity_diagram"/>
-    <figcaption>
-        <em>Figure 1: Activity diagram showing the flow of events when a user executes an add condition command</em>
-    </figcaption>
-</figure>
+All `XYZList` classes inherit from the `GenericList` interface so that they can be treated similarly where possible e.g. during testing.
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:** `XYZ` is a placeholder for the specific multi-valued attribute type (e.g., `ConditionList`, `Condition`, etc.)
+
+</div>
+
+The activity diagram below summarises the flow of events when a user executes an edit attribute command on a specified patient:
+
+<img src="images/EditXYZActivityDiagram.png" alt="edit_xyz_activity_diagram"/>
+
+<div markdown="span" class="alert alert-info">
+
+:information_source: **Note:**
+
+The sequence of events when a user executes an add/delete attribute command is similar to edit.
+
+</div>
 
 #### Interactions 
 
-Given below is an example usage scenario and how the add condition mechanism behaves at each step.
+<div markdown="span" class="alert alert-info">
 
-1. The user executes the `addCondition 1 c/Diabetes` command to add a condition to the first patient in the
-displayed patient list.
+:information_source: **Note:**
 
-2. `UninurseBookParser#parseCommand()` parses the command word `addCondition`, and then creates a corresponding `AddConditionCommandParser` object.
+To better illustrate how a multi-valued attribute is added/edited/deleted from a patient, the add/edit/delete condition mechanism is used as an example scenario.
+The implementation is similar for the other multi-valued attributes.
 
-3. `AddConditionCommandParser#parse()` parses the patient index `1` and the condition `Diabetes` provided, and then creates an `AddConditionCommand` object.
+</div>
 
-4. The `AddConditionCommand` object interacts with the `Model` to add a condition to the specified patient's condition list.
+**Add multi-valued attribute**
 
-5. `Logic` returns a `CommandResult` object, which encapsulates the result of the execution of the add condition command.
+1. The user executes the `add -p 1 c/Diabetes` command to add a condition to the first patient in the displayed patient list.
 
-Figure 2 below shows how `Logic` executes the add condition operation:
-<figure>
-    <img src="images/AddConditionSequenceDiagram.png" alt="add_condition_sequence_diagram"/>
-    <figcaption>
-        <em>Figure 2: Sequence diagram showing interactions within the Logic component when a user executes an add condition command</em>
-    </figcaption>
-</figure>
+2. `UninurseBookParser#parseCommand()` parses the command word `add`, and then creates a corresponding `AddGenericCommandParser` object.
 
-_To be updated with details of delete condition feature ..._
+3. `AddGenericCommandParser#parse()` parses flag and option `-p 1`, and then creates a corresponding `AddConditionCommandParser` object.
+
+4. `AddConditionCommandParser#parse()` parses the patient index `1` and the condition `Diabetes` provided, and then creates an `AddConditionCommand` object.
+
+5. The `AddConditionCommand` object interacts with the `Model` to add a condition to the specified patient's condition list.
+
+6. `Logic` returns a `CommandResult` object, which encapsulates the result of the execution of the add condition command.
+
+The sequence diagram below shows the interactions within the Logic component than happen when a user executes the add condition operation:
+
+<img src="images/AddConditionSequenceDiagram.png" alt="add_condition_sequence_diagram"/>
+
+**Edit multi-valued attribute**
+
+Given below is an example usage scenario and how the edit condition mechanism behaves at each step.
+
+1. The user executes the `edit -p 2 -c 1 c/Hypertension` command to edit the first condition of the second patient in the displayed patient list.
+
+2. `UninurseBookParser#parseCommand()` parses the command word `edit`, and then creates a corresponding `EditGenericCommandParser` object.
+
+3. `EditGenericCommandParser#parse()` parses flags and options `-p 2 -c 1`, and then creates a corresponding `EditConditionCommandParser` object.
+
+4. `EditConditionCommandParser#parse()` parses the patient index `2`, the condition index `1` and the condition `Hypertension` provided, and then creates an `EditConditionCommand` object.
+
+5. The `EditConditionCommand` object interacts with the `Model` to replace the desired condition with the newly edited one in the specified patient's condition list.
+
+6. `Logic` returns a `CommandResult` object, which encapsulates the result of the execution of the edit condition command.
+
+The sequence diagram below shows the interactions within the Logic component than happen when a user executes the edit condition operation:
+
+<img src="images/EditConditionSequenceDiagram.png" alt="edit_condition_sequence_diagram"/>
+
+**Delete multi-valued attribute**
+
+Given below is an example usage scenario and how the delete condition mechanism behaves at each step.
+
+1. The user executes the `delete -p 2 -c 1` command to delete the first condition of the second patient in the displayed patient list.
+
+2. `UninurseBookParser#parseCommand()` parses the command word `delete`, and then creates a corresponding `DeleteGenericCommandParser` object.
+
+3. `DeleteGenericCommandParser#parse()` parses flags and options `-p 2 -c 1`, and then creates a corresponding `DeleteConditionCommandParser` object.
+
+4. `DeleteConditionCommandParser#parse()` parses the patient index `2` and the condition index `1` provided, and then creates a `DeleteConditionCommand` object.
+
+5. The `DeleteConditionCommand` object interacts with the `Model` to delete the condition from the specified patient's condition list.
+
+6. `Logic` returns a `CommandResult` object, which encapsulates the result of the execution of the delete condition command.
+
+The sequence diagram below shows the interactions within the Logic component than happen when a user executes the delete condition operation:
+
+<img src="images/DeleteConditionSequenceDiagram.png" alt="delete_condition_sequence_diagram"/>
 
 ### Undo/redo feature
+
+#### Implementation
 
 The undo/redo mechanism is facilitated by `PersistentUninurseBook`. It consists of a list of `UninurseBookSnapshot`, which itself consists of a `UninurseBook` and a `CommandResult`. `PersistentUninurseBook` stores the saved versions of all `UninurseBook`s, stored internally as:
 * `workingCopy`, which is the current (possibly unsaved) version of `UninurseBook`.
@@ -380,20 +455,18 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design considerations
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire Uninurse book.
+* **Alternative 1 (current implementation):** Saves the entire Uninurse book.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
+* **Alternative 2:** Individual command knows how to undo/redo by itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
 
 ### Display added/edited/deleted patient feature
 
@@ -1315,7 +1388,7 @@ starting point for testers to work on; testers are expected to do more *explorat
    3. Test case: `add -p 1 d/Take hair sample | 7-11-23 0900 | 10 hours` (invalid recurrence) <br>
       Expected: No task is added. Error details are shown in the status message.
    
-   4. Other incorrect adding task commands to try: `add -p 1 d/Escort to X-ray | 8-10-23 0900 | 10` (incomplete recurrence)
+   4. Other incorrect adding task commands to try: `add -p 1 d/Escort to X-ray | 8-10-23 0900 | 10` (incomplete recurrence) <br>
       Expected: Similar to previous.
 
 3. Editing a task in a patient's task list.
@@ -1331,7 +1404,8 @@ starting point for testers to work on; testers are expected to do more *explorat
    4. Test case: `edit -p 1 -d 2 d/Conduct physiotherapy | 6-10-22 0900` (duplicate task) <br>
       Expected: No task is edited. Error details are shown in the status message.
    
-   5. Other incorrect editing task commands to try: `edit -p 1 -d 1 d/` (missing field), `edit -p 1 -d 1`
+   5. Other incorrect editing task commands to try: `edit -p 1 -d 1 d/` , `edit -p 1 -d 1` (missing fields) <br>
+      Expected: Similar to previous.
    
 
 4. Deleting a task in a patient's task list.
@@ -1399,7 +1473,7 @@ starting point for testers to work on; testers are expected to do more *explorat
    2. Test case: `add -p 1 m/Cough syrup | 5ml a day` <br>
       Expected: The medication `Cough syrup` with dosage `5ml a day` is added to the first patient in the displayed list. Details of the new medication is shown in the status message and the output panel.
    
-   3. Test case: `add -p 1 m/Cough syrup | 5ml a day` <br>
+   3. Test case: `add -p 1 m/Cough syrup | 5ml a day` (duplicate medication) <br>
       Expected: No medication is added. Error details are shown in the status message.
    
    4. Other incorrect adding medication commands to try: `add -p 1 m/` (missing fields), `add -p 1 m/pills` (missing dosage) <br>
@@ -1416,7 +1490,7 @@ starting point for testers to work on; testers are expected to do more *explorat
    3. Test case: `edit -p 1 -m 2 m/Sleeping pills | 1 before sleeping` (duplicate medication) <br>
       Expected: No medication is edited. Error details are shown in the status message.
    
-   4. Other incorrect editing medication commands to try: `edit -p 1 -m 0 m/pills`, `edit -p 1 -m 1 m/` (missing fields) <br>
+   4. Other incorrect editing medication commands to try: `edit -p 1 -m 0 m/pills | once a day` (invalid index), `edit -p 1 -m 1 m/` (missing fields) <br>
       Expected: Similar to previous.
 
    
@@ -1427,7 +1501,7 @@ starting point for testers to work on; testers are expected to do more *explorat
     2. Test case: `delete -p 1 -m 1` <br>
        Expected: The first medication of the first patient in the displayed list is deleted. Details of the deleted medication is shown in the status message. The patient's new details is shown in the output panel.
 
-    3. Test case: `delete -p 1 -m 0` <br>
+    3. Test case: `delete -p 1 -m 0` (invalid index) <br>
        Expected: No task is deleted. Error details are shown in the status message.
 
     4. Other incorrect deleting task commands to try: `delete -p 1 -m` (missing field), `delete -p 1 -m x`, `...` (where x is larger than the number of patient's medications) <br>
@@ -1459,7 +1533,7 @@ starting point for testers to work on; testers are expected to do more *explorat
     3. Test case: `edit -p 1 -r 2 r/Allergic to dust` (duplicate remark) <br>
        Expected: No remark is edited. Error details are shown in the status message.
 
-    4. Other incorrect editing remark commands to try: `edit -p 1 -r 0`, `edit -p 1 -r 1 r/` (missing fields) <br>
+    4. Other incorrect editing remark commands to try: `edit -p 1 -r 0 r/Cardiac arrest` (invalid index), `edit -p 1 -r 1 r/` (missing fields) <br>
        Expected: Similar to previous.
 
 
@@ -1527,7 +1601,7 @@ starting point for testers to work on; testers are expected to do more *explorat
    3. Test case: `view 10-10-2022` (invalid date format) <br>
       Expected: No tasks are shown in the output panel. Error details are shown in the status message.
    
-   4. Other incorrect viewing commands: `view 15-15-22` (invalid date), `view ` (missing date) <br>
+   4. Other incorrect viewing commands: `view 15-15-22` (invalid date), `view` (missing date) <br>
       Expected: Similar to previous.
 
 
@@ -1543,7 +1617,7 @@ starting point for testers to work on; testers are expected to do more *explorat
     3. Test case: `view -p 0` (invalid index) <br>
        Expected: No task list is shown in the output panel. Error details are shown in the status message.
     
-    4. Other incorrect task viewing commands to try: `view -p ` (missing field), `view -p x` , `...` (where x is larger than the size of the patient list) <br>
+    4. Other incorrect task viewing commands to try: `view -p` (missing field), `view -p x` , `...` (where x is larger than the size of the patient list) <br>
        Expected: Similar to previous.
 
 ### Viewing all tasks of all patients
@@ -1557,7 +1631,7 @@ starting point for testers to work on; testers are expected to do more *explorat
 
 ### Undoing previous command
 
- 1. Undoing a previous command entered.
+ 1. Undoing a previous add/edit/delete command.
  
     1. Prerequisites: At least 1 add/edit/delete command was executed.
     
@@ -1585,12 +1659,12 @@ starting point for testers to work on; testers are expected to do more *explorat
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Dealing with missing/corrupted data files.
 
    1. Run UniNurse without `uninursebook.json` inside the data folder. <br>
       Expected: UniNurse will create `uninursebook.json` containing the sample patient data and run.
 
-   2. Run UniNurse with a corrupted `uninursebook.json` (data stored in the wrong format, random text added into the file, etc.) <br>
+   2. Run UniNurse with a corrupted `uninursebook.json`. (data stored in the wrong format, random text added into the file, etc.) <br>
       Expected: UniNurse will run with an empty `uninursebook.json`.
 
    3. Run UniNurse without the `data` folder inside the root directory. <br>
