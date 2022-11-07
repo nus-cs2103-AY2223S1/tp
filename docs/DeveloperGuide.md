@@ -100,7 +100,7 @@ The `UI` component,
 
 In addition to the third point above, the `CommmandExecutor` functional interface, initially encapsulated inside the `CommandBox` class, was abstracted out to allow multiple `UI` components to communicate with the `Logic` component. The `CommandExecutor` is first created in `MainWindow` and passed down to `CommandBox` and `TutorListCard` to keep a link to `Logic` for the components to execute a command.
 
-![Implementation of UI Parts](images/CommandExecutorClassDiagram.png)
+<img src="images/CommandExecutorClassDiagram.png" width="280" />
 
 ### Logic component
 
