@@ -165,7 +165,7 @@ This section describes details on how certain noteworthy features are implemente
 
 #### Implementation
 
-The command history navigation mechanism is facilitated by `CommandHistoryManager`. It implements `CommandHistory`, stored internally as a `commandsList` and `pointer`. Additionally, it implements the following operations:
+The command history navigation mechanism is facilitated by `CommandHistoryManager`, which is a concrete implementation of `CommandHistory`, that internally stores the current state with `commandsList` and `pointer`. Additionally, it implements the following operations:
 
 * `CommandHistory#getPreviousCommmand()` — Retrieves the previous command from its history.
 * `CommandHistory#getNextCommmand()` — Retrieves the next command from its history.
@@ -175,10 +175,10 @@ The methods successfully handles edge cases where the command history is empty, 
 
 `CommandHistoryManager` can be instantiated with an optional capacity, the default is as explained in the design considerations below. When the size of the command history exceeds double the allocated capacity, the older half of the history is pruned.
 
-`LogicManager` will store an instance of `CommandHistoryManager`.
+`LogicManager` will store an instance of `CommandHistoryManager`, which is used as follows:
 
-To detect key presses `UP` and `DOWN` arrow keys, set the `setOnKeyPressed` for the `commandTextField` and call `CommandHistory#getPreviousCommmand()` and `CommandHistory#getNextCommmand()` respectively and update the text displayed.
-When handling user input to save the user's input into the command history, call `CommandHistory#addCommand(commandText)` with the `commandText` in `CommandBox#handleCommandEntered()`. Even if the commands are invalid, save them into the history. This allows the user to fix the wrong commands and re-execute them.
+* To detect key presses for `UP` and `DOWN` arrow keys, set the `setOnKeyPressed` for the `commandTextField` on start up, which calls `CommandHistory#getPreviousCommmand()` and `CommandHistory#getNextCommmand()` respectively and updates the text displayed.
+* When handling user input, call `CommandHistory#addCommand(commandText)` with the `commandText` in `CommandBox#handleCommandEntered()` to save the user’s input into the command history. Even if the commands are invalid, save them into the history. This allows the user to fix the wrong commands and re-execute them.
 
 ![CommandHistoryActivityDiagram](images/CommandHistoryActivityDiagram.png)
 
@@ -186,7 +186,7 @@ Note: Some intermediate steps are omitted for simplicity. Full details are in th
 
 Given below is an example of a usage scenario and how the command history mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. `CommandHistoryManager` will be initialized in `CommandBox`. The internal `commandsHistoryList` will be empty and the `commandsHistoryPointer` will point to the `0`th element.
+Step 1. The user launches the application. `CommandHistoryManager` will be initialized in `CommandBox`. The internal `commandsHistoryList` will be empty and the `commandsHistoryPointer` will point to the `0`th element, which represents the absence of a command. Attempting to retrieve this `0`th element would return an empty string instead.
 
 Step 2. The user executes a few commands. Regardless whether these commands are valid or invalid, each of these inputs fires `CommandHistory#addCommand` once with their respective command texts.
 
@@ -288,7 +288,7 @@ These operations are exposed in the `Model` interface as `Model#commitTaskBook()
 
 Given below is an example of a usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedTaskBook` will be initialized with the initial task book state, and the `pointer` pointing to that single task book state.
+Step 1. The user launches the application. The `VersionedTaskBook` will be initialized with the initial task book state, and the `pointer` pointing to that single task book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
