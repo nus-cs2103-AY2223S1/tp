@@ -50,8 +50,8 @@ You can reach us on our GitHub portfolios, links provided below.
 [[github](http://github.com/czhongwei)]
 [[portfolio](team/czhongwei.md)]
 
-* Role:
-* Responsibilities:
+* Role: Developer
+* Responsibilities: Find, Birthday, Documentation
 
 ### Jiang Pinran
 
