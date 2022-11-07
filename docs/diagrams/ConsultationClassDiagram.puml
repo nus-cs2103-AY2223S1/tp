@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+skinparam classAttributeIconSize 0
+
+Package Consultation <<Rectangle>>{
+
+Class UniqueConsultationList
+Class Consultation
+Class ConsultationName
+Class ConsultationDescription
+
+}
+
+Class DatetimeRange
+Class Venue
+Class ModuleCode
+
+UniqueConsultationList --> "~* all" Consultation
+Consultation *--> "1" ConsultationName
+Consultation *--> "1" ConsultationDescription
+Consultation *--> "1" DatetimeRange
+Consultation *--> "1" Venue
+Consultation *--> "1" ModuleCode
+
+@enduml

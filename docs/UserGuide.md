@@ -247,7 +247,7 @@ Examples:
 
 Deletes the specified student from the list of students.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-success">:bulb: **Tip:**
 You may want to use this command if any students drop out of the module or change tutorial groups.
 </div>
 
@@ -267,7 +267,7 @@ Examples:
 
 Copies all emails in the displayed student list onto the clipboard.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-success">:bulb: **Tip:**
 You may want to use this command to email a student or a selected group of students (e.g. those with grade C).
 </div>
 
@@ -319,7 +319,7 @@ Examples:
 
 Edits an existing tutorial in ModQuik.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-success">:bulb: **Tip:**
 You may want to use this command to update your tutorials when there are changes in venue e.g., from zoom to offline or vice versa.
 </div>
 
@@ -367,10 +367,6 @@ Examples:
 
 Adds a consultation slot at the given time, date, place and description to ModQuik.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-```Name``` can be anything e.g., Past Year Papers, and does not have to be the student's name.
-</div>
-
 Format: `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`
 * `DATE` should be given in the format yyyy-MM-dd, e.g. 2022-10-24.
 * `TIMESLOT` takes in a start time to end time in the format HH:mm-HH:mm, e.g., 18:00-20:00.
@@ -390,11 +386,6 @@ Examples:
     <td><img src="images/AddConsultation.png" width=350></td>
   </tr>
  </table>
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-On a closer look, consultation 1 and 4 are both from the same module and wish to go through the same thing!<br>
-You can combine the consultations and meet both students together to make it easier for you.
-</div>
 
 <a name="edit-consultation"></a>
 #### 5.3.2 Editing a consultation: `edit consultation`
@@ -449,11 +440,7 @@ Examples:
 <a name="add-reminder"></a>
 #### 5.4.1 Adding a reminder: `add reminder`
 
-Adds a reminder to ModQuik.
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-You can add reminders such as "Mark Assignment 1" by a specified deadline.
-</div>
+Adds a reminder to ModQuik. You can add reminders such as "Mark Assignment 1" by a specified deadline.
 
 Format: `add reminder n/NAME T/TIME D/DATE p/PRIORITY d/DESCRIPTION `
 
@@ -608,12 +595,16 @@ _Figure 2. Grade Chart Tab_
 <a name="clear"></a>
 ### 5.6 Clearing data: `clear`
 
-Clears all existing data in a specific field (including student, tutorial, reminder and consultation) or the entire app.
+Clears all existing data in a specific field (including student, tutorial, reminder and consultation) or the entire app. 
 
 For example, user might choose to reset the data when the semester ends to prepare for the upcoming semester.
 
 Format: `clear f/FIELD`
 * `FIELD` including `all`, `student`, `tutorial`, `consultation`, `reminder`
+* 
+<div markdown="span" class="alert alert-danger">:exclamation: **Warning:**
+Take note that this action is irreversible.
+</div>
 
 Examples:
 * `clear f/all`
@@ -711,9 +702,9 @@ Examples:
 | [**List All Students**][`list`]                  | `list`                                                                                                                                                                                                                                                     |
 | [**Edit Student**][`edit student`]               | `edit student INDEX [n/NAME] [i/STUDENT_ID] [ph/PHONE] [e/EMAIL] [tele/TELEGRAM_HANDLE] [m/MODULE] [tut/TUTORIAL] [att/ATTENDANCE] [part/PARTICIPATION] [t/TAG]…`<br> e.g., `edit student 1 ph/91234567 e/jameslee@example.com`                            |
 | [**Find**][`find`]                               | `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [tut/TUTORIAL]`<br> e.g., `find n/john m/CS2103T`                                                                                                                                                                 |
-| [**Delete Student**][`delete student`]           | `delete student INDEX [m/MODULE]`<br> e.g., `delete student 2 m/CS2103T`                                                                                                                                                                                   |
+| [**Delete Student**][`delete student`]           | `delete student INDEX`<br> e.g., `delete student 2`                                                                                                                                                                                                        |
 | [**Extract Student Emails**][`extract emails`]   | `extract emails`                                                                                                                                                                                                                                           |
-| [**Add Tutorial**][`add tutorial`]               | `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`<br> e.g., `add tutorial n/T23 m/CS2103T v/COM1-0205 T/1800-2000 D/1`                                                                                                                               |
+| [**Add Tutorial**][`add tutorial`]               | `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`<br> e.g., `add tutorial n/T23 m/CS2103T v/COM1-0205 T/18:00-20:00 D/1`                                                                                                                             |
 | [**Edit Tutorial**][`edit tutorial`]             | `edit tutorial INDEX [n/NAME] [m/MODULE] [v/VENUE] [T/TIMESLOT] [D/DAY]`<br> e.g., `edit tutorial 1 n/W17 m/CS2103T`                                                                                                                                       |
 | [**Delete Tutorial**][`delete tutorial`]         | `delete tutorial INDEX`<br> e.g., `delete tutorial 3`                                                                                                                                                                                                      |
 | [**Add Consultation**][`add consultation`]       | `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT d/DESCRIPTION`<br> e.g., `add consultation n/Review past year paper m/CS2103T v/COM2-0109 D/2022-12-12 T/16:00-18:00 d/AY2019-2020 Question 3,6,8`                                             |

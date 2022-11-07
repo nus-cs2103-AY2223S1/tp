@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+skinparam classAttributeIconSize 0
+
+Package Reminder <<Rectangle>>{
+
+Class UniqueReminderList
+Class Reminder
+Class ReminderName
+Class ReminderPriority
+Class ReminderDescription
+Class ReminderStatus
+
+}
+
+Class Datetime
+
+UniqueReminderList --> "~* all" Reminder
+Reminder *--> "1" ReminderName
+Reminder *--> "1" ReminderPriority
+Reminder *--> "1" ReminderDescription
+Reminder *--> "1" ReminderStatus
+Reminder *--> "1" Datetime
+
+@enduml
