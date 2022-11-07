@@ -5,7 +5,7 @@ title: Pang Kuang Wei's Project Portfolio Page
 
 ### Project: SoConnect
 
-SoConnect is a desktop app for NUS SoC students to manage their contacts, optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java, and has about 10 kLoC.
+SoConnect is a **contact management and task management desktop app** that aims to help NUS SoC students stay better connected to their school life, both in terms of social connections and school tasks. To better cater to NUS SoC students, SoConnect is **optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). SoConnect has 42 kLoC. SoConnect is written in Java and uses JavaFX.
 
 Given below are my contributions to the project.
 
