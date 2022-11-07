@@ -1,9 +1,5 @@
 package seedu.clinkedin.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import seedu.clinkedin.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;
@@ -14,7 +10,6 @@ import seedu.clinkedin.model.person.Phone;
 import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
-import seedu.clinkedin.model.tag.Tag;
 
 /**
  * A utility class to help with building EditPersonDescriptor objects.
@@ -88,8 +83,6 @@ public class EditPersonDescriptorBuilder {
      * that we are building.
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        //        descriptor.setTags(tagSet);
         return this;
     }
 
