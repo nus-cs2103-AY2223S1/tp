@@ -430,9 +430,9 @@ Autocomplete:
 
 Autocomplete helps you to get your search done faster as you do not have to type the full parameter to search. This also reduce the chances of you typing the wrong character as you have lesser characters to type.
 
-* Autocomplete generates a list of autocomplete entries based on the current search query.
+* Autocomplete generates a list of [autocomplete entries](#autocomplete-entries) based on the current search query.
 * Autocomplete only completes the last parameter, in this case `t/f`.
-* If no contact matches the current search query, empty list of autocomplete entries will be generated and autocomplete box will be hidden.
+* If no contact matches the current search query, empty list of [autocomplete entries](#autocomplete-entries) will be generated and autocomplete box will be hidden.
 
 </div>
 
@@ -822,20 +822,20 @@ Welcome to the Customisation Commands section! In this section, you can learn to
 
 You can customise the order of information shown for all contacts.
 
-Format: `customise order [t/] [p/] [e/] [a/]`
+**Format:** `customise order [t/] [p/] [e/] [a/]`
 
 * You will always see the contact's name at the top of each card.
 * You can change the order of the following information: Tags, Phone Number, Email, Address.
 * Unspecified information will be ordered last according to the default order (Tags > Phone Number > Email > Address).
 
-**Expected Input in Command Box**
+**Example Input in Command Box:**
 ```
 customise order a/ e/ p/
 ```
 
 **Example Result**
 
-(insert image)
+![Customise Order](images/CustomiseOrder.png)
 
 <br>
 
@@ -843,20 +843,20 @@ customise order a/ e/ p/
 
 You can hide certain information fields from all contacts.
 
-Format: `customise hide [t/] [p/] [e/] [a/]`
+**Format:** `customise hide [t/] [p/] [e/] [a/]`
 
 * You can hide the following information: Tags, Phone Number, Email, Address.
 * After you use this command, the information specified is hidden.
 * If the information that you specify is already hidden, it will stay hidden.
 
-**Expected Input in Command Box**
+**Example Input in Command Box:**
 ```
 customise hide p/ t/
 ```
 
-**Output in Command Result Box**
+**Example Result:**
 
-(insert image)
+![Customise Hide](images/CustomiseHide.png)
 
 <br>
 
@@ -871,14 +871,14 @@ Format: `customise show [t/] [p/] [e/] [a/]`
 * If the information that you specify is already shown, it will stay shown.
 * `Coming soon in v1.5`, we will include `customise show all`, a shortcut to show all information.
 
-**Expected Input in Command Box**
+**Example Input in Command Box:**
 ```
 customise show p/ t/
 ```
 
-**Output in Command Result Box**
+**Example Result:**
 
-(insert image)
+![Customise Show](images/CustomiseShow.png)
 
 <br>
 
@@ -944,6 +944,12 @@ customise show p/ t/
 **<a id="autocomplete">Autocomplete</a>**
 
 A feature that shows a list of completed words or strings without the user needing to type them in full.
+
+<br>
+
+**<a id="autocomplete-entries">Autocomplete Entry</a>**
+
+A sentence that has been autocompleted with [autocomplete](#autocomplete).
 
 <br>
 
