@@ -85,7 +85,7 @@ Refer to:
 - The [contactmation window guide](#contactmation-window-guide) for a guide on the application window.
 - The [basic feature](#basic-features) section to get started on using the application.
 - The [advanced feature](#advanced-features) section for powerful tools that will help make your experience of
-using Contactmation much more streamlined.
+using Contactmation much more streamlined and customisable.
 - The [glossary](#glossary) for explanations to the different terms used throughout this guide.
 - The [command summary](#command-summary) for a quick overview on how to use all our features.
 
@@ -113,6 +113,38 @@ Windows, macOS and Linux etc.) as long as `Java 11` is installed.
 
 --- 
 
+## **Quick start**
+
+1. Ensure that the [prerequisites](#prerequisites) are met before installing Contactmation.
+
+
+2. Download the latest version of `contactmation.jar` from
+   [here](https://github.com/AY2223S1-CS2103T-T11-1/tp/releases). The file `contactmation.jar`
+   can be found under the `Assets` for each version of Contactmation.
+
+![Find the Contactmation jar file](images/QuickStartFindJar.png)
+
+3. Save `contactmation.jar` into a Desktop folder on your computer. This folder will now be the home folder
+   for Contactmation. Do look at the [FAQ](#faq) section for errors related to opening files used in Contactmation.
+
+
+4. Double-click on `contactmation.jar` to start up the application. You will be greeted with the current window
+   if everything goes well:
+
+![Contactmation ui main window](images/ContactmationUiClean.png)
+
+5. You may begin by referring to the [before you begin](#before-you-begin) section to get
+   started.
+
+
+6. You may then move on to the [basic features](#basic-features) section to get started on using
+   Contactmation. For additional, more powerful commands, refer to our [advanced features](#advanced-features),
+   especially if you are comfortable with the CLI or have prior programming experience.
+
+:bulb: **Tip**: If you wish to clear all default entries and begin with on a fresh slate, use the [clear](#clear-command-clear) command.
+
+---
+
 ## **Before you begin**
 
 Before you begin, you will need to know how to interact with Contactmation.
@@ -121,15 +153,15 @@ You may only interact with Contactmation by typing [commands](#glossary) into th
 [command box](#contactmation-window-guide). Upon hitting the `Enter` key, you will be able to execute the command
 currently residing in the command box.
 
-> How do I properly write these commands? 
- 
-We will go through the standardised formats for each [basic](#basic-features) and [advanced](#advanced-features) 
-feature in their respective sections. 
-
 > How do I clear the sample data in my newly downloaded version of Contactmation?
 
 Simply type in the word `clear` into the command box and press the `Enter` key on your desktop. All the sample
 data will be wiped. Do note that this action is **irreversible**.
+
+> How do I properly write these commands? 
+ 
+We will go through the standardised formats for each [basic](#basic-features) and [advanced](#advanced-features) 
+feature in their respective sections.
 
 > How do I read the standardised formats for each feature?
 
@@ -153,14 +185,58 @@ The **innermost** format in a word has the **highest** priority, while the **out
 has a **lower** priority than any format within it. However, since an outer format is considered after the inner format,
 the outer format has a **stronger connotation** to it.
 
-Here are additional examples to solidify your understanding of how these formats make sense when combined. 
+Here is an additional example to solidify your understanding of how these formats make sense when combined. 
 
 If the command format in the format section of a feature has `[t/tags...]`, that means that the **ellipses**
 will have a higher priority than the **square brackets**. This means that `t/tags` can be repeated multiple
-times, but `t/tags` can be entirely optional. Therefore, it is possible to **skip** `t/tags` altogether, or have
+times, but `t/tags` can be entirely optional as well. Therefore, it is possible to **skip** `t/tags` altogether, or have
 1 or more `t/tags` in the command sequence.
 
 Other keywords utilised in the guide are defined in the [glossary](#glossary).
+
+### Constraints of placeholder words
+
+This section will help you understand what placeholder words in the format section for each command can be 
+replaced by. Placeholder words are words which are wrapped around angled brackets (`<>`) in the format section. 
+Do refer to the [standardised format style](#standardised-format-style) section for more information to
+understand the format styles for each command.
+
+- The `NAME` of the contact or task must be [alphanumeric](#glossary) and can contain white spaces.
+
+
+- The `TEAM NAME` must be alphanumeric.
+
+
+- The `PHONE_NUMBER` is divided into 3 sections, namely the country code, area code and phone
+  number in that order. Both the country and area code can have **1-4 digits**, and the phone number can
+  be **3 digits or more**. All 3 sections must be separated by a white space. The `PHONE_NUMBER` may also
+  begin with a (`+`) symbol. The country and area codes are entirely **optional**.
+
+
+- The `EMAIL` of the contact must have an `@` symbol. We will refer to anything before the `@`
+  symbol as `PART 1` and anything after the symbol to be `PART 2`.
+
+    - `PART 1`: Can only contain alphanumeric characters and special characters such as (`+\_.-`).
+      You may only start or end `PART 1` with alphanumeric characters.
+
+    - `PART 2`: Must have at least one period (`.`). We will refer to text separated by periods as
+      domain labels.
+        - `PART 2` must end with a domain label at least **2 characters long**.
+        - Each domain label must start and end with alphanumeric characters.
+        - Each domain label can only consist of alphanumeric characters and hyphens.
+
+
+- The `ADDRESS` of a contact can take any values, but it should not be blank.
+
+
+- The `TAG` must be alphanumeric.
+
+
+- The `INDEX` must be a positive whole number which cannot exceed the number of groups, contacts or tasks currently displayed in the
+  application window.
+
+
+- The `KEYWORD` and `MORE_KEYWORDS` must be alphanumeric.
 
 ### Making groups within groups
 
@@ -170,11 +246,11 @@ This section aims to help you understand the concept of creating groups under ot
  
 Here is a scenario. Let us say you are a boss of a company called **Just_Incorporated**, and you would like to track
 the different departments in your company. Therefore, the departments in the company
-(e.g. Marketing and Research and development department) could act as groups within Contactmation.
+(e.g. `Marketing` and `Research_And_Development` department) could act as groups within Contactmation.
 
-However, let us also say that you are closely monitoring a particular group in the Research and development
-department, and let us call this group is **Vero_Ltd**. Then this group, **Vero_Ltd**, would
-fall under the **Research and development** group in Contactmation.
+However, let us also say that you are closely monitoring a particular group in the `Research_And_Development`
+department, and let us call this group is `Vero_Ltd`. Then this group, `Vero_Ltd`, would
+fall under the **`Research_And_Development`** group in Contactmation.
 
 Here is how the grouping for this scenario would look like in theory:
 
@@ -184,95 +260,253 @@ This will be how the grouping looks like in Contactmation:
 
 ![Group within group illustration in contactmation](images/Group_within_group_illustration_contactmation.png)
 
-Note that **Vero_Ltd** is listed in group 3 as `/Research_And_Development/Vero_Ltd`.
-This means that **Vero_Ltd** is within the group `Research_And_Development`.
+Note that `Vero_Ltd` is listed in group 3 as `/Research_And_Development/Vero_Ltd`.
+This means that `Vero_Ltd` is within the group `Research_And_Development`, and this is shown with
+the name of the group `Vero_Ltd` appearing after `Research_And_Development` followed by a slash (`/`)
+separating the two names.
 
-> How do I create groups within groups?
+Now that you understand what it means to have a group inside another group, you might want
+to view specific information about a certain group and ignore other group information.
 
-You can create groups within groups by using the [cg](#navigate-to-a-team) command.
-For more information on how to type the [command](#glossary), please visit the section on
-[standardised format styling](#standardised-format-style) that is used to type all commands.
+> How do I restrict what I see on the display to only a specific group?
 
----
+Let us say you are only interested in seeing everything related to the `Research_And_Development` department 
+and nothing else. In this case, you might want to restrict what you see on the Contactmation display 
+to only view information within `Research_And_Development`.
 
-## **Quick start**
+When you do this, all the other information in other groups (e.g. `Marketing`) will no longer
+appear on your Contactmation display. Do not worry, all the other information is not lost. Information
+about other groups are simply hidden from your view so that you can focus on `Research_And_Development`.
 
-1. Ensure that the [prerequisites](#prerequisites) are met before installing Contactmation.
+To "zoom into" a specific group, you can use the [cg](#navigate-to-a-team) command.
 
-2. Download the latest version of `contactmation.jar` from
-   [here](https://github.com/AY2223S1-CS2103T-T11-1/tp/releases). The file `contactmation.jar`
-    can be found under the `Assets` for each version of Contactmation.
+<div markdown="block" class="alert alert-info">
+**:information_source: How to type the commands properly:**<br>
 
-![Find the Contactmation jar file](images/QuickStartFindJar.png)
+For more information on how to type the command, please visit the sections on
+[standardised format styling](#standardised-format-style) and [placeholder constraints](#constraints-of-placeholder-words)
+that is used to type all commands.
 
-3. Save `contactmation.jar` into a Desktop folder on your computer. This folder will now be the home folder
-    for Contactmation. Do look at the [FAQ](#faq) section for errors related to opening files used in Contactmation.
+</div>
 
-4. Double-click on `contactmation.jar` to start up the application. You will be greeted with the current window
-   if everything goes well:
+:bulb: **Tip**: The [cg](#navigate-to-a-team) command is also used to view all your other groups again.
 
-![Contactmation ui main window](images/ContactmationUiClean.png)
+Following the above example, `cg 2` needs to be typed into the command box for you to view
+`Research_And_Development`, since the `Research_And_Development` department is listed as group 2 in the 
+Contactmation display.
 
-> **Note:** If you wish to clear all default entries, use the [clear](#clear-command-clear) command.
+The following screen should appear upon pressing `Enter`:
 
+![Successful cg execution](images/ChangeGroupCommandDisplayExample.png)
 
-5. You may begin by referring to the [basic features](#basic-features) section to get started on using
-   Contactmation. For additional, more powerful commands, refer to our [advanced features](#advanced-features),
-   especially if you are comfortable with the CLI or have prior programming experience.
+We can see that the `Marketing` and `Research_And_Development` departments can no longer be seen.
+We are not able to see the `Marketing` department because now, we are focusing solely on the
+`Research_And_Development` department. 
+
+> What happened to the `Research_And_Development` department?
+
+At the bottom left-hand corner of the [application window](#contactmation-window-guide), we can see
+the current group we are in. 
+
+Therefore, what we are seeing now is **any groups, contacts or tasks that exist within `Research_And_Development`
+only**. Since `Vero_Ltd` is under the `Research_And_Development` group, it still can be seen on the display. 
+
+> How do I create a group within another group?
+
+Let's assume you want to create another group, `Kong_Pte_Ltd`, under the `Vero_Ltd` group.
+So, you will have to use the `cg` command to first "zoom in" to `Vero_Ltd` and restrict what you are seeing
+on the display. So we will need to type `cg 1` in the [command box](#contactmation-window-guide) and execute the 
+statement.
+
+Now, you are within the `Vero_Ltd` group. You may now create a subgroup within `Vero_Ltd` by executing the 
+[team new](#create-a-team) command. In this case, you can type `team new Kong_Pte_Ltd` to create `Kong_Pte_Ltd`
+within `Vero_Ltd`:
+
+![Add subgroup to group](images/AddGroupCommandDisplayExample.png)
+
+The `Kong_Pte_Ltd` group is now created within `Vero_Ltd`!
 
 ---
 
 ## **Features**
 
-With Contactmation, you can not only use the **basic features** to manage your group project, but also use 
-**advanced features** to customise your experience to fit your personal needs.
+With Contactmation, you can not only use the [**basic features**](#basic-features) to manage your group project, but also use 
+[**advanced features**](#advanced-features) to customise and streamline your experience in Contactmation.
+
+However, if you are a new user of Contactmation, we recommend sticking
+to just the basic features. The basic features are more than enough to provide for all your needs
+with respect to group, contact and task management, whereas the advanced features only help with
+increasing the efficiency of using the application on large numbers of groups, contacts and tasks.
+
+Do visit the [standardised format style](#standardised-format-style) and the 
+[format constraint](#constraints-of-placeholder-words) sections before writing commands
+in Contactmation.
 
 ## Basic features
 
-Now that you have finished setting up Contactmation, let’s start performing basic tasks with Contactmation.
+Now that you have finished setting up Contactmation, let’s start performing basic [commands](#glossary) with Contactmation.
 As Contactmation aims to help you manage your contacts, project groups and tasks, we will start off by performing
-a range of basic commands varying from adding a person to manipulating tasks and teams.
+a range of basic commands varying from adding a person to manipulating tasks and groups.
 
 The basic features are categorised as the following:
-1. General Commands
-2. Contact Commands
-3. Team Commands
-4. Task Commands
+1. [General Commands](#1-general-commands)
+2. [Team/Group Commands](#2-teamgroup-commands)
+3. [Contact Commands](#3-contact-commands)
+4. [Task Commands](#4-task-commands)
 
-## Contact commands
+## 1. General commands
 
-### Constraints on contact information
+These commands do not specifically target individual groups, contacts or tasks.
 
-The following contact commands comply with these placeholder constraints:
+### Clear command: `clear`
 
-- The `NAME` of the contact must be alphanumeric and can contain whitespace.
-- The `PHONE_NUMBER` of the contact must be at least 3 digits long.
-- The `EMAIL` of the contact must be in the format `local-part@domain`.
+This command clears all group, contact and task entries from the application. You can write this command if you are,
+for example, leaving a company and deciding to wipe all data related to the company.
 
-  - `Local-part`: Only contain alphanumeric characters and these special characters, excluding
-    the parentheses, (+\_.-). The local-part may not start or end with any special characters.
-  - `Domain`:
+:exclamation: **Caution: This action is irreversible! Please make sure that you really want to 
+delete all your information before doing so.**
 
-    - Ends with a domain label at least 2 characters long.
-    - Have each domain label start and end with alphanumeric characters.
-    - Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
+**Format:** `clear`
 
-- The `ADDRESS` can take any values, but it should not be blank.
-- The `TAG` must be alphanumeric.
-- The `INDEX` must be a positive integer which cannot exceed the number of contacts currently displayed in the
-  application.
-- The `KEYWORD` and `MORE_KEYWORDS` must be alphanumeric.
+### Exits the program: `exit`
 
-### Create a Contact
+When this command is executed, the program will **save** the current session and **close** the application.
 
-Let us start off by adding a person to Contactmation. To add a contact, you can use the command `person new`, followed by the name of the person. You can also choose to provide the phone number, email and address to each person, or add a tag to identify each person.
+**Format:** `exit`
+
+## 2. Team/Group commands
+
+Contactmation allows you to group your contacts into teams. This section will showcase the different commands that
+can be used on groups.
+
+Team-related commands in Contactmation begin with the `team` keyword.
+
+### Create a Team
+
+Contactmation provides the `team new` command to create a new team with a specified team name.
+
+**Format**: `team new <TEAM_NAME>`
+
+The above command creates a new team with a specified team name. The team name should not contain any spaces, and should
+consist of alphanumeric characters with hyphens or underscores only.
+
+**Examples**:
+
+- `team new CS1101S`
+- `team new Krusty_Krab_contacts`
+
+![Create Team Screenshot](images/user-guide-img/CreateTeamScreenshot.PNG)
+
+### Delete a Team
+
+To delete a team from Contactmation, you can use the `team delete` command followed with the team number as specified in
+the team list.
+
+**Format**: `team delete <INDEX>`
+
+**Examples**:
+
+- `team delete 1`
+    - The above command deletes team number 1 in the list of teams.
+
+### Removing contacts from team: `team remove`
+
+Removes the contact from the current group by their currently specified `INDEX` as shown in
+the application window.
+
+**Format:** `team remove <INDEX>`
+
+**Example:**
+
+- `team remove 3`
+    - This command removes contact number 3 in the specified team.
+
+### Navigate to a Team
+
+To perform commands specific to a team, you will have to navigate first to that specific team. You can use the `cg`
+command to navigate to a specified team. This command updates the group scope that is currently being displayed in
+the application.
+
+This command is similar to going into a folder on your desktop, or stepping
+out of it.
+
+
+> **Note:**
+> Please look at how [scoping](#scoping) works before continuing.
+
+**Formats**:
+
+- `cg <INDEX>`
+- `cg ..` navigates to its parent group. This is similar to stepping out of a folder once.
+- `cg /` navigates to its root group. This is similar to moving your current context to the root folder.
+
+**Examples**:
+
+- `cg 3`
+    - The above command allows you to navigate to team number 3 in the list of teams.
+    - Before:
+      ![Create Team Screenshot](images/user-guide-img/NavigateTeamBeforeScreenshot.PNG)
+    - After:
+      ![Create Team Screenshot](images/user-guide-img/NavigateTeamAfterScreenshot.PNG)
+- `cg ..`
+
+<aside>
+
+💡 If you are familiar with UNIX-based operating systems such as Linux or familiar with using terminal, the navigation
+command (`cg`) in Contactmation follows a similar syntax to the change directory command (`cd`).
+
+</aside>
+
+### Add New contacts within a Team
+
+Once you have navigated to a team, you can add a new contact within that team, which is done through the same command
+as adding a contact to Contactmation.
+
 
 **Format**: `person new n/<NAME> [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
 
 **Examples**:
 
 - `person new n/Spongebob`
-- `person new n/Squidward Tentacles p/01234567 e/squidward@gmail.com a/Bikini Bottom Krusty Krab t/Employee`
+- `person new n/Squidward Tentacles p/01234567 e/squidward@gmail.com a/Bikini Bottom Krusty Krab t/contact`
+
+### Removing a Contact from a Team
+
+To remove a contact from a team, first ensure that you have navigated to that specific team. Afterwards, you can remove
+the person by using the `team remove` command.
+
+**Format**: `team remove <INDEX>`
+
+**Examples**:
+
+- `team remove 1`
+    - The above command removes person number 1 from the list of persons within the team.
+
+### Creating and Deleting a Subteam
+
+Contactmation allows the creation and deletion of a subteam within a team using the same command as
+[creating a team](#create-a-team) and [deleting a team](#delete-a-team).
+
+## 3. Contact commands
+
+Contact commands are used to manage people within Contactmation. The following commands are used to create,
+modify and delete people within Contactmation. This section will showcase the different commands that
+can be used on people.
+
+Contact-related commands precede with the `person` keyword.
+
+### Create a Contact
+
+Let us start off by adding a person to Contactmation. To add a contact, you can use the command `person new`, 
+followed by the name of the person. You can also choose to provide the phone number, email and address 
+to each person, or add a tag to identify each person.
+
+**Format**: `person new n/<NAME> [p/<PHONE>] [e/<EMAIL>] [a/<ADDRESS>] [t/<TAG>]...`
+
+**Examples**:
+
+- `person new n/John Mays`
+- `person new n/Hilbert Stewart p/+91 368 91829383 e/hilbertstewart@gmail.com a/68 Hudson Street t/friend`
 
 ![Add Person Screenshot](images/user-guide-img/PersonNewScreenshot.PNG)
 
@@ -292,26 +526,6 @@ Contactmation supports the `list` command that displays all of your contacts int
 
 **Format**: `list`
 
----
-
-## General commands
-You can use these commands used on all 3 categories of commands, namely **command**, **team**, and **task** commands.
-These commands are also irrespective of the [scope](#scoping) you are in.
-
-
-### Clear command: `clear`
-
-This command clears all group, contact and task entries from the application. You can do this to commemorate the end of 
-a project, and kickstart a new one.
-
-
-<div markdown="span" class="alert alert-primary">❗ **WARNING** <br>
-THIS ACTION IS IRREVERSIBLE! RUN THIS COMMAND AT YOUR OWN DISCRETION**
-</div>
-
-
-**Format:** `clear`
-
 ### Find command: `find`
 
 Searches for a contact, group or task that matches the given `KEYWORD`. Searches may also include `MORE_KEYWORDS`
@@ -325,12 +539,6 @@ to further narrow the search for a contact, subgroup or task within the current 
 - `task find task1 task2`
 - `team find task1 task2`
 
-### Exits the program: `exit`
-
-Exits the current session and closes the application.
-
-**Format:** `exit`
-
 ---
 
 ## Contact commands
@@ -339,28 +547,6 @@ Now, you should use these set of commands to add the members of your project.
 The commands will allow you to add the necessary information on your members with ease as well.
 Moreover, our software ensures that the information of the member you added, as a contact, is valid.
 Contact-related commands precede with the `person` keyword.
-
-#### Things to note when using contact commands
-
-The following contact commands comply with these placeholder constraints:
-
-- The `NAME` of the contact must be alphanumeric and can contain whitespace.
-- The `PHONE_NUMBER` of the contact must be at least 3 digits long.
-- The `EMAIL` of the contact must be in the format `local-part@domain`.
-
-    - `local-part`: Only contain alphanumeric characters and these special characters, excluding
-      the parentheses, (+\_.-). The local-part may not start or end with any special characters.
-    - `domain`:
-
-        - Ends with a domain label at least 2 characters long.
-        - Have each domain label start and end with alphanumeric characters.
-        - Have each domain label consist of alphanumeric characters, separated only by hyphens, if any.
-
-- The `ADDRESS` can take any values, but it should not be blank.
-- The `TAG` must be alphanumeric.
-- The `INDEX` (the number of the person in the list) must be a positive integer which cannot exceed the number of contacts currently displayed in the
-  application.
-- The `KEYWORD` and `MORE_KEYWORDS` must be alphanumeric.
 
 ### Create a Contact
 
@@ -371,7 +557,7 @@ Let us start off by adding a person to Contactmation. To add a contact, you can 
 **Examples**:
 
 - `person new n/Spongebob`
-- `person new n/Squidward Tentacles p/01234567 e/squidward@gmail.com a/Bikini Bottom Krusty Krab t/Employee`
+- `person new n/Squidward Tentacles p/01234567 e/squidward@gmail.com a/Bikini Bottom Krusty Krab t/contact`
 
 ![Add Person Screenshot](images/user-guide-img/PersonNewScreenshot.PNG)
 
@@ -398,134 +584,12 @@ Contactmation supports the `list` command that displays all of your contacts int
 
 ---
 
-## Team commands
+## 4. Task commands
 
-Contactmation allows you to group your contacts into teams, which allows you to issue and assign tasks to members of
-specific teams. Team-related commands in Contactmation begin with the `team` keyword.
-
-
-#### Things to note when using team commands
-
-The following team commands comply with these placeholder constraints:
-
-- The `TEAM NAME` must be alphanumeric.
-- The `INDEX`(the number of the team in the list) must be a positive integer which cannot exceed the number of contacts / teams currently displayed
-  in the application.
-
-### Create a Team
-
-Contactmation provides the `team new` command to create a new team with a specified team name.
-
-**Format**: `team new <TEAM_NAME>`
-
-The above command creates a new team with a specified team name. The team name should not contain any spaces, and should
-consist of alphanumeric characters with hyphens or underscores only.
-
-**Examples**:
-
-- `team new CS1101S`
-- `team new Krusty_Krab_Employees`
-
-![Create Team Screenshot](images/user-guide-img/CreateTeamScreenshot.PNG)
-
-### Delete a Team
-
-To delete a team from Contactmation, you can use the `team delete` command followed with the team number as specified in
-the team list.
-
-**Format**: `team delete <INDEX>`
-
-**Examples**:
-
-- `team delete 1`
-  - The above command deletes team number 1 in the list of teams.
-
-### Removing contacts from team: `team remove`
-
-Removes the contact from the current group by their currently specified `INDEX` as shown in
-the application window.
-
-**Format:** `team remove <INDEX>`
-
-**Example:**
-
-- `team remove 3`
-  - This command removes contact number 3 in the specified team.
-
-### Navigate to a Team
-
-To perform commands specific to a team, you will have to navigate first to that specific team. You can use the `cg`
-command to navigate to a specified team. This command updates the group scope that is currently being displayed in
-the application.
-
-This command is similar to going into a folder on your desktop, or stepping
-out of it.
-
-
-> **Note:**
-> Please look at how [scoping](#scoping) works before continuing.
-
-**Formats**:
-
-- `cg <INDEX>`
-- `cg ..` navigates to its parent group. This is similar to stepping out of a folder once.
-- `cg /` navigates to its root group. This is similar to moving your current context to the root folder.
-
-**Examples**:
-
-- `cg 3`
-  - The above command allows you to navigate to team number 3 in the list of teams.
-  - Before:
-    ![Create Team Screenshot](images/user-guide-img/NavigateTeamBeforeScreenshot.PNG)
-  - After:
-    ![Create Team Screenshot](images/user-guide-img/NavigateTeamAfterScreenshot.PNG)
-- `cg ..`
-
-<aside>
-
-💡 If you are familiar with UNIX-based operating systems such as Linux or familiar with using terminal, the navigation 
-command (`cg`) in Contactmation follows a similar syntax to the change directory command (`cd`).
-
-</aside>
-
-### Add New Contacts within a Team
-
-Once you have navigated to a team, you can add a new contact within that team, which is done through the same command
-as adding a contact to Contactmation.
-
-
-**Format**: `person new n/<NAME> [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
-
-**Examples**:
-
-- `person new n/Spongebob`
-- `person new n/Squidward Tentacles p/01234567 e/squidward@gmail.com a/Bikini Bottom Krusty Krab t/Employee`
-
-### Removing a Contact from a Team
-
-To remove a contact from a team, first ensure that you have navigated to that specific team. Afterwards, you can remove
-the person by using the `team remove` command.
-
-**Format**: `team remove <INDEX>`
-
-**Examples**:
-
-- `team remove 1`
-  - The above command removes person number 1 from the list of persons within the team.
-
-### Creating and Deleting a Subteam
-
-Contactmation allows the creation and deletion of a subteam within a team using the same command as
-[creating a team](#create-a-team) and [deleting a team](#delete-a-team).
-
-
-## Task commands
 After adding your **contacts**, and allocating them into **teams**, you can give them **tasks**!
-Task-related commands precede with the `task` keyword.
+This section will showcase the different commands that can be used on tasks.
 
-#### Things to note when using contact commands
-- The `INDEX`(the number of the team in the list) must be a positive integer which cannot exceed the number of contacts / teams currently displayed
-in the application.
+Task-related commands precede with the `task` keyword.
 
 ### Adding a task to a team: `task add`
 
@@ -792,6 +856,20 @@ for popular Linux distributions such as Ubuntu.
 
 Follow the guide for installing `Java 11` [here](https://www.javatpoint.com/javafx-how-to-install-java).
 
+> Why does my group name start with a `/`?
+
+You might encounter this when adding a group to Contactmation:
+
+![Group in Contactmation](images/FaqGroupSlash.png)
+
+This is because the `Marketing` group is under the [root group](#glossary), which is named by 
+default with a slash (`/`). Therefore, when a group name is `/Marketing`, it means that the `Marketing`
+group is a subgroup of the root group.
+
+> How do I save my preferred window size when viewing Contactmation?
+
+You can do this by exiting using the [exit](#exits-the-program-exit) command.
+
 > Why is there an error in my result display stating: `Unable to save your information!`?
 
 This is due to an error in saving your Contactmation details in a separate file.
@@ -813,6 +891,8 @@ within the `data` folder. The following steps are for `config`, `preferences` an
 4. Under `Attributes` in the `General` section, ensure that `Read-only` is **not ticked**.
 
 5. Click `Apply` and `OK` to save your changes.
+
+6. Repeat steps 3 to 5 with the `config`, `preferences` and the `addressbook` file.
 
 > Will this application also apply to a general, non-professional user?
 
@@ -838,13 +918,14 @@ Our future plans for Contactmation includes:
 | CLI / Command Line Interface | You can only interact with the application through text, which is typed in the [command box](#contactmation-window-guide).|
 | Command / Command sequence | What you would write in the command box to interact with the application.                |
 | Contact          | A contact with contact information.                                                                |
+| Alphanumeric     | The text can contain capitalised and non-capitalised alphabets and numbers only.                   |
 | Team             | A container that contains people that work on a similar project.                                   |
 | Index            | The numerical placing of a group, contact or task in the current application display.              |
 | Item             | An item can refer to a group, contact or task.                                                     |
 | Pipe             | The output of the previous section of commands will be used as input for the next set of commands. |
-| Root group       | Refers to the application not being in any scope.                                                  |
+| Root group       | Refers to the application being able to view all groups in the display.                            |
 | Scope            | A constraint on the groups, people and tasks you are able to view at one time on the display.      |
-| Task             | Assigned to people or groups.                                                                       |
+| Task             | Assigned to people or groups.                                                                      |
 | Word             | Text in a command sequence that is separated from other words by a white space.                    |
 
 ## **Command summary**

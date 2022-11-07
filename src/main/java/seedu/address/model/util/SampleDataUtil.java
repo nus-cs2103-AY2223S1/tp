@@ -78,18 +78,18 @@ public class SampleDataUtil {
      * @return static list of sample {@code Group} with sample data.
      */
     public static Group[] getSampleGroups() {
-        Group g1 = new Group("ABC Company");
+        Group g1 = new Group("ABC_Company");
         g1.addAttribute(new Address("ABC building #06-06"));
         g1.addAttribute(new Email("companyEmail@email.com"));
         g1.addTags("Job", "Architecture");
 
-        Group g2 = new Group("Project Alpha");
+        Group g2 = new Group("Project_Alpha");
         g2.addAttribute(new Address("BCD building #07-07"));
         g2.addAttribute(new Email("companyEmail2@gmail.com"));
         g2.addTags("ProjectAlpha");
         g2.setParent(g1);
 
-        Group g3 = new Group("Home contacts");
+        Group g3 = new Group("Home_contacts");
         g3.addAttribute(new Address("Blk 59 Choa Chu Kang North 5, #04-04"));
         g3.addAttribute(new Phone("63636363"));
         g3.addTags("Home");
