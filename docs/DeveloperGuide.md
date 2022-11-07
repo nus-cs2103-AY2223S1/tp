@@ -347,33 +347,34 @@ Therefore, there is a lot of potential for UI to be integrated with the find fea
 
 #### Implementation
 
-The list type feature is motivated by the existence of the three different entities that are manipulated by myStudent, namely `Student`, `Tutor` and `TuitionClass`. 
-It is implemented as an enum class `ListType` in `Model` which includes three values: `STUDENT_LIST`, `TUTOR_LIST` and `TUITIONCLASS_LIST`. 
+The list type feature is motivated by the existence of the three different entities that are monitored by myStudent, namely `Student`, `Tutor` and `TuitionClass`. 
+It is implemented as an enum class `ListType` in the `Model` which includes three values: `STUDENT_LIST`, `TUTOR_LIST` and `TUITIONCLASS_LIST`. 
 
-The current list type is kept as a `ListType` field `type` in `ModelManager` which implements `Model`. 
-As `Student`, `Tutor` and `TuitionClass` instances are stored in `filteredStudent`, `filterdTutors` and `filterdTuitionClass` in `ModelManager`, the `type` field in `ModelManager` would indicate which of the three would be operated on by the `Logic` component when a command is executed. 
-Additionally, to allow access by the `Logic` component, `Model` implements setter and getter methods for the `type`:
+The current list type is kept as a `ListType` field `type` in the `ModelManager` which implements the `Model`. 
+The `Student`, `Tutor` and `TuitionClass` instances are stored in the `filteredStudent`, `filterdTutors` and `filterdTuitionClass` respectively in the `ModelManager`, and the `type` field in the `ModelManager` indicates which of the three would be operated on by the `Logic` component when a certain command is executed. 
+Additionally, to allow access by the `Logic` component, the `Model` implements setter and getter methods for the `type`:
 
 * `Model#updateCurrentListType()` - Updates the `type` to the specified list type.
 * `Model#getCurrentListType()` - Returns the `type` that the `ModelManager` currently stores.
-* `Model#getCurrentList()` - Returns the current filtered list from `filteredStudents`, `filteredTutors` and `filteredTuitionClass` directly according to the current list type.
+* `Model#getCurrentList()` - Returns the current filtered list from the `filteredStudents`, `filteredTutors` and `filteredTuitionClass` directly according to the current list type.
 
-The operations are exposed to `Logic` interface as `Logic#updateCurrentListType()`, `Logic#getCurrentListType()` and `Logic#getCurrentList()` respectively. Since `Ui` keeps a reference to `Logic`, these operations can be accessed by `Ui` as well.
+The operations are exposed to the `Logic` interface as `Logic#updateCurrentListType()`, `Logic#getCurrentListType()` and `Logic#getCurrentList()` respectively. Since the `Ui` keeps a reference to the `Logic`, these operations can be accessed by the `Ui` as well.
 
-`ListType` `type` is referred to by any method that needs to access to the type of the current list. Given below is an example usage scenario including `ListTutorCommand` and how the list type mechanism behaves in each step.
+The `ListType` field `type` in the `ModelManager` is referred to by any method that needs to access to the type of the current list. Given below is an example usage scenario including the `ListTutorCommand` and how the list type mechanism behaves in each step.
 
-Step 1. The user launches the application for the first time. The `ModelManager` would be initialised and the `type` is set to the default list type which is `STUDENT_LIST`.
+Step 1. The user launches the application for the first time. The `ModelManager` would be initialised and the `type` is set to the default list type which is the `STUDENT_LIST`.
 
-Step 2. The user executes `list tutor` command to list out tuition classes by calling `ListTutorCommand`. The `ListTutorCommand` calls `Model#updateCurrentListType()` with `TUTOR_LIST` being the parameter, causing the `type` field in `ModelManager` to update to `TUTOR_LIST`. 
+Step 2. The user executes `list tutor` command to list out tuition classes by calling `ListTutorCommand`. The `ListTutorCommand` calls `Model#updateCurrentListType()` with the `TUTOR_LIST` being the parameter, causing the `type` field in the `ModelManager` to update to the `TUTOR_LIST`. 
 
 Step 3. The command then returns a `commandResult` with its `commandType` field being `LIST`. This will cause calling `commandResult.isList()` to return true. 
 
-Step 4. The `commandResult` is then returned to the `commandResult` in the `executeCommand()` method in `MainWindow`. The `executeCommand()` method then checks that `commandResult.isList()` returns true and calls `MainWindow#handleList()`.
+Step 4. The `commandResult` is then returned to the `commandResult` in the `executeCommand()` method in the `MainWindow`. The `executeCommand()` method then checks that `commandResult.isList()` returns true and calls `MainWindow#handleList()`.
 
-Step 5. The `handleList()` method checks the `type` in `ModelManager` with `Logic#getCurrentListType()`. Since the `type` is set to `TUTOR_LIST`, `MainWindow#handleList()` will clear the children of `entityListPanelPlaceholder`, and add `tutorListPanel` to it, which holds the `Tutor` list.
+Step 5. The `handleList()` method checks the `type` in the `ModelManager` with `Logic#getCurrentListType()`. Since the `type` is set to the `TUTOR_LIST`, `MainWindow#handleList()` will clear the children of the `entityListPanelPlaceholder`, and add the `tutorListPanel` to it, which holds the `Tutor` list. 
+This will update the Ui to display the `Tutor` list.
 
-Step 6. The `handleList()` method then calls `setLabelStyle()`. Similar to `handleList()`, `setLabelStyle()` calls `Logic#getCurrentListType()` to get the `type` in `ModelManager` and set the style class of the `tutorLabelPanel` to `SELECTED_CLASS_LABEL_STYLE_CLASS`, and the `studentLabelPanel` along with the `tuitionClassLabelPanel` to `UNSELECETED_LABEL_STYLE_CLASS`. 
-This will cause the `List Tabs` on top of the `List Display Panel` in Ui changes to highlight the current displayed list, the `TuitionClass` list.
+Step 6. The `handleList()` method then calls `setLabelStyle()`. Similar to `handleList()`, `setLabelStyle()` calls `Logic#getCurrentListType()` to get the `type` in the `ModelManager` and set the style class of the `tutorLabelPanel` to `SELECTED_CLASS_LABEL_STYLE_CLASS`, and the `studentLabelPanel` along with the `tuitionClassLabelPanel` to `UNSELECETED_LABEL_STYLE_CLASS`. 
+This will update the Ui such that the `List Tabs` on top of the `List Display Panel` in Ui will highlight the current displayed list, the `Tutor` list.
 
 The following sequence diagram shows how the `list` operation works:
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
