@@ -80,34 +80,6 @@ To tell if you already have the correct version of Java installed on your system
 4. The GUI similar to the below will appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/ug-images/Ui-explanations.png)
    
-## Troubleshooting   
-### Checking your system's Java version
-
-This section covers the technical issues you may run into while using checkUp.
-
-**Checking your system's Java version**
-
-To check that your system has the correct Java version (Java 11 and above) to run checkUp, you can follow the steps below:
-
-Open your terminal.
-* Windows
-   * Use Win + S to open search.
-  * Type in 'Terminal' to search for it and click on it to launch.
-
-* macOS
-  * Use Cmd + Space to open Spotlight search.
-  * Type in 'Terminal' to search for it and click on it to launch.
-* Linux
-  * Use Ctrl + Alt + T to open the Terminal.
-  * In your terminal, type in java --version and click enter.
-The following image shows an example what will show up in macOS, but you can expect a similar result in Windows.
-
-
-The number in the red highlight rectangle tells you the Java version installed. 
-For example, the Java version installed on the example system is Java 11.0.16, which is sufficient to run checkUp as it is greater than Java 11.
-
-If you do not see a similar result in the terminal after Step 3, or have an earlier version of Java, 
-head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/) to install Java.
 
 <sub><sup>[back to top](#back-to-topt)</sup></sub>
 
@@ -762,5 +734,45 @@ the data of your previous checkUp home folder.
 | [**clear**](#clearing-all-entries--clear)                     | `clear`                                                                                                                                                                                                                                                                                                                                            |
 | [**help**](#open-the-help-page--help)                         | `help`                                                                                                                                                                                                                                                                                                                                             |
 | [**exit**](#exiting-the-program--exit)                        | `exit`                                                                                                                                                                                                                                                                                                                                             |
+
+
+<sub><sup>[back to top](#back-to-topt)</sup></sub>
+
+## Troubleshooting
+### Checking your system's Java version
+
+This section covers the technical issues you may run into while using checkUp.
+
+**Checking your system's Java version**
+
+To check that your system has the correct Java version (Java 11 and above) to run checkUp, you can follow the steps below:
+
+Open your terminal.
+* Windows
+    * Use Win + S to open search.
+    * Type in 'Terminal' to open the terminal.
+    * In your terminal, type in `java --version` and click enter.
+
+* macOS
+    * Use Cmd + Space to open Spotlight search.
+    * Type in 'Terminal' to open the terminal.
+    * In your terminal, type in `java --version` and click enter.
+
+* Linux
+    * Use Ctrl + Alt + T to open the Terminal.
+    * In your terminal, type in `java --version` and click enter. <br>
+
+
+The following image shows an example what will show up in Windows,
+but you can expect a similar result in other operating systems.
+
+![Troubleshooting](images/ug-images/troubleshooting.png)
+
+
+The number in the red highlight rectangle tells you the Java version installed.
+For example, the Java version installed on the example system is Java 11.0.9, which is sufficient to run checkUp as it is greater than Java 11.
+
+If you do not see a similar result in the terminal after Step 3, or have an earlier version of Java,
+head over to [Oracle's Java download page](https://www.oracle.com/java/technologies/downloads/) to install Java.
 
 <sub><sup>[back to top](#back-to-topt)</sup></sub>
