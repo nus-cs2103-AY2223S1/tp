@@ -19,9 +19,9 @@ import seedu.address.model.team.TeamName;
 
 class DeleteTeamCommandTest {
 
-    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
 
-    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
 
     private final Command commandToBeTested = new DeleteTeamCommand();
 
@@ -44,7 +44,7 @@ class DeleteTeamCommandTest {
 
     @Test
     public void execute_deleteTeamInList_success() {
-        commandLine.parseArgs(new String[] {"first"});
+        commandLine.parseArgs("first");
         expectedModel.deleteTeam(FIRST);
         CommandResult expectedResult = new CommandResult(
                 String.format(DeleteTeamCommand.MESSAGE_DELETE_TEAM_SUCCESS, FIRST));
@@ -53,7 +53,7 @@ class DeleteTeamCommandTest {
 
     @Test
     public void execute_deleteTeamNotExist_throwsCommandException() {
-        commandLine.parseArgs(new String[] {"second"});
+        commandLine.parseArgs("second");
         assertThrows(CommandException.class, DeleteTeamCommand.MESSAGE_TEAM_NOT_EXISTS, ()
                 -> commandToBeTested.execute(model));
     }
@@ -61,12 +61,9 @@ class DeleteTeamCommandTest {
     @Test
     public void execute_deleteOnlyTeam_throwsCommandException() {
         model.deleteTeam(FIRST);
-        commandLine.parseArgs(new String[] {"default"});
+        commandLine.parseArgs("default");
         assertThrows(CommandException.class, DeleteTeamCommand.MESSAGE_AT_LEAST_ONE_TEAM, ()
                 -> commandToBeTested.execute(model));
     }
 
-    @Test
-    public void testEquals() {
-    }
 }

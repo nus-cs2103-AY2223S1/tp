@@ -18,8 +18,8 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 class SortMemberCommandTest {
-    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
 
     private final Command commandToBeTested = new SortMemberCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
@@ -44,20 +44,20 @@ class SortMemberCommandTest {
     }
     @Test
     public void execute_unsortedMembersToAscending_success() {
-        commandLine.parseArgs(new String[] {"asc"});
+        commandLine.parseArgs("asc");
         expectedModel.getTeam().sortMembers((t1, t2) -> t1.getName().toString().compareTo(t2.getName().toString()));
         assertCommandSuccess(commandToBeTested, model, SortMemberCommand.MESSAGE_SUCCESS, expectedModel);
     }
     @Test
     public void execute_unsortedMembersToDescending_success() {
-        commandLine.parseArgs(new String[] {"dsc"});
+        commandLine.parseArgs("dsc");
         expectedModel.getTeam().sortMembers((t1, t2) -> t2.getName().toString().compareTo(t1.getName().toString()));
         assertCommandSuccess(commandToBeTested, model, SortMemberCommand.MESSAGE_SUCCESS, expectedModel);
     }
     @Test
     public void execute_sortedAscendingMembersToUnsorted_success() {
         model.getTeam().sortMembers((t1, t2) -> t1.getName().toString().compareTo(t2.getName().toString()));
-        commandLine.parseArgs(new String[] {"res"});
+        commandLine.parseArgs("res");
         assertCommandSuccess(commandToBeTested, model, SortMemberCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

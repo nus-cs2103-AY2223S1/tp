@@ -21,9 +21,9 @@ import seedu.address.testutil.LinkBuilder;
 import seedu.address.testutil.LinkUtil;
 
 class AddLinkCommandTest {
-    private Model model = new ModelManager();
+    private final Model model = new ModelManager();
 
-    private Model expectedModel = new ModelManager();
+    private final Model expectedModel = new ModelManager();
     private final Command commandToBeTested = new AddLinkCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(LinkName.class, new LinkNameConverter())
@@ -53,7 +53,4 @@ class AddLinkCommandTest {
                 -> commandToBeTested.execute(modelStub));
     }
 
-    @Test
-    void testEquals() {
-    }
 }

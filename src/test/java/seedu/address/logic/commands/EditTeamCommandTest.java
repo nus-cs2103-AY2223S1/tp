@@ -23,8 +23,8 @@ import seedu.address.testutil.TeamUtil;
 import seedu.address.testutil.TypicalTeams;
 
 class EditTeamCommandTest {
-    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
     private final Command commandToBeTested = new EditTeamCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(TeamName.class, new TeamNameConverter())

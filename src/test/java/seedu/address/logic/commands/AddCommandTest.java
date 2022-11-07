@@ -13,9 +13,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
 class AddCommandTest {
-    private Model model = new ModelManager();
+    private final Model model = new ModelManager();
 
-    private Model expectedModel = new ModelManager();
+    private final Model expectedModel = new ModelManager();
     private final Command commandToBeTested = new AddCommand();
 
     private final CommandLine commandLine = new CommandLine(commandToBeTested);

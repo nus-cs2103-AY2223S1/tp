@@ -21,8 +21,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.team.Task;
 
 class UnmarkCommandTest {
-    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
 
     private final Command commandToBeTested = new UnmarkCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
@@ -44,7 +44,7 @@ class UnmarkCommandTest {
 
     @Test
     public void execute_marked_success() {
-        commandLine.parseArgs(new String[] {"1"});
+        commandLine.parseArgs("1");
         Task unmarkedTask = TASK_MARKED.mark(false);
         expectedModel.getTeam().setTask(TASK_MARKED, unmarkedTask);
         CommandResult expectedResult = new CommandResult(
@@ -55,14 +55,14 @@ class UnmarkCommandTest {
     @Test
     public void execute_alreadyUnmarked_throwsCommandException() {
         model.getTeam().addTask(TASK_CODE);
-        commandLine.parseArgs(new String[] {"2"});
+        commandLine.parseArgs("2");
         assertThrows(CommandException.class, UnmarkCommand.MESSAGE_ALREADY_UNMARKED, ()
                 -> commandToBeTested.execute(model));
     }
 
     @Test
     public void execute_outOfBounds_throwsCommandException() {
-        commandLine.parseArgs(new String[] {"2"});
+        commandLine.parseArgs("2");
         String expectedResult = String.format(MarkCommand.MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, INDEX_TWO.getOneBased());
         assertThrows(CommandException.class, expectedResult, ()
                 -> commandToBeTested.execute(model));

@@ -33,8 +33,8 @@ import seedu.address.testutil.TypicalTasks;
 
 class EditTaskCommandTest {
 
-    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
     private final Command commandToBeTested = new EditTaskCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(Index.class, new IndexConverter())

@@ -24,8 +24,8 @@ import seedu.address.testutil.TypicalTasks;
 
 class AddTaskCommandTest {
 
-    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
     private final Command commandToBeTested = new AddTaskCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(TaskName.class, new TaskNameConverter())
@@ -68,10 +68,6 @@ class AddTaskCommandTest {
     }
 
     @Test
-    public void execute_duplicateTask_throwsCommandException() {
-    }
-
-    @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Task validTask = TypicalTasks.TASK_3;
         commandLine.parseArgs(TaskUtil.convertTaskToArgs(validTask, 2, "2022-12-12", "23:59"));
@@ -79,7 +75,4 @@ class AddTaskCommandTest {
                 -> commandToBeTested.execute(model));
     }
 
-    @Test
-    public void equals() {
-    }
 }

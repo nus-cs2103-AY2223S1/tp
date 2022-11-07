@@ -13,8 +13,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
 class SortCommandTest {
-    private Model model = new ModelManager();
-    private Model expectedModel = new ModelManager();
+    private final Model model = new ModelManager();
+    private final Model expectedModel = new ModelManager();
     private final Command commandToBeTested = new SortCommand();
 
     private final CommandLine commandLine = new CommandLine(commandToBeTested);

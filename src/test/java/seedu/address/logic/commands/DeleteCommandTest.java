@@ -13,10 +13,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
 class DeleteCommandTest {
-    private Model model = new ModelManager();
-    private Model expectedModel = new ModelManager();
+    private final Model model = new ModelManager();
+    private final Model expectedModel = new ModelManager();
     private final Command commandToBeTested = new DeleteCommand();
-
     private final CommandLine commandLine = new CommandLine(commandToBeTested);
 
     @Test

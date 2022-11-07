@@ -25,8 +25,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.team.Task;
 
 class TasksOfCommandTest {
-    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
     private final Command commandToBeTested = new TasksOfCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(Index.class, new IndexConverter());
@@ -53,7 +53,7 @@ class TasksOfCommandTest {
 
     @Test
     public void execute_haveTasks_success() {
-        commandLine.parseArgs(new String[] {"1"});
+        commandLine.parseArgs("1");
         Predicate<Task> predicate = task -> task.checkAssignee(ALICE);
         expectedModel.updateFilteredTaskList(predicate);
         CommandResult expectedResult = new CommandResult(
@@ -63,7 +63,7 @@ class TasksOfCommandTest {
 
     @Test
     public void execute_haveNoTasks_success() {
-        commandLine.parseArgs(new String[] {"3"});
+        commandLine.parseArgs("3");
         Predicate<Task> predicate = task -> task.checkAssignee(CARL);
         expectedModel.updateFilteredTaskList(predicate);
         CommandResult expectedResult = new CommandResult(
@@ -74,7 +74,7 @@ class TasksOfCommandTest {
     @Test
     public void execute_indexOutOfBounds_throwsCommandException() {
         int memberSize = model.getFilteredMemberList().size();
-        commandLine.parseArgs(new String[] {String.valueOf(memberSize + 1)});
+        commandLine.parseArgs(String.valueOf(memberSize + 1));
         String resultString = String.format(TasksOfCommand.MESSAGE_MEMBER_INDEX_TOO_LARGE, INDEX_FOUR.getOneBased());
         assertThrows(CommandException.class, resultString, ()
                 -> commandToBeTested.execute(model));

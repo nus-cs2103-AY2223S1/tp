@@ -24,9 +24,8 @@ import seedu.address.model.team.Task;
 
 class SetDeadlineCommandTest {
 
-    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
-
-    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
     private final Command commandToBeTested = new SetDeadlineCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(Index.class, new IndexConverter());
@@ -48,7 +47,7 @@ class SetDeadlineCommandTest {
 
     @Test
     public void execute_setNewDeadline_success() {
-        commandLine.parseArgs(new String[] {"1", "2023-12-25", "23:59"});
+        commandLine.parseArgs("1", "2023-12-25", "23:59");
         Task newTask = TASK_1.setDeadline(LocalDateTime.of(2023, 12, 25, 23, 59));
         expectedModel.setTask(TASK_1, newTask);
         CommandResult expectedResult = new CommandResult(
@@ -59,7 +58,7 @@ class SetDeadlineCommandTest {
     }
     @Test
     public void execute_invalidTaskIndexUnfilteredList_throwsCommandException() {
-        commandLine.parseArgs(new String[] {"2", "2023-12-25", "23:59"});
+        commandLine.parseArgs("2", "2023-12-25", "23:59");
         String commandResultString = String.format(
                 SetDeadlineCommand.MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, INDEX_TWO.getOneBased());
         assertThrows(CommandException.class, commandResultString, ()

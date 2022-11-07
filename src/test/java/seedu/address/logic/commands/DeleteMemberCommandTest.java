@@ -29,8 +29,8 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
  */
 public class DeleteMemberCommandTest {
 
-    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
 
     private final Command commandToBeTested = new DeleteMemberCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
@@ -52,7 +52,7 @@ public class DeleteMemberCommandTest {
     }
     @Test
     public void execute_unfilteredList_success() {
-        commandLine.parseArgs(new String[] {"1"});
+        commandLine.parseArgs("1");
         expectedModel.getTeam().removeMember(ALICE);
         CommandResult expectedResult = new CommandResult(
                 String.format(DeleteMemberCommand.MESSAGE_DELETE_PERSON_SUCCESS, ALICE));
@@ -61,7 +61,7 @@ public class DeleteMemberCommandTest {
 
     @Test
     public void execute_invalidMemberIndexUnfilteredList_throwsCommandException() {
-        commandLine.parseArgs(new String[] {"3"});
+        commandLine.parseArgs("3");
         assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, ()
                 -> commandToBeTested.execute(model));
     }
@@ -72,7 +72,7 @@ public class DeleteMemberCommandTest {
                 new NameContainsKeywordsPredicate(Collections.singletonList("Benson"));
         model.updateFilteredMembersList(predicate);
         expectedModel.getTeam().removeMember(BENSON);
-        commandLine.parseArgs(new String[] {"1"});
+        commandLine.parseArgs("1");
         CommandResult expectedResult = new CommandResult(
                 String.format(DeleteMemberCommand.MESSAGE_DELETE_PERSON_SUCCESS, BENSON));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
@@ -82,12 +82,10 @@ public class DeleteMemberCommandTest {
     public void execute_invalidMemberIndexFilteredList_throwsCommandException() {
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(List.of("benson"));
         model.updateFilteredMembersList(predicate);
-        commandLine.parseArgs(new String[] {"2"});
+        commandLine.parseArgs("2");
         assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, ()
                 -> commandToBeTested.execute(model));
 
     }
-    @Test
-    public void equals() {
-    }
+
 }

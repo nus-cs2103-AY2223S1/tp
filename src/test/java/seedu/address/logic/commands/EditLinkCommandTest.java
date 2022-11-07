@@ -29,9 +29,9 @@ import seedu.address.testutil.LinkUtil;
 
 class EditLinkCommandTest {
 
-    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
 
-    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
     private final Command commandToBeTested = new EditLinkCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(Index.class, new IndexConverter())
@@ -90,7 +90,4 @@ class EditLinkCommandTest {
                 -> commandToBeTested.execute(model));
     }
 
-    @Test
-    void testEquals() {
-    }
 }

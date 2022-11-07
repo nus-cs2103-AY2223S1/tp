@@ -18,9 +18,9 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.team.TeamName;
 
 class SetTeamCommandTest {
-    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
 
-    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
 
     private final Command commandToBeTested = new SetTeamCommand();
 
@@ -42,7 +42,7 @@ class SetTeamCommandTest {
 
     @Test
     public void execute_setTeamToNewTeam_success() {
-        commandLine.parseArgs(new String[]{"first"});
+        commandLine.parseArgs("first");
         expectedModel.setTeam(FIRST);
         CommandResult expectedResult = new CommandResult(
                 String.format(SetTeamCommand.MESSAGE_SET_TEAM_SUCCESS, FIRST));
@@ -51,14 +51,14 @@ class SetTeamCommandTest {
 
     @Test
     public void execute_setToTeamNotExist_throwsCommandException() {
-        commandLine.parseArgs(new String[]{"second"});
+        commandLine.parseArgs("second");
         assertThrows(CommandException.class, SetTeamCommand.MESSAGE_TEAM_NOT_EXISTS, ()
                 -> commandToBeTested.execute(model));
     }
 
     @Test
     public void execute_setTeamAlreadySet_throwsCommandException() {
-        commandLine.parseArgs(new String[]{"default"});
+        commandLine.parseArgs("default");
         assertThrows(CommandException.class, SetTeamCommand.MESSAGE_TEAM_ALREADY_SET, ()
                 -> commandToBeTested.execute(model));
     }

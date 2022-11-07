@@ -18,8 +18,8 @@ import seedu.address.model.UserPrefs;
 import seedu.address.testutil.TaskUtil;
 
 public class TasksSummaryCommandTest {
-    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
     private final Command commandToBeTested = new TasksSummaryCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested);
 

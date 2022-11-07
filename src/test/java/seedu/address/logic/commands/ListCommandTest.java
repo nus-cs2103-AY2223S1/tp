@@ -13,8 +13,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
 class ListCommandTest {
-    private Model model = new ModelManager();
-    private Model expectedModel = new ModelManager();
+    private final Model model = new ModelManager();
+    private final Model expectedModel = new ModelManager();
     private final Command commandToBeTested = new ListCommand();
 
     private final CommandLine commandLine = new CommandLine(commandToBeTested);

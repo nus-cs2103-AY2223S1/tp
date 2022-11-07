@@ -21,10 +21,8 @@ import seedu.address.model.UserPrefs;
 
 class DeleteLinkCommandTest {
 
-    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
-
-    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
-
+    private final Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
     private final Command commandToBeTested = new DeleteLinkCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(Index.class, new IndexConverter());
@@ -45,7 +43,7 @@ class DeleteLinkCommandTest {
     }
     @Test
     public void execute_unfilteredList_success() {
-        commandLine.parseArgs(new String[] {"1"});
+        commandLine.parseArgs("1");
         expectedModel.deleteLink(LINK_GOOGLE);
         CommandResult expectedResult = new CommandResult(
                 String.format(DeleteLinkCommand.MESSAGE_DELETE_LINK_SUCCESS, LINK_GOOGLE));
@@ -54,22 +52,9 @@ class DeleteLinkCommandTest {
 
     @Test
     public void execute_invalidLinkIndexUnfilteredList_throwsCommandException() {
-        commandLine.parseArgs(new String[] {"3"});
+        commandLine.parseArgs("3");
         assertThrows(CommandException.class, Messages.MESSAGE_INVALID_LINK_DISPLAYED_INDEX, ()
                 -> commandToBeTested.execute(model));
     }
 
-    @Test
-    public void execute_filteredList_success() {
-
-    }
-
-    @Test
-    public void execute_invalidLinkIndexFilteredList_throwsCommandException() {
-
-    }
-
-    @Test
-    public void testEquals() {
-    }
 }

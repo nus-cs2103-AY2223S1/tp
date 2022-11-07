@@ -19,8 +19,8 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
  */
 public class ListPersonsCommandTest {
 
-    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
 
     private final Command commandToBeTested = new ListPersonsCommand();
 
@@ -35,7 +35,7 @@ public class ListPersonsCommandTest {
     }
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        commandLine.parseArgs(new String[] {});
+        commandLine.parseArgs();
         assertCommandSuccess(commandToBeTested, model, ListPersonsCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
@@ -43,7 +43,7 @@ public class ListPersonsCommandTest {
     public void execute_listIsFiltered_showsEverything() {
         NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(List.of("Benson"));
         model.updateFilteredPersonList(predicate);
-        commandLine.parseArgs(new String[] {});
+        commandLine.parseArgs();
         assertCommandSuccess(commandToBeTested, model, ListPersonsCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

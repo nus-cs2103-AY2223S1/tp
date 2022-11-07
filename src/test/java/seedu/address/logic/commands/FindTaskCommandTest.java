@@ -23,8 +23,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.team.TaskNameContainsKeywordsPredicate;
 
 class FindTaskCommandTest {
-    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
     private final Command commandToBeTested = new FindTaskCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(Name.class, new NameConverter())

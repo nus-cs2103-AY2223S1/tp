@@ -34,15 +34,15 @@ public class TypicalTasks {
     public static final Task TASK_REVIEW = new Task(new TaskName("review"), List.of(), false, null);
     public static final Task TASK_1_DETAILS = new Task(new TaskName("task"),
             TYPICAL_MEMBERS, false,
-            LocalDateTime.parse("2023-12-25 23:59", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+            LocalDateTime.parse("2023-12-25 23:59", DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm")));
 
     public static final Task TASK_2_DETAILS = new Task(new TaskName("task 123"),
             TYPICAL_MEMBERS_CARL, false,
-            LocalDateTime.parse("2023-12-25 23:59", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+            LocalDateTime.parse("2023-12-25 23:59", DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm")));
 
     public static final Task TASK_2_NO_ASSIGNEE = new Task(new TaskName("two"),
             List.of(), false,
-            LocalDateTime.parse("2023-12-25 23:59", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+            LocalDateTime.parse("2023-12-25 23:59", DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm")));
     public static final Task TASK_MARKED = new Task(new TaskName("task"),
             List.of(), true, null);
 }

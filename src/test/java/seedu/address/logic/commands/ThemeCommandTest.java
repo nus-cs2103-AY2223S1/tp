@@ -12,8 +12,8 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 public class ThemeCommandTest {
-    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
-    private Model expectedModel = model;
+    private final Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model expectedModel = model;
     private final Command commandToBeTested = new ThemeCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested);
 

@@ -24,9 +24,9 @@ import seedu.address.model.UserPrefs;
 
 public class AddMemberCommandTest {
 
-    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
 
-    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
     private final Command commandToBeTested = new AddMemberCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(Index.class, new IndexConverter());
@@ -50,7 +50,7 @@ public class AddMemberCommandTest {
     @Test
     public void execute_memberAlreadyInTeam_throwsCommandException() {
         model.getTeam().addMember(ALICE);
-        commandLine.parseArgs(new String[] {"1"});
+        commandLine.parseArgs("1");
         assertThrows(CommandException.class, AddMemberCommand.MESSAGE_DUPLICATE_PERSON, ()
                 -> commandToBeTested.execute(model));
     }
@@ -58,7 +58,7 @@ public class AddMemberCommandTest {
     @Test
     public void execute_indexOutOfBounds_throwsCommandException() {
         Integer outOfBoundsIndex = model.getFilteredPersonList().size() + 1;
-        commandLine.parseArgs(new String[] {outOfBoundsIndex.toString()});
+        commandLine.parseArgs(outOfBoundsIndex.toString());
         assertThrows(CommandException.class, AddMemberCommand.MESSAGE_PERSON_INDEX_OUT_OF_BOUNDS, ()
                 -> commandToBeTested.execute(model));
     }

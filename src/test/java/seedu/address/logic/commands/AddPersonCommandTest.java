@@ -25,8 +25,8 @@ import seedu.address.testutil.PersonUtil;
 
 public class AddPersonCommandTest {
 
-    private Model model = new ModelManager();
-    private Model expectedModel = new ModelManager();
+    private final Model model = new ModelManager();
+    private final Model expectedModel = new ModelManager();
     private final Command commandToBeTested = new AddPersonCommand();
     private final CommandLine commandLine = new CommandLine(commandToBeTested)
             .registerConverter(Name.class, new NameConverter())
@@ -57,10 +57,6 @@ public class AddPersonCommandTest {
         commandLine.parseArgs(PersonUtil.convertPersonToArgs(validPerson));
         assertThrows(CommandException.class, AddPersonCommand.MESSAGE_DUPLICATE_PERSON, ()
                 -> commandToBeTested.execute(modelStub));
-    }
-
-    @Test
-    public void equals() {
     }
 
 }

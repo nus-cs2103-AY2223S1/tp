@@ -27,7 +27,7 @@ public class TaskBuilder {
 
     private boolean completionStatus = false;
 
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm");
     /**
      * Creates a {@code TaskBuilder} with the default details.
      */

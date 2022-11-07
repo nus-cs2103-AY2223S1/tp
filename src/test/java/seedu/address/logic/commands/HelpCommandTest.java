@@ -12,9 +12,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 
 public class HelpCommandTest {
-    private Model model = new ModelManager();
+    private final Model model = new ModelManager();
 
-    private Model expectedModel = new ModelManager();
+    private final Model expectedModel = new ModelManager();
     private Command commandToBeTested;
 
     private CommandLine commandLine;
@@ -31,10 +31,5 @@ public class HelpCommandTest {
         CommandResult expectedResult = new CommandResult(
                 HelpCommand.HELP_MESSAGE + commandLine.getUsageMessage());
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
-    }
-
-    @Test
-    public void execute_help_success() {
-
     }
 }

@@ -21,8 +21,8 @@ import seedu.address.model.team.Task;
 import seedu.address.model.team.TaskNameContainsKeywordsPredicate;
 
 class ListTasksCommandTest {
-    private Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalTruthTable(), new UserPrefs());
+    private final Model expectedModel = new ModelManager(getTypicalTruthTable(), new UserPrefs());
 
     private final Command commandToBeTested = new ListTasksCommand();
 
@@ -46,7 +46,7 @@ class ListTasksCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        commandLine.parseArgs(new String[] {});
+        commandLine.parseArgs();
         CommandResult expectedResult = new CommandResult(
                 String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, 2));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
@@ -56,7 +56,7 @@ class ListTasksCommandTest {
     public void execute_listIsFiltered_showsEverything() {
         TaskNameContainsKeywordsPredicate predicate = new TaskNameContainsKeywordsPredicate(List.of("review"));
         model.updateFilteredTaskList(predicate);
-        commandLine.parseArgs(new String[] {});
+        commandLine.parseArgs();
         CommandResult expectedResult = new CommandResult(
                 String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, 2));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
@@ -68,7 +68,7 @@ class ListTasksCommandTest {
         model.getTeam().setTask(TASK_CODE, codeDone);
         expectedModel.getTeam().setTask(TASK_CODE, codeDone);
         expectedModel.updateFilteredTaskList((task) -> !task.isComplete());
-        commandLine.parseArgs(new String[] {"-i"});
+        commandLine.parseArgs("-i");
         CommandResult expectedResult = new CommandResult(
                 String.format(ListTasksCommand.MESSAGE_LIST_INCOMPLETE_TASKS_SUCCESS, 1));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
@@ -80,7 +80,7 @@ class ListTasksCommandTest {
         model.getTeam().setTask(TASK_CODE, codeDone);
         expectedModel.getTeam().setTask(TASK_CODE, codeDone);
         expectedModel.updateFilteredTaskList((task) -> task.isComplete());
-        commandLine.parseArgs(new String[] {"-c"});
+        commandLine.parseArgs("-c");
         CommandResult expectedResult = new CommandResult(
                 String.format(ListTasksCommand.MESSAGE_LIST_COMPLETE_TASKS_SUCCESS, 1));
         assertCommandSuccess(commandToBeTested, model, expectedResult, expectedModel);
