@@ -349,9 +349,10 @@ Examples:
 **Q**: Will my data be lost after closing the application?<br>
 **A**: No, your data will be stored in the `HackAssist.json` file. Data will only be lost if `HackAssist.json` file is deleted.<br>
 **Q**: How do I backup my data?<br>
-**A**: Create a copy of the `HackAssist.json` file in another directory.
+**A**: Create a copy of the `HackAssist.json` file in another directory.<br>
 **Q**: What is the difference between member (members) and person (people)?<br>
 **A**: Member (or team member) refers to `Person` objects in the contact.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Glossary
