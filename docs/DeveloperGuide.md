@@ -352,10 +352,15 @@ The selection of tasks is implemented by acting on the current filtered `TaskPan
 
 7. The command obtains the current state of the `TaskPanel` and `AddressBook` from `Model`.
 8. The `Task` to be modified is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
+
 Note: if the `Index` provided is invalid, an exception will be thrown and user will retype their command.
+
 10. The `Teammate`s to be assigned are fetched from the `AddressBook` using the specified `Index`, using its zero-based form, or through matching his full name.
+
 Note: if the `Index` of teammates is invalid, an exception will be thrown and user will retype their command.
+
 Note: if the full name provided by user does not match any `Teammate`, an exception will be thrown and user will retype their command.
+
 12. For each `Teammate` to be assigned, a `Contact` is created using the `Teammate`s' name.
 13. The modified `Task` is created with the newly assigned `Contact`s
 14. The `Model` is updated with the modified `Task`.
