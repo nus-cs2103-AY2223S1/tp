@@ -14,21 +14,24 @@ Given below are my contributions to the project.
 [Link to tP Code Dashboard](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=guokweijie&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=guokweijie&tabRepo=AY2223S1-CS2103T-W08-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 ### Enhancements implemented:
-* FindPatientCommand and FindAppointmentCommand
-  * FindPatientCommand allows the user to filter patients by name, phone number, email, address, remarks and tags
-  * FindAppointmentCommand allows the user to filter appointments by name, medical test, slot and doctor
+* FindPatientCommand, FindAppointmentCommand, FindPatientCommandParser and FindAppointmentCommandParser
+  * FindPatientCommand filters patients by name, phone number, email, address, remarks and tags
+  * FindAppointmentCommand filters appointments by name, medical test, slot and doctor
   * Both commands are case-insensitive and allow the user to filter by one or multiple fields in a single command
-  * Both commands are implemented using Optional predicates instead of adding a new predicate class for each field
-  * Users can input half words, full words, special characters and numbers to filter by, according to the constraints of each field
+  * Both commands are implemented using many Optional predicates and lambda functions instead of creating a new predicate class for each field as in AB3
+  * The filter input is much more flexible than AB3, allowing the user to input partial words, numbers and special characters, according to the input constraints of each field
+  * Learnt to use regular expressions to restrict the user input to only the appropriate characters for each field
+  * Came up with methods to handle edge cases like checking for multiple occurrences of the same prefix in one command
 * SetPaidCommand and SetUnpaidCommand
   * SetPaidCommand sets the payment status of a patient's bill to "PAID"
   * SetUnpaidCommand sets the payment status of a patient's bill to "UNPAID"
-* Added tests:
-  * FindPatientCommandTest and FindPatientCommandParserTest
-  * FindAppointmentCommandTest and FindAppointmentCommandParserTest
+  * User enters index of bill on the filtered bill list to set the payment status for both commands
+* Added tests to check how the commands handle normal and edge cases:
+  * FindPatientCommandTest and FindPatientCommandParserTest (tested every field singly and multiple fields at once also)
+  * FindAppointmentCommandTest and FindAppointmentCommandParserTest (tested every field singly and multiple fields at once also)
   * SetPaidCommandTest and SetPaidCommandParserTest
-  * SetUnPaidCommandTest and SetUnpaidCommandParserTest
-* Modified CommandTestUtil and ModelManagerTest due to usage of Optional predicates for the find commands
+  * SetUnpaidCommandTest and SetUnpaidCommandParserTest
+* Modified AB3's CommandTestUtil and ModelManagerTest due to usage of Optional predicates for the Find commands
 * Fixed AB3's bug in Email class by modifying the regex for the constraints of the email field
 
 ### Contributions to the User Guide:
@@ -39,20 +42,21 @@ Given below are my contributions to the project.
   * SetUnPaidCommand
   * Save the data
   * Edit the data file
-* Added the __Quick Start__ guide
+* Added the whole __Quick Start__ guide
 * Added the __Target User Group__ and __Value Proposition__ descriptions
-* Added the __FAQ__ section
-* Added Navigation for __Features__ list
+* Added the whole __FAQ__ section
+* Added navigation for all features in the __Features__ list
 * Modified and standardised headings, command word section, format section and screenshot descriptions for consistency
 
 ### Contributions to the Developer Guide:
 * Added the __Find Feature__ section with 3 Sequence diagrams
 * Added the __Set Payment Status Feature__ section with 2 Sequence diagrams
-* Contributed to the __Appendix: Effort__ section
-* Added the __Non-Functional Requirements__
-* Added the __Glossary__
-* Added __Target User Profile, Product Scope and Value Proposition__
-* Edited user stories and use cases
+* Added the __Find feature__ section in the __Appendix: Effort__ section
+* Added the __Non-Functional Requirements__ section
+* Added the __Glossary__ section
+* Added the __Target User, Target User Profile, Product Scope and Value Proposition__ sections
+* Edited all user stories
+* Added use cases UC-01 to UC-09
 
 ### Contributions to other Documentations:
 * Product Ui image for landing page
@@ -71,18 +75,10 @@ Given below are my contributions to the project.
 * Managed and scribed the project Google document and made team submissions like PE Dry Run bug report and app demo screenshots
 
 ### Review/mentoring contributions:
-* Reviewed PRs
+* Reviewed PRs:
   * [#1](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/174)
   * [#2](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/172)
   * [#3](https://github.com/AY2223S1-CS2103T-W08-1/tp/pull/158)
-
-### Tools:
-* IntelliJ IDEA
-* Gradle
-* PlantUML
-* CheckStyle
-* SourceTree
-
-### Project management:
-to be added soon
-
+* Mentored teammates for features:
+  * FindBillCommand and FindBillCommandParser (code was also referenced)
+  * FindBillCommandTest and FindBillCommandParserTest (code was also referenced)

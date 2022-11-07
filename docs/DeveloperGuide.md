@@ -579,6 +579,9 @@ the command.
 
 ## **Appendix: Requirements**
 
+**Target user**: <br>
+The receptionist of a family clinic who arranges telemedicine services.
+
 **Product scope**
 * Only helps the user to store data and keep track of patients involved in online consultations
 * Does not perform any of the real-world tasks such as starting an online consultation with patients or allowing payment through QR codes
@@ -1229,7 +1232,6 @@ testers are expected to do more *exploratory* testing.
 -----------------------------------------------------------------------------------------------------------------
 
 ## Appendix: Effort
-
 
 * Edit feature
   * EditCommand is AB3 versus EditPatientCommand, EditAppointmentCommand and EditBillCommand in HealthContact
