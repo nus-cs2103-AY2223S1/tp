@@ -11,7 +11,7 @@ import seedu.address.ui.GuiTab;
  */
 public class AllCommissionCommand extends Command {
     public static final String COMMAND_WORD = "allcom";
-    public static final String MESSAGE_SUCCESS = "Listed all commissions of all customers";
+    public static final String MESSAGE_SUCCESS = "Listed all commissions of all customers.";
 
     @Override
     public CommandResult execute(Model model, Storage storage) {

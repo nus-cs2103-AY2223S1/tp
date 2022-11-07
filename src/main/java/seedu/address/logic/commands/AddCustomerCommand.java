@@ -36,7 +36,7 @@ public class AddCustomerCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New customer added: %1$s";
-    public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already exists in art buddy";
+    public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already exists in ArtBuddy.";
 
     private final Customer toAdd;
 

@@ -60,7 +60,7 @@ public class EditCommissionCommand extends Command {
 
     public static final String MESSAGE_EDIT_COMMISSION_SUCCESS = "Edited Commission: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_COMMISSION = "This commission already exists in the art buddy.";
+    public static final String MESSAGE_DUPLICATE_COMMISSION = "This commission already exists in the ArtBuddy.";
 
     private final Index index;
     private final EditCommissionDescriptor editCommissionDescriptor;
