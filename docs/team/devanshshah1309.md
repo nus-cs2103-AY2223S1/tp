@@ -19,7 +19,7 @@ Given below are my contributions to the project.
   * What it does: Splits the screen into different panels that allow the user to view teams, tasks, members, and contacts. The color scheme and font also makes it more inviting for users to use the application.
   * Justification: Since our application focuses on productivity in managing tasks for teams, it was important for us to be able to show all the necessary data while making sure the screen does not look too cluttered. The new UI makes this possible.
   * Highlights: Implementing this UI change required a detailed knowledge of `JavaFX` and `CSS`, and how the UI updates when a command is executed.
-* **New Feature**: Allowing users to toggle between light theme and dark theme.
+* **New Feature**: Allowing users to toggle between light theme and dark theme ([PR #55](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/55)).
   * What it does: Gives users the option to change the application's theme.
   * Justification: We understand that different users have different preferences, and we wanted our users to be able to choose between a light theme and dark theme depending on their preference.
   * Highlights: Implementing this required a thorough understanding of how `CSS` styling can be modified on-the-fly and a good design sense.
@@ -32,7 +32,7 @@ Given below are my contributions to the project.
     * Assigned labels to all issues for v1.4 on GitHub to make task management and tracking easier.
 * **Documentation**:
     * User Guide:
-        * Added explanations about the `add task`, `delete task`, `list tasks` and `theme` commands.
+        * Added explanations about the `add task`, `delete task`, `list tasks` and `theme` commands ([PR #23](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/23), [PR #55](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/55)).
         * Reviewed the main changes to the User Guide and provided meaningful suggestions and improvements. 
     * Developer Guide ([PR #83](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/83), [PR #205](https://github.com/AY2223S1-CS2103T-W13-4/tp/pull/205)):
         * Added the introduction of the project along with the Acknowledgement section.
