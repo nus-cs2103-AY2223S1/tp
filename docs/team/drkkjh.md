@@ -13,7 +13,7 @@ Given below are my contributions to the project.
   * Implemented the `madd` command to add modules to the list of modules. [#73](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/73)
   * Implemented the `mdel` command to delete modules in the list of modules. [#78](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/78)
   * Implemented the `JsonAdaptedModule` for storing information about a module. [#64](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/64)
-  * Implemented the `medit` command to edit information about a module that exists in the list of modules.[#117](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/117)
+  * Implemented the `medit` command to edit details about a module that exists in the list of modules.[#117](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/117)
   * Implemented the `vtarget` command to display more details about a module in `mlist`. [#181](https://github.com/AY2223S1-CS2103T-W11-2/tp/pull/181)
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=drkkjh&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
