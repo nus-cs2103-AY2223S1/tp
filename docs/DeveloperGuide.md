@@ -983,6 +983,23 @@ testers are expected to do more *exploratory* testing.
    4. Other incorrect show commands to try: `show`, `show tues`<br>
       Expected: Similar to previous.
 
+### Removing field from student
+1. Removing a field from a student in `Pupilist`.
+   1. Prerequisite: Display the person whose field is to be removed using the `view` command. Only one person is displayed. Person displayed has *only* one session in his session list. All other lists are empty.
+   2. Test case: `remove s/1` <br>
+      Expected: First session is removed from the session list of the person displayed.
+   3. Test case: `remove h/1` <br>
+      Expected: No field is removed. Error details shown in the status message.
+   4. Other incorrect remove commands to try: `remove`, `remove a/x`, `remove h/x`, and `remove g/x` (where x is larger than the list size)<br>
+      Expected: Similar to previous.
+
+2. Removing a field from a student in `Pupilist`.
+   1. Prerequisite: List all the persons using the `list` command. Multiple persons in the list.
+   2. Test case: `remove s/1`<br>
+      Expected: No field is removed. Error details shown in the status message. Status bar remains the same.
+   3. Other incorrect remove commands to try: `remove a/y`, `remove h/y`, `remove g/y` (y can be any integer or string)<br>
+      Expected: Similar to previous.
+
 ### Marking a student
 
 1. Marking a student in `Pupilist`
@@ -998,7 +1015,7 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisite: List all persons using the `list` command. Multiple persons in the list.
    2. Test case: `mark h/1`<br>
       Expected: No person is marked. Error details shown in the status message. Status bar remains the same.
-   3. Other incorrect unmark commands to try: `mark a/y` , `mark h/y` (y can be any integer or string)<br>
+   3. Other incorrect mark commands to try: `mark a/y` , `mark h/y` (y can be any integer or string)<br>
       Expected: Similar to previous.
  
 ### Unmarking a student
