@@ -64,10 +64,18 @@ public class TypicalLessons {
         return lb;
     }
 
+    public static LessonBook getTypicalLessonBook(List<Lesson> lessonList) {
+        LessonBook lb = new LessonBook();
+        for (Lesson lesson : lessonList) {
+            lb.addLesson(lesson);
+        }
+        return lb;
+    }
+
     public static List<Lesson> getTypicalLessons() {
-        Consult consultOne = new Consult(CONSULT_DESCRIPTION_1, TP3, CONSULT_STUDENTS);
-        MasteryCheck masteryCheckOne = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_1, TP1, MASTERY_CHECK_STUDENTS);
-        Studio studioOne = new Studio(STUDIO_DESCRIPTION_1, TP2, STUDIO_STUDENTS);
-        return new ArrayList<>(Arrays.asList(consultOne, masteryCheckOne, studioOne));
+        Consult consult1 = new Consult(CONSULT_DESCRIPTION_1, TP3, CONSULT_STUDENTS);
+        MasteryCheck mc1 = new MasteryCheck(MASTERY_CHECK_DESCRIPTION_1, TP1, MASTERY_CHECK_STUDENTS);
+        Studio studio1 = new Studio(STUDIO_DESCRIPTION_1, TP2, STUDIO_STUDENTS);
+        return new ArrayList<>(Arrays.asList(mc1, studio1, consult1));
     }
 }
