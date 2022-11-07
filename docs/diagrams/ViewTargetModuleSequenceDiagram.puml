@@ -44,7 +44,7 @@ activate ViewTargetModuleCommand
 ViewTargetModuleCommand --> ViewTargetModuleCommandParser : v
 deactivate ViewTargetModuleCommand
 
-ViewTargetModuleCommandParser --> AddressBookParser
+ViewTargetModuleCommandParser --> AddressBookParser : v
 deactivate ViewTargetModuleCommandParser
 
 AddressBookParser --> LogicManager : v
