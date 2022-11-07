@@ -10,22 +10,56 @@ software engineering modules to build projects. It helps track the team's progre
 
 Given below are my contributions to the project.
 
-* **New Feature**: Convert command syntax to use flags with dashes (`-`, `--`) and empty spaces.
-
-* **New Feature**: Add, delete, list members of a team.
-
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=marcuspang&tabRepo=AY2223S1-CS2103T-W13-4%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
-
+* 
+* **New Feature**: Convert command syntax to use flags with dashes (`-`, `--`) and empty spaces instead of underscores (`_`).
+  * What it does: Simplifies command syntax and makes the commands more familiar to CLI users, as it is designed after common CLI
+  applications like [git](https://git-scm.com/) and [docker](https://docs.docker.com/engine/reference/commandline/cli/).
+  * Justification: This feature is critical as this greatly improves the user experience for CLI users, especially those 
+  who are not familiar with the previous syntax where underscores were used.
+  * Highlights: Implementing this feature required deep understanding of libraries available that support POSIX-like 
+  command syntax. This necessitated time dedicated to research which library could support our implementations, and we 
+  settled on using [picocli](https://picocli.info/).
+* **New Feature**: Add, delete, list members of a team.
+  * What it does: Allows the user to add, delete, list members to their currently selected team. It also stores the member
+  data in the team automatically in a local file.
+  * Justification: This feature is vital to TruthTable, as it is a core part of the product - creating and managing
+  members in their teams.
+  * Highlights: Implementing this feature required thorough understanding of how commands are executed in the program. 
+  It also required knowledge on how the `Storage` class works.
+* **New Feature**: Command and flag aliasing (i.e. alternate names for commands and flags)
+  * What it does: Allows the user to specify alternative names to carry out the same command. This allows experienced 
+  users to enter the commands blazingly fast. For flags, we created short and long versions of flags (represented
+  with `-` and `--` respectively), removing the need for users to type out the long version of flags every single time.
+  * Justification: This feature is important for users as it allows them to enter commands and flags extremely quickly, 
+  as the full commands become extremely tedious to type out very quickly. This feature is also important in maximising 
+  productivity for users of varying experience level with CLI programs.
+  * Highlights: This feature required a deep understanding of the [picocli](https://picocli.info/) documentation and 
+  methods, as there were many areas that needed to be changed: help message, standardising flags, flag and parameter 
+  descriptions, aliases for commands and subcommands, etc.
+  
 * **Project management**:
-    * Converted user stories to GitHub issues.
-
+    * Converted user stories to GitHub issues for `v1.3`.
+    * Consolidated UG bugs after PE dry run on GitHub.
+    * Managed the release of `v1.2` on GitHub.
+    * Delegated tasks for the team after finalising on changes to implement for `v1.3`.
 
 * **Enhancements to existing features**:
-    * To be added soon.
+    * Standardised usage message syntax for all commands
+    * Standardised error messages for all commands
+    * Add `-h` and `--help` flags to all commands
 
 * **Documentation**:
     * User Guide:
-        * Improve language and added some sections.
+        * Add product introduction and key features
+        * Add a section on how to use the user guide
+        * Add sections detailing the different parts of the user interface
+        * Add a section to explain TruthTable's CLI and command syntax
+        * Standardised command, parameter, and flag syntax for all commands
+        * Add command summary sections for each group of commands
+        * Add parameter constraints section
+        * Update glossary section
+        * Improve navigability by adding "Back to Table of Contents" links in sections
     * Developer Guide:
         * To be added soon.
 
