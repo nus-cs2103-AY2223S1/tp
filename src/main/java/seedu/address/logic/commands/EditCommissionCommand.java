@@ -42,7 +42,7 @@ public class EditCommissionCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the commission identified "
             + "by the index number used in the displayed commission list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive integer less than 2147483648) "
             + "[" + PREFIX_TITLE + "TITLE" + "] "
             + "[" + PREFIX_FEE + "FEE" + "] "
             + "[" + PREFIX_DEADLINE + "DEADLINE" + "] "

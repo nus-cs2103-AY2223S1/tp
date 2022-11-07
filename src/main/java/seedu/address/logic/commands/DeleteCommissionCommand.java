@@ -23,7 +23,7 @@ public class DeleteCommissionCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the commission identified by the index number used in the displayed commission list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Parameters: INDEX (must be a positive integer less than 2147483648)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_COMMISSION_SUCCESS = "Deleted Commission: %1$s";
