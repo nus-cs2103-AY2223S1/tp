@@ -26,7 +26,7 @@ Given below are my contributions to the project.
   - ![](../images/diagrams/SortCommandSequenceDiagram.png)
   - ![](../images/diagrams/SortActivityDiagram.png)
   - Updated use cases for `sort`, `participate`, `unparticipate`.
-  - Updated manual testing instructions for `sort`, `participate`, `unparticipate`.
+  - Updated manual testing instructions for `add`, `sort`, `participate`, `unparticipate`.
   - Reviewed User Guide and Developer Guide as a whole for final submission
 
 * **Project management**:

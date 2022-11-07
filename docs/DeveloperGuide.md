@@ -772,7 +772,7 @@ testers are expected to do more *exploratory* testing.
    Expected: Student named John Doe with student ID `E1234567` added into StudMap. Details of the added contact shown in the status message.<br><br>
 
    c. Test case: `add n/John Doe m/CS2103T id/E1234567 e/johndow@gmail.com`<br>
-    Suppose this is run after Test case in b above, where student named John Doe with student ID already exists in the StudMap.
+    Suppose this is run after Test case in (b) above, where student named John Doe with student ID already exists in the StudMap.
 
    Expected: No student is added. Error message for "duplicate student" shown in the status message.<br><br>
 
