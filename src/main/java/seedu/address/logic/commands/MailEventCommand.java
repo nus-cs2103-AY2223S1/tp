@@ -51,14 +51,10 @@ public class MailEventCommand extends Command {
         List<Event> lastShownEventList = model.getFilteredEventList();
         //check if index is in range of eventlist
         if (eventIndex.getZeroBased() >= lastShownEventList.size() || eventIndex.getZeroBased() < 0) {
-            throw new CommandException(INDEX_OUT_OF_BOUNDS_ERROR_MESSAGE);
+            throw new CommandException(MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
         Event eventToMail = lastShownEventList.get(eventIndex.getZeroBased());
         String eventTitle = eventToMail.getEventTitle().toString();
-        // check if index is valid
-        if (eventIndex.getZeroBased() >= lastShownEventList.size()) {
-            throw new CommandException(MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
-        }
         // check if there is any person in the event
         if (eventToMail.getUids().size() == 0) {
             throw new CommandException(String.format(EVENT_EMPTY_ERROR_MESSAGE, eventTitle));
