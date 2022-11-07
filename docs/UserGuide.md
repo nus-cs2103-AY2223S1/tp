@@ -397,7 +397,7 @@ Example:
 
   ![After adding a deadline](images/add-deadline-2.png)
 
-#### 3.3.2 Removing a student's deadline: `delete -d`
+#### 3.3.2. Removing a student's deadline: `delete -d`
 
 Removes a deadline assigned to a student specified by ID & a priority rank (for example, below highlighted task has a priority rank of 2).
 
