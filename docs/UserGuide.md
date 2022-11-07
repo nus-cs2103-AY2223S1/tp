@@ -154,7 +154,7 @@ and hyperlinks to the first occurrence of the word in each section of the User g
 
 ## Features
 
-This section contains all the information and details of each feature of **FRIDAY**. These features are split into 5 sections depending on their purpose and function:
+This section contains all the information and details of each feature of **FRIDAY**. These features are split into 5 sections based on their purpose and function:
 1. [Student management](#student-management)
 2. [Organizing students](#organizing-students)
 3. [Grading students](#grading-students)
