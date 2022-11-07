@@ -504,9 +504,9 @@ Example: `statement` returns `You are owed $583.90 in total.`
 Finds persons who match all the given conditions.<br>
 This is one of the most powerful tools available to look through your person list, as you can search by almost anything.
 
-Format: `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>…]
-[d/<description>…] [m/<money>…] [above/<money>] [below/<money>]
-[date/<date>…] [before/<date>] [after/<date>] [time/<time>…]`
+Format: `find [n/<name>] [p/<phone number>] [tele/<telegram>] [a/<address>] [t/<tag>]…
+[d/<description>]… [m/<money>]… [above/<money>] [below/<money>]
+[date/<date>]… [before/<date>] [after/<date>] [time/<time>]…`
 
 The following table is a summary of all the inputs this command can accept:
 
@@ -558,7 +558,7 @@ Examples:
 Finds persons who are associated with any debts that match any of the given keywords.<br>
 This is useful if you do not remember the exact description of a debt you want to look for (e.g. was it `KFC` or `kfc`?).
 
-Format: `finddebt <keyword>…`
+Format: `finddebt <keyword…>`
 
 * The search is case-insensitive. e.g. `burger` will match `Burger`
 * The order of the keywords does not matter. e.g. `Sharing Meal` will match `Meal Sharing`
