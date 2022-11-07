@@ -40,7 +40,7 @@ public class PersonMatchesKeywordsPredicate implements Predicate<Person> {
 //This algorithm to find the Levenshtein distance between 2 strings was adapted with minor modifications
 // from the GeeksForGeeks page:
 // bit.ly/3DSiDPA .
-// It is a dynamic programming based approach.
+// It is the dynamic programming based approach.
     private int getLevenshteinDist(String str1, String str2) {
 
         // A 2-D matrix to store previously calculated answers of subproblems
