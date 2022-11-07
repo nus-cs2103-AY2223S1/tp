@@ -25,6 +25,7 @@ public class MarkCommandTest {
 
     private Model model = new ModelManager(getTypicalFindMyIntern(), new UserPrefs());
 
+    //Mark command with valid index and unfiltered list
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Index indexLastInternship = Index.fromOneBased(model.getFilteredInternshipList().size());
@@ -43,17 +44,18 @@ public class MarkCommandTest {
         assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
     }
 
+    //Mark command with invalid index and unfiltered list
     @Test
     public void execute_invalidInternshipIndexUnfilteredList_failure() {
+        //out of bound index
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredInternshipList().size() + 1);
-
-        MarkCommand markCommand = new MarkCommand(outOfBoundIndex, ApplicationStatus.Applied);
-
-        assertCommandFailure(markCommand, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+        MarkCommand markCommandWithOutOfBound = new MarkCommand(outOfBoundIndex, ApplicationStatus.Applied);
+        assertCommandFailure(markCommandWithOutOfBound, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
     }
 
+    //Mark command with valid index and filtered list
     @Test
-    public void execute_filteredList_success() {
+    public void execute_validIndexFilteredList_success() {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
 
         Internship internshipInFilteredList =
@@ -73,14 +75,26 @@ public class MarkCommandTest {
         assertCommandSuccess(markCommand, model, expectedMessage, expectedModel);
     }
 
+    //Mark command with invalid index and filtered list
+    @Test
+    public void execute_invalidIndexFilteredList_success() {
+        showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
 
+        //out of bound index
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredInternshipList().size() + 1);
+
+        MarkCommand markCommandWithOutOfBound = new MarkCommand(outOfBoundIndex, ApplicationStatus.Applied);
+        assertCommandFailure(markCommandWithOutOfBound, model, Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+    }
+
+    //Mark command with the same applicationStatus as original
     @Test
     public void execute_duplicateInternshipFilteredList_failure() {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
 
         // mark the internship with the current applicationStatus
         Internship internshipInList =
-                model.getFindMyIntern().getInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
+                model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
         MarkCommand markCommand = new MarkCommand(INDEX_FIRST_INTERNSHIP,
                 internshipInList.getApplicationStatus());
 
@@ -108,5 +122,4 @@ public class MarkCommandTest {
         // different internship -> returns false
         assertFalse(markFirstCommand.equals(markSecondCommand));
     }
-
 }

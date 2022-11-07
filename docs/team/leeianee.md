@@ -32,7 +32,9 @@ Given below are my contributions to the project.
     * Justifications: The previous parsing method accepted dates that were invalid
 
 * **Contributions to the UG**:
-  * Added implementation of `list` and `delete` features
+  * Added documentation for `list` and `delete` features
+  * Updated appendix section
+    * Define requirements for `link` field
 
 * **Contributions to the DG**:
   * Added implementation of `add` feature
@@ -63,6 +65,8 @@ Given below are my contributions to the project.
     * [#94](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/94)
     * [#98](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/98)
     * [#109](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/109)
+    * [#180](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/180)
+    * [#182](https://github.com/AY2223S1-CS2103T-T14-1/tp/pull/182)
 
 * **Contributions beyond the project team**:
   * Reported bugs and provided suggestions for other teams: [Bugs](https://github.com/leeianee/ped/issues)

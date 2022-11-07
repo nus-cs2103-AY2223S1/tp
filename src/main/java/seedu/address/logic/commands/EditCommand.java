@@ -62,7 +62,7 @@ public class EditCommand extends Command {
     public EditCommand(Index index, EditInternshipDescriptor editInternshipDescriptor) {
         requireNonNull(index);
         requireNonNull(editInternshipDescriptor);
-        assert index.getOneBased() > 0 : "index should be positive integer";
+        assert index.getOneBased() > 0 : "index should be a positive integer";
 
         this.index = index;
         this.editInternshipDescriptor = new EditInternshipDescriptor(editInternshipDescriptor);
@@ -79,6 +79,12 @@ public class EditCommand extends Command {
 
         Internship internshipToEdit = lastShownList.get(index.getZeroBased());
         Internship editedInternship = createEditedInternship(internshipToEdit, editInternshipDescriptor);
+
+        if (editedInternship.getInterviewDateTime() != null
+                && editedInternship.getAppliedDate().getLocalDate()
+                        .compareTo(editedInternship.getInterviewDateTime().getLocalDate()) > 0) {
+            throw new CommandException(Messages.MESSAGE_INVALID_INTERVIEW_DATE);
+        }
 
         if (!internshipToEdit.isSameInternship(editedInternship) && model.hasInternship(editedInternship)) {
             throw new CommandException(Messages.MESSAGE_DUPLICATE_INTERNSHIP);

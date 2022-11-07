@@ -10,6 +10,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BACKEND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showInternshipAtIndex;
+import static seedu.address.testutil.TypicalDateTimes.EARLIER_VALID_DATE;
+import static seedu.address.testutil.TypicalDateTimes.FIRST_VALID_TIME;
+import static seedu.address.testutil.TypicalDateTimes.LATER_VALID_DATE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_INTERNSHIP;
 import static seedu.address.testutil.TypicalInternships.getTypicalFindMyIntern;
@@ -99,6 +102,15 @@ public class EditCommandTest {
         expectedModel.updateFilteredInternshipList(model.getCurrentPredicate());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_interviewDateTimeBeforeAppliedDate_throwsCommandException() {
+        EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withAppliedDate(LATER_VALID_DATE)
+                .withInterviewDateTime(EARLIER_VALID_DATE + " " + FIRST_VALID_TIME).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_INTERNSHIP, descriptor);
+
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_INTERVIEW_DATE);
     }
 
     @Test
