@@ -405,7 +405,7 @@ The following class diagram shows the relationship between the classes in the UI
     * Strategic display of only the more important user details.
     * Less cluttered, cleaner user interface.
   * Cons: 
-    * We have to decide which user details are of higher priority to Minecraft users, which may differ from user to user.
+    * We have to decide which user details are of higher priority to Minefriends users, which may differ from user to user.
 * Alternative 2: Show all information as tags.
   * Pros:
     * Easy to implement as the format is consistent for all information.
