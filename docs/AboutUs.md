@@ -39,7 +39,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 - Role: Developer
 - Responsibilities: TBA
 
-### Connor Lim
+### Connor Shihern Lim
 
 <img src="images/connlim.png" width="200px">
 
@@ -49,7 +49,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 - Role: Developer
 - Responsibilities: In charge of Tasks, Quality Assurance
 
-### Mohamed Safwan
+### Mohamed Safwan S/O Abdul Wahab Lukuman
 
 <img src="images/mohamedsaf1.png" width="200px">
 
