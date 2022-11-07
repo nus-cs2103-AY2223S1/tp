@@ -442,14 +442,14 @@ The following activity diagram summarizes what happens when a user executes a so
 
 The implemented feature is implemented by `ImportCommand` which extends the abstract `Command` class. As our design
 of import opens a GUI file browser for the user to select a file, it uses the `FileChooser` object provided by
-JavaFX for its functionality. As `FileChooser` requires a JavaFX stage to work, `ImportCommand` has to be hooked 
+JavaFX for its functionality. As `FileChooser` requires a JavaFX stage to work, `ImportCommand` has to be hooked
 and executed partially by `MainWindow` as well. To facilitate communication between `ImportCommand` and `MainWindow`,
 an additional flag `chooseFile` has been hooked to `CommandResult`. This dynamic will be illustrated by a sequence diagram,
 which has been split into two parts.
 
 ![ImportCommandSequenceDiagram1](images/diagrams/ImportCommandSequenceDiagram1.png){: diagram}
 
-After the command is passed to `LogicManager`, command processing occurs as per typical commands in StudMap. However, 
+After the command is passed to `LogicManager`, command processing occurs as per typical commands in StudMap. However,
 `ImportCommand` does not handle any file processing (as no file has been selected yet), and instead returns a `CommandResult`
 with the flag `chooseFile == true`.
 
@@ -485,17 +485,17 @@ The following activity diagram summarizes the execution of import.
 **Aspect: How the user selects a file:**
 
 * **Alternative 1:** User specifies the path to the file as a parameter for the `import` command.
-    * Pros: Easy to implement. Avoids interfacing with the JavaFX FileChooser object, containing all processes 
-      within the `ImportCommand` 
+    * Pros: Easy to implement. Avoids interfacing with the JavaFX FileChooser object, containing all processes
+      within the `ImportCommand`
     * Cons: May lead to complications involving paths and directories. Will also be time consuming and less intuitive
       for the user.
 
 * **Alternative 2 (current choice):** `import` command opens a file browser for the user to choose the file.
-  * Pros: Intuitive and efficient for the user to navigate. Avoids many of the complications involving paths 
+  * Pros: Intuitive and efficient for the user to navigate. Avoids many of the complications involving paths
     (e.g. relative / absolute paths) and processing input
   * Cons: May lead to unnecessary communication between `Logic` and `UI`, and also increases code coupling. More difficult
     to implement.
-  
+
 ## \[Proposed\] Undo/Redo
 
 ### Proposed Implementation
@@ -648,7 +648,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                          | I want to …​                                         | So that I can…​                                                        |
 |----------|--------------------------------------------------|------------------------------------------------------|------------------------------------------------------------------------|
-| `* * *`  | new user                                         | see usage instructions                               | refer to instructions when I forget how to use the App                 |
+| `* * *`  | new user                                         | import existing data for students                    | do not need to enter their details one by one manually               |
 | `* * *`  | teaching assistant                               | add a new student                                    |                                                                        |
 | `* * *`  | teaching assistant                               | delete a student                                     | remove entries that I no longer need                                   |
 | `* * *`  | teaching assistant                               | mark students who are present and absent from class  | keep track of attendance using this application                        |
@@ -656,6 +656,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | teaching assistant with many students in StudMap | sort students by name                                | locate a student easily                                                |
 | `* *`    | teaching assistant                               | filter the students by attribute                     | locate a student easily                                                |
 | `* *`    | teaching assistant                               | create new labels to tag my students with            | better differentiate the students                                      |
+| `* *`    | teaching assistant                               | change the grading status of my student's assignments            | better keep track of assignments that I have received or marked                                      |
+| `* *`    | teaching assistant                               | update participation status for my students            | better keep track of the different participation components of my students                                      |
+| `*`  | new user                                         | see usage instructions                               | refer to instructions when I forget how to use the App                                     |
 
 ## Use cases
 
@@ -769,7 +772,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. StudMap shows an error message.
 
       Use case ends.
-  
+
 * 1c. The student at given index does not have records of the given participation component
 
     * 1c1. StudMap shows an error message.
