@@ -31,7 +31,7 @@ public class MainWindow extends UiPart<Stage> {
     public static final String EXTENSIONS = "Extensions.css";
     private static final String FXML = "MainWindow.fxml";
 
-    private static String currentTheme = "LightTheme.css";
+    private static String currentTheme = "DarkTheme.css";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
