@@ -8,7 +8,7 @@ title: Developer Guide
 {:.no_toc}
 
 1. Table of Contents
-   {:toc}
+{:toc}
 
 ---
 
