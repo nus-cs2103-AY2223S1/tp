@@ -9,11 +9,14 @@ having the benefits of a Graphical User Interface (GUI). Fast typist would be ab
 
 ![Ui](images/icon.png){:style="display:block; margin-left:auto; margin-right:auto"}
 
+<div style="page-break-after: always;"></div>
 
+## Table of Contents
 * Table of Contents
 {:toc}
 
---------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **Acknowledgements**
 
@@ -22,7 +25,7 @@ having the benefits of a Graphical User Interface (GUI). Fast typist would be ab
 * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5), [TestFx](https://github.com/TestFX/TestFX)
 * The PleaseHireUs icon is obtained from [flaticon](https://www.flaticon.com/free-icon/please_599536)
 
---------------------------------------------------------------------------------------------------------------------
+
 ## **About this Developer Guide**
 
 This guides aims to: <br>
@@ -31,7 +34,8 @@ This guides aims to: <br>
 2. Explain some design considerations in the development of the application.
 3. Provide interested developers with documentations to continue development of our product.
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **Navigating the Developer Guide**
 **Information Box**
 <div markdown="block" class="alert alert-info">
@@ -55,12 +59,12 @@ This guides aims to: <br>
 
 <button>enter</button>   <button>&uarr;</button>   <button>&darr;</button>
 
---------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
---------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
 
@@ -68,6 +72,8 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-W17-4/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Architecture
 
@@ -1031,11 +1037,4 @@ testers are expected to do more *exploratory* testing.
 
     2. Test case: `redo`<br>
        Expected: No command is redone. Error details shown in the status message.
-
-### Saving data [To be updated]
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+    
