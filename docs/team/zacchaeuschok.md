@@ -27,10 +27,6 @@ Given below are my contributions to the project.
   - Highlights: This enhancement required an in-depth analysis of design alternatives.
   The implementation too was challenging as it required a user-friendly implementation of the price attribute in the property class.
 
-- **New Feature**: Add `type` command for properties (PR [#111](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/111))
-  - What it does: Allows user to filter properties by type.
-  - Justification: This feature enables the property agent to identify properties by their type e.g. HDB, Condo.
-
 ## Code Contributed
 
 [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=zacchaeuschok&breakdown=true)
