@@ -834,9 +834,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the jar file [here]() and copy into an empty folder
 
-   1. Double-click the jar file. Expected: Shows the _GUI_ with a set of sample contacts. The window size may not be optimum.
+   1. For ***macOS*** system:
+       * Open terminal and navigate to the folder where the jar file is located at.
+       * Type in the command `java -jar TrackAScholar.jar` to launch TrackAScholar. <br>
+      
+      For ***windows*** system:
+       * Double-click the jar file and launch TrackAScholar.
+      
+      Expected: Shows the _GUI_ with a set of sample applicants. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -845,15 +852,13 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 [Return to top](#table-of-contents)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ### Adding an applicant
 1. Adding an applicant to TrackAScholar while all applicants are displayed in GUI.
-   1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list. The list contains 
+   1. Prerequisites: Multiple applicants in the list. The list contains 
       an applicant named `Alex Yeoh` but does not contain an applicant named `Benjamin Low`.
    
    1. Test case: 
@@ -888,7 +893,7 @@ testers are expected to do more *exploratory* testing.
       ```
       Expected: No changes displayed on TrackAScholar GUI and an error message will be prompted,
       indicating an applicant must have specified phone number, email, scholarship name, application status,
-      as represented by the prefixes `p/`, `e/`, `s/` and `as` respectively.
+      as represented by the prefixes `p/`, `e/`, `s/` and `as/` respectively.
 
 [Return to top](#table-of-contents)
 
@@ -897,7 +902,7 @@ testers are expected to do more *exploratory* testing.
 ### Editing an applicant
 1. Editing an applicant in TrackAScholar while all applicants are displayed in GUI.
     1. Prerequisites: List all applicants using the `list` command. Two applicants in the list. The list contains
-       an applicant named `Alex Yeoh` with the following characteristics:
+       first applicant named `Alex Yeoh` with the following characteristics:
        ```
        Name: Alex Yeoh 
        Major(s): Medicine
@@ -906,7 +911,7 @@ testers are expected to do more *exploratory* testing.
        Email: alexyeoh@yahoo.com
        Phone Number: 87438807
        ``` 
-       and another applicant named `Shamus Lee` with the following characteristics:
+       and second applicant named `Shamus Lee` with the following characteristics:
        ```
        Name: Shamus Lee 
        Major(s): Business
@@ -971,7 +976,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Removing existing applicants with the specified application status while all applicants are being shown
 
-    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+    1. Prerequisites: Multiple applicants in the list.
 
     1. Test case: `remove ACCEPTED` followed by pressing `yes` on the alert box. <br>
        Expected: All applicants with application status `ACCEPTED` will be removed, while the list of applicants only
@@ -994,11 +999,72 @@ testers are expected to do more *exploratory* testing.
 
 --------------------------------------------------------------------------------------------------------------------
 
+### Finding applicants by name, scholarship or major
+
+1. Finding existing applicants based on the specified characteristics while these applicants are being shown
+   1. Prerequisites: 3 applicants in the list. The list contains
+      first applicant named `Muhammad Ali` with the following characteristics:
+      ```
+      Name: Muhammad Ali
+      Major(s): Business Analytics
+      Application Status: pending
+      Scholarship Name: NUS Global Merit Scholarship
+      Email: MuhammadAli@gmail.com
+      Phone Number: 87788807
+      ```
+      second applicant named `Muhammad Ali Jinnah` with the following characteristics:
+      ```
+      Name: Muhammad Ali Jinnah
+      Major(s): Geography
+      Application Status: pending
+      Scholarship Name: NUS Merit Scholarship
+      Email: MuhammadAliJinnah@hotmail.com
+      Phone Number: 89833223
+      ```
+      and third applicant named `John Tan` with the following characteristics:
+      ```
+      Name: John Tan
+      Major(s): Mathematics
+      Application Status: pending
+      Scholarship Name: NUS Sports Scholarship
+      Email: JohnTan@hotmail.com
+      Phone Number: 89870223
+      ```
+   1. Test case: `find n/Muhammad` <br>
+      Expected: Since the first 2 applicants in the list have name containing the word `Muhammad`, they will be shown on TrackAScholar GUI.
+
+   1. Test case: `find n/Ali Muhammad` <br>
+      Expected: Since both applicant's name contains both words `Ali` and `Muhammad`, irrespective of order, they will be shown on
+      TrackAScholar GUI.
+    
+   1. Test case: `find n/Muhammad n/John` <br>
+      Expected: Since the same prefix `n/` is used more than once, TrackAScholar will show all the applicants in the list since
+      the names of applicants in the list contains either the word `Muhammad` or `John`.
+    
+   1. Test case: `find n/Muhammad n/John s/Global` <br>
+      Expected: Since different prefixes `n/` and `s/` are used, TrackAScholar will show only the first applicant since its name contains either the word
+      `Muhammad` or `John` ***and*** its scholarship name contains the word `Global`.
+   
+   1. Test case: `find m/Math` <br>
+      Expected: No applicants displayed on TrackAScholar GUI since `Math` is incomplete and does not fully match the major of the third applicant, `Mathematics`.
+      
+   1. Test case: `find p/88127823` <br>
+      Expected: No changes displayed on TrackAScholar GUI as only prefixes `n/`, `s/` and `m/` are recognised for `find` command and one of these prefixes must be present.
+      Error details shown in the status message.
+   
+   1. Other incorrect find commands to try: `find` and `find Alex Yeoh` <br>
+      Expected: Similar to previous.
+
+[Return to top](#table-of-contents)
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Filtering applicants by application status
 
 1. Filtering existing applicants based on the specified application status while all applicants are being shown
 
-    1. Prerequisites: List all applicants using the `list` command. Multiple applicants in the list.
+    1. Prerequisites: Multiple applicants in the list.
 
     1. Test case: `filter ACCEPTED`
        Expected: All applicants with application status `ACCEPTED` will be shown in TrackAScholar GUI.
@@ -1064,7 +1130,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Unpinning an existing applicant while all applicants are being shown
 
-    1. Prerequisites: List all applicants using the `list` command. One applicant in the list. The list contains
+    1. Prerequisites: One applicant in the list. The list contains
        a pinned applicant named `Alex Yeoh`.
 
     1. Test case: `unpin Alex Yeoh`<br>
@@ -1125,7 +1191,7 @@ our commitment to improving the features and testability of TrackAScholar and im
 * Pin / Unpin
 
 
-### Notable design principles used
+### Notable Achievements accomplished
 * Utilised Test Driven Development
   * Every time our team puts in either a new feature or a new field to TrackAScholar, 
   we strive to write JUnit test cases alongside the new functional code added,
@@ -1133,10 +1199,10 @@ our commitment to improving the features and testability of TrackAScholar and im
   late or difficult to fix such bugs.
   * Moreover, we also took turns testing each other's features at various milestones, 
   thus allowing us to identify and amend bugs much earlier.
-  * After PED, my team start rectifying and filtering the respective bugs immediately,
-  thus mitigating the number of bugs in TrackAScholar.
+  * After PED, my team start rectifying and filtering the respective bugs into its respective severity immediately,
+  thus mitigating the number of bugs in TrackAScholar for future releases.
 
-* Maintaining high code quality and standards
+* Maintained high code quality and standards
   * By following the large amount of abstraction possessed by AB3, we aim to minimise duplicability of code in TrackAScholar 
   and thus reducing the amount of code written. This is evident from `Command` and `Ui` interfaces etc.
   * Moreover, we adhered to the KISS principle and tried to keep our methods short and simple, thus
