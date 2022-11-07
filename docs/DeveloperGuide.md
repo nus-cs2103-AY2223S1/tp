@@ -18,6 +18,7 @@ Table of Contents
    4.1. [Import command](#41-import-command)<br>
    4.2. [View command](#42-view-command)<br>
    4.3. [Sort command](#43-sort-command)<br>
+   4.4. [Lock feature](#44-lock-feature)<br>
 5. [Documentation, logging, testing, configuration, dev-ops](#5-documentation-logging-testing-configuration-dev-ops)<br>
 6. [Appendix: Requirements](#6-appendix-requirements)<br>
    6.1. [Product scope](#61-product-scope)<br>
@@ -203,7 +204,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-F11-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png"/>
+![StorageClassDiagram](images/StorageClassDiagram.png)
 
 The `Storage` component,
 
@@ -327,6 +328,38 @@ The sort command mainly relies on the following classes:
 #### Design considerations:
 
 `sortParam` should be passed to `UniquePersonList#sort` to modify `internalList`.
+
+### 4.4. Lock feature
+
+#### Current Implementation
+
+The import command mainly relies on the following classes:
+
+* `CommandResult`
+* `LockCommand`
+* `AddressBookParser`
+* `LockWindow`
+* `MainWindow`
+
+1. The user opens FinBook.
+2. `MainWindow` checks if a password is set. If not, go to step 6.
+3. `MainWindow` displays the password dialog box by calling `LockWindow`.
+4. The user enters a password.
+5. `LockWindow` checks if the password is correct. If not, go to step 3.
+6. FinBook unlocks and the user resumes using FinBook.
+7. The user executes the `lock` command.
+8. `AddressBookParser` creates and returns a new `LockCommand`.
+9. `LockCommand` is executed and returns a `CommandResult` that tells `MainWindow` to display the password dialog box. Go to step 3.
+
+Password verification is handled by the Password4j library.
+
+The following activity diagram shows how the lock feature works:
+
+![LockActivityDiagram](images/LockActivityDiagram.png)
+
+#### Design considerations:
+
+Chose to use battle-tested Password4j to verify passwords to avoid implementing an insecure password system.
 
 *{More to be added}*
 
