@@ -9,18 +9,20 @@ FoodRem *-right-> "1" UniqueTagList
 UniqueTagList -[hidden]down- UniqueItemList
 UniqueTagList -[hidden]down- UniqueItemList
 
-UniqueTagList *-right-> "*" Tag
-UniqueItemList -right-> Item
+UniqueTagList *-right-> "0..100" Tag
+UniqueItemList *-> "0...10000" Item
+note right : 10,000 items enforced by UniqueItemList
 
-Item *-up-> "*" Tag
+Item *-up-> "0..100" Tag
+note right : 100 tags enforced by UniqueTagList
 
-Item *--> ItemUnit
-Item *--> ItemBoughtDate
-Item *--> ItemExpiryDate
-Item *--> ItemQuantity
-Item *--> ItemName
-Item *--> ItemPrice
-Item *--> ItemRemark
-Tag *-right--> TagName
+Item *--> "1" ItemUnit
+Item *--> "1" ItemBoughtDate
+Item *--> "1" ItemExpiryDate
+Item *--> "1" ItemQuantity
+Item *--> "1" ItemName
+Item *--> "1" ItemPrice
+Item *--> "1" ItemRemark
+Tag *-right--> "1" TagName
 
 @enduml
