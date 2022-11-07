@@ -5,7 +5,7 @@ title: User Guide
 
 **Duke The Market** is a one-stop marketing tool that allows department stores to keep track of their upcoming
 marketing plan roll-outs, monitor its impact, and to target the appropriate subsegment of its customer base for each of those plans.
-Also, it is optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User
+It is also optimised for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User
 Interface (GUI). If you can type fast, Duke The Market can help you organise your marketing events and reach out to your target customer base much faster than a traditional GUI app.
 
 * Table of Contents
@@ -27,13 +27,13 @@ Interface (GUI). If you can type fast, Duke The Market can help you organise you
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`listPersons`** : Lists all contacts.
+   * **`listPersons`** : Lists all persons.
 
-   * **`addPerson`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/22/3/1993` : Adds a contact named `John Doe` to the application.
+   * **`addPerson`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/22/03/1993` : Adds a person named `John Doe` to the application.
 
-   * **`deletePerson`**`3` : Deletes the 3rd contact shown in the current list.
+   * **`deletePerson`**`3` : Deletes the 3rd person shown in the current persons list.
 
-   * **`clear`** : Deletes all contacts.
+   * **`clear`** : Deletes all persons and events.
 
    * **`exit`** : Exits the app.
 
@@ -48,17 +48,16 @@ Interface (GUI). If you can type fast, Duke The Market can help you organise you
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addPerson n/NAME`, `NAME` is a parameter which can be used as `addPerson n/John`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
-* If a parameter is specified multiple times, only the last occurrence of the parameter will be considered regardless of the validity of previous parameter inputs.<br>
-  e.g. if you specify `p/12341234 p/56785678`, even though both are valid phone numbers,
-       only `p/56785678`, will be taken by the command as its parameter input.
-  e.g. if you specify `d/A/B/C d/01/01/2022`, even though the first parameter input `d/A/B/C` is invalid,
+* If a parameter is specified multiple times, only the last occurrence of the parameter will be considered regardless of the validity of previous parameter inputs.
+  * e.g. if you specify `p/12341234 p/56785678`, even though both are valid phone numbers, only `p/56785678`, will be taken by the command as its parameter input.
+  * e.g. if you specify `d/A/B/C d/01/01/2022`, even though the first parameter input `d/A/B/C` is invalid,
        only `d/01/01/2022`, which is a valid parameter input, will be taken by the command as its parameter input.
-  e.g. if you specify `d/01/01/2022 d/A/B/C`, even though the first parameter input `d/01/01/2022` is valid,
+  * e.g. if you specify `d/01/01/2022 d/A/B/C`, even though the first parameter input `d/01/01/2022` is valid,
        only `d/A/B/C`, which is an invalid parameter input, is considered.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `exit` and `clear`) will be ignored.<br>
@@ -91,7 +90,7 @@ Format: `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER d/DOB`
 - The compulsory parameters are: name (`n`), phone number (`p`), email (`e`), address (`a`), gender (`g`), date of birth(`d`).
 - Date format accepted is: `dd/mm/yyyy`.
 - Date of birth cannot be after the current date.
-- The genders accepted by the contact list are: `M`/`m`/`Male`/`male` for male, `F`/`f`/`Female`/`female` for female.
+- The genders accepted are: `M`/`m`/`Male`/`male` for male, `F`/`f`/`Female`/`female` for female.
 
 Examples:
 * `addPerson n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20/03/2002`
@@ -99,11 +98,12 @@ Examples:
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** Adding a new person that has the same name as an existing person is not allowed.<br><br>
-
 For example, if the application currently has a person named `Donny`, the input `addPerson n/Donny p/98765432 e/test@test.com a/UTown g/M d/10/10/2022`
 will not run and will output the error message `This person already exists in the address book`.
+</div>
 
-:information_source: **Note:** The year "0000" is an invalid input for all persons and events.<br><br>
+<div markdown ="span" class="alert alert-info">
+:information_source: **Note:** The year "0000" is an invalid input for all persons and events.
 </div>
 
 ### Listing all persons : `listPersons`
@@ -112,12 +112,12 @@ Shows a list of all persons in the application.
 
 Format: `listPersons [s/FIELD]`
 
-* Sorts the contacts by the specified field in **ascending** order. `FIELD` must take one of the following values:
+* Sorts the persons by the specified field in **ascending** order. `FIELD` must take one of the following values:
   * `n` or `N` sort by name in ascending lexicographical order, ignoring case differences
   * `d` or `D` sort by date of birth from oldest to youngest
   * `g` or `G` sort by gender, females first followed by males
 
-* It is optional to include the sorting prefix and field. If the sorting prefix and field are not included, no sorting is performed.
+* It is optional to include the sorting prefix and field. If the sorting prefix and field are not included, the application will display all persons in the current order that they are stored.
 * At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
 
 
@@ -126,7 +126,7 @@ Format: `listPersons [s/FIELD]`
 </div>
 
 <div markdown="span" class="alert alert-info">
-:information_source: **Note:** The sorted result is permanent on the underlying contact list.<br><br>
+:information_source: **Note:** The sorted result is permanent on the underlying person list.<br><br>
 
 For example, if `listPersons s/n` and `listPersons` are executed back-to-back, the result of the second `listPersons` command will display the sorted results from the first `listPersons s/n` command since the sorted result is permanent.
 </div>
@@ -135,20 +135,19 @@ Examples:
 * `listPersons` Lists all persons without performing any sorting.
 * `listPersons s/n` Lists all persons sorted by their names.
 
-### Editing a contact : `editPerson`
+### Editing a person : `editPerson`
 
-Edits an existing contact in the application.
+Edits an existing person in the application.
 
 Format: `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB]`
 
-- Edits the person at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed contact list.
-  The `INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the contact list index. This command is invalid if `INDEX` is a non-positive integer.
+- Edits the person at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed person list.
+  The `INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the person list index. This command is invalid if `INDEX` is a non-positive integer.
 - Existing values will be updated to the input values.
 - At least one of the optional fields must be provided.
 - Date format accepted is: `dd/mm/yyyy`.
 - Date of birth cannot be after the current date.
-- The genders accepted by the contact list are: `M`/`m`/`Male`/`male`
-for male, `F`/`f`/`Female`/`female` for female.
+- The genders accepted are: `M`/`m`/`Male`/`male` for male, `F`/`f`/`Female`/`female` for female.
 
 Examples:
 *  `editPerson 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be
@@ -163,12 +162,12 @@ Finds all persons whose names contain any of the given keywords.
 
 Format: `findPersons KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g. `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The search is case-insensitive. e.g. `hans` will match `Hans`.
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
 * Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* Only full words will be matched e.g. `Han` will not match `Hans`.
 * Persons matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
 
 Examples:
 * `findPersons John` returns `john` and `John Doe`
@@ -182,21 +181,25 @@ Deletes the specified person from the application.
 Format: `deletePerson INDEX`
 
 * Deletes the person at the specified `INDEX`.
-* The `INDEX` refers to the index number shown in the displayed contact list.
-* The `INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the contact list index. This command is invalid if `INDEX` is a non-positive integer.
+* The `INDEX` refers to the index number shown in the displayed person list.
+* The `INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the person list index. This command is invalid if `INDEX` is a non-positive integer.
 
 Examples:
 * `listPersons` followed by `deletePerson 2` deletes the 2nd person in the application.
 * `findPersons Betsy` followed by `deletePerson 1` deletes the 1st person in the results of the `findPersons` command.
 
-### Add an event: `addEvent`
+### Adding an event: `addEvent`
 
 Adds a new event to the application.
 
 Format: `addEvent e/EVENT_TITLE d/DATE t/TIME p/PURPOSE`
 
 * The compulsory parameters are: event title (`e`), date (`d`), time (`t`) and purpose (`p`).
-* Only alphanumeric characters are allowed for event title (`e`) and purpose (`p`).
+* Only alphanumeric characters are allowed for event title (`e`).
+* Date format accepted is: `dd/mm/yyyy`.
+* Date of event can be before, during and after current date.
+* Time format accepted is: `hh:mm`.
+* Any character is allowed for purpose (`p`).
 
 Examples:
 * `addEvent e/Shoe Sale d/30/05/2022 t/11:00 p/30 dollar discount on all shoes`
@@ -205,9 +208,14 @@ Examples:
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** A new event that has the same event title as an existing event in the application cannot be added to the application.<br><br>
 
-For example, if the application currently has a event with an event title `Car Sale`, the input `addEvent e/Car Sale d/10/10/2022 t/10:40 p/5000 dollars off all cars`
+For example, if the application currently has an event with an event title `Car Sale`, the input `addEvent e/Car Sale d/10/10/2022 t/10:40 p/5000 dollars off all cars`
 will not run and will output the error message `This event already exists in the address book`.
 </div>
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** To add an event with the time of 12am, only input `t/00:00` is allowed. Meanwhile, the input of `t/24:00` is not allowed.
+</div>
+
 
 
 ### Editing an event : `editEvent`
@@ -216,22 +224,24 @@ Edits an existing event in the application.
 
 Format: `editEvent INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`
 
-- Edits the event at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed event list.
+* Edits the event at the specified `INDEX`. The `INDEX` refers to the index number shown in the displayed event list.
   The `INDEX` must be **a positive integer** 1, 2, 3, …​, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
-- At least one of the optional fields must be provided.
-- Existing values will be updated to the input values.
-- Only alphanumeric characters are allowed for event title (`e`) and purpose (`p`).
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* Only alphanumeric characters are allowed for event title (`e`).
+* Date format accepted is: `dd/mm/yyyy`.
+* Date of event can be before, during and after current date.
+* Time format accepted is: `hh:mm`.
+* Any character is allowed for purpose (`p`).
 
 Examples:
-*  `editEvent 1 e/Toy Dinosaur Sale t/10:10` Edits the event title and time of the 1st event to be
-   `Toy Dinosaur Sale` and `10:10` respectively.
+*  `editEvent 1 e/Toy Dinosaur Sale t/10:10` Edits the event title and time of the 1st event to be `Toy Dinosaur Sale` and `10:10` respectively.
 *  `editEvent 2 e/Pillow Sale` Edits the event title of the 2nd event to be `Pillow Sale`.
-*  `editEvent 3 d/10/10/2022 p/20 dollars off bottles` Edits the 3rd event’s date and purpose to be `10/10/2022` and ,
-   `20 dollars off bottles` respectively.
+*  `editEvent 3 d/10/10/2022 p/20 dollars off bottles` Edits the 3rd event’s date and purpose to be `10/10/2022` and `20 dollars off bottles` respectively.
 
 ### Locating events by event title: `findEvents`
 
-Finds events whose event titles contain any of the given keywords.
+Finds all events whose event titles contain any of the given keywords.
 
 Format: `findEvents KEYWORD [MORE_KEYWORDS]`
 
@@ -259,7 +269,7 @@ Format: `deleteEvent INDEX`
 * The `INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
 
 Examples:
-* `deleteEvent 2` after listing all events with `listEvents` deletes the event at index 2
+* `listEvents` followed by `deleteEvent 2` deletes the 2nd event in the application.
 
 
 ### Listing all events: `listEvents`
@@ -272,7 +282,7 @@ Format: `listEvents [s/FIELD]`
   * `e` or `E` sort by event title in ascending lexicographical order, ignoring case differences
   * `d` or `D` sort by date from oldest to newest
 
-* It is optional to include the sorting prefix and field. If the sorting prefix and field are not included, no sorting is performed.
+* It is optional to include the sorting prefix and field. If the sorting prefix and field are not included, the application will display all events in the current order that they are stored.
 * At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
 
 
@@ -291,59 +301,60 @@ Examples:
 * `listEvents s/e` Lists all events sorted by their event titles.
 
 
-### Tag persons to an event : `tagEvent`
+### Tagging persons to an event : `tagEvent`
 
 Format: `tagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES] ...`
 
 * The `EVENT_INDEX` refers to the index number shown in the displayed event list.
 * The `EVENT_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `EVENT_INDEX` is a non-positive integer.
-* The `PERSON_INDEX` refers to the index number shown in the displayed contact list.
-* The `PERSON_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the contact list index.
+* The `PERSON_INDEX` refers to the index number shown in the displayed person list.
+* The `PERSON_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the person list index.
 * The `PERSON_INDEX` must refer to a person that is not currently tagged to the event.
-* Multiple `PERSON_INDEX` should be separated by white space. At least one `PERSON_INDEX` must be provided.
+* Multiple `PERSON_INDEX`s should be separated by white space. At least one `PERSON_INDEX` must be provided.
+* Duplicate `PERSON_INDEX`s are not allowed.
 
 Example:
-* `tagEvent 1 p/2` tags the 2nd person in the contact list to the 1st event in the event list.
-* `tagEvent 2 p/2 4 5` tags the 2nd, 4th, 5th person to in the contact list the 2nd event in the event list.
+* `tagEvent 1 p/2` tags the 2nd person in the person list to the 1st event in the event list.
+* `tagEvent 2 p/2 4 5` tags the 2nd, 4th, 5th person in the person list to the 2nd event in the event list.
 
-### Untag persons from an event : `untagEvent`
+### Untagging persons from an event : `untagEvent`
 
 Format: `untagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES] ...`
 
 * The `EVENT_INDEX` refers to the index number shown in the displayed event list.
 * The `EVENT_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `EVENT_INDEX` is a non-positive integer.
-* The `PERSON_INDEX` refers to the index number shown in the displayed contact list.
-* The `PERSON_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the contact list index.
+* The `PERSON_INDEX` refers to the index number shown in the displayed person list.
+* The `PERSON_INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the person list index.
 * The `PERSON_INDEX` must refer to a person that is currently tagged to the event.
-* Multiple `PERSON_INDEX` should be separated by white space. At least one `PERSON_INDEX` must be provided.
+* Multiple `PERSON_INDEX`s should be separated by white space. At least one `PERSON_INDEX` must be provided.
+* Duplicate `PERSON_INDEX`s are not allowed.
 
 Example:
-* `untagEvent 1 p/2` untags the 2nd person in the contact list from the 1st event in the event list.
-* `untagEvent 2 p/2 4 5` untags the 2nd, 4th, 5th person in the contact list from the 2nd event in the event list.
+* `untagEvent 1 p/2` untags the 2nd person in the person list from the 1st event in the event list.
+* `untagEvent 2 p/2 4 5` untags the 2nd, 4th, 5th person in the person list from the 2nd event in the event list.
 
-### Create mailing list for an event : `mailEvent`
+### Creating mailing list for an event : `mailEvent`
 
 Format: `mailEvent INDEX`
 
 * The `INDEX` refers to the index number shown in the displayed event list.
 * The `INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
-* The mailing list is saved as a CSV file at the following location: `[JAR file location]/data/EVENT_TITLE.csv`. The CSV file has 2 columns:
-  `Name` and `Email`, representing the name and email for every person in the event.
+* The mailing list is saved as a CSV file at the following location: <br> `[JAR file location]/data/EVENT_TITLE.csv`.
+  The CSV file has 2 columns: `Name` and `Email`, representing the name and email for every person tagged to the event.
 
 Example:
-* `mailEvent 2` creates mailing list as a CSV file, the name of the csv file is the same as the title of 2nd event
+* `mailEvent 2` creates the mailing list as a CSV file, the name of the CSV file is the same as the title of the 2nd event
 in the event list.
 
-### Generating pie charts of statistics of the people tagged to an event in the event list : `makeStats`
+### Generating pie chart statistic of the tagged persons of an event : `makeStats`
 
 Format: `makeStats INDEX t/STATISTIC_TYPE`
 
 * The `INDEX` refers to the index number shown in the displayed event list.
-* The `INDEX` must be a positive integer 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
-* The `STATISTIC_TYPE` refers to the type of statistical data being generated.
-* The `STATISTIC_TYPE` must be either `a` or `g`, where `a` stands for age and is specified to generate a pie chart showcasing
-the distribution of ages across age groups, while `g` stands for gender and is specified to generate a pie chart showcasing
-the distribution of genders.
+* The `INDEX` must be **a positive integer** 1, 2, 3, …, and it must be within the range of the event list index. This command is invalid if `INDEX` is a non-positive integer.
+* The `STATISTIC_TYPE` refers to the type of statistical data being generated and it must take one of the following values:
+  * `a` generate a pie chart showing the distribution of ages across age groups
+  * `g` generate a pie chart showing the distribution of genders
 
 Example:
 * `makeStats 1 t/g` generates gender statistics of the persons tagged to the 1st event in the event list
@@ -359,7 +370,7 @@ This issue is a bug pertaining to the JavaFX library.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the application.
+Clears all persons and events from the application.
 
 Format: `clear`
 
@@ -371,22 +382,21 @@ Format: `exit`
 
 ### Editing the data file
 
-The application's data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+The application's data is saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing the data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, the application will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**Q**: How do I transfer my data to another computer?<br>
+**A**: Launch the app in the other computer and overwrite the empty data file it creates with your existing data file.
+
+**Q**: I am unable to input a starting time for my event using the format specified. What should I do?<br>
+**A**: Change the language settings within your computer to a language that supports the "hh:mm" format.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -395,18 +405,18 @@ _Details coming soon ..._
 | Action           | Format, Examples                                                                                                                                                                      |
 |------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **AddPerson**    | `addPerson n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER d/DOB` <br> e.g., `addPerson n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20/03/2002` |
-| **Clear**        | `clear`                                                                                                                                                                               |
 | **DeletePerson** | `deletePerson INDEX`<br> e.g., `deletePerson 3`                                                                                                                                       |
 | **EditPerson**   | `editPerson INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB]`<br> e.g.,`editPerson 2 n/James Lee e/jameslee@example.com`                                             |
 | **FindPersons**  | `findPersons KEYWORD [MORE_KEYWORDS]`<br> e.g., `findPersons James Jake`                                                                                                              |
 | **ListPersons**  | `listPersons [s/FIELD]` <br> e.g., `listPersons s/n`                                                                                                                                  |
 | **AddEvent**     | `addEvent e/EVENT_TITLE d/DATE t/TIME p/PURPOSE`<br> e.g.,`addEvent e/Shoe Sale d/30/05/2022 t/11:00 p/30 dollar discount on all shoes`                                               |
 | **DeleteEvent**  | `deleteEvent INDEX`<br> e.g., `deleteEvent 2`                                                                                                                                         |
-| **EditEvent**    | `editEvent INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`<br> e.g., `editEvent 2 e/Chocolate Sale p/10 dollar off all chocolates`                                               |
+| **EditEvent**    | `editEvent INDEX [e/EVENT_TITLE] [d/DATE] [t/TIME] [p/PURPOSE]`<br> e.g., `editEvent 2 e/Chocolate Sale p/10 dollars off all chocolates`                                               |
 | **FindEvents**   | `findEvents KEYWORD [MORE_KEYWORDS]`<br> e.g., `findEvents Sale Discount`                                                                                                             |
 | **ListEvents**   | `listEvents [s/FIELD]`<br> e.g., `listEvents s/e`                                                                                                                                     |
 | **MakeStats**    | `makeStats INDEX t/STATISTIC_TYPE`<br> e.g., `makeStats 1 t/g`                                                                                                                        |
 | **MailEvent**    | `mailEvent INDEX`<br> e.g., `mailEvent 3`                                                                                                                                             |
 | **TagEvent**     | `tagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `tagEvent 2 p/1 3`                                                                                             |
 | **UntagEvent**   | `untagEvent EVENT_INDEX p/PERSON_INDEX [MORE_PERSON_INDEXES]` <br> e.g., `untagEvent 3 p/4 5`                                                                                         |
+| **Clear**        | `clear`                                                                                                                                                                               |
 | **Help**         | `help`                                                                                                                                                                                |

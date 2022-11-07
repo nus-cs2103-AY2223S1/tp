@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DOB_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -78,7 +79,11 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different gender -> returns false
-        editedAlice = new PersonBuilder(ALICE).withAddress(VALID_GENDER_BOB).build();
+        editedAlice = new PersonBuilder(ALICE).withGender(VALID_GENDER_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different date -> returns false
+        editedAlice = new PersonBuilder(ALICE).withDob(VALID_DOB_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

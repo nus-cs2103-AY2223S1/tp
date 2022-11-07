@@ -9,7 +9,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### Ong Wee Marcus
+### Ong Wee, Marcus
 
 <img src="images/lfrostbytee.png" width="200px">
 
@@ -29,7 +29,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: Testing
 
-### Benjamin Sim
+### Sim Wei Shian Benjamin
 
 <img src="images/benjamin-sim.png" width="200px">
 

@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -43,6 +44,9 @@ public class MakeStatsCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         ObservableList<Event> eventList = model.getFilteredEventList();
+        if (eventList.size() <= index.getZeroBased() || index.getZeroBased() < 0) {
+            throw new CommandException(Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
+        }
         Event targetEvent = eventList.get(index.getZeroBased());
         ObservableList<Person> personList = targetEvent.getUids().getPersons(model);
         StatisticDataList generatedStats;
@@ -82,4 +86,11 @@ public class MakeStatsCommand extends Command {
         return newDataList;
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof MakeStatsCommand // instanceof handles nulls
+                && index.equals(((MakeStatsCommand) other).index) // state check
+                && isGenderStatistic == ((MakeStatsCommand) other).isGenderStatistic);
+    }
 }

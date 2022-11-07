@@ -63,8 +63,6 @@ public class EditPersonDescriptorBuilder {
 
     /**
      * Sets the {@code Date} of the {@code EditPersonDescriptor} that we are building.
-     * @param dob
-     * @return
      */
     public EditPersonDescriptorBuilder withDob(String dob) {
         descriptor.setDob(new Date(dob));
