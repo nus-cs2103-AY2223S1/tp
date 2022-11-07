@@ -30,7 +30,7 @@ Given below are my contributions to the project.
     * Allows the user to either sort the Projects by their name in alphabetical order, or
       by the project status, specifically in the order {`YTS`, `IP`, `DONE`}.
   * Justification:
-    * This feature improves the product since users may be searching for a specific topic, or for projects of a 
+    * This feature improves the product since users may be searching for a specific topic, or for projects of a
       specific project status
   * Highlights:
     * This enhancement was challenging since it required the introduction of new methods to existing classes
@@ -56,13 +56,13 @@ Given below are my contributions to the project.
     * Helped to fix the grammatical errors in the User Stories (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/78)
     * Helped to create the Command Summary and Product Scope as well (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/77)
   * Developer Guide:
-    * Added documentation and appropriate UML diagrams for both commands (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/112) 
+    * Added documentation and appropriate UML diagrams for both commands (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/112)
       (https://github.com/AY2223S1-CS2103-F09-1/tp/pull/126)
 
 * **Community**:
   * Helped to report the bugs for another team's project during PED
     Link to issues raised is below: <br>
     [PED bug report](https://github.com/JordanChua/ped/tree/main/files)
-    
+
 * **Tools**
   * Draw.io for drawing my UML diagrams for both `MarkCommand` and `SortCommand`

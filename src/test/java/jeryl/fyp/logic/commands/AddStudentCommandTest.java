@@ -1,6 +1,7 @@
 package jeryl.fyp.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static jeryl.fyp.commons.core.Messages.MESSAGE_DUPLICATE_STUDENT;
 import static jeryl.fyp.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -23,7 +24,6 @@ import jeryl.fyp.model.Model;
 import jeryl.fyp.model.ReadOnlyFypManager;
 import jeryl.fyp.model.ReadOnlyUserPrefs;
 import jeryl.fyp.model.student.Deadline;
-import jeryl.fyp.model.student.DeadlineList;
 import jeryl.fyp.model.student.Student;
 import jeryl.fyp.model.student.StudentId;
 import jeryl.fyp.testutil.StudentBuilder;
@@ -53,7 +53,7 @@ public class AddStudentCommandTest {
         AddStudentCommand addStudentCommand = new AddStudentCommand(validStudent);
         ModelStub modelStub = new ModelStubWithStudent(validStudent);
 
-        assertThrows(CommandException.class, AddStudentCommand.MESSAGE_DUPLICATE_STUDENT, () ->
+        assertThrows(CommandException.class, MESSAGE_DUPLICATE_STUDENT, () ->
                 addStudentCommand.execute(modelStub));
     }
 
@@ -182,11 +182,6 @@ public class AddStudentCommandTest {
 
         @Override
         public void updateFilteredStudentList(Predicate<Student> predicate) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public DeadlineList listDeadlineUnderStudent(Student student) {
             throw new AssertionError("This method should not be called.");
         }
 

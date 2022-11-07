@@ -2,7 +2,10 @@ package jeryl.fyp.logic.commands;
 
 import static jeryl.fyp.commons.core.Messages.MESSAGE_PROJECTS_LISTED_OVERVIEW;
 import static jeryl.fyp.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static jeryl.fyp.testutil.TypicalStudents.ALICE;
 import static jeryl.fyp.testutil.TypicalStudents.CARL;
+import static jeryl.fyp.testutil.TypicalStudents.DANIEL;
+import static jeryl.fyp.testutil.TypicalStudents.ELLE;
 import static jeryl.fyp.testutil.TypicalStudents.FIONA;
 import static jeryl.fyp.testutil.TypicalStudents.getTypicalFypManager;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -64,7 +67,37 @@ public class FindProjectNameCommandTest {
     }
 
     @Test
+    public void execute_singleKeyword_multipleStudentsFound() {
+        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 4);
+        ProjectNameContainsKeywordsPredicate predicate = preparePredicate("in");
+        FindProjectNameCommand command = new FindProjectNameCommand(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, DANIEL, ELLE, FIONA), model.getFilteredStudentList());
+    }
+
+    @Test
+    public void execute_multipleKeywords_noStudentsFound() {
+        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 0);
+        ProjectNameContainsKeywordsPredicate predicate = preparePredicate("chemiStRy /  Blockchain");
+        FindProjectNameCommand command = new FindProjectNameCommand(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Collections.emptyList(), model.getFilteredStudentList());
+    }
+
+    @Test
     public void execute_multipleKeywords_multipleStudentsFound() {
+        String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 3);
+        ProjectNameContainsKeywordsPredicate predicate = preparePredicate("de/ woRld/ Mathematics ");
+        FindProjectNameCommand command = new FindProjectNameCommand(predicate);
+        expectedModel.updateFilteredStudentList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(CARL, DANIEL, FIONA), model.getFilteredStudentList());
+    }
+
+    @Test
+    public void execute_duplicateKeywords_multipleStudentsFound() {
         String expectedMessage = String.format(MESSAGE_PROJECTS_LISTED_OVERVIEW, 2);
         ProjectNameContainsKeywordsPredicate predicate = preparePredicate("de/ woRld/ de ");
         FindProjectNameCommand command = new FindProjectNameCommand(predicate);
@@ -72,7 +105,6 @@ public class FindProjectNameCommandTest {
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, FIONA), model.getFilteredStudentList());
     }
-
     /**
      * Parses {@code userInput} into a {@code ProjectNameContainsKeywordsPredicate}.
      */
