@@ -144,8 +144,7 @@ Take note of the three main elements of the interface:
 |--------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Command Box  | This is where you give instructions to StudMap, telling StudMap what you want to do. These instructions are called [Commands](#43-understanding-commands). |
 | Reply Box    | This is where StudMap replies with any useful feedback, for example after running a command.                                                               |
-| Student List | This is where StudMap displays the list of students, with information about each student organized into individual **
-student cards**.                      |
+| Student List | This is where StudMap displays the list of students, with information about each student organized into individual **student cards**.                      |
 
 ### Student Cards
 
@@ -160,10 +159,8 @@ The **left half** of each student card contains the student's particulars. Let's
 | Element         | Purpose                                                                                                  |
 |-----------------|----------------------------------------------------------------------------------------------------------|
 | Index           | Order of the student in the list. Used to indicate which student card you want to target with a command. |
-| Student Name    | Name of your student. **Is
-Compulsory!**                                                                 |
-| Student ID      | Student ID of your student, usually beginning with E. **Is
-Compulsory!**                                 |
+| Student Name    | Name of your student. **Is Compulsory!**                                                                 |
+| Student ID      | Student ID of your student, usually beginning with E. **Is Compulsory!**                                 |
 | Phone Number    | Phone number of your student, if available.                                                              |
 | Email           | Email address of your student, if available.                                                             |
 | GitHub Username | GitHub username of your student, if available.                                                           |
@@ -175,14 +172,12 @@ The **right half** of each student card contains module information related to y
 
 | Element                  | Purpose                                                                                                                                                                                                                                                                                                               |
 |--------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Module                   | Module you are teaching your student. **Is
-Compulsory!**                                                                                                                                                                                                                                                              |
+| Module                   | Module you are teaching your student. **Is Compulsory!**                                                                                                                                                                                                                                                              |
 | Attendance Percentage    | Percentage of classes that your student has been marked present.                                                                                                                                                                                                                                                      |
 | Classes                  | {::nomarkdown} Detailed record of classes for your student. Each box represents one class: <ul><li>the text in the box indicates the name of the class</li><li>the colour indicates attendance status (Green for present, Red for absent)</li></ul>{:/}                                                               |
 | Participation Percentage | Percentage of participation components that your student has qualified for.                                                                                                                                                                                                                                           |
 | Participation Components | {::nomarkdown} Detailed record of participation for your student. Each box represents one component: <ul><li>the text in the box indicates the name of the component</li><li>the colour indicates participation status (Green for yes, Red for no)</li></ul>{:/}                                                      |
-| Ungraded Assignments     | Number of ungraded assignments (assignments marked as **
-received**) that you yet to have graded.                                                                                                                                                                                                                      |
+| Ungraded Assignments     | Number of ungraded assignments (assignments marked as **received**) that you yet to have graded.                                                                                                                                                                                                                      |
 | Assignment Status        | {::nomarkdown} Detailed record of assignments for your student. Each box represents one assignment: <ul><li>the text in the box indicates the name of the assignment</li><li>the colour indicates assignment status (There are 3 assignment status: Green for graded, Red for received, Yellow for new)</li></ul>{:/} |
 
 <div markdown="block" class="alert alert-info">
@@ -337,26 +332,18 @@ the parameters and any remarks (e.g. **constraints**) that might be of relevance
 | KEYWORD      | Used in [`filter`](#538-filtering-the-students-filter)                                                                                                               |
 | ORDER        | Used in [`sort`](#537-sorting-the-students-sort), can take two values: asc or dsc                                                                                    |
 | STATUS       | Used to represent status of assignments (new/received/marked), attendance (present/absent) and participation (yes/no)                                                |
-| a/ASSIGNMENT | Assignment to be recorded for your student. <br/>**
-Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only                 |
+| a/ASSIGNMENT | Assignment to be recorded for your student. <br/>**Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only                 |
 | a/ATTRIBUTE  | Attribute to be used for [`sorting`](#537-sorting-the-students-sort)                                                                                                 |
-| c/CLASS      | Class to be recorded for your student <br/>**
-Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only                       |
-| e/EMAIL      | Email for your student. <br/>**
-Constraint:** Must be of the format local-part@domain                                                                                 |
+| c/CLASS      | Class to be recorded for your student <br/>**Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only                       |
+| e/EMAIL      | Email for your student. <br/>**Constraint:** Must be of the format local-part@domain                                                                                 |
 | g/GITNAME    | GitHub Username for your student                                                                                                                                     |
-| h/TELEHANDLE | Telegram Handle for your student. <br/>**
-Constraint:** Must have `@` before the handle e.g. @handle                                                                  |
+| h/TELEHANDLE | Telegram Handle for your student. <br/>**Constraint:** Must have `@` before the handle e.g. @handle                                                                  |
 | id/ID        | Student ID for your student                                                                                                                                          |
-| m/MODULE     | Module for your student. <br/>**
-Constraint:** Must follow NUS Module naming convention: letters, then 4 digits, and finally an optional letter suffix (i.e. CS2103T) |
+| m/MODULE     | Module for your student. <br/>**Constraint:** Must follow NUS Module naming convention: letters, then 4 digits, and finally an optional letter suffix (i.e. CS2103T) |
 | n/NAME       | Name for your student                                                                                                                                                |
-| p/COMPONENT  | Participation component to be recorded for your student. <br/>**
-Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only    |
-| p/PHONE      | Phone number for your student. <br/>**
-Constraint:** Must consist of only numbers, and an optional `+` at the beginning. Must have at least 3 digits                  |
-| t/TAG        | Tag for your student <br/>**
-Constraint:** Must be only [alphanumeric](#alphanumeric)                                                                                 |
+| p/COMPONENT  | Participation component to be recorded for your student. <br/>**Constraint:** Must consist of [alphanumerics](#alphanumeric), spaces, dashes and underscores only    |
+| p/PHONE      | Phone number for your student. <br/>**Constraint:** Must consist of only numbers, and an optional `+` at the beginning. Must have at least 3 digits                  |
+| t/TAG        | Tag for your student <br/>**Constraint:** Must be only [alphanumeric](#alphanumeric)                                                                                 |
 
 <div markdown="block" class="alert alert-info">
 :information_source: Here are some explanations about the format constraints for certain parameters that you may 
