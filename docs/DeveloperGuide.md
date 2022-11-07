@@ -39,7 +39,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103-F09-1/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103-F09-1/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103-F09-1/tp/tree/master/src/main/java/jeryl/fyp/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103-F09-1/tp/tree/master/src/main/java/jeryl/fyp/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -74,13 +74,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103-F09-1/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103-F09-1/tp/tree/master/src/main/java/jeryl/fyp/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `CompletedStudentListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103-F09-1/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103-F09-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103-F09-1/tp/tree/master/src/main/java/jeryl/fyp/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103-F09-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -93,7 +93,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103-F09-1/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103-F09-1/tp/tree/master/src/main/java/jeryl/fyp/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -123,7 +123,7 @@ How the parsing works:
 <div style="page-break-after: always;"></div>
 
 ### Model component
-**API** : [`Model.java`](https://github.com/AY2223S1-CS2103-F09-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103-F09-1/tp/tree/master/src/main/java/jeryl/fyp/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -135,15 +135,17 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `FypManager`, which `Student` references. This allows `FypManager` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `FypManager`, which `Student` references. This allows `FypManager` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
+
+</div>
 
 <div style="page-break-after: always;"></div>
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103-F09-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103-F09-1/tp/tree/master/src/main/java/jeryl/fyp/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -184,6 +186,8 @@ The following sequence diagram shows how the add student command works:
 <img src="images/AddStudentSequenceDiagram.png" width="550" />
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddStudentCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
 
 #### Design considerations
 An add student command is designed to add a single student along with its detail particulars such as one's student ID, student name, project name, and email. These details are the important details every professor needs from a student so that the professor can understand the work of the student and is able to contact the student when needed.
@@ -260,10 +264,10 @@ The following activity diagram summarizes what happens when a user executes a de
 The delete student command is designed to be used in conjunction with find student command. For instance, the user would first use find student using project name to find the student taking FYP using `find machine`
 to find students taking machine learning projects before doing `delete -s i/A0123456X` to remove student from FYP Manager.
 
-This integration between delete student command with find student command is important because FYPManager can store large number of students with FYP, making it not fesiable for users to scroll through the list.
-By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student ID, users can delete the student from the FYPManager once he/she drops the FYP.
+This integration between delete student command with find student command is important because FypManager can store large number of students with FYP, making it not feasible for users to scroll through the list.
+By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student ID, users can delete the student from the FypManager once he/she drops the FYP.
 
-<div style="page-break-after: always;"></div>
+### Deleting a deadline from a student in the FYP manager
 
 #### Implementation details
 
@@ -272,7 +276,7 @@ The delete deadline feature is facilitated by `DeleteDeadlineCommandParser` and 
 Given below is an example usage scenario and how the delete deadline mechanism behaves at each step:
 
 1. The user enters delete deadline command and provides the student ID and rank of deadline to be deleted.
-2. `FYPManagerParser` creates a new `DeleteDeadlineCommandParser` after preliminary processing of user input.
+2. `FypManagerParser` creates a new `DeleteDeadlineCommandParser` after preliminary processing of user input.
 3. `DeleteDeadlineCommandParser` creates a new `DeleteDeadlineCommand` based on the processed input.
 4. `LogicManager` executes the `DeleteDeadlineCommand`.
 5. `DeleteCommand` calls `Model#getIndexByStudentId(index)` and passes the studentId, and gets the desired student.
@@ -298,99 +302,16 @@ The following activity diagram summarizes what happens when a user executes a de
 The delete deadline command is designed to be used in conjunction with find student command. For instance, the user would first use find student using project name to find the student taking FYP using `find machine`
 to find students taking machine learning projects before doing `delete -d i/A0123456X r/1` to remove student from FYP Manager.
 
-This integration between delete deadline command with find student command is important because FYPManager can store large number of students with FYP, making it not fesiable for users to scroll through the list.
-By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student ID, users can delete the deadline from the FYPManager once he/she drops the deadline task.
+This integration between delete deadline command with find student command is important because FypManager can store large number of students with FYP, making it not fesiable for users to scroll through the list.
+By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student ID, users can delete the deadline from the FypManager once he/she drops the deadline task.
 
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedFypManager`. It extends `FypManager` with an undo/redo history, stored internally as an `fypManagerStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedFypManager#commit()` — Saves the current FYP manager state in its history.
-* `VersionedFypManager#undo()` — Restores the previous FYP manager state from its history.
-* `VersionedFypManager#redo()` — Restores a previously undone FYP manager state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitFypManager()`, `Model#undoFypManager()` and `Model#redoFypManager()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedFypManager` will be initialized with the initial FYP manager state, and the `currentStatePointer` pointing to that single FYP manager state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete -s i/A0123456A` command to delete student with studentId of A0123456A in the FYP manager. The `delete` command calls `Model#commitFypManager()`, causing the modified state of the FYP manager after the `delete 5` command executes to be saved in the `fypManagerStateList`, and the `currentStatePointer` is shifted to the newly inserted FYP manager state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add -s n/David …​` to add a new student. The `add -s` command also calls `Model#commitFypManager()`, causing another modified FYP manager state to be saved into the `fypManagerStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitFypManager()`, so the FYP manager state will not be saved into the `fypManagerStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoFypManager()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous FYP manager state, and restores the FYP manager to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial FypManager state, then there are no previous FypManager states to restore. The `undo` command uses `Model#canUndoFypManager()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoFypManager()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the FYP manager to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `fypManagerStateList.size() - 1`, pointing to the latest FYP manager state, then there are no undone FypManager states to restore. The `redo` command uses `Model#canRedoFypManager()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `Exit`. Commands that do not modify the FYP manager, such as `Exit`, will usually not call `Model#commitFypManager()`, `Model#undoFypManager()` or `Model#redoFypManager()`. Thus, the `fypManagerStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitFypManager()`. Since the `currentStatePointer` is not pointing at the end of the `fypManagerStateList`, all FYP manager states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire FYP manager.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-<div style="page-break-after: always;"></div>
-
-### `Mark` Feature
-#### Proposed Implementation
-The proposed MarkCommand Feature marks the Project Status of an FYP project as one of 3 possible statuses
+### Marking a project status
+#### Implementation details
+The MarkCommand feature marks the Project Status of an FYP project as one of 3 possible statuses
 {***YTS***, ***IP***, ***DONE***}. Currently these are the only 3 statuses supported, although more may be implemented
 later on if there are other meaningful statuses.
 
-The MarkCommand Feature sets a default status of `YTS` whenever a new FYP project is added to the FYP Manager, and the
+The MarkCommand feature sets a default status of `YTS` whenever a new FYP project is added to the FYP Manager, and the
 MarkCommand allows us to accordingly the project Status to either `IP` if the student is still
 working on the FYP project, or `DONE` once the FYP project has been completed.
 
@@ -424,7 +345,8 @@ The following sequence diagram shows how the MarkCommand operation works:
 The following activity diagram illustrates what happens when a user executes `MarkCommand`:
 
 ![MarkCommandActivityDiagram](images/MarkCommandActivityDiagram.jpg)
-#### Design considerations:
+
+#### Design considerations
 
 **Implementation Choice: Why MarkCommand is implemented this way**
 * We have only chosen to consider 3 general statuses {`YTS`, `IP`, `DONE`} since these are very general
@@ -467,28 +389,29 @@ The following sequence diagram shows how edit student command works:
 <img src="images/EditSequenceDiagram.png" width="550" />
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-Also, due to puml limitations, we are not able to clearly show self-invocation methods well. Do take note that arrow supposed to start at beginning of activation bar and end at end of activation bar.
+Also, due to PlantUML limitations, we are not able to clearly show self-invocation methods well. Do take note that arrow supposed to start at beginning of activation bar and end at end of activation bar.
 
 </div>
 
-The following activity diagram summarizes what happens when a user executes am edit command.
+### Editing particulars of a student
+The following activity diagram summarizes what happens when a user executes an edit command.
 
 <img src="images/EditActivityDiagram.png" width="550" />
 
 #### Design considerations
 
-The edit deadline command is designed to be used in conjunction with find student command. For instance, the user would first use find student using project name to find the student taking FYP using `find machine`
-to find students taking machine learning projects before doing `edit A0123456X p/AI` to edit student from FYP Manager.
+The edit command is designed to be used in conjunction with find student command. For instance, the user would first use find student using project name to find the student taking FYP using `find machine`
+to find students taking machine learning projects before doing `edit A0123456X p/AI` to edit the student in FypManager.
 
-This integration between edit command with find student command is important because FypManager can store large number of students with FYP, making it not fesiable for users to scroll through the list.
+This integration between edit command with find student command is important because FypManager can store large number of students with FYP, making it not feasible for users to scroll through the list.
 By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student ID, users can edit the student attributes from the FypManager.
 
 <div style="page-break-after: always;"></div>
 
-###  `Help` Feature
-#### Proposed Implementation
-The proposed `Help` Feature provides the professor or students with useful information on how to optimally make use of this Jeryl app.
-The `Help` feature mechanism is facilitated by `HelpCommand` and `HelpCommandParser`. `HelpCommand` extends from the abstract class `Command`
+### Showing help
+#### Implementation
+The help feature provides the professor or students with useful information on how to optimally make use of this Jeryl app.
+The help feature mechanism is facilitated by `HelpCommand` and `HelpCommandParser`. `HelpCommand` extends from the abstract class `Command`
 while `HelpCommandParser` extends from the interface `Parser`.
 To summarize, it implements the following operation:
 * `HelpCommand#execute()` — oversees the execution process for `HelpCommand`.
@@ -517,15 +440,15 @@ The following activity diagram summarizes what happens when a user executes am h
 <img src="images/helpMessage.png" width="550" />
 
 
-###  `List` Feature
-#### Proposed Implementation
-The proposed `List` Feature allows the professor to list all FYP students in the FYP Manager.
-The `List` feature mechanism is facilitated by `ListCommand`. It extends from the abstract class `Command`.
+### Listing the students and their FYPs
+#### Implementation details
+The list feature allows the professor to list all FYP students in the FYP Manager.
+The list feature mechanism is facilitated by `ListCommand`. It extends from the abstract class `Command`.
 To summarize, it implements the following operation:
 * `ListCommand#execute()` — oversees the execution process for `ListCommand`.
 
 Given below is an example usage scenario of `ListCommand`:
-1. The user enters the `List` command
+1. The user enters the list command
 2. `FypManagerParser` creates a new `ListCommand` after preliminary check of user input.
 3. `LogicManager` executes the `ListCommand` using the `LogicManager#execute()` method.
 4. `ListCommand` updates a `ObservableList<Student>`, and then creates a `CommandResult` and returns it to `LogicManager` to complete the command.
@@ -540,10 +463,10 @@ The following activity diagram summarizes what happens when a user executes a li
 
 <div style="page-break-after: always;"></div>
 
-### `Find` Feature
-#### Proposed Implementation
+### Finding students based on criterias
+#### Implementation details
 
-The proposed FindCommand Feature allows the user to find for specific keywords in certain fields. The current
+The `FindCommand` feature allows the user to find for specific keywords in certain fields. The current
 implementation supports finding keywords in four fields:
 1) `StudentId`
 2) `StudentName`
@@ -620,7 +543,7 @@ The following activity diagram summarizes what happens when a user executes a li
 
 <div style="page-break-after: always;"></div>
 
-### `Sort` Feature
+### Sorting the FYP manager based on a criteria
 #### Proposed Implementation
 
 This feature allows professors to sort the FYP projects by their project name, or by
@@ -655,6 +578,88 @@ We give an example usage scenario of `SortProjectNameCommand` and `SortProjectSt
 The following activity diagram summarizes what happens when the user runs a `SortCommand`:
 
 ![SortCommandActivityDiagram](images/SortCommandActivityDiagram.jpg)
+
+### \[Proposed\] Undo/redo feature
+
+#### Proposed Implementation
+
+The proposed undo/redo mechanism is facilitated by `VersionedFypManager`. It extends `FypManager` with an undo/redo history, stored internally as an `fypManagerStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+
+* `VersionedFypManager#commit()` — Saves the current FYP manager state in its history.
+* `VersionedFypManager#undo()` — Restores the previous FYP manager state from its history.
+* `VersionedFypManager#redo()` — Restores a previously undone FYP manager state from its history.
+
+These operations are exposed in the `Model` interface as `Model#commitFypManager()`, `Model#undoFypManager()` and `Model#redoFypManager()` respectively.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `VersionedFypManager` will be initialized with the initial FYP manager state, and the `currentStatePointer` pointing to that single FYP manager state.
+
+![UndoRedoState0](images/UndoRedoState0.png)
+
+Step 2. The user executes `delete -s i/A0123456A` command to delete student with studentId of A0123456A in the FYP manager. The `delete` command calls `Model#commitFypManager()`, causing the modified state of the FYP manager after the `delete -s i/A0123456A` command executes to be saved in the `fypManagerStateList`, and the `currentStatePointer` is shifted to the newly inserted FYP manager state.
+
+![UndoRedoState1](images/UndoRedoState1.png)
+
+Step 3. The user executes `add -s n/David …​` to add a new student. The `add -s` command also calls `Model#commitFypManager()`, causing another modified FYP manager state to be saved into the `fypManagerStateList`.
+
+![UndoRedoState2](images/UndoRedoState2.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitFypManager()`, so the FYP manager state will not be saved into the `fypManagerStateList`.
+
+</div>
+
+Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoFypManager()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous FYP manager state, and restores the FYP manager to that state.
+
+![UndoRedoState3](images/UndoRedoState3.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial FypManager state, then there are no previous FypManager states to restore. The `undo` command uses `Model#canUndoFypManager()` to check if this is the case. If so, it will return an error to the user rather
+than attempting to perform the undo.
+
+</div>
+
+The following sequence diagram shows how the undo operation works:
+
+![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The `redo` command does the opposite — it calls `Model#redoFypManager()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the FYP manager to that state.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `fypManagerStateList.size() - 1`, pointing to the latest FYP manager state, then there are no undone FypManager states to restore. The `redo` command uses `Model#canRedoFypManager()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+
+</div>
+
+Step 5. The user then decides to execute the command `Exit`. Commands that do not modify the FYP manager, such as `Exit`, will usually not call `Model#commitFypManager()`, `Model#undoFypManager()` or `Model#redoFypManager()`. Thus, the `fypManagerStateList` remains unchanged.
+
+![UndoRedoState4](images/UndoRedoState4.png)
+
+Step 6. The user executes `clear`, which calls `Model#commitFypManager()`. Since the `currentStatePointer` is not pointing at the end of the `fypManagerStateList`, all FYP manager states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+
+![UndoRedoState5](images/UndoRedoState5.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/CommitActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How undo & redo executes:**
+
+* **Alternative 1 (current choice):** Saves the entire FYP manager.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Individual command knows how to undo/redo by
+  itself.
+  * Pros: Will use less memory (e.g. for `delete`, just save the student being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
+
+_{more aspects and alternatives to be added}_
+
+<div style="page-break-after: always;"></div>
 
 #### Future Implementations
 * Sorting of deadlines could be considered as well
@@ -753,8 +758,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | eager student   　　　                            | see the pending task with the next earliest deadline set by my professor                                  | know what I need to do next for my FYP [coming soon]                                        |
 | `*`      | automation-loving SoC professor   　　　          | send auto emails to students with upcoming deadlines                                                      | remind them to work on the tasks by the deadline [coming soon]                              |
 
-
-*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -910,8 +913,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * Nil
 
 
-*{More to be added}*
-
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
@@ -926,8 +927,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6.  Personal details of students should only be accessible by supervising professor.
 7.  System should be able to support the whole SoC cohort (around 1500 users) at the same time.
 8.  JerylFypManager is accessible 24/7.
-
-*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 ### Glossary
@@ -962,7 +961,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file<br>Expected: Shows the GUI with a set of sample students. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -971,29 +970,9 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
-### Deleting a student
-
-1. Deleting a student while all students are being shown
-
-   1. Prerequisites: List all students using the `Exit` command. Multiple students in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+   1. If a data is corrupted, it will restart with a fresh new empty data.
+   2. If the data is missing, it will make use of the sample data instead.
