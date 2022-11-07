@@ -69,7 +69,6 @@ public class OpsCommand extends Command {
             @Override
             public OpsCommand parse(String userInput) throws ParseException {
                 userInput = userInput.trim();
-                System.out.println(userInput);
                 if (userInput.length() == 0) {
                     throw new ParseException(INVALID_INPUT + "\n" + USE_MESSAGE);
                 }
@@ -79,7 +78,6 @@ public class OpsCommand extends Command {
                 }
                 String op = res.group(1);
                 Float val = Float.parseFloat(res.group(2));
-                System.out.printf("%s: %f", op, val);
                 return new OpsCommand(op, val);
             }
 
