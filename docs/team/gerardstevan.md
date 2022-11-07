@@ -13,7 +13,7 @@ Travelr allows you to plan trips around the activities in your bucket list. You 
     - **What it does:** It contains the interface EventList and the classes BucketList and Itineraries which holds list of events
     - **Justification:** Trips needed an itinerary field to hold all its events and same goes for BucketList.
     
-- **New Feature:** Added `AddEventToTrip` command and parser to move an event from bucket list to a trip [\#39](https://github.com/AY2223S1-CS2103T-W17-1/tp/pull/39)..
+- **New Feature:** Added `AddEventToTrip` command and parser to move an event from bucket list to a trip [\#39](https://github.com/AY2223S1-CS2103T-W17-1/tp/pull/39).
     - **What it does:** Remove the specified event from bucket list and add it to the specified trip's itinerary.
     - **Justification:** This allows users to add events to their trip to make trip planning possible.
 - **New Feature:** Added the `DeleteEventFromTrip` command and parse to move an event from a trip to the bucket list [\#39](https://github.com/AY2223S1-CS2103T-W17-1/tp/pull/39).
@@ -28,7 +28,7 @@ Travelr allows you to plan trips around the activities in your bucket list. You 
 
 * **Enhancements to existing features**:
     * Refactored the storage component to save isDone value of Trips [\#66](https://github.com/AY2223S1-CS2103T-W17-1/tp/pull/66).
-    * Changed the help window to show a table of commands (\#102)[https://github.com/AY2223S1-CS2103T-W17-1/tp/pull/102], [\#111](https://github.com/AY2223S1-CS2103T-W17-1/tp/pull/111).
+    * Changed the help window to show a table of commands [\#102](https://github.com/AY2223S1-CS2103T-W17-1/tp/pull/102), [\#111](https://github.com/AY2223S1-CS2103T-W17-1/tp/pull/111).
 
 ### Testing
 - Add test cases for AddEventToTripCommand, DeleteEventFromTripCommand, MarkTripDoneCommand, and UnmarkDoneTripCommand [\#230](https://github.com/AY2223S1-CS2103T-W17-1/tp/pull/230).
