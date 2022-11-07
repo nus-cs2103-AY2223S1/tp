@@ -22,7 +22,10 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   - Provided the necessary documentation for the `sort`, `participate`, `unparticipate` features for both the User Guide and Developer Guide with UML Diagrams.[#108](https://github.com/AY2223S1-CS2103T-W13-1/tp/pull/108)
+  - ![](../images/diagrams/MarkActivityDiagram.png)
+  - ![](../images/diagrams/SortCommandSequenceDiagram.png)
+  - ![](../images/diagrams/SortActivityDiagram.png)
   - Reviewed User Guide and Developer Guide as a whole for final submission
 
 * **Project management**:
-  * Review and merge functional PRs for `v1.3`
+  * Review and merge functional PRs for `v1.3` and `v1.4`

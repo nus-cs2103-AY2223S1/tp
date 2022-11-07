@@ -299,6 +299,10 @@ Below is a more detailed sequence diagram for the execution of the command using
 
 ![MarkCommandSequenceDiagram](images/diagrams/MarkCommandSequenceDiagram.png){: diagram}
 
+The following activity diagram summarizes what happens when a user executes a mark command:
+
+![MarkActivityDiagram](images/diagrams/MarkActivityDiagram.png){: diagram}
+
 ### Additional Notes
 
 #### Stateless Attributes
@@ -408,6 +412,10 @@ Given below is an example usage scenario and how the sort mechanism behaves at e
    is true.
 
 7. The sorted list is displayed to the user.
+
+The following activity diagram summarizes what happens when a user executes a sort command:
+
+![SortActivityDiagram](images/diagrams/SortActivityDiagram.png){: diagram}
 
 ### Design Considerations
 

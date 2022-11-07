@@ -1,37 +1,17 @@
 @startuml
-'https://plantuml.com/activity-diagram-beta
-
 start
-:ClickServlet.handleRequest();
-:new page;
-if (Page.onSecurityCheck) then (true)
-  :Page.onInit();
-  if (isForward?) then (no)
-    :Process controls;
-    if (continue processing?) then (no)
-      stop
-    endif
+:User executes sort command;
 
-    if (isPost?) then (yes)
-      :Page.onPost();
-    else (no)
-      :Page.onGet();
-    endif
-    :Page.onRender();
-  endif
-else (false)
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([ORDER is "asc"])
+    :Retrieve Comparator for given Attribute;
+    :Sort list using Comparator;
+else ([ORDER is "dsc"])
+    :Retrieve Comparator for given Attribute;
+    :Sort list using Comparator;
+    :Reverse list;
 endif
-
-if (do redirect?) then (yes)
-  :redirect process;
-else
-  if (do forward?) then (yes)
-    :Forward request;
-  else (no)
-    :Render page template;
-  endif
-endif
-
 stop
-
 @enduml
