@@ -458,10 +458,6 @@ Step 6. The user executes `clear -p`, which calls `Model#addCommand()`. We notic
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**
