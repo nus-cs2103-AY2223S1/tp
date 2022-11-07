@@ -295,7 +295,7 @@ Step 5: Upon recognising the `CommandResult` is of `isView` type, `MainWindow` c
 
 Step 6: This causes the `TutorDetailsPanel` of the `tutor` to be set as visible, resulting in the side panel being displayed. The following sequence diagram demonstrates the detailed operations carried out between `UI`, `Logic` and `Model`:
 
-<img src="images/ViewSequenceUiDiagram.png"/>
+<img src="images/ViewSequenceUiDiagram.png" width="90%"/>
 
 <ins>Design Considerations</ins>
 
