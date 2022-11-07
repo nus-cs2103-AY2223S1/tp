@@ -14,7 +14,7 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **Setting Up and Getting Started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -347,7 +347,7 @@ The following sequence diagram shows how the `sort` command works:
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **Documentation, Logging, Testing, Configuration, and DevOps**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -667,7 +667,7 @@ Software System: Travelr
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **Appendix: Instructions for Manual Testing**
 
 Given below are instructions to test the app manually.
 
