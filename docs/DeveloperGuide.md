@@ -874,7 +874,7 @@ Refer to Adding a Mastery Check, with the only difference being `addconsult` ins
 
 1. Deleting a lesson while lesson list is being shown
 
-    1. Prerequisites: List all tasks using the `listlesson` or `listall` command. There must be at least one lesson in the list.
+    1. Prerequisites: List all lessons using the `listlesson` or `listall` command. There must be at least one lesson in the list.
 
      2. Test case: `deletelesson 1` <br>
        Expected: The first lesson at the top of the list is deleted. Details of the deleted lesson are shown in the status message.
