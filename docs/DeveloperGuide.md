@@ -49,7 +49,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 A quick overview of main components and how they interact with each other is given below.
 
-#### **Main components of the architecture**
+#### Main components
 
 **`Main`** has two classes
 called [`Main`](https://github.com/AY2223S1-CS2103T-T17-2/tp/blob/master/src/main/java/seedu/nutrigoals/Main.java)
@@ -68,7 +68,7 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
-#### **How the architecture components interact with each other**
+#### Interactions between components
 
 The *Sequence Diagram* below shows how the components interact with each other in the scenario: user issues
 the command `delete 1`.
@@ -424,7 +424,7 @@ Step 1. The user launches the application on 19 October 2022. Suppose the foods 
 2. chicken rice: 702 kcal
 3. wanton noodles: 409 kcal
 
-Step 2. The user inputs `review` command, creating a `ReviewCommand` object. 
+Step 2. The user executes `review` command, creating a `ReviewCommand` object. 
 
 Step 3. The `ReviewCommand` created is executed by `ReviewCommand#execute()`. 
 
@@ -467,7 +467,7 @@ Given below is an example usage scenario and how the suggest mechanism behaves a
 
 Step 1. The user launches the application today.
 
-Step 2. The user inputs `suggest` command, creating a `SuggestCommand` object.
+Step 2. The user executes `suggest` command, creating a `SuggestCommand` object.
 
 Step 3. The `SuggestCommand` created is executed by `SuggestCommand#execute()`.
 
