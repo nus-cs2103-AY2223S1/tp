@@ -141,7 +141,7 @@ YellowBook's commands are mnemonically named. A [Command Summary](#command-summa
 **:information_source: Command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [r/REMARK]` can be used as `n/John Doe r/friend` or as `n/John Doe`.
@@ -216,6 +216,8 @@ Shows all contacts stored in the contact list.
 
 Format: `listC`
 
+<div style="page-break-after: always;"></div>
+
 ### Deleting a contact: `deleteC`
 
 Deletes a contact from the contact list.
@@ -240,6 +242,8 @@ Examples:
 
 * `findC n/John` followed by `deleteC 1` deletes the first result of the `findC` command.
 
+<div style="page-break-after: always;"></div>
+
 ### Editing a contact: `editC`
 
 Edits the information fields (e.g. name, mobile number, email address) of an existing contact in the contact list.
@@ -263,6 +267,8 @@ Format: `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]`
 Example:
 
 * `editC 1 n/John p/12345678` edits the first contact’s name to be John and phone number to be 12345678.
+
+<div style="page-break-after: always;"></div>
 
 ### Finding a contact: `findC`
 
@@ -294,6 +300,8 @@ Examples:
 * `findC n/flynn` will return `Candace Flynn` and `Phineas Flynn`.
 
 * `findC n/john p/12345678 e/john@gmail.com a/123` will return contacts with name containing the word `john`, phone number `12345678`, email `john@gmail.com`, and address containing `123`.
+
+<div style="page-break-after: always;"></div>
 
 ### Filtering contacts by label: `filterC`
 
@@ -393,6 +401,8 @@ Format: `addT d/DESCRIPTION D/DEADLINE`
 Example:
 
 * `addT d/buy milk D/12-09-2022` will add the task "buy milk" with deadline 12 September 2022.
+
+<div style="page-break-after: always;"></div>
 
 ### Listing all non-archived tasks: `listT`
 
@@ -612,6 +622,8 @@ Examples:
 
 * `findT d/book` followed by `unmarkT 1` marks the first result of the `findT` command as undone.
 
+<div style="page-break-after: always;"></div>
+
 ### Archiving a task: `archiveT`
 
 Archives a task in the displayed task list, removing it from main (unarchived) task list.
@@ -783,6 +795,8 @@ With our label feature, managing your numerous projects on the go has just gotte
 * Labels used in commands are case-sensitive. e.g. `CS2103T` is different from `cs2103t`.<br>
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Adding a label to a contact/task: `addL`
 
