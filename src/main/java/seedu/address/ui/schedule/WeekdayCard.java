@@ -5,7 +5,7 @@ import java.util.List;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-
+// Solution below adapted from https://github.com/AY2021S1-CS2103T-W13-3/tp with some modifications
 /**
  * Creates a WeekdayCard
  */
