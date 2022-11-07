@@ -548,11 +548,7 @@ Examples:
 Shows a list of residents whose fields match the input keywords.
 
 Format: `filter /SPECIFIER KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
-<<<<<<< HEAD
-* A specifier is required in order for the command to work. If not it is an invalid command format
-=======
 * A specifier is required in order for the command to work. If not, it is an invalid command format.
->>>>>>> 8bd121b3801a364f9c1df55519fc63d9929a32d3
 * Only one specifier can be entered in a command.
 * Currently, only two specifiers are supported:
   * `/all` returns a resident if it fulfills **all** of the specified keywords.
