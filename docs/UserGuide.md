@@ -2,42 +2,51 @@
 
 1. [Introduction](#introduction)
 2. [About](#about)
-3. [Prerequisites](#prerequisites)
-4. [Quick start](#quick-start)
+   1. [Purpose of guide](#purpose)
+   2. [How to navigate the user guide](#user-guide-navigation)
+   3. [Contactmation window guide](#contactmation-window-guide)
+   4. [Prerequisites](#prerequisites)
+3. [Quick start](#quick-start)
+4. [Before you begin](#before-you-begin)
+   1. [Standardised format style](#standardised-format-style)
+   2. [Constraints on placeholder words](#constraints-on-placeholder-words)
+   3. [Making groups within groups](#making-groups-within-groups)
 5. [Features](#features)
-    1. [Definitions](#definitions)
-    2. [Scoping](#scoping)
-    3. [Basic features](#basic-features)
-       1. [Contact commands](#contact-commands)
-          1. [Add a contact](#add-a-contact-person-new)
-          2. [Delete a contact](#delete-a-contact-person-delete)
-          3. [Listing all contacts](#listing-all-contacts-list)
-       2. [General commands](#general-commands)
+   1. [Basic features](#basic-features)
+       1. [General commands](#1-general-commands)
           1. [Clear command](#clear-command-clear)
-          2. [Find command](#find-command-find)
-          3. [Exit command](#exits-the-program-exit)
-       3. [Field commands]()
-       4. [Group commands](#group-commands)
-          1. [Creating a group](#creating-a-group-team-new)
-          2. [Deleting a group](#deleting-a-group-team-delete)
-          3. [Navigating to a group](#navigating-to-a-group-cg)
-          4. [Adding people to a group](#adding-contacts-to-a-group-assign)
-          5. [Removing people from group](#removing-contacts-from-group-team-remove)
-       5. [Task commands](#task-commands)
-          1. [Adding a task to a group](#adding-a-task-to-a-group-task-add)
-          2. [Deleting a task from group](#deleting-a-task-from-group-task-delete)
-          3. [Set progress for tasks](#set-progress-for-tasks-task-progress)
-    4. [Advanced features](#advanced-features)
-        1. [Chaining](#advanced-features-overview-chaining)
-        2. [Feature constraints](#advanced-feature-constraints)
-        3. [Select command](#select-command)
-        4. [Contains command](#contains-command)
-        5. [Execute command](#execute-command)
-        6. [Replace command](#replace-command)
-        7. [Foreach command](#foreach-command)
-        8. [If else command](#if--else-command)
-        9. [Aliasing](#aliasing)
-        10. [Custom command / macro](#custom-command--macro)
+          2. [Exit command](#exits-the-program-exit)
+          3. [Add a field](#add-a-new-field-field-add)
+          4. [Delete a field](#delete-a-field-field-delete)
+       2. [Team/Group commands](#2-teamgroup-commands)
+          1. [Create a team](#create-a-team)
+          2. [Delete a team](#delete-a-team)
+          3. [Navigate to a team](#navigate-to-a-team)
+          4. [Add new contact to team](#add-new-contacts-within-a-team)
+          5. [Remove contact from team](#removing-contacts-from-team-team-remove)
+          6. [Creating or deleting a subteam](#creating-and-deleting-a-subteam)
+          7. [Find a team](#find-command-team-find)
+       4. [Contact commands](#3-contact-commands)
+          1. [Create a contact](#create-a-contact)
+          2. [Delete a contact](#delete-a-contact)
+          3. [List all contacts in team](#listing-all-contacts-in-current-team)
+          4. [Find a contact](#find-command-person-find)
+       5. [Task commands](#4-task-commands)
+          1. [Adding a task](#adding-a-task-to-a-team-task-add)
+          2. [Deleting a task](#deleting-a-task-from-team-task-delete)
+          3. [Mark task](#mark-a-task-task-mark)
+          4. [Unmark task](#unmark-a-task-task-unmark)
+   2. [Advanced features](#advanced-features)
+       1. [Chaining](#advanced-features-overview-chaining)
+       2. [Feature constraints](#advanced-feature-constraints)
+       3. [Select command](#select-command)
+       4. [Contains command](#contains-command)
+       5. [Execute command](#execute-command)
+       6. [Replace command](#replace-command)
+       7. [Foreach command](#foreach-command)
+       8. [If else command](#if--else-command)
+       9. [Aliasing](#aliasing)
+       10. [Custom command / macro](#custom-command--macro)
 6. [FAQ](#faq)
 7. [Future plans](#future-plans)
 8. [Glossary](#glossary)
@@ -194,7 +203,7 @@ times, but `t/tags` can be entirely optional as well. Therefore, it is possible 
 
 Other keywords utilised in the guide are defined in the [glossary](#glossary).
 
-### Constraints of placeholder words
+### Constraints on placeholder words
 
 This section will help you understand what placeholder words in the format section for each command can be 
 replaced by. Placeholder words are words which are wrapped around angled brackets (`<>`) in the format section. 
@@ -237,6 +246,15 @@ understand the format styles for each command.
 
 
 - The `KEYWORD` and `MORE_KEYWORDS` must be alphanumeric.
+
+
+- The `TITLE` is [alphanumeric](#glossary) and can contain hyphens and underscores. 
+
+
+- The `DESCRIPTION` has no restrictions.
+
+
+- The `ITEM` can only be replaced with either `task`, `person` or `team`.
 
 ### Making groups within groups
 
@@ -356,7 +374,7 @@ The basic features are categorised as the following:
 
 ## 1. General commands
 
-These commands do not specifically target individual groups, contacts or tasks.
+These commands can be applied to any group, contact or task. 
 
 ### Clear command: `clear`
 
@@ -374,6 +392,41 @@ When this command is executed, the program will **save** the current session and
 
 **Format:** `exit`
 
+### Add a new field: `field add`
+
+This command will add a field to a group, task, or person. A field can provide additional information to the
+`ITEM` when it is needed.
+
+**Format:**
+- `field add u/<INDEX> <FIELD NAME> <DESCRIPTION>` to add a new field to the person at the current `INDEX`
+- `field add g/<INDEX> <FIELD NAME> <DESCRIPTION>` to add a new field to the group at the current `INDEX`
+- `field add t/<INDEX> <FIELD NAME> <DESCRIPTION>` to add a new field to the task at the current `INDEX`
+
+For example, let us say we have a task `Do paperwork`, and we want to add additional information to it. We can
+call the command `field add t/1 Priority High` to add a field with the `NAME` as `Priority` and
+the `DESCRIPTION` as `High` to the task with `INDEX` 1.
+
+![Add field to task](images/AddFieldUserGuideExample.png)
+
+### Delete a field: `field delete`
+
+The command will attempt to delete a field that belongs to a group, task or person.
+A field can provide additional information to the
+`ITEM` when it is needed.
+
+**Format:**
+- `field delete u/<INDEX> <FIELD NAME>` to delete a field from the person at the current `INDEX`
+- `field delete g/<INDEX> <FIELD NAME>` to delete a field from the group at the current `INDEX`
+- `field delete t/<INDEX> <FIELD NAME>` to delete a field from the task at the current `INDEX`
+
+Continuing from the example in [add a new field](#add-a-new-field-field-add), let us now
+delete the `Priority High` field. To do this, we have to write `field delete t/1 Priority`
+to delete the `Priority` field in the first task listed on the Contactmation display.
+
+![Delete field example](images/DeleteFieldUgExample.png)
+
+As we can see, the `Priority High` field is now deleted from the `Do paperwork` task.
+
 ## 2. Team/Group commands
 
 Contactmation allows you to group your contacts into teams. This section will showcase the different commands that
@@ -385,22 +438,23 @@ Team-related commands in Contactmation begin with the `team` keyword.
 
 Contactmation provides the `team new` command to create a new team with a specified team name.
 
-**Format**: `team new <TEAM_NAME>`
+**Format**: `team new <TEAM NAME>`
 
-The above command creates a new team with a specified team name. The team name should not contain any spaces, and should
-consist of alphanumeric characters with hyphens or underscores only.
+The above command creates a new team with a specified team name. Do refer to the 
+[constraints on placeholder words](#constraints-on-placeholder-words) section for more information on what
+you can type in `TEAM NAME`.
 
 **Examples**:
 
-- `team new CS1101S`
-- `team new Krusty_Krab_contacts`
+- `team new Vongola_X`
+- `team new Team_Alpha_Centauri`
 
 ![Create Team Screenshot](images/user-guide-img/CreateTeamScreenshot.PNG)
 
 ### Delete a Team
 
-To delete a team from Contactmation, you can use the `team delete` command followed with the team number as specified in
-the team list.
+To delete a team from Contactmation, you can use the `team delete` command followed by the team number seen in
+the current display of the team list.
 
 **Format**: `team delete <INDEX>`
 
@@ -408,19 +462,7 @@ the team list.
 
 - `team delete 1`
     - The above command deletes team number 1 in the list of teams.
-
-### Removing contacts from team: `team remove`
-
-Removes the contact from the current group by their currently specified `INDEX` as shown in
-the application window.
-
-**Format:** `team remove <INDEX>`
-
-**Example:**
-
-- `team remove 3`
-    - This command removes contact number 3 in the specified team.
-
+    
 ### Navigate to a Team
 
 To perform commands specific to a team, you will have to navigate first to that specific team. You can use the `cg`
@@ -430,9 +472,8 @@ the application.
 This command is similar to going into a folder on your desktop, or stepping
 out of it.
 
-
-> **Note:**
-> Please look at how [scoping](#scoping) works before continuing.
+:bulb: **Tip**: Please take a look at [making groups within groups](#making-groups-within-groups) 
+for a tutorial on team navigation before executing this command.
 
 **Formats**:
 
@@ -450,12 +491,13 @@ out of it.
       ![Create Team Screenshot](images/user-guide-img/NavigateTeamAfterScreenshot.PNG)
 - `cg ..`
 
-<aside>
+<div markdown="block" class="alert alert-info">
+**:information_source: Note for experienced programmers:**<br>
 
-💡 If you are familiar with UNIX-based operating systems such as Linux or familiar with using terminal, the navigation
+If you are familiar with UNIX-based operating systems such as Linux or familiar with using terminal, the navigation
 command (`cg`) in Contactmation follows a similar syntax to the change directory command (`cd`).
 
-</aside>
+</div>
 
 ### Add New contacts within a Team
 
@@ -463,25 +505,25 @@ Once you have navigated to a team, you can add a new contact within that team, w
 as adding a contact to Contactmation.
 
 
-**Format**: `person new n/<NAME> [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
+**Format**: `person new n/<NAME> [p/<PHONE>] [e/<EMAIL>] [a/<ADDRESS>] [t/<TAG>]...`
 
 **Examples**:
 
 - `person new n/Spongebob`
 - `person new n/Squidward Tentacles p/01234567 e/squidward@gmail.com a/Bikini Bottom Krusty Krab t/contact`
 
-### Removing a Contact from a Team
+### Removing contacts from team: `team remove`
 
-To remove a contact from a team, first ensure that you have navigated to that specific team. Afterwards, you can remove
-the person by using the `team remove` command.
+Removes the contact from the current group by their currently specified `INDEX` as shown in
+the application window.
 
-**Format**: `team remove <INDEX>`
+**Format:** `team remove <INDEX>`
 
-**Examples**:
+**Example:**
 
-- `team remove 1`
-    - The above command removes person number 1 from the list of persons within the team.
-
+- `team remove 3`
+    - This command removes contact number 3 in the specified team.
+    
 ### Creating and Deleting a Subteam
 
 Contactmation allows the creation and deletion of a subteam within a team using the same command as
@@ -520,7 +562,7 @@ You can use the `person delete` command to delete a contact from the list of per
 
 - `person delete 1`
 
-### Listing all contacts
+### Listing all contacts in current team
 
 Contactmation supports the `list` command that displays all of your contacts into a list of persons.
 
@@ -541,55 +583,20 @@ to further narrow the search for a contact, subgroup or task within the current 
 
 ---
 
-## Contact commands
-
-Now, you should use these set of commands to add the members of your project.
-The commands will allow you to add the necessary information on your members with ease as well.
-Moreover, our software ensures that the information of the member you added, as a contact, is valid.
-Contact-related commands precede with the `person` keyword.
-
-### Create a Contact
-
-Let us start off by adding a person to Contactmation. To add a contact, you can use the command `person new`, followed by the name of the person. You can also choose to provide the phone number, email and address to each person, or add a tag to identify each person.
-
-**Format**: `person new n/<NAME> [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]...`
-
-**Examples**:
-
-- `person new n/Spongebob`
-- `person new n/Squidward Tentacles p/01234567 e/squidward@gmail.com a/Bikini Bottom Krusty Krab t/contact`
-
-![Add Person Screenshot](images/user-guide-img/PersonNewScreenshot.PNG)
-
-
-### Delete a contact
-
-
-You can use the `person delete` command to delete a contact from the list of persons in the current scope.
-
-
-**Format**: `person delete <INDEX>`
-
-**Example**:
-
-- `person delete 1`
-  - this deletes the first person on the person list shown.
-  
-### Listing all contacts
-
-Contactmation supports the `list` command that displays all of your contacts into a list of persons.
-
-
-**Format**: `list`
-
----
-
 ## 4. Task commands
 
 After adding your **contacts**, and allocating them into **teams**, you can give them **tasks**!
 This section will showcase the different commands that can be used on tasks.
 
 Task-related commands precede with the `task` keyword.
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes about tasks:**<br>
+
+Tasks can only be added if you are within a team. To check whether you are in a team, look at your
+[current team](#contactmation-window-guide) and ensure it is not the [root group](#glossary), which
+is when the current team is (`/`).
+</div>
 
 ### Adding a task to a team: `task add`
 
@@ -614,20 +621,27 @@ Example:
 - `task delete 1`
   - This command deletes the first task in the task list.
 
-### Setting progress for tasks: `task progress`
+### Mark a task: `task mark`
 
-**THIS FEATURE IS CURRENTLY IN PROGRESS**
+Marks a task as complete, with the current time as the completed time of the task.
 
-Sets the progress level for each task that has been listed.
-
-Format: `task progress <INDEX> <LEVEL>`
-
-- Index indicates the index of the task in the list.
-- Level indicates the progress level, and can only be set to 25%, 50%, 75%, 100%.
+Format: `task mark <INDEX>`
 
 Example:
-- `task progress 1 25%`
-  - This sets the progress of the first task in the list as 25%.
+
+- `task mark 1`
+    - This command marks the first task in the task list.
+
+### Unmark a task: `task unmark`
+
+Unmarks a task. The task will return to be `Incomplete`.
+
+Format: `task unmark <INDEX>`
+
+Example:
+
+- `task unmark 1`
+    - This command unmarks the first task in the task list.
 
 ## **Advanced features**
 
@@ -988,4 +1002,4 @@ Our future plans for Contactmation includes:
 | Create/convert String    | `str <String>`                                                          |
 | Print                    | `<...> \| print`                                                        |
 
-[Back to top](#contactmation-user-guide)
+[Back to top](#table-of-contents)
