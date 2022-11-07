@@ -3,24 +3,15 @@ package seedu.codeconnect.model.task;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-<<<<<<< HEAD:src/test/java/seedu/codeconnect/model/task/DeadlineComparatorTest.java
 import static seedu.codeconnect.testutil.TypicalTasks.FINISH_TP;
-import static seedu.codeconnect.testutil.TypicalTasks.LAB_2;
-=======
-import static seedu.address.testutil.TypicalTasks.FINISH_TP;
-import static seedu.address.testutil.TypicalTasks.getTypicalTaskList;
->>>>>>> a4ffe300a1bd81860c5236d0259b094c368a6d42:src/test/java/seedu/address/model/task/DeadlineComparatorTest.java
+import static seedu.codeconnect.testutil.TypicalTasks.getTypicalTaskList;
 
 import java.util.Comparator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-<<<<<<< HEAD:src/test/java/seedu/codeconnect/model/task/DeadlineComparatorTest.java
-import seedu.codeconnect.model.module.Module;
-=======
-import seedu.address.model.TaskList;
->>>>>>> a4ffe300a1bd81860c5236d0259b094c368a6d42:src/test/java/seedu/address/model/task/DeadlineComparatorTest.java
+import seedu.codeconnect.model.TaskList;
 
 public class DeadlineComparatorTest {
 

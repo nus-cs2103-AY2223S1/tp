@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Comparator;
 
-import seedu.address.model.TaskList;
+import seedu.codeconnect.model.TaskList;
 
 /**
  * Compares two tasks on the basis of the task with an earlier deadline ordered in front of the other task.
