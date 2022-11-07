@@ -52,7 +52,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delcus 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -98,11 +98,11 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a customer).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delcus 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delcus 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCustomerCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -111,7 +111,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCustomerCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCustomerCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* All `XYZCommandParser` classes (e.g., `AddCustomerCommandParser`, `DeleteCustomerCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W11-3/tp/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -369,90 +369,6 @@ the most elegant way of handling file naming. Furthermore, the tradeoffs are alm
 as duplicate filenames can be easily handled by generating a new hash until a unique filename is obtained.</td></tr>
 </table>
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th customer in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new customer. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the customer was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the customer being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -532,10 +448,10 @@ and the **Actor** is the `user`, unless specified otherwise)
 
 **MSS**
 
-1. User requests to list customers
-2. ArtBuddy shows a list of customers
-3. User requests to open customer in the list
-4. ArtBuddy shows the list of commissions the customer made and the details of the customer
+1. User requests to list customers.
+2. ArtBuddy shows a list of customers.
+3. User requests to open customer in the list.
+4. ArtBuddy internally loads the list of commissions the customer made and the details and statistics of the customer.
 
     Use case ends.
 
@@ -555,9 +471,9 @@ and the **Actor** is the `user`, unless specified otherwise)
 
 **MSS**
 
-1. ArtBuddy shows a list of customers
-2. User requests to add a customer and his or her details to the list
-3. ArtBuddy shows the updated list of customers
+1. ArtBuddy shows a list of customers.
+2. User requests to add a customer and his or her details to the list.
+3. ArtBuddy shows the updated list of customers.
 
     Use case ends.
 
@@ -569,13 +485,97 @@ and the **Actor** is the `user`, unless specified otherwise)
 
       Use case ends.
 
-**Use case: Delete a commission**
+**Use case: Edit a Customer**
 
 **MSS**
 
-1. ArtBuddy shows the list of commissions from the opened customer
-2. User requests to delete a specific commission in the list
-3. ArtBuddy deletes the commission and updates the list displayed
+1.  ArtBuddy shows a list of customers.
+2.  User requests to edit a customer in the list.
+3.  ArtBuddy edits the customer. ArtBuddy does not modify the commissions in the customer.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The given index is invalid.
+
+    * 2a1. ArtBuddy shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Delete a Customer**
+
+**MSS**
+
+1.  ArtBuddy shows a list of customers.
+2.  User requests to delete a customer in the list.
+3.  ArtBuddy deletes the customer.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The list is empty.
+
+  Use case ends.
+
+* 2a. The given index is invalid.
+
+    * 2a1. ArtBuddy shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: Open a commission**
+
+**MSS**
+1. User enters a command to open a specific commission.
+2. ArtBuddy shows the commission’s details.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. ArtBuddy detects an invalid command format.
+  * 1a1. ArtBuddy displays an error message informing User of the command format.
+
+    Use case ends.
+
+* 1b. The given index is invalid.
+  * 1b1. ArtBuddy displays an error message.
+
+    Use case ends.
+
+**Use case: Add a commission**
+
+**Preconditions: ArtBuddy currently has a customer opened.**
+
+**MSS**
+
+1. ArtBuddy shows the list of commissions from the opened customer.
+2. User requests to add a commission and its related details to the list.
+3. ArtBuddy adds the commission and updates the list displayed.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. Necessary commission details not given.
+
+    * 2a1. ArtBuddy shows an error message.
+
+      Use case ends.
+
+**Use case: Edit a commission**
+
+**MSS**
+
+1. ArtBuddy shows the list of commissions.
+2. User requests to edit a specific commission in the list.
+3. ArtBuddy edits the commission and updates the list displayed. ArtBuddy does not modify the iterations inside the commission.
 
    Use case ends.
 
@@ -591,148 +591,185 @@ and the **Actor** is the `user`, unless specified otherwise)
 
       Use case ends.
 
-**Use case: Add a commission**
+**Use case: Delete a commission**
 
 **MSS**
 
-1. ArtBuddy shows the list of commissions from the opened customer
-2. User requests to add a commission and its related details to the list
-3. ArtBuddy adds the commission and updates the list displayed
+1. ArtBuddy shows the list of commissions.
+2. User requests to delete a specific commission in the list.
+3. ArtBuddy deletes the commission and updates the list displayed.
 
    Use case ends.
 
 **Extensions**
 
-* 2a. Necessary commission details not given.
+* 1a. The commission list is empty.
+
+  Use case ends.
+
+* 2a. The given index is invalid.
 
     * 2a1. ArtBuddy shows an error message.
 
       Use case ends.
 
-**Use case: Delete a Customer**
-
-**MSS**
-
-1.  User requests to list customers
-2.  ArtBuddy shows a list of customers
-3.  User requests to delete a customer in the list
-4.  ArtBuddy warns the user that all commissions under the customer will be deleted, and confirms whether the user still wants to proceed
-5.  User confirms.
-6.  ArtBuddy deletes the customer
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. ArtBuddy shows an error message.
-
-      Use case resumes at step 2.
-
-* 4a. The user chooses not to proceed with the deletion.
-
-  Use case ends.
-
-**Use case: Open a commission**
-
-**Preconditions: AB currently has a customer open.**
-
-**MSS**
-1. User enters a command to open a specific commission.
-2. AB shows the commission’s details.
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. AB detects an invalid command format.
-  * 1a1. AB displays an error message informing User of the command format.
-
-    Use case ends.
-
-* 1b. AB detects the selected commission does not exist.
-  * 1b1. AB displays an error message.
-
-    Use case ends.
 
 **Use case: Add iteration to a commission**<br>
+
+**Preconditions: ArtBuddy currently has a commission opened.**
+
 **Guarantees:**
 * An iteration, with an associated image, will be added to the specified commission only if its creation is successful
-* The new iteration will not be created if the image provided is not valid (e.g. it does not exist, or it is not
-  of the correct image format)
+* The new iteration will not be created if the image provided is not valid (e.g. it does not exist, or it is not.
+  of the correct image format).
 
 **MSS:**
-1. User <u>opens a commission they want to edit (Open Commission)</u>.
-2. User enters the command to add an iteration to the commission selected, specifying the image to use for the
+1. User enters the command to add an iteration to the commission selected, specifying the image to use for the
    iteration using an absolute file path.
-3. AB creates a new iteration for the commission, associated with the image specified.
-4. AB updates the GUI to also show the new iteration.
+2. ArtBuddy creates a new iteration for the commission, associated with the image specified.
+3. ArtBuddy updates the GUI to also show the new iteration.
 
    Use case ends.
 
 **Extensions:**
-* 2a. The user enters a command that AB does not recognise.
-    * 2a1. AB shows an error message, and asks the user to enter a correct command.
-    * 2a2. User enters a new command.
+* 2a. The specified file path the user specifies is invalid or does not exist.
+    * 2a1. ArtBuddy shows an error message, and notifies that a file does not exist.
+    
+        Use case ends.
 
-      Steps 2a1 and 2a2 are repeated until the command is correctly entered.
+* 2b. The specified file under the file path is not a valid file type.
+    * 2b1. ArtBuddy shows an error message, and notifies that the filetype is invalid.
+      
+        Use case ends.
 
-      Use case resumes from step 3.
+**Use case: Delete an iteration of a commission**<br>
 
-* 2b. The specified file path the user specifies is invalid or does not exist.
-    * 2b1. AB shows an error message, and asks the user for a new command with a valid file path that exists.
-    * 2b2. User enters a new command.
-
-      Steps 2b1 and 2b2 are repeated until the command is correctly entered.
-
-      Use case resumes from step 3.
-
-* 2c. The specified file under the file path is not a valid file type.
-    * 2c1. AB lets the user know that the file is not supported, and requests for a new command
-      with a file of support file types.
-    * 2c2. User enters a new command.
-
-      Steps 2c1 and 2c2 are repeated until the command is correctly entered.
-
-      Use case resumes from step 3.
-
-**Use case: Delete an iteration of a commission<br>
-Preconditions: AB currently has a commission opened.<br>**
+**Preconditions: ArtBuddy currently has a commission opened.<br>**
 
 **MSS:**
-1. Artist enters a command to delete a specified iteration of the commission.
-2. AB deletes the specified iteration and updates the GUI.
+1. User enters a command to delete a specified iteration of the commission.
+2. ArtBuddy deletes the specified iteration and updates the GUI.
    Use case ends.
 
 **Extensions:**
-* 1a. The user enters a command that AB does not recognise.
-    * 1a1. AB shows an error message, and asks the user to enter a correct command.
-    * 1a2. User enters a new command.<br>
-      Steps 1a1 and 1a2 are repeated until the command is correctly entered.<br>
-      Use case resumes from step 2.
 
-* 1b. The user tries to delete an iteration that does not exist.
-    * 1b1. AB shows an error message and asks the user to specify an iteration that exists.
-    * 1b2. User enters a new command.<br>
-      Steps 1b1 and 1b2 are repeated until the command is valid.<br>
-      Use case resumes from step 2.
+* 1a. The given index is invalid.
+    * 1a1. ArtBuddy shows an error message and asks the user to specify an iteration that exists.
+
+      Use case ends.
+
+* 2a. The specified file path the user specifies is invalid or does not exist.
+    * 2a1. ArtBuddy shows an error message, and notifies that a file does not exist.
+
+      Use case ends.
+
+* 2b. The specified file under the file path is not a valid file type.
+    * 2b1. ArtBuddy shows an error message, and notifies that the filetype is invalid.
+
+      Use case ends.
+
+**Use case: Delete an iteration of a commission**<br>
+
+**Preconditions: ArtBuddy currently has a commission opened.<br>**
+
+**MSS:**
+1. User enters a command to delete a specified iteration of the commission.
+2. ArtBuddy deletes the specified iteration and updates the GUI.
+   Use case ends.
+
+**Extensions:**
+
+* 1a. The given index is invalid.
+    * 1a1. ArtBuddy shows an error message.
+      
+      Use case ends.
+
+**Use case: List all the customers**<br>
+
+**MSS:**
+1. User enters a command to list all the customers.
+2. ArtBuddy updates the customer list to show all customers.
+
+**Use Case: Find customers by using filters and keywords**<br>
+
+**MSS:**
+1. User enters a command with either tag filter or keyword search or both.
+2. ArtBuddy updates the customer list to show the customers who have the keywords given and passes tag filter.
+
+**Extensions:**
+
+* 1a. User does not provide keywords or tag filter.
+    * 1a1. ArtBuddy shows an error message.
+
+      Use case ends.
+
+**Use case: Sort customers by an options**<br>
+
+**MSS:**
+1. User enters a command with a sort option.
+2. ArtBuddy updates the customer list to show the customers in sorted order by the given option.
+
+
+**Extensions:**
+
+* 1a. User does not provide a sort option.
+    * 1a1. ArtBuddy shows an error message.
+
+      Use case ends.
+
+**Use case: List commissions made by the customer**<br>
+
+**Preconditions: ArtBuddy currently has a commission opened.<br>**
+
+**MSS:**
+1. User enters a command to list all commissions from the customer.
+2. ArtBuddy updates the commission list to show all commissions from the customer.
+
+**Use case: List all commissions made by all customers**<br>
+
+**MSS:**
+1. User enters a command to list all commissions from all customers.
+2. ArtBuddy updates the commission list to show all commissions from all customers.
+
+**Use case: Find commissions by using filters and keywords**<br>
+
+**MSS:**
+1. User enters a command with either tag filter or keyword search or both.
+2. ArtBuddy updates the commission list to show the commissions who have the keywords given and passes tag filter.
+
+**Extensions:**
+
+* 1a. User does not provide keywords or tag filter.
+    * 1a1. ArtBuddy shows an error message.
+
+      Use case ends.
+
+**Use case: View help**<br>
+
+**MSS:**
+1. User enters command to show help.
+2. ArtBuddy shows a pop-up window that has link to ArtBuddy's User Guide
+
+**Use case: Clear all customers**<br>
+
+**MSS:**
+1. User enters command to clear all customers.
+2. ArtBuddy clears all customers and updates the GUI.
+
+**Use case: Exit the program**<br>
+1. User enters command to exit the program.
+2. ArtBuddy exits saving every change.
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 500 customers, 2000 commissions and 8000 iterations without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-4. The app should be designed for and used by a single user.
-5. The app data should be stored in a human-editable text file and not a DBMS.
-6. Images and other app assets should be stored locally and not in a remote server.
-7. The app should be well tested with a coverage of above 65% to allow bugs to be found more easily.
-8. The product should be usable on all standard screen resolutions above 1280x720.
-9. The product should be packaged within a single JAR file with a filesize of up to 100MB.
+2.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+3.  The app should be designed for and used by a single user.
+4.  The app data should be stored in a human-editable text file and not a DBMS.
+5.  Images and other app assets should be stored locally and not in a remote server.
+6.  The app should be well tested with a coverage of above 55% to allow bugs to be found more easily.
+7.  The product should be usable on all standard screen resolutions above 1280x720.
+8.  The product should be packaged within a single JAR file with a filesize of up to 100MB.
 
 ### Glossary
 
@@ -740,7 +777,7 @@ Preconditions: AB currently has a commission opened.<br>**
 * **Customer**: A contact detail. Contains information about the customer, and a list of commissions.
 * **Commission**: An art piece requested by a customer that has been delivered or is in progress. Contains specifics about the commission and a list of iterations.
 * **Iteration**: A single version of a commission. Contains an image and a text comment on the image.
-
+* **Tag**: An additional field in customer or commission that can be used for tag filter feature.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**

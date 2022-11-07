@@ -267,11 +267,11 @@ As you might've already guessed it, ArtBuddy's **Commissions Tab** shows all com
 
 ![ArtBuddy's UI](images/ab-user-interface-commission-tab.png)
 
-|     | Component          | Description                                                                                                                              |
-|-----|--------------------|------------------------------------------------------------------------------------------------------------------------------------------|
-| 1   | Commission List    | By default, all the commissions of your currently selected customer will be displayed in the Commission List here.                       |
-| 2   | Commission Details | When you select a commission from your **Commission List**, ArtBuddy will show you the details of your selected commission in this pane. |
-| 3   | Iteration List     | Within the **Commission Details** pane, ArtBuddy will also display all your commission's iterations here.                                |
+|     | Component          | Description                                                                                                                                                                                                 |
+|-----|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1   | Commission List    | By default, all the commissions of your currently selected customer will be displayed in the Commission List here. If no customer is currently selected, all commissions stored in ArtBuddy will be shown.  |
+| 2   | Commission Details | When you select a commission from your **Commission List**, ArtBuddy will show you the details of your selected commission in this pane.                                                                    |
+| 3   | Iteration List     | Within the **Commission Details** pane, ArtBuddy will also display all your commission's iterations here.                                                                                                   |
 
 <div align="right">
 <br>
@@ -431,13 +431,13 @@ ArtBuddy offers the following commands to help you manage your customers:
 
 Customers stored in ArtBuddy have the following details:
 
-| Detail           | Explanation                                                                                                        | Constraints                                            |
-|------------------|--------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------|
-| Name             | The name of the customer                                                                                           | Alphanumeric and space characters                      |
-| Phone number     | The phone number of the customer                                                                                   | At least 3 digits                                      |
-| Email            | The email of the customer                                                                                          | Email format with at sign and domain name              |
-| Optional address | The address of the customer                                                                                        |                                                        |
-| Optional tags    | A customer may be tagged with any number of tags (including 0) which can be used to help categorise your customers | Each tag at most 25 alphanumeric and space characters  |                                        
+| Detail           | Explanation                                                                                                        | Constraints                                                                                         |
+|------------------|--------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| Name             | The name of the customer ([case sensitive, and must be unique](#unique-customer))                                  | Alphanumeric and space characters                                                                   |
+| Phone number     | The phone number of the customer                                                                                   | At least 3 digits                                                                                   |
+| Email            | The email of the customer                                                                                          | Email format with at sign and domain name                                                           |
+| Optional address | The address of the customer                                                                                        | See [Appendix: Limitations of no-constraint text inputs](#limitations-of-no-constraint-text-inputs) |
+| Optional tags    | A customer may be tagged with any number of tags (including 0) which can be used to help categorise your customers | Each tag at most 25 alphanumeric and space characters                                               |                                        
 
 ### Viewing a customer: `opencus`
 
@@ -504,13 +504,13 @@ ArtBuddy offers the following commands to help you manage your commissions:
 
 Commissions stored in ArtBuddy have the following details:
 
-| Detail               | Explanation                                                                                                          | Constraints                                                                                    |
-|----------------------|----------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
-| Title                | The name of the commission                                                                                           | Alphanumeric and space characters                                                              |
-| Deadline             | The due date of the commission                                                                                       | <code>YYYY-MM-DD</code> format                                                                 |
-| Status               | The completion status of the commission                                                                              | `y`, `yes`, `t`, `true` for complete status <br> `n`, `no`, `f`, `false` for incomplete status |
-| Optional description | A description of the commission (for instance, the commission requirements)                                  |                                                                                                |
-| Optional tags        | A commission may be tagged with any number of tags (including 0) which can be used to help categorise your commissions | Each tag at most 25 alphanumeric and space characters                                          |
+| Detail               | Explanation                                                                                                            | Constraints                                                                                         |
+|----------------------|------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|
+| Title                | The name of the commission ([case sensitive, and must be unique](#unique-commission))                                  | Alphanumeric and space characters                                                                   |
+| Deadline             | The due date of the commission                                                                                         | <code>YYYY-MM-DD</code> format                                                                      |
+| Status               | The completion status of the commission                                                                                | `y`, `yes`, `t`, `true` for complete status <br> `n`, `no`, `f`, `false` for incomplete status      |
+| Optional description | A description of the commission (for instance, the commission requirements)                                            | See [Appendix: Limitations of no-constraint text inputs](#limitations-of-no-constraint-text-inputs) |
+| Optional tags        | A commission may be tagged with any number of tags (including 0) which can be used to help categorise your commissions | Each tag at most 25 alphanumeric and space characters                                               |
 
 ### Viewing a commission: `opencom`
 
@@ -579,12 +579,12 @@ ArtBuddy offers the following commands to help you manage your iterations:
 
 Iterations stored in ArtBuddy have the following details:
 
-| Detail      | Explanation                                                                           | Constraints                                                                             |
-|-------------|---------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
-| Description | Describes the progress that was made in the iteration                                 |                                                                                         |
-| Date        | Records the date tied to the iteration (for instance, when the iteration was created) | <code>YYYY-MM-DD</code> format                                                          |
-| Image       | A picture that captures how the commission looks like in the current iteration        | File path(Refer to [Appendix](#what-are-file-paths-and-root-directories) for more info) |
-| Feedback    | Feedback attached to the current iteration (for instance, areas for improvement)      |                                                                                         |                                                    
+| Detail      | Explanation                                                                                                     | Constraints                                                                                                                                                     |
+|-------------|-----------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Description | Describes the progress that was made in the iteration ([case sensitive, and must be unique](#unique-iteration)) | See [Appendix: Limitations of no-constraint text inputs](#limitations-of-no-constraint-text-inputs)                                                             |
+| Date        | Records the date tied to the iteration (for instance, when the iteration was created)                           | In <code>YYYY-MM-DD</code> format (four-digit year, followed by a 2-digit month, and 2-digit day number; so "7 November 2022" should be passed as `2022-11-07`) |
+| Image       | A picture that captures how the commission looks like in the current iteration                                  | File path (Refer to [Appendix](#what-are-file-paths-and-root-directories) for more info)                                                                        |
+| Feedback    | Feedback attached to the current iteration (for instance, areas for improvement)                                | See [Appendix: Limitations of no-constraint text inputs](#limitations-of-no-constraint-text-inputs)                                                             |
 
 ### Adding an iteration to a commission: `additer`
 Adds an iteration to the currently selected commission. This can be done either by the
@@ -685,7 +685,7 @@ ArtBuddy offers the following commands to help you navigate through and make sen
 * [Find a commission: `findcom`](#find-a-commission-findcom)
 
 ### List all the customers: `list`
-Lists all the customers
+Lists all the customers.
 
 Format: `list`
 
@@ -716,7 +716,7 @@ Suffix: `+` (increasing) or `-` (decreasing)
 Format: `sortcus PREFIX/SUFFIX`
 
 Examples:
-* `sortcus n/+` Sorts the customer list from A to Z.
+* `sortcus r/+` Sorts the customer list by the total revenue generated from each customer in increasing order.
 
 ### List the commissions: `listcom`
 Lists all the commissions made by selected customer.
@@ -813,6 +813,12 @@ If your changes to the data file makes its format invalid, ArtBuddy will discard
   ArtBuddy simply ignore these extra parameters.
     * Meaning that the command <code>help <em>123</em></code>, will be interpreted as `help`.
 
+### Limitations of no-constraint text inputs
+Command parameters like commission descriptions, iteration descriptions and iteration feedbacks that do not impose a
+constraint on valid text-inputs may face the issue of ambiguity when dealing with inputs containing '/'. This is because
+'/' are also used in ArtBuddy to denote prefixes. As such, descriptions or feedback that contains a prefix will unfortunately
+not be parsed properly by ArtBuddy. One way you can overcome this by adding a space between the '/'s in your input. 
+
 ### Limitations with file paths in CLI
 Due to file path naming and the command format, specifying a folder with a folder name that ends with a
 **'n', 'd', 'f', or 'p'** would lead to an ambiguous command.
@@ -824,8 +830,8 @@ If you wish to upload the image, either rename the folder name, or [upload the i
 
 ### Limitations with images in ArtBuddy
 ArtBuddy might not properly handle extreme image sizes. If your images are too small, they might not render
-properly on ArtBuddy, or might appear very pixelated. If your image is too big (the recommended image
-size limit is around 10MB), ArtBuddy might not be able to open the image at all, or you may start to
+properly on ArtBuddy, or might appear very pixelated. If your image is too big (**the recommended image
+size limit is around 5MB**), ArtBuddy might not be able to open the image at all, or you may start to
 experience significant lag with ArtBuddy.
 
 ### What are file paths and root directories?
@@ -876,7 +882,7 @@ Not sure what certain terms used in this user guide mean? Don't worry, we're her
 | Index                          | The index is a customer's, commissions', or iteration's unique identifier. It is simply the number that appears next to the customer's name, the commission's title, or the iteration's description.                                                                                                                                      |
 | Prefix                         | A 'prefix' is simply a single character with a forward slash (eg: "n/", "p/", "d/") that lets ArtBuddy know what the piece of data you've passed into ArtBuddy is. With a prefix attached to each command parameter, ArtBuddy now understands whether a command parameter is a customer's name, or a customer's phone number. Neat right? |
 | File path                      | A string of words that represents where a file in your computer is located. You may refer to [Appendix: What are file paths and root directories?](#what-are-file-paths-and-root-directories) for a more detailed explanation.                                                                                                            |
-| Root directory                 | The mother of all folders in your computer. You can think of the root directory as the folder that stores all of the folders in your computer.         |
+| Root directory                 | The mother of all folders in your computer. You can think of the root directory as the folder that stores all of the folders in your computer.                                                                                                                                                                                            |
 
 <div align="right">
 <br>
@@ -915,7 +921,7 @@ If all else fails, you can try <a href="#adding-by-graphical-interface">uploadin
 </details>
 <br>
 
-<details>
+<details id="unique-customer">
 <summary><strong>Q</strong>: What makes two customers different when adding a customer by <code>addcus</code>?</summary>
 <br>
 <strong>A</strong>: We only check it by their name case-sensitive. That means you can have two customers with names "Sarah" and "sarah".
@@ -924,7 +930,7 @@ At the moment, we only support alphanumeric english characters with space for ou
 </details>
 <br>
 
-<details>
+<details id="unique-commission">
 <summary><strong>Q</strong>: What makes two commissions different when adding a commission by <code>addcom</code>?</summary>
 <br>
 <strong>A</strong>: We decided that to avoid confusion, for every customer the title of the commissions must be unique. Therefore, if the customer you
@@ -932,7 +938,7 @@ want to add a commission to already has the same title commission it won't be al
 </details>
 <br>
 
-<details>
+<details id="unique-iteration">
 <summary><strong>Q</strong>: What makes two iterations different when adding an iteration by <code>additer</code>?</summary>
 <br>
 <strong>A</strong>: We decided that for each commission the description of the iterations must be unique. Therefore, if the commission you
@@ -945,7 +951,7 @@ want to add an iteration to already has the same description iteration it won't 
 <br>
 <strong>A</strong>: Although our calculations are done in dollar amount, we don't expect you to make your deals in dollar.
 So you can write the fee value in dollars but with more significant digits for more accurate calculations.
-But in the GUI, for the ease of your eyes, we display it in 2 significant digits only.
+But in the GUI, for the ease of your eyes, we display it in 2 decimal digits only.
 </details>
 <br>
 
