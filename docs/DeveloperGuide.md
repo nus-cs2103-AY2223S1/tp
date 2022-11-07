@@ -193,6 +193,10 @@ Given below is an example usage scenario.
 The sequence diagram is given below.
 ![SortPersonSequence](images/EditInternshipSequence.png)
 
+<div align="center">
+_Some details are omitted from the sequence diagram, such as the instantiating of the_ `EditInternshipDescriptor`
+</div>
+
 The following activity diagram summarizes what happens when a user executes an `EditInternshipCommand`:
 ![SortPersonActivity](images/EditInternshipActivity.png)
 
