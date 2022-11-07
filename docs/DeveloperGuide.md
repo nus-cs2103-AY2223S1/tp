@@ -151,7 +151,8 @@ diagram}
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/diagrams/ParserClasses.png" width="600"/>
+![Parser Class](images/diagrams/ParserClasses.png)
+
 
 How the parsing works:
 
@@ -299,6 +300,10 @@ Below is a more detailed sequence diagram for the execution of the command using
 
 ![MarkCommandSequenceDiagram](images/diagrams/MarkCommandSequenceDiagram.png){: diagram}
 
+The following activity diagram summarizes what happens when a user executes a mark command:
+
+![MarkActivityDiagram](images/diagrams/MarkActivityDiagram.png){: diagram}
+
 ### Additional Notes
 
 #### Stateless Attributes
@@ -408,6 +413,10 @@ Given below is an example usage scenario and how the sort mechanism behaves at e
    is true.
 
 7. The sorted list is displayed to the user.
+
+The following activity diagram summarizes what happens when a user executes a sort command:
+
+![SortActivityDiagram](images/diagrams/SortActivityDiagram.png){: diagram}
 
 ### Design Considerations
 
@@ -692,6 +701,81 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: Sort StudMap**
+
+**MSS**
+
+1. TA requests to sort list by specified Attribute and Order
+2. StudMap sorts list
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given Attribute is invalid
+
+    * 1a1. StudMap shows an error message.
+
+      Use case ends.
+
+* 1b. The given Order is invalid
+
+    * 1b1. StudMap shows an error message.
+
+      Use case ends.
+
+**Use case: Record participation of a student**
+
+**MSS**
+
+1. TA requests to record participation component for Student X
+2. StudMap adds participation component for Student X
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given participation component is invalid
+
+    * 1a1. StudMap shows an error message.
+
+      Use case ends.
+
+* 1b. The given index is invalid
+
+    * 1b1. StudMap shows an error message.
+
+      Use case ends.
+
+**Use case: Remove participation of a student**
+
+**MSS**
+
+1. TA requests to remove a participation component for Student X
+2. StudMap removes specified participation component for Student X
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given participation component is invalid
+
+    * 1a1. StudMap shows an error message.
+
+      Use case ends.
+
+* 1b. The given index is invalid
+
+    * 1b1. StudMap shows an error message.
+
+      Use case ends.
+  
+* 1c. The student at given index does not have records of the given participation component
+
+    * 1c1. StudMap shows an error message.
+
+      Use case ends.
+
 ## Non-Functional Requirements
 
 1. The software should work on any [**mainstream OS**](#mainstream-os) as long as it has **Java 11** or above installed.
@@ -739,6 +823,20 @@ testers are expected to do more *exploratory* testing.
    b. Re-launch the app by double-clicking the jar file.<br>
    Expected: The most recent window size and location is retained.
 
+## Adding a student
+
+1. Adding a Student
+
+   a. Prerequisites: None<br><br>
+
+   b. Test case: `add n/John Doe m/CS2103T id/E1234567`<br>
+   Expected: Student named John Doe with student ID `E1234567` added into StudMap. Details of the added contact shown in the status message.<br><br>
+
+   c. Test case: `add n/John Doe m/CS2103T id/E1234567 e/johndow@gmail.com`<br>
+    Suppose this is run after Test case in (b) above, where student named John Doe with student ID already exists in the StudMap.
+
+   Expected: No student is added. Error message for "duplicate student" shown in the status message.<br><br>
+
 ## Deleting a student
 
 1. Deleting a student while all students are being shown.
@@ -746,14 +844,67 @@ testers are expected to do more *exploratory* testing.
    a. Prerequisites: List all students using the `list` command. Multiple students in the list.<br><br>
 
    b. Test case: `delete 1`<br>
-   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
-   Timestamp in the status bar is updated.<br><br>
+   Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.<br><br>
 
    c. Test case: `delete 0`<br>
-   Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.<br><br>
+   Expected: No student is deleted. Error details shown in the status message.<br><br>
 
    d. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
    Expected: Similar to previous.<br><br>
+
+## Sorting student list
+
+1. Sorting the student list.
+
+   a. Prerequisites: List all students using the `list` command. Multiple students in the list.<br><br>
+
+   b. Test case: `sort asc a/name`<br>
+   Expected: Student list sorted by name in ascending alphabetical order. Details of the sort done shown in the status message.<br><br>
+
+   c. Test case: `sort asc a/participation`<br>
+   Expected: Student list sorted by participation rate in ascending order. Details of the sort done shown in the status message.<br><br>
+
+   d. Test case: `sort asc`<br>
+   Expected: An error message for "No attribute specified" shown in the status message.<br><br>
+
+   e. Test case: `sort asc a/gender`<br>
+   Expected: An error message for "Invalid attribute" shown in the status message.<br><br>
+
+## Recording participation for a student
+
+1. Recording the participation of a student.
+
+   a. Prerequisites: At least one student in the list.<br><br>
+
+   b. Test case: `participate 1 yes p/P01`<br>
+   Expected: Record student at index 1 as having participated for participation component `P01`. Details of the participation recorded shown in the status message.<br><br>
+
+   c. Test case: `participate 3 yes p/P01`<br>
+    Suppose that there is no student in index 3
+
+   Expected: An error message for "Invalid student index" shown in the status message.<br><br>
+
+   d. Test case: `participate 1 yes p/$01`<br>
+   Expected: An error message for detailing the constraint for naming of participation component shown in the status message.<br><br>
+
+## Removing participation for a student
+
+1. Removing the participation of a student.
+
+   a. Prerequisites: At least one student in the list.<br><br>
+
+   b. Test case: `unparticipate 1 p/P01`<br>
+   Expected: Remove participation component `P01` for student at index 1. Details of the participation removed shown in the status message.<br><br>
+
+   c. Test case: `unparticipate 3 p/P01`<br>
+   Suppose that there is no student in index 3
+
+   Expected: An error message for "Invalid student index" shown in the status message.<br><br>
+
+   d. Test case: `unparticipate 1 p/P10`<br>
+   Suppose that there is no participation component `P10` for student in index 1
+
+   Expected: An error message for "Participation component P10 not found" shown in the status message.<br><br>
 
 ---
 

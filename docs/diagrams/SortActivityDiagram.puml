@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes sort command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([ORDER is "asc"])
+    :Retrieve Comparator for given Attribute;
+    :Sort list using Comparator;
+else ([ORDER is "dsc"])
+    :Retrieve Comparator for given Attribute;
+    :Sort list using Comparator;
+    :Reverse list;
+endif
+stop
+@enduml
