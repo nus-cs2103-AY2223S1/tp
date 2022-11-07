@@ -39,6 +39,9 @@ Given below are my contributions to the project.
   * Developer Guide:
     * List feature
     * Update emergency contact feature
+    * Edited add feature's comments [#247](https://github.com/AY2223S1-CS2103-F13-4/tp/pull/247)
+    * Update hyperlinks [#245](https://github.com/AY2223S1-CS2103-F13-4/tp/pull/245)
+    * Update DG diagrams [#247](https://github.com/AY2223S1-CS2103-F13-4/tp/pull/247)
 
 
 * **Community**:
