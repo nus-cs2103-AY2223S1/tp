@@ -13,8 +13,7 @@ if () then ([else])
   stop
  else ([Storage space for Items is available])
 endif
-  :new command successfully executes.
-Item is edited.;
+  :new command successfully executes.;
 stop
 
 @enduml
