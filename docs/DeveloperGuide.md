@@ -113,7 +113,7 @@ The sections below give more details of each component.
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-![Structure of the UI Component](images/UiClassDiagram.png)
+<img src="images/UiClassDiagram.png" width="650"/>
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `RecordListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
@@ -144,7 +144,7 @@ How the `Logic` component works:
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+<img src="images/DeleteSequenceDiagram.png" width="650"/>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -162,7 +162,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="650" />
+<img src="images/ModelClassDiagram.png" width="750" />
 
 
 The `Model` component,
@@ -187,7 +187,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="650" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -205,9 +205,9 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes the details on how certain noteworthy features are implemented.
-## Implemented features
 
-#### About Patient Records
+### About Patient Records
+
 >OmniHealth manages patient records generated during patient consultations. Each `Patient` holds a list of 
 medical records that the user is able to modify and edit. The `Record` class encapsulates a medical
 record that comprises a date, medical information and medicine prescribed (if any).
@@ -226,10 +226,10 @@ input string to return a `AddRecordCommand` object with a `Record` derived from 
 
 Given below is an example usage scenario.
 
-Precondition. User should be currently viewing a specific patient's record list using the `rlist` command. The current
+Precondition: User should be currently viewing a specific patient's record list using the `rlist` command. The current
 patient is set using `DisplayedPerson#setPerson(Person, AddressBook)`.
 
-Execution. User executes `radd d/01-02-2013 1230 r/Patient developed fever. m/Paracetamol` to add a new record containing 
+Execution: User executes `radd d/01-02-2013 1230 r/Patient developed fever. m/Paracetamol` to add a new record containing 
 the date/time of `01-02-2013 1230`, medication remark of `Patient developed fever.` and medication prescription of
 `Paracetamol` into the current displayed person's record list. The `radd` command calls `Model#addRecord(Record)` 
 which performs the adding of records to the `DisplayedPerson` held by the `Model`.
@@ -239,7 +239,7 @@ which performs the adding of records to the `DisplayedPerson` held by the `Model
 
 The following sequence diagram shows how the add record operation works:
 
-![AddRecordCommand](images/AddRecordCommandSequenceDiagram.png)
+<img src="images/AddRecordCommandSequenceDiagram.png" width="650" />
 
 
 #### Design considerations:
@@ -274,7 +274,7 @@ At the final step of the execution of the `ListRecordCommand` object, a `Command
 
 The Sequence Diagram below shows how the list record operation works:
 
-![ListRecordCommand](images/ListRecordSequenceDiagram.png)
+<img src="images/ListRecordSequenceDiagram.png" width="650" />
 
 Example usage scenario:
 - Precondition: The user should be viewing the patient list by using the `list` command.
@@ -360,7 +360,7 @@ Given below is an example usage and how the find record mechanism works at each 
   * The current patient is set using `DisplayedPerson#setPerson(Person, AddressBook)`.
 
 * Execution:
-  1. User executes `rfind m/Paracetamol d/10-2022 r/Patient exhibits symptoms of cold`.
+  1. User executes `rfind m/Paracetamol d/10-2022`.
   2. The input is parsed by the `AddressBookParser#Parse()` which calls `FindRecordCommandParser#parse()`. Here, the input <br>
      is checked for which are the fields that have been specified. A `FindRecordCommand` object is then created containing
      a `RecordContainsKeywordPredicate` that represents the search parameters to match a `Record` object to.
@@ -371,7 +371,7 @@ Given below is an example usage and how the find record mechanism works at each 
 
 The following sequence diagram demonstrates how the find record mechanism works:
 
-![FindRecordSequenceDiagram](images/FindRecordSequenceDiagram.png)
+<img src="images/FindRecordSequenceDiagram.png" width="650" />
 
 The following activity diagram demonstrates what happens when a find record command is used:
 
@@ -381,8 +381,7 @@ The following activity diagram demonstrates what happens when a find record comm
 #### Design Considerations:
 **Aspect: The effect of multiple search parameters**
 * **Alternative 1 (current choice)**: More search parameters tightens the search constraints
-  * Pros: A record needs to match all the specified search parameters for it to be displayed.
-    The user is thus able to narrow down the search to easily find a specific record. This is especially useful
+  * Pros: The user is able to narrow down the search to easily find a specific record. This is especially useful
     when the record list becomes very large. For example, searching by medication alone may not be very effective since
     medications like Paracetamol are commonly prescribed. Instead, it will be more useful to specify which month was a particular medication prescribed.
   * Cons: A record may become more difficult to find if the user does not remember the correct details regarding what is stored in the record.
@@ -423,7 +422,8 @@ Given below is an example usage scenario for the command.
 
 [<*Back to ToC*>](#table-of-contents)
 
-#### About Appointment Features
+### About Appointment Features
+
 > Each `Patient` holds an appointment reference for record keeping that the user is able to edit and clear.
 There is currently no support for the automatic removal of appointments which dates have passed. <br>
 Past appointments needs to either be overwritten by a new appointment or be cleared with the `apptcl` command.
@@ -500,9 +500,7 @@ Below is an activity diagram illustrating an example process of how the `Appoint
 
 [<*Back to ToC*>](#table-of-contents)
 
-### Proposed features:
-
-### Upcoming appointment tracker feature
+### [Proposed] Upcoming appointment tracker feature
 
 The proposed upcoming appointment feature will be a display to show upcoming appointments for the user upon application start.
 
@@ -552,26 +550,28 @@ storage. This makes finding specific details of a patient as well as inputting n
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                | I want to …​                                 | So that I can…​                                                                           |
-|----------|------------------------|----------------------------------------------|-------------------------------------------------------------------------------------------|
-| `* * *`  | user                   | view the entire list of patients             | see all my patients I have added.                                                         |
-| `* * *`  | user                   | add a new patient and their details          | save them for later viewing                                                               |
-| `* * *`  | user                   | delete an existing patient and their details | remove an inactive patient                                                                |
-| `* * *`  | user                   | edit a new patient and their details         | change the personal particulars of that patient                                           |
-| `* *`    | user                   | find an existing patient's details           | know more about the patient                                                               |
-| `* *`    | user                   | clear the patient list                       | save time by not deleting one by one                                                      |
-| `* * *`  | user                   | view a specific patient’s records            | remember past visits recorded                                                             |
-| `* * *`  | user                   | add a patient's record                       | store details of the patient's visit for the future                                       |
-| `* * *`  | user                   | edit a patient's record                      | change details of a record in the future                                                  |
-| `* * *`  | user                   | delete a patient's records                   | remove a particular patient's medical records upon request. (E.g. due to privacy reasons) |
-| `* *`    | user                   | find a patient's record                      | avoid manually scrolling through multiple records to get to the record that I want        |
-| `* *`    | user                   | clear all of a patient's records             | save time by not deleting one by one                                                      |
-| `* *`    | user                   | clear the search parameters                  | view the whole list of patients or records                                                |
-| `* * *`  | new user               | view the user guide easily                   | learn more about the product usage                                                        |
-| `* *`    | schedule-oriented user | add appointments scheduled for a patient     | keep track of my appointments                                                             |
-| `* *`    | schedule-oriented user | clear an appointment of an existing patient  | stop seeing reminders of a past appointment                                               |
-| `* * *`  | new user               | view the user guide easily                   | learn more about the product usage                                                        |
-| `* * *`  | user                   | exit the program                             |                                                                                           |
+| Priority | As a …​                | I want to …​                                                  | So that I can…​                                                                           |
+|----------|------------------------|---------------------------------------------------------------|-------------------------------------------------------------------------------------------|
+| `* * *`  | user                   | view the entire list of patients                              | see all my patients I have added.                                                         |
+| `* * *`  | user                   | add a new patient and their details                           | save them for later viewing                                                               |
+| `* * *`  | user                   | delete an existing patient and their details                  | remove an inactive patient                                                                |
+| `* * *`  | user                   | edit a new patient and their details                          | change the personal particulars of that patient                                           |
+| `* *`    | user                   | find an existing patient's details                            | know more about the patient                                                               |
+| `* *`    | user                   | clear the patient list                                        | save time by not deleting one by one                                                      |
+| `* * *`  | user                   | view a specific patient’s records                             | remember past visits recorded                                                             |
+| `* * *`  | user                   | add a patient's record                                        | store details of the patient's visit for the future                                       |
+| `* * *`  | user                   | edit a patient's record                                       | change details of a record in the future                                                  |
+| `* * *`  | user                   | delete a patient's records                                    | remove a particular patient's medical records upon request. (E.g. due to privacy reasons) |
+| `* *`    | user                   | find a patient's record                                       | avoid manually scrolling through multiple records to get to the record that I want        |
+| `* *`    | user                   | clear all of a patient's records                              | save time by not deleting one by one                                                      |
+| `* *`    | user                   | clear the search parameters                                   | view the whole list of patients or records                                                |
+| `* * *`  | new user               | view the user guide easily                                    | learn more about the product usage                                                        |
+| `* *`    | schedule-oriented user | add appointments scheduled for a patient                      | keep track of my appointments                                                             |
+| `* *`    | schedule-oriented user | clear an appointment of an existing patient                   | stop seeing reminders of a past appointment                                               |
+| `*`      | schedule-oriented user | see upcoming appointments as a popup upon starting Omnihealth | better plan my schedule for the day                                                       |
+| `*`      | schedule-oriented user | receive notifications about upcoming appointments             | be reminded of my schedule during a busy day                                              |
+| `* * *`  | new user               | view the user guide easily                                    | learn more about the product usage                                                        |
+| `* * *`  | user                   | exit the program                                              |                                                                                           |
 
 [<*Back to ToC*>](#table-of-contents)
 
@@ -579,9 +579,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `OmniHealth` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: UC01 - Add a patient**
-**Precondition: Addressbook is displayed**
+**Use case: UC01 - Add a patient** 
 
+**Precondition:** Patient List View is displayed <br>
 **MSS**
 
 1. User requests to add a patient with given input fields.
@@ -599,26 +599,26 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC02 - Add a record**
 
+**Precondition:** Patient List View is displayed <br>
 **MSS**
 
-1. User <u>requests to list patients (UC05)</u>
-2. User <u>requests to display record list of specific patient (UC06)</u>
-3. User requests to add record with given fields into to the patient.
-4. OmniHealth adds a record with given fields to the record list of the patient.
+1. User <u>requests to display record list of specific patient (UC06)</u>
+2. User requests to add record with given fields into to the patient.
+3. OmniHealth adds a record with given fields to the record list of the patient.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. The given input fields are invalid.
+* 2a. The given input fields are invalid.
 
-    * 3a1. OmniHealth shows an error message.
+    * 2a1. OmniHealth shows an error message.
 
       Use case resumes at step 2.
 
 **Use case: UC03 - Delete a patient**
-**Precondition: Addressbook is displayed**
 
+**Precondition: Patient List View is displayed** <br>
 **MSS**
 
 1. User requests to delete a specific patient in the list
@@ -628,60 +628,46 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The user searches for a specific patient before deleting.
-
-    * 2a1. User requests to find a patient
-    * 2a2. OmniHealth shows a list of patient with given keyword
-    * 2a3. User requests to delete a specific patient in the list
-    * 2a4. OmniHealth deletes the patient
-
-      Use case ends.
-
-* 3a. The list is empty.
-    * 3a1. OmniHealth shows an error message.
+* 1a. The list is empty.
+    * 1a1. OmniHealth shows an error message.
 
         Use case ends.
 
-* 3b. The given index is invalid.
+* 1b. The given index is invalid.
 
-    * 3b1. OmniHealth shows an error message.
+    * 1b1. OmniHealth shows an error message.
 
       Use case ends.
 
 
 **Use case: UC04 - Delete a record**
 
+**Precondition:** Patient List View is displayed <br>
 **MSS**
 
-1.  User <u>requests to list patients (UC05).</u>
-2.  User <u>requests to display record list of specific patient (UC06).</u>
-3.  User requests to delete a specific record in the list.
-4.  OmniHealth deletes the record.
+1. User <u>requests to display record list of specific patient (UC06).</u>
+2. User requests to delete a specific record in the list.
+3. OmniHealth deletes the record.
 
     Use case ends.
 
 **Extensions**
 
-* 3a. The record list is empty.
+* 2a. The record list is empty.
 
-    * 3a1. OmniHealth shows an error message.
+    * 2a1. OmniHealth shows an error message.
 
         Use case ends.
 
-* 3b. The given index is invalid.
+* 2b. The given index is invalid.
 
-    * 3b1. OmniHealth shows an error message.
-
-      Use case ends.
-
-* *a. User attempts to delete a record before listing records.
-
-    * *a1. OmniHealth shows an error message.
+    * 2b1. OmniHealth shows an error message.
 
       Use case ends.
 
 **Use case: UC05 - List all patients**
 
+**Precondition:** Record List View is displayed <br>
 **MSS**
 
 1. User requests to list all patients.
@@ -689,16 +675,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Extensions**
-
-* 1a. The patient list is empty.
-
-    * 1a1. OmniHealth shows an error message.
-    
-        Use case ends.
-
 **Use case: UC06 - List all records for a specified patient**
 
+**Precondition:** Patient List View is displayed <br>
 **MSS**
 
 1. User requests to display all records for the specified patient.
@@ -708,21 +687,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The record list is empty.
+* 1a. The given index is invalid.
 
     * 1a1. OmniHealth shows an error message.
     
         Use case ends.
 
-* 1b. The given index is invalid.
-
-    * 1b1. OmniHealth shows an error message.
-    
-        Use case ends.
-
 **Use case: UC07 - Clear patient list**
-**Precondition: Addressbook is displayed**
 
+**Precondition: Patient List View is displayed** <br>
 **MSS**
 
 1. User requests to clear all patients from list
@@ -738,78 +711,56 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC08 - Clear patient records**
 
+**Precondition: Patient List View is displayed** <br>
 **MSS**
 
-1. User <u>requests to list patients (UC05)</u>
-2. User <u>requests to display record list of specific patient (UC06)</u>
-3. User requests to clear all records from a patient
-4. OmniHealth deletes all patient records
+1. User <u>requests to display record list of specific patient (UC06)</u>
+2. User requests to clear all records from a patient
+3. OmniHealth deletes all patient records
 
    Use case ends
 
 **Extensions**
-* 1a. Patient record list is empty
+* 1a. Patient does not exist
+    * 1a1. OmniHealth displays error message
 
   Use case ends
 
-* 1b. Patient does not exist
-  * 1b1. OmniHealth displays error message
+* 2a. Patient record list is empty
 
   Use case ends
 
-**Use case: UC09 - Get Help**
+**Use case: UC09 - Find patient**
 
-**MSS**
-
-1. User requests to view help
-2. OmniHealth shows list of commands
-
-    Use case ends
-
-**Use case: UC10 - Find patient**
-**Precondition: Addressbook is displayed**
-
+**Precondition: Patient List View is displayed** <br>
 **MSS**
 
 1. User requests to find a patient by name.
 2. OmniHealth shows a list of all patients matching the input by the user.
 
-**Extensions**
-* 1a. Patient record list is empty
+**Use case: UC10 - Find patient records**
 
-  Use case ends
-
-* 1b. Patient does not exist
-    * 1b1. OmniHealth displays error message
-
-  Use case ends
-
-**Use case: UC11 - Find patient records**
-
+**Precondition: Patient List View is displayed** <br>
 **MSS**
 
-1. User <u>requests to list patients (UC05)</u>
-2. User <u>requests to display record list of specific patient (UC06)</u>
-3. User inputs a keyword to search the record list.
-4. OmniHealth shows all the relevant records of the specified patient.
+1. User <u>requests to display record list of specific patient (UC06)</u>
+2. User requests to find a record that matches the input search parameters.
+3. OmniHealth shows all the relevant records of the specified patient.
 
 **Extensions**
-* 1a. Patient record list is empty
+* 1a. Patient does not exist
+    * 1a1. OmniHealth displays error message
 
   Use case ends
 
-* 1b. Patient does not exist
-    * 1b1. OmniHealth displays error message
+* 2a. Search parameters are in an invalid format
+    * 2a1. OmniHealth displays an error message
 
   Use case ends
 
-* 3a. No keywords matching can be found
-    * 3a1. OmniHealth displays error message
+**Use case: UC11 - Add patient appointment**
 
-  Use case ends
-
-**Use case: UC12 - Add patient appointment**
-
+**Precondition: Patient List View is displayed** <br>
 **MSS**
 1. User requests to add an appointment with a specified date.
 2. An appointment is created for the patient.
@@ -835,8 +786,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends
 
-**Use Case: UC13 - Clear patient appointment**
+**Use Case: UC12 - Clear patient appointment**
 
+**Precondition: Patient List View is displayed** <br>
 **MSS**
 
 1. User requests to remove the existing appointment of the patient.
@@ -847,63 +799,52 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. OmniHealth displays an error message
 
     Use case ends
+
 * 1b. Patient index does not exist
     * 1b1. OmniHealth displays an error message.
     
     Use Case ends
 
-**Use Case: UC14 - Edit a patient's record**
+**Use Case: UC13 - Edit a patient's record**
 
+**Precondition: Patient List View is displayed** <br>
 **MSS**
 
-1. User <u>requests to list patients (UC05).</u>
-2. User <u>requests to display the record list of specific patient (UC06).</u>
-3. User requests to edit a record
-4. OmniHealth replaces the record in the record list with a new edited one
+1. User <u>requests to display the record list of specific patient (UC06).</u>
+2. User requests to edit a record
+3. OmniHealth replaces the record in the record list with a new edited one
 
 **Extensions**
-* 3a. The record list is empty.
+* 2a. The record list is empty.
 
-    * 3a1. OmniHealth shows an error message.
-
-      Use case ends.
-
-* 3b. The given index is invalid.
-
-    * 3b1. OmniHealth shows an error message.
-
-      Use case ends.
-
-* *a. User attempts to edit a record before listing records.
-
-    * *a1. OmniHealth shows an error message.
-
-      Use case ends.
-
-**Use Case: UC15 - Edit a patient's details**
-
-**MSS**
-
-1. User <u>requests to list patients (UC05).</u>
-2. User requests to edit a patient's details
-3. OmniHealth replaces the patient in the patient database with a new edited one
-
-**Extensions**
-* 2a. The patient list is empty.
-
-    * 3a1. OmniHealth shows an error message.
+    * 2a1. OmniHealth shows an error message.
 
       Use case ends.
 
 * 2b. The given index is invalid.
 
-    * 3b1. OmniHealth shows an error message.
+    * 2b1. OmniHealth shows an error message.
 
       Use case ends.
 
-* *a. User attempts to edit a patient before listing patients.
+**Use Case: UC14 - Edit a patient's details**
 
-    * *a1. OmniHealth shows an error message.
+**Precondition: Patient List View is displayed** <br>
+**MSS**
+
+1. User requests to edit a patient's details
+2. OmniHealth replaces the patient in the patient database with a new edited one
+
+**Extensions**
+* 1a. The patient list is empty.
+
+    * 1a1. OmniHealth shows an error message.
+
+      Use case ends.
+
+* 1b. The given index is invalid.
+
+    * 1b1. OmniHealth shows an error message.
 
       Use case ends.
 
@@ -938,6 +879,8 @@ when using a mouse. (Designed with CLI in mind)
 * **(Patient) Record**: Digital copy of a patient's record stored by Omnihealth
 * **Paper Records**: Physical copy of a patient's record
 * **Patient List**: A list of patients stored by Omnihealth
+* **Patient List View**: A viewing mode that shows the patient list
+* **Record List View**: A viewing mode that shows the record list
 * **(Patient) Record List**: A list of a patient's records stored by Omnihealth
 * **Appointment**: Date of the next visit of the patient
 
@@ -997,7 +940,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Details of the record added will be shown in the status message. Record list will be updated to 
        include the added record
 
-    3. Test case: `radd`, <br>
+    3. Test case: `radd` <br>
        Expected: No record is added. Error details shown in the status message. Record list remains the same.
 
     4. Other incorrect delete commands to try: `radd d/x r/suffers from common cold`, `...` (where x is in an invalid datetime format)<br>
@@ -1014,7 +957,7 @@ testers are expected to do more *exploratory* testing.
        Expected: Details of the selected record in the record list will be edited and displayed. The updated details of the selected 
        record is then shown in the status message. 
 
-    3. Test case: `redit`, <br>
+    3. Test case: `redit` <br>
        Expected: No record is edited. Error details shown in the status message. Record list remains the same.
 
     4. Other incorrect delete commands to try: `redit d/x r/suffers from common cold`, `...` (where x is in an invalid datetime format)<br>
@@ -1031,7 +974,7 @@ testers are expected to do more *exploratory* testing.
        Expected: The record list will display all records matching the search parameters. The number of matching
        records will be shown in the status message.
 
-    3. Test case: `rfind`, <br>
+    3. Test case: `rfind` <br>
        Expected: No record is edited. Error details shown in the status message. Record list remains the same.
 
     4. Other incorrect delete commands to try: `rfind d/x r/suffers from common cold`, `...` (where x is in an invalid datetime format)<br>
@@ -1089,7 +1032,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Details of the appointment set will be shown in the status message. The specified patient in the patient list will be updated to
       include the upcoming appointment.
 
-   3. Test case: `appt 0`, <br>
+   3. Test case: `appt 0` <br>
       Expected: No appointment is added. Error details shown in the status message. Patient list remains the same.
 
    4. Other incorrect delete commands to try: `appt`, `appt 1 d/x`, `...` (where x is in an invalid datetime format or before the current date)<br>
@@ -1103,11 +1046,11 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: Patient List is currently displayed. At least 1 patient in the list. If the record list is displayed instead, use the `list` command.
 
-    2. Test case: `apptcl 1`, <br>   
+    2. Test case: `apptcl 1` <br>   
        Expected: A Status message indicating a successful command execution will be displayed. The specified patient in the patient list will be updated to
        not show any upcoming appointment.
 
-    3. Test case: `apptcl 0`, <br>
+    3. Test case: `apptcl 0` <br>
        Expected: No appointment is removed. Error details shown in the status message. Patient list remains the same.
 
     4. Other incorrect delete commands to try: `apptcl`, `apptcl 1 hello`, `...` <br>
