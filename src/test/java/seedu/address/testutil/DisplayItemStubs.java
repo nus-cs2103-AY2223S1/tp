@@ -51,11 +51,6 @@ public class DisplayItemStubs {
         }
 
         @Override
-        public String getRelativePath(DisplayItem parent) {
-            return getFullPath();
-        }
-
-        @Override
         public List<Attribute<?>> getAttributes() {
             return List.<Attribute<?>>of();
         }
@@ -149,11 +144,6 @@ public class DisplayItemStubs {
         }
 
         @Override
-        public String getRelativePath(DisplayItem parent) {
-            return getFullPath();
-        }
-
-        @Override
         public List<Attribute<?>> getAttributes() {
             return List.<Attribute<?>>of();
         }
@@ -244,11 +234,6 @@ public class DisplayItemStubs {
         @Override
         public String getFullPath() {
             return "TASK_STUB";
-        }
-
-        @Override
-        public String getRelativePath(DisplayItem parent) {
-            return getFullPath();
         }
 
         @Override

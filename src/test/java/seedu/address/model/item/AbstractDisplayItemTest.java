@@ -30,7 +30,7 @@ class AbstractDisplayItemTest {
 
     @Test
     void rename_validName_success() {
-        Person alice = buildDefaultPerson("Alice");
+        AbstractDisplayItem alice = buildDefaultPerson("Alice");
         alice.rename("Bob");
         assertEquals(alice.getName().fullName, "Bob");
     }
@@ -47,14 +47,14 @@ class AbstractDisplayItemTest {
         tags = new HashSet<>();
         tags.add(new Tag("friends"));
         tags.add(new Tag("colleagues"));
-        Person donny = buildDefaultPerson("Donny", "friends");
+        AbstractDisplayItem donny = buildDefaultPerson("Donny", "friends");
         donny.addTags("colleagues");
         assertEquals(donny.getTags(), tags);
     }
 
     @Test
     void deleteTag_existingTag_success() {
-        Person echo = buildDefaultPerson("Echo", "friends");
+        AbstractDisplayItem echo = buildDefaultPerson("Echo", "friends");
         echo.deleteTag("friends");
         assertTrue(echo.getTags().isEmpty());
     }
@@ -68,47 +68,47 @@ class AbstractDisplayItemTest {
 
     @Test
     void getAttribute_attributeNotFound_success() {
-        Person george = buildDefaultPerson("George", "friends");
+        AbstractDisplayItem george = buildDefaultPerson("George", "friends");
         assertFalse(george.getAttribute("dummy").isPresent());
     }
 
     @Test
     void getAttribute_attributeFound_success() throws AttributeException {
-        Person dummy = new PersonBuilder(ALICE).withAttribute("Github", "dummy123").build();
+        AbstractDisplayItem dummy = new PersonBuilder(ALICE).withAttribute("Github", "dummy123").build();
         assertEquals(dummy.getAttribute("Github").get().toString(), "Github: dummy123");
     }
 
     @Test
     void editAttribute_existingAttribute_success() throws AttributeException {
-        Person dummy = new PersonBuilder(ALICE).withAttribute("Github", "dummy123").build();
+        AbstractDisplayItem dummy = new PersonBuilder(ALICE).withAttribute("Github", "dummy123").build();
         dummy.editAttribute("Github", "dummy321");
         assertEquals(dummy.getAttribute("Github").get().toString(), "Github: dummy321");
     }
 
     @Test
     void addAttribute_newAttributeInstance_success() {
-        Person dummy = buildDefaultPerson("dummy", "friends");
+        AbstractDisplayItem dummy = buildDefaultPerson("dummy", "friends");
         dummy.addAttribute(AGE);
         assertEquals(dummy.getAttribute("Age").get().toString(), "Age: 20");
     }
 
     @Test
     void addAttribute_stringTypeAndValue_success() throws AttributeException {
-        Person dummy = buildDefaultPerson("dummy", "friends");
+        AbstractDisplayItem dummy = buildDefaultPerson("dummy", "friends");
         dummy.addAttribute("Position", "CEO");
         assertEquals(dummy.getAttribute("Position").get(), POSITION);
     }
 
     @Test
     void addAttribute_existingAttribute_throwsAttributeException() throws AttributeException {
-        Person dummy = buildDefaultPerson("dummy", "friends");
+        AbstractDisplayItem dummy = buildDefaultPerson("dummy", "friends");
         dummy.addAttribute("Position", "CEO");
         assertThrows(AttributeException.class, () -> dummy.addAttribute("Position", "President"));
     }
 
     @Test
     void setTags() {
-        Person dummy = buildDefaultPerson("dummy");
+        AbstractDisplayItem dummy = buildDefaultPerson("dummy");
         Set<Tag> tags = new HashSet<Tag>();
         tags.add(new Tag("president"));
         tags.add(new Tag("boss"));
@@ -118,7 +118,6 @@ class AbstractDisplayItemTest {
 
     @Test
     void canBeChildOf() {
-
     }
 
     @Test

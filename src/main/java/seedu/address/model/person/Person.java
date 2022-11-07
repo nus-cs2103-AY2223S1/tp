@@ -68,12 +68,6 @@ public class Person extends AbstractDisplayItem {
     }
 
     @Override
-    public String getRelativePath(DisplayItem parent) {
-        // person should not have a relative path.
-        return name.fullName;
-    }
-
-    @Override
     public Set<? extends DisplayItem> getParents() {
         return parents;
     }
