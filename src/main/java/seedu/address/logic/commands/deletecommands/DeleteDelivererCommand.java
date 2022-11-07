@@ -33,7 +33,7 @@ public class DeleteDelivererCommand extends DeleteCommand {
     private final Index targetIndex;
 
     /**
-     * Creates a DeleteCommand to delete the specified {@code Person}.
+     * Creates a DeleteDelivererCommand to delete the specified {@code Deliverer}.
      */
     public DeleteDelivererCommand(Index targetIndex) {
         this.targetIndex = targetIndex;

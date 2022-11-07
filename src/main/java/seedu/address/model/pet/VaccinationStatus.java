@@ -1,7 +1,7 @@
 package seedu.address.model.pet;
 
 /**
- * A class that represents the vaccination status of a pet. Could be either true of false.
+ * Represents the vaccination status of a pet. Could be either true of false.
  */
 public class VaccinationStatus implements Comparable<VaccinationStatus> {
 

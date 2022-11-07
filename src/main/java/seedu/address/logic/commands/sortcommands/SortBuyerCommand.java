@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Buyer;
 
 /**
- * Sorts the Buyer's list.
+ * Sorts the Buyers' list according to the specified / default attribute.
  */
 public class SortBuyerCommand extends SortCommand {
 
@@ -24,7 +24,7 @@ public class SortBuyerCommand extends SortCommand {
     private final Comparator<Buyer> comparator;
 
     /**
-     * Constructs a sortBuyerCommand with specified comparator.
+     * Constructs a SortBuyerCommand with specified comparator.
      * @param comparator The specified comparator.
      */
     public SortBuyerCommand(Comparator<Buyer> comparator) {

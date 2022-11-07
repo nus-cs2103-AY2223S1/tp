@@ -21,8 +21,8 @@ Given below are my contributions to the project.
 
 * **New Feature**: Added a popup window for adding command. (Pull request: [#159](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/159))
   * What it is about: Added a popup window with prompt text for adding buyers with orders and suppliers with pets, without the need to input any prefixes.
-  * Justification: There is repetitive entering of multiple indexes when the users want to add a buyer or supplier, which is very demanding in terms of memorisation.
-  * Highlights: The popup window is designed to improve the user experience (UX). It also shows how UI, model and logic can be linked.
+  * Justification: There is repetitive entering of multiple indexes when the users want to add a buyer with orders or to add a supplier with pets, which is very demanding in terms of memorisation.
+  * Highlights: The popup window is designed to improve the user experience (UX), with keyboard shortcuts and prompt texts. It also shows how UI, model and logic components can be linked.
 
 * **New Feature**: Extended the `EditCommand` (Pull request: [#205](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/205))
   * What it does: Extended the `EditCommand` to `EditBuyerCommand`, `EditDelivererommand` and `EditSupplierCommand`.
@@ -45,7 +45,9 @@ Given below are my contributions to the project.
 
 * **Documentation**:
   * User Guide:
-    * Added documentation for the features: `Adding a person with a popup window` (Pull request: [#159](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/159)), `Editing attributes of a contact` (Pull request: [#205](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/205))
+    * Added documentation for the feature: `Adding a person with a popup window`. (Pull request: [#159](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/159))
+    * Added documentation for the feature: `Editing attributes of a contact`. (Pull request: [#205](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/205))
+    * Added documentation for the feature: `Listing contacts or items`. (Pull request: [#207](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/207))
     * Proofread the whole UG.
       (Pull requests: [#356](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/356), [#364](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/364), [#365](https://github.com/AY2223S1-CS2103T-T09-2/tp/pull/365))
   * Developer Guide:

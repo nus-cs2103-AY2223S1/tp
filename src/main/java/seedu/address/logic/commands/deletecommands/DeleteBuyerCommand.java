@@ -14,7 +14,7 @@ import seedu.address.model.order.Order;
 import seedu.address.model.person.Buyer;
 
 /**
- * Deletes a buyer identified using it's displayed index from the address book.
+ * Deletes a Buyer identified using it's displayed index from the address book.
  */
 public class DeleteBuyerCommand extends DeleteCommand {
 
@@ -32,7 +32,7 @@ public class DeleteBuyerCommand extends DeleteCommand {
     private final Index targetIndex;
 
     /**
-     * Creates a DeleteCommand to delete the specified {@code Person}.
+     * Creates a DeleteBuyerCommand to delete the specified {@code Buyer}.
      */
     public DeleteBuyerCommand(Index targetIndex) {
         this.targetIndex = targetIndex;

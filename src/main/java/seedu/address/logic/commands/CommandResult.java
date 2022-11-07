@@ -118,7 +118,6 @@ public class CommandResult {
         return isExit;
     }
 
-
     public boolean isAddedByPopup() {
         return isAddedByPopup;
     }

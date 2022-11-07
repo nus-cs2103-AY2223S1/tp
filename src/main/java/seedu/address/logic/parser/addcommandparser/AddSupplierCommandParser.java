@@ -8,7 +8,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.PersonCategory;
 
 /**
- * Parses input arguments and creates a new AddSupplierCommand object
+ * Parses input arguments and creates an {@code AddSupplierCommand}.
  */
 public class AddSupplierCommandParser implements Parser<AddSupplierCommand> {
 

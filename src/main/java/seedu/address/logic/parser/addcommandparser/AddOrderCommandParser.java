@@ -19,7 +19,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.order.Order;
 
 /**
- * Parses the argument to create an AddOrderCommand object.
+ * Parses the argument to create an {@code AddOrderCommand}.
  */
 public class AddOrderCommandParser implements Parser<AddOrderCommand> {
 

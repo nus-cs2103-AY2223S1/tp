@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.order.Order;
 
 /**
- * Deletes a Order identified using it's displayed index from the address book.
+ * Deletes an Order identified using it's displayed index from the address book.
  */
 public class DeleteOrderCommand extends DeleteCommand {
 
@@ -29,7 +29,7 @@ public class DeleteOrderCommand extends DeleteCommand {
     private final Index targetIndex;
 
     /**
-     * Creates a DeleteCommand to delete the specified {@code Person}.
+     * Creates a DeleteOrderCommand to delete the specified {@code Order}.
      */
     public DeleteOrderCommand(Index targetIndex) {
         this.targetIndex = targetIndex;

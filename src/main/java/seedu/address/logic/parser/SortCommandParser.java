@@ -23,7 +23,7 @@ import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
 
 /**
- * Parses input arguments and creates a new SortCommand object.
+ * Parses input arguments and creates a subclass of the {@code SortCommand}.
  */
 public class SortCommandParser implements Parser<SortCommand> {
 

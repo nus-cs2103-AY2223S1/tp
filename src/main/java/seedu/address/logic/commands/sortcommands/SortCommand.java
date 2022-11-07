@@ -3,7 +3,8 @@ package seedu.address.logic.commands.sortcommands;
 import seedu.address.logic.commands.Command;
 
 /**
- * Provides a range of acceptable parameters for sort command.
+ * The abstract base class of all SortCommand variations,
+ * including SortBuyerCommand, SortDelivererCommand, SortSupplierCommand, SortOrderCommand, SortPetCommand.
  */
 public abstract class SortCommand extends Command {
 

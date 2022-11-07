@@ -4,7 +4,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
- * Lists all suppliers to the user.
+ * Lists all Suppliers to the user.
  */
 public class ListSupplierCommand extends ListCommand {
 
