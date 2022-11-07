@@ -701,21 +701,21 @@ Although CheckUp is built as a Command Line Interface application, it also suppo
 
 #### Person List Panel:
 
-* Clicking on patients in the Patient List Panel will automatically open their info in the Patient Details Panel.
+* Double-clicking on patients in the Patient List Panel will automatically open their info in the Patient Details Panel.
 
 Example:
 
-* Clicking on the first patient `Alex Yeoh` will display his details on the Patient View Panel.
+* Double-clicking on the first patient `Alex Yeoh` will display his details on the Patient View Panel.
 
 ![Clicking on Patient List Panel Gif](images/ug-images/Person-List-Panel-Clickability.png)
 
 #### Person Details Panel:
 
-* Clicking on the fields in the Patient Details Panel will automatically prepare them for editing in the Command Input Box.
+* Double-clicking on the fields in the Patient Details Panel will automatically prepare them for editing in the Command Input Box.
 
 Example:
 
-* If the patient is `Alex Yeoh`, clicking on his `email` will set the text in the Command Input Box to `edit 1 e/`.
+* If the patient is `Alex Yeoh`, double-clicking on his `email` will set the text in the Command Input Box to `edit 1 e/`.
 
 ![Clicking on Patient View Panel Gif](images/ug-images/Person-Details-Panel-Clickability.png)
 
