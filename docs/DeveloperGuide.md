@@ -556,7 +556,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC6 - Sorting tutors**
+**Use case: UC6 - Sorting the tutor list**
 
 **MSS**
 
