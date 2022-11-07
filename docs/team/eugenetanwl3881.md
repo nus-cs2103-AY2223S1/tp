@@ -28,13 +28,13 @@ Given below are my contributions to the project.
   * Highlights: This feature will be useful when trying to use other tag commands since user can see all the available tags
 
 * **Refactored feature**:
-  * Refactored the `clear` command in AB3 to the `reset` command in FoodRem. This clears all items and tags stored ([[PR#160]]))
+  * Refactored the `clear` command in AB3 to the `reset` command in FoodRem. This clears all items and tags stored ([[PR#160]])
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2022-09-16&tabOpen=true&tabType=authorship&tabAuthor=Eugenetanwl3881&tabRepo=AY2223S1-CS2103T-W16-2%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=functional-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 * **Project management**:
   * Refactoring done to project packages ([[PR#149]])
-  * Team tasks: Creation of issues, completing some weekly team tasks, updating AboutUs ( [[PR#241]], [[PR#22]])
+  * Team tasks: Creation of issues, completing some weekly team tasks, updating AboutUs ([[PR#241]], [[PR#22]], [[Issue#456]], [[Issue#240]])
 
 * **Testing**:
   * Wrote some tests for tag features ([[PR#235]])
@@ -45,7 +45,7 @@ Given below are my contributions to the project.
     * Added documentation for the commands `list`, `find`, `exit` ([[PR#77]])
     * Add FAQ into UG ([[PR#178]])
     * Add Command Summary Table ([[PR#152]])
-    * Updating sections and fixing bugs for UG ([[PR#261]], [[PR#292]], [[PR#306]], [[PR#420]] )
+    * Updating sections and fixing bugs for UG ([[PR#261]], [[PR#292]], [[PR#306]], [[PR#420]])
 
   * Developer Guide:
     * Added User Stories and Use Cases in DG ([[PR#79]], [[PR#142]])
@@ -58,4 +58,4 @@ Given below are my contributions to the project.
 
 * **Community**:
 
-  * PRs reviewed (with non-trivial review comments): [\#199](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/199), [\#32](), [\#232](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/232), [\#143](https://github.com/AY2223S1-CS2103T-W16-2/tp/pull/143)
+  * PRs reviewed (with non-trivial review comments): ([[PR#199]], [[PR#232]], [[PR#143]])
