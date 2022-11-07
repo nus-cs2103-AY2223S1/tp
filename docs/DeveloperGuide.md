@@ -138,6 +138,7 @@ How the parsing works:
 <img src="images/ModelClassDiagramPerson.png" width="450" />
 <div style="page-break-after: always;"></div>
 <img src="images/ModelClassDiagramTaskTag.png" width="450" />
+<div style="page-break-after: always;"></div>
 
 The `Model` component,
 
