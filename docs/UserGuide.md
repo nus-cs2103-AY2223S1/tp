@@ -248,10 +248,13 @@ step-by-step!
 - **ALL** identifiers are <ins>case-sensitive</ins>.
   e.g. `d/Lunch` as a descriptor for "Lunch" is accepted by PennyWise, however `D/Lunch` would not be accepted.
 
+<<<<<<< HEAD
 <div markdown="span" class="alert alert-danger">:exclamation: **Caution:**
 - Adding identifiers that are not used in the command will result in an error.
 </div>
 
+=======
+>>>>>>> 8c5c5f061728c204ec920ee374ae7a8c5c211788
 ### Categorising your expenses and income
 
 For **ALL** entries, categories are <ins>COMPULSORY</ins> and every entry can only contain <ins>one</ins> category. The
