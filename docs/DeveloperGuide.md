@@ -11,8 +11,7 @@ title: Developer Guide
 We'd like to thank:
 * The [CS2103/T teaching team](https://nus-cs2103-ay2223s1.github.io/website/admin/instructors.html) for guiding us throughout the development of this project.
 * [SE-Edu's AddressBook-Level3](https://github.com/se-edu/addressbook-level3) for laying the foundations on which our (brownfield) project is built upon.
-* The [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit](https://junit.org/junit5/), and [Lato font](https://latofonts.github.io/lato-source/) project teams for their awesome work
-on which our product is built upon!
+* The [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit](https://junit.org/junit5/), and [Lato font](https://latofonts.github.io/lato-source/) project teams for their awesome work on which our product is built upon!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -454,8 +453,8 @@ The following sequence diagram shows how changes are propagated to the `UI` thro
   * **Pros**: Easy to implement.
   * **Cons**: Hard to maintain. Each `Command` now needs to know that `CommandResult` can pass data other than for result display.
 
-### Exporting data as CSV
-This feature allows the user to extract data efficiently from TA-Assist to be used for other purposes such as statistical analysis or result collation on other platforms. Unlike other commands which only works on the model, the `export` command requires access to `Storage` to create a new CSV file and write data to it. This is facilitated by the `ExportCsvStorageAction` class, which is a children of the `StorageAction` class, where further action onto the `Storage` component is processed.
+### Exporting data as CSV file
+This feature allows the user to extract data efficiently from TA-Assist to be used for other purposes such as statistical analysis or result collation on other platforms. Unlike other commands which only works on the `Model`, the `export` command requires access to `Storage` to create a new CSV file and write data to it. This is facilitated by the `ExportCsvStorageAction` class, which is a children of the `StorageAction` class, where further action onto the `Storage` component is processed.
 
 The `CommandResult` class can contain just the feedback to the user, or it can also contain either a `UiAction` or `StorageAction`. These two classes represent an action to be performed by the `Ui` and `Storage` respectively.
 

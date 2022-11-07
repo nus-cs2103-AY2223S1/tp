@@ -5,7 +5,7 @@ title: User Guide
 
 **TA-Assist** is a desktop app for Teaching Assistants (TA) to keep track of students’ particulars and allocate marks for attendance and assignments. It is optimized for use via a Command Line Interface (CLI) while having the benefits of a Graphical User Interface (GUI).
 
-This user guide provides brief documentation on how you can install the application and describes how each feature should be used. Start by looking at the [quick start](#quick-start) guide to get you started.
+This User Guide provides brief documentation on how you can install the application and describes how each feature should be used. Start by looking at the [quick start](#quick-start) guide to get you started.
 
 * Table of Contents
 {:toc}
@@ -37,7 +37,7 @@ If you encounter any issues in launching and using the app, feel free to refer t
 * Items in square brackets are optional.
   * e.g. `n/NAME [c/CLASS_NAME]` can be used as `n/John Doe c/CS1231S` or as `n/John Doe`.
 * Items with `...` after them can be used multiple times.
-  * e.g. `c/CLASS_NAME...` can be used as `c/CS1101S`, or `c/CS2030 c/ST2334`.
+  * e.g. `c/CLASS_NAME...` can be used as `c/CS1101S` or `c/CS2030 c/ST2334`.
 * Parameters, excluding index parameters, can be in any order.
   * e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
   * e.g. while `assign INDEX c/CLASS_NAME` is acceptable, `assign c/CLASS_NAME INDEX` is not acceptable.
@@ -51,7 +51,7 @@ If you encounter any issues in launching and using the app, feel free to refer t
 </div>
 
 ## Modes
-In TA-Assist, you can switch into a mode called the **focus** mode, which lets you run tasks that are specific to a class. Therefore, [some commands](#focus-mode-commands) can only be executed when you are in focus mode. Commands that you can run in the default (unfocused) mode can also be run in focus mode. On the other hand, commands that are available only in focus mode cannot be executed in the default mode.
+In TA-Assist, you can switch into a mode called **focus** mode, which lets you run tasks that are specific to a class. Therefore, [some commands](#focus-mode-commands) can only be executed when you are in focus mode. Commands that you can run in the default (unfocused) mode can also be run in focus mode. On the other hand, commands that are available only in focus mode cannot be executed in the default mode.
 
 Let's first begin with the commands available in the default mode.
 
