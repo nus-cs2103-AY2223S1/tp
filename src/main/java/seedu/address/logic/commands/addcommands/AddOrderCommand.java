@@ -57,7 +57,7 @@ public class AddOrderCommand extends Command {
             + "1 "
             + USAGE_COMMON_SAMPLE_PARAMETERS;
 
-    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_ORDER = "This order already exists in the order list";
     public static final String MESSAGE_SUCCESS = "Added Order: %1$s";
 
     private final Order toAdd;

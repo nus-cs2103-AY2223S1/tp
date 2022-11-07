@@ -72,7 +72,7 @@ public class AddPetCommand extends Command {
             + COMMON_SAMPLE_PARAMETERS;
 
 
-    public static final String MESSAGE_DUPLICATE_PET = "This pet already exists in the buyer list";
+    public static final String MESSAGE_DUPLICATE_PET = "This pet already exists in the pet list";
 
     public static final String MESSAGE_SUCCESS = "Added Pet: %1$s";
 

@@ -42,7 +42,7 @@ public class AddSupplierCommand extends AddPersonCommand {
             + PREFIX_PET + AddPetCommand.COMMAND_WORD + " (pet2 prefixes and parameters) ";
 
     public static final String MESSAGE_SUCCESS = "New supplier added: %1$s";
-    public static final String MESSAGE_DUPLICATE_SUPPLIER = "This supplier already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_SUPPLIER = "This supplier already exists in the supplier list";
 
     private final Supplier toAdd;
     private final List<Pet> pets = new ArrayList<>();
