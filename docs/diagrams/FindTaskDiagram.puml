@@ -46,6 +46,8 @@ deactivate findCommand
 
 findTaskCommandParser --> addressBookParser
 deactivate findTaskCommandParser
+findTaskCommandParser -[hidden]-> addressBookParser
+destroy findTaskCommandParser
 
 addressBookParser --> logicManager
 deactivate addressBookParser
@@ -67,7 +69,12 @@ activate commandResult
 
 commandResult --> findCommand
 deactivate commandResult
-return
+
+findCommand --> logicManager
+deactivate
+findCommand -[hidden]-> logicManager
+destroy findCommand
+
 logicManager --> mainWindow
 deactivate logicManager
 

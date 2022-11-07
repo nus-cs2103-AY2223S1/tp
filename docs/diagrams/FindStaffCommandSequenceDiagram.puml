@@ -29,9 +29,6 @@ deactivate FindStaffCommandParser
 HrProParser -> FindStaffCommandParser : parse()
 activate FindStaffCommandParser
 
-FindStaffCommandParser --> HrProParser
-deactivate FindStaffCommandParser
-
 create FindStaffCommand
 FindStaffCommandParser -> FindStaffCommand
 activate FindStaffCommand
@@ -40,6 +37,8 @@ deactivate FindStaffCommand
 
 FindStaffCommandParser --> HrProParser : command
 deactivate FindStaffCommandParser
+FindStaffCommandParser -[hidden]-> HrProParser : command
+destroy FindStaffCommandParser
 
 HrProParser --> LogicManager : command
 deactivate HrProParser
@@ -51,9 +50,17 @@ FindStaffCommand -> Model : updateFilteredStaffList()
 activate Model
 Model --> FindStaffCommand
 deactivate Model
+create CommandResult
+FindStaffCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindStaffCommand
+deactivate CommandResult
 
 FindStaffCommand --> LogicManager
 deactivate FindStaffCommand
+FindStaffCommand -[hidden]-> LogicManager
+destroy FindStaffCommand
 
 [<--LogicManager : Done
 deactivate LogicManager

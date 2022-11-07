@@ -152,20 +152,21 @@ The `Model` component,
 
 **API** : [`Project.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/model/project/Project.java)
 
-<img src="images/ModelProjectClassDiagram.png" width="650" />
+<img src="images/ModelProjectClassDiagram.png" width="800" />
 
 The `Project` class,
 
 * stores the details of a particular project (i.e. `ProjectName`, `Budget`, `Deadline`).
 * stores the details of all Staff members (which are contained in a `UniqueStaffList` object) working on the project.
 
-Additional information:
-* The `UniqueStaffList` of a chosen `Project` object in HR Pro Max++ is copied over to the `UniqueStaffList` in `HrPro`, which is used to display the staff list shown to outsiders.
-* The copying is done whenever the user edits the `UniqueStaffList` of the `Project` object being viewed (e.g. `AddStaffCommand`, `EditStaffCommand`) or when the user wants to view a different `Project` object (e.g. after a `ViewCommand`)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `UniqueStaffList` of a chosen `Project` object in HR Pro Max++ is copied over to the `UniqueStaffList` in `HrPro`, which is used to display the staff list shown to outsiders. The copying is done whenever the user edits the `UniqueStaffList` of the `Project` object being viewed (e.g. `AddStaffCommand`, `EditStaffCommand`) or when the user wants to view a different `Project` object (e.g. after a `ViewCommand`)
+</div>
+
+
 
 **API** : [`Staff.java`](https://github.com/AY2223S1-CS2103T-T09-3/tp/blob/master/src/main/java/seedu/hrpro/model/staff/Staff.java)
 
-<img src="images/ModelStaffClassDiagram.png" width="650" />
+<img src="images/ModelStaffClassDiagram.png" width="800" />
 
 The `Staff` class,
 
@@ -246,7 +247,7 @@ The following sequence diagram shows how the undo operation works:
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram. This applies to all subsequent sequence diagrams.
 
 </div>
 

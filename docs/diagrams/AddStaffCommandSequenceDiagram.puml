@@ -38,6 +38,8 @@ deactivate AddStaffCommand
 
 AddStaffCommandParser --> HrProParser : command
 deactivate AddStaffCommandParser
+AddStaffCommandParser -[hidden]-> HrProParser : command
+destroy AddStaffCommandParser
 
 HrProParser --> LogicManager : command
 deactivate HrProParser
@@ -64,6 +66,8 @@ deactivate CommandResult
 
 AddStaffCommand --> LogicManager
 deactivate AddStaffCommand
+AddStaffCommand -[hidden]-> LogicManager
+destroy AddStaffCommand
 
 [<--LogicManager : Done
 deactivate LogicManager

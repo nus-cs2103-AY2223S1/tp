@@ -71,6 +71,8 @@ deactivate commandResult
 
 sortTaskCommand --> logicManager
 deactivate sortTaskCommand
+sortTaskCommand -[hidden]-> logicManager
+destroy sortTaskCommand
 
 logicManager --> mainWindow
 deactivate logicManager
