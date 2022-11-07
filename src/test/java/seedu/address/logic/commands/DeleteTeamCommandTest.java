@@ -6,7 +6,6 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TEAM;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TEAM;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_TEAM;
 import static seedu.address.testutil.TypicalTeams.getTypicalAddressBookWithTeams;
 
 import org.junit.jupiter.api.Test;
@@ -47,28 +46,6 @@ public class DeleteTeamCommandTest {
         assertCommandFailure(deleteTeamCommand, model, Messages.MESSAGE_INVALID_TEAM_DISPLAYED_INDEX);
     }
 
-    @Test
-    public void execute_validIndexFilteredList_success() {
-
-        Team teamToDelete = model.getFilteredTeamList().get(INDEX_FIRST_TEAM.getZeroBased());
-        DeleteTeamCommand deleteTeamCommand = new DeleteTeamCommand(INDEX_FIRST_TEAM);
-
-        String expectedMessage = String.format(DeleteTeamCommand.MESSAGE_DELETE_TEAM_SUCCESS, teamToDelete);
-
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        expectedModel.deleteTeam(teamToDelete);
-
-        assertCommandSuccess(deleteTeamCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
-        Index outOfBoundIndex = INDEX_THIRD_TEAM;
-
-        DeleteTeamCommand deleteTeamCommand = new DeleteTeamCommand(outOfBoundIndex);
-
-        assertCommandFailure(deleteTeamCommand, model, Messages.MESSAGE_INVALID_TEAM_DISPLAYED_INDEX);
-    }
 
     @Test
     public void equals() {
@@ -90,14 +67,5 @@ public class DeleteTeamCommandTest {
 
         // different person -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
-    }
-
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoTeam(Model model) {
-        model.updateFilteredTeamList(p -> false);
-
-        assertTrue(model.getFilteredTeamList().isEmpty());
     }
 }
