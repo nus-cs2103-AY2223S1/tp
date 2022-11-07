@@ -703,6 +703,7 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `add -n Tutorial 1 -m CS2100 -t mediumPriority -d 2022-10-20`<br>
        Expected: `Tutorial 1` is added into the list. Details of the added task shown in the status message.
                     `Tutorial 1` is inserted into an index according to its deadline. 
+
     3. Test case: `add -n PYP -m CS2100 -t finals`<br>
        Expected: `PYP` is added into the list. Details of the added task shown in the status message.
        `PYP` is inserted behind all other tasks that contain a deadline.
@@ -779,7 +780,8 @@ testers are expected to do more *exploratory* testing.
    
    3. Add 2 tasks into the task list by entering the following commands: 
       1. `add -n Tutorial 1 -m CS2103T -d 2022-11-29`
-      2. `add -n PYP -m CS2101`
+      2. `add -n PYP -m CS2101` 
+      
       Expected: Task list displayed contains 2 tasks. 
       
    4. Exit NotionUS by entering `exit` or closing the window. 
