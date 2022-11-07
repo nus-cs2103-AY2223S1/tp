@@ -366,7 +366,7 @@ Note: if the full name provided by user does not match any `Teammate`, an except
 14. The `Model` is updated with the modified `Task`.
 15. The `GUI` is updated to show the new `TaskPanel` with the `Task`'s assigned contacts updated.
 
-The AssignTaskCommandParser relies on the ArgumentMultimap abstraction, which helps to tokenize the user input by pre-specified prefixes. The prefix +@ denotes that the contact is to be assigned, while prefix `@` denotes that the contact is to be unassigned from the task's assigned contact list.
+The AssignTaskCommandParser relies on the ArgumentMultimap abstraction, which helps to tokenize the user input by pre-specified prefixes. The prefix `+@` denotes that the contact is to be assigned, while prefix `-@` denotes that the contact is to be unassigned from the task's assigned contact list.
 
 
 ### Task Class Design Considerations:
