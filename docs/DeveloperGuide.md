@@ -301,13 +301,13 @@ to find students taking machine learning projects before doing `delete -d i/A012
 This integration between delete deadline command with find student command is important because FypManager can store large number of students with FYP, making it not fesiable for users to scroll through the list.
 By utilizing find student, users can find the student with only partial information and retrieve the student ID Using this student ID, users can delete the deadline from the FypManager once he/she drops the deadline task.
 
-### `Mark` Feature
+### Marking a project status
 #### Proposed Implementation
-The proposed MarkCommand Feature marks the Project Status of an FYP project as one of 3 possible statuses
+The MarkCommand feature marks the Project Status of an FYP project as one of 3 possible statuses
 {***YTS***, ***IP***, ***DONE***}. Currently these are the only 3 statuses supported, although more may be implemented
 later on if there are other meaningful statuses.
 
-The MarkCommand Feature sets a default status of `YTS` whenever a new FYP project is added to the FYP Manager, and the
+The MarkCommand feature sets a default status of `YTS` whenever a new FYP project is added to the FYP Manager, and the
 MarkCommand allows us to accordingly the project Status to either `IP` if the student is still
 working on the FYP project, or `DONE` once the FYP project has been completed.
 
@@ -341,6 +341,7 @@ The following sequence diagram shows how the MarkCommand operation works:
 The following activity diagram illustrates what happens when a user executes `MarkCommand`:
 
 ![MarkCommandActivityDiagram](images/MarkCommandActivityDiagram.jpg)
+
 #### Design considerations:
 
 **Implementation Choice: Why MarkCommand is implemented this way**
@@ -384,7 +385,7 @@ The following sequence diagram shows how edit student command works:
 <img src="images/EditSequenceDiagram.png" width="550" />
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `EditCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-Also, due to puml limitations, we are not able to clearly show self-invocation methods well. Do take note that arrow supposed to start at beginning of activation bar and end at end of activation bar.
+Also, due to PlantUML limitations, we are not able to clearly show self-invocation methods well. Do take note that arrow supposed to start at beginning of activation bar and end at end of activation bar.
 
 </div>
 
@@ -402,7 +403,7 @@ By utilizing find student, users can find the student with only partial informat
 
 <div style="page-break-after: always;"></div>
 
-###  `Help` Feature
+### Showing help
 #### Proposed Implementation
 The proposed `Help` Feature provides the professor or students with useful information on how to optimally make use of this Jeryl app.
 The `Help` feature mechanism is facilitated by `HelpCommand` and `HelpCommandParser`. `HelpCommand` extends from the abstract class `Command`
@@ -440,7 +441,7 @@ The following activity diagram summarizes what happens when a user executes am h
 <img src="images/helpMessage.png" width="550" />
 
 
-###  `List` Feature
+### Listing the students and their FYPs
 #### Proposed Implementation
 The proposed `List` Feature allows the professor to list all FYP students in the FYP Manager.
 The `List` feature mechanism is facilitated by `ListCommand`. It extends from the abstract class `Command`.
@@ -463,7 +464,7 @@ The following activity diagram summarizes what happens when a user executes a li
 
 <div style="page-break-after: always;"></div>
 
-### `Find` Feature
+### Finding students based on criterias
 #### Proposed Implementation
 
 The proposed FindCommand Feature allows the user to find for specific keywords in certain fields. The current
@@ -543,7 +544,7 @@ The following activity diagram summarizes what happens when a user executes a li
 
 <div style="page-break-after: always;"></div>
 
-### `Sort` Feature
+### Sorting the FYP manager based on a criteria
 #### Proposed Implementation
 
 This feature allows professors to sort the FYP projects by their project name, or by
@@ -597,7 +598,7 @@ Step 1. The user launches the application for the first time. The `VersionedFypM
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete -s i/A0123456A` command to delete student with studentId of A0123456A in the FYP manager. The `delete` command calls `Model#commitFypManager()`, causing the modified state of the FYP manager after the `delete 5` command executes to be saved in the `fypManagerStateList`, and the `currentStatePointer` is shifted to the newly inserted FYP manager state.
+Step 2. The user executes `delete -s i/A0123456A` command to delete student with studentId of A0123456A in the FYP manager. The `delete` command calls `Model#commitFypManager()`, causing the modified state of the FYP manager after the `delete -s i/A0123456A` command executes to be saved in the `fypManagerStateList`, and the `currentStatePointer` is shifted to the newly inserted FYP manager state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
@@ -735,8 +736,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `*`      | eager student   　　　                            | see the pending task with the next earliest deadline set by my professor                                  | know what I need to do next for my FYP [coming soon]                                        |
 | `*`      | automation-loving SoC professor   　　　          | send auto emails to students with upcoming deadlines                                                      | remind them to work on the tasks by the deadline [coming soon]                              |
 
-
-*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -892,8 +891,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * Nil
 
 
-*{More to be added}*
-
 --------------------------------------------------------------------------------------------------------------------
 
 <div style="page-break-after: always;"></div>
@@ -908,8 +905,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 6.  Personal details of students should only be accessible by supervising professor.
 7.  System should be able to support the whole SoC cohort (around 1500 users) at the same time.
 8.  JerylFypManager is accessible 24/7.
-
-*{More to be added}*
 
 --------------------------------------------------------------------------------------------------------------------
 ### Glossary
