@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_KEYWORD_EMPTY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FIND_ALL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FIND_ANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_KEYWORD;
@@ -9,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -31,10 +33,14 @@ public class FindCommandParser implements Parser<FindCommand> {
         ArgumentMultimap mainArgMultimap =
                 ArgumentTokenizer.tokenize(" " + args, PREFIX_KEYWORD, PREFIX_FIND_ALL, PREFIX_FIND_ANY);
 
-        List<String> keywords = mainArgMultimap.getAllValues(PREFIX_KEYWORD);
+        List<String> rawKeywords = mainArgMultimap.getAllValues(PREFIX_KEYWORD);
         Optional<String> rawIntersectTags = mainArgMultimap.getValue(PREFIX_FIND_ALL);
         Optional<String> rawUnionTags = mainArgMultimap.getValue(PREFIX_FIND_ANY);
 
+        if (rawKeywords.stream().anyMatch(keyword -> Objects.equals(keyword.strip(), ""))) {
+            throw new ParseException(MESSAGE_KEYWORD_EMPTY);
+        }
+        Set<String> keywords = new HashSet<>(rawKeywords);
         Set<Tag> intersectTags = new HashSet<>();
         Set<Tag> unionTags = new HashSet<>();
 
