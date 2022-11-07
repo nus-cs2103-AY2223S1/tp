@@ -17,6 +17,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
 import javafx.util.Pair;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
@@ -130,7 +132,7 @@ public class ReminderCommandTest {
         }
 
         @Override
-        public SortedList<Pair<Person, Reminder>> getSortedReminderList() {
+        public SortedList<Pair<Person, Reminder>> getSortedReminderPairs() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -140,10 +142,9 @@ public class ReminderCommandTest {
         }
 
         @Override
-        public void deleteReminder(Pair<Person, Reminder> target) {
+        public Reminder deleteReminder(Index targetIndex) throws CommandException {
             throw new AssertionError("This method should not be called.");
         }
-
 
         @Override
         public void deletePersonReminders(Person personToDelete) {
