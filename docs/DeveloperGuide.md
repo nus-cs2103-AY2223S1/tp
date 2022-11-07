@@ -734,6 +734,18 @@ testers are expected to do more *exploratory* testing.
     7. Other incorrect sort commands to try: `sort`, `sort x p`, `...` (where x is any character other than `a` and `d`, and p is any prefix other than `r/` and `tn/`)<br>
        Expected: Similar to 4 and 5.
 
+2. Sorting the tutor list after a filter (`find`)
+   1. Prerequisites: Filter the tutor list by executing a `find` command. 
+
+   2. Test case: `sort a r/`<br>
+      Expected: The currently displayed tutor list should be sorted by rating in ascending order (low to high). This can be seen by viewing tutor profiles. 
+
+   3. Test case: `sort d tn/`<br>
+      Expected: The currently displayed tutor list should be sorted by teaching nominations in descending order (high to low). This can be seen by viewing tutor profiles.
+
+   4. Incorrect sort commands from first case.
+      Expected: Same expected results as the first case.
+
 ### Mailing tutor(s)
 
 1. Mailing the tutor list while all tutors are being shown
