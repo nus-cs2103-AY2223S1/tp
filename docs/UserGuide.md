@@ -67,7 +67,7 @@ This section guides you along the process of downloading and opening FRIDAY.
 ## About
 ### Document structure
 This User Guide has been structured in a way to help you find information easily and quickly. In the next subsection
-,Section - reading this document you can find a multitude of tips on how to use this User Guide. The following sections 
+,Section - reading this document, you can find a multitude of tips on how to use this User Guide. The following sections 
 documents the main features of FRIDAY
 
 1. [Student management](#student-management)
@@ -87,7 +87,7 @@ Figure 2 depicts the [GUI](#glossary) of FRIDAY which is annotated with a descri
 ![Layout](images/layout.png)
 <i> Figure 2 Layout</i>
 
-#### Understanding Symbols and syntax
+#### Understanding Symbols and Syntax
 
 The table explains the general syntax and common occurrences throughout the user guide
 
