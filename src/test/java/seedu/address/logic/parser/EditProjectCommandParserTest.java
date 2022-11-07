@@ -27,8 +27,8 @@ public class EditProjectCommandParserTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditProjectCommand.MESSAGE_USAGE));
 
         //missing all arguments
-        assertParseFailure(parser, EditClientCommand.COMMAND_FLAG, " ",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditClientCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, EditProjectCommand.COMMAND_FLAG, " ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditProjectCommand.MESSAGE_USAGE));
 
         //missing compulsory id
         assertParseFailure(parser, EditProjectCommand.COMMAND_FLAG, " n/ab4 r/tp/repo c/3 d/2022-10-10",
