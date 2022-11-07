@@ -729,7 +729,7 @@ Implementing Undo/Redo commands in this manner requires the developers to strict
    - Every instance in each AddressBook should be completely new with new data
    - E.g. Changing the User's name field should create a new User Object with the desired new name, instead of changing the exisitng User objects name.
    - This is because each state of the AddressBook must be unique from one another
-   
+
 
 #### Implementation
 
