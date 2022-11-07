@@ -52,9 +52,9 @@ If you are looking to help develop this project, take a look at our [Developer G
 * [**Command Summary**](#command-summary)
 * [**Glossary**](#glossary)
 
-<div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Introduction
 
@@ -84,9 +84,9 @@ Interested? Jump straight to our [Quick Start section](#quick-start) to get star
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
-<div style="page-break-after: always;"></div>
-
 ---
+
+<div style="page-break-after: always;"></div>
 
 ## Using this guide
 
@@ -114,9 +114,9 @@ p.s. Not too sure about some technical terms in this guide? Check out our [gloss
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
-<div style="page-break-after: always;"></div>
-
 -------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Symbols and Syntax
 
@@ -133,9 +133,9 @@ in the table below:
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
-<div style="page-break-after: always;"></div>
-
 ---------
+
+<div style="page-break-after: always;"></div>
 
 ## Quick start
 
@@ -175,9 +175,9 @@ the application's sample data.
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
-<div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Layout
 
@@ -187,9 +187,9 @@ The image below describes TrackO's layout:
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
-<div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Tutorial
 
@@ -249,9 +249,9 @@ To check out more commands, you can head over to our [Features](#features) secti
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
-<div style="page-break-after: always;"></div>
-
 -------
+
+<div style="page-break-after: always;"></div>
 
 ## Command guide
 
@@ -278,9 +278,9 @@ This section of the user guide helps to break down the formatting used for comma
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
-<div style="page-break-after: always;"></div>
-
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## Features
 
@@ -452,9 +452,9 @@ you are trying to edit is currently involved in an uncompleted order (in this ca
 
 [Back to top &#8593;](#welcome-to-trackos-user-guide)
 
-<div style="page-break-after: always;"></div>
-
 -------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ### <u>Order management</u>
 
