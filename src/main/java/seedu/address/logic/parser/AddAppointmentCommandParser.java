@@ -14,10 +14,6 @@ import seedu.address.model.appointment.Appointment;
 
 /**
  * Parses input arguments and creates a new AddAppointmentCommand object
- *
- * @author Gerald Teo Jin Wei
- * @version 1.4
- * @since 2022-11-07
  */
 public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand> {
 
