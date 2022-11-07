@@ -73,7 +73,7 @@ ModQuik .up.|> ReadOnlyModQuik
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
 Model .right.> ReadOnlyModQuik
-ModelManager -right-> "1" ModQuik
+ModelManager -down-> "1" ModQuik
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
@@ -100,10 +100,4 @@ Tutorial *--> ModuleCode
 Tutorial *--> Venue
 Tutorial *--> WeeklyTimeslot
 
-Student -right[hidden]-> Tutorial
-
-ModelManager -->"~* filtered" Student
-ModelManager -->"~* filtered" Consultation
-ModelManager -->"~* filtered" Reminder
-ModelManager -->"~* filtered" Tutorial
 @enduml
