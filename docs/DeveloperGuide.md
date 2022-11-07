@@ -5,7 +5,7 @@ title: Developer Guide
 
 PleaseHireUs (PHU) is an internship tracking application specially customised for CS students who are struggling to 
 keep track of their applications. PHU has been optimized for use via a Command Line Interface (CLI) while still 
-having the benefits of a Graphical User Interface (GUI). Fast typist would be able to work more efficiently.
+having the benefits of a Graphical User Interface (GUI). Fast typists would be able to work more efficiently.
 
 ![Ui](images/icon.png){:style="display:block; margin-left:auto; margin-right:auto"}
 
@@ -29,7 +29,7 @@ This guides aims to: <br>
 
 1. Provide developers with a brief overview of the design architecture of our product.
 2. Explain some design considerations in the development of the application.
-3. Provide interested developers with documentations to continue development of our product.
+3. Provide interested developers with documentation to continue development of our product.
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Navigating the Developer Guide**
@@ -237,7 +237,7 @@ The following sequence diagram shows how the add command works.
 ### Delete feature
 
 #### Proposed Implementation
-PHU allows user to delete multiple internships in one command. The proposed delete mechanism involves keeping track of the positions of `Internship` to be deleted, which is implemented by using `Indexes` class, and deleting all the corresponding internships.
+PHU allows users to delete multiple internships in one command. The proposed delete mechanism involves keeping track of the positions of `Internship` to be deleted, which is implemented by using `Indexes` class, and deleting all the corresponding internships.
 
 The following sequence diagram shows how the delete command works.
 
@@ -327,7 +327,7 @@ The following sequence diagram shows how the find command works.
 
 #### Design Considerations
 **How to filter the Internships**:
-* Use a class for the predicate and `javafx.collections.transformation.FilteredList` (current))
+* Use a class for the predicate and `javafx.collections.transformation.FilteredList` (current)
   * Pros: Simple, Better cohesion, more maintainability
   * Cons: More code to write
 
@@ -549,7 +549,7 @@ _{To be updated in v2.0}_
 
 **Target user profile**: Our target user is a computer science student who:
 
-* has a need to keep track a large number of internship applications and their status
+* has a need to keep track of a large number of internship applications and their status
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -803,8 +803,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Term                           | Description                                                                                                                                        |
 |--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
-| Graphical User Interface (GUI) | GUI allows user to interact with an application through graphics such as icons, menu, etc.                                                         |
-| Command Line Interface (CLI)   | CLI allows user to use text as commands to be executed by an application.                                                                          |
+| Graphical User Interface (GUI) | GUI allows users to interact with an application through graphics such as icons, menu, etc.                                                        |
+| Command Line Interface (CLI)   | CLI allows users to use text as commands to be executed by an application.                                                                         |
 | Command                        | Instruction typed by the user for PHU to execute.                                                                                                  |
 | Parameter                      | A component of a command for the user to input information. For PHU context, this refers to the internship application details.                    |
 | Prefix                         | An abbreviation for the name of the parameter. Prefix should be entered before the actual parameter in a command and always ends with a slash (/). |
@@ -998,7 +998,7 @@ testers are expected to do more *exploratory* testing.
 1. Viewing help message
 
    1. Test case: `help`<br>
-      Expected: The help window pop-up, showing the command summary and a link to the User Guide.
+      Expected: The help window pops up, showing the command summary and a link to the User Guide.
 
 ### Undo command
 
@@ -1032,10 +1032,3 @@ testers are expected to do more *exploratory* testing.
     2. Test case: `redo`<br>
        Expected: No command is redone. Error details shown in the status message.
 
-### Saving data [To be updated]
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
