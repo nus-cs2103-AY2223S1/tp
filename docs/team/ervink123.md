@@ -32,7 +32,7 @@ Given below are my contributions to the project.
     * What I did:
       * Moved Result Display window to the right and added Saved Exercises List window.
     * Justification: 
-      * For moving the Result Display window and adding the Saved Exercises List window, the previous UI had a lot of wasted real estate as the cards were taking up a lot of space. Furthermore, the result display window was too small and needed to scroll, especially when a long error message came up, which was inconvenient. By moving it to the side, it would make messages much easier to see and tie in with the Generate and Listing PR features on top of existing system messages
+      * For moving the Result Display window and adding the Saved Exercises List window, the previous UI had a lot of wasted real estate as the cards were taking up a lot of space. Furthermore, the result display window was too small and needed to scroll, especially when a long error message came up, which was inconvenient.
     * What I did: 
       * Separated Date as a standalone label in the Exercise Card UI.
     * Justification: 
