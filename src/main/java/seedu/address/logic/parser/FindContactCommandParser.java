@@ -71,6 +71,12 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
         }
     }
 
+    /**
+     * Helper method used in parse method.
+     * @param argumentMultimap the input to get the prefix from
+     * @return the prefix from the user input
+     * @throws ParseException if the format is wrong
+     */
     private static Prefix getSearchPrefix(ArgumentMultimap argumentMultimap) throws ParseException {
         List<Prefix> searchablePrefixes = new ArrayList<>();
         searchablePrefixes.add(PREFIX_NAME);

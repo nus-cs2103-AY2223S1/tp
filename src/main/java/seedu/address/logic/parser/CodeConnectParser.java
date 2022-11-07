@@ -34,6 +34,7 @@ public class CodeConnectParser {
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final String SAVEME_COMMAND_WORD = "saveme";
 
     /**
      * Parses user input into command for execution.
@@ -67,7 +68,7 @@ public class CodeConnectParser {
         case FindContactCommand.COMMAND_WORD:
             return new FindContactCommandParser().parse(arguments);
 
-        case "saveme":
+        case SAVEME_COMMAND_WORD:
             return FindContactCommand.withoutArgs();
 
         case FindTaskCommand.COMMAND_WORD:

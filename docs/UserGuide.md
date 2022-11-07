@@ -267,7 +267,7 @@ Example:
 
 <div class="page-new"></div>
 
-#### Searching for tasks: `find`
+#### Finding tasks: `find`
 
 Find tasks by their name or module. The finding is done by **matching keywords** in a **case-insensitive** manner. <br>
 Finding tasks by module makes it convenient for you to see what tasks you have for a particular module at one look, while finding them by name helps you to look for a specific task quickly rather than scrolling through the entire task list.  
@@ -335,7 +335,7 @@ Modules, however, may be entered as **space separated**. For example, `m/MOD1 MO
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 
-Due to the limitations of the code, the adding of same names is currently not supported. To distinguish between two contacts with the same name, you may add a descriptor after the name to differentiate the contacts.<br> 
+Due to the limitations of the code, the adding of same names is currently not supported. To distinguish between two contacts with the same name, you may add a descriptor after the name to differentiate the contacts. Additionally, only alphanumeric characters are allowed for names. <br> 
 
 E.g. `addc n/John Lim p/80009123` will not work if there is already a contact with name `John Lim`. To add this contact, you can try adding a descriptor such as (school) by doing `addc n/John Lim (school) p/80009123`, or simply make the name of the contact to be added different from `John Lim`.
 

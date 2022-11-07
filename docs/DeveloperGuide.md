@@ -365,14 +365,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `CodeConnect` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Finding contacts by module**
+**Use case 1: Finding contacts by module**
 
 **MSS**
 
-1.  User requests to find persons taking a specific module.
-2.  CodeConnect requests for module code.
-3.  User types in module code.
-4.  CodeConnect shows a list of persons taking that module.
+1. User requests to find persons taking a specific module.
+2. CodeConnect requests for module code.
+3. User types in module code.
+4. CodeConnect shows a list of persons taking that module.
+
+   Use case ends. 
 
 **Extensions**
 
@@ -386,7 +388,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-**Use case: Mark a task as complete**
+****
+
+**Use case 2: Mark a task as complete**
 
 **MSS**
 
@@ -409,7 +413,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Edit a contact**
+****
+
+**Use case 3: Edit a contact**
 
 **MSS**
 
@@ -432,7 +438,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Delete a person**
+****
+
+**Use case 4: Delete a contact**
 
 **MSS**
 
@@ -455,6 +463,132 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
+****
+
+**Use case 5: Add a task**
+
+**MSS**
+
+1. User starts CodeConnect.
+2. User requests to add a task through appropriate command.
+3. CodeConnect adds the task and shows the updated task list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User uses wrong syntax/format in command.
+
+    * 2a1. CodeConnect shows an error message with the correct format style.
+      
+      Use case resumes at step 2.
+
+****
+
+**Use case 6: List tasks**
+
+**MSS**
+
+1. User starts CodeConnect.
+2. User requests to see current tasks.
+3. CodeConnect displays the task list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User uses wrong syntax in command.
+
+    * 2a1. CodeConnect shows an error message.
+
+      Use case resumes at step 2.
+
+****
+
+**Use case 7: List tasks in the order of the earliest deadline**
+
+**MSS**
+
+1. User starts CodeConnect.
+2. User requests to see current tasks, where tasks with the earlier datelines appear at the top.
+3. CodeConnect displays the updated sorted task list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User uses wrong syntax in command.
+
+    * 2a1. CodeConnect shows an error message.
+
+      Use case resumes at step 2.
+
+****
+
+**Use case 8: Delete tasks that are completed**
+
+**Preconditions**
+- User is currently using CodeConnect.
+- User has tasks that are done in the task list.
+
+**MSS**
+
+1. User starts CodeConnect.
+2. User requests to delete completed tasks.
+3. CodeConnect displays the updated task list with only uncompleted tasks left.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User uses wrong syntax in command.
+
+    * 2a1. CodeConnect shows an error message.
+
+      Use case resumes at step 2.
+
+****
+
+**Use case 9: Find contacts that take the module of the first task in the current task list**
+
+**MSS**
+
+1. User starts CodeConnect.
+2. User requests to find contacts who can help with the current task at the top of the task list.
+3. CodeConnect displays the contacts taking the module of the task at the top of the task list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. User uses wrong syntax in command.
+
+    * 2a1. CodeConnect shows an error message.
+
+      Use case resumes at step 2.
+
+* 2b. No contacts taking that particular module.
+
+    * 2b1. CodeConnect shows an empty contact list.
+
+      Use case ends.
+
+****
+
+**Use case 10: Clearing contacts**
+
+**Preconditions**
+- User is currently using CodeConnect.
+
+**MSS**
+
+1. User enters a command to clear all contacts from CodeConnect.
+2. CodeConnect sends a message that all contacts are deleted and saves all changes to disk.
+
+   Use case ends.
+
+****
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -462,6 +596,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Command should execute in less than a second.
 5. Product features must work without internet.
+6. Should be able to package into a single JAR file.
+7. JAR file should be at most 100mb and documentation should be at most 15mb per file.
+8. Documentation should include appropriate UML diagrams.
+9. Should be for a single user.
+10. Should be usable without initialising a user account.
+11. No input should terminate CodeConnect, except the `exit` command.
 
 *{More to be added}*
 
