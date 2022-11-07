@@ -28,6 +28,9 @@ Given below are my contributions to the project.
   * User Guide:
     * Added feature documentations for early iteration of the product (Pull requests [\#46](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/46), [\#78](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/78)).
     * Fixed hyperlink issues, made a more detailed quick start guide, and added screenshots for visual aid to make following the guide easier (Pull request [\#233](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/233)).
+    * Added a Parameters Summary table (Pull request [\#264](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/264)).
+    * Added a Table of Contents (Pull request [\#265](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/265)).
+    
   * Developer Guide:
     * Added some use cases (Pull request [\#114](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/114)).
     * Added implementation of `taskadd` and `deleteteam` feature and UML diagrams to show the executions of these commands (Pull requests [\#157](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/157), [\#162](https://github.com/AY2223S1-CS2103T-W09-3/tp/pull/162)).

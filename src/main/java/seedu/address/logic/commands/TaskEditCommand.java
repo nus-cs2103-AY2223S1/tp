@@ -128,7 +128,6 @@ public class TaskEditCommand extends Command {
 
         public EditTaskDescriptor() {}
 
-
         /**
          * Copy constructor.
          */
