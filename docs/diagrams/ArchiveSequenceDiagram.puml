@@ -6,7 +6,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":TaskListParser" as TaskListParser LOGIC_COLOR
 participant ":ArchiveCommandParser" as ArchiveCommandParser LOGIC_COLOR
-participant "f:ArchiveCommand" as ArchiveCommand LOGIC_COLOR
+participant "d:ArchiveCommand" as ArchiveCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -29,7 +29,8 @@ activate ArchiveCommandParser
 ArchiveCommandParser --> TaskListParser
 deactivate ArchiveCommandParser
 
-ArchiveCommandParser -> ArchiveCommandParser : parse("1")
+TaskListParser -> ArchiveCommandParser : parse("1")
+activate ArchiveCommandParser
 
 create ArchiveCommand
 ArchiveCommandParser -> ArchiveCommand
