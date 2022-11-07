@@ -200,9 +200,7 @@ The `Model` component,
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-
-
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -396,6 +394,7 @@ Step 4. The `editedPerson` is then set to replace the previous state of the `Per
 The following sequence diagram shows how the `editLoan` feature works with index.
 
 <img src="images/EditLoanSequenceDiagram.png" width="740"/>
+<div style="page-break-after: always;"></div>
 
 #### Find Persons and Notes by Tag
 
