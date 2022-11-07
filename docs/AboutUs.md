@@ -46,7 +46,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/yuehernkang.md)]
 
 * Role: Developer
-* Responsibilities: Dev Ops + Threading
+* Responsibilities: 
+  * Updating of commands to support the editing and usage of Property and Client class
+  * Implementing of filter by PropertyStatus commands
+  * In charge of Testing
 
 ### Lee Kang Wei
 
