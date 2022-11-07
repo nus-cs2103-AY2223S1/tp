@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-This project is based on the Friday-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -449,10 +449,10 @@ The following Sequence Diagram summarises steps 4 to 5.
 **Target user profile**:
 
 * CS1101S Teaching Assistants
-* prefers desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Prefers desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Reasonably comfortable using CLI apps
 
 **Value proposition**
 1. One easy-to-access place to track each student’s individual progress
@@ -885,7 +885,7 @@ For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `us
 
 ### Non-Functional Requirements
 
-1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
+1. Should work on any _mainstream OS_ as long as it has Java 11 or above installed.
 2. Should be able to hold up to 100 students without a noticeable sluggishness in performance for typical usage.
 3. Should be able to hold up to 50 aliases without a noticeable sluggishness in performance for typical usage.
 4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
@@ -894,12 +894,12 @@ For all use cases below, the **System** is `FRIDAY` and the **Actor** is the `us
 
 1. **Mainstream OS**: Windows, Linux, Unix, OS-X
 2. **Private contact detail**: A contact detail that is not meant to be shared with others
-3. **TA / Avenger**: Teaching assistants, namely CS1101S teaching assistants (also called "Avengers"), who are the target audience of our product FRIDAY.
+3. **Teaching Assistant:** Teaching assistants (TA) are people who help and support teachers or lecturers to provide and coordinate effective classroom instruction. For CS1101S, teaching assistants are undergraduate students who have completed the module. The role of a CS1101S TA involves planning, preparing and delivering weekly tutorial sessions, marking assignments and monitoring their students' progress and engagement levels.
 4. **Reading Assessment**: Assessments in the form of online quiz with Multiple-Choice Questions (MCQ). There are a total of two reading assessments, namely RA1 and RA2, throughout the semester. Reading Assessments have weightage in the students' final grade for the module.
 5. **Mastery Check**: An assessment of the students' understanding of topics conducted by the user (the teaching assistants).
 There are two Mastery Checks through the semester. Students will be assessed by their knowledge of the topics covered by presenting to their teaching assistant in pairs.
 Since users have to arrange dates to meet with their students to conduct the Mastery Checks, FRIDAY allows users to record the scheduled dates for each student.
-* **Default Command**: The original command word for a command in FRIDAY. (e.g. `add`,`sort`)
+6. **Default Command**: The original command word for a command in FRIDAY. (e.g. `add`,`sort`)
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -915,15 +915,13 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
-
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Download the jar file and copy into an empty folder 
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Resize the window to an optimum size. Move the window to a different location. Close the window. 
+   2. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 
@@ -943,12 +941,12 @@ testers are expected to do more *exploratory* testing.
 ### Deleting a student
 
 1. Deleting a student while all students are being shown
-   1. Prerequisites: List all students using the `list` command. Multiple students in the list.
-   1. Test case: `delete 1`<br>
+   1. Prerequisites: List all students using the `list` command. Multiple students in the list. 
+   2. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
-   1. Test case: `delete 0`<br>
+   3. Test case: `delete 0`<br>
       Expected: No student is deleted. Error details shown in the status message. Status bar remains the same.
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 
@@ -964,10 +962,44 @@ testers are expected to do more *exploratory* testing.
     5. Other incorrect delete commands to try: `sort`, `sort n/`, `sort c/b` <br>
        Expected: Similar to previous.
 
+### Finding students
+1. Finding students who matches user input keywords
+    1. Prerequisites: List all students using the `list` command. Multiple students in the list.
+    2. Test case: `find alex` <br>
+       Expected: Students whose name or remark or telegram handle containing alex will be displayed.
+
+### Adding aliases
+1. Adding different aliases
+    1. Prerequisites: An alias `del` has been added for `delete`.
+    2. Test case: `alias a/ls k/list` <br>
+       Expected: An alias ls is added for the list command.
+    3. Test case: `alias a/del k/add` <br>
+       Expected: No alias is added. Error details shown in the status message.
+
+### Recording grades for students
+1. Editing the grades of a student
+    1. Prerequisites: List all students using the `list` command. Multiple students in the list. The index provided is  
+       valid and the student exists.
+    2. Test case: `grade 1 ra1/95.60`
+       Expected: Edits the first student in the list to have a score of 95.60 in their RA1 grade.
+    3. Test case: `grade 0 ra2/90`
+       Expected: No student is edited. Error details shown in the status message.
+    4. Other incorrect formats: `grade 3, grade ra1/50, grade 2 pa/A, grade 1 ft/200, grade 1 mt/90.33333`
+       Expected: Similar to previous.
+
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
+   1. Prerequisites: There is a friday.json file in the data folder.
+   2. Test case: Add in `{ "name" : "@num",
+      "telegramHandle" : "",
+      "consultation" : "0001-01-01",
+      "masteryCheck" : "0001-01-01",
+      "masteryCheckIsDone" : false,
+      "remark" : "",
+      "tagged" : [ ],
+      "gradesList" : [ "0", "0", "0", "0", "0" ]
+      } ` into the list "students" in the friday.json file.
+      Expected: Friday will not load the student list. Error details shown in the logs.
