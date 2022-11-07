@@ -411,7 +411,7 @@ Now, let's use `add` to add a student with the following information.
 
 You can use this command to edit a student in the Student Manager.
 
-**Format:** `editstu INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE_CODE]…​ [ta/MODULE_CODE]…​ [cg/CLASSGROUPS]…​`
+**Format:** `editstu INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/STUDENT_ID] [h/TELEGRAM] [t/TAG]…​ [c/MODULE_CODE]…​ [ta/MODULE_CODE]…​ [cg/CLASSGROUPS]…​`
 
 <div markdown="block" class="alert alert-info">
 
@@ -451,7 +451,7 @@ Press `Enter` to execute the command.
 
 You can use this command to edit a teaching assistant from the teaching assistant list.
 
-**Format:** `editta INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​ [c/MODULE_CODE]…​ [ta/MODULE_CODE]…​ [cg/CLASSGROUPS]…​`
+**Format:** `editta INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/STUDENT_ID] [h/TELEGRAM] [t/TAG]…​ [c/MODULE_CODE]…​ [ta/MODULE_CODE]…​ [cg/CLASSGROUPS]…​`
 
 <div markdown="block" class="alert alert-info">
 
