@@ -15,8 +15,8 @@ Class UserPrefs
 Class UniqueItineraryList
 Class Itinerary
 Class People
-Class duration
-Class Name
+Class Duration
+Class Description
 Class Country
 Class Tag
 
@@ -36,14 +36,14 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 Waddle *--> "1" UniqueItineraryList
 UniqueItineraryList --> "~* all" Itinerary
-Itinerary *--> Name
+Itinerary *--> Description
 Itinerary *--> Country
-Itinerary *--> duration
+Itinerary *--> Duration
 Itinerary *--> People
 
-Name -[hidden]right-> Country
+Description -[hidden]right-> Country
 Country -[hidden]right-> People
-People -[hidden]right-> duration
+People -[hidden]right-> Duration
 
 ModelManager -->"~* filtered" Itinerary
 @enduml
