@@ -1058,6 +1058,7 @@ Use case ends.
 * **Appointment**: A scheduled time and date for a patient to see the doctor
 * **Bill**: The total amount charged for an appointment
 * **Payment Status**: Whether a bill has been paid by the patient
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**

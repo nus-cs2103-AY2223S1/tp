@@ -48,7 +48,7 @@ patient bills for the family clinic.
 
 3. Copy the file to the folder you want to use as the home folder for your HealthContact application.
 
-4. Double-click the file to start the app. The Graphical User Interface(GUI) similar to the below should appear in a few seconds. Note how the app contains some sample data.
+4. Double-click the file to start the app. The Graphical User Interface(GUI) similar to the one below should appear in a few seconds. Note how the app contains some sample data.
 
 <img src="images/Ui.png">
 
@@ -66,6 +66,14 @@ patient bills for the family clinic.
 Adds a patient to HealthContact with input information including name, phone number,
 email address, home address, remarks and tags.
 
+#### Command word
+
+`addpatient` or `ap`
+
+#### Format
+
+`Command word <prefix><input> ...`
+
 * Name must be different from existing patient and name is case-insensitive.
 
 * Remark and tags are optional.
@@ -73,14 +81,6 @@ email address, home address, remarks and tags.
 * A patient can be added with multiple tags.
 
 * The patient list, appointment list and bill list will show all data after adding.
-
-#### Command word
-
-`addpatient`, `ap`
-
-#### Format
-
-`Command word <prefix><input> ...`
 
 #### Parameter List
 
@@ -101,7 +101,7 @@ Notes on symbols in first column:
 
 #### Example:
 
-* `ap n/Bernice Yu a/#11-330, blk 775, Bishan e/b.yu@nus.edu.sg p/80880011 t/NUS t/staff` adds such patient.
+* `ap n/Bernice Yu a/#11-330, blk 775, Bishan e/b.yu@nus.edu.sg p/80880011 t/NUS t/staff` adds the patient.
 
 <img src="images/ug/addcommand/ap1.png">
 
@@ -109,6 +109,14 @@ Notes on symbols in first column:
 
 Adds an appointment to HealthContact with input information including patient name, medical test,
 slot, and doctor.
+
+#### Command word
+
+`addappointment` or `aa`
+
+#### Format
+
+`Command word <prefix><input> ...`
 
 * Patient name input must strictly match the name of an existing patient, even the casing.
 
@@ -125,15 +133,6 @@ slot, and doctor.
 * The onus is on the user to check and ensure the following before adding an appointment:
   * The appointment times for different patients with the same doctor do not clash with one another.
   * The same patient/doctor does not have multiple appointments with times that clash with one another.
-
-
-#### Command word
-
-`addappointment`, `aa`
-
-#### Format
-
-`Command word <prefix><input> ...`
 
 #### Parameter List
 
@@ -152,17 +151,25 @@ Notes on symbols in first column:
 
 #### Examples:
 
-* `aa n/Bernice Yu s/2021-10-11 12:00 d/Dioni Yong t/X-Ray` adds such appointment.
+* `aa n/Bernice Yu s/2021-10-11 12:00 d/Dioni Yong t/X-Ray` adds the appointment.
 
 <img src="images/ug/addcommand/aa1.png">
 
-* `aa n/Bernice Yu s/2022-01-23 09:00 d/Dioni Yong t/CT` adds another appointment for Bernice Yu.
+* `aa n/Bernice Yu s/2022-01-23 09:00 d/Dioni Yong t/CT` adds another appointment for `Bernice Yu`.
 
 <img src="images/ug/addcommand/aa3.png">
 
 ### 1.1.3 Add a bill of an appointment `addbill`, `ab`
 
 Adds a bill attached to an appointment with input information including amount and bill date.
+
+#### Command word
+
+`addbill` or `ab`
+
+#### Format
+
+`Command word <index of appointment> <prefix><input> ...`
 
 * An amount must be positive number with at most 2 decimal places.
 
@@ -171,14 +178,6 @@ Adds a bill attached to an appointment with input information including amount a
 * A bill date must be in the format `yyyy-MM-dd`, eg. `2022-11-12`.
 
 * The patient list, appointment list and bill list will show all data after adding.
-
-#### Command word
-
-`addbill`, `ab`
-
-#### Format
-
-`Command word <index of appointment> <prefix><input> ...`
 
 #### Parameter List
 
@@ -206,11 +205,12 @@ Notes on symbols in first column:
 
 Edits a patient's information, such as name, phone number, address, email, remarks, and tags.
 
-#### Format: 
+#### Command word:
+`editpatient` or `ep`
 
-`editpatient INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​`
+#### Format:
+`Command word <index of patient> <prefix><input> ...`
 
-`ep INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK] [t/TAG]…​`
 
 #### Parameter List
 
@@ -226,22 +226,36 @@ Edits a patient's information, such as name, phone number, address, email, remar
 | `+`   | `t/`   | Tag              | One alphanumeric word                                                                       |
 
 
-* Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list.
+* Edits the patient at the specified index. The index of patient refers to the index number shown in the displayed patient list.
+
   The index **must be a positive integer** 1, 2, 3, …​
+* <input> refers to the new value of the field to be edited.
 * User input should be different from the previous information that the patient has.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
 * You can remove all the patient’s tags by typing `t/` without
   specifying any tags after it.
+* The prefixes that can be used to edit patients can be found below in the parameter list.
+
+#### Parameter List
+
+|     | Prefix  | Meaning       | Input Constraint                                                                                       |
+|-----|---------|---------------|--------------------------------------------------------------------------------------------------------|
+| `*` | `n/`    | Name          | 1. Non-empty alphanumeric characters and spaces<br/> 2. Must be different from existing patient's name |
+| `*` | `p/`    | Phone number  | Numbers with at least 3 digits                                                                         |
+| `*` | `e/`    | Email address | `local-part@domain`                                                                                    |
+| `*` | `a/`    | Home address  | Non-empty characters                                                                                   |
+|     | `r/`    | Remark        | Any characters                                                                                         |
+| `+` | `t/`    | Tag           | One alphanumeric word                                                                                  |
 
 #### Examples:
-* `editpatient 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be
+* `editpatient 1 p/91234567 e/johndoe@example.com` edits the phone number and email address of the first patient on the displayed list to be
    `91234567` and `johndoe@example.com` respectively.
 
 <img src = "images/ug/editcommand/editpatient.png">
 
-* `editpatient 2 n/Betsy Crower t/` edits the name of the 2nd patient to be `Betsy Crower` and clears all existing tags.
+* `editpatient 2 n/Betsy Crower t/` edits the name of the second patient on the displayed list to be `Betsy Crower` and clears all existing tags.
 
 <img src = "images/ug/editcommand/editpatient2.png">
 
@@ -249,11 +263,10 @@ Edits a patient's information, such as name, phone number, address, email, remar
 
 Edits an appointment of a patient, such as name, medical test, slot, and doctor.
 
-#### Format: 
-
-`editappointment INDEX [n/NAME] [t/MEDICAL_TEST] [s/SLOT<yyyy-MM-dd HH:mm>] [d/DOCTOR]`
-
-`ea INDEX [n/NAME] [t/MEDICAL_TEST] [s/SLOT<yyyy-MM-dd HH:mm>] [d/DOCTOR]`
+#### Command word:
+`editappointment` or `ea`
+#### Format:
+`Command word <index of appointment> <prefix><input> ...`
 
 #### Parameter List
 
@@ -267,28 +280,40 @@ Edits an appointment of a patient, such as name, medical test, slot, and doctor.
 | `*`   | `t/`   | Medical test         | Non-empty characters                                                                    |
 
 
-* Edits the appointment at the specified `INDEX`.
-  The index refers to the index number shown in the displayed appointment list.
+* Edits the appointment at the specified index. The index of appointment refers to the index number shown in the displayed appointment list.
+
 * The index **must be a positive integer** 1, 2, 3, …​
+* The <input> refers to the new value of the field to be edited.
 * User input should be different from the previous information that the appointment has.
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
+* The prefixes that can be used to edit patients can be found below in the parameter list.
+
+#### Parameter List
+
+|     | Prefix | Meaning      | Input Constraint                                                                        |
+|-----|--------|--------------|-----------------------------------------------------------------------------------------|
+| `*` | `n/`   | Name         | 1. Non-empty alphanumeric characters and spaces<br/> 2. must be existing patient's name |
+| `*` | `s/`   | Slot         | Valid date and time in format `yyyy-MM-dd HH:mm`                                        |
+| `*` | `d/`   | Doctor name  | Non-empty alphanumeric characters and spaces                                            |
+| `*` | `t/`   | Medical test | Non-empty characters                                                                    |
 
 #### Examples:
-* `editappointment 1 n/zanw t/CT Scan s/2021-03-01 10:00 d/Tan` Edits the name, medical test, slot,
-   and doctor of the 1st appointment to be `zanw`, `CT Scan`, `2021-03-01 10:00`, and `Tan` respectively.
+* `editappointment 1 n/zanw t/CT Scan s/2021-03-01 10:00 d/Tan` edits the name, medical test, slot,
+   and doctor of the first appointment to be `zanw`, `CT Scan`, `2021-03-01 10:00`, and `Tan` respectively.
 
 <img src = "images/ug/editcommand/editappointment.png">
 
 ### 1.2.3 Edit a bill of an appointment `editbill`, `eb`
 
-Edits a bill of an appointment.
+Edits the bill of an appointment.
+
+#### Command word:
+`editbill` or `eb`
 
 #### Format: 
 
-`editbill INDEX [a/amount] [d/bill date]`
-
-`eb INDEX [a/amount] [d/bill date]`
+`Command word <index of bill> <prefix><input> ...`
 
 #### Parameter List
 
@@ -298,19 +323,19 @@ Edits a bill of an appointment.
 | `*`    | `a/`    | Amount        | Positive number with at most 2 decimal place               |
 | `*`    | `d/`    | Bill Date     | Valid date in format `yyyy-MM-dd`                          |
 
+* Edits the bill at the specified index. The index of bill refers to the index number shown in the displayed bill list.
 
-* Edits the bill at the specified `INDEX`. The index refers to the index number shown in the displayed bill list.
   The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
 #### Examples:
-* `editbill 1 a/100` Edits the amount of the 1st bill to be `100`.
+* `editbill 1 a/100` edits the amount of the first bill to be `100`.
 
 <img src="images/ug/editcommand/editbill.png">
 
 
-* `editbill 1 d/2020-10-10` edits the bill date of the 1st bill to be `2020-10-10`.
+* `editbill 1 d/2020-10-10` edits the bill date of the first bill to be `2020-10-10`.
 <img src="images/ug/editcommand/editbill2.png">
 
 ## 1.3 Find
@@ -318,27 +343,40 @@ Edits a bill of an appointment.
 ### 1.3.1 Find patient(s) `findpatient`, `fp`
 
 Filters patients by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
-special characters).
+special characters). The filtered patients are then listed as an indexed list.
+
+#### Command word:
+`findpatient` or `fp`
 
 #### Format:
-```findpatient <prefix><input> ...``` or ```fp <prefix><input>...```
+```Command word <prefix><input> ...``` <br>
 
 * The command words are ``findpatient`` or ``fp``.
-* The prefixes are n/ for Name, p/ for Phone, e/ for Email, a/ for Address, r/ for Remark and t/ for Tags.
-* The filter is case-insensitive. e.g. han will match Han
-* The user can filter using full words or partial words. e.g. han will match Hannah
-* The user can filter using a combination of inputs for a field, according to the constraints of the field.
-  e.g. e/@gmail.com
-* The user can filter using one field or multiple fields at once. e.g. n/John p/91234567
+* The prefixes that can be used are provided in the parameter list below.
+* The filter is case-insensitive, e.g. han will match Han.
+* The user can filter using full words or partial words, e.g. han will match Hannah.
+* The user can only filter according to the input constraints of each field as shown in the parameter list below.
+* The user can filter using one field or multiple fields at once, but each field can only be used once in a single command(except tags).
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
+#### Parameter List
+| Prefix  | Meaning       | Input Constraint                                                                                 |
+|---------|---------------|--------------------------------------------------------------------------------------------------|
+| `n/`    | Name          | Non-empty alphanumeric characters and spaces                                                     |
+| `p/`    | Phone number  | A number consisting of one or more digits, and spaces before and/or after the number are allowed |
+| `e/`    | Email address | Non-empty characters                                                                             |
+| `a/`    | Home address  | Non-empty characters                                                                             |
+| `r/`    | Remark        | Non-empty characters                                                                             |
+| `t/`    | Tag           | One alphanumeric word, and spaces before and/or after the number are allowed                     |
+
+
 #### Examples:
-* ```findpatient n/ale``` returns ``Alex Yeoh`` and ``alex tan``.
+* ```findpatient n/ale``` returns `Alex Yeoh` and `alex tan`.
 
 <img src="images/ug/findcommand/findpatientAlex.png">
 
-* ```fp t/friends t/colleagues n/bernice``` returns only ``Bernice Yu`` with the tags ``friends`` and ``colleagues``.
+* ```fp t/friends t/colleagues n/bernice``` returns only `Bernice Yu` with the tags `friends` and `colleagues`.
 
 <img src="images/ug/findcommand/findpatientBernice.png">
 
@@ -347,28 +385,36 @@ special characters).
 Filters appointments by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
 special characters).
 
+#### Command word:
+`findappointment` or `fa`
+
 #### Format:
-
-```findappointment <prefix><input> ...```
-
-```fa <prefix><input>...```
+```Command word <prefix><input> ...```
 
 * The command words are `findappointment` or `fa`.
-* The prefixes are n/ for Name, t/ for Medical Test, s/ for Slot and d/ for Doctor.
-* The filter is case-insensitive. e.g. han will match Han
-* The user can filter using full words or partial words. e.g. han will match Hannah
-* The user can filter using a combination of inputs for a field, according to the constraints of the field.
-  e.g. s/x-ray
+* The prefixes that can be used are listed in the parameter list below.
+* The filter is case-insensitive, e.g. han will match Han.
+* The user can filter using full words or partial words, e.g. han will match Hannah.
+* The user can only filter according to the input constraints of each field as shown in the parameter list below.
 * The user can filter using one field or multiple fields at once, but each field can only be used once in a single command.
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
+#### Parameter List
+| Prefix | Meaning       | Input Constraint                             |
+|--------|---------------|----------------------------------------------|
+| `n/`   | Name          | Non-empty alphanumeric characters and spaces |
+| `t/`   | Medical Test  | Non-empty characters                         |
+| `s/`   | Slot          | Only numbers, "-", ":" and spaces            |
+| `d/`   | Doctor        | Only alphanumeric characters and spaces      |
+
+
 #### Examples:
-* ```findappointment t/x-ray``` returns ``Bernice Yu`` with "X-ray" appointment.
+* ```findappointment t/x-ray``` returns `Bernice Yu` with `X-ray` appointment.
 
 <img src="images/ug/findcommand/findappointmentXray.png">
 
-* ```fa d/Dr Tan n/Alex``` returns only ``Alex Yeoh``'s appointment with "Dr Tan".
+* ```fa d/Dr Tan n/Alex``` returns only `Alex Yeoh`'s appointment with `Dr Tan`.
 
 <img src="images/ug/findcommand/findappointmentAlex.png">
 
@@ -378,23 +424,31 @@ special characters).
 Filters bills by one or more fields using their prefixes, and their corresponding inputs (numbers, letters,
 special characters).
 
-#### Format:
-```findbill <prefix><input> ...```
+#### Command word:
+`findbill` or `fb`
 
-```fb <prefix><input>...```
+#### Format:
+```Command word <prefix><input> ...```
 
 * The command words are `findbill` or `fb`.
-* The prefixes are n/ for Name, p/ for Payment Status, d/ for Date and a/ for Amount.
-* The filter is case-insensitive. e.g. han will match Han
-* The user Can filter using full words or partial words. e.g. han will match Hannah
-* The user can filter using a combination of character(s) for a field, according to the constraints of the field.
-  e.g. a/23.45
+* The prefixes that can be used are listed in the parameter list below.
+* The filter is case-insensitive, e.g. han will match Han.
+* The user Can filter using full words or partial words, e.g. han will match Hannah.
+* The user can only filter according to the input constraints of each field as shown in the parameter list below.
 * The user can filter using one field or multiple fields at once, but each field can only be used once in a single command.
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
 
+#### Parameter List
+| Prefix | Meaning        | Input Constraint                                                                                       |
+|--------|----------------|--------------------------------------------------------------------------------------------------------|
+| `n/`   | Name           | Non-empty alphanumeric characters and spaces                                                           |
+| `d/`   | Bill date      | Only numbers, "-" and spaces are allowed                                                               |
+| `a/`   | Amount         | Positive number with at most two decimal places, and spaces before and/or after the number are allowed |
+| `p/`   | Payment Status | Only "paid" or "unpaid" in any case                                                                    |
+
 #### Examples:
-`findbill n/Ber p/unpaid` returns Bernice's unpaid bill
+`findbill n/Ber p/unpaid` returns `Bernice Yu`'s unpaid bill.
 
 <img src="images/ug/findcommand/fb.png">
 
@@ -402,14 +456,14 @@ special characters).
 
 ### 1.4.1 Sort patients `sortpatient`, `sop`
 
-Sorts patients by a single field
+Sorts patients by a single field.
+
+#### Command word:
+`sortpatient` or `sop`
 
 #### Format:
 
-```sortpatient <prefix><input> ...```
-
-```sop <prefix><input> ...```
-
+```Command word c/<input> o/<input>```
 * The command word is `sortpatient`.
 * The prefixes are `c/` for Criteria and `o/` for Order.
 * The criteria can be Name of patient (`name`), Phone number of patient (`phone`), Email address of patient (`email`), Address of patient (`address`).
@@ -429,13 +483,14 @@ Sorts patients by a single field
 
 ### 1.4.2 Sort appointments `sortappointment`, `soa`
 
-Sorts appointments by a single field
+Sorts appointments by a single field.
+
+#### Command word:
+`sortappointment` or `soa`
 
 #### Format:
+```Command word c/<input> o/<input> ...```
 
-```sortappointment <prefix><input> ...```
-
-```soa <prefix><input> ...```
 
 * The command word is `sortappointment`.
 * The prefixes are `c/` for Criteria and `o/` for Order.
@@ -456,13 +511,14 @@ Sorts appointments by a single field
 
 ### 1.4.3 Sort bills `sortbill`, `sob`
 
-Sorts bills by a single field
+Sorts bills by a single field.
+
+#### Command word:
+`sortbill` or `sob`
 
 #### Format:
+```Command word c/<input> o/<input> ...```
 
-```sortbill <prefix><input> ...```
-
-```sob <prefix><input> ...```
 
 * The command word is `sortbill`.
 * The prefixes are `c/` for Criteria and `o/` for Order.
@@ -470,7 +526,7 @@ Sorts bills by a single field
 * The order can be Ascending (`asc`) or Descending (`desc`).
 * If there are no prefixes keyed in, an error message will be shown with the correct command format.
 * If the input after a prefix is empty/invalid, an error message with the constraint of the field will be shown.
-* If the criteria is Payment status, Ascending will show bills which are paid first and Descending will show bills which are unpaid first.
+* If the criteria is payment status, Ascending will show bills which are paid first and Descending will show bills which are unpaid first.
 
 
 #### Examples:
@@ -485,7 +541,7 @@ Sorts bills by a single field
 
 ## 1.5 Select
 
-Select commands are the fast way to show the relative information to the selected item.
+Select is a type of command that quickly shows the related information of an item, simulating a mouse click on the item.
 
 ### 1.5.1 Select a patient `selectpatient`, `slp`
 
@@ -494,11 +550,11 @@ so that these two lists shows the appointments and bills for the selected patien
 
 #### Command word
 
-`selectpatient`, `slp`
+`selectpatient` or `slp`
 
 #### Format
 
-`Command word + <index of patient>`
+`Command word <index of patient>`
 
 #### Parameter List
 
@@ -512,7 +568,7 @@ Notes on symbols in first column:
 
 #### Example:
 
-* `slp 1` shows the appointments and bills for the first patient in the patient list.
+* `slp 1` shows the appointments and bills for the first patient on the patient list.
 
 <img src="images/ug/selectcommand/slp1.png">
 
@@ -523,11 +579,11 @@ so that bill list shows the bill for the selected appointment only.
 
 #### Command word
 
-`selectappointment`, `sla`
+`selectappointment` or `sla`
 
 #### Format
 
-`Command word + <index of appointment>`
+`Command word <index of appointment>`
 
 #### Parameter List
 
@@ -541,7 +597,7 @@ Notes on symbols in first column:
 
 #### Example:
 
-* `sla 1` shows the bill for the first appointment in the appointment list.
+* `sla 1` shows the bill for the first appointment on the appointment list.
 
 <img src="images/ug/selectcommand/sla1.png">
 
@@ -551,15 +607,18 @@ Notes on symbols in first column:
 
 Sets the payment status of a bill to "paid".
 
+#### Command word:
+`setpaid` or `sp`
+
 #### Format:
-```setpaid <index>``` or ```sp <index>```
+```Command word <index of bill>```
 
 * The command words are `setpaid` or `sp`.
 * The index refers to the index number of the bill shown in the displayed bill list.
 * The index must be a valid positive integer 1, 2, 3, …​
 
 #### Example:
-* ```setpaid 1``` sets the first bill in the displayed bill list as paid, in this case, `Bernice Yu`'s bill.
+* ```setpaid 1``` sets the first bill on the displayed bill list as paid, in this case, `Bernice Yu`'s bill.
 
 Before:
 
@@ -573,8 +632,11 @@ After:
 
 Sets the payment status of a bill to "unpaid".
 
+#### Command word:
+`setunpaid` or `sup`
+
 #### Format:
-```setunpaid <index>``` or ```sup <index>```
+```Command word <index of bill>```
 
 * The command words are `setunpaid` or `sup`.
 * The index refers to the index number of the bill shown in the displayed bill list.
@@ -596,9 +658,11 @@ After:
 
 Removes all conditions previously applied to the list and shows all patients, appointments and bills.
 
-#### Format
-
+#### Command word:
 `list` or `ls`
+
+#### Format
+```Command word```
 
 #### Example:
 
@@ -612,8 +676,11 @@ Removes all conditions previously applied to the list and shows all patients, ap
 
 Deletes a patient by the index number of the patient in the list.
 
+#### Command word:
+`deletepatient` or `dp`
+
 #### Format:
-```deletepatient <targetindex>``` or ```dp <targetindex>```
+```Command word <index of patient>```
 
 * The command words are `deletepatient` or `dp`.
 * The patient to be deleted is identified by using the index in the displayed list.
@@ -625,7 +692,7 @@ Deletes a patient by the index number of the patient in the list.
 
 #### Examples:
 
-* `deletepatient 1` deletes patient Bernice Yu and all their related appointments and bills.
+* `deletepatient 1` deletes patient `Bernice Yu` and all of her related appointments and bills.
 
 Before:
 
@@ -639,8 +706,11 @@ After:
 
 Deletes an appointment by the index number of the appointment in the list.
 
+#### Command word:
+`deleteappointment` or `da`
+
 #### Format:
-```deleteappointment <targetindex>``` or ```da <targetindex>```
+```Command word <index of appointment>```
 
 * The command words are `deleteappointment` or `da`.
 * The appointment to be deleted is identified by using the index in the displayed list.
@@ -652,7 +722,7 @@ Deletes an appointment by the index number of the appointment in the list.
 
 #### Examples:
 
-* `deleteappointment 3` deletes Charlotte Oliveiro's appointment and its bill.
+* `deleteappointment 3` deletes `Charlotte Oliveiro`'s appointment and the bill tagged to it.
 
 Before:
 
@@ -666,8 +736,11 @@ After:
 
 Deletes a bill by the index number of the bill in the list.
 
+#### Command word:
+`deletebill` or `db`
+
 #### Format:
-```deletebill <targetindex>``` or ```db <targetindex>```
+```Command word <index of bill>```
 
 * The command words are `deletebill` or `db`.
 * The bill to be deleted is identified by using the index in the displayed list.
@@ -679,7 +752,7 @@ Deletes a bill by the index number of the bill in the list.
 
 #### Examples:
 
-* `deletebill 3` deletes Bernice's bill for her X-Ray appointment
+* `deletebill 3` deletes `Bernice Yu`'s bill for her `X-Ray` appointment.
 
 Before:
 
@@ -703,17 +776,15 @@ Reverses the most recent command.
 
 #### Examples:
 
-* ```undo``` undoes the most recent command.
-
-Original Data
+Original data:
 
 <img src="images/ug/undoredocommand/undo1.PNG">
 
-Execute `deletepatient 1` to delete all information of Bernice Yu.
+* `deletepatient 1` deletes all information of `Bernice Yu`.
 
 <img src="images/ug/undoredocommand/undo2.png">
 
-Execute `undo`, information of Bernice Yu comes back.
+* `undo` brings back all the information of `Bernice Yu`.
 
 <img src="images/ug/undoredocommand/undo3.png">
 
@@ -734,21 +805,19 @@ Reverses the most recent undo command.
 
 #### Examples:
 
-* ```redo``` redoes the most recent undo command.
-
 Original Data
 
 <img src="images/ug/undoredocommand/redo1.PNG">
 
-Execute `deletepatient 1` to delete all information of Bernice Yu.
+* `deletepatient 1` deletes all information of `Bernice Yu`.
 
 <img src="images/ug/undoredocommand/redo2.png">
 
-Execute `undo`, information of Bernice Yu comes back.
+* `undo` brings back all information of `Bernice Yu`.
 
 <img src="images/ug/undoredocommand/redo3.png">
 
-Execute `redo`, information of Bernice Yu is deleted again.
+* `redo` deletes all information of `Bernice Yu` again.
 
 <img src="images/ug/undoredocommand/redo4.png">
 
