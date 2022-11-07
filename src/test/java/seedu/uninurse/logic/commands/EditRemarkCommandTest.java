@@ -13,7 +13,7 @@ import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +25,7 @@ import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.remark.Remark;
-import seedu.uninurse.testutil.PersonBuilder;
+import seedu.uninurse.testutil.PatientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code EditRemarkCommand}.
@@ -63,12 +63,12 @@ class EditRemarkCommandTest {
     @Test
     public void execute_validIndicesUnfilteredList_success() {
         // Use second patient as the first patient in typical persons does not have a remark
-        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
 
         Remark initialRemark = patientToEdit.getRemarks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
         Remark editedRemark = new Remark(REMARK_STUB);
 
-        Patient editedPatient = new PersonBuilder(patientToEdit).withRemarks(REMARK_STUB).build();
+        Patient editedPatient = new PatientBuilder(patientToEdit).withRemarks(REMARK_STUB).build();
 
         EditRemarkCommand editRemarkCommand =
                 new EditRemarkCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE, editedRemark);
@@ -77,7 +77,7 @@ class EditRemarkCommandTest {
                 editedPatient.getName().toString(), initialRemark, editedRemark);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPerson(patientToEdit, editedPatient);
+        expectedModel.setPatient(patientToEdit, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(editRemarkCommand, model, expectedMessage, COMMAND_TYPE, expectedModel);
@@ -97,12 +97,12 @@ class EditRemarkCommandTest {
         // use second person in TypicalPersons since there is a remark to edit
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
 
         Remark initialRemark = patientToEdit.getRemarks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
         Remark editedRemark = new Remark(REMARK_STUB);
 
-        Patient editedPatient = new PersonBuilder(patientToEdit).withRemarks(REMARK_STUB).build();
+        Patient editedPatient = new PatientBuilder(patientToEdit).withRemarks(REMARK_STUB).build();
 
         EditRemarkCommand editRemarkCommand =
                 new EditRemarkCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE, editedRemark);
@@ -112,7 +112,7 @@ class EditRemarkCommandTest {
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         showPersonAtIndex(expectedModel, INDEX_SECOND_PERSON);
-        expectedModel.setPerson(patientToEdit, editedPatient);
+        expectedModel.setPatient(patientToEdit, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(editRemarkCommand, model, expectedMessage, COMMAND_TYPE, expectedModel);
@@ -134,7 +134,7 @@ class EditRemarkCommandTest {
 
     @Test
     public void execute_invalidRemarkIndex_throwsCommandException() {
-        Patient patient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patient = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
 
         Index outOfBoundIndex = Index.fromOneBased(patient.getRemarks().size() + 1);
         EditRemarkCommand editRemarkCommand =
@@ -145,7 +145,7 @@ class EditRemarkCommandTest {
 
     @Test
     public void execute_duplicateRemark_throwsCommandException() {
-        Patient patient = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Patient patient = model.getPatient(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
 
         Remark initialRemark = patient.getRemarks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 

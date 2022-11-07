@@ -13,7 +13,7 @@ import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 
 import java.util.Optional;
 
@@ -28,7 +28,7 @@ import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.medication.Medication;
 import seedu.uninurse.model.person.Patient;
-import seedu.uninurse.testutil.PersonBuilder;
+import seedu.uninurse.testutil.PatientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code EditMedicationCommand}.
@@ -71,12 +71,12 @@ class EditMedicationCommandTest {
     @Test
     public void execute_validIndicesUnfilteredList_success() {
         // Use second patient as the first patient in typical persons does not have a medication
-        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
 
         Medication initialMedication = patientToEdit.getMedications().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
         Medication editedMedication = new Medication(MEDICATION_TYPE_STUB, MEDICATION_DOSAGE_STUB);
 
-        Patient editedPatient = new PersonBuilder(patientToEdit).withMedications(patientToEdit.getMedications()
+        Patient editedPatient = new PatientBuilder(patientToEdit).withMedications(patientToEdit.getMedications()
                 .edit(INDEX_FIRST_ATTRIBUTE.getZeroBased(), editedMedication)
                 .getInternalList().toArray(Medication[]::new)).build();
 
@@ -87,7 +87,7 @@ class EditMedicationCommandTest {
                 editedPatient.getName().toString(), initialMedication, editedMedication);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPerson(patientToEdit, editedPatient);
+        expectedModel.setPatient(patientToEdit, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(editMedicationCommand, model, expectedMessage, COMMAND_TYPE, expectedModel);
@@ -107,12 +107,12 @@ class EditMedicationCommandTest {
         // use second person in TypicalPersons since there is a medication to edit
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
 
         Medication initialMedication = patientToEdit.getMedications().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
         Medication editedMedication = new Medication(MEDICATION_TYPE_STUB, MEDICATION_DOSAGE_STUB);
 
-        Patient editedPatient = new PersonBuilder(patientToEdit).withMedications(patientToEdit.getMedications()
+        Patient editedPatient = new PatientBuilder(patientToEdit).withMedications(patientToEdit.getMedications()
                 .edit(INDEX_FIRST_ATTRIBUTE.getZeroBased(), editedMedication)
                 .getInternalList().toArray(Medication[]::new)).build();
 
@@ -124,7 +124,7 @@ class EditMedicationCommandTest {
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         showPersonAtIndex(expectedModel, INDEX_SECOND_PERSON);
-        expectedModel.setPerson(patientToEdit, editedPatient);
+        expectedModel.setPatient(patientToEdit, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(editMedicationCommand, model, expectedMessage, COMMAND_TYPE, expectedModel);
@@ -146,7 +146,7 @@ class EditMedicationCommandTest {
 
     @Test
     public void execute_invalidMedicationIndex_throwsCommandException() {
-        Patient patient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patient = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
 
         Index outOfBoundIndex = Index.fromOneBased(patient.getMedications().size() + 1);
         EditMedicationCommand editMedicationCommand =
@@ -157,7 +157,7 @@ class EditMedicationCommandTest {
 
     @Test
     public void execute_duplicateMedication_throwsCommandException() {
-        Patient patient = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Patient patient = model.getPatient(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
 
         Medication initialMedication = patient.getMedications().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 

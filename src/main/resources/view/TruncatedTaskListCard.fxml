@@ -29,7 +29,7 @@
                         <Insets />
                      </opaqueInsets>
                      <children>
-                        <Label fx:id="name" ellipsisString="" styleClass="cell_big_label" text="\$first" textOverrun="CLIP" wrapText="true" />
+                        <Label fx:id="name" ellipsisString="" styleClass="label_big" text="\$first" textOverrun="CLIP" wrapText="true" />
                      </children>
                   </HBox>
                   <FlowPane fx:id="tags" prefWrapLength="100.0" />

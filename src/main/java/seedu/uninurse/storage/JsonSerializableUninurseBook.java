@@ -18,17 +18,16 @@ import seedu.uninurse.model.person.Patient;
  */
 @JsonRootName(value = "uninursebook")
 class JsonSerializableUninurseBook {
-
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedPatient> patients = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableUninurseBook} with the given persons.
+     * Constructs a {@code JsonSerializableUninurseBook} with the given patients.
      */
     @JsonCreator
-    public JsonSerializableUninurseBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableUninurseBook(@JsonProperty("patients") List<JsonAdaptedPatient> patients) {
+        this.patients.addAll(patients);
     }
 
     /**
@@ -37,7 +36,7 @@ class JsonSerializableUninurseBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableUninurseBook}.
      */
     public JsonSerializableUninurseBook(ReadOnlyUninurseBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        patients.addAll(source.getPatientList().stream().map(JsonAdaptedPatient::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,14 +46,13 @@ class JsonSerializableUninurseBook {
      */
     public UninurseBook toModelType() throws IllegalValueException {
         UninurseBook uninurseBook = new UninurseBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Patient person = jsonAdaptedPerson.toModelType();
-            if (uninurseBook.hasPerson(person)) {
+        for (JsonAdaptedPatient jsonAdaptedPatient : patients) {
+            Patient patient = jsonAdaptedPatient.toModelType();
+            if (uninurseBook.hasPerson(patient)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            uninurseBook.addPerson(person);
+            uninurseBook.addPatient(patient);
         }
         return uninurseBook;
     }
-
 }

@@ -1,5 +1,7 @@
 package seedu.uninurse.ui;
 
+import static seedu.uninurse.ui.UiUtil.LIST_VIEW_OFFSET;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -20,7 +22,7 @@ public class ScheduleListPanel extends UiPart<Region> {
     private Label header;
 
     /**
-     * Creates a {@code ScheduleListPanel} with the given {@code Patient}.
+     * Creates a ScheduleListPanel with the given Schedule.
      */
     public ScheduleListPanel(Schedule schedule) {
         super(FXML);
@@ -35,18 +37,19 @@ public class ScheduleListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Schedule} using a {@code ScheduleListCard}.
+     * Custom ListCell that displays the graphics of a Schedule using a ScheduleListCard.
      */
     class ScheduleListViewCell extends ListCell<PatientTaskListPair> {
         ScheduleListViewCell() {
             super();
             setStyle("-fx-padding: 0 5 0 0");
-            prefWidthProperty().bind(scheduleListView.widthProperty().subtract(20.0));
+            prefWidthProperty().bind(scheduleListView.widthProperty().subtract(LIST_VIEW_OFFSET));
         }
 
         @Override
         protected void updateItem(PatientTaskListPair patientTaskPair, boolean empty) {
             super.updateItem(patientTaskPair, empty);
+
             if (empty || patientTaskPair == null) {
                 setGraphic(null);
                 setText(null);

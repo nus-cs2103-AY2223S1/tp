@@ -1,12 +1,10 @@
 package seedu.uninurse.logic.parser;
 
-import static seedu.uninurse.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
 import seedu.uninurse.commons.core.index.Index;
-import seedu.uninurse.commons.exceptions.IllegalValueException;
 import seedu.uninurse.logic.commands.DeleteTaskCommand;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 
@@ -27,12 +25,8 @@ public class DeleteTaskCommandParser implements Parser<DeleteTaskCommand> {
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
 
-        try {
-            List<Index> indices = ParserUtil.parseTwoIndex(argMultimap.getPreamble());
-            return new DeleteTaskCommand(indices.get(0), indices.get(1));
-        } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteTaskCommand.MESSAGE_USAGE), ive);
-        }
+        List<Index> indices = ParserUtil.parseTwoIndex(argMultimap.getPreamble());
+
+        return new DeleteTaskCommand(indices.get(0), indices.get(1));
     }
 }

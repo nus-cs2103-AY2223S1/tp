@@ -1,5 +1,7 @@
 package seedu.uninurse.ui;
 
+import static seedu.uninurse.ui.UiUtil.LIST_VIEW_OFFSET;
+
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -26,27 +28,27 @@ public class TaskListPanel extends UiPart<Region> {
     private Label header;
 
     /**
-     * Creates a {@code TaskListPanel} with the given {@code Patient}.
+     * Creates a TaskListPanel with the given Patient.
      */
     public TaskListPanel(Patient patient) {
         super(FXML);
-        taskListView.setItems(FXCollections.observableList(patient.getTasks().getInternalList()));
-        taskListView.setCellFactory(listview -> new TaskListViewCell());
+        this.taskListView.setItems(FXCollections.observableList(patient.getTasks().getInternalList()));
+        this.taskListView.setCellFactory(listview -> new TaskListViewCell());
 
-        header.setText("Tasks:");
-        name.setText(patient.getName().toString());
+        this.header.setText("Tasks:");
+        this.name.setText(patient.getName().toString());
         patient.getTags().getInternalList()
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Task} using a {@code TaskListCard}.
+     * Custom ListCell that displays the graphics of a Task using a TaskListCard.
      */
     class TaskListViewCell extends ListCell<Task> {
         TaskListViewCell() {
             super();
             setStyle("-fx-padding: 0 5 0 0");
-            prefWidthProperty().bind(taskListView.widthProperty().subtract(20.0));
+            prefWidthProperty().bind(taskListView.widthProperty().subtract(LIST_VIEW_OFFSET));
         }
 
         @Override

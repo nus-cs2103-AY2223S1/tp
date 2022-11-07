@@ -9,7 +9,7 @@ import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
+import static seedu.uninurse.testutil.TypicalPatients.getTypicalUninurseBook;
 import static seedu.uninurse.testutil.TypicalTags.TAG_ELDERLY;
 import static seedu.uninurse.testutil.TypicalTags.TAG_NURSING_HOME;
 import static seedu.uninurse.testutil.TypicalTags.TYPICAL_TAG_ELDERLY;
@@ -24,7 +24,7 @@ import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.tag.Tag;
-import seedu.uninurse.testutil.PersonBuilder;
+import seedu.uninurse.testutil.PatientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for AddTagCommand.
@@ -50,8 +50,9 @@ public class AddTagCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Patient patientToAddTag = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Patient editedPatient = new PersonBuilder(patientToAddTag).withTags(TYPICAL_TAG_ELDERLY).build();
+        Patient patientToAddTag =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
+        Patient editedPatient = new PatientBuilder(patientToAddTag).withTags(TYPICAL_TAG_ELDERLY).build();
         int lastTagIndex = editedPatient.getTags().size() - 1;
         Tag addedTag = editedPatient.getTags().get(lastTagIndex);
 
@@ -60,7 +61,7 @@ public class AddTagCommandTest {
         String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, editedPatient.getName(), addedTag);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPerson(patientToAddTag, editedPatient);
+        expectedModel.setPatient(patientToAddTag, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(addTagCommand, model, expectedMessage, AddTagCommand.COMMAND_TYPE, expectedModel);
@@ -76,7 +77,7 @@ public class AddTagCommandTest {
 
     @Test
     public void execute_invalidDuplicateTagUnfilteredList_throwsCommandException() {
-        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased()));
         Tag tag = new Tag("high-risk");
         AddTagCommand addTagCommand = new AddTagCommand(INDEX_SECOND_PERSON, tag);
         assertCommandFailure(addTagCommand, model,
@@ -86,8 +87,10 @@ public class AddTagCommandTest {
     @Test
     public void execute_validIndexFilteredList_success() {
 
-        Patient patientToAddTag = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Patient editedPatient = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
+        Patient patientToAddTag =
+                model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
+        Patient editedPatient = new PatientBuilder(model.getPatient(
+                model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased())))
                 .withTags(TYPICAL_TAG_ELDERLY).build();
         int lastTagIndex = editedPatient.getTags().size() - 1;
         Tag addedTag = editedPatient.getTags().get(lastTagIndex);
@@ -97,7 +100,7 @@ public class AddTagCommandTest {
         String expectedMessage = String.format(AddTagCommand.MESSAGE_SUCCESS, editedPatient.getName(), addedTag);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
-        expectedModel.setPerson(patientToAddTag, editedPatient);
+        expectedModel.setPatient(patientToAddTag, editedPatient);
         expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(addTagCommand, model, expectedMessage,
@@ -120,7 +123,7 @@ public class AddTagCommandTest {
     @Test
     public void execute_invalidDuplicateTagFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
-        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToEdit = model.getPatient(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()));
         Tag tag = new Tag("high-risk");
         AddTagCommand addTagCommand = new AddTagCommand(INDEX_FIRST_PERSON, tag);
         assertCommandFailure(addTagCommand, model,

@@ -388,6 +388,11 @@ public class ParserUtil {
             optionalTaskRecurrenceAndFrequency = Optional.of(trimmedTaskRecurrenceAndFrequency);
         }
 
+        if (optionalTaskDescription.isEmpty() && optionalTaskDateAndTime.isEmpty()
+                && optionalTaskRecurrenceAndFrequency.isEmpty()) {
+            throw new ParseException(Task.MESSAGE_CONSTRAINTS);
+        }
+
         return new EditTaskDescriptor(optionalTaskDescription, optionalTaskDateAndTime,
                 optionalTaskRecurrenceAndFrequency);
     }

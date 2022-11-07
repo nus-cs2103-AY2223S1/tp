@@ -1,11 +1,13 @@
 package seedu.uninurse.model;
 
-import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.uninurse.model.exceptions.PatientNotFoundException;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.Person;
 import seedu.uninurse.model.person.UniquePersonList;
 
 /**
@@ -13,7 +15,6 @@ import seedu.uninurse.model.person.UniquePersonList;
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
 public class UninurseBook implements ReadOnlyUninurseBook {
-
     private final UniquePersonList persons;
 
     /*
@@ -30,7 +31,7 @@ public class UninurseBook implements ReadOnlyUninurseBook {
     public UninurseBook() {}
 
     /**
-     * Creates an UninurseBook using the Persons in the {@code toBeCopied}
+     * Creates an UninurseBook using the Persons in the toBeCopied.
      */
     public UninurseBook(ReadOnlyUninurseBook toBeCopied) {
         this();
@@ -40,29 +41,42 @@ public class UninurseBook implements ReadOnlyUninurseBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of the person list with persons.
+     * persons must not contain duplicate persons.
      */
-    public void setPersons(List<Patient> persons) {
+    public void setPersons(List<Person> persons) {
         this.persons.setPersons(persons);
     }
 
     /**
-     * Resets the existing data of this {@code UninurseBook} with {@code newData}.
+     * Replaces the contents of the patient list with patients.
+     * patients must not contain duplicate patients.
+     */
+    public void setPatients(List<Patient> patients) {
+        this.persons.setPatients(patients);
+    }
+
+    /**
+     * Resets the existing data of this UninurseBook with newData.
      */
     public void resetData(ReadOnlyUninurseBook newData) {
-        requireNonNull(newData);
+        requireAllNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setPatients(newData.getPatientList());
+    }
+
+    public void updatePersons() {
+        persons.updatePersons();
     }
 
     //// person-level operations
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the uninurse book.
+     * Returns true if a person with the same identity exists in the uninurse book.
      */
-    public boolean hasPerson(Patient person) {
-        requireNonNull(person);
+    public boolean hasPerson(Person person) {
+        requireAllNonNull(person);
         return persons.contains(person);
     }
 
@@ -70,27 +84,69 @@ public class UninurseBook implements ReadOnlyUninurseBook {
      * Adds a person to the uninurse book.
      * The person must not already exist in the uninurse book.
      */
-    public void addPerson(Patient p) {
-        persons.add(p);
+    public void addPerson(Person person) {
+        persons.addPerson(person);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the uninurse book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the uninurse book.
+     * Replaces the given person in the list with editedPerson.
+     * person must exist in the uninurse book.
+     * The person identity of editedPerson must not be the same as another existing person in the uninurse book.
      */
-    public void setPerson(Patient target, Patient editedPerson) {
-        requireNonNull(editedPerson);
+    public void setPerson(Person person, Person editedPerson) {
+        requireAllNonNull(editedPerson);
 
-        persons.setPerson(target, editedPerson);
+        persons.setPerson(person, editedPerson);
     }
 
     /**
-     * Removes {@code key} from this {@code UninurseBook}.
-     * {@code key} must exist in the uninurse book.
+     * Adds a patient to the uninurse book.
+     * The patient must not already exist in the uninurse book.
      */
-    public void removePerson(Patient key) {
-        persons.remove(key);
+    public void addPatient(Patient patient) {
+        persons.addPatient(patient);
+    }
+
+    /**
+     * Replaces the given patient in the list with editedPatient.
+     * patient must exist in the uninurse book.
+     * The patient identity of editedPatient must not be the same as another existing patient in the uninurse book.
+     */
+    public void setPatient(Patient patient, Patient editedPatient) {
+        requireAllNonNull(editedPatient);
+
+        persons.setPatient(patient, editedPatient);
+    }
+
+    /**
+     * Removes person from the UninurseBook.
+     * person must exist in the uninurse book.
+     */
+    public void removePerson(Person person) {
+        persons.removePerson(person);
+    }
+
+    //// patient-level operations
+
+    /**
+     * Gets the patient from UniquePersonList if the given person is a patient.
+     *
+     * @throws PatientNotFoundException if the given person is not a patient.
+     */
+    public Patient getPatient(Person person) throws PatientNotFoundException {
+        return persons.getPatient(person);
+    }
+
+    //// list accessors
+
+    @Override
+    public ObservableList<Person> getPersonList() {
+        return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Patient> getPatientList() {
+        return persons.getPatientList();
     }
 
     //// util methods
@@ -98,12 +154,6 @@ public class UninurseBook implements ReadOnlyUninurseBook {
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons";
-        // TODO: refine later
-    }
-
-    @Override
-    public ObservableList<Patient> getPersonList() {
-        return persons.asUnmodifiableObservableList();
     }
 
     @Override

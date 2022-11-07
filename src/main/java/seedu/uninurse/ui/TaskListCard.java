@@ -1,19 +1,14 @@
 package seedu.uninurse.ui;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 import seedu.uninurse.model.task.DateTime;
 import seedu.uninurse.model.task.Task;
 
 /**
- * An UI component that displays information of a {@code Patient}.
+ * An UI component that displays information of a Patient.
  */
 public class TaskListCard extends UiPart<Region> {
 
@@ -34,37 +29,28 @@ public class TaskListCard extends UiPart<Region> {
     private Label recurrence;
 
     /**
-     * Creates a {@code TaskListCard} with the given {@code TaskList} to display.
+     * Creates a TaskListCard with the given TaskList to display.
      */
     public TaskListCard(Task task, int displayedIndex) {
         super(FXML);
+        this.task = task;
+
         this.taskPane.setSpacing(1);
 
         if (task.getDateTime().isPastDate()) {
-            this.taskPane.setBackground(new Background(new BackgroundFill(
-                    Color.web("ffe6a1"), new CornerRadii(5.0), new Insets(1.0))));
-            this.taskPane.setStyle("-fx-padding: 1;" + "-fx-border-style: dashed inside;"
-                    + "-fx-border-width: 1;" + "-fx-border-insets: 1;"
-                    + "-fx-border-radius: 5;" + "-fx-border-color: black;");
-
+            this.taskPane.setId("task_list_card_overdue");
         } else {
-            this.taskPane.setBackground(new Background(new BackgroundFill(
-                    Color.web("c5e2fc"), new CornerRadii(5.0), new Insets(1.0))));
-            this.taskPane.setStyle("-fx-padding: 1;" + "-fx-border-style: dashed inside;"
-                    + "-fx-border-width: 1;" + "-fx-border-insets: 1;"
-                    + "-fx-border-radius: 5;" + "-fx-border-color: black;");
+            this.taskPane.setId("task_list_card");
         }
-        this.task = task;
-        id.setText(displayedIndex + ". ");
-        taskname.setText(task.getTaskDescription());
-        DateTime dateTime = task.getDateTime();
-        date.setText(getDateString(dateTime));
-        time.setText(String.format("%s", dateTime.getTime()));
-        recurrence.setText(task.getRecurrenceString());
+        this.id.setText(displayedIndex + ". ");
+        this.taskname.setText(task.getTaskDescription());
+        this.date.setText(getDateString(task.getDateTime()));
+        this.time.setText(String.format("%s", task.getDateTime().getTime()));
+        this.recurrence.setText(task.getRecurrenceString());
     }
 
     /**
-     * Returns the date and the numbers of days from today based on {@code dateTime}.
+     * Returns the date and the numbers of days from today based on dateTime.
      */
     private String getDateString(DateTime dateTime) {
         String dateString = dateTime.getDate();
@@ -98,9 +84,9 @@ public class TaskListCard extends UiPart<Region> {
         }
 
         // state check
-        TaskListCard card = (TaskListCard) other;
-        return taskname.getText().equals(card.taskname.getText())
-                && date.equals(card.date)
-                && time.equals(card.time);
+        TaskListCard o = (TaskListCard) other;
+        return taskname.getText().equals(o.taskname.getText())
+                && date.equals(o.date)
+                && time.equals(o.time);
     }
 }

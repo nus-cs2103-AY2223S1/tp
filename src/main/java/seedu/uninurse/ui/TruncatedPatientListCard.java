@@ -10,12 +10,13 @@ import seedu.uninurse.model.person.Patient;
 
 
 /**
- * TruncatedPersonListCard is a UI component that displays only the name and tags of a {@code Patient}.
+ * TruncatedPatientListCard is a UI component that displays only the name and tags
+ * and the number of remaining tasks of a Patient.
  */
-public class TruncatedPersonListCard extends UiPart<Region> {
-    private static final String FXML = "TruncatedPersonListCard.fxml";
+public class TruncatedPatientListCard extends UiPart<Region> {
+    private static final String FXML = "TruncatedPatientListCard.fxml";
 
-    public final Patient patient;
+    private final Patient patient;
 
     @FXML
     private VBox cardPane;
@@ -29,15 +30,13 @@ public class TruncatedPersonListCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code TruncatedPersonListCard} with the given {@code Patient} and index to display.
+     * Creates a TruncatedPatientListCard with the given Patient and index to display.
      */
-    public TruncatedPersonListCard(Patient patient, int displayedIndex) {
+    public TruncatedPatientListCard(Patient patient, int displayedIndex) {
         super(FXML);
-        this.cardPane.setStyle("-fx-border-style: solid inside;"
-                + "-fx-border-width: 1;" + "-fx-border-insets: 1;"
-                + "-fx-border-radius: 2;" + "-fx-border-color: black;");
-
         this.patient = patient;
+
+        this.cardPane.setId("person_list_card");
         this.id.setText(displayedIndex + ". ");
         this.name.setText(patient.getName().getValue());
         patient.getTags().getInternalList()
@@ -45,22 +44,16 @@ public class TruncatedPersonListCard extends UiPart<Region> {
 
         if (patient.getTasks().size() > 0) {
             VBox taskNumberBox = new VBox();
-            taskNumberBox.setStyle("-fx-background-color: #2154ad;"
-                    + "-fx-padding: 3;" + "-fx-border-radius: 2;"
-                    // + "-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);"
-                    + "-fx-background-radius: 5;");
+            taskNumberBox.setId("task_number_border");
             taskNumberBox.setAlignment(Pos.CENTER);
 
             Label taskNumberLabel = new Label();
+            taskNumberLabel.setId("task_number_label");
             if (patient.getTasks().size() == 1) {
                 taskNumberLabel.setText("1 Task left");
             } else {
                 taskNumberLabel.setText(patient.getTasks().size() + " Tasks left");
             }
-
-            taskNumberLabel.setStyle("-fx-font-family: \"Open Sans Semibold\";"
-                    + "-fx-font-size: 13px;"
-                    + "-fx-text-fill: white;");
             taskNumberBox.getChildren().add(taskNumberLabel);
             this.taskNumberPane.getChildren().add(taskNumberBox);
         }
@@ -74,14 +67,14 @@ public class TruncatedPersonListCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TruncatedPersonListCard)) {
+        if (!(other instanceof TruncatedPatientListCard)) {
             return false;
         }
 
         // state check
-        TruncatedPersonListCard card = (TruncatedPersonListCard) other;
-        return id.getText().equals(card.id.getText())
-                && patient.equals(card.patient);
+        TruncatedPatientListCard o = (TruncatedPatientListCard) other;
+        return id.getText().equals(o.id.getText())
+                && patient.equals(o.patient);
     }
 }
 

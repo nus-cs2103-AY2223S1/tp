@@ -10,10 +10,12 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
-import seedu.uninurse.model.PatientListTracker;
+import seedu.uninurse.model.PersonListTracker;
 import seedu.uninurse.model.condition.Condition;
 import seedu.uninurse.model.condition.ConditionList;
+import seedu.uninurse.model.exceptions.PatientNotFoundException;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.Person;
 
 /**
  * Deletes a medical condition from a patient identified using its displayed index from the patient list.
@@ -48,13 +50,20 @@ public class DeleteConditionCommand extends DeleteGenericCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireAllNonNull(model);
-        List<Patient> lastShownList = model.getFilteredPersonList();
+        List<Person> lastShownList = model.getFilteredPersonList();
 
         if (patientIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Patient patientToEdit = lastShownList.get(patientIndex.getZeroBased());
+        Patient patientToEdit;
+
+        try {
+            patientToEdit = model.getPatient(lastShownList.get(patientIndex.getZeroBased()));
+        } catch (PatientNotFoundException pnfe) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT);
+        }
+
         ConditionList initialConditionList = patientToEdit.getConditions();
 
         if (conditionIndex.getZeroBased() >= initialConditionList.size()) {
@@ -67,11 +76,11 @@ public class DeleteConditionCommand extends DeleteGenericCommand {
 
         Patient editedPatient = new Patient(patientToEdit, updatedConditionList);
 
-        PatientListTracker patientListTracker = model.setPerson(patientToEdit, editedPatient);
+        PersonListTracker personListTracker = model.setPatient(patientToEdit, editedPatient);
         model.setPatientOfInterest(editedPatient);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, conditionIndex.getOneBased(),
-                editedPatient.getName(), deletedCondition), COMMAND_TYPE, patientListTracker);
+                editedPatient.getName(), deletedCondition), COMMAND_TYPE, personListTracker);
     }
 
     @Override
