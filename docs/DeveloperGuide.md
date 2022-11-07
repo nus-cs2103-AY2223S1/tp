@@ -193,6 +193,10 @@ Given below is an example usage scenario.
 The sequence diagram is given below.
 ![SortPersonSequence](images/EditInternshipSequence.png)
 
+<div align="center">
+_Some details are omitted from the sequence diagram, such as the instantiating of the_ `EditInternshipDescriptor`
+</div>
+
 The following activity diagram summarizes what happens when a user executes an `EditInternshipCommand`:
 ![SortPersonActivity](images/EditInternshipActivity.png)
 
@@ -595,7 +599,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
      * 1a1. InterNUS notifies the user that the criterion prefix is invalid and only 1 criterion prefix can be specified.
      * 1a2. User enters a criterion prefix.
 
-       Steps 1b1-1b2 are repeated until the criterion prefix entered is valid.<br>
+       Steps 1a1-1a2 are repeated until the criterion prefix entered is valid.<br>
        Use case resumes at step 2.
 
 * 1b. User submits more than 1 criterion prefixes.
