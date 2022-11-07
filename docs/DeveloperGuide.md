@@ -149,7 +149,7 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.condonery.commons` package.
 
---------------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
@@ -359,58 +359,63 @@ and create the corresponding parser
 ### User Uploaded Images [Haoren]
 
 The application allows users to upload their own images for Property and Client models. By default, the images are stored
-in `data/images`, but users can specify their custom directory in `preferences.json`.
+in `data/images`, or users can specify their custom directory in `preferences.json`.
+
+The feature is activated by the command pattern `add -p -i [OTHER_ARGUMENTS]...`
+
+Here is an activity diagram showing the process and error handling when the user tries to add a property with an image.
+![UploadImageActivityDiagram](images/UploadImageActivityDiagram.png)
+
+* The File Chooser ensures that Users can only upload `.png` or `.jpg` files, so we need not handle the case where the image is of the
+wrong format.
+* By default, the image is saved in `data/images` and renamed with default name `[property/client]-[EXACT_NAME]`. This is to prevent users from uploading images with conflicting names.
 
 The Image object is not initialized until the PropertyCard/ClientCard of the UI is rendered. This is to save memory
 consumption and rely on the Lazy Loading of Observable List. We need to inject the UserPrefs into the Property/Client
 models in order to determine the location to source for the uploaded images.
 
-### \[Proposed\] Undo/redo feature
+### Undo feature
 
-#### Proposed Implementation
+The undo mechanism is facilitated by `CommandQueue`. 
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`.
-It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`.
-Additionally, it implements the following operations:
+`CommandQueue` stores a List of Commands which had been executed during the application lifecycle, and is stored as a field in the `Model` class.
+Everytime the `LogicManager` executes a command, it will call `Model#addCommand()`, which adds the `Command` to the `CommandQueue`.
+In addition, the initial state of the `PropertyDirectory` and `ClientDirectory` is saved on initialization. 
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+The undo functionality is exposed in the `Model` interface as `Model#undoCommand()`.
+This method handles the resetting of `PropertyDirectory` and `ClientDirectory` to its initial states, and then executing all the commands except for the most recent one. 
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Here is the sequence diagram for when `undo` command is executed.
+![UndoSequenceDiagram.png](images/UndoSequenceDiagram.png)
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+</div>
+
+Given below is an example usage scenario and how the undo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `ModelManager` will be initialized with the initial `PropertyDirectory` and `ClientDirectory` state, and the `CommandQueue` will be empty.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete -p 5` command to delete the 5th property in the address book. The `LogicManager` calls `Model#addCommand(deleteCommand)`, causing the exact same `DeletePropertyCommand` to be saved in the `CommandQueue`.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add -p n/Oasis …` to add a new person. The `add -p` command also calls `Model#addCommand(addCommand)`, causing another command to be saved into the `CommandQueue`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#addCommand()`, so the command will not be saved into the `CommandQueue`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoCommand()`, which will pop the most recent `Command`(ie. addCommand), and restores the `PropertyDirectory` and `ClientDirectory` to its initial state. It will then proceed to execute all commands in the `CommandQueue`. Since all commands are deterministic, the resultant state of `PropertyDirectory` and `ClientDirectory` will be as though the last command was 'undone'.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `CommandQueue` is empty, then there are no commands to execute. The `CommandQueue` will throw `EmptyQueueException`, which will be handled by `UndoCommand` by returning an error to the user rather
 than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
@@ -420,11 +425,11 @@ The `redo` command does the opposite — it calls `Model#redoAddressBook()`,
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list -p`. Commands that do not modify the `PropertyDirectory` or `ClientDirectory`, such as `list -p`, will not call `Model#addCommand()`. Thus, the `CommandQueue` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear -p`, which calls `Model#addCommand()`. We notice that `addCommand` is no longer in the `CommandQueue`, and is now replaced by `clearCommand`
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -439,22 +444,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 1:** Saves the initial PropertyDirectory and ClientDirectory on initialization. Store all commands in
 CommandQueue and re-executes _n - 1_ commands on undo.
     * Pros: Easy to implement. Less memory usage
-    * Cons: Might make undo command less responsive, depending on complexity of commands.
-* **Alternative 2:** Saves the entire address book.
+    * Cons: Might make undo command less responsive, depending on time taken to execute commands.
+* **Alternative 2:** Saves the entire address book after each Command.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
-
 * **Alternative 3:** Individual command knows how to undo/redo by
   itself.
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -641,6 +638,7 @@ Use case resumes at step 1.
 
 **MSS**
 
+
 1. User requests to link an Interested Client to a Property
 2. Interested Client is successfully linked to the specified Property
 
@@ -648,7 +646,6 @@ Use case resumes at step 1.
 
 1a. Specified client name does not exist in the Client Directory
 1a1. Condonery shows an error message
-
 1b. Specified index does not exist in the Property Directory
 1b1. Condonery shows an error message stating that the property index is invalid
 
@@ -703,7 +700,6 @@ Use case ends.
 
 1a. Specified upper price range is lower than the lower price range
 1a1. Condonery shows an error message stating that an invalid price range was given
-
 1b. Negative numbers were given
 1b1. Condonery shows an error message stating that an invalid price range was given
 
@@ -744,7 +740,6 @@ Prerequisites: The application must be launched.
 Test case: exit
 
 Expected: The application exits and the window closes itself automatically.
-
 
 ### Adding a property
 
@@ -920,3 +915,18 @@ Finding all clients in the Client List with specified tags
      - Expected: Client List will display all clients with matching tag of `friend`
    - Test case (finding properties with tag of `rich` and `friend`): `filter -c friend`
      - Expected: Client List will display all clients with matching tags of `rich` and `friend`
+     
+## **Appendix: Effort**
+Majority of the complexity faced in building our app came from dealing with multiple entities, namely Property and Client.
+Our group faced trouble in implementing a 2-way association between Clients and Properties. 
+
+* For example, editing a `Client` with an association should update all references to the `Client`. As previously AB3 relied on an immutable implementation of editing entities, we had to do heavy testing to make sure that the information between all associations are synced.
+* Moreover, we had to ensure that storage of the 2-way association is feasible. Currently, our `Property` entities store a list of Interested Clients. Along the way, we realised that we are unable to store a list of Properties in a `Client` entity, as this resulted in our serialised storage being circular. We had to change a lot of our code to fix this, as we realised our previous implementation could not handle the storage requirement.
+
+Our group also tried to implement image storage for user's to upload their own pictures of Properties/Clients
+Here are some design considerations we had to deal with:
+* Initially, we wanted our `Logic` layer to handle the image uploading command. However, we soon realised this was unfeasible we as needed user input through the `Ui` layer, as we had to show a File Chooser, and only then handle the checking of file type. This problem was made more complicated
+as our storage location depended on the `UserPrefs`, which was stored in the `Model` layer. As much as possible, we didn't want the `Ui` layer to directly access the `Model` layer.<br>
+* The final solution our group came up with was to store the file name and file directory of each image in its respective entity (Property/Client). This allowed the `Ui` layer to directly source the image without accessing the `Model` layer, and instead accessing the individual entities in the `ObservableList`.
+The image uploading was left to the `Ui` layer, and the `Logic` layer used the `CommandResult` to signal to the `Ui` layer to accept an image upload, similar to how the Help command is implemented.
+

@@ -16,7 +16,6 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.condonery.commons.core.GuiSettings;
 import seedu.condonery.logic.commands.Command;
-import seedu.condonery.logic.commands.CommandQueue;
 import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.model.Model;
@@ -89,6 +88,11 @@ public class AddPropertyCommandTest {
     private class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoCommand() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -229,11 +233,6 @@ public class AddPropertyCommandTest {
 
         @Override
         public void addCommand(Command cmd) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public CommandQueue getCommandQueue() {
             throw new AssertionError("This method should not be called.");
         }
 
