@@ -47,11 +47,7 @@ FinBook is optimized for use via a Command Line Interface (CLI), which means mos
         * Credits: Uses [Password4j](https://password4j.com/) for password hashing, and [zxcvbn4j](https://github.com/nulab/zxcvbn4j) for password strength estimation.
 
 * **Contributions to the UG**:
-    * Added documentation for these features:
-        * Import command
-        * Export command
-        * Lock command
-        * Password command
+    * Added documentation for these features: import command, export command, lock command, password command
     * Added the above commands to the command summary.
     * Added section on password resetting.
     * Added new terms (JSON, CSV, path) to the glossary.
@@ -60,7 +56,7 @@ FinBook is optimized for use via a Command Line Interface (CLI), which means mos
 * **Contributions to the DG**:
     * Updated the acknowledgements section.
     * Updated the storage component section.
-    * Added implementation details of the import command.
+    * Added implementation details of the following: import command, lock feature
     * Updated user stories
     * Updated use cases
     * Updated glossary
@@ -74,30 +70,83 @@ FinBook is optimized for use via a Command Line Interface (CLI), which means mos
     * Set up master branch protection rules.
     * Maintained the issue tracker and milestones.
     * Made sure there were no outdated references to AB3 in the codebase.
-    * Integrated the following third party libraries into the project:
-        * [OpenCSV](https://opencsv.sourceforge.net/)
-        * [Password4j](https://password4j.com/)
-        * [zxcvbn4j](https://github.com/nulab/zxcvbn4j)
+    * Integrated the following third party libraries into the project: [OpenCSV](https://opencsv.sourceforge.net/), [Password4j](https://password4j.com/), [zxcvbn4j](https://github.com/nulab/zxcvbn4j)
 
 * **Review/mentoring contributions**:
-    * Reviewed the following pull requests:
-        * [#43](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/43)
-        * [#49](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/49)
-        * [#81](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/81)
-        * [#87](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/87)
-        * [#94](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/94)
+    * Reviewed the following pull requests: [#43](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/43), [#49](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/49), [#81](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/81), [#87](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/87), [#94](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/94), [#185](https://github.com/AY2223S1-CS2103T-F11-3/tp/pull/185)
     * Helped a teammate resolve an issue with failing test cases: [Link to PR](https://github.com/shaniceng/tp/pull/1)
 
 * **Contributions beyond the project team**:
     * Evidence of helping others
-        * to be added soon
-    * Evidence of technical leadership
-        * to be added soon
+        * Reported bugs for other teams in the class: [Example 1](https://github.com/AY2223S1-CS2103T-T15-3/tp/issues/206), [Example 2](https://github.com/AY2223S1-CS2103T-T15-3/tp/issues/234), [Example 3](https://github.com/AY2223S1-CS2103T-T15-3/tp/issues/246)
 
 ### Contributions to the Developer Guide (Extracts)
 
-to be added soon
+Created the following diagrams:
+
+![StorageClassDiagram](../images/StorageClassDiagram.png)
+![ImportSequenceDiagram](../images/ImportSequenceDiagram.png)
+![ImportSequenceDiagramRef](../images/ImportSequenceDiagramRef.png)
+![LockActivityDiagram](../images/LockActivityDiagram.png)
 
 ### Contributions to the User Guide (Extracts)
 
-to be added soon
+---
+
+### 4.2.1. Locking the application : `lock`
+
+Locks the application.
+
+Format: `lock`
+
+The following dialog box will be displayed:
+
+![Password dialog box](../images/LockWindow.png)
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes:**
+
+* If a password has not been set, leave the password field empty to unlock the application.
+
+</div>
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+The lock feature only serves to prevent unauthorized usage of FinBook. Anyone with access to your PC is still able to view and edit the `JSON` files containing your data.
+</div>
+
+---
+
+### 4.3.3. Importing data : `import`
+
+Imports data from a `JSON` or `CSV` file.
+
+* `JSON` files must be saved by the latest version of FinBook
+* `CSV` files must be formatted correctly as follows:
+    * The first line of the file must contain these headers in any order:
+        * `name`
+        * `phone`
+        * `email`
+        * `address`
+        * `income`
+        * `meeting date`
+        * `tags`
+        * `risk`
+        * `plans`
+        * The data in each corresponding column must be valid
+            * `tags` must be separated by commas `,` without spaces (e.g. `VIPPClient,YuFamily`)
+            * `plans` must be separated by commas `,` without spaces (
+              e.g. `prudential income,NTUC income,prudential health`)
+
+Format: `import PATH`
+
+* Imports data from the file at the specified `PATH`
+* `PATH` can be a relative or full path
+* `PATH` must end in `.json` or `.csv`
+
+Examples:
+
+* `import ./data.json` imports data from the file `data.json` which is located in the same directory as the FinBook
+  executable
+* `import ../data.csv` imports data from the file `data.csv` which is located one level outside the directory of the
+  FinBook executable
