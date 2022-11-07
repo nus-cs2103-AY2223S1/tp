@@ -179,11 +179,11 @@ Tutor information is stored as `Tutor` objects, which captures all the informati
 
 The following methods in `Tuthub` manage the addition of tutors:
 * `Tuthub#AddCommand(Tutor tutor)` - Adds the provided tutor to the list of tutors created
-* `Tuthub#AddCommandParser(String args)` - Parses the command `add` and determines the attributes of the `Tutor` object created based on the given prefixes
+* `Tuthub#AddCommandParser(String args)` - Parses the `add` command and determines the attributes of the `Tutor` object created based on the given prefixes
 
 Given below are the different steps taken when the user adds tutors.
 
-Step 1: The user enters the command word `edit`, followed by the prefixes and information that they want to store. Example: `add n/John Doe p/98765432 e/johnd@example.com m/CS2100 y/3 s/A0123456X tn/1 r/5.0 t/senior`.
+Step 1: The user enters the command word `add`, followed by the prefixes and information that they want to store. Example: `add n/John Doe p/98765432 e/e0782693 m/CS2100 y/3 s/A0123496X tn/1 r/5.0 t/senior`.
 
 Step 2: The program makes use of `TuthubParser` to make sense of the keyword and determine which parser to use to parse the arguments. In this case, the `AddCommandParser` is used.
 
@@ -234,7 +234,7 @@ The following methods in `tuthub` manage the finding of tutors:
 * `tuthub#FindByEmailCommand(EmailContainsKeywordsPredicate predicate)` - Finds and adds tutors with emails matching keywords to list of tutors displayed
 * `tuthub#FindByModuleCommand(ModuleContainsKeywordsPredicate predicate)` - Finds and adds tutors with modules matching keywords to list of tutors displayed
 * `tuthub#FindByYearCommand(YearContainsKeywordsPredicate predicate)` - Finds and adds tutors with year matching keywords to list of tutors displayed
-* `tuthub#FindByStudentIdCommand(StudenIdContainsKeywordsPredicate predicate)` - Finds and adds tutors with student ids matching keywords to list of tutors displayed
+* `tuthub#FindByStudentIdCommand(StudenIdContainsKeywordsPredicate predicate)` - Finds and adds tutors with student IDs matching keywords to list of tutors displayed
 * `tuthub#FindByTeachingNominationCommand(TeachingNominationContainsKeywordsPredicate predicate)` - Finds and adds tutors with teaching nominations matching keywords to list of tutors displayed
 * `tuthub#FindByRatingCommand(RatingContainsKeywordsPredicate predicate)` - Finds and adds tutors with rating matching keywords to list of tutors displayed
 * `tuthub#FindByTagCommand(TagContainsKeywordsPredicate predicate)` - Finds and adds tutors with tags matching keywords to list of tutors displayed
@@ -243,7 +243,7 @@ The following methods in `tuthub` manage the finding of tutors:
 * `ModelManager#getSortedFilteredTutorList()` - Returns the `sortedFilteredTutors` list
 * `ModelManager#updateFilteredTutorList(Predicate<Tutor> predicate)` - Updates filtered list based on predicate
 
-Given below is an example usage scenario when the user is finding tutors whose names contain alex.
+Given below is an example usage scenario when the user is finding tutors whose names contain "alex".
 
 Step 1: The user enter the command `find n/alex`.
 
@@ -252,7 +252,7 @@ Step 2: TutHub uses `TuthubParser` to determine which parser to use based on the
 Step 3: `FindByPrefixCommandParser` parses the `find` command to determine the attribute to search through and the keywords input by the user.
 `FindByPrefixCommandParser` creates a `FindByNameCommand` that extends `FindByPrefixCommand` with the keywords put into a `NameContainsKeywordsPredicate` object.
 
-Step 4: The `FindByNameCommand` is executed and tutors with names containing the string alex are added to the filtered list of tutors that have names
+Step 4: The `FindByNameCommand` is executed and tutors with names containing the string "alex" are added to the filtered list of tutors that have names
 containing the string alex captured in the `ModelManager` object, which makes use of the `UI` class to display the matching tutors.
 
 Step 5: The execution ends, returning a `CommandResult` object that has the success message to be displayed to the user.
@@ -263,10 +263,10 @@ The following sequence diagram demonstrates the above operations (excluding the 
 <ins>Design Considerations</ins>
 
 **Aspect: Implementation of `find`**
-- **Alternative 1:** `find` command integrates the use of prefixes in user input to determine which tutor attribute to search through. (i.e. `find n/alex`, `find s/A0123456X) **(chosen)**.
+- **Alternative 1:** `find` command integrates the use of prefixes in user input to determine which tutor attribute to search through. (i.e. `find n/alex`, `find s/A0123456X`) **(chosen)**.
     - Pros: Better OOP practice as the resultant find commands are all subclasses of `FindByPrefixCommand`
     - Cons: Took more time to think of and implement.
-- **Alternative 2:** Individual attributes of the tutor have their own find command (E.g. `findbyname`, `findbyemail`)
+- **Alternative 2:** Individual attributes of the tutor have their own find command (E.g. `findByName`, `findByEmail`)
     - Pros: Easier to implement individual commands for each attribute.
     - Cons: Poor OOP practice the individual commands are all `find` commands and should not be a different class on its own. User also have more commands to remember.
 
@@ -287,7 +287,7 @@ Step 2: The `TuthubParser` verifies the `ViewCommand#COMMAND_WORD`, and requests
 
 Step 3: Upon parsing, a new `ViewCommand` is created based on the valid index.
 
-Step 4: When the `ViewCommand` is executed, a new `CommandResult` of type `isView` is created and `ModelManager#tutorToView` is updated with the selected tutor. The following sequence diagram demonstrates the main operations carried out between `Logic` and `Model` (with UI details omitted):
+Step 4: When the `ViewCommand` is executed, a new `CommandResult` of type `isView` is created and `ModelManager#tutorToView` is updated with the selected tutor. The following sequence diagram demonstrates the main operations carried out between `Logic` and `Model` (with `UI` details omitted):
 
 <img src="images/ViewSequenceDiagram.png"/>
 
