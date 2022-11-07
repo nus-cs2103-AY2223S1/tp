@@ -715,15 +715,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. InternConnect shows an error message.
 
       Use case ends.
+  
+
+<div style="page-break-after: always;"></div>
 
 * 2b. The given index is not a positive integer or is out of bounds.
 
     * 2a1. InternConnect shows an error message.
 
       Use case ends.
-
-
-<div style="page-break-after: always;"></div>
 
 
 **Use case: UC06 - Find applicants by field**
@@ -772,6 +772,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. InternConnect shows an error message.
 
       Use case ends.
+
+<div style="page-break-after: always;"></div>
 
 * 1b. The given file name does not exist, is invalid or is not a file in JSON format.
 
