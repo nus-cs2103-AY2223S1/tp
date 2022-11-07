@@ -55,6 +55,7 @@ Given below are my contributions to the project.
         - Added documentation for the `stats` feature.
         - Added documentation for the `undo` and `redo` feature.
     * **Developer Guide**:
+        - Added implementation details of the `stats` feature.
         - Added implementation details of the `find` feature.
             - Added sequence diagram for the `find` feature.
             - Added activity diagram for the `find` feature.
