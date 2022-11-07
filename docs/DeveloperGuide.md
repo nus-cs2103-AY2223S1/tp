@@ -845,8 +845,9 @@ testers are expected to do more *exploratory* testing.
 #### Adding a todo
 
 1. Adding a new todo.
-   1. Test case: `todo add d/Watched recorded videos for CS2100 date/24-10-2022 pr/low t/CS2100`.
-   2. Expected: New todo with the same details is shown in the list.
+   1. Prerequisite: There is an existing `CS2100` tag and no existing todo has the details that will be provided below. 
+   2. Test case: `todo add d/Watched recorded videos for CS2100 date/24-10-2022 pr/low t/CS2100`.
+   3. Expected: New todo with the same details is shown in the list.
 
 #### Editing a todo
 
