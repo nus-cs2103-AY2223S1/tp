@@ -36,18 +36,18 @@ Given below are my contributions to the project.
   - Refactored command parser to handle both property and client commands (PR [#224](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/224))
   - Refactored test cases for modified features to maintain robust test coverage (PRs [#67](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/67))
 
-- **Contributions to the UG**:
-  - Updated first draft of user guide to contain all property and client commands (PR [#103](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/103))
-  - Formatted user guides with tables for clear user instruction. (PR [#234](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/234))
-  - Wrote detailed instructions for usage of `range -p` and `filter` commands (PR [#105](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/105))
-
-- **Contributions to the DG**:
-  - Added documentation for the commands `range -p` and `filter -p`.
-  - Added sequence and activity diagrams for `range -p` command (PR [#214](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/214))
-  - Added user stories (PR [#23](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/23))
+- **Documentation**:
+  - User Guide:
+    - Updated first draft of user guide to contain all property and client commands (PR [#103](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/103))
+    - Formatted user guides with tables for clear user instruction. (PR [#234](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/234))
+    - Wrote detailed instructions for usage of `range -p` and `filter` commands (PR [#105](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/105))
+  - Developer Guide:
+    - Added documentation for the commands `range -p` and `filter -p`.
+    - Added sequence and activity diagrams for `range -p` command (PR [#214](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/214))
+    - Added user stories (PR [#23](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/23))
 
 - **Project management**:
-  - Managed release v1.3 (trial)
+  - Managed release v1.3 (trial) on GitHub
 
 - **Community**:
   - PRs reviewed (with non-trivial review comments): [#57](https://github.com/AY2223S1-CS2103-W14-1/tp/pull/57)
