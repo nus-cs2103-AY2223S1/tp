@@ -41,6 +41,10 @@ skinparam BackgroundColor #FFFFFFF
 
 skinparam Shadowing false
 
+skinparam default {
+    FontSize 11
+}
+
 skinparam Class {
     FontColor #FFFFFF
     BorderThickness 1
