@@ -32,25 +32,29 @@ public class TypicalTasks {
             .withId(TASK_ID_1)
             .withTaskName(VALID_TASK_NAME_1)
             .withDescription(EMPTY_DESCRIPTION)
-            .withDeadline(VALID_DEADLINE_1).build();
+            .withDeadline(VALID_DEADLINE_1)
+            .withIsDone(true).build();
 
     public static final Task CS2103T = new TaskBuilder()
             .withId(TASK_ID_2)
             .withTaskName(VALID_TASK_NAME_2)
             .withDescription(VALID_DESCRIPTION_1)
-            .withDeadline(VALID_DEADLINE_2).build();
+            .withDeadline(VALID_DEADLINE_2)
+            .withIsDone(false).build();
 
     public static final Task CS2101 = new TaskBuilder()
             .withId(TASK_ID_3)
             .withTaskName(VALID_TASK_NAME_4)
             .withDescription(VALID_DESCRIPTION_2)
-            .withDeadline(EMPTY_DEADLINE).build();
+            .withDeadline(EMPTY_DEADLINE)
+            .withIsDone(true).build();
 
     public static final Task CS3230 = new TaskBuilder()
-           .withId(TASK_ID_4)
-           .withTaskName(VALID_TASK_NAME_5)
-           .withDescription(EMPTY_DESCRIPTION)
-           .withDeadline(EMPTY_DEADLINE).build();
+            .withId(TASK_ID_4)
+            .withTaskName(VALID_TASK_NAME_5)
+            .withDescription(EMPTY_DESCRIPTION)
+            .withDeadline(EMPTY_DEADLINE)
+            .withIsDone(false).build();
 
     private TypicalTasks() {} // prevents instantiation
 
