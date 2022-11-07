@@ -1,7 +1,6 @@
 package eatwhere.foodguide.logic.parser;
 
-import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_HELP;
-import static eatwhere.foodguide.logic.parser.ParserUtil.arePrefixesPresent;
+import static eatwhere.foodguide.logic.parser.ParserUtil.isDisplayHelp;
 import static eatwhere.foodguide.logic.parser.ParserUtil.parseTags;
 
 import java.util.ArrayList;
@@ -27,9 +26,7 @@ public class FavouriteCommandParser implements Parser<TagCommand> {
      * @throws DisplayCommandHelpException if the user input is for displaying command help
      */
     public TagCommand parse(String args) throws ParseException, DisplayCommandHelpException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_HELP);
-
-        if (arePrefixesPresent(argMultimap, PREFIX_HELP)) {
+        if (isDisplayHelp(args)) {
             throw new DisplayCommandHelpException(FavouriteCommand.MESSAGE_USAGE);
         }
 

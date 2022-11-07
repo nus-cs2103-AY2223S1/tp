@@ -1,7 +1,6 @@
 package eatwhere.foodguide.logic.parser;
 
-import static eatwhere.foodguide.logic.parser.CliSyntax.PREFIX_HELP;
-import static eatwhere.foodguide.logic.parser.ParserUtil.arePrefixesPresent;
+import static eatwhere.foodguide.logic.parser.ParserUtil.isDisplayHelp;
 
 import eatwhere.foodguide.commons.core.Messages;
 import eatwhere.foodguide.commons.core.index.Index;
@@ -21,9 +20,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
      * @throws DisplayCommandHelpException if the user input is for displaying command help
      */
     public DeleteCommand parse(String args) throws ParseException, DisplayCommandHelpException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_HELP);
-
-        if (arePrefixesPresent(argMultimap, PREFIX_HELP)) {
+        if (isDisplayHelp(args)) {
             throw new DisplayCommandHelpException(DeleteCommand.MESSAGE_USAGE);
         }
 
