@@ -172,6 +172,8 @@ Format: `exit`
 
 <div style="page-break-after: always;"></div>
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Student commands
 This section contains commands for managing students.
 
@@ -278,6 +280,8 @@ Examples:
 
 <div style="page-break-after: always;"></div>
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Task commands
 This section contains commands for managing tasks.
 
@@ -337,6 +341,8 @@ Example:
 * `unmarktask 2` marks the 2nd task in your task list as not done.
 
 <div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Lesson commands
 This section contains commands for managing lessons.
@@ -510,9 +516,13 @@ Example:
 
 <div style="page-break-after: always;"></div>
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## Saving the data
 
 JARVIS data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Editing the data file
 
