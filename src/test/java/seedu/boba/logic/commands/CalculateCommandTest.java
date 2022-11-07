@@ -66,5 +66,13 @@ public class CalculateCommandTest {
 
         assertCommandFailure(calculateCommand, bobaBotModel, Messages.MESSAGE_INVALID_ARITHMETIC_EXPRESSION);
     }
+
+    @Test
+    public void execute_unsupportedOperator_Fail() {
+        String exp = "2^^30";
+        CalculateCommand calculateCommand = new CalculateCommand(exp);
+
+        assertCommandFailure(calculateCommand, bobaBotModel, Messages.MESSAGE_INVALID_ARITHMETIC_EXPRESSION);
+    }
 }
 

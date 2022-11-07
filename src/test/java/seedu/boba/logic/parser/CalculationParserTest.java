@@ -1,7 +1,9 @@
 package seedu.boba.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.EmptyStackException;
 import java.util.Random;
 
 import org.junit.jupiter.api.Test;
@@ -96,6 +98,32 @@ public class CalculationParserTest {
         assertEquals(CalculationParser.parseCalculation(" 64 -8 /(2 / 2)*2"), "48");
         assertEquals(CalculationParser.parseCalculation(" 64.15 -8.01 /(2.2 / 2)*2"), "49.59");
         assertEquals(CalculationParser.parseCalculation("1.00+1.0+1"), "3");
+    }
+
+    @Test
+    public void invalidNumber_throw_illegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () ->
+                CalculationParser.parseCalculation("1+x"));
+    }
+
+    @Test
+    public void duplicateOperator_throw_emptyStackException() {
+        assertThrows(EmptyStackException.class, () ->
+                CalculationParser.parseCalculation("1+-33"));
+    }
+
+    @Test
+    public void unsuportedOperator_throw_illegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () ->
+                CalculationParser.parseCalculation("2^33"));
+    }
+
+    @Test
+    public void equals() {
+        CalculationParser calculationParser = new CalculationParser();
+        assertEquals(calculationParser, calculationParser);
+        CalculationParser calculationParser1 = new CalculationParser();
+        assertEquals(calculationParser, calculationParser1);
     }
 
 }
