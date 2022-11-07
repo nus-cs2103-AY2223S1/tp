@@ -190,10 +190,10 @@ Examples:
 
 Deletes a student from the student list.
 
-Format: `deletestudent INDEX`
+Format: `deletestudent STUDENT_INDEX`
 
-* `INDEX` refer to the index number shown in the student list.
-* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* `STUDENT_INDEX` refer to the index number shown in the student list.
+* `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `deletestudent 2` deletes the 2nd student in JARVIS.
@@ -202,10 +202,10 @@ Examples:
 
 Edits an existing student in JARVIS.
 
-Format: `editstudent INDEX [s/NAME] [m/MATRIC_NUM]`
+Format: `editstudent STUDENT_INDEX [s/NAME] [m/MATRIC_NUM]`
 
-* Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list.
-* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* Edits the student at the specified `STUDENT_INDEX`. The index refers to the index number shown in the displayed student list.
+* `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
@@ -232,12 +232,12 @@ Examples:
 
 Adds grades to a student.
 
-Format: `grade INDEX [ra1/MARKS] [ra2/MARKS] [mt/MARKS] [pa/MARKS] [fn/MARKS]`
+Format: `grade STUDENT_INDEX [ra1/MARKS] [ra2/MARKS] [mt/MARKS] [pa/MARKS] [fn/MARKS]`
 
 ![gradeCommand](images/gradeCommand.png)
 
-* Add grades to the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list.
-* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* Add grades to the student at the specified `STUDENT_INDEX`. The index refers to the index number shown in the displayed student list.
+* `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 * `ra1/MARKS` is optional, if specified will record a grade for RA1 (Reading Assessment 1).
 * `ra2/MARKS` is optional, if specified will record a grade for RA2 (Reading Assessment 2).
 * `mt/MARKS` is optional, if specified will record a grade for Midterm.
@@ -252,10 +252,10 @@ Examples:
 
 Sets mastery check result for a student.
 
-Format: `mc INDEX num/MC_NUM r/MC_RESULT`
+Format: `mc STUDENT_INDEX num/MC_NUM r/MC_RESULT`
 
-* Sets mastery check result for the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list.
-* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* Sets mastery check result for the student at the specified `STUDENT_INDEX`. The index refers to the index number shown in the displayed student list.
+* `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 * `MC_NUM` must be 1 or 2.
 * `MC_RESULT` must be "pass" or "fail".
 * `MC_RESULT` is not case-sensitive.
@@ -285,10 +285,10 @@ Examples:
 
 Deletes a task from the task list.
 
-Format: `deletetask INDEX`
+Format: `deletetask TASK_INDEX`
 
-* `INDEX` refer to the index number shown in the task list.
-* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* `TASK_INDEX` refer to the index number shown in the task list.
+* `TASK_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `deletetask 2` deletes the 2nd task in JARVIS.
@@ -299,10 +299,10 @@ Marks a task as done.
 
 ![marktaskCommand](images/marktaskCommand.png)
 
-Format: `marktask INDEX`
+Format: `marktask TASK_INDEX`
 
-* `INDEX` refers to the index number shown in the displayed list of tasks.
-* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* `TASK_INDEX` refers to the index number shown in the displayed list of tasks.
+* `TASK_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
 * `marktask 2` marks the 2nd task as done.
@@ -315,10 +315,10 @@ Example:
 
 Marks a task as not done.
 
-Format: `unmarktask INDEX`
+Format: `unmarktask TASK_INDEX`
 
-* `INDEX` refers to the index number shown in the displayed list of tasks.
-* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* `TASK_INDEX` refers to the index number shown in the displayed list of tasks.
+* `TASK_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
 * `unmarktask 2` marks the 2nd task as not done.
@@ -376,10 +376,10 @@ Examples:
 
 Deletes a lesson from the lesson list.
 
-Format: `deletelesson INDEX`
+Format: `deletelesson LESSON_INDEX`
 
-* `INDEX` refer to the index number shown in the lesson list.
-* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* `LESSON_INDEX` refer to the index number shown in the lesson list.
+* `LESSON_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `deletelesson 2` deletes the 2nd lesson in JARVIS.
@@ -388,10 +388,10 @@ Examples:
 
 Marks a lesson as completed.
 
-Format: `marklesson INDEX`
+Format: `marklesson LESSON_INDEX`
 
-* `INDEX` refer to the index number shown in the lesson list.
-* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* `LESSON_INDEX` refer to the index number shown in the lesson list.
+* `LESSON_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
 * `marklesson 2` marks the 2nd lesson as completed.
@@ -404,10 +404,10 @@ Example:
 
 Marks a lesson as not completed.
 
-Format: `unmarklesson INDEX`
+Format: `unmarklesson LESSON_INDEX`
 
-* `INDEX` refer to the index number shown in the lesson list.
-* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* `LESSON_INDEX` refer to the index number shown in the lesson list.
+* `LESSON_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
 * `unmarklesson 2` marks the 2nd lesson as not completed.
@@ -520,32 +520,32 @@ If your changes to the data file makes its format invalid, JARVIS will discard a
 
 ## Command summary
 
-Action | Format                                                                                           | Examples
--------|--------------------------------------------------------------------------------------------------|----------
-**Help** | `help`                                                                                           |
-**List students** | `liststudent`                                                                                    |
-**List tasks** | `listtask`                                                                                       |
-**List lessons** | `listlesson`                                                                                     |
-**List all** | `listall`                                                                                        |
-**Clear** | `clear`                                                                                          |
-**Add student** | `addstudent s/NAME m/MATRIC_NUM`                                                                 | `addstudent s/John Doe m/A0123459G`
-**Delete student** | `deletestudent INDEX`                                                                            | `deletestudent 2`
-**Edit student** | `editstudent INDEX [s/NAME] [m/MATRIC_NUM]`                                                      | `editstudent 1 s/John Do`
-**Find student** | `findstudent KEYWORD [MORE_KEYWORDS]`                                                            | `findstudent John`
-**Add grade** | `grade INDEX [ra1/MARKS] [ra2/MARKS] [mt/MARKS] [pa/MARKS] [fn/MARKS]`                           | `grade 1 ra1/17 mt/55`
-**Set mastery check result** | `mc INDEX num/MC_NUM r/MC_RESULT`                                                                | `mc 1 num/1 r/PASS`
-**Add task** | `addtask t/TASK_DESC [d/DEADLINE]`                                                               | `addtask t/Prepare tutorial slides d/2022-11-01`
-**Delete task** | `deletetask INDEX`                                                                               | `deletetask 2`
-**Mark task** | `marktask INDEX`                                                                                 | `marktask 2`
-**Unmark task** | `unmarktask INDEX`                                                                               | `unmarktask 2`
-**Add studio** | `addstudio [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_TIME`                | `addstudio l/Studio 3 sd/2022-10-12 st/14:00 et/16:00`
+Action | Format                                                                                                 | Examples
+-------|--------------------------------------------------------------------------------------------------------|----------
+**Help** | `help`                                                                                                 |
+**List students** | `liststudent`                                                                                          |
+**List tasks** | `listtask`                                                                                             |
+**List lessons** | `listlesson`                                                                                           |
+**List all** | `listall`                                                                                              |
+**Clear** | `clear`                                                                                                |
+**Add student** | `addstudent s/NAME m/MATRIC_NUM`                                                                       | `addstudent s/John Doe m/A0123459G`
+**Delete student** | `deletestudent STUDENT_INDEX`                                                                          | `deletestudent 2`
+**Edit student** | `editstudent STUDENT_INDEX [s/NAME] [m/MATRIC_NUM]`                                                    | `editstudent 1 s/John Do`
+**Find student** | `findstudent KEYWORD [MORE_KEYWORDS]`                                                                  | `findstudent John`
+**Add grade** | `grade STUDENT_INDEX [ra1/MARKS] [ra2/MARKS] [mt/MARKS] [pa/MARKS] [fn/MARKS]`                         | `grade 1 ra1/17 mt/55`
+**Set mastery check result** | `mc STUDENT_INDEX num/MC_NUM r/MC_RESULT`                                                              | `mc 1 num/1 r/PASS`
+**Add task** | `addtask t/TASK_DESC [d/DEADLINE]`                                                                     | `addtask t/Prepare tutorial slides d/2022-11-01`
+**Delete task** | `deletetask TASK_INDEX`                                                                                | `deletetask 2`
+**Mark task** | `marktask TASK_INDEX`                                                                                  | `marktask 2`
+**Unmark task** | `unmarktask TASK_INDEX`                                                                                | `unmarktask 2`
+**Add studio** | `addstudio [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_TIME`                      | `addstudio l/Studio 3 sd/2022-10-12 st/14:00 et/16:00`
 **Add consult** | `addconsult [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_TIME si/STUDENT_INDEX...` | `addconsult l/Consultation on recursion sd/2022-10-14 st/12:00 et/14:00 si/3 si/4`
-**Add mastery check** | `addmc [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_TIME si/STUDENT_INDEX...` | `addmc l/Mastery check 1 sd/2022-10-12 st/12:00 et/14:00 si/1 si/2`
-**Delete lesson** | `deletelesson INDEX`                                                                             | `deletelesson 2`
-**Mark lesson** | `marklesson INDEX`                                                                               | `marklesson 2`
-**Unmark lesson** | `unmarklesson INDEX`                                                                             | `unmarklesson 2`
-**Mark student** | `markstudent li/LESSON_INDEX si/STUDENT_INDEX`                                                   | `markstudent li/2 si/3`
-**Unmark student** | `unmarkstudent li/LESSON_INDEX si/STUDENT_INDEX`                                                 | `unmarkstudent li/2 si/3`
-**Add note** | `addnote n/NOTE li/LESSON_INDEX [si/STUDENT_INDEX]`                                              | `addnote n/Get back to jeff on streams li/1 si/2`
-**Delete note** | `deletenote ni/NOTE INDEX li/LESSON_INDEX [si/STUDENT_INDEX]`                                    | `deletenote ni/1 li/1 si/2`
-**Add participation** | `addpart p/PARTICIPATION li/LESSON_INDEX si/STUDENT_INDEX`                                       |  `addpart p/100 li/1 si/2`
+**Add mastery check** | `addmc [l/LESSON_DESC] sd/START_DATE st/START_TIME [ed/END_DATE] et/END_TIME si/STUDENT_INDEX...`      | `addmc l/Mastery check 1 sd/2022-10-12 st/12:00 et/14:00 si/1 si/2`
+**Delete lesson** | `deletelesson LESSON_INDEX`                                                                            | `deletelesson 2`
+**Mark lesson** | `marklesson LESSON_INDEX`                                                                              | `marklesson 2`
+**Unmark lesson** | `unmarklesson LESSON_INDEX`                                                                            | `unmarklesson 2`
+**Mark student** | `markstudent li/LESSON_INDEX si/STUDENT_INDEX`                                                         | `markstudent li/2 si/3`
+**Unmark student** | `unmarkstudent li/LESSON_INDEX si/STUDENT_INDEX`                                                       | `unmarkstudent li/2 si/3`
+**Add note** | `addnote n/NOTE li/LESSON_INDEX [si/STUDENT_INDEX]`                                                    | `addnote n/Get back to jeff on streams li/1 si/2`
+**Delete note** | `deletenote ni/NOTE_INDEX li/LESSON_INDEX [si/STUDENT_INDEX]`                                          | `deletenote ni/1 li/1 si/2`
+**Add participation** | `addpart p/PARTICIPATION li/LESSON_INDEX si/STUDENT_INDEX`                                             |  `addpart p/100 li/1 si/2`
