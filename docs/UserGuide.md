@@ -543,7 +543,7 @@ You can find your students / teaching assistants by searching for keywords in th
 
 **:information_source: Note**<br>
 
-- You can refer to the section [Student Manager Command Parameters](#431-student-manager-command-parameters) for more information about the parameters
+- You can refer to the section [Student Manager Command Parameters](#431-student-manager-command-parameters) for more information about the parameters.
 - The search is case-insensitive. e.g `hans` will match `Hans`
 - The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 - Only the name is searched.
@@ -596,7 +596,7 @@ Views the list of selected/all schedules.
 
 **:information_source: Note**<br>
 
-- You can refer to the section [Schedule Manager Command Parameters](#441-schedule-manager-command-parameters) for more information about the parameters
+- You can refer to the section [Schedule Manager Command Parameters](#441-schedule-manager-command-parameters) for more information about the parameters.
 - Schedules matching at least one keyword will be returned to you.
 - You can view all your schedules by typing `sview` without any parameter.
 
