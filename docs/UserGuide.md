@@ -258,11 +258,11 @@ Format: `filterC KEYWORD [MORE_KEYWORDS]...`
 
 </div>
 
-Example:
+Examples:
 
 * `filterC cs2103t` will return contacts with label `cs2103t`.
 
-* `filterC cs2103t cs2101` will return contacts with label `cs2103t` or `cs2101.
+* `filterC cs2103t cs2101` will return contacts with labels `cs2103t` or `cs2101`.
 
 ### Copying contact emails by label: `copyC`
 
@@ -437,11 +437,11 @@ Format: `filterT KEYWORD [MORE_KEYWORDS]...`
 
 * Only full words will be matched. e.g. `math` will not match `mathematics`.
 
-Example:
+Examples:
 
 * `filterC cs2103t` will return tasks with label `cs2103t`.
 
-* `filterC cs2103t cs2101` will return tasks with label `cs2103t` or `cs2101`.
+* `filterC cs2103t cs2101` will return tasks with labels `cs2103t` or `cs2101`.
 
 ### Marking task as completed: `markT`
 
