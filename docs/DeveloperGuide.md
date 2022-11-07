@@ -748,7 +748,7 @@ A significant part of the effort in storing and loading of Tasks was saved using
 
 {TODO: Talk about effort for 2nd stage aka v1.3 - QOL features}
 
-It was also difficult learning Javafx and CSS in order to design our Gui in the style we wanted it. It was also a struggle to learn how to use the Observer design pattern that was given by AB3. However, with a lot of trial and error, as well as feedback from close friends outside this project group, we managed to put together a Gui we can be proud of.
+It was also difficult learning JavaFX and CSS in order to design our Gui in the style we wanted it. It was also a struggle to learn how to use the Observer design pattern that was given by AB3. However, with a lot of trial and error, as well as feedback from close friends outside this project group, we managed to put together a Gui we can be proud of.
 
 We thankfully avoided a lot of work conflicts where multiple people were stuck because of one person's portion being unimplemented because we recognised early on that work blockages were a huge risk factor. We therefore assigned strict deadlines for those vital features and thus reduced the number of work blockages that occurred.
 
